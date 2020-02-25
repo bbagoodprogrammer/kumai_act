@@ -1,0 +1,161 @@
+a,b,body,button,em,h1,h2,h3,h4,h5,h6,html,i,img,input,li,ol,p,strong,table,td,textarea,th,tr,ul {
+    margin: 0;
+    padding: 0;
+    font-size: .3rem;
+    font-weight: 400;
+    font-style: normal;
+    -webkit-text-size-adjust: none;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-family: Tahoma,Helvetica,Arial,Microsoft Yahei,sans-serif
+}
+
+li {
+    list-style: none
+}
+
+img {
+    border: none
+}
+
+a {
+    text-decoration: none
+}
+
+a,button,input,textarea {
+    outline: none
+}
+
+@media (max-width: 720px) {
+    .pc-nav {
+        display:none
+    }
+}
+
+@media (min-width: 720px) {
+    a,b,body,button,em,h1,h2,h3,h4,h5,h6,html,i,img,input,li,ol,p,strong,table,td,textarea,th,tr,ul {
+        font-size:.3rem
+    }
+}
+
+::-webkit-scrollbar {
+    width: .12rem
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffd731;
+    border-radius: 1rem
+}
+
+
+a,body {
+    color: #fff
+}
+
+a,a:hover {
+    text-decoration: none
+}
+
+.mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10000;
+    background: rgba(0,0,0,.8)
+}
+
+.slide-enter-active {
+    animation-name: slideInUp;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+  .slide-leave-active {
+    animation-name: slideOutDown;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+  @keyframes slideInUp {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  @keyframes slideOutDown {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    to {
+      transform: scale(0);
+    }
+  }
+  @keyframes late {
+    75% {
+      left: -1.85rem;
+    }
+    to {
+      left: 1.85rem;
+    }
+  }
+  @keyframes late2{
+    0% {
+      left: -221px;
+    }
+    to {
+      left: 221px;
+    }
+  }
+  @keyframes late3{
+    0%{
+      left: -735px;
+    }
+    to {
+      left: 735px;
+    }
+  }
+  @keyframes heart{  //上下浮動
+    from{transform:translate(0,0)}
+    to{transform:translate(0,9px)}
+  }
+  @keyframes rotateTitle{
+    from{transform: rotateY(-20deg)}
+    50%{transform: rotateY(0deg)}
+    to{transform: rotateY(20deg)}
+  }
+  @keyframes duck {
+    0%, 100%{
+      transform: rotateZ(0deg)
+    }
+    25%{
+      transform: rotateZ(-7deg)
+    }
+    50%{
+      transform: rotateZ(0deg)
+    }
+    75%{
+      transform: rotateZ(7deg)
+    }
+  }
+  @keyframes duck2 {
+    0%, 100%{
+      transform: rotateZ(0deg)
+    }
+    25%{
+      transform: rotateZ(8deg)
+    }
+    50%{
+      transform: rotateZ(0deg)
+    }
+    75%{
+      transform: rotateZ(-8deg)
+    }
+  }
