@@ -130,7 +130,7 @@ export default {
           display: inline-block;
           width: 0.9rem;
           height: 0.9rem;
-          background-color: #cc00ff;
+          background-color: #d3902f;
           border-radius: 0.2rem;
           text-align: center;
           > img {
@@ -139,7 +139,7 @@ export default {
           }
         }
         > p {
-          color: #5dffe2;
+          color: #fff1b8;
           font-size: 80%;
           text-align: center;
         }
@@ -158,7 +158,7 @@ export default {
       .double {
         width: 4.58rem;
         font-size: 80%;
-        color: #ffdb6e;
+        color: #fdbea0;
         text-align: center;
         margin: 0 auto;
       }
@@ -167,7 +167,7 @@ export default {
         font-size: 80%;
         line-height: 0.45rem;
         text-align: center;
-        color: #f7d8ff;
+        color: #ffdb6e;
         margin: 0 auto;
       }
     }

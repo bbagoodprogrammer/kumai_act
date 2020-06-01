@@ -3,19 +3,23 @@
     <p v-if="history2.list && history2.list.length == 0" class="tips">暫無心願!</p>
     <ul class="scrollable" v-else>
       <li v-for="(item,index) in history2.list" :key="index">
-        <div class="imgBox" :class="{nv:item.sex == 1}">
-          <img v-lazy="item.avatar" alt="">
-          <i class="sex" :class="{sex2:item.sex == 1}"></i>
+        <div class="imgBox" :class="{nv:item.fuser?item.fuser.sex == 1:item.sex == 1}">
+          <img v-lazy="item.fuser.avatar" alt="" v-if="item.fuser" @click="goUser(item.fuser.uid)">
+          <img src="../assets/img/default.png" alt="" v-else>
+          <i class="sex" :class="{sex2:item.fuser?item.fuser.sex == 1:item.sex==1}"></i>
         </div>
         <div class="userBox">
           <div class="songName">{{item.song_name}}</div>
           <div class="userName">From: {{item.nick}}</div>
+          <div class="getUid">
+            <span v-if="!item.fuser">該心願未被摘取</span>
+            <span v-else>該心願已被UID{{item.fuser.uid}}摘取</span>
+          </div>
         </div>
         <p class="time">發佈時間: {{getTimeStr(item.ptime)}}</p>
       </li>
       <p class="loadingTips" v-show="loading">加載中...</p>
     </ul>
-
   </div>
 </template>
 <script>
@@ -64,6 +68,9 @@ export default {
           })
         }
       }
+    },
+    goUser(uid) {
+      location.href = `uid:${uid}`
     }
   }
 }
@@ -129,18 +136,24 @@ export default {
         }
       }
       .userBox {
-        margin-left: 0.15rem;
+        margin: -0.15rem 0 0 0.15rem;
         div {
           color: #fffde3;
           font-size: 93%;
           height: 50%;
+        }
+        .getUid {
+          color: #fffa5a;
+          span {
+            font-size: 0.21rem;
+          }
         }
       }
       .time {
         font-size: 70%;
         color: #dfceff;
         position: absolute;
-        bottom: 0.12rem;
+        bottom: 0.05rem;
         right: 0.1rem;
       }
     }

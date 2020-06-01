@@ -31,7 +31,7 @@
       <msg-toast :msg="tastMsg" :tostTitle="tostTitle" :back="back" @closeToast="closeToast()" v-show="showT"></msg-toast>
     </transition>
     <div class="bMsg">
-      <p>心願歌曲需為2月13日18:00:00后發佈的任意公開作品(清唱5分鐘除外)</p>
+      <p>心願歌曲需為5月4日18:00:00后發佈的任意公開作品(清唱5分鐘除外)</p>
     </div>
     <Loading></Loading>
   </div>
@@ -51,12 +51,12 @@ export default {
       tastMsg: '',
       showT: false,
       songIndex: null,
-      tostTitle:'',
-      back:false
+      tostTitle: '',
+      back: false
     }
   },
-  computed:{
-    isLength(){
+  computed: {
+    isLength() {
       return this.songList.length > 0
     }
   },
@@ -66,7 +66,7 @@ export default {
         this.songList = res.data.response_data.list
       }
     })
-     sessionStorage.setItem("need-refresh", true);
+    sessionStorage.setItem("need-refresh", true);
   },
   methods: {
     goSing() {
@@ -82,10 +82,10 @@ export default {
         if (res.data.response_status.code === 0) { //提交成功顯示OK提示
           this.showPup = false
           let gift = res.data.response_data.gift
-          if(gift){
+          if (gift) {
             this.tostTitle = `送出心願歌曲成功`
             this.tastMsg = `恭喜你成功送出1首心願歌曲，獎勵${gift.count}個${gift.name}背包禮物，快去你的背包看看吧！`
-          }else{
+          } else {
             this.tostTitle = `送出心願歌曲成功 `
             this.tastMsg = `恭喜你成功送出1首心願歌曲，再接再厲唷!`
           }
@@ -93,7 +93,7 @@ export default {
           //刪除當前歌曲
           this.songList.splice(this.songIndex, 1)
           this.back = true
-        }else{
+        } else {
           this.showPup = false
           this.tastMsg = res.data.response_status.error
           this.showT = true
@@ -110,11 +110,11 @@ export default {
 }
 </script>
 <style lang="scss">
-body{
-  background: #2D0080;
+body {
+  background: #2d0080;
 }
 .song {
-  padding: .64rem 0.38rem 0;
+  padding: 0.64rem 0.38rem 0;
   .determinePup {
     position: fixed;
     top: 0;
@@ -150,14 +150,14 @@ body{
     }
   }
   > h5 {
-    color: #FFFDE4;
-    font-size: .33rem;
+    color: #fffde4;
+    font-size: 0.33rem;
     text-align: center;
   }
   .bMsg {
-    color: #FFFDE4;
+    color: #fffde4;
     margin-top: 0.51rem;
-    font-size: .26rem;
+    font-size: 0.26rem;
     text-align: center;
   }
   .songList {
@@ -169,22 +169,22 @@ body{
     li {
       height: 1.2rem;
       display: flex;
-      padding-left: .1rem;
+      padding-left: 0.1rem;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 0.02rem solid rgba(13,13,13,.2);
-      .songLeft{
-        span{
+      border-bottom: 0.02rem solid rgba(13, 13, 13, 0.2);
+      .songLeft {
+        span {
           display: block;
           height: 50%;
         }
         .name {
           color: #ffffff;
-          font-size: .36rem;
+          font-size: 0.36rem;
         }
-        .tm{
-          color:#7F25DE;
-          font-size: .21rem;
+        .tm {
+          color: #7f25de;
+          font-size: 0.21rem;
         }
       }
       .joinBtn {
@@ -198,27 +198,27 @@ body{
   .goSing {
     margin-top: 2.46rem;
     position: relative;
-    &.border{
-      border-bottom: .02rem solid rgba(13,13,13,.2);
+    &.border {
+      border-bottom: 0.02rem solid rgba(13, 13, 13, 0.2);
       margin-top: 1rem;
     }
     > p {
-      color: #FFFDE4;
-      font-size: .28rem;
+      color: #fffde4;
+      font-size: 0.28rem;
       text-align: center;
     }
     .sing {
-      width:1.75rem;
-      height:.56rem;
+      width: 1.75rem;
+      height: 0.56rem;
       background: url(../../assets/img/goSingOne.png);
       background-size: 100% 100%;
       margin: 0.4rem auto 0;
     }
     span {
       display: block;
-      color: #7F25DE;
-      font-size: .26rem;
-      margin: .45rem 0;
+      color: #7f25de;
+      font-size: 0.26rem;
+      margin: 0.45rem 0;
       text-align: center;
     }
   }

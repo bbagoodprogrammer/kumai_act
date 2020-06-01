@@ -99,10 +99,16 @@ function getBoxHistory(from, more) {
         return get(`/rand_packet/history.php?from=${from}&token=${token}`)
     }
 }
+
+//获取弹幕
+function getRoolMsg() {
+    return get('/rand_packet/notice.php')
+}
 const httpConfig = {
     getDefault,
     userSingUp,
     openBox,
-    getBoxHistory
+    getBoxHistory,
+    getRoolMsg
 }
 export default httpConfig

@@ -1,10 +1,10 @@
 <template>
   <div class="rule">
     <div class="tabs">
-      <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">規則</a>
-      <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">獎勵</a>
+      <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">活動規則</a>
+      <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">活動獎勵</a>
     </div>
-    <h6 class="time">活動時間：2月28日18:00- 3月6日22:00</h6>
+    <h6 class="time">活動時間：5月7日12:00- 5月15日23:00</h6>
     <div class="ruleTips" v-show="tab == 0">
       <h6>活動規則</h6>
       <p>1. 點擊報名參賽之後用戶可以通過在K房、作品、語聊房送禮金幣魅力值獲取驚喜值</p>
@@ -16,14 +16,15 @@
       </p>
       <h6>日榜時間：</h6>
       <p class="dayTime">
-        Day1: 2月28日18:00-2月29日0:00 </br>
-        Day2: 2月29日0:00-3月1日0:00 </br>
-        Day3: 3月1日0:00-3月2日0:00 </br>
-        Day4: 3月2日0:00-3月3日0:00 </br>
-        Day5: 3月3日0:00-3月4日0:00 </br>
-        Day6: 3月4日0:00-3月5日0:00 </br>
-        Day7: 3月5日0:00-3月6日00:00 </br>
-        Day8: 3月6日0:00-3月6日22:00 </br>
+        Day1: 5月7日12:00- 5月8日0:00 </br>
+        Day2: 5月8日0:00- 5月9日0:00</br>
+        Day3: 5月9日0:00- 5月10日0:00</br>
+        Day4: 5月10日0:00- 5月11日0:00</br>
+        Day5: 5月11日0:00- 5月12日0:00</br>
+        Day6: 5月12日0:00- 5月13日0:00</br>
+        Day7: 5月13日0:00- 5月14日0:00</br>
+        Day8: 5月14日0:00- 5月15日0:00</br>
+        Day9: 5月15日0:00- 5月15日23:00
       </p>
       <h6>幸運等級劃分：</h6>
       <p class="dayTime">
@@ -33,7 +34,7 @@
         Lv4：5000驚喜值</br>
         Lv5：8000驚喜值</br>
         Lv6：10000驚喜值</br>
-        終極盲盒 : 累計達活動期間驚喜值達200000</br>
+        終極盲盒 : 活動期間累計驚喜值達180000</br>
         注意：驚喜值次日零點清零，請及時打開盲盒
       </p>
       <h6>備註：</h6>
@@ -58,7 +59,7 @@
         </span>
         <span>
           <img src="../../assets/img/ruleGift/4.png" alt="">
-          <strong>豪華遊艇座驾</strong>
+          <strong>豪華遊艇座駕</strong>
         </span>
         <span>
           <img src="../../assets/img/ruleGift/5.png" alt="">

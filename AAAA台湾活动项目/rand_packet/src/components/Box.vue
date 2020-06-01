@@ -33,9 +33,9 @@
     <div class="mask" v-show="showOpenBox1">
       <transition name="slide">
         <div class="openBox1Pup" v-show="showOpenBox1">
-          <span class="close" @click="closePup1()"></span>
+          <span class="close" @click="closePup1()" v-if="showPup1Type2 || (!packet.dayOpened && userLv > 0)"></span>
           <div class="openBox1PupCon" v-if="!showPup1Type2">
-            <div class="luckTitle">{{lang.luck}} <i>{{userLv}}</i></div>
+            <div class="luckTitle" v-if="registered">{{lang.luck}} <i>{{userLv}}</i></div>
             <p class="openTips" v-html="box1Tips"></p>
             <span class="openBtn" @click="open(1)">{{lang.ok}}</span>
           </div>
@@ -68,7 +68,7 @@
     <div class="mask" v-show="showOpenBox2">
       <transition name="slide">
         <div class="openBox2Pup" :class="{gifts:showPup2Type2}" v-show="showOpenBox2">
-          <span class="close" @click="closePup2()"></span>
+          <span class="close" @click="closePup2()" v-if="showPup2Type2"></span>
           <div class="openBox2PupCon" v-if="!showPup2Type2">
             <p class="openTips" v-html="box2Tips"></p>
             <span class="openBtn" @click="closePup2()">{{lang.ok}}</span>
@@ -298,7 +298,7 @@ export default {
         }
       }
       .heartbeat {
-        animation: heartbeat 10s infinite;
+        animation: heartbeat 1s infinite;
       }
       .title {
         text-align: center;

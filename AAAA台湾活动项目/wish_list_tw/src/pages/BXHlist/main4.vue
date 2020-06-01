@@ -11,10 +11,10 @@
       該榜單僅展示收到心願最多的前100名！
     </p>
     <p class="tips2" v-show="showTab == 'tab1'">
-      送出心願值等於=送出的心願作品數+心願者回饋的滿意分
+      送出心願值=送出的心願作品數+心願者回饋的滿意分
     </p>
     <p class="tips2" v-show="showTab == 'tab2'">
-      被完成心願值等於=收到的心願作品數
+      被完成心願值=收到的心願作品數
     </p>
     <component :is="showTab"></component>
     <loading></loading>
@@ -161,7 +161,7 @@ body {
           em {
             font-size: 160%;
             font-weight: 600;
-            margin: 0 .15rem;
+            margin: 0 0.15rem;
           }
           i {
             display: block;

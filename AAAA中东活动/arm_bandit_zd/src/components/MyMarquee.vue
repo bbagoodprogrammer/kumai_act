@@ -71,7 +71,7 @@ export default {
 .marquee-wrap {
   overflow: hidden;
   font-size: 80%;
-  color: #36fffd;
+  color: #fff5ae;
   position: absolute;
   width: 3.2rem;
   height: 0.45rem;

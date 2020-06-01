@@ -8,6 +8,7 @@
         <span class="ruleTips" @click="goRule()">{{lang.rule}}</span>
         <span class="ruleTips index2" @click="goIndex3()">{{lang.surpriseTime}}</span>
       </div>
+      <MyMarquee :lists="roolmsg" />
     </div>
     <box />
     <TabsScrollLoadList />
@@ -31,8 +32,9 @@ import MsgToast from "../components/commonToast"
 import TabsScrollLoadList from "../components/TabsScrollLoadList"
 import { globalBus } from '../utils/eventBus'
 import getDateArr from "../utils/getDateArr"
+import MyMarquee from "../components/MyMarquee"
 export default {
-  components: { Loading, MsgToast, ActFooter, Box, TabsScrollLoadList },
+  components: { Loading, MsgToast, ActFooter, Box, TabsScrollLoadList, MyMarquee },
   data() {
     return {
       isShare: false, //是否分享
@@ -42,6 +44,7 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
+      roolmsg: []
     }
   },
   created() {
@@ -86,6 +89,9 @@ export default {
         } else {
           this.toast(response_status.error)
         }
+      })
+      api.getRoolMsg().then(res => {
+        this.roolmsg = res.data.response_data.list
       })
     },
     downApp() {

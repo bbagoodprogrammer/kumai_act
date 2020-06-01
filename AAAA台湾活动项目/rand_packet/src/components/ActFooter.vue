@@ -9,13 +9,13 @@
         <div class="uerImg" @click="goUser(myMsg.uid)">
           <img v-lazy="myMsg.avatar" alt="" class="imgItem">
           <img v-if="myMsg.noble &&  myMsg.noble!= 0" :src="require(`../assets/img/noble/${myMsg.noble}.png`)" alt="" class="noble">
-          <i v-else-if="myMsg.vip > 0" class="vip"></i>
+          <i v-else-if="myMsg.vip > 0" class="vip">VIP{{myMsg.vip}}</i>
         </div>
         <div class="userMsg">
           <div class="name">
             <span>{{myMsg.nick}}</span>
           </div>
-          <div class="probability" v-if="tab != 'total'">{{lang.luckGrade}}<em>{{lang.lv}}{{myMsg.level}}</em> <i>{{getDay()}}</i></div>
+          <div class="probability" v-if="tab != 'total'">{{lang.luckGrade}}<em>{{lang.lv}}{{myMsg.level?myMsg.level:0}}</em> <i>{{getDay()}}</i></div>
         </div>
         <div class="score"><i></i><em>{{myMsg.score}}</em></div>
       </div>
@@ -68,7 +68,11 @@ export default {
         api.userSingUp(singUpDay).then(res => {
           const { response_data, response_status } = res.data
           if (response_status.code === 0) {  //报名成功
-            this.vuexCommit('setSingUp', response_data.owner)
+            let Obj = {
+              type: singUpDay,
+              owner: response_data.owner
+            }
+            this.vuexCommit('setSingUp', Obj)
           } else {
             this.tastMsg = response_status.error
             this.showT = false
@@ -133,7 +137,7 @@ export default {
       display: flex;
       align-items: center;
       .rank {
-        width: 0.84rem;
+        width: 0.94rem;
         height: 0.72rem;
         font-size: 0.36rem;
         font-style: italic;
@@ -157,13 +161,16 @@ export default {
         }
         .vip {
           display: block;
-          width: 0.42rem;
-          height: 0.42rem;
-          background: url(../assets/img/vip.png);
-          background-size: 100% 100%;
+          width: 0.7rem;
+          height: 0.22rem;
+          line-height: 0.22rem;
+          text-align: center;
+          font-size: 0.21rem;
+          background: #e95754;
+          border-radius: 0.5rem;
           position: absolute;
           bottom: 0;
-          right: 0;
+          right: 0.15rem;
         }
         .imgItem {
           width: 1rem;

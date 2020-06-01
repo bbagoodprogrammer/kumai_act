@@ -6,7 +6,7 @@
         <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{lang.dayRank}}</a>
         <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">{{lang.totalRank}}</a>
       </div>
-      <a @click.prevent="onRefresh" href="" v-if="tab == nowDay && !isShare && actStatus===1" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
+      <a @click.prevent="onRefresh" href="" v-if="tab == nowDay && !isShare && actStatus!=2" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
     <!-- <div v-if="mainTab==0" class="tabs">
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">日榜1</a>
@@ -15,8 +15,8 @@
     </div> -->
     <p class="scoreTips">{{lang.dayRankTips}}</p>
     <div class="downTimebox dayTime" v-if="mainTab == 0">
-      <p v-if="tab == nowDay">{{lang.dayDownTime}}</p>
-      <p v-else-if="tab > nowDay">{{lang.dayStartTime}}</p>
+      <p v-if="tab == nowDay && actStatus == 1">{{lang.dayDownTime}}</p>
+      <p v-else-if="tab > nowDay || actStatus == 0">{{lang.dayStartTime}}</p>
       <p class="noTime" v-else>{{lang.dayNoTime}}</p>
       <div class="timeDown" v-if="tab >= nowDay && surplusTime.day">
         <div class="day">
@@ -82,13 +82,13 @@
           <div class="uerImg">
             <img v-lazy="item.avatar" alt="" class="imgItem">
             <img v-if="item.noble != 0" :src="require(`../assets/img/noble/${item.noble}.png`)" alt="" class="noble">
-            <i v-else-if="item.vip == 1" class="vip"></i>
+            <i v-else-if="item.vip > 0" class="vip">VIP{{item.vip}}</i>
           </div>
           <div class="userMsg">
             <div class="name">
               <span>{{item.nick}}</span>
             </div>
-            <div class="probability" v-if="mainTab == 0">{{lang.luckGrade}}<em>{{lang.lv}}{{item.level}}</em></div>
+            <div class="probability" v-if="mainTab == 0">{{lang.luckGrade}}<em>{{lang.lv}}{{item.level?item.level:0}}</em></div>
           </div>
           <div class="score"><i></i><em>{{item.score}}</em></div>
         </li>
@@ -510,7 +510,7 @@ export default {
         }
         .ticket {
           text-align: center;
-          white-space: nowrap;
+          // white-space: nowrap;
           font-size: 0.22rem;
           font-weight: 500;
           color: rgba(255, 255, 255, 1);
@@ -561,13 +561,16 @@ export default {
         }
         .vip {
           display: block;
-          width: 0.42rem;
-          height: 0.42rem;
-          background: url(../assets/img/vip.png);
-          background-size: 100% 100%;
+          width: 0.7rem;
+          height: 0.22rem;
+          line-height: 0.23rem;
+          text-align: center;
+          font-size: 0.21rem;
+          background: #e95754;
+          border-radius: 0.5rem;
           position: absolute;
           bottom: 0;
-          right: 0;
+          right: 0.15rem;
         }
         .imgItem {
           width: 1rem;

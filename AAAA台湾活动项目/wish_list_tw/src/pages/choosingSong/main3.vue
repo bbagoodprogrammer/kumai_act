@@ -14,10 +14,10 @@
       <div v-else class="songUserName">{{songItem.artist}}
       </div>
       <p class="tips">
-         - 完整填寫後才可發佈心願 -
+        - 完整填寫後才可發佈心願 -
       </p>
     </div>
-    <div class="footer" :class="{active:isChoosing&& desc!== ''}" @click="Release()">
+    <div class="footer" :class="{active:isChoosing&& remnant >= 4}" @click="Release()">
       <span>發佈點歌心願</span>
     </div>
     <transition name="slide">
@@ -76,11 +76,6 @@ export default {
       this.scrollable.addEventListener('scroll', this.onScroll);
     }
   },
-  watch:{
-    // desc(val){
-    //   console.log(val)
-    // }
-  },
   methods: {
     descInput() {
       this.remnant = this.desc.length
@@ -107,12 +102,12 @@ export default {
       this.showSongList = false
     },
     Release() {
-      if (this.isChoosing && this.desc !== '') {
+      if (this.isChoosing && this.remnant >= 4) {
         let newSongItem = this.songItem
         store.dispatch("setloading", true)
         api.releaseWish(this.desc, newSongItem.id, newSongItem.name, newSongItem.artist).then((res) => {
-         store.dispatch("setloading", false)
-         if (res.data.response_status.code === 0) {//发布成功
+          store.dispatch("setloading", false)
+          if (res.data.response_status.code === 0) {//发布成功
             let regstr = getString('token')
             location.href = `./index.html?token=${regstr}`
           } else {//错误显示
@@ -171,7 +166,7 @@ export default {
       resize: none;
       color: #aaa3bd;
       background: #240066;
-      font-size: .28rem;
+      font-size: 0.28rem;
       font-weight: 600;
       border: none;
     }
@@ -194,7 +189,7 @@ export default {
       color: #72f1fc;
     }
     .title2 {
-      font-size: .42rem;
+      font-size: 0.42rem;
       color: #72f1fc;
     }
     .btnBox {
@@ -209,7 +204,7 @@ export default {
       }
     }
     .songUserName {
-      font-size: .36rem;
+      font-size: 0.36rem;
       color: #72f1fc;
     }
     .tips {
@@ -237,7 +232,7 @@ export default {
     }
     span {
       color: #fffde3;
-      font-size: .42rem;
+      font-size: 0.42rem;
       font-weight: 600;
       margin-top: 0.6rem;
     }

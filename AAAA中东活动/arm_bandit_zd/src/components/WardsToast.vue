@@ -59,7 +59,7 @@ export default {
   .title {
     position: absolute;
     top: 1.93rem;
-    left: 3.2rem;
+    left: 2.8rem;
     z-index: 999;
     color: #fdfdac;
   }
@@ -93,25 +93,25 @@ export default {
       li {
         min-height: 1rem;
         padding: 0.06rem 0;
-        border-bottom: 0.01rem solid#823AB6;
+        // border-bottom: 0.01rem solid#823AB6;
         .msgBox {
           display: flex;
           align-items: center;
           .coinsL {
             width: 1.7rem;
             font-size: 80%;
-            color: #fdf139;
+            color: #fff1b8;
           }
           .time {
             font-size: 80%;
-            color: #f7d8ff;
+            color: #fdbea0;
             margin-left: 0.13rem;
           }
         }
         .giftItem {
           display: flex;
           font-size: 73%;
-          color: #d585f0;
+          color: #fff1b8;
           text-align: center;
           .gift1 {
             flex: 1;
@@ -133,7 +133,7 @@ export default {
     }
     ::-webkit-scrollbar-thumb {
       width: 0.06rem;
-      background: #9e70fd;
+      background: #ffffff;
     }
   }
   .tips {

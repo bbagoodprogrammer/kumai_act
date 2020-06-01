@@ -36,7 +36,7 @@ const lang = {
     openDayBoxTips1: '每天只能打開1次驚喜盲盒,</br>幸運等級越高,獎品更好,</br>確定當前打開？',
     openDayBoxTips2: '你還未達到500驚喜值,</br>還不能打開盲盒哦~',
     openDayBoxTips3: '你今天已經打開過盲盒了,</br>請明天再來哦~',
-    openTotalBoxTips1: '你還未累計達到200000驚喜值,</br>還不能打開終極盲盒哦~',
+    openTotalBoxTips1: '你還未累計達到180000驚喜值,</br>還不能打開終極盲盒哦~',
     sucPup1Tips: '好棒呀~恭喜你獲得以上驚喜大禮,</br>請前往錢包和背包查收！',
     day: '天',
     singUp: '報名',
@@ -44,5 +44,7 @@ const lang = {
     gift: '禮物',
     noData: '暫無數據',
     noSingUpTips: '請點擊報名參與活動',
+    gx: '恭喜',
+    get: '獲得'
 }
 export default lang

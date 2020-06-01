@@ -67,14 +67,36 @@ const store = new Vuex.Store({
         },
         setSingUp(state, val) {
             state.registered = true
-            for (let key in state.groupsUserMsg) {
-                state.groupsUserMsg[key].msg = val
-            }
-            if (state.rankGroups[state.nowDay] && state.rankGroups[state.nowDay].list.length < 20) {
-                state.rankGroups[state.nowDay].list.push(val)
-            }
-            if (state.rankGroups['total'] && state.rankGroups['total'].list.length < 20) {
-                state.rankGroups['total'].list.push(val)
+            let newOwner = JSON.parse(JSON.stringify(val.owner))
+            newOwner.rank = newOwner.rank2
+            if (val.type == -1) {  //在總榜報的名
+                for (let key in state.groupsUserMsg) {
+                    if (key == 'total') {
+                        state.groupsUserMsg[key].msg = val.owner
+                    } else {
+                        state.groupsUserMsg[key].msg = newOwner
+                    }
+                }
+                if (state.rankGroups['total'] && state.rankGroups['total'].list.length < 20) {
+                    state.rankGroups['total'].list.push(val.owner)
+                }
+                if (state.rankGroups[state.nowDay] && state.rankGroups[state.nowDay].list.length < 20) {
+                    state.rankGroups[state.nowDay].list.push(newOwner)
+                }
+            } else {
+                for (let key in state.groupsUserMsg) {
+                    if (key != 'total') {
+                        state.groupsUserMsg[key].msg = val.owner
+                    } else {
+                        state.groupsUserMsg[key].msg = newOwner
+                    }
+                }
+                if (state.rankGroups['total'] && state.rankGroups['total'].list.length < 20) {
+                    state.rankGroups['total'].list.push(newOwner)
+                }
+                if (state.rankGroups[state.nowDay] && state.rankGroups[state.nowDay].list.length < 20) {
+                    state.rankGroups[state.nowDay].list.push(val.owner)
+                }
             }
         },
         updateRankGroups(state, obj) {

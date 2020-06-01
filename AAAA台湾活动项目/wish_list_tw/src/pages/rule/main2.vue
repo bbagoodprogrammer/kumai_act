@@ -13,17 +13,19 @@
       <p>1.用戶點擊發佈心願，寫下自己的心願，每人每天有5次發佈心願機會.</p>
       <p>2.點擊心願便利貼摘下對方心願，摘下心願後，點擊心願紀錄-摘下心願-送出心願歌曲，選擇活動開始後發佈的任意一首公開作品（清唱5分鐘除外）送給歌友</p>
       <p>3.被摘下的心願將不在心願單列表中出現，可在心願記錄裏查詢.</p>
-      <p>4.許願人可及時查詢心願記錄瞭解自己心願被完成的情況.</p>
-      <p>5.小號無法參與此活動.</p>
-      <p>6.活動期間累計10次被評分為1，或者刪除心願歌曲達到5次，將禁止摘下別人的心願，同時送出心願榜分數清0，退出該榜單的比賽.</p>
-      <p>7.若榜單分數相同，先達到的排名在前面</p>
+      <p>4.摘取心願後，請在<em class="red">10小時</em>內送出心願歌曲，否則該心願會重新回到待摘狀態.</p>
+      <p>5.每天最多幫別人完成心願10個</p>
+      <p>6.許願人可及時查詢心願記錄瞭解自己心願被完成的情況.</p>
+      <p>7.小號無法參與此活動.</p>
+      <p>8.活動期間累計<em class="red">8次</em>被評分為1，或者刪除心願歌曲達到5次，將禁止摘下別人的心願，同時送出心願榜分數清0，退出該榜單的比賽.</p>
+      <p>9.若榜單分數相同，先達到的排名在前面</p>
       <h5>注意事項</h5>
       <p>惡意摘心願、刷禮物的用戶將觸發被系統封禁相關功能的機制，同時予以下榜，嚴重封禁帳號處理！</p>
     </div>
     <div class="ward" v-show="showTab == 'tab2'">
       <h5>獎勵</h5>
       <p>
-       1.每次摘下心願且成功送出歌曲即會收到一個背包禮物（每人每天最多收到3個，多款背包禮物隨機發放）。
+        1.每次摘下心願且成功送出歌曲即會收到一個背包禮物（每人每天最多收到3個，多款背包禮物隨機發放）。
       </p>
       <h6>送出心願榜前100名用戶獎勵</h6>
       <div class="title">Top 10</div>
@@ -60,7 +62,7 @@
             <img src="../../assets/img/ward4.png" alt="">
           </div>
           <em>
-             暖心天使徽章
+            暖心天使徽章
           </em>
         </span>
         <span>
@@ -87,7 +89,7 @@
             <img src="../../assets/img/ward7.png" alt="">
           </div>
           <em>
-           心願人氣徽章
+            心願人氣徽章
           </em>
         </span>
         <span>
@@ -137,6 +139,9 @@ export default {
 body {
   background-color: #2d0080;
 }
+.red {
+  color: red;
+}
 .rule {
   padding: 0.35rem 0.45rem;
   .tabs {
@@ -169,19 +174,19 @@ body {
       }
     }
   }
-  .time{
-    padding: 0 .36rem;
+  .time {
+    padding: 0 0.36rem;
     .actTime {
-      color: #E8B7FF;
+      color: #e8b7ff;
       margin: 0.34rem 0;
-      padding-left: .24rem;
+      padding-left: 0.24rem;
     }
   }
   .ruleMsg {
     padding: 0 0.36rem;
-    p{
-      margin: .36rem 0;
-      padding-left: .24rem;
+    p {
+      margin: 0.36rem 0;
+      padding-left: 0.24rem;
     }
   }
   .ward {
@@ -192,9 +197,9 @@ body {
       margin-top: 0.5rem;
       font-weight: bold;
     }
-    p{
-       margin: .36rem 0;
-      padding-left: .24rem;
+    p {
+      margin: 0.36rem 0;
+      padding-left: 0.24rem;
     }
     .title {
       color: #1dfadf;
@@ -279,7 +284,7 @@ body {
     margin: 0.21rem 0 0.1rem;
   }
   p {
-    font-size: .22rem;
+    font-size: 0.22rem;
     color: #e8b7ff;
   }
   .clearfix:after {
@@ -291,9 +296,9 @@ body {
     clear: both;
   }
 }
-.lastTips{
-  font-size: .22rem;
-  color:#9C66FF;
+.lastTips {
+  font-size: 0.22rem;
+  color: #9c66ff;
   text-align: center;
   margin-top: 1.56rem;
 }

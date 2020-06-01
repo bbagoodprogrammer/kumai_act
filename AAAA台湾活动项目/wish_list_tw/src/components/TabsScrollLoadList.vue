@@ -62,7 +62,9 @@
           <span class="Extract" @click="Extract(userMsg.id)" v-if="!showPup3"></span>
           <span class="goSing" @click="gosing()" v-else></span>
           <p class="Tips" v-if="showPup3">唱完後記得回來送出心願歌曲哦
-            <span>活動期間，刪除心願歌曲達到5次，或者累計10次被評分為1，將禁止摘下別人的心願！</span>
+            <span>每天最多幫歌友完成10個心願</span>
+            <span>摘取心願後，請在10小時內送出心願歌曲，否則該心願會重新回到待摘狀態；</span>
+            <span>活動期間，刪除心願歌曲達到5次，或者累計8次被評分為1，將禁止摘下別人的心願！</span>
           </p>
         </div>
       </div>
@@ -314,7 +316,7 @@ export default {
             this.showT = true
           } else if (res.data.response_status.code === 60001) {
             this.tostTitle = `摘取失敗 `
-            this.tastMsg = `抱歉，您已累計10次被評為1分，無法摘取心願喔！`
+            this.tastMsg = `抱歉，您已累計8次被評為1分，無法摘取心願喔！`
             this.showT = true
           } else if (res.data.response_status.code === 60002) {
             this.tostTitle = `摘取失敗 `
@@ -327,6 +329,10 @@ export default {
           } else if (res.data.response_status.code === 50001) {
             this.tostTitle = `摘取失敗 `
             this.tastMsg = `抱歉，您已違規參賽，無法摘取心願喔`
+            this.showT = true
+          } else if (res.data.response_status.code === 80001) {
+            this.tostTitle = `摘取失敗 `
+            this.tastMsg = `抱歉，每天最多只能幫歌友完成10個心願，您今天完成心願已達到10個，無法摘取心願喔`
             this.showT = true
           } else {
             this.tastMsg = res.data.response_status.error
@@ -523,7 +529,7 @@ export default {
       top: 50%;
       transform: translate(-50%, -50%);
       &.maxHigt {
-        height: 8.1rem;
+        height: 9.1rem;
       }
       .close {
         display: block;
@@ -630,7 +636,7 @@ export default {
         background-size: 100% 100%;
         position: absolute;
         left: 2.22rem;
-        bottom: 1.57rem;
+        bottom: 2.57rem;
       }
       .Tips {
         width: 5.8rem;

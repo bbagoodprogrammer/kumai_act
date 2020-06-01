@@ -33,11 +33,11 @@
     <div class="mask" v-show="showOpenBox1">
       <transition name="slide">
         <div class="openBox1Pup" v-show="showOpenBox1">
-          <span class="close" @click="closePup1()"></span>
+          <span class="close" @click="closePup1()" v-if="showPup1Type2 || (!packet.dayOpened && userLv > 0)"></span>
           <div class="openBox1PupCon" v-if="!showPup1Type2">
-            <div class="luckTitle">{{lang.luck}} <i>{{userLv}}</i></div>
+            <div class="luckTitle" v-if="registered">{{lang.luck}} <i>{{userLv}}</i></div>
             <p class="openTips" v-html="box1Tips"></p>
-            <span class="openBtn" @click="open(1)">{{lang.ok}}</span>
+            <span class="openBtn" @click="open(1)">{{lang.quer}}</span>
           </div>
           <div class="openBox1PupCon" v-else>
             <div class="gift">
@@ -45,7 +45,7 @@
                 <span class="giftBg">
                   <img src="../assets/img/gift/bean.png" alt="" class="img1">
                 </span>
-                <em>{{prizes.bean}}{{lang.bean}}</em>
+                <em>{{prizes.bean}} {{lang.bean}}</em>
               </div>
               <div class="giftItem ticket" v-if="prizes.rebate">
                 <span class="giftBg">
@@ -68,10 +68,10 @@
     <div class="mask" v-show="showOpenBox2">
       <transition name="slide">
         <div class="openBox2Pup" :class="{gifts:showPup2Type2}" v-show="showOpenBox2">
-          <span class="close" @click="closePup2()"></span>
+          <span class="close" @click="closePup2()" v-if="showPup2Type2"></span>
           <div class="openBox2PupCon" v-if="!showPup2Type2">
             <p class="openTips" v-html="box2Tips"></p>
-            <span class="openBtn" @click="closePup2()">{{lang.ok}}</span>
+            <span class="openBtn" @click="closePup2()">{{lang.quer}}</span>
           </div>
           <div class="openBox2PupCon" v-else>
             <div class="gift">
@@ -79,7 +79,7 @@
                 <span class="giftBg">
                   <img src="../assets/img/gift/bean.png" alt="" class="img1">
                 </span>
-                <em>{{prizes2.bean}}{{lang.bean}}</em>
+                <em>{{prizes2.bean}} {{lang.bean}}</em>
               </div>
               <div class="giftItem ticket" v-if="prizes2.rebate">
                 <span class="giftBg">
@@ -298,12 +298,12 @@ export default {
         }
       }
       .heartbeat {
-        animation: heartbeat 10s infinite;
+        animation: heartbeat 1s infinite;
       }
       .title {
         text-align: center;
         color: #651a00;
-        font-size: 0.22rem;
+        font-size: 0.21rem;
         font-weight: 600;
       }
       .sonw {

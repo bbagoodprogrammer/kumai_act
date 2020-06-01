@@ -10,7 +10,7 @@
     <cion-buttoms></cion-buttoms>
     <div class="footer">
       <div class="napngay" @click="napngay()"></div>
-      <p class="toastMsg">ستحصل على نقد الفتحة الواحدة بعد شحن عملة واحدة لاشتراك في اليانصيب. الجوائز في 50 نقد الفتحة و200 نقد الفتحة و500 نقد الفتحة مختلفة، تنفق نقود أكثر، وتكون الجوائز أوفر. ونسبة كسب الجائزة الفريدة أكبر!</p>
+      <p class="toastMsg">ستحصل على نقد الفتحة الواحدة بعد شحن عملة واحدة لاشتراك في اليانصيب. الجوائز في 40 نقد الفتحة و200 نقد الفتحة و500 نقد الفتحة مختلفة، تنفق نقود أكثر، وتكون الجوائز أوفر. ونسبة كسب الجائزة الفريدة أكبر!</p>
     </div>
     <loading></loading>
     <transition name="slide">
@@ -139,7 +139,7 @@ export default {
 </script>
 <style lang='scss'>
 body {
-  background-color: #350096;
+  background-color: #d19d4d;
   direction: rtl;
 }
 .bandit {
@@ -187,14 +187,14 @@ body {
     .napngay {
       width: 2.76rem;
       height: 0.97rem;
-      margin: 0.5rem auto;
+      margin: 0.5rem auto 0.1rem;
       background: url(../assets/img/nap.png);
       background-size: 100% 100%;
     }
     .toastMsg {
       text-align: center;
       font-size: 80%;
-      color: #d5beff;
+      color: #faf8ea;
       line-height: 0.3rem;
     }
   }
