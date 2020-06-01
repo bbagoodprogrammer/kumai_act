@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box" :style="{height:boxHeigh}">
     <div class="turnHeader">
       <div class="tabs">
         <span class="trun" :class="{act:shoCom=='Trun'}" @click="tabClick('Trun')">幸運轉盤</span>
@@ -43,7 +43,10 @@ export default {
   created() {
     this.getDefaultData()
   },
-  mounted() {
+  computed: {
+    boxHeigh() {
+      return window.innerHeight + 'px'
+    }
   },
   methods: {
     getDefaultData() {
@@ -69,7 +72,7 @@ export default {
       if (isAndroid) {
         window.JSInterface.closeWeb();
       } else {
-         closeWeb();
+        closeWeb();
       }
     }
   }
@@ -90,14 +93,14 @@ body::-webkit-scrollbar {
 }
 .box {
   max-width: 750px;
-  height: 9rem;
+  // height: 9rem;
   overflow-x: hidden;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   background: url(../assets/img/bigBox.png) center 0 no-repeat;
-  background-size: 100% auto;
+  background-size: 100% 100%;
   .turnHeader {
     height: 1rem;
     border-bottom: 0.01rem solid #837cff;

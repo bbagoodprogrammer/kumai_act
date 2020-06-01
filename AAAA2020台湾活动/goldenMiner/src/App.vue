@@ -62,6 +62,9 @@ export default {
 </script>
 
 <style lang="scss">
+#test {
+  font-size: 33px;
+}
 body {
   background-color: #60210c;
 }
