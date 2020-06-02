@@ -14,15 +14,16 @@
           <span class="imgBg"></span>
           <img v-lazy="myMsg.avatar" alt="" class="imgItem">
         </div>
-        <div class="name">
+        <!-- <div class="name">
           <div class="userName">{{myMsg.nick}}</div>
           <div class="carName">{{getCar(myMsg.score).name}}</div>
-        </div>
-        <div class="car">
+        </div> -->
+        <!-- <div class="car">
           <img :src="getCar(myMsg.score).img" alt="" :class="'car'+getCar(myMsg.score).lv">
-        </div>
+        </div> -->
+        <div class="tips" v-if="tab!='total'">{{myMsg.date}}</div>
         <div class="score">{{myMsg.score}} <i></i> </div>
-        <div class="bonus" v-if="myMsg.scale>0">Tăng {{myMsg.scale}} %</div>
+        <!-- <div class="bonus" v-if="myMsg.scale>0">Tăng {{myMsg.scale}} %</div> -->
       </div>
     </div>
   </div>
@@ -65,11 +66,11 @@ export default {
   methods: {
     goSingUp() {
       globalBus.$emit('commonEvent', () => {
-        var listChang = this.getDate(this.dateArr[this.tab - 1])
-        api.singUp(listChang).then((res) => {
+        api.singUp().then((res) => {
           const { response_data, response_status } = res.data
           if (response_status.code === 0) {  //报名成功
-            this.$store.commit("setSucUp", response_data.owner_msg)
+            // this.$store.commit("setSucUp", response_data.myrank)
+            this.$parent.refrsh()
           } else {
             this.toast(response_status.error)
           }
