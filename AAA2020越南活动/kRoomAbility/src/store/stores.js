@@ -18,8 +18,8 @@ const store = new Vuex.Store({
         inited: 0,   //初始化
         rankGroups: {},  //储存當天的信息
         groupsUserMsg: {},  //儲存各種天數的個人信息
-        userScore: 0, // 用戶分數
-        av: ''
+        userScore: 0, // 用戶磚石分數
+        schule: {},    //任務
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -53,9 +53,6 @@ const store = new Vuex.Store({
         setUserScore(state, val) {
             state.userScore = val
         },
-        setAv(state, val) {
-            state.av = val
-        },
         changTab(state, val) {
             state.tab = val
         },
@@ -71,12 +68,16 @@ const store = new Vuex.Store({
         setInited(state, val) {
             state.inited = val
         },
+        setSchule(state, val) {
+            state.schule = val
+        },
         changGroupsUserMsg(state, obj) {
             if (obj && typeof obj.key != 'undefined') {
                 const key = obj.key;
                 delete obj['key'];
                 state.groupsUserMsg = Object.assign({}, state.groupsUserMsg, { [key]: Object.assign({}, state.groupsUserMsg[key], obj) });
             }
+            console.log(state.groupsUserMsg)
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.key != 'undefined') {

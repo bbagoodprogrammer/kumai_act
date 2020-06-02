@@ -16,8 +16,8 @@
     </div> -->
     <div class="downTimebox">
       <div v-if="mainTab == 0">
-        <p v-if="tab == nowDay">Đếm ngược kết thúc BXH hôm nay</p>
-        <p v-else-if="tab > nowDay">Đếm ngược mở BXH ngày này</p>
+        <p v-if="tab == nowDay && actStatus == 1">Đếm ngược kết thúc BXH hôm nay</p>
+        <p v-else-if="tab >= nowDay">Đếm ngược mở BXH ngày này</p>
         <div class="noTime" v-else>BXH ngày này đã kết thúc</div>
       </div>
       <div v-if="mainTab == 1">
@@ -158,7 +158,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['rankGroups', "nowDay", "inited", "isShare", "actStatus", "day_down_time", "total_down_time", "daily_tasks", "dateArr"]),
+    ...mapState(['rankGroups', "nowDay", "inited", "isShare", "actStatus", "dateArr"]),
     rankKey() {
       // return ['one', 'two', 'three'][this.tab];
       return this.mainTab == 1 ? 'total' : this.tab;
@@ -170,8 +170,8 @@ export default {
         var api = this.rankKey == 'total' ? totalApi : dayApi;
         return api.replace('{date}', this.getDate(this.dateArr[this.tab - 1]))
       } else {
-        var dayApi = `/happy_fly_car/rank.php?token={token}&from={from}&date={date}`;
-        var totalApi = `/happy_fly_car/rank.php?token={token}&from={from}&date=0`;
+        var dayApi = `/kroom_singer/allList.php?token={token}&from={from}&tm={date}`;
+        var totalApi = `/kroom_singer/allList.php?token={token}&from={from}&tm=0`;
         var api = this.rankKey == 'total' ? totalApi : dayApi;
         const token = getUrlString('token') || '';
         return api.replace('{date}', this.getDate(this.dateArr[this.tab - 1])).replace('{token}', token);
@@ -245,14 +245,14 @@ export default {
               return;
             }
             // if (this.tab >= this.nowDay && this.mainTab == 0) {
-            set('second', response_data.second)
+            set('second', response_data.date)
             // }
-            const arr = response_data.rank;
+            const arr = response_data.list;
             //跟随榜单变换个人信息
-            if (response_data.owner_msg && response_data.owner_msg.uid) {
+            if (response_data.myrank && response_data.myrank.avatar) {
               this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
                 key: this.rankKey,
-                msg: response_data.owner_msg
+                msg: response_data.myrank
               })
             }
             if (arr.slice) {

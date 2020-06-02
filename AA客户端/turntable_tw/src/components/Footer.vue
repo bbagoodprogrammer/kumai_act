@@ -35,7 +35,7 @@
         <div class="historyCon" v-show="showHistory">
           <div class="title">抽獎記錄<i class="close" @click="closeHistory()"></i></div>
           <div class="list">
-            <p v-if="loading" class="loadingTips">加载中...</p>
+            <p v-if="loading" class="loadingTips">加載中...</p>
             <p class="noDateTips" v-if="record.length==0 && !loading">暫無抽獎信息！</p>
             <ul class="scrollable">
               <li v-for="(item,index) in record" :key="index">
@@ -57,10 +57,10 @@ export default {
   data() {
     return {
       showTips: 0,
-      tipsTitle1: '如何獲取抽獎券？',
+      tipsTitle1: '關於幸運轉盤',
       tipsTitle2: '關於寶箱和鑰匙',
-      tipsCon1: '在任意K房內每送出滿100金幣的禮物，即可免費獲得一張抽獎券。',
-      tipsCon2: '當你獲得寶箱和其對應鑰匙後，即可打開寶箱獲取神秘獎勵 </br >* 你可通過玩轉盤或者特定方法獲取寶箱和鑰匙',
+      tipsCon1: '*在任意K房內每送出滿100金幣的禮物，即可免費獲得一張抽獎券</br>*贈送轉盤中獲得的背包禮物可貢獻對應魅力值，不在【我的禮物】中展示',
+      tipsCon2: '*當你獲得一套寶箱和鑰匙即可開啟一次寶箱，獲取神秘獎勵 </br >*可通過玩轉盤或其他特定活動獲得寶箱和鑰匙</br>*贈送寶箱中獲得的背包禮物可貢獻對應魅力值，不在【我的禮物】中展示',
       showHistory: false,
       loaded: false,
       more: true,
@@ -288,6 +288,7 @@ export default {
       }
       .con {
         font-size: 86%;
+        line-height: 0.35rem;
         color: #cccccc;
         margin: 0.25rem 0.31rem 0 0.31rem;
       }

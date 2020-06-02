@@ -35,11 +35,13 @@ export default {
         APP()
         return
       } else if (this.actStatus === 0) {
-        this.tastMsg = this.lang.noAct
-        this.showT = true
+        this.vxc('setToast', {
+          msg: this.lang.noAct
+        })
       } else if (this.actStatus === 2) {
-        this.tastMsg = this.lang.actEd
-        this.showT = true
+        this.vxc('setToast', {
+          msg: this.lang.actEd
+        })
       } else {
         callback()
       }

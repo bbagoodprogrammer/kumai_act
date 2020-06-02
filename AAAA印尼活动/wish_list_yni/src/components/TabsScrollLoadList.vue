@@ -64,6 +64,8 @@
           <span class="goSing" @click="gosing()" v-else></span>
           <p class="Tips">
             Setelah mengambil keinginan,nyanyian umum pertama yang diupload akan sawer kepada pemohon(orang yang buat keinginan) secara default.
+            <span>Setiap hari paling banyak bisa menbantu pengguna lain 10 keinginan</span>
+            <span>Setelah ambil keinginan,silakan mengantar lagu keinginan sebelum lewati 24 jam, jika tidak keinginan ini akan menjadi keterangan ditunggu ambil ,kamblikan daftar keinginan.</span>
             <span>Selama acara, dinilai 1 mencapai 10 kali,atau hapus lagu keinginan mencapai 5 kali ,akan dilarang untuk mengambil keinginan orang lain!</span>
           </p>
         </div>
@@ -319,6 +321,15 @@ export default {
           } else if (res.data.response_status.code === 60002) {
             this.tastMsg = `Selama acara,hapus lagu keinginan mencapai 5 kali, dan dilarang untuk  mengambil keinginan orang lain!`
             this.showT = true
+          } else if (res.data.response_status.code === 60003) {
+            this.tastMsg = `Operasi Anda terlalu sering, silakan coba nanti.`
+            this.showT = true
+          } else if (res.data.response_status.code === 50001) {
+            this.tastMsg = `Anda telah melanggar peraturan utk ikut acara,gak bisa ambil keinginan`
+            this.showT = true
+          } else if (res.data.response_status.code === 80001) {
+            this.tastMsg = `Setiap hari paling banyak bisa menbantu pengguna lain 10 keinginan, silakan besok lagi ya`
+            this.showT = true
           } else {
             this.tastMsg = res.data.response_status.error
             this.showT = true
@@ -510,7 +521,7 @@ export default {
       top: 50%;
       transform: translate(-50%, -50%);
       &.maxHigt {
-        height: 8.5rem;
+        height: 9.34rem;
       }
       .close {
         display: block;
@@ -617,15 +628,15 @@ export default {
       }
       .Tips {
         width: 6.1rem;
-        font-size: 70%;
+        font-size: 0.2rem;
         color: #fffdbd;
         text-align: center;
         position: absolute;
         left: 0.45rem;
         bottom: 1.4rem;
-        span{
+        span {
           display: block;
-          color:#d7184a;
+          color: #d7184a;
           text-align: center;
         }
       }

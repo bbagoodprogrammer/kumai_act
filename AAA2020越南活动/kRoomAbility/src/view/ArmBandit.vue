@@ -3,12 +3,11 @@
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
-    <!-- <div class="title"></div> -->
-    <!-- <CarWay ref="carWay" /> -->
     <div class="header">
       <span class="ruleTips" :class="{top:isShare}" @click="goRule()"></span>
       <div class="goHtml" @click="goRules()">Thưởng&Thể lệ</div>
     </div>
+    <Masonry />
     <TabsScrollLoadList ref="scorll" @getDefaultData="getDefaultData"></TabsScrollLoadList>
     <act-footer></act-footer>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
@@ -23,11 +22,11 @@ import api from "../api/apiConfig"
 import ActFooter from "../components/ActFooter"
 import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
-import CarWay from "../components/CarWay"
 import getDateArr from "../utils/getDateArr"
+import Masonry from "../components/Masonry"
 import TabsScrollLoadList from "../components/TabsScrollLoadList"
 export default {
-  components: { MsgToast, ActFooter, CarWay, TabsScrollLoadList },
+  components: { MsgToast, ActFooter, Masonry, TabsScrollLoadList },
   data() {
     return {
       isShare: false, //是否分享
@@ -53,27 +52,27 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { activity_status, dates, second, rank, owner_msg } = response_data
-          this.$store.commit("setActStatus", activity_status)
-          this.$store.commit("setSingUp", owner_msg.is_reg)
-          this.$store.commit("setUserScore", owner_msg.score || 0) //當前用戶分數owner_msg.score
-          this.$store.commit("setAv", owner_msg.avatar)
-          this.$store.commit("setNowDay", dates.days)  //當前天
-          this.getDateArr(dates.stime, dates.etime)  //生成日榜数组
+          const { step, isreg, get, c_day, stime, etime, list, date, myrank, schule } = response_data
+          this.$store.commit("setActStatus", step)
+          this.$store.commit("setSingUp", isreg)
+          this.$store.commit("setSchule", schule)
+          this.$store.commit("setUserScore", get || 0) //當前用戶分數owner_msg.score
+          this.$store.commit("setNowDay", c_day)  //當前天
+          this.getDateArr(stime, etime)  //生成日榜数组
           this.$store.commit("setInited", 1)  //是否初始化頁面
-          this.$store.commit("changTab", dates.days)
+          this.$store.commit("changTab", c_day)
           this.$store.commit('updateRankGroups', { //当前日榜信息
-            key: dates.days,
+            key: c_day,
             loadCount: 0,
-            loadEnd: rank.length < 20,
+            loadEnd: list.length < 20,
             loading: false,
-            none: rank.length == 0,
-            list: rank,
-            second: second
+            none: list.length == 0,
+            list: list,
+            second: date
           })
           this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
-            key: dates.days,
-            msg: owner_msg
+            key: c_day,
+            msg: myrank
           })
         } else {
           this.toast(response_status.error)

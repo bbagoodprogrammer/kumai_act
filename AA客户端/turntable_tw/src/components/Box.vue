@@ -25,7 +25,7 @@
             <img :src="imgSrc" alt="">
             <em>{{giftPupName}}</em>
           </div>
-          <div class="querBtn" @click="closePup()">确定</div>
+          <div class="querBtn" @click="closePup()">確定</div>
         </div>
       </transition>
     </div>
@@ -38,8 +38,8 @@
             <p class="giftTips">開啟寶箱有機會獲得以下獎勵之一</p>
           </div>
           <div class="giftItem" :class="{flex:isloading||noGift,maxH:gift_list2.length>3}">
-            <p v-if="isloading" class="loadingTips">加载中...</p>
-            <p class="noGift" v-if="noGift">暂无礼物哦~</p>
+            <p v-if="isloading" class="loadingTips">加載中...</p>
+            <p class="noGift" v-if="noGift">暫無禮物哦~</p>
             <span v-for="(item,index) in gift_list2" :key="index">
               <div class="imgBg">
                 <img :src="item.picture" alt="">
@@ -224,7 +224,8 @@ export default {
   .tips {
     position: absolute;
     top: 5.3rem;
-    left: 0.29rem;
+    left: 1.5rem;
+    text-align: center;
     em {
       display: block;
       margin: -0.08rem 0 0 -0.1rem;

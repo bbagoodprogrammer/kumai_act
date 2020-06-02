@@ -70,15 +70,15 @@ function get(url, config) {
 
 //获取活动基础信息
 function getDefault(status) {
-    return axios.get(`/big_turntable/init.php?token=${token}&status=${status}`);
+    return axios.get(`/big_turntable/init.php?token=${token}&status=${status}&page=2`);
 }
 //抽奖
 function luckDraw(status) {
-    return axios.get(`/big_turntable/go.php?token=${token}&status=${status}`);
+    return axios.get(`/big_turntable/go.php?token=${token}&status=${status}&page=2`);
 }
 //抽奖记录
 function getHistroy(from) {
-    return axios.get(`/big_turntable/userrecord.php?token=${token}&from=${from}`);
+    return axios.get(`/big_turntable/userrecord.php?token=${token}&from=${from}&page=2`);
 }
 
 const httpConfig = {

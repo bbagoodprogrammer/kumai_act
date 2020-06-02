@@ -14,8 +14,8 @@ Vue.prototype.vxc = common.vuexCommit
 // import VueAwesomeSwiper from 'vue-awesome-swiper'
 // import 'swiper/dist/css/swiper.css'
 // Vue.use(VueAwesomeSwiper)
-import DirectivePlugin from './utils/directive';
-Vue.use(DirectivePlugin);
+// import DirectivePlugin from './utils/directive';
+// Vue.use(DirectivePlugin);
 
 promise.polyfill()
 Vue.config.productionTip = false

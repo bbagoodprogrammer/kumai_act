@@ -1,5 +1,5 @@
 <template>
-  <div class="box" :style="{height:boxHeigh}">
+  <div class="box" :style="{height:boxHeight+'px'}">
     <div class="turnHeader">
       <div class="tabs">
         <span class="trun" :class="{act:shoCom=='Trun'}" @click="tabClick('Trun')">幸運轉盤</span>
@@ -29,6 +29,7 @@ import RoolMsg from "../components/RoolMsg"
 import Trun from "../components/Trun"
 import Box from "../components/Box"
 import Footer from "../components/Footer"
+import { mapState } from "vuex"
 export default {
   components: { Loading, MsgToast, RoolMsg, Trun, Box, Footer },
   data() {
@@ -37,15 +38,15 @@ export default {
       tastMsg: "提示信息",  //基础弹窗提示信息
       roolmsg: "",
       shoCom: 'Trun',
-      userMsg: {}
     }
   },
   created() {
     this.getDefaultData()
   },
   computed: {
-    boxHeigh() {
-      return window.innerHeight + 'px'
+    ...mapState(["userMsg"]),
+    boxHeight() {
+      return window.innerHeight
     }
   },
   methods: {
@@ -55,7 +56,7 @@ export default {
         this.roolmsg = response_data.top_record   //弹幕信息
         this.$store.commit('changGift_list', response_data.gift_list)  //转盘礼物配置
         this.$store.commit('changUserMsg', response_data.user_wallet)    //个人信息
-        this.userMsg = response_data.user_wallet
+        // this.userMsg = response_data.user_wallet
       })
     },
     tabClick(val) {
@@ -79,13 +80,17 @@ export default {
 }
 </script>
 <style lang='scss'>
+html {
+  background-color: transparent;
+}
 body {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  // background: rgba(0, 0, 0, 0.8);
+  background-color: transparent;
   z-index: 10000;
 }
 body::-webkit-scrollbar {
@@ -94,13 +99,15 @@ body::-webkit-scrollbar {
 .box {
   max-width: 750px;
   // height: 9rem;
-  overflow-x: hidden;
+  // overflow-x: hidden;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   background: url(../assets/img/bigBox.png) center 0 no-repeat;
   background-size: 100% 100%;
+  // border-radius: 0.32rem 0.32rem 0 0;
+  // overflow: hidden;
   .turnHeader {
     height: 1rem;
     border-bottom: 0.01rem solid #837cff;

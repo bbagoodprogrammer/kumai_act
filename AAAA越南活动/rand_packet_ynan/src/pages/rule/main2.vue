@@ -4,7 +4,7 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Thể lệ</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Thưởng</a>
     </div>
-    <h6 class="time">Thời gian: 12:00 2/6 ~ 22h 10/6</h6>
+    <h6 class="time">Thời gian: 18:00 2/6 ~ 22h 10/6</h6>
     <div class="ruleTips" v-show="tab == 0">
       <h6>Thể lệ:</h6>
       <p>1. Toàn bộ người dùng đều có thể báo danh tham gia.</p>
@@ -17,7 +17,7 @@
       </p>
       <h6>Thời gian BXH Ngày:</h6>
       <p class="dayTime">
-        Ngày1：12:00 2/6 - 00:00 3/6</br>
+        Ngày1：18:00 2/6 - 00:00 3/6</br>
         Ngày2：00:00 3/6 - 00:00 4/6</br>
         Ngày3：00:00 4/6 - 00:00 5/6</br>
         Ngày4：00:00 5/6 - 00:00 6/6</br>

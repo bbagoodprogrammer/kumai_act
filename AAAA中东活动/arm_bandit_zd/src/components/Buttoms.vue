@@ -1,6 +1,6 @@
 <template>
   <div class="buttomBox">
-    <div class="coins1" @click="changCoins(50)"></div>
+    <div class="coins1" @click="changCoins(40)"></div>
     <div class="coins2" @click="changCoins(200)"></div>
     <div class="coins3" @click="changCoins(500)"></div>
   </div>

@@ -34,7 +34,7 @@ export default {
       showBuld: false,
       nowAngle: 0,
       giftAngle: {
-        1: 0, //碎片1-6
+        1: 0,
         2: 300,
         3: 240,
         4: 180,
@@ -64,12 +64,17 @@ export default {
         this.lucking = true
         api.luckDraw(0).then(res => {
           this.$store.commit('reduceTicket')
-          this.giftIndex = res.data.response_data.gift_info.gift_id  //礼物ID索引
+          let gIndex = res.data.response_data.gift_info.gift_id  //礼物ID索引
+          for (let i = 0; i < this.gift_list.length; i++) {
+            if (this.gift_list[i].gift_id == gIndex) {
+              this.giftIndex = i + 1
+            }
+          }
           let giftType = res.data.response_data.gift_info.gift_type   //礼物类型
           let giftNum = res.data.response_data.gift_info.num
           this.turnAngle()
           setTimeout(() => {
-            this.lateImg = this.gift_list[--this.giftIndex].picture
+            this.lateImg = this.gift_list[this.giftIndex - 1].picture
             this.showGiftLate = true
             setTimeout(() => {
               this.showGiftLate = false
@@ -90,11 +95,12 @@ export default {
           }, 5000);
         })
       } else {
-        this.tastMsg = `您的抽奖券不足哦，快去获得抽奖券吧！`
+        this.tastMsg = `您的抽獎券不足哦，快去獲得抽獎券吧！`
         this.showT = true
       }
     },
     turnAngle() {
+      console.log(this.giftIndex)
       if (this.nowAngle % 360 > this.giftAngle[this.giftIndex]) { //目标礼物在前面
         this.nowAngle += 1800 + (this.giftAngle[this.giftIndex] - this.nowAngle % 360)
       } else if (this.nowAngle % 360 < this.giftAngle[this.giftIndex]) {

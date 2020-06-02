@@ -71,18 +71,25 @@ function get(url, config) {
 //获取活动基础信息
 function getDefault() {
     if (token) {
-        return get(`/happy_fly_car/init.php?token=${token}`);
+        return get(`/kroom_singer/init.php?token=${token}`);
     } else {
-        return get(`/happy_fly_car/init.php`);
+        return get(`/kroom_singer/init.php?`);
     }
 }
 
-function singUp(date) {
-    return get(`/happy_fly_car/register.php?token=${token}&date=${date}`)
+//報名
+function singUp() {
+    return get(`/kroom_singer/register.php?token=${token}`)
+}
+
+//獲取磚石
+function getMasonry() {
+    return get(`/kroom_singer/getDayGift.php?token=${token}`)
 }
 
 const httpConfig = {
     getDefault,
     singUp,
+    getMasonry
 }
 export default httpConfig

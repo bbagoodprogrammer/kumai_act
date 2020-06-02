@@ -62,6 +62,8 @@
           <span class="Extract" @click="Extract(userMsg.id)" v-if="!showPup3"></span>
           <span class="goSing" @click="gosing()" v-else></span>
           <p class="Tips" v-if="showPup3">Sau khi lấy Điều Ước, đăng bài hát công khai đầu tiên sẽ được gửi tặng chủ nhân của Điều Ước
+            <span>Sau khi lấy Điều Ước, đăng bài hát công khai đầu tiên sẽ được gửi tặng chủ nhân của Điều Ước</span>
+            <span class="red">Hãy gửi bài điều ước trong 24 tiếng sau khi hái về, nếu không điều ước sẽ trở về trạng thái đợi hái</span>
             <span>Trong thời gian sự kiện bài hát bị chấm 1 điểm đạt 10 lần hoặc xoá bài hát đạt 5 lần sẽ không thể hái điều ước của người khác. </span>
           </p>
         </div>
@@ -316,6 +318,15 @@ export default {
           } else if (res.data.response_status.code === 60002) {
             this.tastMsg = `Trong thời gian sự kiện xoá bài hát điều ước 5 lần sẽ bị cấm hái điều ước của người khác!`
             this.showT = true
+          } else if (res.data.response_status.code === 60003) {
+            this.tastMsg = `Xin lỗi, hái điều ước quá nhanh, mời thử lại sau`
+            this.showT = true
+          } else if (res.data.response_status.code === 50001) {
+            this.tastMsg = `Bạn vi phạm quy định sự kiện, không thể hái điều ước`
+            this.showT = true
+          } else if (res.data.response_status.code === 80001) {
+            this.tastMsg = `Mối ngày tối đa hoàn thành 10 điều ước của người khác nhé, mời mai lại đến!`
+            this.showT = true
           } else {
             this.tastMsg = res.data.response_status.error
             this.showT = true
@@ -337,7 +348,8 @@ export default {
       location.href = `uid:${uid}`
     },
     gosing() {
-      location.href = "goto:songLibrary"
+      let regstr = getUrlString('token')
+      location.href = `./index5.html?token=${regstr}&t=1`
     }
   },
 }
@@ -507,7 +519,7 @@ export default {
       top: 50%;
       transform: translate(-50%, -50%);
       &.maxHigt {
-        height: 8.1rem;
+        height: 9.24rem;
       }
       .close {
         display: block;
@@ -610,7 +622,7 @@ export default {
         background-size: 100% 100%;
         position: absolute;
         left: 2.22rem;
-        bottom: 1.57rem;
+        bottom: 3.67rem;
       }
       .Tips {
         width: 5.8rem;
@@ -625,6 +637,9 @@ export default {
           display: block;
           color: #d7184a;
           text-align: center;
+        }
+        .red {
+          color: #ff1fd2;
         }
       }
     }

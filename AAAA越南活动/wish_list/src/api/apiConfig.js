@@ -124,6 +124,16 @@ function hearList(type, from) {
 function getTime() {
     return get(`/wish_list/time.php`)
 }
+
+//獲取歌曲
+function getSongList() {
+    return get(`/wish_list/song.php?token=${token}`)
+}
+
+//提交歌曲
+function selectSong(sid) {
+    return get(`/wish_list/finish.php?token=${token}&sid=${sid}`)
+}
 const httpConfig = {
     getDefault,
     zhaiqu,
@@ -132,6 +142,8 @@ const httpConfig = {
     wishHistory,
     getScore,
     hearList,
-    getTime
+    getTime,
+    getSongList,
+    selectSong
 }
 export default httpConfig
