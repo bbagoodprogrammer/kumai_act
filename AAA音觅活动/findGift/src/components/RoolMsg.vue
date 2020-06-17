@@ -1,6 +1,6 @@
 <template>
-  <div class="roll-msg" v-show="roolMsg.length > 0">
-    <div class="popup">
+  <div class="roll-msg">
+    <div class="popup" v-show="roolMsg.length > 0">
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
