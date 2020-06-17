@@ -20,12 +20,12 @@
         <div class="buyKeysPup" v-if="buyKeysPup">
           <i class="close" @click="closeBuyKeyPup()"></i>
           <div class="title"></div>
-          <p class="tips">購買藍色經典頭像框（{{buyKeyNum*1}}天），可獲贈鑰匙x{{buyKeyNum*2}}</p>
+          <p class="tips">購買瞌睡猫頭像框（{{buyKeyNum*1}}天），可獲贈鑰匙x{{buyKeyNum*2}}</p>
           <div class="keyGift">
             <span class="frame">
               <strong>
                 <em>({{buyKeyNum}}天)</em>
-                <i>蓝色经典头像框</i>
+                <i>瞌睡猫頭像框</i>
               </strong>
             </span>
             <span class="key">
@@ -136,7 +136,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.vxc('setToast', {
             title: '購買成功',
-            msg: `前往上城查看頭像框，</br>成功獲得贈送鑰匙${this.buyKeyNum * 2}`,
+            msg: `前往商城查看頭像框，</br>成功獲得贈送鑰匙*${this.buyKeyNum * 2}`,
           })
           this.vxc('addKeys', this.buyKeyNum * 2)
         } else {

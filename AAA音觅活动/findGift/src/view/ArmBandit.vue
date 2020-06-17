@@ -41,6 +41,7 @@
           <i class="close" @click="closeRankPup()"></i>
           <div class="title"></div>
           <div class="num">尋到金幣寶物數</div>
+          <p class="noData" v-if="rank.length == 0">暫無數據！</p>
           <ul class="scrollable">
             <li v-for="(item,index) in rank " :key="index" :class="'rank' + item.rank">
               <div class="listRank">{{item.rank}}</div>
@@ -63,6 +64,7 @@
             <span @click="hTabClick(2)"></span>
           </div>
           <div class="hList">
+            <p class="noData" v-if="HshowRank.length == 0">暫無數據！</p>
             <ul class="scrollable2">
               <li v-for="(item,index) in HshowRank" :key="index">
                 <div class="giftNick">
@@ -332,32 +334,38 @@ body {
       text-indent: 0.1rem;
       background: rgba(96, 20, 200, 0.49);
       border-radius: 0.22rem 0 0 0.22rem;
-      position: absolute;
+      position: fixed;
       top: 3.2rem;
       right: 0;
+      z-index: 20;
     }
     .rank {
       width: 0.94rem;
       height: 1rem;
-      position: absolute;
+      position: fixed;
       left: 0.08rem;
       top: 4.14rem;
       background: url(../assets/img/rankIcon.png);
       background-size: 100% 100%;
+      z-index: 20;
     }
     .history {
       width: 0.94rem;
       height: 1rem;
-      position: absolute;
+      position: fixed;
       left: 0.08rem;
       top: 2.95rem;
       background: url(../assets/img/historyIcon.png);
       background-size: 100% 100%;
+      z-index: 20;
     }
   }
   .guaBox {
     position: relative;
   }
+}
+.noData {
+  text-align: center;
 }
 .rules {
   width: 7.03rem;
