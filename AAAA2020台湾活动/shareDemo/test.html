@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+	<title>分享测试</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+
+		#show {
+			font-size: 1.2rem;
+			color: #FF8022;
+			border: 2px solid #20DDF9;
+			padding: 0.2rem;
+			border-radius: 0.3rem;
+			width: 80%;
+			margin: 1rem auto 0;
+			text-align: center;
+		}
+
+		.share {
+			width: 4rem;
+			height: 2rem;
+			line-height: 2rem;
+			text-align: center;
+			border: 1px solid #ccc;
+		}
+	</style>
+</head>
+
+<body>
+	<p class="play">播放全部歌曲</p>
+	<p class="pause"></p>
+	<p id="word" style="display:none;">逐字逐句</p>
+	<p id="show"></p>
+	<div class="share">分享</div>
+	<p class="ua"></p>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	window.onload = function () {
+		var story = document.getElementById('word');
+		var s = document.getElementById('show');
+		var i = 0;
+		var index = 0;
+		var timer = setInterval(function () {
+			s.innerHTML = story.innerHTML.substring(0, i);
+			i++;
+			if (s.innerHTML == story.innerHTML) {
+				clearInterval(timer);
+			}
+		}, 500);
+		$('.play').on('click', function () {
+			location.href = 'songid:{"songlist":[67454147,67481064,67473876,67514775,67452545,67458809,67458351,67577828,67539765,67452826],"index":0}'
+		})
+		var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+		var days = 111
+		var data = {
+			"share_title": `我已連續簽到${days}天`,
+			"share_content": `我已在歡歌連續簽到${days}天啦，翻牌得獎品，需要你的助力，快來`,
+			"share_image": "http://activity.17sing.tw/static_html/img/20171101/share.jpg",
+			"link": "http://activity.singnowapp.com/static_html/2020/vip_lottery/index.html?uid=4236112&code=123456",
+			"image": "http://img.17sing.tw/uc/singnow_banner/1571623326.png",
+			"share_url": "http://activity.singnowapp.com/static_html/2020/vip_lottery/index.html?uid=4236112"
+		}
+		var ua = navigator.userAgent;
+		$('.ua').html(ua);
+		$('.share').on('click', function () {
+			if (ios) {
+				// if (window.share != undefined) {
+				// 	$('.play').html('新版1');
+				// 	share(JSON.stringify(data))
+				// } else {
+				location.href = `shareUserInfo://activity.17sing.tw/static_html/20171101/share.html&shareText=我已在歡歌連續簽到${days}天啦，翻牌得獎品，需要你的助力，快來&userImg=http://activity.17sing.tw/static_html/img/20171101/share.jpg&title=我已連續簽到${days}天`;
+				$('.play').html('旧版1');
+				// }
+			} else {
+				// if(){
+				javascript: JSInterface.share(JSON.stringify(data));
+				// }else{
+				// javascript:JSInterface.share('http://activity.17sing.tw/static_html/2019/halloween/index.html?uid='+uid+'','萬聖瘋狂夜精靈女巫對決賽','爭奪30000+寶藏金！我在女巫陣營，看看你屬於哪個陣營，為城市加油！','http://activity.17sing.tw/static_html/img/2019/halloween/share_icon.jpg');
+				// }
+			}
+		})
+	}
+</script>
+
+</html>

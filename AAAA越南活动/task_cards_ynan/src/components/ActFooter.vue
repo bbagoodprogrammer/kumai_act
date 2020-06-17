@@ -1,0 +1,329 @@
+<template>
+  <div class="footerBar">
+    <div class="acrStatus">
+      <span class="noAct" v-if="astState === 0">{{lang.actNo}}</span>
+      <span class="noAct" v-if="astState === 2">{{lang.acted}}</span>
+      <span class="goAct" v-if="astState === 1">
+        <em @click="showTaskTab()">{{lang.singUp}}</em>
+      </span>
+      <div class="acted" v-if="astState === 3">
+        <div class="imgBox">
+          <img src="../assets/img/imgDf.png" alt="" class="img1">
+          <img v-lazy="initData.avatar" alt="" class="img2">
+        </div>
+        <div class="userMsg">
+          <div class="name">{{initData.nick}}</div>
+          <div class="card">{{lang.todayNum}} <span>{{initData.chance}} <em>({{lang.used}} {{initData.chanceUsed}} {{lang.ci}})</em> </span></div>
+        </div>
+        <div class="score">
+          <strong>{{lang.todayScore}}</strong><em>{{initData.score}}</em>
+        </div>
+      </div>
+    </div>
+    <div class="mask" v-show="showTaskType">
+      <transition name="slide">
+        <div class="taskType" v-show="showTaskType">
+          <div class="taskCon">
+            <div class="taskTitle">{{lang.changTask}}</div>
+            <p class="taskTips">{{lang.changOne2}}</p>
+            <div class="tabs">
+              <span :class="{act:taskType==2}" @click="tabClick(2)">{{lang.bigTask}}</span>
+              <span :class="{act:taskType==1}" @click="tabClick(1)">{{lang.mTask}}</span>
+            </div>
+            <div class="type1" v-show="taskType==2">
+              <p>{{lang.taskOne}}</p>
+              <ul>
+                <li v-for="(item,index) in initData.tasks.bking" :key="index">
+                  <span class="taskName">{{item.name}}</span>
+                  <span class="taskScore">{{item.score}}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="type2" v-show="taskType==1">
+              <p>{{lang.taskOne}}</p>
+              <ul>
+                <li v-for="(item,index) in initData.tasks.sking" :key="index">
+                  <span class="taskName">{{item.name}}</span>
+                  <span class="taskScore">{{item.score}}</span>
+                </li>
+              </ul>
+            </div>
+            <span class="queryBtn" @click="singUp()">
+              <em v-if="taskType==2">{{lang.changBig}}</em>
+              <em v-else>{{lang.changMid}}</em>
+            </span>
+          </div>
+        </div>
+      </transition>
+    </div>
+    <div class="mask" v-show="showT">
+      <transition name="slide">
+        <msg-toast :msg="tastMsg" @closeToast="closeToast()" v-show="showT"></msg-toast>
+      </transition>
+    </div>
+  </div>
+</template>
+<script>
+import { mapState } from 'vuex'
+import api from "../api/apiConfig"
+import { globalBus } from '../utils/eventBus'
+import MsgToast from "../components/commonToast"
+export default {
+  components: { MsgToast },
+  data() {
+    return {
+      taskType: 1,
+      showTaskType: false,
+      showT: false,
+      tastMsg: '',
+    }
+  },
+  watch: {
+    initData(val) {
+      this.taskType = val.model
+    }
+  },
+  computed: {
+    ...mapState(['actStatus', "isShare", "initData"]),
+    astState() {
+      if (this.actStatus === 0) { //活动未开始
+        return 0
+      } else if (this.actStatus === 2) { //活动已结束
+        return 2
+      } else if (!this.initData.registered || this.isShare) { //活动开始未报名，或者分享
+        return 1
+      } else if (this.initData.registered) { //活动开始已报名
+        return 3
+      }
+    }
+  },
+  methods: {
+    showTaskTab() {
+      globalBus.$emit('commonEvent', () => {
+        this.showTaskType = true
+      })
+    },
+    singUp() {
+      api.singUp(this.taskType).then(res => {
+        if (res.data.response_status.code == 0) {
+          this.vxc('setSingUp')
+          this.showTaskType = false
+          this.$parent.refrsh(2)
+        } else {
+          this.showTaskType = false
+          this.tastMsg = res.data.response_status.error
+          this.showT = true
+        }
+      })
+    },
+    tabClick(val) {
+      this.taskType = val
+      this.vxc('setTaskType', this.taskType)
+    },
+    closeToast() {
+      this.showT = false
+    }
+  }
+}
+</script>
+<style lang="scss">
+.footerBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  .acrStatus {
+    width: 7.5rem;
+    height: 1.26rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(../assets/img/footer.png) no-repeat;
+    background-size: contain;
+    span {
+      display: inline-block;
+    }
+    .noAct {
+      font-size: 0.36rem;
+      font-weight: 600;
+      color: #ffebb6;
+    }
+    .goAct {
+      width: 7.5rem;
+      height: 2.08rem;
+      background: url(../assets/img/footerSingUpBg.png);
+      background-size: 100% 100%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      em {
+        display: block;
+        width: 2.94rem;
+        height: 0.9rem;
+        background: url(../assets/img/singUpBt.png);
+        background-size: 100% 100%;
+        font-weight: 700;
+        text-align: center;
+        line-height: 0.85rem;
+        margin: 1rem auto;
+      }
+    }
+  }
+  .acted {
+    width: 7.5rem;
+    display: flex;
+    align-items: center;
+    .imgBox {
+      width: 1.11rem;
+      height: 1.25rem;
+      position: relative;
+      margin-left: 0.27rem;
+      .img1 {
+        width: 1.11rem;
+        height: 1.25rem;
+        position: absolute;
+        z-index: 3;
+      }
+      .img2 {
+        width: 0.95rem;
+        height: 0.95rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 0.26rem;
+        left: 0.08rem;
+      }
+    }
+    .userMsg {
+      width: 3rem;
+      margin-left: 0.21rem;
+      .name {
+        font-weight: 700;
+        max-width: 3rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .card {
+        font-size: 0.24rem;
+        color: #fff4d7;
+        span {
+          color: #81ffd4;
+          font-weight: bold;
+          margin: 0 0.15rem;
+          display: block;
+        }
+        em {
+          color: #81ffd4;
+          font-size: 0.24rem;
+          font-weight: 500;
+        }
+      }
+    }
+    .score {
+      width: 2.5rem;
+      font-weight: 600;
+      color: #fff4d7;
+      font-size: 0.24rem;
+      text-align: center;
+      margin-left: 0.45rem;
+      strong {
+        display: block;
+        font-size: 0.24rem;
+      }
+      em {
+        display: block;
+        font-weight: bold;
+        color: #81ffd4;
+      }
+    }
+  }
+  .taskType {
+    width: 5.45rem;
+    height: 7.94rem;
+    background: url(../assets/img/giftPup.png);
+    background-size: 100% 100%;
+    position: absolute;
+    left: 1.09rem;
+    top: 2rem;
+    .taskCon {
+      width: 5.45rem;
+      height: 5.2rem;
+      margin: 2.4rem auto 0;
+      text-align: center;
+      .taskTitle {
+        font-size: 0.24rem;
+        font-weight: 600;
+      }
+      .taskTips {
+        padding: 0 0.2rem;
+        color: #fcf16a;
+        font-size: 0.22rem;
+        font-weight: 600;
+      }
+      .tabs {
+        width: 4.68rem;
+        height: 0.66rem;
+        background: url(../assets/img/taskTab.png);
+        background-size: 100% 100%;
+        margin: 0.1rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        span {
+          display: block;
+          width: 2.45rem;
+          height: 0.6rem;
+          line-height: 0.55rem;
+          font-weight: 600;
+          font-size: 0.24rem;
+          &.act {
+            background: url(../assets/img/taskAct.png);
+            background-size: 100% 100%;
+          }
+        }
+      }
+      .type1,
+      .type2 {
+        p {
+          color: #fcf16a;
+          font-weight: 600;
+          font-size: 0.24rem;
+        }
+        ul {
+          padding: 0 0.43rem;
+          li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.24rem;
+            font-weight: 600;
+            color: #ffe8b2;
+            .taskName {
+              flex: 1;
+              text-align: left;
+            }
+            .taskScore {
+              width: 1rem;
+              text-align: right;
+            }
+          }
+        }
+      }
+      .queryBtn {
+        display: block;
+        width: 3.85rem;
+        height: 0.8rem;
+        line-height: 0.78rem;
+        white-space: nowrap;
+        font-weight: 800;
+        background: url(../assets/img/changTaskBtn.png);
+        background-size: 100% 100%;
+        position: absolute;
+        bottom: -1.1rem;
+        left: 0.79rem;
+      }
+    }
+  }
+}
+</style>
