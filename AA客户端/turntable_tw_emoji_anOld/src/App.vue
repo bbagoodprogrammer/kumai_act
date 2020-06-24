@@ -2,6 +2,7 @@
   <div id="app">
     <arm-bandit></arm-bandit>
     <!-- <Lottie /> -->
+    <Loading />
     <transition name="slide">
       <msg-toast :msg="tastMsg" @closeToast="closeToast()" v-show="showT"></msg-toast>
     </transition>
@@ -15,9 +16,10 @@ import { globalBus } from './utils/eventBus'
 import { mapState } from 'vuex'
 import APP from './utils/openApp'
 import Lottie from "./components/lottie"
+import Loading from "./components/Loading"
 export default {
   name: 'App',
-  components: { ArmBandit, MsgToast, Lottie },
+  components: { ArmBandit, MsgToast, Lottie, Loading },
   computed: {
     ...mapState(['actStatus', 'isShare'])
   },
@@ -33,6 +35,7 @@ export default {
     }
   },
   created() {
+    sessionStorage.setItem('entryType', 2)
     globalBus.$on('commonEvent', (callback) => {
       if (this.isShare) {
         APP()

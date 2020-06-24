@@ -1,20 +1,22 @@
 <template>
   <div class="share">
-    <div class="header"><i class="black"></i>邀請好友</div>
+    <div class="header">
+      <!-- <i class="black" @click="closeWeb()"></i>邀請好友 -->
+    </div>
     <div class="singInDay" :class="{mHeigth:type==2}">
       <div class="userMsg" v-if="type==2">
         <div class="userAv">
-          <img v-lazy="" alt="" class="av">
-          <strong>xxxxxxxxxxx</strong>
+          <img v-lazy="master.headImg" alt="" class="av">
+          <strong>{{master.nick}}</strong>
         </div>
-        <div class="userTips">已連續簽到100天，現在需要你的助力，快幫他助力吧</div>
+        <div class="userTips">已連續簽到{{days}}天，現在需要你的助力，快幫他助力吧</div>
       </div>
       <strong v-else>
-        你已連續簽到XXX天</br>
+        你已連續簽到{{days}}天</br>
         成功邀請3位好友助力可再翻牌一次
       </strong>
     </div>
-    <SharePeople :type="type" />
+    <SharePeople :type="type" :list="list" :leftTime="leftTime" />
     <div class="shareTips">
       <div class="shareBtn" @click="share()"> {{type==2?'幫他助力':'立即邀請好友'}} </div>
       <p class="verTips" v-if="type==2">助力需更新到最新版本</p>
@@ -32,46 +34,101 @@
         <p>可花費金幣進行補簽，每次可補簽1天，每次補簽花費依次遞增，如第一次補一天花費100金幣，第二次補簽一天花費200金幣，如此類推。</p>
       </div>
     </div>
+    <Loading />
   </div>
 </template>
 <script>
 import SharePeople from "../../components/SharePeople"
 import getString from "../../utils/getString"
 import APP from "../../utils/openApp"
+import Loading from "../../components/Loading"
+import api from "../../api/apiConfig"
 export default {
-  components: { SharePeople },
+  components: { SharePeople, Loading },
   data() {
     return {
-      type: null
+      type: null,
+      inviteCode: null,
+      master: {},
+      list: [],
+      days: null,
+      leftTime: 0
     }
   },
   created() {
+    document.title = '邀請好友'
     this.type = getString('type')
+    let shareInviteCode = getString('inviteCode')
+    if (shareInviteCode) {
+      this.inviteCode = shareInviteCode
+      api.queryShre(this.inviteCode).then(res => {
+        if (res.data.response_data.master) {
+          const { master, list, days, leftTime } = res.data.response_data
+          this.master = master
+          this.list = list
+          this.days = days
+          this.leftTime = leftTime
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+    } else {
+      api.gerKey().then(res => {
+        this.inviteCode = res.data.response_data.key
+        api.queryShre(this.inviteCode).then(res => {
+          if (res.data.response_data.master) {
+            const { master, list, days, leftTime } = res.data.response_data
+            this.master = master
+            this.list = list
+            this.days = days
+            this.leftTime = leftTime
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      })
+    }
   },
   methods: {
     share() {
       if (this.type == 2) {
-        APP()
+        APP(`hsing://17sing.tw/{"inviteCode":"${this.inviteCode}"}`, null, null, `Gaoge://inviteCode=${this.inviteCode}`)
       } else {
         var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
         var ua = navigator.userAgent;
+        let token = getString("token")
+        let uid = getString("uid")
         var data = {
-          "share_title": `我已連續簽到${111}天`,
-          "share_content": `我已在歡歌連續簽到${111}天啦，翻牌得獎品，需要你的助力，快來`,
-          "share_image": "http://activity.17sing.tw/static_html/2020/signIn/share.jpg",
-          "link": `http://activity.17sing.tw/static_html/2020/signIn/index.html?uid=${this.userMsg.uid}&code=${code}&v=2`,
-          "image": "http://activity.17sing.tw/static_html/2020/signIn/share.jpg",
-          "share_url": `http://activity.17sing.tw/static_html/2020/signIn/index.html?uid=${this.userMsg.uid}&code=${code}&v=2`
+          "share_title": `我已連續簽到${this.days}天`,
+          "share_content": `我已在歡歌連續簽到${this.days}天啦，翻牌得獎品，需要你的助力，快來`,
+          "share_image": this.master.headImg,
+          "link": `http://test.17sing.tw/signIn/index3.html?inviteCode=${this.inviteCode}&type=2`,
+          "image": this.master.headImg,
+          "share_url": `http://test.17sing.tw/signIn/index3.html?inviteCode=${this.inviteCode}&type=2`
         }
         if (ios) {
           if (window.share != undefined) {
             share(JSON.stringify(data))
           } else {
-            location.href = `shareUserInfo://activity.17sing.tw/static_html/2020/signIn.html&shareText=我已在歡歌連續簽到${111}天啦，翻牌得獎品，需要你的助力，快來&userImg=http://activity.17sing.tw/static_html/2020/signIn/share.jpg&title=我已連續簽到${111}天`;
+            location.href = `shareUserInfo://test.17sing.tw/signIn/index3.html?inviteCode=${this.inviteCode}&type=2&shareText=我已在歡歌連續簽到${this.days}天啦，翻牌得獎品，需要你的助力，快來&userImg=${this.master.headImg}&title=我已連續簽到${this.days}天`;
           }
         } else {
           javascript: JSInterface.share(JSON.stringify(data));
         }
+      }
+    },
+    closeWeb() {
+      var u = navigator.userAgent;
+      var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+      try {
+        if (isAndroid) {
+          window.JSInterface.closeWeb();
+        } else {
+          closeWeb();
+        }
+      } catch (e) {
+
       }
     }
   }

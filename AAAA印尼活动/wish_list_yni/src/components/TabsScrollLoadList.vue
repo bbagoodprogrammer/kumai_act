@@ -64,6 +64,8 @@
           <span class="goSing" @click="gosing()" v-else></span>
           <p class="Tips">
             Setelah mengambil keinginan,nyanyian umum pertama yang diupload akan sawer kepada pemohon(orang yang buat keinginan) secara default.
+            <span>Setiap hari paling banyak bisa menbantu pengguna lain 10 keinginan</span>
+            <span>Setelah ambil keinginan,silakan mengantar lagu keinginan sebelum lewati 6 jam, jika tidak keinginan ini akan menjadi keterangan ditunggu ambil</span>
             <span>Selama acara, dinilai 1 mencapai 10 kali,atau hapus lagu keinginan mencapai 5 kali ,akan dilarang untuk mengambil keinginan orang lain!</span>
           </p>
         </div>
@@ -319,6 +321,15 @@ export default {
           } else if (res.data.response_status.code === 60002) {
             this.tastMsg = `Selama acara,hapus lagu keinginan mencapai 5 kali, dan dilarang untuk  mengambil keinginan orang lain!`
             this.showT = true
+          } else if (res.data.response_status.code === 60003) {
+            this.tastMsg = `Maaf,ambil keinginan terlalu sering, silakan coba lagi nanti`
+            this.showT = true
+          } else if (res.data.response_status.code === 50001) {
+            this.tastMsg = `Maaf,Anda sudah melanggar utk ikut acara,gak bisa ambil keinginan`
+            this.showT = true
+          } else if (res.data.response_status.code === 80001) {
+            this.tastMsg = `Maaf, Anda sebanyak membantu temanmu utk menyelesaikan 10 keinginan setiap hari,Anda udah menyelesaikan 10 keinginan hari ini,gak bisa ambil keinginan lagi ya`
+            this.showT = true
           } else {
             this.tastMsg = res.data.response_status.error
             this.showT = true
@@ -501,7 +512,7 @@ export default {
   .userItemPup {
     .userCon {
       width: 6.96rem;
-      height: 8.4rem; //7.64rem
+      height: 9.5rem; //7.64rem
       padding-top: 0.48rem;
       background: url(../assets/img/pup1.png);
       background-size: 100% 100%;
@@ -510,7 +521,7 @@ export default {
       top: 50%;
       transform: translate(-50%, -50%);
       &.maxHigt {
-        height: 8.5rem;
+        height: 9.5rem;
       }
       .close {
         display: block;
@@ -623,9 +634,9 @@ export default {
         position: absolute;
         left: 0.45rem;
         bottom: 1.4rem;
-        span{
+        span {
           display: block;
-          color:#d7184a;
+          color: #d7184a;
           text-align: center;
         }
       }

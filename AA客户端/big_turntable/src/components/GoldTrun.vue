@@ -121,8 +121,12 @@ export default {
             this.$store.commit('rudectB', val * 3);//减去金币数
             this.speed = 50;//每次抽奖速度初始化为200
             this.prize_data = res.data.response_data.gift_list//已经拿到中奖信息，页面展示，等抽奖结束后，将弹窗弹出
-            let giftStr = this.prize_data[0].gift_id % 100    //显示第一个礼物位置的索引
-            this.prize = --giftStr;//中奖位置赋值，跑马灯最终停留位置，这里实际位置需要-1
+            let giftStr = this.prize_data[0].gift_id   //显示第一个礼物位置的索引
+            for (let i = 0; i < this.goldGiftArr.length; i++) {
+              if (this.goldGiftArr[i].gift_id == giftStr) {
+                this.prize = i;//中奖位置赋值，跑马灯最终停留位置，这里实际位置需要-1
+              }
+            }
             this.record = res.data.response_data.record   //中奖信息
             this.startRoll();//执行抽奖
             // this.lampStep = 60   //跑馬燈加速啟動
@@ -158,6 +162,7 @@ export default {
     },
     usePrize() {
       // 如果当前转动次数达到要求 && 目前转到的位置是中奖位置
+      console.log(this.prize, this.index)
       if (this.times > this.cycle && this.prize === this.index) {
         let num = 0
         this.lampTimer = setInterval(() => {

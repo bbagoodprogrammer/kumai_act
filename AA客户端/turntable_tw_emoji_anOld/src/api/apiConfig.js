@@ -120,7 +120,7 @@ function getGiftList(type) {
 
 //兌換禮物
 function getGift(type, gid) {
-    return axios.get(`/big_turntable/getpuzzlegift.php?token=${token}&gift_type=${type}&gift_id=${gid}&page=${entryType}`)
+    return get(`/big_turntable/getpuzzlegift.php?token=${token}&gift_type=${type}&gift_id=${gid}&page=${entryType}`)
 }
 
 //獲取表情包SVGA

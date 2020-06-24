@@ -1,14 +1,17 @@
 <template>
-  <div class="roll-msg" v-show="list.length > 0">
-    <i class="laba"></i>
-    <div class="popup">
-      <div class="msgBox">
-        <ul class="lb" :class="{marquee_top:animate}">
-          <li v-for="(item, index) in list" :key="index">Chúc mừng <em>{{item.nick}}</em> nhận được <em>{{item.name}}</em></li>
-        </ul>
+  <div class="top">
+    <div class="roll-msg" v-show="list.length > 0">
+      <i class="laba"></i>
+      <div class="popup">
+        <div class="msgBox">
+          <ul class="lb" :class="{marquee_top:animate}">
+            <li v-for="(item, index) in list" :key="index">Chúc mừng <em>{{item.nick}}</em> nhận được <em>{{item.name}}</em></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
+
 </template>
  
 <script>
@@ -57,9 +60,12 @@ export default {
   transition: all 0.5s;
   margin-top: -0.44rem;
 }
-
+.top {
+  height: 0.4rem;
+  margin: 0.21rem 0 0 0.3rem;
+}
 .roll-msg {
-  width: 6.3rem;
+  width: 6.8rem;
   height: 0.4rem;
   display: flex;
   justify-content: center;
@@ -67,7 +73,6 @@ export default {
   background: rgba(0, 0, 0, 0.1);
   // opacity: 0.66;
   border-radius: 0.2rem;
-  margin: 0.21rem 0 0 0.3rem;
   .laba {
     display: block;
     width: 0.32rem;

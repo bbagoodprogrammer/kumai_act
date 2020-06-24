@@ -15,6 +15,16 @@ export const trunImg = {
     206: require("../assets/img/trunImg/ward14.png"),   //40金豆
     207: require("../assets/img/trunImg/ward15.png"),   //100金豆
     208: require("../assets/img/trunImg/ward16.png"),   //花车
+
+    210: require("../assets/img/trunImg/ward26.png"),  //20金豆
+
+
+    110: require("../assets/img/trunImg/ward20.png"),  //kiss
+    111: require("../assets/img/trunImg/ward22.png"), //cherrs
+    112: require("../assets/img/trunImg/ward24.png"), //番茄
+    211: require("../assets/img/trunImg/ward21.png"),
+    212: require("../assets/img/trunImg/ward23.png"),
+    213: require("../assets/img/trunImg/ward25.png"),
 }
 
 export const oneWardImg = {
@@ -34,6 +44,15 @@ export const oneWardImg = {
     206: require("../assets/img/oneGiftToastImg/ward12.png"),   //40金豆
     207: require("../assets/img/oneGiftToastImg/ward13.png"),   //100金豆
     208: require("../assets/img/oneGiftToastImg/ward14.png"),   //花车
+
+    210: require("../assets/img/oneGiftToastImg/ward23.png"),  //20金豆
+
+    110: require("../assets/img/oneGiftToastImg/ward20.png"),  //kiss
+    111: require("../assets/img/oneGiftToastImg/ward21.png"), //cherrs
+    112: require("../assets/img/oneGiftToastImg/ward22.png"), //番茄
+    211: require("../assets/img/oneGiftToastImg/ward20.png"),
+    212: require("../assets/img/oneGiftToastImg/ward21.png"),
+    213: require("../assets/img/oneGiftToastImg/ward22.png"),
 }
 
 export const tenWardImg = {
@@ -53,6 +72,15 @@ export const tenWardImg = {
     206: require("../assets/img/tenGiftToastImg/ward12.png"),   //40金豆
     207: require("../assets/img/tenGiftToastImg/ward13.png"),   //100金豆
     208: require("../assets/img/tenGiftToastImg/ward14.png"),   //花车
+
+    210: require("../assets/img/tenGiftToastImg/ward23.png"),  //20金豆
+
+    110: require("../assets/img/tenGiftToastImg/ward20.png"),  //kiss
+    111: require("../assets/img/tenGiftToastImg/ward21.png"), //cherrs
+    112: require("../assets/img/tenGiftToastImg/ward22.png"), //番茄
+    211: require("../assets/img/tenGiftToastImg/ward20.png"),
+    212: require("../assets/img/tenGiftToastImg/ward21.png"),
+    213: require("../assets/img/tenGiftToastImg/ward22.png"),
 }
 
 export const historyImg = {
@@ -72,6 +100,15 @@ export const historyImg = {
     206: require("../assets/img/historyImg/ward7.png"),   //40金豆
     207: require("../assets/img/historyImg/ward7.png"),   //100金豆
     208: require("../assets/img/historyImg/ward10.png"),   //花车
+
+    210: require("../assets/img/historyImg/ward7.png"),  //20金豆
+
+    110: require("../assets/img/historyImg/ward18.png"),  //kiss
+    111: require("../assets/img/historyImg/ward19.png"), //cherrs
+    112: require("../assets/img/historyImg/ward20.png"), //番茄
+    211: require("../assets/img/historyImg/ward18.png"),
+    212: require("../assets/img/historyImg/ward19.png"),
+    213: require("../assets/img/historyImg/ward20.png"),
 }
 
 export const giftNum = {
@@ -139,6 +176,34 @@ export const giftNum = {
         name: "السيارة بالزهور",
         num: "x1",
     },   //花车
+    210: {
+        name: "فولات ذهبية",
+        num: "x20",
+    },   //金豆
+    110: {
+        name: "Kiss",
+        num: "x1",
+    },  //
+    111: {
+        name: "Cheers",
+        num: "x1",
+    },  //
+    112: {
+        name: "طماطم",
+        num: "x1",
+    },  //
+    211: {
+        name: "Kiss",
+        num: "x1",
+    },  //
+    212: {
+        name: "Cheers",
+        num: "x1",
+    },  //
+    213: {
+        name: "طماطم",
+        num: "x1",
+    },
 }
 
 export const mergeGiftNum = {
@@ -151,5 +216,9 @@ export const mergeGiftNum = {
     203: require("../assets/img/historyImg/ward7.png"), //金豆
     204: require("../assets/img/historyImg/ward8.png"), //100送50储值返利券
     205: require("../assets/img/historyImg/ward9.png"),  //60送30储值返利券
-    208: require("../assets/img/historyImg/ward10.png")  //花车
+    208: require("../assets/img/historyImg/ward10.png"),  //花车
+
+    110: require("../assets/img/historyImg/ward18.png"),  //kiss
+    111: require("../assets/img/historyImg/ward19.png"), //cherrs
+    112: require("../assets/img/historyImg/ward20.png"), //番茄
 }

@@ -102,7 +102,14 @@ export default {
     }
   },
   created() {
-    this.boxGiftList = JSON.parse(sessionStorage.getItem('boxGiftBox'))
+    this.boxGiftList = JSON.parse(sessionStorage.getItem('boxGiftBox')) || []
+    if (!this.boxGiftList.length) {
+      api.getDefault(1).then(res => {
+        const { response_data, response_status } = res.data
+        sessionStorage.setItem('boxGiftBox', JSON.stringify(response_data.gift_list))
+        this.boxGiftList = response_data.gift_list
+      })
+    }
   },
   mounted() {
     const downloader = new Downloader()

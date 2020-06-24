@@ -4,8 +4,8 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-            <em v-if="item.name && item.type!='frame'">恭喜 {{item.nick}} 獲得 <i> {{item.name}} {{item.day?`(${item.day}天)`:`*${item.count}`}}</i> </em>
-            <em v-else>恭喜 {{item.nick}} 獲得 <i> {{getName(item)}}</i> </em>
+            <strong v-if="item.name && item.type!='frame'" :class="'lv'+item.level">恭喜 <b class="nick">{{item.nick}}</b> 獲得 <em><i v-if="item.level!=0">{{item.level==1?'稀有':'高級'}}</i> {{item.name}} {{item.day?`(${item.day}天)`:`*${item.count}`}}</em> </strong>
+            <strong v-else :class="'lv'+item.level">恭喜 <b class="nick">{{item.nick}}</b> 獲得 <em><i v-if="item.level!=0">{{item.level==1?'稀有':'高級'}}</i> {{getName(item)}}</em> </strong>
           </li>
         </ul>
       </div>
@@ -124,13 +124,39 @@ export default {
           color: #fff;
           font-size: 0.24rem;
           white-space: nowrap;
-          em {
+          strong {
             font-weight: 600;
             font-size: 0.24rem;
+            display: flex;
+            align-items: center;
+            i {
+              font-size: 0.24rem;
+            }
+            &.lv1 {
+              em {
+                color: #f678fb;
+              }
+            }
+            &.lv2 {
+              em {
+                color: #fae234;
+              }
+            }
           }
-          i {
-            color: #f5e53f;
+          em {
+            color: #74e4ff;
             font-size: 0.24rem;
+            margin-left: 0.1rem;
+          }
+          .nick {
+            display: block;
+            margin: 0 0.04rem;
+            max-width: 3rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 0.24rem;
+            font-weight: 600;
           }
         }
       }

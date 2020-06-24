@@ -100,11 +100,11 @@ export default {
           justify-content: center;
           em {
             max-width: 1.6rem;
-            height: 0.45rem;
-            line-height: 0.45rem;
-            overflow: hidden;
+            /* height: 0.45rem; */
+            line-height: 0.25rem;
+            /* overflow: hidden;
             white-space: nowrap;
-            text-overflow: ellipsis;
+            text-overflow: ellipsis; */
             display: block;
             text-align: center;
             font-size: 0.22rem;

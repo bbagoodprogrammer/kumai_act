@@ -268,7 +268,7 @@ export default {
   margin-top: -0.1rem;
   em {
     display: block;
-    margin-top: -0.08rem;
+    margin-top: -0.04rem;
     font-size: 0.2rem;
     opacity: 0.5;
   }
@@ -318,7 +318,8 @@ export default {
     }
     em {
       text-align: center;
-      font-size: 106%;
+      font-size: 0.32rem;
+      line-height: 0.3rem;
     }
   }
   .querBtn {

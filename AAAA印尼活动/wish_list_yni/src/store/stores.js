@@ -35,10 +35,10 @@ const store = new Vuex.Store({
         delItem(state, delObj) {
             state.rankGroups[delObj.rankIndex].list.splice(delObj.listInedx, 1)
         },
-        addTook(state){
+        addTook(state) {
             state.userMsgState.took++
         },
-        changTook(state,val){
+        changTook(state, val) {
             state.userMsgState.took = val
         },
         changUserMsg(state, val) {

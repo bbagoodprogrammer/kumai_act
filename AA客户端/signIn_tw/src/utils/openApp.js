@@ -1,13 +1,14 @@
 //https://segmentfault.com/a/1190000005848133
 //https://segmentfault.com/a/1190000011231042
 //https://segmentfault.com/a/1190000006929722
-function toast(message, time = 1000) {
-    const cssTime = 1000;
-    const div = document.createElement('div');
+function toast(message, time) {
+    time = time || 1000
+    var cssTime = 1000;
+    var div = document.createElement('div');
     div.style.cssText = 'position:fixed; z-index:10000; left:0; top:0; right:0; bottom:0; text-align:center; pointer-events:none';
     div.innerHTML = '<span style="display:inline-block; padding:.1rem .2rem; max-width:80%; background:#212125; color:#fff; border-radius:.1rem; opacity:0; margin-top:' + Math.round(window.innerHeight / 2) + 'px; transition:opacity ' + (cssTime / 1000) + 's">' + message + '</span>';
     document.body.appendChild(div);
-    const span = div.firstChild;
+    var span = div.firstChild;
     setTimeout(() => {
         span.style.opacity = 1;
     }, 0);
@@ -19,7 +20,7 @@ function toast(message, time = 1000) {
     }, cssTime + time);
 }
 function getConfig() {
-    const tw = {
+    var tw = {
         name: '17sing',
         androidSchema: 'hsing://17sing.tw',
         androidDown: 'http://17sing.tw/goto_googleplay',
@@ -28,7 +29,7 @@ function getConfig() {
         tips: '請點按右上角...</br>選擇系統默認瀏覽器打開'
     };
 
-    const conf = {
+    var conf = {
         localhost: tw,
 
         '17sing': tw,
@@ -67,7 +68,7 @@ function getConfig() {
         },
     };
 
-    const host = location.host;
+    var host = location.host;
     for (let key in conf) {
         if (new RegExp(key, 'i').test(host)) {
             return conf[key];
@@ -107,8 +108,8 @@ document.addEventListener('visibilitychange', visibilityChange, false);
 
 function showWeChatTips(conf) {
     toast(conf.tips);
-    // const img = require('../assets/img/wechat/' + lang + '.png');
-    // const tips = document.createElement('div');
+    // var img = require('../assets/img/wechat/' + lang + '.png');
+    // var tips = document.createElement('div');
     // tips.style.cssText = 'position:fixed; z-index:10001; left:0; top:0; right:0; bottom:0; background:rgba(0,0,0,.5) url(' + img + ') top right no-repeat; background-size:100% auto';
     // document.body.appendChild(tips);
     // tips.onclick = () => {
@@ -116,11 +117,10 @@ function showWeChatTips(conf) {
     // };
 }
 
-export default function openApp(schemaUrl, androidDownUrl, iosDownUrl, iosSchemaUrl) {
-    const conf = getConfig();
-
+function openApp(schemaUrl, androidDownUrl, iosDownUrl, iosSchemaUrl) {
+    var conf = getConfig();
     if (ifWeixin || ifLine || ifFb) {
-        const lang = ['17sing', 'oksing'].indexOf(conf.name) >= 0 ? 'tw' : conf.name;
+        var lang = ['17sing', 'oksing'].indexOf(conf.name) >= 0 ? 'tw' : conf.name;
         showWeChatTips(conf);
         return;
     }

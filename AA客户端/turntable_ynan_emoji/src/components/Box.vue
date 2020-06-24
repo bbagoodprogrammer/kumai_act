@@ -7,7 +7,7 @@
       <div class="open" :class="{act:clueOpen}" @click="openBox()"></div>
       <div class="bar">
         <div class="defaultBar">
-          <span :class="'gift'+index" v-for="(item,index) in qustGiftArr" :key="index" @click="showClickGift(item)">
+          <span :class="'gift'+index" :style="{bottom:(item.must_get / maxMust_get)*100-4.9+'%'}" v-for="(item,index) in qustGiftArr" :key="index" @click="showClickGift(item)">
             <img :src="item.picture" class="giftImg" />
             <i class="yes" v-show="userMsg.go_count >= item.must_get"></i>
           </span>
@@ -73,7 +73,7 @@ export default {
       player: null,
       boxGiftList: [],
       isDown: null,
-      luckGift: {}
+      luckGift: {},
     }
   },
   computed: {
@@ -91,9 +91,15 @@ export default {
         return a.must_get - b.must_get;
       }
       return mustArr.sort(prescDateSort)
+      // return [{ must_get: 30 }, { must_get: 60 }, { must_get: 90 }]
+    },
+    maxMust_get() {
+      if (this.qustGiftArr.length) {
+        return this.qustGiftArr[this.qustGiftArr.length - 1].must_get || 0
+      }
     },
     barHeight() {
-      return this.userMsg.go_count / 12 * 100
+      return this.userMsg.go_count / this.maxMust_get * 100
     },
     showVerTips() {
       if (this.luckGift.gift_type == 9 || this.luckGift.gift_type == 10 || this.luckGift.gift_type == 13 || this.luckGift.gift_type == 14) {
@@ -102,12 +108,19 @@ export default {
     }
   },
   created() {
-    this.boxGiftList = JSON.parse(sessionStorage.getItem('boxGiftBox'))
+    this.boxGiftList = JSON.parse(sessionStorage.getItem('boxGiftBox')) || []
+    if (!this.boxGiftList.length) {
+      api.getDefault(1).then(res => {
+        const { response_data, response_status } = res.data
+        sessionStorage.setItem('boxGiftBox', JSON.stringify(response_data.gift_list))
+        this.boxGiftList = response_data.gift_list
+      })
+    }
   },
   mounted() {
     const downloader = new Downloader()
     // calls WebWorker parsing by default, configurable `new Parser({ disableWorker: true })`
-    const parser = new Parser()
+    const parser = new Parser({ disableWorker: true })
     this.player = new Player('#canvas') // #canvas is HTMLCanvasElement
 
       ; (async () => {
@@ -227,6 +240,10 @@ export default {
 .lackBox {
   position: relative;
   margin-top: -0.15rem;
+  .loading {
+    text-align: center;
+    margin-top: 0.7rem;
+  }
   .boxCon {
     width: 6.06rem;
     height: 4.46rem;
@@ -287,7 +304,7 @@ export default {
             left: 0.02rem;
             top: 0.02rem;
           }
-          &.gift0 {
+          /* &.gift0 {
             bottom: 0.77rem;
           }
           &.gift1 {
@@ -295,7 +312,7 @@ export default {
           }
           &.gift2 {
             bottom: 3.95rem;
-          }
+          } */
         }
       }
       .actBar {
@@ -336,7 +353,7 @@ export default {
     font-size: 0.26rem;
     em {
       display: block;
-      margin: -0.08rem 0 0 -0.1rem;
+      margin: -0.04rem 0 0 -0.1rem;
       font-size: 0.2rem;
       opacity: 0.5;
     }

@@ -141,7 +141,7 @@ export default {
         })()
     },
     showPup() {
-      if (this.user_wallet.icon_puzzle >= this.listItem.pay_num) {
+      if (Number(this.user_wallet.icon_puzzle) >= Number(this.listItem.pay_num)) {
         api.getGift(13, this.listItem.gift_id).then(res => { //填寫表情包信息
           if (res.data.response_status.code == 0) {
             this.lateImg = this.listItem.picture

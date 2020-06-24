@@ -1,16 +1,18 @@
 <template>
   <div class="box">
-    <div class="header"><i class="black"></i> 連續徽章說明</div>
+    <div class="header">
+      <!-- <i class="black" @click="closeWeb()"></i> 連續徽章說明 -->
+    </div>
     <div class="singTotalDay">
-      <strong>你已連續簽到<em> 100 </em>天</strong>
-      <span class="retroactive" @click="showP()">補簽</span>
+      <strong>你已連續簽到<em> {{data.days}} </em>天</strong>
+      <span class="retroactive" :class="{black:!data.compensate.date}" @click="showP()">補簽</span>
     </div>
     <div class="badge">
-      <div class="title">連簽徽章 <strong>(7/8個)</strong></div>
+      <div class="title">連簽徽章 <strong>({{actNum}}/{{maxLength}}個)</strong></div>
       <div class="badBox">
-        <span v-for="(item,index) in days" :key="index">
-          <img src="../assets/img/badAct.png" alt="">
-          <strong>連簽{{item.dayNums}}天</strong>
+        <span v-for="(item,index) in data.medalTask" :key="index">
+          <img :src="item.url" alt="">
+          <strong>連簽{{item.days}}天</strong>
         </span>
       </div>
     </div>
@@ -23,14 +25,14 @@
     <div class="mask" v-show="showPup">
       <transition name="slide">
         <div class="retroactivePup" v-if="showPup">
-          <div class="title">是否花費100金幣進行補簽？</div>
+          <div class="title">是否花費{{data.compensate.coins}}金幣進行補簽？</div>
           <div class="tips">
-            你最近漏簽的日期：2020-05-27
-            </br> 補簽後，連續簽到天數爲102天
+            你最近漏簽的日期：{{data.compensate.date}}
+            </br> 補簽後，連續簽到天數爲{{data.compensate.days}}天
           </div>
           <div class="btnBox">
             <span class="re" @click="closeP()">取消</span>
-            <span class="ok">確定</span>
+            <span class="ok" @click="sateSingUp()">確定</span>
           </div>
         </div>
       </transition>
@@ -44,48 +46,71 @@ export default {
   data() {
     return {
       showPup: false,
-      days: [
-        {
-          dayNums: 100,
-        },
-        {
-          dayNums: 200
-        },
-        {
-          dayNums: 360
-        },
-        {
-          dayNums: 520
-        },
-        {
-          dayNums: 720
-        },
-        {
-          dayNums: 1314
-        },
-        {
-          dayNums: 1888
-        },
-        {
-          dayNums: 2333
-        }
-      ]
+      data: {
+        compensate: {}
+      }
     }
   },
   created() {
     this.getDefaultData()
   },
-  mounted() {
+  computed: {
+    actNum() {
+      let num = 0
+      for (let key in this.data.medalTask) {
+        if (this.data.medalTask[key].finish == 1) {
+          num++
+        }
+      }
+      return num
+    },
+    maxLength() {
+      if (this.data.medalTask) {
+        return Object.keys(this.data.medalTask).length
+      }
+    }
   },
   methods: {
     getDefaultData(val) { //初始化
-
+      api.getDefault().then(res => {
+        if (res.status == 200) {
+          this.data = res.data.response_data
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+    },
+    sateSingUp() {
+      api.sateSingIn().then(res => {
+        if (res.data.response_data.msg == 'ok') {
+          this.getDefaultData()
+          this.toast(`補簽成功,連簽天數+1`)
+          this.showPup = false
+        } else {
+          this.toast(`補簽失敗，請確保賬戶金幣充足`)
+          this.showPup = false
+        }
+      })
     },
     showP() {
       this.showPup = true
     },
     closeP() {
       this.showPup = false
+    },
+    closeWeb() {
+      var u = navigator.userAgent;
+      var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+      try {
+        if (isAndroid) {
+          window.JSInterface.closeWeb();
+        } else {
+          closeWeb();
+        }
+      } catch (e) {
+
+      }
     }
   }
 }
@@ -105,7 +130,7 @@ body {
   .header {
     height: 0.88rem;
     line-height: 0.88rem;
-    background: #fff;
+    // background: #fff;
     font-size: 0.36rem;
     text-align: center;
     position: relative;
@@ -151,6 +176,9 @@ body {
       background: rgba(255, 106, 62, 1);
       margin-right: 0.3rem;
       border-radius: 0.5rem;
+      &.black {
+        background: #ccc;
+      }
     }
   }
   .badge {

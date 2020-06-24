@@ -18,12 +18,12 @@
           <div class="title"> Thể lệ game<i class="close" @click="closeTips1()"></i></div>
           <div class="con">
             <p>1.Mỗi khi dùng đủ 100 xu được quay vòng quay</p>
-            <p>2.Mỗi khi nạpk đủ 300 xu được 1 chìa khoá, dùng để mở rương</p>
+            <p>2.Mỗi khi nạp đủ 300 xu được 1 chìa khoá, dùng để mở rương</p>
             <p>3.Mảnh quà dùng để đổi quà hiếm trong hộp quà, là quà phòng Kara</p>
             <p>4.Mảnh gói biểu cảm dùng để đổi gói biểu cảm</p>
-            <p>5.Mở rương lần thứ 3 và 8 chắc chắn trúng quà hiếm và xu</p>
+            <p>5.Mở rương lần thứ 3 và 8 trong tháng chắc chắn trúng thưởng hiếm </p>
             <p>6.Mỗi đầu tháng sẽ cho đổi quà hiếm và xoá hết tiến độ mở rương</p>
-            <p>7.Quà có thời hạn sẽ cộng dồn thời hạn</p>
+            <p>7.Vật phẩm có thời hạn sẽ cộng dồn thời hạn</p>
           </div>
         </div>
       </transition>
@@ -341,14 +341,15 @@ export default {
           padding: 0 0.3rem 0.2rem;
           margin-right: 0.1rem;
           li {
-            font-size: 86%;
+            font-size: 0.26rem;
             color: #cccccc;
             display: flex;
             align-items: center;
             /* justify-content: space-between; */
             min-height: 0.69rem;
-            border-bottom: 0.015rem solid rgba(255, 255, 255, 0.1);
+            border-bottom: 0.02rem solid rgba(255, 255, 255, 0.1);
             .gift {
+              font-size: 0.26rem;
               em {
                 font-size: 0.26rem;
                 color: #fedd29;
@@ -356,6 +357,7 @@ export default {
             }
             .time {
               width: 1.8rem;
+              margin-right: 0.2rem;
             }
           }
         }

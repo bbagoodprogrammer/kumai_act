@@ -1,6 +1,8 @@
 <template>
   <div class="rule">
-    <div class="header"><i class="black"></i>簽到規則說明</div>
+    <div class="header">
+      <!-- <i class="black" @click="closeWeb()"></i>簽到規則說明 -->
+    </div>
     <div class="tips">
       <h6>規則說明：</h6>
       <p>這裡展示你最近一次連續簽到的天數，如有斷簽，則重新計算</p>
@@ -12,7 +14,25 @@
 
 <script>
 export default {
+  created() {
+    document.title = `簽到規則說明`
+  },
+  methods: {
+    closeWeb() {
+      var u = navigator.userAgent;
+      var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+      try {
+        if (isAndroid) {
+          window.JSInterface.closeWeb();
+        } else {
+          closeWeb();
+        }
+      } catch (e) {
 
+      }
+    }
+  }
 }
 </script>
 
@@ -24,7 +44,7 @@ body {
   .header {
     height: 0.88rem;
     line-height: 0.88rem;
-    background: #fff;
+    // background: #fff;
     font-size: 0.36rem;
     text-align: center;
     position: relative;
