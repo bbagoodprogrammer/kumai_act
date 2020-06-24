@@ -10,8 +10,10 @@
       <p>1.Pengguna mengklik dan posting keinginan, menulis keinginannya. Setiap orang hanya memiliki 5 kesempatan untuk posting keinginan dalam sehari.</p>
       <p>2.Klik catatan tempel keinginan dan ambil keinginan dari pihak lain. Setelah mengambil keinginan,nyanyian umum pertama akan dikirim kepada pengguna ini,keinginan yang diambil akan tidak muncul dalam daftar keinginan,tetapi bisa dicek dalam catatan keinginan.</p>
       <p>3.Orang yang buat keinginan/pemohon bisa cek catatan keinginan pada tepat waktu untuk mengetahui kemajuan keinginannya yang diselesaikan.</p>
-      <p>4.Pengguna dengan perangkat yang sama tidak dapat berpartisipasi dalam acara ini (tidak bisa membuat keinginan dan mengambil keinginan).</p>
-      <p>5.Selama acara, dinilai 1 mencapai 10 kali,atau hapus lagu keinginan mencapai 5 kali ,akan dilarang untuk mengambil keinginan orang lain, skor dari Daftar Kirim Keinginan akan dihapus ke 0,dan keluar kontes daftar ini.</p>
+      <p>4. Setelah ambil keinginan,silakan mengantar lagu keinginan sebelum lewati 6 jam, jika tidak keinginan ini akan menjadi keterangan ditunggu ambil ,kamblikan daftar keinginan.</p>
+      <p>5.Setiap hari paling banyak bisa menbantu pengguna lain 10 keinginan</p>
+      <p>6.Pengguna dengan perangkat yang sama tidak dapat berpartisipasi dalam acara ini (tidak bisa membuat keinginan dan mengambil keinginan).</p>
+      <p>7.Selama acara, dinilai 1 mencapai 10 kali,atau hapus lagu keinginan mencapai 5 kali ,akan dilarang untuk mengambil keinginan orang lain, skor dari Daftar Kirim Keinginan akan dihapus ke 0,dan keluar kontes daftar ini.</p>
       <h5>Tips:</h5>
       <p>Pengguna yang dengan sengaja/jahat untuk mengambil keinginan dan sawer hadiah akan memicu mekanisme dengan fungsi yang membekukan akun. Pada saat yang sama, mereka akan diturun dari daftar peringkat. Jika situasi serius, maka pihak wekara akan membekukan akun tersebut.</p>
     </div>

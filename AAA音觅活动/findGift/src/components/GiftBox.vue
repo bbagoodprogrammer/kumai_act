@@ -52,8 +52,8 @@
             <span v-for="(item,index) in prizes" :key="index">
               <img :src="item.image" alt="" v-if="item.image">
               <img :src="require(`../assets/img/gifts/${item.type}.png`)" alt="" v-else>
-              <strong v-if="item.name && item.type!='frame'" :class="'lv' + item.level">{{item.name}} {{item.day?`(${item.day}天)`:`*${item.count}`}}</strong>
-              <strong v-else :class="'lv' + item.level">{{getName(item)}}</strong>
+              <strong v-if="item.name && item.type!='frame'" :class="'lv' + item.level"><i v-if="item.level!=0">{{item.level==1?'稀有 ':'高級 '}}</i> {{item.name}} {{item.day?`(${item.day}天)`:`*${item.count}`}}</strong>
+              <strong v-else :class="'lv' + item.level"><i v-if="item.level!=0">{{item.level==1?'稀有 ':'高級 '}}</i> {{getName(item)}}</strong>
             </span>
           </div>
         </div>
@@ -86,6 +86,7 @@ export default {
     },
     luck(num) {
       if (this.luckIng) return
+      api.statistics('open')
       this.luckIng = true
       let needKeyNum = this.open_keys[this.type][num]
       if (this.keyNum >= needKeyNum) {
@@ -158,6 +159,7 @@ export default {
     },
     showBuyKeys() {
       this.buyKeysPup = true
+      api.statistics('get')
     },
     walletpage() {
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
@@ -311,10 +313,15 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
-          &.lv2 {
+          i {
+            font-size: 0.22rem;
+            font-weight: bold;
+            margin-right: 0.22rem;
+          }
+          &.lv1 {
             color: #f678fb;
           }
-          &.lv3 {
+          &.lv2 {
             color: #fae234;
           }
         }
@@ -329,6 +336,10 @@ export default {
           strong {
             font-size: 0.36rem;
             font-weight: bold;
+            i {
+              font-size: 0.36rem;
+              font-weight: bold;
+            }
           }
         }
       }

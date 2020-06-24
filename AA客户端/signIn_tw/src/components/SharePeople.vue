@@ -3,10 +3,13 @@
     <div class="time" v-if="!surplusTime.end && surplusTime.seconds >0">助力倒計時 {{surplusTime.hour}}:{{surplusTime.minute}}:{{surplusTime.second}}</div>
     <div class="time" v-else>請明天再試</div>
     <div class="peopleList">
-      <span v-for="(item,index) in peopleList" :key="index">
-        <img v-lazy="item.av" alt="" v-if="item.av!=''" @click="goUser(item.uid)">
-        <img src="../assets/img/shareBtn.png" alt="" v-else>
-        <strong :class="{act:item.av!=''}">{{item.name}}</strong>
+      <span v-for="(item,index) in list" :key="index">
+        <img v-lazy="item.headImg" alt="" @click="goUser(item.uid)">
+        <strong :class="{act:item.headImg!=''}">{{item.nick}}</strong>
+      </span>
+      <span v-for="item2 in 3-list.length" :key="item2+'d'">
+        <img src="../assets/img/shareBtn.png" alt="">
+        <strong>待邀請</strong>
       </span>
     </div>
   </div>
@@ -14,36 +17,26 @@
 <script>
 import downTime from "../utils/downTime"
 export default {
-  props: ['type'],
+  props: ['type', 'list', 'leftTime'],
   data() {
     return {
-      defaultTime: 10,
       surplusTime: {},
-      peopleList: [
-        {
-          av: 'dada',
-          name: '待邀請大大所大大所大'
-        },
-        {
-          av: '',
-          name: '待邀請'
-        },
-        {
-          av: '',
-          name: '待邀請'
-        }
-      ]
     }
   },
-  created() {
-    this.timeGo()
+  watch: {
+    leftTime(val) {
+      if (val > 0) {
+        this.timeGo(val)
+      }
+
+    }
   },
   methods: {
     goUser(uid) {
       location.href = `uid:${uid}`
     },
-    timeGo() {
-      downTime('time1', this.defaultTime);
+    timeGo(val) {
+      downTime('time1', val);
       this.surplusTime = downTime('time1');
       this.timer = setInterval(() => {
         this.surplusTime = downTime('time1');

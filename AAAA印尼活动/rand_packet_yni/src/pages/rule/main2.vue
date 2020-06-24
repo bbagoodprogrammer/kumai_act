@@ -4,7 +4,7 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Aturan</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Hadiah</a>
     </div>
-    <h6 class="time">Waktu : 18:00 16 Mar.2020~ 21:00 27 Mar.2020</h6>
+    <h6 class="time">Waktu acara : tgl 18 Jun, pukul 18:00 - tgl 26 Jun,pukul 22:00</h6>
     <div class="ruleTips" v-show="tab == 0">
       <h6>Aturan</h6>
       <p>1. semua pengguna bisa mendaftar utk ikut acara.</p>
@@ -16,18 +16,15 @@
       </p>
       <h6>Waktu daftar harian:</h6>
       <p class="dayTime">
-        Day 1: 18:00 16/3 - 00:00 17/3</br>
-        Day2：00:00 17/3- 00:00 18/3</br>
-        Day3：00:00 18/3- 00:00 19/3</br>
-        Day4：00:00 19/3- 00:00 20/3</br>
-        Day5：00:00 20/3- 00:00 21/3</br>
-        Day6：00:00 21/3- 00:00 22/3</br>
-        Day7：00:00 22/3- 00:00 23/3</br>
-        Day8: 00:00 23/3- 00:00 24/3</br>
-        Day9: 00:00 24/3- 00:00 25/3</br>
-        Day10: 00:00 25/3- 00:00 26/3</br>
-        Day11: 00:00 26/3- 00:00 27/3</br>
-        Day12: 00:00 27/3- 21:00 27/3</br>
+        Day1: 18:00 18/6 - 00:00 19/6</br>
+        Day2：00:00 19/6- 00:00 20/6</br>
+        Day3：00:00 20/6- 00:00 21/6</br>
+        Day4：00:00 21/6- 00:00 22/6</br>
+        Day5：00:00 22/6- 00:00 23/6</br>
+        Day6：00:00 23/6- 00:00 24/6</br>
+        Day7：00:00 24/6- 00:00 25/6</br>
+        Day8: 00:00 25/6- 00:00 26/6</br>
+        Day9: 00:00 26/6- 22:00 26/6
       </p>
       <h6>Level beruntung:</h6>
       <p class="dayTime">

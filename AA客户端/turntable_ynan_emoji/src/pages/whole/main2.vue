@@ -66,18 +66,20 @@ export default {
       })
     },
     tabClick(val) {
-      let boxGiftList = sessionStorage.getItem('boxGiftBox')
-      if (val == 'Box' && !boxGiftList) {
-        api.getDefault(1).then(res => {
-          const { response_data, response_status } = res.data
-          sessionStorage.setItem('boxGiftBox', JSON.stringify(response_data.gift_list))
-          this.shoCom = val
-          this.$store.commit('changShoCom', val)
-        })
-      } else {
-        this.shoCom = val
-        this.$store.commit('changShoCom', val)
-      }
+      this.shoCom = val
+      this.$store.commit('changShoCom', val)
+      // this.shoCom = val
+      // let boxGiftList = sessionStorage.getItem('boxGiftBox')
+      // if (val == 'Box' && !boxGiftList) {
+      //   api.getDefault(1).then(res => {
+      //     const { response_data, response_status } = res.data
+      //     sessionStorage.setItem('boxGiftBox', JSON.stringify(response_data.gift_list))
+      //     // this.shoCom = val
+      //     this.$store.commit('changShoCom', val)
+      //   })
+      // } else {
+      //   this.$store.commit('changShoCom', val)
+      // }
     },
   }
 }

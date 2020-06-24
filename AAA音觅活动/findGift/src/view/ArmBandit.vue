@@ -17,7 +17,7 @@
           <div class="title"></div>
           <div class="msg">
             <h6>活動時間：</h6>
-            <p>2020.06.19 12:00 - 2020.07.03 18:00</p>
+            <p>2020.6.18 16:30-2020.7.3 20:20</p>
             <h6>尋寶榜規則：</h6>
             <p>榜單排序依據尋到的寶物金幣總價值排序</p>
             <h6>尋寶榜獎勵：</h6>
@@ -40,7 +40,7 @@
         <div class="rank" v-if="showRank">
           <i class="close" @click="closeRankPup()"></i>
           <div class="title"></div>
-          <div class="num">尋到金幣寶物數</div>
+          <div class="num">尋到寶物金幣價值數</div>
           <p class="noData" v-if="rank.length == 0">暫無數據！</p>
           <ul class="scrollable">
             <li v-for="(item,index) in rank " :key="index" :class="'rank' + item.rank">
@@ -71,7 +71,7 @@
                   <strong v-if="item.name && item.type!='frame'" :class="'lv' + item.level">{{item.name}} {{item.day?`(${item.day}天)`:`*${item.count}`}}</strong>
                   <strong v-else :class="'lv' + item.level">{{getName(item)}}</strong>
                 </div>
-                <div class="coins">
+                <div class="coins" v-if="item.pid != 41">
                   <i :class="{fragments:hType==2}"></i>
                   <em>{{getCoins(item)}}</em>
                 </div>
@@ -282,7 +282,7 @@ export default {
       if (item.type == 'coin') {
         return item.coins
       } else {
-        return item.price * item.count
+        return item.price * (item.count || 1)
       }
     },
     getTime(tm) {
@@ -587,6 +587,9 @@ body {
           font-size: 0.24rem;
           color: #eae3fc;
           font-weight: bold;
+          strong {
+            font-size: 0.24rem;
+          }
         }
         .coins {
           width: 1rem;

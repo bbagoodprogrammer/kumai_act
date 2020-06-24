@@ -11,6 +11,10 @@
     <rool-msg :roolmsg="roolmsg"></rool-msg>
     <component :is="shoCom"></component>
     <Footer></Footer>
+    <!-- <div class="noData">
+      <img src="../assets/img/noOpen.png" alt="" class="noOpenImg">
+      <strong>Đang bảo trì nâng cấp...</strong>
+    </div> -->
     <transition name="slide">
       <msg-toast :msg="tastMsg" @closeToast="closeToast()" v-show="showT"></msg-toast>
     </transition>
@@ -82,11 +86,28 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background-color: transparent;
   z-index: 10000;
 }
 body::-webkit-scrollbar {
   width: 0;
+}
+.noData {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 3rem auto 0;
+  .noOpenImg {
+    width: 1.21rem;
+    height: 1.01rem;
+    display: block;
+    margin: 0 auto 0;
+  }
+  strong {
+    display: block;
+    text-align: center;
+    font-size: 0.24rem;
+    margin-top: 0.04rem;
+  }
 }
 .box {
   max-width: 750px;

@@ -1,13 +1,15 @@
 <template>
   <div id="box">
     <EmojiList :type="2" />
+    <Loading />
   </div>
 </template>
 
 <script>
 import EmojiList from "../../components/EmojiList"
+import Loading from "../../components/Loading"
 export default {
-  components: { EmojiList },
+  components: { EmojiList, Loading },
   data() {
     return {
     }

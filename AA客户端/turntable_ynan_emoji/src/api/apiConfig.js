@@ -120,14 +120,14 @@ function getGiftList(type) {
 
 //兌換禮物
 function getGift(type, gid) {
-    return axios.get(`/big_turntable/getpuzzlegift.php?token=${token}&gift_type=${type}&gift_id=${gid}&page=${entryType}`)
+    return get(`/big_turntable/getpuzzlegift.php?token=${token}&gift_type=${type}&gift_id=${gid}&page=${entryType}`)
 }
 
 //獲取表情包SVGA
 function getSvga(bid) {
     // return axios.jsonp(`http://test.17sing.tw/action/index.php?action=emoticon.getEmoticonBagById&bid=${bid}&uid=${uid}&token=${token}`, "test")
     return new Promise((resolve, reject) => {
-        jsonp(`http://test.singnowapp.com/action/index.php?action=emoticon.getEmoticonBagById&bid=${bid}&uid=${uid}&token=${token}`, null, (err, data) => {
+        jsonp(`http://act.singnowapp.com/index.php?action=emoticon.getEmoticonBagById&bid=${bid}&uid=${uid}&token=${token}`, null, (err, data) => {
             if (err) {
                 reject(err);
             } else {

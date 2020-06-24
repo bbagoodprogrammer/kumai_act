@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     showPup(item) {
-      if (this.user_wallet.gift_puzzle >= item.pay_num) {
+      if (Number(this.user_wallet.gift_puzzle) >= Number(item.pay_num)) {
         api.getGift(11, item.gift_id).then(res => {
           if (res.data.response_status.code == 0) {
             this.lateImg = item.picture
@@ -108,7 +108,7 @@ export default {
   }
 }
 </script>
-<style lang= "scss">
+<style lang= "scss" scoped>
 .giftBoxList {
   &.overTurn {
     overflow-y: scroll;

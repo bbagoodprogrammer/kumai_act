@@ -1,13 +1,15 @@
 <template>
   <div id="box">
     <GiftBoxList :type="2" />
+    <Loading />
   </div>
 </template>
 
 <script>
 import GiftBoxList from "../../components/GiftBoxList"
+import Loading from "../../components/Loading"
 export default {
-  components: { GiftBoxList },
+  components: { GiftBoxList, Loading },
   data() {
     return {
     }

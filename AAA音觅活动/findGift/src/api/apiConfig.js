@@ -108,6 +108,11 @@ function getHistory(type, from, more) {
     }
     return get(`/index.php?action=findGift.history&type=${type}&from=${from}&signture=innerserver&uid=${uid}&token=${token}`)
 }
+
+//統計
+function statistics(type) {
+    return axios.get(`/index.php?action=findGift.report&type=${type}&signture=innerserver&uid=${uid}&token=${token}`)
+}
 const httpConfig = {
     getDefault,
     getRoolMsg,
@@ -115,6 +120,7 @@ const httpConfig = {
     buyKeys,
     getGift,
     getRank,
-    getHistory
+    getHistory,
+    statistics
 }
 export default httpConfig

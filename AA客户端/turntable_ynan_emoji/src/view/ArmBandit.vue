@@ -14,6 +14,7 @@
         <component :is="shoCom"></component>
       </keep-alive>
     </div>
+    <p v-if="loading" class="loading">Đang tải...</p>
     <Footer></Footer>
     <!-- <div class="noData">
       <img src="../assets/img/noOpen.png" alt="" class="noOpenImg">
@@ -46,11 +47,12 @@ export default {
       tastMsg: "提示信息",  //基础弹窗提示信息
       roolmsg: "",
       shoCom: 'Trun',
-      contMaxHeigth: null
+      contMaxHeigth: null,
+      loading: false
     }
   },
   created() {
-    sessionStorage.setItem('entryType', 2)
+    // sessionStorage.setItem('entryType', 2)
     this.getDefaultData()
   },
   computed: {
@@ -85,18 +87,21 @@ export default {
       })
     },
     tabClick(val) {
-      let boxGiftList = sessionStorage.getItem('boxGiftBox')
-      if (val == 'Box' && !boxGiftList) {
-        api.getDefault(1).then(res => {
-          const { response_data, response_status } = res.data
-          sessionStorage.setItem('boxGiftBox', JSON.stringify(response_data.gift_list))
-          this.shoCom = val
-          this.$store.commit('changShoCom', val)
-        })
-      } else {
-        this.shoCom = val
-        this.$store.commit('changShoCom', val)
-      }
+      // let boxGiftList = sessionStorage.getItem('boxGiftBox')
+      this.shoCom = val
+      this.$store.commit('changShoCom', val)
+      // if (val == 'Box' && !boxGiftList) {
+      //   this.loading = true
+      //   api.getDefault(1).then(res => {
+      //     const { response_data, response_status } = res.data
+      //     sessionStorage.setItem('boxGiftBox', JSON.stringify(response_data.gift_list))
+      //     this.loading = false
+      //     this.$store.commit('changShoCom', val)
+      //   })
+      // } else {
+      //   // this.shoCom = val
+      //   this.$store.commit('changShoCom', val)
+      // }
     },
     closeToast() {
       this.showT = false
@@ -127,6 +132,10 @@ body {
   // background: rgba(0, 0, 0, 0.8);
   background-color: transparent;
   z-index: 10000;
+}
+.loading {
+  text-align: center;
+  margin-top: 0.7rem;
 }
 body::-webkit-scrollbar {
   width: 0;

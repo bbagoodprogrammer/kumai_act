@@ -2,7 +2,7 @@
   <div class="gameBox gold">
     <div class="bg1"></div>
     <div class="bg2" v-show="lampShow"></div>
-    <p class="horn"><em>10</em> <i></i> عملات\مرة، لك <em>{{number_of_draws}}</em> فرص لليانصيب </p>
+    <p class="horn"><em>20</em> <i></i> عملات\مرة، لك <em>{{number_of_draws}}</em> فرص لليانصيب </p>
     <div class="start">
       <span class="one" :class="{opt:lucking}" @click="move(1)"></span>
       <span class="ten" :class="{opt:lucking}" @click="move(10)"></span>
@@ -81,10 +81,10 @@ export default {
   computed: {
     ...mapState(['owner_wallet', 'silverGiftArr']),
     number_of_draws() {
-      if (Math.floor(this.owner_wallet.bean / 10) > 999) {
+      if (Math.floor(this.owner_wallet.bean / 20) > 999) {
         return `999+`
       } else {
-        return Math.floor(this.owner_wallet.bean / 10)
+        return Math.floor(this.owner_wallet.bean / 20)
       }
     }
   },
@@ -119,11 +119,15 @@ export default {
       } else {
         api.luckDraw(2, val).then(res => {
           if (res.data.response_status.code == 0) {
-            this.$store.commit('rudectDou', val * 10);//减去金币数
+            this.$store.commit('rudectDou', val * 20);//减去金币数
             this.speed = 50;//每次抽奖速度初始化为200
-            this.prize_data = res.data.response_data.gift_list;//已经拿到中奖信息，页面展示，等抽奖结束后，将弹窗弹出
-            let giftStr = this.prize_data[0].gift_id % 100
-            this.prize = --giftStr;//中奖位置赋值，跑马灯最终停留位置，这里实际位置需要-1
+            this.prize_data = res.data.response_data.gift_list//已经拿到中奖信息，页面展示，等抽奖结束后，将弹窗弹出
+            let giftStr = this.prize_data[0].gift_id   //显示第一个礼物位置的索引
+            for (let i = 0; i < this.silverGiftArr.length; i++) {
+              if (this.silverGiftArr[i].gift_id == giftStr) {
+                this.prize = i;//中奖位置赋值，跑马灯最终停留位置，这里实际位置需要-1
+              }
+            }
             this.record = res.data.response_data.record // //中奖信息
             this.startRoll();//执行抽奖
             // this.lampStep = 60

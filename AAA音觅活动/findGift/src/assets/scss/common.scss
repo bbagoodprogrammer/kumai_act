@@ -36,7 +36,8 @@ a,button,input,textarea {
 }
 
 @media (min-width: 720px) {
-    a,b,body,button,em,h1,h2,h3,h4,h5,h6,html,i,img,input,li,ol,p,strong,table,td,textarea,th,tr,ul {
+  //em i a,b,strong
+    body,button,h1,h2,h3,h4,h5,h6,html,img,input,li,ol,p,table,td,textarea,th,tr,ul {
         font-size:.3rem
     }
 }
