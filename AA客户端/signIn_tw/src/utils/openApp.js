@@ -117,7 +117,8 @@ function showWeChatTips(conf) {
     // };
 }
 
-function openApp(schemaUrl, androidDownUrl, iosDownUrl, iosSchemaUrl) {
+export default function openApp(schemaUrl, androidDownUrl, iosDownUrl, iosSchemaUrl) {
+    console.log(schemaUrl, iosSchemaUrl)
     var conf = getConfig();
     if (ifWeixin || ifLine || ifFb) {
         var lang = ['17sing', 'oksing'].indexOf(conf.name) >= 0 ? 'tw' : conf.name;

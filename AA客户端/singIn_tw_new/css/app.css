@@ -220,6 +220,11 @@ body #app .shareTips > .tips p.first {
   margin: 0 auto;
 }
 
+.sharePeople.pt {
+  padding-top: 1.02rem;
+  height: 2.14rem;
+}
+
 .sharePeople .time {
   height: 1.02rem;
   display: flex;

@@ -69,7 +69,7 @@ function getConfig() {
     };
 
     var host = location.host;
-    for (let key in conf) {
+    for (var key in conf) {
         if (new RegExp(key, 'i').test(host)) {
             return conf[key];
         }

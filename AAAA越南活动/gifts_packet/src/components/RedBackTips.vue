@@ -2,7 +2,7 @@
   <div class="redBackTips">
     <div class="tipsCon">
       <div class="tips1">
-        <p>1. Tải bản android mới nhất để tặng, giành lì xì ở phòng Kara bất kỳ!</p>
+        <p>1.Tải phiên bản android và ios mới nhất để tặng, giành lì xì ở phòng kara bất kỳ!</p>
         <img src="../assets/img/t1.png" alt="" class="img1">
         <img src="../assets/img/t2.png" alt="" class="img2">
       </div>
@@ -41,8 +41,6 @@ export default {
     .tips2,
     .tips3 {
       padding: 0.31rem 0.41rem;
-      background: rgba(239, 65, 68, 1);
-      border: 0.015rem solid rgba(237, 211, 148, 1);
       border-radius: 0.1rem;
       p {
         color: #fab965;
@@ -59,8 +57,14 @@ export default {
         margin-top: 0.04rem;
       }
     }
+    .tips1 {
+      background: url(../assets/img/listBgTop.png) no-repeat;
+      background-size: 100% auto;
+    }
     .tips2 {
       margin-top: 0.46rem;
+      background: url(../assets/img/listBgTop.png) no-repeat;
+      background-size: 100% auto;
       p {
         margin-top: 0.27rem;
       }

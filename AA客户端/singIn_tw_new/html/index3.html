@@ -28,6 +28,7 @@
     })(document, window);
   </script>
   <script src="//fstatic.cat1314.com/js/vue.min.js"></script>
+  <script src="//fstatic.cat1314.com/js/vue-lazyload.js"></script>
   <script src="../utils/openApp.js"></script>
   <link rel="stylesheet" href="../css/app.css">
 
@@ -37,64 +38,79 @@
     <div class="singInDay">
       <div class="userMsg">
         <div class="userAv">
-          <img v-lazy="master.headImg" alt="" class="av">
-          <strong>{{master.nick}}</strong>
+          <img v-lazy="data.master.headImg" alt="" class="av">
+          <strong>{{data.master.nick}}</strong>
         </div>
-        <div class="userTips">已連續簽到{{days}}天，現在需要你的助力，快幫他助力吧</div>
+        <div class="userTips">已連續簽到{{data.days}}天，現在需要你的助力，快幫他助力吧</div>
       </div>
     </div>
-    <div class="sharePeople">
+    <div class="sharePeople" :class="{pt:second <=0}">
       <div class="time" v-if="second >0">助力倒計時
         {{surplusTime.hour}}:{{surplusTime.minute}}:{{surplusTime.second}}</div>
-      <div class="time" v-else>請明天再試</div>
       <div class="peopleList">
-        <span v-for="(item,index) in list" :key="index">
-          <img v-lazy="item.headImg" alt="" @click="goUser(item.uid)">
+        <span v-for="(item,index) in data.list" :key="index">
+          <img v-lazy="item.headImg" alt="">
           <strong :class="{act:item.headImg!=''}">{{item.nick}}</strong>
         </span>
-        <span v-for="item2 in 3-list.length" :key="item2+'d'">
+        <span v-for="item2 in 3-data.list.length" :key="item2+'d'">
           <img src="../img/shareBtn.png" alt="">
           <strong>待邀請</strong>
         </span>
       </div>
     </div>
     <div class="shareTips">
-      <div class="shareBtn" @click="share()">幫他助力</div>
+      <div class="shareBtn" @click="share()">{{second >0?"幫他助力":"請明天再試"}}</div>
       <p class="verTips">助力需更新到最新版本</p>
       <div class="tips">
         <h6>助力規則：</h6>
         <p>1、不可自己給自己助力 <br />
           2、每個用戶僅可幫其他用戶助力一次 <br />
-          3、需要更新新版本，成功調起歡歌app，才算成功助力 <br />
+          3、需要更新新版本，才可成功助力 <br />
           4、助力需要限時完成，超出時間後無法助力，需明天重新發起邀請</p>
       </div>
     </div>
   </div>
   <script type="text/javascript">
+    var ret = 1
+    var data = { "master": { "uid": "100900", "nick": "\u51c3\u8ff7", "headImg": "http:\/\/img.17sing.tw\/\/uploads\/head\/f9\/100900.jpeg" }, "list": [], "days": 17, "leftTime": 10 }
+    var inviteCode = "xxxxxxxxxxxxxxxxxx"
+    Vue.use(VueLazyload, {
+      preLoad: 1.3,
+      error: '../img/default.png',
+      loading: '../img/default.png',
+      attempt: 1
+    })
     new Vue({
       el: '#app',
       data: function () {
         return {
           surplusTime: {},
-          list: [],
-          master: {
-            headImg: '',
-            nick: 'xxxxx'
+          data: data ? data : {
+            master: {},
+            list: []
           },
-          days: 99,
-          inviteCode: "40707000",
-          second: 65,
+          // inviteCode: "40707000",
           timer: null
         }
       },
       created: function () {
-        this.downTimeGo(this.second)
+        if (ret) {
+          this.downTimeGo(this.second)
+        } else {
+          toast(`該邀請已過期！請重新分享。`)
+        }
+      },
+      computed: {
+        second() {
+          return this.data.leftTime
+        }
       },
       methods: {
         share: function () {
-          openApp("hsing://17sing.tw/" + "\{\"inviteCode\":\"" + this.inviteCode + "\"\}",
+          if (this.second <= 0) return
+          openApp("hsing://17sing.tw/" + "\{\"inviteCode\":\"" + this.data.inviteCode + "\"\}",
             null, null,
-            "Gaoge://inviteCode=" + this.inviteCode)
+            "Gaoge://inviteCode=" + this.data.inviteCode)
         },
         downTimeGo: function () {
           var hour = 0
@@ -102,10 +118,10 @@
           var second = 0
           var that = this
           setInterval(function () {
-            that.second--
-            var hour = parseInt(that.second / 60 / 60 % 24, 10);
-            var minute = parseInt(that.second / 60 % 60, 10);;
-            var second = parseInt(that.second % 60, 10);;
+            this.data.leftTime--
+            var hour = parseInt(this.data.leftTime / 60 / 60 % 24, 10);
+            var minute = parseInt(this.data.leftTime / 60 % 60, 10);;
+            var second = parseInt(this.data.leftTime % 60, 10);;
             hour = hour < 10 ? '0' + hour : hour.toString();
             minute = minute < 10 ? '0' + minute : minute.toString();
             second = second < 10 ? '0' + second : second.toString();

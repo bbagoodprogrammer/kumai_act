@@ -4,7 +4,7 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Thể lệ</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Thưởng</a>
     </div>
-    <h6 class="time">Thời gian: 12:00 2/6 ~ 22h 10/6</h6>
+    <h6 class="time">Thời gian: 12:00 1/7 ~ 22h 9/7</h6>
     <div class="ruleTips" v-show="tab == 0">
       <h6>Thể lệ:</h6>
       <p>1. Toàn bộ người dùng đều có thể báo danh tham gia.</p>
@@ -17,15 +17,15 @@
       </p>
       <h6>Thời gian BXH Ngày:</h6>
       <p class="dayTime">
-        Ngày1：12:00 2/6 - 00:00 3/6</br>
-        Ngày2：00:00 3/6 - 00:00 4/6</br>
-        Ngày3：00:00 4/6 - 00:00 5/6</br>
-        Ngày4：00:00 5/6 - 00:00 6/6</br>
-        Ngày5：00:00 6/6 - 00:00 7/6</br>
-        Ngày6：00:00 7/6 - 00:00 8/6</br>
-        Ngày7：00:00 8/6 - 00:00 9/6</br>
-        Ngày8: 00:00 9/6 - 00:00 10/6</br>
-        Ngày9: 00:00 10/6 - 22:00 10/6
+        Ngày1：12:00 1/7 - 00:00 1/7<br />
+        Ngày2：00:00 1/7 - 00:00 2/7<br />
+        Ngày3：00:00 2/7 - 00:00 3/7<br />
+        Ngày4：00:00 3/7 - 00:00 4/7<br />
+        Ngày5：00:00 4/7 - 00:00 5/7<br />
+        Ngày6：00:00 5/7 - 00:00 6/7<br />
+        Ngày7：00:00 6/7 - 00:00 7/7<br />
+        Ngày8: 00:00 7/7 - 00:00 8/7<br />
+        Ngày9: 00:00 8/7 - 22:00 9/7
       </p>
       <h6>Cấp may mắn:</h6>
       <p class="dayTime">
@@ -51,8 +51,8 @@
           <strong>Huy chương Hộp Quà</strong>
         </span>
         <span>
-          <img src="../../assets/img/ruleGift/7.png" alt="">
-          <strong>VIP</strong>
+          <img src="../../assets/img/ruleGift/9.png" alt="">
+          <strong>Điểm Phú Hộ</strong>
         </span>
         <span>
           <img src="../../assets/img/ruleGift/4.png" alt="">
@@ -69,10 +69,10 @@
       <h6>Thưởng BXH Ngày</h6>
       <p>Top 1-3 lần lượt nhận phiếu quà nạp 15%, 12%, 10%. 0h hôm sau hệ thống tự động gửi, ngày cuối sẽ gửi ngay khi kết thúc sự kiện.</p>
       <h6>Thưởng BXH Tổng:</h6>
-      <p>Hạng 1: huy chương Hộp Quà(31 ngày) + 3 tháng VIP + Xe Bão Tố (31 ngày) + 3000 xu + 5000 đậu</p>
-      <p>Hạng 2: huy chương Hộp Quà(31 ngày) + 2 tháng VIP + Xe Bão Tố (31 ngày) + 2000 xu +3000 đậu</p>
-      <p>Hạng 3: huy chương Hộp Quà(31 ngày) + 1 tháng VIP + Xe Bão Tố (31 ngày) + 1000 xu + 2000 đậu</p>
-      <p>Hạng 4-10: huy chương Hộp Quà(31 ngày) + 200 xu + 1000 đậu</p>
+      <p>Hạng 1: huy chương Hộp Quà(31 ngày) + 10000 điểm phú hộ + Xe Bão Tố (31 ngày) + 3000 xu + 5000 đậu</p>
+      <p>Hạng 2: huy chương Hộp Quà(31 ngày) + 8000 điểm phú hộ + Xe Bão Tố (31 ngày) + 2000 xu +3000 đậu</p>
+      <p>Hạng 3: huy chương Hộp Quà(31 ngày) + 6000 điểm phú hộ + Xe Bão Tố (31 ngày) + 1000 xu + 2000 đậu</p>
+      <p>Hạng 4-10: huy chương Hộp Quà(31 ngày) + 200 xu + 1000 đậu</p>
       <h6>Chú ý:</h6>
       <p>1. Phiếu quà nạp nhận từ sự kiện có thời hạn 1 ngày kể từ khi nhận, mời sử dụng kịp thời.</p>
       <p>2. Toàn bộ Túi quà từ sự kiện có hạn sử dụng 14 ngày.</p>

@@ -1,6 +1,7 @@
 <template>
   <div class="share">
     <div class="header">
+      <!-- :class="iponeX" -->
       <!-- <i class="black" @click="closeWeb()"></i>邀請好友 -->
     </div>
     <div class="singInDay" :class="{mHeigth:type==2}">
@@ -16,22 +17,24 @@
         成功邀請3位好友助力可再翻牌一次
       </strong>
     </div>
-    <SharePeople :type="type" :list="list" :leftTime="leftTime" />
+    <SharePeople :type="type" :list="list" :leftTime="leftTime" ref="sharePeople" />
     <div class="shareTips">
-      <div class="shareBtn" @click="share()"> {{type==2?'幫他助力':'立即邀請好友'}} </div>
+      <div class="shareBtn" v-if="isOver ||leftTime<=0">請明天再試</div>
+      <div class="shareBtn" @click="share()" v-else> {{type==2?'幫他助力':'立即邀請好友'}} </div>
       <p class="verTips" v-if="type==2">助力需更新到最新版本</p>
       <div class="tips" v-if="type==2">
         <h6>助力規則：</h6>
         <p>1、不可自己給自己助力 </br>
-          2、每個用戶僅可幫其他用戶助力一次 </br>
-          3、需要更新新版本，成功調起歡歌app，才算成功助力 </br>
+          2、每個用戶每天僅可幫其他用戶助力一次 </br>
+          3、需要更新新版本，才可成功助力</br>
           4、助力需要限時完成，超出時間後無法助力，需明天重新發起邀請</p>
       </div>
       <div class="tips" v-else>
-        <h6>說明：</h6>
-        <p class="first">這裡展示你最近一次連續簽到的天數，如有斷簽，則重新計算</p>
-        <p>連簽徽章，當連簽天數達到要求即可自動獲得，已獲得的徽章可在我的徽章查看並佩戴使用</p>
-        <p>可花費金幣進行補簽，每次可補簽1天，每次補簽花費依次遞增，如第一次補一天花費100金幣，第二次補簽一天花費200金幣，如此類推。</p>
+        <h6>助力規則：</h6>
+        <p>1、不可自己給自己助力</p>
+        <p>2、每個用戶每天僅可幫其他用戶助力一次</p>
+        <p>3、需要更新新版本，才可成功助力</p>
+        <p>4、助力需要限時完成，超出時間後無法助力，需明天重新發起邀請</p>
       </div>
     </div>
     <Loading />
@@ -43,6 +46,7 @@ import getString from "../../utils/getString"
 import APP from "../../utils/openApp"
 import Loading from "../../components/Loading"
 import api from "../../api/apiConfig"
+import { mapState } from "vuex"
 export default {
   components: { SharePeople, Loading },
   data() {
@@ -53,6 +57,20 @@ export default {
       list: [],
       days: null,
       leftTime: 0
+    }
+  },
+  computed: {
+    ...mapState(['isOver']),
+    iponeX() {
+      var u = navigator.userAgent;
+      var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+      if (isIOS) {
+        if (screen.height == 812 && screen.width == 375) {
+          return `iponeX`
+        } else {
+          return false
+        }
+      }
     }
   },
   created() {
@@ -102,18 +120,18 @@ export default {
           "share_title": `我已連續簽到${this.days}天`,
           "share_content": `我已在歡歌連續簽到${this.days}天啦，翻牌得獎品，需要你的助力，快來`,
           "share_image": this.master.headImg,
-          "link": `http://test.17sing.tw/signIn/index3.html?inviteCode=${this.inviteCode}&type=2`,
+          "link": `http://test.17sing.tw:10180/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
           "image": this.master.headImg,
-          "share_url": `http://test.17sing.tw/signIn/index3.html?inviteCode=${this.inviteCode}&type=2`
+          "share_url": `http://test.17sing.tw:10180/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
         }
         if (ios) {
-          if (window.share != undefined) {
-            share(JSON.stringify(data))
+          if (window.shareOutside != undefined) {
+            shareOutside(JSON.stringify(data))
           } else {
-            location.href = `shareUserInfo://test.17sing.tw/signIn/index3.html?inviteCode=${this.inviteCode}&type=2&shareText=我已在歡歌連續簽到${this.days}天啦，翻牌得獎品，需要你的助力，快來&userImg=${this.master.headImg}&title=我已連續簽到${this.days}天`;
+            location.href = `shareUserInfo://test.17sing.tw:10180/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=我已在歡歌連續簽到${this.days}天啦，翻牌得獎品，需要你的助力，快來&userImg=${this.master.headImg}&title=我已連續簽到${this.days}天`;
           }
         } else {
-          javascript: JSInterface.share(JSON.stringify(data));
+          javascript: JSInterface.shareOutside(JSON.stringify(data));
         }
       }
     },
@@ -140,8 +158,10 @@ body {
   background-size: 100% auto;
   .share {
     .header {
-      height: 0.88rem;
-      line-height: 0.88rem;
+      height: 1.6rem;
+      line-height: 1.6rem;
+      // height: 0.88rem;
+      // line-height: 0.88rem;
       font-size: 0.36rem;
       text-align: center;
       position: relative;
@@ -154,6 +174,8 @@ body {
         position: absolute;
         left: 0.28rem;
         top: 0.28rem;
+      }
+      &.iponeX {
       }
     }
     .singInDay {
