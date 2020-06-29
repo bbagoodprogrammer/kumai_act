@@ -36,27 +36,35 @@
       </div>
       <div class="noTime" v-else>BXH ngày này đã kết thúc</div>
     </div>
-    <ul v-if="mainTab==0" class="list day">
-      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid)">
-        <div class="top" :class="'top'+item.rank">
-          {{item.rank}}
-        </div>
-        <img v-lazy="item.avatar" alt="" class="userImg">
-        <div class="userMsg">
-          <div class="name">{{item.nick}}</div>
-          <div class="id">{{item.uid}}</div>
-        </div>
-        <div class="score" v-if="tab == 0">
-          Gửi <i></i> xu: {{item.score}}
-        </div>
-        <div class="score" v-else>
-          Số <i></i> nhận: {{item.score}}
-        </div>
-      </li>
-      <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-      <div v-if="rank.loading" class="scrollLoading">Đang tải...</div>
-      <div v-if="rank.list.length==0" class="scrollNone">Hãy chờ đợi！</div>
-    </ul>
+    <div class="listBox" v-if="mainTab==0">
+      <div class="titleBox">
+        <span>Xếp hạng</span>
+        <span>Tên（UID） </span>
+        <span v-if="tab ==0">Tổng xu tặng lì xì</span>
+        <span v-else>Số lì xì nhận được</span>
+      </div>
+      <ul class="list day">
+        <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid)">
+          <div class="top" :class="'top'+item.rank">
+            {{item.rank}}
+          </div>
+          <img v-lazy="item.avatar" alt="" class="userImg">
+          <div class="userMsg">
+            <div class="name">{{item.nick}}</div>
+            <div class="id">{{item.uid}}</div>
+          </div>
+          <div class="score" v-if="tab == 0">
+            <i></i> {{item.score}}
+          </div>
+          <div class="score" v-else>
+            <i></i> {{item.score}}
+          </div>
+        </li>
+        <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
+        <div v-if="rank.loading" class="scrollLoading">Đang tải...</div>
+        <div v-if="rank.list.length==0" class="scrollNone">Hãy chờ đợi！</div>
+      </ul>
+    </div>
     <red-back-tips v-else></red-back-tips>
     <!-- 抢红包攻略 -->
     <!-- <ul v-else class="list total" :class="'rank'+item.rank">
@@ -265,11 +273,10 @@ export default {
       background: url(../assets/img/mainTabBg.png);
       background-size: 100% 100%;
       font-weight: bold;
-      color: #7c160e;
+      color: #ae4800;
       font-size: 0.33rem;
       text-align: center;
       &.current {
-        color: #671600;
         background: url(../assets/img/mainTabBgAct.png);
         background-size: 100% 100%;
       }
@@ -304,11 +311,10 @@ export default {
       text-align: center;
       width: 3.5rem;
       height: 0.85rem;
-      color: #671600;
+      color: #ae4800;
       font-size: 0.3rem;
       font-weight: bold;
       &.current {
-        color: #671600;
         background: url(../assets/img/tab1.png);
         background-size: 100% 100%;
       }
@@ -318,42 +324,42 @@ export default {
     width: 6.25rem;
     height: 1.77rem;
     text-align: center;
-    background: url(../assets/img/timeBg.png);
-    background-size: 100% 100%;
     margin: 0 auto;
     > p {
       height: 0.4rem;
       line-height: 0.4rem;
-      color: #f4cf77;
+      color: #f8b461;
       font-size: 80%;
       text-align: center;
     }
     .timeDown {
-      margin: 0.3rem auto 0;
-      // background: url(../assets/img/timeDown.png);
+      width: 4.69rem;
+      height: 0.84rem;
+      margin: 0.14rem auto;
+      background: url(../assets/img/timeBg.png);
       background-size: 100% 100%;
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      padding: 0 0.26rem 0 0.15rem;
+      padding: 0 0.46rem;
       > div {
-        line-height: 0.6rem;
+        // line-height: 0.6rem;
         display: inline-block;
         display: flex;
         strong {
           display: block;
           width: 0.7rem;
           height: 0.7rem;
-          line-height: 0.7rem;
-          color: #f6e2b6;
-          font-size: 0.5rem;
-          background: rgba(177, 25, 49, 1);
-          border: 0.015rem solid rgba(255, 184, 82, 1);
-          border-radius: 0.1rem;
+          line-height: 0.8rem;
+          color: #fff8d7;
+          font-size: 0.48rem;
+          font-weight: 900;
         }
         em {
-          color: #ebcf8c;
+          color: #f8b461;
           font-size: 0.24rem;
-          margin: 0.15rem 0 0 0.15rem;
+          line-height: 0.6rem;
+          margin: 0.15rem 0 0 0.03rem;
         }
       }
     }
@@ -361,99 +367,111 @@ export default {
       line-height: 0.6rem;
     }
   }
-  .list {
-    width: 7rem;
-    margin: 0.27rem auto;
-    background: rgba(239, 65, 68, 1);
-    border: 0.02rem solid rgba(237, 211, 148, 1);
-    border-radius: 0.1rem;
-    padding: 0.1rem 0.1rem 1.2rem;
-    li {
-      height: 1.21rem;
-      margin-bottom: 0.11rem;
-      background: url(../assets/img/4.png);
-      background-size: 100% 100%;
+  .listBox {
+    width: 6.79rem;
+    background: url(../assets/img/listBgTop.png) no-repeat;
+    background-size: 100% auto;
+    padding: 0.15rem 0.1rem 1.2rem;
+    margin: 0 auto;
+    .titleBox {
       display: flex;
       align-items: center;
-      .top {
-        width: 0.84rem;
-        height: 0.73rem;
-        color: #fefed5;
-        font-weight: bold;
-        font-size: 0.36rem;
-        text-align: center;
-        line-height: 0.73rem;
-        margin: 0 0.03rem 0 0.18rem;
-      }
-      .userImg {
-        width: 0.89rem;
-        height: 0.89rem;
-        border-radius: 50%;
-        border: 0.03rem solid #ffe0b3;
-        font-size: 0.24rem;
-        color: #fffaee;
-      }
-      .userMsg {
-        width: 2rem;
-        margin-left: 0.05rem;
-        .name {
-          max-width: 2rem;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-        }
-        .id {
-          font-size: 0.24rem;
-          color: #b05416;
-          margin-top: 0.05rem;
-        }
-      }
-      .score {
-        font-size: 0.28rem;
-        color: #9a2d02;
-        font-weight: 500;
-        i {
-          display: inline-block;
-          width: 0.4rem;
-          height: 0.61rem;
-          vertical-align: middle;
-          margin: -0.2rem 0.15rem 0;
-          background: url(../assets/img/redBack.png);
-          background-size: 100% 100%;
-        }
-      }
-      &.rank1 {
-        background: url(../assets/img/1.png);
-        background-size: 100% 100%;
-        .top {
-          text-indent: -999rem;
-          background: url(../assets/img/top1.png);
-          background-size: 100% 100%;
-        }
-      }
-      &.rank2 {
-        background: url(../assets/img/2.png);
-        background-size: 100% 100%;
-        .top {
-          text-indent: -999rem;
-          background: url(../assets/img/top2.png);
-          background-size: 100% 100%;
-        }
-      }
-      &.rank3 {
-        background: url(../assets/img/3.png);
-        background-size: 100% 100%;
-        .top {
-          text-indent: -999rem;
-          background: url(../assets/img/top3.png);
-          background-size: 100% 100%;
-        }
-      }
+      padding: 0 0.15rem;
+      justify-content: space-between;
+      font-size: 0.22rem;
+      color: #ffd36e;
+      margin-bottom: 0.05rem;
     }
-    .scrollLoading,
-    .scrollNone {
-      text-align: center;
-      margin-top: 0.15rem;
+    .list {
+      margin: 0auto;
+      padding: 0.1rem 0.1rem 1.2rem;
+      li {
+        height: 1.21rem;
+        margin-bottom: 0.11rem;
+        background: url(../assets/img/4.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        .top {
+          width: 0.84rem;
+          height: 0.73rem;
+          color: #ffd67f;
+          font-weight: bold;
+          font-size: 0.36rem;
+          text-align: center;
+          line-height: 0.73rem;
+          margin: 0 0.03rem 0 0.18rem;
+        }
+        .userImg {
+          width: 0.89rem;
+          height: 0.89rem;
+          border-radius: 50%;
+          border: 0.03rem solid #ffe0b3;
+          font-size: 0.24rem;
+          color: #fffaee;
+        }
+        .userMsg {
+          width: 2.4rem;
+          margin-left: 0.05rem;
+          .name {
+            max-width: 2.4rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+          .id {
+            font-size: 0.24rem;
+            color: #9a3600;
+            margin-top: 0.05rem;
+          }
+        }
+        .score {
+          font-size: 0.28rem;
+          color: #fff088;
+          font-weight: 500;
+          i {
+            display: inline-block;
+            width: 0.4rem;
+            height: 0.61rem;
+            vertical-align: middle;
+            margin: -0.2rem 0.15rem 0;
+            background: url(../assets/img/redBack.png);
+            background-size: 100% 100%;
+          }
+        }
+        &.rank1 {
+          background: url(../assets/img/1.png);
+          background-size: 100% 100%;
+          .top {
+            text-indent: -999rem;
+            background: url(../assets/img/top1.png);
+            background-size: 100% 100%;
+          }
+        }
+        &.rank2 {
+          background: url(../assets/img/2.png);
+          background-size: 100% 100%;
+          .top {
+            text-indent: -999rem;
+            background: url(../assets/img/top2.png);
+            background-size: 100% 100%;
+          }
+        }
+        &.rank3 {
+          background: url(../assets/img/3.png);
+          background-size: 100% 100%;
+          .top {
+            text-indent: -999rem;
+            background: url(../assets/img/top3.png);
+            background-size: 100% 100%;
+          }
+        }
+      }
+      .scrollLoading,
+      .scrollNone {
+        text-align: center;
+        margin-top: 0.15rem;
+      }
     }
   }
 }

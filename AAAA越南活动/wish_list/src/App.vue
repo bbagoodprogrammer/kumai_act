@@ -39,10 +39,10 @@ export default {
         APP()
         return
       } else if (this.actStatus === 0) {
-        this.tastMsg = "活动未开始！"
+        this.tastMsg = "Sự kiện chưa bắt đầu"
         this.showT = true
       } else if (this.actStatus === 2) {
-        this.tastMsg = "活动已结束！"
+        this.tastMsg = "Sự kiện đã kết thúc"
         this.showT = true
       } else {
         callback()

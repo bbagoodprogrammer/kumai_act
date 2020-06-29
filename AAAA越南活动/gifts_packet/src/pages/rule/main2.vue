@@ -4,7 +4,7 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Thể lệ</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Phần thưởng</a>
     </div>
-    <div class="actTime">Thời gian: 18h 20/2 – 21h 29/2</div>
+    <div class="actTime">Thời gian: 18:00 3/7 ~ 22:00 12/7</div>
     <div class="ruleTips" v-show="tab == 0">
       <h5>Thể lệ:</h5>
       <p>1. Cần báo danh tham gia sự kiện, sau khi báo danh mới bắt đầu tính điểm.</p>
@@ -19,15 +19,15 @@
     <div class="wardTips" v-show="tab == 1">
       <h5>Phần thưởng:</h5>
       <h6>Phần thưởng BXH Chuyên Gia:</h6>
-      <p>Hạng 1: huy chương Lì Xì (30 ngày) + Xe Mừng Năm Mới (30 ngày) + quý tộc Hoàng Đế (30 ngày) + 1000 xu</p>
-      <p>Hạng 2: huy chương Lì Xì (30 ngày) + Xe Mừng Năm Mới (30 ngày) + quý tộc Công Tước (30 ngày) + 800 xu</p>
-      <p>Hạng 3: huy chương Lì Xì (30 ngày) + Xe Mừng Năm Mới (30 ngày) + quý tộc Công Tước (30 ngày) + 600 xu</p>
-      <p>Hạng 4~10: huy chương Lì Xì (30 ngày) + 300 xu</p>
+      <p>Hạng 1: huy chương Lì Xì (30 ngày) + Xe GTR  (30 ngày) + túi quà Siêu Xe Đỏ*1(trị giá 3498 xu) + 1000 xu</p>
+      <p>Hạng 2: huy chương Lì Xì (30 ngày) + Xe GTR  (30 ngày) + túi quà Siêu Xe Đỏ*1(trị giá 3498 xu)  + 800 xu</p>
+      <p>Hạng 3: huy chương Lì Xì (30 ngày) + Xe GTR  (30 ngày) + túi quà Siêu Xe Đỏ*1(trị giá 3498 xu)  + 600 xu</p>
+      <p>Hạng 4~10: huy chương Lì Xì (30 ngày) + túi quà Vua Sân Khấu(trị giá 543 xu)*1+ 300 xu</p>
       <h6>Thưởng BXH May Mắn:</h6>
-      <p>Hạng 1: huy chương May Mắn (30 ngày) + Xe Mừng Năm Mới (30 ngày) + quý tộc Hoàng Đế (30 ngày) + 5000 đậu</p>
-      <p>Hạng 2: huy chương May Mắn (30 ngày) + Xe Mừng Năm Mới (30 ngày) + quý tộc Công Tước (30 ngày) + 3000 đậu</p>
-      <p>Hạng 3: huy chương May Mắn (30 ngày) + Xe Mừng Năm Mới (30 ngày) + quý tộc Công Tước (30 ngày) + 2000 đậu</p>
-      <p>Hạng 4~10: huy chương May Mắn (30 ngày) + 1000 đậu</p>
+      <p>Hạng 1: huy chương May Mắn (30 ngày) + Xe GTR  (30 ngày)+ 3 tháng VIP + 5000 đậu</p>
+      <p>Hạng 2: huy chương May Mắn (30 ngày) + Xe GTR  (30 ngày)+ 2 tháng VIP + 3000 đậu</p>
+      <p>Hạng 3: huy chương May Mắn (30 ngày) + Xe GTR  (30 ngày) + 1 tháng VIP + 2000 đậu</p>
+      <p>Hạng 4~10: huy chương May Mắn (30 ngày) + 1000 đậu</p>
     </div>
     <p class="lastTips">Quyết định của ban tổ chức là quyết định cuối cùng</p>
   </div>
@@ -50,7 +50,7 @@ export default {
 
 <style lang="scss">
 body {
-  background-color: #ae172e;
+  background-color: #b13b49;
 }
 .rule {
   padding: 0.51rem 0.25rem;
@@ -68,11 +68,10 @@ body {
       text-align: center;
       width: 3.5rem;
       height: 0.85rem;
-      color: #671600;
+      color: #ae4800;
       font-size: 0.3rem;
       font-weight: bold;
       &.current {
-        color: #671600;
         background: url(../../assets/img/tab1.png);
         background-size: 100% 100%;
       }

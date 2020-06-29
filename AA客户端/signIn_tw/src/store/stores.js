@@ -11,6 +11,7 @@ const store = new Vuex.Store({
         toastTitle: '', // 彈窗標題
         toastMsg: '',  //彈窗內容
         isShare: false, //分享
+        isOver: false
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -34,6 +35,9 @@ const store = new Vuex.Store({
         },
         closeToast(state, val) {
             state.toast = false
+        },
+        setIsOver(state, val) {
+            state.isOver = val
         }
     },
     actions: {

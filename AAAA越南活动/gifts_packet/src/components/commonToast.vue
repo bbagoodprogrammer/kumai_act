@@ -1,10 +1,11 @@
 <template>
   <div class="toastBox">
     <div class="promptBox">
+      <a href="" class="close" @click="close()"></a>
       <p v-html="msg"></p>
-      <div class="ok">
+      <!-- <div class="ok">
         <a href="javascript:;" @click="close()">確認</a>
-      </div>
+      </div> -->
     </div>
 
   </div>
@@ -35,42 +36,35 @@ export default {
   bottom: 0;
   background: rgba(0, 0, 0, 0.8);
   z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .promptBox {
-  position: fixed;
-  left: 50%;
-  top: 35%;
-  background-color: #2e3846;
-  text-align: center;
-  border-radius: 0.2rem;
-  margin-left: -3.2rem;
-  z-index: 100;
-  color: #000;
-  width: 6.4rem;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
-  p {
-    font-size: 14px;
-    color: #fff;
-    padding: 10px 30px 5px;
+  width: 6.1rem;
+  height: 4.51rem;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 0.4rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  .close {
+    display: block;
+    width: 0.21rem;
+    height: 0.2rem;
+    background: url(../assets/img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    top: 0.28rem;
+    right: 0.28rem;
   }
-  .ok {
-    white-space: nowrap;
-    padding: 10px 30px;
+  p {
+    width: 5.6rem;
+    font-size: 0.42rem;
+    font-weight: 600;
+    color: #9a3600;
+    padding: 0 0.3rem;
     text-align: center;
-    a {
-      display: inline-block;
-      width: auto;
-      min-width: 90px;
-      margin-left: 0px;
-      margin-top: 2px;
-      outline: none;
-      background-color: #795aac;
-      color: #fff;
-      text-decoration: none;
-      padding: 4px 12px;
-      border-radius: 4px;
-      font-size: 14px;
-    }
   }
 }
 </style>

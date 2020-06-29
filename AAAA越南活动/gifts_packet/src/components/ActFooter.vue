@@ -14,10 +14,10 @@
           <div class="id">{{owner.uid}}</div>
         </div>
         <div class="score" v-if="tab == 0">
-          Gửi <i></i> xu: {{nowMsg.score}}
+          <i></i> {{nowMsg.score}}
         </div>
         <div class="score" v-else>
-          Số <i></i> nhận: {{nowMsg.score}}
+          <i></i>{{nowMsg.score}}
         </div>
       </div>
     </div>
@@ -62,6 +62,8 @@ export default {
         api.singUp().then(res => {
           if (res.data.response_status.code == 0) {
             this.$store.commit('setOwer', res.data.response_data.owner)
+            this.showT = true
+            this.tastMsg = `Đã báo danh`
           } else {
             this.showT = true
             this.tastMsg = res.data.response_status.error
@@ -96,15 +98,15 @@ export default {
     }
     .goAct {
       display: block;
-      width: 3.13rem;
-      height: 1.06rem;
-      background: url(../assets/img/singUp.png);
+      width: 3.66rem;
+      height: 0.9rem;
+      background: url(../assets/img/tab1.png);
       background-size: 100% 100%;
-      color: #8d2f14;
+      color: #ae4800;
       font-weight: bold;
       font-size: 0.42rem;
       text-align: center;
-      line-height: 1.06rem;
+      line-height: 0.9rem;
       text-shadow: 0.01rem 0.02rem 0.13rem rgba(237, 160, 140, 0.81);
     }
     .actIng {
@@ -116,7 +118,7 @@ export default {
       .top {
         min-width: 0.84rem;
         height: 0.73rem;
-        color: #fefed5;
+        color: #ffd67f;
         font-weight: bold;
         font-size: 0.36rem;
         text-align: center;
@@ -132,23 +134,23 @@ export default {
         color: #fffaee;
       }
       .userMsg {
-        width: 2rem;
+        width: 2.4rem;
         margin-left: 0.05rem;
         .name {
-          max-width: 2rem;
+          max-width: 2.4rem;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
         }
         .id {
           font-size: 0.24rem;
-          color: #b05416;
+          color: #9a3600;
           margin-top: 0.05rem;
         }
       }
       .score {
         font-size: 0.28rem;
-        color: #9a2d02;
+        color: #fff088;
         font-weight: 500;
         margin-left: 0.05rem;
         i {

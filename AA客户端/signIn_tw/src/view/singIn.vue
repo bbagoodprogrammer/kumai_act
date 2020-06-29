@@ -20,7 +20,8 @@
       <h6>說明：</h6>
       <p>這裡展示你最近一次連續簽到的天數，如有斷簽，則重新計算</p>
       <p>連簽徽章，當連簽天數達到要求即可自動獲得，已獲得的徽章可在我的徽章查看並佩戴使用</p>
-      <p>可花費金幣進行補簽，每次可補簽1天，每次補簽花費依次遞增，如第一次補一天花費100金幣，第二次補簽一天花費200金幣，如此類推。</p>
+      <p>當用戶不小心漏簽時，可花費金幣進行補簽，每次可補簽1天，每次補簽花費金幣數會比上次補簽提高約20%，如第一次補一天花費100金幣，第二次補簽一天花費120金幣，第三次補簽一天花費140金幣，個位數抹零取整，如此類推。請大家注意連續簽到，儘量避免漏簽補簽哦。</p>
+      <p>補簽不影響7天簽到周期</p>
     </div>
     <div class="mask" v-show="showPup">
       <transition name="slide">
@@ -82,17 +83,18 @@ export default {
     },
     sateSingUp() {
       api.sateSingIn().then(res => {
-        if (res.data.response_data.msg == 'ok') {
+        if (res.data.response_data && res.data.response_data.msg == 'ok') {
           this.getDefaultData()
           this.toast(`補簽成功,連簽天數+1`)
           this.showPup = false
         } else {
-          this.toast(`補簽失敗，請確保賬戶金幣充足`)
+          this.toast(res.data.response_status.error)  //`補簽失敗，請確保賬戶金幣充足`
           this.showPup = false
         }
       })
     },
     showP() {
+      if (!this.data.compensate.date) return
       this.showPup = true
     },
     closeP() {

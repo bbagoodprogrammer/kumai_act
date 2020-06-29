@@ -8,12 +8,14 @@
     <div class="ruleMsg" v-show="showTab == 'tab1'">
       <h5>Thể lệ sự kiện</h5>
       <p>1. Người dùng nhấn đăng điều ước, ghi lại ước nguyện của mình, mỗi ngày mỗi người được đăng 5 lần.</p>
-      <p>2. Người dùng khác sẽ đọc Điều Ước được gửi và lời nhắn kèm theo, nếu lấy điều ước, đăng bài hát công khai đầu tiên sẽ mặc định tặng cho người gửi Điều Ước. Điều Ước đã lấy sẽ không hiện trên danh sách nữa và có thể kiểm tra trong phần lịch sử.</p>
+      <p>2. Sau khi hái điều ước của người khác, nhấn Lịch sử-Đã gửi-Hát 1 bài, chọn một bài hát công khai bất kỳ đăng sau khi bắt đầu sự kiện (không tính hát chay 5 phút) và tặng để hoàn thành điều ước. Điều Ước đã lấy sẽ không hiện trên danh sách nữa và có thể kiểm tra trong phần lịch sử.</p>
       <p>3. Chủ nhân Điều Ước có thể kiểm tra lịch sử để xem ai đã hoàn thành điều ước của mình.</p>
-      <p>4. Cùng một thiết bị chỉ có 1 tài khoản được tham gia sự kiện (Ước và Lấy Điều Ước)</p>
-      <p>5. Trong thời gian sự kiện bài hát bị chấm 1 điểm đạt 10 lần hoặc xoá bài hát đạt 5 lần sẽ không thể hái điều ước của người khác, điểm trên BXH Tặng sẽ bị xoá và huỷ tư cách thi bảng này.</p>
+      <p>4. Hãy gửi bài hát điều ước trong 12h sau khi hái về, nếu không điều ước này sẽ trở lại trạng thái đợi hái trên bảng điều ước</p>
+      <p>5. Tối đa hoàn thành 10 điều ước của người khác mỗi ngày.</p>
+      <p>6. Cùng một thiết bị chỉ có 1 tài khoản được tham gia sự kiện (Ước và Lấy Điều Ước)</p>
+      <p>7. Trong thời gian sự kiện bài hát bị chấm 1 điểm đạt 6 lần hoặc xoá bài hát đạt 5 lần sẽ không thể hái điều ước của người khác, điểm trên BXH Tặng sẽ bị xoá và huỷ tư cách thi bảng này.</p>
       <h5>Chú ý</h5>
-      <p>Nếu Điều Ước mang nội dung xấu/tục tĩu/chính trị/lăng mạ/vu khống/ hoặc trong thời gian sự kiện diễn ra, xoá tác phẩm đã đăng đồng nghĩa với việc gian lận điểm, hệ thống sẽ  khoá tính năng tương ứng, đồng thời loại khỏi cuộc thi, nếu nghiêm trọng sẽ bị khoá tài khoản!</p>
+      <p>Nếu Điều Ước mang nội dung xấu/tục tĩu/chính trị/lăng mạ/vu khống/ hoặc trong thời gian sự kiện diễn ra, xoá tác phẩm đã đăng đồng nghĩa với việc gian lận điểm, hệ thống sẽ khoá tính năng tương ứng, đồng thời loại khỏi cuộc thi, nếu nghiêm trọng sẽ bị khoá tài khoản!</p>
     </div>
     <div class="ward" v-show="showTab == 'tab2'">
       <h5>Phần thưởng</h5>
@@ -34,11 +36,10 @@
         </span>
         <span>
           <div class="imgBox">
-            <img src="../../assets/img/ward2.png" alt="">
+            <img src="../../assets/img/ward8.png" alt="">
           </div>
           <em>
-            Quý tộc
-            Công Tước
+            1 Tháng VIP
           </em>
         </span>
         <span>
@@ -57,16 +58,15 @@
             <img src="../../assets/img/ward4.png" alt="">
           </div>
           <em>
-            HC Thên Sứ Ấm Áp
+            HC Thiên Sứ Ấm Áp
           </em>
         </span>
         <span>
           <div class="imgBox">
-            <img src="../../assets/img/ward5.png" alt="">
+            <img src="../../assets/img/ward8.png" alt="">
           </div>
           <em>
-            Quý tộc
-            Hầu Tước
+            1 Tháng VIP
           </em>
         </span>
         <span>
@@ -125,6 +125,9 @@ export default {
   methods: {
     changTab(tab) {
       this.showTab = tab
+    },
+    test() {
+    var a =1
     }
   }
 }

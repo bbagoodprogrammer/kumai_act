@@ -37,7 +37,7 @@
     </div>
     <div class="mask" v-show="showRank">
       <transition name="slide">
-        <div class="rank" v-if="showRank">
+        <div class="rank" v-show="showRank">
           <i class="close" @click="closeRankPup()"></i>
           <div class="title"></div>
           <div class="num">尋到寶物金幣價值數</div>

@@ -1,7 +1,6 @@
 <template>
-  <div class="sharePeople">
+  <div class="sharePeople" :class="{pt:surplusTime.end || leftTime<=0}">
     <div class="time" v-if="!surplusTime.end && surplusTime.seconds >0">助力倒計時 {{surplusTime.hour}}:{{surplusTime.minute}}:{{surplusTime.second}}</div>
-    <div class="time" v-else>請明天再試</div>
     <div class="peopleList">
       <span v-for="(item,index) in list" :key="index">
         <img v-lazy="item.headImg" alt="" @click="goUser(item.uid)">
@@ -28,7 +27,6 @@ export default {
       if (val > 0) {
         this.timeGo(val)
       }
-
     }
   },
   methods: {
@@ -41,8 +39,8 @@ export default {
       this.timer = setInterval(() => {
         this.surplusTime = downTime('time1');
         if (this.surplusTime.end) {
-          console.log(this.surplusTime)
           clearInterval(this.timer)
+          this.vxc('setIsOver', true)
         }
       }, 1000)
     }
@@ -56,6 +54,10 @@ export default {
   background: rgba(255, 255, 255, 1);
   border-radius: 0.12rem;
   margin: 0 auto;
+  &.pt {
+    padding-top: 1.02rem;
+    height: 2.14rem;
+  }
   .time {
     height: 1.02rem;
     display: flex;

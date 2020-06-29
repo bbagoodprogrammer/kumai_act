@@ -201,6 +201,10 @@ a,a:hover {
     background: rgba(255, 255, 255, 1);
     border-radius: 0.12rem;
     margin: 0 auto;
+    &.pt {
+      padding-top: 1.02rem;
+      height: 2.14rem;
+    }
     .time {
       height: 1.02rem;
       display: flex;

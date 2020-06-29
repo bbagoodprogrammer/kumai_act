@@ -6,7 +6,6 @@
     <div class="header">
       <span class="ruleTips" :class="{top:isShare}" @click="goRule()">Thể lệ&Thưởng</span>
     </div>
-    <div class="wardsImg"></div>
     <TabsScrollLoadList></TabsScrollLoadList>
     <loading></loading>
     <transition name="slide">
@@ -118,7 +117,7 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 5.83rem;
+    height: 8.54rem;
     position: relative;
     .ruleTips {
       width: 1.83rem;
@@ -137,13 +136,6 @@ body::-webkit-scrollbar {
         top: 1.5rem;
       }
     }
-  }
-  .wardsImg {
-    width: 6.73rem;
-    height: 5.46rem;
-    background: url(../assets/img/wards.png);
-    background-size: 100% 100%;
-    margin: 0 auto;
   }
 }
 .refresh {
