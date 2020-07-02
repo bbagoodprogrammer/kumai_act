@@ -1,7 +1,7 @@
 <template>
   <div class="share">
-    <div class="header">
-      <!-- :class="iponeX" -->
+    <div class="header" :class="iponeX">
+      <!--  -->
       <!-- <i class="black" @click="closeWeb()"></i>邀請好友 -->
     </div>
     <div class="singInDay" :class="{mHeigth:type==2}">
@@ -62,15 +62,19 @@ export default {
   computed: {
     ...mapState(['isOver']),
     iponeX() {
-      var u = navigator.userAgent;
-      var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-      if (isIOS) {
-        if (screen.height == 812 && screen.width == 375) {
-          return `iponeX`
-        } else {
-          return false
-        }
+      // var u = navigator.userAgent;
+      // var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+      // if (isIOS) {
+      //   if (screen.height == 812 && screen.width == 375) {
+      //     return `iponeX`
+      //   } else {
+      //     return false
+      //   }
+      // }
+      if (/IOS/gi.test(navigator.userAgent) && (screen.height == 812 && screen.width == 375)) {
+        return `iponeX`
       }
+      return false
     }
   },
   created() {
@@ -120,15 +124,15 @@ export default {
           "share_title": `我已連續簽到${this.days}天`,
           "share_content": `我已在歡歌連續簽到${this.days}天啦，翻牌得獎品，需要你的助力，快來`,
           "share_image": this.master.headImg,
-          "link": `http://test.17sing.tw:10180/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
+          "link": `http://17sing.tw/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
           "image": this.master.headImg,
-          "share_url": `http://test.17sing.tw:10180/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
+          "share_url": `http://17sing.tw/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
         }
         if (ios) {
           if (window.shareOutside != undefined) {
             shareOutside(JSON.stringify(data))
           } else {
-            location.href = `shareUserInfo://test.17sing.tw:10180/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=我已在歡歌連續簽到${this.days}天啦，翻牌得獎品，需要你的助力，快來&userImg=${this.master.headImg}&title=我已連續簽到${this.days}天`;
+            location.href = `shareUserInfo://17sing.tw/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=我已在歡歌連續簽到${this.days}天啦，翻牌得獎品，需要你的助力，快來&userImg=${this.master.headImg}&title=我已連續簽到${this.days}天`;
           }
         } else {
           javascript: JSInterface.shareOutside(JSON.stringify(data));
@@ -158,10 +162,8 @@ body {
   background-size: 100% auto;
   .share {
     .header {
-      height: 1.6rem;
-      line-height: 1.6rem;
-      // height: 0.88rem;
-      // line-height: 0.88rem;
+      height: 1.18rem;
+      line-height: 1.18rem;
       font-size: 0.36rem;
       text-align: center;
       position: relative;
@@ -176,6 +178,8 @@ body {
         top: 0.28rem;
       }
       &.iponeX {
+        height: 1.6rem;
+        line-height: 1.6rem;
       }
     }
     .singInDay {

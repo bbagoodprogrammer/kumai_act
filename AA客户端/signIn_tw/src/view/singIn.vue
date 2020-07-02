@@ -1,18 +1,18 @@
 <template>
   <div class="box">
-    <div class="header">
-      <!-- <i class="black" @click="closeWeb()"></i> 連續徽章說明 -->
-    </div>
+    <!-- <div class="header">
+      <i class="black" @click="closeWeb()"></i> 連續徽章說明
+    </div> -->
     <div class="singTotalDay">
       <strong>你已連續簽到<em> {{data.days}} </em>天</strong>
       <span class="retroactive" :class="{black:!data.compensate.date}" @click="showP()">補簽</span>
     </div>
     <div class="badge">
-      <div class="title">連簽徽章 <strong>({{actNum}}/{{maxLength}}個)</strong></div>
+      <h3 class="title"><em>連簽徽章</em> <strong>({{actNum}}/{{maxLength}}個)</strong></h3>
       <div class="badBox">
         <span v-for="(item,index) in data.medalTask" :key="index">
           <img :src="item.url" alt="">
-          <strong>連簽{{item.days}}天</strong>
+          <strong :class="{black:item.finish == 0}">連簽{{item.days}}天</strong>
         </span>
       </div>
     </div>
@@ -190,10 +190,12 @@ body {
     .title {
       height: 0.8rem;
       line-height: 0.8rem;
-      text-indent: 0.28rem;
-      font-size: 0.28rem;
-      color: #111111;
-      font-weight: 600;
+      padding-left: 0.28rem;
+      em {
+        font-weight: 800;
+        font-size: 0.3rem;
+        color: #111111;
+      }
       strong {
         text-align: center;
         color: #999;
@@ -222,6 +224,9 @@ body {
           font-size: 0.24rem;
           text-align: center;
           margin-top: 0.04rem;
+          &.black {
+            opacity: 0.4;
+          }
         }
       }
     }

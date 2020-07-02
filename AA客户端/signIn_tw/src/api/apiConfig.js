@@ -70,22 +70,22 @@ function get(url, config) {
 
 //获取活动基础信息
 function getDefault() {
-    return get(`/action/index.php?action=signInTask.getMedalTask&uid=${uid}&token=${token}`);
+    return get(`/index.php?action=signInTask.getMedalTask&uid=${uid}&token=${token}`);
 
 }
 //補簽
 function sateSingIn() {
-    return get(`/action/index.php?action=signInTask.compensateSignIn&uid=${uid}&token=${token}`)
+    return get(`/index.php?action=signInTask.compensateSignIn&uid=${uid}&token=${token}`)
 }
 
 //獲取KEY
 function gerKey() {
-    return get(`/action/index.php?action=signInTask.inviteFriends&uid=${uid}&token=${token}`)
+    return get(`/index.php?action=signInTask.inviteFriends&uid=${uid}&token=${token}`)
 }
 
 //查詢邀請信息
 function queryShre(inviteCode) {
-    return get(`/action/index.php?action=signInTask.getInvitedFriends&inviteCode=${inviteCode}`) //&uid=${uid}&token=${token}
+    return get(`/index.php?action=signInTask.getInvitedFriends&inviteCode=${inviteCode}`) //&uid=${uid}&token=${token}
 }
 const httpConfig = {
     getDefault,
