@@ -5,8 +5,8 @@ function getDate(datem, type) {
         hours = datem.getHours() < 10 ? '0' + datem.getHours() : datem.getHours(),
         minute = datem.getMinutes() < 10 ? '0' + datem.getMinutes() : datem.getMinutes(),
         second = datem.getSeconds() < 10 ? '0' + datem.getSeconds() : datem.getSeconds();
-    if (type == "~") {
-        return `${hours}h  ${date}/${month}`
+    if (type == "1") {
+        return `${year}年${month}月${date}日 ${hours}:${minute}`
     }
     if (type == "pai") {
         if (minute < 10) {

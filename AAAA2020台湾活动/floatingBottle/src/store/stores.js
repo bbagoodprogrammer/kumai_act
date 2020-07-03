@@ -14,6 +14,10 @@ const store = new Vuex.Store({
             cb: null
         },
         isShare: false, //分享
+        dstep: null,
+        gstep: null,
+        chance: 0,
+        first: false
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -40,6 +44,24 @@ const store = new Vuex.Store({
         },
         closeToast(state, val) {
             state.toast = false
+        },
+        setDstep(state, val) {
+            state.dstep = val
+        },
+        setGstep(state, val) {
+            state.gstep = val
+        },
+        setChance(state, val) {
+            state.chance = val
+        },
+        reduexCoins(state, val) {
+            state.userMsg.wallet -= val
+        },
+        setFirst(state, val) {
+            state.first = val
+        },
+        reduxChance(state) {
+            state.chance--
         }
     },
     actions: {

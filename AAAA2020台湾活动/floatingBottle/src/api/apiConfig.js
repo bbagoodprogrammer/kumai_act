@@ -94,12 +94,12 @@ function throwClick() {
 
 //獲取好友列表
 function getFriendList() {
-    return get(`/drifting_bottle/myFriend.php?token=${token}`)
+    return axios.get(`/drifting_bottle/myFriend.php?token=${token}`)
 }
 
 //獲取好友歌曲列表
 function getFriendSong(fid) {
-    return get(`/drifting_bottle/friendSong.php?token=${token}&fid=${fid}`)
+    return axios.get(`/drifting_bottle/friendSong.php?token=${token}&fid=${fid}`)
 }
 
 //我的投瓶記錄
@@ -115,17 +115,17 @@ function getMyGetBottle(from) {
 
 //點擊聽歌
 function singIng(bottle) {
-    return get(`/drifting_bottle/clickBottle.php?token=${token}&bottle=${bottle}`)
+    return axios.get(`/drifting_bottle/clickBottle.php?token=${token}&bottle=${bottle}`)
 }
 
 //發獎
-function geiGift() {
-    return get(`/drifting_bottle/hearPrize.php?token=${token}&bottle=${bottle}`)
+function geiGift(bottle) {
+    return axios.get(`/drifting_bottle/hearPrize.php?token=${token}&bottle=${bottle}`)
 }
 
 //聽歌時長
-function singTime() {
-    return get(`/drifting_bottle/hearBottle.php?token=${token}&bottle=${bottle}&type=${type}&h_time=${h_time}&s_key=${s_key}`)
+function singTime(bottle, type, h_time, s_key) {
+    return axios.get(`/drifting_bottle/hearBottle.php?token=${token}&bottle=${bottle}&type=${type}&h_time=${h_time}&s_key=${s_key}`)
 }
 
 

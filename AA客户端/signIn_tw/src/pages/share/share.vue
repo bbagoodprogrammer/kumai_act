@@ -99,11 +99,16 @@ export default {
         this.inviteCode = res.data.response_data.key
         api.queryShre(this.inviteCode).then(res => {
           if (res.data.response_data.master) {
-            const { master, list, days, leftTime } = res.data.response_data
+            const { master, list, days, leftTime, timestamp } = res.data.response_data
             this.master = master
             this.list = list
             this.days = days
-            this.leftTime = leftTime
+            if (new Date(timestamp * 1000).getHours() < 21) {
+              this.leftTime = leftTime
+            } else {
+              this.leftTime = 0
+              this.vxc('setIsOver', true)
+            }
           } else {
             this.toast(res.data.response_status.error)
           }

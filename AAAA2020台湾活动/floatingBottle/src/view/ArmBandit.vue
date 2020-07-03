@@ -4,10 +4,18 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <span class="ruleTips" :class="{top:isShare}" @click="goRule()"></span>
+      <span class="bgSoundTips" :style="{transform:'rotate('+rotateDeg+'deg)'}" @click="setBgSound()"></span>
+      <div class="tipsBox">
+        <span class="tips ruleTips" :class="{top:isShare}" @click="goRule()">規則獎勵</span>
+        <span class="tips songList">歌曲榜單</span>
+        <span class="myHistory">我的記錄</span>
+      </div>
     </div>
-    <Song />
-    <act-footer></act-footer>
+    <!-- <div class="bottleCon">
+      <BottleCon />
+    </div> -->
+
+    <act-footer :dstime="dstime" :detime="detime" :gstime="gstime" :getime="getime"></act-footer>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
   </div>
 </template>
@@ -20,9 +28,9 @@ import api from "../api/apiConfig"
 import ActFooter from "../components/ActFooter"
 import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
-import Song from "../components/Song"
+import { Howl, Howler } from 'howler';
 export default {
-  components: { MsgToast, ActFooter, Song },
+  components: { MsgToast, ActFooter },
   data() {
     return {
       isShare: false, //是否分享
@@ -33,11 +41,22 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
+      bgSound: null,
+      rotateDeg: 0,
+      bgTimer: null,
+      dstime: 0,
+      detime: 0,
+      gstime: 0,
+      getime: 0
     }
   },
   created() {
+    this.creatBgMusic()
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
+    globalBus.$on('setBg', () => {
+      this.setBgSound()
+    })
   },
   mounted() {
   },
@@ -47,14 +66,49 @@ export default {
       this.vxc('setShareState', this.isShare) //分享状态
     },
     getDefaultData(val) { //初始化
-      // api.getDefault().then(res => {
-      //   const { response_status, response_data } = res.data
-      //   if (response_status.code == 0) {
-
-      //   } else {
-      //     this.toast(response_status.error)
-      //   }
-      // })
+      api.getDefault().then(res => {
+        const { response_status, response_data } = res.data
+        if (response_status.code == 0) {
+          const { step, dstep, gstep, user_info, chance, dstime, detime, gstime, getime } = response_data
+          this.vxc('setActStatus', step)
+          this.vxc('setDstep', dstep)
+          this.vxc('setGstep', gstep)
+          this.vxc('setChance', chance)
+          this.vxc('setUserMsg', user_info)
+          this.dstime = dstime
+          this.detime = detime
+          this.gstime = gstime
+          this.getime = getime
+        } else {
+          this.toast(response_status.error)
+        }
+      })
+    },
+    creatBgMusic() {
+      this.bgSound = new Howl({
+        src: ['mp3/bg.mp3'],
+        autoplay: true,
+        loop: true,
+        volume: 0.5,
+        onload: () => {
+          this.compuetBgDeg()
+        }
+      });
+    },
+    setBgSound() {
+      if (this.bgSound.playing()) {
+        clearInterval(this.bgTimer)
+        this.bgSound.pause()
+      } else {
+        this.bgSound.play()
+        this.compuetBgDeg()
+      }
+    },
+    compuetBgDeg() {
+      clearInterval(this.bgTimer)
+      this.bgTimer = setInterval(() => {
+        this.rotateDeg += 3
+      }, 30)
     },
     downApp() {
       APP()
@@ -98,19 +152,37 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 2.42rem;
+    height: 4.42rem;
     position: relative;
-    .ruleTips {
-      width: 1.7rem;
-      height: 0.56rem;
-      // background: url(../assets/img/ruleTips.png);
+    .bgSoundTips {
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      background: url(../assets/img/default.png);
       background-size: 100% 100%;
       position: absolute;
+      left: 0.3rem;
+      top: 0.3rem;
+    }
+    .tipsBox {
+      position: absolute;
       right: 0;
-      top: 0.17rem;
-      &.top {
-        top: 1.5rem;
+      top: 2.17rem;
+      .tips {
+        display: block;
+        width: 1.7rem;
+        height: 0.56rem;
+        text-align: center;
+        line-height: 0.56rem;
+        // background: url(../assets/img/ruleTips.png);
+        background-size: 100% 100%;
+        &.songList {
+          margin-top: 0.15rem;
+        }
       }
+    }
+    &.top {
+      top: 1.5rem;
     }
   }
   .guaBox {
@@ -127,7 +199,7 @@ body::-webkit-scrollbar {
   background: url(../assets/img/refresh.png) no-repeat;
   background-size: contain;
   transition: transform 1s;
-  z-index: 1000;
+  z-index: 100;
 }
 </style>
 
