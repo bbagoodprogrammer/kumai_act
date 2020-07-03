@@ -137,10 +137,11 @@ const webpackConfig = merge(baseWebpackConfig, {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../static'),
-        to: config.build.assetsSubDirectory,
+        to: config.dev.assetsSubDirectory,
         ignore: ['.*']
-      }
-    ])
+      },
+      { from: 'src/mp3', to: 'mp3' },
+    ]),
   ]
 })
 

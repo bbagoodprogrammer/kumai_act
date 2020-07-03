@@ -25,6 +25,7 @@ export default {
   },
   methods: {
     getGift(pid, fnum) {
+      console.log(this.fragments, fnum)
       if (this.fragments >= fnum) {
         api.getGift(pid).then(res => {
           if (res.data.response_status.code == 0) {

@@ -17,7 +17,7 @@
           <div class="title"></div>
           <div class="msg">
             <h6>Thời gian:</h6>
-            <p>12:00 19.06.2020 - 18:00 03.07.2020</p>
+            <p>18:00 ngày 3/7 Tới 18:00 ngày 17/7</p>
             <h6>Thể lệ BXH kho báu:</h6>
             <p>BXH căn cứ vào thứ tự giá trị của báu vật tìm được tính theo giá trị xu</p>
             <h6>Giải thưởng:</h6>

@@ -14,7 +14,9 @@
         BXH May Mắn: ghi nhận tổng số lì xì thí sinh đã nhận, chỉ hiện top 100.
       </p>
       <h5 class="other">Chú ý:</h5>
-      <p>Nếu phát hiện người dùng có hành vi gian lận, ban tổ chức sẽ xử lý nghiêm khắc, không chỉ loại khỏi sự kiện, thu hồi phần thưởng, nếu nghiêm trọng sẽ khoá tài khoản!</p>
+      <p>1. Không tính số liệu tặng lì xì ở phòng kara khoá.</p>
+      <p>2. Mỗi người chỉ dùng 1 tài khoản tham gia sự kiện.</p>
+      <p>3.Nếu phát hiện người dùng có hành vi gian lận, ban tổ chức sẽ xử lý nghiêm khắc, không chỉ loại khỏi sự kiện, thu hồi phần thưởng, nếu nghiêm trọng sẽ khoá tài khoản!</p>
     </div>
     <div class="wardTips" v-show="tab == 1">
       <h5>Phần thưởng:</h5>
