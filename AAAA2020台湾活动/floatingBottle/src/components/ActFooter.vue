@@ -4,14 +4,14 @@
       <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
       <span class="goAct" v-if="astState === 1">現在是投瓶時間，可以開始投瓶</span>
-      <span class="actIng" v-if="astState === 3">今日可撈取的次數:{{chance}}</span>
+      <span class="actIng" v-if="astState === 3">今日可撈取的次數: <strong>{{chance}}</strong></span>
     </div>
-    <span class="dBottle" @click="dBootle()">拋</span>
-    <span class="gBottle" @click="lBootle()">撈</span>
+    <span class="dBottle" @click="dBootle()"></span>
+    <span class="gBottle" @click="lBootle()"></span>
     <!-- 投瓶歌曲彈窗 -->
     <div class="mask" v-show="showDsongPup">
       <transition name="slide">
-        <DsongPup v-show="showDsongPup" :dSongList="dSongList" />
+        <DsongPup v-if="showDsongPup" :dSongList="dSongList" />
       </transition>
     </div>
     <!-- 撈瓶彈窗 -->
@@ -23,10 +23,17 @@
     <!-- 撈到幾個瓶子 -->
     <div class=" mask" v-show="showBootleTips">
       <transition name="slide">
-        <div class="getBootle" v-show="showBootleTips">
+        <div class="getBootle" v-if="showBootleTips">
+          <i class="close"></i>
+          <div class="bottleImg">
+            <span v-for="(item,index) in prize.length" :key="index">
+              <img src="../assets/img/bottleBg2.png" class="bg" alt="">
+              <img src="../assets/img/getBottle.png" class="gBt" alt="">
+            </span>
+          </div>
           <p>撈取了{{prize.length}}個瓶子</p>
           <em v-if="senior!=0">(有{{senior}}個高級瓶子)</em>
-          <div @click="openBootle()">打開瓶子</div>
+          <div class="openBtn" @click="openBootle()">打開瓶子</div>
         </div>
       </transition>
     </div>
@@ -39,9 +46,10 @@ import DsongPup from "../components/DsongPup"
 import { globalBus } from '../utils/eventBus'
 import getDate from "../utils/getDate"
 import api from "../api/apiConfig"
+import { setTimeout } from 'timers';
 export default {
   components: { Song, DsongPup },
-  props: ["dstime", "detime", "gstime", "getime"],
+  props: ["dstime", "detime", "gstime", "getime", "plarerArr"],
   data() {
     return {
       showBottle: false,
@@ -67,7 +75,8 @@ export default {
         },
         {
           "type": 4,
-          "tid": 0
+          "img": ``,
+          "name": "xxxx"
         },
         {
           "type": 3, //类型 1 礼物 2 普通瓶子 3 高级瓶子 4 碎片
@@ -86,6 +95,7 @@ export default {
   computed: {
     ...mapState(['actStatus', 'dstep', 'gstep', 'chance', 'userMsg', 'isShare']),
     astState() {
+      return 3
       if (this.actStatus === 0) { //活动未开始
         return 0
       } else if (this.actStatus === 2) { //活动已结束
@@ -129,11 +139,20 @@ export default {
             msg: `現在不是撈瓶時間<br/>撈瓶時間為${getDate(new Date(this.gstime * 1000), 1)} - ${getDate(new Date(this.getime * 1000), 1)}`
           })
         } else if (this.chance > 0) {
-          // api.getBottle().then(res => {
-          //   this.prize = res.data.response_data.prize
-          this.showBootleTips = true
-          //   this.vxc('reduxChance')
-          // })
+          let player = this.plarerArr['Get'] ? this.plarerArr['Get'].player : false
+          if (!player) {
+            this.toast('資源未加載完成，請稍後再試~')
+            return
+          }
+          api.getBottle().then(res => {
+            this.prize = res.data.response_data.prize
+            player.start()
+            setTimeout(() => {
+              player.stop()
+              this.showBootleTips = true
+              this.vxc('reduxChance')
+            }, 3000)
+          })
         } else {
           this.toast(`當前撈瓶次數已用完~`)
         }
@@ -168,31 +187,105 @@ export default {
     // background-size: contain;
     span {
       display: inline-block;
+      margin-top: 0.7rem;
+      font-weight: 700;
+      strong {
+        font-size: 0.48rem;
+      }
     }
   }
   .dBottle {
     display: block;
-    width: 1rem;
-    height: 1rem;
-    text-align: center;
-    line-height: 1rem;
-    border-radius: 50%;
-    background: orange;
+    width: 1.92rem;
+    height: 1.92rem;
+    background: url(../assets/img/throw.png);
+    background-size: 100% 100%;
     position: absolute;
-    bottom: 3rem;
-    left: 2rem;
+    bottom: 1.94rem;
+    left: 1.38rem;
   }
   .gBottle {
     display: block;
-    width: 1rem;
-    height: 1rem;
-    text-align: center;
-    line-height: 1rem;
-    border-radius: 50%;
-    background: green;
+    width: 1.92rem;
+    height: 1.92rem;
+    background: url(../assets/img/get.png);
+    background-size: 100% 100%;
     position: absolute;
-    bottom: 3rem;
-    left: 5rem;
+    bottom: 1.94rem;
+    right: 1.38rem;
+  }
+  .getBootle {
+    width: 7.17rem;
+    height: 8.28rem;
+    padding-top: 0.88rem;
+    background: url(../assets/img/pupBg.png);
+    background-size: 100% 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .bottleImg {
+      width: 5rem;
+      height: 4.26rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin: -1rem 0 0 1rem;
+      span {
+        width: 2.33rem;
+        height: 2.23rem;
+        padding-top: 0.1rem;
+        background: url(../assets/img/bottleBg2.png);
+        background-size: 100% 100%;
+        margin: -0.4rem 0 0 -0.96rem;
+        position: relative;
+        img {
+          position: absolute;
+          &.bg {
+            width: 2.33rem;
+            height: 2.33rem;
+            animation: turn 6s linear infinite;
+          }
+          &.gBt {
+            width: 1.19rem;
+            height: 1.9rem;
+            top: 0.1rem;
+            left: 0.57rem;
+          }
+        }
+      }
+    }
+    p {
+      color: #611300;
+      font-weight: 600;
+    }
+    em {
+      font-size: 0.24rem;
+      color: #611300;
+      font-weight: 600;
+    }
+    .openBtn {
+      width: 2.08rem;
+      height: 0.68rem;
+      background: url(../assets/img/comitBtn.png);
+      background-size: 100% 100%;
+      text-align: center;
+      line-height: 0.68rem;
+      color: #ae4800;
+      font-weight: 700;
+      margin-top: 0.51rem;
+    }
+    .close {
+      width: 0.75rem;
+      height: 0.75rem;
+      background: url(../assets/img/close.png);
+      background-size: 100% 100%;
+      position: absolute;
+      right: 0.3rem;
+      top: 0.1rem;
+    }
   }
 }
 </style>

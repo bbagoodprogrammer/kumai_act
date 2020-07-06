@@ -1,22 +1,24 @@
 <template>
   <div class="box">
+    <div class="canvasBox">
+      <canvas id="Bg"></canvas>
+      <canvas id="BgBtn"></canvas>
+      <canvas id="Throw"></canvas>
+      <canvas id="Get"></canvas>
+    </div>
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
       <span class="bgSoundTips" :style="{transform:'rotate('+rotateDeg+'deg)'}" @click="setBgSound()"></span>
       <div class="tipsBox">
-        <span class="tips ruleTips" :class="{top:isShare}" @click="goRule()">規則獎勵</span>
-        <span class="tips songList">歌曲榜單</span>
-        <span class="myHistory">我的記錄</span>
+        <span class="tips ruleTips" :class="{top:isShare}" @click="goRule()">規則<br />獎勵</span>
+        <span class="tips songList" @click="showRank()">歌曲<br />榜單</span>
+        <span class="tips myHistory">我的<br />記錄</span>
       </div>
     </div>
-    <!-- <div class="bottleCon">
-      <BottleCon />
-    </div> -->
-
-    <act-footer :dstime="dstime" :detime="detime" :gstime="gstime" :getime="getime"></act-footer>
-    <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
+    <act-footer :dstime="dstime" :detime="detime" :gstime="gstime" :getime="getime" :plarerArr="plarerArr" @svgaStart="svgaStart"></act-footer>
+    <!-- <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
   </div>
 </template>
 
@@ -28,7 +30,13 @@ import api from "../api/apiConfig"
 import ActFooter from "../components/ActFooter"
 import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
+import { Downloader, Parser, Player } from 'svga.lite'
 import { Howl, Howler } from 'howler';
+import { resolve } from 'url';
+
+
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
 export default {
   components: { MsgToast, ActFooter },
   data() {
@@ -47,15 +55,43 @@ export default {
       dstime: 0,
       detime: 0,
       gstime: 0,
-      getime: 0
+      getime: 0,
+      svgaAddress: {
+        Bg: {
+          addres: "http://img.17sing.tw/uc/activity/11bf4a19416d4ab82726079108021bd2_1593999359.svga", //背景
+          isStop: false
+        },
+        BgBtn: {
+          addres: "http://img.17sing.tw/uc/activity/bcb0be1e09ae34c62bdf48441135bc42_1593999382.svga", //沙灘底部
+          isStop: false
+        },
+        Throw: {
+          addres: "http://img.17sing.tw/uc/activity/b2afe06ead4d11eb89fc16e68e7d820f_1593999421.svga", //投
+          isStop: true
+        },
+        Get: {
+          addres: "http://img.17sing.tw/uc/activity/dcdcbf4cd73f92c4905daddc1ab75922_1593999400.svga", //撈
+          isStop: true
+        }
+      },
+      plarerArr: {}
     }
   },
   created() {
     this.creatBgMusic()
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
-    globalBus.$on('setBg', () => {
-      this.setBgSound()
+    let pro2 = this.downloaderData(this.svgaAddress)
+    Promise.all([this.getDefaultData, pro2]).then((val) => {
+      this.svgaGo()
+    })
+    globalBus.$on('goBg', () => {
+      setTimeout(() => {
+        this.bgSound.play()
+      }, 2000)
+    })
+    globalBus.$on('stopBg', () => {
+      this.bgSound.pause()
     })
   },
   mounted() {
@@ -66,22 +102,25 @@ export default {
       this.vxc('setShareState', this.isShare) //分享状态
     },
     getDefaultData(val) { //初始化
-      api.getDefault().then(res => {
-        const { response_status, response_data } = res.data
-        if (response_status.code == 0) {
-          const { step, dstep, gstep, user_info, chance, dstime, detime, gstime, getime } = response_data
-          this.vxc('setActStatus', step)
-          this.vxc('setDstep', dstep)
-          this.vxc('setGstep', gstep)
-          this.vxc('setChance', chance)
-          this.vxc('setUserMsg', user_info)
-          this.dstime = dstime
-          this.detime = detime
-          this.gstime = gstime
-          this.getime = getime
-        } else {
-          this.toast(response_status.error)
-        }
+      return new Promise((resolve, reject) => {
+        api.getDefault().then(res => {
+          const { response_status, response_data } = res.data
+          if (response_status.code == 0) {
+            resolve(res)
+            const { step, dstep, gstep, user_info, chance, dstime, detime, gstime, getime } = response_data
+            this.vxc('setActStatus', step)
+            this.vxc('setDstep', dstep)
+            this.vxc('setGstep', gstep)
+            this.vxc('setChance', chance)
+            this.vxc('setUserMsg', user_info)
+            this.dstime = dstime
+            this.detime = detime
+            this.gstime = gstime
+            this.getime = getime
+          } else {
+            this.toast(response_status.error)
+          }
+        })
       })
     },
     creatBgMusic() {
@@ -90,12 +129,16 @@ export default {
         autoplay: true,
         loop: true,
         volume: 0.5,
-        onload: () => {
+        onplay: () => {
           this.compuetBgDeg()
+        },
+        onloaderror: () => {
+          this.toast(`音頻加載失敗，請稍後再試`)
         }
       });
     },
     setBgSound() {
+      if (this.bgSound.state() != 'loaded') return
       if (this.bgSound.playing()) {
         clearInterval(this.bgTimer)
         this.bgSound.pause()
@@ -110,8 +153,59 @@ export default {
         this.rotateDeg += 3
       }, 30)
     },
+    downloaderData(arr) {
+      return new Promise((res, rej) => {
+        let PromiseArr = []
+        for (let item in arr) {
+          PromiseArr.push(this.loadSvgaData(arr[item]))
+        }
+        Promise.all(PromiseArr).then((values) => {
+          res(values)
+        })
+      })
+    },
+    loadSvgaData(fileItem) {
+      return new Promise((resolve, reject) => {
+        ; (async () => {
+          const fileData = await downloader.get(fileItem.addres);
+          const data = await parser.do(fileData);
+          fileItem.data = data
+          resolve(data);
+        })()
+      });
+    },
+    svgaGo() {
+      for (let item in this.svgaAddress) {
+        this.svgaStart(item, 1, this.svgaAddress[item].data, this.svgaAddress[item].isStop)
+      }
+      // this.svgaStart("Bg", 1, this.svgaAddress['Bg'].data)
+      // this.svgaStart("BgBtn", 1, this.svgaAddress['BgBtn'].data)
+      // this.svgaStart("Bg", 1, this.svgaAddress['Bg'].data)
+      // this.svgaStart("Bg", 1, this.svgaAddress['Bg'].data)
+    },
+    async svgaStart(className, start, data, stop) {
+      let canvas = document.getElementById(className)
+      let player = new Player(canvas)
+      if (stop) {
+        player.set({ startFrame: start, loop: 1, fillMode: 'none' })
+      } else {
+        player.set({ startFrame: start })
+      }
+      await player.mount(data)
+      if (!stop) {
+        player.start()
+      }
+      this.plarerArr[className] = {
+        player,
+      }
+      this.vxc('plarerArr', this.plarerArr)
+    },
     downApp() {
       APP()
+    },
+    showRank() {
+      api.getRank(0).then(res => {
+      })
     },
     goRule() {
       let regstr = getString('token')
@@ -136,6 +230,21 @@ body::-webkit-scrollbar {
   margin: auto;
   // background:url(../assets/img/主视觉.png) center 0 no-repeat;
   background-size: 100% auto;
+  .canvasBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    canvas {
+      width: 7.5rem;
+      height: 14.96rem;
+      position: absolute;
+      &#BgBtn {
+        bottom: 0;
+      }
+    }
+  }
   .shareBar {
     position: fixed;
     z-index: 1000;
@@ -152,30 +261,33 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 4.42rem;
+    height: 8.42rem;
     position: relative;
     .bgSoundTips {
       display: block;
-      width: 1rem;
-      height: 1rem;
-      background: url(../assets/img/default.png);
+      width: 0.62rem;
+      height: 0.62rem;
+      background: url(../assets/img/bgMusicIcon.png);
       background-size: 100% 100%;
       position: absolute;
-      left: 0.3rem;
-      top: 0.3rem;
+      right: 0.19rem;
+      top: 0.24rem;
     }
     .tipsBox {
       position: absolute;
-      right: 0;
-      top: 2.17rem;
+      right: 0.07rem;
+      top: 4.94rem;
       .tips {
         display: block;
-        width: 1.7rem;
-        height: 0.56rem;
+        width: 1rem;
+        height: 0.94rem;
+        padding-top: 0.07rem;
         text-align: center;
-        line-height: 0.56rem;
-        // background: url(../assets/img/ruleTips.png);
+        background: url(../assets/img/ruleTips.png);
         background-size: 100% 100%;
+        font-size: 0.24rem;
+        color: #e5fef5;
+        font-weight: 700;
         &.songList {
           margin-top: 0.15rem;
         }

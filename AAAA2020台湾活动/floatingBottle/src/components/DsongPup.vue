@@ -9,17 +9,17 @@
     <div class="mySong" v-if="type==1">
       <p v-if="dSongList.length ==0" class="noData">暫無數據</p>
       <ul class="songList">
-        <li v-for="(item,index) in dSongList" :key="index" @click="queryBottle(item)">
+        <li v-for="(item,index) in dSongList" :key="index">
           <img v-lazy="item.avatar" alt="">
           <div class="songMsg">
             <div class="name">{{item.name}}</div>
             <div class="songScore">
-              <span>收聽：{{item.listen}}</span>
-              <span>評論：{{item.comms}}</span>
-              <span>贊：{{item.like}}</span>
+              <span class="score1"><i></i>{{item.listen}}</span>
+              <span class="score2"><i></i>{{item.comms}}</span>
+              <span class="score3"><i></i>{{item.like}}</span>
             </div>
           </div>
-          <span class="status"></span>
+          <span class="status" @click="queryBottle(item)">選擇</span>
         </li>
       </ul>
     </div>
@@ -28,12 +28,13 @@
       <p v-if="fLoading" class="noData">加載中...</p>
       <p v-if="friendList.length == 0 && !fLoading" class="noData">暫無好友，快去添加吧！</p>
       <ul class="list">
-        <li v-for="(item,index) in friendList" :key="index" @click="showFworks(item)">
+        <li v-for="(item,index) in friendList" :key="index">
           <img v-lazy="item.avatar" class="av" alt="">
           <div class="fMsg">
             <div class="nick">{{item.nick}}</div>
-            <div class="work">近期作品：{{item.work.name}}</div>
+            <div class="work">近期：<strong>{{item.work.name}}</strong> </div>
           </div>
+          <div class="queyBtn" @click="showFworks(item)">查看作品</div>
         </li>
       </ul>
     </div>
@@ -43,18 +44,18 @@
         <i class="close" @click="closeFworks()"></i>
         <p v-if="fwLoading" class="noData">加載中...</p>
         <p v-if="fworksList.length == 0 && !fwLoading" class="noData">暫無數據</p>
-        <ul class="songList mH">
-          <li v-for="(item,index) in fworksList" :key="index" @click="queryBottle(item)">
+        <ul class="songList mH" v-if="fworksList.length > 0">
+          <li v-for="(item,index) in fworksList" :key="index">
             <img v-lazy="item.avatar" alt="">
             <div class="songMsg">
               <div class="name">{{item.name}}</div>
               <div class="songScore">
-                <span>收聽：{{item.listen}}</span>
-                <span>評論：{{item.comms}}</span>
-                <span>贊：{{item.like}}</span>
+                <span class="score1"><i></i>{{item.listen}}</span>
+                <span class="score2"><i></i>{{item.comms}}</span>
+                <span class="score3"><i></i>{{item.like}}</span>
               </div>
             </div>
-            <span class="status"></span>
+            <span class="status" @click="queryBottle(item)">選擇</span>
           </li>
         </ul>
       </div>
@@ -122,29 +123,39 @@ export default {
 </script>
 <style lang="scss">
 .dSongPup {
-  width: 5rem;
-  height: 5rem;
-  background: #fff;
-  color: #000;
+  width: 7.17rem;
+  height: 8.28rem;
+  padding-top: 0.88rem;
+  background: url(../assets/img/pupBg.png);
+  background-size: 100% 100%;
   position: relative;
   .close {
-    width: 0.6rem;
-    height: 0.6rem;
-    background: red;
+    width: 0.75rem;
+    height: 0.75rem;
+    background: url(../assets/img/close.png);
+    background-size: 100% 100%;
     position: absolute;
     right: 0.3rem;
-    top: 0.3rem;
+    top: 0.1rem;
   }
   .tabs {
-    height: 0.7rem;
+    width: 5.24rem;
+    height: 0.74rem;
     display: flex;
-    color: hotpink;
+    background: url(../assets/img/tabs1.png);
+    background-size: 100% 100%;
+    margin: 0 auto;
     span {
       flex: 1;
       text-align: center;
       line-height: 0.7rem;
+      color: #ffd565;
+      font-size: 0.28rem;
+      font-weight: 800;
       &.act {
-        color: red;
+        background: url(../assets/img/tabAct1.png);
+        background-size: 100% 100%;
+        color: #ae4800;
       }
     }
   }
@@ -152,60 +163,179 @@ export default {
     text-align: center;
     margin-top: 0.2rem;
   }
-  .songList {
-    height: 4.2rem;
+  .songList,
+  .fSongList {
+    width: 5.7rem;
+    height: 6.36rem;
+    background: rgba(180, 110, 82, 0.5);
+    border-radius: 0.1rem;
+    margin: 0.11rem auto 0;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     -webkit-overflow-scrolling: auto;
     &.mH {
-      height: 5rem;
+      height: 7.1rem;
     }
     li {
+      height: 1.35rem;
       display: flex;
       align-items: center;
-      border-bottom: 0.015rem solid #ccc;
+      position: relative;
       img {
         width: 1rem;
         height: 1rem;
         border-radius: 50%;
+        margin-left: 0.24rem;
       }
-      .status {
-        display: block;
-        width: 0.2rem;
-        height: 0.2rem;
-        background: orange;
-        margin: 0.3rem 0 0 0.3rem;
-      }
-    }
-  }
-  .fSongList {
-    .list {
-      li {
-        display: flex;
-        align-items: center;
-        .av {
-          width: 1rem;
-          height: 1rem;
-          border-radius: 50%;
+      .songMsg {
+        width: 2.75rem;
+        margin-left: 0.21rem;
+        .name {
+          font-size: 0.26rem;
+          max-width: 2.75rem;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
       }
+      .songScore {
+        display: flex;
+        margin-top: 0.15rem;
+        span {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          font-size: 0.24rem;
+          color: #fff7d4;
+          font-weight: 600;
+          i {
+            width: 0.27rem;
+            height: 0.25rem;
+            margin-right: 0.07rem;
+          }
+          &.score1 {
+            i {
+              background: url(../assets/img/score1.png);
+              background-size: 100% 100%;
+            }
+          }
+          &.score2 {
+            i {
+              background: url(../assets/img/score2.png);
+              background-size: 100% 100%;
+            }
+          }
+          &.score3 {
+            i {
+              background: url(../assets/img/score3.png);
+              background-size: 100% 100%;
+            }
+          }
+        }
+      }
+      .status {
+        width: 1.13rem;
+        height: 0.6rem;
+        background: url(../assets/img/btnBg.png);
+        background-size: 100% 100%;
+        text-align: center;
+        line-height: 0.6rem;
+        font-size: 0.26rem;
+        color: #fff999;
+        font-weight: 600;
+      }
+      .fMsg {
+        width: 2.5rem;
+        margin-left: 0.15rem;
+        .nick {
+          font-size: 0.26rem;
+          font-weight: 600;
+        }
+        .work {
+          font-size: 0.24rem;
+          color: #611300;
+          margin-top: 0.13rem;
+          display: flex;
+          align-items: center;
+          white-space: nowrap;
+          strong {
+            color: #fff7d4;
+            font-size: 0.24rem;
+            font-weight: 700;
+            max-width: 1.8rem;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+      .queyBtn {
+        width: 1.5rem;
+        height: 0.6rem;
+        border: 0.03rem solid rgba(255, 249, 153, 1);
+        border-radius: 0.3rem;
+        text-align: center;
+        line-height: 0.6rem;
+        color: #fff999;
+        font-size: 0.26rem;
+        font-weight: 600;
+      }
+    }
+    li:before {
+      content: "";
+      width: 5rem;
+      height: 0.02rem;
+      background: rgba(215, 92, 80, 0.58rem);
+      position: absolute;
+      bottom: 0;
+      left: 0.35rem;
     }
   }
+  .fSongList::-webkit-scrollbar {
+    width: 0.04rem;
+    background: rgba(230, 128, 116, 1);
+    border-radius: 0.02rem;
+    margin-right: 0.5rem;
+  }
+  .fSongList::-webkit-scrollbar-thumb {
+    width: 0.04rem;
+    background: #fff999;
+    border-radius: 0.02rem;
+    margin-right: 0.5rem;
+  }
+  .songList::-webkit-scrollbar {
+    width: 0.04rem;
+    background: rgba(230, 128, 116, 1);
+    border-radius: 0.02rem;
+    margin-right: 0.5rem;
+  }
+  .songList::-webkit-scrollbar-thumb {
+    width: 0.04rem;
+    background: #fff999;
+    border-radius: 0.02rem;
+    margin-right: 0.5rem;
+  }
+
   .fWorks {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background: red;
+    width: 7.17rem;
+    height: 8.28rem;
+    padding-top: 0.88rem;
+    background: url(../assets/img/pupBg.png);
+    background-size: 100% 100%;
     .close {
-      display: block;
-      width: 0.2rem;
-      height: 0.2rem;
-      background: #000;
+      width: 0.75rem;
+      height: 0.75rem;
+      background: url(../assets/img/close.png);
+      background-size: 100% 100%;
       position: absolute;
-      top: 0.3rem;
       right: 0.3rem;
+      top: 0.1rem;
     }
   }
 }
