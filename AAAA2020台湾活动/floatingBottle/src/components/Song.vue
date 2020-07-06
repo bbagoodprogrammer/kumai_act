@@ -1,38 +1,47 @@
 <template>
   <div class="prizeBox">
+    <em class="prizeNum"> <em class="now">{{nowPrizeChange}}</em>/{{prize.length}}</em>
     <i class="close" @click="closePrizeBox()"></i>
     <div class="gift" v-if="nowPrize.type == 1">
-      <img :src="nowPrize.img" alt="">
+      <div class="imgBox">
+        <img src="../assets/img/bottleBg3.png" class="bg" alt="">
+        <img :src="nowPrize.img" class="gBt" alt="">
+      </div>
       <strong>恭喜你撈到驚喜禮物-{{nowPrize.name}}背包禮物（7）天,已放入背包,請查收~</strong>
     </div>
     <div class="noThing" v-else-if="nowPrize.type == 4">
-      <img :src="nowPrize.img" alt="">
+      <div class="imgBox">
+        <img src="../assets/img/noThing.png" alt="">
+      </div>
       <strong>運氣差了一點點<br />撈到額是碎片瓶子</strong>
     </div>
     <div class="song" v-else-if="nowPrize.type == 2 || nowPrize.type == 3">
       <div class="userMsg">
         <div class="avBox">
           <img v-lazy="nowPrize.avatar" alt="">
-          <i @click="follow(nowPrize.attension,index)">{{nowPrize.attension?'已關注':'關注'}}</i>
+          <i @click="follow(nowPrize.attension,index)" :class="{black:nowPrize.attension}">{{nowPrize.attension?'已關注':'+關注'}}</i>
         </div>
         <div class="userNick">{{nowPrize.nick}}</div>
-        <div class="songName">{{nowPrize.name}}</div>
       </div>
-      <p v-if="isLoading!='loaded'">Loading...</p>
-      <div class="timerBox" v-else>
-        <i class="go" @click="go()"></i>
-        <div class="timebar">
-          <div class="actbar" :style="{width:this.now+'%'}">
-            <i class="store"></i>
+      <div class="songBar">
+        <p class="barStatus" v-if="isLoading!='loaded'">Loading...</p>
+        <div class="timerBox" v-else>
+          <div class="songName">《{{nowPrize.name}}》</div>
+          <div class="timebar">
+            <div class="actbar" :style="{width:this.now+'%'}">
+              <i class="store"></i>
+            </div>
+            <em class="totalTime">{{maxLength}}</em>
+            <em class="nowTime">{{nowTime}}</em>
+            <input id="range" type="range" min="0" max="100" step="1" v-model="now" v-on:change="change()">
           </div>
-          <em class="totalTime">{{maxLength}}</em>
-          <em class="nowTime">{{nowTime}}</em>
-          <input id="range" type="range" min="0" max="100" step="1" v-model="now" v-on:change="change()">
+          <i class="go" :class="{stop:isPlay}" @click="go()"></i>
         </div>
       </div>
-      <p v-if="showLuckTips">恭喜你獲得{{luckGift}}金豆，獎勵已放入錢包，請注意查收</p>
+      <p v-if="!showLuckTips" class="luckTips">恭喜你撈到{{nowPrize.type==2?'普通':'高級'}}瓶子，<br />聽完{{luckTime}}S後有驚喜哦~</p>
+      <p v-else class="luckTips">恭喜你獲得{{luckGift}}金豆，獎勵已放入錢包，請注意查收</p>
     </div>
-    <button @click="next()"> {{isOver?"完成":"下一個"}}</button>
+    <span class="next" @click="next()"> {{isOver?"完成":"下一個"}}</span>
   </div>
 </template>
 <script>
@@ -52,7 +61,8 @@ export default {
       nowPrizeChange: 0,
       key: null,
       luckGift: "",
-      showLuckTips: false
+      showLuckTips: false,
+      getGift: false,
     }
   },
   watch: {
@@ -63,8 +73,8 @@ export default {
       }
     },
     listenTime(val) {
-      console.log(val)
-      if (val >= this.luckTime && !this.showLuckTips) {
+      if (val >= this.luckTime && !this.getGift) {
+        this.getGift = true
         api.geiGift(this.nowPrize.tid).then(res => {
           let gift = res.data.response_data
           this.luckGift = `${gift.nums}${gift.type == 2 ? '金豆' : '金幣'}`
@@ -96,18 +106,26 @@ export default {
       } else if (this.nowPrize.type == 3) {
         return 30
       }
+    },
+    isPlay() {
+      return this.sound.playing()
     }
   },
   methods: {
     init(addres) {
       this.sound = new Howl({
         src: addres,
-        onload: () => {
+        autoplay: true,
+        loop: true,
+        volume: 0.5,
+        onplay: () => {
           this.musicGo()
-          globalBus.$emit('setBg')
-          api.singIng(this.nowPrize.tid).then(res => {
-            this.key = res.data.response_data.key
-          })
+          if (!this.key) {
+            globalBus.$emit('stopBg')
+            api.singIng(this.nowPrize.tid).then(res => {
+              this.key = res.data.response_data.key
+            })
+          }
         },
         onloaderror: () => {
           this.toast(`音頻加載失敗，請稍後再試`)
@@ -129,12 +147,12 @@ export default {
         clearInterval(this.timer)
         this.sound.pause()
       } else {
+        this.sound.play();
         this.musicGo()
       }
     },
     musicGo() {
       clearInterval(this.timer)
-      this.sound.play();
       this.timer = setInterval(() => {
         this.listenTime++
         let seek = this.sound.seek(this.sound)
@@ -143,7 +161,7 @@ export default {
       }, 1000)
     },
     next() {
-      if ((this.nowPrize.type == 2 || this.nowPrize.type == 3) && this.isLoading == 'loaded') {
+      if ((this.nowPrize.type == 2 || this.nowPrize.type == 3) && this.isLoading == 'loaded') { //如果當前是歌並且加載完
         let nowP = this.nowPrize
         let bottle = nowP.tid
         let type = nowP.type
@@ -157,12 +175,13 @@ export default {
         this.closePrizeBox()
       } else {
         this.showLuckTips = false
-        if (this.nowPrize.type == 2 || this.nowPrize.type == 3) {
+        if (this.nowPrize.type == 2 || this.nowPrize.type == 3) {  //如果當前是歌的話重置播放器狀態
           clearInterval(this.timer)
-          this.sound.unload(this.sound)
+          this.sound.unload()
           this.nowTime = '00:00'
           this.now = 0
           this.listenTime = 0
+          this.getGift = false
         }
         this.index++
       }
@@ -174,6 +193,7 @@ export default {
       clearInterval(this.timer)
       let t = (this.now / 100) * this.sound.duration()
       this.sound.seek(t)
+      this.sound.play();
       this.musicGo()  //這裡會重複播放
     },
     formatDate(second) {
@@ -184,8 +204,11 @@ export default {
     },
     closePrizeBox() {
       this.$parent.showBottle = false
-      globalBus.$emit('setBg')
-      if (this.nowPrize.type == 2 || this.nowPrize.type == 3) {
+      globalBus.$emit('goBg')
+      if (this.sound) {
+        this.sound.unload()
+      }
+      if (this.nowPrize.type == 2 || this.nowPrize.type == 3 && this.isLoading == 'loaded') {
         let nowP = this.nowPrize
         let bottle = nowP.tid
         let type = nowP.type
@@ -212,66 +235,218 @@ export default {
 }
 </script>
 <style lang="scss">
-.timerBox {
-  height: 1rem;
-  .go {
-    display: block;
-    width: 0.5rem;
-    height: 0.5rem;
-    background: red;
+.songBar {
+  width: 5.7rem;
+  height: 2.58rem;
+  background: rgba(180, 110, 82, 0.51);
+  border-radius: 0.1rem;
+  margin: 0.33rem auto 0;
+  padding-top: 0.29rem;
+  .timerBox {
+    .songName {
+      color: #8cfffe;
+      font-size: 0.36rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    .timebar {
+      width: 5.1rem;
+      margin: 0.76rem auto 0;
+      position: relative;
+      height: 0.1rem;
+      background: #611300;
+      border-radius: 0.1rem;
+      .actbar {
+        position: absolute;
+        left: 0;
+        height: 0.1rem;
+        background: #ffc900;
+        border-radius: 0.1rem;
+        .store {
+          display: block;
+          width: 0.31rem;
+          height: 0.31rem;
+          border-radius: 50%;
+          background: url(../assets/img/store.png);
+          background-size: 100% 100%;
+          position: absolute;
+          top: -0.11rem;
+          right: -0.15rem;
+        }
+      }
+      .totalTime {
+        position: absolute;
+        right: 0;
+        top: 0.15rem;
+      }
+      .nowTime {
+        position: absolute;
+        left: 0;
+        top: 0.15rem;
+      }
+      #range {
+        width: 100%;
+        opacity: 0;
+        height: 0.3rem;
+        position: absolute;
+        top: -0.13rem;
+      }
+    }
+    .go {
+      display: block;
+      width: 0.6rem;
+      height: 0.6rem;
+      background: url(../assets/img/musGo.png);
+      background-size: 100% 100%;
+      margin: 0.37rem auto 0;
+      &.stop {
+        background: url(../assets/img/musStop.png);
+        background-size: 100% 100%;
+      }
+    }
   }
+  .barStatus {
+    text-align: center;
+  }
+}
+
+.luckTips {
+  text-align: center;
+  color: #611300;
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+.next {
+  display: block;
+  width: 2.08rem;
+  height: 0.68rem;
+  background: url(../assets/img/comitBtn.png);
+  background-size: 100% 100%;
+  text-align: center;
+  line-height: 0.68rem;
+  color: #ae4800;
+  font-weight: 700;
+  margin-top: 0.51rem;
+  margin: 0.42rem auto 0;
 }
 .prizeBox {
   position: relative;
-  .close {
-    display: block;
-    width: 0.5rem;
-    height: 0.5rem;
-    background: red;
+  width: 7.17rem;
+  height: 8.28rem;
+  padding-top: 0.88rem;
+  background: url(../assets/img/pupBg.png);
+  background-size: 100% 100%;
+  position: relative;
+  .prizeNum {
     position: absolute;
-    right: 0.1rem;
+    top: 1.1rem;
+    right: 1.2rem;
+    color: #611300;
+    font-weight: 600;
+    .now {
+      color: #fff;
+    }
+  }
+  .close {
+    width: 0.75rem;
+    height: 0.75rem;
+    background: url(../assets/img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0.3rem;
     top: 0.1rem;
   }
-  .timebar {
-    width: 7rem;
+  .gift {
+    width: 4.01rem;
+    padding-top: 0.62rem;
     margin: 0 auto;
-    position: relative;
-    height: 0.1rem;
-    background: #ddd;
-    border-radius: 0.1rem;
-    .actbar {
-      position: absolute;
-      left: 0;
-      height: 0.1rem;
-      background: orange;
-      border-radius: 0.1rem;
-      .store {
-        display: block;
-        width: 0.3rem;
-        height: 0.3rem;
-        border-radius: 50%;
-        background: #fff;
+    .imgBox {
+      width: 4.01rem;
+      height: 4.01rem;
+      position: relative;
+      img {
         position: absolute;
-        top: -0.11rem;
-        right: -0.15rem;
+        &.bg {
+          width: 4.01rem;
+          height: 4.01rem;
+          animation: turn 6s linear infinite;
+        }
+        &.gBt {
+          width: 1.55rem;
+          height: 1.59rem;
+          top: 1.12rem;
+          left: 1.14rem;
+        }
       }
     }
-    .totalTime {
-      position: absolute;
-      right: 0;
-      top: 0.15rem;
+    strong {
+      display: block;
+      font-weight: 600;
+      color: #611300;
+      text-align: center;
     }
-    .nowTime {
-      position: absolute;
-      left: 0;
-      top: 0.15rem;
+  }
+  .noThing {
+    .imgBox {
+      width: 4.01rem;
+      height: 3.39rem;
+      background: url(../assets/img/bottleBg3.png);
+      background-size: 100% 100%;
+      padding-top: 0.62rem;
+      margin: 0 auto;
+      img {
+        width: 1.53rem;
+        height: 2.71rem;
+        display: block;
+        margin: 0 auto;
+      }
     }
-    #range {
-      width: 100%;
-      opacity: 0;
-      height: 0.3rem;
-      position: absolute;
-      top: -0.13rem;
+    strong {
+      display: block;
+      font-weight: 600;
+      color: #611300;
+      text-align: center;
+    }
+  }
+  .song {
+    .userMsg {
+      .avBox {
+        width: 1.06rem;
+        height: 1.06rem;
+        margin: 0 auto;
+        position: relative;
+        img {
+          width: 1.06rem;
+          height: 1.06rem;
+          border-radius: 50%;
+          border: 0.03rem solid #e5775c;
+        }
+        i {
+          position: absolute;
+          bottom: -0.2rem;
+          left: -0.03rem;
+          display: block;
+          width: 1.21rem;
+          height: 0.49rem;
+          background: url(../assets/img/ast.png);
+          background-size: 100% 100%;
+          text-align: center;
+          line-height: 0.49rem;
+          font-size: 0.22rem;
+          font-weight: 500;
+          &.black {
+            background: url(../assets/img/bast.png);
+            background-size: 100% 100%;
+          }
+        }
+      }
+      .userNick {
+        text-align: center;
+        color: #611300;
+        font-weight: 0.24rem;
+        font-weight: 600;
+        margin-top: 0.3rem;
+      }
     }
   }
 }

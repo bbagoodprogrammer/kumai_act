@@ -63,6 +63,7 @@
           <span class="goSing" @click="gosing()" v-else></span>
           <p class="Tips" v-if="showPup3">
             <span>أثناء النشاط، إذا يوجد أكثر من عشرة أشخاص يعطون درجة واحدة لأغانيك أو تحذف أغانيك الرغبية لخمس مرات، فستُمنع من قطف رغبة الآخرين</span>
+            <span>بعد قطف الرغبة، تفضل بإرسال الأغنية الرغبتية خلال 12 ساعة، أو إلا ستعيد هذه الأغنية الرغبتية إلى حالة انتظار القطف وتعيد إلى قائمة الرغبات</span>
           </p>
         </div>
       </div>
@@ -74,7 +75,7 @@
           <p class="title">هل متأكد من ترك الرغبة السابقة؟</p>
           <p class="msg">
             قطف هذه الرغبة عبارة عن ترك الرغبةالسابقة
-           </br>هل متأكد من ترك الرغبة السابقة التي قطفتها وتقطف هذه الرغبة؟()
+            </br>هل متأكد من ترك الرغبة السابقة التي قطفتها وتقطف هذه الرغبة؟()
           </p>
           <div class="btnBox">
             <span class="yes" @click="zhaiqu(userMsg.id)"></span>
@@ -303,20 +304,29 @@ export default {
               this.$store.commit('addTook')
             } else {
               // this.showPup3 = true
-              this.$store.commit('changTook',1)
+              this.$store.commit('changTook', 1)
               this.closePup()
               this.showPup2 = false
             }
-          } else if(res.data.response_status.code === 20004){
+          } else if (res.data.response_status.code === 20004) {
             this.tastMsg = `أنت بطيء، هذه الرغبة قد قُطِفت، أسرع إلى قطف الرغبة الأخرى!`
             this.showT = true
-          } else if(res.data.response_status.code === 60001){
+          } else if (res.data.response_status.code === 60001) {
             this.tastMsg = `عفوا، هناك عشرة أشخاص يعطون درجة واحدة لأغانيك، فلا يمكن قطف رغبة الآخرين!`
             this.showT = true
-          }else if(res.data.response_status.code === 60002){
+          } else if (res.data.response_status.code === 60002) {
             this.tastMsg = `عفوا، تحذف أغانيك الرغبية لخمس مرات، فلا يمكن قطف رغبة الآخرين!`
             this.showT = true
-          }else {
+          } else if (res.data.response_status.code === 60003) {
+            this.tastMsg = `عفوا، تكررت قطف الأغاني، تفضل بالمحاولة مرة أخرى`
+            this.showT = true
+          } else if (res.data.response_status.code === 50001) {
+            this.tastMsg = `عفوا، خالفت قواعد النشاط، لا يمكن قطف الأغاني`
+            this.showT = true
+          } else if (res.data.response_status.code === 80001) {
+            this.tastMsg = `عفوا، يمكن أن تكمل عشر الأغاني الرغبتية فقط كل يوم، وعدد الأغاني التي أكملتها وصل إلى عشر، فلا يمكن قطف الأغاني اليوم`
+            this.showT = true
+          } else {
             this.tastMsg = res.data.response_status.error
             this.showT = true
           }
@@ -427,7 +437,7 @@ export default {
       .imgBox {
         width: 1.73rem;
         height: 1.73rem;
-        margin: -0.3rem 0.17rem 0 0.28rem ;
+        margin: -0.3rem 0.17rem 0 0.28rem;
         background: url(../assets/img/nanBg.png);
         background-size: 100% 100%;
         position: relative;
@@ -444,7 +454,7 @@ export default {
           background: url(../assets/img/sex1.png);
           background-size: 100% 100%;
           position: absolute;
-          left:0;
+          left: 0;
           bottom: 0.09rem;
           &.sex2 {
             background: url(../assets/img/sex2.png);
@@ -507,7 +517,7 @@ export default {
       top: 50%;
       transform: translate(-50%, -50%);
       &.maxHigt {
-        height: 8.1rem;
+        height: 9.1rem;
       }
       .close {
         display: block;
@@ -621,9 +631,9 @@ export default {
         position: absolute;
         left: 0.7rem;
         bottom: 0.4rem;
-        span{
+        span {
           display: block;
-          color:#d7184a;
+          color: #d7184a;
           text-align: center;
         }
       }
@@ -678,7 +688,7 @@ export default {
           display: block;
           width: 2rem;
           height: 0.79rem;
-          margin-right: .87rem;
+          margin-right: 0.87rem;
           background: url(../assets/img/no.png);
           background-size: 100% 100%;
         }

@@ -17,7 +17,8 @@ const store = new Vuex.Store({
         dstep: null,
         gstep: null,
         chance: 0,
-        first: false
+        first: false,
+        plarerArr: {}
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -62,6 +63,9 @@ const store = new Vuex.Store({
         },
         reduxChance(state) {
             state.chance--
+        },
+        plarerArr(state, val) {
+            state.plarerArr = val
         }
     },
     actions: {
