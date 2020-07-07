@@ -24,7 +24,7 @@
     <div class=" mask" v-show="showBootleTips">
       <transition name="slide">
         <div class="getBootle" v-if="showBootleTips">
-          <i class="close"></i>
+          <i class="close" @click="closeBootle()"></i>
           <div class="bottleImg">
             <span v-for="(item,index) in prize.length" :key="index">
               <img src="../assets/img/bottleBg2.png" class="bg" alt="">
@@ -147,10 +147,10 @@ export default {
           api.getBottle().then(res => {
             this.prize = res.data.response_data.prize
             player.start()
+            this.vxc('reduxChance')
             setTimeout(() => {
               player.stop()
               this.showBootleTips = true
-              this.vxc('reduxChance')
             }, 3000)
           })
         } else {
@@ -164,6 +164,9 @@ export default {
     },
     setFollow(index) {
       this.prize[index].attension = true
+    },
+    closeBootle() {
+      this.showBootleTips = false
     }
   }
 }

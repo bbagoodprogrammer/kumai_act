@@ -22,11 +22,13 @@ export default {
   data() {
     return {
       tastMsg: '',
-      showT: false
-      // imgArr:[
-      //   require(''),
-      //   require('')
-      // ]
+      showT: false,
+      imgArr: [
+        require('./assets/img/bottleTypeBg.png'),
+        require('./assets/img/pupBg.png'),
+        require('./assets/img/queryBottl.png'),
+        require('./assets/img/queryBottlBlack.png')
+      ]
     }
   },
   created() {
@@ -48,10 +50,10 @@ export default {
     })
   },
   mounted() {
-    // for(var i=0;i<this.imgArr.length;i++){
-    //   var Img = new Image()
-    //   Img.src = this.imgArr[i]
-    // }
+    for (var i = 0; i < this.imgArr.length; i++) {
+      var Img = new Image()
+      Img.src = this.imgArr[i]
+    }
   },
   methods: {
     closeToast() {

@@ -2,7 +2,7 @@
   <div class="redBackTips">
     <div class="tipsCon">
       <div class="tips1">
-        <p>1、下載安卓最新版本，可在任意K房體驗發紅包、搶紅包功能！</p>
+        <p>1.下載安卓和IOS最新版本，可在任意K房體驗發紅包、搶紅包功能！</p>
         <img src="../assets/img/t1.png" alt="" class="img1">
         <img src="../assets/img/t2.png" alt="" class="img2">
       </div>

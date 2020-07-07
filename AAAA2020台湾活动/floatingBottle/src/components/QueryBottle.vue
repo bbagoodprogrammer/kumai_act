@@ -25,7 +25,8 @@
         <div class="bottleImgBg">
           <div class="bottle" :class="{black:!first}"></div>
         </div>
-        <p>每位用戶每天首次投瓶免費，是否確認對此作品投瓶？</p>
+        <p v-if="first">每位用戶每天首次投瓶免費，是否確認對此作品投瓶？</p>
+        <p v-else>今日免費投瓶已使用</p>
         <span class="comitBtn" @click="qurey()" v-if="first">確認投瓶</span>
       </div>
       <!-- @click="selectChange(item)" -->
@@ -143,10 +144,10 @@ export default {
         if (res.data.response_status.code == 0) {
           this.$parent.$parent.showDsongPup = false //關閉彈窗
           player.start()
+          this.vxc('reduexCoins', this.price)
+          this.vxc('setFirst', false)
           setTimeout(() => {
             this.toast(`已投瓶成功`)
-            this.vxc('reduexCoins', this.price)
-            this.vxc('setFirst', false)
           }, 3000)
         } else {
           this.toast(res.data.response_status.error)
@@ -349,7 +350,7 @@ export default {
           background: url(../assets/img/border.png);
           background-size: 100% 100%;
           position: absolute;
-          left: 0;
+          left: -0.04rem;
           top: 0;
         }
         .yes {

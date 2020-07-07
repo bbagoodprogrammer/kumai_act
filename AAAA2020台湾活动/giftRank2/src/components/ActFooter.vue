@@ -3,7 +3,7 @@
     <div class="acrStatus">
       <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
-      <span class="goAct" v-if="astState === 1" @click="singUp()">立即報名</span>
+      <span class="goAct" v-if="astState === 1" @click="showQueryPup()">立即報名</span>
       <div class="actIng" :class="'rank'+nowUsrMsg.rank" v-if="astState === 3">
         <div class="rank" v-if="nowUsrMsg.rank >0">{{nowUsrMsg.rank}}</div>
         <div class="rank noTop" v-else>未上榜</div>
@@ -17,6 +17,18 @@
         </div>
       </div>
     </div>
+    <div class="mask" v-show="showQuery">
+      <transition name="slide">
+        <div class="queryBox" v-if="showQuery">
+          <i class="close" @click="close()"></i>
+          <p>報名成功后，本期活動分數只計入用戶榜，是否確認報名？ </p>
+          <div class="btnBox">
+            <span @click="close()">取消</span>
+            <span class="ok" @click="singUp()">確認</span>
+          </div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -24,6 +36,11 @@ import { mapState } from 'vuex'
 import api from "../api/apiConfig"
 import { globalBus } from '../utils/eventBus'
 export default {
+  data() {
+    return {
+      showQuery: false
+    }
+  },
   computed: {
     ...mapState(['actStatus', 'groupsUserMsg', "nowTab", "showType", "isShare", "registered"]),
     astState() {
@@ -43,11 +60,18 @@ export default {
     },
   },
   methods: {
+    showQueryPup() {
+      this.showQuery = true
+    },
+    close() {
+      this.showQuery = false
+    },
     singUp() {
       globalBus.$emit('commonEvent', (callback) => {
         api.singUp().then(res => {
           const { response_status, response_data } = res.data
           if (response_status.code == 0) {
+            this.close()
             this.vxc('setUserSingUp', true)
             this.vxc('setToast', {
               msg: '已報名成功！'
@@ -218,6 +242,41 @@ export default {
           background: url(../assets/img/top3.png);
           background-size: 100% 100%;
         }
+      }
+    }
+  }
+}
+.queryBox {
+  width: 6.59rem;
+  height: 3.98rem;
+  background: url(../assets/img/toastBg.png);
+  background-size: 100% 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  p {
+    font-size: 0.38rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0 0.15rem;
+    color: #983347;
+  }
+  .btnBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.3rem;
+    span {
+      width: 2.57rem;
+      height: 0.72rem;
+      background: url(../assets/img/actDayTitle.png);
+      background-size: 100% 100%;
+      text-align: center;
+      line-height: 0.72rem;
+      &.ok {
+        margin-left: 0.25rem;
       }
     }
   }
