@@ -71,6 +71,7 @@
 <script>
 import api from "../api/apiConfig"
 import QueryBottle from "./QueryBottle"
+import { setTimeout } from 'timers';
 export default {
   components: { QueryBottle },
   props: ["dSongList"],
@@ -92,12 +93,22 @@ export default {
       this.type = val
       if (val == 2 && !this.load && !this.fLoading) {
         this.fLoading = true
-        api.getFriendList().then(res => {
+        this.getFriend()
+      }
+    },
+    getFriend() {
+      api.getFriendList().then(res => {
+        let list = res.data.response_data.list
+        if (list) {
           this.fLoading = false
           this.load = true
-          this.friendList = res.data.response_data.list
-        })
-      }
+          this.friendList = list
+        } else {
+          setTimeout(() => {
+            this.getFriend()
+          }, 2000)
+        }
+      })
     },
     showFworks(item) {
       this.isShowFworks = true
@@ -162,6 +173,19 @@ export default {
   .noData {
     text-align: center;
     margin-top: 0.2rem;
+  }
+  .mySong {
+    width: 5.7rem;
+    height: 6.36rem;
+    background: rgba(180, 110, 82, 0.5);
+    border-radius: 0.1rem;
+    margin: 0.11rem auto 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
+    .songList {
+      background: none;
+    }
   }
   .songList,
   .fSongList {

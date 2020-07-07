@@ -19,7 +19,7 @@
       <div class="userMsg">
         <div class="avBox">
           <img v-lazy="nowPrize.avatar" alt="">
-          <i @click="follow(nowPrize.attension,index)" :class="{black:nowPrize.attension}">{{nowPrize.attension?'已關注':'+關注'}}</i>
+          <i @click="follow(nowPrize.attension,index,nowPrize.suid)" :class="{black:nowPrize.attension}">{{nowPrize.attension?'已關注':'+關注'}}</i>
         </div>
         <div class="userNick">{{nowPrize.nick}}</div>
       </div>
@@ -39,7 +39,7 @@
         </div>
       </div>
       <p v-if="!showLuckTips" class="luckTips">恭喜你撈到{{nowPrize.type==2?'普通':'高級'}}瓶子，<br />聽完{{luckTime}}S後有驚喜哦~</p>
-      <p v-else class="luckTips">恭喜你獲得{{luckGift}}金豆，獎勵已放入錢包，請注意查收</p>
+      <p v-else class="luckTips">恭喜你獲得{{luckGift}}，獎勵已放入錢包，請注意查收</p>
     </div>
     <span class="next" @click="next()"> {{isOver?"完成":"下一個"}}</span>
   </div>
@@ -48,6 +48,7 @@
 import { Howl, Howler } from 'howler';
 import { globalBus } from '../utils/eventBus.js'
 import api from "../api/apiConfig"
+import { setInterval } from 'timers';
 export default {
   props: ["prize"],
   data() {
@@ -66,6 +67,16 @@ export default {
     }
   },
   watch: {
+    sound(val) {
+      console.log(val)
+      setInterval(() => {
+        let sing = this.sound.playing()
+        console.log(sing)
+        if (sing) {
+          this.listenTime++
+        }
+      }, 1000)
+    },
     nowPrizeChange() {
       let type = this.nowPrize.type
       if (type == 2 || type == 3) {
@@ -73,9 +84,11 @@ export default {
       }
     },
     listenTime(val) {
+      console.log(val)
       if (val >= this.luckTime && !this.getGift) {
+        console.log('fa', val)
         this.getGift = true
-        api.geiGift(this.nowPrize.tid).then(res => {
+        api.geiGift(this.nowPrize.tid, this.key).then(res => {
           let gift = res.data.response_data
           this.luckGift = `${gift.nums}${gift.type == 2 ? '金豆' : '金幣'}`
           this.showLuckTips = true
@@ -123,7 +136,12 @@ export default {
           if (!this.key) {
             globalBus.$emit('stopBg')
             api.singIng(this.nowPrize.tid).then(res => {
-              this.key = res.data.response_data.key
+              if (res.data.response_status.code == 0) {
+                this.key = res.data.response_data.key
+              } else {
+                this.toast(res.data.response_status.error)
+              }
+
             })
           }
         },
@@ -154,7 +172,7 @@ export default {
     musicGo() {
       clearInterval(this.timer)
       this.timer = setInterval(() => {
-        this.listenTime++
+        // this.listenTime++
         let seek = this.sound.seek(this.sound)
         this.now = seek / this.sound.duration() * 100
         this.nowTime = this.formatDate(seek)
@@ -221,13 +239,20 @@ export default {
         }
       }
     },
-    follow(status) {
+    follow(status, index) {
       if (!status) {
-        location.href = `focusuid:${uid}`
-        let bottle = nowP.tid
+        let bottle = this.nowPrize.tid
         let suid = this.nowPrize.suid
-        api.attemsion(bottle, suid).then(res => {
-          this.$emit('setFollow')
+        api.appAttemsion(suid).then(res => {
+          if (res.data.response_data.result) {
+            api.attemsion(bottle, suid).then(res => {
+              if (res.data.response_status.code == 0) {
+                this.$emit('setFollow', index)
+              } else {
+                this.toast(res.data.response_status.error)
+              }
+            })
+          }
         })
       }
     }
@@ -315,6 +340,7 @@ export default {
   color: #611300;
   font-weight: 600;
   margin-top: 0.2rem;
+  padding: 0 0.8rem;
 }
 .next {
   display: block;

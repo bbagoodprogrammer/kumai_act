@@ -14,7 +14,7 @@
       <div class="tipsBox">
         <span class="tips ruleTips" :class="{top:isShare}" @click="goRule()">規則<br />獎勵</span>
         <span class="tips songList" @click="showRank()">歌曲<br />榜單</span>
-        <span class="tips myHistory">我的<br />記錄</span>
+        <span class="tips myHistory" @click="goHistory()">我的<br />記錄</span>
       </div>
     </div>
     <act-footer :dstime="dstime" :detime="detime" :gstime="gstime" :getime="getime" :plarerArr="plarerArr" @svgaStart="svgaStart"></act-footer>
@@ -203,13 +203,17 @@ export default {
     downApp() {
       APP()
     },
-    showRank() {
-      api.getRank(0).then(res => {
-      })
-    },
     goRule() {
       let regstr = getString('token')
       location.href = `./index2.html?token=${regstr}`
+    },
+    showRank() {
+      let regstr = getString('token')
+      location.href = `./index3.html?token=${regstr}`
+    },
+    goHistory() {
+      let regstr = getString('token')
+      location.href = `./index4.html?token=${regstr}`
     },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
@@ -288,9 +292,9 @@ body::-webkit-scrollbar {
         font-size: 0.24rem;
         color: #e5fef5;
         font-weight: 700;
-        &.songList {
-          margin-top: 0.15rem;
-        }
+        // &.songList {
+        //   margin-top: 0.15rem;
+        // }
       }
     }
     &.top {

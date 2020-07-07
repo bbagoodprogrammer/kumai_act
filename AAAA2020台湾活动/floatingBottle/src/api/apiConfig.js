@@ -9,7 +9,7 @@ import getString from "../utils/getString.js"
 // const defaultUid = 4979504;
 //const defaultToken = '9g0rbTx1xZzvvx12zI7Ox1MIfqxuOLUD2pH4sMdS2Wp68UipYzi5jvF17OISrR6eBwePmxxrKkymtpnTMtkSq0bZ1QJoNkFWE0v1srRMiilfWp-ycMfLe8fTgIMTzLRN';
 let token = getString("token")
-// let uid = getString("uid")
+let uid = getString("uid")
 
 // var num = 0
 // axios.interceptors.request.use(function (config) {  //在请求发出之前进行一些操作
@@ -104,12 +104,12 @@ function getFriendSong(fid) {
 
 //我的投瓶記錄
 function getMyBottleHistory(from) {
-    return get(`/drifting_bottle/deliveryRecord.php?token=${token}&from=${from}`)
+    return axios.get(`/drifting_bottle/deliveryRecord.php?token=${token}&from=${from}`)
 }
 
 //我的撈瓶記錄
 function getMyGetBottle(from) {
-    return get(`/drifting_bottle/gainRecord.php?token=${token}&from=${from}`)
+    return axios.get(`/drifting_bottle/gainRecord.php?token=${token}&from=${from}`)
 }
 
 
@@ -119,8 +119,8 @@ function singIng(bottle) {
 }
 
 //發獎
-function geiGift(bottle) {
-    return axios.get(`/drifting_bottle/hearPrize.php?token=${token}&bottle=${bottle}`)
+function geiGift(bottle, s_key) {
+    return axios.get(`/drifting_bottle/hearPrize.php?token=${token}&bottle=${bottle}&s_key=${s_key}`)
 }
 
 //聽歌時長
@@ -135,8 +135,16 @@ function attemsion(bottle, suid) {
 }
 
 //排行榜
-function getRank(from) {
+function getRank(from, more) {
+    if (more) {
+        return axios.get(`/drifting_bottle/list.php?token=${token}&from=${from}`)
+    }
     return get(`/drifting_bottle/list.php?token=${token}&from=${from}`)
+}
+
+//APP關注
+function appAttemsion(touid) {
+    return axios.get(`http://act.17sing.tw/index.php?&uid=${uid}&action=FocusExt&singerUid=${touid}&token=${token}`)
 }
 const httpConfig = {
     getDefault,
@@ -151,6 +159,7 @@ const httpConfig = {
     geiGift,
     singTime,
     attemsion,
-    getRank
+    getRank,
+    appAttemsion
 }
 export default httpConfig
