@@ -63,12 +63,12 @@ export default {
           let nowTime = getDateArr(response_data.time_data)
           this.vxc('setActiIme', response_data.time_data)
           this.vxc('setDateArr', nowTime.arr)
-          this.vxc('setNowDay', response_data.time_data.days)
-          this.vxc("changTab", response_data.time_data.days)
           sessionStorage.setItem('stime', response_data.time_data.stime)
           sessionStorage.setItem('etime', response_data.time_data.etime)
           if (!val) {
             this.vxc("setShowType", response_data.data.type)
+            this.vxc("changTab", response_data.time_data.days)
+            this.vxc('setNowDay', response_data.time_data.days)
           }
           this.period = response_data.data.period
           let rank = response_data.data.list

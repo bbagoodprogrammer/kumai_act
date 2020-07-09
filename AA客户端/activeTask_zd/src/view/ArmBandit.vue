@@ -15,8 +15,8 @@
           <div class="stage" v-if="item.stage">
             <div class="liner" :style="{width:1.135*item.stage.length-1 +'rem'}">
               <span class="store" :style="{right:index2*(100/(item.stage.length-1))+'%'}" :class="{act:index2 < item.over }" v-for="(item2,index2) in item.stage" :key="index2">
-                <canvas class="boxCanvas" :class="'canvas'+index+index2" v-if="item2.box && !item2.open"></canvas>
-                <i class="giftBox" v-else-if="item2.box"></i>
+                <canvas class="boxCanvas" :class="'canvas'+index+index2" v-if="item2.box && item2.status == 1"></canvas>
+                <i class="giftBox" :class="{over:item2.status == 2}" v-else-if="item2.box"></i>
                 <em>{{item2.num}}</em>
               </span>
               <div class="actLiner" :style="{width:getWidth(item.item2)}">
@@ -87,7 +87,8 @@ export default {
             {
               num: 10,
               box: true,
-              open: false
+              open: false,
+              status: 0,    //打開狀態 0 未達成 1 可以的開 2 已打開
             },
           ]
         },
@@ -109,7 +110,8 @@ export default {
             {
               num: 10,
               box: true,
-              open: false
+              open: false,
+              status: 1,    //打開狀態 0 未達成 1 可以的開 2 已打開
             },
             {
               num: 60
@@ -117,7 +119,8 @@ export default {
             {
               num: 120,
               box: true,
-              open: false
+              open: false,
+              status: 2,    //打開狀態 0 未達成 1 可以的開 2 已打開
             },
           ]
         },
@@ -286,25 +289,37 @@ body::-webkit-scrollbar {
             z-index: 10;
             top: -0.1rem;
             .boxCanvas {
-              width: 0.61rem;
-              height: 0.58rem;
+              width: 0.73rem;
+              height: 0.7rem;
               position: absolute;
               bottom: -0.1rem;
-              left: -0.15rem;
+              left: -0.21rem;
             }
             em {
               display: block;
               color: #999;
               font-size: 0.22rem;
-              margin-top: 0.38rem;
+              margin-top: 0.42rem;
               text-align: center;
+              opacity: 0.8;
             }
             .giftBox {
               display: block;
               width: 0.61rem;
               height: 0.58rem;
-              background: url(../assets/img/giftBox1.png);
+              background: url(../assets/img/giftBox3.png);
               background-size: 100% 100%;
+              position: absolute;
+              top: -0.2rem;
+              right: -0.2rem;
+              &.over {
+                width: 0.75rem;
+                height: 0.54rem;
+                background: url(../assets/img/giftBox2.png);
+                background-size: 100% 100%;
+                top: -0.18rem;
+                right: -0.24rem;
+              }
             }
             &.act {
               background: url(../assets/img/storeAct.png);
@@ -363,6 +378,8 @@ body::-webkit-scrollbar {
   top: 0;
   margin: auto;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
   .title {
     height: 1.1rem;
     text-align: center;
@@ -382,6 +399,11 @@ body::-webkit-scrollbar {
     }
   }
   .tips {
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
     padding: 0 0.54rem;
     h3 {
       color: #666;

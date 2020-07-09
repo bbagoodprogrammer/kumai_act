@@ -76,6 +76,7 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.groupsUserMsg[obj.type] = Object.assign({}, state.groupsUserMsg[obj.type], { [key]: Object.assign({}, state.groupsUserMsg[obj.type][key], obj.data) });
             }
+            console.log(state.groupsUserMsg)
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.data.key != 'undefined') {
