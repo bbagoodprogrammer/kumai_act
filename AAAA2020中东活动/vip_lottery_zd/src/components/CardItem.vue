@@ -65,6 +65,7 @@ import { globalBus } from '../utils/eventBus'
 import { mapState } from "vuex"
 import api from "../api/apiConfig"
 import getAppUaInfo from "../utils/getAppUaInfo"
+import getString from "../utils/getString"
 export default {
   components: { MsgToast },
   props: ['item'],
@@ -87,7 +88,7 @@ export default {
   computed: {
     ...mapState(['userMsg', 'oLuckIng']),
     shareLink() {
-      return `http://activity.17sing.tw/static_html/2020/vip_lottery/index.html?code=${this.luckGift.invite_code}`
+      return `http://activity.gosingapp.com/static_html/2020/vip_lottery/index.html?code=${this.luckGift.invite_code}`
     }
   },
   methods: {
@@ -141,19 +142,21 @@ export default {
       globalBus.$emit('commonEvent', callback => {
         var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
         var ua = navigator.userAgent;
+        let uid = getString("uid")
         var data = {
-          "share_title": "會員特權週等著你來~",
-          "share_content": "成為會員，享受會員專享福利~",
-          "share_image": "http://activity.17sing.tw/static_html/2020/vip_lottery/share.jpg",
-          "link": `http://activity.17sing.tw/static_html/2020/vip_lottery/index.html?uid=${this.userMsg.uid}&code=${code}&v=2`,
-          "image": "http://activity.17sing.tw/static_html/2020/vip_lottery/share2.jpg",
-          "share_url": `http://activity.17sing.tw/static_html/2020/vip_lottery/index.html?uid=${this.userMsg.uid}&code=${code}&v=2`
+          "share_title": "إمتيازات VIP ينتظر مشاركتك~ ",
+          "share_content": "استمتع بكثير من الفوائد الخاصة لVIP بعد شرائها~",
+          "share_image": "http://activity.gosingapp.com/static_html/2020/vip_lottery/share.jpg",
+          "link": `http://activity.gosingapp.com/static_html/2020/vip_lottery/index.html?uid=${uid}&code=${code}&v=2`,
+          "image": "http://activity.gosingapp.com/static_html/2020/vip_lottery/share.jpg",
+          "share_url": `http://activity.gosingapp.com/static_html/2020/vip_lottery/index.html?uid=${uid}&code=${code}&v=2`
         }
         if (ios) {
           this.showShare = true
           this.$refs.link.select()
         } else {
-          javascript: JSInterface.share(JSON.stringify(data));
+          javascript: JSInterface.share('http://activity.gosingapp.com/static_html/2020/vip_lottery/index.html?uid=' + uid + '&code=' + code, 'إمتيازات VIP ينتظر مشاركتك~', 'استمتع بكثير من الفوائد الخاصة لVIP بعد شرائها~', 'http://activity.gosingapp.com/static_html/2020/vip_lottery/share.jpg');
+          // javascript: JSInterface.share(JSON.stringify(data));
         }
       })
     },

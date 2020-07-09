@@ -211,7 +211,6 @@ export default {
       if (rankConf.second && rankConf.second > 0) {
         this.downTimeGo('time' + this.rankKey, rankConf.second)
       }
-      console.log(rankConf)
       return rankConf;
     },
     actTime() {
