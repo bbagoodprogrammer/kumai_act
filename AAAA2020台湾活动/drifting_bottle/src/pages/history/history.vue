@@ -18,7 +18,7 @@
             <strong>投放時間:<em>{{item.time}}</em></strong>
           </div>
           <div class="dScore">
-            <strong>播放次數:<em>{{item.hear}}</em></strong>
+            <strong>收聽人數:<em>{{item.hear}}</em></strong>
             <strong>關注人數:<em>{{item.attension}}</em></strong>
             <strong v-if="item.like">人氣值:<em>{{item.like}}</em></strong>
           </div>

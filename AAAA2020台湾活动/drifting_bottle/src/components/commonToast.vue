@@ -2,7 +2,7 @@
   <div class="toastBox" v-show="toastObj.toast">
     <transition name="slide">
       <div class="promptBox" v-show="toastObj.toast">
-        <i class="close"></i>
+        <i class="close" @click="close()"></i>
         <div class="title">{{toastObj.toastTitle}}</div>
         <p v-html="toastObj.toastMsg"></p>
         <div class="ok" @click="close()">

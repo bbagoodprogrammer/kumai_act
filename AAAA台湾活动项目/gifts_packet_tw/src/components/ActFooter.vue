@@ -58,12 +58,12 @@ export default {
   },
   methods: {
     singUp() {
-      var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i)
-      if (ios) {
-        this.tastMsg = '本次活動僅支持安卓用戶參與，IOS用戶敬請期待!'
-        this.showT = true
-        return
-      }
+      // var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i)
+      // if (ios) {
+      //   this.tastMsg = '本次活動僅支持安卓用戶參與，IOS用戶敬請期待!'
+      //   this.showT = true
+      //   return
+      // }
       globalBus.$emit('commonEvent', () => {
         api.singUp().then(res => {
           if (res.data.response_status.code == 0) {
