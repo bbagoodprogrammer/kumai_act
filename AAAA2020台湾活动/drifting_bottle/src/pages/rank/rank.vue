@@ -1,17 +1,17 @@
 <template>
   <div class="rank">
     <h3 class="title">歌曲榜單</h3>
-    <p class="tips">本首作品收聽人數、收聽時長、增加關注人數綜合進行排名</p>
+    <p class="tips">本首作品收聽人數、收聽時長、增加關注人數綜合進行排名 <em>（榜單將在活動結束後公佈）</em></p>
     <p class="noData" v-if="list.length == 0">暫無數據</p>
     <ul>
       <li v-for="(item,index) in list " :key="index" :class="'rank' + item.rank" @click="goSid(item.sid)">
         <span class="userRank">{{item.rank}}</span>
         <img v-lazy="activite==1?'':item.avatar" alt="">
         <div class="userMsg">
-          <!-- activite==1?'?????': -->
-          <!-- activite==1?'???': -->
-          <div class="nick">{{item.name}}</div>
-          <div class="uid">{{item.uid}}</div>
+          <!--: -->
+          <!--  -->
+          <div class="nick">{{ activite==1?'?????':item.name}}</div>
+          <div class="uid">{{activite==1?'???':item.uid}}</div>
         </div>
         <div class="score">人氣值：<strong>{{item.score}}</strong> </div>
       </li>
@@ -87,6 +87,10 @@ body {
     font-weight: 600;
     text-align: center;
     margin: 0.22rem auto 0.45rem;
+    em {
+      font-size: 0.24rem;
+      display: block;
+    }
   }
   .noData {
     text-align: center;

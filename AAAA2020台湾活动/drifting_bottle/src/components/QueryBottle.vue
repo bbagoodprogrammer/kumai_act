@@ -1,7 +1,7 @@
 <template>
   <div class="querySong">
     <i class="closeQuery" @click="closeQueryPup()"></i>
-    <p class="queryTips">系統會智能分配收聽歌曲的人數、市場，匹配最可能對該作品感興趣的聽眾進行投放，優質作品將得到更多的投放次數~</p>
+    <p class="queryTips">投放歌曲會收到收聽和關注~投放的人數越多，<br />收聽歌曲的人越多，優質作品將得到更多曝光次數~</p>
     <div class="song">
       <div class="imgBox">
         <img v-lazy="querySong.avatar" alt="">
@@ -19,13 +19,13 @@
     <div class="query">
       <div class="queryTabs">
         <span :class="{act:showType==1}" @click="tabClick(1)">免費投瓶</span>
-        <span :class="{act:showType==2}" @click="tabClick(2)">定制投瓶</span>
+        <span :class="{act:showType==2}" @click="tabClick(2)">定製投瓶</span>
       </div>
       <div class="firstCom" v-if="showType==1">
         <div class="bottleImgBg">
           <div class="bottle" :class="{black:!first || querySong.free}"></div>
         </div>
-        <P v-if="querySong.free">對不起，這首作品《{{querySong.name}}》已于{{getDate(querySong.free_time)}}被免費投瓶過一次了，可以選擇定制投放再進行投放~</P>
+        <P v-if="querySong.free">對不起，這首作品《{{querySong.name}}》已于{{getDate(querySong.free_time)}}被免費投瓶過一次了，可以選擇定製投瓶再進行投放~</P>
         <p v-else-if="!first">今日免費投瓶已使用</p>
         <p v-else>每位用戶每天首次投瓶免費，是否確認對此作品投瓶？</p>
         <span class="comitBtn" @click="qurey()" v-if="first && !querySong.free">確認投瓶</span>
@@ -192,7 +192,7 @@ export default {
   .queryTips {
     color: #611300;
     font-size: 0.24rem;
-    padding: 0 1.65rem 0 0.8rem;
+    padding: 0 1rem 0 0.8rem;
     font-weight: 500;
   }
   .song {
@@ -216,6 +216,12 @@ export default {
     .songMsg {
       width: 2.75rem;
       margin-left: 0.16rem;
+      .name {
+        min-width: 2.75rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
       .songScore {
         display: flex;
         margin-top: 0.15rem;

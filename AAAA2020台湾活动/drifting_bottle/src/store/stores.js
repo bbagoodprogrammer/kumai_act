@@ -44,7 +44,7 @@ const store = new Vuex.Store({
             }
         },
         closeToast(state, val) {
-            state.toast = false
+            state.toastObj.toast = false
         },
         setDstep(state, val) {
             state.dstep = val

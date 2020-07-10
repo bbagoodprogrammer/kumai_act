@@ -95,7 +95,6 @@ export default {
   computed: {
     ...mapState(['actStatus', 'dstep', 'gstep', 'chance', 'userMsg', 'isShare']),
     astState() {
-      return 3
       if (this.actStatus === 0) { //活动未开始
         return 0
       } else if (this.actStatus === 2) { //活动已结束

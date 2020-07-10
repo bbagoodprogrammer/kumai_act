@@ -6,7 +6,7 @@ function getDate(datem, type) {
         minute = datem.getMinutes() < 10 ? '0' + datem.getMinutes() : datem.getMinutes(),
         second = datem.getSeconds() < 10 ? '0' + datem.getSeconds() : datem.getSeconds();
     if (type == "1") {
-        return `${month}月${date}日`
+        return `${month}月${date}日 ${hours}:${minute}`
     }
     if (type == "pai") {
         if (minute < 10) {
