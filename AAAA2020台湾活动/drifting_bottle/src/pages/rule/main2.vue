@@ -112,7 +112,7 @@ export default {
 
 <style lang="scss">
 .red {
-  color: red;
+  color: orange;
 }
 body {
   background-color: rgba(16, 128, 208, 1);

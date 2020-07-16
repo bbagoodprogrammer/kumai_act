@@ -35,28 +35,27 @@
           <div class="con">
             <i class="close" @click="closeRule()"></i>
             <h6>1 Thời gian</h6>
-            <p>{{timer}}</p>
+            <p>{{aTimer}}</p>
             <h6>2 Bảng xếp hạng</h6>
-            <p>BXH dựa vào mị lực nhận được từ 2 quà Đoan Ngọ (Bánh Tro, Trái cây), xếp hạng từ cao xuống thấp</p>
-            <p>BXH cập nhật số quà nhận được (cập nhật từng phút)</p>
+            <p>"BXH dựa vào mị lực nhận được từ 2 quà Mùa hè (Dưa hấu và Quạt nho), xếp hạng từ cao xuống thấp
+              <br />BXH cập nhật số quà nhận được (cập nhật từng phút)"</p>
             <h6>3 Giải thưởng</h6>
             <div class="giftItemBox">
               <span class="giftImg2"></span>
               <span class="giftImg"></span>
             </div>
             <div class="giftBox">
-              <h5>1. BXH Bánh Tro</h5>
-              <p>Hạng 1: Khung ảnh Đoan Dương 7 ngày, xe Thuyền rồng 7 ngày</p>
-              <p>Hạng 2: Khung ảnh Đoan Dương 5 ngày</p>
-              <p>Hạng 3: Khung ảnh Đoan Dương 3 ngày</p>
-              <h5>2. BXH Trái cây</h5>
-              <p>Hạng 1: Khung ảnh Đoan Dương 14 ngày, xe Thuyền rồng 14 ngày</p>
-              <p>Hạng 2: Khung ảnh Đoan Dương 7 ngày</p>
-              <p>Hạng 3: Khung ảnh Đoan Dương 5 ngày</p>
+              <h5>1. BXH Dưa hấu</h5>
+              <p>Hạng 1: Khung ảnh Hè mát 7 ngày, xe Kem Lạnh 7 ngày</p>
+              <p>Hạng 2: Khung ảnh hè mát 5 ngày</p>
+              <p>Hạng 3: Khung ảnh hè mát 3 ngày</p>
+              <h5>2. BXH Quạt Nho</h5>
+              <p>Hạng 1: Khung ảnh hè mát 14 ngày, xe Kem Lạnh 14 ngày</p>
+              <p>Hạng 2: Khung ảnh hè mát 7 ngày</p>
+              <p>Hạng 3: Khung ảnh hè mát 5 ngày</p>
             </div>
-
             <h6>4 Chú ý </h6>
-            <p>Giải thưởng được phát sau khi sự kiện kết thúc 5 ngày</p>
+            <p>Giải thưởng được phát sau khi sự kiện kết thúc 7 ngày.</p>
             <p class="lastTips">Quyết định cuối cùng thuộc về Alochat</p>
           </div>
         </div>
@@ -99,7 +98,7 @@ export default {
     this.getDefaultData()
   },
   computed: {
-    timer() {
+    aTimer() {
       return getDate(new Date(this.stime * 1000), '1') + '-' + getDate(new Date(this.etime * 1000), '1')
     }
   },
@@ -177,7 +176,7 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: #1a9df0 url(../assets/img/banner.png) center 0 no-repeat;
+  background: #fcfac7 url(../assets/img/banner.png) center 0 no-repeat;
   background-size: 100% auto;
   .shareBar {
     position: fixed;

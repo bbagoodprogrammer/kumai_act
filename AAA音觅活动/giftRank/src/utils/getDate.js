@@ -8,6 +8,11 @@ function getDate(datem, type) {
     if (type == "~") {
         return `${hours}h  ${date}/${month}`
     }
+    if (type == 1) {
+        return `${year}年${month}月${date}日${hours}:${minute}`
+    } else if (type == 2) {
+        return `${month}月${date}日${hours}:${minute}`
+    }
     if (type == "pai") {
         if (minute < 10) {
             minute = "0" + minute

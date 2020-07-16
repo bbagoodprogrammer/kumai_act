@@ -309,7 +309,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 0.3rem auto;
     &.current {
       background: url(../assets/img/tab2.png);
       background-size: 100% 100%;
@@ -356,6 +356,7 @@ export default {
           color: #3863c4;
           .nick {
             max-width: 2rem;
+            color: #fff;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -382,14 +383,14 @@ export default {
         right: 0.4rem;
         strong {
           display: block;
-          color: #5c8eff;
+          color: #fff;
           font-size: 0.24rem;
           font-weight: 500;
         }
         em {
           display: block;
           font-size: 0.72rem;
-          color: #456bfa;
+          color: #f2ff2a;
           font-weight: 800;
         }
       }

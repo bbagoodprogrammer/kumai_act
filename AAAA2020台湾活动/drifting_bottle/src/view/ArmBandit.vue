@@ -19,6 +19,7 @@
       </div>
     </div>
     <act-footer :dstime="dstime" :detime="detime" :gstime="gstime" :getime="getime" :plarerArr="plarerArr" @svgaStart="svgaStart"></act-footer>
+    <!-- <test /> -->
     <!-- <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
   </div>
 </template>
@@ -29,6 +30,7 @@ import getString from "../utils/getString"
 import APP from "../utils/openApp"
 import api from "../api/apiConfig"
 import ActFooter from "../components/ActFooter"
+import test from "../components/test"
 import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
 import { Downloader, Parser, Player } from 'svga.lite'
@@ -39,7 +41,7 @@ import { resolve } from 'url';
 const downloader = new Downloader()
 const parser = new Parser({ disableWorker: true })
 export default {
-  components: { MsgToast, ActFooter },
+  components: { MsgToast, ActFooter, test },
   data() {
     return {
       isShare: false, //是否分享
@@ -236,11 +238,13 @@ body::-webkit-scrollbar {
 }
 .box {
   max-width: 750px;
+  height: 100%;
   overflow-x: hidden;
   position: relative;
   margin: auto;
+  background-color: #0c96ff;
   // background:url(../assets/img/主视觉.png) center 0 no-repeat;
-  background-size: 100% auto;
+  // background-size: 100% auto;
   .canvasBox {
     position: fixed;
     top: 0;
@@ -272,7 +276,7 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 8.42rem;
+    height: 100%;
     position: relative;
     .bgSoundTips {
       display: block;

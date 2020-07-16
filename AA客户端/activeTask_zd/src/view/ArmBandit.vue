@@ -5,22 +5,26 @@
       <ul>
         <li v-for="(item,index) in defaultData" :key="index">
           <div class="taskMsg">
-            <img :src="item.icon" class="icon" alt="">
+            <img :src="require(`../assets/img/icon${item.id}.png`)" class="icon" alt="">
             <div class="msg">
-              <div class="name">{{item.name}}</div>
-              <div class="gift"><i></i> ×{{item.gift.num}}</div>
+              <div class="name">{{item.name}} <em v-if="item.id!=1">({{item.cur_node.target}}دقائق)</em> </div>
+              <div class="gift"><i></i> ×{{item.cur_node.reward_qty}}</div>
             </div>
-            <div class="status" @click="getGift(index)">منشاتي</div>
+            <div class="status" :class="{act:item.status==1}">
+              <em v-if="item.status==0">لم تكمل</em>
+              <em v-else-if="item.status == 1" @click="getGift(item,index)">استلام</em>
+              <em v-else>إكمال</em>
+            </div>
           </div>
-          <div class="stage" v-if="item.stage">
-            <div class="liner" :style="{width:1.135*item.stage.length-1 +'rem'}">
-              <span class="store" :style="{right:index2*(100/(item.stage.length-1))+'%'}" :class="{act:index2 < item.over }" v-for="(item2,index2) in item.stage" :key="index2">
-                <canvas class="boxCanvas" :class="'canvas'+index+index2" v-if="item2.box && item2.status == 1"></canvas>
-                <i class="giftBox" :class="{over:item2.status == 2}" v-else-if="item2.box"></i>
-                <em>{{item2.num}}</em>
+          <div class="stage" v-if="item.nodes.length > 1">
+            <div class="liner" :style="{width:1.135*item.nodes.length-1 +'rem'}">
+              <span class="store" :style="{right:index2*(100/(item.nodes.length-1))+'%'}" :class="{act: item2.status == 2,other:item2.status == 1}" v-for="(item2,index2) in item.nodes" :key="index2">
+                <canvas class="boxCanvas" :class="'canvas'+index+index2" v-if="item2.reward_type !=1  && item2.status == 1" @click="getGift(item,index,index2)"></canvas>
+                <i class="giftBox" :class="{over:item2.status == 2}" v-else-if="item2.reward_type !=1"></i>
+                <em>{{item2.target}}</em>
               </span>
-              <div class="actLiner" :style="{width:getWidth(item.item2)}">
-                <i></i>
+              <div class="actLiner" :style="{width:getWidth(item) + '%'}">
+                <i v-if="getWidth(item) > 3"></i>
               </div>
             </div>
           </div>
@@ -59,72 +63,7 @@ export default {
   components: {},
   data() {
     return {
-      defaultData: [
-        {
-          name: 'estsdadasdada',
-          icon: '',
-          gift: {
-            type: 'dou',
-            num: 20
-          },
-          over: 0
-        },
-        {
-          name: 'estsdadasdada',
-          icon: '',
-          gift: {
-            type: 'dou',
-            num: 20
-          },
-          over: 1,
-          stage: [
-            {
-              num: 2
-            },
-            {
-              num: 5
-            },
-            {
-              num: 10,
-              box: true,
-              open: false,
-              status: 0,    //打開狀態 0 未達成 1 可以的開 2 已打開
-            },
-          ]
-        },
-        {
-          name: 'estsdadasdada',
-          icon: '',
-          gift: {
-            type: 'dou',
-            num: 20
-          },
-          over: 4,
-          stage: [
-            {
-              num: 2
-            },
-            {
-              num: 5
-            },
-            {
-              num: 10,
-              box: true,
-              open: false,
-              status: 1,    //打開狀態 0 未達成 1 可以的開 2 已打開
-            },
-            {
-              num: 60
-            },
-            {
-              num: 120,
-              box: true,
-              open: false,
-              status: 2,    //打開狀態 0 未達成 1 可以的開 2 已打開
-            },
-          ]
-        },
-      ],
+      defaultData: [],
       svagData: null,
       showRule: false
     }
@@ -133,13 +72,152 @@ export default {
     this.getDefaultData()
     this.downSvga()
   },
-  mounted() {
-  },
   methods: {
     getDefaultData(val) { //初始化
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
-        if (response_status.code == 0) {
+        if (response_data) {
+          this.defaultData = response_data.list
+          // [
+          //   {
+          //     "id": 1, // 任务ID
+          //     "type": 1, // 任务类型：1关注；2上麦；3围观
+          //     "name": "关注", // 任务名称
+          //     "nodes": [ // 任务节点列表，此字段主要用于时长任务，关注任务前端用不上
+          //       {
+          //         "idx": 0, // 节点索引值
+          //         "target": 1, // 任务节点目标值，关注任务为人数，时长任务为分钟数
+          //         "reward_type": 1, // 奖励类型：1金豆，2宝箱一，3宝箱二
+          //         "prize_id": 101, // 奖品ID，前端用不上
+          //         "status": 0, // 任务节点状态：0未完成，1未领奖，2已领奖
+          //         "reward_qty": 2 // 奖励数量
+          //       }
+          //     ],
+          //     "rate": 1, // 已完成进度值，此字段关注任务用不上，时长任务这里显示的是分钟数
+          //     "target": 1, // 任务目标值，此字段关注任务用不上，时长任务这里显示的是分钟数
+          //     "status": 2, // 任务状态：0未完成且没有未领奖励，1有未领奖励，2已完成
+          //     "cur_node": { // 当前任务节点，主要用于时长任务标题后面的时长及下面的奖品展示
+          //       "idx": 0,
+          //       "target": 1,
+          //       "reward_type": 1,
+          //       "prize_id": 101,
+          //       "status": 0,
+          //       "reward_qty": 2
+          //     }
+          //   },
+          //   {
+          //     "id": 2,
+          //     "type": 2,
+          //     "name": "上麦",
+          //     "nodes": [
+          //       {
+          //         "idx": 0,
+          //         "target": 2,
+          //         "reward_type": 1,
+          //         "prize_id": 201,
+          //         "status": 2,
+          //         "reward_qty": 4
+          //       },
+          //       {
+          //         "idx": 1,
+          //         "target": 5,
+          //         "reward_type": 1,
+          //         "prize_id": 202,
+          //         "status": 1,
+          //         "reward_qty": 10
+          //       },
+          //       {
+          //         "idx": 2,
+          //         "target": 10,
+          //         "reward_type": 2,
+          //         "reward_qty": 1,
+          //         "status": 2
+          //       },
+          //       {
+          //         "idx": 3,
+          //         "target": 60,
+          //         "reward_type": 1,
+          //         "prize_id": 204,
+          //         "status": 0,
+          //         "reward_qty": 120
+          //       },
+          //       {
+          //         "idx": 4,
+          //         "target": 120,
+          //         "reward_type": 3,
+          //         "reward_qty": 1,
+          //         "status": 0
+          //       }
+          //     ],
+          //     "rate": 60,
+          //     "target": 120,
+          //     "status": 1,
+          //     "cur_node": {
+          //       "idx": 1,
+          //       "target": 60,
+          //       "reward_type": 1,
+          //       "prize_id": 204,
+          //       "status": 1,
+          //       "reward_qty": 120
+          //     }
+          //   },
+          //   {
+          //     "id": 3,
+          //     "type": 3,
+          //     "name": "围观时长",
+          //     "nodes": [
+          //       {
+          //         "idx": 0,
+          //         "target": 5,
+          //         "reward_type": 1,
+          //         "prize_id": 301,
+          //         "status": 0,
+          //         "reward_qty": 5
+          //       },
+          //       {
+          //         "idx": 1,
+          //         "target": 10,
+          //         "reward_type": 1,
+          //         "prize_id": 302,
+          //         "status": 0,
+          //         "reward_qty": 10
+          //       },
+          //       {
+          //         "idx": 2,
+          //         "target": 30,
+          //         "reward_type": 2,
+          //         "reward_qty": 1,
+          //         "status": 0
+          //       },
+          //       {
+          //         "idx": 3,
+          //         "target": 45,
+          //         "reward_type": 1,
+          //         "prize_id": 304,
+          //         "status": 0,
+          //         "reward_qty": 45
+          //       },
+          //       {
+          //         "idx": 4,
+          //         "target": 120,
+          //         "reward_type": 3,
+          //         "reward_qty": 1,
+          //         "status": 0
+          //       }
+          //     ],
+          //     "rate": 0,
+          //     "target": 120,
+          //     "status": 0,
+          //     "cur_node": {
+          //       "idx": 0,
+          //       "target": 5,
+          //       "reward_type": 1,
+          //       "prize_id": 301,
+          //       "status": 0,
+          //       "reward_qty": 5
+          //     }
+          //   }
+          // ]
           this.$nextTick(() => {
             let canvasList = document.getElementsByTagName('canvas')
             for (let i = 0; i < canvasList.length; i++) {
@@ -148,6 +226,30 @@ export default {
           })
         } else {
           this.toast(response_status.error)
+        }
+      })
+    },
+    getGift(item, index, index2) {
+      api.getGift(item.id, index2).then(res => {
+        const { response_status, response_data } = res.data
+        if (response_data) {
+          const { prize, rate, status, next_node } = response_data
+          let curIndex = item.cur_node.idx
+          this.defaultData[index].cur_node = next_node
+          this.defaultData[index].rate = rate
+          this.defaultData[index].status = status
+          if (index2) {
+            this.defaultData[index].nodes[index2].status = 2
+          } else {
+            this.defaultData[index].nodes[curIndex].status = 2
+          }
+          if (prize.reward_type == 1) {
+            JSInterface.showToast(`استلمت ${prize.prize_qty} فول بنجاح`)
+          } else {
+            JSInterface.onShowRoomActs("مبروك، تحصل على", "تصل الهدايا إلى حقيبتك", `تنتهي الصلاحية بعد ${prize.prize_days} أيام`, prize.prize_img, "عرفت");
+          }
+        } else {
+          JSInterface.showToast(response_status.error)
         }
       })
     },
@@ -167,16 +269,15 @@ export default {
     closeRulesTips() {
       this.showRule = false
     },
-    getWidth(item, item2) {
-      return `100%`
-      for (let i = item.stage.length - 1; i >= 0; i--) {
-        if (item.over >= item.stage[item.stage.length - 1]) {
-          return '100%'
-        } else if (item.over >= item.stage[i]) {
-          let c = item.stage[i + 1] - item.stage[i]
-          let t = item.over - item.stage[i]
-          let a = (t / c) * 100 / item.stage.length
-          return (20 * i + a) + '%'
+    getWidth(item) {
+      for (let i = item.nodes.length - 1; i >= 0; i--) {
+        if (item.rate >= item.target) {
+          return '100'
+        } else if (item.rate >= item.nodes[i].target) {
+          let c = item.nodes[i + 1].target - item.nodes[i].target
+          let t = item.rate - item.nodes[i].target
+          let a = (t / c) * 100 / item.nodes.length
+          return (25 * i + a) + 3
         }
       }
     }
@@ -230,13 +331,17 @@ body::-webkit-scrollbar {
         .icon {
           width: 0.8rem;
           height: 0.8rem;
-          background: red;
         }
         .msg {
           margin-right: 0.24rem;
           flex: 1;
           .name {
             color: #333333;
+            em {
+              color: rgba(153, 153, 153, 1);
+              font-size: 0.26rem;
+              margin-right: 0.1rem;
+            }
           }
           .gift {
             color: #fd9946;
@@ -323,6 +428,10 @@ body::-webkit-scrollbar {
             }
             &.act {
               background: url(../assets/img/storeAct.png);
+              background-size: 100% 100%;
+            }
+            &.other {
+              background: url(../assets/img/storeAct2.png);
               background-size: 100% 100%;
             }
           }
