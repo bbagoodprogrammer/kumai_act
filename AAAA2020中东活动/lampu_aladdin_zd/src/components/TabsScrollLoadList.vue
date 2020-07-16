@@ -519,12 +519,13 @@ export default {
       height: 0.77rem;
       background: url(../assets/img/scoreBox.png);
       background-size: 100% 100%;
-      margin-right: 0.1rem;
+      margin-left: 0.05rem;
     }
     .scoreMsg {
       .total {
         font-size: 0.24rem;
         font-weight: 500;
+        white-space: nowrap;
       }
       .conis {
         font-size: 0.24rem;
@@ -610,10 +611,10 @@ export default {
         background: url(../assets/img/coins.png);
         background-size: 100% 100%;
         font-size: 0.24rem;
-        text-indent: 0.4rem;
         color: #ffed5f;
         font-weight: 600;
-        margin-right: 0.05rem;
+        margin-left: 0.05rem;
+        text-indent: 0.15rem;
       }
       &.rank1 {
         .rank {

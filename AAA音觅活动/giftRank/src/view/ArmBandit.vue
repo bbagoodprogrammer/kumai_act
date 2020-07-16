@@ -32,20 +32,29 @@
     <div class="mask" v-show="showRules">
       <transition name="slide">
         <div class="rule" v-if="showRules">
-          <i class="close" @click="closeRule()"></i>
-          <h6>1 活動時間</h6>
-          <p>2020年6月22日18:00-6月28日20：00</p>
-          <h6>2 榜單排名</h6>
-          <p>榜單按照本週收到的端午節禮物數量前100名玩家從高到低排名</p>
-          <p>榜單展示端午節禮物的實時累計數據</p>
-          <h6>3 活動獎勵</h6>
-          <p>第一名玩家獲得粽意你-頭像框（7天），“龍舟”座駕（7天）</p>
-          <span class="giftImg"></span>
-          <p>第二名粽意你-頭像框（5天）</p>
-          <p>第三名粽意你-頭像框（3天）</p>
-          <h6>4 注意事項 </h6>
-          <p>榜單獎勵在活動結束後五個工作日內發放獎勵</p>
-          <p class="lastTips">本活動最終解釋權歸活動主辦方所有</p>
+          <div class="con">
+            <i class="close" @click="closeRule()"></i>
+            <h6>1 活動時間</h6>
+            <p>{{aTimer}}</p>
+            <h6>2 榜單排名</h6>
+            <p>榜單按照本周收到的夏日消暑限定禮物數量的前100名玩家從高到低排名</p>
+            <p>榜單展示指定禮物的實時累計數據</p>
+            <h6>3 活動獎勵</h6>
+            <!-- <span class="giftImg"></span> -->
+            <div class="giftBox">
+              <h5>冰西瓜榜：</h5>
+              <p>第一名：完美夏日-頭像框（7天）、夏日甜品屋座駕（7天）</p>
+              <p>第二名：完美夏日-頭像框（5天）</p>
+              <p>第三名：完美夏日-頭像框（3天）</p>
+              <h5>夏日蒲扇榜:</h5>
+              <p>第一名：完美夏日-頭像框（15天）、夏日甜品屋座駕（10天）</p>
+              <p>第二名：完美夏日-頭像框（7天）、夏日甜品屋座駕（7天）</p>
+              <p>第三名：完美夏日-頭像框（5天）</p>
+            </div>
+            <h6>4 注意事項 </h6>
+            <p>榜單獎勵在活動結束後五個工作日內發放獎勵</p>
+            <p class="lastTips">本活動最終解釋權歸活動主辦方所有</p>
+          </div>
         </div>
       </transition>
     </div>
@@ -62,6 +71,7 @@ import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
 import roolMsg from "../components/RoolMsg"
 import downTime from '../utils/downTime.js'
+import getDate from "../utils/getDate"
 import TabsScrollLoadList from "../components/TabsScrollLoadList"
 export default {
   components: { MsgToast, ActFooter, roolMsg, TabsScrollLoadList },
@@ -78,13 +88,18 @@ export default {
       roolMsgs: [],
       surplusTime: {},
       showRules: false,
+      stime: 0,
+      etime: 0
     }
   },
   created() {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
-  mounted() {
+  computed: {
+    aTimer() {
+      return getDate(new Date(this.stime), 1) + '-' + getDate(new Date(this.etime), 2)
+    }
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -96,6 +111,8 @@ export default {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
           const { step, gifts, downTime, stime, etime, owner } = response_data
+          this.stime = stime * 1000
+          this.etime = etime * 1000
           this.vxc('setActStatus', step)
           this.vxc('setGifts', gifts)
           this.vxc('setInited', 1)
@@ -153,12 +170,16 @@ export default {
 body::-webkit-scrollbar {
   width: 0;
 }
+.con {
+  height: 7.6rem;
+  overflow-y: scroll;
+}
 .box {
   max-width: 750px;
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: #23b961 url(../assets/img/banner.png) center 0 no-repeat;
+  background: #fcfac7 url(../assets/img/banner.png) center 0 no-repeat;
   background-size: 100% auto;
   .shareBar {
     position: fixed;
@@ -185,7 +206,7 @@ body::-webkit-scrollbar {
       background-size: 100% 100%;
       position: absolute;
       right: 0;
-      top: 1.93rem;
+      top: 1.23rem;
     }
   }
   .gifts {
@@ -251,7 +272,7 @@ body::-webkit-scrollbar {
       top: -0.4rem;
     }
     .lastTips {
-      color: #b8bc6c;
+      color: #267cfd;
       font-size: 0.2rem;
       margin-top: 0.24rem;
       text-align: center;
@@ -264,15 +285,25 @@ body::-webkit-scrollbar {
       background-size: 100% 100%;
       margin: 0.18rem auto 0.38rem;
     }
+    .giftBox {
+      h5 {
+        padding-left: 0.3rem;
+        color: #1a9df0;
+      }
+      p {
+        padding-left: 0.6rem;
+        text-indent: 0rem;
+      }
+    }
     h6 {
       font-size: 0.24rem;
-      color: #056005;
+      color: #267cfd;
       font-weight: 800;
       margin-top: 0.1rem;
     }
     p {
       font-size: 0.24rem;
-      color: #6aa46a;
+      color: #1a9df0;
       font-weight: 500;
       text-indent: 0.5rem;
       // margin-top: 0.1rem;

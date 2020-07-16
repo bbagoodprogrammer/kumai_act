@@ -185,6 +185,10 @@ body {
           .nick {
             font-size: 0.28rem;
             font-weight: 600;
+            max-width: 2.5rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
           .ding {
             width: 0.96rem;

@@ -95,7 +95,7 @@ function getHistory(from, type) {
 }
 
 //統計
-function setNum(){
+function setNum() {
     return axios.get(`/lampu_aladdin/load.php?token=${token}`)
 }
 const httpConfig = {

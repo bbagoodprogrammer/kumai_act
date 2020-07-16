@@ -114,7 +114,7 @@ body {
   background-color: #8338d0;
 }
 .red {
-  color: red !important;
+  color: orange !important;
   font-weight: 600;
 }
 .rule {

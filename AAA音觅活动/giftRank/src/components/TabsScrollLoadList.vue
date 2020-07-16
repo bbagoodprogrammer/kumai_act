@@ -364,6 +364,7 @@ export default {
             white-space: nowrap;
             text-overflow: ellipsis;
             font-weight: 800;
+            color: #fff;
           }
           .score {
             margin-left: 0.28rem;
@@ -386,14 +387,14 @@ export default {
         right: 0.4rem;
         strong {
           display: block;
-          color: #069051;
+          color: #fff;
           font-size: 0.24rem;
           font-weight: 500;
         }
         em {
           display: block;
           font-size: 0.72rem;
-          color: #b57c3d;
+          color: #f2ff2a;
           font-weight: 800;
         }
       }

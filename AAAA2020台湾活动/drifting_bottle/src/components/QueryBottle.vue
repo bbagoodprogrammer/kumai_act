@@ -1,7 +1,7 @@
 <template>
   <div class="querySong">
     <i class="closeQuery" @click="closeQueryPup()"></i>
-    <p class="queryTips">投放歌曲會收到收聽和關注~投放的人數越多，<br />收聽歌曲的人越多，優質作品將得到更多曝光次數~</p>
+    <p class="queryTips" v-html="lang.dSongTips"></p>
     <div class="song">
       <div class="imgBox">
         <img v-lazy="querySong.avatar" alt="">
@@ -14,34 +14,34 @@
           <span class="score3"><i></i>{{querySong.like}}</span>
         </div>
       </div>
-      <div class="status" @click="closeQueryPup()">重新選擇</div>
+      <div class="status" @click="closeQueryPup()">{{lang.again}}</div>
     </div>
     <div class="query">
       <div class="queryTabs">
-        <span :class="{act:showType==1}" @click="tabClick(1)">免費投瓶</span>
-        <span :class="{act:showType==2}" @click="tabClick(2)">定製投瓶</span>
+        <span :class="{act:showType==1}" @click="tabClick(1)">{{lang.freeDb}}</span>
+        <span :class="{act:showType==2}" @click="tabClick(2)">{{lang.bayDb}}</span>
       </div>
       <div class="firstCom" v-if="showType==1">
         <div class="bottleImgBg">
           <div class="bottle" :class="{black:!first || querySong.free}"></div>
         </div>
         <P v-if="querySong.free">對不起，這首作品《{{querySong.name}}》已于{{getDate(querySong.free_time)}}被免費投瓶過一次了，可以選擇定製投瓶再進行投放~</P>
-        <p v-else-if="!first">今日免費投瓶已使用</p>
-        <p v-else>每位用戶每天首次投瓶免費，是否確認對此作品投瓶？</p>
-        <span class="comitBtn" @click="qurey()" v-if="first && !querySong.free">確認投瓶</span>
-        <div class="status" @click="closeQueryPup()" v-if="querySong.free">重新選擇</div>
+        <p v-else-if="!first">{{lang.freeOver}}</p>
+        <p v-else>{{lang.questTips}}</p>
+        <span class="comitBtn" @click="qurey()" v-if="first && !querySong.free">{{lang.qureyD}}</span>
+        <div class="status" @click="closeQueryPup()" v-if="querySong.free">{{lang.again}}</div>
       </div>
       <!-- @click="selectChange(item)" -->
       <div class="defaultCom" v-else>
         <div class="pNumBox">
           <div class="pNum" :class="{act:item.pNum == pNum}" v-for="(item,index) in optionArr " :key="index" @click="selectChange(item)">
             <i class="yes" v-if="item.pNum == pNum"></i>
-            <span class="title">投放人數</span>
+            <span class="title">{{lang.dNum}}</span>
             <span class="peopleNum">{{item.pNum}}</span>
-            <span class="price">金幣： <em>{{item.price}}</em></span>
+            <span class="price">{{lang.coins}} <em>{{item.price}}</em></span>
           </div>
         </div>
-        <span class="commitBtn" @click="qurey()">確定</span>
+        <span class="commitBtn" @click="qurey()">{{lang.ok2}}</span>
       </div>
     </div>
     <div class="mask" v-show="showQuery">
@@ -50,11 +50,11 @@
           <i class="close" @click="closeComitPup()"></i>
           <p>{{queryType==1?`您將使用${price}金幣投瓶此作品？`:`對不起，你的金幣餘額不足夠投瓶，請前去儲值~`}} </p>
           <div class="btnBox" v-if="queryType == 1">
-            <span @click="cancel()">取消</span>
-            <span @click="commitSong()">確定</span>
+            <span @click="cancel()">{{lang.cancel}}</span>
+            <span @click="commitSong()">{{lang.ok2}}</span>
           </div>
           <div class="stored" @click="stored()" v-else>
-            前去儲值
+            {{lang.goStored}}
           </div>
         </div>
       </transition>
@@ -140,7 +140,7 @@ export default {
       let workId = this.querySong.sid
       let player = this.plarerArr['Throw'] ? this.plarerArr['Throw'].player : false
       if (!player) {
-        this.toast('資源未加載完成，請稍後再試~')
+        this.toast(this.lang.noPlayer)
         return
       }
       api.throwBottle(this.type, workId).then(res => {
@@ -153,7 +153,7 @@ export default {
             this.vxc('reduexCoins', this.price)
           }
           setTimeout(() => {
-            this.toast(`已投瓶成功`)
+            this.toast(this.lang.dSucess)
           }, 3000)
         } else {
           this.toast(res.data.response_status.error)

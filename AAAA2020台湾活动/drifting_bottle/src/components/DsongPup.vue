@@ -2,12 +2,12 @@
   <div class="dSongPup">
     <i class="close" @click="closeDsongPup()"></i>
     <div class="tabs">
-      <span :class="{act:type==1}" @click="tabClick(1)">我的</span>
-      <span :class="{act:type==2}" @click="tabClick(2)">好友</span>
+      <span :class="{act:type==1}" @click="tabClick(1)">{{lang.me}}</span>
+      <span :class="{act:type==2}" @click="tabClick(2)">{{lang.firend}}</span>
     </div>
     <!-- 我的歌 -->
     <div class="mySong" v-if="type==1">
-      <p v-if="dSongList.length ==0" class="noData">暫無數據</p>
+      <p v-if="dSongList.length ==0" class="noData">暫無滿足要求的作品，請去發佈新作品~</p>
       <ul class="songList">
         <li v-for="(item,index) in dSongList" :key="index">
           <img v-lazy="item.avatar" alt="">
@@ -19,22 +19,22 @@
               <span class="score3"><i></i>{{item.like}}</span>
             </div>
           </div>
-          <span class="status" @click="queryBottle(item)">選擇</span>
+          <span class="status" @click="queryBottle(item)">{{lang.change}}</span>
         </li>
       </ul>
     </div>
     <!-- 好友列表 -->
     <div class="fSongList" v-else>
-      <p v-if="fLoading" class="noData">加載中...</p>
-      <p v-if="friendList.length == 0 && !fLoading" class="noData">暫無好友，快去添加吧！</p>
+      <p v-if="fLoading" class="noData">{{lang.loading}}</p>
+      <p v-if="friendList.length == 0 && !fLoading" class="noData">{{lang.noFriend}}</p>
       <ul class="list">
         <li v-for="(item,index) in friendList" :key="index">
           <img v-lazy="item.avatar" class="av" alt="">
           <div class="fMsg">
             <div class="nick">{{item.nick}}</div>
-            <div class="work">近期：<strong>{{item.work.name}}</strong> </div>
+            <div class="work">{{lang.near}}<strong>{{item.work.name}}</strong> </div>
           </div>
-          <div class="queyBtn" @click="showFworks(item)">查看作品</div>
+          <div class="queyBtn" @click="showFworks(item)">{{lang.lookWork}}</div>
         </li>
       </ul>
     </div>
@@ -42,8 +42,8 @@
     <transition name="moveR">
       <div class="fWorks" v-show="isShowFworks">
         <i class="close" @click="closeFworks()"></i>
-        <p v-if="fwLoading" class="noData">加載中...</p>
-        <p v-if="fworksList.length == 0 && !fwLoading" class="noData">暫無數據</p>
+        <p v-if="fwLoading" class="noData">{{lang.loading}}</p>
+        <p v-if="fworksList.length == 0 && !fwLoading" class="noData">{{lang.noData}}</p>
         <ul class="songList mH" v-if="fworksList.length > 0">
           <li v-for="(item,index) in fworksList" :key="index">
             <img v-lazy="item.avatar" alt="">
@@ -55,7 +55,7 @@
                 <span class="score3"><i></i>{{item.like}}</span>
               </div>
             </div>
-            <span class="status" @click="queryBottle(item)">選擇</span>
+            <span class="status" @click="queryBottle(item)">{{lang.change}}</span>
           </li>
         </ul>
       </div>

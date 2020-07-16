@@ -8,9 +8,9 @@
         <span class="userRank">{{item.rank}}</span>
         <img v-lazy="activite==1?'':item.avatar" alt="">
         <div class="userMsg">
-          <!--: -->
-          <!--  -->
-          <div class="nick">{{ activite==1?'?????':item.name}}</div>
+          <!--activite==1?'?????': -->
+          <!--activite==1?'???':  -->
+          <div class="nick">{{activite==1?'?????': item.name}}</div>
           <div class="uid">{{activite==1?'???':item.uid}}</div>
         </div>
         <div class="score">人氣值：<strong>{{item.score}}</strong> </div>

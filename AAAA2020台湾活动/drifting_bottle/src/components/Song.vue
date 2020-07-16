@@ -24,8 +24,8 @@
         <div class="userNick">{{nowPrize.nick}}</div>
       </div>
       <div class="songBar">
-        <p class="barStatus" v-if="isLoading!='loaded'">Loading...</p>
-        <div class="timerBox" v-else>
+        <!-- <p class="barStatus" v-if="isLoading!='loaded'">Loading...</p> -->
+        <div class="timerBox">
           <div class="songName">《{{nowPrize.name}}》</div>
           <div class="timebar">
             <div class="actbar" :style="{width:this.now+'%'}">
@@ -65,17 +65,22 @@ export default {
       showLuckTips: false,
       getGift: false,
       giftTimer: null,
-      wordAni: false
+      wordAni: false,
+      isPlay: true
     }
   },
   watch: {
     sound(val) {
-      console.log(val)
       clearInterval(this.giftTimer)
+      let lastSeek = 0
+      let sing = null
+      let seek = 0
       this.giftTimer = setInterval(() => {
-        let sing = this.sound.playing()
-        console.log(sing)
-        if (sing) {
+        lastSeek = seek
+        sing = this.sound.playing()
+        seek = this.sound.seek()
+        console.log(sing, lastSeek, seek)
+        if (sing && lastSeek != seek) {
           this.listenTime += 0.2
         }
       }, 200)
@@ -91,14 +96,16 @@ export default {
       }
     },
     listenTime(val) {
-      console.log(val)
       if (val >= this.luckTime && !this.getGift) {
-        console.log('fa', val)
         this.getGift = true
         api.geiGift(this.nowPrize.tid, this.key).then(res => {
-          let gift = res.data.response_data
-          this.luckGift = `${gift.nums}${gift.type == 2 ? '金豆' : '金幣'}`
-          this.showLuckTips = true
+          if (res.data.response_status.code == 0) {
+            let gift = res.data.response_data
+            this.luckGift = `${gift.nums}${gift.type == 2 ? this.lang.bean : this.lang.coios2}`
+            this.showLuckTips = true
+          } else {
+            this.toast(res.data.response_status.error)
+          }
         })
       }
     }
@@ -118,7 +125,9 @@ export default {
       return `unloaded`
     },
     maxLength() {
-      return this.formatDate(this.sound.duration())
+      if (this.sound) {
+        return this.formatDate(this.sound.duration())
+      }
     },
     luckTime() {
       if (this.nowPrize.type == 2) {
@@ -127,46 +136,45 @@ export default {
         return 30
       }
     },
-    isPlay() {
-      return this.sound.playing()
-    }
   },
   methods: {
     init(addres) {
+      console.log(addres)
       this.sound = new Howl({
         src: addres,
         autoplay: true,
-        loop: true,
-        volume: 0.5,
+        html5: true,
+        preload: 'metadata',
+        // loop: true,
+        // volume: 0.5,
         onplay: () => {
           this.musicGo()
           if (!this.key) {
             globalBus.$emit('stopBg')
             api.singIng(this.nowPrize.tid).then(res => {
-              // if (res.data.response_status.code == 0) {
-              this.key = res.data.response_data.key
-              // } else {
-              //   this.toast(res.data.response_status.error)
-              // }
+              if (res.data.response_status.code == 0) {
+                this.key = res.data.response_data.key
+              } else {
+                this.toast(res.data.response_status.error)
+              }
             })
           }
         },
-        onloaderror: () => {
-          this.toast(`音頻加載失敗，請稍後再試`)
-        },
-        // onplay: () => {
-        //   console.log('onp')
-        //   this.musicGo()
-        // },
         // onpause: () => {
-        //   console.log(`onpause`, this.sound.state())
+        //   console.log('onpause')
+        //   clearInterval(this.giftTimer)
         // },
         onend: () => {
-          clearInterval(this.timer)
-        }
+          this.isPlay = false
+          console.log('onend')
+        },
       });
+      this.sound.usingWebAudio = false
+      this.sound.play();
+      this.musicGo()
     },
     go() {
+      this.isPlay = !this.isPlay
       if (this.sound.playing()) {
         clearInterval(this.timer)
         this.sound.pause()
@@ -179,9 +187,16 @@ export default {
       clearInterval(this.timer)
       this.timer = setInterval(() => {
         // this.listenTime++
-        let seek = this.sound.seek(this.sound)
+        // console.log(this.sound.seek(), this.sound, this.sound.duration())
+        let seek = this.sound.seek()
         this.now = seek / this.sound.duration() * 100
-        this.nowTime = this.formatDate(seek)
+        if (typeof (seek) == "number") {
+          this.nowTime = this.formatDate(seek)
+        } else if (this.sound.duration() > 0) {
+          this.nowTime = this.formatDate((this.now / 100) * this.sound.duration())
+        } else {
+          this.nowTime = `00:00`
+        }
       }, 1000)
     },
     next() {
@@ -191,9 +206,11 @@ export default {
         let type = nowP.type
         let h_time = this.listenTime
         let s_key = this.key
-        api.singTime(bottle, type, h_time, s_key).then(res => {
-          this.key = null
-        })
+        if (s_key) {
+          api.singTime(bottle, type, h_time, s_key).then(res => {
+            this.key = null
+          })
+        }
       }
       if (this.isOver) {
         this.closePrizeBox()
@@ -209,16 +226,17 @@ export default {
           this.getGift = false
         }
         this.index++
+        this.key = null
       }
-
       // this.init('mp3/CRITTY - 青春不散.mp3')
     },
     change() {
-      this.sound.pause()
+      // this.sound.pause()
       clearInterval(this.timer)
       let t = (this.now / 100) * this.sound.duration()
+      console.log(t)
       this.sound.seek(t)
-      this.sound.play();
+      // this.sound.play();
       this.musicGo()  //這裡會重複播放
     },
     formatDate(second) {
