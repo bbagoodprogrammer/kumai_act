@@ -15,7 +15,7 @@
           </div>
           <div class="dStatus">
             <strong>Status saat:<em>{{item.step==1?'sedang melempar':'Lempar berakhir'}}</em></strong>
-            <strong><em>{{item.time}} melampar</em></strong>
+            <strong><em>{{item.time}} melempar</em></strong>
           </div>
           <div class="dScore">
             <strong>Jumlah pendengar:<em>{{item.hear}}</em></strong>
@@ -68,7 +68,7 @@ export default {
     }
   },
   created() {
-    document.title = 'Catatanlempar'
+    document.title = 'Catatan'
     this.dList.loading = true
     api.getMyBottleHistory(0).then(res => {
       this.dList.loading = false

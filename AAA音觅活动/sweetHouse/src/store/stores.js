@@ -14,7 +14,8 @@ const store = new Vuex.Store({
             cb: null
         },
         isShare: false, //分享
-        roolMsg: []
+        roolMsg: [],
+        showSingUp: false
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -40,10 +41,13 @@ const store = new Vuex.Store({
             }
         },
         closeToast(state, val) {
-            state.toast = false
+            state.toastObj.toast = false
         },
         setRoolMsg(state, val) {
             state.roolMsg = val
+        },
+        setSingUp(state) {
+            state.showSingUp = !state.showSingUp
         }
     },
     actions: {

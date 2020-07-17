@@ -1,7 +1,7 @@
 <template>
   <div class="querySong">
     <i class="closeQuery" @click="closeQueryPup()"></i>
-    <p class="queryTips" v-html="lang.dSongTips"></p>
+    <p class="queryTips" v-html="showType==1 ?lang.dSongTips2:lang.dSongTips"></p>
     <div class="song">
       <div class="imgBox">
         <img v-lazy="querySong.avatar" alt="">

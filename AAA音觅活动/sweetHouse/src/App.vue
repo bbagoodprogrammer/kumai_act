@@ -1,21 +1,25 @@
 <template>
   <div id="app">
-    <arm-bandit></arm-bandit>
+    <Share />
+    <!-- <arm-bandit></arm-bandit> -->
     <msg-toast></msg-toast>
     <loading></loading>
+    <SingUpPup />
   </div>
 </template>
 
 <script>
+import Share from "./components/Share"
 import ArmBandit from './view/ArmBandit.vue'
 import MsgToast from "./components/commonToast"
 import Loading from "./components/Loading"
 import { globalBus } from './utils/eventBus'
 import { mapState } from 'vuex'
 import APP from './utils/openApp'
+import SingUpPup from "./components/SingUpPup"
 export default {
   name: 'App',
-  components: { ArmBandit, MsgToast, Loading },
+  components: { ArmBandit, MsgToast, Loading, SingUpPup, Share },
   computed: {
     ...mapState(['actStatus', 'isShare'])
   },

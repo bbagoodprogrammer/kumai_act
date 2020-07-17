@@ -10,8 +10,8 @@
         <div class="userMsg">
           <!--activite==1?'?????': -->
           <!--activite==1?'???':  -->
-          <div class="nick">{{activite==1?'?????': item.name}}</div>
-          <div class="uid">{{activite==1?'???':item.uid}}</div>
+          <div class="nick">{{item.name}}</div>
+          <div class="uid">{{item.uid}}</div>
         </div>
         <div class="score">Nilai popularitas:<strong>{{item.score}}</strong> </div>
       </li>
