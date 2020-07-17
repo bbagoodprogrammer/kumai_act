@@ -24,6 +24,19 @@
         </div>
       </transition>
     </div>
+    <div class="mask" v-show="showOk">
+      <transition name="slide">
+        <div class="getOk" v-show="showOk">
+          <i class="close"></i>
+          <h3>領取成功</h3>
+          <p>對應獎勵已發放到您的賬戶,<br /> 請注意查收！</p>
+          <div class="share">
+            <p class="shareTitle">炫耀一下</p>
+            <p class="msg">（獎勵繽紛小料2份）</p>
+          </div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -57,7 +70,8 @@ export default {
           type: 3,
           name: '頭像框（5天）'
         }
-      ]
+      ],
+      showOk: false
     }
   },
   methods: {
@@ -177,13 +191,17 @@ export default {
         background: rgba(0, 72, 107, 0.05);
         border-radius: 0.08rem;
         position: relative;
+        margin: 0 auto;
         img {
           width: 1.44rem;
           height: 1.43rem;
+          display: block;
+          margin: 0 auto;
         }
       }
       strong {
         display: block;
+        width: 100%;
         height: 0.4rem;
         line-height: 0.4rem;
         text-align: center;
@@ -202,6 +220,58 @@ export default {
       &.black {
         background: url(../assets/img/getBlack.png);
         background-size: 100% 100%;
+      }
+    }
+    .close {
+      display: block;
+      width: 0.36rem;
+      height: 0.37rem;
+      background: url(../assets/img/close.png);
+      background-size: 100% 100%;
+      position: absolute;
+      right: 0.35rem;
+      top: 0.3rem;
+    }
+  }
+  .getOk {
+    width: 5.32rem;
+    height: 2.89rem;
+    background: url(../assets/img/singUpSuc.png);
+    background-size: 100% 100%;
+    position: relative;
+    h3 {
+      height: 1rem;
+      line-height: 1rem;
+      text-align: center;
+      font-size: 0.4rem;
+      color: rgba(41, 182, 255, 1);
+      font-weight: bold;
+    }
+    > p {
+      font-size: 0.24rem;
+      color: rgba(89, 187, 237, 1);
+      text-align: center;
+      height: 1rem;
+    }
+    .share {
+      width: 5.07rem;
+      height: 0.75rem;
+      background: url(../assets/img/singUpSucBtn.png);
+      background-size: 100% 100%;
+      margin: 0 auto;
+      p {
+        font-size: 0.24rem;
+        color: rgba(227, 245, 255, 1);
+        margin: 0;
+        text-align: center;
+      }
+      .shareTitle {
+        font-size: 0.32rem;
+        color: rgba(227, 245, 255, 1);
+        font-weight: 500;
+      }
+      .msg {
+        margin-top: -0.1rem;
       }
     }
     .close {

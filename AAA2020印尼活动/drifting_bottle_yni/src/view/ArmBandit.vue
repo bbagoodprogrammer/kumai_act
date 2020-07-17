@@ -15,7 +15,7 @@
       <div class="tipsBox">
         <span class="tips ruleTips" :class="{top:isShare}" @click="goRule()">Hadiah<br />Aturan</span>
         <span class="tips songList" @click="showRank()">Daftar<br />lagu</span>
-        <span class="tips myHistory" @click="goHistory()">Catatan<br />lempar</span>
+        <span class="tips myHistory" @click="goHistory()">Catatan </span>
       </div>
     </div>
     <act-footer :dstime="dstime" :detime="detime" :gstime="gstime" :getime="getime" :plarerArr="plarerArr" @svgaStart="svgaStart"></act-footer>
@@ -85,6 +85,7 @@ export default {
     }
   },
   created() {
+    // this.toast(location.href)
     this.creatBgMusic()
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()

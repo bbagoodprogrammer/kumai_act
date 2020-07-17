@@ -300,8 +300,11 @@ export default {
     .songName {
       color: #8cfffe;
       font-size: 0.36rem;
-      font-weight: 600;
+      font-weight: 500;
       text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
     .timebar {
       width: 5.1rem;

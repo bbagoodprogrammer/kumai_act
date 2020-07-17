@@ -20,7 +20,7 @@
       </div>
       <div class="tipsBox">
         <span class="ruleTips1" @click="goRule()"></span>
-        <span class="ruleTips2" @click="goRule()"></span>
+        <span class="ruleTips2" @click="rule()"></span>
         <span class="ruleTips3" @click="rank()"></span>
       </div>
     </div>
@@ -30,6 +30,11 @@
     <div class="mask" v-show="showRank">
       <transition name="slide">
         <Rank v-if="showRank" />
+      </transition>
+    </div>
+    <div class="mask" v-show="showRules">
+      <transition name="slide">
+        <Rules v-if="showRules" />
       </transition>
     </div>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
@@ -48,9 +53,10 @@ import List from "../components/List"
 import Box from "../components/Box"
 import RoolMsg from "../components/RoolMsg"
 import Rank from "../components/Rank"
+import Rules from "../components/Rules"
 import { setTimeout } from 'timers';
 export default {
-  components: { MsgToast, ActFooter, List, Box, RoolMsg, Rank },
+  components: { MsgToast, ActFooter, List, Box, RoolMsg, Rank, Rules },
   data() {
     return {
       isShare: false, //是否分享
@@ -61,7 +67,8 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
-      showRank: false
+      showRank: false,
+      showRules: false
     }
   },
   created() {
@@ -97,10 +104,6 @@ export default {
     downApp() {
       APP()
     },
-    goRule() {
-      let regstr = getString('token')
-      location.href = `./index2.html?token=${regstr}`
-    },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       window.removeEventListener("scroll", this.onScroll)
@@ -108,6 +111,9 @@ export default {
     },
     rank() {
       this.showRank = true
+    },
+    rule() {
+      this.showRules = true
     }
   }
 }
@@ -121,7 +127,7 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: url(../assets/img/bg.png) center 0 no-repeat;
+  background: url(../assets/img/banner.png) center 0 no-repeat;
   background-size: 100% auto;
   .shareBar {
     position: fixed;
@@ -145,7 +151,7 @@ body::-webkit-scrollbar {
     .house {
       width: 7.5rem;
       height: 7.97rem;
-      background: url(../assets/img/house.png) no-repeat;
+      background: url(../assets/img/houseBg.png) no-repeat;
       background-size: 100% 100%;
       margin: 0 auto 0;
       position: relative;
