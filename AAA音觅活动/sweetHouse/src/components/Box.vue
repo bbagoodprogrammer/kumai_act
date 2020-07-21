@@ -1,36 +1,36 @@
 <template>
   <div class="boxStatus">
     <div class="liner">
-      <div class="actLiner"></div>
-      <div class="boxItem" v-for="(item,index) in box " :key="index" :class="'box'+index">
-        <span class="box" @click="showGiftPup(index)"></span>
-        <i class="ligt"></i>
+      <div class="actLiner" :style="{width:actWidth}"></div>
+      <div class="boxItem" v-for="(item,index) in packets " :key="index" :class="'box'+(index*1+1)">
+        <span class="box" :class="{open:item.got}" @click="showGiftPup(index)"></span>
+        <i class="ligt" v-if="score >= item.score && !item.got"></i>
       </div>
     </div>
     <div class="mask" v-show="closePup">
       <transition name="slide">
-        <div class="giftBox" v-show="closePup">
+        <div class="giftBox" v-if="closePup">
           <i class="close" @click="closeGiftPup()"></i>
-          <div class="title">清爽值達到XXXX</div>
+          <div class="title">清爽值達到{{packets[showIndex].score}}</div>
           <div class="giftItem">
-            <span v-for="(item,index) in gift" :key="index">
+            <span v-for="(item,index) in gift[showIndex+1].gift" :key="index">
               <span class="imgBox">
                 <img :src="require(`../assets/img/gift/${item.type}.png`)" alt="">
               </span>
               <strong>{{item.name}}</strong>
             </span>
           </div>
-          <div class="getBtn" :class="{black:false}"></div>
+          <div class="getBtn" :class="{black:packets[showIndex].got,not:this.score<packets[showIndex].score}" @click="openBox(packets[showIndex].got)"></div>
         </div>
       </transition>
     </div>
     <div class="mask" v-show="showOk">
       <transition name="slide">
         <div class="getOk" v-show="showOk">
-          <i class="close"></i>
+          <i class="close" @click="closeSharePup()"></i>
           <h3>領取成功</h3>
           <p>對應獎勵已發放到您的賬戶,<br /> 請注意查收！</p>
-          <div class="share">
+          <div class="share" @click="share()">
             <p class="shareTitle">炫耀一下</p>
             <p class="msg">（獎勵繽紛小料2份）</p>
           </div>
@@ -40,38 +40,84 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex"
+import share from "../utils/share"
+import api from "../api/apiConfig"
+import { globalBus } from '../utils/eventBus'
 export default {
   data() {
     return {
       closePup: false,
-      box: {
+      gift: {
         1: {
-          open: false
+          gift: [
+            {
+              type: 1,
+              name: '5000金豆'
+            },
+          ]
         },
         2: {
-          open: false
+          gift: [
+            {
+              type: 1,
+              name: '1000金豆'
+            },
+            {
+              type: 2,
+              name: '500金幣'
+            },
+          ]
         },
         3: {
-          open: false
+          gift: [
+            {
+              type: 1,
+              name: '2000金豆'
+            },
+            {
+              type: 2,
+              name: '1000金幣'
+            },
+          ]
         },
         4: {
-          open: false
-        }
-      },
-      gift: [
-        {
-          type: 1,
-          name: '3000金豆'
+          gift: [
+            {
+              type: 1,
+              name: '3000金豆'
+            },
+            {
+              type: 2,
+              name: '2000金幣'
+            },
+            {
+              type: 3,
+              name: '头像框（5天）'
+            }
+          ]
         },
-        {
-          type: 2,
-          name: '2000金幣'
-        }, {
-          type: 3,
-          name: '頭像框（5天）'
+      },
+      showOk: false,
+      showIndex: 0
+    }
+  },
+  props: ['nick'],
+  computed: {
+    ...mapState(['packets', 'score', 'uid']),
+    actWidth() {
+      for (let i = this.packets.length - 1; i >= 0; i--) {
+        if (this.score >= this.packets[this.packets.length - 1].score) {
+          return '100%'
+        } else if (this.score >= this.packets[i].score) {
+          let c = this.packets[i + 1].score - this.packets[i].score
+          let t = this.score - this.packets[i].score
+          let a = (t / c) * 100 / 5
+          return (25 * (i + 1) + a - 6.5) + '%'
+        } else if (this.score < this.packets[0].score) {
+          return this.score / this.packets[0].score / 5 * 100 - 3.5 + '%'
         }
-      ],
-      showOk: false
+      }
     }
   },
   methods: {
@@ -79,7 +125,38 @@ export default {
       this.closePup = false
     },
     showGiftPup(index) {
-      this.closePup = true
+      globalBus.$emit('commonEvent', () => {
+        this.showIndex = index
+        this.closePup = true
+      })
+    },
+    openBox(status) {
+      if (!status) {
+        if (this.score >= this.packets[this.showIndex].score) {
+          api.openBox(this.packets[this.showIndex].score).then(res => {
+            if (res.data.response_status.code == 0) {
+              this.showOk = true
+              this.vxc('openBoxSuc', this.showIndex)
+            }
+          })
+        } else {
+          this.toast(`您的积分不足哦~快去赚取积分把！`)
+        }
+      }
+    },
+    share() {
+      try {
+        share({
+          from: '1',
+          url: `http://activity.udateapp.com/static_html/2020/sweetHouse/index.html?type=1&uid=${this.uid}&score=${this.score}`,
+          title: `制作了多款夏日清爽甜品，清爽值达到${this.score}`,
+          desc: `制作了多款夏日清爽甜品，清爽值达到${this.score}`,
+          image: 'http://activity.udateapp.com/static_html/2020/sweetHouse/share.jpg'
+        })
+      } catch (e) { }
+    },
+    closeSharePup() {
+      this.showOk = false
     }
   }
 }
@@ -100,7 +177,6 @@ export default {
     background-size: 100% 100%;
     position: relative;
     .actLiner {
-      width: 100%;
       max-width: 96.5%;
       height: 0.15rem;
       background: url(../assets/img/actLiner.png);
@@ -127,6 +203,10 @@ export default {
         .box {
           background: url(../assets/img/box/box1.png);
           background-size: auto 100%;
+          &.open {
+            background: url(../assets/img/box/open1.png);
+            background-size: auto 100%;
+          }
         }
       }
       &.box2 {
@@ -134,6 +214,10 @@ export default {
         .box {
           background: url(../assets/img/box/box2.png);
           background-size: auto 100%;
+          &.open {
+            background: url(../assets/img/box/open2.png);
+            background-size: auto 100%;
+          }
         }
       }
       &.box3 {
@@ -141,6 +225,10 @@ export default {
         .box {
           background: url(../assets/img/box/box3.png);
           background-size: auto 100%;
+          &.open {
+            background: url(../assets/img/box/open3.png);
+            background-size: auto 100%;
+          }
         }
       }
       &.box4 {
@@ -148,6 +236,10 @@ export default {
         .box {
           background: url(../assets/img/box/box4.png);
           background-size: auto 100%;
+          &.open {
+            background: url(../assets/img/box/open4.png);
+            background-size: auto 100%;
+          }
         }
       }
       .ligt {
@@ -179,10 +271,11 @@ export default {
     }
     .giftItem {
       width: 3.65rem;
-      // height: 3.82rem;
+      height: 3.82rem;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       justify-content: space-around;
       .imgBox {
         display: block;
@@ -219,6 +312,10 @@ export default {
       line-height: 0.62rem;
       &.black {
         background: url(../assets/img/getBlack.png);
+        background-size: 100% 100%;
+      }
+      &.not {
+        background: url(../assets/img/getNot.png);
         background-size: 100% 100%;
       }
     }
