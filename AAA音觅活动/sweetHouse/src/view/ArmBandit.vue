@@ -5,36 +5,74 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <Box />
-      <div class="house">
+      <Box :nick="nick" />
+      <div class="house" :class="{easy:easy&&easy.less.length > 1 || !reg}">
         <div class="userTitle">
-          <p>xxx的夏日清爽屋 <strong>清爽值：xxxxx</strong></p>
+          <p v-if="!reg">你的清爽屋還沒開張 <strong>清爽值:????</strong> </p>
+          <p v-else>{{nick}}的夏日清爽屋 <strong>清爽值：{{score}}</strong></p>
         </div>
         <div class="people"></div>
+        <div class="sweetsStatus" v-if="(!easy||easy.less.length == 0) && reg">
+          <p class="ok">有可製作的夏日<br />清爽甜品</p>
+          <span class="scorllTop" @click="scorllTo()">點擊製作</span>
+        </div>
+        <div class="sweetsStatus" v-else-if="(easy&&easy.less.length == 1) && reg">
+          <img :src="require(`../assets/img/sweets/creatIcon${easy.id}.png`)" alt="">
+          <p class="less">还差{{easy.less[0].count}}份{{easy.less[0].name}}可制作{{easy.name}}</p>
+        </div>
       </div>
       <div class="wards">
         <div class="title"></div>
-        <i class="num num1"></i>
-        <i class="num num2"></i>
-        <i class="num num3"></i>
+        <i class="num num1" :class="'num' + index" v-for="(item,index) in raws" :key="index">{{item.count}}</i>
       </div>
       <div class="tipsBox">
-        <span class="ruleTips1" @click="goRule()"></span>
+        <span class="ruleTips1" @click="history()"></span>
         <span class="ruleTips2" @click="rule()"></span>
         <span class="ruleTips3" @click="rank()"></span>
       </div>
     </div>
-    <List />
+    <List :nick="nick" ref="list" />
     <p class="actTips">活動最終解釋權歸活主辦方所有</p>
     <!-- <act-footer></act-footer> -->
     <div class="mask" v-show="showRank">
       <transition name="slide">
-        <Rank v-if="showRank" />
+        <Rank v-if="showRank" :omerMsg="omerMsg" />
       </transition>
     </div>
     <div class="mask" v-show="showRules">
       <transition name="slide">
         <Rules v-if="showRules" />
+      </transition>
+    </div>
+    <div class="mask" v-show="showInviatPup">
+      <transition name="slide">
+        <div class="invitatCon" v-if="showInviatPup">
+          <i class="close" @click="closeInviatPup()"></i>
+          <ul class="pList">
+            <li v-for="(item,index) in friends" :key="index" @click="inviteation(item.uid,index)">
+              <!-- <div class="userRank">{{item.rank}}</div> -->
+              <div class="lsitItem">
+                <div class="imgBox">
+                  <span class="avBg" v-if="item.rank<=3"></span>
+                  <img v-lazy="item.avatar" alt="">
+                </div>
+                <div class="nick">
+                  <div>{{item.nick}}</div>
+                </div>
+                <div class="shareBtn">
+                  <i v-if="invitieIndex == index"> </i>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <p>成功邀請你開張夏日甜品屋的好友，<br />有機會獲得 <i></i> x5份</p>
+          <div class="singUpBtn" @click="invitSingUp()"></div>
+        </div>
+      </transition>
+    </div>
+    <div class="mask" v-show="showHistory">
+      <transition name="slide">
+        <GiftHistory v-if="showHistory" @closeHistory="closeHistory" />
       </transition>
     </div>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
@@ -54,9 +92,10 @@ import Box from "../components/Box"
 import RoolMsg from "../components/RoolMsg"
 import Rank from "../components/Rank"
 import Rules from "../components/Rules"
-import { setTimeout } from 'timers';
+import GiftHistory from "../components/GiftHistory"
+import { mapState } from "vuex"
 export default {
-  components: { MsgToast, ActFooter, List, Box, RoolMsg, Rank, Rules },
+  components: { MsgToast, ActFooter, List, Box, RoolMsg, Rank, Rules, GiftHistory },
   data() {
     return {
       isShare: false, //是否分享
@@ -68,23 +107,23 @@ export default {
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
       showRank: false,
-      showRules: false
+      showRules: false,
+      nick: '',
+      omerMsg: {},
+      friends: [],
+      showInviatPup: false,
+      invitieIndex: 0,
+      historyList: [],
+      showHistory: false,
+      inUid: null
     }
   },
   created() {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
-    setTimeout(() => {
-      this.vxc('setRoolMsg', [{
-        name: 'xxxx',
-        score: 4546464
-      }, {
-        name: 'xxxx',
-        score: 4546464
-      }])
-    }, 2000)
   },
-  mounted() {
+  computed: {
+    ...mapState(['raws', 'score', 'reg', 'easy'])
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -92,14 +131,34 @@ export default {
       this.vxc('setShareState', this.isShare) //分享状态
     },
     getDefaultData(val) { //初始化
-      // api.getDefault().then(res => {
-      //   const { response_status, response_data } = res.data
-      //   if (response_status.code == 0) {
-
-      //   } else {
-      //     this.toast(response_status.error)
-      //   }
-      // })
+      api.getDefault().then(res => {
+        const { response_status, response_data } = res.data
+        if (response_status.code == 0) {
+          const { step, uid, reg, score, nick, packets, raws, desserts, friends, easy } = response_data
+          this.vxc('setActStatus', step)
+          this.vxc('setReg', reg)
+          this.friends = friends
+          if (friends.length > 0 && !reg) {
+            this.showInviatPup = true
+          } else if (!reg) {
+            this.vxc('setSingUp')
+          }
+          this.vxc('setPackets', packets)
+          this.vxc('setRaws', raws)
+          this.vxc('setDesserts', desserts)
+          this.vxc('setScore', score)
+          this.vxc('setNick', nick)
+          this.nick = nick
+          // if (easy) {
+          this.vxc('setEasy', easy)
+          // }
+        } else {
+          this.toast(response_status.error)
+        }
+      })
+      api.getRoolMsg().then(res => {
+        this.vxc('setRoolMsg', res.data.response_data.list)
+      })
     },
     downApp() {
       APP()
@@ -110,10 +169,57 @@ export default {
       this.getDefaultData('ref')
     },
     rank() {
-      this.showRank = true
+      api.getRank(0).then(res => {
+        this.vxc('setRank', res.data.response_data.list)
+        this.omerMsg = res.data.response_data.owner
+        this.showRank = true
+      })
+    },
+    history() {
+      // api.getHistroy(0).then(res => {
+      //   this.historyList = res.data.response_data.list
+      this.showHistory = true
+      // })
+    },
+    inviteation(uid, index) {
+      this.inUid = uid
+      this.invitieIndex = index
+    },
+    closeInviatPup() {
+      this.showInviatPup = false
+    },
+    invitSingUp() {
+      if (!this.inUid) {
+        this.inUid = this.friends[0].uid
+      }
+      api.singUp(this.inUid).then(res => {
+        if (res.data.response_status.code == 0) {
+          this.showInviatPup = false
+          this.vxc('setReg', true)
+          this.toast('你的夏日甜品屋開張啦！！<br/>快去製作清爽甜品吧')
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
     },
     rule() {
       this.showRules = true
+    },
+    closeHistory() {
+      this.showHistory = false
+    },
+    scorllTo() {
+      let a = this.$refs.list.$el.getBoundingClientRect().top
+      let c = document.documentElement.scrollTop
+      let e = a + c - 10
+      this.timer = setInterval(() => {
+        let c = document.documentElement.scrollTop
+        let t = (e - c) / 10
+        window.scrollTo(0, c + t)
+        if (t < 8) {
+          clearInterval(this.timer)
+        }
+      }, 10)
     }
   }
 }
@@ -151,10 +257,14 @@ body::-webkit-scrollbar {
     .house {
       width: 7.5rem;
       height: 7.97rem;
-      background: url(../assets/img/houseBg.png) no-repeat;
+      background: url(../assets/img/houseBg2.png) no-repeat;
       background-size: 100% 100%;
       margin: 0 auto 0;
       position: relative;
+      &.easy {
+        background: url(../assets/img/houseBg.png) no-repeat;
+        background-size: 100% 100%;
+      }
       .userTitle {
         width: 4.5rem;
         height: 0.7rem;
@@ -181,6 +291,45 @@ body::-webkit-scrollbar {
         position: absolute;
         top: 1.97rem;
         left: 0.92rem;
+      }
+      .sweetsStatus {
+        width: 2.2rem;
+        height: 2.4rem;
+        position: absolute;
+        right: 0.9rem;
+        top: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        img {
+          width: 1rem;
+          height: 1rem;
+          margin-top: 0.15rem;
+        }
+        .ok {
+          margin-top: 0.3rem;
+          font-size: 0.26rem;
+          font-weight: 500;
+        }
+        .less {
+          margin-top: 0.05rem;
+          font-size: 0.26rem;
+          font-weight: 500;
+        }
+        .scorllTop {
+          width: 1.86rem;
+          height: 0.62rem;
+          text-align: center;
+          line-height: 0.62rem;
+          background: url(../assets/img/creat2.png);
+          background-size: 100% 100%;
+          font-size: 0.24rem;
+          color: rgba(114, 0, 91, 1);
+          font-weight: 600;
+          margin-top: 0.2rem;
+        }
       }
     }
     .wards {
@@ -227,6 +376,7 @@ body::-webkit-scrollbar {
       right: 0;
       top: 5.78rem;
       width: 1.54rem;
+      z-index: 100;
       span {
         display: block;
         float: right;
@@ -254,6 +404,100 @@ body::-webkit-scrollbar {
   }
   .guaBox {
     position: relative;
+  }
+  .invitatCon {
+    width: 7.1rem;
+    height: 9.55rem;
+    background: url(../assets/img/inviationBg.png);
+    background-size: 100% 100%;
+    position: relative;
+    padding-top: 1.67rem;
+    .pList {
+      height: 7.1rem;
+      max-height: 7.1rem;
+      overflow-y: scroll;
+      .lsitItem {
+        width: 6.37rem;
+        display: flex;
+        align-items: center;
+        height: 1.21rem;
+        margin: 0 auto;
+        background: url(../assets/img/listItembg.png);
+        background-size: 100% 100%;
+        margin-bottom: 0.1rem;
+        .userRank {
+          width: 0.6rem;
+          margin-left: 0.14rem;
+          text-align: center;
+          font-weight: 800;
+        }
+        .imgBox {
+          width: 0.95rem;
+          height: 0.94rem;
+          margin-left: 0.15rem;
+          position: relative;
+          .avBg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+          }
+          img {
+            display: block;
+            width: 0.8rem;
+            height: 0.8rem;
+            margin: 0.07rem 0 0 0.06rem;
+            border-radius: 50%;
+          }
+        }
+        .nick {
+          width: 3rem;
+          max-width: 3rem;
+          overflow: hidden;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          .tips {
+            font-size: 0.24rem;
+          }
+        }
+        .shareBtn {
+          width: 0.48rem;
+          height: 0.48rem;
+          background: url(../assets/img/yesBg.png);
+          background-size: 100% 100%;
+          margin-left: 1.3rem;
+          position: relative;
+          i {
+            display: block;
+            width: 0.4rem;
+            height: 0.4rem;
+            background: url(../assets/img/yes.png);
+            background-size: 100% 100%;
+            position: absolute;
+            left: 0.04rem;
+            top: 0.04rem;
+          }
+        }
+      }
+    }
+    > p {
+      text-align: center;
+      i {
+        display: inline-block;
+        width: 0.3rem;
+        height: 0.3rem;
+        background: url(../assets/img/gift/giftIcon2.png);
+        background-size: 100% 100%;
+      }
+    }
+    .singUpBtn {
+      width: 3.98rem;
+      height: 0.86rem;
+      background: url(../assets/img/singUpBtn2.png);
+      background-size: 100% 100%;
+      margin: 0.37rem auto 0;
+    }
   }
 }
 .actTips {

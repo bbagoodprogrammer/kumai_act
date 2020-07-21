@@ -2,7 +2,7 @@
   <div class="rank">
     <i class="close" @click="close()"></i>
     <ul class="scrollable">
-      <li v-for="(item,index) in list" :key="index" :class="'list' + item.rank">
+      <li v-for="(item,index) in rank" :key="index" :class="'list' + item.rank">
         <div class="userRank" v-if="item.rank>1">{{item.rank}}</div>
         <div class="imgBox">
           <span class="avBg" v-if="item.rank<=3"></span>
@@ -12,7 +12,7 @@
         <div class="score">清爽值<em>{{item.score}}</em></div>
       </li>
     </ul>
-    <div class="userMsg">
+    <div class="userMsg" v-if="reg">
       <div class="userRank" v-if="omerMsg.rank>1">{{omerMsg.rank>100?'100+':omerMsg.rank}}</div>
       <div class="imgBox">
         <span class="avBg" v-if="omerMsg.rank<=3"></span>
@@ -24,44 +24,18 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex"
+import api from "../api/apiConfig"
 export default {
+  props: ['omerMsg'],
   data() {
     return {
-      list: [
-        {
-          rank: 1,
-          avatar: '',
-          nick: 'xxxxxx',
-          score: 55555,
-        },
-        {
-          rank: 2,
-          avatar: '',
-          nick: 'xxxxxx',
-          score: 55555,
-        },
-        {
-          rank: 3,
-          avatar: '',
-          nick: 'xxxxxx',
-          score: 55555,
-        },
-        {
-          rank: 4,
-          avatar: '',
-          nick: 'xxxxxx',
-          score: 55555,
-        }
-      ],
-      omerMsg: {
-        rank: 2,
-        avatar: '',
-        nick: 'xxxxxx',
-        score: 55555,
-      },
       loaded: false,
       more: true
     }
+  },
+  computed: {
+    ...mapState(['rank', 'reg'])
   },
   mounted() {
     this.scrollable = this.$el.querySelector('.scrollable');
@@ -76,12 +50,12 @@ export default {
         if (this.loaded) return
         if (this.more) {
           this.more = false
-          api.getHistory(this.taskList.length, 'more').then(res => {
+          api.getRank(this.rank.length, 'more').then(res => {
             this.more = true
             if (res.data.response_data.list.length === 0) {
               this.loaded = true
             } else {
-              this.taskList = this.taskList.concat(res.data.response_data.list)
+              this.vxc('addRank', res.data.response_data.list.length)
             }
           })
         }
@@ -103,6 +77,7 @@ export default {
   position: relative;
   ul {
     height: 8.4rem;
+    overflow-y: scroll;
   }
   li,
   .userMsg {
@@ -136,6 +111,7 @@ export default {
         width: 0.8rem;
         height: 0.8rem;
         margin: 0.07rem 0 0 0.06rem;
+        border-radius: 50%;
       }
     }
     .nick {
@@ -152,6 +128,7 @@ export default {
       width: 1.3rem;
       font-size: 0.24rem;
       font-weight: 500;
+      text-align: center;
       em {
         font-size: 0.28rem;
         font-weight: 500;
@@ -184,6 +161,7 @@ export default {
           top: 0.18rem;
           left: 0.24rem;
           margin: 0;
+          border-radius: 50%;
         }
       }
       .nick {

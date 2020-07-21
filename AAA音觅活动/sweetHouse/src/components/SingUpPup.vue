@@ -1,10 +1,10 @@
 <template>
-  <div class="singUp" v-if="showSingUp">
+  <div class="singUp" v-show="showSingUp">
     <transition name="slide">
       <div class="sCon" v-if="showSingUp">
         <i class="close" @click="closeSingUp()"></i>
         <div class="house">
-          <p class="houseName">xxxx的夏日甜品屋</p>
+          <p class="houseName"><em>{{nick}}</em>的夏日甜品屋</p>
         </div>
         <div class="tips">
           <h3>夏日甜品屋</h3>
@@ -16,13 +16,14 @@
             <strong>{{item.name}}</strong>
           </span>
         </div>
-        <div class="singUpBtn"></div>
+        <div class="singUpBtn" @click="singUp()"></div>
       </div>
     </transition>
   </div>
 </template>
 <script>
 import { mapState } from "vuex"
+import api from "../api/apiConfig"
 export default {
   data() {
     return {
@@ -41,9 +42,20 @@ export default {
     }
   },
   computed: {
-    ...mapState(['showSingUp'])
+    ...mapState(['showSingUp', 'nick'])
   },
   methods: {
+    singUp() {
+      api.singUp().then(res => {
+        if (res.data.response_status.code == 0) {
+          this.vxc('setReg', true)
+          this.vxc('setSingUp')
+          this.toast('你的夏日甜品屋開張啦！！<br/>快去製作清爽甜品吧')
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+    },
     closeSingUp() {
       this.vxc('setSingUp')
     }
@@ -77,11 +89,24 @@ export default {
       margin: 0 auto;
       padding-top: 0.2rem;
       .houseName {
+        width: 3.8rem;
+        margin: 0 auto;
         text-align: center;
         line-height: 0.6rem;
         font-size: 0.32rem;
         color: rgba(141, 75, 255, 1);
         font-weight: 600;
+        display: flex;
+        justify-content: center;
+        em {
+          font-size: 0.32rem;
+          font-weight: 600;
+          display: block;
+          max-width: 1.6rem;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
       }
     }
     .tips {

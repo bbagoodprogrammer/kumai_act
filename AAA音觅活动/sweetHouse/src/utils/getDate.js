@@ -5,14 +5,20 @@ function getDate(datem, type) {
         hours = datem.getHours() < 10 ? '0' + datem.getHours() : datem.getHours(),
         minute = datem.getMinutes() < 10 ? '0' + datem.getMinutes() : datem.getMinutes(),
         second = datem.getSeconds() < 10 ? '0' + datem.getSeconds() : datem.getSeconds();
-    if (type == "~") {
-        return `${hours}h  ${date}/${month}`
-    }
-    if (type == "pai") {
-        if (minute < 10) {
-            minute = "0" + minute
+    if (type == 1) {
+        if (isToday(datem)) {
+            return `今日`
         }
-        return `${hours}:${minute}   ${date}/${month}`
+        return `${month}月${date}日`
     }
+    if (type == 2) {
+        return `${minute}:${second}`
+    }
+    if (type == ":") {
+        return `${hours}:${minute}`
+    }
+}
+function isToday(str) {
+    return new Date().getTime() - new Date(str).getTime() < 86400000;
 }
 export default getDate
