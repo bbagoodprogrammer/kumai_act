@@ -56,7 +56,7 @@ export default {
       background: url(../assets/img/pets/petTypeBg.png);
       background-size: 100% 100%;
       position: absolute;
-      z-index: 10;
+      z-index: 1000;
     }
     .pet {
       position: absolute;

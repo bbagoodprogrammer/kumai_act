@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import history from './history.vue'
 import VueLazyload from 'vue-lazyload'
-
+import store from "../../store/stores"
 Vue.config.productionTip = false
 Vue.use(VueLazyload, {
     preLoad: 1.3,
@@ -14,6 +14,7 @@ Vue.use(VueLazyload, {
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
+    store,
     components: { history },
     render: h => h(history)
 })

@@ -6,49 +6,78 @@
       <span class="time">收集時間</span>
       <span class="gift">收集萌寵</span>
     </div>
+    <p class="noData" v-if="record.length == 0"> 暫無數據</p>
     <ul class="scrollable">
-      <li>
+      <li v-for="(item,index) in record" :key="index">
         <div class="listLeft">
-          <img v-lazy="" alt="">
-          <div class="nick">噠噠噠噠噠所大多</div>
+          <img v-lazy="item.avatar" alt="" @click="goUser(item.uid)">
+          <div class="nick">{{item.nick}}</div>
         </div>
-        <div class="time">x月x日x時x分</div>
-        <div class="gift">小綿羊x10000</div>
+        <div class="time">{{getTime(item.tm)}}</div>
+        <div class="gift">{{item.gift_name}}x{{item.num}}</div>
       </li>
     </ul>
+    <Loading />
   </div>
 </template>
 <script>
+import Loading from "../../components/Loading"
+import api from "../../api/apiConfig"
+import getDate from "../../utils/getDate"
 export default {
+  components: { Loading },
+  data() {
+    return {
+      record: [],
+      loaded: false,
+      more: true
+    }
+  },
+  created() {
+    api.record(0).then(res => {
+      this.record = res.data.response_data.list
+    })
+  },
   mounted() {
-    document.title = '收集記錄'
     this.scrollable = this.$el.querySelector('.scrollable');
     if (this.scrollable) {
       this.scrollable.addEventListener('scroll', this.onScroll);
     }
   },
-  onScroll() {
-    const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
-    if (scrollToBottom) { //滾動加載，沒有加載完成
-      if (this.loaded) return
-      if (this.more) {
-        this.more = false
-        api.getHistory(this.record.length, 'more').then(res => {
-          this.more = true
-          if (res.data.response_data.list === 0) {
-            this.loaded = true
-          } else {
-            this.record = this.record.concat(res.data.response_data.list)
-          }
-        })
+  methods: {
+    getTime(tm) {
+      return getDate(new Date(tm * 1000), 2)
+    },
+    goUser(uid) {
+      location.href = `uid:${uid}`
+    },
+    onScroll() {
+      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
+      if (scrollToBottom) { //滾動加載，沒有加載完成
+        if (this.loaded) return
+        if (this.more) {
+          this.more = false
+          api.getHistory(this.record.length, 'more').then(res => {
+            this.more = true
+            if (res.data.response_data.list === 0) {
+              this.loaded = true
+            } else {
+              this.record = this.record.concat(res.data.response_data.list)
+            }
+          })
+        }
       }
-    }
-  },
+    },
+  }
 }
 </script>
 <style lang="scss">
 body {
   background: rgba(32, 88, 123, 1);
+}
+.noData {
+  text-align: center;
+  margin-top: 1.5rem;
 }
 .history {
   padding: 0.49rem 0.3rem 0;
@@ -90,6 +119,7 @@ body {
       font-size: 0.26rem;
       color: rgba(200, 249, 205, 1);
       font-weight: 500;
+      margin-bottom: 0.15rem;
       img {
         width: 1rem;
         height: 1rem;

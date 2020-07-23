@@ -7,7 +7,7 @@
       <div class="userMaxTips" @click="showNo()">
         <div class="avBg">
           <span class="bg"></span>
-          <img v-lazy="" alt="">
+          <img v-lazy="av" alt="">
         </div>
         <p>榮譽莊主證</p>
       </div>
@@ -18,7 +18,7 @@
     </div>
     <Pats />
     <Bar />
-    <TabsScrollLoadList ref="scorll"></TabsScrollLoadList>
+    <TabsScrollLoadList ref="scorll" @getDefaultData="getDefaultData"></TabsScrollLoadList>
     <act-footer></act-footer>
     <div class="mask" v-show="showUserNo">
       <transition name="slide">
@@ -26,10 +26,10 @@
           <i class="close" @click="showNo()"></i>
           <div class="avBg">
             <span class="bg"></span>
-            <img v-lazy="" alt="">
+            <img v-lazy="av" alt="">
           </div>
           <h3>榮譽莊主證</h3>
-          <p v-if="number == 0">成功收集6種萌寵可成為榮譽莊主<br />已有 {{number}} 位莊主獲得榮譽證書</p>
+          <p v-if="number == 0">成功收集6種萌寵可成為榮譽莊主<br />已有 {{complete}} 位莊主獲得榮譽證書</p>
           <p v-else>恭喜你成功收集6種萌寵<br />成為第 {{number}} 位優秀莊主，特發此證</p>
           <span class="no" v-if="number> 0">榮譽編號：NO.{{number}}</span>
         </div>
@@ -63,7 +63,9 @@ export default {
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
       showUserNo: false,
-      number: 0
+      number: 0,
+      complete: 0,
+      av: ''
     }
   },
   created() {
@@ -81,11 +83,15 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { all, schule, myrank, list, step, number } = response_data
+          const { all, schule, myrank, list, step, number, complete } = response_data
           this.vxc('setPets', all)
           this.vxc('setSchule', schule)
+          this.vxc('setActStatus', step)
+          this.complete = complete
           this.number = number
+          this.av = myrank.avatar
           this.vxc('setSetInited', 1)
+          this.vxc('setSingUp', myrank.registered)
           this.$store.commit('updateRankGroups', { //当前日榜信息
             key: 'total',
             loadCount: 0,
@@ -163,6 +169,11 @@ body::-webkit-scrollbar {
         height: 1.38rem;
         position: relative;
         margin-left: 0.13rem;
+        animation: jiggle 3s ease-in-out infinite;
+        -o-animation: jiggle 3s ease-in infinite;
+        -webkit-animation: jiggle 3s ease-in infinite;
+        -moz-animation: jiggle 3s ease-in infinite;
+        -ms-animation: jiggle 3s ease-in infinite;
         .bg {
           width: 1.38rem;
           height: 1.38rem;

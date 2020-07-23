@@ -34,6 +34,7 @@ const lang = {
     singUpDetil: '報名詳情',
     singUpNoData: '暫無報名，快去邀請好友吧~',
     singUpMsg: '報名簡介',
-    ms: '私訊'
+    ms: '私訊',
+    rank: '狂歡排行'
 }
 export default lang

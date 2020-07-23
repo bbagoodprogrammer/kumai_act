@@ -7,6 +7,7 @@
       <div class="tipsBox" :class="{top:isShare}">
         <span class="ruleTips" :class="{top:isShare}" @click="showRules()">{{lang.rules}}</span>
         <span class="ruleTips" :class="{top:isShare}" @click="goBar()" v-if="is_admin">{{lang.myAct}}</span>
+        <span class="ruleTips" :class="{top:isShare}" @click="goBar()" v-if="is_admin">{{lang.rank}}</span>
       </div>
       <div class="actTitle"></div>
     </div>
@@ -161,10 +162,10 @@ body::-webkit-scrollbar {
     .tipsBox {
       position: absolute;
       right: 0;
-      top: 0.12rem;
-      &.top {
-        top: 1.5rem;
-      }
+      top: 3.13rem;
+      // &.top {
+      //   top: 1.5rem;
+      // }
       .ruleTips {
         display: block;
         width: 1.42rem;
@@ -186,6 +187,19 @@ body::-webkit-scrollbar {
       position: absolute;
       bottom: 0.16rem;
       left: 2.23rem;
+    }
+    .giftTips {
+      width: 1.36rem;
+      height: 1.51rem;
+      background: url(../assets/img/giftIconBlack.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: 3.69rem;
+      left: 0.09rem;
+      &.act {
+        background: url(../assets/img/giftIcon.png);
+        background-size: 100% 100%;
+      }
     }
   }
   .guaBox {

@@ -80,10 +80,12 @@ function singUp() {
     return get(`/pet_manor/register.php?token=${token}`)
 }
 
-function record() {
-    return get(`/pet_manor/record.php?token=${token}`)
+function record(from) {
+    return get(`/pet_manor/record.php?token=${token}&from=${from}`)
 }
 const httpConfig = {
-    getDefault
+    getDefault,
+    singUp,
+    record
 }
 export default httpConfig

@@ -6,7 +6,7 @@
         <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">萌寵魅力榜</a>
         <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">专属萌寵榜</a>
       </div>
-      <a @click.prevent="onRefresh" href="" v-if="(tab == nowDay || mainTab == 1) && !isShare && activeityState===1" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a>
+      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a>
     </div>
     <div class="tabsTips">
       <p v-if="mainTab==0" class="taotalTips">依據收到所有萌寵禮物魅力值總和排名<br />每完整集齊一次萌寵（6個）額外增加1000魅力值</p>
@@ -22,8 +22,13 @@
     <ul v-if="mainTab==0" class="list day">
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid)">
         <div class="rank">{{item.rank}}</div>
-        <img v-lazy="item.avatar" alt="" class="av">
-        <div class="nick"><strong>{{item.nick}}</strong> <i>Live</i> </div>
+        <div class="imgBox">
+          <!-- v-if="item.nob > 0"  v-else-if="item.vip > 0"-->
+          <img v-if="item.nob > 0" :src="require(`../assets/img/nob/${item.nob}.png`)" class="nob" alt="">
+          <i class="vip" v-else-if="item.vip > 0">VIP{{item.vip}}</i>
+          <img v-lazy="item.avatar" alt="" class="av">
+        </div>
+        <div class="nick"><strong>{{item.nick}}</strong> <i v-if="item.live">Live</i> </div>
         <div class="score"> <i></i> <em>{{item.score}}</em></div>
       </li>
     </ul>
@@ -31,10 +36,15 @@
     <ul v-else-if="mainTab==1" class="list total">
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid)">
         <div class="rank">{{item.rank}}</div>
-        <img v-lazy="item.avatar" alt="" class="av">
-        <div class="nick"><strong>{{item.nick}}</strong> <i>Live</i> </div>
+        <div class="imgBox">
+          <!-- v-if="item.nob > 0"  v-else-if="item.vip > 0"-->
+          <img v-if="item.nob > 0" :src="require(`../assets/img/nob/${item.nob}.png`)" class="nob" alt="">
+          <i class="vip" v-else-if="item.vip > 0">VIP{{item.vip}}</i>
+          <img v-lazy="item.avatar" alt="" class="av">
+        </div>
+        <div class="nick"><strong>{{item.nick}}</strong> <i v-if="item.live">Live</i> </div>
         <div class="score">
-          <img :src="require(`../assets/img/pets/pet${1}.png`)" alt="">
+          <img :src="require(`../assets/img/pets/pet${tab}.png`)" alt="">
           <em>{{item.score}}</em>
         </div>
       </li>
@@ -108,13 +118,15 @@ export default {
         var dayApi = `/pet_manor/allList.php?pet={pet}&from={from}`;
         var totalApi = `/pet_manor/allList.php?pet=0&from={from}`;
         var api = this.rankKey == 'total' ? totalApi : dayApi;
-        return api.replace('{pet}', this.pets[this.rankKey].id)
+        var id = this.rankKey == 'total' ? 0 : this.pets[this.rankKey].id
+        return api.replace('{pet}', id)
       } else {
         var dayApi = `/pet_manor/allList.php?token={token}&pet={pet}&from={from}`;
         var totalApi = `/pet_manor/allList.php?token={token}&pet=0&from={from}`;
         var api = this.rankKey == 'total' ? totalApi : dayApi;
         const token = getUrlString('token') || '';
-        return api.replace('{pet}', this.pets[this.rankKey].id).replace('{token}', token);
+        var id = this.rankKey == 'total' ? 0 : this.pets[this.rankKey].id
+        return api.replace('{pet}', id).replace('{token}', token);
       }
     },
     rankSize() {
@@ -124,7 +136,6 @@ export default {
     rank() {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
-      console.log(rankConf)
       return rankConf;
     },
   },
@@ -139,9 +150,6 @@ export default {
   methods: {
     mainTabClick(tab) { //总榜切换
       this.mainTab = tab;
-      if (tab == 1) {
-        this.tab = 1
-      }
       this.vxc('changTab', this.rankKey)
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
@@ -159,9 +167,6 @@ export default {
       });
     },
     onScroll() {
-      if (this.setInited === 0 || this.mainTab == 2) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
-        return
-      }
       if (!this.rank.loading && !this.rank.loadEnd) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
@@ -184,10 +189,10 @@ export default {
             }
 
             //跟随榜单变换个人信息
-            if (response_data.myrank) {
+            if (response_data.myRank) {
               this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
                 key: this.rankKey,
-                msg: response_data.myrank
+                msg: response_data.myRank
               })
             }
             const arr = response_data.list;
@@ -224,17 +229,15 @@ export default {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
       this.$emit('getDefaultData')
-      if (this.mainTab == 1) {
-        this.$store.commit('updateRankGroups', {
-          key: this.rankKey,
-          loadCount: 0,
-          loadEnd: false,
-          loading: false,
-          none: false,
-          list: [],
-        });
-        this.$nextTick(this.onScroll);
-      }
+      this.$store.commit('updateRankGroups', {
+        key: this.rankKey,
+        loadCount: 0,
+        loadEnd: false,
+        loading: false,
+        none: false,
+        list: [],
+      });
+      this.$nextTick(this.onScroll);
     },
     getDate(time) {
       return getDate(new Date(time * 1000), '3')
@@ -346,14 +349,46 @@ export default {
         margin-left: 0.08rem;
         font-weight: 700;
       }
-      .av {
-        width: 1rem;
-        height: 1rem;
-        border: 0.04rem solid rgba(32, 88, 123, 1);
-        box-sizing: border-box;
-        border-radius: 50%;
+      .imgBox {
+        width: 1.2rem;
+        height: 1.2rem;
+        position: relative;
+        .nob {
+          width: 1.2rem;
+          height: 1.2rem;
+          position: absolute;
+          top: 0.02rem;
+          z-index: 10;
+        }
+        .av {
+          width: 1rem;
+          height: 1rem;
+          border: 0.04rem solid rgba(32, 88, 123, 1);
+          box-sizing: border-box;
+          border-radius: 50%;
+          position: absolute;
+          left: 0.1rem;
+          top: 0.1rem;
+        }
+        .vip {
+          display: block;
+          width: 0.8rem;
+          height: 0.3rem;
+          background: #fc6161;
+          font-size: 0.24rem;
+          color: #fffca1;
+          position: absolute;
+          bottom: 0.1rem;
+          border-radius: 0.3rem;
+          text-align: center;
+          line-height: 0.3rem;
+          left: 0.2rem;
+          z-index: 11;
+        }
       }
+
       .nick {
+        width: 2rem;
         margin-left: 0.17rem;
         display: flex;
         align-items: center;
@@ -392,6 +427,7 @@ export default {
           width: 0.4rem;
           height: 0.38rem;
           background: url(../assets/img/star.png);
+          background-size: 100% 100%;
           margin-right: 0.09rem;
         }
       }
@@ -461,8 +497,8 @@ export default {
   position: fixed;
   right: 0.08rem;
   bottom: 1.35rem;
-  // background: url(../assets/img/refresh.png) no-repeat;
-  // background-size: contain;
+  background: url(../assets/img/refresh.png) no-repeat;
+  background-size: contain;
   transition: all 1s;
   text-indent: -999rem;
   z-index: 100;

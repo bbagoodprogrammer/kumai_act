@@ -7,6 +7,7 @@ const store = new Vuex.Store({
         pets: {},
         actStatus: 0, //活动状态，默认未开始
         userMsg: {}, // 用户是否报名
+        singUp: false, // 是否報名
         isLoading: 0, //loading效果
         toastObj: {
             toast: false,   //彈窗
@@ -55,6 +56,9 @@ const store = new Vuex.Store({
         },
         setSchule(state, val) {
             state.schule = val
+        },
+        setSingUp(state, val) {
+            state.singUp = val
         },
         changGroupsUserMsg(state, obj) {
             if (obj && typeof obj.key != 'undefined') {
