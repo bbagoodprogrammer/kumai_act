@@ -99,9 +99,9 @@
       <transition name="slide">
         <div class="peoplePup" v-if="showPeople">
           <i class="close" @click="closePeople()"></i>
-          <p v-if="peopleList.length == 0" class="noData">暫無好友，快去添加好友吧~</p>
+          <p v-if="peopleListHas.length == 0" class="noData">暫無可邀請好友，快去添加好友吧~</p>
           <ul class="pList">
-            <li v-for="(item,index) in peopleList" :key="index">
+            <li v-for="(item,index) in peopleListHas" :key="index">
               <!-- <div class="userRank">{{item.rank}}</div> -->
               <div v-if="item.status!=2" class="lsitItem">
                 <div class="imgBox">
@@ -176,8 +176,9 @@ const parser = new Parser({ disableWorker: true })
 window.onShareSuccess = async (from, uid, type, typeName) => {
   // alert(`shareSuc${type}`)
   if (type == 2 || type == 3) {
-    if (from == 1) {
-      api.shareSuc()
+    if (from != 2) {
+      api.shareSuc(from)
+      this.toast(`分享成功！`)
     } else {
       api.shareCb().then(res => {
         if (res.data.response_status.code == 0) {
@@ -205,17 +206,17 @@ export default {
         {
           type: 1,
           msg: '水果',
-          tips: '可用於製作薄荷檸檬水、卡通冰激凌、桃桃雪域、茫茫夏日綿綿冰'
+          tips: '可用於製作薄荷檸檬水、卡通冰激凌、桃桃雪域、草莓綿綿冰'
         },
         {
           type: 2,
           msg: '奶製品',
-          tips: '可用於製作卡通冰激凌、珍珠奶茶、桃桃雪域、茫茫夏日綿綿冰'
+          tips: '可用於製作卡通冰激凌、珍珠奶茶、桃桃雪域、草莓綿綿冰'
         },
         {
           type: 3,
           msg: '繽紛小料',
-          tips: '可用於製作珍珠奶茶、桃桃雪域、茫茫夏日綿綿冰'
+          tips: '可用於製作珍珠奶茶、桃桃雪域、草莓綿綿冰'
         }
       ],
       rooms: {},
@@ -225,12 +226,12 @@ export default {
         mic: '在房間上麥15min（私密房不算）',
         coin: '在房間送出800金幣',
         share: '分享活動到line或fb',
-        create: '創建/接唱/和聲作品',
+        create: '創建/接唱/合聲作品',
         friend: '交友熱力每提升20',
         invite: '邀請好友開夏日甜品屋',
         charge: '儲值任意金額',
-        room: '自己房間的人氣值達到5000',
-        gift: '收到任意夏日甜品禮15份'
+        room: '自己房間的人氣值達到8000',
+        gift: '收到任意夏日甜品禮物15份'
       },
       creatIndex: 0,
       maxTips: false,
@@ -265,6 +266,12 @@ export default {
     },
     tasks() {
       return this.newTasksList[this.showType]
+    },
+    peopleListHas() {
+      let isHas = this.peopleList.filter(item => {
+        return item.status != 2
+      })
+     return isHas
     }
   },
   mounted() {
@@ -435,7 +442,8 @@ export default {
         api.tasksList().then(res => {
           let task = res.data.response_data.tasks
           for (let i in task) {
-            task[i].nowStore = Math.floor(task[i].current / task[i].step)
+            let nowStore = Math.floor(task[i].current / task[i].step)
+            task[i].nowStore = nowStore >= task[i].count?task[i].count:nowStore
           }
           this.vxc('setTasksList', task)
           this.rooms = res.data.response_data.rooms

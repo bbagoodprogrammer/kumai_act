@@ -55,7 +55,7 @@ export default {
             if (res.data.response_data.list.length === 0) {
               this.loaded = true
             } else {
-              this.vxc('addRank', res.data.response_data.list.length)
+              this.vxc('addRank', res.data.response_data.list)
             }
           })
         }

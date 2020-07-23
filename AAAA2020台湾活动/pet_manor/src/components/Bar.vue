@@ -30,19 +30,19 @@ export default {
         2: {
           gift: {
             type: 'beat',
-            num: 20
+            num: 50
           }
         },
         3: {
           gift: {
             type: 'gift1',
-            num: 50
+            num: 1
           }
         },
         4: {
           gift: {
             type: 'gift2',
-            num: 20
+            num: 1
           }
         },
         5: {

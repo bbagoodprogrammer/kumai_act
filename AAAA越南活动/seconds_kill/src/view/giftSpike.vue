@@ -31,8 +31,7 @@
           <h6>Thể lệ</h6>
           <p>1.Có thể dùng xu hoặc đậu để mua hàng, số lượng mua có hạn, giá cả và thông tin cụ thể vui lòng xem yêu cầu của mặt hàng!</p>
           <p>2.Sự kiện chia làm nhiều đợt cho đến khi bán hết hàng! Những đợt chưa mở có thể thiết lập nhắc nhở (cần mở quyền gửi thông báo trước), sau khi mở hệ thống sẽ tự động gửi thông báo nhắc nhở mua hàng, tránh bỏ lỡ những mặt hàng khuyến mãi giới hạn!</p>
-          <p>3.Những món hàng mua được sẽ gửi thẳng vào Túi, mời chú ý kiểm tra, iOS cần liên hệ ID 100 để mở tính năng Túi!</p>
-          <p>4. Thời hạn toàn bộ quà tặng là 7 ngày, thời hạn phiếu quà là 24 giờ!</p>
+          <p>3. Thời hạn toàn bộ quà tặng là 7 ngày, thời hạn phiếu quà là 24 giờ!</p>
           <p class="tips">Quyết định của ban tổ chức là quyết định cuối cùng</p>
         </div>
       </div>
