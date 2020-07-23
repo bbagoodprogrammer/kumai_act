@@ -4,8 +4,8 @@
     <ul>
       <li @click="gokRoom(item.rid)" v-for="(item,index) in list" :key="index" :class="'list'+item.cover">
         <!-- {{partyTitle[item.cover]}}- {{partyTitle[item.cover]}} -->
-        <div class="title" v-if="item.is_official == 0">{{item.them}} <i v-if="item.status == 1">在線領金豆</i> </div>
-        <div class="title" v-else>{{item.them}}<span class="titieTips">{{lang.officialAct}}</span><i v-if="item.status == 1">在線領金豆</i> </div>
+        <div class="title" v-if="item.is_official == 0">{{item.them}} <i v-if="item.status == 1"></i> </div>
+        <div class="title" v-else>{{item.them}}<span class="titieTips"></span><i v-if="item.status == 1"></i> </div>
         <div class="actCon">
           <img v-lazy="item.avatar" alt="" class="userAv" @click.stop="goUser(item.uid)">
           <div class="userMsg">
@@ -19,8 +19,8 @@
           <div class="topImg">
             <img v-lazy="item2.avatar" v-for="(item2,index2) in item.user" :key="index2" @click.stop="goUser(item2.uid)" />
           </div>
-          <span v-if="item.status == 1">{{item.nums}}{{lang.peopleTips}} <i></i></span>
-          <span v-else>{{item.nums}}人已關注</span>
+          <span :class="{ml:item.user.length <=2}" v-if="item.status == 1">{{item.nums}}{{lang.peopleTips}} <i></i></span>
+          <span :class="{ml:item.user.length <=2}" v-else>{{item.nums}}人已關注</span>
         </div>
         <div class="actBtm">
           <span @click.stop="showSingUpPup(item.id)" v-if="item.is_reg == 2"> {{lang.singUp}}</span>
@@ -187,6 +187,7 @@ export default {
         api.attention(id).then(res => {
           if (res.data.response_status.code == 0) {
             this.vxc('setListAttention', index)
+            this.$emit('addCount')
             if (this.showParty.id) {
               this.showParty.attension = !this.showParty.attension
             }
@@ -201,7 +202,9 @@ export default {
     getDate(time) {
       let partyTime = this.getDayName(time * 1000)
       if (partyTime == 0) {
-        return `今天${getDate(new Date(time * 1000), 1)}`
+        return `今天 ${getDate(new Date(time * 1000), 1)}`
+      } else if (partyTime == 1) {
+        return `明天 ${getDate(new Date(time * 1000), 1)}`
       } else {
         return `${getDate(new Date(time * 1000), 2)}`
       }
@@ -243,30 +246,19 @@ export default {
       align-items: center;
       i {
         display: block;
-        width: 1.5rem;
-        height: 0.52rem;
-        border: 0.03rem solid rgba(254, 255, 131, 1);
-        box-sizing: border-box;
-        border-radius: 0.26rem;
-        font-size: 0.24rem;
-        color: rgba(254, 255, 131, 1);
-        line-height: 0.52rem;
-        text-align: center;
-        text-indent: 0;
+        width: 1.29rem;
+        height: 0.43rem;
         margin-left: 0.23rem;
+        background: url(../assets/img/getBeat.png);
+        background-size: 100% 100%;
       }
       .titieTips {
-        width: 1.08rem;
-        height: 0.3rem;
-        background: rgba(122, 41, 205, 1);
-        border-radius: 0.1rem;
+        width: 1.1rem;
+        height: 0.43rem;
         display: inline-block;
-        font-size: 0.24rem;
-        line-height: 0.3rem;
-        text-align: center;
-        white-space: nowrap;
         margin-left: 0.12rem;
-        text-indent: 0rem;
+        background: url(../assets/img/offict.png);
+        background-size: 100% 100%;
       }
     }
     .actCon {
@@ -315,6 +307,7 @@ export default {
     }
     .userTop {
       margin: 0.05rem 0 0 0.27rem;
+      height: 0.64rem;
       display: flex;
       align-items: center;
       .topImg {
@@ -329,6 +322,9 @@ export default {
           border-radius: 50%;
           margin-right: 0.17rem;
         }
+      }
+      .ml {
+        margin-left: 1.5rem;
       }
       span {
         color: #ffdd93;
@@ -350,7 +346,7 @@ export default {
       padding-left: 0.31rem;
       display: flex;
       align-items: center;
-      margin-top: 0.27rem;
+      margin-top: 0.37rem;
       span {
         display: block;
         width: 1.26rem;
@@ -409,17 +405,19 @@ export default {
     .time {
       font-size: 0.24rem;
       text-align: center;
+      font-weight: 600;
     }
     .room {
       height: 0.5rem;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       margin-top: 0.15rem;
       padding: 0 0.36rem 0 0.59rem;
       strong {
         font-size: 0.24rem;
         margin-right: 0.26rem;
+         font-weight: 600;
         em {
           font-size: 0.3rem;
           font-weight: 600;

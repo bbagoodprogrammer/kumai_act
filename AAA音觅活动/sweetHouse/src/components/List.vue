@@ -59,7 +59,7 @@
                   <div class="btn not" v-if="item.got == item.count"></div>
                   <div class="btn get" v-else-if="(item.got<item.nowStore && item.count>1) || (item.count==1 && item.current >= item.max && item.got == 0)" @click="getRaws(item)"></div>
                   <div class="btn" v-else @click="doTask(item.key,item)">去完成({{item.nowStore}}/{{item.count}})</div>
-                  <div class="oneLiner" v-if="item.key == 'room' || item.key == 'gift'">
+                  <div class="oneLiner" v-if="item.key == 'room' || item.key == 'gift' || item.key == 'coin'|| item.key == 'mic' || item.key == 'friend'">
                     <div class="num">{{item.current}}/{{item.max}}</div>
                     <div class="liner">
                       <span class="numActLiner" :style="{width:item.current/item.max *100 + '%'}"></span>
@@ -271,7 +271,7 @@ export default {
       let isHas = this.peopleList.filter(item => {
         return item.status != 2
       })
-     return isHas
+      return isHas
     }
   },
   mounted() {
@@ -443,7 +443,7 @@ export default {
           let task = res.data.response_data.tasks
           for (let i in task) {
             let nowStore = Math.floor(task[i].current / task[i].step)
-            task[i].nowStore = nowStore >= task[i].count?task[i].count:nowStore
+            task[i].nowStore = nowStore >= task[i].count ? task[i].count : nowStore
           }
           this.vxc('setTasksList', task)
           this.rooms = res.data.response_data.rooms

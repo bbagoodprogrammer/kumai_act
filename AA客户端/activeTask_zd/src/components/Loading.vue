@@ -35,7 +35,7 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 10000;
-  background: rgba(0, 0, 0, 0.8) url(../assets/img/loading.gif) 50% no-repeat;
+  background: #fff url(../assets/img/loading.gif) 50% no-repeat;
   background-size: 35px 28px;
 }
 </style>

@@ -43,7 +43,9 @@
           <p>لا يعتبر وقت فعال إلا التفرج في غرف الدردشة التي سجري البث المباشر فيها أو غرف الغناء التي يغني الأشخاص فيها</p>
           <h3> في صندوق الكنز، ربما له المكلفآت التالية بالإضافة إلى العملات والفول~</h3>
           <div class="giftBox">
-            <img :src="require(`../assets/img/gift/${item}.png`)" alt="" v-for="(item,index) in 4" :key="index">
+            <span class="giftBg" v-for="(item,index) in 4" :key="index">
+              <img :src="require(`../assets/img/gift/${item}.png`)" alt="">
+            </span>
           </div>
         </div>
       </div>
@@ -71,6 +73,9 @@ export default {
   created() {
     this.getDefaultData()
     this.downSvga()
+  },
+  mounted() {
+    JSInterface.hideLoading()
   },
   methods: {
     getDefaultData(val) { //初始化
@@ -362,8 +367,8 @@ body::-webkit-scrollbar {
           width: 1.45rem;
           height: 0.6rem;
           border-radius: 1rem;
-          background: #eeeeee;
-          color: #999999;
+          background: rgba(238, 238, 238, 0.7);
+          color: rgba(153, 153, 153, 0.6);
           font-size: 0.24rem;
           text-align: center;
           line-height: 0.6rem;
@@ -380,7 +385,7 @@ body::-webkit-scrollbar {
         // align-items: center;
         padding-right: 1.34rem;
         .liner {
-          height: 0.1rem;
+          height: 0.08rem;
           background: #e6e0dc;
           position: relative;
           margin-top: 0.15rem;
@@ -392,7 +397,7 @@ body::-webkit-scrollbar {
             background-size: 100% 100%;
             position: absolute;
             z-index: 10;
-            top: -0.1rem;
+            top: -0.11rem;
             .boxCanvas {
               width: 0.73rem;
               height: 0.7rem;
@@ -436,7 +441,7 @@ body::-webkit-scrollbar {
             }
           }
           .actLiner {
-            height: 0.1rem;
+            height: 0.08rem;
             background: linear-gradient(
               180deg,
               rgba(255, 229, 126, 1) 0%,
@@ -540,9 +545,17 @@ body::-webkit-scrollbar {
     }
   }
   .giftBox {
+    width: 6.66rem;
     display: flex;
     justify-content: space-between;
     margin-top: 0.17rem;
+    padding-bottom: 0.86rem;
+    .giftBg {
+      width: 1.5rem;
+      height: 1.5rem;
+      background: RGBA(240, 238, 239, 1);
+      border-radius: 0.1rem;
+    }
     img {
       width: 1.5rem;
       height: 1.5rem;

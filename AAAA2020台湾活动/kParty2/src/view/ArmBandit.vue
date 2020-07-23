@@ -7,12 +7,12 @@
       <div class="tipsBox" :class="{top:isShare}">
         <span class="ruleTips" :class="{top:isShare}" @click="showRules()">{{lang.rules}}</span>
         <span class="ruleTips" :class="{top:isShare}" @click="goBar()" v-if="is_admin">{{lang.myAct}}</span>
-        <span class="ruleTips" :class="{top:isShare}" @click="goRank()" v-if="is_admin">{{lang.rank}}</span>
+        <span class="ruleTips" :class="{top:isShare}" @click="goRank()">{{lang.rank}}</span>
       </div>
       <div class="actTitle"></div>
-      <div class="giftTips" :class="{act:giftStates == 1}" @click="getGift()"></div>
+      <div class="giftTips" :class="{act:giftStates != 2}" @click="getGift()"></div>
     </div>
-    <Actlist />
+    <Actlist @addCount="addCount" />
     <act-footer></act-footer>
     <div class="mask" v-show="showRule">
       <transition name="slide">
@@ -95,7 +95,7 @@ export default {
     giftStates() {
       if (this.day_gift.get) {
         return 2
-      } else if (this.day_gift.num == this.day_gift.limit) {
+      } else if (this.day_gift.num >= this.day_gift.limit) {
         return 1
       } else {
         return 0
@@ -170,6 +170,8 @@ export default {
             this.toast(res.data.response_status.error)
           }
         })
+      } else {
+        this.showGiftPup = true
       }
     },
     closeGift() {
@@ -177,6 +179,9 @@ export default {
         this.day_gift.get = true
       }
       this.showGiftPup = false
+    },
+    addCount() {
+      this.day_gift.num++
     }
   }
 }

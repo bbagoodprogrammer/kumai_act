@@ -3,19 +3,21 @@
     <a @click.prevent="onRefresh" href="" class="refresh" :style="{transform:'rotate('+rotatePx+'deg)'}"></a>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
-      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">狂歡周榜</a>
-      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">狂歡月榜</a>
+      <a @click.prevent="changPre(0)" :class="{current:month==0}" href="">狂歡周榜</a>
+      <a @click.prevent="changPre(1)" :class="{current:month ==1}" href="">狂歡月榜</a>
     </div>
     <div class="lastTabs">
-      <span v-if="mainTab==0 || mainTab==2" :class="{current:mainTab==2}" @click="mainTabClick(2)">上週排行>></span>
-      <span v-if="mainTab==1 || mainTab==3" :class="{current:mainTab==3}" @click="mainTabClick(3)">上月排行>></span>
+      <span v-if="month== 0 && mainTab==2" @click="mainTabClick(0)">本週排行>></span>
+      <span v-if="month== 0 && mainTab==0" @click="mainTabClick(2)">上週排行>></span>
+      <span v-if="month== 1 && mainTab==3" @click="mainTabClick(1)">本月排行>></span>
+      <span v-if="month== 1 && mainTab==1" @click="mainTabClick(3)">上月排行>></span>
     </div>
-    <p v-if="mainTab==0 || mainTab==2" class="rankTips">依據各K房本週積分排名<br />達到3000分和前十名獲得獎勵</p>
-    <p v-else class="rankTips">依據各K房本月積分排名<br />達到10000分和前十名獲得獎勵</p>
+    <p v-if="mainTab==0 || mainTab==2" class="rankTips">依據各K房{{mainTab==0?'本':'上'}}週積分排名<br />達到3000分和前十名獲得獎勵</p>
+    <p v-else class="rankTips">依據各K房{{mainTab==1?'本':'上'}}月積分排名<br />達到10000分和前十名獲得獎勵</p>
     <ul class="list day" :class="{nodata: rank.list.length == 0}">
       <li v-for="(item,index) in rank.list" :key="index" @click="goUser(item.rid)">
         <div class="rank">{{item.rank}}</div>
-        <img v-lazy="item.avatar" alt="">
+        <img v-lazy="item.img" alt="">
         <div class="userMsg">
           <div class="name">{{item.name}}</div>
           <div class="rid">{{item.rid}}</div>
@@ -33,7 +35,7 @@
     <div v-if="rank.none" class="scrollNone">列表為空！</div>
     <div class="footer" v-if="msg.rank != 0 && msg.rid">
       <div class="rank">{{msg.rank}}</div>
-      <img v-lazy="msg.avatar" alt="">
+      <img v-lazy="msg.img" alt="">
       <div class="userMsg">
         <div class="name">{{msg.name}}</div>
         <div class="rid">{{msg.rid}}</div>
@@ -69,6 +71,7 @@ import getUrlString from '../../utils/getString.js';
 export default {
   data() {
     return {
+      month: 0,
       mainTab: 0,
       tab: 0,
       rotatePx: 0,    //刷新旋转动画
@@ -119,6 +122,12 @@ export default {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
+    changPre(val) {
+      this.month = val
+      if (val == 1) {
+        this.mainTabClick(1)
+      }
+    },
     mainTabClick(tab) {
       this.mainTab = tab;
       this.$nextTick(() => {
@@ -297,11 +306,8 @@ body {
   .lastTabs {
     margin: 0.26rem 0 0.13rem;
     font-weight: 600;
-    color: rgba(163, 94, 241, 1);
+    color: RGBA(250, 123, 120, 1);
     text-align: right;
-    .current {
-      color: RGBA(250, 123, 120, 1);
-    }
   }
   .rankTips {
     text-align: center;

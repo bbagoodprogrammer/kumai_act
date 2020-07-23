@@ -5,7 +5,7 @@
       <li v-for="(item,index) in actList" :key="index" :class="[{max:item.apply_status != 0,black:item.status == 2},'list'+item.cover]">
         <!-- {{partyTitle[item.cover]}}- -->
         <!-- <span v-if="item.status == 2"> - 活動已結束</span> -->
-        <div class="title">{{item.them}} </div>
+        <div class="title">{{item.them}} <span v-if="item.status == 2"> - 已結束</span></div>
         <div class="actCon">
           <img v-lazy="item.users.avatar" alt="" class="userAv">
           <div class="userMsg">
@@ -70,7 +70,7 @@
       </transition>
     </div>
     <div class="mask" v-show="showActScore">
-      <transition>
+      <transition name="slide">
         <div class="actScorePup" v-if="showActScore">
           <i class="close" @click="closeActScorePup()"></i>
           <div class="scoreItem">
@@ -224,13 +224,11 @@ export default {
       this.pupScore = score
       api.actScore(id).then(res => {
         let record = res.data.response_data.record
-        if (record.length) {
+        if (record) {
           this.scoreObj = record
           this.showActScore = true
         } else {
-          this.vxc('setToast', {
-            msg: '本場活動暫無積分！'
-          })
+          this.toast('本場活動暫無積分！')
         }
       })
     },
