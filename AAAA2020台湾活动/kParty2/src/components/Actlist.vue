@@ -38,8 +38,8 @@
         <div class="actMsg" v-if="showActMsg" :class="'list'+showParty.cover">
           <i class="close" @click="closeActMsgPup()"></i>
           <h5>{{showParty.them}}</h5>
-          <div class="time">{{getDate(showParty.stime)}}</div>
-          <div class="room">
+          <div class="actTime">{{getDate(showParty.stime)}}</div>
+          <div class="actRoom">
             <strong>{{lang.rid}}<em>{{showParty.rid}}</em> </strong>
             <span @click="showSingUpPup(showParty.id)" v-if="showParty.is_reg ==2">{{lang.singUp}}</span>
           </div>
@@ -402,12 +402,13 @@ export default {
       font-weight: bold;
       height: 0.6rem;
     }
-    .time {
+    .actTime {
       font-size: 0.24rem;
       text-align: center;
-      font-weight: 600;
+      font-weight: bold;
+      margin-top: 0.15rem;
     }
-    .room {
+    .actRoom {
       height: 0.5rem;
       display: flex;
       align-items: center;
@@ -417,10 +418,9 @@ export default {
       strong {
         font-size: 0.24rem;
         margin-right: 0.26rem;
-         font-weight: 600;
+        font-weight: bold;
         em {
           font-size: 0.3rem;
-          font-weight: 600;
         }
       }
       span {

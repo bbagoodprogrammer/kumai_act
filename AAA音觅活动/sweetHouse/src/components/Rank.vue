@@ -158,7 +158,7 @@ export default {
           position: absolute;
           width: 1.72rem;
           height: 1.72rem;
-          top: 0.18rem;
+          top: 0.1rem;
           left: 0.24rem;
           margin: 0;
           border-radius: 50%;

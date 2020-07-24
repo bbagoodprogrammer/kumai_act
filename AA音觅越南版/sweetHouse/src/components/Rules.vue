@@ -2,30 +2,35 @@
   <div class="rule">
     <i class="close" @click="closeRules()"></i>
     <div class="tips">
-      <p>每天做任務獲得甜品材料，製作夏日清爽甜品（背包禮物），獲得清爽值還能贏限定頭像框、座駕、金幣獎勵</p>
+      <p>mỗi ngày làm nhiệm vụ nhận nguyên liệu chế biến đồ ngọt (túi quà), nhận điểm sảng khoái, còn có thể nhận thưởng xu, khung ảnh, xe</p>
       <div class="tabs">
-        <span :class="{act:type==1}" @click="tabClick(1)">活動規則</span>
-        <span :class="{act:type==2}" @click="tabClick(2)">活動獎勵</span>
+        <span :class="{act:type==1}" @click="tabClick(1)">Thể lệ </span>
+        <span :class="{act:type==2}" @click="tabClick(2)">Giai thưởng</span>
       </div>
-      <p class="actTime">2020/07/22 20:00 -08/05 21:00</p>
+      <p class="actTime">Thời gian: 18:00 20/7/2020-18:00 20/8/2020</p>
       <div class="tipsCon">
         <div class="tips1" v-if="type==1">
-          <h6>如何玩轉夏日甜品屋？</h6>
-          <p>做任務收集甜品材料,製作夏日清爽甜品（背包禮物）獲得清爽值>>積纍清爽值完成進階任務領取獎勵</p>
-          <p class="blue">*製作成功的夏日清爽甜品將發放到用戶背包可在任意房間送給任意其他用戶</p>
-          <h6>如何玩轉夏日甜品屋？</h6>
+          <h6>Cách chế biến đồ ngọt cho gian hàng của bạn?</h6>
+          <p> - Làm nhiệm vụ thu thập nguyên liệu<br />
+            - chế biến đồ ngọt (túi quà) nhận ngay điểm sảng khoái<br />
+            - tích điểm sảng khoái hoàn thành nhiệm vụ<br />
+            - nhận thưởng
+          </p>
+          <p class="blue">* Hoàn thành chế biến đồ ngọt mùa hè sẽ được gửi vào túi quà, có thể dùng túi quà trong phòng tặng người khác. </p>
+          <h6>Cách chế biến đồ ngọt cho gian hàng của bạn?</h6>
           <img src="../assets/img/rules/tab1.png" alt="" class="img1">
-          <h6>如何積累清爽值？</h6>
-          <p>製作完成指定清爽甜品后即可獲得對應額清爽值</p>
+          <h6>Nhận điểm sảng khoái như thế nào?</h6>
+          <p>chế biến hoàn chỉnh một đồ ngọt nhận điểm sảng khoái tương ứng</p>
           <img src="../assets/img/rules/tab2.png" alt="" class="img2">
         </div>
         <div class="tips2" v-else>
-          <h6>進階任務及獎勵</h6>
+          <h6>nhiệm vụ tiếp theo và thưởng</h6>
           <img src="../assets/img/rules/tab3.png" alt="" class="img3">
-          <h6>如何玩轉夏日甜品屋？</h6>
+          <h6>Cách chế biến đồ ngọt cho gian hàng của bạn?</h6>
           <img src="../assets/img/rules/tab4.png" alt="" class="img4">
-          <h6>注意事項</h6>
-          <p class="blue">榜單獎勵在5個工作日內發放</p>
+          <h6>Chú ý:</h6>
+          <p class="blue">1. Thưởng được phát sau khi sự kiện kết thúc 7 ngày</p>
+          <p class="blue">2. Qùa khung ảnh, xe chỉ được phát nếu người dùng sử dụng phiên bản mới nhất. </p>
         </div>
       </div>
     </div>
@@ -105,7 +110,7 @@ export default {
       margin-left: 0.3rem;
     }
     .img2 {
-      width: 2.98rem;
+      width: 4.28rem;
       height: 2.49rem;
       margin-left: 0.3rem;
     }
@@ -115,9 +120,9 @@ export default {
       margin-left: 0.3rem;
     }
     .img4 {
-      width: 6rem;
-      height: 4.27rem;
-      // margin-left: 0.3rem;
+      width: 5.48rem;
+      height: 2.48rem;
+      margin-left: 0.3rem;
     }
   }
   .close {

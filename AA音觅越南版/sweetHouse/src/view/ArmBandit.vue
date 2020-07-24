@@ -1,24 +1,27 @@
 <template>
   <div class="box">
     <RoolMsg />
-    <div class="shareBar" v-if="isShare">
+    <!-- <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
-    </div>
+    </div> -->
     <div class="header">
       <Box :nick="nick" />
       <div class="house" :class="{easy: !reg ||  easy.less.length > 1}">
         <div class="userTitle">
-          <p v-if="!reg">你的夏日甜品屋還沒開張 <strong>清爽值:????</strong> </p>
-          <p v-else>{{nick}}的夏日甜品屋 <strong>清爽值：{{score}}</strong></p>
+          <p v-if="!reg">Gian hàng chưa khai trương <strong>Điểm sảng khoái:????</strong> </p>
+          <div class="userHouers" v-else>
+            <p>Gian hàng đồ ngọt của <em> {{nick}}</em></p>
+            <strong>Điểm sảng khoái:{{score}}</strong>
+          </div>
         </div>
         <div class="people"></div>
         <div class="sweetsStatus" v-if="reg && easy.less.length == 0">
-          <p class="ok">有可製作的夏日<br />清爽甜品</p>
-          <span class="scorllTop" @click="scorllTo()">點擊製作</span>
+          <p class="ok">Có nguyên liệu có thể tạo đồ ngọt, </p>
+          <span class="scorllTop" @click="scorllTo()">mau tạo đồ đồ ngọt</span>
         </div>
         <div class="sweetsStatus" v-else-if="reg && easy.less.length == 1 ">
           <img :src="require(`../assets/img/sweets/creatIcon${easy.id}.png`)" alt="">
-          <p class="less">还差{{easy.less[0].count}}份{{easy.less[0].name}}可制作{{easy.name}}</p>
+          <p class="less">Còn {{easy.less[0].count}} phần {{easy.less[0].name}} có thể chế biến {{easy.name}}</p>
         </div>
       </div>
       <div class="wards">
@@ -32,7 +35,7 @@
       </div>
     </div>
     <List :nick="nick" ref="list" />
-    <p class="actTips">活動最終解釋權歸活主辦方所有</p>
+    <p class="actTips">Quyết định cuối dùng thuộc về Alochat</p>
     <!-- <act-footer></act-footer> -->
     <div class="mask" v-show="showRank">
       <transition name="slide">
@@ -65,7 +68,7 @@
               </div>
             </li>
           </ul>
-          <p>成功邀請你開張夏日甜品屋的好友，<br />有機會獲得 <i></i> x5份</p>
+          <p>Mời bạn bè tham gia, mời thành công 1 người tham gia sự kiện <i></i> 5 xuất</p>
           <div class="singUpBtn" @click="invitSingUp()"></div>
         </div>
       </transition>
@@ -102,7 +105,7 @@ export default {
       isMore: true,   //加载更多
       activite: 1,    //活动状态
       showT: false,  //提示弹窗显示
-      tastMsg: "提示信息",  //基础弹窗提示信息
+      tastMsg: "",  //基础弹窗提示信息
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
@@ -197,7 +200,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.showInviatPup = false
           this.vxc('setReg', true)
-          this.toast('你的夏日甜品屋開張啦！！<br/>快去製作清爽甜品吧')
+          this.toast('Gian hàng đồ ngọt của bạn đã khai trương!<br/>Mau chế biến đồ đồ ngọt')
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -274,14 +277,28 @@ body::-webkit-scrollbar {
         left: 1.5rem;
         text-align: center;
         color: RGBA(141, 75, 255, 1);
-        p {
-          font-weight: 600;
-        }
+        // p {
+        //   font-weight: 600;
+        // }
         strong {
           display: block;
           font-size: 0.22rem;
           font-weight: 600;
           margin-top: -0.05rem;
+        }
+        .userHouers {
+          p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            em {
+              display: block;
+              max-width: 1.6rem;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+          }
         }
       }
       .people {
@@ -326,9 +343,9 @@ body::-webkit-scrollbar {
           line-height: 0.62rem;
           background: url(../assets/img/creat2.png);
           background-size: 100% 100%;
-          font-size: 0.24rem;
+          font-size: 0.22rem;
           color: rgba(114, 0, 91, 1);
-          font-weight: 600;
+          font-weight: 500;
           margin-top: 0.2rem;
         }
       }
@@ -382,20 +399,20 @@ body::-webkit-scrollbar {
         float: right;
       }
       .ruleTips1 {
-        width: 0.8rem;
+        width: 1.28rem;
         height: 0.4rem;
         background: url(../assets/img/tips1.png) no-repeat;
         background-size: 100% 100%;
       }
       .ruleTips2 {
-        width: 1.54rem;
+        width: 2.24rem;
         height: 0.4rem;
         background: url(../assets/img/tips2.png) no-repeat;
         background-size: 100% 100%;
         margin: 0.1rem 0;
       }
       .ruleTips3 {
-        width: 1.03rem;
+        width: 2.02rem;
         height: 0.4rem;
         background: url(../assets/img/tips3.png) no-repeat;
         background-size: 100% 100%;

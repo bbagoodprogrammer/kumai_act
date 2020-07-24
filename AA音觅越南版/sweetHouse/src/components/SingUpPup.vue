@@ -4,11 +4,11 @@
       <div class="sCon" v-if="showSingUp">
         <i class="close" @click="closeSingUp()"></i>
         <div class="house">
-          <p class="houseName"><em>{{nick}}</em>的夏日甜品屋</p>
+          <p class="houseName">Gian hàng đồ ngọt của <em>{{nick}}</em></p>
         </div>
         <div class="tips">
-          <h3>夏日甜品屋</h3>
-          <p>開一間夏日甜品屋，清爽過一夏，合成夏日清爽甜品 <em>背包禮物</em>，還能贏 <em>限定頭像框</em>、<em>座駕及金幣</em>獎勵</p>
+          <h3>Gian hàng đồ ngọt</h3>
+          <p>Mở Gian hàng đồ ngọt, sảng khoái cả mùa hè, tạo túi quà đồ ngọt sảng khoái</p>
         </div>
         <div class="gift">
           <span v-for="(item,index) in giftArr" :key="index">
@@ -29,15 +29,15 @@ export default {
     return {
       giftArr: [{
         type: 4,
-        name: '頭像框'
+        name: 'Khung ảnh'
       },
       {
         type: 5,
-        name: '座駕'
+        name: 'Xe vào phòng'
       },
       {
         type: 6,
-        name: '金幣'
+        name: 'xu'
       }]
     }
   },
@@ -50,7 +50,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.vxc('setReg', true)
           this.vxc('setSingUp')
-          this.toast('你的夏日甜品屋開張啦！！<br/>快去製作清爽甜品吧')
+          this.toast('Gian hàng đồ ngọt của bạn đã khai trương!Mau chế biến đồ đồ ngọt')
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -93,9 +93,9 @@ export default {
         margin: 0 auto;
         text-align: center;
         line-height: 0.6rem;
-        font-size: 0.32rem;
+        font-size: 0.24rem;
         color: rgba(141, 75, 255, 1);
-        font-weight: 600;
+        font-weight: 500;
         display: flex;
         justify-content: center;
         em {

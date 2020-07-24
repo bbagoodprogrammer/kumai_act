@@ -75,9 +75,9 @@ function getDefault() {
 //抽奖
 function getGift(id, index2) {
     if (index2) {
-        return get(`/index.php?action=RoomTask.getReward&id=${id}&uid=${uid}&token=${token}&idx=${index2}`);
+        return axios.get(`/index.php?action=RoomTask.getReward&id=${id}&uid=${uid}&token=${token}&idx=${index2}`);
     }
-    return get(`/index.php?action=RoomTask.getReward&id=${id}&uid=${uid}&token=${token}`);
+    return axios.get(`/index.php?action=RoomTask.getReward&id=${id}&uid=${uid}&token=${token}`);
 }
 
 const httpConfig = {

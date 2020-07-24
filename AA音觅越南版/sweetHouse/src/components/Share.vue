@@ -6,12 +6,12 @@
           <img v-lazy="info.avatar" alt="">
           <div class="msg">
             <div class="nick">{{info.nick}}</div>
-            <div class="tips">製作了多款夏日清爽甜品</div>
-            <p class="tips">清爽值達到了<em>{{score}}</em> </p>
+            <div class="tips">tạo nhiều đồ ngọt，</div>
+            <p class="tips">điểm sảng khoái<em>{{score}}</em> </p>
           </div>
         </div>
         <img src="../assets/img/share/share1Img.png" alt="" class="share1Img">
-        <h6>收穫限量禮物</h6>
+        <h6>Nhận quà đặc biệt</h6>
         <div class="gift">
           <span v-for="(item,index) in giftArr" :key="index">
             <img :src="require(`../assets/img/gift/${item.type}.png`)" alt="">
@@ -24,12 +24,12 @@
     <div class="share2" v-else>
       <div class="shareCon">
         <div class="tips">
-          <p>我開了一家夏日甜品屋，製作了很多清爽好吃的甜品，快來一起玩吧。</p>
+          <p> Tôi mới khai trương cửa hàng đồ ngọt, chế biến rất nhiều món ngon, mau tới cùng tham gia ~</p>
         </div>
         <div class="house">
-          <p class="houseName"><em>{{nick}}</em> 的夏日甜品屋</p>
+          <p class="houseName">Gian hàng đồ ngọt của<em>{{nick}}</em></p>
         </div>
-        <h6>收穫限量禮物</h6>
+        <h6>Nhận quà đặc biệt</h6>
         <div class="gift">
           <span v-for="(item,index) in giftArr" :key="index">
             <img :src="require(`../assets/img/gift/${item.type}.png`)" alt="">
@@ -55,15 +55,15 @@ export default {
       giftArr: [
         {
           type: 4,
-          name: '頭像框'
+          name: 'Khung ảnh'
         },
         {
           type: 5,
-          name: '座駕'
+          name: 'Xe vào phòng'
         },
         {
           type: 6,
-          name: '金幣'
+          name: 'xu'
         }
       ]
     }

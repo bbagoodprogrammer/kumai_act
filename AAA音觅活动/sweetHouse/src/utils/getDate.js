@@ -6,7 +6,7 @@ function getDate(datem, type) {
         minute = datem.getMinutes() < 10 ? '0' + datem.getMinutes() : datem.getMinutes(),
         second = datem.getSeconds() < 10 ? '0' + datem.getSeconds() : datem.getSeconds();
     if (type == 1) {
-        if (isToday(datem)) {
+        if (isToday(datem) == 0) {
             return `今日`
         }
         return `${month}月${date}日`
@@ -19,6 +19,11 @@ function getDate(datem, type) {
     }
 }
 function isToday(str) {
-    return new Date().getTime() - new Date(str).getTime() < 86400000;
+    var td = new Date();
+    td = new Date(td.getFullYear(), td.getMonth(), td.getDate());
+    var od = new Date(str);
+    od = new Date(od.getFullYear(), od.getMonth(), od.getDate());
+    var xc = (od - td) / 1000 / 60 / 60 / 24;
+    return xc
 }
 export default getDate

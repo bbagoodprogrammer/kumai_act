@@ -4,7 +4,7 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-            <em>恭喜{{item.nick}}成功製作{{item.dessert}}{{item.count}}份,獲得{{item.score}}清爽值</em>
+            <em> <i class="nick">{{item.nick}}</i> đã chế biến thành công {{item.dessert}}{{item.count}} xuất, nhận {{item.score}} điểm sảng khoái</em>
           </li>
         </ul>
       </div>
@@ -60,7 +60,13 @@ export default {
   transition: all 0.5s;
   margin-top: -0.56rem;
 }
-
+.nick {
+  display: block;
+  max-width: 1.8rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 .roll-msg {
   height: 0.56rem;
   display: flex;
@@ -101,6 +107,7 @@ export default {
             color: rgba(255, 255, 255, 1);
             font-size: 0.24rem;
             margin-left: 0.1rem;
+            display: flex;
           }
         }
       }

@@ -75,7 +75,11 @@ export default {
     this.downSvga()
   },
   mounted() {
-    JSInterface.hideLoading()
+    try {
+      JSInterface.hideLoading()
+    } catch (e) {
+
+    }
   },
   methods: {
     getDefaultData(val) { //初始化
@@ -83,146 +87,6 @@ export default {
         const { response_status, response_data } = res.data
         if (response_data) {
           this.defaultData = response_data.list
-          // [
-          //   {
-          //     "id": 1, // 任务ID
-          //     "type": 1, // 任务类型：1关注；2上麦；3围观
-          //     "name": "关注", // 任务名称
-          //     "nodes": [ // 任务节点列表，此字段主要用于时长任务，关注任务前端用不上
-          //       {
-          //         "idx": 0, // 节点索引值
-          //         "target": 1, // 任务节点目标值，关注任务为人数，时长任务为分钟数
-          //         "reward_type": 1, // 奖励类型：1金豆，2宝箱一，3宝箱二
-          //         "prize_id": 101, // 奖品ID，前端用不上
-          //         "status": 0, // 任务节点状态：0未完成，1未领奖，2已领奖
-          //         "reward_qty": 2 // 奖励数量
-          //       }
-          //     ],
-          //     "rate": 1, // 已完成进度值，此字段关注任务用不上，时长任务这里显示的是分钟数
-          //     "target": 1, // 任务目标值，此字段关注任务用不上，时长任务这里显示的是分钟数
-          //     "status": 2, // 任务状态：0未完成且没有未领奖励，1有未领奖励，2已完成
-          //     "cur_node": { // 当前任务节点，主要用于时长任务标题后面的时长及下面的奖品展示
-          //       "idx": 0,
-          //       "target": 1,
-          //       "reward_type": 1,
-          //       "prize_id": 101,
-          //       "status": 0,
-          //       "reward_qty": 2
-          //     }
-          //   },
-          //   {
-          //     "id": 2,
-          //     "type": 2,
-          //     "name": "上麦",
-          //     "nodes": [
-          //       {
-          //         "idx": 0,
-          //         "target": 2,
-          //         "reward_type": 1,
-          //         "prize_id": 201,
-          //         "status": 2,
-          //         "reward_qty": 4
-          //       },
-          //       {
-          //         "idx": 1,
-          //         "target": 5,
-          //         "reward_type": 1,
-          //         "prize_id": 202,
-          //         "status": 1,
-          //         "reward_qty": 10
-          //       },
-          //       {
-          //         "idx": 2,
-          //         "target": 10,
-          //         "reward_type": 2,
-          //         "reward_qty": 1,
-          //         "status": 2
-          //       },
-          //       {
-          //         "idx": 3,
-          //         "target": 60,
-          //         "reward_type": 1,
-          //         "prize_id": 204,
-          //         "status": 0,
-          //         "reward_qty": 120
-          //       },
-          //       {
-          //         "idx": 4,
-          //         "target": 120,
-          //         "reward_type": 3,
-          //         "reward_qty": 1,
-          //         "status": 0
-          //       }
-          //     ],
-          //     "rate": 60,
-          //     "target": 120,
-          //     "status": 1,
-          //     "cur_node": {
-          //       "idx": 1,
-          //       "target": 60,
-          //       "reward_type": 1,
-          //       "prize_id": 204,
-          //       "status": 1,
-          //       "reward_qty": 120
-          //     }
-          //   },
-          //   {
-          //     "id": 3,
-          //     "type": 3,
-          //     "name": "围观时长",
-          //     "nodes": [
-          //       {
-          //         "idx": 0,
-          //         "target": 5,
-          //         "reward_type": 1,
-          //         "prize_id": 301,
-          //         "status": 0,
-          //         "reward_qty": 5
-          //       },
-          //       {
-          //         "idx": 1,
-          //         "target": 10,
-          //         "reward_type": 1,
-          //         "prize_id": 302,
-          //         "status": 0,
-          //         "reward_qty": 10
-          //       },
-          //       {
-          //         "idx": 2,
-          //         "target": 30,
-          //         "reward_type": 2,
-          //         "reward_qty": 1,
-          //         "status": 0
-          //       },
-          //       {
-          //         "idx": 3,
-          //         "target": 45,
-          //         "reward_type": 1,
-          //         "prize_id": 304,
-          //         "status": 0,
-          //         "reward_qty": 45
-          //       },
-          //       {
-          //         "idx": 4,
-          //         "target": 120,
-          //         "reward_type": 3,
-          //         "reward_qty": 1,
-          //         "status": 0
-          //       }
-          //     ],
-          //     "rate": 0,
-          //     "target": 120,
-          //     "status": 0,
-          //     "cur_node": {
-          //       "idx": 0,
-          //       "target": 5,
-          //       "reward_type": 1,
-          //       "prize_id": 301,
-          //       "status": 0,
-          //       "reward_qty": 5
-          //     }
-          //   }
-          // ]
           this.$nextTick(() => {
             let canvasList = document.getElementsByTagName('canvas')
             for (let i = 0; i < canvasList.length; i++) {
