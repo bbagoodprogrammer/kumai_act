@@ -74,6 +74,7 @@ export default {
           arr[index].list.push(this.list[i]);
         }
       }
+      console.log(arr)
       return arr;
     }
   },
@@ -90,7 +91,7 @@ export default {
         if (this.loaded) return
         if (this.more) {
           this.more = false
-          api.gotState(this.listLength, 'more').then(res => {
+          api.getHistroy(this.list.length, 'more').then(res => {
             this.more = true
             if (res.data.response_data.list.length === 0) {
               this.loaded = true

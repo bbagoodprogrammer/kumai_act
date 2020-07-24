@@ -4,7 +4,7 @@
     <ul class="caiList">
       <li v-for="(item,index) in desserts" :key="index">
         <div class="name">{{item.name}}
-          <span class="score">清爽值:{{item.score}}</span>
+          <span class="score">Điểm:{{item.score}}</span>
         </div>
         <div class="msg">
           <img :src="require(`../assets/img/sweets/sweet_${index}.png`)" alt="">
@@ -16,12 +16,12 @@
             </span>
           </div>
           <div class="creatBtn" v-if="isCreat(item.raw)" @click="showTask()">
-            獲取材料
+            Nhận nguyên liệu
           </div>
           <div class="creatBtn status2" @click="creatDesserts(index)" v-else>
-            去製作
+            Tạo ngay
           </div>
-          <div class="overTips">已合成{{item.count}}份</div>
+          <div class="overTips"> Đã chế tạo {{item.count}} lần</div>
         </div>
       </li>
     </ul>
@@ -49,7 +49,7 @@
               <li v-for="(item,index) in tasks" :key="index">
                 <div class="taskMsg">
                   <div class="name">{{taskName[item.key]}} <i v-if="item.key=='room'" @click="showRoomTips()"></i> </div>
-                  <div class="gift">每次獎勵 <i :class="'icon'+showType"></i> x{{item.give_count}},每天{{item.count}}次</div>
+                  <div class="gift">Thưởng mỗi lần <i :class="'icon'+showType"></i> x{{item.give_count}},mỗi ngày{{item.count}}lần</div>
                   <div class="giftBar" v-if="item.key == 'mic' || item.key == 'coin' ||item.key == 'friend'">
                     <i class="store" v-for="(item2,index2) in item.count" :key="index2" :class="'store'+index2"></i>
                     <span class="actLiner" :style="{width:item.current/item.max *100 + '%'}"></span>
@@ -58,19 +58,19 @@
                 <div class="status">
                   <div class="btn not" v-if="item.got == item.count"></div>
                   <div class="btn get" v-else-if="(item.got<item.nowStore && item.count>1) || (item.count==1 && item.current >= item.max && item.got == 0)" @click="getRaws(item)"></div>
-                  <div class="btn" v-else @click="doTask(item.key,item)">去完成({{item.nowStore}}/{{item.count}})</div>
+                  <div class="btn" v-else @click="doTask(item.key,item)">Hoàn thành({{item.nowStore}}/{{item.count}})</div>
                   <div class="oneLiner" v-if="item.key == 'room' || item.key == 'gift'">
                     <div class="num">{{item.current}}/{{item.max}}</div>
                     <div class="liner">
                       <span class="numActLiner" :style="{width:item.current/item.max *100 + '%'}"></span>
                     </div>
                   </div>
-                  <span class="invite" @click="showSharePup()" v-if="item.key=='invite'">已邀請{{item.invited}}人>></span>
+                  <span class="invite" @click="showSharePup()" v-if="item.key=='invite'">Đã mời {{item.invited}} người </span>
                 </div>
               </li>
             </ul>
           </div>
-          <p class="lastTips">完成任務後請盡快領取哦~任務每天0點更新</p>
+          <p class="lastTips">Hoàn thành nhiệm vụ nhớ quay lại nhận thưởng nhé ~ sau 0 giờ phần thưởng sẽ hết hạn</p>
         </div>
       </transition>
     </div>
@@ -78,8 +78,8 @@
       <transition name="slide">
         <div class="sharePup" v-if="showShare">
           <i class="close" @click="closeSharePup()"></i>
-          <p class="giftTips">邀請活動新玩家，每成功邀請1人獎勵 <i></i> x5</p>
-          <p v-if="invitedList.length == 0" class="noData">暫無數據</p>
+          <p class="giftTips"> Mời bạn bè tham gia, mời thành công 1 người tham gia sự kiện <i></i> 5 xuất</p>
+          <p v-if="invitedList.length == 0" class="noData">không có dữ liệu</p>
           <ul class="peopleList">
             <li v-for="(item,index) in invitedList" :key="index">
               <div class="userRank" :class="{noRank:item.rank == 0}">{{item.rank == 0?'未上榜':item.rank}}</div>
@@ -88,7 +88,7 @@
                 <img v-lazy="item.avatar" alt="">
               </div>
               <div class="nick">{{item.nick}}</div>
-              <div class="score">清爽值<em>{{item.score}}</em></div>
+              <div class="score">Điểm sảng khoái<em>{{item.score}}</em></div>
             </li>
           </ul>
           <div class="inivitBtn" @click="showPelple()"></div>
@@ -99,7 +99,7 @@
       <transition name="slide">
         <div class="peoplePup" v-if="showPeople">
           <i class="close" @click="closePeople()"></i>
-          <p v-if="peopleListHas.length == 0" class="noData">暫無可邀請好友，快去添加好友吧~</p>
+          <p v-if="peopleListHas.length == 0" class="noData">Thạm thời không có bạn bè để mời, mau theo dõi bạn bè</p>
           <ul class="pList">
             <li v-for="(item,index) in peopleListHas" :key="index">
               <!-- <div class="userRank">{{item.rank}}</div> -->
@@ -110,7 +110,7 @@
                 </div>
                 <div class="nick">
                   <div>{{item.nick}}</div>
-                  <div class="tips">還沒有夏日甜品屋</div>
+                  <div class="tips">Chưa có gian hàng đồ ngọt mùa hè</div>
                 </div>
                 <div class="shareBtn" :class="{share2:item.status == 1}" @click="shareAct(item,index)"></div>
               </div>
@@ -124,7 +124,7 @@
         <div class="dessertsPup" :class="'creat'+creatType" v-show="showCreatPup">
           <i class="close" @click="closeCreatPup()" v-if="creatType != 2"></i>
           <div class="creatQuyer" v-if="creatType == 1">
-            <div class="title">製作確定</div>
+            <div class="title">Xác nhận chế biến</div>
             <div class="con">
               <div class="desserts">
                 <img :src="require(`../assets/img/sweets/sweet_${creatIndex}.png`)" alt="">
@@ -136,25 +136,25 @@
                   <input type="number" v-model="cNum" disabled="disabled" name="" id="">
                   <span class="add" @click="add()"></span>
                 </div>
-                <p class="tips">還可製作總數{{sweetNum.over}}份</p>
-                <p class="overNum" v-if="maxTips">超過可製作數量</p>
+                <p class="tips">Còn có thể tạo {{sweetNum.over}} xuất</p>
+                <p class="overNum" v-if="maxTips">vượt quá số lượng có thể chế biến</p>
               </div>
             </div>
             <div class="creatBtn">
-              <span class="cancel" @click="closeCreatPup()">取消</span>
-              <span class="ok" @click="creat()">確定</span>
+              <span class="cancel" @click="closeCreatPup()">Hủy</span>
+              <span class="ok" @click="creat()">OK</span>
             </div>
           </div>
           <div class="creatIng" v-else-if="creatType == 3">
-            <div class="title">製作成功</div>
+            <div class="title">Chế biến thành công</div>
             <img :src="require(`../assets/img/sweets/sweet_${creatIndex}.png`)" alt="" class="dessertsImg">
             <p class="creatName">{{desserts[creatIndex].name}}x{{cNum}}</p>
-            <p class="creatScore">增加清爽值：{{desserts[creatIndex].score * cNum}}</p>
-            <div class="goPack" @click="doTask('mic')">去背包查看</div>
+            <p class="creatScore">thêm điểm sảng khoái:{{desserts[creatIndex].score * cNum}}</p>
+            <div class="goPack" @click="doTask('mic')">vào túi quà xem</div>
           </div>
           <div class="creatSuc" v-show="creatType == 2">
             <canvas id="creatAni"></canvas>
-            <p class="doing">夏日清爽甜品製作中......{{rSecond}}s</p>
+            <p class="doing">Đang chế biến nguyên liệu ......{{rSecond}}s</p>
           </div>
         </div>
       </transition>
@@ -174,16 +174,15 @@ const downloader = new Downloader()
 const parser = new Parser({ disableWorker: true })
 
 window.onShareSuccess = async (from, uid, type, typeName) => {
-  // alert(`shareSuc${type}`)
-  if (type == 2 || type == 3) {
+  if (type == 2 || type == 3 || type == 0) {
     if (from != 2) {
       api.shareSuc(from)
-      this.toast(`分享成功！`)
+      this.toast(`Chia sẻ thành công`)
     } else {
       api.shareCb().then(res => {
         if (res.data.response_status.code == 0) {
           store.commit('setTask', 'share')
-          this.toast(`分享成功！`)
+          this.toast(`Chia sẻ thành công`)
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -205,33 +204,33 @@ export default {
       tabArr: [
         {
           type: 1,
-          msg: '水果',
-          tips: '可用於製作薄荷檸檬水、卡通冰激凌、桃桃雪域、草莓綿綿冰'
+          msg: 'Trái cây',
+          tips: 'Dùng để chế biến nước ép chanh bạc hà, Kem tươi, kem đào bào tuyết,Kem dây tây'
         },
         {
           type: 2,
-          msg: '奶製品',
-          tips: '可用於製作卡通冰激凌、珍珠奶茶、桃桃雪域、草莓綿綿冰'
+          msg: 'Sữa',
+          tips: 'Dùng để chế biến Kem tươi, trà sữa trân châu, kem đào bào tuyết,Kem dây tây'
         },
         {
           type: 3,
-          msg: '繽紛小料',
-          tips: '可用於製作珍珠奶茶、桃桃雪域、草莓綿綿冰'
+          msg: 'Hạt đa sắc',
+          tips: 'Dùng để chế biến trà sữa trân châu, kem đào bào tuyết,Kem dây tây'
         }
       ],
       rooms: {},
       peopleList: [],
       invitedList: [],
       taskName: {
-        mic: '在房間上麥15min（私密房不算）',
-        coin: '在房間送出800金幣',
-        share: '分享活動到line或fb',
-        create: '創建/接唱/和聲作品',
-        friend: '交友熱力每提升20',
-        invite: '邀請好友開夏日甜品屋',
-        charge: '儲值任意金額',
-        room: '自己房間的人氣值達到5000',
-        gift: '收到任意夏日甜品禮物15份'
+        mic: ' Lên mic trong phòng 15 phút (phòng khóa không tính) ',
+        coin: 'Phòng tặng đi 800 xu',
+        share: 'chia sẻ tới bạn bè ngoài app',
+        create: 'Tạo tác phẩm mới/đăng tác phẩm hát nối/đăng tác phẩm song ca',
+        friend: 'Tăng điểm kết bạn 20',
+        invite: 'Mời bạn bè tham gia mở gian hàng đồ ngọt',
+        charge: 'Nạp số xu bất kì',
+        room: 'Điểm sôi nổi phòng đạt 5000',
+        gift: 'nhận quà đồ ngọt mùa hè bất kì 15 chiếc',
       },
       creatIndex: 0,
       maxTips: false,
@@ -271,7 +270,7 @@ export default {
       let isHas = this.peopleList.filter(item => {
         return item.status != 2
       })
-     return isHas
+      return isHas
     }
   },
   mounted() {
@@ -323,7 +322,7 @@ export default {
             count: item.give_count * (item.nowStore - item.got)
           })
           this.vxc('setTaskGot', item.key)
-          this.toast('領取成功!')
+          this.toast('nhận thưởng thành công!')
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -374,10 +373,10 @@ export default {
         try {
           share({
             from: '2',
-            url: `http://activity.udateapp.com/static_html/2020/sweetHouse/index.html?type=2&nick=${this.nick}`,
-            title: `我開了一家夏日甜品屋，製作了很多清爽好吃的甜品，快來一起玩吧`,
-            desc: `我開了一家夏日甜品屋，製作了很多清爽好吃的甜品，快來一起玩吧`,
-            image: 'http://activity.udateapp.com/static_html/2020/sweetHouse/share.jpg'
+            url: `http://activity.alochatapp.com/static_html/2020/sweetHouse/index.html?type=2&nick=${this.nick}`,
+            title: `Tôi mới khai trương cửa hàng đồ ngọt, chế biến rất nhiều món ngon, mau tới cùng tham gia ~`,
+            desc: `Tôi mới khai trương cửa hàng đồ ngọt, chế biến rất nhiều món ngon, mau tới cùng tham gia ~`,
+            image: 'http://activity.alochatapp.com/static_html/2020/sweetHouse/share.jpg'
           })
         } catch (e) { }
       } else if (key == 'create' || key == 'friend') {  //跳轉到邂逅頁
@@ -443,7 +442,7 @@ export default {
           let task = res.data.response_data.tasks
           for (let i in task) {
             let nowStore = Math.floor(task[i].current / task[i].step)
-            task[i].nowStore = nowStore >= task[i].count?task[i].count:nowStore
+            task[i].nowStore = nowStore >= task[i].count ? task[i].count : nowStore
           }
           this.vxc('setTasksList', task)
           this.rooms = res.data.response_data.rooms
@@ -453,8 +452,8 @@ export default {
     },
     showRoomTips() {
       this.vxc('setToast', {
-        title: "房間人氣值",
-        msg: '1玩家一分鐘貢獻10人氣值 <br/>1金幣貢獻1人氣值'
+        title: "Điểm sôi nổi phòng",
+        msg: 'Một người 1 phút trong phòng cống hiến 10 điểm sôi nổi <br/>1 xu tặng quà cống hiến 1 điểm sôi nổi'
       })
     },
     closeTask() {
@@ -591,7 +590,7 @@ export default {
           background: url(../assets/img/creat1.png);
           background-size: 100% 100%;
           text-align: center;
-          font-size: 0.28rem;
+          font-size: 0.26rem;
           color: rgba(37, 186, 74, 1);
           line-height: 0.62rem;
           font-weight: 500;
@@ -728,10 +727,10 @@ export default {
       ul {
         li {
           width: 5.94rem;
-          height: 1.17rem;
+          min-height: 1.17rem;
           background: url(../assets/img/taskItemBg.png);
           background-size: 100% 100%;
-          padding: 0.1rem 0.15rem 0.25rem;
+          padding: 0.1rem 0.15rem 0.35rem;
           display: flex;
           align-items: center;
           .taskMsg {
@@ -826,9 +825,9 @@ export default {
               background-size: auto 100%;
               text-align: center;
               line-height: 0.52rem;
-              font-size: 0.24rem;
+              font-size: 0.22rem;
               color: rgba(114, 0, 91, 1);
-              font-weight: 600;
+              font-weight: 500;
               &.not {
                 background: url(../assets/img/getBlack.png);
                 background-size: auto 100%;
@@ -868,9 +867,10 @@ export default {
       }
     }
     .lastTips {
+      padding: 0 0.3rem;
       text-align: center;
       font-size: 0.24rem;
-      margin-top: 0.7rem;
+      margin-top: 0rem;
     }
   }
   .sharePup {
@@ -883,6 +883,7 @@ export default {
     .giftTips {
       text-align: center;
       margin-bottom: 0.1rem;
+      padding: 0 0.25rem;
       i {
         display: inline-block;
         width: 0.3rem;

@@ -1,6 +1,7 @@
 <template>
   <div class="rank">
     <i class="close" @click="close()"></i>
+    <p v-if="rank.length == 0">không có dữ liệu</p>
     <ul class="scrollable">
       <li v-for="(item,index) in rank" :key="index" :class="'list' + item.rank">
         <div class="userRank" v-if="item.rank>1">{{item.rank}}</div>
@@ -9,7 +10,7 @@
           <img v-lazy="item.avatar" alt="">
         </div>
         <div class="nick">{{item.nick}}</div>
-        <div class="score">清爽值<em>{{item.score}}</em></div>
+        <div class="score">Điểm sảng khoái<em>{{item.score}}</em></div>
       </li>
     </ul>
     <div class="userMsg" v-if="reg">
@@ -19,7 +20,7 @@
         <img v-lazy="omerMsg.avatar" alt="">
       </div>
       <div class="nick">{{omerMsg.nick}}</div>
-      <div class="score">清爽值<em>{{omerMsg.score}}</em></div>
+      <div class="score">Điểm sảng khoái<em>{{omerMsg.score}}</em></div>
     </div>
   </div>
 </template>
@@ -55,7 +56,7 @@ export default {
             if (res.data.response_data.list.length === 0) {
               this.loaded = true
             } else {
-              this.vxc('addRank', res.data.response_data.list.length)
+              this.vxc('addRank', res.data.response_data.list)
             }
           })
         }
@@ -158,7 +159,7 @@ export default {
           position: absolute;
           width: 1.72rem;
           height: 1.72rem;
-          top: 0.18rem;
+          top: 0.12rem;
           left: 0.24rem;
           margin: 0;
           border-radius: 50%;

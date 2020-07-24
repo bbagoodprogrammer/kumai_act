@@ -131,7 +131,10 @@ function shareFriend(touid) {
 }
 
 //历史记录
-function getHistroy(from) {
+function getHistroy(from, more) {
+    if (more) {
+        return axios.get(`/index.php?action=sweetHouse.history&from=${from}&signture=innerserver&uid=${uid}&token=${token}`)
+    }
     return get(`/index.php?action=sweetHouse.history&from=${from}&signture=innerserver&uid=${uid}&token=${token}`)
 }
 

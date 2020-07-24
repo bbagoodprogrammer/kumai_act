@@ -9,7 +9,10 @@
       <div class="house" :class="{easy: !reg ||  easy.less.length > 1}">
         <div class="userTitle">
           <p v-if="!reg">你的夏日甜品屋還沒開張 <strong>清爽值:????</strong> </p>
-          <p v-else>{{nick}}的夏日甜品屋 <strong>清爽值：{{score}}</strong></p>
+          <div class="userHouers" v-else>
+            <p><em>{{nick}}</em>的夏日甜品屋</p>
+            <strong>清爽值：{{score}}</strong>
+          </div>
         </div>
         <div class="people"></div>
         <div class="sweetsStatus" v-if="reg && easy.less.length == 0">
@@ -282,6 +285,20 @@ body::-webkit-scrollbar {
           font-size: 0.22rem;
           font-weight: 600;
           margin-top: -0.05rem;
+        }
+        .userHouers {
+          p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            em {
+              display: block;
+              max-width: 2.3rem;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+          }
         }
       }
       .people {

@@ -85,7 +85,7 @@ export default {
       return this.mainTab;
     },
     rankApi() {
-      const dayApi = '/kroom_party/rankList.php?pre={pre}&month={month}&from={from}';
+      const dayApi = '/kroom_party/rankList.php?pre={pre}&month={month}&from={from}&token={token}';
       let pre = 0
       let month = 0
       if (this.mainTab == 1) {
@@ -96,7 +96,8 @@ export default {
         pre = 1
         month = 1
       }
-      return dayApi.replace('{pre}', pre).replace('{month}', month)
+      let token = getUrlString('token')
+      return dayApi.replace('{pre}', pre).replace('{month}', month).replace('{token}', token)
     },
     rankSize() {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
@@ -126,6 +127,8 @@ export default {
       this.month = val
       if (val == 1) {
         this.mainTabClick(1)
+      } else {
+        this.mainTabClick(0)
       }
     },
     mainTabClick(tab) {
@@ -278,7 +281,7 @@ body {
   margin-top: 0.3rem;
 }
 .rankGroups {
-  padding: 0.28rem 0.26rem 0;
+  padding: 0.28rem 0.26rem 2rem;
   .mainTabs {
     width: 6.74rem;
     height: 0.98rem;

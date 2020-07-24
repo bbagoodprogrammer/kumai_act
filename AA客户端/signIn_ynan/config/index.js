@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/': {
-        target: 'http://test.17sing.tw/',
+        target: 'http://test.singnowapp.com',
         changeOrigin: true
       }
     },

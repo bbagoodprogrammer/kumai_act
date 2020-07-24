@@ -3,7 +3,8 @@
     <div class="time" v-if="!surplusTime.end && surplusTime.seconds >0">Đếm ngược hỗ trợ {{surplusTime.hour}}:{{surplusTime.minute}}:{{surplusTime.second}}</div>
     <div class="peopleList">
       <span v-for="(item,index) in list" :key="index">
-        <img v-lazy="item.headImg" alt="" @click="goUser(item.uid)">
+        <!-- @click="goUser(item.uid)" -->
+        <img v-lazy="item.headImg" alt="" >
         <strong :class="{act:item.headImg!=''}">{{item.nick}}</strong>
       </span>
       <span v-for="item2 in 3-list.length" :key="item2+'d'">

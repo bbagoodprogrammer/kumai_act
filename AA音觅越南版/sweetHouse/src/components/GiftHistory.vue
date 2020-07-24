@@ -1,19 +1,19 @@
 <template>
   <div class="giftHistory">
     <i class="close" @click="closeHistory()"></i>
-    <div class="title">動態</div>
+    <div class="title">Động thái</div>
     <ul class="itemList scrollable">
       <li class="item" v-for="(item,index) in makeData" :key="index">
         <div class="time">{{getTime(item.list[0].time,1)}}</div>
         <div class="taskItem" v-for="(item2,index2) in item.list" :key="index2">
-          <span class="name">{{item2.type=='raw'?taskName[item2.key]:`製作${item2.name}*${item2.count}份`}}</span>
-          <span class="wards">{{item2.type=='raw'?`${item2.name}+${item2.count}`:`清爽值+${item2.score}`}}</span>
+          <span class="name">{{item2.type=='raw'?taskName[item2.key]:`Chế biến${item2.name}*${item2.count}xuất`}}</span>
+          <span class="wards">{{item2.type=='raw'?`${item2.name}+${item2.count}`:`điểm sảng khoái +${item2.score}`}}</span>
           <span class="timeItem">{{getTime(item2.time,2)}}</span>
         </div>
       </li>
     </ul>
-    <div class="dloading" v-if="loading">加載中....</div>
-    <div class="noData" v-if="list.length == 0">暫無數據</div>
+    <div class="dloading" v-if="loading">Đang tải....</div>
+    <div class="noData" v-if="list.length == 0">không có dữ liệu</div>
   </div>
 </template>
 <script>
@@ -35,16 +35,16 @@ export default {
       more: true,
       loading: false,
       taskName: {
-        mic: '在房間上麥15min（私密房不算）',
-        coin: '在房間送出800金幣',
-        share: '分享活動到line或fb',
-        create: '創建/接唱/和聲作品',
-        friend: '交友熱力每提升20',
-        invite: '邀請好友開夏日甜品屋',
-        charge: '儲值任意金額',
-        room: '自己房間的人氣值達到5000',
-        gift: '收到任意夏日甜品禮15份',
-        sharep: '進階分享'
+        mic: 'Lên mic trong phòng 15 phút (phòng khóa không tính) ',
+        coin: 'Phòng tặng đi 800 xu',
+        share: 'chia sẻ tới bạn bè ngoài app',
+        create: 'Tạo tác phẩm mới/đăng tác phẩm hát nối/đăng tác phẩm song ca',
+        friend: 'Tăng điểm kết bạn 20',
+        invite: 'Mời bạn bè tham gia mở gian hàng đồ ngọt',
+        charge: 'Nạp số xu bất kì',
+        room: 'Điểm sôi nổi phòng đạt 5000',
+        gift: 'nhận quà đồ ngọt mùa hè bất kì 15 chiếc',
+        sharep: 'Chia sẻ'
       },
     }
   },
@@ -90,7 +90,7 @@ export default {
         if (this.loaded) return
         if (this.more) {
           this.more = false
-          api.gotState(this.listLength, 'more').then(res => {
+          api.gotState(this.list.length, 'more').then(res => {
             this.more = true
             if (res.data.response_data.list.length === 0) {
               this.loaded = true

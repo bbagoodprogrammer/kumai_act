@@ -11,7 +11,7 @@
       <transition name="slide">
         <div class="giftBox" v-if="closePup">
           <i class="close" @click="closeGiftPup()"></i>
-          <div class="title">清爽值達到{{packets[showIndex].score}}</div>
+          <div class="title">Điểm sảng khoái đạt {{packets[showIndex].score}}</div>
           <div class="giftItem">
             <span v-for="(item,index) in gift[showIndex+1].gift" :key="index">
               <span class="imgBox">
@@ -28,11 +28,11 @@
       <transition name="slide">
         <div class="getOk" v-show="showOk">
           <i class="close" @click="closeSharePup()"></i>
-          <h3>領取成功</h3>
-          <p>對應獎勵已發放到您的賬戶,<br /> 請注意查收！</p>
+          <h3>nhận thưởng thành công</h3>
+          <p>Thưởng đã được gửi vào tài khoản, mời kiểm tra</p>
           <div class="boxShare" @click="share()">
-            <p class="shareTitle">炫耀一下</p>
-            <p class="msg">（獎勵繽紛小料2份）</p>
+            <p class="shareTitle">Chia sẻ</p>
+            <p class="msg">(nhận 2 Hạt đa sắc)</p>
           </div>
         </div>
       </transition>
@@ -53,7 +53,7 @@ export default {
           gift: [
             {
               type: 1,
-              name: '300金豆'
+              name: '500 đậu'
             },
           ]
         },
@@ -61,11 +61,11 @@ export default {
           gift: [
             {
               type: 1,
-              name: '600金豆'
+              name: '1000 đậu'
             },
             {
               type: 2,
-              name: '500金幣'
+              name: '500 xu'
             },
           ]
         },
@@ -73,11 +73,11 @@ export default {
           gift: [
             {
               type: 1,
-              name: '1000金豆'
+              name: '2000 đậu'
             },
             {
               type: 2,
-              name: '800金幣'
+              name: '1000 xu'
             },
           ]
         },
@@ -85,15 +85,15 @@ export default {
           gift: [
             {
               type: 1,
-              name: '2000金豆'
+              name: '3000 đậu'
             },
             {
               type: 2,
-              name: '2000金幣'
+              name: '2000 xu'
             },
             {
               type: 3,
-              name: '头像框（5天）'
+              name: 'khung ảnh 5 ngày'
             }
           ]
         },
@@ -140,7 +140,7 @@ export default {
             }
           })
         } else {
-          this.toast(`您的积分不足哦~快去赚取积分把！`)
+          this.toast(`Số điểm không đủ, mau làm nhiệm vụ nhận điểm ~`)
         }
       }
     },
@@ -148,10 +148,10 @@ export default {
       try {
         share({
           from: this.packets[this.showIndex].score,
-          url: `http://activity.udateapp.com/static_html/2020/sweetHouse/index.html?type=${this.packets[this.showIndex].score}&uid=${this.uid}&score=${this.packets[this.showIndex].score}`,
-          title: `制作了多款夏日清爽甜品，清爽值达到${this.score}`,
-          desc: `制作了多款夏日清爽甜品，清爽值达到${this.score}`,
-          image: 'http://activity.udateapp.com/static_html/2020/sweetHouse/share.jpg'
+          url: `http://activity.alochatapp.com/static_html/2020/sweetHouse/index.html?type=${this.packets[this.showIndex].score}&uid=${this.uid}&score=${this.packets[this.showIndex].score}`,
+          title: `tạo nhiều đồ ngọt，điểm sảng khoái ${this.score}`,
+          desc: `tạo nhiều đồ ngọt，điểm sảng khoái ${this.score}`,
+          image: 'http://activity.alochatapp.com/static_html/2020/sweetHouse/share.jpg'
         })
       } catch (e) { }
     },
