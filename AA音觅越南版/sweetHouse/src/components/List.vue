@@ -59,7 +59,7 @@
                   <div class="btn not" v-if="item.got == item.count"></div>
                   <div class="btn get" v-else-if="(item.got<item.nowStore && item.count>1) || (item.count==1 && item.current >= item.max && item.got == 0)" @click="getRaws(item)"></div>
                   <div class="btn" v-else @click="doTask(item.key,item)">Hoàn thành({{item.nowStore}}/{{item.count}})</div>
-                  <div class="oneLiner" v-if="item.key == 'room' || item.key == 'gift'">
+                  <div class="oneLiner" v-if="item.key == 'room' || item.key == 'gift'|| item.key == 'coin'|| item.key == 'mic' || item.key == 'friend'">
                     <div class="num">{{item.current}}/{{item.max}}</div>
                     <div class="liner">
                       <span class="numActLiner" :style="{width:item.current/item.max *100 + '%'}"></span>
@@ -82,7 +82,7 @@
           <p v-if="invitedList.length == 0" class="noData">không có dữ liệu</p>
           <ul class="peopleList">
             <li v-for="(item,index) in invitedList" :key="index">
-              <div class="userRank" :class="{noRank:item.rank == 0}">{{item.rank == 0?'未上榜':item.rank}}</div>
+              <div class="userRank" :class="{noRank:item.rank == 0}">{{item.rank == 0?'Chưa có hạng':item.rank}}</div>
               <div class="imgBox">
                 <span class="avBg" v-if="item.rank<=3"></span>
                 <img v-lazy="item.avatar" alt="">

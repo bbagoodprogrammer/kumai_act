@@ -4,7 +4,7 @@
     <div class="mainTabs">
       <div class="tabs">
         <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">萌寵魅力榜</a>
-        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">专属萌寵榜</a>
+        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">專屬萌寵榜</a>
       </div>
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a>
     </div>
@@ -20,7 +20,7 @@
       </div>
     </div>
     <ul v-if="mainTab==0" class="list day">
-      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid)">
+      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.live)">
         <div class="rank">{{item.rank}}</div>
         <div class="imgBox">
           <!-- v-if="item.nob > 0"  v-else-if="item.vip > 0"-->
@@ -34,7 +34,7 @@
     </ul>
     <!-- 总榜 -->
     <ul v-else-if="mainTab==1" class="list total">
-      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid)">
+      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.live)">
         <div class="rank">{{item.rank}}</div>
         <div class="imgBox">
           <!-- v-if="item.nob > 0"  v-else-if="item.vip > 0"-->
@@ -229,20 +229,26 @@ export default {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
       this.$emit('getDefaultData')
-      this.$store.commit('updateRankGroups', {
-        key: this.rankKey,
-        loadCount: 0,
-        loadEnd: false,
-        loading: false,
-        none: false,
-        list: [],
-      });
-      this.$nextTick(this.onScroll);
+      if (this.mainTab != 0) {
+        this.$store.commit('updateRankGroups', {
+          key: this.rankKey,
+          loadCount: 0,
+          loadEnd: false,
+          loading: false,
+          none: false,
+          list: [],
+        });
+        this.$nextTick(this.onScroll);
+      }
     },
     getDate(time) {
       return getDate(new Date(time * 1000), '3')
     },
-    goUser(uid) { //跳转
+    goUser(uid, live) { //跳转
+      if (live) {
+        location.href = `rid:${live}`
+        return
+      }
       location.href = `uid:${uid}`
     },
     beforeDestroy() {
@@ -453,21 +459,21 @@ export default {
         }
       }
     }
-    li:last-child::before {
-      display: none;
-    }
-    li:before {
-      content: "";
-      display: block;
-      width: 6rem;
-      height: 0.06rem;
-      opacity: 0.48;
-      background: #e4b758;
-      position: absolute;
-      bottom: -0.03rem;
-      left: 0.65rem;
-      z-index: 10;
-    }
+    // li:last-child::before {
+    //   display: none;
+    // }
+    // li:before {
+    //   content: "";
+    //   display: block;
+    //   width: 6rem;
+    //   height: 0.06rem;
+    //   opacity: 0.48;
+    //   background: #e4b758;
+    //   position: absolute;
+    //   bottom: -0.03rem;
+    //   left: 0.65rem;
+    //   z-index: 10;
+    // }
   }
 }
 .listTipsBox {

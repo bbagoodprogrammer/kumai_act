@@ -13,6 +13,7 @@ import Loading from "./components/Loading"
 import { globalBus } from './utils/eventBus'
 import { mapState } from 'vuex'
 import APP from './utils/openApp'
+import report from './utils/report';
 export default {
   name: 'App',
   components: { ArmBandit, MsgToast, Loading },
