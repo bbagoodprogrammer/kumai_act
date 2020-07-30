@@ -25,7 +25,7 @@
         <div class="actBtm">
           <!-- <span @click.stop="showSingUpPup(item.id)" v-if="item.is_reg == 2"> {{lang.singUp}}</span> -->
           <!-- <span>分享</span> -->
-          <span @click.stop="showActMsgPup(item.id,index)">{{lang.actDetil}}</span>
+          <span @click.stop="showActMsgPup(item.id,index)"></span>
         </div>
         <div class="followBtn">
           <span v-if="!item.attension" @click.stop="attention(item.id,index)">{{lang.attention}}</span>

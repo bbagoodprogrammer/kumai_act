@@ -1,10 +1,12 @@
 <template>
-  <div>
-
+  <div class="rank">
+    <TabsScrollLoadList />
   </div>
 </template>
 <script>
+import TabsScrollLoadList from "../../components/TabsScrollLoadList"
 export default {
+  components: { TabsScrollLoadList },
   data() {
     return {
 
