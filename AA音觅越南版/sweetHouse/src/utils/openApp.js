@@ -18,23 +18,23 @@ function toast(message, time = 1000) {
 
 function getConfig() {
     var tw = {
-        name: 'yinmi',
-        androidSchema: 'yinmi://udateapp.com',
-        androidDown: 'https://play.google.com/store/apps/details?id=com.km.udate',
-        iosSchema: 'encore://',
-        iosDown: 'https://itunes.apple.com/tw/app/id1474946930',
-        tips: '請點按右上角...</br>選擇系統默認瀏覽器打開',
+        name: 'AloChat',
+        androidSchema: 'AloChat://alochatapp.com',
+        androidDown: 'https://play.google.com/store/apps/details?id=com.sq.alochat',
+        iosSchema: 'yinmiapp://',
+        iosDown: 'https://apps.apple.com/tw/app/id1506862116',
+        tips: 'Hãy ấn "..." ở phía trên bên phải<br>dùng trình duyệt mặc định của hệ thống để mở',
     };
 
     var conf = {
         localhost: tw,
-        singnowapp: {
-            name: 'yinmi',
-            androidSchema: 'yinmi://udateapp.com',
-            androidDown: 'https://play.google.com/store/apps/details?id=com.km.udate',
-            iosSchema: 'encore://',
-            iosDown: 'https://itunes.apple.com/tw/app/id1474946930',
-            tips: '請點按右上角...</br>選擇系統默認瀏覽器打開',
+        alochatapp: {
+            name: 'AloChat',
+            androidSchema: 'AloChat://alochatapp.com',
+            androidDown: 'https://play.google.com/store/apps/details?id=com.sq.alochat',
+            iosSchema: 'yinmiapp://',
+            iosDown: 'https://apps.apple.com/tw/app/id1506862116',
+            tips: 'Hãy ấn "..." ở phía trên bên phải<br>dùng trình duyệt mặc định của hệ thống để mở',
         },
     };
 

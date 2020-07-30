@@ -58,9 +58,41 @@
 import getString from "../utils/getString"
 import api from "../api/apiConfig"
 import { Downloader, Parser, Player } from 'svga.lite'
+import report from '../utils/report';
 
 const downloader = new Downloader()
 const parser = new Parser({ disableWorker: true })
+
+const reportData = {
+  action: {
+    follow_0: 201,
+    sm_0: 301,
+    sm_1: 302,
+    sm_2: 303,
+    sm_3: 304,
+    sm_4: 305,
+    watch_0: 401,
+    watch_1: 402,
+    watch_2: 403,
+    watch_3: 404,
+    watch_4: 405,
+  },
+  from: {
+    from_1: 1,
+    from_2: 2
+  },
+  click: {
+    click_1: 1,
+    click_2: 2
+  }
+}
+function reportFun(key, taskKey, taskIndex) {
+  let obj = {
+    id: '011904001',
+  }
+  obj[key] = reportData[key][`${taskKey}_${taskIndex}`]
+  report(obj)
+}
 export default {
   components: {},
   data() {
@@ -71,6 +103,10 @@ export default {
     }
   },
   created() {
+    let from = getString('from')
+    if (from) {
+      reportFun('from', 'from', from)
+    }
     this.getDefaultData()
     this.downSvga()
   },
@@ -99,6 +135,18 @@ export default {
       })
     },
     getGift(item, index, index2) {
+      if (!index2) {
+        reportFun('click', 'click', 1)
+      } else {
+        reportFun('click', 'click', 2)
+      }
+      if (index === 0) {
+        reportFun('action', 'follow', item.cur_node.idx)
+      } else if (index === 1) {
+        reportFun('action', 'sm', index2 ? index2 : item.cur_node.idx)
+      } else if (index === 2) {
+        reportFun('action', 'watch', index2 ? index2 : item.cur_node.idx)
+      }
       api.getGift(item.id, index2).then(res => {
         const { response_status, response_data } = res.data
         if (response_data) {
