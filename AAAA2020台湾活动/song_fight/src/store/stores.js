@@ -14,6 +14,8 @@ const store = new Vuex.Store({
             cb: null
         },
         isShare: false, //分享
+        rankGroups: {},  //储存當天的信息
+        groupsUserMsg: {},  //儲存各種天數的個人信息
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -40,7 +42,23 @@ const store = new Vuex.Store({
         },
         closeToast(state, val) {
             state.toastObj.toast = false
-        }
+        },
+        changGroupsUserMsg(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.groupsUserMsg = Object.assign({}, state.groupsUserMsg, { [key]: Object.assign({}, state.groupsUserMsg[key], obj) });
+            }
+            console.log(state.groupsUserMsg)
+        },
+        updateRankGroups(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.rankGroups = Object.assign({}, state.rankGroups, { [key]: Object.assign({}, state.rankGroups[key], obj) });
+            }
+            console.log(state.rankGroups)
+        },
     },
     actions: {
         setloading({ commit }, boolean) {

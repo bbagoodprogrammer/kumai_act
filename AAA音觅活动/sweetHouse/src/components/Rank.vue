@@ -2,7 +2,7 @@
   <div class="rank">
     <i class="close" @click="close()"></i>
     <ul class="scrollable">
-      <li v-for="(item,index) in rank" :key="index" :class="'list' + item.rank">
+      <li v-for="(item,index) in rank" :key="index" :class="'list' + item.rank" @click="goUser(item.uid)">
         <div class="userRank" v-if="item.rank>1">{{item.rank}}</div>
         <div class="imgBox">
           <span class="avBg" v-if="item.rank<=3"></span>
@@ -63,7 +63,17 @@ export default {
     },
     close() {
       this.$parent.showRank = false
-    }
+    },
+    goUser(uid) { //跳转
+      var u = navigator.userAgent;
+      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+      var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
+      }
+    },
   }
 }
 </script>
