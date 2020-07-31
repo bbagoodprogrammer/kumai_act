@@ -65,9 +65,7 @@ export default {
       this.$parent.showRank = false
     },
     goUser(uid) { //跳转
-      var u = navigator.userAgent;
-      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-      var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       if (isiOS) {
         sendJsData('app://userInfo?uid=' + uid);
       } else {

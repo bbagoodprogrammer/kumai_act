@@ -10,7 +10,7 @@
           <img v-lazy="item.avatar" alt="" class="userAv" @click.stop="goUser(item.uid)">
           <div class="userMsg">
             <div class="name">{{lang.firePeople}}<strong> {{item.nick}}</strong> </div>
-            <div class="roomMsg">{{lang.kRoom}} <em> {{item.rid}} </em></div>
+            <div class="roomMsg">{{item.is_ktv?"رقم غرفة الغناء":"رقم غرفة الدردشة"}} <em> {{item.rid}} </em></div>
             <!-- {{lang.date}} -->
             <div class="time">{{getDate(item.stime)}}</div>
           </div>
@@ -38,9 +38,9 @@
         <div class="actMsg" v-if="showActMsg" :class="'list'+showParty.cover">
           <i class="close" @click="closeActMsgPup()"></i>
           <h5>{{showParty.them}}</h5>
-          <div class="time"><span>نوع الغرفة: <em>{{showParty.type==1?'غرفة الغناء':'غرفة الدردشة'}}</em></span> {{getDate(showParty.stime)}} </div>
+          <div class="time"><span>نوع الغرفة: <em>{{showParty.is_ktv==1?'غرفة الغناء':'غرفة الدردشة'}}</em></span> {{getDate(showParty.stime)}} </div>
           <div class="room">
-            <strong>{{lang.rid}}<em>{{showParty.rid}}</em> </strong>
+            <strong>{{showParty.is_ktv?"رقم غرفة الغناء":"رقم غرفة الدردشة"}}<em>{{showParty.rid}}</em> </strong>
             <!-- <span @click="showSingUpPup(showParty.id)" v-if="showParty.is_reg ==2">{{lang.singUp}}</span> -->
           </div>
           <div class="msgCon">
@@ -251,7 +251,7 @@ export default {
         background-size: 100% 100%;
       }
       .titieTips {
-        width: 1.1rem;
+        width: 1.55rem;
         height: 0.43rem;
         display: inline-block;
         margin-right: 0.06rem;
