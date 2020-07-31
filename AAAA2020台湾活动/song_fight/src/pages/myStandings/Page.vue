@@ -397,6 +397,7 @@ body {
     .lvTab {
       width: 4.67rem;
       height: 2.33rem;
+      margin-top: 0.1rem;
     }
     .ok {
       display: block;

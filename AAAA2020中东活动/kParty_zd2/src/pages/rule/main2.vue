@@ -221,8 +221,8 @@ export default {
         let currenStamp = this.currentDate.getTime()
         if (currenStamp < this.startTimeStamp) {
           this.toast('لا يمكن لوقت الانتهاء قبل وقت البداية')
-        } else if (currenStamp - this.startTimeStamp < 1000 * 60 * 60 || currenStamp - this.startTimeStamp > 1000 * 60 * 60 * 10) {
-          this.toast('يجب على وقت كل النشاط أكثر من ساعة و أقل من 10 ساعات، يرجي تعديل نطاق الوقت.')
+        } else if (currenStamp - this.startTimeStamp < 1000 * 60 * 60 || currenStamp - this.startTimeStamp > 1000 * 60 * 60 * 5) {
+          this.toast('يجب على وقت كل النشاط أكثر من ساعة و أقل من 5 ساعات، يرجي تعديل نطاق الوقت.')
         } else {
           this.isChang2 = true
           this.endTime = this.getDate(this.currentDate)

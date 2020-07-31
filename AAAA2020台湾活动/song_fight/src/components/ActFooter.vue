@@ -4,14 +4,15 @@
       <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
       <div class="actIng" v-if="astState === 1">
-        <span class="notice">打擂歌單預告>></span>
-        <span class="Judges">做評委>> <em>1688人</em></span>
+        <span class="notice" @click="goTrailer() ">打擂歌單預告>></span>
+        <span class="Judges" @click="goSongVote() ">做評委>> <em>1688人</em></span>
       </div>
     </div>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex'
+import getString from "../utils/getString"
 export default {
   computed: {
     ...mapState(['actStatus', 'userMsg', "isShare"]),
@@ -26,6 +27,16 @@ export default {
       } else if (this.userMsg.registered) { //活动开始已报名
         return 3
       }
+    }
+  },
+  methods: {
+    goTrailer() {
+      let regstr = getString('token')
+      location.href = `./trailer.html?token=${regstr}`
+    },
+    goSongVote() {
+      let regstr = getString('token')
+      location.href = `./songVote.html?token=${regstr}`
     }
   }
 }

@@ -12,20 +12,20 @@
       <span v-if="month== 1 && mainTab==3" @click="mainTabClick(1)">ترتيب الشهر الحالي>></span>
       <span v-if="month== 1 && mainTab==1" @click="mainTabClick(3)">ترتيب الشهر السابق>></span>
     </div>
-    <p v-if="mainTab==0" class="rankTips">حسب ترتيب نقاط هذا الأسبوع لغرف<br  />يمكن أن تحصل على الجوائز إذا تصل نقاطك إلى 3000 أو تدخل في أفضل 10 للقائمة</p>
-    <p v-else-if="mainTab==2" class="rankTips">حسب ترتيب نقاط الأسبوع الماضي لغرف<br  />يمكن أن تحصل على الجوائز إذا تصل نقاطك إلى 3000 أو تدخل في أفضل 10 للقائمة</p>
-    <p v-else-if="mainTab==1" class="rankTips">حسب ترتيب نقاط الشهر الماضي لغرف<br  />يمكن أن تحصل على الجوائز إذا تصل نقاطك إلى 10000 أو تدخل في أفضل 10 للقائمة</p>
-    <p v-else class="rankTips">حسب ترتيب نقاط هذا الشهر لغرف<br  />يمكن أن تحصل على الجوائز إذا تصل نقاطك إلى 10000 أو تدخل في أفضل 10 للقائمة</p>
+    <p v-if="mainTab==0" class="rankTips">وفقًا لترتيب نقاط الأسبوع الحالي في كل غرفة، ستحصل الغرفة التي تصل نقاط الأسبوع الحالي إلى 1000 و مرتبتها في العشرة الأوائل على مكافأة.</p>
+    <p v-else-if="mainTab==2" class="rankTips">وفقًا لترتيب نقاط الأسبوع الحالي في كل غرفة، ستحصل الغرفة التي تصل نقاط الأسبوع السابق إلى 1000 و مرتبتها في العشرة الأوائل على مكافأة.</p>
+    <p v-else-if="mainTab==1" class="rankTips">وفقًا لترتيب نقاط الشهر الحالي في كل غرفة، ستحصل الغرفة التي تصل نقاط الشهر الحالي إلى 4000 و مرتبتها في العشرة الأوائل على مكافأة.</p>
+    <p v-else class="rankTips">وفقًا لترتيب نقاط الشهر الحالي في كل غرفة، ستحصل الغرفة التي تصل نقاط الشهر السابق إلى 4000 و مرتبتها في العشرة الأوائل على مكافأة.</p>
     <ul class="list day" :class="{nodata: rank.list.length == 0}">
       <li v-for="(item,index) in rank.list" :key="index" @click="goUser(item.rid)">
         <div class="rank">{{item.rank}}</div>
         <img v-lazy="item.img" alt="">
         <div class="userMsg">
           <div class="name">{{item.name}}</div>
-          <div class="rid">{{item.rid}}</div>
+          <div class="rid">{{item.is_ktv?"رقم غرفة الغناء":"رقم غرفة الدردشة"}} <em>{{item.rid}}</em> </div>
         </div>
-        <div class="score" v-if="mainTab==0 || mainTab==2">نقاط الأسبوع الحالي {{item.score}}</div>
-        <div class="score" v-else>نقاط الشهر الحالي {{item.score}}</div>
+        <div class="score" v-if="mainTab==0 || mainTab==2">نقاط الأسبوع الحالي <em>{{item.score}}</em> </div>
+        <div class="score" v-else>نقاط الشهر الحالي <em>{{item.score}}</em> </div>
       </li>
     </ul>
     <!-- 总榜 -->
@@ -33,17 +33,17 @@
       <li v-for="(item,index) in rank.list" :key="index" @click="goUser(item.uid)">总榜{{JSON.stringify(item)}}</li>
     </ul> -->
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-    <div v-if="rank.loading" class="scrollLoading">في التحميل...</div>
-    <div v-if="rank.none" class="scrollNone">هذا القائمة خالية!</div>
+    <div v-if="rank.loading" class="scrollLoading">...في التحميل</div>
+    <div v-if="rank.none" class="scrollNone">!هذه الغرفة خالية</div>
     <div class="footer" v-if="msg.rank != 0 && msg.rid">
       <div class="rank">{{msg.rank}}</div>
       <img v-lazy="msg.img" alt="">
       <div class="userMsg">
         <div class="name">{{msg.name}}</div>
-        <div class="rid">{{msg.rid}}</div>
+        <div class="rid">{{msg.is_ktv?"رقم غرفة الغناء":"رقم غرفة الدردشة"}} <em>{{msg.rid}}</em></div>
       </div>
-      <div class="score" v-if="mainTab==0 || mainTab==2">نقاط الأسبوع الحالي {{msg.score}}</div>
-      <div class="score" v-else>نقاط الشهر الحالي {{msg.score}}</div>
+      <div class="score" v-if="mainTab==0 || mainTab==2">نقاط الأسبوع الحالي <em>{{msg.score}}</em> </div>
+      <div class="score" v-else>نقاط الشهر الحالي <em>{{msg.score}}</em> </div>
     </div>
   </div>
 </template>
@@ -275,6 +275,9 @@ body {
   .score {
     color: rgba(255, 248, 190, 1);
     font-size: 0.24rem;
+    em {
+      display: block;
+    }
   }
 }
 .scrollLoading,
@@ -361,11 +364,17 @@ body {
         .rid {
           font-size: 0.24rem;
           color: rgba(216, 190, 255, 1);
+          em {
+            display: block;
+          }
         }
       }
       .score {
         color: rgba(255, 248, 190, 1);
         font-size: 0.24rem;
+        em {
+          display: block;
+        }
       }
     }
     li:before {

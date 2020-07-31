@@ -641,8 +641,8 @@ body {
   }
 }
 .actScorePup {
-  width: 6.21rem;
-  height: 6.28rem;
+  width: 6.61rem;
+  height: 7.8rem;
   background: url(../../assets/img/actScoreBg.png);
   background-size: 100% 100%;
   position: relative;
@@ -657,24 +657,26 @@ body {
     top: -0.7rem;
   }
   .scoreItem {
-    width: 4.65rem;
-    height: 4.35rem;
+    width: 4.85rem;
+    height: 5.35rem;
     position: absolute;
     left: 0;
-    top: 1.4rem;
+    top: 1.6rem;
     ul {
       li {
-        height: 0.545rem;
+        height: 0.676rem;
         display: flex;
         text-align: center;
         font-size: 0.22rem;
         color: rgba(217, 181, 255, 1);
-        line-height: 0.53rem;
         .name {
-          width: 3.13rem;
-          line-height: 0.25rem;
+          width: 3.4rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .itemScore {
+          line-height: 0.685rem;
           flex: 1;
         }
       }

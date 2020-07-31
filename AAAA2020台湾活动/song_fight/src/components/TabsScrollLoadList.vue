@@ -281,6 +281,7 @@ export default {
       display: flex;
       align-items: center;
       position: relative;
+      margin-bottom: 0.06rem;
       .rank {
         width: 0.76rem;
         height: 0.65rem;
