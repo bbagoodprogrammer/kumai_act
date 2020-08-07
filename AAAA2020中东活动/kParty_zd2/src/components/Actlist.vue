@@ -237,11 +237,14 @@ export default {
     .title {
       height: 1rem;
       line-height: 1rem;
-      font-size: 0.42rem;
+      font-size: 0.33rem;
       text-indent: 0.29rem;
       font-weight: 600;
       display: flex;
       align-items: center;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       i {
         display: block;
         width: 1.29rem;

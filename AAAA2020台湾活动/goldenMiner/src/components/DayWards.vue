@@ -36,7 +36,7 @@
               <strong>{{item.name}}</strong>
             </span>
           </div>
-          <div class="tips2">{{lang.getBack}}</div>
+          <div class="tips2">{{lang.getBack}} <em v-if="showTicket">（禮券僅當天有效，請盡快使用）</em> </div>
         </div>
       </transition>
     </div>
@@ -63,7 +63,8 @@ export default {
         '價值20金幣背包禮物+2%儲值返利券+300金豆'
       ],
       index: 0,
-      giftArr: []
+      giftArr: [],
+      showTicket: false
     }
   },
   computed: {
@@ -81,6 +82,9 @@ export default {
           this.vxc('setGiftStatus', obj)
           this.index = index
           this.giftArr = response_data.data
+          if (index == 6 || index == 7 || index == 8 || index == 9) {
+            this.showTicket = true
+          }
           this.showUpgrade = true
         } else {
           this.vxc('setToast', {
@@ -91,6 +95,7 @@ export default {
     },
     closeUpgrade() {
       this.showUpgrade = false
+      this.showTicket = false
     },
   }
 }
@@ -255,6 +260,11 @@ export default {
     font-weight: 500;
     text-align: center;
     margin-top: 0.15rem;
+    em {
+      display: block;
+      text-align: center;
+      font-size: 0.22rem;
+    }
   }
   .close {
     display: block;

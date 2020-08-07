@@ -6,6 +6,7 @@ import Vue from 'vue'
 import Page from './Page'
 import VueLazyload from 'vue-lazyload'
 import common from "../../utils/common"
+import store from '../../store/stores.js'
 
 Vue.prototype.toast = common.toast
 Vue.prototype.vxc = common.vuexCommit
@@ -24,6 +25,7 @@ Vue.use(VueLazyload, {
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
+    store,
     components: { Page },
     render: h => h(Page)
     // template: '<myStandings/>'

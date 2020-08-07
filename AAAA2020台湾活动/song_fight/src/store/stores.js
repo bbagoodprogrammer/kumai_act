@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
-        actStatus: 0, //活动状态，默认未开始
+        actStatus: 0, // 0 本期 1上期
         userMsg: {}, // 用户是否报名
         isLoading: 0, //loading效果
         toastObj: {
@@ -16,6 +16,12 @@ const store = new Vuex.Store({
         isShare: false, //分享
         rankGroups: {},  //储存當天的信息
         groupsUserMsg: {},  //儲存各種天數的個人信息
+        downScoend: 0,
+        hotSong: [],
+        can: null,
+        next: null,
+        act: null,
+        version_allowed: null
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -59,6 +65,27 @@ const store = new Vuex.Store({
             }
             console.log(state.rankGroups)
         },
+        setDownScoend(state, val) {
+            state.downScoend = val
+        },
+        setHotSong(state, val) {
+            state.hotSong = val
+        },
+        setCan(state, val) {
+            state.can = val
+        },
+        setNext(state, val) {
+            state.next = val
+        },
+        cSongSuc(state, val) {
+            state.hotSong[val].status = 2
+        },
+        setAct(state, val) {
+            state.act = val
+        },
+        setVersion_allowed(state, val) {
+            state.version_allowed = val
+        }
     },
     actions: {
         setloading({ commit }, boolean) {

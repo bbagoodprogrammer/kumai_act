@@ -130,15 +130,15 @@ export default {
           "share_title": `Đã điểm danh liên tục ${this.days} ngày`,
           "share_content": `Tôi đã điểm danh liên tục ${this.days} ngày, được lật bài nhận thưởng, cần bạn hỗ trợ, mau đến ngay`,
           "share_image": this.master.headImg,
-          "link": `http://test.singnowapp.com:18082/singIn_ynan_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
+          "link": `http://singnowapp.com/singIn_ynan_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
           "image": this.master.headImg,
-          "share_url": `http://test.singnowapp.com:18082/singIn_ynan_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
+          "share_url": `http://singnowapp.com/singIn_ynan_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
         }
         if (ios) {
           if (window.shareOutside != undefined) {
             shareOutside(JSON.stringify(data))
           } else {
-            location.href = `shareUserInfo://test.singnowapp.com:18082/singIn_ynan_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=Tôi đã điểm danh liên tục ${this.days} ngày, được lật bài nhận thưởng, cần bạn hỗ trợ, mau đến ngay&userImg=${this.master.headImg}&title=Đã điểm danh liên tục ${this.days} ngày`;
+            location.href = `shareUserInfo://singnowapp.com/singIn_ynan_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=Tôi đã điểm danh liên tục ${this.days} ngày, được lật bài nhận thưởng, cần bạn hỗ trợ, mau đến ngay&userImg=${this.master.headImg}&title=Đã điểm danh liên tục ${this.days} ngày`;
           }
         } else {
           javascript: JSInterface.shareOutside(JSON.stringify(data));

@@ -75,7 +75,7 @@ export default {
   methods: {
     getDefaultData(val) { //初始化
       api.getDefault().then(res => {
-        if (res.response_data) {
+        if (res.data.response_data) {
           this.data = res.data.response_data
         } else {
           this.toast(res.data.response_status.error)

@@ -2,78 +2,109 @@
   <div class="trailer">
     <div class="title">打擂歌單預告</div>
     <div class="searchBox">
-      <input type="text" placeholder="打擂歌曲/歌手名">
-      <span class="search"></span>
+      <input type="text" placeholder="打擂歌曲/歌手名" v-on:input="inputChange()" v-model="searchMsg">
+      <span class="search" @click="search()"></span>
     </div>
-    <p class="tips">下期歌單XX月XX日18:00-XX月XX日20:00<br />非下期打擂期間發佈的練習歌曲無法報名參賽</p>
-    <!-- <div class="noSongTips">
-      <h3>預告歌單暫無該打擂歌曲</h3>
-    </div> -->
+    <p class="tips">下期歌單{{stime}}-{{etime}}<br />非下期打擂期間發佈的練習歌曲無法報名參賽</p>
+    <div class="noSongTips">
+      <h3 v-if="noData">預告歌單暫無該打擂歌曲</h3>
+    </div>
     <ul class="songList scrollable">
-      <li v-for="(item,index) in sList" :key="index">
+      <li v-for="(item,index) in showSong" :key="index">
         <div class="songMsg">
-          <div class="sName">{{item.songName}}<i></i> </div>
-          <div class="songNick"><em>{{item.songNick}}</em><strong> / 打擂 {{item.num}} 人</strong></div>
+          <div class="sName">{{item.name}}<i v-if="item.mp3!=''"></i> </div>
+          <div class="songNick"><em>{{item.artist}}</em></div>
         </div>
-        <div class="songStatusBtn" @click="goSong(item.sid)">
+        <div class="songStatusBtn" @click="goSong(item.accid)">
           <em>練習</em>
         </div>
       </li>
     </ul>
+    <loading />
   </div>
 </template>
 <script>
 import api from "../../api/apiConfig"
+import loading from "../../components/Loading"
+import getDate from "../../utils/getDate"
 export default {
+  components: { loading },
   data() {
     return {
-      sList: [
-        {
-          songName: '孤芳自赏',
-          songNick: '無煙房',
-          num: 88,
-        },
-        {
-          songName: '孤芳自赏',
-          songNick: '無煙房',
-          num: 88,
-        },
-        {
-          songName: '孤芳自赏',
-          songNick: '無煙房',
-          num: 88,
-        }
-      ],
+      sList: [],
+      showSong: [],
       loaded: false,
-      more: true
+      more: true,
+      searchMsg: '',
+      noData: false,
+      time: {}
     }
   },
-  mounted() {
-    this.scrollable = this.$el.querySelector('.scrollable');
-    if (this.scrollable) {
-      this.scrollable.addEventListener('scroll', this.onScroll);
-    }
-  },
-  methods: {
-    onScroll() {
-      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
-      if (scrollToBottom) { //滾動加載，沒有加載完成
-        if (this.loaded) return
-        if (this.more) {
-          this.more = false
-          api.getHistory(this.sList.length, 'more').then(res => {
-            this.more = true
-            if (res.data.response_data.list.length === 0) {
-              this.loaded = true
-            } else {
-              this.sList = this.sList.concat(res.data.response_data.list)
-            }
-          })
-        }
+  computed: {
+    stime() {
+      if (this.time.stime) {
+        return getDate(new Date(this.time.stime * 1000), 2)
       }
     },
+    etime() {
+      if (this.time.etime) {
+        return getDate(new Date(this.time.etime * 1000), 2)
+      }
+    }
+  },
+  created() {
+    document.title = '打擂歌曲預告'
+    api.getNextSong().then(res => {
+      console.log(res)
+      this.sList = res.data.response_data.data
+      this.time = res.data.response_data.time
+      this.showSong = this.sList
+    })
+  },
+  mounted() {
+    // this.scrollable = this.$el.querySelector('.scrollable');
+    // if (this.scrollable) {
+    //   this.scrollable.addEventListener('scroll', this.onScroll);
+    // }
+  },
+  methods: {
+    inputChange() {
+      this.showSong = this.sList
+      this.noData = false
+    },
+    // onScroll() {
+    //   const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
+    //   if (scrollToBottom) { //滾動加載，沒有加載完成
+    //     if (this.loaded) return
+    //     if (this.more) {
+    //       this.more = false
+    //       api.getNextSong(this.sList.length, 'more').then(res => {
+    //         this.more = true
+    //         if (res.data.response_data.list.length === 0) {
+    //           this.loaded = true
+    //         } else {
+    //           this.sList = this.sList.concat(res.data.response_data.list)
+    //         }
+    //       })
+    //     }
+    //   }
+    // },
     goSong(sid) {
-      location.href = 'songid:{"songlist":[' + sid + ' ],"index":0}';
+      location.href = `record:${sid}`
+      // location.href = 'songid:{"songlist":[' + sid + ' ],"index":0}';
+    },
+    search() {
+      if (this.searchMsg != '') {
+        api.searchSong(this.searchMsg, 1).then(res => {
+          const data = res.data.response_data.data
+          if (data.length) {
+            this.showSong = data
+          } else {
+            this.noData = true
+            this.showSong = []
+          }
+        })
+      }
     }
   }
 }

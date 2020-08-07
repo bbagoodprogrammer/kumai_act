@@ -28,7 +28,8 @@
             <i>{{index+1}}{{lang.day}}</i>
           </span>
         </div>
-        <p class="tips">{{lang.tips1}}</p>
+        <p class="tips">5 ngày liên tiếp hoàn thành nhiệm vụ ngày,
+          sẽ nhận được Xe Ferrari (thời hạn 5 ngày).</p>
       </div>
       <img src="../assets/img/carImg.png" alt="" class="carImg">
     </div>

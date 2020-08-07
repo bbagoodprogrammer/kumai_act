@@ -4,7 +4,7 @@
       <div class="timeTips">
         <p v-if="actStatus == 0">本期打擂日榜開始倒計時</p>
         <p v-else-if="actStatus == 1">本期打擂日榜結束倒計時</p>
-        <p v-else>本期打擂日榜已結束</p>
+        <p v-else>本期打擂已結束</p>
       </div>
       <div class="timeDown" v-if="surplusTime.day">
         <div class="day">
@@ -35,15 +35,22 @@
 <script>
 import downTime from '../utils/downTime.js'
 import getString from "../utils/getString"
+import { mapState } from "vuex"
+import APP from '../utils/openApp'
 export default {
   data() {
     return {
-      actStatus: 0,
       surplusTime: {}
     }
   },
-  created() {
-    this.downTimeGo('time', 999)
+  computed: {
+    ...mapState(['downScoend', 'isShare', 'actStatus'])
+  },
+  watch: {
+    downScoend(val) {
+      console.log(val)
+      this.downTimeGo('time', val)
+    }
   },
   methods: {
     downTimeGo(timeName, val) {
@@ -59,16 +66,46 @@ export default {
       }, 1000)
     },
     goStandings() {
+      if (this.isShare) {
+        APP()
+        return
+      } else if (this.actStatus === 0) {
+        this.vxc('setToast', {
+          msg: this.lang.noAct
+        })
+        return
+      }
       let regstr = getString('token')
       location.href = `./myStandings.html?token=${regstr}`
+
     },
     goMyVote() {
+      if (this.isShare) {
+        APP()
+        return
+      } else if (this.actStatus === 0) {
+        this.vxc('setToast', {
+          msg: this.lang.noAct
+        })
+        return
+      }
       let regstr = getString('token')
       location.href = `./myVote.html?token=${regstr}`
+
     },
     goRank() {
+      if (this.isShare) {
+        APP()
+        return
+      } else if (this.actStatus === 0) {
+        this.vxc('setToast', {
+          msg: this.lang.noAct
+        })
+        return
+      }
       let regstr = getString('token')
       location.href = `./rank.html?token=${regstr}`
+
     }
   }
 }
@@ -77,9 +114,11 @@ export default {
 .fightTabTime {
   height: 2.7rem;
   .actTime {
+    height: 0.91rem;
     text-align: center;
     color: rgba(255, 232, 176, 1);
     .timeTips {
+      // height: 0.7rem;
       p {
         font-size: 0.26rem;
       }

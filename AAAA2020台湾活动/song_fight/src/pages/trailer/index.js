@@ -5,7 +5,7 @@ import 'es6-promise/auto'
 import Vue from 'vue'
 import Page from './Page'
 import VueLazyload from 'vue-lazyload'
-
+import store from '../../store/stores.js'
 import common from "../../utils/common"
 
 Vue.prototype.toast = common.toast
@@ -25,6 +25,7 @@ Vue.use(VueLazyload, {
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
+    store,
     components: { Page },
     render: h => h(Page)
     // template: '<Page/>'

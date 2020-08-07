@@ -47,9 +47,9 @@ const store = new Vuex.Store({
             state.today_wealth = val
         },
         lotterySuc(state, val) {
-            state.userMsg.chances--
-            state.today_wealth = state.today_wealth * 1 + val * 1
-            state.myrank.score = state.myrank.score * 1 + val * 1
+            state.userMsg.chances -= val.chances
+            state.today_wealth = state.today_wealth * 1 + val.num * 1
+            state.myrank.score = state.myrank.score * 1 + val.num * 1
         },
         setContinuous(state, val) {
             state.continuous = val

@@ -62,6 +62,8 @@ export default {
     font-size: 0.24rem;
     font-weight: 700;
     color: #c66242;
+    padding: 0 0.4rem;
+    text-align: center;
     em {
       font-size: 0.24rem;
       font-weight: 700;

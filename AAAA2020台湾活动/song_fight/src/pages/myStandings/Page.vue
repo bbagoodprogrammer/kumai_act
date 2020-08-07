@@ -1,24 +1,24 @@
 <template>
   <div class="myStandings">
-    <div class="title">我的战绩 <i class="questIcon" @click="tipsClick()"></i></div>
+    <div class="title">我的戰績 <i class="questIcon" @click="tipsClick()"></i></div>
     <div class="userMsg">
-      <img v-lazy="" alt="">
+      <img v-lazy="userinfo.avatar" alt="">
       <div class="msg">
-        <div class="nick">飞不上蓝天的猪 <i>Lv.88</i> </div>
+        <div class="nick"><strong>{{userinfo.nick}}</strong> <em>本賽季等級：</em> <i>Lv.{{star}}</i> </div>
         <div class="tips">
-          <span>本賽季打擂場數：<em>3場</em> </span>
-          <span>支持率：<em>79%</em></span>
+          <span>本賽季打擂歌曲數：<em>{{nums}}首</em> </span>
+          <!-- <span>支持率：<em>{{pop/10}}%</em></span> -->
         </div>
       </div>
     </div>
-    <div class="preSong" v-for="(item,index) in hList" :key="index">
+    <div class="preSong" v-for="(item,index) in newData" :key="index">
       <div class="preMsg">
-        <span class="pre">第{{item.pre}}期
-          <strong class="time">{{item.stime}}-{{item.etime}}</strong>
+        <span class="pre">第{{item.key}}期
+          <strong class="time">{{getDate(item.stime)}}-{{getDate(item.etime) }}</strong>
         </span>
-        <span class="score">本場得分 <em>{{item.score>0?`+${item.score}`:item.score}}</em> </span>
+        <span class="score" v-if="item.key != id || status!=1">當期得分 <em>{{item.score>0?`+${item.score}`:item.score}}</em> </span>
       </div>
-      <FightSong :list="item.list"></FightSong>
+      <FightSong :list="item.hList" :set="item.key == id && status==1"></FightSong>
     </div>
     <div class="mask" v-show="showTips">
       <transition name="slide">
@@ -26,8 +26,8 @@
           <i class="close" @click="tipsClick()"></i>
           <h3>等級說明</h3>
           <div class="tipsItem">
-            <p>1、每個賽季，選手默認的等級為Lv.0,且Lv.0為最低級，不會降級</p>
-            <p>2、選手升級模式為集滿4星升一級；每一次獲勝的選手（選手獲勝的評判標準為支持率大於50%），會獲得1顆星星，當滿4顆星星自動升級，而失敗的則失去一顆星星，且可降級</p>
+            <p>1、本季歌王榜根據等級，即所有期數獲得的分數總和排名；如果等級相同，獲得更多票數的排名在前面</p>
+            <p>2、每個賽季開始，選手默認的等級為Lv.0，每期擂台賽每獲得1分升一級，每減1分降一級，等級可能為負數</p>
           </div>
           <p>賽季結束時，前100名選手將獲得有效期為1個月的徽章獎勵：</p>
           <img src="../../assets/img/lvTab.png" alt="" class="lvTab">
@@ -35,250 +35,111 @@
         </div>
       </transition>
     </div>
+    <loading />
   </div>
 </template>
 <script>
 import FightSong from "../../components/FightSong"
+import loading from "../../components/Loading"
+import api from "../../api/apiConfig"
+import getDate from "../../utils/getDate"
+var getKey = function (arr, time) {
+  for (let index = 0; index < arr.length; index++) {
+    if (arr[index].key == time) {
+      return index;
+    }
+  }
+  return -1;
+};
 export default {
-  components: { FightSong },
+  components: { FightSong, loading },
   data() {
     return {
       showTips: false,
-      hList: [
-        {
-          pre: 1,
-          stime: "7.24",
-          etime: "7.27",
-          score: 8,
-          list: [
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            },
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            },
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            },
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            }
-          ],
-        },
-        {
-          pre: 2,
-          stime: "7.24",
-          etime: "7.27",
-          score: -1,
-          list: [
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            },
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            },
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            },
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            }
-          ],
-        },
-        {
-          pre: 3,
-          stime: "7.24",
-          etime: "7.27",
-          score: -9,
-          list: [
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            },
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            },
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            },
-            {
-              sname: '雪落下的聲音',
-              user: {
-                1: {
-                  avatar: '',
-                  num: 88,
-                  nick: '飞不上蓝天的你'
-                },
-                2: {
-                  avatar: '',
-                  num: 12,
-                  nick: '飞不上蓝天的豬豬'
-                }
-              },
-              status: 0,
-              top: 0
-            }
-          ],
-        }
-      ]
+      userinfo: {},
+      star: 0,
+      nums: 0,
+      pop: 0,
+      hList: [],
+      ismore: true,
+      loaded: false,
+      id: null,
+      status: null
     }
   },
+  computed: {
+    newData() {
+      // let data = []
+      // this.hList.forEach((element, index) => {
+      //   if (data[element.aid]) {
+      //     data[element.aid].list.push(element)
+      //     data[element.aid].score += element.star
+      //   } else {
+      //     data[element.aid] = {
+      //       pre: element.aid,
+      //       stime: element.stime,
+      //       etime: element.etime,
+      //       list: [element],
+      //       score: element.star
+      //     }
+      //   }
+      // });
+      var arr = [];
+      for (let i = 0; i < this.hList.length; i++) {
+        var times = this.hList[i].aid;
+        var index = getKey(arr, times);
+        if (index == -1) {
+          arr.push({ key: times, hList: [this.hList[i]], stime: this.hList[i].stime, etime: this.hList[i].etime, score: this.hList[i].star })
+        } else {
+          arr[index].score += this.hList[i].star
+          arr[index].hList.push(this.hList[i]);
+        }
+      }
+      console.log(arr)
+      return arr
+    }
+  },
+  created() {
+    this.status = sessionStorage.getItem('status')
+    this.id = sessionStorage.getItem('id')
+    console.log(this.id, this.status)
+    document.title = '我的戰績'
+    api.myPushWorkHistory(0).then(res => {
+      const { list, nums, pop, star, userinfo } = res.data.response_data
+      this.userinfo = userinfo
+      this.star = star
+      this.nums = nums
+      this.pop = pop
+      this.hList = list
+    })
+  },
+  mounted() {
+    window.addEventListener('scroll', this.onScroll)
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.onScroll)
+  },
   methods: {
+    onScroll() { //滾動加載
+      const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100
+      if (scrollToBottom && this.ismore && !this.loaded) { //加載更多合併數組存入vuex
+        this.ismore = false
+        api.myPushWorkHistory(this.hList.length, 'more').then(res => {
+          this.ismore = true
+          let list = res.data.response_data.list
+          if (list.length < 20) {
+            this.loaded = true
+          } else {
+            this.hList = this.hList.concat(list)
+          }
+        })
+      }
+    },
     tipsClick() {
       this.showTips = !this.showTips
+    },
+    getDate(val) {
+      return getDate(new Date(val * 1000), 1)
     }
   }
 }
@@ -320,6 +181,16 @@ body {
         .nick {
           display: flex;
           align-items: center;
+          strong {
+            width: 2.5rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          em {
+            margin-left: 0.2rem;
+            font-size: 0.24rem;
+          }
           i {
             display: inline-block;
             vertical-align: bottom;
@@ -329,7 +200,7 @@ body {
             background: rgba(251, 162, 91, 1);
             border-radius: 0.1rem;
             text-align: center;
-            line-height: 0.4rem;
+            line-height: 0.35rem;
             margin-left: 0.11rem;
           }
         }
@@ -356,6 +227,9 @@ body {
         justify-content: space-between;
         font-size: 0.26rem;
         margin-bottom: 0.12rem;
+        .time {
+          font-size: 0.26rem;
+        }
         .score {
           em {
             color: rgba(255, 197, 25, 1);

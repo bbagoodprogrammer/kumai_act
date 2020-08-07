@@ -1,21 +1,21 @@
 <template>
   <div class="voteSongList">
     <span class="preSongTips" @click="listShowClcik()"><strong>投選{{list.length}}組</strong> <i :class="{rotate:show}"></i> </span>
-    <ul :class="{hide:!show}">
+    <ul :class="{hide:!show}" v-if="index<=1">
       <li v-for="(item,index) in list " :key="index">
         <span class="tips">投</span>
         <img v-lazy="item.avatar" alt="" class="av">
         <div class="preUserMsg">
           <div class="nick">{{item.nick}}</div>
-          <div class="songName">《{{item.songName}}》</div>
-          <i class="bigGo"></i>
+          <div class="songName">《{{item.name}}》</div>
+          <i class="bigGo" v-if="item.result == 1"></i>
         </div>
         <div class="uers">
-          <img v-lazy="item.users[1].avatar" alt="" class="av1">
-          <em>{{item.users[1].score}}</em>
+          <img v-lazy="item.pk_data[0].avatar" alt="" class="av1" @click="goUser(item.pk_data[0].uid)">
+          <em>{{item.result != 0?item.pk_data[0].nums:'?'}}</em>
           <i>:</i>
-          <em>{{item.users[2].score}}</em>
-          <img v-lazy="item.users[2].avatar" alt="" class="av2">
+          <em>{{item.result != 0?item.pk_data[1].nums:'?'}}</em>
+          <img v-lazy="item.pk_data[1].avatar" alt="" class="av2" @click="goUser(item.pk_data[1].uid)">
         </div>
       </li>
     </ul>
@@ -23,7 +23,7 @@
 </template>
 <script>
 export default {
-  props: ['list'],
+  props: ['list', 'index'],
   data() {
     return {
       show: false
@@ -31,7 +31,11 @@ export default {
   },
   methods: {
     listShowClcik() {
+      if (this.index > 1) return
       this.show = !this.show
+    },
+    goUser(uid) {
+      location.href = `uid:${uid}`
     }
   }
 }

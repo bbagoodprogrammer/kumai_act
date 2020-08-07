@@ -46,6 +46,7 @@ export default {
         callback()
       }
     })
+
   },
   mounted() {
     // for(var i=0;i<this.imgArr.length;i++){

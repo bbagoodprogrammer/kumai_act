@@ -53,7 +53,7 @@ export default {
           gift: [
             {
               type: 1,
-              name: '500 đậu'
+              name: '300 đậu'
             },
           ]
         },
@@ -61,7 +61,7 @@ export default {
           gift: [
             {
               type: 1,
-              name: '1000 đậu'
+              name: '600 đậu'
             },
             {
               type: 2,
@@ -73,11 +73,11 @@ export default {
           gift: [
             {
               type: 1,
-              name: '2000 đậu'
+              name: '1000 đậu'
             },
             {
               type: 2,
-              name: '1000 xu'
+              name: '800 xu'
             },
           ]
         },
@@ -85,7 +85,7 @@ export default {
           gift: [
             {
               type: 1,
-              name: '3000 đậu'
+              name: '2000 đậu'
             },
             {
               type: 2,
