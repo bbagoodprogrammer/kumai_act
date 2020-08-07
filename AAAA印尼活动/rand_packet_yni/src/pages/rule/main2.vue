@@ -4,7 +4,7 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Aturan</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Hadiah</a>
     </div>
-    <h6 class="time">Waktu acara : tgl 18 Jun, pukul 18:00 - tgl 26 Jun,pukul 22:00</h6>
+    <h6 class="time">Waktu acara : Pukul 18:00 Tgl 7 Ags. ~ Pukul 22:00 Tgl 15 Ags.</h6>
     <div class="ruleTips" v-show="tab == 0">
       <h6>Aturan</h6>
       <p>1. semua pengguna bisa mendaftar utk ikut acara.</p>
@@ -16,15 +16,15 @@
       </p>
       <h6>Waktu daftar harian:</h6>
       <p class="dayTime">
-        Day1: 18:00 18/6 - 00:00 19/6</br>
-        Day2：00:00 19/6- 00:00 20/6</br>
-        Day3：00:00 20/6- 00:00 21/6</br>
-        Day4：00:00 21/6- 00:00 22/6</br>
-        Day5：00:00 22/6- 00:00 23/6</br>
-        Day6：00:00 23/6- 00:00 24/6</br>
-        Day7：00:00 24/6- 00:00 25/6</br>
-        Day8: 00:00 25/6- 00:00 26/6</br>
-        Day9: 00:00 26/6- 22:00 26/6
+        Day1: 18:00 7/8 - 00:00 8/8</br>
+        Day2：00:00 8/8- 00:00 9/8</br>
+        Day3：00:00 9/8- 00:00 10/8</br>
+        Day4：00:00 10/8- 00:00 11/8</br>
+        Day5：00:00 11/8- 00:00 12/8</br>
+        Day6：00:00 12/8- 00:00 13/8</br>
+        Day7：00:00 13/8- 00:00 14/8</br>
+        Day8: 00:00 14/8- 00:00 15/8</br>
+        Day9: 00:00 15/8- 22:00 15/8
       </p>
       <h6>Level beruntung:</h6>
       <p class="dayTime">

@@ -3,10 +3,10 @@
     <div class="header"></div>
     <h3>投票描述</h3>
     <div class="describeBox">
-      <textarea name="" v-model="describe" id="describe" placeholder="輸入描述，可幫助房間的用戶理解投票目的"></textarea>
+      <textarea name="" v-model="describe" id="describe" maxlength="300" placeholder="輸入描述，可幫助房間的用戶理解投票目的"></textarea>
       <span class="describeNum">{{describe.length}}/300</span>
     </div>
-    <h3 class="optionTitle">投票選項 <u class="optionType" @click="setOptionType()">{{optionType?'使用麥上用戶':'自定義選項'}}</u></h3>
+    <h3 class="optionTitle">投票選項 <u class="optionType" @click="setOptionType()">{{optionType?'自定義選項':'使用麥上用戶'}}</u></h3>
     <div v-if="!optionType">
       <div class="optionBox" v-for="(item,index) in option" :key="index">
         <i class="close" @click="delOption(index)" v-if="index != 0">x</i>
@@ -55,7 +55,7 @@
       </div>
       <p>选择多少分钟以后结束(不填不限制）</p>
     </div>
-    <div class="commitBtn act" @click="commit()">發起</div>
+    <div class="commitBtn" :class="{act:couldCommit}" @click="commit()">發起</div>
     <div class="holder" ref="holderTop">
       <span ref="holder">{{choiceLv}}</span>
       <span ref="time">{{choiceTime}}</span>
@@ -68,6 +68,8 @@
 import getString from "../utils/getString"
 import APP from "../utils/openApp"
 import api from "../api/apiConfig"
+import { callApp } from "../utils"
+import store from "../store/stores"
 export default {
   data() {
     return {
@@ -88,14 +90,17 @@ export default {
       ],
       peopleList: [
         {
-          avatar: '',
-          nick: 'ddddddddddddddddddddd'
+          avatar: "http://img.17sing.tw/uc/img/head_100926_1576642434.png",
+          nick: 'hsingfankkkkkkkkkkkk',
+          uid: 100926
         },
         {
-          avatar: '',
-          nick: 'ddddddddddddddddddddd'
+          avatar: "http://img.17sing.tw/uc/img/head_100926_1576642434.png",
+          nick: 'hsingfankkkkkkkkkkkk',
+          uid: 100926
         }
-      ]
+      ],
+      rid: 0
     }
   },
   computed: {
@@ -108,6 +113,28 @@ export default {
         }
       });
       return isOver
+    },
+    options() {
+      let arr = []
+      if (!this.optionType) {
+        this.option.forEach(element => {
+          if (element.value != '') {
+            arr.push(element.value)
+          }
+        });
+      } else {
+        this.peopleList.forEach(element => {
+          arr.push(element.uid)
+        });
+      }
+      return arr
+    },
+    couldCommit() {
+      var c = false
+      if (this.describe != '' && this.options.length >= 2) {
+        c = true
+      }
+      return c
     }
   },
   watch: {
@@ -119,6 +146,10 @@ export default {
     }
   },
   created() {
+    window.setMicUids = async (res) => { //定义回调函数，让客户端来执行，获取productList数据
+      var tempData = JSON.parse(res);
+      this.peopleList = tempData.uids
+    }
     this.getDefaultData()
   },
   mounted() {
@@ -152,6 +183,9 @@ export default {
       this.peopleList.splice(index, 1)
     },
     setOptionType() {
+      if (!this.optionType) {
+        callApp('getMicUids');
+      }
       this.optionType = !this.optionType
     },
     downApp() {
@@ -165,7 +199,26 @@ export default {
       return `選項${index + 1}`
     },
     commit() {
-      console.log(this.option)
+      let option_type = !this.optionType ? 1 : 2
+      // let options = 
+      if (this.describe == '') {
+        this.toast("請填寫投票描述！")
+      } else if (this.options.length <= 1) {
+        this.toast("請填寫足夠的投票選項！")
+      } else {
+        store.dispatch("setloading", true) // 打开loading
+        api.commitVote(this.describe, option_type, this.options, this.peopleType, this.choiceLv, this.choiceTime).then(res => {
+          store.dispatch("setloading", false) // 打开loading
+          if (res.data.response_data) {
+            this.toast("投票已發起成功")
+            setTimeout(() => {
+              this.closeWeb()
+            }, 800)
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      }
     },
     updateHolderWidth(index) {
       this.$nextTick(() => {
@@ -177,13 +230,23 @@ export default {
             this.timeWidth = Math.max(20, this.$refs.time.clientWidth * 1)
             return
           }
-          console.log(this.$refs.holder)
           this.timeWidth = Math.max(20, this.$refs.holderTop.clientWidth)
           this.holderWidth = Math.max(20, this.$refs.holderTop.clientWidth)
         }, 0)
 
       });
     },
+    closeWeb() {
+      var u = navigator.userAgent;
+      var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+      if (isAndroid) {
+        window.JSInterface.closeWeb();
+      } else {
+        closeWeb();
+      }
+    }
+
   }
 }
 </script>

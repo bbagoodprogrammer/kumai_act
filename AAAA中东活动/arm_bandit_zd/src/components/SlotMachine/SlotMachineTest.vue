@@ -132,11 +132,11 @@ export default {
       var getCoins = 0
       result.forEach(element => {
         if (element == 10) {
-          getCoins += 50
+          getCoins += 500
         } else if (element == 11) {
-          getCoins += 100
+          getCoins += 1000
         } else if (element == 12) {
-          getCoins += 150
+          getCoins += 1500
         }
       });
       //更新老虎币

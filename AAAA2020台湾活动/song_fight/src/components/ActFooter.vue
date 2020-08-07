@@ -1,11 +1,11 @@
 <template>
   <div class="footerBar">
     <div class="acrStatus">
-      <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
-      <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
-      <div class="actIng" v-if="astState === 1">
-        <span class="notice" @click="goTrailer() ">打擂歌單預告>></span>
-        <span class="Judges" @click="goSongVote() ">做評委>> <em>1688人</em></span>
+      <!-- <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
+      <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span> -->
+      <div class="actIng" :class="{center:!next}">
+        <span class="notice" @click="goTrailer()" v-if="next">打擂歌單預告>></span>
+        <span class="Judges" @click="goSongVote() ">做評委>> <em>{{jun}}人</em></span>
       </div>
     </div>
   </div>
@@ -13,30 +13,43 @@
 <script>
 import { mapState } from 'vuex'
 import getString from "../utils/getString"
+import { globalBus } from '../utils/eventBus'
+import APP from "../utils/openApp"
 export default {
+  props: ["jun", "device"],
   computed: {
-    ...mapState(['actStatus', 'userMsg', "isShare"]),
-    astState() {
-      return 1
-      if (this.actStatus === 0) { //活动未开始
-        return 0
-      } else if (this.actStatus === 2) { //活动已结束
-        return 2
-      } else if (!this.userMsg.registered || this.isShare) { //活动开始未报名，或者分享
-        return 1
-      } else if (this.userMsg.registered) { //活动开始已报名
-        return 3
-      }
-    }
+    ...mapState(["actStatus", "next", "isShare"]),
+    // astState() {
+    //   return 1
+    //   if (this.actStatus === 0) { //活动未开始
+    //     return 0
+    //   } else if (this.actStatus === 2) { //活动已结束
+    //     return 2
+    //   } else if (!this.userMsg.registered || this.isShare) { //活动开始未报名，或者分享
+    //     return 1
+    //   } else if (this.userMsg.registered) { //活动开始已报名
+    //     return 3
+    //   }
+    // }
   },
   methods: {
     goTrailer() {
+      if (this.isShare) {
+        APP()
+        return
+      }
       let regstr = getString('token')
       location.href = `./trailer.html?token=${regstr}`
     },
     goSongVote() {
-      let regstr = getString('token')
-      location.href = `./songVote.html?token=${regstr}`
+      globalBus.$emit('commonEvent', () => {
+        if (!this.device) {
+          this.toast(`不可以註冊多個帳號評分哦！`)
+          return
+        }
+        let regstr = getString('token')
+        location.href = `./songVote.html?token=${regstr}&v=${Math.random()}`
+      })
     }
   }
 }
@@ -68,6 +81,9 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      &.center {
+        justify-content: center;
+      }
       span {
         width: 2.83rem;
         height: 0.92rem;

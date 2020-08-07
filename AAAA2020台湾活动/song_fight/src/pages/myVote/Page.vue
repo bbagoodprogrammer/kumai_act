@@ -1,22 +1,23 @@
 <template>
   <div class="myVote">
-    <div class="title">我的战绩 <i class="questIcon" @click="tipsClick()"></i></div>
+    <div class="title">我的投票 <i class="questIcon" @click="tipsClick()"></i></div>
     <div class="userMsg">
-      <img v-lazy="" alt="">
+      <img v-lazy="userinfo.avatar" alt="">
       <div class="msg">
-        <div class="nick">飞不上蓝天的猪 <em>Lv.88</em> <i class="star" v-for="i in 2" :key="i"></i></div>
+        <!-- <em>Lv.{{star}}</em> -->
+        <div class="nick"><strong>{{userinfo.nick}}</strong> </div>
         <div class="tips">
-          <span>累計投選<em> 3 </em>組</span>
-          <span>總投中率：<em>79%</em></span>
+          <span>累計投選<em> {{dat.all}} </em>組</span>
+          <span>總投中率：<em>{{dat.right}}%</em></span>
         </div>
       </div>
     </div>
-    <div class="preResTime">
+    <div class="preResTime" v-for="(item,index) in list " :key="index">
       <div class="timeTips">
-        <p class="noRes">8月3日 20:00:00 公佈投票結果</p>
-        <p><span class="time">7月24日-7月27日</span>投選55組，投中率80%，獲得金耳朵稱號<br />2次連投8組投中</p>
+        <p class="noRes" v-if="item.result == 0">{{getDate(item.etime,2)}}公佈投票結果</p>
+        <p v-else><span class="time">{{getDate(item.stime,1)}}-{{getDate(item.etime,1)}}</span>投選{{item.counts}}組，投中率{{item.right}}%<span v-if="item.title!=0">，獲得{{err[item.title]}}稱號</span> <br /> <strong v-if="item.eight">2次連投8組投中</strong> </p>
       </div>
-      <VoteSongList :list="list" />
+      <VoteSongList :list="item.list" :index="index" v-if="item.list" />
     </div>
     <div class="mask" v-show="showTips">
       <transition name="slide">
@@ -31,102 +32,42 @@
         </div>
       </transition>
     </div>
+    <loading />
   </div>
 </template>
 <script>
 import VoteSongList from "../../components/VoteSongList"
+import loading from "../../components/Loading"
+import api from "../../api/apiConfig"
+import getDate from "../../utils/getDate"
 export default {
-  components: { VoteSongList },
+  components: { VoteSongList, loading },
   data() {
     return {
-      list: [
-        {
-          avatar: '',
-          nick: '方方方法付付付',
-          songName: '雪落下的聲音',
-          isMark: true,
-          users: {
-            1: {
-              avatar: '',
-              score: 88
-            },
-            2: {
-              avatar: '',
-              score: 33
-            }
-          }
-        },
-        {
-          avatar: '',
-          nick: '方方方法付付付',
-          songName: '雪落下的聲音',
-          isMark: true,
-          users: {
-            1: {
-              avatar: '',
-              score: 88
-            },
-            2: {
-              avatar: '',
-              score: 33
-            }
-          }
-        },
-        {
-          avatar: '',
-          nick: '方方方法付付付',
-          songName: '雪落下的聲音',
-          isMark: true,
-          users: {
-            1: {
-              avatar: '',
-              score: 88
-            },
-            2: {
-              avatar: '',
-              score: 33
-            }
-          }
-        },
-        {
-          avatar: '',
-          nick: '方方方法付付付',
-          songName: '雪落下的聲音',
-          isMark: true,
-          users: {
-            1: {
-              avatar: '',
-              score: 88
-            },
-            2: {
-              avatar: '',
-              score: 33
-            }
-          }
-        },
-        {
-          avatar: '',
-          nick: '方方方法付付付',
-          songName: '雪落下的聲音',
-          isMark: true,
-          users: {
-            1: {
-              avatar: '',
-              score: 88
-            },
-            2: {
-              avatar: '',
-              score: 33
-            }
-          }
-        }
-      ],
-      showTips: false
+      list: [],
+      showTips: false,
+      userinfo: {},
+      star: 0,
+      dat: {},
+      err: ['', '鐵耳朵', '銅耳朵', '銀耳朵', '金耳朵', '白金耳朵']
     }
+  },
+  created() {
+    document.title = '我的投票'
+    api.myJun().then(res => {
+      const { data, star, userinfo, dat } = res.data.response_data
+      this.userinfo = userinfo
+      this.star = star
+      this.list = data
+      this.dat = dat
+    })
   },
   methods: {
     tipsClick() {
       this.showTips = !this.showTips
+    },
+    getDate(val, type) {
+      return getDate(new Date(val * 1000), type)
     }
   }
 }
@@ -167,6 +108,12 @@ body {
         .nick {
           display: flex;
           align-items: center;
+          strong {
+            width: 2rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
           em {
             display: inline-block;
             vertical-align: bottom;
@@ -201,6 +148,7 @@ body {
       }
     }
     .preResTime {
+      margin-top: 0.4rem;
       .timeTips {
         text-align: center;
         color: rgba(110, 255, 216, 1);

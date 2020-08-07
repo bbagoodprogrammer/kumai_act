@@ -61,7 +61,7 @@ export default {
       this.vxc('setShareState', this.isShare) //分享状态
     },
     getDefaultData(val) { //初始化
-      api.getDefault().then(res => {
+      api.getDefault(val).then(res => {
         const { response_data, response_status } = res.data
         const { step, user_info, myrank, my_pool, today_wealth, continuous, schule, charge, receive } = response_data
         this.vxc('setActStatus', step)
@@ -88,7 +88,7 @@ export default {
     },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
-      this.getDefaultData('ref')
+      this.getDefaultData()
       if (this.$refs.tabs.showCom == 'DayWards') {
         this.$refs.tabs.creatDayWards()
       } else if (this.$refs.showCom == 'Rank') {

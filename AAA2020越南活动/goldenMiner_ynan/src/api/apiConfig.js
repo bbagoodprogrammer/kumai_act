@@ -69,8 +69,11 @@ function get(url, config) {
 }
 
 //获取活动基础信息
-function getDefault() {
+function getDefault(val) {
     if (token) {
+        if (val) {
+            return axios.get(`/happy_miner/init.php?token=${token}`);
+        }
         return get(`/happy_miner/init.php?token=${token}`);
     } else {
         return get(`/happy_miner/init.php`);
@@ -78,7 +81,10 @@ function getDefault() {
 }
 
 //挖礦
-function lottery(track) {
+function lottery(track, all) {
+    if (all) {
+        return get(`/happy_miner/lottery1.php?token=${token}`)
+    }
     return get(`/happy_miner/lottery.php?token=${token}&track=${track}`)
 }
 

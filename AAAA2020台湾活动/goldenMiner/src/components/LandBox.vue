@@ -1,5 +1,6 @@
 <template>
   <div class="landBox">
+    <span @click="go('all')" class="oneBtn">一鍵挖掘</span>
     <div class="landTop">
       <div class="pelople" :class="{people2:peopleAni}">
         <div class="tipmsg" v-html="tipsMsg"></div>
@@ -33,6 +34,7 @@
       <div class="goBtn" @click="go()">{{lang.go}}</div>
       <span class="right" @touchstart="goRigth()" @touchend="rightUp()"></span>
     </div>
+    <!-- <i>{{surplusNum}}</i>  -->
   </div>
 </template>
 <script>
@@ -224,6 +226,17 @@ export default {
   },
   computed: {
     ...mapState(['my_pool', 'userMsg']),
+    surplusNum() {
+      let num = 0
+      for (var i = 0; i < this.mineralArr.length; i++) {
+        for (var j = 0; j < this.mineralArr[i].mineralItem.length; j++) {
+          if (!this.mineralArr[i].mineralItem[j].open) {
+            num++
+          }
+        }
+      }
+      return num
+    }
   },
   watch: {
     my_pool(val) {
@@ -310,7 +323,7 @@ export default {
         }
       });
       if (layerArr.length && isover) {  //挖完
-        this.$parent.getDefaultData()
+        this.$parent.getDefaultData('noLoading')
       }
       let nowTips = ''
       if (layerArr.indexOf(3) >= 0) {  //一層
@@ -338,7 +351,7 @@ export default {
       //計算鉤子到列的距離
       this.distance = columnItem.top - gouOfs.top
     },
-    go() {
+    go(all) {
       globalBus.$emit('commonEvent', (callback) => {
         if (!this.userMsg.registered) {
           this.vxc('setToast', {
@@ -347,7 +360,7 @@ export default {
           })
           return
         }
-        if (this.userMsg.chances <= 0) {
+        if (this.userMsg.chances <= 0 || (all && this.userMsg.chances < this.surplusNum)) {
           this.vxc('setToast', {
             title: this.lang.noGo,
             msg: this.lang.noGoTips
@@ -366,8 +379,9 @@ export default {
             cIindex = index
           }
         });
-        if (cIindex != -1 && !this.mineralArr[cIindex].mineralItem[4].open) {
-          api.lottery(cIindex + 1).then(res => {
+
+        if ((cIindex != -1 && !this.mineralArr[cIindex].mineralItem[4].open) || all) {
+          api.lottery(cIindex + 1, all).then(res => {
             const { response_data, response_status } = res.data
             if (response_status.code == 0) {
               var timer = setInterval(() => {
@@ -379,20 +393,45 @@ export default {
                   this.showGouAni = true
                   setTimeout(() => {
                     this.showGouAni = false
-                    var newHeigth = pitHeight + this.mineralItem.height
-                    this.mineralArr[cIindex].cludeOpen += 1
-                    if (newHeigth >= this.mineralItem.height * 4 + 23) {
-                      newHeigth = this.mineralItem.height * 4 + 23
-                      if (!this.mineralArr[cIindex].mineralItem[4].open) {
-                        this.peopleIndex = cIindex + 1// 到達最底下帶人上來
-                        this.mineralArr[cIindex].mineralItem[4].open = 1
-                        var showPup = true
+                    if (!all) {
+                      var newHeigth = pitHeight + this.mineralItem.height
+                      this.mineralArr[cIindex].cludeOpen += 1
+                      if (newHeigth >= this.mineralItem.height * 4 + 23) {
+                        newHeigth = this.mineralItem.height * 4 + 23
+                        if (!this.mineralArr[cIindex].mineralItem[4].open) {
+                          this.peopleIndex = cIindex + 1// 到達最底下帶人上來
+                          this.mineralArr[cIindex].mineralItem[4].open = 1
+                          var showPup = true
+                        }
                       }
+                      this.vxc('lotterySuc', {
+                        chances: 1,
+                        num: response_data.prize
+                      })
+                      this.$set(this.mineralArr[cIindex], "pitHeight", newHeigth)
+                      this.lineBack(3, response_data.prize, showPup)
+                      //當前列最前面的時候被挖
+                      for (let i = 0; i < this.mineralArr[cIindex].mineralItem.length; i++) {
+                        if (!this.mineralArr[cIindex].mineralItem[i].open) {
+                          this.$set(this.mineralArr[cIindex].mineralItem[i], "open", 1)
+                          return
+                        }
+                      }
+                    } else {
+                      for (let i = 0; i < this.mineralArr.length; i++) {
+                        this.mineralArr[i].cludeOpen = 4
+                        this.$set(this.mineralArr[i], "pitHeight", this.mineralItem.height * 4 + 23)
+                      }
+                      this.vxc('lotterySuc', {
+                        chances: this.surplusNum,
+                        num: response_data.prize
+                      })
+                      this.lineBack(3, response_data.prize)
+                      this.vxc('setToast', {
+                        title: this.lang.goSuc,
+                        msg: `恭喜完成一輪挖掘，解救完所有礦工，+${response_data.prize}財富值`
+                      })
                     }
-                    this.vxc('lotterySuc', response_data.prize)
-                    this.$set(this.mineralArr[cIindex], "pitHeight", newHeigth)
-                    console.log(this.mineralArr)
-                    this.lineBack(3, response_data.prize, showPup)
                   }, 1000)
                 }
               }, 25)
@@ -492,6 +531,23 @@ export default {
 <style lang="scss" scoped>
 .landBox {
   // height: 8.03rem;
+  position: relative;
+  .oneBtn {
+    display: block;
+    width: 1.33rem;
+    height: 0.55rem;
+    text-align: center;
+    line-height: 0.55rem;
+    position: absolute;
+    top: 0rem;
+    right: 0.15rem;
+    font-size: 0.22rem;
+    color: #fff09d;
+    background: url(../assets/img/oneBtn.png);
+    background-size: 100% 100%;
+    text-shadow: #6d2c06 1px 0 0, #6d2c06 0 1px 0, #6d2c06 -1px 0 0,
+      #6d2c06 0 -1px 0;
+  }
   .landTop {
     height: 1.82rem;
     padding-right: 0.52rem;

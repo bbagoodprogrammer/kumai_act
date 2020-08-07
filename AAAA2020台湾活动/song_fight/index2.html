@@ -7,6 +7,7 @@
   <meta http-equiv="pragma" content="no-cache">
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
+
   <title></title>
   <script>
     (function (doc, win) {
@@ -32,6 +33,9 @@
 </head>
 
 <body>
+  <script>
+    /eruda=true/.test(window.location) && (document.write('<script src="//cdn.jsdelivr.net/npm/eruda"><\/script>'), document.write("<script>eruda.init();<\/script>"));
+  </script>
   <div id="app"></div>
   <!-- built files will be auto injected -->
 </body>

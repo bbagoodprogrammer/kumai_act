@@ -4,7 +4,8 @@
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
-        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">7.31-8.03打擂榜</a>
+        <!-- {{rStime}}-{{rEtime}} -->
+        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{rStime}}-{{rEtime}}打擂榜</a>
         <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">本季歌王榜</a>
       </div>
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a>
@@ -14,15 +15,16 @@
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.live)">
         <div class="rank">{{item.rank}}</div>
         <div class="imgBox">
-          <img v-lazy="item.avatar" alt="" class="av">
+          <img v-lazy="item.userinfo.avatar" alt="" class="av">
         </div>
         <div class="nick">
-          <strong class="userNick">{{item.nick}}</strong>
-          <strong class="songNum">打擂歌曲數：{{item.score}}</strong>
+          <strong class="userNick">{{item.userinfo.nick}}</strong>
+          <strong class="songNum" v-if="mainTab==0">打擂歌曲數：{{item.songs}}</strong>
         </div>
         <div class="score">
-          <i>Lv.33</i>
-          <em>平均支持率：<i>{{item.score}}%</i> </em>
+          <em v-if="mainTab==0">本期分數：{{item.star}}</em>
+          <em v-else>本賽季等級：<i>Lv.{{item.star}}</i></em>
+          <!-- <em>平均支持率：<i>{{item.pp}}%</i> </em> -->
         </div>
       </li>
     </ul>
@@ -72,7 +74,9 @@ export default {
       timer2: null,
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
-      firstTask: true,
+      act: null,
+      noData: false,
+      noData2: false,
     }
   },
   computed: {
@@ -82,15 +86,16 @@ export default {
     },
     rankApi() {
       if (this.isShare) {
-        var dayApi = `/pet_manor/allList.php?pet={pet}&from={from}`;
-        var totalApi = `/pet_manor/allList.php?pet=0&from={from}`;
-        return api.replace('{pet}', 733)
+        var dayApi = `/song_fight/preList.php?from={from}`;
+        var totalApi = `/song_fight/allList.php?from={from}`;
+        var api = this.rankKey == 'total' ? totalApi : dayApi;
+        return api
       } else {
-        var dayApi = `/pet_manor/allList.php?token={token}&pet={pet}&from={from}`;
-        var totalApi = `/pet_manor/allList.php?token={token}&pet=0&from={from}`;
+        var dayApi = `/song_fight/preList.php?token={token}&from={from}`;
+        var totalApi = `/song_fight/allList.php?token={token}&from={from}`;
         var api = this.rankKey == 'total' ? totalApi : dayApi;
         const token = getUrlString('token') || '';
-        return api.replace('{pet}', 733).replace('{token}', token);
+        return api.replace('{token}', token);
       }
     },
     rankSize() {
@@ -102,6 +107,33 @@ export default {
       rankConf.list = rankConf.list || [];
       return rankConf;
     },
+    rStime() {
+      if (this.act) {
+        return getDate(new Date(this.act.stime * 1000), 1)
+      }
+    },
+    rEtime() {
+      if (this.act) {
+        return getDate(new Date(this.act.etime * 1000), 1)
+      }
+    },
+    configUser() {
+      let arr = []
+      for (let i = 0; i < 100; i++) {
+        let obj = {
+          rank: i + 1,
+          songs: "??",
+          star: "??",
+          userinfo: {
+            avatar: "",
+            nick: "???"
+          }
+        }
+        arr.push(obj)
+      }
+      console.log(arr)
+      return arr
+    }
   },
   mounted() {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
@@ -121,7 +153,13 @@ export default {
       });
     },
     onScroll() {
-      if (!this.rank.loading && !this.rank.loadEnd) {
+      let nowDate = null
+      if (this.rankKey == 'total') {
+        nowDate = this.noData2
+      } else {
+        nowDate = this.noData
+      }
+      if (!this.rank.loading && !this.rank.loadEnd && !nowDate) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
         if (scrollToBottom || notFull) {
@@ -141,17 +179,28 @@ export default {
               set('loadEnd', true);
               return;
             }
-
             //跟随榜单变换个人信息
-            if (response_data.myRank) {
-              this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
-                key: this.rankKey,
-                msg: response_data.myRank
-              })
+            // if (response_data.myRank) {
+            //   this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
+            //     key: this.rankKey,
+            //     msg: response_data.myRank
+            //   })
+            // }
+            if (!this.act) {
+              this.act = response_data.act
             }
             const arr = response_data.list;
             if (arr.slice) {
               const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
+              if (loadCount == 0 && !arr.length) {
+                if (this.rankKey == 'total') {
+                  this.noData2 = true
+                  set('list', this.configUser);
+                } else {
+                  this.noData = true
+                  set('list', this.configUser);
+                }
+              }
               set('loadCount', loadCount + 1);
               if (arr.length) {
                 set('list', this.rank.list.concat(arr));
@@ -182,18 +231,16 @@ export default {
     onRefresh() {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
-      this.$emit('getDefaultData')
-      if (this.mainTab != 0) {
-        this.$store.commit('updateRankGroups', {
-          key: this.rankKey,
-          loadCount: 0,
-          loadEnd: false,
-          loading: false,
-          none: false,
-          list: [],
-        });
-        this.$nextTick(this.onScroll);
-      }
+      // this.$emit('getDefaultData')
+      this.$store.commit('updateRankGroups', {
+        key: this.rankKey,
+        loadCount: 0,
+        loadEnd: false,
+        loading: false,
+        none: false,
+        list: [],
+      });
+      this.$nextTick(this.onScroll);
     },
     getDate(time) {
       return getDate(new Date(time * 1000), '3')
@@ -317,24 +364,27 @@ export default {
       .score {
         flex: 1;
         margin-left: 0.15rem;
-        > i {
-          display: block;
-          width: 0.81rem;
-          height: 0.33rem;
-          background: rgba(251, 162, 91, 1);
-          border-radius: 0.1rem;
-          text-align: center;
-          line-height: 0.36rem;
-          font-size: 0.24rem;
-        }
         em {
           font-size: 0.24rem;
           color: rgba(94, 255, 230, 1);
           white-space: nowrap;
           margin-top: 0.1rem;
+          display: flex;
+          align-items: center;
           i {
             font-size: 0.24rem;
-            font-weight: bold;
+            // font-weight: bold;
+          }
+          > i {
+            display: block;
+            width: 0.81rem;
+            height: 0.33rem;
+            color: #fff;
+            background: rgba(251, 162, 91, 1);
+            border-radius: 0.1rem;
+            text-align: center;
+            line-height: 0.36rem;
+            font-size: 0.24rem;
           }
         }
       }

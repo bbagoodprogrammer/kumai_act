@@ -8,12 +8,12 @@
     </div>
     <FightTabTime />
     <!-- <div class="pSong"> -->
-    <FightSong :list="list" />
+    <FightSong :list="list" :set="status==1" v-if="list.length >0" />
     <!-- </div> -->
 
-    <HotSong />
-    <act-footer></act-footer>
-    <!-- <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
+    <HotSong :length="list.length" @addSong="addSong" />
+    <act-footer :jun="jun" :device="device"></act-footer>
+    <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
   </div>
 </template>
 
@@ -40,117 +40,39 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
-      list: [
-        {
-          sname: '雪落下的聲音32',
-          user: {
-            1: {
-              avatar: '',
-              num: 88,
-              nick: '飞不上蓝天的你'
-            },
-            2: {
-              avatar: '',
-              num: 12,
-              nick: '飞不上蓝天的豬豬'
-            }
-          },
-          status: 0,
-          top: 0
-        },
-        {
-          sname: '雪落下的聲音',
-          user: {
-            1: {
-              avatar: '',
-              num: 88,
-              nick: '飞不上蓝天的你'
-            },
-            2: {
-              avatar: '',
-              num: 12,
-              nick: '飞不上蓝天的豬豬'
-            }
-          },
-          status: 0,
-          top: 0
-        },
-        {
-          sname: '雪落下的聲音',
-          user: {
-            1: {
-              avatar: '',
-              num: 88,
-              nick: '飞不上蓝天的你'
-            },
-            2: {
-              avatar: '',
-              num: 12,
-              nick: '飞不上蓝天的豬豬'
-            }
-          },
-          status: 0,
-          top: 0
-        },
-        {
-          sname: '雪落下的聲音',
-          user: {
-            1: {
-              avatar: '',
-              num: 88,
-              nick: '飞不上蓝天的你'
-            },
-            2: {
-              avatar: '',
-              num: 12,
-              nick: '飞不上蓝天的豬豬'
-            }
-          },
-          status: 0,
-          top: 0
-        },
-        {
-          sname: '雪落下的聲音',
-          user: {
-            1: {
-              avatar: '',
-              num: 88,
-              nick: '飞不上蓝天的你'
-            },
-            2: {
-              avatar: '',
-              num: 12,
-              nick: '飞不上蓝天的豬豬'
-            }
-          },
-          status: 0,
-          top: 0
-        },
-        {
-          sname: '雪落下的聲音',
-          user: {
-            1: {
-              avatar: '',
-              num: 88,
-              nick: '飞不上蓝天的你'
-            },
-            2: {
-              avatar: '',
-              num: 12,
-              nick: '飞不上蓝天的豬豬'
-            }
-          },
-          status: 0,
-          top: 0
-        }
-      ],
+      list: [],
+      jun: 0,
+      device: null,
+      id: null,
+      status: null
     }
   },
   created() {
+    window.addEventListener("pageshow", function () {
+      if (sessionStorage.getItem("need-refresh")) {
+        location.reload();
+        sessionStorage.removeItem("need-refresh");
+      }
+    });
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
   mounted() {
+    var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+    //停止原生APP歌曲播放
+    if (ios) {
+      try {
+        closeMusic();
+      } catch (e) {
+
+      }
+    } else {
+      try {
+        javascript: JSInterface.closeMusic();
+      } catch (e) {
+
+      }
+    }
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -158,14 +80,42 @@ export default {
       this.vxc('setShareState', this.isShare) //分享状态
     },
     getDefaultData(val) { //初始化
-      // api.getDefault().then(res => {
-      //   const { response_status, response_data } = res.data
-      //   if (response_status.code == 0) {
-
-      //   } else {
-      //     this.toast(response_status.error)
-      //   }
-      // })
+      api.getDefault().then(res => {
+        const { response_status, response_data } = res.data
+        if (response_status.code == 0) {
+          const { act, version_allowed, device, jun, c_time, list, push, can, status, userinfo, next, time } = response_data
+          if (val == 'toast') {
+            this.toast(`提交成功！`)
+          }
+          this.id = act.id
+          this.status = status
+          sessionStorage.setItem('id', act.id)
+          sessionStorage.setItem('status', status)
+          this.device = device
+          this.vxc('setVersion_allowed', version_allowed)
+          this.jun = jun
+          this.vxc('setActStatus', status)
+          this.list = push
+          this.vxc('setHotSong', list)
+          let downTime = 0
+          if (status == 0) {
+            downTime = act.stime - c_time
+          } else if (status == 1) {
+            downTime = act.etime - c_time
+          }
+          this.vxc('setAct', act)
+          this.vxc('setDownScoend', downTime)
+          this.vxc('setCan', can)
+          this.vxc('setNext', next)
+          sessionStorage.setItem('time', JSON.stringify(time))
+        } else {
+          this.toast(response_status.error)
+        }
+      })
+    },
+    addSong(item) {
+      console.log(item, this.list)
+      this.list.push(item)
     },
     downApp() {
       APP()
@@ -176,8 +126,8 @@ export default {
     },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
-      window.removeEventListener("scroll", this.onScroll)
-      this.getDefaultData('ref')
+      // window.removeEventListener("scroll", this.onScroll)
+      this.getDefaultData()
     }
   }
 }
@@ -243,7 +193,7 @@ body::-webkit-scrollbar {
   width: 0.94rem;
   height: 1rem;
   position: fixed;
-  left: 0.08rem;
+  right: 0.08rem;
   bottom: 1.35rem;
   background: url(../assets/img/refresh.png) no-repeat;
   background-size: contain;

@@ -20,8 +20,7 @@
     <div class="ward" v-show="showTab == 'tab2'">
       <h5>Phần thưởng</h5>
       <p>
-        Mỗi lần lấy Điều Ước và tặng bài hát sẽ nhận được 1 món quà được gửi thẳng vào Túi (mỗi ngày nhận tối đa 3 món qùa ngẫu nhiên),
-        Nowkara（Hãy sử dụng phiên bản Nowkara trên IOS để được sử dụng Túi）
+        Mỗi lần lấy Điều Ước và tặng bài hát sẽ nhận được 1 lần món quà được gửi thẳng vào Túi (mỗi ngày nhận tối đa 3 món quà nhẫu nhiên). Hãy sử dụng phiên bản Việt Kara trên IOS để được sử dụng Túi.
       </p>
       <h6>Thưởng Top 100 BXH Điều Ước</h6>
       <div class="title">Top 10</div>
@@ -97,7 +96,7 @@
           </em>
         </span>
       </div>
-      <p class="tips1">Huy chương, quý tộc đều có thời hạn 31 ngày</p>
+      <p class="tips1">Huy chương, VIP đều có thời hạn 31 ngày.</p>
       <p class="tips2">Quyết định của ban tổ chức là quyết định cuối cùng</p>
     </div>
     <loading></loading>
@@ -127,7 +126,7 @@ export default {
       this.showTab = tab
     },
     test() {
-    var a =1
+      var a = 1
     }
   }
 }

@@ -7,10 +7,8 @@
 import TabsScrollLoadList from "../../components/TabsScrollLoadList"
 export default {
   components: { TabsScrollLoadList },
-  data() {
-    return {
-
-    }
+  created() {
+    document.title = '打擂榜'
   }
 }
 </script>

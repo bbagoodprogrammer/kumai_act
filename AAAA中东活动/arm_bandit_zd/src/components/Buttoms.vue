@@ -1,8 +1,8 @@
 <template>
   <div class="buttomBox">
-    <div class="coins1" @click="changCoins(50)"></div>
-    <div class="coins2" @click="changCoins(200)"></div>
-    <div class="coins3" @click="changCoins(500)"></div>
+    <div class="coins1" @click="changCoins(400)"></div>
+    <div class="coins2" @click="changCoins(2000)"></div>
+    <div class="coins3" @click="changCoins(5000)"></div>
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import { globalBus } from '../utils/eventBus.js'
 export default {
   data() {
     return {
-      coins: 50
+      coins: 400
     }
   },
   methods: {

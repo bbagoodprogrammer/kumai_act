@@ -5,7 +5,7 @@
       <span :class="{act:showType== 1}" @click="tabClick(1)">Thưởng</span>
     </div>
     <div class="rules" v-show="showType == 0">
-      <p class="actTime">18h 15/5/2020 – 21h 29/5/2020</p>
+      <p class="actTime">18h 6/8/2020 – 20h 23/8/2020</p>
       <h5>Thể lệ BXH Phú Hộ</h5>
       <p>1. Xếp hạng theo điểm phú hộ tương ứng với quặng đào được sau khi báo danh.<span>Điểm phú hộ = giá trị của quặng đào được</span></p>
       <img src="../../assets/img/ruleImg1.png" alt="" class="ruleImg1">
@@ -16,12 +16,13 @@
       <p>Nhiệm vụ ngày: yêu cầu của nhiệm vụ không xoá bài hát công khai đã đăng hôm trước, nếu 12:00 hệ thống kiểm tra thấy bài hát công khai đã đăng hôm trước vẫn chưa bị xoá sẽ tự động tặng 1 lượt đào.</p>
       <h5>Hướng dẫn đào</h5>
       <div class="block1">
-        <p>1. Quặng ở tầng sâu cần phải đào quặng ở tầng trên mới đào đến được. Sau khi đào hết quặng và cứu được thợ mỏ, trò chơi kết thúc, có thể bắt đầu lại ván mới.</p>
+        <p>1.Quặng ở tầng sâu cần phải đào quặng ở tầng trên mới có thể đào đến được. Sau khi đào hết quặng và cứu được thợ mỏ, đợt này kết thúc, có thể bắt đầu lại đợt đào mới.</p>
         <p>2. Mỗi cột hoàn thành <i class="red">5</i> lần đào sẽ cứu được thợ mỏ 1 lần và nhận điểm phú hộ ngẫu nhiên.</p>
         <p>3. Mỗi loại quặng có phạm vi điểm phú hộ ngẫu nhiên khác nhau, điểm phú hộ của đá quý có phạm vi lớn nhất.</p>
         <p>4. 0h mỗi ngày sẽ xoá hết lượt đào và tiến độ đào, mời sử dụng kịp thời.</p>
         <p>5. Bảng xếp hạng tính tổng điểm trong thời gian sự kiện, người đạt điểm cao hơn và sớm hơn sẽ xếp trước.</p>
         <p>6. Phần thưởng mỗi ngày dựa vào tổng điểm phú hộ trong ngày, 0h hôm sau phần thưởng mỗi ngày sẽ tính lại từ đầu.</p>
+        <P>7. Nhấn Đào toàn bộ để đào hết toàn bộ quặng và giải cứu toàn bộ thợ mỏ trong đợt này.</P>
       </div>
       <h5>Quy định khác </h5>
       <p class="otherTips">Trong sự kiện, nếu phát hiện người dùng có hành vi gian lận khi tham gia sự kiện, ban tổ chức sẽ xử lý người vi phạm theo mức độ vi phạm mà không cần thông báo trước, bằng cách huỷ quyền tham gia hoặc khoá tài khoản, bao gồm nhưng không giới hạn những hành vi sau:</p>
@@ -37,7 +38,7 @@
       <img src="../../assets/img/ruleImg2.png" alt="" class="ruleImg2">
       <p>1. Mỗi ngày nhận điểm phú hộ đạt đủ mức yêu câu sẽ nhận phần thưởng khác nhau, sau khi nhấn nhận phần thưởng sẽ được gửi ngay vào tài khoản.</p>
       <p>2. Trong thời gian sự kiện, túi quà mỗi cấp 1 người 1 ngày chỉ được nhận 1 lần duy nhất. Nếu không nhận trong ngày sang hôm sau sẽ mất.</p>
-      <p>3. Nếu liên tục 5 ngày hoàn thành toàn bộ nhiệm vụ sẽ nhận xe Ferrari (5 ngày), phần thưởng được tự động gửi vào tài khoản, mời chú ý kiểm tra~</p>
+      <p>3. Nếu 5 ngày liên tiếp hoàn thành toàn bộ nhiệm vụ ngày, sẽ nhận Xe Ferrari (5 ngày), phần thưởng sẽ được tự động gửi, mời kiểm tra Xe của tôi.</p>
       <h5>Túi quà thưởng BXH tổng</h5>
       <div class="topGift">
         <h6>Hạng nhất:</h6>
@@ -55,7 +56,7 @@
       <div class="giftRules">
         <p>1. Phiếu quà nạp chỉ có tác dụng trong ngày tính từ lúc nhận, nếu trong ngày 1 người dùng nhận được nhiều phiếu quà nạp, mức thưởng sẽ cộng dồn. Xu thưởng sẽ được tự động gửi ngay khi nạp thành công.</p>
         <p>2. Phần thưởng túi quà đều có thời hạn 7 ngày, mời dùng kịp thời.</p>
-        <p>3. Túi quà trên phiên bản Android có thể xem tại Tôi – Túi quà, khi tặng quà có thể lựa chọn để tặng quà từ Túi. iOS cần cập nhật phiên bản mới nhất NowKara trên App Store để sử dụng.</p>
+        <p>3. Túi quà trên phiên bản Android có thể xem tại Tôi – Túi quà, khi tặng quà có thể lựa chọn để tặng quà từ Túi. iOS cần cập nhật phiên bản mới nhất Việt Kara trên App Store để sử dụng.</p>
       </div>
     </div>
     <p class="lastTips">Quyết định của ban tổ chức là quyết định cuối cùng</p>
