@@ -231,6 +231,13 @@ export default {
     onRefresh() {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
+      let nowDate = false
+      if (this.rankKey == 'total') {
+        nowDate = this.noData2
+      } else {
+        nowDate = this.noData
+      }
+      if (nowDate) { return }
       // this.$emit('getDefaultData')
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,

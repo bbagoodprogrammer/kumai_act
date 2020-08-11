@@ -88,18 +88,7 @@ export default {
           value: ''
         },
       ],
-      peopleList: [
-        {
-          avatar: "http://img.17sing.tw/uc/img/head_100926_1576642434.png",
-          nick: 'hsingfankkkkkkkkkkkk',
-          uid: 100926
-        },
-        {
-          avatar: "http://img.17sing.tw/uc/img/head_100926_1576642434.png",
-          nick: 'hsingfankkkkkkkkkkkk',
-          uid: 100926
-        }
-      ],
+      peopleList: [],
       rid: 0
     }
   },
@@ -213,7 +202,7 @@ export default {
             this.toast("投票已發起成功")
             setTimeout(() => {
               this.closeWeb()
-            }, 800)
+            }, 300)
           } else {
             this.toast(res.data.response_status.error)
           }

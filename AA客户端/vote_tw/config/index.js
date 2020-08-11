@@ -45,7 +45,7 @@ module.exports = {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
     index2: path.resolve(__dirname, '../dist/index2.html'),
-    index3: path.resolve(__dirname, '../dist/index2.html'),
+    index3: path.resolve(__dirname, '../dist/index3.html'),
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',

@@ -13,13 +13,16 @@ const store = new Vuex.Store({
         isShare: false, //分享
         inited: 0, //是否初次加載
         showType: 1,    //默認顯示那個類型的榜單
-        totalDay: 12,
+        totalDay: 0,
+        nowShowType: 0,
         rankGroups: {
+            0: {},
             1: {},
             2: {},
             3: {}
         },  //储存當天的信息
         groupsUserMsg: {
+            0: {},
             1: {},
             2: {},
             3: {}
@@ -27,7 +30,8 @@ const store = new Vuex.Store({
         nowDay: 0, // 當前天
         dateArr: [],
         nowTab: 0,
-        timeObj: {}
+        timeObj: {},
+        oneNowDay: 0
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -70,13 +74,16 @@ const store = new Vuex.Store({
         setActiIme(state, val) {
             state.timeObj = val
         },
+        setTotalDay(state, val) {
+            state.totalDay = val
+        },
         updateGroupsUserMsg(state, obj) {
             if (obj && typeof obj.data.key != 'undefined') {
                 const key = obj.data.key;
                 delete obj['key'];
                 state.groupsUserMsg[obj.type] = Object.assign({}, state.groupsUserMsg[obj.type], { [key]: Object.assign({}, state.groupsUserMsg[obj.type][key], obj.data) });
             }
-            console.log(state.groupsUserMsg)
+            //console.log(state.groupsUserMsg)
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.data.key != 'undefined') {
@@ -84,7 +91,14 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.rankGroups[obj.type] = Object.assign({}, state.rankGroups[obj.type], { [key]: Object.assign({}, state.rankGroups[obj.type][key], obj.data) });
             }
+            //console.log(state.rankGroups)
         },
+        setOneNowDay(state, val) {
+            state.oneNowDay = val
+        },
+        setnowShowType(state, val) {
+            state.nowShowType = val
+        }
     },
     actions: {
         setloading({ commit }, boolean) {

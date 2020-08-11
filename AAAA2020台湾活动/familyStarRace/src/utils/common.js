@@ -20,6 +20,9 @@ let common = {
                 document.body.removeChild(div);
             }, cssTime);
         }, cssTime + time);
+    },
+    getSeconed(stime, etime) {
+
     }
 }
 export default common

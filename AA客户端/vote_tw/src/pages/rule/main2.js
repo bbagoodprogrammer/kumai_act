@@ -21,5 +21,6 @@ new Vue({
   el: '#app',
   store,
   components: { main2 },
-  template: '<main2/>'
+  render: h => h(main2)
+  // template: '<main2/>'
 })

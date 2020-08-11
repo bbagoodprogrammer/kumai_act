@@ -21,5 +21,6 @@ new Vue({
     el: '#app',
     store,
     components: { history },
-    template: '<history/>'
+    render: h => h(history)
+    // template: '<history/>'
 })

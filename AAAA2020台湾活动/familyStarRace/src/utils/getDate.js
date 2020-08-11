@@ -23,5 +23,8 @@ function getDate(datem, type) {
     if (type == 3) {
         return `${month}月${date}日${hours}:${minute}:${second}`
     }
+    if (type == 4) {
+        return `${year}${month}${date}`
+    }
 }
 export default getDate

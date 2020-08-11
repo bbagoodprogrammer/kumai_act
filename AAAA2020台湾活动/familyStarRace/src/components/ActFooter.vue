@@ -1,30 +1,91 @@
 <template>
   <div class="footerBar">
-    <div class="acrStatus">
+    <div class="acrStatus" :class="{noBg:astState === 3 && showType == 2 && !nowUsrMsg.pk_data}">
       <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
-      <span class="goAct" v-if="astState === 1" @click="showQueryPup()">立即報名</span>
-      <div class="actIng" :class="'rank'+nowUsrMsg.rank" v-if="astState === 3">
+      <span class="goAct" v-if="astState === 1" @click="singUp()">立即報名</span>
+      <div class="actIng" :class="'rank'+nowUsrMsg.rank" v-if="astState === 3 && showType == 1">
         <div class="rank" v-if="nowUsrMsg.rank >0">{{nowUsrMsg.rank}}</div>
         <div class="rank noTop" v-else>未上榜</div>
         <div class="uerImg">
           <span class="imgBg"></span>
-          <img v-lazy="nowUsrMsg.info.avatar" alt="" class="imgItem">
+          <img v-lazy="nowUsrMsg.avatar" alt="" class="imgItem">
         </div>
         <div class="userMsg">
-          <div class="name">{{nowUsrMsg.info.nick}}</div>
-          <div class="score"><i></i> {{nowUsrMsg.score}}</div>
+          <div class="name"><strong> {{nowUsrMsg.nick}}</strong> <span class="star" v-if="nowTab == 'total'"><i></i>{{nowUsrMsg.score}} </span> </div>
+          <div class="score" v-if="nowTab != 'total'">{{nowDays}}日星光值：{{nowUsrMsg.score}}</div>
+        </div>
+        <div class="updaSong">
+          <div class="btn" @click="goCommitSong()">上傳作品</div>
+          <div class="luckTips">中獎概率：{{nowUsrMsg.pro}}%</div>
+        </div>
+        <i class="luck" v-if="nowTab != 'total' && nowUsrMsg.is_prize"></i>
+      </div>
+      <div class="family" v-else-if="astState === 3 && showType == 2 && nowUsrMsg.pk_data">
+        <div class="familyMsg" v-if="nowUsrMsg.empty">
+          <div class="btn" @click="goCommitSong()">上傳作品</div>
+          <div class="family1 family">
+            <img v-lazy="nowUsrMsg.pk_data.left.avatar" class="fImg" alt="" @click="showCards()">
+            <div class="msg">
+              <div class="nick">{{nowUsrMsg.pk_data.left.name}}</div>
+              <div class="star"><i></i><strong>{{nowUsrMsg.pk_data.left.score}}</strong></div>
+            </div>
+          </div>
+          <div class="family2 family">
+            <div class="msg">
+              <div class="nick">{{nowUsrMsg.pk_data.right.name}}</div>
+              <div class="star"><i></i><strong>{{nowUsrMsg.pk_data.right.score}}</strong></div>
+            </div>
+            <img v-lazy="nowUsrMsg.pk_data.right.avatar" class="fImg2" alt="" @click="showCards()">
+          </div>
+        </div>
+        <div class="familyMsg noOpen" v-else>
+          <div class="family1 family">
+            <img v-lazy="nowUsrMsg.pk_data.left.avatar" class="fImg" alt="">
+            <div class="msg">
+              <div class="nick">{{nowUsrMsg.pk_data.left.name}}</div>
+              <div class="star"><i></i><strong>{{nowUsrMsg.pk_data.left.score}}</strong></div>
+            </div>
+          </div>
+          <div class="tipsMsg">
+            <p class="noOpponents">幸運輪空，直接晉級</p>
+            <div class="songBtn" @click="goCommitSong()">上傳作品</div>
+          </div>
+        </div>
+        <div class="fLiner" v-if="!nowUsrMsg.empty">
+          <span class="left" :style="{width:getWidth(nowUsrMsg.pk_data.left.score,nowUsrMsg.pk_data.right.score)}"> <i class="giftBox"></i></span>
+          <span class="right"></span>
+        </div>
+      </div>
+      <div class="last3" v-else-if="astState === 3 && showType == 3">
+        <div class="last">
+          <div class="rank" v-if="nowUsrMsg.rank >0">{{nowUsrMsg.rank}}</div>
+          <div class="rank noTop" v-else>未上榜</div>
+          <div class="uerImg">
+            <img v-lazy="nowUsrMsg.avatar" alt="" class="imgItem">
+          </div>
+          <div class="userMsg">
+            <div class="name" :class="'lv'+nowUsrMsg.level"><strong>{{nowUsrMsg.name}} </strong> </div>
+            <div class="score"><i></i> <strong>{{nowUsrMsg.score}}</strong> </div>
+          </div>
+          <div class="btn" @click="goCommitSong()">上傳作品</div>
+        </div>
+        <div class="linerBox">
+          <strong>積滿發放{{nowUsrMsg.next?nowUsrMsg.next.name:''}}</strong>
+          <div class="liner">
+            <div class="actLiner" :style="{width:nowUsrMsg.score/(nowUsrMsg.next?nowUsrMsg.next.limit:0) * 100 +'%'}"><i>{{nowUsrMsg.score}}</i></div>
+          </div>
+          <span class="fScore">{{nowUsrMsg.next?nowUsrMsg.next.limit:0}}</span>
         </div>
       </div>
     </div>
     <div class="mask" v-show="showQuery">
       <transition name="slide">
-        <div class="queryBox" v-if="showQuery">
+        <div class="promptBox" v-show="showQuery">
           <i class="close" @click="close()"></i>
-          <p>報名成功后，本期活動分數只計入用戶榜，是否確認報名？ </p>
-          <div class="btnBox">
-            <span @click="close()">取消</span>
-            <span class="ok" @click="singUp()">確認</span>
+          <p>請先加入一個家族！</p>
+          <div class="ok" @click="goFamily()">
+            點擊加入
           </div>
         </div>
       </transition>
@@ -32,17 +93,20 @@
   </div>
 </template>
 <script>
+import getString from "../utils/getString"
 import { mapState } from 'vuex'
 import api from "../api/apiConfig"
 import { globalBus } from '../utils/eventBus'
+import getDate from "../utils/getDate"
 export default {
+  props: ['fid'],
   data() {
     return {
       showQuery: false
     }
   },
   computed: {
-    ...mapState(['actStatus', 'groupsUserMsg', "nowTab", "showType", "isShare", "registered"]),
+    ...mapState(['actStatus', 'dateArr', 'groupsUserMsg', "nowTab", "showType", "isShare", "registered"]),
     astState() {
       if (this.actStatus === 0) { //活动未开始
         return 0
@@ -56,8 +120,12 @@ export default {
     },
     nowUsrMsg() {
       let nowList = this.groupsUserMsg[this.showType][this.nowTab] || {}
-      return nowList.msg || { info: {} }
+      console.log(nowList, this.groupsUserMsg)
+      return nowList.msg || {}
     },
+    nowDays() {
+      return getDate(new Date(this.dateArr[this.nowTab - 1] * 1000), 1)
+    }
   },
   methods: {
     showQueryPup() {
@@ -68,26 +136,44 @@ export default {
     },
     singUp() {
       globalBus.$emit('commonEvent', (callback) => {
-        api.singUp().then(res => {
-          const { response_status, response_data } = res.data
-          if (response_status.code == 0) {
-            this.close()
-            this.vxc('setUserSingUp', true)
-            this.vxc('setToast', {
-              msg: '已報名成功！'
-            })
-          } else {
-            this.vxc('setToast', {
-              msg: response_status.error
-            })
-          }
-        })
+        console.log(this.fid)
+        if (this.fid) {
+          this.showQueryPup()
+        } else {
+          api.singUp().then(res => {
+            const { response_status, response_data } = res.data
+            if (response_status.code == 0) {
+              this.vxc('setUserSingUp', true)
+              this.vxc('setToast', {
+                msg: '恭喜你報名成功，星光總榜前300名即可晉級並代表家族參與名星爭奪'
+              })
+            } else {
+              this.vxc('setToast', {
+                msg: response_status.error
+              })
+            }
+          })
+        }
+
       })
-    }
+    },
+    goFamily() {
+      location.href = `fid:${this.fid}`
+    },
+    showCards() {
+      this.$parent.$refs.scorll.showFamily()
+    },
+    goCommitSong() {
+      let regstr = getString('token')
+      location.href = `./index4.html?token=${regstr}`
+    },
+    getWidth(score1, score2) {
+      return score1 / (score1 + score2) * 100 + '%'
+    },
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .footerBar {
   position: fixed;
   bottom: 0;
@@ -103,23 +189,28 @@ export default {
     justify-content: center;
     background: url(../assets/img/footer.png) no-repeat;
     background-size: 100% 100%;
+    &.noBg {
+      background: none;
+    }
     span {
       display: inline-block;
     }
     .noAct {
-      font-size: 0.36rem;
+      font-size: 0.48rem;
       font-weight: 700;
+      color: rgba(135, 61, 29, 1);
     }
     .goAct {
-      width: 2.76rem;
-      height: 0.99rem;
+      width: 3.26rem;
+      height: 0.9rem;
       background: url(../assets/img/singUp.png);
       background-size: 100% 100%;
       text-align: center;
-      line-height: 0.99rem;
-      font-size: 0.36rem;
-      font-weight: 500;
+      line-height: 0.9rem;
+      font-size: 0.4rem;
+      font-weight: bold;
       margin-top: 0.2rem;
+      color: rgba(137, 63, 30, 1);
     }
     .actIng {
       width: 7.5rem;
@@ -133,6 +224,7 @@ export default {
         text-align: center;
         line-height: 0.72rem;
         margin-left: 0.13rem;
+        color: rgba(137, 63, 30, 1);
         &.noTop {
           font-size: 0.24rem;
         }
@@ -160,7 +252,7 @@ export default {
         }
       }
       .userMsg {
-        width: 2.5rem;
+        width: 2.7rem;
         .name {
           display: flex;
           align-items: center;
@@ -169,11 +261,29 @@ export default {
           white-space: nowrap;
           text-overflow: ellipsis;
           font-size: 0.26rem;
+          color: rgba(137, 63, 30, 1);
+          strong {
+            // flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+          .star {
+            display: flex;
+            align-items: center;
+            i {
+              width: 0.4rem;
+              height: 0.38rem;
+              background: url(../assets/img/star.png);
+              background-size: 100% 100%;
+              margin: 0 0.08rem 0 0.26rem;
+            }
+          }
         }
         .score {
           display: flex;
           align-items: center;
-          color: #ffed82;
+          color: rgba(137, 63, 30, 1);
           font-size: 0.22rem;
           font-weight: 500;
           i {
@@ -186,19 +296,37 @@ export default {
           }
         }
       }
-      &.rank1 {
-        .imgBg {
-          width: 1.11rem;
-          height: 1.25rem;
-          background: url(../assets/img/av1.png);
+      .updaSong {
+        margin-left: 0.3rem;
+        .btn {
+          width: 1.55rem;
+          height: 0.61rem;
+          text-align: center;
+          line-height: 0.61rem;
+          background: url(../assets/img/songBtn.png);
           background-size: 100% 100%;
-          top: -0.22rem;
-          left: -0.05rem;
+          margin: 0 auto;
+          color: rgba(137, 63, 30, 1);
+          font-size: 0.26rem;
         }
-        .imgItem {
-          width: 1rem;
-          height: 1rem;
+        .luckTips {
+          color: rgba(137, 63, 30, 1);
+          font-size: 0.22rem;
+          text-align: center;
         }
+      }
+      .luck {
+        display: block;
+        width: 0.97rem;
+        height: 0.77rem;
+        background: url(../assets/img/award.png);
+        background-size: 100% 100%;
+        position: absolute;
+        bottom: 0;
+        right: 1.94rem;
+        z-index: 0;
+      }
+      &.rank1 {
         .rank {
           text-indent: -999rem;
           background: url(../assets/img/top1.png);
@@ -206,18 +334,6 @@ export default {
         }
       }
       &.rank2 {
-        .imgBg {
-          width: 1.11rem;
-          height: 1.25rem;
-          background: url(../assets/img/av2.png);
-          background-size: 100% 100%;
-          top: -0.22rem;
-          left: -0.05rem;
-        }
-        .imgItem {
-          width: 1rem;
-          height: 1rem;
-        }
         .rank {
           text-indent: -999rem;
           background: url(../assets/img/top2.png);
@@ -225,18 +341,6 @@ export default {
         }
       }
       &.rank3 {
-        .imgBg {
-          width: 1.11rem;
-          height: 1.25rem;
-          background: url(../assets/img/av3.png);
-          background-size: 100% 100%;
-          top: -0.22rem;
-          left: -0.05rem;
-        }
-        .imgItem {
-          width: 1rem;
-          height: 1rem;
-        }
         .rank {
           text-indent: -999rem;
           background: url(../assets/img/top3.png);
@@ -244,6 +348,258 @@ export default {
         }
       }
     }
+  }
+}
+.last3 {
+  .last {
+    width: 7.5rem;
+    display: flex;
+    align-items: center;
+    margin-top: 0.1rem;
+    .rank {
+      width: 0.75rem;
+      height: 0.65rem;
+      font-size: 0.46rem;
+      color: rgba(137, 63, 30, 1);
+      text-align: center;
+      line-height: 0.72rem;
+      margin-left: 0.13rem;
+      &.noTop {
+        font-size: 0.22rem;
+        white-space: nowrap;
+      }
+    }
+    .uerImg {
+      margin: 0 0.15rem 0 0.08rem;
+      .imgItem {
+        width: 0.96rem;
+        height: 0.96rem;
+        border-radius: 0.16rem;
+      }
+    }
+    .userMsg {
+      width: 2.3rem;
+      margin-right: 0.15rem;
+      .name {
+        width: 1.44rem;
+        height: 0.54rem;
+        padding-left: 0.63rem;
+        color: rgba(137, 63, 30, 1);
+        background: url(../assets/img/lv0.png);
+        background-size: 100% 100%;
+        strong {
+          line-height: 0.54rem;
+          display: block;
+          height: 100%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        &.lv1 {
+          background: url(../assets/img/lv1.png);
+          background-size: 100% 100%;
+        }
+        &.lv2 {
+          background: url(../assets/img/lv2.png);
+          background-size: 100% 100%;
+        }
+        &.lv3 {
+          background: url(../assets/img/lv3.png);
+          background-size: 100% 100%;
+        }
+      }
+      .score {
+        display: flex;
+        align-items: center;
+        margin-top: 0.06rem;
+        color: rgba(137, 63, 30, 1);
+        i {
+          width: 0.4rem;
+          height: 0.38rem;
+          background: url(../assets/img/star.png);
+          background-size: 100% 100%;
+          margin-right: 0.1rem;
+        }
+        strong {
+          font-size: 0.26rem;
+        }
+      }
+    }
+    .btn {
+      width: 1.55rem;
+      height: 0.61rem;
+      text-align: center;
+      line-height: 0.61rem;
+      background: url(../assets/img/songBtn.png);
+      background-size: 100% 100%;
+      margin: 0 auto;
+      color: rgba(137, 63, 30, 1);
+      font-size: 0.26rem;
+    }
+  }
+  .linerBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > strong {
+      font-size: 0.22rem;
+      color: rgba(137, 63, 30, 1);
+      margin-right: 0.15rem;
+    }
+    .liner {
+      width: 4rem;
+      height: 0.16rem;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 0.08rem;
+      margin-top: 0.1rem;
+      position: relative;
+      .actLiner {
+        width: 5%;
+        height: 100%;
+        position: absolute;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 91, 177, 1) 0%,
+          rgba(255, 56, 56, 1) 100%
+        );
+        border-radius: 0.08rem;
+        i {
+          display: block;
+          width: 0.7rem;
+          text-align: center;
+          color: #ffeeba;
+          font-size: 0.22rem;
+          position: absolute;
+          right: -0.4rem;
+          top: -0.3rem;
+        }
+      }
+    }
+    .fScore {
+      font-size: 0.23rem;
+      color: rgba(255, 216, 98, 1);
+      margin: 0.1rem 0 0 0.11rem;
+    }
+  }
+}
+.family {
+  width: 100%;
+}
+.familyMsg {
+  // width: 100%;
+  height: 1.1rem;
+  padding: 0 0.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  .noOpponents {
+    font-size: 0.24rem;
+    color: rgba(255, 245, 129, 1);
+  }
+  .btn {
+    width: 1.55rem;
+    height: 0.61rem;
+    text-align: center;
+    line-height: 0.61rem;
+    background: url(../assets/img/songBtn.png);
+    background-size: 100% 100%;
+    margin: 0 auto;
+    color: rgba(137, 63, 30, 1);
+    font-size: 0.26rem;
+    position: absolute;
+    left: 2.9rem;
+    top: 0.19rem;
+  }
+  &.noOpen {
+    .songBtn {
+      width: 1.55rem;
+      height: 0.61rem;
+      text-align: center;
+      line-height: 0.61rem;
+      background: url(../assets/img/songBtn.png);
+      background-size: 100% 100%;
+      margin: 0 auto;
+      color: rgba(137, 63, 30, 1);
+      font-size: 0.26rem;
+      margin-top: 0.12rem;
+    }
+  }
+  .family {
+    width: 2.7rem;
+    display: flex;
+    align-items: center;
+    &.family2 {
+      .msg {
+        margin: 0 0.1rem;
+      }
+    }
+    img {
+      width: 1rem;
+      height: 1rem;
+      border-radius: 0.3rem;
+    }
+    .msg {
+      margin-left: 0.14rem;
+      .nick {
+        max-width: 1.5rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        color: rgba(137, 63, 30, 1);
+      }
+      .star {
+        display: flex;
+        align-items: center;
+        font-size: 0.24rem;
+        color: rgba(137, 63, 30, 1);
+        i {
+          width: 0.31rem;
+          height: 0.29rem;
+          background: url(../assets/img/star.png);
+          background-size: 100% 100%;
+          margin-right: 0.06rem;
+        }
+      }
+    }
+  }
+}
+.fLiner {
+  width: 6.3rem;
+  height: 0.16rem;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  span {
+    height: 100%;
+  }
+  .left {
+    width: 50%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 144, 83, 1) 0%,
+      rgba(255, 58, 58, 1) 39%
+    );
+    border-radius: 0.08rem 0 0 0.08rem;
+    position: relative;
+    .giftBox {
+      position: absolute;
+      width: 0.53rem;
+      height: 0.54rem;
+      background: url(../assets/img/giftBox.png);
+      background-size: 100% 100%;
+      right: -0.27rem;
+      top: -0.24rem;
+    }
+  }
+  .right {
+    flex: 1;
+    border-radius: 0 0.08rem 0.08rem 0;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 141, 40, 1) 39%,
+      rgba(255, 208, 106, 1) 100%
+    );
   }
 }
 .queryBox {

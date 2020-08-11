@@ -4,7 +4,7 @@
     <div class="days">
       <a href="" v-for="(item,index) in days" :key="index" :class="{act:day===item,over:item<day}" @click.prevent="changeDay(item)">
         <em>{{getday(dateArr[item-1])}}</em>
-        <i v-if="index != 0"></i>
+        <!-- <i v-if="index != 0"></i> -->
       </a>
     </div>
     <span @click="next()" class="next"></span>
@@ -84,10 +84,10 @@ export default {
 .dayBox {
   display: flex;
   align-items: center;
-  margin: 0.29rem auto 0;
-  width: 6.66rem;
+  margin: 0.1rem auto 0;
+  padding: 0 0.3rem;
   height: 0.92rem;
-  background: rgba(113, 53, 185, 1);
+  // background: rgba(113, 53, 185, 1);
   border-radius: 0.46rem;
   padding: 0 0.17rem;
   .pre {
@@ -95,12 +95,14 @@ export default {
     height: 0.54rem;
     background: url(../assets/img/pre.png);
     background-size: 100% 100%;
+    margin-right: 0.21rem;
   }
   .next {
     width: 0.54rem;
     height: 0.54rem;
     background: url(../assets/img/next.png);
     background-size: 100% 100%;
+    margin-left: 0.21rem;
   }
   .days {
     flex: 1;
@@ -119,7 +121,7 @@ export default {
         background: url(../assets/img/dayTabBg3.png);
         background-size: 100% 100%;
         line-height: 0.63rem;
-        color: #e8a3ff;
+        color: rgba(142, 105, 63, 1);
         font-size: 80%;
         position: relative;
         z-index: 10;
@@ -139,7 +141,7 @@ export default {
       }
       &.over {
         em {
-          color: #6730a8;
+          color: rgba(195, 135, 74, 1);
           background: url(../assets/img/dayTabBg1.png);
           background-size: 100% 100%;
         }

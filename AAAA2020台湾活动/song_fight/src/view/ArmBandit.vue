@@ -93,6 +93,7 @@ export default {
           sessionStorage.setItem('status', status)
           this.device = device
           this.vxc('setVersion_allowed', version_allowed)
+          sessionStorage.setItem('version_allowed', version_allowed)
           this.jun = jun
           this.vxc('setActStatus', status)
           this.list = push

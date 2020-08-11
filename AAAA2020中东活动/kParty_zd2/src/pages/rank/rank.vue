@@ -24,8 +24,8 @@
           <div class="name">{{item.name}}</div>
           <div class="rid">{{item.is_ktv?"رقم غرفة الغناء":"رقم غرفة الدردشة"}} <em>{{item.rid}}</em> </div>
         </div>
-        <div class="score" v-if="mainTab==0 || mainTab==2">نقاط الأسبوع الحالي <em>{{item.score}}</em> </div>
-        <div class="score" v-else>نقاط الشهر الحالي <em>{{item.score}}</em> </div>
+        <div class="score" v-if="mainTab==0 || mainTab==2">نقاط الأسبوع <em>{{item.score}}</em> </div>
+        <div class="score" v-else>نقاط الشهر <em>{{item.score}}</em> </div>
       </li>
     </ul>
     <!-- 总榜 -->
