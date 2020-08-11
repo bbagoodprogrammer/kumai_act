@@ -37,94 +37,10 @@ export default {
     }
   },
   created() {
+    document.title = '投票記錄'
     api.getVoteHistory(0).then(res => {
       if (res.data.response_data) {
-        this.hData = [
-          {
-            "id": "4",
-            "rid": "15",
-            "status": "1",
-            "descriptions": "test111",
-            "option_type": "2",
-            "options": [
-              {
-                "avatar": "http://img.17sing.tw/uc/img/head_2233806_1515642245.png",
-                "nick": "10name",
-                "uid": 10
-              },
-              {
-                "avatar": "http://img.17sing.tw/uc/img/head_2233806_1515642245.png",
-                "nick": "15name",
-                "uid": 15
-              }
-            ],
-            "results": [
-              1,
-              0
-            ],
-            "created_date": "2020-08-04 09:55"
-          },
-          {
-            "id": "3",
-            "rid": "15",
-            "status": "2",
-            "descriptions": "test111",
-            "option_type": "1",
-            "options": [
-              {
-                "txt": "a"
-              },
-              {
-                "txt": "b"
-              }
-            ],
-            "results": [
-              0,
-              2
-            ],
-            "created_date": "2020-08-03 19:03"
-          },
-          {
-            "id": "2",
-            "rid": "15",
-            "status": "2",
-            "descriptions": "test111",
-            "option_type": "1",
-            "options": [
-              {
-                "txt": "a"
-              },
-              {
-                "txt": "b"
-              }
-            ],
-            "results": [
-              0,
-              0
-            ],
-            "created_date": "2020-08-03 18:55"
-          },
-          {
-            "id": "1",
-            "rid": "15",
-            "status": "2",
-            "descriptions": "test111",
-            "option_type": "1",
-            "options": [
-              {
-                "txt": "a"
-              },
-              {
-                "txt": "b"
-              }
-            ],
-            "results": [
-              0,
-              0
-            ],
-            "created_date": "2020-08-03 18:49"
-          }
-        ]
+        this.hData = res.data.response_data
       } else {
         this.toast(res.data.response_status.error)
       }

@@ -6,14 +6,19 @@
     <div class="header">
       <div class="tipsBox" :class="{top:isShare}">
         <span class="ruleTips" @click="goRule()">規則&獎勵</span>
-        <span class="histyry" @click="goLastRank()" v-if="period!=1">往期名人堂</span>
+        <span class="rank" @click="goLastRank()">家族守護榜</span>
+        <span class="history" @click="showHistoryPup()">開獎明細</span>
       </div>
-
     </div>
     <div class="wards"></div>
-    <TabsScrollLoadList ref="scorll" @getDefaultData="getDefaultData"></TabsScrollLoadList>
-    <act-footer></act-footer>
+    <TabsScrollLoadList :stime1="stime1" :stime2="stime2" :stime3="stime3" :etime1="etime1" :etime2="etime2" :etime3="etime3" ref="scorll" @getDefaultData="getDefaultData"></TabsScrollLoadList>
+    <act-footer :fid="fid"></act-footer>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
+    <div class="mask2" v-show="showHistory">
+      <transition name="slide">
+        <history :hList="hList" v-if="showHistory" />
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -27,8 +32,9 @@ import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
 import getDateArr from "../utils/getDateArr"
 import TabsScrollLoadList from "../components/TabsScrollLoadList"
+import history from "../components/History"
 export default {
-  components: { MsgToast, ActFooter, TabsScrollLoadList },
+  components: { MsgToast, ActFooter, TabsScrollLoadList, history },
   data() {
     return {
       isShare: false, //是否分享
@@ -39,14 +45,27 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
-      period: 1
+      period: 1,
+      showHistory: false,
+      ctime: 0,
+      stime1: 0,
+      stime2: 0,
+      stime3: 0,
+      etime1: 0,
+      etime2: 0,
+      etime3: 0,
+      step: 0,
+      step_level: 1,
+      days: 0,
+      arrLength: 0,
+      seconed: 0,
+      fid: 0,
+      hList: []
     }
   },
   created() {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
-  },
-  mounted() {
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -57,40 +76,58 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          this.vxc('setActStatus', response_data.time_data.step)
+          const { ctime, days, second, stime, stime1, stime2, stime3, etime, etime1, etime2, etime3, fid, list, rank, step, step_level, user_info } = response_data
+          this.ctime = ctime
+          this.stime1 = stime1
+          this.stime2 = stime2
+          this.stime3 = stime3
+          this.etime1 = etime1
+          this.etime2 = etime2
+          this.etime3 = etime3
+          this.step_level = step_level
+          this.step = step
+          this.days = days
+          this.fid = fid
+          this.seconed = second
+          this.vxc('setActStatus', step)
           this.vxc("setInited", 1)  //是否初始化頁面
-          this.vxc('setUserSingUp', response_data.data.register)
-          let nowTime = getDateArr(response_data.time_data)
-          this.vxc('setActiIme', response_data.time_data)
+          this.vxc('setUserSingUp', user_info.registered)
+          let nowTime = getDateArr(stime1, etime1)
+          // this.vxc('setActiIme', response_data.time_data)
           this.vxc('setDateArr', nowTime.arr)
-          sessionStorage.setItem('stime', response_data.time_data.stime)
-          sessionStorage.setItem('etime', response_data.time_data.etime)
+          this.vxc('setTotalDay', nowTime.arr.length)
+          this.arrLength = nowTime.arr.length
+          sessionStorage.setItem('stime', stime)
+          sessionStorage.setItem('etime', etime)
           if (!val) {
-            this.vxc("setShowType", response_data.data.type)
-            this.vxc("changTab", response_data.time_data.days)
-            this.vxc('setNowDay', response_data.time_data.days)
+            this.vxc("setShowType", step_level)
+            this.vxc("changTab", step_level == 1 ? days : 'total')
+            this.vxc('setNowDay', step_level == 1 ? days : 'total')
+            this.vxc('setOneNowDay', days)
           }
-          this.period = response_data.data.period
-          let rank = response_data.data.list
+          this.vxc('setnowShowType', step_level)
+          // this.period = response_data.data.period
+          // let rank = response_data.data.list
           let obj = {
-            type: response_data.data.type,
+            type: step_level,
             data: { //当前日榜信息
-              key: response_data.time_data.days,
+              key: step_level == 1 ? days : 'total',
               loadCount: 0,
-              loadEnd: rank.length < 20,
+              loadEnd: list.length < 20,
               loading: false,
-              none: rank.length < 20,
-              list: rank,
-              second: response_data.data.current_time
+              none: list.length < 20,
+              list: list,
+              // step_level == 1 ? second : 
+              second: this.computedInitSecond(step_level, days, ctime)
             }
           }
           this.vxc('updateRankGroups', obj)
-          let userMsg = response_data.data.myrank
+          // let userMsg = response_data.data.myrank
           let userObj = {
-            type: response_data.data.type,
+            type: step_level,
             data: { //当前日榜信息
-              key: response_data.time_data.days,
-              msg: userMsg ? userMsg : {}
+              key: step_level == 1 ? days : 'total',
+              msg: rank ? rank : {}
             }
           }
           this.vxc('updateGroupsUserMsg', userObj)
@@ -98,6 +135,42 @@ export default {
           this.toast(response_status.error)
         }
       })
+    },
+    computedInitSecond(type, day, ctime) {
+      if (this.step == 0) {  //活動未開始  計算三個階斷的開始時間
+        if (type == 1) {
+          return this.stime1 - ctime
+        } else if (type == 2) {
+          return this.stime2 - ctime
+        } else if (type == 3) {
+          return this.stime3 - ctime
+        }
+      } else if (this.step == 2) {
+        return 0
+      } else {   //活動開始狀態
+        if (type == 1) {
+          if (day == 'total') {
+            return this.etime1 - ctime
+          } else if (day == this.days || day == this.arrLength) {  //當天或者最後一天
+            return this.seconed
+          } else {
+            return this.seconed + 84600 * (day - this.days)
+          }
+        } else if (type == 2) {
+          if (this.step_level == 1) {
+            return this.stime2 - ctime
+          } else {
+            return this.etime2 - ctime
+          }
+        } else if (type == 3) {
+          if (this.step_level == 1 || this.step_level == 2) {
+            return this.stime3 - ctime
+          } else {
+            return this.etime3 - ctime
+          }
+
+        }
+      }
     },
     downApp() {
       APP()
@@ -109,6 +182,13 @@ export default {
     goLastRank() {
       let regstr = getString('token')
       location.href = `./index3.html?token=${regstr}`
+    },
+    showHistoryPup() {
+      api.getHistory(0).then(res => {
+        this.showHistory = true
+        this.hList = res.data.response_data.list
+      })
+
     },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
@@ -157,18 +237,19 @@ body::-webkit-scrollbar {
       top: 0.17rem;
     }
     .ruleTips,
-    .histyry {
+    .rank,
+    .history {
       display: block;
-      width: 1.5rem;
-      height: 0.64rem;
+      width: 1.59rem;
+      height: 0.54rem;
       background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
       font-size: 0.24rem;
       text-align: center;
-      line-height: 0.64rem;
-    }
-    .histyry {
-      margin-top: 0.08rem;
+      color: #764d2e;
+      line-height: 0.54rem;
+      text-indent: 0.2rem;
+      margin-bottom: 0.08rem;
     }
     &.top {
       top: 1.5rem;

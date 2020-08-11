@@ -71,27 +71,55 @@ function get(url, config) {
 //获取活动基础信息
 function getDefault() {
     if (token) {
-        return get(`/gift_contest/init.php?token=${token}`);
+        return get(`/family_star/init.php?token=${token}`);
     } else {
-        return get(`/gift_contest/init.php`);
+        return get(`/family_star/init.php`);
     }
 }
 
+//獲取接口
+function getSongList() {
+    return get(`/family_star/getSong.php?token=${token}`);
+}
+
+//選擇歌曲
+function selectSong(id) {
+    return get(`/family_star/pushSong.php?token=${token}&sid=${id}`)
+}
+
+//家族卡片
+function fCards(type, fid) {
+    return get(`/family_star/getAttr.php?token=${token}&type=${type}&fid=${fid}`)
+}
+
+//報名
 function singUp() {
-    return get(`/gift_contest/register.php?token=${token}`)
+    return get(`/family_star/singUp.php?token=${token}`)
+}
+
+//獲獎記錄
+function getHistory(from) {
+    return get(`/family_star/getRecord.php?token=${token}&from=${from}`)
 }
 
 function getPeopleList(uid) {
-    return get(`/gift_contest/guard.php?uid=${uid}`)
+    return get(`/gift_contest/getRecord.php?uid=${uid}`)
 }
 
-function getLastRank() {
-    return get(`/gift_contest/preData.php`)
+function getLastRank(from, more) {
+    if (more) {
+        return axios.get(`/family_star/guard.php?token=${token}&from=${from}`)
+    }
+    return get(`/family_star/guard.php?token=${token}&from=${from}`)
 }
 const httpConfig = {
     getDefault,
     singUp,
     getPeopleList,
-    getLastRank
+    getLastRank,
+    getSongList,
+    selectSong,
+    fCards,
+    getHistory
 }
 export default httpConfig

@@ -37,7 +37,8 @@ export default {
       more: true,
       searchMsg: '',
       noData: false,
-      time: {}
+      time: {},
+      version_allowed: null
     }
   },
   computed: {
@@ -54,6 +55,7 @@ export default {
   },
   created() {
     document.title = '打擂歌曲預告'
+    this.version_allowed = sessionStorage.getItem('version_allowed')
     api.getNextSong().then(res => {
       console.log(res)
       this.sList = res.data.response_data.data
@@ -90,7 +92,21 @@ export default {
     //   }
     // },
     goSong(sid) {
-      location.href = `record:${sid}`
+      // location.href = `record:${sid}`
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
+      if (isiOS) {
+        location.href = `accid:${sid}`
+        return
+      }
+      if (this.version_allowed) {
+        location.href = `record:${sid}`
+      } else {
+        // this.vxc('setToast', {
+        //   title: '無法參加打擂',
+        //   msg: '您的APP版本過低，無法使用本活動的部分功能，請更新至最新版本喔～'
+        // })
+        location.href = `accid:${sid}`
+      }
       // location.href = 'songid:{"songlist":[' + sid + ' ],"index":0}';
     },
     search() {

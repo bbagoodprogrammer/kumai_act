@@ -2,15 +2,16 @@
   <div class="rankGroups">
     <!-- 三個類別 -->
     <div class="typeMainTabs">
-      <span @click="setShowType(1)" :class="{act:showType == 1}">創作者榜</span>
-      <span @click="setShowType(2)" :class="{act:showType == 2}">房主榜</span>
-      <span @click="setShowType(3)" :class="{act:showType == 3}">用戶榜</span>
+      <i class="liner"></i>
+      <span class="tab1" @click="setShowType(1)" :class="{act:showType == 1}"><strong>星光閃耀</strong> <em>{{getDate(stime1,1)}}-{{getDate(etime1,1)}}</em> </span>
+      <span class="tab2" @click="setShowType(2)" :class="{act:showType == 2}"><strong>眾星爭輝</strong><em>{{getDate(stime2,1)}}-{{getDate(etime2,1)}}</em> </span>
+      <span class="tab3" @click="setShowType(3)" :class="{act:showType == 3}"><strong>名星誕生</strong><em>{{getDate(stime3,1)}}-{{getDate(etime3,1)}}</em> </span>
     </div>
     <!-- 日榜、总榜切换主Tabs -->
-    <div class="mainTabs">
+    <div class="mainTabs" v-if="showType == 1">
       <div class="tabs">
-        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">日榜</a>
-        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">總榜</a>
+        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">星光日榜</a>
+        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">星光總榜</a>
       </div>
       <!-- <a @click.prevent="onRefresh" href="" v-if="tab == nowDay && !isShare && actStatus===1" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a> -->
     </div>
@@ -19,22 +20,29 @@
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">日榜2</a>
       <a @click.prevent="tabClick(2)" :class="{current:tab==2}" href="">日榜3</a>
     </div> -->
-    <!-- 日榜 -->
-    <DayTabs v-if="mainTab == 0" @changeClick="tabClick" :tab="tab"></DayTabs>
-    <!-- <p class="scoreTips" v-else>榜單時間：{{actTime}}</p> -->
     <div class="downTimebox">
-      <div v-if="mainTab == 0" class="timeTips">
-        <p v-if="tab == nowDay && actStatus == 1">- 距離今日榜單活動結束還有 -</p>
-        <p v-else-if="tab > nowDay || actStatus == 0 ">- 距離今日榜單活動開始還有 -</p>
+      <div v-if="mainTab == 0 &&  showType ==1" class="timeTips">
+        <p v-if="tab == nowDay && actStatus == 1">- 日榜結束倒計時 -</p>
+        <p v-else-if="(tab > nowDay || actStatus == 0) && nowShowType == 1">- 日榜開始倒計時 -</p>
         <p class="noTime" v-else>- 本日榜已結束 -</p>
       </div>
-      <div class="timeTips" v-else>
-        <p v-if="actStatus == 0">- 距離活動開始還有 -</p>
-        <p v-else-if="actStatus == 1">- 距離活動結束還有 - </p>
-        <p v-else>- 活動已結束 - </p>
+      <div class="timeTips" v-else-if="mainTab == 1 &&  showType ==1">
+        <p v-if="actStatus == 0 ">- 總榜開始倒計時 -</p>
+        <p v-else-if="actStatus == 1&& nowShowType == 1">- 總榜結束倒計時 - </p>
+        <p v-else>- 總榜已結束 - </p>
       </div>
-      <!-- -->
-      <div class="timeDown" v-if="(tab >= nowDay &&  surplusTime.day) || mainTab == 1">
+      <div class="timeTips" v-else-if="showType ==2">
+        <p v-if="actStatus == 0 || nowShowType == 1">- 眾星爭輝賽段開始倒計時 -</p>
+        <p v-else-if="actStatus == 1&& nowShowType == 2">- 眾星爭輝賽段結束倒計時 - </p>
+        <p v-else>- 眾星爭輝賽段已結束 - </p>
+      </div>
+      <div class="timeTips" v-else-if="showType ==3">
+        <p v-if="actStatus == 0|| nowShowType == 1|| nowShowType == 2">- 名星誕生賽段開始倒計時 -</p>
+        <p v-else-if="actStatus == 1&& nowShowType == 3">- 名星誕生賽段結束倒計時 - </p>
+        <p v-else>- 名星誕生賽段已結束 - </p>
+      </div>
+      <!-- surplusTime.day &&-->
+      <div class="timeDown" v-if=" rank.second > 0">
         <div class="day">
           <strong>{{surplusTime.day}}</strong>
           <em>天</em>
@@ -52,48 +60,122 @@
           <em>秒</em>
         </div>
       </div>
-      <p class="rankTips" v-if="showType==1">按照簽約創作者收到的作品和K房特定禮物金幣數排名 <span v-if="mainTab == 0">日榜前3獎勵分別獎勵榜單金幣3%/2.5%/2%現金分成</span> </p>
-      <p class="rankTips" v-if="showType==2">按照簽約房主的房間收到的K房特定禮物金幣數排名 <span v-if="mainTab == 0"> 日榜前3名分別獎勵榜單金幣2%/1.5%/1%現金分成</span> </p>
-      <p class="rankTips" v-if="showType==3">按照用戶報名後收到的作品和K房特定活動禮物金幣數排名<span v-if="mainTab == 0">日榜前3名分別獎勵榜單金幣8%/5%/3%金幣分成</span></p>
+      <p class="rankTips" v-if="showType==1 && mainTab == 0">星光值=作品+K房收禮金幣魅力值 </p>
+      <p class="rankTips" v-if="showType==1 && mainTab == 1">
+        星光值=作品+K房收禮金幣魅力值<br />
+        依據星光閃耀期間總星光值排名，前300名晉級下一賽段
+      </p>
+      <p class="rankTips" v-if="showType==2">星光值=作品+K房收禮金幣魅力值<br />
+        同一家族晉級者組成團隊，代表家族參與PK<br />
+        依據星光值排名星光值判定勝負，勝方晉級並獲得家族大禮包
+      </p>
+      <p class="rankTips" v-if="showType==3">
+        晉級家族依據總星光值排名，前十名獲得豐厚獎勵<br />
+        家族升級發放禮包，ⅠⅡⅢ級對應星光值10萬、30萬、100萬<br />
+        星光值=作品+k房收禮金幣魅力值，8月21日19-22點獲得10%加成
+      </p>
     </div>
-    <ul v-if="mainTab==0" class="list day">
-      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.rid)">
+    <!-- 日榜 -->
+    <DayTabs v-if="mainTab == 0 && showType== 1" @changeClick="tabClick" :tab="tab"></DayTabs>
+    <!-- <p class="scoreTips" v-else>榜單時間：{{actTime}}</p> -->
+    <img src="../assets/img/dayGiftImg.png" alt="" class="dayGiftImg" v-if="showType ==1 && mainTab==0">
+    <ul v-if="showType ==1" class="list day">
+      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goPeople(item.uid)">
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
           <span class="imgBg"></span>
           <img v-lazy="item.avatar" alt="" class="imgItem">
         </div>
         <div class="userMsg">
-          <div class="rName" v-if="item.rname">{{item.rname}}</div>
-          <div class="name" :class="{rNick:showType == 2}">{{item.nick}}</div>
-          <div class="score"><i></i> {{item.score}}</div>
+          <div class="name"><strong>{{item.nick}} </strong> <i class="live" v-if="item.live"></i> </div>
+          <div class="score">{{item.fname}}</div>
         </div>
-        <div class="userGift">
-          <span v-for="(item2,index2) in item.gift" :key="index2">
-            <img :src="item2.img" alt="">
-            <em>{{item2.muns}}</em>
-          </span>
+        <div class="score">
+          <div class="star"><i></i> {{item.score}}</div>
+          <div class="num" v-if="mainTab==0">中獎概率 {{item.pro}}%</div>
+        </div>
+        <span class="award" v-if="mainTab==0 && item.is_prize"></span>
+      </li>
+    </ul>
+    <ul v-else-if="showType ==2" class="stage2List">
+      <li v-for="(item,index) in rank.list" :key="index" :class="[{min:item.empty},'rank'+item.rank]">
+        <i class="jinji left" v-if="item.pk_data&&item.pk_data.left.win"></i>
+        <i class="jinji right" v-if="item.pk_data.right&&item.pk_data.right.win"></i>
+        <div class="familyMsg">
+          <div class="family1 family">
+            <img v-lazy="item.pk_data.left.avatar" class="fImg" alt="" @click.stop="showFamily(item.pk_data.left.fid)">
+            <div class="msg">
+              <div class="nick">{{item.pk_data.left.name}}</div>
+              <div class="star"><i></i><strong>{{item.pk_data.left.score}}</strong></div>
+            </div>
+          </div>
+          <div class="family2 family">
+            <p class="noOpponents" v-if="item.empty">幸運輪空，直接晉級</p>
+            <div class="msg" v-else>
+              <div class="nick">{{item.pk_data.right.name}}</div>
+              <div class="star"><i></i><strong>{{item.pk_data.right.score}}</strong></div>
+            </div>
+            <img v-lazy="item.pk_data.right.avatar" class="fImg2" alt="" v-if="!item.empty" @click.stop="showFamily(item.pk_data.right.fid)">
+          </div>
+        </div>
+        <div class="fLiner" v-if="!item.empty">
+          <span class="left" :style="{width:getWidth(item.pk_data.left.score,item.pk_data.right.score)}"><i class="giftBox"></i></span>
+          <span class="right"></span>
+        </div>
+        <div class="fPeopleList" v-if="!item.empty">
+          <div class="left">
+            <div class="userItem" v-for="(item2,index2) in item.pk_data.left.users" :key="index2">
+              <span class="userImgBox" @click="goPeople(item2.uid)">
+                <span :class="'user'+ (index+1)"></span>
+                <img v-lazy="item2.avatar" alt="">
+              </span>
+              <strong>{{item2.score}}</strong>
+            </div>
+          </div>
+          <i class="vs"></i>
+          <div class="rigth">
+            <div class="userItem" v-for="(item2,index2) in item.pk_data.right.users" :key="index2">
+              <span class="userImgBox" @click="goPeople(item2.uid)">
+                <span :class="'user'+ (index+1)"></span>
+                <img v-lazy="item2.avatar" alt="">
+              </span>
+              <strong>{{item2.score}}</strong>
+            </div>
+          </div>
+        </div>
+        <div class="fPeopleList" v-else>
+          <div class="left">
+            <div class="userItem" v-for="(item2,index2) in item.pk_data.left.users" :key="index2">
+              <span class="userImgBox" @click="goPeople(item2.uid)">
+                <span :class="'user'+ (index2+1)"></span>
+                <img v-lazy="item2.avatar" alt="">
+              </span>
+              <strong>{{item2.score}}</strong>
+            </div>
+          </div>
         </div>
       </li>
     </ul>
-    <!-- 总榜 -->
-    <ul v-else-if="mainTab==1" class="list total">
-      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.rid)">
+    <ul v-else class="list stage3List">
+      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank">
+
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
-          <span class="imgBg"></span>
-          <img v-lazy="item.avatar" alt="" class="imgItem">
+          <!-- <span class="imgBg"></span> -->
+          <img v-lazy="item.avatar" alt="" class="imgItem" @click.stop="showFamily()">
         </div>
         <div class="userMsg">
-          <div class="rName" v-if="item.rname">{{item.rname}}</div>
-          <div class="name" :class="{rNick:showType == 2}">{{item.nick}}</div>
-          <div class="score"><i></i> {{item.score}}</div>
+          <div class="name" :class="'lv'+item.level"><strong>{{item.name}} </strong> </div>
+          <div class="score"><i></i> <strong>{{item.score}}</strong> </div>
         </div>
-        <div class="userGift">
-          <span v-for="(item2,index2) in item.gift" :key="index2">
-            <img :src="item2.img" alt="">
-            <em>{{item2.muns}}</em>
-          </span>
+        <div class="userList">
+          <div class="userItem" v-for="(item2,index2) in item.users" :key="index2">
+            <span class="userImgBox" @click="goPeople(item2.uid)">
+              <span :class="'user'+ (index+1)"></span>
+              <img v-lazy="item2.avatar" alt="">
+            </span>
+            <strong>{{item2.score}}</strong>
+          </div>
         </div>
       </li>
     </ul>
@@ -104,23 +186,34 @@
       虛位以待，等你來哦！
     </div>
     <div v-if="mainTab==0 && tab > nowDay" class="dengdai">敬請期待！</div>
-    <div class="mask" v-show="showPeopleList">
+    <!--  -->
+    <div class="mask" v-show="showFcards">
       <transition name="slide">
-        <div class="peopleList" v-if="showPeopleList">
-          <i class="close" @click="closePeople()"></i>
-          <p class="noData" v-if="!peopleArr.length">暫時沒有守護者，快去支持TA吧！</p>
-          <ul>
-            <li v-for="(item,index) in peopleArr" :key="index" :class="[{act:actIndex==index},'rank'+index]" @click="goPeople(item.uid)">
-              <div class="rank">{{item.rank}}</div>
-              <div class="userImg">
-                <span class="imgBg"></span>
-                <img v-lazy="item.avatar" alt="" class="imgItem">
-              </div>
-              <div class="name">{{item.nick}}</div>
-              <div class="score"><i></i> <em>{{item.score}}</em> </div>
-            </li>
-          </ul>
-          <div class="goUerBtn" @click="goPeople(uidCon)">前往TA的主頁</div>
+        <div class="familyCard" v-if="showFcards">
+          <i class="close" @click="closeCards()"></i>
+          <div class="title">家族名片</div>
+          <div class="msg">
+            <img v-lazy="cardsMsg.family.avatar" alt="" @click="goFroom()">
+            <div class="nick">{{cardsMsg.family.familyname}}</div>
+            <div class="id">家族ID：<strong>{{cardsMsg.family.fid}}</strong></div>
+            <div class="score"><i></i><strong>{{cardsMsg.family.score}}</strong> </div>
+          </div>
+          <div class="fUserList">
+            <ul>
+              <li v-for="(item,index) in cardsMsg.list" :key="index" @click="goPeople(item.userinfo.uid)">
+                <div class="rank" :class="'rank' + item.rank">{{item.rank}}</div>
+                <div class="avBox">
+                  <span :class="'user' + item.rank"></span>
+                  <img v-lazy="item.userinfo.avatar" alt="">
+                </div>
+                <div class="nick">{{item.userinfo.nick}}</div>
+                <div class="score">
+                  <i></i>
+                  <strong>{{item.score}}</strong>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </transition>
     </div>
@@ -155,6 +248,7 @@ import getDate from "../utils/getDate"
 
 export default {
   components: { DayTabs },
+  props: ['stime1', 'stime2', 'stime3', 'etime1', 'etime2', 'etime3'],
   data() {
     return {
       mainTab: 0,
@@ -168,7 +262,9 @@ export default {
       showPeopleList: false,
       actIndex: 0,
       uidCon: 0,
-      peopleArr: []
+      peopleArr: [],
+      showFcards: false,
+      cardsMsg: {}
     }
   },
   watch: {
@@ -182,9 +278,12 @@ export default {
     }
   },
   computed: {
-    ...mapState(['rankGroups', "nowDay", "dateArr", "inited", "isShare", "actStatus", "showType", "timeObj"]),
+    ...mapState(['rankGroups', "nowShowType", "nowDay", "oneNowDay", "dateArr", "inited", "isShare", "actStatus", "showType", "timeObj"]),
     rankKey() {
       // return ['one', 'two', 'three'][this.tab];
+      if (this.showType == 2 || this.showType == 3) {
+        return 'total'
+      }
       return this.mainTab == 1 ? 'total' : this.tab;
     },
     rankApi() {
@@ -194,11 +293,20 @@ export default {
         var api = this.rankKey == 'total' ? totalApi : dayApi;
         return api.replace('{day}', this.dateArr[this.tab - 1]).replace('{type}', this.showType);
       } else {
-        var dayApi = `/gift_contest/list.php?token={token}&type={type}&day={day}&from={from}`;
-        var totalApi = `/gift_contest/list.php?token={token}&type={type}&day=0&from={from}`;
-        var api = this.rankKey == 'total' ? totalApi : dayApi;
+        var dayApi = ''
+        if (this.showType == 1) {
+          if (this.mainTab == 0) {
+            dayApi = `/family_star/list${this.showType}.php?token={token}&from={from}&time={tm}`;
+          } else {
+            dayApi = `/family_star/list${this.showType}.php?token={token}&from={from}&time=0`;
+          }
+        } else {
+          dayApi = `/family_star/list${this.showType}.php?token={token}&from={from}`;
+        }
+        // var totalApi = `/family_star/list${this.showType}.php?token={token}&from={from}`;
+        // var api = this.rankKey == 'total' ? totalApi : dayApi;
         const token = getUrlString('token') || '';
-        return api.replace('{day}', this.dateArr[this.tab - 1]).replace('{type}', this.showType).replace('{token}', token)
+        return dayApi.replace('{token}', token).replace('{tm}', this.getNowDate())
       }
     },
     rankSize() {
@@ -208,8 +316,9 @@ export default {
     rank() {
       const rankConf = this.rankGroups[this.showType][this.rankKey] || {};
       rankConf.list = rankConf.list || [];
-      if (rankConf.second && rankConf.second > 0) {
-        this.downTimeGo('time' + this.rankKey, rankConf.second)
+      // && rankConf.second > 0
+      if (rankConf.second) {
+        this.downTimeGo('time' + this.showType + this.rankKey, rankConf.second)
       }
       return rankConf;
     },
@@ -229,8 +338,13 @@ export default {
     setShowType(val) {
       if (val !== this.showType) {
         this.vxc('setShowType', val)
-        this.tab = this.nowDay
-        this.mainTab = 0
+        if (val == 1) {
+          this.tab = this.oneNowDay
+          this.mainTab = 0
+        } else {
+          this.tab = 'total'
+        }
+        this.vxc("changTab", this.rankKey)
         this.$nextTick(() => {
           if (!this.rank.loadCount) {
             this.onScroll();
@@ -249,7 +363,7 @@ export default {
     },
     tabClick(tab) { //日榜切换
       this.tab = tab;
-      var nowTab = this.rankKey >= this.nowDay ? this.nowDay : this.rankKey //存当天选择的tab索引用于底部个人信息查找
+      var nowTab = this.rankKey >= this.oneNowDay ? this.oneNowDay : this.rankKey //存当天选择的tab索引用于底部个人信息查找
       this.vxc("changTab", nowTab)
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
@@ -286,17 +400,22 @@ export default {
               set('loadEnd', true);
               return;
             }
-            if (this.tab >= this.nowDay || this.mainTab == 1) {
-              set('second', response_data.current_time)
+            // console.log(this.showType, this.rankKey, response_data.c_time)
+            if (this.showType == 1) {
+              //console.log(this.$parent.computedInitSecond(this.showType, this.rankKey, response_data.c_time))
+              set('second', this.$parent.computedInitSecond(this.showType, this.rankKey, response_data.c_time))
+            } else if (this.showType == 2 || this.showType == 3) {
+
+              set('second', this.$parent.computedInitSecond(this.showType, this.rankKey, response_data.c_time))
             }
             const arr = response_data.list;
             //跟随榜单变换个人信息
-            if (response_data.myrank && response_data.myrank.info) {
+            if (response_data.rank) {
               let userObj = {
                 type: this.showType,
                 data: { //当前日榜信息
                   key: this.rankKey,
-                  msg: response_data.myrank ? response_data.myrank : {}
+                  msg: response_data.rank ? response_data.rank : {}
                 }
               }
               this.vxc('updateGroupsUserMsg', userObj)
@@ -362,28 +481,36 @@ export default {
         }
       }, 1000)
     },
-    getDate(time) {
-      return getDate(new Date(time * 1000), '2')
+    getWidth(score1, score2) {
+      return score1 / (score1 + score2) * 100 + '%'
     },
-    goUser(uid, rid) { //跳转
-      if (rid) {
-        location.href = `rid:${rid}`
-      } else if ((this.showType == 1 && this.mainTab == 1) || (this.showType == 3 && this.mainTab == 1)) {
-        api.getPeopleList(uid).then(res => {
-          this.peopleArr = res.data.response_data.list
-          this.showPeopleList = true
-          this.uidCon = uid
-        })
-      } else {
-        location.href = `uid:${uid}`
-      }
+    getDate(time, type) {
+      return getDate(new Date(time * 1000), type)
     },
     closePeople() {
       this.actIndex = 0
       this.showPeopleList = false
     },
     goPeople(uid) {
+      console.log(uid)
       location.href = `uid:${uid}`
+    },
+    showFamily(fid) {
+      let type = this.showType == 2 ? 0 : 1
+      api.fCards(type, fid).then(res => {
+        console.log(res)
+        this.cardsMsg = res.data.response_data
+        this.showFcards = true
+      })
+    },
+    getNowDate() {
+      return getDate(new Date(this.dateArr[this.tab - 1] * 1000), 4)
+    },
+    closeCards() {
+      this.showFcards = false
+    },
+    goFroom() {
+      location.href = `fid:${this.cardsMsg.family.fid}`
     }
   },
 }
@@ -399,20 +526,64 @@ export default {
     justify-content: space-between;
     width: 6.98rem;
     height: 0.98rem;
-    background: url(../assets/img/tasBg.png);
-    background-size: 100% 100%;
+    // background: url(../assets/img/tasBg.png);
+    // background-size: 100% 100%;
     margin: 0 auto;
+    position: relative;
+    .liner {
+      width: 3.28rem;
+      height: 0.01rem;
+      border: 0.01rem solid rgba(255, 223, 89, 1);
+      z-index: 1;
+      position: absolute;
+      left: 1.7rem;
+    }
     > span {
-      width: 2.5rem;
-      height: 0.9rem;
+      width: 2.26rem;
+      height: 0.91rem;
       text-align: center;
-      color: #fff8c9;
+      color: rgba(117, 66, 8, 1);
       font-weight: 500;
-      line-height: 0.89rem;
-      &.act {
-        color: #fff;
-        background: url(../assets/img/actTab.png);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      strong {
+        font-size: 0.28rem;
+      }
+      em {
+        display: block;
+        font-size: 0.22rem;
+        margin-top: 0.05rem;
+      }
+      &.tab1 {
+        background: url(../assets/img/tab1.png);
         background-size: 100% 100%;
+        &.act {
+          color: rgba(255, 255, 255, 1);
+          background: url(../assets/img/tab1Act.png);
+          background-size: 100% 100%;
+        }
+      }
+      &.tab2 {
+        background: url(../assets/img/tab2.png);
+        background-size: 100% 100%;
+        &.act {
+          color: rgba(255, 255, 255, 1);
+          background: url(../assets/img/tab2Act.png);
+          background-size: 100% 100%;
+        }
+      }
+      &.tab3 {
+        background: url(../assets/img/tab3.png);
+        background-size: 100% 100%;
+        &.act {
+          color: rgba(255, 255, 255, 1);
+          background: url(../assets/img/tab3Act.png);
+          background-size: 100% 100%;
+        }
       }
     }
   }
@@ -426,27 +597,28 @@ export default {
     margin: 0 auto;
     display: flex;
     .tabs {
-      width: 5.36rem;
-      height: 0.72rem;
-      // background: url(../assets/img/tabs.png);
-      // background-size: 100% 100%;
+      width: 6.76rem;
+      height: 0.78rem;
+      padding: 0 0.07rem;
+      background: url(../assets/img/tabs.png);
+      background-size: 100% 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin: 0.13rem auto 0;
       > a {
         display: block;
-        width: 2.57rem;
-        height: 0.72rem;
+        width: 3.33rem;
+        height: 0.64rem;
         text-align: center;
-        line-height: 0.72rem;
-        background: url(../assets/img/dayTitle.png);
-        background-size: 100% 100%;
-        color: #fff8c9;
+        line-height: 0.64rem;
+        // background: url(../assets/img/dayTitle.png);
+        // background-size: 100% 100%;
+        color: rgba(142, 105, 63, 1);
         font-weight: 500;
         &.current {
           color: #fff;
-          background: url(../assets/img/actDayTitle.png);
+          background: url(../assets/img/actTabs.png);
           background-size: 100% 100%;
         }
       }
@@ -463,6 +635,7 @@ export default {
       margin-top: 0.11rem;
       width: 6.98rem;
       font-size: 80%;
+      color: rgba(238, 172, 104, 1);
     }
   }
   .downTimebox {
@@ -490,47 +663,107 @@ export default {
           font-weight: bold;
         }
         em {
-          font-size: 0.22;
-          color: #f8ffbd;
+          font-size: 0.22rem;
+          color: rgba(238, 172, 104, 1);
         }
       }
     }
     .noTime {
-      line-height: 0.6rem;
+      line-height: 0.45rem;
     }
     .rankTips {
-      margin-top: 0.12rem;
-      font-size: 0.22rem;
-      color: #9afeff;
+      margin-top: 0.25rem;
+      font-size: 0.24rem;
+      color: rgba(142, 105, 63, 1);
       span {
         display: block;
       }
     }
   }
+  .dayGiftImg {
+    width: 6.98rem;
+    height: 2.42rem;
+    display: block;
+    margin: 0.27rem auto 0;
+  }
   .list {
     margin: 0.19rem auto;
     width: 7.1rem;
+    &.stage3List {
+      .uerImg {
+        .imgItem {
+          width: 0.96rem;
+          height: 0.96rem;
+          border-radius: 0.16rem;
+        }
+      }
+      .userMsg {
+        width: 2.3rem;
+        margin-right: 0.15rem;
+        .name {
+          width: 1.44rem;
+          height: 0.54rem;
+          padding-left: 0.63rem;
+          background: url(../assets/img/lv0.png);
+          background-size: 100% 100%;
+          &.lv1 {
+            background: url(../assets/img/lv1.png);
+            background-size: 100% 100%;
+          }
+          &.lv2 {
+            background: url(../assets/img/lv2.png);
+            background-size: 100% 100%;
+          }
+          &.lv3 {
+            background: url(../assets/img/lv3.png);
+            background-size: 100% 100%;
+          }
+        }
+        .score {
+          display: flex;
+          align-items: center;
+          margin-top: 0.06rem;
+          i {
+            width: 0.4rem;
+            height: 0.38rem;
+            background: url(../assets/img/star.png);
+            background-size: 100% 100%;
+          }
+          strong {
+            font-size: 0.26rem;
+          }
+        }
+      }
+      .userList {
+        flex: 1;
+        justify-content: center;
+        .userItem {
+          margin-right: 0.13rem;
+        }
+      }
+    }
     li {
-      height: 1.27rem;
-      margin-top: 0.05rem;
-      background: url(../assets/img/topItemBg.png);
+      height: 1.18rem;
+      margin-bottom: 0.2rem;
+      background: url(../assets/img/listItem1.png);
       background-size: 100% 100%;
       display: flex;
       align-items: center;
+      position: relative;
       .rank {
-        width: 0.84rem;
-        height: 0.72rem;
+        width: 0.75rem;
+        height: 0.65rem;
         font-size: 0.46rem;
-        color: #feb0ff;
+        color: rgba(243, 165, 77, 1);
         text-align: center;
         line-height: 0.72rem;
         margin-left: 0.13rem;
       }
       .uerImg {
-        width: 1.21rem;
+        width: 1rem;
         height: 1.01rem;
         position: relative;
-        margin-left: 0.21rem;
+        margin: 0 0.15rem 0 0.08rem;
         .imgBg {
           width: 1rem;
           height: 1.01rem;
@@ -549,16 +782,27 @@ export default {
         }
       }
       .userMsg {
-        width: 2.4rem;
-        margin-right: 0.1rem;
+        width: 2.7rem;
+        margin-right: 0.45rem;
         .name,
         .rName {
           height: 0.4rem;
-          max-width: 2.4rem;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          font-size: 0.26rem;
+          display: flex;
+          align-items: center;
+          strong {
+            max-width: 1.85rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 0.26rem;
+          }
+          .live {
+            width: 0.78rem;
+            height: 0.33rem;
+            background: url(../assets/img/live.png);
+            background-size: 100% 100%;
+            margin-left: 0.06rem;
+          }
         }
         .rNick {
           color: #ff8cfe;
@@ -567,7 +811,7 @@ export default {
         .score {
           display: flex;
           align-items: center;
-          color: #ffed82;
+          color: rgba(255, 231, 184, 1);
           font-size: 0.22rem;
           font-weight: 500;
           i {
@@ -580,44 +824,87 @@ export default {
           }
         }
       }
-      .userGift {
-        width: 2rem;
-        height: 0.8rem;
-        span {
-          float: left;
-          display: inline-block;
-          width: 48%;
-          height: 50%;
-          color: #ffb0fa;
+      > .score {
+        flex: 1;
+        .star {
+          font-size: 0.32rem;
           display: flex;
           align-items: center;
-          em {
-            font-size: 0.22rem;
-            font-weight: 500;
+          i {
+            width: 0.4rem;
+            height: 0.38rem;
+            background: url(../assets/img/star.png);
+            background-size: 100% 100%;
+            margin-right: 0.1rem;
           }
-          img {
+        }
+        .num {
+          font-size: 0.22rem;
+          color: rgba(255, 231, 184, 1);
+        }
+      }
+      .award {
+        display: block;
+        width: 0.97rem;
+        height: 0.77rem;
+        background: url(../assets/img/award.png);
+        background-size: 100% 100%;
+        position: absolute;
+        bottom: 0;
+        right: 1.81rem;
+        z-index: 0;
+      }
+      .userList {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .userItem {
+          position: relative;
+          .userImgBox {
             display: block;
-            width: 0.35rem;
-            height: 0.35rem;
-            margin-right: 0.05rem;
+            width: 0.62rem;
+            height: 0.68rem;
+            margin: 0 auto;
+            position: relative;
+            span {
+              display: block;
+              width: 0.62rem;
+              height: 0.68rem;
+              position: absolute;
+              z-index: 2;
+            }
+            .user1 {
+              background: url(../assets/img/user1.png);
+              background-size: 100% 100%;
+            }
+            .user2 {
+              background: url(../assets/img/user2.png);
+              background-size: 100% 100%;
+            }
+            .user3 {
+              background: url(../assets/img/user3.png);
+              background-size: 100% 100%;
+            }
+            img {
+              width: 0.6rem;
+              height: 0.6rem;
+              border-radius: 50%;
+              position: absolute;
+              top: 0.07rem;
+              left: 0.01rem;
+            }
+          }
+          strong {
+            display: block;
+            text-align: center;
+            color: rgba(255, 250, 238, 1);
+            font-size: 0.2rem;
           }
         }
       }
       &.rank1 {
-        background: url(../assets/img/topBg.png);
+        background: url(../assets/img/listItem2.png);
         background-size: 100% 100%;
-        .imgBg {
-          width: 1.11rem;
-          height: 1.25rem;
-          background: url(../assets/img/av1.png);
-          background-size: 100% 100%;
-          top: -0.22rem;
-          left: -0.05rem;
-        }
-        .imgItem {
-          width: 1rem;
-          height: 1rem;
-        }
         .rank {
           text-indent: -999rem;
           background: url(../assets/img/top1.png);
@@ -625,20 +912,8 @@ export default {
         }
       }
       &.rank2 {
-        background: url(../assets/img/topBg.png);
+        background: url(../assets/img/listItem2.png);
         background-size: 100% 100%;
-        .imgBg {
-          width: 1.11rem;
-          height: 1.25rem;
-          background: url(../assets/img/av2.png);
-          background-size: 100% 100%;
-          top: -0.22rem;
-          left: -0.05rem;
-        }
-        .imgItem {
-          width: 1rem;
-          height: 1rem;
-        }
         .rank {
           text-indent: -999rem;
           background: url(../assets/img/top2.png);
@@ -646,24 +921,359 @@ export default {
         }
       }
       &.rank3 {
-        background: url(../assets/img/topBg.png);
+        background: url(../assets/img/listItem2.png);
         background-size: 100% 100%;
-        .imgBg {
-          width: 1.11rem;
-          height: 1.25rem;
-          background: url(../assets/img/av3.png);
-          background-size: 100% 100%;
-          top: -0.22rem;
-          left: -0.05rem;
-        }
-        .imgItem {
-          width: 1rem;
-          height: 1rem;
-        }
         .rank {
           text-indent: -999rem;
           background: url(../assets/img/top3.png);
           background-size: 100% 100%;
+        }
+      }
+    }
+  }
+  .stage2List {
+    width: 6.9rem;
+    margin: 0.23rem auto 0;
+    li {
+      height: 2.95rem;
+      margin-bottom: 0.2rem;
+      background: url(../assets/img/stage2ListBg.png);
+      background-size: 100% 100%;
+      position: relative;
+      .jinji {
+        display: block;
+        width: 1.18rem;
+        height: 0.38rem;
+        background: url(../assets/img/jinji.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: 0.13rem;
+        &.left {
+          left: 0;
+          background: url(../assets/img/jinji2.png);
+          background-size: 100% 100%;
+        }
+        &.right {
+          right: 0;
+        }
+      }
+      &.min {
+        height: 2.61rem;
+        background: url(../assets/img/stage2ListMinBg.png);
+        background-size: 100% 100%;
+        .fPeopleList {
+          width: 6.16rem;
+          height: 1.04rem;
+          background: url(../assets/img/minFpeople.png);
+          background-size: 100% 100%;
+          .left {
+            justify-content: center;
+            .userItem {
+              margin: 0 0.13rem;
+            }
+            strong {
+              display: block;
+              text-align: center;
+            }
+          }
+        }
+      }
+      .familyMsg {
+        height: 1.4rem;
+        padding: 0 0.3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .family {
+          display: flex;
+          align-items: center;
+          img {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 0.16rem;
+          }
+          .msg {
+            margin-left: 0.14rem;
+            .nick {
+              max-width: 2rem;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+            .star {
+              display: flex;
+              align-items: center;
+              font-size: 0.24rem;
+              color: rgba(255, 251, 237, 1);
+              i {
+                width: 0.31rem;
+                height: 0.29rem;
+                background: url(../assets/img/star.png);
+                background-size: 100% 100%;
+                margin-right: 0.06rem;
+              }
+            }
+          }
+        }
+      }
+      .fLiner {
+        width: 6.3rem;
+        height: 0.16rem;
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+        span {
+          height: 100%;
+        }
+        .left {
+          width: 50%;
+          background: linear-gradient(
+            90deg,
+            rgba(255, 144, 83, 1) 0%,
+            rgba(255, 58, 58, 1) 39%
+          );
+          border-radius: 0.08rem 0 0 0.08rem;
+          position: relative;
+          .giftBox {
+            position: absolute;
+            width: 0.53rem;
+            height: 0.54rem;
+            background: url(../assets/img/giftBox.png);
+            background-size: 100% 100%;
+            right: -0.27rem;
+            top: -0.24rem;
+          }
+        }
+        .right {
+          flex: 1;
+          border-radius: 0 0.08rem 0.08rem 0;
+          background: linear-gradient(
+            90deg,
+            rgba(255, 141, 40, 1) 39%,
+            rgba(255, 208, 106, 1) 100%
+          );
+        }
+      }
+      .family2 {
+        .msg {
+          margin-right: 0.14rem;
+        }
+        .noOpponents {
+          font-size: 0.24rem;
+          color: rgba(255, 245, 129, 1);
+        }
+      }
+      .fPeopleList {
+        width: 6.08rem;
+        height: 1.04rem;
+        background: url(../assets/img/fPeopleBg.png);
+        background-size: 100% 100%;
+        margin: 0.13rem auto 0;
+        display: flex;
+        align-items: center;
+        > div {
+          flex: 1;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &.left {
+            margin-left: -0.16rem;
+          }
+          &.right {
+            margin-right: -0.16rem;
+          }
+          .userItem {
+            position: relative;
+            margin-right: 0.13rem;
+            .userImgBox {
+              display: block;
+              width: 0.62rem;
+              height: 0.68rem;
+              margin: 0 auto;
+              position: relative;
+              span {
+                display: block;
+                width: 0.62rem;
+                height: 0.68rem;
+                position: absolute;
+                z-index: 2;
+              }
+              .user1 {
+                background: url(../assets/img/user1.png);
+                background-size: 100% 100%;
+              }
+              .user2 {
+                background: url(../assets/img/user2.png);
+                background-size: 100% 100%;
+              }
+              .user3 {
+                background: url(../assets/img/user3.png);
+                background-size: 100% 100%;
+              }
+              img {
+                width: 0.6rem;
+                height: 0.6rem;
+                border-radius: 50%;
+                position: absolute;
+                top: 0.07rem;
+                left: 0.01rem;
+              }
+            }
+            strong {
+              display: block;
+              text-align: center;
+              color: rgba(255, 250, 238, 1);
+              font-size: 0.2rem;
+            }
+          }
+        }
+        .vs {
+          width: 1.4rem;
+          height: 1.38rem;
+          background: url(../assets/img/vs.png);
+          background-size: 100% 100%;
+        }
+      }
+    }
+  }
+}
+.familyCard {
+  width: 4.62rem;
+  height: 6.49rem;
+  background: url(../assets/img/familyCard.png);
+  background-size: 100% 100%;
+  position: relative;
+  .close {
+    display: block;
+    width: 0.6rem;
+    height: 0.57rem;
+    background: url(../assets/img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .title {
+    height: 0.65rem;
+    line-height: 0.65rem;
+    text-align: center;
+  }
+  .msg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgba(137, 63, 30, 1);
+    margin-top: 0.1rem;
+    img {
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 0.16rem;
+    }
+    .nick {
+      font-size: 0.32rem;
+      font-weight: 600;
+      margin-top: 0.08rem;
+    }
+    .id {
+      font-size: 0.24rem;
+      margin-top: -0.05rem;
+    }
+    .score {
+      display: flex;
+      align-items: center;
+      margin-top: 0.1rem;
+      i {
+        width: 0.4rem;
+        height: 0.38rem;
+        background: url(../assets/img/star.png);
+        background-size: 100% 100%;
+        margin-right: 0.09rem;
+      }
+    }
+  }
+  .fUserList {
+    width: 3.4rem;
+    height: 2.39rem;
+    background: rgba(65, 36, 12, 0.15);
+    border-radius: 0.12rem;
+    margin: 0.1rem auto;
+    overflow-y: scroll;
+    li {
+      height: 0.8rem;
+      display: flex;
+      align-items: center;
+      padding-right: 0.05rem;
+      .rank {
+        width: 0.4rem;
+        text-align: center;
+        font-size: 0.24rem;
+        color: #e99d2c;
+        &.rank1 {
+          color: rgba(252, 255, 1, 1);
+        }
+        &.rank2 {
+          color: rgba(227, 229, 231, 1);
+        }
+        &.rank3 {
+          color: rgba(255, 171, 89, 1);
+        }
+      }
+      .avBox {
+        display: block;
+        width: 0.62rem;
+        height: 0.68rem;
+        position: relative;
+        margin-right: 0.08rem;
+        span {
+          display: block;
+          width: 0.62rem;
+          height: 0.68rem;
+          position: absolute;
+          z-index: 2;
+        }
+        .user1 {
+          background: url(../assets/img/user1.png);
+          background-size: 100% 100%;
+        }
+        .user2 {
+          background: url(../assets/img/user2.png);
+          background-size: 100% 100%;
+        }
+        .user3 {
+          background: url(../assets/img/user3.png);
+          background-size: 100% 100%;
+        }
+        img {
+          width: 0.6rem;
+          height: 0.6rem;
+          border-radius: 50%;
+          position: absolute;
+          top: 0.07rem;
+          left: 0.01rem;
+        }
+      }
+      .nick {
+        width: 1rem;
+        font-size: 0.24rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+      .score {
+        display: flex;
+        align-items: center;
+        color: rgba(255, 226, 163, 1);
+
+        strong {
+          font-size: 0.24rem;
+        }
+        i {
+          width: 0.4rem;
+          height: 0.38rem;
+          background: url(../assets/img/star.png);
+          background-size: 100% 100%;
+          margin-right: 0.09rem;
         }
       }
     }

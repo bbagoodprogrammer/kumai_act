@@ -250,7 +250,7 @@ export default {
         }
         //  console.log(this.nowHowl.seek(), this.nowIndex) // this.nowHowl.duration(), this.nowHowl.playing()
         let seek = this.nowHowl.seek()
-        // console.log(this.nowHowl, this.nowIndex)
+        // console.log(this.nowHowl, this.nowIndex)]
         this.now = seek / this.nowHowl.duration() * 100
         if (typeof seek === "number") {
           this.nowTime = this.formatDate(seek)

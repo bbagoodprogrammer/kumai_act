@@ -70,41 +70,13 @@ export default {
   },
   methods: {
     init() {
-      // api.voteMsg(this.rid, this.vote_id).then(res => {
-      this.voteData = {  //投票未結束並且用戶未投票
-        "id": 3,
-        "rid": 15,
-        "status": 1,
-        "descriptions": "test111",
-        "option_type": 2,
-        // "options": [
-        //   {
-        //     "txt": "a"
-        //   },
-        //   {
-        //     "txt": "b"
-        //   }
-        // ],
-        "options": [
-          {
-            "avatar": "http://img.17sing.tw/uc/img/head_2233806_1515642245.png",
-            "nick": "10name",
-            "uid": 10
-          },
-          {
-            "avatar": "http://img.17sing.tw/uc/img/head_2233806_1515642245.png",
-            "nick": "15name",
-            "uid": 15
-          }
-        ],
-        "ttl": 10,
-        "results": [
-          11,
-          33
-        ],
-        "my_vote": -1
-      }
-      // })
+      api.voteMsg(this.rid, this.vote_id).then(res => {
+        if (res.data.response_data) {
+          this.voteData = res.data.response_data
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
     },
     downTimeGo(timeName, val) {
       downTime(timeName, val);
