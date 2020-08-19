@@ -1,12 +1,12 @@
 <template>
   <div class="rankGroups">
-    <div class="title">BXH Võ Đài</div>
+    <div class="title">Bảng Xếp Hạng</div>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
         <!-- {{rStime}}-{{rEtime}} -->
-        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">BXH Võ Đà{{rStime}}-{{rEtime}}</a>
-        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">BXH Vua Ca Hát</a>
+        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">Xếp Hạng ( {{rStime}}-{{rEtime}})</a>
+        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">Vua Ca Hát Mùa</a>
       </div>
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
@@ -23,7 +23,7 @@
         </div>
         <div class="score">
           <em v-if="mainTab==0">Điểm kỳ này:{{item.star}}</em>
-          <em v-else>Cấp kỳ này:<i>Lv.{{item.star}}</i></em>
+          <em v-else>Cấp mùa này: <i>Lv.{{item.star}}</i></em>
           <!-- <em>平均支持率：<i>{{item.pp}}%</i> </em> -->
         </div>
       </li>
@@ -392,6 +392,7 @@ export default {
             text-align: center;
             line-height: 0.36rem;
             font-size: 0.24rem;
+            margin-left: 0.1rem;
           }
         }
       }

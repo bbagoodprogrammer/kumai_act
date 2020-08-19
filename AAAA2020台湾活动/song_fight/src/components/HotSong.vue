@@ -74,6 +74,7 @@ import { mapState } from "vuex"
 import api from "../api/apiConfig"
 import { globalBus } from '../utils/eventBus'
 import getDate from "../utils/getDate"
+import APP from '../utils/openApp'
 export default {
   props: ["length"],
   data() {
@@ -95,7 +96,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['hotSong', 'can', 'act', 'version_allowed']),
+    ...mapState(['hotSong', 'can', 'isShare', 'act', 'version_allowed']),
     time() {
       return getDate(new Date(this.act.stime * 1000), 3)
     },
@@ -110,25 +111,27 @@ export default {
       this.noTips = false
     },
     search() {
-      globalBus.$emit('commonEvent', () => {
-        if (this.searchSong != '') {
-          api.searchSong(this.searchSong).then(res => {
-            const data = res.data.response_data.data
-            console.log(data.length)
-            if (data.length) {
-              if (data[0].current == 1) {
-                this.nextTips = true
-                this.showSong = data
-              } else {
-                this.showSong = data
-              }
+      if (this.isShare) {
+        APP()
+        return
+      }
+      if (this.searchSong != '') {
+        api.searchSong(this.searchSong).then(res => {
+          const data = res.data.response_data.data
+          console.log(data.length)
+          if (data.length) {
+            if (data[0].current == 1) {
+              this.nextTips = true
+              this.showSong = data
             } else {
-              console.log('x')
-              this.noTips = true
+              this.showSong = data
             }
-          })
-        }
-      })
+          } else {
+            console.log('x')
+            this.noTips = true
+          }
+        })
+      }
     },
     closeOverTime() {
       this.isOverTime = false

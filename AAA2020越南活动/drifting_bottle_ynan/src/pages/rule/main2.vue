@@ -7,19 +7,19 @@
     <div class="ruleTips" v-if="showType==1">
       <h5>Lịch trình sự kiện:</h5>
       <div class="time">
-        <p>Thời gian:18h 15/7 – 21h 27/7</p>
-        <p>Thời gian thả: 18h 15/7 – 18h 27/7</p>
-        <p>Thời gian nhặt: 22h 15/7 – 21h 27/7</p>
+        <p>Thời gian:18h 21/8 – 21h 31/8</p>
+        <p>Thời gian thả: 18h 21/8 – 19h 31/8</p>
+        <p>Thời gian nhặt: 21h 21/8 – 21h 31/8</p>
       </div>
       <h5>Thể lệ thả</h5>
-      <p>1. Chọn bài hát của bạn hoặc bài hát bạn thích để thả, mỗi ngày lần thả đầu miễn phí, mỗi lần mua lượt thả sẽ quảng cáo 1 bài hát.<br /> <strong class="red">Ghi chú: bài hát được thả phải là ca khúc đơn ca đăng trong vòng 72h, và chưa từng tham gia sự kiện khác.</strong> </p>
+      <p>1. Chọn bài hát của bạn hoặc bài hát bạn thích để thả, mỗi ngày lần thả đầu miễn phí, mỗi lần mua lượt thả sẽ quảng cáo 1 bài hát.<br /> <strong class="red">Ghi chú: bài hát được thả phải là ca khúc đơn ca đăng trong vòng 48h, và chưa từng tham gia sự kiện khác.</strong> </p>
       <p>2. Thả miễn phí: hệ thống sẽ tự động tính toán lượt nghe và thời lượng nghe bài hát, thả cho những khán giả có thể sẽ thích bài hát này, bài hát chất lượng sẽ được thả nhiều hơn~<br /> <strong class="red">Ghi chú: mỗi bài hát chỉ được thả miễn phí 1 lần, mời thận trọng</strong> </p>
       <p>3. Thả đặc biệt: bạn có thể thiết lập số lượng lọ điều ước muốn thả và thả lọ cao cấp để tăng thời lượng nghe, bài hát chất lượng sẽ được thả nhiều hơn~<br /><strong class="red">Ghi chú: chú ý số người thả lọ là số lượt tiếp cận, không phải số người nghe</strong></p>
       <p>4. Bài hát sau khi thả có thể vào lịch sử để xem số liệu, kiểm tra lượt nghe và số quan tâm.</p>
       <p>5. Trong thời gian thả, nếu bài hát bị xoá hoặc cài đặt riêng tư, người khác sẽ không thể nhặt.</p>
       <h5>Thể lệ nhặt lọ:</h5>
       <p>1. Mỗi người mỗi ngày được nhặt miễn phí 6 lần.</p>
-      <p>2. Mỗi lượt sẽ nhặt ngẫu nhiên 1-6 lọ, bao gồm mảnh lọ, lọ bình thường và lọ cao cấp, mảnh lọ không có bài hát, chỉ có bỏ đi, sau khi nhặt được lọ thường hoặc cao cấp nếu nghe hết bài sẽ nhận phần thưởng ngẫu nhiên.</p>
+      <p>2. Mỗi lượt sẽ nhặt ngẫu nhiên 1-4 lọ, bao gồm mảnh lọ, lọ bình thường và lọ cao cấp, mảnh lọ không có bài hát, chỉ có bỏ đi, sau khi nhặt được lọ thường hoặc cao cấp nếu nghe hết bài sẽ nhận phần thưởng ngẫu nhiên.</p>
       <p>3. Mỗi giọng hát đều đáng được chăm chú lắng nghe, nếu phát hiện bất cứ hành vi gian lận hoặc bình luận ác ý, ban tổ chức sẽ thu hồi phần thưởng của bạn và huỷ kết quả tham gia.</p>
       <h5>Quy định khác: </h5>
       <p>Trong quá trình diễn ra sự kiện, nếu phát hiện người dùng gian lận trong sự kiện, ban tổ chức sẽ dựa theo mức độ vi phạm để xử lý, người vi phạm sẽ bị loại khỏi sự kiện hoặc khoá tài khoản. Bao gồm các hành vi sau:</p>
@@ -74,7 +74,7 @@ export default {
         },
         {
           img: 1,
-          name: 'Túi quà Lọ Mộng Ảo'
+          name: 'Túi quà Lọ Mộng Ảo(100 xu)'
         },
         {
           img: 2,

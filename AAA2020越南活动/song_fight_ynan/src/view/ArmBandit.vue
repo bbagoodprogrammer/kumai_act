@@ -164,7 +164,7 @@ body::-webkit-scrollbar {
     height: 7.47rem;
     position: relative;
     .ruleTips {
-      width: 1.47rem;
+      width: 1.67rem;
       height: 0.56rem;
       background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
@@ -174,9 +174,8 @@ body::-webkit-scrollbar {
       text-align: center;
       line-height: 0.56rem;
       color: rgba(174, 72, 0, 1);
-      font-weight: bold;
       text-indent: 0.15rem;
-      font-size: 0.26rem;
+      font-size: 0.24rem;
       &.top {
         top: 1.5rem;
       }

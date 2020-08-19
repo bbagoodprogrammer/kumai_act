@@ -60,6 +60,10 @@ export default {
 }
 </script>
 <style lang="scss">
+.noData {
+  text-align: center;
+  margin-top: 0.8rem;
+}
 .hsitoryList {
   width: 7.12rem;
   height: 8.86rem;

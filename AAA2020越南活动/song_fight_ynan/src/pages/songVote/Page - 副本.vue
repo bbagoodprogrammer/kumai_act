@@ -5,7 +5,7 @@
       <div class="pkTitle">打擂台</div>
       <div class="errorTips" v-if="errorTips != ''" v-html="errorTips"></div>
       <div class="con" v-else>
-        <div class="sName">《{{sounds[0]?sounds[0].name:''}}》</div>
+        <div class="sName">{{sounds[0]?sounds[0].name:''}}</div>
         <div class="user" :class="{chioneState:chioneState}">
           <div class="userItem" v-if="!chioneState || (chioneState&& chioneIndex == 0)">
             <img :src="require(`../../assets/img/songAv/${randAv1}.png`)" alt="" v-if="!chioneState">

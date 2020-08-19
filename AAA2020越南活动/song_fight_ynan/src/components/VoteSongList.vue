@@ -1,13 +1,13 @@
 <template>
   <div class="voteSongList">
-    <span class="preSongTips" @click="listShowClcik()"><strong>Chọn{{list.length}}nhóm</strong> <i :class="{rotate:show}"></i> </span>
+    <span class="preSongTips" @click="listShowClcik()"><strong>Chọn {{list.length}} nhóm</strong> <i :class="{rotate:show}"></i> </span>
     <ul :class="{hide:!show}" v-if="index<=1">
       <li v-for="(item,index) in list " :key="index">
         <span class="tips">Chọn</span>
         <img v-lazy="item.avatar" alt="" class="av">
         <div class="preUserMsg">
           <div class="nick">{{item.nick}}</div>
-          <div class="songName">《{{item.name}}》</div>
+          <div class="songName">{{item.name}}</div>
           <i class="bigGo" v-if="item.result == 1"></i>
         </div>
         <div class="uers">
@@ -91,7 +91,7 @@ export default {
         width: 0.45rem;
         text-align: center;
         color: rgba(201, 165, 255, 1);
-        font-weight: bold;
+        font-size: 0.24rem;
       }
       .av {
         width: 1rem;

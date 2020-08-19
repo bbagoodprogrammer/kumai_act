@@ -8,7 +8,7 @@
         <div class="nick"><strong>{{userinfo.nick}}</strong> </div>
         <div class="tips">
           <span>liên tiếp chọn <em> {{dat.all}} </em> bài</span>
-          <span>tỷ lệ trúng cả mùa:<em>{{dat.right}}%</em></span>
+          <span>tỷ lệ trúng cả mùa:<em> {{dat.right}}%</em></span>
         </div>
       </div>
     </div>
@@ -23,12 +23,12 @@
       <transition name="slide">
         <div class="lvTips" v-show="showTips">
           <i class="close" @click="tipsClick()"></i>
-          <h3>Danh hiệu và quyền giám khảo:</h3>
+          <!-- <h3>Danh hiệu và quyền giám khảo:</h3>
           <img src="../../assets/img/chTab.png" alt="" class="chTab">
           <p>PS.</p>
           <p>1. Danh hiệu sẽ hiển thị vào kỳ sau.</p>
           <p>2. Nếu kỳ này đạt danh hiệu Tai Vàng, kỳ sau mỗi lần bỏ phiếu sẽ tương đương 2 phiếu của người dùng bình thường.</p>
-          <p>3. Quyền bỏ phiếu và danh hiệu giám khảo nhận được trong kỳ này sẽ có hiệu lực từ kỳ sau.</p>
+          <p>3. Quyền bỏ phiếu và danh hiệu giám khảo nhận được trong kỳ này sẽ có hiệu lực từ kỳ sau.</p> -->
         </div>
       </transition>
     </div>
@@ -165,11 +165,10 @@ body {
   .lvTips {
     width: 5.6rem;
     height: 7.16rem;
-    background: rgba(116, 68, 255, 1);
-    border: 0.04rem solid rgba(213, 197, 255, 1);
-    border-radius: 0.4rem;
     padding: 0.36rem 0.26rem;
     position: relative;
+    background: url(../../assets/img/lvTipsTab.png);
+    background-size: 100% 100%;
     .close {
       display: block;
       width: 0.6rem;

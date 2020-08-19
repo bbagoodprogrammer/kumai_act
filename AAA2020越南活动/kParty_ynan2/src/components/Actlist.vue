@@ -399,6 +399,10 @@ export default {
       font-size: 0.36rem;
       font-weight: bold;
       height: 0.6rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding: 0 0.2rem;
     }
     .actTime {
       font-size: 0.24rem;
@@ -453,10 +457,11 @@ export default {
         width: 5.36rem;
         height: 1.3rem;
         font-size: 0.24rem;
-        color: #bffffe;
-        word-break: break-all;
+        color: #ffffaa;
+        // word-break: break-all;
         overflow-y: scroll;
         margin-left: 0.2rem;
+        font-weight: 500;
         -webkit-overflow-scrolling: touch;
         -webkit-overflow-scrolling: auto;
       }

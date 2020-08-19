@@ -2,7 +2,7 @@
   <div class="fSongList">
     <ul :class="{isDown:isDown}" :style="{height:useTotalTop+'rem'}">
       <li v-for="(item,index) in list" :style="{zIndex:-index+100,top:item.top +'rem'}" :key="item.name">
-        <div class="songName"><em>Bài hát võ đài:</em> <strong>《{{item.name}}》</strong> </div>
+        <div class="songName"><em>Bài hát võ đài:</em> <strong>{{item.name}}</strong> </div>
         <div class="pkUser">
           <div class="user">
             <span class="results" :class="{victory:item.result==1}" v-if="item.result != 0"></span>
@@ -18,7 +18,7 @@
             <span>{{item.result==0?'?':item.pk_data.nums}}</span>
           </div>
           <div class="user user2">
-            <span class="results results2" :class="{victory:item.result==2}" v-if="item.result != 0"></span>
+            <span class="results results2" :class="{victory:item.pk_data.result==1}" v-if="item.result != 0"></span>
             <img v-lazy="item.pk_data?item.pk_data.userinfo.avatar:''" alt="" @click="gouser(item.pk_data?item.pk_data.uid:false)">
             <div class="userNick">
               <span class="resCode2" :class="{black:item.pk_data.star<0}" v-if="item.result!=0">{{item.pk_data.star>0?`+${item.pk_data.star}`:item.pk_data.star}}</span>

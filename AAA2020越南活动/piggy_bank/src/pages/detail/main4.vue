@@ -33,20 +33,7 @@ export default {
   components: { loading, MsgToast },
   data() {
     return {
-      taskList: [
-        {
-          "time": 1586106000,
-          "score": 34
-        },
-        {
-          "time": 1586106000,
-          "score": 34
-        },
-        {
-          "time": 1586106000,
-          "score": 34
-        }
-      ],
+      taskList: [],
       tastMsg: '',
       showT: false,
       loaded: false,
@@ -55,7 +42,7 @@ export default {
   },
   created() {
     api.getDetail(0).then(res => {
-      // this.taskList = res.data.response_data.detail
+      this.taskList = res.data.response_data.detail
     })
   },
   mounted() {

@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <div class="header"></div>
+    <!-- <div class="header"></div> -->
     <h3>投票描述</h3>
     <div class="describeBox">
       <textarea name="" v-model="describe" id="describe" maxlength="300" placeholder="輸入描述，可幫助房間的用戶理解投票目的"></textarea>
@@ -39,21 +39,21 @@
       <div class="lvBox">
         <span>等級要求</span>
         <div id="lv">
-          <input type="number" :style="{width:holderWidth+'px'}" v-model="choiceLv">
+          <input type="number" onkeyup="value=value.replace(/[^\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'')" :style="{width:holderWidth+'px'}" v-model="choiceLv">
           <span v-if="choiceLv != ''">級</span>
         </div>
       </div>
-      <p>选择多少级别以上可投票(不填不限制）</p>
+      <p>選擇多少級別以上可以投票(不填不限制）</p>
     </div>
     <div class="setLv">
       <div class="lvBox">
         <span>投票時間</span>
         <div id="lv">
-          <input type="number" :style="{width:timeWidth+'px'}" v-model="choiceTime">
+          <input type="number" onkeyup="value=value.replace(/[^\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'')" :style="{width:timeWidth+'px'}" v-model="choiceTime">
           <span v-if="choiceTime != ''">分鐘</span>
         </div>
       </div>
-      <p>选择多少分钟以后结束(不填不限制）</p>
+      <p>選擇多少分鐘以後結束(不填不限制）</p>
     </div>
     <div class="commitBtn" :class="{act:couldCommit}" @click="commit()">發起</div>
     <div class="holder" ref="holderTop">

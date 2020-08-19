@@ -1,6 +1,6 @@
 <template>
   <div class="historyCon">
-    <div class="header"></div>
+    <!-- <div class="header"></div> -->
     <div class="con">
       <div class="hItem" v-for="(item,index) in hData" :key="index">
         <div class="desc" @click="showList(index)">
@@ -11,10 +11,11 @@
         </div>
         <ul :class="'desc'+index">
           <li v-for="(item2,index2) in item.options" :key="index2">
-            <div class="txt" v-if="item.option_type == 1">{{item2.txt}}</div>
+            <div class="txt" v-if="item.option_type == 1">{{item2.txt}} <span class="tickets">共{{item.results[index2]}}票</span> </div>
             <div class="user" v-else>
               <img v-lazy="item2.avatar" alt="">
               <span class="nick">{{item2.nick}}</span>
+              <span class="tickets">共{{item.results[index2]}}票</span>
             </div>
           </li>
         </ul>
@@ -66,7 +67,8 @@ export default {
       const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100
       if (scrollToBottom && this.ismore && !this.loaded) { //加載更多合併數組存入vuex
         this.ismore = false
-        api.getVoteHistory(this.hData.length, 'more').then(res => {
+        let lastId = this.hData[this.hData.length - 1].id
+        api.getVoteHistory(lastId, 'more').then(res => {
           this.ismore = true
           let list = res.data.response_data
           if (!list.length) {
@@ -173,6 +175,11 @@ body {
             white-space: nowrap;
             text-overflow: ellipsis;
           }
+        }
+        .tickets {
+          font-size: 0.28rem;
+          color: rgba(144, 144, 144, 1);
+          margin-left: 0.3rem;
         }
       }
       li:last-child {
