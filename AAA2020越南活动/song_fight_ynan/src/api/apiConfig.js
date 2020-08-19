@@ -2,7 +2,7 @@
 import axios from 'axios'
 import store from "../store/stores.js"
 import getString from "../utils/getString.js"
-
+import jsonp from 'jsonp'
 
 
 
@@ -122,7 +122,12 @@ function workInfo(rid) {
 }
 //APP關注
 function appAttemsion(touid) {
-    return get(`http://act.17sing.tw/index.php?&uid=${uid}&action=FocusExt&singerUid=${touid}&token=${token}`)
+    return new Promise((resolve, reject) => {
+        jsonp(`http://act.singnowapp.com/index.php?&uid=${uid}&action=FocusExt&singerUid=${touid}&token=${token}`, null, (err, res) => {
+            err ? reject(err) : resolve(res)
+        });
+    })
+    //return get(`http://act.singnowapp.com/index.php?&uid=${uid}&action=FocusExt&singerUid=${touid}&token=${token}`)
 }
 
 //作品評委列表

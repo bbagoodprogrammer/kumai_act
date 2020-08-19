@@ -1,6 +1,6 @@
 <template>
   <div class="trailer">
-    <div class="title">List nhạc võ đài</div>
+    <div class="title">Bài hát kỳ sau</div>
     <div class="searchBox">
       <input type="text" placeholder="Bài hát/Ca sĩ" v-on:input="inputChange()" v-model="searchMsg">
       <span class="search" @click="search()"></span>
@@ -12,7 +12,8 @@
     <ul class="songList scrollable">
       <li v-for="(item,index) in showSong" :key="index">
         <div class="songMsg">
-          <div class="sName">{{item.name}}<i v-if="item.mp3!=''"></i> </div>
+          <!-- <i v-if="item.mp3!=''"></i>  -->
+          <div class="sName">{{item.name}}</div>
           <div class="songNick"><em>{{item.artist}}</em></div>
         </div>
         <div class="songStatusBtn" @click="goSong(item.accid)">
@@ -54,7 +55,7 @@ export default {
     }
   },
   created() {
-    document.title = 'List nhạc võ đài'
+    document.title = 'Bài hát kỳ sau'
     this.version_allowed = sessionStorage.getItem('version_allowed')
     api.getNextSong().then(res => {
       console.log(res)

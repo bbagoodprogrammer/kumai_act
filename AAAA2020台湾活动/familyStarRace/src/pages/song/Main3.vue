@@ -16,10 +16,10 @@
     <div class="goSing" :class="{border:isLength}">
       <p v-if="isLength> 0">沒有符合心意的歌曲嗎？</p>
       <div class="sing" @click="goSing()">去唱一首</div>
-      <span v-if="isLength">唱完記得回來完成報名喔</span>
+      <span>唱完記得回來完成報名喔</span>
     </div>
-    <p class="tips" v-if="isLength">1.參賽作品需為<em>8月12日18:00:00</em> 後發佈的任意公開作品(清唱5分鐘除外)</p>
-    <p class="tips" v-if="isLength">2.可上傳多首作品參賽，報名後作品收禮才會被計算</p>
+    <p class="tips">1.參賽作品需為<em>8月13日12:00:00</em> 後發佈的任意公開作品(清唱5分鐘除外)</p>
+    <p class="tips">2.可上傳多首作品參賽，報名後作品收禮才會被計算</p>
     <div class="determinePup" v-if="showPup">
       <div class="determinCon">
         <p>確認提交這一首作品參賽嗎？</p>
@@ -60,6 +60,7 @@ export default {
     }
   },
   created() {
+    document.title = '家族名星賽'
     api.getSongList().then((res) => { //请求歌曲列表
       console.log(res)
       if (res.data.response_status.code === 0) {

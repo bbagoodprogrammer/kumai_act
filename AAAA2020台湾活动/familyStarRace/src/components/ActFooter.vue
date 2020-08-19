@@ -8,7 +8,9 @@
         <div class="rank" v-if="nowUsrMsg.rank >0">{{nowUsrMsg.rank}}</div>
         <div class="rank noTop" v-else>未上榜</div>
         <div class="uerImg">
-          <span class="imgBg"></span>
+          <img v-if="nowUsrMsg.nob > 0" :src="require(`../assets/img/nob/${nowUsrMsg.nob}.png`)" class="nob" alt="">
+          <i class="vip" v-else-if="nowUsrMsg.vip > 0">VIP{{nowUsrMsg.vip}}</i>
+          <span class="imgBg" v-if="nowUsrMsg.nob ==  0"></span>
           <img v-lazy="nowUsrMsg.avatar" alt="" class="imgItem">
         </div>
         <div class="userMsg">
@@ -22,10 +24,10 @@
         <i class="luck" v-if="nowTab != 'total' && nowUsrMsg.is_prize"></i>
       </div>
       <div class="family" v-else-if="astState === 3 && showType == 2 && nowUsrMsg.pk_data">
-        <div class="familyMsg" v-if="nowUsrMsg.empty">
-          <div class="btn" @click="goCommitSong()">上傳作品</div>
+        <div class="familyMsg" v-if="!nowUsrMsg.empty">
+          <div class="btn" @click="goCommitSong()" v-if="nowUsrMsg.show">上傳作品</div>
           <div class="family1 family">
-            <img v-lazy="nowUsrMsg.pk_data.left.avatar" class="fImg" alt="" @click="showCards()">
+            <img v-lazy="nowUsrMsg.pk_data.left.avatar" class="fImg" alt="" @click="showCards(nowUsrMsg.pk_data.left.fid)">
             <div class="msg">
               <div class="nick">{{nowUsrMsg.pk_data.left.name}}</div>
               <div class="star"><i></i><strong>{{nowUsrMsg.pk_data.left.score}}</strong></div>
@@ -36,12 +38,12 @@
               <div class="nick">{{nowUsrMsg.pk_data.right.name}}</div>
               <div class="star"><i></i><strong>{{nowUsrMsg.pk_data.right.score}}</strong></div>
             </div>
-            <img v-lazy="nowUsrMsg.pk_data.right.avatar" class="fImg2" alt="" @click="showCards()">
+            <img v-lazy="nowUsrMsg.pk_data.right.avatar" class="fImg2" alt="" @click="showCards(nowUsrMsg.pk_data.right.fid)">
           </div>
         </div>
         <div class="familyMsg noOpen" v-else>
           <div class="family1 family">
-            <img v-lazy="nowUsrMsg.pk_data.left.avatar" class="fImg" alt="">
+            <img v-lazy="nowUsrMsg.pk_data.left.avatar" class="fImg" alt="" @click="showCards(nowUsrMsg.pk_data.left.fid)">
             <div class="msg">
               <div class="nick">{{nowUsrMsg.pk_data.left.name}}</div>
               <div class="star"><i></i><strong>{{nowUsrMsg.pk_data.left.score}}</strong></div>
@@ -49,7 +51,7 @@
           </div>
           <div class="tipsMsg">
             <p class="noOpponents">幸運輪空，直接晉級</p>
-            <div class="songBtn" @click="goCommitSong()">上傳作品</div>
+            <div class="songBtn" @click="goCommitSong()" v-if="nowUsrMsg.show">上傳作品</div>
           </div>
         </div>
         <div class="fLiner" v-if="!nowUsrMsg.empty">
@@ -62,15 +64,15 @@
           <div class="rank" v-if="nowUsrMsg.rank >0">{{nowUsrMsg.rank}}</div>
           <div class="rank noTop" v-else>未上榜</div>
           <div class="uerImg">
-            <img v-lazy="nowUsrMsg.avatar" alt="" class="imgItem">
+            <img v-lazy="nowUsrMsg.avatar" alt="" class="imgItem" @click="showCards(nowUsrMsg.fid)">
           </div>
           <div class="userMsg">
             <div class="name" :class="'lv'+nowUsrMsg.level"><strong>{{nowUsrMsg.name}} </strong> </div>
             <div class="score"><i></i> <strong>{{nowUsrMsg.score}}</strong> </div>
           </div>
-          <div class="btn" @click="goCommitSong()">上傳作品</div>
+          <div class="btn" @click="goCommitSong()" v-if="nowUsrMsg.show">上傳作品</div>
         </div>
-        <div class="linerBox">
+        <div class="linerBox" v-if="nowUsrMsg.level <3">
           <strong>積滿發放{{nowUsrMsg.next?nowUsrMsg.next.name:''}}</strong>
           <div class="liner">
             <div class="actLiner" :style="{width:nowUsrMsg.score/(nowUsrMsg.next?nowUsrMsg.next.limit:0) * 100 +'%'}"><i>{{nowUsrMsg.score}}</i></div>
@@ -160,8 +162,8 @@ export default {
     goFamily() {
       location.href = `fid:${this.fid}`
     },
-    showCards() {
-      this.$parent.$refs.scorll.showFamily()
+    showCards(fid) {
+      this.$parent.$refs.scorll.showFamily(fid)
     },
     goCommitSong() {
       let regstr = getString('token')
@@ -249,6 +251,29 @@ export default {
           top: 0.035rem;
           left: 0.03rem;
           border-radius: 50%;
+        }
+        .nob {
+          width: 1.2rem;
+          height: 1.2rem;
+          position: absolute;
+          top: -0.1rem;
+          left: -0.1rem;
+          z-index: 10;
+        }
+        .vip {
+          display: block;
+          width: 0.8rem;
+          height: 0.3rem;
+          background: #fc6161;
+          font-size: 0.24rem;
+          color: #fffca1;
+          position: absolute;
+          bottom: 0rem;
+          border-radius: 0.3rem;
+          text-align: center;
+          line-height: 0.3rem;
+          left: 0.1rem;
+          z-index: 11;
         }
       }
       .userMsg {

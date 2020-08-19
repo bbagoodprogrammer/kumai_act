@@ -2,14 +2,17 @@
   <div class="lastRank">
     <div class="title">家族守護榜</div>
     <div class="tips">
-      依據為報名用戶贈送金幣禮物<br />
-      魅力值排名前10名可獲得豐厚獎勵，榜單展示前100名
+      依據為報名用戶贈送金幣禮物魅力值排名<br />
+      前10名可獲得豐厚獎勵，榜單展示前100名
     </div>
+    <p v-if="!list.length" class="noData">暫無數據</p>
     <ul class="list">
       <li v-for="(item,index) in list" :key="index" :class="'rank'+item.rank" @click="goPeople(item.uid)">
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
-          <span class="imgBg"></span>
+          <img v-if="item.nob > 0" :src="require(`../../assets/img/nob/${item.nob}.png`)" class="nob" alt="">
+          <i class="vip" v-else-if="item.vip > 0">VIP{{item.vip}}</i>
+          <span class="imgBg" v-if="item.nob ==  0"></span>
           <img v-lazy="item.avatar" alt="" class="imgItem">
         </div>
         <div class="userMsg">
@@ -26,7 +29,9 @@
       <div class="rank" v-if="rank.rank >0">{{rank.rank}}</div>
       <div class="rank noTop" v-else>未上榜</div>
       <div class="uerImg">
-        <span class="imgBg"></span>
+        <img v-if="rank.nob > 0" :src="require(`../../assets/img/nob/${rank.nob}.png`)" class="nob" alt="">
+        <i class="vip" v-else-if="rank.vip > 0">VIP{{rank.vip}}</i>
+        <span class="imgBg" v-if="rank.nob ==  0"></span>
         <img v-lazy="rank.avatar" alt="" class="imgItem">
       </div>
       <div class="userMsg">
@@ -57,7 +62,7 @@ export default {
     }
   },
   created() {
-    document.title = '家族守護榜'
+    document.title = '家族名星賽'
     api.getLastRank(0).then(res => {
       this.list = res.data.response_data.list
       this.rank = res.data.response_data.rank
@@ -109,7 +114,7 @@ export default {
 body {
   background-color: rgba(29, 14, 9, 1);
   .lastRank {
-    padding: 0.81rem 0.3rem 0.25rem;
+    padding: 0.51rem 0.3rem 1.5rem;
   }
   .title {
     font-size: 0.42rem;
@@ -120,10 +125,14 @@ body {
     font-size: 0.24rem;
     color: rgba(142, 105, 63, 1);
     text-align: center;
-    margin-top: 0.43rem;
+    margin-top: 0.23rem;
+  }
+  .noData {
+    text-align: center;
+    margin-top: 1rem;
   }
   .list {
-    margin-top: 0.53rem;
+    margin-top: 0.23rem;
   }
   li {
     height: 1.18rem;
@@ -162,6 +171,29 @@ body {
         top: 0.035rem;
         left: 0.03rem;
         border-radius: 50%;
+      }
+      .nob {
+        width: 1.2rem;
+        height: 1.2rem;
+        position: absolute;
+        top: -0.1rem;
+        left: -0.1rem;
+        z-index: 10;
+      }
+      .vip {
+        display: block;
+        width: 0.8rem;
+        height: 0.3rem;
+        background: #fc6161;
+        font-size: 0.24rem;
+        color: #fffca1;
+        position: absolute;
+        bottom: 0rem;
+        border-radius: 0.3rem;
+        text-align: center;
+        line-height: 0.3rem;
+        left: 0.1rem;
+        z-index: 11;
       }
     }
     .userMsg {
@@ -322,6 +354,7 @@ body {
     align-items: center;
     background: url(../../assets/img/footer.png) no-repeat;
     background-size: 100% 100%;
+    z-index: 10000;
     .rank {
       width: 0.84rem;
       height: 0.72rem;
@@ -354,6 +387,29 @@ body {
         top: 0.035rem;
         left: 0.03rem;
         border-radius: 50%;
+      }
+      .nob {
+        width: 1.2rem;
+        height: 1.2rem;
+        position: absolute;
+        top: -0.1rem;
+        left: -0.1rem;
+        z-index: 10;
+      }
+      .vip {
+        display: block;
+        width: 0.8rem;
+        height: 0.3rem;
+        background: #fc6161;
+        font-size: 0.24rem;
+        color: #fffca1;
+        position: absolute;
+        bottom: 0rem;
+        border-radius: 0.3rem;
+        text-align: center;
+        line-height: 0.3rem;
+        left: 0.1rem;
+        z-index: 11;
       }
     }
     .userMsg {

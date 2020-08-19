@@ -5,7 +5,7 @@
       <div class="pkTitle">Tham gia</div>
       <div class="errorTips" v-if="errorTips != ''" v-html="errorTips"></div>
       <div class="con" v-else>
-        <div class="sName">《{{sounds[0]?sounds[0].name:''}}》</div>
+        <div class="sName">{{sounds[0]?sounds[0].name:''}}</div>
         <div class="user" :class="{chioneState:chioneState}">
           <div class="userItem" v-if="!chioneState || (chioneState&& chioneIndex == 0)">
             <img :src="require(`../../assets/img/songAv/${randAv1}.png`)" alt="" v-if="!chioneState">
@@ -51,11 +51,11 @@
       </div>
     </div>
     <div class="chioneChange">
-      <div class="next" @click="clearHowl()" v-if="chioneState">Nhóm kế tiếp></div>
+      <div class="next" @click="clearHowl()" v-if="chioneState">Nhóm kế tiếp >></div>
       <p class="chioneTips">
-        Nhấn nghe để nghe bài dự thi, nghe mỗi bài 10 giây và chọn 1 bài thắng<br />
-        2、Mỗi giám khảo mỗi ngày chấm điểm 30 nhóm đầu, mỗi nhóm được thưởng 2 đậu.<br />
-        3、Mỗi kỳ liên tục chọn trúng 8 nhóm có thể nhận ngẫu nhiên 1 túi quà Hộp Nhạc (360 đậu)/Túi quà Kẹo Bông (1 xu)/VIP 2 ngày/Chiến Đấu Cơ (2 ngày)
+        1. Nhấn nghe để nghe bài dự thi, nghe mỗi bài 10 giây và chọn 1 bài thắng. (chưa nghe đủ sẽ không thể chọn bài)<br />
+        2. Mỗi giám khảo mỗi ngày bình chọn 30 bài đầu, mỗi chọn 1 bài được thưởng 2 đậu. (gửi thưởng ngay sau chọn bài)<br />
+        3. Mỗi kỳ liên tục chọn trúng 8 bài có thể nhận ngẫu nhiên 1 túi quà Hộp Nhạc (360 đậu) / Túi quà Kẹo Bông (1 xu) / VIP (2 ngày) / Chiến Đấu Cơ (2 ngày).
       </p>
     </div>
     <loading />
@@ -248,6 +248,11 @@ export default {
         } else {
           this.howl[0].howl.pause()
         }
+        // if (this.isPlay && !this.playing) {
+        //   this.nowHowl.play()
+        // } else if (!this.isPlay && this.playing) {
+        //   this.nowHowl.pause()
+        // }
         //  console.log(this.nowHowl.seek(), this.nowIndex) // this.nowHowl.duration(), this.nowHowl.playing()
         let seek = this.nowHowl.seek()
         // console.log(this.nowHowl, this.nowIndex)]
@@ -382,7 +387,7 @@ export default {
     attention(uid, type) {
       if (type) { return }
       api.appAttemsion(uid).then(res => {
-        if (res.data.response_data) {
+        if (res.response_data) {
           this.chioneUserMsg.attension = true
         } else {
           this.toast(res.data.response_status.error)
@@ -627,18 +632,18 @@ body {
           align-items: center;
           justify-content: space-between;
           i {
-            width: 0.66rem;
-            height: 0.74rem;
+            width: 1.3rem;
+            height: 0.51rem;
             text-align: center;
-            line-height: 0.74rem;
+            line-height: 0.51rem;
             font-size: 0.24rem;
             &.comments {
-              margin-left: 0.24rem;
+              margin-right: 0.24rem;
               background: url(../../assets/img/comments.png);
               background-size: 100% 100%;
             }
             &.share {
-              margin-right: 0.24rem;
+              margin-left: 0.24rem;
               background: url(../../assets/img/share.png);
               background-size: 100% 100%;
             }
@@ -650,6 +655,7 @@ body {
             background-size: 100% 100%;
             text-align: center;
             line-height: 0.74rem;
+            font-size: 0.24rem;
             color: rgba(174, 72, 0, 1);
             font-weight: bold;
           }
@@ -664,6 +670,8 @@ body {
         text-align: center;
         color: RGBA(194, 179, 247, 1);
         white-space: nowrap;
+        flex-wrap: 600;
+        text-indent: -0.3rem;
       }
       .chioneTips {
         font-size: 0.24rem;

@@ -18,11 +18,12 @@
     <ul class="hotSongList">
       <li v-for="(item,index) in showSong" :key="index">
         <div class="songMsg">
-          <div class="sName">{{item.name}}<i v-if="item.mp3 != ''"></i> </div>
+          <!-- <i v-if="item.mp3 != ''"></i>  -->
+          <div class="sName">{{item.name}}</div>
           <div class="songNick"><em>{{item.artist}}</em><strong> / {{item.join}} người</strong></div>
         </div>
         <div class="songStatusBtn" :class="{black:!can||item.deleted}">
-          <em v-if="item.deleted">Đã thoát</em>
+          <em v-if="item.deleted">Đã bỏ thi</em>
           <em v-else-if="item.current ==1" @click="goSong(item.accid)">Luyện tập</em>
           <em v-else-if="item.status == 0" @click="goSong(item.accid)">Thi đấu</em>
           <em v-else-if="item.status == 1" @click="commitSong(item.accid,index)">Gửi</em>
@@ -48,7 +49,7 @@
           <ul class="choiceSongList">
             <li v-for="(item,index) in mySong" :key="index">
               <div class="songMsg">
-                <div class="sName">{{item.name}}<i></i> </div>
+                <div class="sName">{{item.name}}</div>
                 <!-- <em>{{item.artist}}</em><strong> / 打擂 {{item.join}} 人</strong> -->
                 <div class="songNick">{{getDateSecond(item.addtime)}}</div>
               </div>
@@ -74,6 +75,7 @@ import { mapState } from "vuex"
 import api from "../api/apiConfig"
 import { globalBus } from '../utils/eventBus'
 import getDate from "../utils/getDate"
+import APP from '../utils/openApp'
 export default {
   props: ["length"],
   data() {
@@ -100,7 +102,7 @@ export default {
       return getDate(new Date(this.act.stime * 1000), 3)
     },
     songNum() {
-      return `Bài hát võ đài kỳ này(${this.hotSong.length})`
+      return `Hãy tìm bài võ đài kỳ này (${this.hotSong.length})`
     }
   },
   methods: {
@@ -110,25 +112,29 @@ export default {
       this.noTips = false
     },
     search() {
-      globalBus.$emit('commonEvent', () => {
-        if (this.searchSong != '') {
-          api.searchSong(this.searchSong).then(res => {
-            const data = res.data.response_data.data
-            console.log(data.length)
-            if (data.length) {
-              if (data[0].current == 1) {
-                this.nextTips = true
-                this.showSong = data
-              } else {
-                this.showSong = data
-              }
+      // globalBus.$emit('commonEvent', () => {
+      if (this.isShare) {
+        APP()
+        return
+      }
+      if (this.searchSong != '') {
+        api.searchSong(this.searchSong).then(res => {
+          const data = res.data.response_data.data
+          console.log(data.length)
+          if (data.length) {
+            if (data[0].current == 1) {
+              this.nextTips = true
+              this.showSong = data
             } else {
-              console.log('x')
-              this.noTips = true
+              this.showSong = data
             }
-          })
-        }
-      })
+          } else {
+            console.log('x')
+            this.noTips = true
+          }
+        })
+      }
+      // })
     },
     closeOverTime() {
       this.isOverTime = false

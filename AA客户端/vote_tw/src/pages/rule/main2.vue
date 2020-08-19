@@ -6,22 +6,22 @@
         <strong v-if="voteData.status == 2">投票已結束</strong>
         <strong v-else-if="voteData.status == 1 && voteData.ttl != 0">投票結束倒計時：{{surplusTime.minute}}:{{surplusTime.second}}</strong>
       </div>
-      <span class="overVote" v-if="host == 1" @click="endVote()">結束投票</span>
+      <span class="overVote" v-if="host == 1 && voteData.status == 1" @click="endVote()">結束投票</span>
     </div>
     <div class="tltle">{{voteData.descriptions}}</div>
-    <div class="chioneBtn">
-      <ul>
-        <li v-for="(item,index) in voteData.options " :key="index" @click="setIndex(index)">
-          <i :class="{act:voteState==3 && cIndex == index,black2:(voteState==1 && voteData.my_vote == index) || (voteState==4 && voteData.my_vote == index)}"></i>
-          <div class="msg">
-            <span class="txt" v-if="voteData.option_type == 1">{{item.txt}}</span>
-            <span class="user" v-else> <img v-lazy="item.avatar" alt=""> <strong>{{item.nick}}</strong></span>
-            <span class="ticket" v-if="voteData.status == 2 || voteData.my_vote != -1">{{voteData.results[index]}} 票</span>
-          </div>
-        </li>
-      </ul>
-      <span class="commitBtn" :class="{act:cIndex!=null && voteState==3}" v-if="voteData.status == 2 ||voteState!=4" @click="commitChione()">{{voteData.status == 2?'已結束':'投票'}}</span>
-    </div>
+    <!-- <div class="chioneBtn"> -->
+    <ul>
+      <li v-for="(item,index) in voteData.options " :key="index" @click="setIndex(index)">
+        <i :class="{act:voteState==3 && cIndex == index,black2:(voteState==1 && voteData.my_vote == index) || (voteState==4 && voteData.my_vote == index)}"></i>
+        <div class="msg">
+          <span class="txt" v-if="voteData.option_type == 1">{{item.txt}}</span>
+          <span class="user" v-else> <img v-lazy="item.avatar" alt=""> <strong>{{item.nick}}</strong></span>
+          <span class="ticket" v-if="voteData.results">{{voteData.results[index]}} 票</span>
+        </div>
+      </li>
+    </ul>
+    <!-- </div> -->
+    <span class="commitBtn" :class="{act:cIndex!=null && voteState==3}" v-if="voteData.status == 2 ||voteState!=4" @click="commitChione()">{{voteData.status == 2?'已結束':'投票'}}</span>
     <Loading />
   </div>
 </template>
@@ -41,7 +41,8 @@ export default {
       voteData: {},
       host: null,
       surplusTime: {},
-      cIndex: null
+      cIndex: null,
+      timer: null
     }
   },
   computed: {
@@ -50,9 +51,9 @@ export default {
         return 1
       } else if (this.voteData.status == 2 && this.voteData.my_vote == -1) {//投票結束用戶無投票
         return 2
-      } else if (this.voteData.status == 1 && this.voteData.my_vote == -1) { //投票進行，用戶未投票
+      } else if (this.voteData.status == 1 && !this.voteData.results) { //投票進行，用戶未投票
         return 3
-      } else if (this.voteData.status == 1 && this.voteData.my_vote != -1) { //投票進行，用戶已投票
+      } else if (this.voteData.status == 1 && this.voteData.results) { //投票進行，用戶已投票
         return 4
       }
     }
@@ -79,6 +80,7 @@ export default {
       })
     },
     downTimeGo(timeName, val) {
+      clearInterval(this.timer)
       downTime(timeName, val);
       this.surplusTime = downTime(timeName);
       this.timer = setInterval(() => {
@@ -203,87 +205,88 @@ body {
     line-height: 0.35rem;
     color: rgba(38, 38, 38, 1);
   }
-  .chioneBtn {
+  // .chioneBtn {
+  // flex: 1;
+  // display: flex;
+  // flex-direction: column;
+  ul {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    ul {
-      flex: 1;
-      overflow-x: hidden;
-      overflow-y: scroll;
-      -webkit-overflow-scrolling: touch;
-      -webkit-overflow-scrolling: auto;
-      padding: 0 0.4rem;
-      li {
-        min-height: 1rem;
-        color: rgba(62, 62, 62, 1);
-        font-size: 0.32rem;
-        display: flex;
-        align-items: center;
-        > i {
-          width: 0.31rem;
-          height: 0.31rem;
-          background: url(../../assets/img/cVoteIcon1.png);
+    min-height: 1.6rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: auto;
+    padding: 0 0.4rem;
+    li {
+      min-height: 1rem;
+      color: rgba(62, 62, 62, 1);
+      font-size: 0.32rem;
+      display: flex;
+      align-items: center;
+      > i {
+        width: 0.31rem;
+        height: 0.31rem;
+        background: url(../../assets/img/cVoteIcon1.png);
+        background-size: 100% 100%;
+        &.act {
+          background: url(../../assets/img/cVoteIcon3.png);
           background-size: 100% 100%;
-          &.act {
-            background: url(../../assets/img/cVoteIcon3.png);
-            background-size: 100% 100%;
+        }
+        &.black2 {
+          background: url(../../assets/img/cVoteIcon2.png);
+          background-size: 100% 100%;
+        }
+      }
+      .msg {
+        margin-left: 0.25rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        .txt {
+          font-size: 0.32rem;
+          color: rgba(62, 62, 62, 1);
+        }
+        .user {
+          display: flex;
+          align-items: center;
+          img {
+            width: 0.46rem;
+            height: 0.46rem;
+            border-radius: 50%;
           }
-          &.black2 {
-            background: url(../../assets/img/cVoteIcon2.png);
-            background-size: 100% 100%;
+          strong {
+            color: rgba(43, 43, 43, 1);
+            margin-left: 0.14rem;
           }
         }
-        .msg {
-          margin-left: 0.25rem;
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
-          .txt {
-            font-size: 0.32rem;
-            color: rgba(62, 62, 62, 1);
-          }
-          .user {
-            display: flex;
-            align-items: center;
-            img {
-              width: 0.46rem;
-              height: 0.46rem;
-              border-radius: 50%;
-            }
-            strong {
-              color: rgba(43, 43, 43, 1);
-              margin-left: 0.14rem;
-            }
-          }
-          .ticket {
-            font-size: 0.28rem;
-            color: rgba(199, 199, 199, 1);
-          }
-          span {
-            display: block;
-          }
+        .ticket {
+          font-size: 0.28rem;
+          color: rgba(199, 199, 199, 1);
+        }
+        span {
+          display: block;
         }
       }
     }
-    .commitBtn {
-      margin: 0.2rem auto 0.6rem;
-      display: block;
-      width: 3.7rem;
-      height: 0.8rem;
-      font-size: 0.32rem;
-      line-height: 0.8rem;
-      border-radius: 1rem;
-      border: 0.01rem solid rgba(0, 0, 0, 0);
-      text-align: center;
-      background: rgba(230, 230, 230, 1);
-      &.act {
-        background: linear-gradient(
-          313deg,
-          rgba(252, 2, 116, 1) 0%,
-          rgba(252, 82, 40, 1) 100%
-        );
-      }
+  }
+  // }
+  .commitBtn {
+    margin: 0.2rem auto 0.6rem;
+    display: block;
+    width: 3.7rem;
+    height: 0.8rem;
+    font-size: 0.32rem;
+    line-height: 0.8rem;
+    border-radius: 1rem;
+    border: 0.01rem solid rgba(0, 0, 0, 0);
+    text-align: center;
+    background: rgba(230, 230, 230, 1);
+    &.act {
+      background: linear-gradient(
+        313deg,
+        rgba(252, 2, 116, 1) 0%,
+        rgba(252, 82, 40, 1) 100%
+      );
     }
   }
 }

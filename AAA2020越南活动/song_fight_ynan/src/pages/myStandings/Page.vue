@@ -4,7 +4,7 @@
     <div class="userMsg">
       <img v-lazy="userinfo.avatar" alt="">
       <div class="msg">
-        <div class="nick"><strong>{{userinfo.nick}}</strong> <em>Cấp kỳ này:</em> <i>Lv.{{star}}</i> </div>
+        <div class="nick"><strong>{{userinfo.nick}}</strong> <em>Cấp mùa này: </em> <i>Lv.{{star}}</i> </div>
         <div class="tips">
           <span>Số bài thi kỳ này:<em>{{nums}}</em> </span>
           <!-- <span>支持率：<em>{{pop/10}}%</em></span> -->
@@ -16,7 +16,7 @@
         <span class="pre">Kỳ {{item.key}}
           <strong class="time">{{getDate(item.stime)}}-{{getDate(item.etime) }}</strong>
         </span>
-        <span class="score" v-if="item.key != id || status!=1">Số điển kỳ này <em>{{item.score>0?`+${item.score}`:item.score}}</em> </span>
+        <span class="score" v-if="item.key != id || status!=1">Số điểm kỳ này <em>{{item.score>0?`+${item.score}`:item.score}}</em> </span>
       </div>
       <FightSong :list="item.hList" :set="item.key == id && status==1"></FightSong>
     </div>
@@ -26,10 +26,10 @@
           <i class="close" @click="tipsClick()"></i>
           <h3>Giải thích Cấp</h3>
           <div class="tipsItem">
-            <p>1. BXH Vua Ca Hát xếp hạng theo cấp, tức là tổng điểm số thí sinh nhận trong toàn bộ các kỳ, nếu điểm số bằng nhau, thí sinh nhận nhiều phiếu hơn sẽ xếp hạng cao hơn.</p>
+            <p>1. Bảng Vua Ca Hát Mùa xếp hạng theo cấp, tức là tổng điểm số thí sinh nhận trong toàn bộ các kỳ, nếu điểm số bằng nhau, thí sinh nhận nhiều phiếu hơn sẽ xếp hạng cao hơn.</p>
             <p>2. Bắt đầu mỗi kỳ, cấp thí sinh mặc định sẽ là 0. Cứ nhận 1 điểm sẽ tăng 1 cấp, trừ 1 điểm bị giảm 1 cấp, cấp có thể là số âm.</p>
           </div>
-          <p>Khi kết thúc mỗi kỳ, top 100 thí sinh sẽ nhận được huy chương thời hạn 1 tháng:</p>
+          <p>Khi kết thúc mỗi kỳ, hạng 100 đầu thí sinh sẽ nhận được huy chương thời hạn 1 tháng:</p>
           <img src="../../assets/img/lvTab.png" alt="" class="lvTab">
           <span class="ok" @click="tipsClick()">Biết rồi</span>
         </div>

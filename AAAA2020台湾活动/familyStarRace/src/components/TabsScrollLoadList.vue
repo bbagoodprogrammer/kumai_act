@@ -71,8 +71,8 @@
       </p>
       <p class="rankTips" v-if="showType==3">
         晉級家族依據總星光值排名，前十名獲得豐厚獎勵<br />
-        家族升級發放禮包，ⅠⅡⅢ級對應星光值10萬、30萬、100萬<br />
-        星光值=作品+k房收禮金幣魅力值，8月21日19-22點獲得10%加成
+        家族升級發放禮包，Ⅰ、Ⅱ、Ⅲ級對應星光值10萬、30萬、100萬<br />
+        星光值=作品+k房收禮金幣魅力值，8月22日20-22點獲得10%加成
       </p>
     </div>
     <!-- 日榜 -->
@@ -80,10 +80,12 @@
     <!-- <p class="scoreTips" v-else>榜單時間：{{actTime}}</p> -->
     <img src="../assets/img/dayGiftImg.png" alt="" class="dayGiftImg" v-if="showType ==1 && mainTab==0">
     <ul v-if="showType ==1" class="list day">
-      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goPeople(item.uid)">
+      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goPeople(item.uid,item.live)">
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
-          <span class="imgBg"></span>
+          <img v-if="item.nob > 0" :src="require(`../assets/img/nob/${item.nob}.png`)" class="nob" alt="">
+          <i class="vip" v-else-if="item.vip > 0">VIP{{item.vip}}</i>
+          <span class="imgBg" v-if="item.nob ==  0"></span>
           <img v-lazy="item.avatar" alt="" class="imgItem">
         </div>
         <div class="userMsg">
@@ -126,7 +128,7 @@
           <div class="left">
             <div class="userItem" v-for="(item2,index2) in item.pk_data.left.users" :key="index2">
               <span class="userImgBox" @click="goPeople(item2.uid)">
-                <span :class="'user'+ (index+1)"></span>
+                <span :class="'user'+ (index2+1)"></span>
                 <img v-lazy="item2.avatar" alt="">
               </span>
               <strong>{{item2.score}}</strong>
@@ -136,7 +138,7 @@
           <div class="rigth">
             <div class="userItem" v-for="(item2,index2) in item.pk_data.right.users" :key="index2">
               <span class="userImgBox" @click="goPeople(item2.uid)">
-                <span :class="'user'+ (index+1)"></span>
+                <span :class="'user'+ (index2+1)"></span>
                 <img v-lazy="item2.avatar" alt="">
               </span>
               <strong>{{item2.score}}</strong>
@@ -162,7 +164,7 @@
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
           <!-- <span class="imgBg"></span> -->
-          <img v-lazy="item.avatar" alt="" class="imgItem" @click.stop="showFamily()">
+          <img v-lazy="item.avatar" alt="" class="imgItem" @click.stop="showFamily(item.fid)">
         </div>
         <div class="userMsg">
           <div class="name" :class="'lv'+item.level"><strong>{{item.name}} </strong> </div>
@@ -171,7 +173,7 @@
         <div class="userList">
           <div class="userItem" v-for="(item2,index2) in item.users" :key="index2">
             <span class="userImgBox" @click="goPeople(item2.uid)">
-              <span :class="'user'+ (index+1)"></span>
+              <span :class="'user'+ (index2+1)"></span>
               <img v-lazy="item2.avatar" alt="">
             </span>
             <strong>{{item2.score}}</strong>
@@ -181,7 +183,7 @@
     </ul>
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
     <div v-if="rank.loading" class="scrollLoading">加載中...</div>
-    <div v-if="rank.none && (rank.list.length == 0 && (tab <= nowDay || tab ==='total'))" class="scrollNone">
+    <div v-if="rank.none && rank.list.length == 0 " class="scrollNone">
       目前暫無歌友上榜</br>
       虛位以待，等你來哦！
     </div>
@@ -288,10 +290,20 @@ export default {
     },
     rankApi() {
       if (this.isShare) {
-        var dayApi = `/gift_contest/list.php?type={type}&day={day}&from={from}`;
-        var totalApi = `/gift_contest/list.php?type={type}&day=0&from={from}`;
-        var api = this.rankKey == 'total' ? totalApi : dayApi;
-        return api.replace('{day}', this.dateArr[this.tab - 1]).replace('{type}', this.showType);
+        var dayApi = ''
+        if (this.showType == 1) {
+          if (this.mainTab == 0) {
+            dayApi = `/family_star/list${this.showType}.php?from={from}&time={tm}`;
+          } else {
+            dayApi = `/family_star/list${this.showType}.php?from={from}&time=0`;
+          }
+        } else {
+          dayApi = `/family_star/list${this.showType}.php?from={from}`;
+        }
+        // var totalApi = `/family_star/list${this.showType}.php?token={token}&from={from}`;
+        // var api = this.rankKey == 'total' ? totalApi : dayApi;
+        const token = getUrlString('token') || '';
+        return dayApi.replace('{token}', token).replace('{tm}', this.getNowDate())
       } else {
         var dayApi = ''
         if (this.showType == 1) {
@@ -475,7 +487,7 @@ export default {
       this.surplusTime = downTime(timeName);
       this.timer = setInterval(() => {
         this.surplusTime = downTime(timeName);
-        if (this.surplusTime.end) {
+        if (this.surplusTime && this.surplusTime.end) {
           clearInterval(this.timer)
           // this.$store.commit("changday_down_time", 0)  //當天剩餘時間
         }
@@ -491,8 +503,12 @@ export default {
       this.actIndex = 0
       this.showPeopleList = false
     },
-    goPeople(uid) {
-      console.log(uid)
+    goPeople(uid, live) {
+      if (live) {
+        location.href = `rid:${live}`
+        return
+      }
+      console.log(live)
       location.href = `uid:${uid}`
     },
     showFamily(fid) {
@@ -780,6 +796,29 @@ export default {
           left: 0.03rem;
           border-radius: 50%;
         }
+        .nob {
+          width: 1.2rem;
+          height: 1.2rem;
+          position: absolute;
+          top: -0.1rem;
+          left: -0.1rem;
+          z-index: 10;
+        }
+        .vip {
+          display: block;
+          width: 0.8rem;
+          height: 0.3rem;
+          background: #fc6161;
+          font-size: 0.24rem;
+          color: #fffca1;
+          position: absolute;
+          bottom: 0rem;
+          border-radius: 0.3rem;
+          text-align: center;
+          line-height: 0.3rem;
+          left: 0.1rem;
+          z-index: 11;
+        }
       }
       .userMsg {
         width: 2.7rem;
@@ -995,6 +1034,7 @@ export default {
           .msg {
             margin-left: 0.14rem;
             .nick {
+              height: 0.5rem;
               max-width: 2rem;
               overflow: hidden;
               white-space: nowrap;

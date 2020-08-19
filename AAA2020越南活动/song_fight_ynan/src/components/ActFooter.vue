@@ -4,8 +4,8 @@
       <!-- <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span> -->
       <div class="actIng" :class="{center:!next}">
-        <span class="notice" @click="goTrailer()" v-if="next">List nhạc võ đài >></span>
-        <span class="Judges" @click="goSongVote() ">Làm giám khảo >> <em>{{jun}}người</em></span>
+        <span class="notice" @click="goTrailer()" v-if="next">Bài hát kỳ sau</span>
+        <span class="Judges" @click="goSongVote() ">Làm giám khảo <em>({{jun}} người)</em></span>
       </div>
     </div>
   </div>

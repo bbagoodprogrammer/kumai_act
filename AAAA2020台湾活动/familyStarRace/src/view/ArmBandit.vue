@@ -14,7 +14,7 @@
     <TabsScrollLoadList :stime1="stime1" :stime2="stime2" :stime3="stime3" :etime1="etime1" :etime2="etime2" :etime3="etime3" ref="scorll" @getDefaultData="getDefaultData"></TabsScrollLoadList>
     <act-footer :fid="fid"></act-footer>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
-    <div class="mask2" v-show="showHistory">
+    <div class="mask" v-show="showHistory">
       <transition name="slide">
         <history :hList="hList" v-if="showHistory" />
       </transition>
@@ -235,6 +235,9 @@ body::-webkit-scrollbar {
       position: absolute;
       right: 0;
       top: 0.17rem;
+      &.top {
+        top: 1.5rem;
+      }
     }
     .ruleTips,
     .rank,
@@ -250,9 +253,6 @@ body::-webkit-scrollbar {
       line-height: 0.54rem;
       text-indent: 0.2rem;
       margin-bottom: 0.08rem;
-    }
-    &.top {
-      top: 1.5rem;
     }
   }
   .wards {

@@ -50,7 +50,7 @@
       <p>第4-10名：守護達人徽章（30天）+2000金豆</p>
       <h3>家族禮包獎勵</h3>
       <img src="../../assets/img/giftImg.png" alt="" class="giftBox">
-      <h3>備註：</h3>
+      <h3 class="other">備註：</h3>
       <p>1、名星誕生榜晉級家族成員不足10位則多餘獎勵視為無效</p>
       <p>2、家族積分已達到滿值則該獎項視為無效</p>
       <p>3、K房人數上限提升自獎勵發放之日起計算</p>
@@ -60,33 +60,33 @@
     </div>
     <div class="wardItem" v-else>
       <h3>活動規則</h3>
-      <p>家族名星賽分爲三個賽程：星光閃耀—眾星爭輝—名星誕生，活動僅限家族用戶報名參與，</p>
+      <p>家族名星賽分爲三個賽程：星光閃耀—眾星爭輝—名星誕生，活動僅限家族用戶報名參與</p>
       <h3>星光閃耀</h3>
-      <p>1、比賽時間：8月12日12:00-8月15日22:00</p>
-      <p>2、家族用戶點擊報名即可參與活動，星光值=作品/K房收禮金幣魅力值，星光總榜前200名可代表家族晉級</p>
+      <p>1、比賽時間：<em class="tm">8月13日12:00-8月16日22:00</em> </p>
+      <p>2、家族用戶點擊報名即可參與活動，星光值=作品+K房收禮金幣魅力值，星光總榜前300名可代表家族晉級</p>
       <p>3、星光日榜依據當日星光值排名，前100名可參與抽獎，每天抽送20個星光閃耀背包禮物（68金幣/個），日榜中獎概率=當日星光值/前100名總星光值</p>
       <p>4、星光閃耀期間退出家族則榜單數據清除，不參與抽獎，重新加入家族重新累計星光值</p>
       <h3>眾星爭輝</h3>
       <p>
-        1、比賽時間：8月15日22:05-8月20日18:00<br />
-        2、同一家族晉級者組成團隊，代表家族參與PK，PK雙方（隨機匹配）依據總星光值判定勝負，勝方晉級並獲得家族大禮包獎勵，星光值=作品/K房收禮金幣魅力值<br />
+        1、比賽時間：<em class="tm">8月16日22:05-8月21日18:00</em><br />
+        2、同一家族晉級者組成團隊，代表家族參與PK，PK雙方（隨機匹配）依據總星光值判定勝負，勝方晉級並獲得家族大禮包獎勵，星光值=作品+K房收禮金幣魅力值<br />
         3、賽段結束時分數相同PK雙方將同時淘汰，PK失敗但總星光值大於等於50萬也可晉級<br />
         4、晉級用戶退出家族總星光值不扣減，再次加入家族時保留退出前數據可繼續累計，加入其他家族則視為未晉級，無法繼續參與活動<br />
         5、每個家族大禮包含獎勵30份，每人最多獲得1份，賽段結束時向晉級家族自動派發
       </p>
       <h3>名星誕生</h3>
-      <p>1、比賽時間：8月20日18:05-8月21日22:00<br />
-        2、星光值=作品/K房收禮金幣魅力值，8月21日20-23點獲得10%加成<br />
+      <p>1、比賽時間：<em class="tm">8月21日18:05-8月22日22:00</em> <br />
+        2、星光值=作品+K房收禮金幣魅力值，8月22日20-22點獲得10%加成<br />
         3、晉級家族依據總星光值排名，前十名家族和家族代表成為家族名星，獲得豐厚獎勵<br />
         4、總星光值達到指定數值則家族升級，升級時系統自動發放大禮包，Ⅰ、Ⅱ、Ⅲ級對應星光值分別為10萬、30萬、100萬，禮包獎勵份數分別為30、50、100份<br />
         5、晉級用戶退出家族總星光值不扣減，再次加入家族時保留退出前數據可繼續累計，加入其他家族則視為未晉級，無法繼續參與活動
       </p>
-      <h3>備註</h3>
+      <h3 class="other">備註</h3>
       <p>
         1、家族守護榜依據活動期間為報名用戶贈送金幣禮物魅力值排名，前10名可獲得豐厚獎勵，榜單分數相同則先到達者排名靠前<br />
         2、家族大禮包獎勵發放詳情展示在開獎明細中，可點擊查看<br />
         3、星光閃耀賽段日榜獎勵每日24點發放，最後一天於22點發放<br />
-        4、參賽作品需為8月12日18:00:00後發佈的任意公開作品(清唱5分鐘除外)，可上傳多首作品參賽，報名後作品收禮才會被計算，若刪除活動期間報名的參賽作品，該刪除作品在對應賽段收禮總魅力值作廢<br />
+        4、參賽作品需為8月13日12:00:00後發佈的任意公開作品(清唱5分鐘除外)，可上傳多首作品參賽，報名後作品收禮才會被計算<br />
         5、活動期間如有任何刷分行為，將取消參賽資格和獎勵，嚴重者封號處理
       </p>
     </div>
@@ -110,7 +110,7 @@ export default {
     }
   },
   created() {
-    document.title = '規則&獎勵'
+    document.title = '家族名星賽'
     this.stime = sessionStorage.getItem('stime')
     this.etime = sessionStorage.getItem('etime')
   },
@@ -124,7 +124,7 @@ export default {
 
 <style lang="scss">
 body {
-  background-color: #8338d0;
+  background-color: rgba(29, 14, 9, 1);
 }
 .giftBox {
   width: 5.34rem;
@@ -139,40 +139,48 @@ body {
 .rule {
   padding: 0.54rem 0.26rem;
   font-weight: 500;
-  h5 {
-    text-align: center;
-    margin: 0.31rem auto;
-    color: #ffe6b5;
-
-    font-size: 0.28rem;
-  }
-  h6 {
-    color: #30ffee;
-    font-size: 0.26rem;
-    margin-top: 0.31rem;
-  }
-  p {
-    font-size: 0.22rem;
-    color: #e6a3ff;
-  }
   .tabs {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 6.9rem;
+    width: 6.76rem;
     height: 0.78rem;
-    background: url(../../assets/img/tasBg.png);
+    padding: 0 0.07rem;
+    background: url(../../assets/img/tabs.png);
     background-size: 100% 100%;
     span {
-      width: 3.46rem;
-      height: 0.9rem;
+      width: 3.33rem;
+      height: 0.64rem;
       text-align: center;
-      line-height: 0.9rem;
+      line-height: 0.64rem;
+      color: rgba(142, 105, 63, 1);
       &.act {
-        background: url(../../assets/img/ruleAct.png);
+        color: rgba(29, 14, 9, 1);
+        background: url(../../assets/img/actTabs.png);
         background-size: 100% 100%;
       }
     }
+  }
+  h3 {
+    text-align: center;
+    font-size: 0.28rem;
+    color: rgba(255, 213, 154, 1);
+    margin: 0.41rem 0 0.33rem;
+  }
+  h6 {
+    color: rgba(255, 106, 57, 1);
+    font-size: 0.26rem;
+    text-align: center;
+    margin: 0.2rem 0 0.25rem;
+  }
+  p {
+    color: rgba(207, 135, 110, 1);
+    font-size: 0.24rem;
+  }
+  .other {
+    text-align: left;
+    color: rgba(255, 96, 40, 1);
+    font-size: 0.28rem;
   }
   .wardImg {
     width: 6.5rem;
@@ -182,27 +190,23 @@ body {
   }
   .actTime {
     text-align: center;
-    color: #ffe6b5;
+    color: rgba(238, 172, 104, 1);
     font-weight: 500;
-    font-size: 0.26rem;
+    font-size: 0.28rem;
     margin-top: 0.27rem;
   }
-  .ruleItem {
-    .lastTips {
-      margin-top: 5.8rem;
-      text-align: center;
-      color: #6628af;
-    }
-  }
+  .ruleItem,
   .wardItem {
-    .lastTips {
-      margin-top: 2rem;
-      text-align: center;
-      color: #6628af;
-    }
+    padding: 0 0.59rem;
   }
-  .mt {
-    margin-top: 0.35rem;
+  .tm {
+    color: rgba(255, 107, 58, 1);
+    font-size: 0.24rem;
+  }
+  .lastTips {
+    text-align: center;
+    color: rgba(124, 67, 48, 1);
+    margin-top: 1.53rem;
   }
 }
 @import "../../assets/scss/common.scss";

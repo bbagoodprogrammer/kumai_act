@@ -3,7 +3,7 @@
     <div class="actTime">
       <div class="timeTips">
         <p v-if="actStatus == 0">Đếm ngược kết thúc BXH Võ Đài kỳ này</p>
-        <p v-else-if="actStatus == 1">Đếm ngược kết thúc BXH Võ Đài kỳ này</p>
+        <p v-else-if="actStatus == 1">Đếm ngược kết thúc thi đấu kỳ này</p>
         <p v-else>Võ Đài kỳ này đã kết thúc</p>
       </div>
       <div class="timeDown" v-if="surplusTime.day">
