@@ -2,7 +2,7 @@ const lang = {
     noAct: 'لم يبدأ النشاط',
     actEd: 'انتهى النشاط',
     rules: 'قواعد و جوائز     ',
-    scoreTips: 'معلومات الحصول على النقاط>>    ',
+    scoreTips: 'معلومات النقاط ',
     ok: 'عرفت',
     otherRank: 'خارج الترتيب',   //排名外
     totalScore: 'مجمل النقاطون:    ', // 总积分
@@ -23,8 +23,8 @@ const lang = {
     gotConis: 'النقاط: ',
     branch: ' تحصل ',
     ynB: 'العملات',
-    totalGotScore: 'مجمل النقاطون:',
-    detailTitle: 'النقاطون الذين تكتسب اليوم:    ',
+    totalGotScore: 'تم إيداع العملات للمشرفين		    ',
+    detailTitle: 'معلومات الحصول على النقاط يومية		    ',
     detailTime: 'أيام    ',
     detailGifts: 'مجمل النقاط    ',
     noData: 'لا يوجد بيانات    ',

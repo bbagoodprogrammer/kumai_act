@@ -135,7 +135,12 @@ export default {
           font-weight: bold;
         }
         .name {
+          white-space: normal;
           width: 1.9rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 0.2rem;
         }
         .score {
           width: 1.9rem;

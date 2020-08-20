@@ -39,7 +39,8 @@ export default {
       searchMsg: '',
       noData: false,
       time: {},
-      version_allowed: null
+      version_allowed: null,
+      update: null
     }
   },
   computed: {
@@ -57,6 +58,7 @@ export default {
   created() {
     document.title = 'Bài hát kỳ sau'
     this.version_allowed = sessionStorage.getItem('version_allowed')
+    this.update = sessionStorage.getItem('update')
     api.getNextSong().then(res => {
       console.log(res)
       this.sList = res.data.response_data.data
@@ -95,8 +97,10 @@ export default {
     goSong(sid) {
       // location.href = `record:${sid}`
       var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
-      if (isiOS) {
-        location.href = `accid:${sid}`
+      if (!this.update) {
+        this.vxc('setToast', {
+          msg: "Phiên bản này không thể tham gia thi đấu, hãy tải Việt Kara trên app store để thạm gia thi đấu!"
+        })
         return
       }
       if (this.version_allowed) {
