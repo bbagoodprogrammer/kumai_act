@@ -62,6 +62,7 @@
             <p>2、參賽作品類型僅限獨唱</p>
             <p>3、每一首伴奏僅可選擇一首作品參賽</p>
             <p>4、每期可選擇多首伴奏參加打擂</p>
+            <p>5、演唱歌曲需為完整歌曲（歌曲時長最多比伴奏時長短30S），否則無法提交歌曲參賽</p>
           </div>
         </div>
       </transition>
@@ -76,7 +77,7 @@ import { globalBus } from '../utils/eventBus'
 import getDate from "../utils/getDate"
 import APP from '../utils/openApp'
 export default {
-  props: ["length"],
+  props: ["length", "update"],
   data() {
     return {
       searchSong: '',
@@ -149,10 +150,11 @@ export default {
           this.isOverTime = true
           return
         }
-        var u = navigator.userAgent;
         var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
-        if (isiOS) {
-          location.href = `accid:${id}`
+        if (!this.update) {
+          this.vxc('setToast', {
+            msg: "此版本過低，無法參賽！請前往app store下載“高歌”參賽喔"
+          })
           return
         }
         if (this.version_allowed) {

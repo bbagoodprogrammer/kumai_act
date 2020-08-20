@@ -77,7 +77,7 @@ import { globalBus } from '../utils/eventBus'
 import getDate from "../utils/getDate"
 import APP from '../utils/openApp'
 export default {
-  props: ["length"],
+  props: ["length", "update"],
   data() {
     return {
       searchSong: '',
@@ -152,10 +152,11 @@ export default {
           this.isOverTime = true
           return
         }
-        var u = navigator.userAgent;
         var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
-        if (isiOS) {
-          location.href = `accid:${id}`
+        if (!this.update) {
+          this.vxc('setToast', {
+            msg: "Phiên bản này không thể tham gia thi đấu, hãy tải Việt Kara trên app store để thạm gia thi đấu!"
+          })
           return
         }
         if (this.version_allowed) {

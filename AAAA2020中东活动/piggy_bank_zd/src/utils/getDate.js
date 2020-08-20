@@ -9,7 +9,7 @@ function getDate(datem, type) {
         return `${date}/${month}`
     }
     if (type == "~") {
-        return `${hours}:${minute}:${second}   ${date}/${month}/${year}`
+        return `  ${year}/${month}/${date}`
     }
 }
 export default getDate
