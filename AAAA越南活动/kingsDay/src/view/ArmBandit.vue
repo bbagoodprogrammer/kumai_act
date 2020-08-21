@@ -1,5 +1,5 @@
 <template>
-  <div class="box" :style="{backgroundImage: 'url(' + banner + ')', backgroundSize:'center',backgroundRepeat:'no-repeat'}">
+  <div class="box" :style="{backgroundImage: 'url(' + banner + ')', backgroundSize:'100% auto',backgroundRepeat:'no-repeat'}">
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
@@ -20,6 +20,7 @@
           <p><i>1</i><strong>{{lang.rule1}}</strong></p>
           <p><i class="mag">2</i><strong>{{lang.rule2}}</strong></p>
           <p><i class="mag3">3</i><strong>{{lang.rule3}}</strong></p>
+          <p><i class="mag3">4</i><strong>{{lang.rule4}}</strong></p>
         </div>
       </transition>
     </div>
@@ -56,7 +57,7 @@ export default {
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
       showRule: false,
-      banner: ''
+      banner: '',
     }
   },
   created() {
@@ -75,6 +76,7 @@ export default {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
           const { user_info, act_info, mission_status, exchange_status, current_date, date_line, top_mission, missions } = response_data
+          document.title = act_info.subject
           this.banner = act_info.images.banner
           this.vxc('changActStatus', act_info.step)
           this.vxc('setUser_info', user_info)
@@ -143,8 +145,8 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: #dd5e5e url(../assets/img/banner.png) center 0 no-repeat;
-  background-size: 100% auto;
+  // background: #dd5e5e url(../assets/img/banner.png) center 0 no-repeat;
+  // background-size: 100% auto;
   .shareBar {
     position: fixed;
     z-index: 1000;
@@ -178,9 +180,10 @@ body::-webkit-scrollbar {
       background: url(../assets/img/tipsBg.png);
       background-size: 100% 100%;
       text-align: center;
-      font-weight: 700;
-      font-size: 0.28rem;
+      font-weight: 600;
+      font-size: 0.24rem;
       line-height: 0.65rem;
+      text-indent: 0.1rem;
     }
     .ruleTips {
     }
@@ -206,7 +209,7 @@ body::-webkit-scrollbar {
 }
 .rule {
   width: 5.37rem;
-  height: 3.72rem;
+  height: 4.3rem;
   background: url(../assets/img/ruleBg.png);
   background-size: 100% 100%;
   position: absolute;

@@ -55,7 +55,7 @@
       <p class="chioneTips">
         1. Nhấn nghe để nghe bài dự thi, nghe mỗi bài 10 giây và chọn 1 bài thắng. (chưa nghe đủ sẽ không thể chọn bài)<br />
         2. Mỗi giám khảo mỗi ngày bình chọn 30 bài đầu, mỗi chọn 1 bài được thưởng 2 đậu. (gửi thưởng ngay sau chọn bài)<br />
-        3. Mỗi kỳ liên tục chọn trúng 8 bài có thể nhận ngẫu nhiên 1 túi quà Hộp Nhạc (360 đậu) / Túi quà Kẹo Bông (1 xu) / VIP (2 ngày) / Chiến Đấu Cơ (2 ngày).
+        3. Mỗi kỳ liên tục chọn trúng 5 bài có thể nhận ngẫu nhiên 1 túi quà Hộp Nhạc (360 đậu) / Túi quà Kẹo Bông (1 xu) / VIP (2 ngày) / Chiến Đấu Cơ (2 ngày).
       </p>
     </div>
     <loading />

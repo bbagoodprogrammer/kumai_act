@@ -155,7 +155,7 @@ export default {
         var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
         if (!this.update) {
           this.vxc('setToast', {
-            msg: "Phiên bản này không thể tham gia thi đấu, hãy tải Việt Kara trên app store để thạm gia thi đấu!"
+            msg: "Phiên bản này không thể tham gia thi đấu,<br/> hãy tải Việt Kara trên app store để thạm gia thi đấu!"
           })
           return
         }

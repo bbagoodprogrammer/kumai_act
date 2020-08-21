@@ -24,7 +24,7 @@ function getDate(datem, type) {
         return `${hours}:${minute}:${second} ${date}/${month} `
     }
     if (type == 4) {
-        return `${date}/${month}/${year}`
+        return `${year}/${month}/${date}`
     }
 }
 export default getDate

@@ -59,7 +59,7 @@ export default {
   }
   p {
     text-align: center;
-    font-size: 0.24rem;
+    font-size: 0.28rem;
     color: RGBA(255, 239, 255, 1);
     margin-top: 0.34rem;
   }
