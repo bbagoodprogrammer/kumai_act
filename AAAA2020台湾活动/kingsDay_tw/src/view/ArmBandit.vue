@@ -20,6 +20,7 @@
           <p><i>1</i><strong>{{lang.rule1}}</strong></p>
           <p><i class="mag">2</i><strong>{{lang.rule2}}</strong></p>
           <p><i class="mag3">3</i><strong>{{lang.rule3}}</strong></p>
+          <p><i class="mag">4</i><strong>4.本期活動時間為{{time}}，活動開始且報名參加後才開始計入數據，發佈的任意1首公開作品未刪除的任務是指前一天活動開始後發佈的歌曲沒有刪除</strong></p>
         </div>
       </transition>
     </div>
@@ -43,6 +44,7 @@ import ActFooter from "../components/ActFooter"
 import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
 import GiftCon from "../components/GiftCon"
+import getDate from "../utils/getDate"
 export default {
   components: { Loading, MsgToast, ActFooter, GiftCon },
   data() {
@@ -56,14 +58,18 @@ export default {
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
       showRule: false,
-      banner: ''
+      banner: '',
+      act_info: {}
     }
   },
   created() {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
-  mounted() {
+  computed: {
+    time() {
+      return getDate(new Date(this.act_info.stime * 1000), 2) + '-' + getDate(new Date(this.act_info.etime * 1000), 2)
+    }
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -78,6 +84,7 @@ export default {
           this.banner = act_info.images.banner
           this.vxc('changActStatus', act_info.step)
           this.vxc('setUser_info', user_info)
+          this.act_info = act_info
           this.vxc('setAct_info', act_info)
           this.vxc('setMission_status', mission_status)
           this.vxc('setExchange_status', exchange_status)
@@ -206,7 +213,7 @@ body::-webkit-scrollbar {
 }
 .rule {
   width: 5.37rem;
-  height: 3.72rem;
+  height: 5.2rem;
   background: url(../assets/img/ruleBg.png);
   background-size: 100% 100%;
   position: absolute;

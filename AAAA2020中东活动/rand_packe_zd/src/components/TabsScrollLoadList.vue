@@ -72,6 +72,7 @@
           <div class="userMsg">
             <div class="name">{{item.nick}}</div>
             <div class="score"><i></i><em>{{item.score}}</em></div>
+            <div class="flag"> <img :src="item.flag" alt=""></div>
             <div class="ticket" v-if="mainTab == 0">{{lang.ticket.replace('X',item.rebate)}}</div>
           </div>
         </div>
@@ -81,14 +82,15 @@
           <div class="rank">{{item.rank}}</div>
           <div class="uerImg">
             <img v-lazy="item.avatar" alt="" class="imgItem">
-            <img v-if="item.noble != 0" :src="require(`../assets/img/noble/${item.noble}.png`)" alt="" class="noble">
-            <i v-else-if="item.vip > 0" class="vip">VIP{{item.vip}}</i>
+            <img v-if="item.frame.indexOf('.png') > -1" :src="item.frame" alt="" class="noble">
+            <i v-else-if="item.vip>0" class="vip">VIP{{item.vip}}</i>
           </div>
           <div class="userMsg">
             <div class="name">
               <span>{{item.nick}}</span>
             </div>
             <div class="probability" v-if="mainTab == 0">{{lang.luckGrade}}<em>{{lang.lv}}{{item.level?item.level:0}}</em></div>
+            <div class="flag"> <img :src="item.flag" alt=""></div>
           </div>
           <div class="score"><i></i><em>{{item.score}}</em></div>
         </li>
@@ -439,7 +441,7 @@ export default {
   }
   .dayList {
     .top3 {
-      height: 3.54rem;
+      height: 3.84rem;
       padding: 0 0.69rem;
       position: relative;
       .topItem {
@@ -509,6 +511,15 @@ export default {
             font-size: 0.29rem;
           }
         }
+        .flag {
+          margin-top: 0.08rem;
+          img {
+            width: 0.42rem;
+            height: 0.28rem;
+            display: block;
+            margin: 0 auto;
+          }
+        }
         .ticket {
           width: 120%;
           margin-right: -0.15rem;
@@ -556,11 +567,12 @@ export default {
         margin-left: 0.15rem;
         position: relative;
         .noble {
-          width: 1.2rem;
-          height: 1.22rem;
+          width: 1.75rem;
+          height: 1.76rem;
           position: absolute;
-          left: -0.11rem;
-          top: -0.1rem;
+          left: -0.34rem;
+          top: -0.4rem;
+          z-index: 20;
         }
         .vip {
           display: block;
@@ -612,6 +624,13 @@ export default {
             -webkit-text-fill-color: transparent;
           }
         }
+        .flag {
+          margin-top: 0.08rem;
+          img {
+            width: 0.42rem;
+            height: 0.28rem;
+          }
+        }
       }
       .score {
         color: #f8d285;
@@ -626,7 +645,7 @@ export default {
           height: 0.26rem;
           background: url(../assets/img/hear.png);
           background-size: 100% 100%;
-          margin-right: 0.11rem;
+          margin-left: 0.11rem;
         }
         em {
           font-size: 0.29rem;
