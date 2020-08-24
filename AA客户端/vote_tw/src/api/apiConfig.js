@@ -89,7 +89,7 @@ function commitVote(descriptions, option_type, options, voter_type_limit, user_l
     }
     console.log(data)
     return axios({
-        url: '/action/index.php?action=roomVote.createVote',
+        url: '/index.php?action=roomVote.createVote',
         method: 'post',
         data: qs.stringify(data),
         headers: {
@@ -102,9 +102,9 @@ function commitVote(descriptions, option_type, options, voter_type_limit, user_l
 //投票詳情
 function voteMsg(reset) {
     if (reset) {
-        axios.get(`/action/index.php?action=roomVote.voteDetail&uid=${uid}&token=${token}&rid=${rid}&vote_id=${vote_id}`)
+        axios.get(`/index.php?action=roomVote.voteDetail&uid=${uid}&token=${token}&rid=${rid}&vote_id=${vote_id}`)
     }
-    return get(`/action/index.php?action=roomVote.voteDetail&uid=${uid}&token=${token}&rid=${rid}&vote_id=${vote_id}`)
+    return get(`/index.php?action=roomVote.voteDetail&uid=${uid}&token=${token}&rid=${rid}&vote_id=${vote_id}`)
 }
 
 //結束投票
@@ -116,7 +116,7 @@ function endVote() {
         vote_id
     }
     return axios({
-        url: '/action/index.php?action=roomVote.closeVote',
+        url: '/index.php?action=roomVote.closeVote',
         method: 'post',
         data: qs.stringify(data),
         headers: {
@@ -135,7 +135,7 @@ function commitChione(option) {
         option
     }
     return axios({
-        url: '/action/index.php?action=roomVote.vote',
+        url: '/index.php?action=roomVote.vote',
         method: 'post',
         data: qs.stringify(data),
         headers: {
@@ -147,9 +147,9 @@ function commitChione(option) {
 //投票記錄
 function getVoteHistory(last_id, more) {
     if (more) {
-        return axios.get(`/action/index.php?action=roomVote.getVoteHistory&uid=${uid}&token=${token}&rid=${rid}&last_id=${last_id}`)
+        return axios.get(`/index.php?action=roomVote.getVoteHistory&uid=${uid}&token=${token}&rid=${rid}&last_id=${last_id}`)
     }
-    return get(`/action/index.php?action=roomVote.getVoteHistory&uid=${uid}&token=${token}&rid=${rid}&last_id=${last_id}`)
+    return get(`/index.php?action=roomVote.getVoteHistory&uid=${uid}&token=${token}&rid=${rid}&last_id=${last_id}`)
 }
 const httpConfig = {
     commitVote,

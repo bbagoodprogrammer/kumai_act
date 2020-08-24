@@ -50,6 +50,7 @@
       <p>Hạng 4-10: Huy chương Người Bảo Hộ (30 ngày) + 2000 đậu</p>
       <h3>Phần thưởng túi quà gia tộc:</h3>
       <img src="../../assets/img/giftImg.png" alt="" class="giftBox">
+      <h3>Tất cả túi quà thưởng do hệ thống tự động gửi, trên giao diện chỉ hiện một số phần thưởng hiếm.</h3>
       <h3 class="other">Ghi chú:</h3>
       <p>1. Gia tộc vào vòng Ngôi Sao Xuất Hiện nếu không đủ 10 thành viên, số lượng thưởng dư ra sẽ bị mất.</p>
       <p>2. Điểm gia tộc đạt tối đa xem như phần thưởng không còn hiệu lực.</p>

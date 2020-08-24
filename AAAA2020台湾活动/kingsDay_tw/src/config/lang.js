@@ -10,7 +10,7 @@ const lang = {
     convertibility: '兌換',
     loading: '加載中...',
     noOpen: '暫未開放，敬請期待！',
-    loginTitle: '今日登陸福利',
+    loginTitle: '今日登入福利',
     nowDayTitle: '今日任務',
     receive: '領取',
     dayTasksTitle: '今日任務',

@@ -36,11 +36,11 @@
           <div class="fromItem">
             <span>獎品選擇</span>
             <!-- <div class="itemCon"> -->
-              <div class="itemCon" @click="setSgift(1)">
-                <span v-if="sActGift.id" class="actGift1"><img :src="sActGift.pic" alt="" v-if="sActGift.prise_type !=1"> <strong :class="{textIndex:sActGift.prise_type ==1}">{{sActGift.name}}</strong> </span>
-                <span v-else class="noSet">未設置</span>
-                <i class="arr"></i>
-              </div>
+            <div class="itemCon" @click="setSgift(1)">
+              <span v-if="sActGift.id" class="actGift1"><img :src="sActGift.pic" alt="" v-if="sActGift.prise_type !=1"> <strong :class="{textIndex:sActGift.prise_type ==1}">{{sActGift.name}}</strong> </span>
+              <span v-else class="noSet">未設置</span>
+              <i class="arr"></i>
+            </div>
             <!-- </div> -->
           </div>
           <div class="setpeopleType">
@@ -127,7 +127,7 @@
           <div class="balance">
             <span class="coin"><i></i><strong>{{balance.coin}}</strong></span>
             <span class="bean"><i></i><strong>{{balance.bean}}</strong></span>
-            <i class="back"></i>
+            <i class="back" @click="goStored()"></i>
           </div>
           <div class="queryBtn" @click="querySgift()">確定</div>
         </div>
@@ -183,7 +183,7 @@ export default {
       balance: {},
       tabLoading: false,
       vipType: 0,
-      peopleType: null,
+      peopleType: 1,
       showCommitPup: false,
       fixedDrawList: [],
       fixeActDraw: {},
@@ -379,6 +379,9 @@ export default {
       } else {
         closeWeb();
       }
+    },
+    goStored() {
+      location.href = "walletConfig://"
     }
   }
 };
