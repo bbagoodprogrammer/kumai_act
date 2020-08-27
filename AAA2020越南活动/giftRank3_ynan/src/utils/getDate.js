@@ -21,7 +21,7 @@ function getDate(datem, type) {
         return `${month}.${date} ${hours}h`
     }
     if (type == 3) {
-        return `${month}/${date}/${hours}:${minute}:${second}`
+        return `${hours}h ${date}/${month}`
     }
 }
 export default getDate

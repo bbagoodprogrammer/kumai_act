@@ -92,6 +92,7 @@ export default {
             if (element == current_date) {
               nowDayIndex = index
             }
+            globalBus.$emit("setActIndex", nowDayIndex)
             this.vxc('setCurrent_index', nowDayIndex)
             this.vxc('setTab_index', nowDayIndex)  //初始化选中的tab
             if (nowDayIndex != undefined) {

@@ -46,11 +46,13 @@
           <div class="msgCon">
             <div class="actH">
               <h6>{{lang.actTips}}</h6>
-              <textarea class="msgTips" disabled v-model="showParty.p_desc"></textarea>
+              <!-- <textarea class="msgTips" disabled v-model="showParty.p_desc"></textarea> -->
+              <div class="msgTips">{{showParty.p_desc}}</div>
             </div>
             <div class="actH">
               <h6 v-show="showParty.prize!=''">{{lang.actGifts}}</h6>
-              <textarea class="msgGift" disabled v-model="showParty.prize" v-if="showParty.prize!=''"></textarea>
+              <!-- <textarea class="msgGift" disabled v-model="" v-if="showParty.prize!=''"></textarea> -->
+              <div class="msgGift" v-if="showParty.prize!=''">{{showParty.prize}}</div>
             </div>
             <div class="actPeople">
               {{lang.firePeople}} <strong>{{showParty.users.nick}}</strong> <img v-lazy="showParty.users.avatar" alt="" @click.stop="goUser(showParty.uid)">
@@ -70,7 +72,7 @@
           <i class="close" @click="closeSingUpPup()"></i>
           <div class="con">
             <div class="title">{{lang.singUpTips1}}</div>
-            <div class="msg">{{lang.singUpTips2}}</div>
+            <div class="msg" v-html="lang.singUpTips2"></div>
             <div class="singUpMsg">
               <textarea maxlength="200" v-model="singUpMsg" :placeholder="lang.singUpTips3"></textarea>
               <span><em>{{singUpMsg.length}}</em>/200</span>
@@ -457,7 +459,7 @@ export default {
         width: 5.36rem;
         height: 1.3rem;
         font-size: 0.24rem;
-        color: #ffffaa;
+        color: yellow;
         // word-break: break-all;
         overflow-y: scroll;
         margin-left: 0.2rem;
@@ -543,6 +545,7 @@ export default {
         font-size: 0.24rem;
         text-align: center;
         margin-top: 0.07rem;
+        padding: 0 0.2rem;
       }
       .singUpMsg {
         margin: 0.15rem auto;

@@ -29,7 +29,7 @@
         </li>
       </ul>
     </div>
-    <h3>投票設置</h3>
+    <h3>投票設定</h3>
     <div class="pelpleType">
       <span class="title">誰可以投票</span>
       <span class="total" @click="setPeopleType(1)"><i :class="{act:peopleType == 1}"></i><strong>所有人</strong></span>
