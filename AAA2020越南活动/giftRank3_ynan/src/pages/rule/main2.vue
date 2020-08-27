@@ -21,7 +21,7 @@
       <p>4. BXH Ca Sĩ dựa theo số xu quà tặng yêu cầu mà ca sĩ nhận từ bài hát và phòng Kara</p>
       <p>5. BXH Ngày và BXH Tổng chỉ hiện top 100, nếu bằng điểm người đạt trước xếp hạng cao hơn.</p>
       <p>6. Quà tặng yêu cầu của sự kiện kỳ này là quà bài hát Thiệp Anh Đào (10 xu), Hẹn Ước (129 xu), quà phòng Kara Khoá Đồng Tâm (10 xu), Khắc Tên Nhau (129 xu).</p>
-      <P class="mt">Ghi chú: mọi thắc mắc về ký hợp đồng KOL và chủ phòng mời liên hệ xxxx (ID: 1000)</P>
+      <P class="mt">Ghi chú: mọi thắc mắc về ký hợp đồng KOL và chủ phòng mời liên hệ Karaoke Now (ID: 1000)</P>
       <h6>Quy định khác</h6>
       <p>Trong quá trình diễn ra sự kiện, nếu phát hiện người dùng gian lận trong sự kiện, ban tổ chức sẽ dựa theo mức độ vi phạm để xử lý, người vi phạm sẽ bị loại khỏi sự kiện hoặc khoá tài khoản. Bao gồm các hành vi sau:</p>
       <p>1. Dùng hoặc trộm bài hát của người khác để dự thi.</p>
@@ -94,7 +94,7 @@ export default {
   },
   computed: {
     timer() {
-      return getDate(new Date(this.stime * 1000), 3) + '-' + getDate(new Date(this.etime * 1000), 3)
+      return getDate(new Date(this.stime * 1000), 3) + ' - ' + getDate(new Date(this.etime * 1000), 3)
     }
   },
   created() {

@@ -1,3 +1,14 @@
+function delay(ms) {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
+}
+
+function getRand(start, end) {
+    const len = end - start;
+    return start + Math.round(Math.random() * len);
+}
+
 function loadImage(src) {
     return new Promise((resolve, reject) => {
         const img = new Image();
@@ -16,6 +27,8 @@ function loadImages(...imgsSrc) {
 }
 
 export {
+    delay,
+    getRand,
     loadImage,
     loadImages,
 }

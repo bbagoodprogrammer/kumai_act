@@ -20,7 +20,7 @@ const lang = {
     actGifts: 'Phần thưởng',
     goRoom: 'Tham gia',
     singUpTips1: 'Điền giới thiệu để gửi báo danh',
-    singUpTips2: 'Người tổ chức sẽ liên lạc để thông báo kết quả cho bạn, vui lòng đợi',
+    singUpTips2: 'Người tổ chức sẽ liên hệ bạn sớm nhất có thể,<br/>Vui lòng viết lời giới thiều rồi chờ đợi hồi âm.',
     singUpTips3: 'Tôi có 2131 fan, sở trường hát nhạc trẻ, bài hát ưng ý nhất là “Sóng Gió” của Jack, rất mong được tham gia đêm nhạc do bạn tổ chức để mang giọng ca của tôi phục vụ khán giả. (ví dụ tham khảo)',
     singUpTipsCom: 'Báo danh',
     actBarTitle: 'Tiến độ duyệt',

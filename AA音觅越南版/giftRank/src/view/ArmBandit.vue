@@ -37,7 +37,7 @@
             <h6>1 Thời gian</h6>
             <p>{{aTimer}}</p>
             <h6>2 Bảng xếp hạng</h6>
-            <p>"BXH dựa vào mị lực nhận được từ 2 quà Mùa hè (Dưa hấu và Quạt nho), xếp hạng từ cao xuống thấp
+            <p>"BXH dựa vào mị lực nhận được từ 2 quà Mùa hè (Chong chóng và Qùa lucky), xếp hạng từ cao xuống thấp
               <br />BXH cập nhật số quà nhận được (cập nhật từng phút)"</p>
             <h6>3 Giải thưởng</h6>
             <div class="giftItemBox">
@@ -45,11 +45,11 @@
               <span class="giftImg"></span>
             </div>
             <div class="giftBox">
-              <h5>1. BXH Dưa hấu</h5>
+              <h5>1. BXH Chong chóng </h5>
               <p>Hạng 1: Khung ảnh Hè mát 7 ngày, xe Kem Lạnh 7 ngày</p>
               <p>Hạng 2: Khung ảnh hè mát 5 ngày</p>
               <p>Hạng 3: Khung ảnh hè mát 3 ngày</p>
-              <h5>2. BXH Quạt Nho</h5>
+              <h5>2. BXH Qùa lucky</h5>
               <p>Hạng 1: Khung ảnh hè mát 14 ngày, xe Kem Lạnh 14 ngày</p>
               <p>Hạng 2: Khung ảnh hè mát 7 ngày</p>
               <p>Hạng 3: Khung ảnh hè mát 5 ngày</p>

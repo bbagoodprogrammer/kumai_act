@@ -18,6 +18,7 @@ import { mapState } from "vuex"
 import api from "../api/apiConfig"
 import getDate from "../utils/getDate"
 import MsgToast from "../components/commonToast"
+import { globalBus } from '../utils/eventBus'
 export default {
   components: { MsgToast },
   data() {
@@ -31,6 +32,11 @@ export default {
     current_index(val) {
       this.actIndex = val
     }
+  },
+  created() {
+    globalBus.$on('setActIndex', (val) => {
+      this.actIndex = val
+    })
   },
   computed: {
     ...mapState(['date_line', 'current_date', 'current_index', 'giftGroups']),

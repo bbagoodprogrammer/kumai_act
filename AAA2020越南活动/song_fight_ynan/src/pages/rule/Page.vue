@@ -21,7 +21,7 @@
       <p>Huy chương Vua Âm Nhạc + 600 xu + VIP 1 tháng + 1200 đậu</p>
       <p>Hạng 4-10: Thầy Âm Nhạc</p>
       <p>Huy chương Thầy Âm Nhạc + 500 xu + Túi quà 2 + VIP 1 tháng + 1000 đậu</p>
-      <p>Hạng 11-15: Sao Âm Nhạc </p>
+      <p>Hạng 11-50: Sao Âm Nhạc </p>
       <p>Huy chương Sao Âm Nhạc + 300 xu + VIP 1 tháng + 600 đậu</p>
       <p>Hạng 51-100: Âm Nhạc Sĩ</p>
       <p>Huy chương Âm Nhạc Sĩ + 100 xu + VIP 1 tháng + 300 đậu</p>

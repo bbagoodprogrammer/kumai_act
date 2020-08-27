@@ -36,7 +36,7 @@ module.exports = {
         //disableHostCheck: true,
         proxy: {
             '/': {
-                target: 'http://test.17sing.tw',
+                target: 'http://act.17sing.tw',
                 changeOrigin: true
             }
         }
