@@ -141,7 +141,7 @@ export default {
 </script>
 <style lang='scss'>
 body {
-  background-color: #350096;
+  background-color: RGBA(7, 8, 144, 1);
 }
 .bandit {
   width: 7.5rem;

@@ -25,6 +25,8 @@
       <p>Huy chương Sao Âm Nhạc + 300 xu + VIP 1 tháng + 600 đậu</p>
       <p>Hạng 51-100: Âm Nhạc Sĩ</p>
       <p>Huy chương Âm Nhạc Sĩ + 100 xu + VIP 1 tháng + 300 đậu</p>
+      <h6>Thường dự thi:</h6>
+      <p>Mỗi người báo danh thành công (có 1 bài hát tham gia thi đấu trước khi sự kiện kết thúc), sau khi sự kiện kết thúc nhận thưởng 20 đậu.</p>
       <h6>Thưởng giám khảo:</h6>
       <p>1. Mỗi giám khảo mỗi ngày bình chọn 30 bài đầu, mỗi chọn 1 bài được thưởng 2 đậu. (gửi thưởng ngay sau chọn bài)<br />
         2. Mỗi kỳ liên tục chọn trúng 5 bài có thể nhận ngẫu nhiên 1 túi quà Hộp Nhạc (360 đậu) / Túi quà Kẹo Bông (1 xu) / VIP (2 ngày) / Chiến Đấu Cơ (2 ngày).</p>

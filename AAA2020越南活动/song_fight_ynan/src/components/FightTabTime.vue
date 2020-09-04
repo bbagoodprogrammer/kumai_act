@@ -69,12 +69,13 @@ export default {
       if (this.isShare) {
         APP()
         return
-      } else if (this.actStatus === 0) {
-        this.vxc('setToast', {
-          msg: this.lang.noAct
-        })
-        return
       }
+      // else if (this.actStatus === 0) {
+      //   this.vxc('setToast', {
+      //     msg: this.lang.noAct
+      //   })
+      //   return
+      // }
       let regstr = getString('token')
       location.href = `./myStandings.html?token=${regstr}`
 
@@ -83,12 +84,13 @@ export default {
       if (this.isShare) {
         APP()
         return
-      } else if (this.actStatus === 0) {
-        this.vxc('setToast', {
-          msg: this.lang.noAct
-        })
-        return
       }
+      // else if (this.actStatus === 0) {
+      //   this.vxc('setToast', {
+      //     msg: this.lang.noAct
+      //   })
+      //   return
+      // }
       let regstr = getString('token')
       location.href = `./myVote.html?token=${regstr}`
 
@@ -97,12 +99,13 @@ export default {
       if (this.isShare) {
         APP()
         return
-      } else if (this.actStatus === 0) {
-        this.vxc('setToast', {
-          msg: this.lang.noAct
-        })
-        return
       }
+      // else if (this.actStatus === 0) {
+      //   this.vxc('setToast', {
+      //     msg: this.lang.noAct
+      //   })
+      //   return
+      // }
       let regstr = getString('token')
       location.href = `./rank.html?token=${regstr}`
 
