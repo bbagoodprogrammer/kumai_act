@@ -1,34 +1,34 @@
 <template>
   <div class="applicationPage">
-    <h3>ID Phòng tổ chức tiệc(rất quan trọng)<span>*Phải điền</span> </h3>
+    <h3>ID Phòng tổ chức tiệc<span>*Bắt buộc</span> </h3>
     <div class="inputBox">
-      <label for="rid">Mời nhập ID phòng chính xác</label>
-      <input type="number" name="" id="rid" v-model="actRid" @input="roomChange()">
+      <!-- <label for="rid">Nhập ID phòng chính xác</label> -->
+      <input type="number" name="" id="rid" placeholder="Nhập ID phòng chính xác" v-model="actRid" @input="roomChange()">
     </div>
-    <h3>Chủ đề tiệc<span>*Phải điền</span> </h3>
+    <h3>Chủ đề tiệc<span>*Bắt buộc</span> </h3>
     <div class="inputBox">
-      <label for="actTitle">Mời nhập chủ đề tiệc</label>
-      <input type="text" id="actTitle" v-model="actTitle" maxlength="30">
+      <!-- <label for="actTitle">Nhập chủ đề tiệc</label> -->
+      <input type="text" id="actTitle" placeholder="Nhập chủ đề tiệc" v-model="actTitle" maxlength="30">
       <span class="strNum">{{actTitle.length}}/30</span>
     </div>
-    <h3> UID của MC</h3>
+    <h3> ID của Người hướng dẫn chương trình</h3>
     <div class="inputBox">
-      <label for="actUid">Hãy nhập UID</label>
-      <input type="text" id="actUid" v-model="actUid" maxlength="8">
+      <!-- <label for="actUid"></label> -->
+      <input type="number" id="actUid" placeholder="Nhập ID" v-model="actUid" maxlength="8">
     </div>
-    <h3>Số người tham dự<span>*Phải điền</span> </h3>
+    <h3>Số người tham dự<span>*Bắt buộc</span> </h3>
     <div class="inputBox">
-      <label for="pelpleNum">Mời điền số người dự tính sẽ tham gia</label>
-      <input type="number" name="" id="pelpleNum" v-model="partyNums">
+      <!-- <label for="pelpleNum"></label> -->
+      <input type="number" name="" placeholder="Nhập số người sẽ tham gia" id="pelpleNum" v-model="partyNums">
     </div>
-    <h3>Mời chọn ảnh bìa tiệc<span>*Phải điền</span></h3>
+    <h3>Chọn ảnh bìa tiệc<span>*Bắt buộc</span></h3>
     <div class="actType">
       <span v-for="(item,index) in actTypeArr" :key="index" @click="setActType(item.type)" :class="{act:actType == item.type}">
         <span class="bg" :class="'type' + item.type"></span>
         <strong>{{item.name}}</strong>
       </span>
     </div>
-    <h3>Thời gian<span>*Phải điền</span></h3>
+    <h3>Thời gian<span>*Bắt buộc</span></h3>
     <div class="userActTime">
       <div class="startTime" @click="openTime(1)">
         Bắt đầu:
@@ -41,17 +41,17 @@
         <span v-else class="noTime">* Hãy chọn thời gian kết thúc</span>
       </div>
     </div>
-    <h3>Giới thiệu<span>*Phải điền</span></h3>
+    <h3>Giới thiệu: <span>*Bắt buộc</span></h3>
     <div class="actTips">
       <textarea class="tipsMsg" :placeholder="placeholder1" v-model="actTips" maxlength="500"></textarea>
       <span class="tipsNum">{{actTips.length}}/500</span>
     </div>
-    <h3>Phần thưởng</h3>
+    <h3>Phần thưởng: </h3>
     <div class="actTips">
       <textarea :placeholder="placeholder2" v-model="actGifts" maxlength="300"></textarea>
       <span class="tipsNum">{{actGifts.length}}/300</span>
     </div>
-    <h3>Có cần báo danh tham dự không<span>*Phải điền</span></h3>
+    <h3>Có cần báo danh tham dự không<span>*Bắt buộc</span></h3>
     <div class="cSingUp">
       <strong>Nếu muốn người tham dự phải báo danh trước hãy chọn cần báo danh, danh sách xem tại [Tiệc của tôi]</strong>
       <span :class="{act:needSingUp==2}" @click="setNeed(2)">Cần</span>
@@ -59,9 +59,11 @@
     </div>
     <div class="commitBtn" @click="commitAct()">Gửi yêu cầu</div>
     <Popup v-model="show" position="bottom" round :style="{ height: '40%' }">
+
       <van-datetime-picker v-model="currentDate" @cancel="show = false" cancel-button-text="Huỷ" confirm-button-text="Xác nhận" type="datetime" title="" :min-date="minDate" :max-date="maxDate" @confirm="confirmTime()" />
     </Popup>
     <msg-toast></msg-toast>
+
     <Loading />
   </div>
 </template>
@@ -126,7 +128,7 @@ export default {
   },
   computed: {
     placeholder1() {
-      return `Sự kiện này quy tụ 8 nghệ sĩ tham dự, lần lượt trình diễn tài năng như hát, chơi nhạc cụ, nhảy, giả giọng,... hứa hẹn sẽ mang đến chương trình nghệ thuật phong phú đa dạng cho tất cả khán giả. Hãy theo dõi chương trình nhé, rất mong được cùng bạn thưởng thức đại tiệc âm nhạc này! (ví dụ tham khảo)`
+      return `Tiệc sinh nhật dành cho chủ phòng,  sẽ mang đến chương trình nghệ thuật phong phú đa dạng cho tất cả khán giả. Hãy theo dõi chương trình này nhé, rất mong được cùng bạn thưởng thức đại tiệc này! Chúc mọi người giao lưu vui vẻ (ví dụ tham khảo)`
     },
     placeholder2() {
       return `Hạng nhất: 100 xu + 500 đậu
@@ -134,6 +136,7 @@ Hạng nhì: 50 xu + 500 đậu
 Hạng ba: 30 xu + 500 đậu
 (ví dụ tham khảo)`
     }
+
   },
   created() {
     // document.title = '提交申請'
@@ -230,27 +233,27 @@ Hạng ba: 30 xu + 500 đậu
     commitAct() {
       if (!this.comRid) {
         this.vxc('setToast', {
-          msg: 'Mời nhập ID phòng chính xác!'
+          msg: 'Hãy nhập ID phòng chính xác!'
         })
       } else if (this.actTitle == '') {
         this.vxc('setToast', {
-          msg: 'Mời nhập chủ đề tiệc!'
+          msg: 'Hãy nhập chủ đề tiệc!'
         })
       } else if (!this.partyNums) {
         this.vxc('setToast', {
-          msg: 'Mời điền số người dự tính sẽ tham gia!'
+          msg: 'Hãy nhập số người sẽ tham gia!'
         })
       } else if (!this.actType) {
         this.vxc('setToast', {
-          msg: 'Mời chọn ảnh bìa tiệc!'
+          msg: 'Hãy chọn ảnh bìa tiệc!'
         })
       } else if (!this.isChang1 || !this.isChang2) {
         this.vxc('setToast', {
-          msg: 'Hãy nhập đầy đủ thời gian sự kiện'
+          msg: 'Hãy nhập đầy đủ thời gian sự kiện!'
         })
       } else if (this.actTips == '') {
         this.vxc('setToast', {
-          msg: 'Hãy điền thông tin sự kiện!'
+          msg: 'Hãy nhập thông tin sự kiện!'
         })
       } else if (this.needSingUp == -1) {
         this.vxc('setToast', {
@@ -314,8 +317,9 @@ body {
       font-weight: 500;
     }
     input {
+      width: 6rem;
       height: 0.5rem;
-      margin-left: 0.38rem;
+      // margin-left: 0.38rem;
       font-size: 0.26rem;
       color: #fff;
     }
@@ -441,6 +445,9 @@ body {
     color: #a072de;
   }
   textarea::-webkit-input-placeholder {
+    color: #a072de;
+  }
+  input::-webkit-input-placeholder {
     color: #a072de;
   }
   .cSingUp {

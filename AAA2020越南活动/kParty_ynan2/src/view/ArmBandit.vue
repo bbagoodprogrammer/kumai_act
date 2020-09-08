@@ -7,7 +7,7 @@
       <div class="tipsBox" :class="{top:isShare}">
         <span class="ruleTips" @click="showRules()">{{lang.rules}}</span>
         <span class="ruleTips" @click="goBar()" v-if="is_admin">{{lang.myAct}}</span>
-        <span class="ruleTips" @click="goRank()">BXH Party</span>
+        <span class="ruleTips" @click="goRank()">Xếp Hạng</span>
       </div>
       <div class="actTitle"></div>
       <div class="giftTips" :class="{act:giftStates != 2}" @click="getGift()"></div>

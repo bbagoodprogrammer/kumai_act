@@ -4,7 +4,7 @@
     <ul class="caiList">
       <li v-for="(item,index) in desserts" :key="index">
         <div class="name">{{item.name}}
-          <span class="score">清爽值:{{item.score}}</span>
+          <span class="score">清新值:{{item.score}}</span>
         </div>
         <div class="msg">
           <img :src="require(`../assets/img/sweets/sweet_${index}.png`)" alt="">
@@ -88,7 +88,7 @@
                 <img v-lazy="item.avatar" alt="">
               </div>
               <div class="nick">{{item.nick}}</div>
-              <div class="score">清爽值<em>{{item.score}}</em></div>
+              <div class="score">清新值<em>{{item.score}}</em></div>
             </li>
           </ul>
           <div class="inivitBtn" @click="showPelple()"></div>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="nick">
                   <div>{{item.nick}}</div>
-                  <div class="tips">還沒有夏日甜品屋</div>
+                  <div class="tips">還沒有清新甜品屋</div>
                 </div>
                 <div class="shareBtn" :class="{share2:item.status == 1}" @click="shareAct(item,index)"></div>
               </div>
@@ -137,7 +137,7 @@
                   <span class="add" @click="add()"></span>
                 </div>
                 <p class="tips">還可製作總數{{sweetNum.over}}份</p>
-                <p class="overNum" v-if="maxTips">超過可製作數量</p>
+                <!-- <p class="overNum" v-if="maxTips">超過可製作數量</p> -->
               </div>
             </div>
             <div class="creatBtn">
@@ -149,12 +149,12 @@
             <div class="title">製作成功</div>
             <img :src="require(`../assets/img/sweets/sweet_${creatIndex}.png`)" alt="" class="dessertsImg">
             <p class="creatName">{{desserts[creatIndex].name}}x{{cNum}}</p>
-            <p class="creatScore">增加清爽值：{{desserts[creatIndex].score * cNum}}</p>
+            <p class="creatScore">增加清新值：{{desserts[creatIndex].score * cNum}}</p>
             <div class="goPack" @click="doTask('mic')">去背包查看</div>
           </div>
           <div class="creatSuc" v-show="creatType == 2">
             <canvas id="creatAni"></canvas>
-            <p class="doing">夏日清爽甜品製作中......{{rSecond}}s</p>
+            <p class="doing">清新甜品製作中......{{rSecond}}s</p>
           </div>
         </div>
       </transition>
@@ -206,17 +206,17 @@ export default {
         {
           type: 1,
           msg: '水果',
-          tips: '可用於製作薄荷檸檬水、卡通冰激凌、桃桃雪域、草莓綿綿冰'
+          tips: '可用於製作薄荷檸檬水、卡通冰激凌、抹茶蛋糕、草莓綿綿冰'
         },
         {
           type: 2,
           msg: '奶製品',
-          tips: '可用於製作卡通冰激凌、珍珠奶茶、桃桃雪域、草莓綿綿冰'
+          tips: '可用於製作卡通冰激凌、焦糖拿鐵、抹茶蛋糕、草莓綿綿冰'
         },
         {
           type: 3,
           msg: '繽紛小料',
-          tips: '可用於製作珍珠奶茶、桃桃雪域、草莓綿綿冰'
+          tips: '可用於製作焦糖拿鐵、抹茶蛋糕、草莓綿綿冰'
         }
       ],
       rooms: {},
@@ -224,14 +224,14 @@ export default {
       invitedList: [],
       taskName: {
         mic: '在房間上麥15min（私密房不算）',
-        coin: '在房間送出800金幣',
+        coin: '在房間送出500金幣',
         share: '分享活動到line或fb',
         create: '創建/接唱/合聲作品',
         friend: '交友熱力每提升20',
-        invite: '邀請好友開夏日甜品屋',
+        invite: '邀請好友開清新甜品屋',
         charge: '儲值任意金額',
         room: '自己房間的人氣值達到8000',
-        gift: '收到任意夏日甜品禮物15份'
+        gift: '收到任意清新甜品禮物30份'
       },
       creatIndex: 0,
       maxTips: false,
@@ -375,8 +375,8 @@ export default {
           share({
             from: '2',
             url: `http://activity.udateapp.com/static_html/2020/sweetHouse/index.html?type=2&nick=${this.nick}`,
-            title: `我開了一家夏日甜品屋，製作了很多清爽好吃的甜品，快來一起玩吧`,
-            desc: `我開了一家夏日甜品屋，製作了很多清爽好吃的甜品，快來一起玩吧`,
+            title: `我開了一家清新甜品屋，製作了很多清新好吃的甜品，快來一起玩吧`,
+            desc: `我開了一家清新甜品屋，製作了很多清新好吃的甜品，快來一起玩吧`,
             image: 'http://activity.udateapp.com/static_html/2020/sweetHouse/share.jpg'
           })
         } catch (e) { }
@@ -742,7 +742,7 @@ export default {
             justify-content: center;
             padding-left: 0.18rem;
             .name {
-              font-size: 0.28rem;
+              font-size: 0.24rem;
               font-weight: 500;
               i {
                 display: inline-block;

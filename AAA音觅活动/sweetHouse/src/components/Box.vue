@@ -11,7 +11,7 @@
       <transition name="slide">
         <div class="giftBox" v-if="closePup">
           <i class="close" @click="closeGiftPup()"></i>
-          <div class="title">清爽值達到{{packets[showIndex].score}}</div>
+          <div class="title">清新值達到{{packets[showIndex].score}}</div>
           <div class="giftItem">
             <span v-for="(item,index) in gift[showIndex+1].gift" :key="index">
               <span class="imgBox">
@@ -140,7 +140,7 @@ export default {
             }
           })
         } else {
-          this.toast(`您的积分不足哦~快去赚取积分把！`)
+          this.toast(`您的積分不足哦~快去賺取積分吧！`)
         }
       }
     },
@@ -149,8 +149,8 @@ export default {
         share({
           from: this.packets[this.showIndex].score,
           url: `http://activity.udateapp.com/static_html/2020/sweetHouse/index.html?type=${this.packets[this.showIndex].score}&uid=${this.uid}&score=${this.packets[this.showIndex].score}`,
-          title: `制作了多款夏日清爽甜品，清爽值达到${this.score}`,
-          desc: `制作了多款夏日清爽甜品，清爽值达到${this.score}`,
+          title: `制作了多款清新甜品，清新值达到${this.score}`,
+          desc: `制作了多款清新甜品，清新值达到${this.score}`,
           image: 'http://activity.udateapp.com/static_html/2020/sweetHouse/share.jpg'
         })
       } catch (e) { }

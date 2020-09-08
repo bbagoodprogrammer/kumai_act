@@ -8,15 +8,15 @@
       <Box :nick="nick" />
       <div class="house" :class="{easy: !reg ||  easy.less.length > 1}">
         <div class="userTitle">
-          <p v-if="!reg">你的夏日甜品屋還沒開張 <strong>清爽值:????</strong> </p>
+          <p v-if="!reg">你的清新甜品屋還沒開張 <strong>清新值:????</strong> </p>
           <div class="userHouers" v-else>
-            <p><em>{{nick}}</em>的夏日甜品屋</p>
-            <strong>清爽值：{{score}}</strong>
+            <p><em>{{nick}}</em>的清新甜品屋</p>
+            <strong>清新值：{{score}}</strong>
           </div>
         </div>
         <div class="people"></div>
         <div class="sweetsStatus" v-if="reg && easy.less.length == 0">
-          <p class="ok">有可製作的夏日<br />清爽甜品</p>
+          <p class="ok">有可製作的清新<br />清新甜品</p>
           <span class="scorllTop" @click="scorllTo()">點擊製作</span>
         </div>
         <div class="sweetsStatus" v-else-if="reg && easy.less.length == 1 ">
@@ -68,7 +68,7 @@
               </div>
             </li>
           </ul>
-          <p>成功邀請你開張夏日甜品屋的好友，<br />有機會獲得 <i></i> x5份</p>
+          <p>成功邀請你開張清新甜品屋的好友，<br />有機會獲得 <i></i> x5份</p>
           <div class="singUpBtn" @click="invitSingUp()"></div>
         </div>
       </transition>
@@ -200,7 +200,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.showInviatPup = false
           this.vxc('setReg', true)
-          this.toast('你的夏日甜品屋開張啦！！<br/>快去製作清爽甜品吧')
+          this.toast('你的清新甜品屋開張啦！！<br/>快去製作清新甜品吧')
         } else {
           this.toast(res.data.response_status.error)
         }

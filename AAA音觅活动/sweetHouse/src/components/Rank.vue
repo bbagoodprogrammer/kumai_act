@@ -9,7 +9,7 @@
           <img v-lazy="item.avatar" alt="">
         </div>
         <div class="nick">{{item.nick}}</div>
-        <div class="score">清爽值<em>{{item.score}}</em></div>
+        <div class="score">清新值<em>{{item.score}}</em></div>
       </li>
     </ul>
     <div class="userMsg" v-if="reg">
@@ -19,7 +19,7 @@
         <img v-lazy="omerMsg.avatar" alt="">
       </div>
       <div class="nick">{{omerMsg.nick}}</div>
-      <div class="score">清爽值<em>{{omerMsg.score}}</em></div>
+      <div class="score">清新值<em>{{omerMsg.score}}</em></div>
     </div>
   </div>
 </template>

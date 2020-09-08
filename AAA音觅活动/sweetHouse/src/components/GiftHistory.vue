@@ -7,7 +7,7 @@
         <div class="time">{{getTime(item.list[0].time,1)}}</div>
         <div class="taskItem" v-for="(item2,index2) in item.list" :key="index2">
           <span class="name">{{item2.type=='raw'?taskName[item2.key]:`製作${item2.name}*${item2.count}份`}}</span>
-          <span class="wards">{{item2.type=='raw'?`${item2.name}+${item2.count}`:`清爽值+${item2.score}`}}</span>
+          <span class="wards">{{item2.type=='raw'?`${item2.name}+${item2.count}`:`清新值+${item2.score}`}}</span>
           <span class="timeItem">{{getTime(item2.time,2)}}</span>
         </div>
       </li>
@@ -36,14 +36,14 @@ export default {
       loading: false,
       taskName: {
         mic: '在房間上麥15min（私密房不算）',
-        coin: '在房間送出800金幣',
+        coin: '在房間送出500金幣',
         share: '分享活動到line或fb',
         create: '創建/接唱/和聲作品',
         friend: '交友熱力每提升20',
-        invite: '邀請好友開夏日甜品屋',
+        invite: '邀請好友開清新甜品屋',
         charge: '儲值任意金額',
         room: '自己房間的人氣值達到5000',
-        gift: '收到任意夏日甜品禮15份',
+        gift: '收到任意清新甜品禮15份',
         sharep: '進階分享'
       },
     }
