@@ -4,7 +4,7 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-            <em>恭喜{{item.nick}}成功製作{{item.dessert}}{{item.count}}份,獲得{{item.score}}清爽值</em>
+            <em>恭喜{{item.nick}}成功製作{{item.dessert}}{{item.count}}份,獲得{{item.score}}清新值</em>
           </li>
         </ul>
       </div>

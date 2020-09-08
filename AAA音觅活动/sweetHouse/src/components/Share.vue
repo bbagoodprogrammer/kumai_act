@@ -6,8 +6,8 @@
           <img v-lazy="info.avatar" alt="">
           <div class="msg">
             <div class="nick">{{info.nick}}</div>
-            <div class="tips">製作了多款夏日清爽甜品</div>
-            <p class="tips">清爽值達到了<em>{{score}}</em> </p>
+            <div class="tips">製作了多款清新甜品</div>
+            <p class="tips">清新值達到了<em>{{score}}</em> </p>
           </div>
         </div>
         <img src="../assets/img/share/share1Img.png" alt="" class="share1Img">
@@ -24,10 +24,10 @@
     <div class="share2" v-else>
       <div class="shareCon">
         <div class="tips">
-          <p>我開了一家夏日甜品屋，製作了很多清爽好吃的甜品，快來一起玩吧。</p>
+          <p>我開了一家清新甜品屋，製作了很多清新好吃的甜品，快來一起玩吧。</p>
         </div>
         <div class="house">
-          <p class="houseName"><em>{{nick}}</em> 的夏日甜品屋</p>
+          <p class="houseName"><em>{{nick}}</em> 的清新甜品屋</p>
         </div>
         <h6>收穫限量禮物</h6>
         <div class="gift">
