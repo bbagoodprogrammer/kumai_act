@@ -205,17 +205,17 @@ export default {
         {
           type: 1,
           msg: 'Trái cây',
-          tips: 'Dùng để chế biến nước ép chanh bạc hà, Kem tươi, kem đào bào tuyết,Kem dây tây'
+          tips: 'Dùng để chế biến Coffe Caramel, Bánh kem, kem dâu tây'
         },
         {
           type: 2,
           msg: 'Sữa',
-          tips: 'Dùng để chế biến Kem tươi, trà sữa trân châu, kem đào bào tuyết,Kem dây tây'
+          tips: 'Dùng để chế biến kem tươi,  Coffe Caramel, Bánh kem, kem dâu tây'
         },
         {
           type: 3,
           msg: 'Hạt đa sắc',
-          tips: 'Dùng để chế biến trà sữa trân châu, kem đào bào tuyết,Kem dây tây'
+          tips: 'Dùng để chế biến Coffe Caramel, Bánh kem, kem dâu tây'
         }
       ],
       rooms: {},
@@ -223,7 +223,7 @@ export default {
       invitedList: [],
       taskName: {
         mic: ' Lên mic trong phòng 15 phút (phòng khóa không tính) ',
-        coin: 'Phòng tặng đi 800 xu',
+        coin: 'Phòng tặng đi 500 xu',
         share: 'chia sẻ tới bạn bè ngoài app',
         create: 'Tạo tác phẩm mới/đăng tác phẩm hát nối/đăng tác phẩm song ca',
         friend: 'Tăng điểm kết bạn 20',

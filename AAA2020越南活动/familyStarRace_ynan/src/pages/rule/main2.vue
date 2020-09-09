@@ -50,6 +50,7 @@
       <p>Hạng 4-10: Huy chương Người Bảo Hộ (30 ngày) + 2000 đậu</p>
       <h3>Phần thưởng túi quà gia tộc:</h3>
       <img src="../../assets/img/giftImg.png" alt="" class="giftBox">
+      <p class="tips">Toàn bộ túi quà được hệ thống phát ngẫu nhiên, bảng phần thưởng chỉ liệt kê phần thưởng quý hiếm.</p>
       <h3>Tất cả túi quà thưởng do hệ thống tự động gửi, trên giao diện chỉ hiện một số phần thưởng hiếm.</h3>
       <h3 class="other">Ghi chú:</h3>
       <p>1. Gia tộc vào vòng Ngôi Sao Xuất Hiện nếu không đủ 10 thành viên, số lượng thưởng dư ra sẽ bị mất.</p>
@@ -63,23 +64,23 @@
       <h3>Thể lệ</h3>
       <p>Cuộc thi Ngôi Sao Gia Tộc chia làm 3 vòng: Sao Lấp Lánh – Sao Sáng Nhất – Ngôi Sao Xuất Hiện, chỉ người đã vào gia tộc mới được tham gia.</p>
       <h3>Sao Lấp Lánh:</h3>
-      <p>1. Thời gian<em class="tm"> 12:00 19/8 - 22:00 22/8</em> </p>
+      <p>1. Thời gian<em class="tm"> 12:00 18/9 - 22:00 22/9</em> </p>
       <p>2. Người đã vào gia tộc nhấn báo danh tham gia sự kiện, điểm sao = mị lực quà xu nhận từ bài hát/phòng Kara, top 300 BXH Tổng đại diện gia tộc vào vòng sau.</p>
       <p>3. BXH Ngày dựa vào điểm sao nhận trong ngày, top 100 được tham gia rút thưởng, mỗi ngày chọn 20 người nhận túi quà Sao Lấp Lánh (68 xu). Tỷ lệ trúng = điểm sao trong ngày/tổng điểm sao của top 100</p>
       <p>4. Thoát gia tộc trong thời gian vòng thi Sao Lấp Lánh sẽ xoá điểm trên BXH, không được rút thưởng, sau khi vào gia tộc khác tính điểm lại từ đầu.</p>
       <h3>Sao Sáng Nhất</h3>
       <p>
-        1.Thời gian:<em class="tm">22:05 22/8 - 18:00 27/8</em><br />
+        1.Thời gian:<em class="tm">22:05 22/9 - 18:00 26/9</em><br />
         2. Người vào vòng sau nếu cùng gia tộc sẽ tạo thành 1 đội, đại diện gia tộc tham gia thi đấu. Cặp đấu được ghép cặp ngẫu nhiên và dựa vào điểm sao để xác định thắng thua. Đội thắng được vào vòng sau và nhận túi quà gia tộc. Điểm sao = mị lực quà xu nhận từ bài hát/phòng Kara.<br />
         3. Nếu khi kết thúc vòng thi điểm số bằng nhau, 2 đội đều bị loại, thua cuộc nhưng điểm sao đạt từ 300k trở lên cũng được vào vòng sau.<br />
         4. Thí sinh vào vòng sau nhưng thoát gia tộc sẽ không bị trừ điểm BXH Tổng, khi vào lại gia tộc sẽ bảo lưu điểm số và tính tiếp, nếu vào gia tộc khác xem như bị loại, không thể tham gia thi đấu tiếp.<br />
         5. Mỗi gia tộc có 30 phần thưởng túi quà, mỗi người tối đa nhận 1 phần thưởng, vòng thi kết thúc sẽ tự động phát thưởng.
       </p>
       <h3>Sao Xuất Hiện</h3>
-      <p>1. Thời gian: <em class="tm">18:05 27/8 - 22:00 28/8</em> <br />
-        2. Điểm sao = mị lực quà xu nhận từ bài hát + phòng Kara, 20 – 22h ngày 28/8 được tăng 10%.<br />
-        3. Gia tộc qua vòng dựa theo xếp hạng BXH Tổng, top 10 gia tộc và đại diện gia tộc trở thành Ngôi Sao Gia Tộc và nhận thưởng.<br />
-        4. Điểm sao tổng đạt đến điểm số yêu cầu sẽ tăng cấp gia tộc, hệ thống tự động phát thưởng Túi quà. Cấp I, II, III tương ứng 100k, 300k, 1000k điểm sao. Túi quà lần lượt gồm 30, 50, 100 phần.<br />
+      <p>1. Thời gian: <em class="tm">18:05 26/9 - 22:00 27/9</em> <br />
+        2. Điểm sao = mị lực quà xu nhận từ bài hát + phòng Kara, 20 – 22h ngày 27/9 được tăng 10%.<br />
+        Khi kết thúc vòng đấu nếu cả 2 bằng điểm nhau đều sẽ bị loại, PK thua nhưng tổng điểm sao đạt 300k trở lên cũng được vào vòng sau<br />
+        4. Điểm sao tổng đạt đến điểm số yêu cầu sẽ tăng cấp gia tộc, hệ thống tự động phát thưởng Túi quà. Cấp I, II, III tương ứng 10k, 100k, 500k điểm sao. Túi quà lần lượt gồm 30, 50, 100 phần.<br />
         5. Thí sinh vào vòng sau nhưng thoát gia tộc sẽ không bị trừ điểm BXH Tổng, khi vào lại gia tộc sẽ bảo lưu điểm số và tính tiếp, nếu vào gia tộc khác xem như bị loại, không thể tham gia thi đấu tiếp.
       </p>
       <h3 class="other">Ghi chú:</h3>
@@ -88,7 +89,8 @@
         2. Túi quà gia tộc được thưởng có thể xem tại Chi tiết thưởng.<br />
         3. BXH ngày sẽ phát thưởng vào 24h mỗi ngày, ngày cuối cuộc thi gửi vào 22h.<br />
         4. Bài hát dự thi phải là bài hát công khai đăng sau 12h 19/8 (trừ hát chay 5 phút), có thể đăng nhiều bài hát dự thi, sau khi báo danh mới tính quà nhận, nếu xoá bài hát trong thời gian sự kiện, điểm số từ bài hát cũng sẽ mất.<br />
-        5. Trong thời gian sự kiện nếu phát hiện bất cứ hành vi gian lận điểm nào, thí sinh sẽ bị loại và huỷ phần thưởng, nếu nghiêm trọng sẽ khoá tài khoản.
+        5.Toàn bộ túi quà được hệ thống gửi tự động, mỗi người 1 lần nhận tối đa 1 phần thưởng
+        6. Trong thời gian sự kiện nếu phát hiện bất cứ hành vi gian lận điểm nào, thí sinh sẽ bị loại và huỷ phần thưởng, nếu nghiêm trọng sẽ khoá tài khoản.
       </p>
     </div>
     <p class="lastTips">Quyết định của ban tổ chức là quyết định cuối cùng.</p>
@@ -208,6 +210,9 @@ body {
     text-align: center;
     color: rgba(124, 67, 48, 1);
     margin-top: 1.53rem;
+  }
+  .tips {
+    padding: 0 0.2rem;
   }
 }
 @import "../../assets/scss/common.scss";

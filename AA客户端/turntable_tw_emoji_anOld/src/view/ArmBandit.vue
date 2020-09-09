@@ -43,7 +43,7 @@ export default {
   data() {
     return {
       showT: false,  //提示弹窗显示
-      tastMsg: "提示信息",  //基础弹窗提示信息
+      tastMsg: "",  //基础弹窗提示信息
       roolmsg: "",
       shoCom: 'Trun',
       contMaxHeigth: null
