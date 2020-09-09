@@ -63,6 +63,7 @@
             <p>3、每一首伴奏僅可選擇一首作品參賽</p>
             <p>4、每期可選擇多首伴奏參加打擂</p>
             <p>5、演唱歌曲需為完整歌曲（歌曲時長最多比伴奏時長短30S），否則無法提交歌曲參賽</p>
+            <p>6、若活動期間刪除一首打擂歌曲，則分數扣一分</p>
           </div>
         </div>
       </transition>
@@ -340,12 +341,12 @@ export default {
   }
   .choiceSong {
     width: 5.7rem;
-    height: 7.23rem;
+    // height: 7.23rem;
     background: rgba(116, 68, 255, 1);
     border: 0.04rem solid rgba(213, 197, 255, 1);
     border-radius: 0.4rem;
     position: relative;
-    padding: 0.45rem 0.23rem 0;
+    padding: 0.45rem 0.23rem 0.15rem;
     h3 {
       color: rgba(255, 213, 86, 1);
       font-size: 0.36rem;

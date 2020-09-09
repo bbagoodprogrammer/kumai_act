@@ -7,9 +7,9 @@
     <div class="mt">
       <div class="wardsBox"></div>
       <div class="listTab">
-        <a href="" class="works" :class="{active:showComponent === 'works'}" @click.prevent="updateWorks('works')">صلاة الأعمال</a>
-        <a href="" class="kRoom" :class="{active:showComponent === 'kRoom'}" @click.prevent="updateKroom('kRoom')">صلاة غرفة الغناء</a>
-        <a href="" class="people" :class="{active:showComponent === 'people'}" @click.prevent="updatePeople('people')">صلاة الشعبية</a>
+        <a href="" class="works" :class="{active:showComponent === 'works'}" @click.prevent="updateWorks('works')">قائمة الأعمال</a>
+        <a href="" class="kRoom" :class="{active:showComponent === 'kRoom'}" @click.prevent="updateKroom('kRoom')">قائمة غرفة الغناء</a>
+        <a href="" class="people" :class="{active:showComponent === 'people'}" @click.prevent="updatePeople('people')">قائمة الشعبية</a>
       </div>
       <component :is="showComponent"></component>
     </div>

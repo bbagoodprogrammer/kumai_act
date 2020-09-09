@@ -41,10 +41,10 @@ export default {
         APP()
         return
       } else if (this.actStatus === 0) {
-        this.tastMsg = "活動未開始！"
+        this.tastMsg = ""
         this.showT = true
       } else if (this.actStatus === 2) {
-        this.tastMsg = "活動已結束！"
+        this.tastMsg = ""
         this.showT = true
       } else {
         callback()

@@ -7,7 +7,7 @@
         <span :class="{act:type==1}" @click="tabClick(1)">Thể lệ </span>
         <span :class="{act:type==2}" @click="tabClick(2)">Giai thưởng</span>
       </div>
-      <p class="actTime">Thời gian: 18:00 20/7/2020-18:00 20/8/2020</p>
+      <p class="actTime">Thời gian: 18:00 9/9- 18:00 23/9</p>
       <div class="tipsCon">
         <div class="tips1" v-if="type==1">
           <h6>Cách chế biến đồ ngọt cho gian hàng của bạn?</h6>
