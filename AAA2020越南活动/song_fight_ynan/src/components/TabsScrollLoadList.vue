@@ -22,7 +22,7 @@
           <strong class="songNum" v-if="mainTab==0">Bài hát Võ Đài: {{item.songs}}</strong>
         </div>
         <div class="score">
-          <em v-if="mainTab==0">Điểm kỳ này:{{item.star}}</em>
+          <em v-if="mainTab==0">Điểm kỳ này: {{item.star}}</em>
           <em v-else>Cấp mùa này: <i>Lv.{{item.star}}</i></em>
           <!-- <em>平均支持率：<i>{{item.pp}}%</i> </em> -->
         </div>

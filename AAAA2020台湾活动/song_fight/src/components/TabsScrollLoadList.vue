@@ -20,7 +20,7 @@
         <div class="nick">
           <strong class="userNick">{{item.userinfo.nick}}</strong>
           <strong class="songNum" v-if="mainTab==0">打擂歌曲數：{{item.songs}}</strong>
-          <strong class="songNum">已刪除歌曲數量：{{item.del}}</strong>
+          <strong class="songNum" v-if="mainTab==0">已刪除歌曲數量：{{item.del}}</strong>
         </div>
         <div class="score">
           <em v-if="mainTab==0">本期分數：{{item.star}}</em>
@@ -336,7 +336,7 @@ export default {
       display: flex;
       align-items: center;
       position: relative;
-      margin-bottom: 0.06rem;
+      margin-bottom: 0.1rem;
       .rank {
         width: 0.76rem;
         height: 0.65rem;

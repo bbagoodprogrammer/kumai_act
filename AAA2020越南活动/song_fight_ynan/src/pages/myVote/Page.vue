@@ -15,7 +15,7 @@
     <div class="preResTime" v-for="(item,index) in list " :key="index">
       <div class="timeTips">
         <p class="noRes" v-if="item.result == 0">{{getDate(item.etime,2)}}công bố kết quả bỏ phiếu</p>
-        <p v-else><span class="time">{{getDate(item.stime,1)}}-{{getDate(item.etime,1)}}</span> Chọn {{item.counts}} nhóm， tỷ lệ trúng {{item.right}}%<span v-if="item.title!=0">，nhận danh hiệu {{err[item.title]}}</span> <br /> <strong v-if="item.eight >=2">{{item.eight}} lần chọn trúng liên tiếp {{(list.length -1) == index?8:5}} nhóm</strong> </p>
+        <p v-else><span class="time">{{getDate(item.stime,1)}}-{{getDate(item.etime,1)}}</span> Chọn {{item.counts}} nhóm， tỷ lệ trúng {{item.right}}%<span v-if="item.title!=0">，nhận danh hiệu {{err[item.title]}}</span> <br /> <strong v-if="item.eight > 0">{{item.eight}} lần chọn trúng liên tiếp {{(list.length -1) == index?8:5}} nhóm</strong> </p>
       </div>
       <VoteSongList :list="item.list" :index="index" v-if="item.list" />
     </div>

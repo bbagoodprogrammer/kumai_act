@@ -63,6 +63,7 @@
             <p>2. Chỉ được tham gia bằng bài hát đơn ca.</p>
             <p>3. Mỗi bài hát chỉ được tham dự 1 lần.</p>
             <p>4. Mỗi kỳ có thể chọn nhiều bài hát để dự thi.</p>
+            <p>5. Bài hát dự thi phải là bài hát hoàn chỉnh (thời gian bài hát chỉ có thể ngắn hơn thời gian nhạc nền 30s), nếu không sẽ không thể gửi bài hát</p>
           </div>
         </div>
       </transition>
@@ -342,12 +343,11 @@ export default {
   }
   .choiceSong {
     width: 5.7rem;
-    height: 7.23rem;
     background: rgba(116, 68, 255, 1);
     border: 0.04rem solid rgba(213, 197, 255, 1);
     border-radius: 0.4rem;
     position: relative;
-    padding: 0.45rem 0.23rem 0;
+    padding: 0.45rem 0.23rem 0.15rem;
     h3 {
       color: rgba(255, 213, 86, 1);
       font-size: 0.36rem;

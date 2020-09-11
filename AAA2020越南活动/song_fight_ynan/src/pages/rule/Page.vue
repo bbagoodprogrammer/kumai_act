@@ -25,8 +25,8 @@
       <p>Huy chương Sao Âm Nhạc + 300 xu + VIP 1 tháng + 600 đậu</p>
       <p>Hạng 51-100: Âm Nhạc Sĩ</p>
       <p>Huy chương Âm Nhạc Sĩ + 100 xu + VIP 1 tháng + 300 đậu</p>
-      <h6>Thường dự thi:</h6>
-      <p>Mỗi người báo danh thành công (có 1 bài hát tham gia thi đấu trước khi sự kiện kết thúc), sau khi sự kiện kết thúc nhận thưởng 20 đậu.</p>
+      <h6 class="red">Thường dự thi:</h6>
+      <p class="red">Mỗi người báo danh thành công (có 1 bài hát tham gia thi đấu trước khi sự kiện kết thúc), sau khi sự kiện kết thúc nhận thưởng 20 đậu.</p>
       <h6>Thưởng giám khảo:</h6>
       <p>1. Mỗi giám khảo mỗi ngày bình chọn 30 bài đầu, mỗi chọn 1 bài được thưởng 2 đậu. (gửi thưởng ngay sau chọn bài)<br />
         2. Mỗi kỳ liên tục chọn trúng 5 bài có thể nhận ngẫu nhiên 1 túi quà Hộp Nhạc (360 đậu) / Túi quà Kẹo Bông (1 xu) / VIP (2 ngày) / Chiến Đấu Cơ (2 ngày).</p>
@@ -65,9 +65,10 @@
         <p>2. Chỉ được tham gia bằng bài hát đơn ca.</p>
         <p>3. Mỗi bài hát chỉ được tham dự 1 lần.</p>
         <p>4. Mỗi kỳ có thể chọn nhiều bài hátk để dự thi.</p>
-        <p>5. Nếu sau khi chọn bài hát dự thi và ghép cặp đấu xong, thí sinh xoá bài hát dự thi xem như bỏ thi đấu, thành tích bài hát dự thi của cả 2 đều tính là thất bại, thí sinh còn lại tiếp tục tham gia lượt ghép cặp đấu tiếp theo.</p>
-        <p>6. Hệ thống sẽ tự động ghép 2 thí sinh dự thi có ca khúc tương đồng thành 1 cặp đấu, sau đó cho giám khảo bình chọn bằng cách bỏ phiếu. Tính đến khi sự kiện kết thúc, thí sinh nào nhận nhiều phiếu hơn sẽ thắng cuộc.</p>
-        <p>7. Nếu 1 bài hát cả 2 thí sinh nhận tổng cộng từ 50 phiếu trở lên, và 1 thí sinh chiếm từ 80% số phiếu trở lên (tức là số phiếu của 1 thí sinh chia cho tổng số phiếu của bài hát đạt từ 80% trở lên), thí sinh thắng cuộc nhận thêm 2 điểm, thí sinh thua cuộc trừ 1 điểm. Nếu bài hát nhận dưới 50 phiếu hoặc thí sinh thắng cuộc không chiếm tới 80% số phiếu, thí sinh thắng cuộc nhận thêm 1 điểm, thí sinh thua cuộc trừ 1 điểm.Nếu số điểm hai bên bằng nhau, hai người thi đấu sẽ không nhận thêm hoặc trừ điểm, người giám khảo cũng không tính vào chọn trúng.</p>
+        <p>5. Bài hát dự thi phải là bài hát hoàn chỉnh (thời gian bài hát chỉ có thể ngắn hơn thời gian nhạc nền 30s), nếu không sẽ không thể gửi bài hát</p>
+        <p>6. Nếu sau khi chọn bài hát dự thi và ghép cặp đấu xong, thí sinh xoá bài hát dự thi xem như bỏ thi đấu, thành tích bài hát dự thi của cả 2 đều tính là thất bại, thí sinh còn lại tiếp tục tham gia lượt ghép cặp đấu tiếp theo.</p>
+        <p>7. Hệ thống sẽ tự động ghép 2 thí sinh dự thi có ca khúc tương đồng thành 1 cặp đấu, sau đó cho giám khảo bình chọn bằng cách bỏ phiếu. Tính đến khi sự kiện kết thúc, thí sinh nào nhận nhiều phiếu hơn sẽ thắng cuộc.</p>
+        <p>8. Nếu 1 bài hát cả 2 thí sinh nhận tổng cộng từ 50 phiếu trở lên, và 1 thí sinh chiếm từ 80% số phiếu trở lên (tức là số phiếu của 1 thí sinh chia cho tổng số phiếu của bài hát đạt từ 80% trở lên), thí sinh thắng cuộc nhận thêm 2 điểm, thí sinh thua cuộc trừ 1 điểm. Nếu bài hát nhận dưới 50 phiếu hoặc thí sinh thắng cuộc không chiếm tới 80% số phiếu, thí sinh thắng cuộc nhận thêm 1 điểm, thí sinh thua cuộc trừ 1 điểm.Nếu số điểm hai bên bằng nhau, hai người thi đấu sẽ không nhận thêm hoặc trừ điểm, người giám khảo cũng không tính vào chọn trúng.</p>
       </div>
       <h6>Thể lệ xếp hạng Bảng Võ Đài mỗi kỳ: </h6>
       <p>1. Xếp hạng theo điểm số thí sinh nhận được mỗi kỳ. Nếu điểm số bằng nhau, bài hát nhận nhiều phiếu hơn sẽ xếp hạng cao hơn.</p>
@@ -137,6 +138,9 @@ export default {
 
 <style lang="scss">
 body {
+  .red {
+    color: red !important;
+  }
   background: rgba(117, 67, 240, 1);
   .mTips {
     p {
