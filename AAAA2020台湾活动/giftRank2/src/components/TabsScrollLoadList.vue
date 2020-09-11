@@ -2,8 +2,8 @@
   <div class="rankGroups">
     <!-- 三個類別 -->
     <div class="typeMainTabs">
-      <span @click="setShowType(1)" :class="{act:showType == 1}">創作者榜</span>
-      <span @click="setShowType(2)" :class="{act:showType == 2}">房主榜</span>
+      <span @click="setShowType(1)" :class="{act:showType == 1}">簽約者榜</span>
+      <span @click="setShowType(2)" :class="{act:showType == 2}">簽約房間榜</span>
       <span @click="setShowType(3)" :class="{act:showType == 3}">用戶榜</span>
     </div>
     <!-- 日榜、总榜切换主Tabs -->
@@ -52,8 +52,8 @@
           <em>秒</em>
         </div>
       </div>
-      <p class="rankTips" v-if="showType==1">按照簽約創作者收到的作品和K房特定禮物金幣數排名 <span v-if="mainTab == 0">日榜前3獎勵分別獎勵榜單金幣3%/2.5%/2%現金分成</span> </p>
-      <p class="rankTips" v-if="showType==2">按照簽約房主的房間收到的K房特定禮物金幣數排名 <span v-if="mainTab == 0"> 日榜前3名分別獎勵榜單金幣2%/1.5%/1%現金分成</span> </p>
+      <p class="rankTips" v-if="showType==1">按照簽約者收到的作品和K房特定禮物金幣數排名 <span v-if="mainTab == 0">日榜前3獎勵分別獎勵榜單金幣3%/2.5%/2%現金分成</span> </p>
+      <p class="rankTips" v-if="showType==2">按照簽約者的房間收到的K房特定禮物金幣數排名 <span v-if="mainTab == 0"> 日榜前3名分別獎勵榜單金幣2%/1.5%/1%現金分成</span> </p>
       <p class="rankTips" v-if="showType==3">按照用戶報名後收到的作品和K房特定活動禮物金幣數排名<span v-if="mainTab == 0">日榜前3名分別獎勵榜單金幣8%/5%/3%金幣分成</span></p>
     </div>
     <ul v-if="mainTab==0" class="list day">

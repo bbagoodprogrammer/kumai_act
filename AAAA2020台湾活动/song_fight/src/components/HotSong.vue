@@ -45,6 +45,7 @@
         <div class="choiceSong" v-if="cSongPup">
           <i class="close" @click="closeSongPup()"></i>
           <h3>選擇你最滿意的打擂作品參賽吧</h3>
+          <p class="red">歌曲提交后，若活動期間刪除一首打擂歌曲，則分數扣一分</p>
           <ul class="choiceSongList">
             <li v-for="(item,index) in mySong" :key="index">
               <div class="songMsg">
@@ -63,7 +64,6 @@
             <p>3、每一首伴奏僅可選擇一首作品參賽</p>
             <p>4、每期可選擇多首伴奏參加打擂</p>
             <p>5、演唱歌曲需為完整歌曲（歌曲時長最多比伴奏時長短30S），否則無法提交歌曲參賽</p>
-            <p>6、若活動期間刪除一首打擂歌曲，則分數扣一分</p>
           </div>
         </div>
       </transition>
@@ -352,6 +352,11 @@ export default {
       font-size: 0.36rem;
       text-align: center;
       font-weight: 600;
+    }
+    .red {
+      color: red;
+      text-align: center;
+      font-size: 0.24rem;
     }
     .choiceSongList {
       margin-top: 0.37rem;

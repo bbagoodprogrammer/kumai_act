@@ -15,7 +15,7 @@
     <div class="preResTime" v-for="(item,index) in list " :key="index">
       <div class="timeTips">
         <p class="noRes" v-if="item.result == 0">{{getDate(item.etime,2)}}公佈投票結果</p>
-        <p v-else><span class="time">{{getDate(item.stime,1)}}-{{getDate(item.etime,1)}}</span>投選{{item.counts}}組，投中率{{item.right}}%<span v-if="item.title!=0">，獲得{{err[item.title]}}稱號</span> <br /> <strong v-if="item.eight >=2">{{item.eight}}次連投8組投中</strong> </p>
+        <p v-else><span class="time">{{getDate(item.stime,1)}}-{{getDate(item.etime,1)}}</span>投選{{item.counts}}組，投中率{{item.right}}%<span v-if="item.title!=0">，獲得{{err[item.title]}}稱號</span> <br /> <strong v-if="item.eight > 0">{{item.eight}}次連投8組投中</strong> </p>
       </div>
       <VoteSongList :list="item.list" :index="index" v-if="item.list" />
     </div>
