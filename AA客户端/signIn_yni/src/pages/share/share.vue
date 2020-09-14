@@ -119,7 +119,7 @@ export default {
   methods: {
     share() {
       if (this.type == 2) {
-        APP(`hsing://wekarapp.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `Gaoge://inviteCode=${this.inviteCode}`)
+        APP(`wekara://wekarapp.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `Gaoge://inviteCode=${this.inviteCode}`)
       } else {
         var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
         var ua = navigator.userAgent;

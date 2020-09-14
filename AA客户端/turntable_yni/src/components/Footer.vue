@@ -285,6 +285,8 @@ export default {
         line-height: 0.4rem;
         color: #cccccc;
         padding: 0.39rem 0.28rem 0.53rem;
+        height: 5rem;
+        overflow-y: scroll;
         p {
           font-size: 0.26rem;
         }

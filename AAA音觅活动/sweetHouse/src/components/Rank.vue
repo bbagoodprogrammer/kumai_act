@@ -145,7 +145,7 @@ export default {
     }
     &.list1 {
       width: 2.2rem;
-      height: 3.18rem;
+      height: 3.45rem;
       flex-direction: column;
       background: none;
       margin: 0 auto;
