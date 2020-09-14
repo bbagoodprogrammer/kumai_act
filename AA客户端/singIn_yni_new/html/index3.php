@@ -44,7 +44,7 @@ if($response_info && isset($response_info['response_data'])){
     <meta property="og:image" content="<?php echo $headImg; ?>">
     <meta property="og:image:width" content="330">
     <meta property="og:image:height" content="330">
-    <title>好友助力</title>
+    <title>Teman bantuan</title>
     <script>
         (function (doc, win) {
             var docEl = doc.documentElement,
@@ -129,7 +129,7 @@ if($response_info && isset($response_info['response_data'])){
                 if (ret) {
                     this.downTimeGo(this.second)
                 } else {
-                    toast(`該邀請已過期！請重新分享。`)
+                    toast(`Undangan ini udah kedaluwarsa! Silakan bagikan lagi.`)
                 }
             },
             computed: {
@@ -140,9 +140,9 @@ if($response_info && isset($response_info['response_data'])){
             methods: {
                 share: function () {
                     if (this.second <= 0) return
-                    openApp("hsing://17sing.tw/" + "\{\"inviteCode\":\"" + inviteCode + "\"\}",
+                    openApp("wekara://wekarapp.com/" + "\{\"inviteCode\":\"" + inviteCode + "\"\}",
                         null, null,
-                        "Gaoge://inviteCode=" + inviteCode)
+                        "wekara://inviteCode=" + inviteCode)
                 },
                 downTimeGo: function () {
                     var hour = 0
