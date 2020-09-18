@@ -63,7 +63,7 @@
       <p class="rankTips" v-if="showType==1 && mainTab == 0">星光值=作品+K房收禮金幣魅力值 </p>
       <p class="rankTips" v-if="showType==1 && mainTab == 1">
         星光值=作品+K房收禮金幣魅力值<br />
-        依據星光閃耀期間總星光值排名，前300名晉級下一賽段
+        依據星光閃耀期間總星光值排名，前500名晉級下一賽段
       </p>
       <p class="rankTips" v-if="showType==2">星光值=作品+K房收禮金幣魅力值<br />
         同一家族晉級者組成團隊，代表家族參與PK<br />
