@@ -14,7 +14,19 @@ const store = new Vuex.Store({
             cb: null
         },
         isShare: false, //分享
-        roolMsg: []
+        roolMsg: [],
+        rankGroups: {},  //储存當天的信息
+        groupsUserMsg: {},  //儲存各種天數的個人信息
+        second: 0,
+        steps: {},
+        position: 0,
+        owner: {},
+        dice: 0,
+        day: {},
+        total: {},
+        reg: false,
+        tab: 0,
+        dayTask: {}
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -43,8 +55,71 @@ const store = new Vuex.Store({
             state.toastObj.toast = false
         },
         setRoolMsg(state, val) {
-            console.log(val)
             state.roolMsg = val
+        },
+        changGroupsUserMsg(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.groupsUserMsg = Object.assign({}, state.groupsUserMsg, { [key]: Object.assign({}, state.groupsUserMsg[key], obj) });
+            }
+        },
+        updateRankGroups(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.rankGroups = Object.assign({}, state.rankGroups, { [key]: Object.assign({}, state.rankGroups[key], obj) });
+            }
+        },
+        setTaskGiftStatus(state, key) {
+
+            state.dayTask.tasks[key].got = 1
+        },
+        setSecond(state, val) {
+            state.second = val
+        },
+        setSteps(state, val) {
+            state.steps = val
+        },
+        setPosition(state, val) {
+            state.position = val
+        },
+        setOwner(state, val) {
+            state.owner = val
+        },
+        setDice(state, val) {
+            state.dice = val
+        },
+        setDay(state, val) {
+            state.day = val
+        },
+        setTotal(state, val) {
+            state.total = val
+        },
+        setReg(state, val) {
+            state.reg = val
+        },
+        changTab(state, val) {
+            state.tab = val
+        },
+        setDayTask(state, val) {
+            state.dayTask = val
+        },
+        setBalance(state, val) {
+            state.dayTask.balance = val
+        },
+        addPosition(state) {
+            if (state.position >= 21) {
+                state.position = 0
+            } else {
+                state.position++
+            }
+        },
+        reduexDiceNum(state, val) {
+            state.dice--
+        },
+        addDice(state, val) {
+            state.dice++
         }
     },
     actions: {

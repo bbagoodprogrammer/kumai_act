@@ -6,13 +6,19 @@ function getDate(datem, type) {
         minute = datem.getMinutes() < 10 ? '0' + datem.getMinutes() : datem.getMinutes(),
         second = datem.getSeconds() < 10 ? '0' + datem.getSeconds() : datem.getSeconds();
     if (type == "~") {
-        return `${hours}h  ${date}/${month}`
-    }
-    if (type == "pai") {
-        if (minute < 10) {
-            minute = "0" + minute
+        if (isToday(datem)) {
+            return `今日`
         }
-        return `${hours}:${minute}   ${date}/${month}`
+        return `${month}月${date}日`
     }
+    if (type == 2) {
+        return `${hours}:${minute}`
+    }
+    if (type == 3) {
+        return `${month}月${date}日`
+    }
+}
+function isToday(str) {
+    return new Date().getTime() - new Date(str).getTime() < 86400000;
 }
 export default getDate

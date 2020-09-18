@@ -12,41 +12,41 @@
       <p>2. Điểm cấp gia tộc 10k + tăng giới hạn phòng Kara gia tộc lên 200 người (vĩnh viễn).</p>
       <p>3. Toàn bộ thành viên nhận 500 đậu.</p>
       <p>4. Top 10 BXH điểm sao Ngôi Sao Xuất Hiện:</p>
-      <p>Hạng 1: Đảo Mộng Ảo (3250 xu) + 1000 xu + 2000 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
-      <p>Hạng 2: Đu Quay Hồng (1520 xu) + 800 xu + 1000 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
-      <p>Hạng 3: Mưa Trái Tim (820 xu) + 500 xu + 500 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
-      <p>Hạng 4-10: Bánh Sinh Nhật (699 xu) + 200 xu + 500 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
+      <p>Hạng 1: Đảo Mộng Ảo (3250 xu) + 1000 xu + 2000 đậu + Xe LandRover (30 ngày)</p>
+      <p>Hạng 2: Đu Quay Hồng (1520 xu) + 800 xu + 1000 đậu + Xe LandRover (30 ngày)</p>
+      <p>Hạng 3: Mưa Trái Tim (820 xu) + 500 xu + 500 đậu + Xe LandRover (30 ngày)</p>
+      <p>Hạng 4-10: Bánh Sinh Nhật (699 xu) + 200 xu + 500 đậu + Xe LandRover (30 ngày)</p>
       <h6>Gia tộc hạng nhì</h6>
       <p>1. Toàn bộ thành viên gia tộc nhận Huy chương Sao Gia Tộc (1 tháng).</p>
       <p>2. Điểm cấp gia tộc 8k + tăng giới hạn phòng Kara gia tộc lên 200 người (vĩnh viễn).</p>
       <p>3. Toàn bộ thành viên nhận 500 đậu.</p>
       <p>4. Top 10 BXH điểm sao Ngôi Sao Xuất Hiện:</p>
-      <p>Hạng 1: Đu Quay Hồng (1520 xu) + 800 xu + 1000 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
-      <p>Hạng 2: Mưa Trái Tim (820 xu) + 500 xu + 500 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
-      <p>Hạng 3: Pháo Hoa (588 xu) + 200 xu + 500 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
-      <p>Hạng 4-10: Bánh Sinh Nhật (699 xu) + 200 xu + 500 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
+      <p>Hạng 1: Đu Quay Hồng (1520 xu) + 800 xu + 1000 đậu + Xe LandRover (30 ngày)</p>
+      <p>Hạng 2: Mưa Trái Tim (820 xu) + 500 xu + 500 đậu + Xe LandRover (30 ngày)</p>
+      <p>Hạng 3: Pháo Hoa (588 xu) + 200 xu + 500 đậu + Xe LandRover (30 ngày)</p>
+      <p>Hạng 4-10: Bánh Sinh Nhật (699 xu) + 200 xu + 500 đậu + Xe LandRover (30 ngày)</p>
       <h6>Gia tộc hạng ba</h6>
       <p>1. Toàn bộ thành viên gia tộc nhận Huy chương Sao Gia Tộc (1 tháng).</p>
       <p>2. Điểm cấp gia tộc 5k + tăng giới hạn phòng Kara gia tộc lên 200 người (vĩnh viễn).</p>
       <p>3. Toàn bộ thành viên nhận 300 đậu.</p>
       <p>4. Top 10 BXH điểm sao Ngôi Sao Xuất Hiện:</p>
-      <p>Hạng 1: Đu Quay Hồng (1520 xu) + 800 xu + 1000 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
-      <p>Hạng 2: Pháo Hoa (588 xu) + 500 xu + 500 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
-      <p>Hạng 3: Pháo Hoa (588 xu) + 200 xu + 500 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
-      <p>Hạng 3: Pháo Hoa (588 xu) + 200 xu + 500 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
+      <p>Hạng 1: Đu Quay Hồng (1520 xu) + 800 xu + 1000 đậu + Xe LandRover (30 ngày)</p>
+      <p>Hạng 2: Pháo Hoa (588 xu) + 500 xu + 500 đậu + Xe LandRover (30 ngày)</p>
+      <p>Hạng 3: Pháo Hoa (588 xu) + 200 xu + 500 đậu + Xe LandRover (30 ngày)</p>
+      <p>Hạng 3: Pháo Hoa (588 xu) + 200 xu + 500 đậu + Xe LandRover (30 ngày)</p>
       <h6>Gia tộc hạng 4-10</h6>
       <p>1. Toàn bộ thành viên gia tộc nhận Huy chương Sao Gia Tộc (1 tháng).</p>
       <p>2. Điểm cấp gia tộc 2k + tăng giới hạn phòng Kara gia tộc lên 150 người (vĩnh viễn).</p>
       <p>3. Toàn bộ thành viên nhận 200 đậu.</p>
       <p>4. Top 10 BXH điểm sao Ngôi Sao Xuất Hiện:</p>
-      <p>Hạng 1: Pháo Hoa (588 xu) + 800 xu + 1000 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
-      <p>Hạng 2: Sao Lấp Lánh (68 xu) + 500 xu + 500 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
-      <p>Hạng 3: Sao Lấp Lánh (68 xu) + 200 xu + 500 đậu + Xe Ngựa Hoàng Gia (30 ngày)</p>
+      <p>Hạng 1: Pháo Hoa (588 xu) + 800 xu + 1000 đậu + Xe LandRover (30 ngày)</p>
+      <p>Hạng 2: Sao Lấp Lánh (68 xu) + 500 xu + 500 đậu + Xe LandRover (30 ngày)</p>
+      <p>Hạng 3: Sao Lấp Lánh (68 xu) + 200 xu + 500 đậu + Xe LandRover (30 ngày)</p>
       <p>Hạng 4-10: Like Cho Bạn (299 xu, bài hát) + 100 xu + 500 đậu</p>
       <h3>BXH Bảo Hộ Gia Tộc</h3>
-      <p>Hạng 1: Phiếu nạp xu 5% (1 ngày) + Xe Ngựa Hoàng Gia (30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 10000 đậu</p>
-      <p>Hạng 2: Phiếu nạp xu 4% (1 ngày) + Xe Ngựa Hoàng Gia (30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 5000 đậu</p>
-      <p>Hạng 3: Phiếu nạp xu 3% (1 ngày) + Xe Ngựa Hoàng Gia (30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 3000 đậu</p>
+      <p>Hạng 1: Phiếu nạp xu 5% (1 ngày) + Xe LandRover (30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 10000 đậu</p>
+      <p>Hạng 2: Phiếu nạp xu 4% (1 ngày) + Xe LandRover (30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 5000 đậu</p>
+      <p>Hạng 3: Phiếu nạp xu 3% (1 ngày) + Xe LandRover (30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 3000 đậu</p>
       <p>Hạng 4-10: Huy chương Người Bảo Hộ (30 ngày) + 2000 đậu</p>
       <h3>Phần thưởng túi quà gia tộc:</h3>
       <img src="../../assets/img/giftImg.png" alt="" class="giftBox">
@@ -88,8 +88,8 @@
         1. BXH Bảo Hộ xếp hạng theo tổng mị lực quà xu người dùng đã tặng sau khi báo danh. Top 10 nhận thưởng, nếu điểm số bằng nhau người đạt trước sẽ xếp hạng cao hơn.<br />
         2. Túi quà gia tộc được thưởng có thể xem tại Chi tiết thưởng.<br />
         3. BXH ngày sẽ phát thưởng vào 24h mỗi ngày, ngày cuối cuộc thi gửi vào 22h.<br />
-        4. Bài hát dự thi phải là bài hát công khai đăng sau 12h 19/8 (trừ hát chay 5 phút), có thể đăng nhiều bài hát dự thi, sau khi báo danh mới tính quà nhận, nếu xoá bài hát trong thời gian sự kiện, điểm số từ bài hát cũng sẽ mất.<br />
-        5.Toàn bộ túi quà được hệ thống gửi tự động, mỗi người 1 lần nhận tối đa 1 phần thưởng
+        4. Bài hát dự thi phải là bài hát công khai đăng sau 12h 18/9 (trừ hát chay 5 phút), có thể đăng nhiều bài hát dự thi, sau khi báo danh mới tính quà nhận, nếu xoá bài hát trong thời gian sự kiện, điểm số từ bài hát cũng sẽ mất.<br />
+        5.Toàn bộ túi quà được hệ thống gửi tự động, mỗi người 1 lần nhận tối đa 1 phần thưởng<br />
         6. Trong thời gian sự kiện nếu phát hiện bất cứ hành vi gian lận điểm nào, thí sinh sẽ bị loại và huỷ phần thưởng, nếu nghiêm trọng sẽ khoá tài khoản.
       </p>
     </div>
