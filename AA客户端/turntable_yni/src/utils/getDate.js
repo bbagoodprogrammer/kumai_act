@@ -6,7 +6,7 @@ function getDate(datem, type) {
         minute = datem.getMinutes() < 10 ? '0' + datem.getMinutes() : datem.getMinutes(),
         second = datem.getSeconds() < 10 ? '0' + datem.getSeconds() : datem.getSeconds();
     if (type == "~") {
-        return `${year}.${month}.${date}  ${hours}:${minute}:${second}`
+        return `${hours}:${minute}:${second} ${date}/${month}/${year}`
     }
     if (type == "pai") {
         if (minute < 10) {

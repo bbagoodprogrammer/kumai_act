@@ -10,6 +10,7 @@
               <strong v-else-if="item.prize.type == 'coin'"> {{item.prize.count}}金幣</strong>
               <strong v-else-if="item.prize.type == 'bean'"> {{item.prize.count}}金豆</strong>
               <strong v-else-if="item.prize.type == 'task'">限時任務</strong>
+              <strong v-else-if="item.prize.type == 'dice'">骰子*1</strong>
             </em>
           </li>
         </ul>

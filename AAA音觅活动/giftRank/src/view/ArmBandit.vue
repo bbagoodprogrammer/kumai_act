@@ -37,19 +37,14 @@
             <h6>1 活動時間</h6>
             <p>{{aTimer}}</p>
             <h6>2 榜單排名</h6>
-            <p>榜單按照本周收到的夏日消暑限定禮物數量的前100名玩家從高到低排名</p>
+            <p>榜單按照活動期間內收到的月餅或月兔禮物數量的前100名玩家從高到低排名</p>
             <p>榜單展示指定禮物的實時累計數據</p>
             <h6>3 活動獎勵</h6>
             <!-- <span class="giftImg"></span> -->
             <div class="giftBox">
-              <h5>小風車榜：</h5>
-              <p>第一名：完美夏日-頭像框（7天）、夏日甜品屋座駕（7天）</p>
-              <p>第二名：完美夏日-頭像框（5天）</p>
-              <p>第三名：完美夏日-頭像框（3天）</p>
-              <h5>樹莓吐司榜:</h5>
-              <p>第一名：完美夏日-頭像框（15天）、夏日甜品屋座駕（10天）</p>
-              <p>第二名：完美夏日-頭像框（7天）、夏日甜品屋座駕（7天）</p>
-              <p>第三名：完美夏日-頭像框（5天）</p>
+              <p>第一名：萌兔過中秋-頭像框（10天）、仙兔座駕（7天）</p>
+              <p>第二名：萌兔過中秋-頭像框（5天）</p>
+              <p>第三名：萌兔過中秋-頭像框（3天）</p>
             </div>
             <h6>4 注意事項 </h6>
             <p>榜單獎勵在活動結束後五個工作日內發放獎勵</p>
@@ -197,7 +192,7 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 5.79rem;
+    height: 8.3rem;
     position: relative;
     .ruleTips {
       width: 1.22rem;
@@ -206,19 +201,19 @@ body::-webkit-scrollbar {
       background-size: 100% 100%;
       position: absolute;
       right: 0;
-      top: 1.23rem;
+      top: 4.8rem;
     }
   }
   .gifts {
     width: 6.88rem;
-    height: 6rem;
+    height: 5.78rem;
     background: url(../assets/img/giftBg.png);
     background-size: 100% 100%;
     margin: 0 auto;
     position: relative;
   }
   .timeDown {
-    width: 4.6rem;
+    width: 4.3rem;
     height: 0.53rem;
     // padding: 0 0.09rem;
     margin: 0.17rem auto 0;
@@ -236,10 +231,10 @@ body::-webkit-scrollbar {
       align-items: center;
       strong {
         display: block;
-        width: 0.77rem;
+        width: 0.9rem;
         height: 0.42rem;
         line-height: 0.42rem;
-        letter-spacing: 0.215rem;
+        letter-spacing: 0.32rem;
         text-indent: 0.1rem;
         color: #ffeeb7;
       }
@@ -247,11 +242,11 @@ body::-webkit-scrollbar {
     .hours,
     .min,
     .second {
-      margin-left: 0.41rem;
+      margin-left: 0.25rem;
       text-align: center;
     }
     .second {
-      margin-left: 0.38rem;
+      margin-left: 0.25rem;
     }
   }
   .rule {
@@ -272,7 +267,7 @@ body::-webkit-scrollbar {
       top: -0.4rem;
     }
     .lastTips {
-      color: #267cfd;
+      color: rgba(182, 96, 36, 1);
       font-size: 0.2rem;
       margin-top: 0.24rem;
       text-align: center;
@@ -288,7 +283,7 @@ body::-webkit-scrollbar {
     .giftBox {
       h5 {
         padding-left: 0.3rem;
-        color: #1a9df0;
+        color: rgba(182, 96, 36, 1);
       }
       p {
         padding-left: 0.6rem;
@@ -297,13 +292,13 @@ body::-webkit-scrollbar {
     }
     h6 {
       font-size: 0.24rem;
-      color: #267cfd;
+      color: rgba(182, 96, 36, 1);
       font-weight: 800;
       margin-top: 0.1rem;
     }
     p {
       font-size: 0.24rem;
-      color: #1a9df0;
+      color: rgba(182, 96, 36, 1);
       font-weight: 500;
       text-indent: 0.5rem;
       // margin-top: 0.1rem;

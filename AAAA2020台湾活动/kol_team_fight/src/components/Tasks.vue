@@ -45,7 +45,7 @@ export default {
         },
         {
           number: '④',
-          name: '與隊長/隊員同組完成PK',
+          name: '給自己的任意戰隊加1積分',
           ward: '50金豆',
           type: 'bean'
         },

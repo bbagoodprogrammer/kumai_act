@@ -3,7 +3,7 @@
     <div class="turnHeader">
       <div class="tabs">
         <span class="trun" :class="{act:shoCom=='Trun'}" @click="tabClick('Trun')">Roda Lucky</span>
-        <span class="trunBox" :class="{act:shoCom=='Box'}" @click="tabClick('Box')">Peti harta karun kejutan</span>
+        <span class="trunBox" :class="{act:shoCom=='Box'}" @click="tabClick('Box')">Peti harta kejutan</span>
         <i class="boxNum"> {{userMsg.lock_box>99?'···':userMsg.lock_box}}</i>
       </div>
     </div>
@@ -127,7 +127,7 @@ body {
         border-radius: 50%;
         position: absolute;
         top: 0.15rem;
-        right: 0.9rem;
+        right: 0.16rem;
         text-align: center;
         color: #fff !important;
       }

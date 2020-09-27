@@ -106,12 +106,28 @@ function detail(type, from, more) {
 function getRward(id) {
     return get(`/vip_lottery/reward.php?id=${id}&token=${token}`)
 }
+
+//領取獎勵
+function getGift(target) {
+    return get(`/vip_lottery/getTaskReward.php?target=${target}&token=${token}`)
+}
+
+//總次數領取獎勵記錄
+function totalGift(from, more) {
+    if (more) {
+        return axios.get(`/vip_lottery/taskRewardDetail.php?from=${from}&token=${token}`)
+    } else {
+        return get(`/vip_lottery/taskRewardDetail.php?from=${from}&token=${token}`)
+    }
+}
 const httpConfig = {
     getDefault,
     singUp,
     lottery,
     detail,
     verIfy,
-    getRward
+    getRward,
+    getGift,
+    totalGift
 }
 export default httpConfig

@@ -2,14 +2,14 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">活動時間:9.18-10.18</div>
+    <div class="actTime">活動時間:9/21 18:00 -10/09 22:00</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">活動規則</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">活動獎勵</span>
     </div>
     <div class="ruleTips" v-if="type== 1">
       <h6>1.搖骰子做富翁</h6>
-      <p>通過做任務、購買可以獲得骰子，活動期間內累計部署從高到低進行排名，前10名玩家可獲得相關獎勵</p>
+      <p>通過做任務、購買可以獲得骰子，活動期間內累計步數從高到低進行排名，前10名玩家可獲得相關獎勵</p>
       <h6>2.搖骰子贏限定</h6>
       <p>驚喜大禮包有機會開出Land Rover-座駕、BMW-座駕、甜蜜蛋糕-特效禮物、甜甜圈-背包禮物、狗子餵投者-頭像框</p>
       <h6>3.注意事項</h6>
@@ -47,7 +47,7 @@ export default {
         },
         {
           img: require('../assets/img/rule/badge.png'),
-          name: '大富翁徽章15天'
+          name: '大富翁勛章15天'
         },
         {
           img: require('../assets/img/rule/BMW.png'),
@@ -57,11 +57,11 @@ export default {
       gift2: [
         {
           img: require('../assets/img/rule/Certification_01.png'),
-          name: '【音覓小天使】認證10天'
+          name: '【聚財小天使】認證10天'
         },
         {
           img: require('../assets/img/rule/badge.png'),
-          name: '大富翁徽章15天'
+          name: '大富翁勛章15天'
         },
         {
           img: require('../assets/img/rule/BMW.png'),

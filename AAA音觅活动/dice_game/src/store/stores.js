@@ -70,6 +70,7 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.rankGroups = Object.assign({}, state.rankGroups, { [key]: Object.assign({}, state.rankGroups[key], obj) });
             }
+            console.log(state.rankGroups)
         },
         setTaskGiftStatus(state, key) {
 

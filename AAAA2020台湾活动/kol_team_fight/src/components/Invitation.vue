@@ -38,7 +38,7 @@
       </transition>
     </div>
     <div class="mask" v-show="refuse">
-      <transition name="slise">
+      <transition name="slide">
         <div class="queryPup" v-show="refuse">
           <i class="close" @click="closeRefuse()"></i>
           <p>
@@ -94,6 +94,9 @@ export default {
         if (res.data.response_status.code == 0) {
           if (this.index != null) {
             this.vxc('setInvited', this.index)
+          }
+          if (this.peopleMsg.info.uid) {
+            this.peopleMsg.status = 0
           }
         } else {
           this.toast(res.data.response_status.error)
@@ -213,6 +216,7 @@ export default {
           text-overflow: ellipsis;
         }
         .uid {
+          width: 1rem;
           margin-left: 0.2rem;
         }
         .status {

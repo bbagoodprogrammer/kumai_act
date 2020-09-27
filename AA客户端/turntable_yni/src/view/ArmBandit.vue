@@ -3,7 +3,7 @@
     <div class="turnHeader">
       <div class="tabs">
         <span class="trun" :class="{act:shoCom=='Trun'}" @click="tabClick('Trun')">Roda Lucky</span>
-        <span class="trunBox" :class="{act:shoCom=='Box'}" @click="tabClick('Box')">Peti harta karun kejutan</span>
+        <span class="trunBox" :class="{act:shoCom=='Box'}" @click="tabClick('Box')">Peti harta kejutan</span>
         <i class="boxNum"> {{userMsg.lock_box>99?'···':userMsg.lock_box}}</i>
       </div>
       <i class="close" @click="closeWeb()"></i>
@@ -176,7 +176,7 @@ body::-webkit-scrollbar {
       span {
         flex: 1;
         height: 1rem;
-        font-size: 120%;
+        font-size: 110%;
         font-weight: 600;
         position: relative;
         text-align: center;
@@ -196,7 +196,7 @@ body::-webkit-scrollbar {
         border-radius: 50%;
         position: absolute;
         top: 0.15rem;
-        right: 0.8rem;
+        right: 1rem;
         text-align: center;
         color: #fff !important;
       }

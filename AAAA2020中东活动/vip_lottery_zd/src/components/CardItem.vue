@@ -101,6 +101,7 @@ export default {
           api.lottery(this.item.posi).then(res => {
             const { response_data, response_status } = res.data
             if (response_status.code == 0) {
+              this.vux('addLuckNum')
               this.loading = false
               this.showAm = true
               this.vux('addMy_record', response_data.prize)

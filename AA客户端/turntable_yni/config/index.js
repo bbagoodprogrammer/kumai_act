@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/': {
-        target: 'http://t.activity.17sing.tw/',
+        target: 'http://t.activity.wekarapp.com',
         changeOrigin: true
       }
     },

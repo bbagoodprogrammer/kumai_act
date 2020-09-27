@@ -17,8 +17,8 @@
           <div class="status" v-if="mainTab == 0 && host">
             <span v-if="item.status == 2" class="black text_shadow_black">已拒絕</span>
             <span v-else-if="item.status == 1" class="black text_shadow_black">已通過</span>
-            <span v-else-if="item.status == 3" class="blue text_shadow_bule" @click="hostApplySet(item.uid,0,index)">通過</span>
-            <span v-if="item.status == 3" class="yellow text_shadow_yellow" @click="hostApplySet(item.uid,1,index)">拒絕</span>
+            <span v-else-if="item.status == 0" class="blue text_shadow_bule" @click="hostApplySet(item.uid,0,index)">通過</span>
+            <span v-if="item.status == 0" class="yellow text_shadow_yellow" @click="hostApplySet(item.uid,1,index)">拒絕</span>
           </div>
           <div class="status" v-else-if="mainTab == 1 && host">
             <span v-if="item.status == 2" class="black text_shadow_black">已拒絕</span>
@@ -35,8 +35,8 @@
           <div class="status" v-else-if="mainTab == 1 && !host">
             <span v-if="item.status == 2" class="black text_shadow_black">已拒絕</span>
             <span v-else-if="item.status == 1" class="black text_shadow_black">已同意</span>
-            <span v-else-if="item.status == 3" class="blue text_shadow_bule" @click="applySet(item.uid,0,index)">同意</span>
-            <span v-if="item.status == 3" class="yellow text_shadow_yellow" @click="applySet(item.uid,1,index)">拒絕</span>
+            <span v-else-if="item.status == 0" class="blue text_shadow_bule" @click="applySet(item.uid,0,index)">同意</span>
+            <span v-if="item.status == 0" class="yellow text_shadow_yellow" @click="applySet(item.uid,1,index)">拒絕</span>
           </div>
         </li>
       </ul>
@@ -46,7 +46,7 @@
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
     <div v-if="rank.loading" class="scrollLoading">加載中...</div>
     <div v-if="rank.none" class="scrollNone">
-      暫無歌友上榜
+      暫無數據
     </div>
   </div>
 </template>
@@ -150,80 +150,78 @@ export default {
           const set = (k, v) => {
             this.$store.commit('updateHistory', { key, [k]: v });
           };
-          setTimeout(() => {
-            set('loading', true);
-            axios.get(this.rankApi.replace('{from}', this.rank.list.length)).then(res => {
-              set('loading', false);
 
-              const { response_status, response_data } = res.data;
+          set('loading', true);
+          axios.get(this.rankApi.replace('{from}', this.rank.list.length)).then(res => {
 
-              if (response_status.code != 0) {
-                set('loadEnd', true);
-                return;
-              }
-              const arr = response_data.list;
-              if (arr.slice) {
-                const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
-                set('loadCount', loadCount + 1);
-                if (arr) {
-                  //.length
-                  // set('list', this.rank.list.concat(arr));
-                  set('list', [
-                    // {
-                    //   "uid": 100861,
-                    //   "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                    //   "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                    //   "time": 1600055600, //时间
-                    //   nums: 11,
-                    //   "status": 0  //状态 0 等待处理 1 已接受 2 已拒绝 3未操作
-                    // },
-                    {
-                      "uid": 100861,
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "time": 1600055600, //时间
-                      nums: 11,
-                      "status": 1  //状态 0 等待处理 1 已接受 2 已拒绝 3未操作
-                    },
-                    {
-                      "uid": 100861,
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "time": 1600055600, //时间
-                      nums: 11,
-                      "status": 2  //状态 0 等待处理 1 已接受 2 已拒绝 3未操作
-                    },
-                    {
-                      "uid": 100861,
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "time": 1600055600, //时间
-                      "status": 3  //状态 0 等待处理 1 已接受 2 已拒绝 3未操作
-                    }
-                  ]);
-                  const noMore = !isNaN(this.rankSize) && arr.length < parseInt(this.rankSize);
-                  if (this.rank.loadOnce || noMore) {
-                    set('loadEnd', true);
-                  } else {
-                    this.$nextTick(this.onScroll);
-                  }
-                } else {
+
+            const { response_status, response_data } = res.data;
+
+            if (response_status.code != 0) {
+              set('loadEnd', true);
+              return;
+            }
+            const arr = response_data.list;
+            if (arr.slice) {
+              const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
+              set('loadCount', loadCount + 1);
+              if (arr.length) {
+                set('list', this.rank.list.concat(arr));
+                // set('list', [
+                //   // {
+                //   //   "uid": 100861,
+                //   //   "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+                //   //   "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+                //   //   "time": 1600055600, //时间
+                //   //   nums: 11,
+                //   //   "status": 0  //状态 0 等待处理 1 已接受 2 已拒绝 3未操作
+                //   // },
+                //   {
+                //     "uid": 100861,
+                //     "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+                //     "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+                //     "time": 1600055600, //时间
+                //     nums: 11,
+                //     "status": 1  //状态 0 等待处理 1 已接受 2 已拒绝 3未操作
+                //   },
+                //   {
+                //     "uid": 100861,
+                //     "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+                //     "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+                //     "time": 1600055600, //时间
+                //     nums: 11,
+                //     "status": 2  //状态 0 等待处理 1 已接受 2 已拒绝 3未操作
+                //   },
+                //   {
+                //     "uid": 100861,
+                //     "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+                //     "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+                //     "time": 1600055600, //时间
+                //     "status": 3  //状态 0 等待处理 1 已接受 2 已拒绝 3未操作
+                //   }
+                // ]);
+                const noMore = !isNaN(this.rankSize) && arr.length < parseInt(this.rankSize);
+                if (this.rank.loadOnce || noMore) {
                   set('loadEnd', true);
+                } else {
+                  this.$nextTick(this.onScroll);
                 }
-                this.$nextTick(() => {
-                  if (this.rank.loadCount > 0 && this.rank.list.length === 0) {
-                    set('none', true);
-                  }
-                });
               } else {
                 set('loadEnd', true);
               }
-            }).catch(err => {
-              set('loading', false);
+              this.$nextTick(() => {
+                if (this.rank.loadCount > 0 && this.rank.list.length === 0) {
+                  set('none', true);
+                }
+              });
+            } else {
               set('loadEnd', true);
-            });
-          }, 500)
-
+            }
+            set('loading', false);
+          }).catch(err => {
+            set('loading', false);
+            set('loadEnd', true);
+          });
         }
       }
     },
@@ -349,6 +347,9 @@ export default {
       }
       .nick {
         width: 1.5rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       .peopleNum {
         width: 0.8rem;

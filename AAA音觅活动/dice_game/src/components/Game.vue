@@ -47,7 +47,7 @@
           <div class="packTips" v-if="showGift.type == 'packet' &&showType == null">
             <h3>驚喜大禮包</h3>
             <!-- <em v-for="(item,index) in showGift.packet" :key="index">{{getGigtName(item)}}</em> -->
-            <p>隨機獲得以下獎勵之一：骰子*1、Land Rover座駕*5天、BMW座駕*5天、666金豆、甜甜圈背包禮物*1、甜蜜蛋糕特效禮物*1、狗子餵投者*5天 </p>
+            <p>隨機獲得以下獎勵之一：骰子*1、Land Rover座駕*5天、BMW座駕*5天、66金豆、甜甜圈背包禮物*1、甜蜜蛋糕特效禮物*1、狗子餵投者頭像框*5天 </p>
           </div>
           <div class="ok" @click="closeGiftPup()">
             <em v-if="showGift.type=='dice'">繼續遊戲</em>
@@ -234,7 +234,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['steps', 'position', 'dice', 'owner']),
+    ...mapState(['steps', 'position', 'dice', 'owner', 'reg']),
     userposition() {
       return this.iconPosition[this.position]
     },
@@ -360,10 +360,23 @@ export default {
       api.giveUp(this.showGift.task).then() //放棄任務
     },
     showDayTaskPup() {
-      api.dayTask().then(res => {
-        this.vxc('setDayTask', res.data.response_data)
-        this.showDayTask = true
-      })
+      if (this.reg) {
+        api.dayTask().then(res => {
+          this.vxc('setDayTask', res.data.response_data)
+          this.showDayTask = true
+        })
+      } else {
+        api.singUp().then(res => {
+          if (res.data.response_status.code == 0) {
+            api.dayTask().then(res => {
+              this.vxc('setDayTask', res.data.response_data)
+              this.showDayTask = true
+            })
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      }
     }
   }
 }

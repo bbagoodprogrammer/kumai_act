@@ -15,6 +15,7 @@
       <roolMsg :roolmsg="roolmsg"></roolMsg>
     </div>
     <cards />
+    <GiftBar />
     <act-footer></act-footer>
     <loading></loading>
     <div class="mask" v-show="showFillCode">
@@ -67,9 +68,11 @@ import { globalBus } from '../utils/eventBus'
 import roolMsg from "../components/RoolMsg"
 import cards from "../components/Cards"
 import { mapState } from "vuex"
+import GiftBar from "../components/GiftBar"
+
 
 export default {
-  components: { Loading, MsgToast, ActFooter, cards, roolMsg },
+  components: { Loading, MsgToast, ActFooter, cards, roolMsg, GiftBar },
   data() {
     return {
       isShare: false, //是否分享
@@ -115,12 +118,13 @@ export default {
       api.getDefault().then(res => {
         const { response_data, response_status } = res.data
         if (response_status.code == 0) {
-          const { new_record, my_record, step, stime, etime, user_info, is_allow_version } = response_data
+          const { new_record, my_record, step, tasks, stime, etime, user_info, is_allow_version } = response_data
           this.roolmsg = new_record
           this.is_allow_version = is_allow_version.allow_lottery_pid20
           this.vux('changActStatus', step)
           this.vux('changUserMsg', user_info)
           this.vux('setMy_record', my_record)
+          this.vux('setTasks', tasks)
           sessionStorage.setItem('time', JSON.stringify({
             stime: stime,
             etime: etime

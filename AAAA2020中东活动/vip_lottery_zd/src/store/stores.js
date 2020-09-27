@@ -12,6 +12,7 @@ const store = new Vuex.Store({
         shakeAni: false, //任务抖动动画
         oLuckIng: false, // 正在抽奖
         showLinght: false, // 光效动画
+        tasks: {}
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -73,6 +74,15 @@ const store = new Vuex.Store({
                     state.my_record = []
                 }, 1200)
             }
+        },
+        setTasks(state, val) {
+            state.tasks = val
+        },
+        setSuc(state, val) {
+            state.tasks[val].status = 2
+        },
+        addLuckNum(state) {
+            state.userMsg.lottery_times++
         }
     },
     actions: {
