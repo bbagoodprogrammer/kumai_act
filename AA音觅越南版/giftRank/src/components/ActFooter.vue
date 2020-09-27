@@ -6,7 +6,7 @@
     <div class="noAct" v-if="showState ===1">
       {{lang.actEd}}
     </div>
-    <span class="singUp" @click="goSingUp()" v-if="showState ===2"></span>
+    <span class="singUp" @click="goSingUp()" v-if="showState ===2">Báo Danh</span>
     <div class="list" v-if="showState ===3 ">
       <div class="rank" v-if="myMsg.rank>0">{{myMsg.rank>100?'100+':myMsg.rank}}</div>
       <div class="noRank" v-else>Chưa có BXH</div>
@@ -94,10 +94,14 @@ export default {
     display: block;
     width: 2.8rem;
     height: 0.75rem;
+    text-align: center;
+    line-height: 0.75rem;
     background: url(../assets/img/singUpBtn.png);
     background-size: 100% 100%;
     margin: 0.6rem auto;
     text-align: center;
+    text-shadow: rgba(181, 96, 35, 1) 1px 0 0, rgba(181, 96, 35, 1) 0 1px 0,
+      rgba(181, 96, 35, 1) -1px 0 0, rgba(181, 96, 35, 1) 0 -1px 0;
   }
   .list {
     height: 1.28rem;
@@ -107,14 +111,14 @@ export default {
     .rank {
       width: 1.12rem;
       line-height: 0.94rem;
-      color: #014b41;
+      color: rgba(253, 242, 175, 1);
       text-align: center;
       font-weight: bold;
       font-size: 0.42rem;
     }
     .noRank {
       width: 1.12rem;
-      color: #014b41;
+      color: rgba(253, 242, 175, 1);
       font-size: 0.28rem;
       text-align: center;
     }
@@ -145,6 +149,7 @@ export default {
       }
     }
     .score {
+      color: rgba(253, 242, 175, 1);
       margin-left: 0.15rem;
       strong {
         display: block;

@@ -64,6 +64,7 @@
             <p>3. Mỗi bài hát chỉ được tham dự 1 lần.</p>
             <p>4. Mỗi kỳ có thể chọn nhiều bài hát để dự thi.</p>
             <p>5. Bài hát dự thi phải là bài hát hoàn chỉnh (thời gian bài hát chỉ có thể ngắn hơn thời gian nhạc nền 30s), nếu không sẽ không thể gửi bài hát</p>
+            <p class="red">6.Mỗi người báo danh thành công (có 1 bài hát tham gia thi đấu trước khi sự kiện kết thúc), sau khi sự kiện kết thúc nhận thưởng 50 đậu.</p>
           </div>
         </div>
       </transition>
@@ -414,6 +415,9 @@ export default {
       }
     }
     .choicetips {
+      .red {
+        color: red;
+      }
       p {
         font-size: 0.24rem;
         color: RGBA(255, 244, 255, 1);

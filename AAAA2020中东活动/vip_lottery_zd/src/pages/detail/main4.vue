@@ -1,6 +1,10 @@
 <template>
   <div class="taskList">
     <div class="title">{{lang.detailTitle}}</div>
+    <div class="tabs">
+      <span :class="{act:type == 1}" @click="tabClick(1)">كشط صورة</span>
+      <span :class="{act:type == 2}" @click="tabClick(2)">معدل تقدم المرة</span>
+    </div>
     <div class="list">
       <div class="tab">
         <span class="time">{{lang.detailTime}}</span>
@@ -8,13 +12,19 @@
         <span class="state">{{lang.detailState}}</span>
       </div>
       <div class="listItem">
-        <p v-if="taskList.length == 0" class="noData">{{lang.noData}}</p>
+        <p v-if="newList.length == 0" class="noData">{{lang.noData}}</p>
         <ul class="scrollable">
-          <li v-for="(item,index) in taskList" :key="index">
-            <span class="time">{{getTime(item.add_time)}}</span>
-            <span class="code">{{item.pname}}</span>
+          <li v-for="(item,index) in newList" :key="index">
+            <span class="time">{{getTime(type==1?item.add_time:item.time)}}</span>
+            <span class="code">
+              <em v-if="type==1">{{item.pname}}</em>
+              <em v-else>
+                <i v-for="(item2,index2) in item.prizes" :key="index2">{{item2.pname}}</i>
+              </em>
+            </span>
             <span class="state">
-              <em v-if="item.status == 2" class="end">{{lang.giftEnd}}</em>
+              <!--  v-if="item.status == 2"  -->
+              <em class="end">{{lang.giftEnd}}</em>
             </span>
           </li>
         </ul>
@@ -38,11 +48,26 @@ export default {
   components: { loading, MsgToast },
   data() {
     return {
+      type: 1,
       taskList: [],
+      giftList: {
+        loadCount: 0,
+        list: []
+      },
       tastMsg: '',
       showT: false,
       loaded: false,
+      loaded2: false,
       more: true
+    }
+  },
+  computed: {
+    newList() {
+      if (this.type == 1) {
+        return this.taskList
+      } else {
+        return this.giftList.list
+      }
     }
   },
   created() {
@@ -57,20 +82,45 @@ export default {
     }
   },
   methods: {
+    tabClick(val) {
+      if (val == 2 && this.giftList.loadCount == 0) {
+        api.totalGift(0).then(res => {
+          this.type = val
+          this.giftList.list = res.data.response_data.list
+          this.giftList.loadCount++
+        })
+      } else {
+        this.type = val
+      }
+
+    },
     onScroll() {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
-        if (this.loaded) return
+        let load = this.type == 1 ? this.loaded : this.loaded2
+        if (load) return
         if (this.more) {
           this.more = false
-          api.detail(0, this.taskList.length, 'more').then(res => {
-            this.more = true
-            if (res.data.response_data.list.length === 0) {
-              this.loaded = true
-            } else {
-              this.taskList = this.taskList.concat(res.data.response_data.list)
-            }
-          })
+          if (this.type == 1) {
+            api.detail(0, this.taskList.length, 'more').then(res => {
+              this.more = true
+              if (res.data.response_data.list.length === 0) {
+                this.loaded = true
+              } else {
+                this.taskList = this.taskList.concat(res.data.response_data.list)
+              }
+            })
+          } else {
+            api.totalGift(this.giftList.list.length, 'more').then(res => {
+              this.more = true
+              if (res.data.response_data.list.length === 0) {
+                this.loaded2 = true
+              } else {
+                this.giftList.list = this.giftList.list.concat(res.data.response_data.list)
+              }
+            })
+          }
+
         }
       }
     },
@@ -87,6 +137,27 @@ export default {
 body {
   background-color: #2b2621;
   direction: rtl;
+  .tabs {
+    width: 6.98rem;
+    height: 0.98rem;
+    line-height: 0.98rem;
+    background: url(../../assets/img/tabs.png);
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 0.27rem;
+    span {
+      flex: 1;
+      height: 100%;
+      text-align: center;
+      color: rgba(174, 72, 0, 1);
+      font-weight: bold;
+      &.act {
+        background: url(../../assets/img/tabAct.png);
+        background-size: 100% 100%;
+      }
+    }
+  }
   .taskList {
     padding: 0.59rem 0.19rem 0;
     .title {
@@ -97,7 +168,7 @@ body {
     }
     .list {
       width: 7.12rem;
-      margin: 0.5rem auto;
+      margin: 0.3rem auto;
       .tab {
         display: flex;
         padding: 0 0.24rem;
@@ -145,20 +216,23 @@ body {
           font-size: 0.24rem;
           margin-bottom: 0.06rem;
           .time {
-            width: 2.4rem;
+            width: 2.3rem;
             font-size: 0.24rem;
             padding: 0 0.14rem;
             white-space: nowrap;
           }
           .code {
             color: #ffe992;
-            width: 1.6rem;
-            padding: 0 0.2rem;
+            width: 1.9rem;
+            padding: 0 0.05rem;
             display: flex;
             align-items: center;
             justify-content: center;
             line-height: 0.3rem;
             text-align: center;
+            i {
+              display: block;
+            }
           }
           .state {
             flex: 1;

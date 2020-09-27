@@ -4,7 +4,7 @@
       <i class="black" @click="closeWeb()"></i> 連續徽章說明
     </div> -->
     <div class="singTotalDay">
-      <strong>Anda sudah sign-in <em> {{data.days}} </em> hari dengan terus-menurus</strong>
+      <strong>Km udh sign-in <em> {{data.days}} </em> hari kelanjutan</strong>
       <span class="retroactive" :class="{black:!data.compensate.date}" @click="showP()">Tambahan sign in </span>
     </div>
     <div class="badge">
@@ -12,7 +12,7 @@
       <div class="badBox">
         <span v-for="(item,index) in data.medalTask" :key="index">
           <img :src="item.url" alt="">
-          <strong :class="{black:item.finish == 0}">Sign-in {{item.days}} hari dengan terus-menurus</strong>
+          <strong :class="{black:item.finish == 0}">Kontinu sign in {{item.days}} hari</strong>
         </span>
       </div>
     </div>
@@ -151,8 +151,8 @@ body {
   .singTotalDay {
     margin-top: 0.2rem;
     height: 1rem;
-    font-size: 0.32rem;
-    color: #111111;
+    font-size: 0.3rem;
+    color: rgba(17, 17, 17, 1);
     background: #fff;
     display: flex;
     justify-content: space-between;

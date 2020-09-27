@@ -27,7 +27,7 @@
         </div>
         <div class="top1List">
           <div class="topItem" v-for="(item,index) in top1" :key="index" :class="'top' + item.rank">
-            <div class="imgBox">
+            <div class="imgBox" @click="goUser(item.uid)">
               <img :src="require(`../assets/img/no${item.rank}.png`)" alt="" class="avBg">
               <img :src="item.avatar" alt="" class="av">
             </div>
@@ -49,7 +49,7 @@
           <ul>
             <li v-for="(item,index) in top2" :key="index">
               <span class="rank">{{item.rank}}</span>
-              <img v-lazy="item.avatar" alt="" class="av">
+              <img v-lazy="item.avatar" alt="" class="av" @click="goUser(item.uid)">
               <div class="nick">{{item.nick}}</div>
               <div class="score">{{item.score}}步</div>
             </li>
@@ -63,7 +63,7 @@
         <ul class="top3List">
           <li v-for="(item,index) in top3" :key="index">
             <span class="rank">{{item.rank}}</span>
-            <img v-lazy="item.avatar" alt="" class="av">
+            <img v-lazy="item.avatar" alt="" class="av" @click="goUser(item.uid)">
             <div class="nick">{{item.nick}}</div>
             <div class="score">{{item.score}}步</div>
           </li>
@@ -136,10 +136,10 @@ export default {
     },
     rankApi() {
       if (this.isShare) {
-        var dayApi = `/index.php?action=richMan.rank&type={type}&signture=innerserver`;
+        var dayApi = `/index.php?action=richMan.rank&type={type}&signture=innerserver&from={from}`;
         return dayApi.replace('{type}', this.rankKey == 'total' ? 2 : 1)
       } else {
-        var dayApi = `/index.php?action=richMan.rank&type={type}&signture=innerserver&uid={uid}&token={token}`;
+        var dayApi = `/index.php?action=richMan.rank&type={type}&signture=innerserver&uid={uid}&token={token}&from={from}`;
         const token = getUrlString('token') || '';
         const uid = getUrlString('uid') || '';
         return dayApi.replace('{type}', this.rankKey == 'total' ? 2 : 1).replace('{uid}', uid).replace('{token}', token);
@@ -218,59 +218,57 @@ export default {
           const set = (k, v) => {
             this.$store.commit('updateRankGroups', { key, [k]: v });
           };
-          setTimeout(() => {
-            set('loading', true);
-            axios.get(this.rankApi.replace('{from}', this.rank.list.length)).then(res => {
-              set('loading', false);
+          set('loading', true);
+          axios.get(this.rankApi.replace('{from}', this.rank.list.length)).then(res => {
 
-              const { response_status, response_data } = res.data;
+            const { response_status, response_data } = res.data;
 
-              if (response_status.code != 0) {
-                set('loadEnd', true);
-                return;
-              }
-              // if (this.tab >= this.nowDay && this.mainTab == 0) {
-              if (this.rankKey == 'total') {
-                set('second', this.total.dtime)
-              } else {
-                set('second', this.day.dtime)
-              }
-              // }
-              const arr = response_data.list;
-              //跟随榜单变换个人信息
-              // if (response_data.owner_msg && response_data.owner_msg.uid) {
-              //   this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
-              //     key: this.rankKey,
-              //     msg: response_data.owner_msg
-              //   })
-              // }
-              if (arr.slice) {
-                const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
-                set('loadCount', loadCount + 1);
-                if (arr.length) {
-                  set('list', this.rank.list.concat(arr));
-                  const noMore = !isNaN(this.rankSize) && arr.length < parseInt(this.rankSize);
-                  if (this.rank.loadOnce || noMore) {
-                    set('loadEnd', true);
-                  } else {
-                    this.$nextTick(this.onScroll);
-                  }
-                } else {
-                  set('loadEnd', true);
-                }
-                this.$nextTick(() => {
-                  if (this.rank.loadCount > 0 && this.rank.list.length === 0) {
-                    set('none', true);
-                  }
-                });
-              } else {
-                set('loadEnd', true);
-              }
-            }).catch(err => {
-              set('loading', false);
+            if (response_status.code != 0) {
               set('loadEnd', true);
-            });
-          }, 500)
+              return;
+            }
+            // if (this.tab >= this.nowDay && this.mainTab == 0) {
+            if (this.rankKey == 'total') {
+              set('second', this.total.dtime)
+            } else {
+              set('second', this.day.dtime)
+            }
+            // }
+            const arr = response_data.list;
+            //跟随榜单变换个人信息
+            // if (response_data.owner_msg && response_data.owner_msg.uid) {
+            //   this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
+            //     key: this.rankKey,
+            //     msg: response_data.owner_msg
+            //   })
+            // }
+            if (arr.slice) {
+              const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
+              set('loadCount', loadCount + 1);
+              if (arr.length) {
+                set('list', this.rank.list.concat(arr));
+                const noMore = !isNaN(this.rankSize) && arr.length < parseInt(this.rankSize);
+                if (this.rank.loadOnce || noMore) {
+                  set('loadEnd', true);
+                } else {
+                  this.$nextTick(this.onScroll);
+                }
+              } else {
+                set('loadEnd', true);
+              }
+              this.$nextTick(() => {
+                if (this.rank.loadCount > 0 && this.rank.list.length === 0) {
+                  set('none', true);
+                }
+              });
+            } else {
+              set('loadEnd', true);
+            }
+            set('loading', false);
+          }).catch(err => {
+            set('loading', false);
+            set('loadEnd', true);
+          });
 
         }
       }
@@ -307,9 +305,8 @@ export default {
       return getDate(new Date(time * 1000), '2')
     },
     goUser(uid) { //跳转
-      var u = navigator.userAgent;
-      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
-      var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+      console.log(uid)
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       if (isiOS) {
         sendJsData('app://userInfo?uid=' + uid);
       } else {
@@ -409,7 +406,7 @@ export default {
   .list {
     margin: 0.3rem auto;
     position: relative;
-    z-index: 10;
+    z-index: 1000;
     .top {
       width: 7.5rem;
       height: 8.44rem;
@@ -475,11 +472,11 @@ export default {
                 z-index: 2;
               }
               .av {
-                width: 1.6rem;
-                height: 1.6rem;
+                width: 1.65rem;
+                height: 1.65rem;
                 border-radius: 50%;
                 position: absolute;
-                left: 0.9rem;
+                left: 0.96rem;
                 top: 0.5rem;
               }
             }

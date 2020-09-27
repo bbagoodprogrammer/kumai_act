@@ -20,9 +20,14 @@ const store = new Vuex.Store({
         team: {},
         friend_list: {}, //好友列表
         list: [],  //戰隊排行
-        rank: [], //我的名次
+        myRank: [], //我的名次
         nums: 0,
-        history: {}
+        history: {},
+        rankGroups: {}, // ,
+        tab: 0,
+        leader: null,
+        kol: null,
+        roomRank: {}
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -36,6 +41,10 @@ const store = new Vuex.Store({
         },
         setUserMsg(state, val) {
             state.userMsg = val
+        },
+        setMyRank(state, val) {
+
+            state.myRank = val
         },
         setToast(state, val) {
             state.toastObj.toast = true
@@ -57,7 +66,7 @@ const store = new Vuex.Store({
             state.friend_list[val].status = 0
         },
         addFriendList(state, val) {
-            state.friend_list = state.friend_list.contant(val)
+            state.friend_list = state.friend_list.concat(val)
         },
         updateHistory(state, obj) {
             if (obj && typeof obj.key != 'undefined') {
@@ -65,10 +74,29 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.history = Object.assign({}, state.history, { [key]: Object.assign({}, state.history[key], obj) });
             }
-            console.log(state.history)
+        },
+        updateRankGroups(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.rankGroups = Object.assign({}, state.rankGroups, { [key]: Object.assign({}, state.rankGroups[key], obj) });
+            }
         },
         hostInivitSuc(state, val) {
             state.history[val.index].list[val.listIndex].status = val.status
+        },
+        changTab(state, val) {
+            state.tab = val
+        },
+        setLeader(state, val) {
+            state.leader = val
+        },
+        setKol(state, val) {
+            state.kol = val
+        },
+        myRoomRank(state, val) {
+            console.log(val)
+            state.roomRank = val
         }
     },
     actions: {

@@ -215,6 +215,7 @@ export default {
 }
 .list {
   flex: 1;
+  max-height: 5.1rem;
   width: 6.9rem;
   margin: 0.18rem auto;
   border-top: 1px solid rgba(255, 255, 255, 0.2);

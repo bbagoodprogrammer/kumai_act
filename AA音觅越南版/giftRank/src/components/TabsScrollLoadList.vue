@@ -294,7 +294,7 @@ export default {
   width: 6.88rem;
   padding: 1.49rem 0 2rem;
   position: relative;
-  background: #7ddffc url(../assets/img/listBg.png) no-repeat;
+  background: RGBA(251, 249, 237, 1) url(../assets/img/listBg.png) no-repeat;
   background-size: 100% auto;
   margin: 0.37rem auto;
   > li {
@@ -353,10 +353,9 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
-          color: #3863c4;
           .nick {
             max-width: 2rem;
-            color: #fff;
+            color: rgba(181, 96, 35, 1);
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -383,14 +382,14 @@ export default {
         right: 0.4rem;
         strong {
           display: block;
-          color: #fff;
+          color: rgba(181, 96, 35, 1);
           font-size: 0.24rem;
           font-weight: 500;
         }
         em {
           display: block;
           font-size: 0.72rem;
-          color: #f2ff2a;
+          color: rgba(181, 96, 35, 1);
           font-weight: 800;
         }
       }
@@ -409,7 +408,7 @@ export default {
       .rank {
         width: 1.12rem;
         line-height: 0.94rem;
-        color: #98f1ff;
+        color: rgba(190, 255, 207, 1);
         text-align: center;
         font-weight: bold;
         font-size: 0.42rem;

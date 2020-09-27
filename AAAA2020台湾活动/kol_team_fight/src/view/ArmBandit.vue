@@ -6,20 +6,35 @@
     <div class="header">
       <div class="tipsBox" :class="{top:isShare}">
         <span class="ruleTips" @click="goRule()">獎勵&規則</span>
-        <span class="ruleTips2" @click="goHistory()">申請&邀請記錄</span>
-        <span class="ruleTips3" @click="goRule()">當前組隊情況</span>
+        <span class="ruleTips2" @click="goHistory()">{{leader?'申請&邀請記錄':'受邀記錄'}} <i v-if="red_point.invite || red_point.apply"></i> </span>
+        <span class="ruleTips3" @click="teamList()">當前組隊情況</span>
       </div>
       <i class="taskIcon" @click="showTaskPup()"></i>
     </div>
-    <Invitation />
-    <!-- <act-footer></act-footer> -->
+    <div class="pkList" v-if="team.type >0">
+      <div class="title">當前組隊情況</div>
+      <PkMsg :team="team" />
+    </div>
+
+    <Invitation v-if="leader && registered" />
+    <!-- v-else-if="registered" -->
     <div class="mask" v-show="showTask">
       <transition name="slide">
         <Tasks v-if="showTask" :record="record" />
       </transition>
     </div>
-    <TeamSearch />
+    <MainTabsScrollLoadList />
+    <act-footer></act-footer>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
+    <div class="mask" v-show="showTeam">
+      <transition name="slide">
+        <div class="nowList" v-if="showTeam">
+          <div class="title">當前組隊情況</div>
+          <i class="close" @click="closeTeam()"></i>
+          <PkMsg :team="team" :no="true" />
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -33,9 +48,10 @@ import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
 import Invitation from "../components/Invitation"
 import Tasks from "../components/Tasks"
-import TeamSearch from "../components/TeamSearch"
+import MainTabsScrollLoadList from "../components/MainTabsScrollLoadList"
+import PkMsg from "../components/PkMsg"
 export default {
-  components: { MsgToast, ActFooter, Invitation, Tasks, TeamSearch },
+  components: { MsgToast, ActFooter, Invitation, Tasks, MainTabsScrollLoadList, PkMsg },
   data() {
     return {
       isShare: false, //是否分享
@@ -48,14 +64,22 @@ export default {
       rotatec: 0,
       showTask: false,
       record: [],
-      leader: null
+      leader: null,
+      registered: false,
+      showTeam: false,
+      team: {},
+      red_point: {},
+      defaultTeam: {
+        team: [null, null, null, null, null, null, null, null],
+        type: 0
+      }
     }
   },
   created() {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
-  mounted() {
+  computed: {
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -69,45 +93,14 @@ export default {
           const { step, friend_list, kol, leader, list, nums, rank, red_point, team, user_info } = response_data
           this.vxc('setActStatus', step)
           this.vxc('setUserMsg', user_info)
-          this.vxc('setFriend_list', [
-            {
-              "avatar": "http://img.17sing.tw/uc/img/head_100862_1582700448.png_small",
-              "nick": "栗子蛋糕推薦一下距離",
-              "uid": 100862,
-              "status": "0" //0已邀请 1已加入 3 拒接 3 未操作
-            },
-            {
-              "avatar": "http://img.17sing.tw/group50/M00/59/D4/Cm4EdVkJvtSAK8FjAAC6F_tEJqY936.png_small",
-              "nick": "Kelly",
-              "uid": 100865,
-              "status": "0"
-            },
-            {
-              "avatar": "http://img.17sing.tw/uc/img/head_100867_1536057451.png_small",
-              "nick": "Alisa",
-              "uid": 100867,
-              "status": 3  //未操作
-            },
-            {
-              "avatar": "http://img.17sing.tw/uc/img/head_100868_1572869355.png_small",
-              "nick": "拾夢人",
-              "uid": 100868,
-              "status": 3
-            },
-            {
-              "avatar": "http://img.17sing.tw/uc/img/head_100869_1541753461.png_small",
-              "nick": "Hui",
-              "uid": 100869,
-              "status": 3
-            },
-            {
-              "avatar": "http://img.17sing.tw/uc/img/head_100871_1599193856.png_small",
-              "nick": "(*ﾟｪﾟ*)車來了車來",
-              "uid": 100871,
-              "status": 3
-            }
-          ])
+          this.vxc('setMyRank', rank)
+          this.vxc('setFriend_list', friend_list.list)
           this.leader = leader
+          this.vxc('setLeader', leader)
+          this.vxc('setKol', kol)
+          this.registered = user_info.registered
+          this.team = team.type == 0 ? this.defaultTeam : team
+          this.red_point = red_point
         } else {
           this.toast(response_status.error)
         }
@@ -135,6 +128,12 @@ export default {
         this.record = res.data.response_data.record
         console.log(res)
       })
+    },
+    teamList() {
+      this.showTeam = true
+    },
+    closeTeam() {
+      this.showTeam = false
     }
   }
 }
@@ -148,7 +147,7 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  // background:url(../assets/img/主视觉.png) center 0 no-repeat;
+  background: url(../assets/img/banner.png) center 0 no-repeat;
   background-size: 100% auto;
   .shareBar {
     position: fixed;
@@ -166,7 +165,7 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 7.4rem;
+    height: 7.8rem;
     position: relative;
     .tipsBox {
       position: absolute;
@@ -194,6 +193,17 @@ body::-webkit-scrollbar {
         width: 1.96rem;
         background: url(../assets/img/ruleTips2.png);
         background-size: 100% 100%;
+        position: relative;
+        i {
+          width: 0.15rem;
+          height: 0.15rem;
+          background: #ff0001;
+          border: 0.02rem solid #d4aa66;
+          border-radius: 50%;
+          position: absolute;
+          right: 0rem;
+          top: 0.12rem;
+        }
       }
       .ruleTips3 {
         width: 1.76rem;
@@ -216,9 +226,31 @@ body::-webkit-scrollbar {
       bottom: 0.17rem;
     }
   }
-  .guaBox {
-    position: relative;
+  .pkList {
+    > .title {
+      width: 5.83rem;
+      height: 0.7rem;
+      background: url(../assets/img/inivationTitle.png);
+      background-size: 100% 100%;
+      font-size: 0.36rem;
+      line-height: 0.6rem;
+      text-align: center;
+      margin: 0 auto 0rem;
+      text-shadow: rgba(28, 81, 179, 1) 0.02rem 0 0,
+        rgba(28, 81, 179, 1) 0 0.02rem 0, rgba(28, 81, 179, 1) -0.02rem 0 0,
+        rgba(28, 81, 179, 1) 0 -0.02rem 0;
+    }
   }
+}
+.close {
+  display: block;
+  width: 0.67rem;
+  height: 0.67rem;
+  background: url(../assets/img/close.png);
+  background-size: 100% 100%;
+  position: absolute;
+  bottom: -1.5rem;
+  left: 3.05rem;
 }
 .queryPup {
   width: 6.25rem;
@@ -238,11 +270,13 @@ body::-webkit-scrollbar {
   }
   p {
     height: 2.33rem;
+    padding: 0 0.3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
   }
+
   .btnBox {
     display: flex;
     align-items: center;
@@ -270,6 +304,27 @@ body::-webkit-scrollbar {
         rgba(28, 81, 179, 1) 0 0.02rem 0, rgba(28, 81, 179, 1) -0.02rem 0 0,
         rgba(28, 81, 179, 1) 0 -0.02rem 0;
     }
+  }
+}
+.nowList {
+  width: 6.75rem;
+  height: 4.53rem;
+  background: url(../assets/img/pkBg2.png);
+  background-size: 100% 100%;
+  position: relative;
+  padding-top: 0.6rem;
+  > .title {
+    width: 4.08rem;
+    height: 0.92rem;
+    font-size: 0.48rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 0.92rem;
+    background: url(../assets/img/titleBg.png);
+    background-size: 100% 100%;
+    position: absolute;
+    left: 1.34rem;
+    top: -0.33rem;
   }
 }
 .refresh {

@@ -364,7 +364,7 @@ export default {
             white-space: nowrap;
             text-overflow: ellipsis;
             font-weight: 800;
-            color: #fff;
+            color: rgba(182, 96, 36, 1);
           }
           .score {
             margin-left: 0.28rem;
@@ -387,14 +387,14 @@ export default {
         right: 0.4rem;
         strong {
           display: block;
-          color: #fff;
+          color: rgba(182, 96, 36, 1);
           font-size: 0.24rem;
           font-weight: 500;
         }
         em {
           display: block;
           font-size: 0.72rem;
-          color: #f2ff2a;
+          color: rgba(182, 96, 36, 1);
           font-weight: 800;
         }
       }
@@ -413,7 +413,7 @@ export default {
       .rank {
         width: 1.12rem;
         line-height: 0.94rem;
-        color: #beffd0;
+        color: rgba(190, 255, 208, 1);
         text-align: center;
         font-weight: bold;
         font-size: 0.42rem;

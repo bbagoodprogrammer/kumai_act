@@ -5,7 +5,7 @@
     </div>
     <div class="header">
       <roolMsg :roolMsgs="roolMsgs" />
-      <span class="ruleTips" @click="goRule()"></span>
+      <span class="ruleTips" @click="goRule()">Thể lệ</span>
     </div>
     <div class="gifts">
       <div class="timeDown" v-if="!surplusTime.end">
@@ -37,26 +37,22 @@
             <h6>1 Thời gian</h6>
             <p>{{aTimer}}</p>
             <h6>2 Bảng xếp hạng</h6>
-            <p>"BXH dựa vào mị lực nhận được từ 2 quà Mùa hè (Chong chóng và Qùa lucky), xếp hạng từ cao xuống thấp
-              <br />BXH cập nhật số quà nhận được (cập nhật từng phút)"</p>
-            <h6>3 Giải thưởng</h6>
-            <div class="giftItemBox">
+            <p> BXH dựa vào tổng số quà nhận được từ 2 quà sự kiện Bánh Trung Thu (100 xu) và Trăng rằm (200 xu)
+              <h6>3 Giải thưởng</h6>
+              <!-- <div class="giftItemBox">
               <span class="giftImg2"></span>
               <span class="giftImg"></span>
-            </div>
-            <div class="giftBox">
-              <h5>1. BXH Chong chóng </h5>
-              <p>Hạng 1: Khung ảnh Hè mát 7 ngày, xe Kem Lạnh 7 ngày</p>
-              <p>Hạng 2: Khung ảnh hè mát 5 ngày</p>
-              <p>Hạng 3: Khung ảnh hè mát 3 ngày</p>
-              <h5>2. BXH Qùa lucky</h5>
-              <p>Hạng 1: Khung ảnh hè mát 14 ngày, xe Kem Lạnh 14 ngày</p>
-              <p>Hạng 2: Khung ảnh hè mát 7 ngày</p>
-              <p>Hạng 3: Khung ảnh hè mát 5 ngày</p>
-            </div>
-            <h6>4 Chú ý </h6>
-            <p>Giải thưởng được phát sau khi sự kiện kết thúc 7 ngày.</p>
-            <p class="lastTips">Quyết định cuối cùng thuộc về Alochat</p>
+            </div> -->
+              <div class="giftBox">
+                <p>
+                  Giải nhất: Xe Kiệu Hằng Nga 10 ngày, 10% số xu nhận được.<br />
+                  Giải nhì: Xe Kiệu Hằng Nga 5 ngày, 5% số xu nhận được.<br />
+                  Giải ba: Xe Kiệu Hằng Nga 3 ngày, 3% số xu nhận được."
+                </p>
+              </div>
+              <h6>4 Chú ý </h6>
+              <p>Giải thưởng được phát sau khi sự kiện kết thúc 7 ngày.</p>
+              <p class="lastTips">Quyết định cuối cùng thuộc về Alochat</p>
           </div>
         </div>
       </transition>
@@ -176,7 +172,8 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: #fcfac7 url(../assets/img/banner.png) center 0 no-repeat;
+  background: RGBA(36, 25, 90, 1) url(../assets/img/banner.png) center 0
+    no-repeat;
   background-size: 100% auto;
   .shareBar {
     position: fixed;
@@ -194,16 +191,20 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 6.08rem;
+    height: 8.41rem;
     position: relative;
     .ruleTips {
       width: 1.22rem;
       height: 0.36rem;
+      color: rgba(155, 69, 66, 1);
+      font-size: 0.18rem;
       background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
+      text-align: center;
+      line-height: 0.36rem;
       position: absolute;
       right: 0;
-      top: 1.93rem;
+      top: 4.56rem;
     }
   }
   .gifts {
@@ -275,7 +276,7 @@ body::-webkit-scrollbar {
       top: -0.4rem;
     }
     .lastTips {
-      color: #267cfd;
+      color: rgba(181, 96, 35, 1);
       font-size: 0.2rem;
       margin-top: 0.24rem;
       text-align: center;
@@ -303,7 +304,7 @@ body::-webkit-scrollbar {
     .giftBox {
       h5 {
         padding-left: 0.3rem;
-        color: #1a9df0;
+        color: rgba(181, 96, 35, 1);
       }
       p {
         padding-left: 0.6rem;
@@ -312,15 +313,15 @@ body::-webkit-scrollbar {
     }
     h6 {
       font-size: 0.24rem;
-      color: #267cfd;
+      color: rgba(181, 96, 35, 1);
       font-weight: 800;
       margin-top: 0.1rem;
     }
     p {
       font-size: 0.24rem;
-      color: #1a9df0;
+      color: rgba(181, 96, 35, 1);
       font-weight: 500;
-      text-indent: 0.5rem;
+      padding-left: 0.5rem;
       // margin-top: 0.1rem;
     }
   }

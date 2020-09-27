@@ -18,7 +18,7 @@
           <div class="title"> Aturan permainan<i class="close" @click="closeTips1()"></i></div>
           <div class="con">
             <p>1.Setiap konsumsi 100 koin emas,akan bisa undian dengan roda;</p>
-            <p>2.Setiap top up 300 koin emas,akan bisa dapatkan 1 kunci kejutan,kunci kejutan bisa digunakan utk membuka peti harta karun kejutan;</p>
+            <p>2.Setiap top up 300 koin emas,akan bisa dapatkan 1 kunci kejutan,kunci kejutan bisa digunakan utk membuka Peti hart kejutan;</p>
             <p>3.Fragmen hadiah bisa ditakurkan hadiah langka dari kotak hadiah,hadiah langka adalah hadiah K-room.</p>
             <p>4.Fragmen emotikon bisa ditakurkan paket emotikon lengkap</p>
             <p>5.Alat peraga langka dan koin besar pasti dimenangkan utk ke- 3 dan ke- 8 kalinya di Peti harta karun Lucky.</p>
@@ -41,7 +41,7 @@
                 <div class="gift">
                   <!-- <img src="../assets/img/icon1.png" alt="">
                   <em>x99</em> -->
-                  Dari <em>{{item.status==0?'Roda Lucky':'Peti harta karun kejutan'}}</em> Menarik <em>{{item.name}}</em>
+                  Dari <em>{{item.status==0?'Roda Lucky':'Peti harta kejutan'}}</em> Menarik <em>{{item.name}}</em>
                 </div>
               </li>
             </ul>

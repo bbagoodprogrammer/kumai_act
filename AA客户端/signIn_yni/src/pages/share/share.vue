@@ -129,9 +129,9 @@ export default {
           "share_title": `Sy sudah sign-in ${this.days} hari dengan terus-menurus`,
           "share_content": `Saya sudah sign-in ${this.days} hari dengan terus-menurus di Wekara,buka kartu akan bisa dapatkan hadiah.Saya perlu bantuanmu,cepat datang`,
           "share_image": this.master.headImg,
-          "link": `http://wekarapp.com/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
+          "link": `http://t.wekarapp.com/singIn_yni_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
           "image": this.master.headImg,
-          "share_url": `http://wekarapp.com/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
+          "share_url": `http://t.wekarapp.com/singIn_yni_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
         }
         if (ios) {
           if (window.shareOutside != undefined) {

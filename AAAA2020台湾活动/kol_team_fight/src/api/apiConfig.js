@@ -104,7 +104,7 @@ function hostInvite(invite_id) {
 
 //隊長處理申請記錄
 function hostApplySet(rid, type) {
-    return get(`${act}/applySet.php?token=${token}&rid=${rid}&type=${type}`)
+    return get(`${act}/applySet.php?token=${token}&apply_id=${rid}&type=${type}`)
 }
 
 
@@ -115,10 +115,30 @@ function application(apply_id) {
 
 //隊員處理邀請
 function applySet(apply_id, type) {
-    return get(`${act}/applySet.php?token=${token}&apply_id=${apply_id}&type=${type}`)
+    return get(`${act}/inviteSet.php?token=${token}&rid=${apply_id}&type=${type}`)
 }
 
 
+//戰隊詳情
+function teamInfo(team_id) {
+    return get(`${act}/teamInfo.php?token=${token}&team_id=${team_id}`)
+}
+
+
+//報名
+function singUp(type) {
+    return get(`${act}/register.php?token=${token}&type=${type}`)
+}
+
+//搜索隊長信息
+function searchLeader(suid) {
+    return get(`${act}/searchLeader.php?token=${token}&s_uid=${suid}`)
+}
+
+//跳轉隨機UID
+function joinRoom() {
+    return get(`${act}/joinRoom.php?token=${token}`)
+}
 const httpConfig = {
     getDefault,
     searchMate,
@@ -128,6 +148,10 @@ const httpConfig = {
     hostInvite,
     hostApplySet,
     application,
-    applySet
+    applySet,
+    teamInfo,
+    singUp,
+    searchLeader,
+    joinRoom
 }
 export default httpConfig
