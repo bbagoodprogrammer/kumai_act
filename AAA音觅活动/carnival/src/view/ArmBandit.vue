@@ -1,12 +1,13 @@
 <template>
   <div class="box">
+    <RoolMsg />
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <div class="tipsBox">
-        <span class="ruleTips" :class="{top:isShare}" @click="goRule()">規則獎勵</span>
-        <span class="history">糖果動態</span>
+      <div class="tipsBox" :class="{top:isShare}">
+        <span class="ruleTips" @click="goRule()">規則獎勵</span>
+        <span class="history" @click="goHistory()">糖果動態</span>
       </div>
     </div>
     <div class="mainTabsMtop">
@@ -17,24 +18,44 @@
     <component :is="mainTab" :type="mainTab"></component>
     <!-- </keep-alive> -->
     <!-- <TabsScrollLoadList /> -->
-    <!-- <act-footer></act-footer> -->
+    <act-footer></act-footer>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
     <div class="mask" v-show="invitation">
       <transition name="slide">
         <div class="invitationPup" v-if="invitation">
           <i class="close" @click="closeInvitation()"></i>
-          <div class="title"><i></i></div>
-          <p>有好友邀請你玩音覓大富翁</p>
+          <h5>有好友邀请你参加万圣节嘉年华</h5>
           <ul>
             <li v-for="(item,index) in peopleList" :key="index" @click="setActIndex(index)">
               <img v-lazy="item.avatar" alt="">
               <div class="nick">{{item.nick}}</div>
-              <i class="gou" :class="{act:index==actIndex}"></i>
+              <span class="gou"> <i v-if="actIndex == index"> </i></span>
             </li>
           </ul>
-          <p class="tips">成功邀請你玩音覓大富翁的好友，有機會獲得 <i></i> x3</p>
+          <p class="tips">成功邀请你参加万圣节嘉年华的好友，<br />有机会获得 <i></i></p>
           <span class="singUpBtn" @click="singUp()">接受他的邀請</span>
         </div>
+      </transition>
+    </div>
+    <div class="mask" v-show="firstGift">
+      <transition name="slide">
+        <div class="firstLuck" v-if="firstGift">
+          <i class="close" @click="closeFirst()"></i>
+          <div class="title">
+            <p v-if="!isRank"> 歡迎來到萬聖節嘉年華<br />送你萬聖節糖果5個</p>
+            <p v-else>你大受歡迎！</p>
+          </div>
+          <img src="../assets/img/tang.png" alt="" v-if="!isRank">
+          <img :src="rankGift[step_show].img" alt="" v-else>
+          <p v-if="!isRank">可用于赠送给喜欢的小捣蛋用户，<br />增加他的狂欢值</p>
+          <p v-else>狂歡值達到{{score}}值，獲得{{rankGift[step_show].name}}獎勵<br />已經發送到你的帳號，請查收 </p>
+          <div class="btn" v-if="!isRank" @click="singUp()">收下</div>
+        </div>
+      </transition>
+    </div>
+    <div class="mask" v-show="showHistory">
+      <transition name="slide">
+        <GiftHistory v-if="showHistory" @closeHistory="closeHistory" />
       </transition>
     </div>
   </div>
@@ -51,8 +72,10 @@ import { globalBus } from '../utils/eventBus'
 import TabsScrollLoadList from "../components/TabsScrollLoadList"
 import Tasks from "../components/Tasks"
 import { mapState } from "vuex"
+import RoolMsg from "../components/RoolMsg"
+import GiftHistory from "../components/GiftHistory"
 export default {
-  components: { MsgToast, ActFooter, TabsScrollLoadList, Tasks },
+  components: { MsgToast, ActFooter, TabsScrollLoadList, Tasks, RoolMsg, GiftHistory },
   data() {
     return {
       isShare: false, //是否分享
@@ -67,11 +90,31 @@ export default {
       invitation: false,
       actIndex: null,
       tasksList: [],
+      step_show: 1,
+      firstGift: false,
+      isRank: false,
+      rankGift: {
+        1: {
+          name: '節日小禮物-十個',
+          img: ''
+        },
+        2: {
+          name: '南瓜車座駕-15天',
+          img: ''
+        },
+        3: {
+          name: '巫師頭像框-15天',
+          img: ''
+        }
+      },
+      showHistory: false,
+      score: 0
     }
   },
   created() {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
+    this.getRoolMsg()
   },
   computed: {
     ...mapState(['tasks'])
@@ -85,28 +128,73 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { step, reg, owner, step_show, score, today, end_time } = response_data
+          const { step, reg, owner, step_show, score, today, end_time, invite } = response_data
+          if (invite && invite.length) {
+            this.peopleList = invite
+            this.invitation = true
+          } else if (!reg) {
+            this.firstGift = true
+          }
+          if (step_show > 0) {
+            this.isRank = true
+            this.firstGift = true
+            this.step_show = step_show
+          }
           this.vxc('setActStatus', step)
           this.vxc('setReg', reg)
           this.vxc('setUserMsg', owner)
+          this.score = score
           this.vxc('setScore', score)
           this.vxc('updateRankGroups', { key: 0, second: today })
           this.vxc('updateRankGroups', { key: 'total', second: end_time })
+
         } else {
           this.toast(response_status.error)
         }
+      })
+    },
+    getRoolMsg() {
+      api.roolMsg().then(res => {
+        this.vxc('setRoolMsg', res.data.response_data.list)
       })
     },
     tabClick(val) {
       if (val == 'Tasks' && !this.tasks.day_task) { //拉取任務數據
         this.mainTab = val
         api.tasks().then(res => {
-          console.log(res)
           this.vxc('setTasks', res.data.response_data)
         })
       } else {
         this.mainTab = val
       }
+    },
+    setActIndex(index) {
+      this.actIndex = index
+    },
+    // invitSingUp() {
+    //   this.invitation = false
+    //   this.firstGift = true
+    // },
+    singUp() {
+      let uid = this.actIndex ? this.peopleList[this.actIndex].uid : null
+      api.singUp(uid).then(res => {
+        if (res.data.response_status.code == 0) {
+          this.getDefaultData()
+          this.invitation = false
+          this.toast('歡迎你參加萬聖節嘉年華，送你萬聖節糖果2個（已發到背包）')
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+    },
+    closeFirst() {
+      this.firstGift = false
+    },
+    goHistory() {
+      this.showHistory = true
+    },
+    closeHistory() {
+      this.showHistory = false
     },
     downApp() {
       APP()
@@ -166,6 +254,7 @@ body::-webkit-scrollbar {
         color: rgba(155, 69, 66, 1);
         font-size: 0.2rem;
         text-indent: 0.15rem;
+        line-height: 0.43rem;
       }
       .ruleTips {
         width: 1.42rem;
@@ -203,38 +292,30 @@ body::-webkit-scrollbar {
   }
 }
 .invitationPup {
-  width: 6.48rem;
-  height: 8.29rem;
-  padding-top: 0.71rem;
-  border: 0.08rem solid #ffffff;
-  background: linear-gradient(0deg, #83d2fb, #9e82fa, #a876f1);
+  width: 6.6rem;
+  height: 7.14rem;
+  background: url(../assets/img/fListBg.png);
+  background-size: 100% 100%;
   border-radius: 0.24rem;
   position: relative;
+  padding-top: 1rem;
+  h5 {
+    height: 0.8rem;
+    line-height: 0.8rem;
+    text-align: center;
+    color: rgba(107, 38, 193, 1);
+    font-size: 0.33rem;
+    font-weight: 600;
+  }
   .close {
     display: block;
     width: 0.72rem;
     height: 0.78rem;
-    // background: url(../assets/img/close.png);
-    // background-size: 100% 100%;
+    background: url(../assets/img/close.png);
+    background-size: 100% 100%;
     position: absolute;
-    right: -0.3rem;
-    top: -0.4rem;
-  }
-  .title {
-    width: 5.14rem;
-    height: 1.42rem;
-    // background: url(../assets/img/title/ribbon.png);
-    // background-size: 100% 100%;
-    position: absolute;
-    top: -0.8rem;
-    left: 0.71rem;
-    i {
-      display: block;
-      width: 5.14rem;
-      height: 1.42rem;
-      // background: url(../assets/img/title/title_11.png);
-      // background-size: 100% 100%;
-    }
+    right: -0.1rem;
+    top: 0.7rem;
   }
   > p {
     text-align: center;
@@ -242,7 +323,7 @@ body::-webkit-scrollbar {
   }
   ul {
     width: 6rem;
-    height: 6rem;
+    height: 4.5rem;
     margin: 0.21rem auto;
     overflow-y: scroll;
     li {
@@ -266,42 +347,99 @@ body::-webkit-scrollbar {
         text-overflow: ellipsis;
       }
       .gou {
-        width: 0.48rem;
-        height: 0.48rem;
-        // background: url(../assets/img/Unselected.png);
-        // background-size: 100% 100%;
+        width: 0.26rem;
+        height: 0.26rem;
+        background: url(../assets/img/Unselected.png);
+        background-size: 100% 100%;
         margin-left: 0.5rem;
-        &.act {
-          // background: url(../assets/img/Selected.png);
-          // background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i {
+          display: block;
+          width: 0.18rem;
+          height: 0.18rem;
+          background: url(../assets/img/selected.png);
+          background-size: 100% 100%;
         }
       }
     }
   }
   .tips {
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
     font-size: 0.24rem;
+    padding: 0 0.4rem;
     i {
-      width: 0.27rem;
-      height: 0.27rem;
-      // background: url(../assets/img/dice.png);
-      // background-size: 100% 100%;
+      display: inline-block;
+      vertical-align: middle;
+      width: 0.5rem;
+      height: 0.5rem;
+      background: url(../assets/img/tang.png);
+      background-size: 100% 100%;
     }
   }
   .singUpBtn {
     display: block;
-    width: 3.76rem;
-    height: 1rem;
+    width: 3.12rem;
+    height: 0.97rem;
     margin: 0.19rem auto;
-    // background: url(../assets/img/singUpBtn.png);
-    // background-size: 100% 100%;
-    color: rgba(126, 46, 0, 1);
+    background: url(../assets/img/inivtBtn.png);
+    background-size: 100% 100%;
     font-size: 0.32rem;
     text-align: center;
-    line-height: 0.85rem;
+    line-height: 0.97rem;
+  }
+}
+.firstLuck {
+  width: 6.6rem;
+  height: 5.08rem;
+  background: url(../assets/img/firstPup.png);
+  background-size: 100% 100%;
+  padding-top: 1rem;
+  position: relative;
+  .close {
+    display: block;
+    width: 0.72rem;
+    height: 0.78rem;
+    background: url(../assets/img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: -0.1rem;
+    top: 0.7rem;
+  }
+  .title {
+    height: 1.6rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: rgba(107, 38, 193, 1);
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  p {
+    text-align: center;
+    font-size: 0.23rem;
+    margin-top: 0.3rem;
+  }
+  .btn {
+    width: 2.6rem;
+    height: 0.97rem;
+    text-align: center;
+    line-height: 0.97rem;
+    background: url(../assets/img/ok.png);
+    background-size: 100% 100%;
+    position: absolute;
+    left: 1.99rem;
+    bottom: -0.3rem;
   }
 }
 .refresh {
@@ -309,7 +447,7 @@ body::-webkit-scrollbar {
   width: 0.94rem;
   height: 1rem;
   position: fixed;
-  left: 0.08rem;
+  right: 0.08rem;
   bottom: 1.35rem;
   background: url(../assets/img/refresh.png) no-repeat;
   background-size: contain;

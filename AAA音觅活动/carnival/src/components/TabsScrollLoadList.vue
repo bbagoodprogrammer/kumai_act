@@ -1,6 +1,6 @@
 <template>
   <div class="rankGroups">
-    <p class="rankTips">報名活動成為小搗蛋>>收到糖果和指定禮物>>獲得狂歡值 <i></i></p>
+    <p class="rankTips">報名活動成為小搗蛋>>收到糖果和指定禮物>>獲得狂歡值 <i @click="scorePupClick()"></i></p>
     <img src="../assets/img/giftImg.png" alt="" class="giftImg">
     <!-- 日榜、总榜切换主Tabs -->
     <div class="listBog">
@@ -30,9 +30,11 @@
       <!-- 日榜 -->
       <div class="list day">
         <li v-for="(item,index) in rank.list" :key="index" :class="'list'+item.rank">
+          <!-- v-if="item.rid > 0" -->
+          <i class="ing" :class="{yel:item.rank > 3}" v-if="item.rid > 0"></i>
           <div class="userRank"><em v-if="item.rank >3"> {{item.rank}}</em></div>
           <div class="imgBox">
-            <div class="userImg">
+            <div class="userImg" @click="goUser(item.uid)">
               <span class="avBg" :class="'avBg' + item.rank" v-if="item.rank<=3"></span>
               <img v-lazy="item.avatar" alt="">
             </div>
@@ -47,10 +49,10 @@
             <div class="userList">
               <span>貢獻榜Top3</span>
               <div class="items">
-                <img v-lazy="item.avatar" alt="" v-for="(item,index2) in item.guard" :key="index2">
+                <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in item.guard" :key="index2" @click="goUser(item2.uid)">
               </div>
             </div>
-            <div class="pupIcon" @click="showTeamList(item.uid,item.nick)">
+            <div class="pupIcon" @click="showTeamList(item.uid)">
               查看貢獻榜>>
             </div>
           </div>
@@ -65,19 +67,30 @@
     <!-- 搜索結果 -->
     <div class="mask" v-show="showitemList">
       <transition name="slide">
-        <div class="searchList" v-if="showitemList">
-          <div class="itemMsg">
-            <span class='rank'>{{itemMsg.list.rank}}</span>
-            <img v-lazy="itemMsg.list.info.avatar" alt="">
-            <div class="msg">
-              <div class="nick">{{itemMsg.list.info.nick}}</div>
-              <div class="score"> <i></i>{{itemMsg.list.score}}</div>
+        <div class="searchList" :class="'list'+itemMsg.rank" v-if="showitemList">
+          <i class="ing" :class="{yel:itemMsg.rank > 3}" v-if="itemMsg.rid > 0"></i>
+          <div class="userRank"><em v-if="itemMsg.rank >3"> {{itemMsg.rank}}</em></div>
+          <div class="imgBox">
+            <div class="userImg" @click="goUser(itemMsg.uid)">
+              <span class="avBg" :class="'avBg' + itemMsg.rank" v-if="itemMsg.rank<=3"></span>
+              <img v-lazy="itemMsg.avatar" alt="">
             </div>
-            <div class="peopleList">
-              <span v-for="(item2,index2) in itemMsg.list.list" :key="index2">
-                <img v-lazy="item2.avatar" alt="" @click="goPeople(item2.uid)">
-                <strong>{{item2.score}}</strong>
-              </span>
+            <strong>{{itemMsg.nick}}</strong>
+          </div>
+          <div class="userScore">
+            <div class="total">總狂歡值 {{itemMsg.sugar_score*1 + itemMsg.gift_score*1}}</div>
+            <div class="score1">糖果狂歡值 {{itemMsg.sugar_score}}</div>
+            <div class="score1">派對狂歡值 {{itemMsg.gift_score}}</div>
+          </div>
+          <div class="peopleList" v-if="itemMsg.rank <=3">
+            <div class="userList">
+              <span>貢獻榜Top3</span>
+              <div class="items">
+                <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in itemMsg.guard" :key="index2" @click="goUser(item2.uid)">
+              </div>
+            </div>
+            <div class="pupIcon" @click="showTeamList(itemMsg.uid)">
+              查看貢獻榜>>
             </div>
           </div>
         </div>
@@ -86,21 +99,46 @@
     <!-- 守護榜 -->
     <div class="mask" v-show="showPlist">
       <transition name="slide">
-        <div class="peopleListPup" v-if="showPlist">
+        <div class="peopleListPup" v-show="showPlist">
           <i class="close" @click="closePlist()"></i>
-          <h5>{{nick}}的貢獻榜</h5>
+          <h5 class="pupTitle"><strong>{{pupMsg.info.nick}}</strong>的貢獻榜</h5>
           <div class="peopleItem">
             <div class="listHeader">
               <span class="rank">排名</span>
               <span class="user">用戶</span>
               <span class="score">總貢獻榜狂歡值</span>
             </div>
-            <ul>
-              <li>
-
+            <p class="noData" v-if="pupMsg.list.length == 0">暫無數據</p>
+            <ul class="scrollable">
+              <li v-for="(item,index) in pupMsg.list" :key="index" @click="goUser(item.uid)">
+                <div class="rank">{{item.rank}}</div>
+                <div class="user">
+                  <img v-lazy="item.avatar" alt="">
+                  <div class="nick">{{item.nick}}</div>
+                </div>
+                <div class="score">{{item.score}}</div>
               </li>
             </ul>
+            <p class="listRankTips">
+              *总贡献值为粉丝同一名用户的所有参加活动的声音
+              作品的贡献狂欢值综合；若声音作品被删除，对应的
+              狂欢之也会被删除；榜单显示前20名粉丝
+            </p>
+            <div class="goBtn" @click="goUser(pupMsg.info.uid)">查看他的個人資料頁</div>
           </div>
+        </div>
+      </transition>
+    </div>
+    <!-- 分值提示 -->
+    <div class="mask" v-show="scoreTips">
+      <transition name="slide">
+        <div class="scoreTips" v-show="scoreTips">
+          <div class="title">狂歡值</div>
+          <h6>狂歡值=糖果狂歡值+派對狂歡值</h6>
+          <p>糖果狂歡值=收到糖果數x10<br />
+            派對狂歡值=玩家在房間收到指定禮物的價值x12
+          </p>
+          <div class="ok" @click="scorePupClick()">我知道了</div>
         </div>
       </transition>
     </div>
@@ -144,9 +182,18 @@ export default {
       rotatec: 0,
       searchUid: '',
       itemMsg: {},
+      pupMsg: {
+        info: {},
+        list: []
+      },
       showitemList: false,
       nick: '',
-      showPlist: false
+      showPlist: false,
+      loaded: false,
+      more: true,
+      pupUid: 0,
+      scoreTips: false
+
     }
   },
   watch: {
@@ -172,7 +219,7 @@ export default {
         var dayApi = `/index.php?action=richMan.rank&signture=innerserver&type={type}&signture=innerserver&from={from}`;
         return dayApi.replace('{type}', this.rankKey == 'total' ? 2 : 1)
       } else {
-        var dayApi = `/index.php?action=halloweenParty.rank&signture=innerserver&from={from}&type={type}&token={token}`;
+        var dayApi = `/index.php?action=halloweenParty.rank&signture=innerserver&from={from}&type={type}&uid={uid}&token={token}`;
         const token = getUrlString('token') || '';
         const uid = getUrlString('uid') || '';
         return dayApi.replace('{type}', this.rankKey == 'total' ? 2 : 1).replace('{uid}', uid).replace('{token}', token);
@@ -195,6 +242,11 @@ export default {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
+    //守護榜分頁
+    this.scrollable = this.$el.querySelector('.scrollable');
+    if (this.scrollable) {
+      this.scrollable.addEventListener('scroll', this.pupOnScroll);
+    }
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.onScroll);
@@ -202,7 +254,7 @@ export default {
   methods: {
     mainTabClick(tab) { //总榜切换
       this.mainTab = tab;
-      // this.$store.commit("changTab", this.rankKey)
+      this.$store.commit("changTab", this.rankKey)
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
           this.onScroll();
@@ -210,7 +262,7 @@ export default {
       })
     },
     showTeamList(uid, nick) {
-      this.nick = nick
+      this.pupUid = uid
       api.teamList(uid, 0).then(res => {
         this.pupMsg = res.data.response_data
         this.showPlist = true
@@ -263,12 +315,12 @@ export default {
             // }
             const arr = response_data.list;
             //跟随榜单变换个人信息
-            // if (response_data.owner_msg && response_data.owner_msg.uid) {
-            //   this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
-            //     key: this.rankKey,
-            //     msg: response_data.owner_msg
-            //   })
-            // }
+            if (response_data.rank && response_data.rank.uid) {
+              this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
+                key: this.rankKey,
+                msg: response_data.rank
+              })
+            }
             if (arr.slice) {
               const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
               set('loadCount', loadCount + 1);
@@ -297,6 +349,23 @@ export default {
             set('loadEnd', true);
           });
 
+        }
+      }
+    },
+    pupOnScroll() {
+      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
+      if (scrollToBottom) { //滾動加載，沒有加載完成
+        if (this.loaded) return
+        if (this.more) {
+          this.more = false
+          api.teamList(this.pupUid, this.pupMsg.list.length, 'more').then(res => {
+            this.more = true
+            if (res.data.response_data.list.length === 0) {
+              this.loaded = true
+            } else {
+              this.pupMsg.list = this.pupMsg.list.concat(res.data.response_data.list)
+            }
+          })
         }
       }
     },
@@ -338,6 +407,9 @@ export default {
       } else {
         javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
       }
+    },
+    scorePupClick() {
+      this.scoreTips = !this.scoreTips
     }
   },
 }
@@ -350,6 +422,12 @@ export default {
   // background-size: 100% auto;
   margin: 0.2rem auto;
   padding-bottom: 2rem;
+
+  .noData {
+    text-align: center;
+    font-size: 0.26rem;
+    margin-top: 0.25rem;
+  }
   .rankTips {
     font-size: 0.22rem;
     text-align: center;
@@ -365,8 +443,9 @@ export default {
     }
   }
   .giftImg {
-    width: 7.53rem;
-    height: 4.15rem;
+    display: block;
+    width: 7.07rem;
+    height: 5.28rem;
     margin: 0.1rem auto 0;
   }
   .listBog {
@@ -441,6 +520,20 @@ export default {
       display: flex;
       align-items: center;
       position: relative;
+      .ing {
+        display: block;
+        width: 0.95rem;
+        height: 0.28rem;
+        background: url(../assets/img/ing.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: 0.22rem;
+        right: 0.31rem;
+        &.yel {
+          background: url(../assets/img/ing2.png);
+          background-size: 100% 100%;
+        }
+      }
       .userRank {
         width: 1.44rem;
         display: flex;
@@ -518,13 +611,14 @@ export default {
           align-items: center;
           .items {
             display: flex;
-            justify-content: space-between;
+            // justify-content: space-between;
             margin-left: 0.3rem;
             width: 1.3rem;
             img {
               width: 0.33rem;
               height: 0.33rem;
               border-radius: 50%;
+              margin-right: 0.06rem;
             }
           }
         }
@@ -551,6 +645,138 @@ export default {
     }
   }
 }
+.searchList {
+  width: 6.62rem;
+  height: 1.89rem;
+  background: url(../assets/img/listItem.png);
+  background-size: 100% 100%;
+  margin-bottom: 0.1rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  .ing {
+    display: block;
+    width: 0.95rem;
+    height: 0.28rem;
+    background: url(../assets/img/ing.png);
+    background-size: 100% 100%;
+    position: absolute;
+    top: 0.22rem;
+    right: 0.31rem;
+    &.yel2 {
+      background: url(../assets/img/ing2.png);
+      background-size: 100% 100%;
+    }
+  }
+  .userRank {
+    width: 1.44rem;
+    display: flex;
+    justify-content: center;
+  }
+  .imgBox {
+    width: 1.5rem;
+    .userImg {
+      width: 1.23rem;
+      height: 1.38rem;
+      position: relative;
+      margin: 0 auto;
+      .avBg {
+        width: 1.23rem;
+        height: 1.38rem;
+        position: absolute;
+        z-index: 10;
+        &.avBg1 {
+          background: url(../assets/img/av1.png);
+          background-size: 100% 100%;
+        }
+        &.avBg2 {
+          background: url(../assets/img/av2.png);
+          background-size: 100% 100%;
+        }
+        &.avBg3 {
+          background: url(../assets/img/av3.png);
+          background-size: 100% 100%;
+        }
+      }
+      img {
+        width: 1.09rem;
+        height: 1.09rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 0.25rem;
+        left: 0.06rem;
+        box-sizing: border-box;
+        border: 0.03rem solid #fedf74;
+      }
+    }
+    strong {
+      display: block;
+      font-size: 0.23rem;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+  .userScore {
+    margin-left: 0.3rem;
+    .total {
+      font-size: 0.27rem;
+      font-weight: 600;
+      margin-bottom: 0.22rem;
+    }
+    .score1 {
+      font-size: 0.18rem;
+    }
+  }
+  .peopleList {
+    width: 100%;
+    height: 0.62rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.2rem;
+    .userList {
+      margin-left: 0.23rem;
+      display: flex;
+      align-items: center;
+      .items {
+        display: flex;
+        // justify-content: space-between;
+        margin-left: 0.3rem;
+        width: 1.3rem;
+        img {
+          width: 0.33rem;
+          height: 0.33rem;
+          border-radius: 50%;
+          margin-right: 0.06rem;
+        }
+      }
+    }
+    .pupIcon {
+      color: rgba(255, 246, 213, 1);
+      margin-right: 1.11rem;
+    }
+  }
+  &.list1 {
+    padding-bottom: 0.62rem;
+    background: url(../assets/img/1.png);
+    background-size: 100% 100%;
+  }
+  &.list2 {
+    padding-bottom: 0.62rem;
+    background: url(../assets/img/2.png);
+    background-size: 100% 100%;
+  }
+  &.list3 {
+    padding-bottom: 0.62rem;
+    background: url(../assets/img/3.png);
+    background-size: 100% 100%;
+  }
+}
 .peopleListPup {
   width: 6.91rem;
   height: 8.8rem;
@@ -558,6 +784,15 @@ export default {
   background-size: 100% 100%;
   padding-top: 1rem;
   position: relative;
+  .pupTitle {
+    font-size: 0.3rem;
+    strong {
+      max-width: 2rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
   .close {
     display: block;
     width: 0.95rem;
@@ -599,10 +834,59 @@ export default {
         flex: 1;
       }
     }
+    ul {
+      height: 5.85rem;
+      overflow-y: scroll;
+      li {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        .rank {
+          width: 1.5rem;
+          text-align: center;
+        }
+        .user {
+          width: 3rem;
+          display: flex;
+          align-items: center;
+          img {
+            width: 0.91rem;
+            height: 0.91rem;
+            border-radius: 50%;
+            margin-right: 0.1rem;
+          }
+          .nick {
+            font-size: 0.26rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+        .score {
+          color: rgba(255, 237, 130, 1);
+          font-size: 0.22rem;
+          flex: 1;
+        }
+      }
+    }
+    .listRankTips {
+      text-align: center;
+      font-size: 0.23rem;
+    }
+    .goBtn {
+      width: 3.65rem;
+      height: 0.94rem;
+      text-align: center;
+      line-height: 0.94rem;
+      background: url(../assets/img/actTab.png);
+      background-size: 100% 100%;
+      position: absolute;
+      left: 1.65rem;
+    }
   }
 }
 .shareBtn {
-  width: 6.65rem;
+  width: 6.45rem;
   height: 0.63rem;
   border-radius: 0.23rem;
   display: flex;
@@ -629,6 +913,47 @@ export default {
     margin-left: 0.05rem;
   }
 }
+
+.scoreTips {
+  width: 7.48rem;
+  height: 3rem;
+  padding-top: 1.11rem;
+  background: url(../assets/img/scoreTips.png);
+  background-size: 100% 100%;
+  position: relative;
+  .title {
+    height: 0.7rem;
+    line-height: 0.7rem;
+    font-weight: 600;
+    font-size: 0.35rem;
+    text-align: center;
+    color: rgba(107, 38, 193, 1);
+  }
+  h6 {
+    height: 0.9rem;
+    line-height: 0.9rem;
+    padding-left: 0.92rem;
+    color: rgba(107, 38, 193, 1);
+    font-size: 0.32rem;
+    font-weight: 600;
+  }
+  p {
+    font-size: 0.23rem;
+    padding-left: 0.92rem;
+  }
+  .ok {
+    width: 2.6rem;
+    height: 0.97rem;
+    text-align: center;
+    line-height: 0.97rem;
+    background: url(../assets/img/ok.png);
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: -0.4rem;
+    left: 2.26rem;
+  }
+}
+
 .dengdai {
   text-align: center;
 }

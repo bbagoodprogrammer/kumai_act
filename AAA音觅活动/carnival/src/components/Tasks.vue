@@ -7,11 +7,11 @@
           <strong>小恶魔头像框x3天</strong>
         </div>
         <div class="msg">
-          <div class="tip1">活动期间，每送出{{tasks.send}}颗糖果可兑换</div>
+          <div class="tip1">活动期间，每送出25颗糖果可兑换</div>
           <div class="tip2">已累计送出{{tasks.send}}颗糖果</div>
           <div class="btnBox">
-            <span>去贈送</span>
-            <span>兌換</span>
+            <span @click="goRankTab()">去贈送</span>
+            <span @click="exChange()">兌換</span>
           </div>
         </div>
       </div>
@@ -21,10 +21,10 @@
     </div>
     <div class="tasksList">
       <i class="topIcon"></i>
-      <div class="novice">
+      <div class="novice" v-if="newTasks.length >0">
         <h5>新手任務</h5>
         <ul>
-          <li v-for="(item,index) in tasks.new_task" :key="index" v-if="item.show">
+          <li v-for="(item,index) in newTasks" :key="index">
             <i class="giftNums">{{item.num}}</i>
             <div class="taskMsg">
               <div class="name">{{new_task_name[item.task_id].replace('A',item.process)}}</div>
@@ -33,10 +33,10 @@
                 <span class="taslkNum">{{item.process}}/5</span>
               </div>
             </div>
-            <div class="status" :class="{act:item.suc && !item.get,black:item.get}" @click="newGift(item.task_id,index)">
+            <div class="status" :class="{act:item.suc && !item.get,black:item.get}">
               <em v-if="item.get">已領取</em>
-              <em v-else-if="item.suc" @click="newGift(item.task_id,index)">領取糖果</em>
-              <em v-else>去完成</em>
+              <em v-else-if="item.suc" @click="newGift(item.task_id,index,item.num)">領取糖果</em>
+              <em v-else @click="newDoTask(item)">去完成</em>
             </div>
           </li>
         </ul>
@@ -54,10 +54,11 @@
                 <span class="taslkNum">{{item.schule}}/{{item.target}}</span>
               </div>
             </div>
-            <div class="status" :class="{act:item.finish && !item.get,black:item.get}" @click="dayGift(item.id,index)">
+            <div class="status" :class="{act:item.finish && !item.get,black:item.get,mt:item.id == 5}">
               <em v-if="item.get">已領取</em>
-              <em v-else-if="item.finish" @click="dayGift(item.id,index)">領取糖果</em>
-              <em v-else>去完成</em>
+              <em v-else-if="item.finish" @click="dayGift(item.id,index,item.nums)">領取糖果</em>
+              <em v-else @click="doTask(item)">去完成</em>
+              <span v-if="item.id == 5" class="pNums" @click.stop="showInivted()">已邀請{{item.numbers}}人</span>
             </div>
           </li>
         </ul>
@@ -67,12 +68,10 @@
         1糖果=10糖果狂欢值
       </p>
     </div>
-
     <div class="mask" v-show="showShare">
       <transition name="slide">
-        <div class="sharePup" v-if="showShare">
+        <div class="sharePup" v-show="showShare">
           <i class="close" @click="closeSharePup()"></i>
-          <div class="title"><i></i></div>
           <p class="giftTips">邀請活動新玩家，每成功邀請1人獎勵 <i></i> x3</p>
           <p v-if="invitedList.length == 0" class="noData">暫無數據</p>
           <ul class="peopleList">
@@ -83,7 +82,7 @@
                 <img v-lazy="item.avatar" alt="">
               </div>
               <div class="nick">{{item.nick}}</div>
-              <div class="score"><em>{{item.score}}步</em></div>
+              <div class="score"><span>總狂歡值</span> <em>{{item.score}}</em></div>
             </li>
           </ul>
           <div class="inivitBtn" @click="showPelple()">邀請活動新玩家</div>
@@ -92,9 +91,9 @@
     </div>
     <div class="mask" v-show="showPeople">
       <transition name="slide">
-        <div class="peoplePup" v-if="showPeople">
-          <div class="title"><i></i></div>
+        <div class="peoplePup" v-show="showPeople">
           <i class="close" @click="closePeople()"></i>
+          <h5 class="tite">好友列表</h5>
           <p v-if="peopleListHas.length == 0" class="noData">暫無可邀請好友，快去添加好友吧~</p>
           <ul class="pList">
             <li v-for="(item,index) in peopleListHas" :key="index">
@@ -105,11 +104,11 @@
                   <img v-lazy="item.avatar" alt="">
                 </div>
                 <div class="nick">
-                  <div>{{item.nick}}</div>
-                  <div class="tips">還沒參加音覓大富翁活動</div>
+                  <div class='name'>{{item.nick}}</div>
+                  <div class="tips">還沒參加萬聖節狂歡活動</div>
                 </div>
-                <div class="shareBtn" :class="{share2:item.status == 1}">
-                  <em v-if="item.status == 1">已邀請</em>
+                <div class="shareBtn" :class="{share2:item.status == 3}">
+                  <em v-if="item.status == 3">已邀請</em>
                   <em v-else @click="shareAct(item,index)">邀請領取</em>
                 </div>
               </div>
@@ -139,11 +138,10 @@ export default {
       new_task_name: {
         1: '创建交友卡',
         2: '添加個性標籤',
-        3: '在公開房間上麥30min(A/1)',
-        4: '上傳真人頭像並通過審核',
-        5: '關注5個新朋友',
-        6: '創建房間',
-        7: '參與1次搶麥遊戲'
+        3: '上傳真人頭像並通過審核',
+        4: '關注5個新朋友',
+        5: '創建房間',
+        6: '參與1次搶麥遊戲'
       },
       day_task_name: {
         1: '在公开房间上麦15min',
@@ -155,64 +153,150 @@ export default {
       showShare: false,
       showPeople: false,
       invitedList: [],
-      peopleList: []
+      peopleList: [],
+      more: true,
+      more2: true,
+      loaded: false,
+      loaded2: false,
+      timer: null
     }
   },
   computed: {
-    ...mapState(['tasks']),
+    ...mapState(['tasks', 'reg']),
     peopleListHas() {
       let isHas = this.peopleList.filter(item => {
         return item.status != 2
       })
       return isHas
+    },
+    newTasks() {
+      let arr = []
+      let newTasks = this.tasks.new_task ? this.tasks.new_task : []
+      for (let i = 0; i < newTasks.length; i++) {
+        if (newTasks[i].show) {
+          arr.push(newTasks[i])
+        }
+      }
+      return arr
     }
   },
   mounted() {
     that = this
+    //已邀請分頁
+    this.scrollable = this.$el.querySelector('.peopleList');
+    if (this.scrollable) {
+      this.scrollable.addEventListener('scroll', this.peopleListScroll);
+    }
+    //好友列表分頁
+    this.scrollable2 = this.$el.querySelector('.pList');
+    if (this.scrollable2) {
+      this.scrollable2.addEventListener('scroll', this.pListScroll);
+    }
   },
   methods: {
-    newGift(id, index) {
-      api.newGetGift(id).then(res => {
+    exChange() {
+      globalBus.$emit('commonEvent', () => {
+        if (!this.reg) {
+          this.toast('請先報名活動哦~')
+          return
+        }
+        api.exChange().then(res => {
+          if (res.data.response_status.code == 0) {
+            this.vxc('setToast', {
+              title: '兌換成功',
+              msg: '小惡魔頭像框已經發放到你的帳戶，<br/>有效期3天，請到商城-我的中配戴',
+              noOk: false
+            })
+
+          } else {
+            this.vxc('setToast', {
+              title: '兌換失敗...',
+              msg: '你送出的糖果不夠喔...<br/>快去聽聲音嘴作品送出糖果吧',
+              noOk: false
+            })
+            setTimeout(() => {
+              this.scorllTo('tasksList')
+            }, 1600)
+          }
+          setTimeout(() => {
+            this.vxc('closeToast')
+          }, 1500)
+        })
+      })
+    },
+    newGift(id, index, nums) {
+      globalBus.$emit('commonEvent', () => {
+        api.newGetGift(id).then(res => {
+          if (res.data.response_status.code == 0) {
+            this.vxc('setNewTaskStatus', index)
+            this.vxc('addSugar', nums)
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      })
+    },
+    dayGift(id, index, nums) {
+      globalBus.$emit('commonEvent', () => {
+        api.dayGetGift(id).then(res => {
+          if (res.data.response_status.code == 0) {
+            this.vxc('setDayTaskStatus', index)
+            this.vxc('addSugar', nums)
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      })
+    },
+    showInivted() {
+      api.invitedList(1, 0).then(res => {
+        res.data.response_data.list
+      })
+      this.showShare = true
+    },
+    showPelple() {
+      api.invitedList(0, 0).then(res => {
+        this.peopleList = res.data.response_data.list
+        this.showPeople = true
+      })
+    },
+    shareAct(item, index) { //邀請
+      api.inivtedFriend(item.uid).then(res => {
         if (res.data.response_status.code == 0) {
-          this.vxc('setNewTaskStatus', index)
+          this.peopleList[index].status = 3
         } else {
           this.toast(res.data.response_status.error)
         }
       })
     },
-    dayGift(id, index) {
-      api.dayGetGift(id).then(res => {
-        if (res.data.response_status.code == 0) {
-          this.vxc('setDayTaskStatus', index)
-        } else {
-          this.toast(res.data.response_status.error)
-        }
-      })
-    },
-    doTask(key, item, rid) {
-      console.log(rid, key)
+    newDoTask(item) {
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
-      if (key == 'mic' || key == 'coin' || key == 'gift' || key == 'owner') {  //跳轉活躍度前十房間
-        let keyId = this.dayTask.tasks ? this.dayTask.tasks[key].rid : null
-        let newRid = rid ? rid : keyId
+      let id = item.task_id
+      if (id == 1) {  //跳轉活躍度前十房間
         try {
           if (ios) {
-            sendJsData('app://room?rid=' + newRid);
+            sendJsData('app://makefriendcardpage');
           } else {
-            javascript: JSInterface.sendJsData('app://room?rid=' + newRid);
+            javascript: JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.MyMakeFilterCardActivity","datas":[]}');
           }
         } catch (e) { }
-      } else if (key == 'share') {  //分享活動
+      } else if (id == 2) {
         try {
-          share({
-            from: '2',
-            url: `http://activity.udateapp.com/static_html/2020/richMan/index.html`,
-            title: `我在玩大富翁遊戲，快來和我一起贏金幣、頭像框、座駕、特效禮物吧！`,
-            desc: `我在玩大富翁遊戲，快來和我一起贏金幣、頭像框、座駕、特效禮物吧！`,
-            image: 'http://activity.udateapp.com/static_html/2020/richMan/share.jpg'
-          })
+          if (ios) {
+            sendJsData('app://userLabels');
+          } else {
+            javascript: JSInterface.sendJsData('app://gotoPage?data={"page":"com.sq.onlinematch.ui.activity.TagActivity","datas":[]}');
+          }
         } catch (e) { }
-      } else if (key == 'create' || key == 'friend') {  //跳轉到邂逅頁
+      } else if (id == 3) {
+        try {
+          if (ios) {
+            sendJsData('app://eidpersonalDetails');
+          } else {
+            javascript: JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.UserInfoActivity","datas":[]}');
+          }
+        } catch (e) { }
+      } else if (id == 4) {
         try {
           if (ios) {
             sendJsData('app://bottlespage');
@@ -220,26 +304,122 @@ export default {
             javascript: JSInterface.sendJsData('app://bottlespage');
           }
         } catch (e) { }
-      } else if (key == 'invite') {  //邀請好友彈窗
-
-        this.showPelple()
-      } else if (key == 'charge') {  //儲值頁
+      } else if (id == 5) {
+        if (ios) {
+          sendJsData('app://createroom');
+        } else {
+          javascript: JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.RoomModeSelectActitiy","datas":[]}');
+        }
+      } else if (id == 6) {
         try {
           if (ios) {
-            // goWalletpage()
-            sendJsData('app://walletpage');
+            sendJsData('app://room?rid=' + item.rid);
           } else {
-            javascript: JSInterface.sendJsData('app://walletpage');
+            javascript: JSInterface.sendJsData('app://room?rid=' + item.rid);
           }
         } catch (e) { }
-      } else if (key == 'room') {  //跳自己房間
-        try {
-          if (ios) {
-            sendJsData('app://room?rid=' + this.dayTask.tasks.room.rid);
-          } else {
-            javascript: JSInterface.sendJsData('app://room?rid=' + this.dayTask.tasks.room.rid);
-          }
-        } catch (e) { }
+      }
+    },
+    doTask(item) {
+      globalBus.$emit('commonEvent', () => {
+        if (!this.reg) {
+          this.toast('請先報名活動哦~')
+          return
+        }
+        const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+        let id = item.id
+        let key = null
+        if (id == 1 || id == 2) {  //跳轉活躍度前十房間
+          try {
+            if (ios) {
+              sendJsData('app://room?rid=' + item.rid);
+            } else {
+              javascript: JSInterface.sendJsData('app://room?rid=' + item.rid);
+            }
+          } catch (e) { }
+        } else if (id == 3) {  //跳轉到邂逅頁
+          try {
+            if (ios) {
+              sendJsData('app://bottlespage');
+            } else {
+              javascript: JSInterface.sendJsData('app://bottlespage');
+            }
+          } catch (e) { }
+        } else if (id == 5) {  //邀請好友彈窗
+          this.showPelple()
+        } else if (id == 4) {  //儲值頁
+          try {
+            if (ios) {
+              // goWalletpage()
+              sendJsData('app://walletpage');
+            } else {
+              javascript: JSInterface.sendJsData('app://walletpage');
+            }
+          } catch (e) { }
+        } else if (key == 'room') {  //跳自己房間
+          try {
+            if (ios) {
+              sendJsData('app://room?rid=' + this.dayTask.tasks.room.rid);
+            } else {
+              javascript: JSInterface.sendJsData('app://room?rid=' + this.dayTask.tasks.room.rid);
+            }
+          } catch (e) { }
+        }
+      })
+    },
+    goRankTab() {
+      this.$parent.tabClick('TabsScrollLoadList')
+      setTimeout(() => {
+        this.scorllTo('listBog')
+      }, 100)
+    },
+    scorllTo(className) {
+      let a = document.getElementsByClassName(className)[0].getBoundingClientRect().top
+      let c = document.documentElement.scrollTop
+      let e = a + c + 10
+      this.timer = setInterval(() => {
+        const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 10;
+        let c = document.documentElement.scrollTop
+        let t = (e - c) / 10
+        window.scrollTo(0, c + t)
+        if (t < 1 || scrollToBottom) {
+          clearInterval(this.timer)
+        }
+      }, 10)
+    },
+    peopleListScroll() {
+      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
+      if (scrollToBottom) { //滾動加載，沒有加載完成
+        if (this.loaded) return
+        if (this.more) {
+          this.more = false
+          api.invitedList(1, this.invitedList.length, 'more').then(res => {
+            this.more = true
+            if (res.data.response_data.list.length === 0) {
+              this.loaded = true
+            } else {
+              this.invitedList = this.invitedList.concat(res.data.response_data.list)
+            }
+          })
+        }
+      }
+    },
+    pListScroll() {
+      console.log('xxxx')
+      const scrollToBottom = this.scrollable2.scrollTop + this.scrollable2.clientHeight >= this.scrollable2.scrollHeight - 10;
+      if (scrollToBottom) { //滾動加載，沒有加載完成
+        if (this.loaded2) return
+        if (this.more2) {
+          this.more2 = false
+          api.invitedList(0, this.peopleList.length, 'more').then(res => {
+            this.more2 = true
+            if (res.data.response_data.list.length === 0) {
+              this.loaded2 = true
+            } else {
+              this.peopleList = this.peopleList.concat(res.data.response_data.list)
+            }
+          })
+        }
       }
     },
     closeSharePup() {
@@ -252,6 +432,9 @@ export default {
 }
 </script>
 <style lang="scss">
+.tasks {
+  padding-bottom: 1.2rem;
+}
 .frames {
   width: 7.5rem;
   height: 2.28rem;
@@ -427,8 +610,20 @@ export default {
           color: rgba(174, 72, 0, 1);
           font-size: 0.28rem;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
+          position: relative;
+          margin-left: 0.1rem;
+          .pNums {
+            position: absolute;
+            bottom: -0.3rem;
+            font-size: 0.21rem;
+            color: #fff;
+          }
+          &.mt {
+            margin-top: -0.3rem;
+          }
           &.act {
             color: rgba(255, 255, 255, 1);
             background: url(../assets/img/status1.png);
@@ -461,66 +656,55 @@ export default {
 }
 .close {
   display: block;
-  width: 0.72rem;
-  height: 0.78rem;
-  //   background: url(../assets/img/close.png);
-  //   background-size: 100% 100%;
+  width: 0.95rem;
+  height: 0.95rem;
+  background: url(../assets/img/close.png);
+  background-size: 100% 100%;
   position: absolute;
   right: -0.3rem;
-  top: -0.4rem;
+  top: 0.6rem;
+}
+.noData {
+  text-align: center;
 }
 .sharePup {
-  width: 6.48rem;
-  height: 9.6rem;
-  background: linear-gradient(0deg, #83d2fb, #9e81fa, #a875f1);
-  border: 0.08rem solid #ffffff;
-  border-radius: 0.24rem;
+  width: 6.6rem;
+  height: 7.12rem;
+  background: url(../assets/img/inivListPup.png);
+  background-size: 100% 100%;
   position: relative;
-  padding-top: 0.6rem;
-  .title {
-    width: 5.14rem;
-    height: 1.42rem;
-    // background: url(../assets/img/title/ribbon.png);
-    // background-size: 100% 100%;
-    position: absolute;
-    top: -0.8rem;
-    left: 0.71rem;
-    i {
-      display: block;
-      width: 5.14rem;
-      height: 1.42rem;
-      //   background: url(../assets/img/title/title_09.png);
-      //   background-size: 100% 100%;
-    }
-  }
+  padding-top: 1rem;
   .giftTips {
+    height: 1.1rem;
     margin-bottom: 0.1rem;
     font-size: 0.24rem;
-    text-indent: 0.4rem;
+    text-align: center;
+    line-height: 1.3rem;
     i {
       display: inline-block;
       width: 0.5rem;
       height: 0.5rem;
       vertical-align: middle;
-      //   background: url(../assets/img/dice.png);
-      //   background-size: 100% 100%;
+      background: url(../assets/img/tang.png);
+      background-size: 100% 100%;
     }
   }
   .peopleList {
-    min-height: 6.2rem;
-    max-height: 7.5rem;
+    // min-height: 6.2rem;
+    max-height: 4.8rem;
     overflow-y: scroll;
     li {
-      width: 6rem;
+      width: 5.75rem;
       display: flex;
       align-items: center;
-      height: 1.4rem;
+      height: 1.15rem;
       margin: 0 auto;
-      background: rgba(103, 52, 191, 0.4);
+      background: url(../assets/img/pListBg.png);
+      background-size: 100% 100%;
       margin-bottom: 0.1rem;
       border-radius: 0.12rem;
       .userRank {
-        width: 0.6rem;
+        width: 0.9rem;
         margin-left: 0.14rem;
         text-align: center;
         font-weight: 800;
@@ -550,9 +734,9 @@ export default {
         }
       }
       .nick {
-        width: 3rem;
+        width: 2rem;
         color: rgba(240, 249, 254, 1);
-        font-size: 0.38rem;
+        font-size: 0.26rem;
         font-weight: 500;
         margin-left: 0.17rem;
         overflow: hidden;
@@ -561,9 +745,10 @@ export default {
       }
       .score {
         width: 1.3rem;
-        font-size: 0.24rem;
+        font-size: 0.22rem;
         font-weight: 500;
         text-align: center;
+        color: rgba(255, 237, 130, 1);
         em {
           font-size: 0.28rem;
           font-weight: 500;
@@ -573,55 +758,48 @@ export default {
     }
   }
   .inivitBtn {
-    width: 3.76rem;
-    height: 1rem;
-    // background: url(../assets/img/singUpBtn.png);
-    // background-size: 100% 100%;
-    margin: 0.3rem auto 0;
-    // position: absolute;
-    // left: 1.75rem;
-    // bottom: 0.35rem;
-    color: rgba(126, 45, 0, 1);
+    width: 3.12rem;
+    height: 0.97rem;
+    background: url(../assets/img/inivtBtn.png);
+    background-size: 100% 100%;
+    // margin: 0.3rem auto 0;
+    font-size: 0.34rem;
+    position: absolute;
+    left: 1.75rem;
+    bottom: -0.35rem;
     text-align: center;
-    line-height: 0.8rem;
+    line-height: 0.97rem;
   }
 }
 .peoplePup {
-  width: 6.48rem;
-  height: 9.55rem;
-  background: linear-gradient(0deg, #83d2fb, #9e81fa, #a875f1);
-  border: 0.08rem solid #ffffff;
+  width: 6.6rem;
+  height: 7.14rem;
+  background: url(../assets/img/fListBg.png);
+  background-size: 100% 100%;
   border-radius: 0.24rem;
   position: relative;
-  padding-top: 0.6rem;
-  .title {
-    width: 5.14rem;
-    height: 1.42rem;
-    // background: url(../assets/img/title/ribbon.png);
-    // background-size: 100% 100%;
-    position: absolute;
-    top: -0.8rem;
-    left: 0.71rem;
-    i {
-      display: block;
-      width: 5.14rem;
-      height: 1.42rem;
-      //   background: url(../assets/img/title/title_10.png);
-      //   background-size: 100% 100%;
-    }
+  padding-top: 1rem;
+  h5 {
+    height: 0.8rem;
+    line-height: 0.8rem;
+    text-align: center;
+    color: rgba(107, 38, 193, 1);
+    font-size: 0.35rem;
+    font-weight: 600;
   }
   .pList {
-    max-height: 9rem;
+    max-height: 5rem;
     overflow-y: scroll;
+    margin-top: 0.25rem;
     .lsitItem {
-      width: 6rem;
+      width: 6.23rem;
       display: flex;
       align-items: center;
-      height: 1.4rem;
+      height: 1.25rem;
       margin: 0 auto;
-      background: rgba(103, 52, 191, 0.4);
+      background: url(../assets/img/pListBg2.png);
+      background-size: 100% 100%;
       margin-bottom: 0.1rem;
-      border-radius: 0.12rem;
       .userRank {
         width: 0.6rem;
         margin-left: 0.14rem;
@@ -649,15 +827,22 @@ export default {
       }
       .nick {
         width: 2.5rem;
+        .name {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          font-size: 0.26rem;
+        }
         .tips {
-          font-size: 0.24rem;
+          font-size: 0.22rem;
+          color: rgba(255, 237, 130, 1);
         }
       }
       .shareBtn {
-        width: 1.4rem;
-        height: 0.5rem;
-        // background: url(../assets/img/shareBtn.png);
-        // background-size: 100% 100%;
+        width: 1.65rem;
+        height: 0.65rem;
+        background: url(../assets/img/boxBtn.png);
+        background-size: 100% 100%;
         margin-left: 0.7rem;
         color: rgba(126, 45, 0, 1);
         display: flex;
@@ -669,12 +854,12 @@ export default {
           height: 100%;
           font-size: 0.22rem;
           text-align: center;
-          line-height: 0.5rem;
+          line-height: 0.65rem;
         }
         &.share2 {
           color: RGBA(59, 59, 59, 1);
-          //   background: url(../assets/img/ed.png);
-          //   background-size: 100% 100%;
+          background: url(../assets/img/status2.png);
+          background-size: 100% 100%;
         }
       }
     }

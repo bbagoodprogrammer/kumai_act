@@ -5,6 +5,7 @@
       <input type="number" v-model="searchUid">
       <i @click="search()"></i>
     </div>
+    <p class="noData" v-if="friend_list.length == 0">暫無可邀請好友,快去添加好友吧！</p>
     <div class="fList">
       <ul class="invList scrollable">
         <li v-for="(item,index) in friend_list" :key="index">
@@ -186,14 +187,23 @@ export default {
       margin-left: 0.05rem;
     }
   }
+  .noData {
+    text-align: center;
+    font-size: 0.24rem;
+    margin-top: 0.2rem;
+  }
   .fList {
     width: 6.84rem;
-    height: 2.28rem;
+    min-height: 0.5rem;
+    max-height: 2.28rem;
+    padding-bottom: 0.1rem;
+    overflow: hidden;
     background: url(../assets/img/iList.png);
     background-size: 100% 100%;
     margin: 0.27rem auto 0;
+    position: relative;
     .invList {
-      height: 1.8rem;
+      max-height: 1.8rem;
       overflow-y: scroll;
       li {
         display: flex;
@@ -244,9 +254,13 @@ export default {
       }
     }
     p {
+      width: 100%;
+      display: block;
       text-align: center;
       font-size: 0.24rem;
       color: rgba(105, 193, 255, 1);
+      // position: absolute;
+      // bottom: 0;
     }
   }
   .peopleMsg {

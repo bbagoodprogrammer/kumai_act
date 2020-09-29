@@ -1,6 +1,6 @@
 <template>
   <div class="rules">
-    <p class="activeTime">Waktu Acara:Pukul 18:00:00 tgl 15 Nov - pukul 21:00:00 tgl 25 Nov </p>
+    <p class="activeTime">Waktu Acara:Tgl 4 Oct , 18:00 - tgl 14 Oct , 21:00 </p>
     <h5>Aturan Acara</h5>
     <div class="actSingUp">
       <h5>Mendaftar Acara:</h5>

@@ -5,7 +5,7 @@
       <span :class="{act:showType== 1}" @click="tabClick(1)"> Hadiah acara</span>
     </div>
     <div class="rules" v-show="showType == 0">
-      <p class="actTime"> Pukul 18:00 tgl 15 Mei - pukul 21:00 tgl 31 Mei</p>
+      <p class="actTime"> Tgl 5 Oct , 18:00 - tgl 20 Oct, 21:00</p>
       <h5>Aturan peringkat nilai kekayaan</h5>
       <p>1.Setelah pendaftaran utk ikut acara, nilai kekayaan yang diperoleh dengan menggali mineral dan menyelamatkan penambang<span>Nilai kekayaan=total nilai kekayaan yg dihadiahi melalui menggali mineral dan menyelamatkan penambang</span></p>
       <img src="../../assets/img/ruleImg1.png" alt="" class="ruleImg1">
@@ -30,7 +30,7 @@
       <p class="otherTips2">Jika pengguna ditemukan menggunakan cara yang tidak benar untuk berpartisipasi dalam acara, apakah peserta atau tidak,pihak Wekara akan secara permanen membekukan semua akun besar atau kecil dari pelanggar. Setelah acara berakhir,pihak Wekara berhak untuk mengambil kembali semua hadiah dari pengguna/pelanggar ini.</p>
     </div>
     <div class="wards" v-show="showType == 1">
-      <p class="actTime"> Pukul 18:00 tgl 15 Mei - pukul 21:00 tgl 31 Mei</p>
+      <p class="actTime"> Tgl 5 Oct , 18:00 - tgl 20 Oct, 21:00</p>
       <h5 class="title1">Hadiah harian</h5>
       <p class="centerTips">Nilai kekayaan yg dihadiahi tiap hari=total nilai kekayaan hari ini </p>
       <img src="../../assets/img/ruleImg2.png" alt="" class="ruleImg2">
@@ -40,15 +40,15 @@
       <h5>Hadiah peringkat kekayaan</h5>
       <div class="topGift">
         <h6>Top 1:</h6>
-        <p>Lencana taipan mineral(30 hari)+20000 nilai kekayaan( senilai 20000 koin emas )+ Mount Red Eagle Fighting (30 hari)+Hadiah ransel nyanyian harta karun emas(666 koin emas)+5000 koin emas +5000 kacang emas</p>
+        <p>Lencana taipan mineral(30 hari)+Hak istimewa bangsawan kaisar(1bulan)+ Mount Red Eagle Fighting (30 hari)+Hadiah ransel nyanyian harta karun emas(666 koin emas)+5000 koin emas +5000 kacang emas</p>
         <h6>Top 2:</h6>
-        <p>Lencana taipan mineral(15 hari)+15000 nilai kekayaan( senilai 15000 koin emas )+ Mount Red Eagle Fighting (30 hari)+Hadiah ransel nyanyian harta karun emas(666 koin emas)+3000 koin emas +3000 kacang emas</p>
+        <p>Lencana taipan mineral(30 hari)+Hak istimewa bangsawan Duke (1 bulan)+ Mount Red Eagle Fighting (30 hari)+Hadiah ransel nyanyian harta karun emas(666 koin emas)+3000 koin emas +3000 kacang emas</p>
         <h6>Top 3:</h6>
-        <p>Lencana taipan mineral(7 hari)+10000 nilai kekayaan( senilai 10000 koin emas )+ Mount Red Eagle Fighting (30 hari)+Hadiah ransel nyanyian harta karun emas(666 koin emas)+2000 koin emas +2500 kacang emas</p>
+        <p>Lencana taipan mineral(30 hari)+Hak istimewa bangsawan Marquis(1 bulan)+ Mount Red Eagle Fighting (30 hari)+Hadiah ransel nyanyian harta karun emas(666 koin emas)+2000 koin emas +2500 kacang emas</p>
         <h6>Top 4-5:</h6>
-        <p>Lencana taipan mineral(7 hari) + Mount Red Eagle Fighting (15 hari)+Hadiah ransel nyanyian harta karun emas(666 koin emas)+1500 koin emas +2000 kacang emas</p>
+        <p>Lencana taipan mineral(30 hari) + Mount Red Eagle Fighting (15 hari)+Hadiah ransel nyanyian harta karun emas(666 koin emas)+1500 koin emas +2000 kacang emas</p>
         <h6>Top 6-10 :</h6>
-        <p>Mount Red Eagle Fighting (9 hari)+Hadiah ransel nyanyian harta karun emas(666 koin emas)+1000 koin emas +1000 kacang emas</p>
+        <p>Mount Red Eagle Fighting (15 hari)+Hadiah ransel nyanyian harta karun emas(666 koin emas)+1000 koin emas +1000 kacang emas</p>
       </div>
       <h5>Aturan penggunaan hadiah</h5>
       <div class="giftRules">
