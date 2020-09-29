@@ -649,7 +649,7 @@ body {
 }
 .actScorePup {
   width: 6.21rem;
-  height: 6.28rem;
+  height: 7.39rem;
   background: url(../../assets/img/actScoreBg.png);
   background-size: 100% 100%;
   position: relative;

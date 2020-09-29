@@ -1,6 +1,7 @@
 <template>
   <div class="footerBar">
-    <div class="acrStatus" :class="{noBg:astState === 3 && tab == 0 && !topRank}">
+    <!-- :class="{noBg:astState === 3 && tab == 0 && !topRank}" -->
+    <div class="acrStatus">
       <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
       <span class="goAct" v-if="astState === 1" @click="apply()"></span>
@@ -13,7 +14,10 @@
           <div class="rid">{{roomRank.infos.rid}}</div>
         </div>
         <div class="score">
-          <i></i>{{roomRank.score}}
+          <div class="nums">
+            <i></i>{{roomRank.score}}
+          </div>
+          <em class="goKroom" @click="goRoom()">前往分組K房>></em>
         </div>
       </div>
       <div class="actIng" v-if="astState === 3 && tab == 0 && topRank" :class="'rank' +topRank.rank ">
@@ -37,6 +41,7 @@
         </div>
         <span class="open" @click.stop="showRoomListPup()"></span>
       </div>
+      <div class="actIng" v-if="astState === 3 && tab == 0 && !topRank">您還未加入戰隊</div>
     </div>
     <div class="mask" v-show="singUpQuery">
       <transition name="slide">
@@ -330,13 +335,20 @@ export default {
       .score {
         display: flex;
         align-items: center;
-        color: rgba(255, 231, 184, 1);
-        font-size: 0.25rem;
-        i {
-          width: 0.49rem;
-          height: 0.52rem;
-          background: url(../assets/img/fire.png);
-          background-size: 100% 100%;
+        flex-direction: column;
+        .goKroom {
+          font-size: 0.24rem;
+        }
+        .nums {
+          display: flex;
+          align-items: center;
+          color: rgba(255, 231, 184, 1);
+          i {
+            width: 0.49rem;
+            height: 0.52rem;
+            background: url(../assets/img/fire.png);
+            background-size: 100% 100%;
+          }
         }
       }
     }

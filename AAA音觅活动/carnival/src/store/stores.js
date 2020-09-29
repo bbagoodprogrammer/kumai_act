@@ -11,13 +11,17 @@ const store = new Vuex.Store({
             toast: false,   //彈窗
             toastTitle: '', // 彈窗標題
             toastMsg: '',  //彈窗內容
-            cb: null
+            cb: null,
+            noOk: true,//是否需要關閉按鈕
         },
         isShare: false, //分享
         rankGroups: {},
+        groupsUserMsg: {},  //儲存各種天數的個人信息
         reg: null,
         score: 0,
-        tasks: {}
+        tasks: {},
+        roolMsg: [],
+        tab: 0
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -35,6 +39,9 @@ const store = new Vuex.Store({
         setToast(state, val) {
             state.toastObj.toast = true
             state.toastObj.toastMsg = val.msg
+            if (val.noOk != undefined) {
+                state.toastObj.noOk = val.noOk
+            }
             if (val.title) {
                 state.toastObj.toastTitle = val.title
             }
@@ -44,6 +51,15 @@ const store = new Vuex.Store({
         },
         closeToast(state, val) {
             state.toastObj.toast = false
+            state.toastObj.noOk = true
+        },
+        changGroupsUserMsg(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.groupsUserMsg = Object.assign({}, state.groupsUserMsg, { [key]: Object.assign({}, state.groupsUserMsg[key], obj) });
+            }
+            console.log(state.groupsUserMsg)
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.key != 'undefined') {
@@ -51,7 +67,6 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.rankGroups = Object.assign({}, state.rankGroups, { [key]: Object.assign({}, state.rankGroups[key], obj) });
             }
-            console.log(state.rankGroups)
         },
         setReg(state, val) {
             state.reg = val
@@ -67,6 +82,15 @@ const store = new Vuex.Store({
         },
         setDayTaskStatus(state, val) {
             state.tasks.day_task[val].get = true
+        },
+        setRoolMsg(state, val) {
+            state.roolMsg = val
+        },
+        changTab(state, val) {
+            state.tab = val
+        },
+        addSugar(state, val) {
+            state.tasks.sugar = state.tasks.sugar * 1 + val * 1
         }
     },
     actions: {

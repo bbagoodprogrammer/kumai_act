@@ -13,7 +13,7 @@
         <div class="number">{{item.number}}</div>
         <div class="name">{{item.name}}</div>
         <div class="ward"><span><i :class="item.type"></i></span> <strong>{{item.ward}}</strong> </div>
-        <div class="status" :class="{act:record.indexOf(index) > -1}">{{record.indexOf(index) > -1?'已完成':'未完成'}}</div>
+        <div class="status" :class="{act:record.indexOf(index + 1) > -1}">{{record.indexOf(index +1) > -1?'已完成':'未完成'}}</div>
       </li>
     </ul>
     <p class="PS">PS：任務④中隊長與隊員組隊方為有效，完成任務後獎勵由係統自動發放</p>
@@ -27,7 +27,7 @@ export default {
       taskList: [
         {
           number: '①',
-          name: '上麥演唱',
+          name: '連續上坐席5分鐘',
           ward: '20金豆',
           type: 'bean'
         },

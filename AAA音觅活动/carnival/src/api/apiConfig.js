@@ -9,7 +9,7 @@ import getString from "../utils/getString.js"
 // const defaultUid = 4979504;
 //const defaultToken = '9g0rbTx1xZzvvx12zI7Ox1MIfqxuOLUD2pH4sMdS2Wp68UipYzi5jvF17OISrR6eBwePmxxrKkymtpnTMtkSq0bZ1QJoNkFWE0v1srRMiilfWp-ycMfLe8fTgIMTzLRN';
 let token = getString("token")
-// let uid = getString("uid")
+let uid = getString("uid")
 
 // var num = 0
 // axios.interceptors.request.use(function (config) {  //在请求发出之前进行一些操作
@@ -71,7 +71,7 @@ function get(url, config) {
 //获取活动基础信息
 function getDefault() {
     if (token) {
-        return get(`/index.php?action=halloweenParty.init&signture=innerserver&token=${token}`);
+        return get(`/index.php?action=halloweenParty.init&signture=innerserver&uid=${uid}&token=${token}`);
     } else {
         return get(`/index.php?action=halloweenParty.init&signture=innerserver`);
     }
@@ -79,35 +79,88 @@ function getDefault() {
 
 //活動首頁
 function tasks() {
-    return get(`/index.php?action=halloweenParty.taskInit&signture=innerserver&token=${token}`)
+    return get(`/index.php?action=halloweenParty.taskInit&signture=innerserver&uid=${uid}&token=${token}`)
 }
 
 //搜索
 function search(s_uid) {
-    return get(`/index.php?action=halloweenParty.search&signture=innerserver&ts_uid=${s_uid}&token=${token}`)
+    return get(`/index.php?action=halloweenParty.search&signture=innerserver&ts_uid=${s_uid}&uid=${uid}&token=${token}`)
 }
 
 //領取新手任務
 function newGetGift(taskId) {
-    return get(`/index.php?action=halloweenParty.getNew&signture=innerserver&task=${taskId}&token=${token}`)
+    return get(`/index.php?action=halloweenParty.getNew&signture=innerserver&task=${taskId}&uid=${uid}&token=${token}`)
 }
 
 //每日任務領取
 function dayGetGift(taskId) {
-    return get(`/index.php?action=halloweenParty.getNew&signture=innerserver&task=${taskId}&token=${token}`)
+    return get(`/index.php?action=halloweenParty.getNew&signture=innerserver&task=${taskId}&uid=${uid}&token=${token}`)
 }
 
 //守護榜單
-function teamList(tid, from) {
-    return get(`/index.php?action=halloweenParty.guardList&signture=innerserver&from=${from}&tid=${tid}`)
+function teamList(tid, from, more) {
+    if (more) {
+        return axios.get(`/index.php?action=halloweenParty.guardList&signture=innerserver&from=${from}&tid=${tid}&uid=${uid}&token=${token}`)
+    }
+    return get(`/index.php?action=halloweenParty.guardList&signture=innerserver&from=${from}&tid=${tid}&uid=${uid}&token=${token}`)
 }
 
+
+//邀請好友列表
+function invitedList(invited, from, more) {
+    if (invited) {
+        if (more) {
+            return axios.get(`/index.php?action=halloweenParty.friends&signture=innerserver&from=${from}&invited=${invited}&uid=${uid}&token=${token}`)
+        }
+        return get(`/index.php?action=halloweenParty.friends&signture=innerserver&from=${from}&invited=${invited}&uid=${uid}&token=${token}`)
+    } else {
+        if (more) {
+            return axios.get(`/index.php?action=halloweenParty.friends&signture=innerserver&from=${from}&uid=${uid}&token=${token}`)
+        }
+        return get(`/index.php?action=halloweenParty.friends&signture=innerserver&from=${from}&uid=${uid}&token=${token}`)
+    }
+
+}
+
+//邀請好友
+function inivtedFriend(fuid) {
+    return get(`/index.php?action=halloweenParty.invite&signture=innerserver&fuid=${fuid}&uid=${uid}&token=${token}`)
+}
+
+//註冊
+function singUp(fuid) {
+    if (fuid) {
+        return get(`/index.php?action=halloweenParty.reg&signture=innerserver&fuid=${fuid}&uid=${uid}&token=${token}`)
+    }
+    return get(`/index.php?action=halloweenParty.reg&signture=innerserver&uid=${uid}&token=${token}`)
+}
+
+//兌換頭像框
+function exChange() {
+    return get(`/index.php?action=halloweenParty.exchange&signture=innerserver&uid=${uid}&token=${token}`)
+}
+
+//彈幕
+function roolMsg() {
+    return axios.get(`/index.php?action=halloweenParty.notice&signture=innerserver&uid=${uid}&token=${token}`)
+}
+
+//歷史記錄
+function getHistroy(from) {
+    return axios.get(`/index.php?action=halloweenParty.dynamic&signture=innerserver&uid=${uid}&token=${token}&from=${from}`)
+}
 const httpConfig = {
     getDefault,
     tasks,
     search,
     newGetGift,
     dayGetGift,
-    teamList
+    teamList,
+    invitedList,
+    inivtedFriend,
+    singUp,
+    exChange,
+    roolMsg,
+    getHistroy
 }
 export default httpConfig

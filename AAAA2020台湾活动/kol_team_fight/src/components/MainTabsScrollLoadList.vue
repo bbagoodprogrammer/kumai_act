@@ -75,7 +75,7 @@
           <i class="close" @click="closeCards()"></i>
           <div class="title">{{cardsMsg.rank.info.nick}}</div>
           <div class="peopleTop">
-            <div class="imgBox" @click="goFamily(cardsMsg.info.family_id)">
+            <div class="imgBox" @click="goFamily(cardsMsg.info.family_id,cardsMsg.info.info.uid)">
               <span class="avBg"></span>
               <img v-lazy="cardsMsg.info.info.avatar" alt="" class="av">
             </div>
@@ -363,8 +363,12 @@ export default {
     goPeople(uid) {
       location.href = `uid:${uid}`
     },
-    goFamily(fid) {
-      location.href = `fid:${fid}`
+    goFamily(fid, uid) {
+      if (fid) {
+        location.href = `fid:${fid}`
+      }else{
+         location.href = `uid:${uid}`
+      }
     },
     goRoom(rid) {
       location.href = `rid:${rid}`

@@ -8,7 +8,7 @@
       </span>
       <span v-for="item2 in 3-list.length" :key="item2+'d'">
         <img src="../assets/img/shareBtn.png" alt="">
-        <strong>Tunggu diundang</strong>
+        <strong>tunggu</strong>
       </span>
     </div>
   </div>

@@ -83,7 +83,7 @@ body {
   }
   .ruleImg1 {
     width: 6.21rem;
-    height: 4.98rem;
+    height: 6.08rem;
     margin-top: 0.32rem;
   }
   .ruleImg2 {

@@ -6,7 +6,7 @@
     <div class="noAct" v-if="showState ===1">
       {{lang.actEd}}
     </div>
-    <span class="singUp" @click="goSingUp()" v-if="showState ===2">點擊報名</span>
+    <span class="singUp" @click="goSingUp()" v-if="showState ===2"></span>
     <div class="list" v-if="showState ===3 ">
       <div class="rank" v-if="myMsg.rank>0">{{myMsg.rank>100?'100+':myMsg.rank}}</div>
       <div class="noRank" v-else>未上榜</div>

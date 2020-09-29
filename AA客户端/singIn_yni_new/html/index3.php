@@ -86,7 +86,7 @@ if($response_info && isset($response_info['response_data'])){
                 </span>
                 <span v-for="item2 in 3-data.list.length" :key="item2+'d'">
                     <img src="../img/shareBtn.png" alt="">
-                    <strong>Tunggu diundang</strong>
+                    <strong>tunggu</strong>
                 </span>
             </div>
         </div>
