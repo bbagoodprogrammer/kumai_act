@@ -24,11 +24,11 @@
       </div>
       <!-- 搜索框 -->
       <div class="shareBtn">
-        <input type="number" v-model="searchUid" placeholder="填寫UID搜索小搗蛋">
+        <input type="number" v-model="searchUid" placeholder="填寫UID搜索小搗蛋" @keyup.13="search()" id="searchInput">
         <i @click="search()"></i>
       </div>
       <!-- 日榜 -->
-      <div class="list day">
+      <div class="list day" v-if="!showitemList">
         <li v-for="(item,index) in rank.list" :key="index" :class="'list'+item.rank">
           <!-- v-if="item.rid > 0" -->
           <i class="ing" :class="{yel:item.rank > 3}" v-if="item.rid > 0"></i>
@@ -52,49 +52,45 @@
                 <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in item.guard" :key="index2" @click="goUser(item2.uid)">
               </div>
             </div>
-            <div class="pupIcon" @click="showTeamList(item.uid)">
+            <u class="pupIcon" @click="showTeamList(item.uid)">
               查看貢獻榜>>
-            </div>
+            </u>
           </div>
         </li>
+      </div>
+      <!-- 搜索結果 -->
+      <div class="searchList" :class="'list'+itemMsg.rank" v-else>
+        <i class="ing" :class="{yel:itemMsg.rank > 3}" v-if="itemMsg.rid > 0"></i>
+        <div class="userRank"><em v-if="itemMsg.rank >3"> {{itemMsg.rank}}</em></div>
+        <div class="imgBox">
+          <div class="userImg" @click="goUser(itemMsg.uid)">
+            <span class="avBg" :class="'avBg' + itemMsg.rank" v-if="itemMsg.rank<=3"></span>
+            <img v-lazy="itemMsg.avatar" alt="">
+          </div>
+          <strong>{{itemMsg.nick}}</strong>
+        </div>
+        <div class="userScore">
+          <div class="total">總狂歡值 {{itemMsg.sugar_score*1 + itemMsg.gift_score*1}}</div>
+          <div class="score1">糖果狂歡值 {{itemMsg.sugar_score}}</div>
+          <div class="score1">派對狂歡值 {{itemMsg.gift_score}}</div>
+        </div>
+        <div class="peopleList" v-if="itemMsg.rank <=3">
+          <div class="userList">
+            <span>貢獻榜Top3</span>
+            <div class="items">
+              <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in itemMsg.guard" :key="index2" @click="goUser(item2.uid)">
+            </div>
+          </div>
+          <div class="pupIcon" @click="showTeamList(itemMsg.uid)">
+            查看貢獻榜>>
+          </div>
+        </div>
       </div>
       <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
       <div v-if="rank.loading" class="scrollLoading">加載中...</div>
       <div v-if="rank.none" class="scrollNone">
         暫無歌友上榜
       </div>
-    </div>
-    <!-- 搜索結果 -->
-    <div class="mask" v-show="showitemList">
-      <transition name="slide">
-        <div class="searchList" :class="'list'+itemMsg.rank" v-if="showitemList">
-          <i class="ing" :class="{yel:itemMsg.rank > 3}" v-if="itemMsg.rid > 0"></i>
-          <div class="userRank"><em v-if="itemMsg.rank >3"> {{itemMsg.rank}}</em></div>
-          <div class="imgBox">
-            <div class="userImg" @click="goUser(itemMsg.uid)">
-              <span class="avBg" :class="'avBg' + itemMsg.rank" v-if="itemMsg.rank<=3"></span>
-              <img v-lazy="itemMsg.avatar" alt="">
-            </div>
-            <strong>{{itemMsg.nick}}</strong>
-          </div>
-          <div class="userScore">
-            <div class="total">總狂歡值 {{itemMsg.sugar_score*1 + itemMsg.gift_score*1}}</div>
-            <div class="score1">糖果狂歡值 {{itemMsg.sugar_score}}</div>
-            <div class="score1">派對狂歡值 {{itemMsg.gift_score}}</div>
-          </div>
-          <div class="peopleList" v-if="itemMsg.rank <=3">
-            <div class="userList">
-              <span>貢獻榜Top3</span>
-              <div class="items">
-                <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in itemMsg.guard" :key="index2" @click="goUser(item2.uid)">
-              </div>
-            </div>
-            <div class="pupIcon" @click="showTeamList(itemMsg.uid)">
-              查看貢獻榜>>
-            </div>
-          </div>
-        </div>
-      </transition>
     </div>
     <!-- 守護榜 -->
     <div class="mask" v-show="showPlist">
@@ -120,9 +116,7 @@
               </li>
             </ul>
             <p class="listRankTips">
-              *总贡献值为粉丝同一名用户的所有参加活动的声音
-              作品的贡献狂欢值综合；若声音作品被删除，对应的
-              狂欢之也会被删除；榜单显示前20名粉丝
+              *總貢獻值包含粉絲對這名玩家送出的萬聖節糖果、指定禮物、驚喜南瓜桶內任意禮物所轉換的狂歡值；貢獻榜單顯示前20名粉絲
             </p>
             <div class="goBtn" @click="goUser(pupMsg.info.uid)">查看他的個人資料頁</div>
           </div>
@@ -197,16 +191,11 @@ export default {
     }
   },
   watch: {
-    // inited() {
-    //   this.$nextTick(() => {
-    //     if (!this.rank.loadCount) {
-    //       this.onScroll();
-    //     }
-    //   })
-    // },
-    // second(val) {
-    //   this.downTimeGo('time' + this.rankKey, val)
-    // }
+    searchUid(val) {
+      if (val == '') {
+        this.showitemList = false
+      }
+    }
   },
   computed: {
     ...mapState(['rankGroups', "isShare", "actStatus", "inited", "second", "total", "day"]),
@@ -272,9 +261,12 @@ export default {
       this.showPlist = false
     },
     search() {
+      console.log('xxx')
+      let searchInput = document.getElementById('searchInput')
+      searchInput.blur()
       api.search(this.searchUid).then(res => {
         if (res.data.response_status.code == 0) {
-          this.itemMsg = res.data.response_data
+          this.itemMsg = res.data.response_data.data
           this.showitemList = true
         } else {
           this.vxc('setToast', {
@@ -306,13 +298,6 @@ export default {
               set('loadEnd', true);
               return;
             }
-            // if (this.tab >= this.nowDay && this.mainTab == 0) {
-            // if (this.rankKey == 'total') {
-            //   set('second', this.total.dtime)
-            // } else {
-            //   set('second', this.day.dtime)
-            // }
-            // }
             const arr = response_data.list;
             //跟随榜单变换个人信息
             if (response_data.rank && response_data.rank.uid) {
@@ -372,7 +357,7 @@ export default {
     onRefresh() {
       if (this.rank.loading) return
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
-      this.$parent.getDefaultData()
+      // this.$parent.getDefaultData()
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,
         loadCount: 0,
@@ -650,7 +635,7 @@ export default {
   height: 1.89rem;
   background: url(../assets/img/listItem.png);
   background-size: 100% 100%;
-  margin-bottom: 0.1rem;
+  margin: 0.2rem auto 0.1rem;
   display: flex;
   align-items: center;
   position: relative;
@@ -817,6 +802,7 @@ export default {
     margin: 0 auto;
     margin-top: 0.2rem;
     .listHeader {
+      height: 0.68rem;
       display: flex;
       align-items: center;
       span {

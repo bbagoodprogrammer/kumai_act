@@ -27,8 +27,8 @@ export default {
       taskList: [
         {
           number: '①',
-          name: '連續上坐席5分鐘',
-          ward: '20金豆',
+          name: '成功申請上坐席',
+          ward: '10金豆',
           type: 'bean'
         },
         {
