@@ -11,11 +11,11 @@
       </div>
     </div>
     <div class="mainTabsMtop">
-      <span :class="{act:mainTab=='Tasks'}" @click="tabClick('Tasks')">萬聖節糖果</span>
+      <span :class="{act:mainTab=='Tasks'}" @click="tabClick('Tasks')">萬聖節糖果盒</span>
       <span :class="{act:mainTab=='TabsScrollLoadList'}" @click="tabClick('TabsScrollLoadList')">討糖不搗蛋</span>
     </div>
     <!-- <keep-alive> -->
-    <component :is="mainTab" :type="mainTab"></component>
+    <component :is="mainTab" :type="mainTab" ref="ranks"></component>
     <!-- </keep-alive> -->
     <!-- <TabsScrollLoadList /> -->
     <act-footer></act-footer>
@@ -33,7 +33,7 @@
             </li>
           </ul>
           <p class="tips">成功邀请你参加万圣节嘉年华的好友，<br />有机会获得 <i></i></p>
-          <span class="singUpBtn" @click="singUp()">接受他的邀請</span>
+          <span class="singUpBtn" @click="singUp('select')">接受他的邀請</span>
         </div>
       </transition>
     </div>
@@ -47,7 +47,7 @@
           </div>
           <img src="../assets/img/tang.png" alt="" v-if="!isRank">
           <img :src="rankGift[step_show].img" alt="" v-else>
-          <p v-if="!isRank">可用于赠送给喜欢的小捣蛋用户，<br />增加他的狂欢值</p>
+          <p v-if="!isRank">可用於贈送給喜歡的小搗蛋用戶，<br />增加他的狂歡值</p>
           <p v-else>狂歡值達到{{score}}值，獲得{{rankGift[step_show].name}}獎勵<br />已經發送到你的帳號，請查收 </p>
           <div class="btn" v-if="!isRank" @click="singUp()">收下</div>
         </div>
@@ -175,12 +175,17 @@ export default {
     //   this.invitation = false
     //   this.firstGift = true
     // },
-    singUp() {
-      let uid = this.actIndex ? this.peopleList[this.actIndex].uid : null
+    singUp(select) {
+      if (select && this.actIndex == null) {
+        this.toast('請選擇接受的好友~')
+        return
+      }
+      let uid = this.actIndex != null ? this.peopleList[this.actIndex].uid : null
       api.singUp(uid).then(res => {
         if (res.data.response_status.code == 0) {
           this.getDefaultData()
           this.invitation = false
+          this.firstGift = false
           this.toast('歡迎你參加萬聖節嘉年華，送你萬聖節糖果2個（已發到背包）')
         } else {
           this.toast(res.data.response_status.error)
@@ -205,8 +210,15 @@ export default {
     },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
-      window.removeEventListener("scroll", this.onScroll)
+      // window.removeEventListener("scroll", this.onScroll)
       this.getDefaultData('ref')
+      if (this.mainTab == 'Tasks') {
+        api.tasks().then(res => {
+          this.vxc('setTasks', res.data.response_data)
+        })
+      } else {
+        this.$refs.ranks.onRefresh()
+      }
     },
     closeInvitation() {
       this.invitation = false

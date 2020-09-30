@@ -3,15 +3,15 @@
     <div class="frames">
       <div class="fMsg">
         <div class="imgBox">
-          <img src="" alt="">
-          <strong>小恶魔头像框x3天</strong>
+          <span></span>
+          <strong>小惡魔頭像框x3天</strong>
         </div>
         <div class="msg">
-          <div class="tip1">活动期间，每送出25颗糖果可兑换</div>
-          <div class="tip2">已累计送出{{tasks.send}}颗糖果</div>
+          <div class="tip1">活動期間,每送出25顆糖果可兌換</div>
+          <div class="tip2">已累計送出{{tasks.send}}顆糖果</div>
           <div class="btnBox">
             <span @click="goRankTab()">去贈送</span>
-            <span @click="exChange()">兌換</span>
+            <span @click="exChange()">兌換 <em>已兌換{{tasks.ex_days}}天頭像框</em></span>
           </div>
         </div>
       </div>
@@ -58,14 +58,14 @@
               <em v-if="item.get">已領取</em>
               <em v-else-if="item.finish" @click="dayGift(item.id,index,item.nums)">領取糖果</em>
               <em v-else @click="doTask(item)">去完成</em>
-              <span v-if="item.id == 5" class="pNums" @click.stop="showInivted()">已邀請{{item.numbers}}人</span>
+              <u v-if="item.id == 5" class="pNums" @click.stop="showInivted()">已邀請{{item.numbers}}人</u>
             </div>
           </li>
         </ul>
       </div>
       <p class="lastTips">
-        任务所得的糖果将发放到背包中，清即使赠送糖果小捣蛋们<br />
-        1糖果=10糖果狂欢值
+        任務所得的糖果將發放到背包中，請及時贈送糖果小搗蛋們<br />
+        1糖果=10糖果狂歡值
       </p>
     </div>
     <div class="mask" v-show="showShare">
@@ -144,11 +144,11 @@ export default {
         6: '參與1次搶麥遊戲'
       },
       day_task_name: {
-        1: '在公开房间上麦15min',
-        2: '为任意声音作品送出20个糖果',
-        3: '交友热力值提升20',
-        4: '储值任意金额',
-        5: '邀请1个【万圣节嘉年华】新用户（0/5）'
+        1: '在公開房間上麥15min',
+        2: '送出20個糖果',
+        3: '交友熱力值提升20',
+        4: '儲值任意金額',
+        5: '邀請一個【萬聖節嘉年華】新用戶（0/5）'
       },
       showShare: false,
       showPeople: false,
@@ -228,7 +228,7 @@ export default {
       globalBus.$emit('commonEvent', () => {
         api.newGetGift(id).then(res => {
           if (res.data.response_status.code == 0) {
-            this.vxc('setNewTaskStatus', index)
+            this.vxc('setNewTaskStatus', id - 1)
             this.vxc('addSugar', nums)
           } else {
             this.toast(res.data.response_status.error)
@@ -250,9 +250,10 @@ export default {
     },
     showInivted() {
       api.invitedList(1, 0).then(res => {
-        res.data.response_data.list
+        this.invitedList = res.data.response_data.list
+        this.showShare = true
       })
-      this.showShare = true
+
     },
     showPelple() {
       api.invitedList(0, 0).then(res => {
@@ -305,6 +306,10 @@ export default {
           }
         } catch (e) { }
       } else if (id == 5) {
+        if (!this.tasks.version) {
+          this.toast(`點擊派對頁右上角創建房間吧~`)
+          return
+        }
         if (ios) {
           sendJsData('app://createroom');
         } else {
@@ -436,32 +441,34 @@ export default {
   padding-bottom: 1.2rem;
 }
 .frames {
-  width: 7.5rem;
-  height: 2.28rem;
+  width: 7.07rem;
+  height: 2.9rem;
   background: url(../assets/img/frameBg.png);
   background-size: 100% 100%;
-  padding-top: 1.95rem;
+  padding-top: 2.05rem;
   position: relative;
+  margin: 0 auto;
   .fMsg {
     display: flex;
     align-items: center;
     height: 2rem;
     .imgBox {
-      width: 1.7rem;
-      margin-left: 1rem;
+      width: 2rem;
+      margin-left: 0.6rem;
       height: 100%;
-      img {
+      span {
         display: block;
         margin: 0 auto;
         width: 1.37rem;
-        height: 1.43rem;
+        height: 2rem;
       }
       strong {
         width: 120%;
-        margin-left: -0.1rem;
+        margin-left: -0.2rem;
         font-size: 0.21rem;
         white-space: nowrap;
         display: block;
+        text-align: center;
       }
     }
     .msg {
@@ -493,6 +500,12 @@ export default {
           font-size: 0.28rem;
           color: rgba(174, 72, 0, 1);
           margin-right: 0.09rem;
+          em {
+            display: block;
+            font-size: 0.21rem;
+            white-space: nowrap;
+            color: rgba(255, 237, 130, 1);
+          }
         }
       }
     }
