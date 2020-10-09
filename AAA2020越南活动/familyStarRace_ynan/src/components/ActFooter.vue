@@ -18,14 +18,14 @@
           <div class="score" v-if="nowTab != 'total'">Điểm sao {{nowDays}}：{{nowUsrMsg.score}}</div>
         </div>
         <div class="updaSong">
-          <div class="btn" @click="goCommitSong()">Đăng bài hát</div>
+          <!-- <div class="btn" @click="goCommitSong()">Đăng bài hát</div> -->
           <div class="luckTips">Tỷ lệ trúng：{{nowUsrMsg.pro}}%</div>
         </div>
         <i class="luck" v-if="nowTab != 'total' && nowUsrMsg.is_prize"></i>
       </div>
       <div class="family" v-else-if="astState === 3 && showType == 2 && nowUsrMsg.pk_data">
         <div class="familyMsg" v-if="!nowUsrMsg.empty">
-          <div class="btn" @click="goCommitSong()" v-if="nowUsrMsg.show">Đăng bài hát</div>
+          <!-- <div class="btn" @click="goCommitSong()" v-if="nowUsrMsg.show">Đăng bài hát</div> -->
           <div class="family1 family">
             <img v-lazy="nowUsrMsg.pk_data.left.avatar" class="fImg" alt="" @click="showCards(nowUsrMsg.pk_data.left.fid)">
             <div class="msg">
@@ -51,7 +51,7 @@
           </div>
           <div class="tipsMsg">
             <p class="noOpponents">Không cần đấu，Qua vòng</p>
-            <div class="songBtn" @click="goCommitSong()" v-if="nowUsrMsg.show">Đăng bài hát</div>
+            <!-- <div class="songBtn" @click="goCommitSong()" v-if="nowUsrMsg.show">Đăng bài hát</div> -->
           </div>
         </div>
         <div class="fLiner" v-if="!nowUsrMsg.empty">
@@ -147,7 +147,7 @@ export default {
             if (response_status.code == 0) {
               this.vxc('setUserSingUp', true)
               this.vxc('setToast', {
-                msg: 'Chúc mừng bạn đã báo danh, top 300 BXH Tổng được vào vòng sau và đại diện gia tộc tham gia cuộc thi Ngôi Sao Gia Tộc.'
+                msg: 'Chúc mừng bạn đã báo danh, top 500 BXH Tổng được vào vòng sau và đại diện gia tộc tham gia cuộc thi Ngôi Sao Gia Tộc.'
               })
             } else {
               this.vxc('setToast', {
@@ -390,10 +390,10 @@ export default {
       text-align: center;
       line-height: 0.72rem;
       margin-left: 0.13rem;
-        &.noTop {
-          font-size: 0.24rem;
-          line-height: 0.3rem;
-        }
+      &.noTop {
+        font-size: 0.24rem;
+        line-height: 0.3rem;
+      }
     }
     .uerImg {
       margin: 0 0.15rem 0 0.08rem;

@@ -24,7 +24,7 @@
       <transition name="slide">
         <div class="invitationPup" v-if="invitation">
           <i class="close" @click="closeInvitation()"></i>
-          <h5>有好友邀请你参加万圣节嘉年华</h5>
+          <h5>有好友邀請你參加萬聖節嘉年華</h5>
           <ul>
             <li v-for="(item,index) in peopleList" :key="index" @click="setActIndex(index)">
               <img v-lazy="item.avatar" alt="">
@@ -32,7 +32,7 @@
               <span class="gou"> <i v-if="actIndex == index"> </i></span>
             </li>
           </ul>
-          <p class="tips">成功邀请你参加万圣节嘉年华的好友，<br />有机会获得 <i></i></p>
+          <p class="tips">成功邀請你參加萬聖節嘉年華的好友<br />有機會獲得 <i></i></p>
           <span class="singUpBtn" @click="singUp('select')">接受他的邀請</span>
         </div>
       </transition>
