@@ -129,7 +129,7 @@
         <div class="scoreTips" v-show="scoreTips">
           <div class="title">狂歡值</div>
           <h6>狂歡值=糖果狂歡值+派對狂歡值</h6>
-          <p>糖果狂歡值=收到糖果數x10<br />
+          <p>糖果狂歡值=收到糖果數x100<br />
             派對狂歡值=玩家在房間收到指定禮物的價值x12
           </p>
           <div class="ok" @click="scorePupClick()">我知道了</div>

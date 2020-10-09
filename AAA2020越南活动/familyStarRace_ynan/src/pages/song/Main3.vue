@@ -18,7 +18,7 @@
       <div class="sing" @click="goSing()">Hát 1 bài</div>
       <span>Hát xong nhớ trở lại báo danh nhé</span>
     </div>
-    <p class="tips"> 1. Bài hát dự thi phải là bài hát công khai đăng sau <em>12h 18/9</em> (trừ hát chay 5 phút)</p>
+    <p class="tips"> 1. Bài hát dự thi phải là bài hát công khai đăng sau <em>00:00:00 18/10</em> (trừ hát chay 5 phút)</p>
     <p class="tips">2. Có thể đăng nhiều bài dự thi, sau khi báo danh mới tính quà nhận.</p>
     <div class="determinePup" v-if="showPup">
       <div class="determinCon">

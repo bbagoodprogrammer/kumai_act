@@ -5,7 +5,7 @@
       <span :class="{act:showType== 1}" @click="tabClick(1)">活動獎勵</span>
     </div>
     <div class="rules" v-show="showType == 0">
-      <p class="actTime">2020年8月5日18:00:00-8月23日20:00:00</p>
+      <p class="actTime">2020年10月9日18:00:00-10月23日20:00:00</p>
       <h5>財富值排名規則</h5>
       <p>1.按照報名參賽後，通過挖掘礦產贏得的財富值排名，點擊報名後，完成的每日任務和儲值任務的數據才會被記錄哦~ <span>財富值=挖掘礦產+解救礦工獎勵的總財富值</span></p>
       <img src="../../assets/img/ruleImg1.png" alt="" class="ruleImg1">
@@ -31,7 +31,7 @@
       <p class="otherTips2">若為主動作弊者，無論是否為參賽者永久封禁該用戶所有大小號，活動結束后小歡任有權收回該用戶所有獎勵</p>
     </div>
     <div class="wards" v-show="showType == 1">
-      <p class="actTime">2020年8月5日18:00:00-8月23日20:00:00</p>
+      <p class="actTime">2020年10月9日18:00:00-10月23日20:00:00</p>
       <h5 class="title1">每日獎勵</h5>
       <p class="centerTips">每日獎勵的財富值=當日累計財富值</p>
       <img src="../../assets/img/ruleImg2.png" alt="" class="ruleImg2">
