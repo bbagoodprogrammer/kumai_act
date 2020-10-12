@@ -65,7 +65,7 @@
       </div>
       <p class="lastTips">
         任務所得的糖果將發放到背包中，請及時贈送糖果小搗蛋們<br />
-        1糖果=10糖果狂歡值
+        1糖果=100糖果狂歡值
       </p>
     </div>
     <div class="mask" v-show="showShare">
@@ -211,7 +211,7 @@ export default {
           } else {
             this.vxc('setToast', {
               title: '兌換失敗...',
-              msg: '你送出的糖果不夠喔...<br/>快去聽聲音嘴作品送出糖果吧',
+              msg: '你送出的糖果不夠哦...<br/>快去做任務獲取糖果並送給小搗蛋吧',
               noOk: false
             })
             setTimeout(() => {
@@ -240,7 +240,11 @@ export default {
       globalBus.$emit('commonEvent', () => {
         api.dayGetGift(id).then(res => {
           if (res.data.response_status.code == 0) {
-            this.vxc('setDayTaskStatus', index)
+            let obj = {
+              id,
+              index
+            }
+            this.vxc('setDayTaskStatus', obj)
             this.vxc('addSugar', nums)
           } else {
             this.toast(res.data.response_status.error)
@@ -480,12 +484,13 @@ export default {
       .tip1 {
         color: rgba(134, 72, 206, 1);
         font-size: 0.17rem;
-        margin-bottom: 0.14rem;
+        margin-bottom: 0.06rem;
       }
       .tip2 {
         color: rgba(200, 47, 142, 1);
         font-size: 0.24rem;
         margin-bottom: 0.25rem;
+        font-weight: bold;
       }
       .btnBox {
         display: flex;
@@ -538,7 +543,7 @@ export default {
   background: url(../assets/img/taskBg.png);
   background-size: 100% 100%;
   padding: 0.1rem 0 0.4rem;
-  margin: 0.8rem auto;
+  margin: 1.2rem auto;
   position: relative;
   .topIcon {
     display: block;
@@ -555,15 +560,16 @@ export default {
       width: 6.06rem;
       height: 0.8rem;
       text-align: center;
-      line-height: 0.95rem;
+      line-height: 0.8rem;
       color: rgba(108, 39, 194, 1);
       font-size: 0.35rem;
       background: url(../assets/img/hBg.png);
       background-size: 100% 100%;
       margin: 0 auto;
+      font-weight: 600;
     }
     ul {
-      width: 6.62rem;
+      width: 6.55rem;
       margin: 0.15rem auto 0;
       li {
         height: 1.12rem;
@@ -598,12 +604,15 @@ export default {
             background: RGBA(133, 72, 206, 1);
             position: relative;
             margin-top: 0.15rem;
+            border-radius: 0.1rem;
             .actLiner {
               max-width: 100%;
               height: 100%;
               position: absolute;
               left: 0;
               top: 0;
+              border-radius: 0.1rem;
+              overflow: hidden;
               background: url(../assets/img/actLiner.png);
               background-size: auto 100%;
             }

@@ -42,7 +42,7 @@
         <div class="firstLuck" v-if="firstGift">
           <i class="close" @click="closeFirst()"></i>
           <div class="title">
-            <p v-if="!isRank"> 歡迎來到萬聖節嘉年華<br />送你萬聖節糖果5個</p>
+            <p v-if="!isRank"> 歡迎來到萬聖節嘉年華<br />送你萬聖節糖果2個</p>
             <p v-else>你大受歡迎！</p>
           </div>
           <img src="../assets/img/tang.png" alt="" v-if="!isRank">
@@ -428,8 +428,11 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 600;
-    color: rgba(107, 38, 193, 1);
+    p {
+      font-size: 0.35rem;
+      font-weight: 600;
+      color: rgba(107, 38, 193, 1);
+    }
   }
   img {
     display: block;

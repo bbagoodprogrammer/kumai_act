@@ -81,7 +81,15 @@ const store = new Vuex.Store({
             state.tasks.new_task[val].get = true
         },
         setDayTaskStatus(state, val) {
-            state.tasks.day_task[val].get = true
+            if (val.id == 5) {
+                if (state.tasks.day_task[val.index].schule == 5) {
+                    state.tasks.day_task[val.index].get = true
+                } else {
+                    state.tasks.day_task[val.index].finish = false
+                }
+            } else {
+                state.tasks.day_task[val.index].get = true
+            }
         },
         setRoolMsg(state, val) {
             state.roolMsg = val

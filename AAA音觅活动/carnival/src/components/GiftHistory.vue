@@ -167,9 +167,11 @@ export default {
       margin: 0 0 0.8rem 0;
       font-weight: bold;
       // padding-right: 0.3rem;
+      color: rgba(92, 35, 161, 1);
       .time {
         margin: 0.25rem 0 0.28rem;
         font-size: 0.28rem;
+        color: rgba(255, 237, 130, 1);
       }
       .taskItem {
         display: flex;
