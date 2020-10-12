@@ -434,11 +434,12 @@ export default {
     margin: 0.1rem auto 0;
   }
   .listBog {
-    width: 7.48rem;
+    width: 6.99rem;
     min-height: 14rem;
-    background: url(../assets/img/listBg.png) no-repeat;
+    background: RGBA(216, 158, 255, 1) url(../assets/img/listBg.png) no-repeat;
     background-size: 100% auto;
     padding-top: 2.18rem;
+    margin: 0 auto;
   }
   .mainTabs {
     display: flex;
@@ -520,9 +521,14 @@ export default {
         }
       }
       .userRank {
-        width: 1.44rem;
+        width: 1.24rem;
         display: flex;
         justify-content: center;
+        em {
+          font-size: 0.4rem;
+          font-weight: 600;
+          color:rgba(254, 176, 255, 1);
+        }
       }
       .imgBox {
         width: 1.5rem;

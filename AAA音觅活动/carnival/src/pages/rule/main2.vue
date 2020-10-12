@@ -29,7 +29,7 @@
         <img src="../../assets/img/ruleImg/gift1.png" alt="">
         <strong>魔法城堡背包禮物（500金幣）</strong>
       </div>
-      <p>日榜前20名，隨機抽出5名獲得魔法城堡背包禮物（500金幣）*2個，將在每天24點抽出中獎者，並直接發放背包禮物到對應背包；活動最後一天的開獎時間和活動結束時間一致</p>
+      <p>日榜前20名，隨機抽出2名獲得魔法城堡背包禮物（500金幣）*2個，將在每天24點抽出中獎者，並直接發放背包禮物到對應背包；活動最後一天的開獎時間和活動結束時間一致</p>
       <h6>2、總榜獎勵</h6>
       <h5>第1-3名</h5>
       <div class="gfitBox1 gfitBox">
@@ -51,7 +51,6 @@
         第3名：【風雲人物】勛章10天+萬聖節背包禮物1個+1000金豆<br />
         第4-6名：南瓜燈背包禮物10個+500金豆<br />
         *玩家通過收萬聖節的指定金幣禮物積攢鑽石，鑽石可兌換為金幣
-
       </p>
       <h6>3、貢獻榜獎勵</h6>
       <div class="gfitBox1 gfitBox">
@@ -60,9 +59,9 @@
           <strong>{{item.name}}</strong>
         </span>
       </div>
-      <p>歡歌排行榜前三名的用戶的粉絲貢獻榜中的前三名可獲得貢獻榜獎勵</p>
+      <p>狂歡排行榜前三名的用戶的粉絲貢獻榜中的前三名可獲得貢獻榜獎勵</p>
       <h6>4、送糖獎勵</h6>
-      <p>非小號玩家每送出N顆糖果，可獲得小惡魔頭像框3天</p>
+      <p>非小號玩家每送出25顆糖果，可獲得小惡魔頭像框3天</p>
       <h6>5、進階獎勵</h6>
       <img src="../../assets/img/ruleImg/table.png" alt="" class="table">
     </div>
@@ -77,11 +76,11 @@ export default {
       type: 1,
       giftArr1: [
         {
-          img: '',
+          img: require('../../assets/img/ruleImg/gift2.png'),
           name: '風雲人物徽章'
         },
         {
-          img: '',
+          img: require('../../assets/img/ruleImg/gift3.png'),
           name: '萬聖節背包禮物x1'
         },
         {
@@ -91,7 +90,7 @@ export default {
       ],
       giftArr2: [
         {
-          img: '',
+          img: require('../../assets/img/ruleImg/gift4.png'),
           name: '南瓜燈背包禮物x10  '
         },
         {
@@ -101,16 +100,16 @@ export default {
       ],
       giftArr3: [
         {
-          img: '',
-          name: '守護者徽章15天'
+          img: require('../../assets/img/ruleImg/gift6.png'),
+          name: '守護者勋章15天'
         },
         {
-          img: '',
+          img: require('../../assets/img/ruleImg/gift5.png'),
           name: '南瓜車座駕15天'
         },
         {
           img: require('../../assets/img/ruleImg/ticket.png'),
-          name: '儲值反利券（10%）'
+          name: '儲值返利券（10%）'
         }
       ]
     }

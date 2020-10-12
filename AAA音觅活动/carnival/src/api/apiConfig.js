@@ -94,7 +94,7 @@ function newGetGift(taskId) {
 
 //每日任務領取
 function dayGetGift(taskId) {
-    return get(`/index.php?action=halloweenParty.getNew&signture=innerserver&task=${taskId}&uid=${uid}&token=${token}`)
+    return get(`/index.php?action=halloweenParty.get&signture=innerserver&task=${taskId}&uid=${uid}&token=${token}`)
 }
 
 //守護榜單

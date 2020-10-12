@@ -62,9 +62,11 @@ export default {
       font-size: 0.35rem;
       color: rgba(107, 38, 193, 1);
       font-weight: 600;
+      margin-bottom: 0.2rem;
     }
     p {
-      color: rgba(107, 38, 193, 1);
+      // color: rgba(107, 38, 193, 1);
+      color: #fff;
       font-weight: 600;
       padding: 0 0.4rem;
       font-size: 0.26rem;
