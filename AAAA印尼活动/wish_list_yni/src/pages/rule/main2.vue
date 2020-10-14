@@ -38,7 +38,7 @@
             <img src="../../assets/img/ward2.png" alt="">
           </div>
           <em>
-            Hak istimewa bangsawan duke
+            100000 nilai kekayaan
           </em>
         </span>
         <span>
@@ -65,7 +65,7 @@
             <img src="../../assets/img/ward5.png" alt="">
           </div>
           <em>
-            Hak istimewa bangsawan marquis
+            10000 nilai kekayaan
           </em>
         </span>
         <span>
