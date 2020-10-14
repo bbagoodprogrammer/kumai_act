@@ -118,7 +118,7 @@ export default {
     this.player = new Player('#canvas') // #canvas is HTMLCanvasElement
 
       ; (async () => {
-        const fileData = await downloader.get(`http://img.17sing.tw/uc/activity/9076326f3c03ed38e128e3b887c186ef_1588757766.svga?${Math.random()}`)
+        const fileData = await downloader.get(`https://fstatic.cat1314.com/uc/svga/f49f34c93a846a07f4a0a9e90ab3be09_1602555469.svga?${Math.random()}`)
         const svgaData = await parser.do(fileData)
         this.isDown = svgaData
         this.player.set({
