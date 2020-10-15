@@ -56,6 +56,9 @@
               查看貢獻榜>>
             </u>
           </div>
+          <u class="listPupIcon" @click="showTeamList(item.uid)" v-if="item.rank >3">
+            查看貢獻榜>>
+          </u>
         </li>
       </div>
       <!-- 搜索結果 -->
@@ -527,7 +530,7 @@ export default {
         em {
           font-size: 0.4rem;
           font-weight: 600;
-          color:rgba(254, 176, 255, 1);
+          color: rgba(254, 176, 255, 1);
         }
       }
       .imgBox {
@@ -576,11 +579,11 @@ export default {
         }
       }
       .userScore {
-        margin-left: 0.3rem;
+        margin: -0.1rem 0 0 0.3rem;
         .total {
           font-size: 0.27rem;
           font-weight: 600;
-          margin-bottom: 0.22rem;
+          margin-bottom: 0.1rem;
         }
         .score1 {
           font-size: 0.18rem;
@@ -617,6 +620,14 @@ export default {
           color: rgba(255, 246, 213, 1);
           margin-right: 1.11rem;
         }
+      }
+      .listPupIcon {
+        color: rgba(254, 254, 254, 1);
+        font-size: 0.2rem;
+        white-space: nowrap;
+        position: absolute;
+        right: 0.2rem;
+        bottom: 0.15rem;
       }
       &.list1 {
         padding-bottom: 0.62rem;
@@ -833,6 +844,7 @@ export default {
         display: flex;
         align-items: center;
         text-align: center;
+        margin-bottom: 0.1rem;
         .rank {
           width: 1.5rem;
           text-align: center;

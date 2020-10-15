@@ -4,9 +4,10 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <div class="goBox">
-        <span class="ruleTips" :class="{top:isShare}" @click="goRule()">{{lang.rule}}</span>
-        <span class="history" @click="goHistory()">{{lang.history}}</span>
+      <div class="actTIme"><i class="left">></i> {{actTime}} <i class="right">
+          < </i> </div> <div class="goBox">
+            <span class="ruleTips" :class="{top:isShare}" @click="goRule()">{{lang.rule}}</span>
+            <span class="history" @click="goHistory()">{{lang.history}}</span>
       </div>
     </div>
     <gift-con></gift-con>
@@ -44,6 +45,7 @@ import ActFooter from "../components/ActFooter"
 import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
 import GiftCon from "../components/GiftCon"
+import getDate from "../utils/getDate"
 export default {
   components: { Loading, MsgToast, ActFooter, GiftCon },
   data() {
@@ -58,13 +60,18 @@ export default {
       rotatec: 0,
       showRule: false,
       banner: '',
+      stime: 0,
+      etime: 0
     }
   },
   created() {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
-  mounted() {
+  computed: {
+    actTime() {
+      return getDate(new Date(this.stime * 1000), 3) + '-' + getDate(new Date(this.etime * 1000), 3)
+    }
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -85,6 +92,8 @@ export default {
           this.vxc('setExchange_status', exchange_status)
           this.vxc('setCurrent_date', current_date)
           this.vxc('setDate_line', date_line)
+          this.etime = act_info.etime
+          this.stime = act_info.stime
           // this.vxc('setTop_mission',top_mission)
           // this.vxc('setMissions',missions)
           let nowDayIndex = null
@@ -122,7 +131,8 @@ export default {
     goHistory() {
       let token = getString('token')
       let uid = getString('uid')
-      location.href = `./index3.html?token=${token}&uid=${uid}`
+      let act_id = getString('act_id')
+      location.href = `./index3.html?token=${token}&uid=${uid}&act_id=${act_id}`
     },
     refrsh(s) { //刷新
       if (!s) {
@@ -166,10 +176,33 @@ body::-webkit-scrollbar {
   .header {
     height: 7.27rem;
     position: relative;
+    .actTIme {
+      width: 100%;
+      white-space: nowrap;
+      text-align: center;
+      position: absolute;
+      top: 1rem;
+      font-size: 0.26rem;
+      font-weight: 600;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      -moz-box-decoration-break: clone;
+      color: transparent;
+      background-image: -webkit-linear-gradient(top, #fff, #ffcd8d);
+      .left {
+        margin-right: 0.1rem;
+      }
+      .right {
+        margin-left: 0.1rem;
+      }
+    }
     .goBox {
       position: absolute;
       right: 0;
-      top: 0.17rem;
+      top: 3.17rem;
       &.top {
         top: 1.5rem;
       }
@@ -210,7 +243,7 @@ body::-webkit-scrollbar {
 }
 .rule {
   width: 5.37rem;
-  height: 4.3rem;
+  height: 4.5rem;
   background: url(../assets/img/ruleBg.png);
   background-size: 100% 100%;
   position: absolute;

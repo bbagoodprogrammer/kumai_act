@@ -6,8 +6,8 @@
         <i>Jumlah bet yg dibutuhkan:</i> <em>{{surplusCoins}}</em>
       </span>
     </div>
-    <p class="duiTime">Waktu Acara : 18:00 tgl 22 Oct ~ 21:00 tgl 5 Nov (Bertaruh pada pukul 9:00 ,10:00,11:00... ~21:00 setiap hari)
-      </br>Waktu penukaran hadiah: 18:00 tgl 22 Oct ~ 9:00 tgl 6 Nov</p>
+    <p class="duiTime">Waktu Acara : Pukul 18:00 tgl 15 Okt. ~ Pukul 21:00 tgl 31 Okt. (Bertaruh pada pukul 9:00 ,10:00,11:00... ~21:00 setiap hari)
+      </br>Waktu penukaran hadiah: Pukul 18:00 tgl 15 Okt. ~ Pukul 9:00 tgl 1 Nov.</p>
     <span class="lookRecet" @click="showHistory()">
       Cek detail penukaran
     </span>
@@ -65,31 +65,31 @@ export default {
           name: "skuter air",
           img: require('../../assets/img/ward5.png')
         },
+        // 5: {
+        //   name: "Bangsawan earl",
+        //   img: require('../../assets/img/ward6.png')
+        // },
+        // 6: {
+        //   name: "Bangsawan marquis",
+        //   img: require('../../assets/img/ward7.png')
+        // },
         5: {
-          name: "Bangsawan earl",
-          img: require('../../assets/img/ward6.png')
-        },
-        6: {
-          name: "Bangsawan marquis",
-          img: require('../../assets/img/ward7.png')
-        },
-        7: {
           name: "Angel Pelindung",
           img: require('../../assets/img/ward8.png')
         },
-        8: {
+        6: {
           name: "Kiss",
           img: require('../../assets/img/ward9.png')
         },
-        9: {
+        7: {
           name: "Mobil Bunga Romantis",
           img: require('../../assets/img/ward10.png')
         },
-        10: {
+        8: {
           name: "Kincir Ria",
           img: require('../../assets/img/ward11.png')
         },
-        11: {
+        9: {
           name: "Sagitarius",
           img: require('../../assets/img/ward12.png')
         }
@@ -97,7 +97,12 @@ export default {
     }
   },
   computed: {
-    ...mapState(['actStatus', 'owner_msg'])
+    ...mapState(['actStatus', 'owner_msg']),
+    newGiftList() {
+      return this.giftList.filter((val) => {
+        return val.id != 5 && val.id != 6
+      })
+    }
   },
   created() {
     this.surplusCoins = sessionStorage.getItem('surplusCoins')

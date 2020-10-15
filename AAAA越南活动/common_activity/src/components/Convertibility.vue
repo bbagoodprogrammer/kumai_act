@@ -20,7 +20,7 @@
         <div class="converGiftState">
           <span class="dayEd" v-if="item.limit == item.exchanged_count">{{lang.dayEd}}</span>
           <div class="noConver" v-else>
-            <strong class="noConverTips" v-if="item.limit > 0">Mỗi ngày đổi <br /> tối đa {{item.limit}} lần</strong>
+            <strong class="noConverTips" v-if="item.limit > 0">Mỗi ngày đổi tối đa {{item.limit}} lần</strong>
             <div class="converBtn" @click="chowGiftPup(item,index)">{{lang.convertibility}}</div>
           </div>
         </div>
