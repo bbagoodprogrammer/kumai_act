@@ -195,7 +195,7 @@ export default {
       if (!this.$refs.scorll.rank.loading) {
         window.removeEventListener("scroll", this.onScroll)
         this.getDefaultData('ref')
-        this.$refs.scorll.onRefresh()
+        // this.$refs.scorll.onRefresh()
       }
     }
   }

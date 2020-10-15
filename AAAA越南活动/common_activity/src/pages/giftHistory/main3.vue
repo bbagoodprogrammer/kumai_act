@@ -21,17 +21,20 @@
 import Loading from "../../components/Loading"
 import api from "../../api/apiConfig"
 import getDate from "../../utils/getDate"
+import getString from "../../utils/getString"
 export default {
   components: { Loading },
   data() {
     return {
       list: [],
       loaded: false,
-      more: true
+      more: true,
     }
   },
   created() {
-    api.giftHistory(0).then(res => {
+    // let act_id = getString('act_id')
+    // this.act_id = act_id
+    api.giftHistory(0, false).then(res => {
       this.list = res.data.response_data.records
     })
   },

@@ -18,14 +18,14 @@
           <div class="score" v-if="nowTab != 'total'">{{nowDays}}日星光值：{{nowUsrMsg.score}}</div>
         </div>
         <div class="updaSong">
-          <div class="btn" @click="goCommitSong()">上傳作品</div>
-          <div class="luckTips">中獎概率：{{nowUsrMsg.pro}}%</div>
+          <!-- <div class="btn" @click="goCommitSong()">上傳作品</div> -->
+          <div class="luckTips" v-if="nowTab != 'total'">中獎概率：{{nowUsrMsg.pro}}%</div>
         </div>
         <i class="luck" v-if="nowTab != 'total' && nowUsrMsg.is_prize"></i>
       </div>
       <div class="family" v-else-if="astState === 3 && showType == 2 && nowUsrMsg.pk_data">
         <div class="familyMsg" v-if="!nowUsrMsg.empty">
-          <div class="btn" @click="goCommitSong()" v-if="nowUsrMsg.show">上傳作品</div>
+          <!-- <div class="btn" @click="goCommitSong()" v-if="nowUsrMsg.show">上傳作品</div> -->
           <div class="family1 family">
             <img v-lazy="nowUsrMsg.pk_data.left.avatar" class="fImg" alt="" @click="showCards(nowUsrMsg.pk_data.left.fid)">
             <div class="msg">
@@ -51,7 +51,7 @@
           </div>
           <div class="tipsMsg">
             <p class="noOpponents">幸運輪空，直接晉級</p>
-            <div class="songBtn" @click="goCommitSong()" v-if="nowUsrMsg.show">上傳作品</div>
+            <!-- <div class="songBtn" @click="goCommitSong()" v-if="nowUsrMsg.show">上傳作品</div> -->
           </div>
         </div>
         <div class="fLiner" v-if="!nowUsrMsg.empty">
@@ -147,7 +147,7 @@ export default {
             if (response_status.code == 0) {
               this.vxc('setUserSingUp', true)
               this.vxc('setToast', {
-                msg: '恭喜你報名成功，星光總榜前300名即可晉級並代表家族參與名星爭奪'
+                msg: '恭喜你報名成功，星光總榜前500名即可晉級並代表家族參與名星爭奪'
               })
             } else {
               this.vxc('setToast', {
@@ -281,6 +281,7 @@ export default {
         .name {
           display: flex;
           align-items: center;
+          width: 2.5rem;
           max-width: 2.5rem;
           overflow: hidden;
           white-space: nowrap;
@@ -296,6 +297,7 @@ export default {
           .star {
             display: flex;
             align-items: center;
+            margin-left: 0.6rem;
             i {
               width: 0.4rem;
               height: 0.38rem;
