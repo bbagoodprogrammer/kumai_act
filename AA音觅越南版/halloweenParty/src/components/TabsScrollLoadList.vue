@@ -1,6 +1,6 @@
 <template>
   <div class="rankGroups">
-    <p class="rankTips">Báo danh trở thành quỷ thần >> nhận Kẹo ma lực và quà chỉ định >>nhận điểm <i @click="scorePupClick()"></i></p>
+    <p class="rankTips">Báo danh>nhận kẹo ma lực và tặng quà sự kiện halloween> nhận điểm<i @click="scorePupClick()"></i></p>
     <img src="../assets/img/giftImg.png" alt="" class="giftImg">
     <!-- 日榜、总榜切换主Tabs -->
     <div class="listBog">
@@ -56,6 +56,9 @@
               Bảng cống hiến>>
             </u>
           </div>
+          <u class="listPupIcon" @click="showTeamList(item.uid)" v-if="item.rank >3">
+            Bảng cống hiến>>
+          </u>
         </li>
       </div>
       <!-- 搜索結果 -->
@@ -577,11 +580,11 @@ export default {
         }
       }
       .userScore {
-        margin-left: 0.3rem;
+        margin: -0.1rem 0 0 0.3rem;
         .total {
           font-size: 0.27rem;
           font-weight: 600;
-          margin-bottom: 0.22rem;
+          margin-bottom: 0.1rem;
         }
         .score1 {
           font-size: 0.18rem;
@@ -618,6 +621,14 @@ export default {
           color: rgba(255, 246, 213, 1);
           margin-right: 1.11rem;
         }
+      }
+      .listPupIcon {
+        color: rgba(254, 254, 254, 1);
+        font-size: 0.2rem;
+        white-space: nowrap;
+        position: absolute;
+        right: 0.2rem;
+        bottom: 0.15rem;
       }
       &.list1 {
         padding-bottom: 0.62rem;
@@ -753,6 +764,7 @@ export default {
       margin-right: 1.11rem;
     }
   }
+
   &.list1 {
     padding-bottom: 0.62rem;
     background: url(../assets/img/list1.png);
@@ -834,6 +846,7 @@ export default {
         display: flex;
         align-items: center;
         text-align: center;
+          margin-bottom: 0.1rem;
         .rank {
           width: 1.5rem;
           text-align: center;

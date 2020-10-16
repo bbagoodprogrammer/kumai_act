@@ -11,7 +11,7 @@
         2, Điểm quỷ thần = điểm kẹo ma lực + điểm chơi phòng<br />
         Điểm kẹo ma lực = số kẹo ma lực *100<br />
         Điểm chơi phòng = Tổng xu nhận được từ quà chỉ định *12<br />
-        3, Qùa chỉ định: xx, xx và bí đỏ, quà bí đỏ sẽ được thêm vào hộp quà may mắn vào ngày 26/10
+        3, Qùa chỉ định: Chổi phù thủy, Thuốc độc, Phù thủy, Tiểu quỷ, Kem bí đỏ, Mũ Phù thủy
       </p>
       <h6>Cách tính BXH</h6>
       <p>1, Xếp theo tổng số điểm quỷ thần từ cao xuống thấp</p>
@@ -23,9 +23,9 @@
       <h6>1, Thưởng BXH Ngày</h6>
       <div class="backGift">
         <img src="../../assets/img/ruleImg/gift1.png" alt="">
-        <strong>Túi quà bí đỏ (50 xu) *2</strong>
+        <strong>Túi quà Nhà quỷ (990 xu) </strong>
       </div>
-      <p>Top 20 BXH ngày, ngẫu nhiên tặng 5 bạn nhận quà bí đỏ (50 xu)*2, BXH mỗi ngày phát thưởng tự động vào túi quà vào 00h ngày tiếp theo, ngày cuối cùng sự kiện sẽ phát thưởng khi sự kiện kết thúc. </p>
+      <p>Top 20 BXH ngày, ngẫu nhiên tặng 2 bạn nhận 1 túi quà Lâu đài quỷ (990 xu), BXH mỗi ngày phát thưởng tự động vào túi quà vào 00h ngày tiếp theo, ngày cuối cùng sự kiện sẽ phát thưởng khi sự kiện kết thúc. </p>
       <h6>2, Thưởng BXH tổng</h6>
       <h5>Top 1-3</h5>
       <div class="gfitBox1 gfitBox">
@@ -43,11 +43,11 @@
       </div>
       <p>
 
-        "Gi ải nhất: Huy chương thần chớp 30 ngày + Túi quà halloween*1+5000 đậu<br />
-        Gi ải nhất: Huy chương thần chớp 15 ngày + Túi quà halloween*1+3000 đậu<br />
-        Gi ải nhất: Huy chương thần chớp 10 ngày + Túi quà halloween*1+1000 đậu<br />
-        Top 4-6: Túi quà đèn bí đỏ *10 +500 đậu"<br />
-        * Cập nhật phiên bản mới, thông qua sự kiện nhận quà xu có thể đổi kim cương, kim cương có thể đổi xu nhé ~
+        "Gi ải nhất: Huy chương thần chớp 30 ngày + Túi quà động Đảo Halloween*1+5000 đậu<br />
+        Gi ải nhất: Huy chương thần chớp 15 ngày +Túi quà động Đảo Halloween*1+3000 đậu<br />
+        Gi ải nhất: Huy chương thần chớp 10 ngày + Túi quà động Đảo Halloween*1+1000 đậu<br />
+        Top 4-6: Túi quà Bí đỏ *10 +500 đậu"<br />
+        * Cập nhật phiên bản mới, thông qua sự kiện nhận quà xu có thể đổi kim cương, kim cương có thể đổi xu ~
 
       </p>
       <h6>3, Thưởng BXH Cống hiến</h6>
@@ -57,7 +57,8 @@
           <strong>{{item.name}}</strong>
         </span>
       </div>
-      <p>Top 3 cống hiến cho Top 3 sự kiện nhận thưởng</p>
+      <p>Top 3 công hiến cho Top 3 BXH Tổng nhận thưởng.
+        Phiếu nạp 10%: Trong ngày kế tiếp Sau khi sự kiện kết thúc nạp xu mệnh giá bất kỳ, nhận lại 10% số xu đã nạp. </p>
       <h6>4, Thưởng kẹo ma lực</h6>
       <p>Không phải tài khoản phụ tặng N kẹo ma lực nhận khung ảnh quỷ thần 3 ngày</p>
       <h6>5, Thưởng khác</h6>
@@ -75,11 +76,11 @@ export default {
       giftArr1: [
         {
           img: require('../../assets/img/ruleImg/gift2.png'),
-          name: 'Huy chương thần chớp 15 ngày'
+          name: 'Huy chương thần chớp'
         },
         {
           img: require('../../assets/img/ruleImg/gift3.png'),
-          name: 'Túi quà Halloween *1'
+          name: 'Đảo Halloween *1'
         },
         {
           img: require('../../assets/img/ruleImg/bean1.png'),
@@ -89,7 +90,7 @@ export default {
       giftArr2: [
         {
           img: require('../../assets/img/ruleImg/gift4.png'),
-          name: 'Túi quà đèn bí đỏ *10  '
+          name: 'Bí đỏ *10  '
         },
         {
           img: require('../../assets/img/ruleImg/bean2.png'),

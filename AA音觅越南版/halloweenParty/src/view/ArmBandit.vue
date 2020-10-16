@@ -11,8 +11,8 @@
       </div>
     </div>
     <div class="mainTabsMtop">
-      <span :class="{act:mainTab=='Tasks'}" @click="tabClick('Tasks')">Qùa Halloween</span>
-      <span :class="{act:mainTab=='TabsScrollLoadList'}" @click="tabClick('TabsScrollLoadList')">Đi xin kẹo</span>
+      <span :class="{act:mainTab=='Tasks'}" @click="tabClick('Tasks')">Đi xin kẹo</span>
+      <span :class="{act:mainTab=='TabsScrollLoadList'}" @click="tabClick('TabsScrollLoadList')">Bảng xếp hạng</span>
     </div>
     <!-- <keep-alive> -->
     <component :is="mainTab" :type="mainTab" ref="ranks"></component>
@@ -33,7 +33,7 @@
             </li>
           </ul>
           <p class="tips">Người mời thành công bạn tham gia Lễ hội Halloween, có thể nhận<i></i></p>
-          <span class="singUpBtn" @click="singUp('select')">Chấp nhận lời mời của họ</span>
+          <span class="singUpBtn" @click="singUp('select')">Chấp nhận lời mời</span>
         </div>
       </transition>
     </div>
