@@ -71,7 +71,7 @@
       </p>
       <p class="rankTips" v-if="showType==3">
         Gia tộc tăng cấp được thưởng túi quà, cấp I, II, III tương ứng điểm sao 10k, 100k, 500k.<br />
-        Điểm sao = mị lực quà xu nhận từ bài hát + phòng Kara, 20-22h ngày 28/8 được tăng 10%.
+        Điểm sao = mị lực quà xu nhận từ bài hát + phòng Kara, 20-22h ngày 19/10 được tăng 10%.
       </p>
     </div>
     <!-- 日榜 -->

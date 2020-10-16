@@ -4,21 +4,21 @@
       <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">Phần thưởng</a>
       <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">Thể lệ</a>
     </div>
-    <p class="actTime">Thời gian:18h 29/7 – 23h 7/8</p>
+    <p class="actTime">Thời gian:18h 26/10 – 23h 04/11</p>
     <div class="wards" v-if="mainTab == 0">
       <h5>Phần thưởng</h5>
       <img src="../../assets/img/wardsImg.png" alt="" class="wardImg">
       <h5>Thưởng BXH Tổng</h5>
       <h6>Hạng 1:</h6>
-      <p>Huy chương Chủ Vườn Ưu Tú (30 ngày) + Xe Sư Tử (30 ngày) + 3 tháng vip + 1 bộ quà Thú Cưng (1092 xu/bộ) + 3000 xu + 10000 đậu</p>
+      <p>Huy chương Chủ Vườn Ưu Tú (30 ngày) + Xe Sấm Sét (30 ngày) + Qùa hiệu ứng Bướm Sặc Sỡ*1 (2250 xu/cái) + 1 bộ quà Thú Cưng (1092 xu/bộ) + 3000 xu + 10000 đậu.</p>
       <h6>Hạng 2:</h6>
-      <p>Huy chương Chủ Vườn Ưu Tú (30 ngày) + Xe Sư Tử (30 ngày) + 2 tháng vip + 1 bộ quà Thú Cưng (1092 xu/bộ) + 2500 xu + 8000 đậu</p>
+      <p>Huy chương Chủ Vườn Ưu Tú (30 ngày) + Xe Sấm Sét (30 ngày) + Qùa hiệu ứng Đu Quay Hồng*1 (1520 xu/cái)  + 1 bộ quà Thú Cưng (1092 xu/bộ) + 2500 xu + 8000 đậu.</p>
       <h6>Hạng 3:</h6>
-      <p>Huy chương Chủ Vườn Ưu Tú (30 ngày) + Xe Sư Tử (30 ngày) + 1 tháng vip + 1 bộ quà Thú Cưng (1092 xu/bộ) + 2000 xu + 5000 đậu</p>
+      <p>Huy chương Chủ Vườn Ưu Tú (30 ngày) + Xe Sấm Sét (30 ngày) + Qùa hiệu ứng Mưa Bong Bóng*1 (820 xu/cái) + 1 bộ quà Thú Cưng (1092 xu/bộ) + 2000 xu + 5000 đậu.</p>
       <h6>Hạng 4-5:</h6>
-      <p>Huy chương Chủ Vườn Ưu Tú (30 ngày) + Xe Sư Tử (30 ngày) + 1 bộ quà Thú Cưng (1092 xu/bộ) + 1000 xu + 5000 đậu</p>
+      <p>Huy chương Chủ Vườn Ưu Tú (30 ngày) + Xe Sấm Sét (30 ngày) + Qùa hiệu ứng Bom Nốt Nhạc*1 (388 xu/cái) + 1 bộ quà Thú Cưng (1092 xu/bộ) + 1000 xu + 5000 đậu.</p>
       <h6>Hạng 6-10:</h6>
-      <p>Huy chương Chủ Vườn Ưu Tú (30 ngày) + 1 bộ quà Thú Cưng (1092 xu/bộ) + 500 xu + 2000 đậu</p>
+      <p>Huy chương Chủ Vườn Ưu Tú (30 ngày) + quà hiệu ứng Tim Chạm Tim (320 xu/cái) + 1 bộ quà Thú Cưng (1092 xu/bộ) + 500 xu + 2000 đậu.</p>
       <h5>Thưởng BXH Thú Cưng</h5>
       <img src="../../assets/img/wardsTab.png" alt="" class="tab">
       <h5>Quy định phần thưởng</h5>

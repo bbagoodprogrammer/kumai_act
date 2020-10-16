@@ -4,11 +4,11 @@
       <div class="fMsg">
         <div class="imgBox">
           <span></span>
-          <strong>Khung ảnh đầu quỷ 3 ngày</strong>
+          <strong>Khung ảnh ác ma 3 ngày</strong>
         </div>
         <div class="msg">
-          <div class="tip1">Trong thời gian sự kiện, tặng N Kẹo ma lực có thể đổi</div>
-          <div class="tip2">Đaã tặng {{tasks.send}} Kẹo ma lực</div>
+          <div class="tip1">Trong thời gian sự kiện tặng 25 kẹo <br /> ma lực có thể đổi khung ảnh</div>
+          <div class="tip2">Đã tặng {{tasks.send}} kẹo ma lực</div>
           <div class="btnBox">
             <span @click="goRankTab()">Làm nhiệm vụ</span>
             <span @click="exChange()">Đổi <em>Đã đổi khung ảnh {{tasks.ex_days}} ngày</em></span>
@@ -148,7 +148,7 @@ export default {
         2: 'Tặng 5 Kẹo ma lực',
         3: 'Tăng 20 điểm thẻ kết bạn',
         4: 'Nạp xu bất kì',
-        5: 'Mời 1 bạn mới tham gia Lễ hội Halloween Mời (0/5)'
+        5: 'Mời 1 bạn mới tham gia Lễ hội Halloween Mời '
       },
       showShare: false,
       showPeople: false,
@@ -521,7 +521,7 @@ export default {
     height: 0.64rem;
     position: absolute;
     top: 2.1rem;
-    right: 0.6rem;
+    right: 1.35rem;
     background: url(../assets/img/tang.png);
     background-size: 100% 100%;
     i {
