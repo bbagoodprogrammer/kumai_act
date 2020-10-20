@@ -1,6 +1,6 @@
 <template>
   <div id="box">
-    <div class="turnHeader">
+    <!-- <div class="turnHeader">
       <div class="tabs">
         <span class="trun" :class="{act:shoCom=='Trun'}" @click="tabClick('Trun')">幸運轉盤</span>
         <span class="trunBox" :class="{act:shoCom=='Box'}" @click="tabClick('Box')">驚喜寶箱</span>
@@ -12,11 +12,11 @@
     <keep-alive>
       <component :is="shoCom"></component>
     </keep-alive>
-    <Footer></Footer>
-    <!-- <div class="noData">
+    <Footer></Footer> -->
+    <div class="noData">
       <img src="../assets/img/noOpen.png" alt="" class="noOpenImg">
       <strong>工程師正在維護升級中...</strong>
-    </div> -->
+    </div>
     <transition name="slide">
       <msg-toast :msg="tastMsg" @closeToast="closeToast()" v-show="showT"></msg-toast>
     </transition>
