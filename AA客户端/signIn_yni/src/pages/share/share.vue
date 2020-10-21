@@ -14,7 +14,7 @@
       </div>
       <strong v-else>
         Anda sudah sign-in {{days}} hari dengan terus-menurus</br>
-        Berhail mengundang 3 teman,akan bisa buka satu kartu lagi.
+        Berhasil mengundang 3 teman,akan bisa buka satu kartu lagi.
       </strong>
     </div>
     <SharePeople :type="type" :list="list" :leftTime="leftTime" ref="sharePeople" />

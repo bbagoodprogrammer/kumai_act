@@ -7,6 +7,7 @@
         <!-- {{rStime}}-{{rEtime}} -->
         <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{rStime}}-{{rEtime}}打擂榜</a>
         <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">本季歌王榜</a>
+        <a @click.prevent="mainTabClick(2)" :class="{current:mainTab==2}" href="">往季歌王榜</a>
       </div>
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a>
     </div>
@@ -78,6 +79,7 @@ export default {
       act: null,
       noData: false,
       noData2: false,
+      noData3: false
     }
   },
   computed: {
@@ -94,7 +96,16 @@ export default {
       } else {
         var dayApi = `/song_fight/preList.php?token={token}&from={from}`;
         var totalApi = `/song_fight/allList.php?token={token}&from={from}`;
-        var api = this.rankKey == 'total' ? totalApi : dayApi;
+        var lastApi = `/song_fight/preAllList.php?token={token}&from={from}`
+        // var api = this.rankKey == 'total' ? totalApi : dayApi;
+        var api = null
+        if (this.rankKey == 'total') {
+          api = totalApi
+        } else if (this.rankKey == 0) {
+          api = dayApi
+        } else {
+          api = lastApi
+        }
         const token = getUrlString('token') || '';
         return api.replace('{token}', token);
       }
@@ -157,8 +168,10 @@ export default {
       let nowDate = null
       if (this.rankKey == 'total') {
         nowDate = this.noData2
-      } else {
+      } else if (this.rankKey == 0) {
         nowDate = this.noData
+      } else if (this.rankKey == 2) {
+        nowDate = this.noData3
       }
       if (!this.rank.loading && !this.rank.loadEnd && !nowDate) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
@@ -197,8 +210,11 @@ export default {
                 if (this.rankKey == 'total') {
                   this.noData2 = true
                   set('list', this.configUser);
-                } else {
+                } else if (this.rankKey == 0) {
                   this.noData = true
+                  set('list', this.configUser);
+                } else if (this.rankKey == 2) {
+                  this.noData3 = true
                   set('list', this.configUser);
                 }
               }
@@ -235,10 +251,12 @@ export default {
       let nowDate = false
       if (this.rankKey == 'total') {
         nowDate = this.noData2
-      } else {
+      } else if (this.rankKey == 0) {
         nowDate = this.noData
+      } else if (this.rankKey == 2) {
+        nowDate = this.noData3
       }
-      if (nowDate) { return }
+      if (nowDate) return
       // this.$emit('getDefaultData')
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,
@@ -304,7 +322,7 @@ export default {
         font-weight: 600;
         &.current {
           color: rgba(174, 72, 0, 1);
-          background: url(../assets/img/actTab.png);
+          background: url(../assets/img/rankTabAct.png);
           background-size: 100% 100%;
         }
       }

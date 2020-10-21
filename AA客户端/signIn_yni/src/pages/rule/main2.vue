@@ -12,7 +12,7 @@
       <p>5、Setiap hari bisa buka satu kartu setelah sign-in,jika tugas berbagi diselesaikan, akan bisa buka satu kartu lagi,kecuali hari ke-7 siklus</p>
       <p>6、Tambahan sign in cuma mendukung tambah total jumlah hari sign-in kelanjutan,tidak mempengaruhi siklus sign-in</p>
       <p>7、Selama acara sign in, jika pengguna melanggar prinsip itikad baik atau melanggar aturan (misalnya curang utk menerima, menerima dengan cara tidak cocok, pakai banyak akun utk menerima,dll.),platform akan membekukan akun dan berhak menarik hadiah setelah ditemukan.</p>
-      <p>8、Pengguna yg berpartisipasi dalam acara sign in dianggap menerima semua aturan acara dan mengikuti pernyataan hukum dan peraturan platform yg relevan.Platform berhak untuk membuat penyesuaian yang coco dengan aturan acara dalam ruang lingkup yang diizinkan oleh hukum.</p>
+      <p>8、Pengguna yg berpartisipasi dalam acara sign in dianggap menerima semua aturan acara dan mengikuti pernyataan hukum dan peraturan platform yg relevan.Platform berhak untuk membuat penyesuaian yang cocok dengan aturan acara dalam ruang lingkup yang diizinkan oleh hukum.</p>
     </div>
   </div>
 </template>

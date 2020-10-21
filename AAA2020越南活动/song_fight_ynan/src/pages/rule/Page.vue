@@ -28,7 +28,7 @@
       <h6 class="red">Thường dự thi:</h6>
       <p class="red">Mỗi người báo danh thành công (có 1 bài hát tham gia thi đấu trước khi sự kiện kết thúc), sau khi sự kiện kết thúc nhận thưởng 50 đậu.</p>
       <h6>Thưởng giám khảo:</h6>
-      <p>1. Mỗi giám khảo mỗi ngày bình chọn 30 bài đầu, mỗi chọn 1 bài được thưởng 2 đậu. (gửi thưởng ngay sau chọn bài)<br />
+      <p>1. Mỗi giám khảo mỗi ngày bình chọn 30 bài đầu, mỗi chọn 1 bài được thưởng 5 đậu. (gửi thưởng ngay sau chọn bài)<br />
         2. Mỗi kỳ liên tục chọn trúng 5 bài có thể nhận ngẫu nhiên 1 túi quà Hộp Nhạc (360 đậu) / Túi quà Kẹo Bông (1 xu) / VIP (2 ngày) / Chiến Đấu Cơ (2 ngày).</p>
       <h6>Danh hiệu và quyền giám khảo:</h6>
       <img src="../../assets/img/chTab.png" alt="" class="chTabImg">

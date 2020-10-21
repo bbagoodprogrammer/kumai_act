@@ -78,7 +78,7 @@ import { globalBus } from '../utils/eventBus'
 import getDate from "../utils/getDate"
 import APP from '../utils/openApp'
 export default {
-  props: ["length", "update"],
+  props: ["length", "update", "is_push"],
   data() {
     return {
       searchSong: '',
@@ -151,6 +151,12 @@ export default {
           this.isOverTime = true
           return
         }
+        if (!this.is_push) {
+          this.vxc('setToast', {
+            msg: "每人每期最多僅可參加20首歌曲打擂"
+          })
+          return
+        }
         var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
         if (!this.update) {
           this.vxc('setToast', {
@@ -172,6 +178,12 @@ export default {
     commitSong(sid, cindex) {
       if (!this.can) {
         this.isOverTime = true
+        return
+      }
+      if (!this.is_push) {
+        this.vxc('setToast', {
+          msg: "每人每期最多僅可參加20首歌曲打擂"
+        })
         return
       }
       this.sid = sid
