@@ -1,66 +1,89 @@
 <template>
-  <div class="universe">
-    <div class="starItem" v-for="(item,index) in starsArr" :key="index" :class="[{ani:aning},'start' +item.ainIndex]" @click="starClick(index)">
-      {{item.name}}
+  <div class="left">
+    <div class="universe">
+      <div class="starItem" v-for="(item,index) in starsArr" :key="index" :class="[{ani:aning},'start' +item.ainIndex]" @click="starClick(index)">
+        {{item.name}}
+      </div>
+    </div>
+    <div class="itemTop" :class="'list'+showList.act_id">
+      <div class="list" v-for="(item,index) in showList.list " :key="index">
+        <div class="imgBox">
+          <img v-lazy="item.avatar" alt="">
+        </div>
+        <strong>{{item.nick}}</strong>
+      </div>
     </div>
   </div>
+
 </template>
 <script>
-import { setTimeout } from 'timers';
-
+import { mapState } from "vuex"
+import api from "../api/apiConfig"
 export default {
   data() {
     return {
       aning: false,
-      starsArr: [
-        {
-          ainIndex: 0,
-          name: '年度人物评选',
-        },
-        {
-          ainIndex: 1,
-          name: '年度主持人巅峰战',
-        },
-        {
-          ainIndex: 2,
-          name: '年度C位爭奪戰',
-        },
-        {
-          ainIndex: 3,
-          name: '年度K房男神女神賽',
-        },
-        {
-          ainIndex: 4,
-          name: '年度魅力歌王大賽',
-        },
-        {
-          ainIndex: 5,
-          name: '盛典嘉年華',
-        },
-        {
-          ainIndex: 6,
-          name: '年度最強音',
-        },
-        {
-          ainIndex: 7,
-          name: '年度最強家族戰',
-        },
-        {
-          ainIndex: 8,
-          name: '年度演唱會',
-        }
-      ],
-      timer: null
+      starsArr: [],
+      timer: null,
+      act_index: 0,
+      defaultList:
+      {
+        act_id: null,
+        list: [
+          {
+            "uid": "100861",
+            "avatar": "",
+            "nick": "虚位以待",
+            "rank": 1
+          },
+          {
+            "uid": "100861",
+            "avatar": "",
+            "nick": "虚位以待",
+            "rank": 2
+          },
+          {
+            "uid": "100861",
+            "avatar": "",
+            "nick": "虚位以待",
+            "rank": 3
+          }
+        ]
+      }
+
     }
   },
-  mounted() {
-    this.aniTime(2000)
-    this.aning = true
+  computed: {
+    ...mapState(['actList', 'data_list']),
+    nowTopList() {
+      console.log(this.data_list, this.act_index)
+      return this.data_list[this.act_index]
+    },
+    showList() {
+      if (this.nowTopList && this.nowTopList.length) {
+        return this.nowTopList
+      } else {
+        this.defaultList.act_id = this.act_index
+        return this.defaultList
+      }
+    }
+  },
+  watch: {
+    actList(val) {
+      let arr = JSON.parse(JSON.stringify(val))
+      for (let i = 0; i < arr.length; i++) {
+        arr[i].ainIndex = i
+      }
+      this.starsArr = arr
+      this.aniTime(2000)
+      this.aning = true
+    }
   },
   methods: {
     starClick(index) {
-      this.aning = false
       clearInterval(this.timer)
+      // if (!this.aning) return
+      this.aning = false
       let num = 0
       for (let i = index; i < 9; i++) {
         this.starsArr[i].ainIndex = num
@@ -70,12 +93,29 @@ export default {
         this.starsArr[t].ainIndex = num
         num++
       }
-      setTimeout(() => {
-        this.aning = true
-        this.aniTime(2000)
-      }, 3000)
+      this.act_index = index
+      console.log(index, this.data_list, this.data_list[this.act_index])
+      if (!Array.isArray(this.data_list[this.act_index])) {
+        api.getTabList(index).then(res => {
+          let obj = {
+            a_index: index,
+            data_list: []  //res.data.response_data.list
+          }
+          this.vxc('setDataList', obj)
+          setTimeout(() => {
+            this.aning = true
+            this.aniTime(2000)
+          }, 3000)
+        })
+      } else {
+        setTimeout(() => {
+          this.aning = true
+          this.aniTime(2000)
+        }, 3000)
+      }
     },
     aniTime(tm) {
+      clearInterval(this.timer)
       this.timer = setInterval(() => {
         this.starsArr.forEach(element => {
           if (element.ainIndex < 8) {
@@ -146,5 +186,9 @@ export default {
       left: 0.5rem;
     }
   }
+}
+.itemTop {
+  display: flex;
+  align-items: center;
 }
 </style>

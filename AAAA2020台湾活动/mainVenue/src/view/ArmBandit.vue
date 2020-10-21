@@ -6,7 +6,15 @@
     <div class="header">
       <span class="ruleTips" :class="{top:isShare}" @click="goRule()"></span>
     </div>
-    <Stars />
+    <div class="tabs">
+      <span :class="{act:tab_index == 'Stars'}" @click="tabClick('Stars')">年度主会场</span>
+      <span :class="{act:tab_index == 'People'}" @click="tabClick('People')">年度人物</span>
+    </div>
+    <keep-alive>
+      <component :is="tab_index"></component>
+    </keep-alive>
+
+    <!-- <Stars /> -->
     <act-footer></act-footer>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
   </div>
@@ -21,8 +29,9 @@ import ActFooter from "../components/ActFooter"
 import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
 import Stars from "../components/Stars"
+import People from "../components/people"
 export default {
-  components: { MsgToast, ActFooter, Stars },
+  components: { MsgToast, ActFooter, Stars, People },
   data() {
     return {
       isShare: false, //是否分享
@@ -33,6 +42,7 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
+      tab_index: 'Stars'
     }
   },
   created() {
@@ -47,14 +57,24 @@ export default {
       this.vxc('setShareState', this.isShare) //分享状态
     },
     getDefaultData(val) { //初始化
-      // api.getDefault().then(res => {
-      //   const { response_status, response_data } = res.data
-      //   if (response_status.code == 0) {
-
-      //   } else {
-      //     this.toast(response_status.error)
-      //   }
-      // })
+      api.getDefault().then(res => {
+        const { response_status, response_data } = res.data
+        if (response_status.code == 0) {
+          const { data_list, list, uinfo } = response_data
+          this.vxc('setActList', list)
+          let obj = {
+            a_index: 0,
+            data_list
+          }
+          this.vxc('setDataList', obj)
+          this.vxc('setUserMsg', uinfo)
+        } else {
+          this.toast(response_status.error)
+        }
+      })
+    },
+    tabClick(val) {
+      this.tab_index = val
     },
     downApp() {
       APP()
@@ -110,6 +130,15 @@ body::-webkit-scrollbar {
       top: 0.17rem;
       &.top {
         top: 1.5rem;
+      }
+    }
+  }
+  .tabs {
+    display: flex;
+    align-items: center;
+    span {
+      &.act {
+        color: red;
       }
     }
   }

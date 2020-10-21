@@ -11,8 +11,9 @@
     <FightSong :list="list" :set="status==1" v-if="list.length >0" />
     <!-- </div> -->
 
-    <HotSong :length="list.length" @addSong="addSong" :update="update" />
-    <act-footer :jun="jun" :device="device"></act-footer>
+    <HotSong :length="list.length" @addSong="addSong" :update="update" :is_push="is_push" />
+    <act-footer :jun=" jun" :device="device">
+    </act-footer>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
   </div>
 </template>
@@ -45,7 +46,8 @@ export default {
       device: null,
       id: null,
       status: null,
-      update: null
+      update: null,
+      is_push: null
     }
   },
   created() {
@@ -84,10 +86,11 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { act, version_allowed, device, jun, c_time, list, push, can, status, userinfo, next, time, update } = response_data
+          const { act, version_allowed, device, jun, c_time, list, push, can, status, userinfo, next, time, update, is_push } = response_data
           if (val == 'toast') {
             this.toast(`提交成功！`)
           }
+          this.is_push = is_push
           this.id = act.id
           this.status = status
           sessionStorage.setItem('id', act.id)

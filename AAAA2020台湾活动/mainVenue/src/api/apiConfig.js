@@ -11,20 +11,20 @@ import getString from "../utils/getString.js"
 let token = getString("token")
 // let uid = getString("uid")
 
-    // var num = 0
-    // axios.interceptors.request.use(function (config) {  //在请求发出之前进行一些操作
-    //     num++
-    //     store.dispatch("setloading",true)
-    //     return config
-    // });
-    // axios.interceptors.response.use(response => {        // 接受请求后num--，判断请求所有请求是否完成
-    //     num--
-    //     if (num <= 0) {
-    //         store.dispatch("setloading",false)    
-    //     } else {
-    //         store.dispatch("setloading",true)      
-    //     }
-    // })
+// var num = 0
+// axios.interceptors.request.use(function (config) {  //在请求发出之前进行一些操作
+//     num++
+//     store.dispatch("setloading",true)
+//     return config
+// });
+// axios.interceptors.response.use(response => {        // 接受请求后num--，判断请求所有请求是否完成
+//     num--
+//     if (num <= 0) {
+//         store.dispatch("setloading",false)    
+//     } else {
+//         store.dispatch("setloading",true)      
+//     }
+// })
 // axios.create({
 //     timeout: 5000          // 请求超时时间
 //   });
@@ -54,45 +54,53 @@ function get(url, config) {
     // }
 
     return new Promise((resolve, reject) => {
-        store.dispatch("setloading",true) // 打开loading
+        store.dispatch("setloading", true) // 打开loading
         axios.get(url, config)
-        .then(response => {
-            store.dispatch("setloading",false) 
-            // console.log(response)
-            resolve(response);
-        })
-        .catch(error => {
-            store.dispatch("setloading",false) 
-            reject(error);
-        });
+            .then(response => {
+                store.dispatch("setloading", false)
+                // console.log(response)
+                resolve(response);
+            })
+            .catch(error => {
+                store.dispatch("setloading", false)
+                reject(error);
+            });
     });
 }
 
 //获取活动基础信息
-function getDefault(){
-    if(token){
-        return get(`/slot_machine/getactinfo.php?token=${token}`);
-    }else{
-        return get(`/slot_machine/getactinfo.php`);
+function getDefault() {
+    if (token) {
+        return get(`/ceremony202000/init.php?token=${token}`);
+    } else {
+        return get(`/ceremony202000/init.php`);
     }
-}
-//抽奖
-function luckDraw(coins){
-    return get(`/slot_machine/getLottery.php?token=${token}&coins=${coins}`);
-}
-//抽奖记录
-function getHistroy(num,type){
-    if(type == "more"){
-        return axios.get(`/slot_machine/lotteryHistory.php?token=${token}&start=${num}`);
-    }else{
-        return get(`/slot_machine/lotteryHistory.php?token=${token}&start=${num}`);
-    }
-    
 }
 
+//签到
+function mark() {
+    return get(`/ceremony202000/mark.php?token=${token}`)
+}
+
+//签到详情
+function markInfo() {
+    return get(`/ceremony202000/markInfo.php?token=${token}`)
+}
+
+//关注活动
+function attension(act_id) {
+    return get(`/ceremony202000/attension.php?token=${token}&act_id=${act_id}`)
+}
+
+//点击星球切换底部榜单数据
+function getTabList(act_id) {
+    return get(`/ceremony202000/attension.php?token=${token}&act_id=${act_id}`)
+}
 const httpConfig = {
     getDefault,
-    luckDraw,
-    getHistroy
+    mark,
+    markInfo,
+    attension,
+    getTabList
 }
 export default httpConfig

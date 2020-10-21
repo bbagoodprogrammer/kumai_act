@@ -7,6 +7,7 @@
         <!-- {{rStime}}-{{rEtime}} -->
         <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">Xếp Hạng ( {{rStime}}-{{rEtime}})</a>
         <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">Vua Ca Hát Mùa</a>
+        <a @click.prevent="mainTabClick(2)" :class="{current:mainTab==2}" href="">Vua Ca Hát các mùa</a>
       </div>
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
@@ -20,6 +21,7 @@
         <div class="nick">
           <strong class="userNick">{{item.userinfo.nick}}</strong>
           <strong class="songNum" v-if="mainTab==0">Bài hát Võ Đài: {{item.songs}}</strong>
+          <strong class="songNum" v-if="mainTab==0"> Đã xoá {{item.del}} bài</strong>
         </div>
         <div class="score">
           <em v-if="mainTab==0">Điểm kỳ này: {{item.star}}</em>
@@ -77,6 +79,7 @@ export default {
       act: null,
       noData: false,
       noData2: false,
+      noData3: false
     }
   },
   computed: {
@@ -93,7 +96,16 @@ export default {
       } else {
         var dayApi = `/song_fight/preList.php?token={token}&from={from}`;
         var totalApi = `/song_fight/allList.php?token={token}&from={from}`;
-        var api = this.rankKey == 'total' ? totalApi : dayApi;
+        var lastApi = `/song_fight/preAllList.php?token={token}&from={from}`
+        // var api = this.rankKey == 'total' ? totalApi : dayApi;
+        var api = null
+        if (this.rankKey == 'total') {
+          api = totalApi
+        } else if (this.rankKey == 0) {
+          api = dayApi
+        } else {
+          api = lastApi
+        }
         const token = getUrlString('token') || '';
         return api.replace('{token}', token);
       }
@@ -156,8 +168,10 @@ export default {
       let nowDate = null
       if (this.rankKey == 'total') {
         nowDate = this.noData2
-      } else {
+      } else if (this.rankKey == 0) {
         nowDate = this.noData
+      } else if (this.rankKey == 2) {
+        nowDate = this.noData3
       }
       if (!this.rank.loading && !this.rank.loadEnd && !nowDate) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
@@ -196,8 +210,11 @@ export default {
                 if (this.rankKey == 'total') {
                   this.noData2 = true
                   set('list', this.configUser);
-                } else {
+                } else if (this.rankKey == 0) {
                   this.noData = true
+                  set('list', this.configUser);
+                } else if (this.rankKey == 2) {
+                  this.noData3 = true
                   set('list', this.configUser);
                 }
               }
@@ -234,8 +251,10 @@ export default {
       let nowDate = false
       if (this.rankKey == 'total') {
         nowDate = this.noData2
-      } else {
+      } else if (this.rankKey == 0) {
         nowDate = this.noData
+      } else if (this.rankKey == 2) {
+        nowDate = this.noData3
       }
       if (nowDate) { return }
       // this.$emit('getDefaultData')
@@ -297,13 +316,15 @@ export default {
         width: 3.26rem;
         height: 0.8rem;
         text-align: center;
-        line-height: 0.8rem;
         color: rgba(255, 220, 42, 1);
         font-size: 0.28rem;
         font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         &.current {
           color: rgba(174, 72, 0, 1);
-          background: url(../assets/img/actTab.png);
+          background: url(../assets/img/rankTabAct.png);
           background-size: 100% 100%;
         }
       }
@@ -364,6 +385,7 @@ export default {
           text-overflow: ellipsis;
         }
         .songNum {
+          display: block;
           color: rgba(201, 165, 255, 1);
           font-size: 0.24rem;
         }

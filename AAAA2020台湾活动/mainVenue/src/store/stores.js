@@ -14,6 +14,8 @@ const store = new Vuex.Store({
             cb: null
         },
         isShare: false, //分享
+        actList: [],  //活动列表
+        data_list: [],   //当前展示数据
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -40,6 +42,14 @@ const store = new Vuex.Store({
         },
         closeToast(state, val) {
             state.toastObj.toast = false
+        },
+        setActList(state, val) {
+            state.actList = val
+        },
+        setDataList(state, val) {
+
+            state.data_list[val.a_index] = val.data_list
+            console.log(state.data_list)
         }
     },
     actions: {

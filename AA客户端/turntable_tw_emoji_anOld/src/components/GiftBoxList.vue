@@ -6,7 +6,9 @@
       <div class="item" v-for="(item,index) in list" :key="index">
         <span>
           <img :src="item.picture" alt="">
-          <em>{{item.name}}</em>
+          <em>
+            <i> {{item.name}}</i>
+          </em>
           <strong> <i></i> {{item.pay_num}}</strong>
         </span>
         <div class="btn" @click="showPup(item)">兌換</div>
@@ -143,7 +145,7 @@ export default {
       span {
         display: block;
         width: 2rem;
-        height: 2.14rem;
+        height: 2.39rem;
         background: url(../assets/img/boxGiftItem.png);
         background-size: 100% 100%;
         padding-top: 0.2rem;
@@ -154,15 +156,24 @@ export default {
           margin: 0 auto 0;
         }
         em {
-          max-width: 2rem;
-          height: 0.45rem;
-          line-height: 0.45rem;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          display: block;
-          text-align: center;
-          font-size: 0.22rem;
+          max-width: 1.8rem;
+          padding: 0 0.1rem;
+          height: 0.65rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          i {
+            text-overflow: -o-ellipsis-lastline;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-size: 0.22rem;
+            text-align: center;
+            line-height: 0.27rem;
+          }
         }
         strong {
           height: 0.45rem;
