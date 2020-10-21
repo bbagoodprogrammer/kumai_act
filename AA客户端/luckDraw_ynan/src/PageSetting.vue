@@ -431,6 +431,7 @@ body {
       align-items: center;
       justify-content: space-between;
       > span {
+        flex:1;
         color: rgba(12, 12, 12, 1);
         font-size: 0.34rem;
         font-weight: 500;

@@ -56,7 +56,6 @@ export default {
   computed: {
     ...mapState(['actList', 'data_list']),
     nowTopList() {
-      console.log(this.data_list, this.act_index)
       return this.data_list[this.act_index]
     },
     showList() {
@@ -94,7 +93,6 @@ export default {
         num++
       }
       this.act_index = index
-      console.log(index, this.data_list, this.data_list[this.act_index])
       if (!Array.isArray(this.data_list[this.act_index])) {
         api.getTabList(index).then(res => {
           let obj = {
@@ -102,17 +100,17 @@ export default {
             data_list: []  //res.data.response_data.list
           }
           this.vxc('setDataList', obj)
-          setTimeout(() => {
-            this.aning = true
-            this.aniTime(2000)
-          }, 3000)
+          this.startAni(2000)
         })
       } else {
-        setTimeout(() => {
-          this.aning = true
-          this.aniTime(2000)
-        }, 3000)
+        this.startAni(2000)
       }
+    },
+    startAni(tm) {
+      setTimeout(() => {
+        this.aning = true
+        this.aniTime(2000)
+      }, tm)
     },
     aniTime(tm) {
       clearInterval(this.timer)
