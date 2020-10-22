@@ -105,7 +105,7 @@
             <div class="vipBox">
               <div class="vipItem">
                 <div class="item" :class="{act:vipType == index}" @click="vipClick(index,item)" v-for="(item,index) in nowTabGift[0]" :key="index">
-                  <span class="tm">{{item.prise_days}}天</span>
+                  <span class="tm">{{item.prise_days}}ngày</span>
                   <span class="price"><i></i> <strong>{{item.price}}</strong></span>
                 </div>
               </div>

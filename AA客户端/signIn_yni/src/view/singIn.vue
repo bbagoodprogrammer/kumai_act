@@ -243,7 +243,7 @@ body {
   }
   .retroactivePup {
     width: 5.2rem;
-    height: 2.81rem;
+    height: 3.32rem;
     background: rgba(255, 255, 255, 1);
     border-radius: 0.12rem;
     position: relative;

@@ -59,12 +59,12 @@
             </li>
           </ul>
           <div class="choicetips">
-            <p>1. Cần hát ca khúc chỉ định và đăng sau {{time}} để tham dự (tức cần nhấn hát ca khúc được chuyển đến sau khi nhấn tham gia võ đài).</p>
-            <p>2. Chỉ được tham gia bằng bài hát đơn ca.</p>
-            <p>3. Mỗi bài hát chỉ được tham dự 1 lần.</p>
-            <p>4. Mỗi kỳ có thể chọn nhiều bài hát để dự thi.</p>
-            <p>5. Bài hát dự thi phải là bài hát hoàn chỉnh (thời gian bài hát chỉ có thể ngắn hơn thời gian nhạc nền 30s), nếu không sẽ không thể gửi bài hát</p>
-            <p class="red">6.Mỗi người báo danh thành công (có 1 bài hát tham gia thi đấu trước khi sự kiện kết thúc), sau khi sự kiện kết thúc nhận thưởng 50 đậu.</p>
+            <!-- <p>1. Cần hát ca khúc chỉ định và đăng sau  để tham dự (tức cần nhấn hát ca khúc được chuyển đến sau khi nhấn tham gia võ đài).</p> -->
+            <p>1. Cần hát ca khúc chỉ định và đăng sau {{time}} để tham dự (tức cần nhấn hát ca khúc được chuyển đến sau khi nhấn tham gia võ đài). Chỉ được tham gia bằng bài hát đơn ca.</p>
+            <p>2. Bài hát dự thi phải là bài hát hoàn chỉnh (thời gian bài hát chỉ có thể ngắn hơn thời gian nhạc nền 30s), nếu không sẽ không thể gửi bài hát.</p>
+            <p class="orange">3. Mỗi người dùng đăng 1 bài hát võ đài sẽ nhận được 1 túi quà (mỗi ngày nhận tối đa 1 túi quà, túi quà có nhiều loại phát ngẫu nhiên).</p>
+            <p>4. Mỗi người báo danh thành công (có 1 bài hát tham gia thi đấu trước khi sự kiện kết thúc), sau khi sự kiện kết thúc nhận thưởng 50 đậu.</p>
+            <p>5. Sau khi gửi bài hát, trong thời gian sự kiện diễn ra, xóa 1 bài hát dự thi trừ 1 điểm.</p>
           </div>
         </div>
       </transition>
@@ -206,6 +206,9 @@ export default {
 .hotSong {
   margin-top: 0.1rem;
   padding: 0 0.47rem;
+  .orange {
+    color: orange !important;
+  }
   &.con {
     margin-top: 0.25rem;
   }

@@ -94,13 +94,19 @@ function attension(act_id) {
 
 //点击星球切换底部榜单数据
 function getTabList(act_id) {
-    return get(`/ceremony202000/attension.php?token=${token}&act_id=${act_id}`)
+    return get(`/ceremony202000/listData.php?token=${token}&act_id=${act_id}`)
+}
+
+//總列表
+function allList() {
+    return get(`/ceremony202000/allList.php?token=${token}`)
 }
 const httpConfig = {
     getDefault,
     mark,
     markInfo,
     attension,
-    getTabList
+    getTabList,
+    allList
 }
 export default httpConfig

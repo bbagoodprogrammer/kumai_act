@@ -1,14 +1,14 @@
 <template>
   <div class="emojiList" :class="{overTurn:!this.type}" :style="{maxHeight:!this.type?pupMaxHeight+'px':'none'}">
     <div class="title" :class="{max:type}">
-      <img :src="bag.pic_url?bag.pic_url.replace(/^http/,'https'):''" alt="">
+      <img :src="bag.pic_url" alt="">
       <strong>{{bag.remark}}</strong>
     </div>
     <div class="list">
       <p v-if="loading" class="loading">Loading...</p>
       <div class="emojiItem">
         <span v-for="(item,index) in bag.emoticons" :key="index">
-          <img :src="item.pic_url?item.pic_url.replace(/^http/,'https'):''" alt="" @click="shouCanvas($event,index)">
+          <img :src="item.pic_url" alt="" @click="shouCanvas($event,index)">
           <strong>{{item.name}}</strong>
         </span>
       </div>
@@ -65,7 +65,7 @@ export default {
     filderArr() {
       let svgaArr = []
       this.bag.emoticons.forEach(element => {
-        svgaArr.push(element.resource_url.replace(/^http/, 'https'))
+        svgaArr.push(element.resource_url)
       });
       return svgaArr
     }
@@ -177,6 +177,12 @@ export default {
         this.tastMsg = 'Fragmen emotikonmu gak cukup,cepatlah dapatkannya!'
         this.showT = true
       }
+    },
+    removeProtocol(url) {
+      if (url && typeof url == 'string') {
+        return url.replace(/^https?:/, '');
+      }
+      return url;
     },
     closePup() {
       this.showGiftPup = false
