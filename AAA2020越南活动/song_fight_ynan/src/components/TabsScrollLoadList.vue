@@ -21,7 +21,7 @@
         <div class="nick">
           <strong class="userNick">{{item.userinfo.nick}}</strong>
           <strong class="songNum" v-if="mainTab==0">Bài hát Võ Đài: {{item.songs}}</strong>
-          <strong class="songNum" v-if="mainTab==0"> Đã xoá {{item.del}} bài</strong>
+          <strong class="songNum" v-if="mainTab==0"> Đã xoá:{{item.del}} </strong>
         </div>
         <div class="score">
           <em v-if="mainTab==0">Điểm kỳ này: {{item.star}}</em>

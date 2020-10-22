@@ -1,6 +1,6 @@
 <template>
   <div class="rule">
-    <div class="actTime"> 18:00 12/9/2018- 18:00 21/9/2018</div>
+    <div class="actTime"> 18:00 21/10/2020 - 18:00 04/11/2020</div>
     <div class="tabs">
       <span :class="{act:type == 1}" @click="tabClick(1)">Thể lệ</span>
       <span :class="{act:type == 2}" @click="tabClick(2)">Thưởng</span>

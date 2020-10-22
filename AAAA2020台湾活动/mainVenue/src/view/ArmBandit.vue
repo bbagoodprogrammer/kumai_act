@@ -6,16 +6,29 @@
     <div class="header">
       <span class="ruleTips" :class="{top:isShare}" @click="goRule()"></span>
     </div>
+    <div class="wards">
+      <i class="left" @click="showGift('left')"></i>
+      <i class="right" @click="showGift('right')"></i>
+      <div class="gifts" ref="giftBox">
+        <div class="gItem" v-for="(item,index) in wardsArr" :key="index">
+          <div class="imgbox">
+            <div class="bg"></div>
+            <img :src="item.img" alt="">
+          </div>
+          <strong>{{item.name}}</strong>
+        </div>
+      </div>
+    </div>
     <div class="tabs">
-      <span :class="{act:tab_index == 'Stars'}" @click="tabClick('Stars')">年度主会场</span>
-      <span :class="{act:tab_index == 'People'}" @click="tabClick('People')">年度人物</span>
+      <span class="title1" :class="{act:tab_index == 'Stars'}" @click="tabClick('Stars')"><i></i></span>
+      <span class="title2" :class="{act:tab_index == 'People'}" @click="tabClick('People')"> <i></i> </span>
     </div>
     <keep-alive>
       <component :is="tab_index"></component>
     </keep-alive>
 
     <!-- <Stars /> -->
-    <act-footer></act-footer>
+    <!-- <act-footer></act-footer> -->
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
   </div>
 </template>
@@ -42,6 +55,64 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
+      wardsArr: [
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        },
+        {
+          img: '',
+          name: 'xxxxxx'
+        }
+      ],
       tab_index: 'Stars'
     }
   },
@@ -75,6 +146,16 @@ export default {
     },
     tabClick(val) {
       this.tab_index = val
+    },
+    showGift(direction) {
+      let d = -1
+      if (direction == 'right') {
+        d = 1
+      }
+      let giftBox = this.$refs.giftBox
+      let scrollLeft = giftBox.scrollLeft
+      let gItem = document.getElementsByClassName('gItem')[0].getBoundingClientRect().width
+      giftBox.scrollTo(scrollLeft + (gItem * 2 * d), 0)
     },
     downApp() {
       APP()
@@ -118,7 +199,7 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 2.42rem;
+    height: 9.16rem;
     position: relative;
     .ruleTips {
       width: 1.7rem;
@@ -133,12 +214,119 @@ body::-webkit-scrollbar {
       }
     }
   }
+  .wards {
+    width: 6.49rem;
+    height: 3.67rem;
+    background: url(../assets/img/wards.png) no-repeat;
+    background-size: 100% 100%;
+    margin: 0 auto;
+    position: relative;
+    .left {
+      display: block;
+      width: 0.78rem;
+      height: 0.79rem;
+      background: url(../assets/img/left.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: 1.81rem;
+      left: -0.27rem;
+    }
+    .right {
+      display: block;
+      width: 0.78rem;
+      height: 0.79rem;
+      background: url(../assets/img/right.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: 1.81rem;
+      right: -0.27rem;
+    }
+    .gifts {
+      width: 5.4rem;
+      height: 2rem;
+      white-space: nowrap;
+      overflow-x: scroll;
+      position: absolute;
+      top: 1.42rem;
+      left: 0.56rem;
+      .gItem {
+        display: inline-block;
+        width: 1.3rem;
+        margin-right: 0.21rem;
+        .imgbox {
+          width: 1.3rem;
+          height: 1.3rem;
+          position: relative;
+          .bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: url(../assets/img/giftBg.png);
+            background-size: 100% 100%;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+          }
+        }
+        strong {
+          display: block;
+          text-align: center;
+        }
+      }
+    }
+    .gifts::-webkit-scrollbar {
+      display: none;
+    }
+  }
   .tabs {
     display: flex;
     align-items: center;
+    width: 6.86rem;
+    height: 0.78rem;
+    background: url(../assets/img/tabs.png) no-repeat;
+    background-size: 100% 100%;
+    margin: 0.8rem auto 0.4rem;
     span {
-      &.act {
-        color: red;
+      flex: 1;
+      height: 100%;
+      text-align: center;
+      line-height: 0.78rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &.title1 {
+        i {
+          width: 1.41rem;
+          height: 0.34rem;
+          background: url(../assets/img/tabTitle1.png) no-repeat;
+          background-size: 100% 100%;
+        }
+        &.act {
+          background: url(../assets/img/actTabs.png) no-repeat;
+          background-size: 100% 100%;
+          i {
+            background: url(../assets/img/tabTitle2.png) no-repeat;
+            background-size: 100% 100%;
+          }
+        }
+      }
+      &.title2 {
+        i {
+          width: 1.41rem;
+          height: 0.34rem;
+          background: url(../assets/img/tabTitle3.png) no-repeat;
+          background-size: 100% 100%;
+        }
+        &.act {
+          background: url(../assets/img/actTabs.png) no-repeat;
+          background-size: 100% 100%;
+          i {
+            background: url(../assets/img/tabTitle4.png) no-repeat;
+            background-size: 100% 100%;
+          }
+        }
       }
     }
   }

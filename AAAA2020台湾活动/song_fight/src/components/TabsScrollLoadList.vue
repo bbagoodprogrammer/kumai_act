@@ -316,10 +316,13 @@ export default {
         width: 3.26rem;
         height: 0.8rem;
         text-align: center;
-        line-height: 0.8rem;
         color: rgba(255, 220, 42, 1);
-        font-size: 0.28rem;
+        font-size: 0.24rem;
         font-weight: 600;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 0.25rem;
         &.current {
           color: rgba(174, 72, 0, 1);
           background: url(../assets/img/rankTabAct.png);
