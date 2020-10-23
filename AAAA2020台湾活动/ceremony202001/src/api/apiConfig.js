@@ -2,16 +2,15 @@
 import axios from 'axios'
 import store from "../store/stores.js"
 import getString from "../utils/getString.js"
-import qs from 'qs'
+
 
 
 
 // const defaultUid = 4979504;
 //const defaultToken = '9g0rbTx1xZzvvx12zI7Ox1MIfqxuOLUD2pH4sMdS2Wp68UipYzi5jvF17OISrR6eBwePmxxrKkymtpnTMtkSq0bZ1QJoNkFWE0v1srRMiilfWp-ycMfLe8fTgIMTzLRN';
 let token = getString("token")
-let uid = getString("uid")
-let rid = getString("rid")
-let vote_id = getString("vote_id")
+// let uid = getString("uid")
+
 // var num = 0
 // axios.interceptors.request.use(function (config) {  //在请求发出之前进行一些操作
 //     num++
@@ -69,93 +68,104 @@ function get(url, config) {
     });
 }
 
-//提交投票
-function commitVote(descriptions, option_type, options, voter_type_limit, user_level_limit, time_limit) {
-    let data = {
-        // action: "roomVote.createVote",
-        token,
-        uid,
-        rid,
-        descriptions,
-        option_type,
-        options: JSON.stringify(options),
-        voter_type_limit,
+//获取活动基础信息
+function getDefault() {
+    if (token) {
+        return get(`/ceremony202001/init.php?token=${token}`);
+    } else {
+        return get(`/ceremony202001/init.php`);
     }
-    if (user_level_limit != '') {
-        data['user_level_limit'] = user_level_limit
-    }
-    if (time_limit != '') {
-        data['time_limit'] = time_limit
-    }
-    console.log(data)
-    return axios({
-        url: '/index.php?action=roomVote.createVote',
-        method: 'post',
-        data: qs.stringify(data),
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    })
+}
+
+//助攻VIP
+function page2() {
+    return get(`/ceremony202001/page.php?token=${token}`)
 }
 
 
-//投票詳情
-function voteMsg(reset) {
-    if (reset) {
-        axios.get(`/index.php?action=roomVote.voteDetail&uid=${uid}&token=${token}&rid=${rid}&vote_id=${vote_id}`)
-    }
-    return get(`/index.php?action=roomVote.voteDetail&uid=${uid}&token=${token}&rid=${rid}&vote_id=${vote_id}`)
+//礼物冠名
+function page3() {
+    return get(`/ceremony202001/page3.php?token=${token}`)
 }
 
-//結束投票
-function endVote() {
-    let data = {
-        token,
-        uid,
-        rid,
-        vote_id
-    }
-    return axios({
-        url: '/index.php?action=roomVote.closeVote',
-        method: 'post',
-        data: qs.stringify(data),
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    })
+//页面4
+function page4(from) {
+    return get(`/ceremony202001/page4.php?token=${token}&from=${from}`)
 }
 
-//投票
-function commitChione(option) {
-    let data = {
-        token,
-        uid,
-        rid,
-        vote_id,
-        option
-    }
-    return axios({
-        url: '/index.php?action=roomVote.vote',
-        method: 'post',
-        data: qs.stringify(data),
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    })
+//页面5 
+function page5(from) {
+    return get(`/ceremony202001/page5.php?token=${token}&from=${from}`)
 }
 
-//投票記錄
-function getVoteHistory(last_id, more) {
-    if (more) {
-        return axios.get(`/index.php?action=roomVote.getVoteHistory&uid=${uid}&token=${token}&rid=${rid}&last_id=${last_id}`)
-    }
-    return get(`/index.php?action=roomVote.getVoteHistory&uid=${uid}&token=${token}&rid=${rid}&last_id=${last_id}`)
+//报名
+function singUp() {
+    return get(`/ceremony202001/register.php?token=${token}`)
 }
+
+//抽奖
+function track(track) {
+    return get(`/ceremony202001/lottery.php?token=${token}&track=${track}`)
+}
+
+
+//抽奖榜单
+function list1(from) {
+    return get(`/ceremony202001/list1.php?token=${token}&from=${from}`)
+}
+
+
+//VIP榜单
+function list2() {
+    return get(`/ceremony202001/list2.php?token=${token}&from=${from}`)
+}
+
+
+//榜单3
+function list3(gid, from) {
+    return get(`/ceremony202001/list3.php?token=${token}&gid=${gid}&from=${from}`)
+}
+
+//抽奖记录
+function record1(from) {
+    return get(`/ceremony202001/record1.php?token=${token}&from=${from}`)
+}
+
+
+//获取礼包
+function getGift(gid) {
+    return get(`/ceremony202001/getGift.php?token=${token}&gid=${gid}`)
+}
+
+
+
+//tab3收礼记录
+function record3(from) {
+    return get(`/ceremony202001/list3.php?token=${token}&from=${from}`)
+}
+
+
+
+//删除高亮
+function delRedPoint() {
+    return get(`/ceremony202001/delRedPoint.php?token=${token}`)
+}
+
+
 const httpConfig = {
-    commitVote,
-    voteMsg,
-    endVote,
-    commitChione,
-    getVoteHistory
+    getDefault,
+    page2,
+    page3,
+    page4,
+    page5,
+    singUp,
+    track,
+    list1,
+    list2,
+    list3,
+    record1,
+    getGift,
+    record3,
+    delRedPoint
 }
 export default httpConfig

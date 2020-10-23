@@ -7,8 +7,8 @@
       <span class="ruleTips" :class="{top:isShare}" @click="goRule()"></span>
     </div>
     <div class="wards">
-      <i class="left" @click="showGift('left')"></i>
-      <i class="right" @click="showGift('right')"></i>
+      <i class="left" @click="rollAmi('left')"></i>
+      <i class="right" @click="rollAmi('right')"></i>
       <div class="gifts" ref="giftBox">
         <div class="gItem" v-for="(item,index) in wardsArr" :key="index">
           <div class="imgbox">
@@ -43,6 +43,8 @@ import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
 import Stars from "../components/Stars"
 import People from "../components/people"
+
+
 export default {
   components: { MsgToast, ActFooter, Stars, People },
   data() {
@@ -113,7 +115,8 @@ export default {
           name: 'xxxxxx'
         }
       ],
-      tab_index: 'Stars'
+      tab_index: 'Stars',
+      timer: null
     }
   },
   created() {
@@ -147,15 +150,19 @@ export default {
     tabClick(val) {
       this.tab_index = val
     },
-    showGift(direction) {
-      let d = -1
-      if (direction == 'right') {
-        d = 1
-      }
-      let giftBox = this.$refs.giftBox
-      let scrollLeft = giftBox.scrollLeft
-      let gItem = document.getElementsByClassName('gItem')[0].getBoundingClientRect().width
-      giftBox.scrollTo(scrollLeft + (gItem * 2 * d), 0)
+    rollAmi(t) {
+      clearInterval(this.timer)
+      let scorllEnd = document.getElementsByClassName('gItem')[0].getBoundingClientRect().width * 2
+      let scorllLeft = this.$refs.giftBox.scrollLeft
+      let c = t == 'right' ? scorllEnd : -scorllEnd
+      this.timer = setInterval(() => {
+        scorllLeft = this.$refs.giftBox.scrollLeft
+        this.$refs.giftBox.scrollTo(scorllLeft + (c / 6), 0)
+        c -= c / 6
+        if ((t == 'left' && c > -10) || (t == 'right' && c < 1)) {
+          clearInterval(this.timer)
+        }
+      }, 25)
     },
     downApp() {
       APP()

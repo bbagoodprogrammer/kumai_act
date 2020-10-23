@@ -4,9 +4,10 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <div class="goBox">
-        <span class="ruleTips" :class="{top:isShare}" @click="goRule()">{{lang.rule}}</span>
-        <span class="history" @click="goHistory()">{{lang.history}}</span>
+      <div class="actTIme"><i class="left">></i> {{actTime}} <i class="right">
+          < </i> </div> <div class="goBox">
+            <span class="ruleTips" :class="{top:isShare}" @click="goRule()">{{lang.rule}}</span>
+            <span class="history" @click="goHistory()">{{lang.history}}</span>
       </div>
     </div>
     <gift-con></gift-con>
@@ -20,7 +21,7 @@
           <p><i>1</i><strong>{{lang.rule1}}</strong></p>
           <p><i class="mag">2</i><strong>{{lang.rule2}}</strong></p>
           <p><i class="mag3">3</i><strong>{{lang.rule3}}</strong></p>
-          <p><i class="mag">4</i><strong>4.本期活動時間為{{time}}，活動開始且報名參加後才開始計入數據，發佈的任意1首公開作品未刪除的任務是指前一天活動開始後發佈的歌曲沒有刪除</strong></p>
+          <p><i class="mag">4</i><strong>4.本期活動時間為{{time}}，活動開始且報名參加後才開始計入數據</strong></p>
         </div>
       </transition>
     </div>
@@ -59,7 +60,9 @@ export default {
       rotatec: 0,
       showRule: false,
       banner: '',
-      act_info: {}
+      act_info: {},
+      stime: 0,
+      etime: 0
     }
   },
   created() {
@@ -67,6 +70,9 @@ export default {
     this.getDefaultData()
   },
   computed: {
+    actTime() {
+      return getDate(new Date(this.stime * 1000), 3) + '-' + getDate(new Date(this.etime * 1000), 3)
+    },
     time() {
       return getDate(new Date(this.act_info.stime * 1000), 2) + '-' + getDate(new Date(this.act_info.etime * 1000), 2)
     }
@@ -90,6 +96,8 @@ export default {
           this.vxc('setExchange_status', exchange_status)
           this.vxc('setCurrent_date', current_date)
           this.vxc('setDate_line', date_line)
+          this.etime = act_info.etime
+          this.stime = act_info.stime
           // this.vxc('setTop_mission',top_mission)
           // this.vxc('setMissions',missions)
           let nowDayIndex = null
@@ -127,7 +135,8 @@ export default {
     goHistory() {
       let token = getString('token')
       let uid = getString('uid')
-      location.href = `./index3.html?token=${token}&uid=${uid}`
+      let act_id = getString("act_id")
+      location.href = `./index3.html?token=${token}&uid=${uid}&act_id=${act_id}`
     },
     refrsh(s) { //刷新
       if (!s) {
@@ -171,10 +180,33 @@ body::-webkit-scrollbar {
   .header {
     height: 7.27rem;
     position: relative;
+    .actTIme {
+      width: 100%;
+      white-space: nowrap;
+      text-align: center;
+      position: absolute;
+      top: 1rem;
+      font-size: 0.26rem;
+      font-weight: 600;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      background-clip: text;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      -moz-box-decoration-break: clone;
+      color: transparent;
+      background-image: -webkit-linear-gradient(top, #fff, #ffcd8d);
+      .left {
+        margin-right: 0.1rem;
+      }
+      .right {
+        margin-left: 0.1rem;
+      }
+    }
     .goBox {
       position: absolute;
       right: 0;
-      top: 0.17rem;
+      top: 3.17rem;
       &.top {
         top: 1.5rem;
       }
