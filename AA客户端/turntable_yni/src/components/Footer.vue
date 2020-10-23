@@ -17,10 +17,10 @@
         <div class="tipsCon" v-show="showTips">
           <div class="title"> Aturan permainan<i class="close" @click="closeTips1()"></i></div>
           <div class="con">
-            <p>1.Setiap konsumsi 100 koin emas,akan bisa undian dengan roda;</p>
-            <p>2.Setiap top up 300 koin emas,akan bisa dapatkan 1 kunci kejutan,kunci kejutan bisa digunakan utk membuka Peti hart kejutan;</p>
-            <p>3.Fragmen hadiah bisa ditakurkan hadiah langka dari kotak hadiah,hadiah langka adalah hadiah K-room.</p>
-            <p>4.Fragmen emotikon bisa ditakurkan paket emotikon lengkap</p>
+            <p>1.Setiap sawer 100 koin emas,akan bisa undian dengan roda;</p>
+            <p>2.Setiap top up 100 koin emas,akan bisa dapatkan 1 kunci kejutan,kunci kejutan bisa digunakan utk membuka Peti hart kejutan;</p>
+            <p>3.Fragmen hadiah bisa ditukarkan hadiah langka dari kotak hadiah,hadiah langka adalah hadiah K-room.</p>
+            <p>4.Fragmen emotikon bisa ditukarkan paket emotikon lengkap,Emotikon berlaku selama 30 hari.</p>
             <p>5.Alat peraga langka dan koin besar pasti dimenangkan utk ke- 3 dan ke- 8 kalinya di Peti harta karun Lucky.</p>
             <p>6.Alat peraga langka akan diganti pd tiap bulan awal,dan setel ulang kemajuan menang;</p>
             <p>7.Alat yg ada batasan waktu bisa melakukan periode penggunaan kumulatif</p>

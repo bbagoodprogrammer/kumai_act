@@ -20,7 +20,7 @@
     </div>
     <p class="tips">
       Terus top up {{userMsg.diff_charge}} koin emas,akan mendapatkan 1 kunci</br>
-      <em>(Dihitung mulai dari jam 00:00 tgl 22 Feb)</em>
+      <em>(Dihitung mulai dari jam 14:00 tgl 23 Oct)</em>
     </p>
     <Tabs />
     <div class="mask" :style="{height:mainHeight+'px'}" v-show="showT">
