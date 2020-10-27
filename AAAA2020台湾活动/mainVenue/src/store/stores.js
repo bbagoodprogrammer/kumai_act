@@ -47,9 +47,14 @@ const store = new Vuex.Store({
             state.actList = val
         },
         setDataList(state, val) {
-
             state.data_list[val.a_index] = val.data_list
-            console.log(state.data_list)
+        },
+        setActStatus(state, val) {
+            for (let i = 0; i < state.actList.length; i++) {
+                if (state.actList[i].act_id == val) {
+                    state.actList[i].is_attension = true
+                }
+            }
         }
     },
     actions: {

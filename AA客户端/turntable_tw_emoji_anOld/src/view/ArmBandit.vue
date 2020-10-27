@@ -50,7 +50,6 @@ export default {
     }
   },
   created() {
-    // sessionStorage.setItem('entryType', 2)
     this.getDefaultData()
   },
   computed: {

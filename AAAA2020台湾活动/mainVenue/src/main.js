@@ -18,8 +18,8 @@ Vue.prototype.ModalHelper = common.ModalHelper
 Vue.config.productionTip = false
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  error: require('./assets/img/default.png'),
-  loading: require('./assets/img/default.png'),
+  error: require('./assets/img/actDefaultImg.png'),
+  loading: require('./assets/img/actDefaultImg.png'),
   attempt: 1
 })
 /* eslint-disable no-new */

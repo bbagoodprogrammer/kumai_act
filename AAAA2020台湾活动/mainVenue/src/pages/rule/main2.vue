@@ -71,7 +71,7 @@ export default {
 body {
   background-color: rgba(10, 6, 5, 1);
   .rule {
-    padding: 0.8rem 0.3rem;
+    padding: 0 0.3rem;
     h5 {
       font-size: 0.32rem;
       color: rgba(255, 229, 125, 1);

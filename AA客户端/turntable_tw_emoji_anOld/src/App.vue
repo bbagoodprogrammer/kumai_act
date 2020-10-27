@@ -35,7 +35,6 @@ export default {
     }
   },
   created() {
-    sessionStorage.setItem('entryType', 2)
     globalBus.$on('commonEvent', (callback) => {
       if (this.isShare) {
         APP()

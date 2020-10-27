@@ -39,7 +39,7 @@ export default {
         sessionStorage.removeItem("need-refresh");
       }
     });
-    sessionStorage.setItem('entryType', 1)
+
     this.getDefaultData()
   },
   computed: {
