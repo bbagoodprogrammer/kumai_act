@@ -26,6 +26,10 @@
       if (!doc.addEventListener) return;
       win.addEventListener(resizeEvt, recalc, false);
       doc.addEventListener('DOMContentLoaded', recalc, false);
+
+      // 设置用户入口类型（调接口需传给APP）
+      sessionStorage.setItem('entryType', 2)
+
     })(document, window);
   </script>
 </head>

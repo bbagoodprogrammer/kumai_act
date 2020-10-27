@@ -77,7 +77,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     new HtmlWebpackPlugin({
       filename: config.build.index2,
-      template: 'index.html',
+      template: 'index2.html',
       inject: true,
       minify: {
         removeComments: true,
