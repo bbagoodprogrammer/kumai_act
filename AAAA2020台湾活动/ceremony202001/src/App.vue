@@ -22,11 +22,14 @@ export default {
   data() {
     return {
       tastMsg: '',
-      showT: false
-      // imgArr:[
-      //   require(''),
-      //   require('')
-      // ]
+      showT: false,
+      imgArr: [
+        require('./assets/img/tab1_act.png'),
+        require('./assets/img/tab2_act.png'),
+        require('./assets/img/tab3_act.png'),
+        require('./assets/img/tab4_act.png'),
+        require('./assets/img/tab5_act.png'),
+      ]
     }
   },
   created() {
@@ -48,10 +51,10 @@ export default {
     })
   },
   mounted() {
-    // for(var i=0;i<this.imgArr.length;i++){
-    //   var Img = new Image()
-    //   Img.src = this.imgArr[i]
-    // }
+    for (var i = 0; i < this.imgArr.length; i++) {
+      var Img = new Image()
+      Img.src = this.imgArr[i]
+    }
   },
   methods: {
     closeToast() {

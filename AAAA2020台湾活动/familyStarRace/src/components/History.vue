@@ -41,6 +41,7 @@ export default {
       this.$parent.showHistory = false
     },
     onScroll() {
+      console.log('xxx')
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
         if (this.loaded) return

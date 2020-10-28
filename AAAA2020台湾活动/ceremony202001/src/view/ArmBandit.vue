@@ -1,13 +1,17 @@
 <template>
   <div class="box">
-    <!-- <div class="shareBar" v-if="isShare">
+    <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
       <span class="ruleTips" :class="{top:isShare}" @click="goRule()"></span>
     </div>
-    <act-footer></act-footer>
-    <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
+    <div class="tabs">
+      <span :class="[{act:act_index == item},'tab'+item]" v-for="(item,index) in 5" :key="index" @click="tabClick(item)"></span>
+    </div>
+    <component :is="'Playing'+act_index"></component>
+    <!-- <act-footer></act-footer> -->
+    <!-- <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
   </div>
 </template>
 
@@ -19,8 +23,13 @@ import api from "../api/apiConfig"
 import ActFooter from "../components/ActFooter"
 import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
+import Playing1 from "../components/Playing1"
+import Playing2 from "../components/Playing2"
+import Playing3 from "../components/Playing3"
+import Playing4 from "../components/Playing4"
+import Playing5 from "../components/Playing5"
 export default {
-  components: { MsgToast, ActFooter },
+  components: { MsgToast, ActFooter, Playing1, Playing2, Playing3, Playing4, Playing5 },
   data() {
     return {
       isShare: false, //是否分享
@@ -31,13 +40,17 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
+      act_index: 1
     }
   },
   created() {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
-  mounted() {
+  computed: {
+    showCom() {
+      return `Playing${this.act_index}`
+    }
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -45,14 +58,21 @@ export default {
       this.vxc('setShareState', this.isShare) //分享状态
     },
     getDefaultData(val) { //初始化
-      // api.getDefault().then(res => {
-      //   const { response_status, response_data } = res.data
-      //   if (response_status.code == 0) {
-
-      //   } else {
-      //     this.toast(response_status.error)
-      //   }
-      // })
+      api.getDefault().then(res => {
+        const { response_status, response_data } = res.data
+        if (response_status.code == 0) {
+          const { step, coins, point, rank, shcule, user_info } = response_data
+          this.vxc('setActStatus', step)
+          this.vxc('setDaily_b', coins)
+          this.vxc('setRegistered', user_info.registered)
+          this.vxc('setShcule', shcule)
+        } else {
+          this.toast(response_status.error)
+        }
+      })
+    },
+    tabClick(item) {
+      this.act_index = item
     },
     downApp() {
       APP()
@@ -73,12 +93,16 @@ export default {
 body::-webkit-scrollbar {
   width: 0;
 }
+body {
+  background: #281b24;
+}
 .box {
   max-width: 750px;
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  // background:url(../assets/img/主视觉.png) center 0 no-repeat;
+  background: url("../assets/img/banner.png") 0 0 no-repeat,
+    url("../assets/img/bg.png") 0 0 no-repeat;
   background-size: 100% auto;
   .shareBar {
     position: fixed;
@@ -96,7 +120,7 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 2.42rem;
+    height: 9.76rem;
     position: relative;
     .ruleTips {
       width: 1.7rem;
@@ -110,6 +134,58 @@ body::-webkit-scrollbar {
         top: 1.5rem;
       }
     }
+  }
+  .tabs {
+    height: 1.8rem;
+    display: flex;
+    align-items: center;
+    span {
+      width: 1.5rem;
+      height: 1.8rem;
+    }
+    .tab1 {
+      background: url(../assets/img/tab1.png) no-repeat;
+      background-size: 100% 100%;
+      &.act {
+        background: url(../assets/img/tab1_act.png) no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    .tab2 {
+      background: url(../assets/img/tab2.png) no-repeat;
+      background-size: 100% 100%;
+      &.act {
+        background: url(../assets/img/tab2_act.png) no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    .tab3 {
+      background: url(../assets/img/tab3.png) no-repeat;
+      background-size: 100% 100%;
+      &.act {
+        background: url(../assets/img/tab3_act.png) no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    .tab4 {
+      background: url(../assets/img/tab4.png) no-repeat;
+      background-size: 100% 100%;
+      &.act {
+        background: url(../assets/img/tab4_act.png) no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+    .tab5 {
+      background: url(../assets/img/tab5.png) no-repeat;
+      background-size: 100% 100%;
+      &.act {
+        background: url(../assets/img/tab5_act.png) no-repeat;
+        background-size: 100% 100%;
+      }
+    }
+  }
+  .com {
+    height: 15rem;
   }
   .guaBox {
     position: relative;

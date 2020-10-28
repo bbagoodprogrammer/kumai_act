@@ -8,6 +8,9 @@ function getDate(datem, type) {
     if (type == "~") {
         return `${hours}h  ${date}/${month}`
     }
+    if (type == 1) {
+        return `${year}/${month}/${date} ${hours}:${minute}:${second}`
+    }
     if (type == "pai") {
         if (minute < 10) {
             minute = "0" + minute

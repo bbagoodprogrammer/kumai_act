@@ -20,7 +20,8 @@ const store = new Vuex.Store({
         groupsUserMsg: {},  //儲存各種天數的個人信息
         tab: 'total',  //当前选中tab
         setInited: 0,
-        schule: 0
+        schule: 0,
+        first: true
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -79,6 +80,9 @@ const store = new Vuex.Store({
         changTab(state, val) {
             state.tab = val
         },
+        setFirst(state, val) {
+            state.first = val
+        }
     },
     actions: {
         setloading({ commit }, boolean) {
