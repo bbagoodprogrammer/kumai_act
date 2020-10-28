@@ -77,6 +77,21 @@ function getDefault() {
     }
 }
 
+//抽奖
+function go(track) {
+    return get(`/ceremony202001/lottery.php?token=${token}&track=${track}`)
+}
+
+//抽奖记录
+function record1(from, more) {
+    if (more) {
+        return axios.get(`/ceremony202001/record1.php?token=${token}&from=${from}`)
+    }
+    return get(`/ceremony202001/record1.php?token=${token}&from=${from}`)
+}
+
+
+
 //助攻VIP
 function page2() {
     return get(`/ceremony202001/page.php?token=${token}`)
@@ -103,10 +118,6 @@ function singUp() {
     return get(`/ceremony202001/register.php?token=${token}`)
 }
 
-//抽奖
-function track(track) {
-    return get(`/ceremony202001/lottery.php?token=${token}&track=${track}`)
-}
 
 
 //抽奖榜单
@@ -126,10 +137,7 @@ function list3(gid, from) {
     return get(`/ceremony202001/list3.php?token=${token}&gid=${gid}&from=${from}`)
 }
 
-//抽奖记录
-function record1(from) {
-    return get(`/ceremony202001/record1.php?token=${token}&from=${from}`)
-}
+
 
 
 //获取礼包
@@ -154,12 +162,12 @@ function delRedPoint() {
 
 const httpConfig = {
     getDefault,
+    go,
     page2,
     page3,
     page4,
     page5,
     singUp,
-    track,
     list1,
     list2,
     list3,

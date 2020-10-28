@@ -3,15 +3,7 @@
     <div class="title"><i class="back" @click="$router.go(-1)"></i> Cách chơi</div>
     <div class="tipsItem">
       <p><i>1</i>
-        Người mở rút thưởng dùng xu để mua
-        phần thưởng tương ứng và thiết lập
-        cách rút thưởng. Người trong phòng
-        tặng quà tương ứng sẽ được tham gia,
-        mỗi 1 quà tặng nhận 1 lần rút thưởng.
-        sẽ lần càng nhiều, cơ hội trúng thưởng
-        càng cao. Khi hết đếm ngược sẽ mở
-        thưởng, 1 người tham dự sẽ nhận phần
-        thưởng tương ứng.
+        Người mở rút thưởng dùng xu để mua phần thưởng tương ứng và thiết lập cách rút thưởng. Người trong phòng tặng quà tương ứng sẽ được tham gia, mỗi 1 quà tặng nhận 1 lần rút thưởng. Số lần càng nhiều, cơ hội trúng thưởng càng cao. Khi đếm ngược kết thúc sẽ mở thưởng, 1 người tham dự sẽ nhận phần thưởng tương ứng.
       </p>
       <p><i>2</i>
         Phần thưởng có thể chọn VIP, quà, xe

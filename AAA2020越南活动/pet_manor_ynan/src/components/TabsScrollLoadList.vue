@@ -109,7 +109,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['rankGroups', "pets", "nowDay", "setInited", "isShare", "activeityState", "daily_tasks", "dateArr"]),
+    ...mapState(['rankGroups', "first", "pets", "nowDay", "setInited", "isShare", "activeityState", "daily_tasks", "dateArr"]),
     rankKey() {
       return this.mainTab == 0 ? 'total' : this.tab;
     },
@@ -167,6 +167,10 @@ export default {
       });
     },
     onScroll() {
+      if (this.first) {
+        this.vxc('setFirst', false)
+        return
+      }
       if (!this.rank.loading && !this.rank.loadEnd) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;

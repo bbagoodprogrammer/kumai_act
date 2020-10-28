@@ -14,6 +14,10 @@ const store = new Vuex.Store({
             cb: null
         },
         isShare: false, //分享
+        daily_b: 0,
+        registered: null,
+        shcule: {},
+        first: true
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -40,6 +44,24 @@ const store = new Vuex.Store({
         },
         closeToast(state, val) {
             state.toastObj.toast = false
+        },
+        setDaily_b(state, val) {
+            state.daily_b = val
+        },
+        setRegistered(state, val) {
+            state.registered = val
+        },
+        reduceB(state, val) {
+            state.daily_b -= val * 1
+        },
+        addB(state, val) {
+            state.daily_b += val * 1
+        },
+        setShcule(state, val) {
+            state.shcule = val
+        },
+        setFirst(state, val) {
+            state.first = val
         }
     },
     actions: {
