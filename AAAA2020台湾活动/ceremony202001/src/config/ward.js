@@ -29,11 +29,61 @@ export const wardImg = {
     12: require("../assets/img/giftPup/ward12.png"),
 }
 
-export const gradeGidt = {
-    // 0: require("../assets/img/gradeGift/gradeGift0.png"),  //金豆
-    // 1: require("../assets/img/gradeGift/gradeGift1.png"),  //作品礼物
-    // 2: require("../assets/img/gradeGift/gradeGift2.png"),  //K房礼物
-    // 3: require("../assets/img/gradeGift/gradeGift3.png"),  //语聊房礼物
-    // 4: require("../assets/img/gradeGift/gradeGift4.png"),  //锤子礼物
-    // 5: require("../assets/img/gradeGift/gradeGift5.png"),  //游戏币
+export const tickGiftList = {
+    1: [
+        {
+            img: require("../assets/img/ticket/gift/car.png"),
+            name: '戰神GTR座駕(有效期7天)'
+        },
+        {
+            img: require("../assets/img/ticket/gift/bean.png"),
+            name: '返利當前儲值 金幣20%金豆'
+        },
+        {
+            img: require("../assets/img/ticket/gift/gift1.png"),
+            name: '夢幻木馬 (價值3520金幣)'
+        },
+    ],
+    2: [
+        {
+            img: require("../assets/img/ticket/gift/car.png"),
+            name: '戰神GTR座駕(有效期7天)'
+        },
+        {
+            img: require("../assets/img/ticket/gift/bean.png"),
+            name: '返利當前儲值 金幣15%金豆'
+        },
+        {
+            img: require("../assets/img/ticket/gift/gift1.png"),
+            name: '星河遊輪 (價值2288金幣)'
+        },
+    ],
+    3: [
+        {
+            img: require("../assets/img/ticket/gift/car.png"),
+            name: '戰神GTR座駕(有效期7天)'
+        },
+        {
+            img: require("../assets/img/ticket/gift/bean.png"),
+            name: '返利當前儲值 金幣12%金豆'
+        },
+        {
+            img: require("../assets/img/ticket/gift/gift1.png"),
+            name: '黃金應龍 (價值1888金幣)'
+        },
+    ],
+    4: [
+        {
+            img: require("../assets/img/ticket/gift/car.png"),
+            name: '戰神GTR座駕(有效期7天)'
+        },
+        {
+            img: require("../assets/img/ticket/gift/bean.png"),
+            name: '返利當前儲值 金幣10%金豆'
+        },
+        {
+            img: require("../assets/img/ticket/gift/gift1.png"),
+            name: '粉色摩天輪 (價值1520金幣)'
+        },
+    ]
 }

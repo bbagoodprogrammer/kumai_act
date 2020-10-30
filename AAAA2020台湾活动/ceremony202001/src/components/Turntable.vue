@@ -54,6 +54,7 @@
             <span>抽獎時間</span>
             <span>獲得的獎品</span>
           </div>
+          <p class="noData" v-if="!historyList.length">抽獎記錄空空如也<br />快去賺取盛典幣抽獎吧！</p>
           <ul class="scrollable">
             <li v-for="(item,index) in historyList" :key="index">
               <span class="time">{{getTime(item.time)}}</span>
@@ -221,7 +222,7 @@ export default {
     },
     goTask() {
       this.showNoCoins = false
-         this.scorllTo('taskTabs')
+      this.scorllTo('taskTabs')
     },
     closeNoCoins() {
       this.showNoCoins = false
@@ -245,7 +246,6 @@ export default {
     },
     closeHistory() {
       this.showHistory = false
-
     },
     scorllTo(className) {
       let a = document.getElementsByClassName(className)[0].getBoundingClientRect().top
@@ -356,6 +356,10 @@ export default {
     }
   }
 }
+.noData {
+  margin-top: 0.6rem;
+  text-align: center;
+}
 .getGiftCon {
   width: 6.4rem;
   height: 5.2rem;
@@ -395,6 +399,7 @@ export default {
           }
         }
         .giftName {
+          display: block;
           text-align: center;
           font-size: 0.28rem;
           height: 0.3rem;
@@ -537,6 +542,7 @@ export default {
     -webkit-overflow-scrolling: auto;
     li {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       font-size: 0.24rem;
       margin-bottom: 0.15rem;

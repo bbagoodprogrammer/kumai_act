@@ -352,7 +352,7 @@ export default {
                 ]              },
               { act_id: 8, name: "演唱會", stime: "2020-02-07 20:00:00", etime: "2020-02-07 23:00:00", rank_keys: [] }
             ]
-          this.vxc('setActList', data)
+          this.vxc('setActList', list)
           let obj = {
             a_index: 0,
             data_list

@@ -1,53 +1,189 @@
 <template>
-  <div class="footerBar">
-    <div class="acrStatus">
-      <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
-      <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
-      <span class="goAct" v-if="astState === 1" @click="singUp()"></span>
-      <span class="actIng" v-if="astState === 3"></span>
-      <span class="acted" v-if="astState === 4"></span>
+  <div class="footer" :class="'status' + footerState" @click="singUp()" v-if="footerState != 7">
+    <div class="msg" v-if="footerState != 0 & footerState != 1 && footerState != 2 ">
+      <div class="rank" :class="{noRank:petMsg.rank == 0}" v-if="footerState == 5">{{petMsg.rank == 0?'未上榜':petMsg.rank}}</div>
+      <div class="rank" :class="{noRank:nowMsg.rank == 0}" v-else-if="footerState!=6">{{nowMsg.rank== 0?'未上榜':nowMsg.rank}}</div>
+      <div class="imgBox" @click="goUser(userImg.uid)" :class="{ml:footerState == 6}">
+        <img v-if="userImg.avatar_frame &&userImg.avatar_frame != ''" :src="userImg.avatar_frame" class="frame" alt="">
+        <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
+        <img v-else-if="userImg.nob > 0" :src="require(`../assets/img/nob/${userImg.nob}.png`)" class="nob" alt="">
+        <img v-lazy="userImg.avatar" alt="" class="av">
+      </div>
+      <div class="tips" v-if="footerState == 3">
+        <div class="name">我的歡樂值：{{nowMsg.score}}</div>
+        <div class="name" v-if="nowMsg.gap > 0">距離上榜還差歡樂值：{{nowMsg.gap}}</div>
+      </div>
+      <div class="tips" v-else-if="footerState == 4">
+        <div class="name">助攻值:{{nowMsg.score}}</div>
+        <div class="name" v-if="nowMsg.gap > 0">離上榜還差助攻值：{{nowMsg.gap}}</div>
+      </div>
+      <div class="petTips" v-else-if="footerState == 5">
+        <img :src="petsImg" alt="">
+        <div class="score">{{petMsg.score}}</div>
+      </div>
+      <div class="tips" v-else-if="footerState == 6">
+        <p>已累計儲值:{{nowMsg.score}}</p>
+        <div class="score" v-if="nowMsg.rank == 1">遠超第二名:{{nowMsg.gap}} <i class="coins"></i> </div>
+        <div class="score" v-else-if="nowMsg.rank != 0">離趕超上一名還差:{{nowMsg.gap}}<i class="coins"></i></div>
+        <div class="score" v-else>離上榜領取獎勵還差:{{nowMsg.gap}}<i class="coins"></i></div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex'
+import { globalBus } from '../utils/eventBus'
+import api from "../api/apiConfig"
 export default {
   computed: {
-    ...mapState(['actStatus', 'userMsg', "isShare"]),
-    astState() {
-      if (this.actStatus === 0) { //活动未开始
+    ...mapState(['actStatus', 'groupsUserMsg', 'registered', 'act_index', 'tab', 'tab1_type', 'pets', 'petUserMsg', 'userInfo']),
+    footerState() {
+      if (this.actStatus == 0) {
         return 0
-      } else if (this.actStatus === 2) { //活动已结束
-        return 2
-      } else if (!this.userMsg.registered || this.isShare) { //活动开始未报名，或者分享
+      } else if (this.actStatus == 2) {
         return 1
-      } else if (this.userMsg.registered) { //活动开始已报名
+      } else if (!this.registered) {
+        return 2
+      } else if (this.act_index == 1 && this.tab1_type == 2) {
         return 3
+      } else if (this.act_index == 2) {
+        return 4
+      } else if (this.act_index == 3) {
+        return 5
+      } else if (this.act_index == 4) {
+        return 6
+      } else if (this.act_index == 5) {
+        return 7
+      } else {
+        return 7
       }
+    },
+    nowMsg() {
+      return this.groupsUserMsg[this.act_index] ? this.groupsUserMsg[this.act_index].msg : {}
+    },
+    petsImg() {
+      return this.pets[this.tab] ? this.pets[this.tab].img : ''
+    },
+    petMsg() {
+      return this.petUserMsg[this.tab] ? this.petUserMsg[this.tab].msg : {}
+    },
+    userImg() {
+      return this.userInfo ? this.userInfo : {}
+    }
+  },
+  methods: {
+    singUp() {
+      globalBus.$emit('commonEvent', () => {
+        api.singUp().then(res => {
+          if (res.data.response_status.code == 0) {
+            this.vxc('setRegistered', true)
+          } else {
+            this.vxc('setToast', {
+              title: '報名失敗',
+              msg: res.data.response_status.error
+            })
+          }
+        })
+      })
     }
   }
 }
 </script>
 <style lang="scss">
-.footerBar {
+.footer {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   z-index: 1000;
-  .acrStatus {
+  bottom: 0;
+  .msg {
     width: 7.5rem;
-    height: 1.75rem;
-    margin: auto;
-    text-align: center;
+    height: 1.46rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    // background: url() no-repeat;
-    // background-size: contain;
-    span {
-      display: inline-block;
+    font-size: 0.26rem;
+    background: url(../assets/img/footer/footerBg.png) no-repeat;
+    background-size: 100% 100%;
+    .rank {
+      text-align: center;
+      margin: 0 0.22rem 0 0.52rem;
+      &.noRank {
+        width: 0.8rem;
+        white-space: nowrap;
+        margin: 0 0.22rem 0 0.52rem;
+      }
     }
+    .imgBox {
+      width: 1.1rem;
+      height: 1.1rem;
+      position: relative;
+      .nob {
+        width: 1.1rem;
+        height: 1.1rem;
+        position: absolute;
+        top: 0rem;
+        left: 0rem;
+        z-index: 10;
+      }
+      .frame {
+        width: 1.5rem;
+        height: 1.5rem;
+        position: absolute;
+        top: -0.21rem;
+        left: -0.2rem;
+        z-index: 10;
+      }
+      .av {
+        width: 0.88rem;
+        height: 0.88rem;
+        position: absolute;
+        top: 0.1rem;
+        left: 0.11rem;
+        border-radius: 50%;
+      }
+      &.ml {
+        margin-left: 0.7rem;
+      }
+    }
+    .tips {
+      margin-left: 0.18rem;
+      .score {
+        display: flex;
+        align-items: center;
+        .coins {
+          width: 0.35rem;
+          height: 0.37rem;
+          background: url(../assets/img/coins2.png);
+          background-size: 100% 100%;
+          margin-left: 0.08rem;
+        }
+      }
+    }
+    .petTips {
+      display: flex;
+      align-items: center;
+      margin-left: 3.4rem;
+      img {
+        width: 0.6rem;
+        height: 0.6rem;
+      }
+    }
+  }
+  &.status0 {
+    width: 7.5rem;
+    height: 0.97rem;
+    background: url(../assets/img/footer/noStart.png) no-repeat;
+    background-size: 100% 100%;
+  }
+  &.status1 {
+    width: 7.5rem;
+    height: 0.97rem;
+    background: url(../assets/img/footer/acted.png) no-repeat;
+    background-size: 100% 100%;
+  }
+  &.status2 {
+    width: 7.5rem;
+    height: 0.97rem;
+    background: url(../assets/img/footer/singUp.png) no-repeat;
+    background-size: 100% 100%;
   }
 }
 </style>

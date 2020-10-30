@@ -2,16 +2,64 @@
   <div class="taskList">
     <p class="tips">任務達成盛典幣自動到賬，每天獲得的盛典幣清0</p>
     <div class="taskItem">
-      <div class="bg"></div>
-      <div class="list"></div>
+      <div class="bg">
+        <div class="top"></div>
+        <div class="con"></div>
+        <div class="bottom"></div>
+      </div>
+      <div class="list">
+        <div class="taskTitle">
+          <span class="name">每日任務</span>
+          <span class="coins"> <i></i></span>
+          <span class="bar">進度</span>
+        </div>
+        <ul>
+          <li v-for="(item,index) in shcule" :key="index">
+            <span class="name">{{taskName[item.action]}}</span>
+            <span class="coins">{{item.chance}}</span>
+            <span class="bar">
+              <em class="suc" v-if="item.schule >=item.limit">
+                已達成
+              </em>
+              <em class="no" v-else>
+                <strong>{{item.schule}}/{{item.limit}}</strong>
+                <i class="act" :style="{width:item.schule/item.limit *100 +'%'}"></i>
+              </em>
+            </span>
+          </li>
+        </ul>
+      </div>
     </div>
+    <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
   </div>
 </template>
 <script>
 import { mapState } from "vuex"
 export default {
+  data() {
+    return {
+      taskName: {
+        login: '每日登入',
+        publicWork: '當天發佈一首公開非收錄作品',
+        noDel: '前一天發佈的任意一首 公開非收錄作品未刪除',
+        like5: '給5首不同的作品點讚',
+        stayKtv: '當天在非加密K房停留 20分鐘及以上',
+        sing: '當天在非加密K房單次 上麥超過60秒',
+        sendBean: '當天累計送禮100金豆',
+        getGift: '當天累計收到1000金幣 禮物魅力值',
+        charge: '當天累計儲值100金幣',
+      },
+      rotatePx: 0,    //刷新旋转动画
+    }
+  },
   computed: {
     ...mapState(['shcule'])
+  },
+  methods: {
+    refrsh() { //刷新
+      this.rotatePx = 540 * ++this.rotatec  //旋转动画
+      this.$parent.$parent.getDefaultData()
+    }
   }
 }
 </script>
@@ -25,10 +73,127 @@ export default {
   .taskItem {
     width: 7.27rem;
     height: 11.39rem;
-    background: url("../assets/img/listBgHeader.png") 0 0 no-repeat,
-      url("../assets/img/listBgCon.png") 0 1.56rem,
-      url("../assets/img/listBgBotton.png") left bottom no-repeat;
-    background-size: 100% auto;
+    position: relative;
+    margin: 0 auto;
+    .bg {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      .top {
+        width: 100%;
+        height: 1.56rem;
+        background: url(../assets/img/listBgHeader.png);
+        background-size: 100% 100%;
+      }
+      .con {
+        width: 100%;
+        flex: 1;
+        background: url(../assets/img/listBgCon.png);
+        background-size: 100% auto;
+      }
+      .bottom {
+        width: 100%;
+        height: 0.65rem;
+        background: url(../assets/img/listBgBotton.png);
+        background-size: 100% 100%;
+      }
+    }
+    .list {
+      width: 6.67rem;
+      height: 11rem;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0.39rem 0.3rem;
+      .taskTitle,
+      li {
+        height: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        font-size: 0.28rem;
+        border-bottom: 0.02rem solid RGBA(115, 101, 170, 1);
+        box-sizing: border-box;
+        span {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .name {
+          width: 3.32rem;
+        }
+        .coins {
+          width: 1.11rem;
+          i {
+            display: inline-block;
+            width: 0.47rem;
+            height: 0.48rem;
+            background: url(../assets/img/coins.png);
+            background-size: 100% 100%;
+          }
+        }
+        .bar {
+          flex: 1;
+        }
+      }
+      .taskTitle {
+        height: 1rem;
+      }
+      li {
+        .coins {
+          border-left: 0.02rem solid RGBA(115, 101, 170, 1);
+          border-right: 0.02rem solid RGBA(115, 101, 170, 1);
+        }
+        .bar {
+          position: relative;
+          .suc {
+            width: 1.72rem;
+            height: 0.56rem;
+            line-height: 0.56rem;
+            background: linear-gradient(-90deg, #5cb5ed, #fe36e4);
+            border-radius: 0.28rem;
+          }
+          .no {
+            width: 1.72rem;
+            height: 0.56rem;
+            line-height: 0.56rem;
+            background: url(../assets/img/statusBg.png);
+            background-size: 100% 100%;
+            border-radius: 0.28rem 0 0 0.28rem;
+            position: relative;
+            strong {
+              display: block;
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              left: 0;
+              top: 0;
+              z-index: 2;
+            }
+            .act {
+              display: block;
+              max-width: 100%;
+              height: 100%;
+              background: linear-gradient(-90deg, #5cb5ed, #fe36e4);
+              border-radius: 0.28rem 0 0 0.28rem;
+              position: absolute;
+              left: 0;
+              top: 0;
+            }
+          }
+        }
+      }
+      li:last-child {
+        border: none;
+      }
+    }
   }
 }
 </style>
