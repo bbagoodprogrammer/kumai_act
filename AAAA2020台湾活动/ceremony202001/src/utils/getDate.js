@@ -11,6 +11,9 @@ function getDate(datem, type) {
     if (type == 1) {
         return `${year}/${month}/${date} ${hours}:${minute}:${second}`
     }
+    if (type == 2) {
+        return `${month}月${date}日`
+    }
     if (type == "pai") {
         if (minute < 10) {
             minute = "0" + minute

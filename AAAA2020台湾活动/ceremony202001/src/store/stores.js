@@ -17,7 +17,16 @@ const store = new Vuex.Store({
         daily_b: 0,
         registered: null,
         shcule: {},
-        first: true
+        first: true,
+        groupsUserMsg: {},
+        petUserMsg: {},
+        rankGroups: {},
+        point: {},
+        tab: 1,
+        act_index: 1,
+        tab1_type: 1,
+        pets: {},
+        userInfo: {}
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -62,6 +71,49 @@ const store = new Vuex.Store({
         },
         setFirst(state, val) {
             state.first = val
+        },
+        changGroupsUserMsg(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.groupsUserMsg = Object.assign({}, state.groupsUserMsg, { [key]: Object.assign({}, state.groupsUserMsg[key], obj) });
+            }
+        },
+        petChangGroupsUserMsg(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.petUserMsg = Object.assign({}, state.petUserMsg, { [key]: Object.assign({}, state.petUserMsg[key], obj) });
+            }
+        },
+        setPoint(state, val) {
+            state.point = val
+            console.log(val)
+        },
+        updateRankGroups(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.rankGroups = Object.assign({}, state.rankGroups, { [key]: Object.assign({}, state.rankGroups[key], obj) });
+            }
+        },
+        changTab(state, val) {
+            state.tab = val
+        },
+        setAct_index(state, val) {
+            state.act_index = val
+        },
+        setTab1_type(state, val) {
+            state.tab1_type = val
+        },
+        setPets(state, val) {
+            state.pets = val
+        },
+        setUserInfo(state, val) {
+            state.userInfo = val
+        },
+        delPoints(state) {
+            state.point.three = false
         }
     },
     actions: {

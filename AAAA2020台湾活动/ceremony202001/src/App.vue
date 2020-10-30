@@ -29,6 +29,11 @@ export default {
         require('./assets/img/tab3_act.png'),
         require('./assets/img/tab4_act.png'),
         require('./assets/img/tab5_act.png'),
+        require('./assets/img/giftBg1.png'),
+        require('./assets/img/giftBg2.png'),
+        require('./assets/img/giftBg3.png'),
+        require('./assets/img/boxListBg.png'),
+        require('./assets/img/petsBg.png'),
       ]
     }
   },

@@ -4,13 +4,21 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <span class="ruleTips" :class="{top:isShare}" @click="goRule()"></span>
+      <div class="ruleTipsBox">
+        <span class="ruleTips" @click="goRule()"></span>
+        <span class="ruleTips2" @click="goRule()"></span>
+        <span class="ruleTips3" @click="goRule()"></span>
+      </div>
     </div>
     <div class="tabs">
-      <span :class="[{act:act_index == item},'tab'+item]" v-for="(item,index) in 5" :key="index" @click="tabClick(item)"></span>
+      <span :class="[{act:act_index == item},'tab'+item]" v-for="(item,index) in 5" :key="index" @click="tabClick(item)">
+        <i class="red" v-if="item == 1 && point.one || item == 2 && point.two || item == 3 && point.three"></i>
+      </span>
     </div>
-    <component :is="'Playing'+act_index"></component>
-    <!-- <act-footer></act-footer> -->
+    <keep-alive>
+      <component :is="'Playing'+act_index"></component>
+    </keep-alive>
+    <act-footer></act-footer>
     <!-- <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
   </div>
 </template>
@@ -23,6 +31,7 @@ import api from "../api/apiConfig"
 import ActFooter from "../components/ActFooter"
 import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
+import { mapState } from "vuex"
 import Playing1 from "../components/Playing1"
 import Playing2 from "../components/Playing2"
 import Playing3 from "../components/Playing3"
@@ -48,6 +57,7 @@ export default {
     this.getDefaultData()
   },
   computed: {
+    ...mapState(['point']),
     showCom() {
       return `Playing${this.act_index}`
     }
@@ -66,6 +76,10 @@ export default {
           this.vxc('setDaily_b', coins)
           this.vxc('setRegistered', user_info.registered)
           this.vxc('setShcule', shcule)
+          let newPoint = point
+          newPoint.one = false
+          this.vxc('setPoint', newPoint)
+          this.vxc('setUserInfo', user_info)
         } else {
           this.toast(response_status.error)
         }
@@ -73,6 +87,7 @@ export default {
     },
     tabClick(item) {
       this.act_index = item
+      this.vxc('setAct_index', item)
     },
     downApp() {
       APP()
@@ -104,6 +119,7 @@ body {
   background: url("../assets/img/banner.png") 0 0 no-repeat,
     url("../assets/img/bg.png") 0 0 no-repeat;
   background-size: 100% auto;
+  padding-bottom: 2rem;
   .shareBar {
     position: fixed;
     z-index: 1000;
@@ -122,16 +138,31 @@ body {
   .header {
     height: 9.76rem;
     position: relative;
-    .ruleTips {
-      width: 1.7rem;
-      height: 0.56rem;
-      // background: url(../assets/img/ruleTips.png);
-      background-size: 100% 100%;
+    .ruleTipsBox {
       position: absolute;
       right: 0;
-      top: 0.17rem;
-      &.top {
-        top: 1.5rem;
+      top: 4.45rem;
+      span {
+        display: block;
+        margin-bottom: 0.06rem;
+      }
+      .ruleTips {
+        width: 1.49rem;
+        height: 0.9rem;
+        background: url(../assets/img/ruleTips1.png);
+        background-size: 100% 100%;
+      }
+      .ruleTips2 {
+        width: 1.48rem;
+        height: 0.66rem;
+        background: url(../assets/img/ruleTips2.png);
+        background-size: 100% 100%;
+      }
+      .ruleTips3 {
+        width: 1.48rem;
+        height: 0.66rem;
+        background: url(../assets/img/ruleTips3.png);
+        background-size: 100% 100%;
       }
     }
   }
@@ -142,6 +173,17 @@ body {
     span {
       width: 1.5rem;
       height: 1.8rem;
+      position: relative;
+      .red {
+        display: block;
+        width: 0.24rem;
+        height: 0.24rem;
+        background: url(../assets/img/red.png);
+        background-size: 100% 100%;
+        position: absolute;
+        right: 0.1rem;
+        top: 0.1rem;
+      }
     }
     .tab1 {
       background: url(../assets/img/tab1.png) no-repeat;
@@ -194,9 +236,9 @@ body {
 .refresh {
   display: block;
   width: 0.94rem;
-  height: 1rem;
+  height: 0.94rem;
   position: fixed;
-  left: 0.08rem;
+  right: 0.08rem;
   bottom: 1.35rem;
   background: url(../assets/img/refresh.png) no-repeat;
   background-size: contain;

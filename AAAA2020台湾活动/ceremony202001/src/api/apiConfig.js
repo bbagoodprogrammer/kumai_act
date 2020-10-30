@@ -71,92 +71,112 @@ function get(url, config) {
 //获取活动基础信息
 function getDefault() {
     if (token) {
-        return get(`/ceremony202001/init.php?token=${token}`);
+        return get(`/carnival2020ceremony/init.php?token=${token}`);
     } else {
-        return get(`/ceremony202001/init.php`);
+        return get(`/carnival2020ceremony/init.php`);
     }
 }
 
 //抽奖
 function go(track) {
-    return get(`/ceremony202001/lottery.php?token=${token}&track=${track}`)
+    return get(`/carnival2020ceremony/lottery.php?token=${token}&track=${track}`)
 }
 
 //抽奖记录
 function record1(from, more) {
     if (more) {
-        return axios.get(`/ceremony202001/record1.php?token=${token}&from=${from}`)
+        return axios.get(`/carnival2020ceremony/record1.php?token=${token}&from=${from}`)
     }
-    return get(`/ceremony202001/record1.php?token=${token}&from=${from}`)
+    return get(`/carnival2020ceremony/record1.php?token=${token}&from=${from}`)
 }
 
-
+//抽奖榜单
+function list1(from, more) {
+    if (more) {
+        return axios.get(`/carnival2020ceremony/list1.php?token=${token}&from=${from}`)
+    }
+    return get(`/carnival2020ceremony/list1.php?token=${token}&from=${from}`)
+}
 
 //助攻VIP
 function page2() {
-    return get(`/ceremony202001/page.php?token=${token}`)
+    if (token) {
+        return get(`/carnival2020ceremony/page2.php?token=${token}`)
+    }
+    return get(`/carnival2020ceremony/page2.php`)
 }
 
+//VIP榜单
+function list2(from) {
+    if (token) {
+        return axios.get(`/carnival2020ceremony/list2.php?token=${token}&from=${from}`)
+    }
+    return axios.get(`/carnival2020ceremony/list2.php?from=${from}`)
+}
+
+//获取礼包
+function getGift(gid) {
+    return get(`/carnival2020ceremony/getGift.php?token=${token}&gid=${gid}`)
+}
 
 //礼物冠名
 function page3() {
-    return get(`/ceremony202001/page3.php?token=${token}`)
+    if (token) {
+        return get(`/carnival2020ceremony/page3.php?token=${token}`)
+    }
+    return get(`/carnival2020ceremony/page3.php`)
 }
 
+//tab3收礼记录
+function record3(from, more) {
+    if (more) {
+        return axios.get(`/carnival2020ceremony/record3.php?token=${token}&from=${from}`)
+    }
+    return get(`/carnival2020ceremony/record3.php?token=${token}&from=${from}`)
+}
+
+//榜单3
+function list3(gid, from) {
+    if (token) {
+        return get(`/carnival2020ceremony/list3.php?token=${token}&gid=${gid}&from=${from}`)
+    }
+    return get(`/carnival2020ceremony/list3.php?gid=${gid}&from=${from}`)
+}
+
+
 //页面4
-function page4(from) {
-    return get(`/ceremony202001/page4.php?token=${token}&from=${from}`)
+function page4(from, more) {
+    if (token) {
+        if (more) {
+            return axios.get(`/carnival2020ceremony/page4.php?token=${token}&from=${from}`)
+        }
+        return get(`/carnival2020ceremony/page4.php?token=${token}&from=${from}`)
+    } else {
+        if (more) {
+            return axios.get(`/carnival2020ceremony/page4.php?from=${from}`)
+        }
+        return get(`/carnival2020ceremony/page4.php?from=${from}`)
+    }
+
 }
 
 //页面5 
 function page5(from) {
-    return get(`/ceremony202001/page5.php?token=${token}&from=${from}`)
+    if (token) {
+        return get(`/carnival2020ceremony/page5.php?token=${token}`)
+    }
+    return get(`/carnival2020ceremony/page5.php`)
 }
+
 
 //报名
 function singUp() {
-    return get(`/ceremony202001/register.php?token=${token}`)
+    return get(`/carnival2020ceremony/register.php?token=${token}`)
 }
-
-
-
-//抽奖榜单
-function list1(from) {
-    return get(`/ceremony202001/list1.php?token=${token}&from=${from}`)
-}
-
-
-//VIP榜单
-function list2() {
-    return get(`/ceremony202001/list2.php?token=${token}&from=${from}`)
-}
-
-
-//榜单3
-function list3(gid, from) {
-    return get(`/ceremony202001/list3.php?token=${token}&gid=${gid}&from=${from}`)
-}
-
-
-
-
-//获取礼包
-function getGift(gid) {
-    return get(`/ceremony202001/getGift.php?token=${token}&gid=${gid}`)
-}
-
-
-
-//tab3收礼记录
-function record3(from) {
-    return get(`/ceremony202001/list3.php?token=${token}&from=${from}`)
-}
-
-
 
 //删除高亮
 function delRedPoint() {
-    return get(`/ceremony202001/delRedPoint.php?token=${token}`)
+    return axios.get(`/carnival2020ceremony/delRedPoint.php?token=${token}`)
 }
 
 
