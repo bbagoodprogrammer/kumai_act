@@ -63,7 +63,9 @@
 
 <script>
 export default {
-
+  created() {
+    document.title = '規則&獎勵'
+  }
 }
 </script>
 

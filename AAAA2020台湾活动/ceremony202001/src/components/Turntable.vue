@@ -122,8 +122,10 @@ export default {
       globalBus.$emit('commonEvent', callback => {
         if (this.luckIng) return
         if (!this.registered) {
-          this.tastMsg = lang.NoSingUp
-          this.showT = true
+          this.vxc('setToast', {
+            title: '無法抽獎',
+            msg: '您還未報名，無法抽獎  快去報名吧！'
+          })
         } else {
           if (this.daily_b < 20 * val) {
             this.showNoCoins = true
@@ -148,8 +150,7 @@ export default {
                   this.luckIng = false
                 }, 5000);
               } else {
-                this.tastMsg = res.data.response_status.error
-                this.showT = true
+                this.toast(response_status.error)
               }
             })
           }

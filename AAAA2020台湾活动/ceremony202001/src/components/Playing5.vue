@@ -9,7 +9,7 @@
             <div class="name">{{item.name}}</div>
             <div class="actTime">{{getTime(item)}}</div>
           </div>
-          <div class="actStatus" :class="{start:item.step == 1}" @click="goAct(item.url)"></div>
+          <div class="actStatus" :class="{start:item.step}" @click="goAct(item.url,item.step)"></div>
         </li>
       </ul>
     </div>
@@ -20,6 +20,8 @@
 import api from "../api/apiConfig"
 import getDate from "../utils/getDate"
 import getString from "../utils/getString"
+import APP from "../utils/openApp"
+import { mapState } from "vuex"
 export default {
   data() {
     return {
@@ -30,6 +32,9 @@ export default {
   created() {
     this.init()
   },
+  computed: {
+    ...mapState(['isShare'])
+  },
   methods: {
     init() {
       api.page5(0).then(res => {
@@ -39,10 +44,16 @@ export default {
     getTime(item) {
       return getDate(new Date(item.stime), 2) + '-' + getDate(new Date(item.etime), 2)
     },
-    goAct(url) {
-      let regstr = getString('token')
-      let uid = getString('uid')
-      location.href = `${url}?uid=${uid}&token=${regstr}`
+    goAct(url, step) {
+      if (this.isShare) {
+        APP()
+        return
+      }
+      if (step) {
+        let regstr = getString('token')
+        let uid = getString('uid')
+        location.href = `${url}?uid=${uid}&token=${regstr}`
+      }
     },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画

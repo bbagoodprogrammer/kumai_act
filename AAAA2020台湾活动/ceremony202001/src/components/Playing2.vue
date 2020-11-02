@@ -1,6 +1,5 @@
 <template>
   <div class="playing2">
-
     <div class="boxList">
       <div class="userScore">
         <div class="lv">我的等级:{{level}}</div>
@@ -10,7 +9,7 @@
         <div class="gitem" v-for="(item,index) in boxList" :key="index">
           <div class="imgBox">
             <img :src="boxConfig[item.level].imgAct" alt="" v-if="item.receive || item.able" class="giftBox" @click="boxClick(item)">
-            <img :src="boxConfig[item.level].imgBlack" alt="" v-else class="giftBox" @click="boxClick(item)">
+            <img :src="boxConfig[item.level].imgBlack" alt="" v-else class="giftBox">
 
             <canvas class="linght" v-if="item.able"></canvas>
           </div>
@@ -57,7 +56,7 @@
           <h3>助攻值達到 <em>{{showBoxItem.limit}}</em> 可領取</h3>
           <strong class="needLv">(即升級到Lv.{{showBoxItem.level}}等級)</strong>
           <div class="giftBox">
-            <div class="giftItem" v-for="(item,index) in boxConfig[showBoxItem.level].gift" :key="index">
+            <div class="giftItem" v-for="(item,index) in showBoxItem.gift_data" :key="index">
               <div class="imgBox">
                 <img :src="item.img" alt="">
               </div>
@@ -515,7 +514,7 @@ export default {
         .gName {
           display: block;
           text-align: center;
-          font-size: 0.28rem;
+          font-size: 0.24rem;
           height: 0.3rem;
           line-height: 0.3rem;
           margin-top: 0.05rem;

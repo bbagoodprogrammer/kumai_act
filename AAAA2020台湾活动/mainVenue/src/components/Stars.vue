@@ -10,76 +10,81 @@
           <img src="../assets/img/actLiner.png" alt="" class="defaultImg">
           <img :src="item.img" alt="" class="actImg" v-if="item.img">
           <img src="../assets/img/actDefaultImg.png" alt="" class="actImg" v-else>
+          <span class="linght" v-if="item.step == 1"> </span>
         </div>
         <strong class="actName">{{item.name}}</strong>
       </div>
       <div class="userMsg">
         <h5 v-if="nowActTips">{{nowActTips}}</h5>
         <span class="actBtn " v-if="nowAct.step == 0">
-          <em v-if="nowAct.is_attension">您已预约</em>
-          <em v-else @click="actAttension(nowAct.act_id)">參加預約</em>
+          <em class="atted" v-if="nowAct.is_attension">您已预约</em>
+          <em class="att" v-else @click="actAttension(nowAct.act_id)">參加預約</em>
         </span>
-        <span class="actBtn" @click="goActHtml(nowAct.url)" v-else>前去看看</span>
+        <span class="actBtn go" @click="goActHtml(nowAct.url)" v-else>前去看看</span>
       </div>
     </div>
-    <!-- 人物评选榜单 -->
-    <div class="itemTop" :class="'list'+nowAct.act_id" v-if="nowAct.act_id ==0">
-      <div class="hasPeople" v-if="nowAct.show">
-        <div class="listItem" v-for="(item,index) in nowAct.list " :key="index">
-          <div class="title">{{peopleTitle[index]}}</div>
-          <div class="imgBox" :class="{br:index== 2 || index==3}" @click="goUser(item[0])">
-            <img class="pd" src="../assets/img/title/default_3.png" alt="" v-if="index==0|| index== 1">
-            <img :src="item[0].avatar" alt="" class="av">
-            <span class="mv" v-if="index==3"><i>mv</i></span>
+    <!--榜單切換過渡效果 -->
+    <div class="rankList" :class="{obc:obcAni}">
+      <!-- 人物评选榜单 -->
+      <div class="itemTop" :class="'list'+nowAct.act_id" v-if="nowAct.act_id ==0">
+        <div class="hasPeople" v-if="nowAct.show">
+          <div class="listItem" v-for="(item,index) in nowAct.list " :key="index">
+            <div class="title">{{peopleTitle[index]}}</div>
+            <div class="imgBox" :class="{br:index== 2 || index==3}" @click="goUser(item[0])">
+              <img class="pd" src="../assets/img/title/default_3.png" alt="" v-if="index==0|| index== 1">
+              <img :src="item[0].avatar" alt="" class="av">
+              <span class="mv" v-if="index==3"><i>mv</i></span>
+            </div>
+            <strong class="nick has">{{item[0].nick}}</strong>
+            <div class="more" @click="showMore(item)">查看更多</div>
           </div>
-          <strong class="nick has">{{item[0].nick}}</strong>
-          <div class="more" @click="showMore(item)">查看更多</div>
+        </div>
+        <div class="not" v-else>
+          <div class="listItem" v-for="(item,index) in peopleDefaultList_0" :key="index">
+            <div class="title">{{peopleTitle[index]}}</div>
+            <div class="imgBox">
+              <img :src="item[0].avatar" alt="" class="av">
+              <span class="mv" v-if="index==3"><i>mv</i></span>
+            </div>
+            <strong class="nick">{{item[0].nick}}</strong>
+          </div>
         </div>
       </div>
-      <div class="not" v-else>
-        <div class="listItem" v-for="(item,index) in peopleDefaultList_0" :key="index">
-          <div class="title">{{peopleTitle[index]}}</div>
-          <div class="imgBox">
-            <img :src="item[0].avatar" alt="" class="av">
-            <span class="mv" v-if="index==3"><i>mv</i></span>
+
+      <!-- K房男女神榜单 -->
+      <div class="kroomList" v-else-if="nowAct.act_id ==3">
+        <div class="noData">
+          <div class="man" :class="{girl:index==1}" v-for="(item,index) in nowAct.show?nowAct.list:kroomDefault" :key="index">
+            <ul class="userList">
+              <li v-for="(item2,index) in item" :key="index" :class="'item' + index">
+                <img :src="item2.avatar" alt="" class="defaultAv" v-if="!nowAct.show">
+                <div class="imgBox" :class="'top' + item2.rank" v-else @click="goUser(item2)">
+                  <span class="avBg"></span>
+                  <img v-lazy="item2.avatar" alt="" class="av">
+                </div>
+                <strong class="nick" :class="{act:nowAct.show}">{{item2.nick}}</strong>
+              </li>
+            </ul>
+            <div class="more" @click="showMore(item[index])" v-if="nowAct.show">查看更多</div>
           </div>
-          <strong class="nick">{{item[0].nick}}</strong>
         </div>
+      </div>
+      <!-- 其他榜单 -->
+      <div class="otherList" :class="'list'+nowAct.act_id" v-else-if="nowAct.act_id != 8 &&nowAct.act_id != 1">
+        <ul class="userList">
+          <li v-for="(item2,index) in showActList" :key="index" :class="'item' + index">
+            <img :src="item2.avatar" alt="" class="defaultAv" v-if="!nowAct.show">
+            <div class="imgBox" :class="[{fstyle:nowAct.act_id == 7},'top' + item2.rank]" v-else @click="goUser(item2)">
+              <span class="avBg"></span>
+              <img v-lazy="item2.avatar" alt="" class="av">
+            </div>
+            <strong class="nick" :class="{act:nowAct.show}">{{item2.nick}}</strong>
+          </li>
+        </ul>
+        <div class="more" @click="showMore(nowAct.list[0])" v-if="nowAct.show">查看更多</div>
       </div>
     </div>
 
-    <!-- K房男女神榜单 -->
-    <div class="kroomList" v-else-if="nowAct.act_id ==3">
-      <div class="noData">
-        <div class="man" :class="{girl:index==1}" v-for="(item,index) in nowAct.show?nowAct.list:kroomDefault" :key="index">
-          <ul class="userList">
-            <li v-for="(item2,index) in item" :key="index" :class="'item' + index">
-              <img :src="item2.avatar" alt="" class="defaultAv" v-if="!nowAct.show">
-              <div class="imgBox" :class="'top' + item2.rank" v-else @click="goUser(item2)">
-                <span class="avBg"></span>
-                <img v-lazy="item2.avatar" alt="" class="av">
-              </div>
-              <strong class="nick" :class="{act:nowAct.show}">{{item2.nick}}</strong>
-            </li>
-          </ul>
-          <div class="more" @click="showMore(item[index])" v-if="nowAct.show">查看更多</div>
-        </div>
-      </div>
-    </div>
-    <!-- 其他榜单 -->
-    <div class="otherList" :class="'list'+nowAct.act_id" v-else-if="nowAct.act_id != 8 &&nowAct.act_id != 1">
-      <ul class="userList">
-        <li v-for="(item2,index) in showActList" :key="index" :class="'item' + index">
-          <img :src="item2.avatar" alt="" class="defaultAv" v-if="!nowAct.show">
-          <div class="imgBox" :class="[{fstyle:nowAct.act_id == 7},'top' + item2.rank]" v-else @click="goUser(item2)">
-            <span class="avBg"></span>
-            <img v-lazy="item2.avatar" alt="" class="av">
-          </div>
-          <strong class="nick" :class="{act:nowAct.show}">{{item2.nick}}</strong>
-        </li>
-      </ul>
-      <div class="more" @click="showMore(nowAct.list[0])" v-if="nowAct.show">查看更多</div>
-    </div>
     <!-- 查看更多 -->
     <div class="mask" v-show="showListPup">
       <transition name="slide">
@@ -104,10 +109,13 @@
 import { mapState } from "vuex"
 import api from "../api/apiConfig"
 import getString from "../utils/getString"
+import APP from "../utils/openApp"
+import { setTimeout, setInterval } from 'timers';
 export default {
   data() {
     return {
       aning: false,
+      obcAni: false,
       starsArr: [],
       timer: null,
       act_index: 0,
@@ -194,7 +202,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['actList', 'data_list']),
+    ...mapState(['actList', 'data_list', 'isShare']),
     nowAct() {
       return this.actList[this.act_index] ? this.actList[this.act_index] : {}
     },
@@ -254,7 +262,7 @@ export default {
         }
         this.starsArr = arr
       }
-      this.aniTime(2000)
+      this.aniTime(4500)
       this.aning = true
     }
   },
@@ -265,7 +273,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.toast(`您已預約該活動,我們將於活動<br/>上線前通過K歌小助手提醒您~`)
           this.vxc('setActStatus', aid)
-          this.startAni(2000)
+          this.startAni(4000)
         } else {
           this.toast(res.data.response_status.error)
           this.startAni(4000)
@@ -273,6 +281,10 @@ export default {
       })
     },
     starClick(index) {
+      if (this.isShare) {
+        APP()
+        return
+      }
       clearInterval(this.timer)
       // if (!this.aning) return
       this.aning = false
@@ -286,17 +298,21 @@ export default {
         num++
       }
       this.act_index = index
-      this.startAni(2000)
+      this.startAni(4000)
     },
     startAni(tm) {
       setTimeout(() => {
         this.aning = true
-        this.aniTime(2000)
+        this.aniTime(4000)
       }, tm)
     },
     aniTime(tm) {
       clearInterval(this.timer)
       this.timer = setInterval(() => {
+        this.obcAni = !this.obcAni
+        setTimeout(() => {
+          this.obcAni = !this.obcAni
+        }, 1000)
         this.starsArr.forEach(element => {
           if (element.ainIndex > 0) {
             element.ainIndex--
@@ -333,7 +349,6 @@ export default {
       location.href = `${url}?uid=${uid}&token=${regstr}`
     },
     clearTimer() {
-      console.log('xxxx')
       clearInterval(this.timer)
     }
   }
@@ -365,7 +380,7 @@ export default {
   }
   .time {
     font-size: 0.28rem;
-    color: rgba(255, 213, 129, 0.6);
+    color: rgba(165, 135, 123, 1);
     text-align: center;
     margin: 0.2rem 0;
   }
@@ -397,17 +412,29 @@ export default {
       display: block;
       width: 1.9rem;
       height: 0.64rem;
-      background: url(../assets/img/actBtn.png);
+      background: url(../assets/img/actBtn2.png);
       background-size: 100% 100%;
       text-align: center;
       line-height: 0.64rem;
-      color: rgba(108, 44, 0, 1);
+      color: rgba(255, 223, 75, 1);
       font-size: 0.28rem;
       font-weight: 600;
       em {
         display: block;
         width: 100%;
         height: 100%;
+        font-size: 0.28rem;
+        font-weight: 600;
+        &.atted {
+          background: url(../assets/img/actBtn2.png);
+          background-size: 100% 100%;
+          color: rgba(255, 223, 75, 1);
+        }
+        &.att {
+          background: url(../assets/img/actBtn.png);
+          background-size: 100% 100%;
+          color: rgba(108, 44, 0, 1);
+        }
       }
     }
   }
@@ -438,6 +465,17 @@ export default {
         height: 100%;
         position: absolute;
       }
+      .linght {
+        display: block;
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        left: -0.55rem;
+        top: -0.55rem;
+        background: url(../assets/img/linght.png);
+        background-size: 100% 100%;
+        transition: all 1s ease;
+      }
     }
     .actName {
       width: 1.7rem;
@@ -449,7 +487,7 @@ export default {
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       position: absolute;
-      bottom: 0;
+      bottom: -0.05rem;
       z-index: 3;
     }
     &.ani {
@@ -460,6 +498,12 @@ export default {
       height: 1.2rem;
       top: 1rem;
       left: 3.17rem;
+      .linght {
+        width: 2.42rem;
+        height: 2.42rem;
+        left: -0.6rem;
+        top: -0.6rem;
+      }
     }
     &.start8 {
       top: 1.66rem;
@@ -495,6 +539,15 @@ export default {
     }
   }
 }
+
+.rankList {
+  transition: all 1s linear;
+  opacity: 1;
+  &.obc {
+    opacity: 0;
+  }
+}
+
 .itemTop {
   display: flex;
   align-items: center;
@@ -623,7 +676,7 @@ export default {
     height: 2.84rem;
     background: url(../assets/img/title/title3_1.png);
     background-size: 100% 100%;
-    margin: 0.35rem auto;
+    margin: 0 auto 0.35rem;
     padding-top: 1.69rem;
     position: relative;
     .userList {

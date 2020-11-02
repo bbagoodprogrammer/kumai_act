@@ -21,7 +21,6 @@ export default {
   data() {
     return {
       type: 1,
-
     }
   },
   methods: {

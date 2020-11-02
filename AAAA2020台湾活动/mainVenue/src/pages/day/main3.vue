@@ -11,8 +11,8 @@
         <i class="hand" v-if="item.now && !nowData.mark"></i>
         <em class="singInDay" v-if="item.now && !nowData.mark">已有{{nowData.nums}}人簽到</em>
         <transition name="day">
-              <strong class="act" v-html="item.act" v-if="item.act && showMouth ==11 &&showDay==item.day"></strong>
-         </transition>
+          <strong class="act" v-html="item.act" v-if="item.act && showMouth ==11 &&showDay==item.day"></strong>
+        </transition>
       </span>
     </div>
     <h5>十二月</h5>
@@ -24,9 +24,9 @@
         <strong v-if="!item.singIn">{{item.day}}</strong>
         <i class="hand" v-if="item.now && !nowData.mark"></i>
         <em class="singInDay" v-if="item.now && !nowData.mark">已有{{nowData.nums}}人簽到</em>
-          <transition name="day">
-              <strong class="act" :class="{bian:item.day == 26}" v-html="item.act" v-if="item.act && showMouth ==12 &&showDay==item.day"></strong>
-         </transition>
+        <transition name="day">
+          <strong class="act" :class="{bian:item.day == 26}" v-html="item.act" v-if="item.act && showMouth ==12 &&showDay==item.day"></strong>
+        </transition>
       </span>
     </div>
     <Loading />
@@ -53,400 +53,401 @@ export default {
       nowData: {},
       showMouth: 0,
       showDay: 0,
-      days : {
-    11: [
-        {
+      days: {
+        11: [
+          {
             day: 1,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 2,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 3,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 4,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 5,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 6,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 7,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 8,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 9,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 10,
             act: '年度人物評選開賽<br/>盛典嘉年華開賽',
             style: 'red',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 11,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 12,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 13,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 14,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 15,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 16,
             act: '年度魅力歌王大賽開賽',
             style: 'red',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 17,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 18,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 19,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 20,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 21,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 22,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 23,
             act: '年度K房男神女神賽開賽',
             style: 'red',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 24,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 25,
             act: '年度魅力歌王大賽決賽',
             style: 'crown',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 26,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 27,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 28,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 29,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 30,
             act: '年度C位爭奪賽開賽',
             style: 'red',
             singIn: false,
             gift: []
-        }
-    ],
-    12: [
-        {},
-        {},
-        {
+          }
+        ],
+        12: [
+          {},
+          {},
+          {
             day: 1,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 2,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 3,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 4,
             act: '年度K房男神女神賽決賽',
             style: 'crown',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 5,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 6,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 7,
             act: '年度主持人巔峰戰開賽',
             style: 'red',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 8,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 9,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 10,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 11,
             act: '年度C位爭奪賽決賽<br/>年度最強音開賽',
             style: 'crown',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 12,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 13,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 14,
             act: '年度最強家族戰開賽',
             style: 'red',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 15,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 16,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 17,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 18,
             act: '年度最強音決賽',
             style: 'crown',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 19,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 20,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 21,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 22,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 23,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 24,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 25,
             act: '年度最強家族戰決賽',
             style: 'crown',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 26,
             act: '年度主持人巔峰戰決賽',
             style: 'crown',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 27,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 28,
             act: '年度人物評選決賽 <br/> 盛典嘉年華決賽',
             style: 'crown',
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 29,
             act: null,
             singIn: false,
             gift: []
-        },
-        {
+          },
+          {
             day: 30,
             act: null,
             singIn: false,
             gift: []
-        }
-    ],
-}
+          }
+        ],
+      }
     }
   },
   created() {
+    document.title = '簽到日曆'
     api.markInfo().then(res => {
-        this.nowData = res.data.response_data  
-    //   this.nowData = {
-    //     days: 6,
-    //     mark: false,
-    //     my_list: { 11: [1, 2, 3], 12: [] },
-    //     now: 1603685786,
-    //     nums: 0,
-    //     prize_time: { 11: [5], 12: [] }
-    //   }
+      this.nowData = res.data.response_data
+      // this.nowData = {
+      //   days: 6,
+      //   mark: false,
+      //   my_list: { 11: [1, 2, 3], 12: [1, 3] },
+      //   now: 1603685786,
+      //   nums: 0,
+      //   prize_time: { 11: [], 12: [] }
+      // }
     })
   },
   computed: {
@@ -456,13 +457,13 @@ export default {
         let dayList = this.nowData.my_list[11]
         let prizeList = this.nowData.prize_time[11]
         for (let i = 0; i < dayList.length; i++) {
-          arr[dayList[i]].singIn = true
+          arr[dayList[i] - 1].singIn = true
         }
         for (let i = 0; i < prizeList.length; i++) {
-          arr[prizeList[i]].style = 'gift'
+          arr[prizeList[i] - 1].style = 'gift'
         }
         if (this.nowMonth == 11) {
-          arr[this.nowDay +1]['now'] = true
+          arr[this.nowDay - 1]['now'] = true
         }
         return arr
       } else {
@@ -475,13 +476,13 @@ export default {
         let dayList = this.nowData.my_list[12]
         let prizeList = this.nowData.prize_time[12]
         for (let i = 0; i < dayList.length; i++) {
-          arr[dayList[i]].singIn = true
+          arr[dayList[i] + 1].singIn = true
         }
         for (let i = 0; i < prizeList.length; i++) {
-          arr[prizeList[i]].style = 'gift'
+          arr[prizeList[i] + 1].style = 'gift'
         }
         if (this.nowMonth == 12) {
-          arr[this.nowDay +1]['now'] = true
+          arr[this.nowDay + 1]['now'] = true
         }
         return arr
       } else {
@@ -489,40 +490,63 @@ export default {
       }
     },
     nowMonth() {
+      return 12
       return new Date(this.nowData.now * 1000).getMonth() + 1
     },
     nowDay() {
+      return 2
       return new Date(this.nowData.now * 1000).getDate()
     }
   },
-  methods:{
-      dayClick(mouth,day){
-          if(this.nowMonth ==mouth && this.nowDay == day && !this.nowData.mark ){
-              api.mark().then(res=>{
-                  if(res.data.response_status.code ==0){
-                      const {days,is_prize}=res.data.response_data
-                      this.nowData.mark = true
-                      this.nowData.days = days
-                    this.showMouth =mouth 
-                    this.showDay = day 
-                       this.days[mouth][day-1].now = false
-                      this.days[mouth][day+1].singIn = true
-                      if(is_prize){
-                          this.days[mouth][day+1].style = "gift"
-                      }
-                  }else{
-                      this.toast(res.data.response_status.error)
-                  }
-              })
-          }else{
-            this.showMouth =mouth 
-            this.showDay = day 
+  methods: {
+    dayClick(mouth, day) {
+      // this.nowData.mark = true
+      // this.nowData.days = 9
+      // this.showMouth = mouth
+      // this.showDay = day
+      // if (mouth == 11) {
+      //   this.days[mouth][day - 1].now = false
+      //   this.days[mouth][day - 1].singIn = true
+      // } else {
+      //   this.days[mouth][day + 1].now = false
+      //   this.days[mouth][day + 1].singIn = true
+      // }
+      // return
+      if (this.nowMonth == mouth && this.nowDay == day && !this.nowData.mark) {
+        api.mark().then(res => {
+          if (res.data.response_status.code == 0) {
+            const { days, is_prize } = res.data.response_data
+            this.nowData.mark = true
+            this.nowData.days = days
+            this.showMouth = mouth
+            this.showDay = day
+            if (mouth == 11) {
+              this.days[mouth][day - 1].now = false
+              this.days[mouth][day - 1].singIn = true
+              if (is_prize) {
+                this.days[mouth][day - 1].style = "gift"
+              }
+            } else {
+              this.days[mouth][day + 1].now = false
+              this.days[mouth][day + 1].singIn = true
+              if (is_prize) {
+                this.days[mouth][day + 1].style = "gift"
+              }
+            }
+
+          } else {
+            this.toast(res.data.response_status.error)
           }
-      },
-      closeActPup(){
-        this.showMouth =null 
-        this.showDay = null 
+        })
+      } else {
+        this.showMouth = mouth
+        this.showDay = day
       }
+    },
+    closeActPup() {
+      this.showMouth = null
+      this.showDay = null
+    }
   }
 }
 </script>
@@ -621,13 +645,13 @@ body {
           justify-content: center;
           line-height: 0.3rem;
           position: absolute;
-          top: -.9rem;
+          top: -0.9rem;
           left: -1.09rem;
-          &.bian{
-             left: -1.8rem;
+          &.bian {
+            left: -1.8rem;
           }
           &.bian::before {
-              left:72%;
+            left: 72%;
           }
         }
         .act::before {
