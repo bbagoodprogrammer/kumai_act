@@ -182,8 +182,8 @@ export default {
       display: flex;
       justify-content: center;
       span {
-        width: 3.1rem;
-        height: 0.72rem;
+        width: 3.25rem;
+        height: 0.86rem;
       }
       .tab1 {
         background: url(../assets/img/store/tab1.png);

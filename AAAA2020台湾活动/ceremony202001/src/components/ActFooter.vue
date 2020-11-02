@@ -42,7 +42,7 @@ export default {
         return 0
       } else if (this.actStatus == 2) {
         return 1
-      } else if (!this.registered) {
+      } else if (!this.registered && this.act_index != 4 && this.act_index != 5) {
         return 2
       } else if (this.act_index == 1 && this.tab1_type == 2) {
         return 3
@@ -50,7 +50,7 @@ export default {
         return 4
       } else if (this.act_index == 3) {
         return 5
-      } else if (this.act_index == 4) {
+      } else if (this.act_index == 4 && this.registered) {
         return 6
       } else if (this.act_index == 5) {
         return 7
@@ -164,6 +164,7 @@ export default {
       img {
         width: 0.6rem;
         height: 0.6rem;
+        margin-right: 0.05rem;
       }
     }
   }

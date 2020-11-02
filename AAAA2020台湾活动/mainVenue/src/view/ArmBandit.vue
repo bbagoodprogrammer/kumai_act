@@ -5,8 +5,8 @@
     </div>
     <div class="header">
       <div class="tipsBox">
-        <span class="ruleTips" :class="{top:isShare}" @click="goRule()">活動攻略</span>
-        <span class="ruleTips" :class="{top:isShare}" @click="goDays()">簽到日曆</span>
+        <span class="ruleTips" :class="{top:isShare}" @click="goRule()">活動攻略 <i class="arr"></i></span>
+        <span class="ruleTips" :class="{top:isShare}" @click="goDays()">簽到日曆 <i class="arr"></i></span>
       </div>
 
     </div>
@@ -63,60 +63,52 @@ export default {
       rotatec: 0,
       wardsArr: [
         {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/1.png'),
+          name: '現金大獎'
         },
         {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/2.png'),
+          name: '四位專屬靚號'
         },
         {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/3.png'),
+          name: '人物認證'
         },
         {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/4.png'),
+          name: '人物徽章'
         },
         {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/5.png'),
+          name: '高級頭飾'
         },
         {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/6.png'),
+          name: '封面邊框'
         },
         {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/7.png'),
+          name: '禮物冠名權'
         },
         {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/8.png'),
+          name: '家族主頁背景'
         },
         {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/9.png'),
+          name: '珍稀禮物'
         },
         {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/10.png'),
+          name: '紅毯座駕'
         },
         {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/11.png'),
+          name: '海量金幣'
         },
         {
-          img: '',
-          name: 'xxxxxx'
-        },
-        {
-          img: '',
-          name: 'xxxxxx'
-        },
-        {
-          img: '',
-          name: 'xxxxxx'
+          img: require('../assets/img/gifts/12.png'),
+          name: '海量金豆'
         }
       ],
       tab_index: 'Stars',
@@ -436,7 +428,7 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 9.16rem;
+    height: 7.43rem;
     position: relative;
     .tipsBox {
       position: absolute;
@@ -446,19 +438,29 @@ body::-webkit-scrollbar {
         display: block;
         width: 1.76rem;
         height: 0.79rem;
-        line-height: 0.65rem;
-        text-indent: 0.2rem;
+        text-indent: 0.3rem;
         background: url(../assets/img/tips.png);
         background-size: 100% 100%;
         text-align: center;
         color: rgba(69, 28, 31, 1);
         font-size: 0.28rem;
         font-weight: 600;
+        display: flex;
+        align-items: flex-start;
+        line-height: 0.6rem;
+        justify-content: center;
+        i {
+          width: 0.24rem;
+          height: 0.23rem;
+          background: url(../assets/img/arr.png);
+          background-size: 100% 100%;
+          margin: 0.19rem 0 0 0.06rem;
+        }
       }
     }
   }
   .wards {
-    width: 6.49rem;
+    width: 6.94rem;
     height: 3.67rem;
     background: url(../assets/img/wards.png) no-repeat;
     background-size: 100% 100%;
@@ -485,7 +487,7 @@ body::-webkit-scrollbar {
       right: -0.27rem;
     }
     .gifts {
-      width: 5.4rem;
+      width: 5.85rem;
       height: 2rem;
       white-space: nowrap;
       overflow-x: scroll;
@@ -514,8 +516,13 @@ body::-webkit-scrollbar {
           }
         }
         strong {
+          width: 120%;
+          margin-left: -0.13rem;
+          font-size: 0.2rem;
+          color: rgba(255, 234, 170, 1);
           display: block;
           text-align: center;
+          margin-top: 0.15rem;
         }
       }
     }
@@ -526,14 +533,16 @@ body::-webkit-scrollbar {
   .tabs {
     display: flex;
     align-items: center;
-    width: 6.86rem;
-    height: 0.78rem;
+    justify-content: space-between;
+    width: 6.76rem;
+    height: 0.88rem;
+    padding: 0 0.05rem;
     background: url(../assets/img/tabs.png) no-repeat;
     background-size: 100% 100%;
     margin: 0.8rem auto 0;
     span {
-      flex: 1;
-      height: 100%;
+      width: 3.36rem;
+      height: 0.78rem;
       text-align: center;
       line-height: 0.78rem;
       display: flex;

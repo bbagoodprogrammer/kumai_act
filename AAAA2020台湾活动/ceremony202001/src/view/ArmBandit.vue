@@ -5,9 +5,9 @@
     </div>
     <div class="header">
       <div class="ruleTipsBox">
-        <span class="ruleTips" @click="goRule()"></span>
+        <span class="ruleTips" @click="goMain()"></span>
         <span class="ruleTips2" @click="goRule()"></span>
-        <span class="ruleTips3" @click="goRule()"></span>
+        <span class="ruleTips3" @click="goTicket()"></span>
       </div>
     </div>
     <div class="tabs">
@@ -92,9 +92,22 @@ export default {
     downApp() {
       APP()
     },
-    goRule() {
+    goMain() {
       let regstr = getString('token')
-      location.href = `./index2.html?token=${regstr}`
+      let uid = getString('uid')
+      let aid = getString('aid')
+      location.href = `http://activity.17sing.tw/static_html/2020/ceremony202000/index.html?token=${regstr}&uid=${uid}&aid=${aid}`
+    },
+    goRule() {
+      let uid = getString('uid')
+      let regstr = getString('token')
+      location.href = `./index2.html?token=${regstr}&uid=${uid}`
+    },
+    goTicket() {
+      let uid = getString('uid')
+      let regstr = getString('token')
+      let aid = getString('aid')
+      location.href = `http://activity.17sing.tw/static_html/2020/singervote2020/index.html?token=${regstr}&uid=${uid}&aid=${aid}`
     },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
@@ -170,6 +183,7 @@ body {
     height: 1.8rem;
     display: flex;
     align-items: center;
+    transition: all 0.5s ease;
     span {
       width: 1.5rem;
       height: 1.8rem;

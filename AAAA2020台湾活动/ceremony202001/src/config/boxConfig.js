@@ -4,15 +4,15 @@ const box = {
         imgBlack: require('../assets/img/boxImg/x01.png'),
         gift: [
             {
-                name: '背包礼物',
+                name: '嘉年華背包禮物(10金幣)*1',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '100金豆',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '滿100返10送禮返利券',
                 img: ''
             },
         ]
@@ -22,19 +22,19 @@ const box = {
         imgBlack: require('../assets/img/boxImg/x02.png'),
         gift: [
             {
-                name: '背包礼物',
+                name: '嘉年華背包禮物(10金幣)*5',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '300金豆',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '專屬座駕1(3天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '滿200返12送禮返利券',
                 img: ''
             },
         ]
@@ -44,19 +44,19 @@ const box = {
         imgBlack: require('../assets/img/boxImg/x03.png'),
         gift: [
             {
-                name: '背包礼物',
+                name: '浪漫單車(128金幣)*1',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '專屬座駕1(5天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '初級助攻徽章(7天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '滿300返21送禮返利券',
                 img: ''
             }
         ]
@@ -66,19 +66,19 @@ const box = {
         imgBlack: require('../assets/img/boxImg/x04.png'),
         gift: [
             {
-                name: '背包礼物',
+                name: '浪漫單車(128金幣)*2',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '專屬座駕1(7天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '初級助攻徽章(14天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '滿600返48送禮返利券',
                 img: ''
             }
         ]
@@ -88,23 +88,23 @@ const box = {
         imgBlack: require('../assets/img/boxImg/x05.png'),
         gift: [
             {
-                name: '背包礼物',
+                name: '浪漫單車(128金幣)*3',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '專屬座駕1(9天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '中級助攻徽章(7天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '中級助攻頭飾(15天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '滿1000返72送禮返利券',
                 img: ''
             },
         ]
@@ -114,23 +114,23 @@ const box = {
         imgBlack: require('../assets/img/boxImg/x06.png'),
         gift: [
             {
-                name: '背包礼物',
+                name: '浪漫摩天輪(388金幣) *1',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '專屬座駕1(11天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '中級助攻徽章(14天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '中級助攻頭飾(30天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '滿1500返100送禮返利券',
                 img: ''
             },
         ]
@@ -140,23 +140,23 @@ const box = {
         imgBlack: require('../assets/img/boxImg/x07.png'),
         gift: [
             {
-                name: '背包礼物',
+                name: '浪漫摩天輪(388金幣) *1',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '專屬座駕1(13天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '高級助攻徽章(7天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '高級助攻頭飾(15天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '滿2000返110送禮返利券',
                 img: ''
             },
         ]
@@ -166,23 +166,23 @@ const box = {
         imgBlack: require('../assets/img/boxImg/x08.png'),
         gift: [
             {
-                name: '背包礼物',
+                name: '浪漫摩天輪(388金幣) *1',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '專屬座駕1(15天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '高級助攻徽章(15天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '高級助攻頭飾(30天)',
                 img: ''
             },
             {
-                name: '背包礼物',
+                name: '滿3000返220送禮返利券',
                 img: ''
             },
         ]
