@@ -6,7 +6,7 @@
       <span v-for="(item,index) in week" :key="index">{{item}}</span>
     </div>
     <div class="dayList">
-      <span v-for="(item,index) in dayList" :key="index" :class="[{gift:item.style == 'gift',sed:item.singIn,black:nowMonth == 12 ||(nowMonth==11&& item.day<nowDay),now:item.now},item.style]" @click.stop="dayClick(11,item.day)">
+      <span v-for="(item,index) in dayList" :key="index" :class="[{gift:item.style == 'gift',sed:item.singIn,black:nowMonth == 12 ||(nowMonth==11&& item.day<nowDay),now:item.now&& !nowData.mark},item.style]" @click.stop="dayClick(11,item.day)">
         <strong v-if="!item.singIn">{{item.day}}</strong>
         <i class="hand" v-if="item.now && !nowData.mark"></i>
         <em class="singInDay" v-if="item.now && !nowData.mark">已有{{nowData.nums}}人簽到</em>
@@ -490,11 +490,9 @@ export default {
       }
     },
     nowMonth() {
-      return 12
       return new Date(this.nowData.now * 1000).getMonth() + 1
     },
     nowDay() {
-      return 2
       return new Date(this.nowData.now * 1000).getDate()
     }
   },

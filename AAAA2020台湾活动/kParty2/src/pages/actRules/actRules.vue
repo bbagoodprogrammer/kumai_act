@@ -12,7 +12,10 @@
         <p>7、同一K房申請活動後未積極組織或舉辦（包括活動期間設置K房私密）達四次，不可再申請活動</p>
         <p>8、每場活動可獲得對應趴踢積分，計算方式如下</p>
         <img src="../../assets/img/ruleImg1.png" alt="" class="ruleImg1">
-        <p class="ps">PS：方案策劃積分由官方審核活動時評出，活動方案越完善、玩法越新穎評分越高，可參考官方活動策劃</p>
+        <p class="ps">PS:
+          1.方案策劃積分由官方審核活動時評出，活動方案越完善、玩法越新穎評分越高，可參考官方活動策劃 <br />
+          2.金幣積分僅計算申請活動時間內的K房纍計收穫金幣數*1
+        </p>
         <p>9、每週/月達到指定積分（3000/10000）或進入榜單前十名可獲得官方獎勵，官方K房不參與排名</p>
         <img src="../../assets/img/ruleImg2.png" alt="" class="ruleImg2">
         <img src="../../assets/img/ruleImg3.png" alt="" class="ruleImg3">

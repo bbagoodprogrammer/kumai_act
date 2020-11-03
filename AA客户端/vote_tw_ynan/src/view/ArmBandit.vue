@@ -6,7 +6,7 @@
       <textarea name="" v-model="describe" id="describe" maxlength="300" placeholder="Nhập mô tả để mọi người hiểu mục đích bỏ phiếu"></textarea>
       <span class="describeNum">{{describe.length}}/300</span>
     </div>
-    <h3 class="optionTitle">Lựa chọn <u class="optionType" @click="setOptionType()">{{optionType?'Điền lựa chọn':'Dùng người trên mic'}}</u></h3>
+    <h3 class="optionTitle">Lựa chọn <u class="optionType" @click="setOptionType()">{{optionType?'Điền lựa chọn':'Chọn người trên mic'}}</u></h3>
     <div v-if="!optionType">
       <div class="optionBox" v-for="(item,index) in option" :key="index">
         <i class="close" @click="delOption(index)" v-if="index != 0">x</i>
@@ -21,6 +21,7 @@
       </div>
     </div>
     <div class="peopleList" v-else>
+      <p class="red">Ít nhất hai người lên mic mới có thể tạo bỏ phiếu.</p>
       <ul>
         <li class="pelpleItem" v-for="(item,index) in peopleList" :key="index">
           <i class="close" @click="delpeople(index)">x</i>
@@ -31,29 +32,29 @@
     </div>
     <h3>Thiết lập</h3>
     <div class="pelpleType">
-      <span class="title">Ai có thể bỏ phiếu</span>
+      <span class="title">Người bỏ phiếu</span>
       <span class="total" @click="setPeopleType(1)"><i :class="{act:peopleType == 1}"></i><strong>Tất cả</strong></span>
       <span class="other" @click="setPeopleType(2)"><i :class="{act: peopleType == 2}"></i><strong>Người trên mic</strong></span>
     </div>
     <div class="setLv">
       <div class="lvBox">
-        <span>Yêu cầu cấp</span>
+        <span>Yêu cầu cấp bậc</span>
         <div id="lv">
           <input type="number" onkeyup="value=value.replace(/[^\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'')" :style="{width:holderWidth+'px'}" v-model="choiceLv">
           <span v-if="choiceLv != ''">Cấp</span>
         </div>
       </div>
-      <p>Từ cấp mấy được bỏ phiếu (bỏ trống tức không hạn chế)</p>
+      <p>Từ cấp mấy được bỏ phiếu <br /> (bỏ trống tức không hạn chế)</p>
     </div>
     <div class="setLv">
       <div class="lvBox">
-        <span>thời gian</span>
+        <span>Thời gian </span>
         <div id="lv">
           <input type="number" onkeyup="value=value.replace(/[^\d]/g,'')" onblur="value=value.replace(/[^\d]/g,'')" :style="{width:timeWidth+'px'}" v-model="choiceTime">
           <span v-if="choiceTime != ''">phút</span>
         </div>
       </div>
-      <p>Chọn kết thúc sau mấy phút (bỏ trống tức không hạn chế)</p>
+      <p>Chọn kết thúc sau mấy phút <br /> (bỏ trống tức không hạn chế)</p>
     </div>
     <div class="commitBtn" :class="{act:couldCommit}" @click="commit()">Mở</div>
     <div class="holder" ref="holderTop">
@@ -291,6 +292,9 @@ h3 {
   }
 }
 .peopleList {
+  .red {
+    color: red;
+  }
   .pelpleItem {
     width: 6.9rem;
     height: 0.8rem;
@@ -387,6 +391,7 @@ h3 {
   display: flex;
   align-items: center;
   padding-left: 0.1rem;
+  margin-bottom: 0.4rem;
   .title {
     color: rgba(155, 155, 155, 1);
     width: 1.3rem;
