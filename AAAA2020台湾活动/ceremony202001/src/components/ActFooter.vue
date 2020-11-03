@@ -73,6 +73,7 @@ export default {
   },
   methods: {
     singUp() {
+      if (this.footerState != 2) { } return
       globalBus.$emit('commonEvent', () => {
         api.singUp().then(res => {
           if (res.data.response_status.code == 0) {
@@ -85,7 +86,10 @@ export default {
           }
         })
       })
-    }
+    },
+    goUser(uid) {
+      location.href = `uid:${uid}`
+    },
   }
 }
 </script>

@@ -58,7 +58,7 @@
           <ul class="scrollable">
             <li v-for="(item,index) in historyList" :key="index">
               <span class="time">{{getTime(item.time)}}</span>
-              <span class="name">{{getWardName(item.tid)}}</span>
+              <span class="name">{{getWardName(item.local)}}</span>
             </li>
           </ul>
         </div>

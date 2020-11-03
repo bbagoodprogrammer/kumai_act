@@ -61,11 +61,11 @@
                 <span class="price"><i :class="{bean:item.ticket_currency == 'bean'}"></i><strong>{{item.prise_price}}</strong> </span>
               </li>
             </ul>
-            <div class="sGift"><span>Cách tham dự:</span> tặng <img :src="fixeActDraw.ticket_gpic" alt="">x{{fixeActDraw.ticket_amount}} ({{fixeActDraw.ticket_price}}{{giftType[fixeActDraw.ticket_currency]}})</div>
+            <div class="sGift"><span>Cách tham dự: </span> tặng <img :src="fixeActDraw.ticket_gpic" alt="">x{{fixeActDraw.ticket_amount}} ({{fixeActDraw.ticket_price}} {{giftType[fixeActDraw.ticket_currency]}})</div>
             <div class="fTime"><span>Đếm ngược: </span> {{fixeActDraw.time_limit}}phút</div>
           </div>
           <div class="setpeopleType">
-            <span>Ai được tham dự</span>
+            <span>Ai được<br /> tham dự</span>
             <div class="peopleType">
               <span @click="setPeopleType(1)"><i :class="{act:peopleType == 1}"></i><strong>Tất cả</strong></span>
               <span @click="setPeopleType(2)"><i :class="{act:peopleType == 2}"></i><strong>Người trên mic</strong></span>
@@ -431,7 +431,7 @@ body {
       align-items: center;
       justify-content: space-between;
       > span {
-        flex:1;
+        flex: 1;
         color: rgba(12, 12, 12, 1);
         font-size: 0.34rem;
         font-weight: 500;

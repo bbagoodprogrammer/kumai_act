@@ -3,7 +3,7 @@
     <div class="petItem" v-for="(item,index) in pets" :key="index">
       <!-- <span class="lock" v-if="item.nums == 0"></span> -->
       <!-- <img :src="item.img" alt="" class="pet"> -->
-      <img :src="require(`../assets/img/pets/${index}.png`)" alt="" class="pet">
+      <img :src="require(`../assets/img/pets/pet${index}.png`)" alt="" class="pet">
       <strong class="name">{{item.name}}</strong>
       <strong class="num">x {{item.nums}}</strong>
     </div>

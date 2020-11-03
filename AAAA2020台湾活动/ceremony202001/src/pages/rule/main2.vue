@@ -7,6 +7,15 @@
     <div class="gifts" v-if="type == 1">
       <h5>活動時間</h5>
       <p>11月16日18:00:00-12月31日20:00:00</p>
+      <h5>活動獎勵</h5>
+      <div class="giftsItem">
+        <div class="item" v-for="(item,index) in 28" :key="index">
+          <div class="imgBg">
+            <img :src="require(`../../assets/img/ruleGifts/${item}.png`)" alt="">
+          </div>
+          <strong v-html="giftName[index]"></strong>
+        </div>
+      </div>
       <h5>抽獎好禮多-歡樂嘉年華榜單獎勵</h5>
       <h6 class="minTop">第一名:</h6>
       <p>歡樂嘉年華徽章（1個月）+紅毯座駕（1個月）+3000金幣+6000金豆</p>
@@ -103,7 +112,37 @@
 export default {
   data() {
     return {
-      type: 1
+      type: 1,
+      giftName: [
+        '助攻MVP<br/>認證',
+        '禮物冠名',
+        '歡歌嘉年華<br/>徽章',
+        '助攻低級<br/>徽章',
+        '助攻中級<br/>徽章',
+        '助攻高級<br/>徽章',
+        '助攻MVP<br/>徽章',
+        '支持你<br/>徽章',
+        '玫瑰花束<br/>徽章',
+        '彩虹獨角獸<br/>徽章',
+        '應援棒<br/>徽章',
+        '為你應援<br/>徽章',
+        '千燈祝福<br/>徽章',
+        '紅毯座駕',
+        '馴鹿座駕',
+        '白玉仙舟<br/>座駕',
+        '中級助攻<br/>頭飾',
+        '高級助攻<br/>頭飾',
+        '助攻MVP<br/>頭飾',
+        '抽獎背包<br/>禮物',
+        '助攻獎勵<br/> 背包禮物',
+        '儲值返利獎勵<br/>背包禮物',
+        '邁凱倫座駕',
+        'GTR座駕',
+        '儲值返利券',
+        '送禮返利券',
+        '海量金幣',
+        '3%儲值券'
+      ]
     }
   },
   methods: {
@@ -182,6 +221,37 @@ body {
       .img3 {
         width: 7.02rem;
         height: 14.81rem;
+      }
+    }
+    .giftsItem {
+      width: 6.31rem;
+      height: 17.57rem;
+      padding: 0.81rem 0.48rem 0;
+      background: url(../../assets/img/ruleGifts/rulebg.png);
+      background-size: 100% 100%;
+      margin-left: -0.15rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .item {
+        .imgBg {
+          width: 1.4rem;
+          height: 1.4rem;
+          background: url(../../assets/img/luckBg.png);
+          background-size: 100% 100%;
+          margin: 0 auto;
+          img {
+            width: 1.4rem;
+            height: 1.4rem;
+            margin: 0 auto;
+          }
+        }
+
+        strong {
+          display: block;
+          font-size: 0.24rem;
+          text-align: center;
+        }
       }
     }
     .minTop {

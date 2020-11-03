@@ -44,11 +44,11 @@ export default {
         return
       } else if (this.actStatus === 0) {
         this.vxc('setToast', {
-          msg: this.lang.noAct
+          msg: this.lang.ActNot
         })
       } else if (this.actStatus === 2) {
         this.vxc('setToast', {
-          msg: this.lang.actEd
+          msg: this.lang.ActEnd
         })
       } else {
         callback()
