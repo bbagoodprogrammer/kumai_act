@@ -1,8 +1,8 @@
 <template>
   <div class="footer" :class="'status' + footerState" @click="singUp()" v-if="footerState != 7">
     <div class="msg" v-if="footerState != 0 & footerState != 1 && footerState != 2 ">
-      <div class="rank" :class="{noRank:petMsg.rank == 0}" v-if="footerState == 5">{{petMsg.rank == 0?'未上榜':petMsg.rank}}</div>
-      <div class="rank" :class="{noRank:nowMsg.rank == 0}" v-else-if="footerState!=6">{{nowMsg.rank== 0?'未上榜':nowMsg.rank}}</div>
+      <div class="rank" :class="[{noRank:petMsg.rank == 0},'top' + petMsg.rank]" v-if="footerState == 5">{{petMsg.rank == 0?'未上榜':petMsg.rank}}</div>
+      <div class="rank" :class="[{noRank:nowMsg.rank == 0},'top' + nowMsg.rank]" v-else-if="footerState!=6">{{nowMsg.rank== 0?'未上榜':nowMsg.rank}}</div>
       <div class="imgBox" @click="goUser(userImg.uid)" :class="{ml:footerState == 6}">
         <img v-if="userImg.avatar_frame &&userImg.avatar_frame != ''" :src="userImg.avatar_frame" class="frame" alt="">
         <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     singUp() {
-      if (this.footerState != 2) { } return
+      if (this.footerState != 2) return
       globalBus.$emit('commonEvent', () => {
         api.singUp().then(res => {
           if (res.data.response_status.code == 0) {
@@ -107,12 +107,31 @@ export default {
     background: url(../assets/img/footer/footerBg.png) no-repeat;
     background-size: 100% 100%;
     .rank {
+      width: 0.51rem;
+      height: 0.67rem;
+      line-height: 0.67rem;
       text-align: center;
+      font-size: 0.26rem;
       margin: 0 0.22rem 0 0.52rem;
       &.noRank {
         width: 0.8rem;
         white-space: nowrap;
         margin: 0 0.22rem 0 0.52rem;
+      }
+      &.top1 {
+        text-indent: 999rem;
+        background: url(../assets/img/top1.png);
+        background-size: 100% 100%;
+      }
+      &.top2 {
+        text-indent: 999rem;
+        background: url(../assets/img/top2.png);
+        background-size: 100% 100%;
+      }
+      &.top3 {
+        text-indent: 999rem;
+        background: url(../assets/img/top3.png);
+        background-size: 100% 100%;
       }
     }
     .imgBox {

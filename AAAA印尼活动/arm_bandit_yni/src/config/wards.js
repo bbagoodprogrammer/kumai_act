@@ -1,6 +1,6 @@
 const wards = {
     1: "Menyala untuk Anda",   //語聊房揹包禮物
-    2: "Bar peri", //作品揹包禮物
+    2: "Domba liburan", //作品揹包禮物
     3: "Mobil mahkota", //Ｋ房揹包禮物
     4: "3%Kupon bonus untuk top up", //3%储值返利券
     5: "5%Kupon bonus untuk top up", //5%储值返利券

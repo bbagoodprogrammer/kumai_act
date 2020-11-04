@@ -11,7 +11,7 @@
             <img :src="boxConfig[item.level].imgAct" alt="" v-if="item.receive || item.able" class="giftBox" @click="boxClick(item)">
             <img :src="boxConfig[item.level].imgBlack" alt="" v-else class="giftBox">
 
-            <canvas class="linght" v-if="item.able"></canvas>
+            <canvas class="linght" v-if="item.able && !item.receive"></canvas>
           </div>
           <div class="lvTips">
             <strong class="lv">Lv.{{item.level}}</strong>

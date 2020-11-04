@@ -67,13 +67,13 @@ export default {
         },
         3: {
           gift: {
-            type: 'gift1',
+            type: 'gift2',
             num: 1
           }
         },
         4: {
           gift: {
-            type: 'gift2',
+            type: 'gift1',
             num: 1
           }
         },

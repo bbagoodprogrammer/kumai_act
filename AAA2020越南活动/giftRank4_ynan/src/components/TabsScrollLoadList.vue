@@ -52,7 +52,7 @@
           <em>giây</em>
         </div>
       </div>
-      <p class="rankTips" v-if="showType==1">Xếp hạng theo số Xu quà đặc biệt mà KOL nhận được từ bài hát và trong Phòng Kara. <span v-if="mainTab == 0">Top 3 BXH Ngày sẽ lần lượt nhận được chia 2%, 1.5%, 1% thưởng tiền mặt BXH. </span> </p>
+      <p class="rankTips" v-if="showType==1">Xếp hạng theo số Xu quà đặc biệt mà KOL nhận được từ bài hát và trong Phòng Kara. <span v-if="mainTab == 0">Top 3 BXH Ngày sẽ lần lượt nhận được chia 3%, 2.5%, 2% thưởng tiền mặt BXH. </span> </p>
       <p class="rankTips" v-if="showType==2">Xếp hạng theo số Xu quà đặc biệt mà KOL nhận được từ Phòng Kara của mình. <span v-if="mainTab == 0">Top 3 BXH Ngày sẽ lần lượt nhận được chia 2%, 1.5%, 1% thưởng tiền mặt BXH.</span> </p>
       <p class="rankTips" v-if="showType==3">Xếp hạng theo số xu quà tặng yêu cầu mà ca sĩ nhận từ bài hát và phòng Kara<span v-if="mainTab == 0">Top 3 BXH ngày lần lượt chia 8%, 5%, 3% thưởng tiền mặt BXH</span></p>
     </div>

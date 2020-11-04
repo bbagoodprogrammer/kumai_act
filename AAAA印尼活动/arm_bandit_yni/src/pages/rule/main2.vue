@@ -16,7 +16,7 @@
           <span>
             <img :src="require('../../assets/img/ward18.png')" alt="">
           </span>
-          <p>Hak istimewa bangsawan</p>
+          <p>Mount Mobil Keren</p>
         </li>
         <li>
           <span>

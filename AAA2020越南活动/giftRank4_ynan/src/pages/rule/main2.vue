@@ -8,11 +8,11 @@
     <div class="ruleItem" v-if="type==1">
       <h5>Thể lệ:</h5>
       <h6>Báo danh:</h6>
-      <p>1.KOL sẽ được mặc định tham gia 2 BXH là BXH KOL và BXH Chủ Phòng. Nếu mình không có tạo Phòng, thì sẽ không tham gia BXH Chủ Phòng.</p>
+      <p>1.KOL đã ký hợp đồng sẽ được mặc định tham gia 2 BXH là BXH KOL và BXH Phòng. Nếu mình không có tạo Phòng, thì sẽ không tham gia BXH Chủ Phòng.</p>
       <p>2.Người dùng chưa ký hợp đồng có thể báo danh và sẽ được mặc định tham gia BXH Ca Sĩ.</p>
       <p>3.Idol có thể báo danh tham gia BXH Ca Sĩ, tuy nhiên sẽ không tính quà tặng khi livestream; quà tặng khi lên mic thường và bài hát sẽ được tính điểm bình thường. </p>
       <p class="red">4.Sau khi người dùng (chưa ký hợp đồng) báo danh thành công, điểm số sẽ được bắt đầu tính vào BXH Ca Sĩ. Thành tích sự kiện kỳ này của người dùng (chưa ký hợp đồng) sẽ chỉ được tính vào BXH Ca Sĩ.
-        <br />(Ghi chú: nếu ký hợp đồng trong thời gian sự kiện thì vẫn được hưởng chia quà tặng như thường, nhưng sẽ không được xếp vào BXH KOL và BXH Chủ Phòng KOL)
+        <br />(Ghi chú: nếu ký hợp đồng trong thời gian sự kiện thì vẫn được hưởng chia quà tặng như thường, nhưng sẽ không được xếp vào BXH KOL và BXH Chủ Phòng)
       </p>
       <!-- <p>5. Sau khi báo danh xong, điểm số mới bắt đầu tính vào BXH, người dùng chưa ký hợp đồng chỉ được tính điểm vào BXH Ca Sĩ. -->
       <!-- <br /> (Ghi chú: nếu ký hợp đồng trong thời gian sự kiện vẫn được chia quà tặng như thường, chỉ không được xếp vào BXH KOL và BXH chủ phòng)</p> -->
@@ -21,9 +21,9 @@
       <p>2.BXH KOL sẽ được xếp dựa theo số Xu quà tặng đặc biệt mà KOL nhận được từ bài hát và trong phòng Kara.</p>
       <p>3.BXH Chủ Phòng KOL sẽ được xếp dựa theo số Xu quà tặng đặc biệt mà KOL nhận được trong phòng của mình.</p>
       <p>4.BXH Ca Sĩ sẽ được xếp dựa theo số Xu quà tặng đặc biệt mà ca sĩ nhận được từ bài hát và trong phòng Kara.</p>
-      <p>5.BXH Ngày và Tổng sẽ chỉ trình bày ra top 100. Nếu bằng điểm thì người đạt trước sẽ được xếp cao hơn. </p>
+      <p>BXH Ngày và Tổng sẽ chỉ hiển thị top 100. Nếu bằng điểm thì người đạt trước sẽ được xếp cao hơn. </p>
       <!-- <p>6. Quà tặng yêu cầu của sự kiện kỳ này là quà bài hát Thiệp Anh Đào (10 xu), Hẹn Ước (129 xu), quà phòng Kara Khoá Đồng Tâm (10 xu), Khắc Tên Nhau (129 xu).</p> -->
-      <P class="mt">Ghi chú: mọi thắc mắc về ký hợp đồng KOL, xin vui lòng liên hệ Karaoke Now Official để nhận được hỗ trợ (ID: 12)</P>
+      <P class="mt">Ghi chú: mọi thắc mắc về ký hợp đồng để trở thành KOL, xin vui lòng liên hệ Karaoke Now Official (ID: 12) để nhận được hỗ trợ.</P>
       <h6>Quy định khác</h6>
       <p>Trong quá trình diễn ra sự kiện, nếu phát hiện người dùng gian lận trong sự kiện, ban tổ chức sẽ dựa theo mức độ vi phạm để xử lý, người vi phạm sẽ bị loại khỏi sự kiện hoặc khoá tài khoản. Bao gồm các hành vi sau:</p>
       <p>1. Dùng hoặc trộm bài hát của người khác để dự thi.</p>
@@ -74,7 +74,7 @@
       <p>Hạng 4-10:</p>
       <p>Huy chương Vua Qùa Tặng (30 ngày) + 1,000 Xu + Xe Tường Vy (15 ngày) + 1 túi quà Tim Chạm Tim (320 Xu) + 2,000 Đậu.</p>
       <h5>Thưởng BXH bảo hộ</h5>
-      <p>Top 1 tặng quà cho top 3 của BXH KOL tổng và BXH Ca Sĩ tổng sẽ nhận được: Huy Chương Trùm Bảo Vệ (30 ngày) + 10,000 Đậu.</p>
+      <p>Top 1 tặng quà cho top 3 của BXH KOL tổng và BXH Ca Sĩ tổng sẽ nhận được: Huy Chương Trùm Bảo hộ (30 ngày) + 10,000 Đậu.</p>
       <p class="mt">Ghi chú:</p>
       <p>1. Phần thưởng BXH ngày và BXH tổng sẽ được gửi trong vòng 7 ngày sau khi kết thúc sự kiện.</p>
       <p>2. Túi quà có thời hạn 14 ngày.</p>
