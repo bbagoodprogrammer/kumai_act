@@ -110,14 +110,15 @@ import { mapState } from "vuex"
 import api from "../api/apiConfig"
 import getString from "../utils/getString"
 import APP from "../utils/openApp"
-import { setTimeout, setInterval } from 'timers';
+
+
+
 export default {
   data() {
     return {
       aning: false,
       obcAni: false,
       starsArr: [],
-      timer: null,
       act_index: 0,
       peopleTitle: ['最佳男歌手', "最佳女歌手", "最佳單曲", "最佳MV"],
       peopleDefaultList_0: [
@@ -198,7 +199,9 @@ export default {
       ],
       pupListData: [],
       showListPup: false,
-      first: true
+      first: true,
+      timer: null,
+      timer2: null
     }
   },
   computed: {
@@ -248,7 +251,6 @@ export default {
   },
   watch: {
     actList(val) {
-      console.log(val)
       let arr = JSON.parse(JSON.stringify(val))
       if (this.first) {
         for (let i = 0; i < arr.length; i++) {
@@ -273,10 +275,10 @@ export default {
         if (res.data.response_status.code == 0) {
           this.toast(`您已預約該活動,我們將於活動<br/>上線前通過K歌小助手提醒您~`)
           this.vxc('setActStatus', aid)
-          this.startAni(4000)
+          this.startAni(1000)
         } else {
           this.toast(res.data.response_status.error)
-          this.startAni(4000)
+          this.startAni(1000)
         }
       })
     },
@@ -298,10 +300,11 @@ export default {
         num++
       }
       this.act_index = index
-      this.startAni(4000)
+      this.startAni(1000)
     },
     startAni(tm) {
-      setTimeout(() => {
+      clearTimeout(this.timer2)
+      this.timer2 = setTimeout(() => {
         this.aning = true
         this.aniTime(4000)
       }, tm)
@@ -758,7 +761,7 @@ export default {
         margin-right: 0;
       }
     }
-    .girl {
+    &.girl {
       background: url(../assets/img/title/title3_2.png);
       background-size: 100% 100%;
     }
