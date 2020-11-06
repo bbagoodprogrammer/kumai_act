@@ -2,11 +2,11 @@
   <div class="playing4">
     <div class="storedTips">
       <div class="storedTabs">
-        <span class="tab1" :class="{act:type==1}" @click="type =1"></span>
-        <span class="tab2" :class="{act:type==2}" @click="type =2"></span>
+        <span class="tab1" :class="{act:type==1}" @click="setType(1)"></span>
+        <span class="tab2" :class="{act:type==2}" @click="setType(2)"></span>
       </div>
-      <p v-if="type==1">11月26日感恩節當天儲值任意金幣即送12%的返利金幣（不包括系統贈送），多儲多返！活動期間每筆儲值成功後返利金幣立即到賬！</p>
-      <p v-else>12月25日聖誕節當天儲值任意金幣即送12%的返利金幣（不包括系統贈送），多儲多返！活動期間每筆儲值成功後返利金幣立即到賬！</p>
+      <p v-if="type==1"> <em class="red">11月26日感恩節當天</em>儲值任意金幣即送12%的返利金幣（不包括系統贈送），多儲多返！活動期間每筆儲值成功後返利金幣立即到賬！</p>
+      <p v-else> <em class="red">12月25日聖誕節當天</em>儲值任意金幣即送12%的返利金幣（不包括系統贈送），多儲多返！活動期間每筆儲值成功後返利金幣立即到賬！</p>
       <div class="storeBtn" @click="goStore()"></div>
     </div>
     <div class="storeRank">
@@ -26,13 +26,13 @@
         <div class="rank4" :style="{height:listHeight+'rem'}">
           <div class="bg">
             <div class="top">
-              <p v-if="!list.length" class="noData">暫無數據</p>
+              <p v-if="!nowList.length" class="noData">暫無數據</p>
             </div>
             <div class="con"></div>
             <div class="bottom"></div>
           </div>
           <ul class="list">
-            <li v-for="(item,index) in list" :key="index" :class="'top' + item.rank">
+            <li v-for="(item,index) in nowList" :key="index" :class="'top' + item.rank">
               <span class="rank">{{item.rank}}</span>
               <div class="imgBox" @click="goUser(item.uid)">
                 <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
@@ -60,9 +60,9 @@
 
         </div>
         <div class="tips">
-          <p>1.座駕及背包禮物需更新到最新版本才可使用~</p>
-          <p>2.感恩節大回饋儲值榜單獎勵在11月28日18:00:00由系統發放</p>
-          <p>3.聖誕節大回饋儲值榜單獎勵將在12月27日18:00:00由系統發放</p>
+          <p>1.背包禮物需更新到最新版本才可使用~</p>
+          <p v-if="type == 1">2.排行獎勵將於感恩節結束後14個工作日內派發完畢~</p>
+          <p v-else>2.排行獎勵將於聖誕節結束後14個工作日內派發完畢~</p>
         </div>
       </div>
     </div>
@@ -94,8 +94,17 @@ export default {
         }
       ],
       listHeight: 0,
-      list: [],
-      rank: null,
+      list: {
+        1: {
+          loadConent: 0,
+          list: []
+        },
+        2: {
+          loadConent: 0,
+          list: []
+        }
+      },
+      rank: {},
       loaded: false,
       more: true,
       rotatePx: 0,    //刷新旋转动画
@@ -103,10 +112,13 @@ export default {
     }
   },
   computed: {
-    ...mapState(['isShare'])
+    ...mapState(['isShare']),
+    nowList() {
+      return this.list[this.type].list
+    }
   },
   watch: {
-    list(val) {
+    nowList(val) {
       if (val.length) {
         this.listHeight = val.length * 1.4 + .65
       } else {
@@ -117,22 +129,42 @@ export default {
   created() {
     this.init()
   },
-  mounted() {
-    window.addEventListener('scroll', this.onScroll)
-  },
-  beforeDestroy() {
-    window.removeEventListener('scroll', this.onScroll);
-  },
+  // mounted() {
+  //   window.addEventListener('scroll', this.onScroll)
+  // },
+  // beforeDestroy() {
+  //   window.removeEventListener('scroll', this.onScroll);
+  // },
   methods: {
     init() {
-      api.page4(0).then(res => {
-        this.list = res.data.response_data.list
-        this.rank = res.data.response_data.rank
-        this.vxc('changGroupsUserMsg', {
-          key: 4,
+      api.page4(1).then(res => {
+        this.list[1].list = res.data.response_data.list
+        this.list[1].loadConent++
+        this.rank[1] = res.data.response_data.rank
+        this.vxc('setStoreType', 1)
+        this.vxc('setStoreUser', {
+          index: 1,
           msg: res.data.response_data.rank
         })
       })
+    },
+    setType(val) {
+      if (val == 2 && !this.list[2].loadConent) {
+        api.page4(2).then(res => {
+          this.list[2].list = res.data.response_data.list
+          this.list[2].loadConent++
+          this.rank[2] = res.data.response_data.rank
+          this.type = val
+          this.vxc('setStoreUser', {
+            index: 2,
+            msg: res.data.response_data.rank
+          })
+          this.vxc('setStoreType', val)
+        })
+      } else {
+        this.vxc('setStoreType', val)
+        this.type = val
+      }
     },
     goStore() {
       if (!this.isShare) {
@@ -141,24 +173,34 @@ export default {
         APP()
       }
     },
-    onScroll() { //滾動加載
-      const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100
-      if (scrollToBottom && !this.loaded && this.more && this.rank) {
-        this.more = false
-        api.page4(this.list.length, 'more').then(res => {
-          this.more = true
-          let list = res.data.response_data.list
-          this.list = this.list.concat(list)
-          if (list.length < 20) {
-            this.loaded = true
-          }
-        })
-      }
-    },
+    // onScroll() { //滾動加載
+    //   const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100
+    //   if (scrollToBottom && !this.loaded && this.more && this.rank) {
+    //     this.more = false
+    //     api.page4(this.list.length, 'more').then(res => {
+    //       this.more = true
+    //       let list = res.data.response_data.list
+    //       this.list = this.list.concat(list)
+    //       if (list.length < 20) {
+    //         this.loaded = true
+    //       }
+    //     })
+    //   }
+    // },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
-      this.init()
-    }
+      this.vxc('setStoreType', null)
+      if (this.type == 1) {
+        this.init()
+      } else {
+
+        this.list[2].loadConent = 0
+        this.setType(2)
+      }
+    },
+    goUser(uid) {
+      location.href = `uid:${uid}`
+    },
   }
 }
 </script>
@@ -177,6 +219,10 @@ export default {
       line-height: 0.5rem;
       text-align: center;
       font-size: 0.28rem;
+      .red {
+        color: #ff9fa4;
+        font-size: 0.28rem;
+      }
     }
     .storedTabs {
       display: flex;

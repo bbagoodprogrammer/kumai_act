@@ -26,7 +26,9 @@ const store = new Vuex.Store({
         act_index: 1,
         tab1_type: 1,
         pets: {},
-        userInfo: {}
+        userInfo: {},
+        storeType: null,
+        storeUser: {}
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -114,6 +116,12 @@ const store = new Vuex.Store({
         },
         delPoints(state) {
             state.point.three = false
+        },
+        setStoreType(state, val) {
+            state.storeType = val
+        },
+        setStoreUser(state, val) {
+            state.storeUser[val.index] = val.msg
         }
     },
     actions: {

@@ -87,6 +87,7 @@ export default {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
           const { user_info, act_info, mission_status, exchange_status, current_date, date_line, top_mission, missions } = response_data
+          document.title = act_info.subject
           this.banner = act_info.images.banner
           this.vxc('changActStatus', act_info.step)
           this.vxc('setUser_info', user_info)
