@@ -18,7 +18,7 @@
       <div class="sing" @click="goSing()">去唱一首</div>
       <span>唱完記得回來完成報名喔</span>
     </div>
-    <p class="tips">1.參賽作品需為<em>10月16日12:00</em> 後發佈的任意公開作品(清唱5分鐘除外)</p>
+    <p class="tips">1.參賽作品需為<em>11月17日12:00</em> 後發佈的任意公開作品(清唱5分鐘除外)</p>
     <p class="tips">2.可上傳多首作品參賽，報名後作品收禮才會被計算</p>
     <div class="determinePup" v-if="showPup">
       <div class="determinCon">

@@ -22,9 +22,9 @@ const wards = {
     21: "100Kacang emas", //100金豆
     22: "150Kacang emas", //150金豆
     23: "200Kacang emas", //200金豆
-    24: "Bangsawan ksatria", //骑士贵族
-    25: "Bangsawan viscount", //子爵贵族
-    26: "Bangsawan earl", //伯爵贵族
+    24: "Mount Audi", //骑士贵族
+    25: "Mount BMW", //子爵贵族
+    26: "Mount Bugatti", //伯爵贵族
     27: "VIP (3 hari)", //会员3天
     28: "akun UID yang baik dengan 7 digit/angka", //8位靓号
     29: "Double Card" //double卡

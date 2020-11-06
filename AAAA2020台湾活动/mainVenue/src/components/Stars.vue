@@ -214,13 +214,13 @@ export default {
     },
     nowActTips() {
       if (this.nowAct.step == 0) {
-        if (this.nowAct.attension >= 100) {
+        if (this.nowAct.attension >= 3) {
           return `已有${this.nowAct.attension}人預約`
         } else {
           return false
         }
       } else {
-        if (this.nowAct.attension >= 100) {
+        if (this.nowAct.attension >= 3) {
           if (this.nowAct.act_id == 5) {
             return `已有${this.nowAct.data}家族參與`
           } else if (this.nowAct.act_id == 8) {

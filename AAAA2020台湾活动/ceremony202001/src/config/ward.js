@@ -40,7 +40,7 @@ export const tickGiftList = {
             name: '返利當前儲值 金幣20%金豆'
         },
         {
-            img: require("../assets/img/ticket/gift/gift1.png"),
+            img: require("../assets/img/ticket/gift/gift2.png"),
             name: '夢幻木馬 (價值3520金幣)'
         },
     ],
@@ -54,7 +54,7 @@ export const tickGiftList = {
             name: '返利當前儲值 金幣15%金豆'
         },
         {
-            img: require("../assets/img/ticket/gift/gift1.png"),
+            img: require("../assets/img/ticket/gift/gift3.png"),
             name: '星河遊輪 (價值2288金幣)'
         },
     ],
@@ -68,7 +68,7 @@ export const tickGiftList = {
             name: '返利當前儲值 金幣12%金豆'
         },
         {
-            img: require("../assets/img/ticket/gift/gift1.png"),
+            img: require("../assets/img/ticket/gift/gift4.png"),
             name: '黃金應龍 (價值1888金幣)'
         },
     ],
@@ -82,7 +82,7 @@ export const tickGiftList = {
             name: '返利當前儲值 金幣10%金豆'
         },
         {
-            img: require("../assets/img/ticket/gift/gift1.png"),
+            img: require("../assets/img/ticket/gift/gift5.png"),
             name: '粉色摩天輪 (價值1520金幣)'
         },
     ]

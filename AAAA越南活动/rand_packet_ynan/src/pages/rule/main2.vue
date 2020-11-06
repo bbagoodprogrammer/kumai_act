@@ -4,7 +4,7 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Thể lệ</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Thưởng</a>
     </div>
-    <h6 class="time">Thời gian: 12h 7/10 ~ 22h 14/10</h6>
+    <h6 class="time">Thời gian: 12h 9/11 ~ 22h 16/11</h6>
     <div class="ruleTips" v-show="tab == 0">
       <h6>Thể lệ:</h6>
       <p>1. Toàn bộ người dùng đều có thể báo danh tham gia.</p>
@@ -17,14 +17,14 @@
       </p>
       <h6>Thời gian BXH Ngày:</h6>
       <p class="dayTime">
-        Ngày1：12:00 7/10 - 00:00 8/10<br />
-        Ngày2：00:00 8/10 - 00:00 9/10<br />
-        Ngày3：00:00 9/10 - 00:00 10/10<br />
-        Ngày4：00:00 10/10 - 00:00 11/10<br />
-        Ngày5：00:00 11/10 - 00:00 12/10<br />
-        Ngày6：00:00 12/10 - 00:00 13/10<br />
-        Ngày7：00:00 13/10 - 00:00 14/10<br />
-        Ngày8: 00:00 14/10 - 22:00 14/10
+        Ngày1：12:00 9/11 - 00:00 10/11<br />
+        Ngày2：00:00 10/11 - 00:00 11/11<br />
+        Ngày3：00:00 11/11 - 00:00 12/11<br />
+        Ngày4：00:00 12/11 - 00:00 13/11<br />
+        Ngày5：00:00 13/11 - 00:00 14/11<br />
+        Ngày6：00:00 14/11 - 00:00 15/11<br />
+        Ngày7：00:00 15/11 - 00:00 16/11<br />
+        Ngày8：00:00 16/11 - 22:00 16/11
       </p>
       <h6>Cấp may mắn:</h6>
       <p class="dayTime">
@@ -55,7 +55,7 @@
         </span>
         <span>
           <img src="../../assets/img/ruleGift/4.png" alt="">
-          <strong>Xe Cánh Vàng</strong>
+          <strong>Xe Bugatti </strong>
         </span>
         <span>
           <img src="../../assets/img/ruleGift/8.png" alt="">
@@ -68,10 +68,10 @@
       <h6>Thưởng BXH Ngày</h6>
       <p>Top 1-3 lần lượt nhận phiếu quà nạp 15%, 12%, 10%. 0h hôm sau hệ thống tự động gửi, ngày cuối sẽ gửi ngay khi kết thúc sự kiện.</p>
       <h6>Thưởng BXH Tổng:</h6>
-      <p>Hạng 1: huy chương Hộp Quà(31 ngày) + 10000 điểm phú hộ + Xe Cánh Vàng (31 ngày) + 3000 xu + 5000 đậu</p>
-      <p>Hạng 2: huy chương Hộp Quà(31 ngày) + 8000 điểm phú hộ + Xe Cánh Vàng (31 ngày) + 2000 xu +3000 đậu</p>
-      <p>Hạng 3: huy chương Hộp Quà(31 ngày) + 6000 điểm phú hộ + Xe Cánh Vàng (31 ngày) + 1000 xu + 2000 đậu</p>
-      <p>Hạng 4-10: huy chương Hộp Quà(31 ngày) + 200 xu + 1000 đậu</p>
+      <p>Hạng 1: huy chương Hộp Quà(31 ngày) + Thiên Mã (1699 xu) *2 + Xe Bugatti (31 ngày) + 3000 xu + 5000 đậu</p>
+      <p>Hạng 2: huy chương Hộp Quà(31 ngày) +Thiên Mã (1699 xu)*1+ Xe Bugatti (31 ngày) + 2000 xu +3000 đậu</p>
+      <p>Hạng 3: huy chương Hộp Quà(31 ngày) +Thiên Mã (1699 xu)*1 + Xe Bugatti (31 ngày) + 1000 xu + 2000 đậu</p>
+      <p>Hạng 4-10: huy chương Hộp Quà(31 ngày) + 500 xu + 1000 đậu</p>
       <h6>Chú ý:</h6>
       <p>1. Phiếu quà nạp nhận từ sự kiện có thời hạn 1 ngày kể từ khi nhận, mời sử dụng kịp thời.</p>
       <p>2. Toàn bộ Túi quà từ sự kiện có hạn sử dụng 14 ngày.</p>

@@ -370,6 +370,7 @@ export default {
           height: 1.4rem;
           display: flex;
           align-items: center;
+          position: relative;
           .rank {
             width: 0.51rem;
             height: 0.67rem;

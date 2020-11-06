@@ -145,17 +145,11 @@ function list3(gid, from) {
 
 
 //页面4
-function page4(from, more) {
+function page4(type) {
     if (token) {
-        if (more) {
-            return axios.get(`/carnival2020ceremony/page4.php?token=${token}&from=${from}`)
-        }
-        return get(`/carnival2020ceremony/page4.php?token=${token}&from=${from}`)
+        return get(`/carnival2020ceremony/page4.php?token=${token}&type=${type}`)
     } else {
-        if (more) {
-            return axios.get(`/carnival2020ceremony/page4.php?from=${from}`)
-        }
-        return get(`/carnival2020ceremony/page4.php?from=${from}`)
+        return get(`/carnival2020ceremony/page4.php?type=${type}`)
     }
 
 }

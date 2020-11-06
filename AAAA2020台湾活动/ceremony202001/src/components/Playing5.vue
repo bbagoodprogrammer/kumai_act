@@ -9,7 +9,7 @@
             <div class="name">{{item.name}}</div>
             <div class="actTime">{{getTime(item)}}</div>
           </div>
-          <div class="actStatus" :class="{start:item.step}" @click="goAct(item.url,item.step)"></div>
+          <div class="actStatus" :class="{start:item.url}" @click="goAct(item.url,item.step)"></div>
         </li>
       </ul>
     </div>
@@ -42,14 +42,14 @@ export default {
       })
     },
     getTime(item) {
-      return getDate(new Date(item.stime), 2) + '-' + getDate(new Date(item.etime), 2)
+      return getDate(new Date(item.stime * 1000), 2) + '-' + getDate(new Date(item.etime * 1000), 2)
     },
     goAct(url, step) {
       if (this.isShare) {
         APP()
         return
       }
-      if (step) {
+      if (url) {
         let regstr = getString('token')
         let uid = getString('uid')
         location.href = `${url}?uid=${uid}&token=${regstr}`

@@ -395,15 +395,15 @@ export default {
           },
           {
             day: 25,
-            act: '年度最強家族戰決賽',
+            act: '年度最強家族戰決賽<br/>年度主持人巔峰戰決賽',
             style: 'crown',
             singIn: false,
             gift: []
           },
           {
             day: 26,
-            act: '年度主持人巔峰戰決賽',
-            style: 'crown',
+            act: null,
+            // style: 'crown',
             singIn: false,
             gift: []
           },

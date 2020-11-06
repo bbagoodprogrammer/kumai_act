@@ -22,10 +22,10 @@
         <div class="score">{{petMsg.score}}</div>
       </div>
       <div class="tips" v-else-if="footerState == 6">
-        <p>已累計儲值:{{nowMsg.score}}</p>
-        <div class="score" v-if="nowMsg.rank == 1">遠超第二名:{{nowMsg.gap}} <i class="coins"></i> </div>
-        <div class="score" v-else-if="nowMsg.rank != 0">離趕超上一名還差:{{nowMsg.gap}}<i class="coins"></i></div>
-        <div class="score" v-else>離上榜領取獎勵還差:{{nowMsg.gap}}<i class="coins"></i></div>
+        <p>已累計儲值:{{storeMsg.score}}</p>
+        <div class="score" v-if="storeMsg.rank == 1">遠超第二名:{{storeMsg.gap}} <i class="coins"></i> </div>
+        <div class="score" v-else-if="storeMsg.rank != 0">離趕超上一名還差:{{storeMsg.gap}}<i class="coins"></i></div>
+        <div class="score" v-else>離上榜領取獎勵還差:{{storeMsg.gap}}<i class="coins"></i></div>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ import { globalBus } from '../utils/eventBus'
 import api from "../api/apiConfig"
 export default {
   computed: {
-    ...mapState(['actStatus', 'groupsUserMsg', 'registered', 'act_index', 'tab', 'tab1_type', 'pets', 'petUserMsg', 'userInfo']),
+    ...mapState(['actStatus', 'groupsUserMsg', 'storeType', 'storeUser', 'registered', 'act_index', 'tab', 'tab1_type', 'pets', 'petUserMsg', 'userInfo']),
     footerState() {
       if (this.actStatus == 0) {
         return 0
@@ -69,6 +69,10 @@ export default {
     },
     userImg() {
       return this.userInfo ? this.userInfo : {}
+    },
+    storeMsg() {
+      console.log(this.storeUser, this.storeType)
+      return this.storeUser[this.storeType] ? this.storeUser[this.storeType] : {}
     }
   },
   methods: {
