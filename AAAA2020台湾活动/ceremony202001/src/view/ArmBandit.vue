@@ -1,5 +1,6 @@
 <template>
-  <div class="box">
+  <div class="box" :class="{bg:!showBannerBg}">
+    <canvas id="bannerBg" v-show="!showBannerBg"></canvas>
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
@@ -37,6 +38,12 @@ import Playing2 from "../components/Playing2"
 import Playing3 from "../components/Playing3"
 import Playing4 from "../components/Playing4"
 import Playing5 from "../components/Playing5"
+
+import { Downloader, Parser, Player } from 'svga.lite'
+
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
+
 export default {
   components: { MsgToast, ActFooter, Playing1, Playing2, Playing3, Playing4, Playing5 },
   data() {
@@ -49,18 +56,22 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
-      act_index: 1
+      act_index: 1,
+      showBannerBg: true,
     }
-  },
-  created() {
-    this.judgeShare()  //判断是否为分享环境,请求相应的接口 
-    this.getDefaultData()
   },
   computed: {
     ...mapState(['point']),
     showCom() {
       return `Playing${this.act_index}`
     }
+  },
+  created() {
+    this.judgeShare()  //判断是否为分享环境,请求相应的接口 
+    this.getDefaultData()
+  },
+  mounted() {
+    this.bannerGo()
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -113,6 +124,15 @@ export default {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       window.removeEventListener("scroll", this.onScroll)
       this.getDefaultData('ref')
+    },
+    async bannerGo() {
+      let canvas = document.getElementById('bannerBg')
+      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/svga/a347802f5e975d5f7c7cdef2ee390dc5_1604924309.svga`);
+      const data = await parser.do(fileData);
+      let player = new Player(canvas)
+      await player.mount(data)
+      this.showBannerBg = false
+      player.start()
     }
   }
 }
@@ -133,6 +153,17 @@ body {
     url("../assets/img/bg.png") 0 0 no-repeat;
   background-size: 100% auto;
   padding-bottom: 2rem;
+  &.bg {
+    background: url(../assets/img/banner1.jpg) center 0 no-repeat;
+    background-size: 100% auto;
+  }
+  #bannerBg {
+    width: 7.5rem;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   .shareBar {
     position: fixed;
     z-index: 1000;
