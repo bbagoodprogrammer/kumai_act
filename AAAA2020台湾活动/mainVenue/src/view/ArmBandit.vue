@@ -1,14 +1,15 @@
 <template>
-  <div class="box">
+  <div class="box" :class="{bg:!showBannerBg}">
+    <canvas id="bannerBg" v-show="!showBannerBg"></canvas>
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
+
       <div class="tipsBox">
         <span class="ruleTips" :class="{top:isShare}" @click="goRule()">活動攻略 <i class="arr"></i></span>
         <span class="ruleTips" :class="{top:isShare}" @click="goDays()">簽到日曆 <i class="arr"></i></span>
       </div>
-
     </div>
     <div class="wards">
       <i class="left" @click="rollAmi('left')"></i>
@@ -48,6 +49,10 @@ import { globalBus } from '../utils/eventBus'
 import Stars from "../components/Stars"
 import People from "../components/people"
 
+import { Downloader, Parser, Player } from 'svga.lite'
+
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
 
 export default {
   components: { MsgToast, ActFooter, Stars, People },
@@ -61,6 +66,7 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
+      showBannerBg: true,
       wardsArr: [
         {
           img: require('../assets/img/gifts/1.png'),
@@ -120,6 +126,7 @@ export default {
     this.getDefaultData()
   },
   mounted() {
+    this.bannerGo()
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -131,219 +138,219 @@ export default {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
           const { data_list, list, uinfo } = response_data
-          let data =
-            [
-              {                act_id: 0, name: "人物評選", stime: "2020-11-15 18:00:00", etime: "2020-11-27 20:00:00", show: true, list: [
-                  [
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 1,
-                      uid: 1111
-                    }
-                  ],
-                  [
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 1
-                    }
-                  ],
-                  [
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 1
-                    }
-                  ],
-                  [
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 1
-                    }
-                  ]
-                ]              },
-              { act_id: 1, name: "嘉年華", stime: "2020-01-09 18:00:00", etime: "2020-01-18 20:00:00" },
-              {                act_id: 2, name: "魅力歌王大賽", stime: "2020-01-13 12:00:00", etime: "2020-01-22 23:00:00", show: true, list: [
-                  [
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 1,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 2,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 3,
-                      uid: 1111
-                    }
-                  ],
-                ]              },
-              {                act_id: 3, name: "K房男神女神", stime: "2020-01-17 18:00:00", etime: "2020-01-24 20:00:00", show: true, list: [
-                  [
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 1,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 2,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 3,
-                      uid: 1111
-                    }
-                  ],
-                  [
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 1,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 2,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 3,
-                      uid: 1111
-                    }
-                  ],
-                ]              },
-              {                act_id: 4, name: "C位爭奪賽", stime: "2020-01-19 14:30:00", etime: "2020-01-27 19:00:00", show: true, list: [
-                  [
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 1,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 2,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 3,
-                      uid: 1111
-                    }
-                  ],
-                ]              },
-              {                act_id: 5, name: "主持人巔峰戰", stime: "2020-02-07 20:00:00", etime: "2020-02-07 23:00:00", rank_keys: [], show: true, list: [
-                  [
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 1,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 2,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 3,
-                      uid: 1111
-                    }
-                  ],
-                ]              },
-              {                act_id: 6, name: "最強音", stime: "2020-02-07 20:00:00", etime: "2020-02-07 23:00:00", rank_keys: [], show: true, list: [
-                  [
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 1,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 2,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 3,
-                      uid: 1111
-                    }
-                  ],
-                ]              },
-              {                act_id: 7, name: "最強家族戰", stime: "2020-02-07 20:00:00", etime: "2020-02-07 23:00:00", rank_keys: [], show: true, list: [
-                  [
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 1,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 2,
-                      uid: 1111
-                    },
-                    {
-                      "uid": "100861",
-                      "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
-                      "nick": "ＭＩＮＧＦＵＮＮＮＮ",
-                      "rank": 3,
-                      uid: 1111
-                    }
-                  ],
-                ]              },
-              { act_id: 8, name: "演唱會", stime: "2020-02-07 20:00:00", etime: "2020-02-07 23:00:00", rank_keys: [] }
-            ]
+          let data = data_list
+          // [
+          //   {                act_id: 0, name: "人物評選", stime: "2020-11-15 18:00:00", etime: "2020-11-27 20:00:00", show: true, list: [
+          //       [
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 1,
+          //           uid: 1111
+          //         }
+          //       ],
+          //       [
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 1
+          //         }
+          //       ],
+          //       [
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 1
+          //         }
+          //       ],
+          //       [
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 1
+          //         }
+          //       ]
+          //     ]              },
+          //   { act_id: 1, name: "嘉年華", stime: "2020-01-09 18:00:00", etime: "2020-01-18 20:00:00" },
+          //   {                act_id: 2, name: "魅力歌王大賽", stime: "2020-01-13 12:00:00", etime: "2020-01-22 23:00:00", show: true, list: [
+          //       [
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 1,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 2,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 3,
+          //           uid: 1111
+          //         }
+          //       ],
+          //     ]              },
+          //   {                act_id: 3, name: "K房男神女神", stime: "2020-01-17 18:00:00", etime: "2020-01-24 20:00:00", show: true, list: [
+          //       [
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 1,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 2,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 3,
+          //           uid: 1111
+          //         }
+          //       ],
+          //       [
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 1,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 2,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 3,
+          //           uid: 1111
+          //         }
+          //       ],
+          //     ]              },
+          //   {                act_id: 4, name: "C位爭奪賽", stime: "2020-01-19 14:30:00", etime: "2020-01-27 19:00:00", show: true, list: [
+          //       [
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 1,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 2,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 3,
+          //           uid: 1111
+          //         }
+          //       ],
+          //     ]              },
+          //   {                act_id: 5, name: "主持人巔峰戰", stime: "2020-02-07 20:00:00", etime: "2020-02-07 23:00:00", rank_keys: [], show: true, list: [
+          //       [
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 1,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 2,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 3,
+          //           uid: 1111
+          //         }
+          //       ],
+          //     ]              },
+          //   {                act_id: 6, name: "最強音", stime: "2020-02-07 20:00:00", etime: "2020-02-07 23:00:00", rank_keys: [], show: true, list: [
+          //       [
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 1,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 2,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 3,
+          //           uid: 1111
+          //         }
+          //       ],
+          //     ]              },
+          //   {                act_id: 7, name: "最強家族戰", stime: "2020-02-07 20:00:00", etime: "2020-02-07 23:00:00", rank_keys: [], show: true, list: [
+          //       [
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 1,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 2,
+          //           uid: 1111
+          //         },
+          //         {
+          //           "uid": "100861",
+          //           "avatar": "http://img.17sing.tw/uc/img/head_100861_1543577175.png_small",
+          //           "nick": "ＭＩＮＧＦＵＮＮＮＮ",
+          //           "rank": 3,
+          //           uid: 1111
+          //         }
+          //       ],
+          //     ]              },
+          //   { act_id: 8, name: "演唱會", stime: "2020-02-07 20:00:00", etime: "2020-02-07 23:00:00", rank_keys: [] }
+          // ]
           this.vxc('setActList', list)
           let obj = {
             a_index: 0,
@@ -396,6 +403,15 @@ export default {
       this.$refs.contant.aning = false
       window.removeEventListener("scroll", this.onScroll)
       this.getDefaultData('ref')
+    },
+    async bannerGo() {
+      let canvas = document.getElementById('bannerBg')
+      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/d4/d4a69fd995c95441d2b5bcc3b6f3e524_1604980331sd4`);
+      const data = await parser.do(fileData);
+      let player = new Player(canvas)
+      await player.mount(data)
+      this.showBannerBg = false
+      player.start()
     }
   }
 }
@@ -412,6 +428,17 @@ body::-webkit-scrollbar {
   background: url(../assets/img/banner.png) center 0 no-repeat;
   background-size: 100% auto;
   padding-bottom: 2rem;
+  &.bg {
+    background: url(../assets/img/banner1.png) center 0 no-repeat;
+    background-size: 100% auto;
+  }
+  #bannerBg {
+    width: 7.5rem;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   .shareBar {
     position: fixed;
     z-index: 1000;

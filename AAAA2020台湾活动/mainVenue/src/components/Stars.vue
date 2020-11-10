@@ -4,13 +4,15 @@
       <h5><i class="left"></i> <strong>{{nowAct.name}}</strong> <i class="right"></i></h5>
       <div class="time">活動時間:{{nowAct.stime}} - {{nowAct.etime}}</div>
     </div>
-    <div class="universe">
+    <div class="universe" :class="{bg:showUnBg}">
+      <canvas id="unBg" v-show="!showUnBg"></canvas>
       <div class="starItem" v-for="(item,index) in starsArr" :key="index" :class="[{ani:aning},'start' +item.ainIndex]" @click="starClick(index)">
         <div class="imgBox">
           <img src="../assets/img/actLiner.png" alt="" class="defaultImg">
           <img :src="item.img" alt="" class="actImg" v-if="item.img">
           <img src="../assets/img/actDefaultImg.png" alt="" class="actImg" v-else>
-          <span class="linght" v-if="item.step == 1"> </span>
+          <span class="linght" v-if="item.step == 1 && showLingth"></span>
+          <canvas class="linghtAni" v-show="item.step == 1 && !showLingth"></canvas>
         </div>
         <strong class="actName">{{item.name}}</strong>
       </div>
@@ -93,7 +95,7 @@
           <ul>
             <li v-for="(item,index) in pupListData " :key="index">
               <span class="rank">{{item.rank}}</span>
-              <div class="imgBox" :class="{song:!item.uid}">
+              <div class="imgBox" :class="{song:!item.uid}" @click="goUser(item)">
                 <span class="default"></span>
                 <img :src="item.avatar" alt="" class="av">
               </div>
@@ -110,8 +112,10 @@ import { mapState } from "vuex"
 import api from "../api/apiConfig"
 import getString from "../utils/getString"
 import APP from "../utils/openApp"
+import { Downloader, Parser, Player } from 'svga.lite'
 
-
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
 
 export default {
   data() {
@@ -201,7 +205,10 @@ export default {
       showListPup: false,
       first: true,
       timer: null,
-      timer2: null
+      timer2: null,
+      showUnBg: true,
+      showLingth: true,
+      playerArr: []
     }
   },
   computed: {
@@ -264,9 +271,15 @@ export default {
         }
         this.starsArr = arr
       }
+      this.$nextTick(() => {
+        this.loadSvgaData(`http://fstatic.cat1314.com/uc/svga/e34a984a61ccc8b4166be9f3f16cbc6e_1604905653.svga`)
+      })
       this.aniTime(4500)
       this.aning = true
     }
+  },
+  mounted() {
+    this.unBgGo()
   },
   methods: {
     actAttension(aid) {
@@ -341,9 +354,9 @@ export default {
       if (item.uid) {
         location.href = `uid:${item.uid}`
       } else if (item.fid) {
-        location.href = `uid:${item.fid}`
+        location.href = `fid:${item.fid}`
       } else if (item.sid) {
-        location.href = 'songid:{"songlist":[' + sid + ' ],"index":0}';
+        location.href = 'songid:{"songlist":[' + item.sid + '],"index":0}';
       }
     },
     goActHtml(url) {
@@ -353,7 +366,32 @@ export default {
     },
     clearTimer() {
       clearInterval(this.timer)
-    }
+    },
+    async unBgGo() {
+      let canvas = document.getElementById('unBg')
+      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/svga/cd041c586dce50247b1472bb168389de_1604893770.svga`);
+      const data = await parser.do(fileData);
+      let player = new Player(canvas)
+      await player.mount(data)
+      this.showUnBg = false
+      player.start()
+    },
+    async loadSvgaData(addres) {
+      let canvas = document.getElementsByClassName('linghtAni')
+      console.log(canvas)
+      const fileData = await downloader.get(addres);
+      const data = await parser.do(fileData);
+      for (let i = 0; i < canvas.length; i++) {
+        let player = new Player(canvas[i])
+        // player.mount(data)
+        await player.mount(data)
+        this.playerArr.push(player)
+      }
+      this.showLingth = false
+      this.playerArr.forEach(element => {
+        element.start()
+      });
+    },
   }
 }
 </script>
@@ -392,8 +430,16 @@ export default {
   position: relative;
   width: 7.5rem;
   height: 8.21rem;
-  background: url(../assets/img/universe.png);
-  background-size: 100% 100%;
+  &.bg {
+    background: url(../assets/img/universe.png);
+    background-size: 100% 100%;
+  }
+  #unBg {
+    width: 7.5rem;
+    height: 8.21rem;
+    position: absolute;
+    z-index: -1;
+  }
   .userMsg {
     width: 3.1rem;
     height: 3.1rem;
@@ -467,6 +513,7 @@ export default {
         width: 100%;
         height: 100%;
         position: absolute;
+        z-index: 1;
       }
       .linght {
         display: block;
@@ -477,6 +524,17 @@ export default {
         top: -0.55rem;
         background: url(../assets/img/linght.png);
         background-size: 100% 100%;
+        z-index: -1;
+        transition: all 1s ease;
+      }
+      .linghtAni {
+        display: block;
+        width: 200%;
+        height: 200%;
+        position: absolute;
+        left: -0.55rem;
+        top: -0.55rem;
+        z-index: -1;
         transition: all 1s ease;
       }
     }
@@ -491,7 +549,7 @@ export default {
       -webkit-text-fill-color: transparent;
       position: absolute;
       bottom: -0.05rem;
-      z-index: 3;
+      z-index: 10;
     }
     &.ani {
       transition: all 1s ease;
@@ -501,7 +559,8 @@ export default {
       height: 1.2rem;
       top: 1rem;
       left: 3.17rem;
-      .linght {
+      .linght,
+      .linghtAni {
         width: 2.42rem;
         height: 2.42rem;
         left: -0.6rem;

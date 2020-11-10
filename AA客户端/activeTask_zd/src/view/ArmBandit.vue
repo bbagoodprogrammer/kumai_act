@@ -171,7 +171,7 @@ export default {
       })
     },
     async downSvga() {
-      const fileData = await downloader.get(`http://img.17sing.tw/uc/activity/92db29e9cc0149e1df79d4b78873d4c5_1593507888.svga`);
+      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/svga/02a59d0031983b442728b83b2bcab91d_1604981812.svga`);
       const data = await parser.do(fileData)
       this.svagData = data
     },

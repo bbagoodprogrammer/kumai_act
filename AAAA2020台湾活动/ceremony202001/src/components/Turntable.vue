@@ -54,7 +54,7 @@
             <span>抽獎時間</span>
             <span>獲得的獎品</span>
           </div>
-          <p class="noData" v-if="!historyList.length">抽獎記錄空空如也<br />快去賺取盛典幣抽獎吧！</p>
+          <p class="noData" v-if="!historyList.length">抽獎紀錄空空如也<br />快去賺取盛典幣抽獎吧！</p>
           <ul class="scrollable">
             <li v-for="(item,index) in historyList" :key="index">
               <span class="time">{{getTime(item.time)}}</span>
