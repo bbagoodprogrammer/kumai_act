@@ -22,9 +22,9 @@ function getConfig() {
     const tw = {
         name: '17sing',
         androidSchema: 'hsing://17sing.tw',
-        androidDown: 'http://17sing.tw/goto_googleplay',
+        androidDown: 'http://17singapp.com/goto_googleplay',
         iosSchema: 'Gaoge://',
-        iosDown: 'http://17sing.tw/goto_appstore',
+        iosDown: 'http://17singapp.com/goto_appstore',
         tips: '請點按右上角...</br>選擇系統默認瀏覽器打開'
     };
 
