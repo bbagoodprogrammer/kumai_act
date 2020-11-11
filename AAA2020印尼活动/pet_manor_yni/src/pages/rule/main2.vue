@@ -4,17 +4,17 @@
       <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">Hadiah acara</a>
       <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">Aturan acara</a>
     </div>
-    <p class="actTime">Waktu acara: tgl 29 Aug,18:00:00 - tgl 7 Sep,21:00:00</p>
+    <p class="actTime">Waktu acara : Tgl 11 Nov, 18:00 - tgl 22 Nov, 21:00</p>
     <div class="wards" v-if="mainTab == 0">
       <h5>Hadiah acara</h5>
       <img src="../../assets/img/wardsImg.png" alt="" class="wardImg">
       <h5>Hadiah utk Daftar Total dari Pet </h5>
       <h6>Top 1:</h6>
-      <p>Lencana tuan manor(30 hari)+Mount Bugatti(31 hari)+Hak istimewa bangsawan kaisar(1 bulan)+Set pet nyanyian *2 + 3000 koin emas + 10000 kacang emas</p>
+      <p>Lencana tuan manor(30 hari)+Mount Bugatti(31 hari)+Nilai kekayaan bangsawan Duke+Set pet nyanyian *2 + 3000 koin emas + 10000 kacang emas</p>
       <h6>Top 2:</h6>
-      <p>Lencana tuan manor(30 hari)+Mount Bugatti(31 hari)+Hak istimewa bangsawan duke(1 bulan)+Set pet nyanyian *2 + 2000 koin emas + 8000 kacang emas</p>
+      <p>Lencana tuan manor(30 hari)+Mount Bugatti(31 hari)+Nilai kekayaan bangsawan Marquis+Set pet nyanyian *2 + 2000 koin emas + 8000 kacang emas</p>
       <h6>Top 3:</h6>
-      <p>Lencana tuan manor(30 hari)+Mount Bugatti(31 hari)+Hak istimewa bangsawan marquis(1 bulan)+Set pet nyanyian *2 + 1500 koin emas + 5000 kacang emas</p>
+      <p>Lencana tuan manor(30 hari)+Mount Bugatti(31 hari)+Nilai kekayaan bangsawan Earl+Set pet nyanyian *2 + 1500 koin emas + 5000 kacang emas</p>
       <h6>Top 4-5:</h6>
       <p>Lencana tuan manor(30 hari)+Mount Bugatti(31 hari)+Set pet nyanyian *2 + 1000 koin emas + 3000 kacang emas</p>
       <h6>Top 6 - 10:</h6>
