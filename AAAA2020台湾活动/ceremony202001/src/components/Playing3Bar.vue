@@ -27,7 +27,7 @@
             <span>收集時間</span>
             <span>收集禮物</span>
           </div>
-          <p class="noData" v-if="!pList.length">暫無收集記錄</p>
+          <p class="noData" v-if="!pList.length">暫無收集紀錄</p>
           <ul class="scrollable">
             <li v-for="(item,index) in pList" :key="index">
               <span class="people" @click="goUser(item.uid)">

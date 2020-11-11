@@ -147,16 +147,16 @@ export default {
       showT: false,
       svgaAddress: {
         goldNo: {
-          addres: "http://img.17sing.tw/uc/activity/1fcc87196306faaae3dd3b4c2fd2d417_1593595862.svga", //黃金未觸發
+          addres: "http://fstatic.cat1314.com/uc/svga/239ef0688202b774a9e979296edb2723_1605024158.svga", //黃金未觸發
         },
         goldGo: {
-          addres: "http://img.17sing.tw/uc/activity/c1e06c5ae16fdd895476e79f3022dabe_1593595882.svga", //黃金觸發
+          addres: "http://fstatic.cat1314.com/uc/svga/f68db5fb9e57412caaaf99f070a89be3_1605024188.svga", //黃金觸發
         },
         masonryNo: {
-          addres: "http://img.17sing.tw/uc/activity/96cb295c929ac5d88e0177acf9e468d0_1593595902.svga", //磚石未觸發
+          addres: "http://fstatic.cat1314.com/uc/svga/2afa3ac091c63774be601d33636c80c0_1605024221.svga", //磚石未觸發
         },
         masonryGo: {
-          addres: "http://img.17sing.tw/uc/activity/599770641fe3f789a992040150391b83_1593595917.svga	", //磚石觸發
+          addres: "http://fstatic.cat1314.com/uc/svga/d1c4e70c8da8cdf12e0c6b59281b5b7a_1605024251.svga", //磚石觸發
         }
       },
       plarerArr: {}
