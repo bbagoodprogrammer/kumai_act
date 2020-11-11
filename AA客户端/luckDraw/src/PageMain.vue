@@ -158,10 +158,10 @@ export default {
     setBalls(balls = []) {
       game.setBalls(balls);
     },
-    addBall(ball = null) {
-      ball = { uid: 4878150, avatar: 'http://img.17sing.tw/uc/img/head_4878150_1597085904.png_small' };
-      game.addBall(ball);
-    },
+    // addBall(ball = null) {
+    //   ball = { uid: 4878150, avatar: 'http://img.17sing.tw/uc/img/head_4878150_1597085904.png_small' };
+    //   game.addBall(ball);
+    // },
     removeBall(uid = 0) {
       game.removeBall(uid);
     },

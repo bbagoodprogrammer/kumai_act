@@ -66,7 +66,7 @@
             <ul>
               <li v-for="(item,index) in pupListData " :key="index">
                 <span class="rank">{{item.rank}}</span>
-                <div class="imgBox" :class="{song:!item.uid}">
+                <div class="imgBox" :class="{song:!item.uid}" @click="goUser(item)">
                   <span class="default"></span>
                   <img :src="item.avatar" alt="" class="av">
                 </div>
@@ -123,7 +123,7 @@ export default {
           },
           {
             "uid": '',
-            "avatar": require("../assets/img/top1.png"),
+            "avatar": require("../assets/img/top3.png"),
             "nick": "虚位以待",
             "rank": 1
           }
@@ -195,11 +195,16 @@ export default {
       if (item.uid) {
         location.href = `uid:${item.uid}`
       } else if (item.fid) {
-        location.href = `uid:${item.fid}`
+        location.href = `fid:${item.fid}`
       } else if (item.sid) {
-        location.href = 'songid:{"songlist":[' + sid + ' ],"index":0}';
+        console.log(item.sid)
+        location.href = 'songid:{"songlist":[' + item.sid + '],"index":0}';
       }
-    }
+    },
+    showMore(item) {
+      this.pupListData = item
+      this.showListPup = true
+    },
   }
 }
 </script>
@@ -417,7 +422,7 @@ export default {
             margin-right: 0;
           }
         }
-        .girl {
+        &.girl {
           background: url(../assets/img/title/title3_2.png);
           background-size: 100% 100%;
         }
@@ -442,6 +447,7 @@ export default {
       height: 2.73rem;
       padding-top: 1.8rem;
       margin: 0 auto;
+      position: relative;
       .userList {
         padding: 0 0.64rem;
         display: flex;
@@ -587,6 +593,17 @@ export default {
       padding-top: 1.31rem;
       background: url(../assets/img/title/listPup.png);
       background-size: 100% 100%;
+      position: relative;
+      .close {
+        display: block;
+        width: 0.8rem;
+        height: 0.8rem;
+        background: url(../assets/img/close.png);
+        background-size: 100% 100%;
+        position: absolute;
+        bottom: -1rem;
+        left: 2.96rem;
+      }
       ul {
         width: 6rem;
         height: 7.35rem;

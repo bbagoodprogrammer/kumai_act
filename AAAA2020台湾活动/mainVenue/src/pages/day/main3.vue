@@ -29,6 +29,20 @@
         </transition>
       </span>
     </div>
+    <h5>一月</h5>
+    <div class="week">
+      <span v-for="(item,index) in week" :key="index">{{item}}</span>
+    </div>
+    <div class="dayList">
+      <span v-for="(item,index) in dayList3" :key="index" :class="[{gift:item.style == 'gift',sed:item.singIn,black:nowMonth==1&& item.day<nowDay,now:item.now},item.style]" @click.stop="dayClick(1,item.day)">
+        <strong v-if="!item.singIn">{{item.day}}</strong>
+        <i class="hand" v-if="item.now && !nowData.mark"></i>
+        <em class="singInDay" v-if="item.now && !nowData.mark">已有{{nowData.nums}}人簽到</em>
+        <transition name="day">
+          <strong class="act" :class="{bian:item.day == 2}" v-html="item.act" v-if="item.act && showMouth ==1 &&showDay==item.day"></strong>
+        </transition>
+      </span>
+    </div>
     <Loading />
   </div>
 </template>
@@ -433,6 +447,195 @@ export default {
             gift: []
           }
         ],
+        1: [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {
+            day: 1,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 2,
+            act: '年度演唱會',
+            style: 'crown',
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 3,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 4,
+            act: 'null',
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 5,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 6,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 7,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 8,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 9,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 10,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 11,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 12,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 13,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 14,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 15,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 16,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 17,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 18,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 19,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 20,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 21,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 22,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 23,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 24,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 25,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 26,
+            act: null,
+            // style: 'crown',
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 27,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 28,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 29,
+            act: null,
+            singIn: false,
+            gift: []
+          },
+          {
+            day: 30,
+            act: null,
+            singIn: false,
+            gift: []
+          }
+        ],
       }
     }
   },
@@ -489,6 +692,25 @@ export default {
         return this.days[12]
       }
     },
+    dayList3() {
+      if (this.nowData.my_list) {
+        let arr = this.days[1]
+        let dayList = this.nowData.my_list[1]
+        let prizeList = this.nowData.prize_time[1]
+        for (let i = 0; i < dayList.length; i++) {
+          arr[dayList[i] + 4].singIn = true
+        }
+        for (let i = 0; i < prizeList.length; i++) {
+          arr[prizeList[i] + 4].style = 'gift'
+        }
+        if (this.nowMonth == 1) {
+          arr[this.nowDay + 4]['now'] = true
+        }
+        return arr
+      } else {
+        return this.days[1]
+      }
+    },
     nowMonth() {
       return new Date(this.nowData.now * 1000).getMonth() + 1
     },
@@ -498,18 +720,7 @@ export default {
   },
   methods: {
     dayClick(mouth, day) {
-      // this.nowData.mark = true
-      // this.nowData.days = 9
-      // this.showMouth = mouth
-      // this.showDay = day
-      // if (mouth == 11) {
-      //   this.days[mouth][day - 1].now = false
-      //   this.days[mouth][day - 1].singIn = true
-      // } else {
-      //   this.days[mouth][day + 1].now = false
-      //   this.days[mouth][day + 1].singIn = true
-      // }
-      // return
+      console.log(mouth, day)
       if (this.nowMonth == mouth && this.nowDay == day && !this.nowData.mark) {
         api.mark().then(res => {
           if (res.data.response_status.code == 0) {
@@ -524,11 +735,17 @@ export default {
               if (is_prize) {
                 this.days[mouth][day - 1].style = "gift"
               }
-            } else {
+            } else if (mouth == 12) {
               this.days[mouth][day + 1].now = false
               this.days[mouth][day + 1].singIn = true
               if (is_prize) {
                 this.days[mouth][day + 1].style = "gift"
+              }
+            } else if (mouth == 1) {
+              this.days[mouth][day + 4].now = false
+              this.days[mouth][day + 4].singIn = true
+              if (is_prize) {
+                this.days[mouth][day + 4].style = "gift"
               }
             }
 
@@ -553,7 +770,7 @@ body {
   background: rgba(10, 6, 5, 1);
   .day {
     width: 7rem;
-    height: 14.11rem;
+    height: 20.78rem;
     padding-top: 0.1rem;
     background: url(../../assets/img/day/bg.png) no-repeat;
     background-size: 100% 100%;
