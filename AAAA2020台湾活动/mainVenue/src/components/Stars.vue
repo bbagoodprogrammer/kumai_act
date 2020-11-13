@@ -19,7 +19,7 @@
       <div class="userMsg">
         <h5 v-if="nowActTips">{{nowActTips}}</h5>
         <span class="actBtn " v-if="nowAct.step == 0">
-          <em class="atted" v-if="nowAct.is_attension">您已预约</em>
+          <em class="atted" v-if="nowAct.is_attension">您已預約</em>
           <em class="att" v-else @click="actAttension(nowAct.act_id)">參加預約</em>
         </span>
         <span class="actBtn go" @click="goActHtml(nowAct.url)" v-else>前去看看</span>
@@ -130,7 +130,7 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/title/default_3.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ],
@@ -138,7 +138,7 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/title/default_3.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ],
@@ -146,7 +146,7 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/title/default_2.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ],
@@ -154,7 +154,7 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/title/default_2.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ]
@@ -164,19 +164,19 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/top1.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           },
           {
             "uid": '',
             "avatar": require("../assets/img/top2.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           },
           {
             "uid": '',
             "avatar": require("../assets/img/top3.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ],
@@ -184,19 +184,19 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/top1.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           },
           {
             "uid": '',
             "avatar": require("../assets/img/top2.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           },
           {
             "uid": '',
             "avatar": require("../assets/img/top3.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ]
@@ -221,13 +221,13 @@ export default {
     },
     nowActTips() {
       if (this.nowAct.step == 0) {
-        if (this.nowAct.attension >= 3) {
+        if (this.nowAct.attension >= 100) {
           return `已有${this.nowAct.attension}人預約`
         } else {
           return false
         }
       } else {
-        if (this.nowAct.attension >= 3) {
+        if (this.nowAct.attension >= 100) {
           if (this.nowAct.act_id == 5) {
             return `已有${this.nowAct.data}家族參與`
           } else if (this.nowAct.act_id == 8) {

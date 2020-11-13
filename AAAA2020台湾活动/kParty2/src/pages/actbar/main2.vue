@@ -11,7 +11,6 @@
           <div class="userMsg">
             <div class="name">{{lang.firePeople}}<strong>{{item.users.nick}}</strong> </div>
             <div class="roomMsg">{{lang.kRoom}} <em>{{item.rid}}</em></div>
-            <!-- {{lang.date}} -->
             <div class="time">{{getDate(item.stime)}}</div>
           </div>
         </div>

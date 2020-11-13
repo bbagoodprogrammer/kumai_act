@@ -94,7 +94,7 @@ export default {
       showBoxItem: {},
       level: 0,
       socre: 0,
-      loaded: false,
+      // loaded: false,
       more: true,
       rotatePx: 0,    //刷新旋转动画
       playerArr: []
@@ -224,6 +224,7 @@ export default {
         element.clear()
       });
       this.init()
+      this.loaded = false
     }
   }
 }
@@ -409,7 +410,7 @@ export default {
             }
           }
           .nick {
-            width: 2.5rem;
+            width: 2.3rem;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -417,6 +418,7 @@ export default {
             margin-left: 0.18rem;
           }
           .score {
+            white-space: nowrap;
             font-size: 0.28rem;
             flex: 1;
             display: flex;

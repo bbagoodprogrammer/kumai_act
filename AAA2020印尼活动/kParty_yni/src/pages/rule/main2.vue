@@ -24,7 +24,8 @@
     <h3>Silakan pilih sampul acara<span>*Kolom yg harus diisi</span></h3>
     <div class="actType">
       <span v-for="(item,index) in actTypeArr" :key="index" @click="setActType(item.type)" :class="{act:actType == item.type}">
-        <img :src="item.img" alt="">
+        <!-- <img :src="item.img" alt=""> -->
+        <span class="bg" :class="'type' + item.type"></span>
         <strong>{{item.name}}</strong>
       </span>
     </div>
@@ -332,11 +333,27 @@ body {
     span {
       flex: 1;
       translate: all 0.5s;
-      img {
+      .bg {
         width: 1.1rem;
         height: 1.1rem;
         display: block;
         margin: 0 auto;
+        &.type1 {
+          background: url(../../assets/img/type1.png);
+          background-size: 100% 100%;
+        }
+        &.type2 {
+          background: url(../../assets/img/type2.png);
+          background-size: 100% 100%;
+        }
+        &.type3 {
+          background: url(../../assets/img/type3.png);
+          background-size: 100% 100%;
+        }
+        &.type4 {
+          background: url(../../assets/img/type4.png);
+          background-size: 100% 100%;
+        }
       }
       strong {
         // padding:0 .05rem;
@@ -355,9 +372,26 @@ body {
         line-height: 0.25rem;
       }
       &.act {
+        .type1 {
+          background: url(../../assets/img/type_1.png);
+          background-size: 100% 100%;
+        }
+        .type2 {
+          background: url(../../assets/img/type_2.png);
+          background-size: 100% 100%;
+        }
+        .type3 {
+          background: url(../../assets/img/type_3.png);
+          background-size: 100% 100%;
+        }
+        .type4 {
+          background: url(../../assets/img/type_4.png);
+          background-size: 100% 100%;
+        }
         strong {
-          background: #a64fff;
           color: #fff;
+          background: url(../../assets/img/setType2.png);
+          background-size: 100% 100%;
         }
       }
     }

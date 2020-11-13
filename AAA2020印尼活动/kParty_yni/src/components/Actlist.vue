@@ -4,21 +4,23 @@
     <ul>
       <li @click="gokRoom(item.rid)" v-for="(item,index) in list" :key="index" :class="'list'+item.cover">
         <!-- {{partyTitle[item.cover]}}- {{partyTitle[item.cover]}} -->
-        <div class="title titleMax1" v-if="item.is_official == 0">{{item.them}}</div>
-        <div class="title flex" v-else><span class="titleMax2">{{item.them}}</span><span class="titieTips">{{lang.officialAct}}</span> </div>
+        <div class="title" v-if="item.is_official == 0">{{item.them}} <i v-if="item.status == 1"></i> </div>
+        <div class="title" v-else>{{item.them}}<span class="titieTips"></span><i v-if="item.status == 1"></i> </div>
         <div class="actCon">
           <img v-lazy="item.avatar" alt="" class="userAv" @click.stop="goUser(item.uid)">
           <div class="userMsg">
-            <div class="name">{{lang.firePeople}}<strong>{{item.nick}}</strong> </div>
-            <div class="roomMsg">{{lang.kRoom}}{{item.rid}} <span>{{lang.date}}{{getDate(item.stime)}}</span> </div>
-            <div class="userTop">
-              <div class="topImg">
-                <img v-lazy="item2.avatar" v-for="(item2,index2) in item.user" :key="index2" @click.stop="goUser(item2.uid)" />
-              </div>
-              <span v-if="item.status == 1">{{item.nums}}{{lang.peopleTips}} <i></i></span>
-              <span v-else>{{item.nums}} org udah ikut</span>
-            </div>
+            <div class="name">{{lang.firePeople}}<strong> {{item.nick}}</strong> </div>
+            <div class="roomMsg">{{lang.kRoom}} <em> {{item.rid}} </em></div>
+            <!-- {{lang.date}} -->
+            <div class="time">{{getDate(item.stime)}}</div>
           </div>
+        </div>
+        <div class="userTop">
+          <div class="topImg">
+            <img v-lazy="item2.avatar" v-for="(item2,index2) in item.user" :key="index2" @click.stop="goUser(item2.uid)" />
+          </div>
+          <span :class="{ml:item.user.length <=2}" v-if="item.status == 1">{{item.nums}}{{lang.peopleTips}} <i></i></span>
+          <span :class="{ml:item.user.length <=2}" v-else>{{item.nums}}org udah ikut</span>
         </div>
         <div class="actBtm">
           <span @click.stop="showSingUpPup(item.id)" v-if="item.is_reg == 2"> {{lang.singUp}}</span>
@@ -34,11 +36,10 @@
     <div class="mask" v-show="showActMsg">
       <transition name="slide">
         <div class="actMsg" v-if="showActMsg" :class="'list'+showParty.cover">
-          <i class="carType"></i>
           <i class="close" @click="closeActMsgPup()"></i>
           <h5>{{showParty.them}}</h5>
-          <div class="time">{{getDate(showParty.stime)}}</div>
-          <div class="room">
+          <div class="actTime">{{getDate(showParty.stime)}}</div>
+          <div class="actRoom">
             <strong>{{lang.rid}}<em>{{showParty.rid}}</em> </strong>
             <span @click="showSingUpPup(showParty.id)" v-if="showParty.is_reg ==2">{{lang.singUp}}</span>
           </div>
@@ -226,44 +227,34 @@ export default {
     font-weight: 500;
   }
   li {
-    height: 3.01rem;
+    height: 4.5rem;
     background: url(../assets/img/list1.png);
     background-size: 100% 100%;
     margin-bottom: 0.1rem;
     position: relative;
     .title {
-      height: 0.6rem;
-      line-height: 0.7rem;
-      font-size: 0.32rem;
-      text-indent: 0.34rem;
-      &.flex {
-        display: flex;
-        align-items: center;
-      }
-      &.titleMax1 {
-        max-width: 7rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      .titleMax2 {
-        max-width: 5.2rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+      height: 1rem;
+      line-height: 1rem;
+      font-size: 0.46rem;
+      text-indent: 0.29rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      i {
+        display: block;
+        width: 1.29rem;
+        height: 0.43rem;
+        margin-left: 0.23rem;
+        background: url(../assets/img/getBeat.png);
+        background-size: 100% 100%;
       }
       .titieTips {
-        padding: 0 0.15rem;
-        height: 0.3rem;
-        background: rgba(122, 41, 205, 1);
-        border-radius: 0.1rem;
+        width: 1.1rem;
+        height: 0.43rem;
         display: inline-block;
-        font-size: 0.24rem;
-        line-height: 0.3rem;
-        text-align: center;
-        white-space: nowrap;
         margin-left: 0.12rem;
-        text-indent: 0rem;
+        background: url(../assets/img/offict.png);
+        background-size: 100% 100%;
       }
     }
     .actCon {
@@ -273,7 +264,7 @@ export default {
       .userAv {
         width: 1.2rem;
         height: 1.2rem;
-        border: 0.03rem solid rgba(190, 127, 255, 1);
+        border: 0.03rem solid #fff;
         border-radius: 50%;
         margin-left: 0.31rem;
       }
@@ -284,53 +275,66 @@ export default {
           height: 0.4rem;
           font-size: 0.22rem;
           display: flex;
+          align-items: center;
           strong {
             display: block;
-            font-size: 0.24rem;
+            font-size: 0.3rem;
             font-weight: 500;
             max-width: 3rem;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            margin-left: 0.15rem;
+            font-weight: 600;
           }
         }
         .roomMsg {
-          font-size: 0.22rem;
-          span {
-            display: block;
+          font-size: 0.26rem;
+          em {
+            margin-left: 0.15rem;
+            font-weight: 600;
           }
+        }
+        .time {
+          font-size: 0.46rem;
+          font-weight: 600;
         }
       }
-      .userTop {
-        margin-top: 0.05rem;
+    }
+    .userTop {
+      margin: 0.05rem 0 0 0.27rem;
+      height: 0.64rem;
+      display: flex;
+      align-items: center;
+      .topImg {
+        // width: 1.4rem;
         display: flex;
         align-items: center;
-        .topImg {
-          // width: 1.4rem;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          img {
-            width: 0.4rem;
-            height: 0.4rem;
-            border: 0.02rem solid rgba(255, 221, 147, 1);
-            border-radius: 50%;
-          }
+        justify-content: space-between;
+        img {
+          width: 0.6rem;
+          height: 0.6rem;
+          border: 0.02rem solid rgba(255, 221, 147, 1);
+          border-radius: 50%;
+          margin-right: 0.17rem;
         }
-        span {
-          color: #ffdd93;
-          font-size: 0.22rem;
-          margin-left: 0.15rem;
-          display: flex;
-          align-items: center;
-          i {
-            display: block;
-            width: 0.2rem;
-            height: 0.21rem;
-            background: url(../assets/img/ing.png);
-            background-size: 100% 100%;
-            margin-left: 0.09rem;
-          }
+      }
+      .ml {
+        margin-left: 1.5rem;
+      }
+      span {
+        color: #ffdd93;
+        font-size: 0.22rem;
+        margin-left: 0.15rem;
+        display: flex;
+        align-items: center;
+        i {
+          display: block;
+          width: 0.2rem;
+          height: 0.21rem;
+          background: url(../assets/img/ing.png);
+          background-size: 100% 100%;
+          margin-left: 0.09rem;
         }
       }
     }
@@ -338,17 +342,21 @@ export default {
       padding-left: 0.31rem;
       display: flex;
       align-items: center;
+      margin-top: 0.37rem;
       span {
         display: block;
-        width: 1.46rem;
-        height: 0.5rem;
-        border: 0.02rem solid rgba(255, 225, 106, 1);
-        border-radius: 0.25rem;
+        width: 1.26rem;
+        height: 0.45rem;
+        white-space: nowrap;
+        background: url(../assets/img/actBtnBg.png);
+        background-size: 100% 100%;
         text-align: center;
-        line-height: 0.5rem;
+        line-height: 0.45rem;
         font-size: 0.24rem;
-        color: #ffe16a;
         margin-right: 0.12rem;
+      }
+      span:last-child {
+        width: 1.45rem;
       }
     }
     .followBtn {
@@ -359,10 +367,7 @@ export default {
       font-size: 0.26rem;
       font-weight: 500;
       text-align: center;
-      line-height: 0.25rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      line-height: 0.64rem;
       position: absolute;
       right: 0.26rem;
       bottom: 0.23rem;
@@ -385,69 +390,57 @@ export default {
     }
   }
   .actMsg {
-    width: 6.01rem;
-    height: 6.22rem;
+    width: 6.02rem;
+    height: 7.13rem;
     padding-top: 0.3rem;
     background: url(../assets/img/actMsg1.png);
     background-size: 100% 100%;
     position: relative;
-    .carType {
-      display: block;
-      width: 1.1rem;
-      height: 1.1rem;
-      background: url(../assets/img/type1.png);
-      background-size: 100% 100%;
-      position: absolute;
-      top: -0.85rem;
-      left: 2.5rem;
-    }
     h5 {
       text-align: center;
-      font-size: 0.28rem;
+      font-size: 0.48rem;
       font-weight: bold;
       height: 0.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-    .time {
+    .actTime {
       font-size: 0.24rem;
       text-align: center;
+      font-weight: bold;
+      margin-top: 0.15rem;
     }
-    .room {
+    .actRoom {
       height: 0.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-top: 0.15rem;
+      padding: 0 0.36rem 0 0.59rem;
       strong {
-        font-size: 0.3rem;
-        font-weight: 600;
+        font-size: 0.24rem;
         margin-right: 0.26rem;
-        // em {
-        //   font-size: 0.3rem;
-        //   font-weight: 600;
-        // }
+        font-weight: bold;
+        em {
+          font-size: 0.3rem;
+        }
       }
       span {
         display: block;
         width: 1.26rem;
-        height: 0.5rem;
-        border: 0.02rem solid rgba(255, 225, 106, 1);
-        border-radius: 0.25rem;
+        height: 0.45rem;
+        background: url(../assets/img/actBtnBg.png);
+        background-size: 100% 100%;
         text-align: center;
-        line-height: 0.5rem;
+        line-height: 0.45rem;
         font-size: 0.24rem;
-        color: #ffe16a;
         margin-right: 0.12rem;
       }
     }
     .msgCon {
       margin-top: 0.15rem;
-      height: 4.18rem;
+      // height: 4.18rem;
       padding: 0.16rem 0.21rem;
       .actH {
-        height: 1.5rem;
+        height: 1.85rem;
       }
       h6 {
         font-size: 0.26rem;
@@ -460,7 +453,7 @@ export default {
       .msgTips,
       .msgGift {
         width: 5.36rem;
-        height: 1rem;
+        height: 1.3rem;
         font-size: 0.24rem;
         color: #bffffe;
         word-break: break-all;
@@ -497,21 +490,18 @@ export default {
     .btmBox {
       display: flex;
       justify-content: space-between;
-      margin-top: 0.27rem;
+      margin-top: 0.35rem;
       padding: 0 0.55rem;
       span {
         display: block;
         width: 1.78rem;
         height: 0.64rem;
-        line-height: 0.25rem;
+        line-height: 0.64rem;
         background: url(../assets/img/followBtn1.png);
         background-size: 100% 100%;
-        font-size: 0.2rem;
+        font-size: 0.26rem;
         font-weight: 500;
         text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
       }
     }
     .close {
@@ -523,30 +513,6 @@ export default {
       position: absolute;
       right: 0;
       top: -0.7rem;
-    }
-    &.list2 {
-      background: url(../assets/img/actMsg2.png);
-      background-size: 100% 100%;
-      .carType {
-        background: url(../assets/img/type2.png);
-        background-size: 100% 100%;
-      }
-    }
-    &.list3 {
-      background: url(../assets/img/actMsg3.png);
-      background-size: 100% 100%;
-      .carType {
-        background: url(../assets/img/type3.png);
-        background-size: 100% 100%;
-      }
-    }
-    &.list4 {
-      background: url(../assets/img/actMsg4.png);
-      background-size: 100% 100%;
-      .carType {
-        background: url(../assets/img/type4.png);
-        background-size: 100% 100%;
-      }
     }
   }
   .singUp {
@@ -576,7 +542,7 @@ export default {
         margin-top: 0.07rem;
       }
       .singUpMsg {
-        margin: 0.15rem auto 0;
+        margin: 0.15rem auto;
         width: 5.57rem;
         position: relative;
         span {
@@ -613,7 +579,7 @@ export default {
         background-size: 100% 100%;
         text-align: center;
         line-height: 0.9rem;
-        margin: 0.02rem auto;
+        margin: 0.16rem auto 0.53rem;
       }
     }
   }

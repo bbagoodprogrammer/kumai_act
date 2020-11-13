@@ -22,7 +22,9 @@
         <div class="sing" @click="goSing()">去唱一首</div>
         <span v-if="isLength">唱完記得回來完成報名喔</span>
       </div>
-      <p class="tips"><i>1.</i>參賽作品需為X月X日18:00:00后發佈的任意公開作品(清唱5分鐘除外)</p>
+    </div>
+    <div class="tipsBox">
+      <p class="tips"><i>1.</i>參賽作品需為11月16日18:00:00后發佈的任意公開作品(清唱5分鐘除外)</p>
       <p class="tips"><i>2.</i>可上傳多首作品參賽，報名後作品收禮才會被計算</p>
       <p class="tips"><i>3.</i>若刪除活動期間報名的參賽作品，該刪除作品收禮魅力值作廢</p>
     </div>
@@ -287,6 +289,9 @@ body {
       }
     }
   }
+}
+.tipsBox {
+  margin-top: 0.5rem;
 }
 .tips {
   font-size: 0.26rem;

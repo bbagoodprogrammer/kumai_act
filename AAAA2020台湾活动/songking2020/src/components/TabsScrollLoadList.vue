@@ -6,7 +6,7 @@
         <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href=""></a>
         <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href=""></a>
       </div>
-      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a>
+      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh" v-if="actStatus == 1">刷新</a>
     </div>
     <div class="rankTips">
       <div class="giftTips" v-if="mainTab == 0">
@@ -62,7 +62,7 @@
         </div>
         <ul class="list total">
           <li v-for="(item,index) in rank.list" :key="index">
-            <div class="rank">{{item.rank}}</div>
+            <div class="rank">{{index +1}}</div>
             <img :src="item.cover" alt="" class="av" @click="goSong(item.sid)">
             <div class="songMsg">
               <div class="nick">{{item.name}}</div>
@@ -70,11 +70,12 @@
             </div>
             <div class="bar">
               <strong>{{item.score}}/{{item.target}}</strong>
-              <span class="actBar" :class="{max:(item.score/item.target) *100 >93}" :style="{width:(item.score/item.target) *100+'%'}"></span>
+              <span class="actBar" :class="{max:(item.score/item.target) *100 >93,min:item.score > 0,black:tab == 2 && item.status == 0}" :style="{width:(item.score/item.target) *100+'%'}"></span>
             </div>
             <div class="status">
-              <strong>{{item.status == 1?'已飙升':'待飙升'}}</strong>
-              <span v-if="!item.status">剩餘：{{getDate(item.time,2)}}</span>
+              <strong v-if="tab == 2">{{item.status == 1?'已飙升':'已超時'}}</strong>
+              <strong v-else>{{item.status == 1?'已飙升':'待飙升'}}</strong>
+              <span v-if="!item.status && tab == 1">剩餘：{{getDate(item.ltime,2)}}</span>
             </div>
           </li>
         </ul>
@@ -147,7 +148,7 @@ export default {
     // }
   },
   computed: {
-    ...mapState(['rankGroups', "setInited", "isShare"]),
+    ...mapState(['rankGroups', "setInited", "isShare", "actStatus"]),
     rankKey() {
       return this.mainTab == 0 ? 'total' : this.tab;
     },
@@ -285,8 +286,6 @@ export default {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
       this.$parent.getDefaultData()
-      console.log(this.rankKey)
-      // if (this.mainTab != 0) {
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,
         loadCount: 0,
@@ -296,10 +295,12 @@ export default {
         list: [],
       });
       this.$nextTick(this.onScroll);
-      // }
     },
     getDate(time, type) {
-      return getDate(new Date(time * 1000), type)
+      if (type == 1) {
+        return getDate(new Date(time * 1000), type)
+      }
+      return this.secondToTimeStr(time)
     },
     goUser(uid) { //跳转
       location.href = `uid:${uid}`
@@ -310,6 +311,15 @@ export default {
     beforeDestroy() {
       window.removeEventListener('scroll', this.onScroll);
     },
+    secondToTimeStr(t) {
+      if (!t) return;
+      if (t < 60) return ((i = t) < 10 ? "0" + i : i) + 's';
+      if (t < 3600) return "" + ((a = parseInt(t / 60)) < 10 ? "0" + a : a) + "min" + ((i = t % 60) < 10 ? "0" + i : i) + 's';
+      if (3600 <= t) {
+        var a, i, e = parseInt(t / 3600);
+        return (e < 10 ? "0" + e : e) + "h" + ((a = parseInt(t % 3600 / 60)) < 10 ? "0" + a : a) + "min";
+      }
+    }
   },
 }
 </script>
@@ -444,7 +454,7 @@ export default {
         color: rgba(252, 245, 193, 1);
         display: flex;
         white-space: nowrap;
-        margin: 0.36rem 0 0.47rem;
+        margin: 0.2rem 0 0.1rem;
         .name {
           width: 2.6rem;
           text-align: right;
@@ -483,6 +493,7 @@ export default {
           .tm {
             font-size: 0.24rem;
             opacity: 0.5;
+            margin-top: 0.15rem;
           }
         }
         .bar {
@@ -493,9 +504,9 @@ export default {
           text-align: center;
           line-height: 0.33rem;
           color: rgba(96, 37, 0, 1);
-          font-size: 0.22rem;
           position: relative;
           strong {
+            font-size: 0.22rem;
             display: block;
             width: 100%;
             height: 100%;
@@ -504,7 +515,6 @@ export default {
           }
           .actBar {
             display: block;
-            min-width: 7%;
             max-width: 100%;
             height: 0.29rem;
             background: linear-gradient(90deg, #ffc875, #ffdda4);
@@ -516,6 +526,12 @@ export default {
             top: 0;
             &.max {
               border-radius: 0.17rem;
+            }
+            &.min {
+              min-width: 7%;
+            }
+            &.black {
+              background: #666666;
             }
           }
         }

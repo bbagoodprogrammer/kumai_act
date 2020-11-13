@@ -115,7 +115,7 @@ export default {
     shoHistoryList() {
       api.record3(0).then(res => {
         this.showList = true
-        this.pList = res.data.response_data.list
+        this.pList = res.data.response_data ? res.data.response_data.list : []
       })
     },
     getTime(tm) {

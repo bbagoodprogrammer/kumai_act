@@ -55,7 +55,6 @@ export default {
       }
     },
     nowMsg() {
-      console.log(this.groupsUserMsg, this.tab)
       return this.groupsUserMsg[this.tab] ? this.groupsUserMsg[this.tab].msg : {}
     }
   },

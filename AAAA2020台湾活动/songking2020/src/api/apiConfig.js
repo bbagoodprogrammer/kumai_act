@@ -69,7 +69,10 @@ function get(url, config) {
 }
 
 //获取活动基础信息
-function getDefault() {
+function getDefault(more) {
+    if (more) {
+        return axios.get(`/songking2020/init.php?token=${token}`);
+    }
     if (token) {
         return get(`/songking2020/init.php?token=${token}`);
     } else {
@@ -143,7 +146,10 @@ function rank(from) {
 }
 
 
-
+//上上报
+function report(from) {
+    return axios.get(`/songking2020/report.php?from=${from}&token=${token}`)
+}
 
 
 
@@ -160,6 +166,7 @@ const httpConfig = {
     openPacket,
     openRedPacket,
     redPacketHistory,
-    hideRedPacket
+    hideRedPacket,
+    report
 }
 export default httpConfig

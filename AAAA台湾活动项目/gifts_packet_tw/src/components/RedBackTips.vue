@@ -54,12 +54,12 @@ export default {
         font-size: 0.24rem;
       }
       .img1 {
-        width: 6.24rem;
-        height: 6.56rem;
+        width: 5.96rem;
+        height: 5.58rem;
         margin-top: 0.28rem;
       }
       .img2 {
-        width: 6.24rem;
+        width: 5.9rem;
         height: 9.2rem;
         margin-top: 0.04rem;
       }
@@ -83,8 +83,8 @@ export default {
         margin-top: 0.1rem;
       }
       .img4 {
-        width: 5.9rem;
-        height: 6.93rem;
+        width: 5.96rem;
+        height: 7.81rem;
         margin-top: 0.2rem;
       }
     }

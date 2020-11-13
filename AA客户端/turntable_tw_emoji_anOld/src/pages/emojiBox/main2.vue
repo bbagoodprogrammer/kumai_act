@@ -15,7 +15,7 @@ export default {
     }
   },
   created() {
-    document.title = '幸運轉盤 - 表情包'
+    document.title = '幸運轉盤 - 貼圖'
     sessionStorage.setItem("need-refresh", true);
   },
   methods: {

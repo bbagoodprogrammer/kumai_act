@@ -6,9 +6,11 @@
     <div class="header">
       <div class="tipsBox" :class="{top:isShare}">
         <span class="ruleTips" :class="{top:isShare}" @click="showRules()">{{lang.rules}}</span>
-        <span class="ruleTips ruleTips2" :class="{top:isShare}" @click="goBar()" v-if="is_admin">{{lang.myAct}}</span>
+        <span class="ruleTips" :class="{top:isShare}" @click="goBar()" v-if="is_admin">{{lang.myAct}}</span>
+        <span class="ruleTips" :class="{top:isShare}" @click="goRank()">{{lang.rank}}</span>
       </div>
       <div class="actTitle"></div>
+      <div class="giftTips" :class="{act:giftStates != 2}" @click="getGift()"></div>
     </div>
     <Actlist />
     <act-footer></act-footer>
@@ -41,6 +43,20 @@
         </div>
       </transition>
     </div>
+    <div class="mask" v-show="showGiftPup">
+      <transition name="slide">
+        <div class="giftPup" v-if="showGiftPup">
+          <i class="close" @click="closeGift()"></i>
+          <p v-if="giftStates == 0">Akan bisa ambil 30 kacang stlh ikuti 2 acara pd tiap hari</p>
+          <p v-else-if="giftStates == 1">Hadiah 30 kacang emas udah berhasih kirim, silakan check!</p>
+          <p v-else>Cuma bisa ambil sekali sehari, harap kembali besok!！</p>
+          <div class="num" v-if="giftStates == 0">
+            {{day_gift.num}}/{{day_gift.limit}}
+          </div>
+          <div class="btn" @click="closeGift()" v-else>Ya！</div>
+        </div>
+      </transition>
+    </div>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
     <div class="goTop" @click="scorllGO()"></div>
   </div>
@@ -69,7 +85,20 @@ export default {
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
       showRule: false,
-      is_admin: null
+      is_admin: null,
+      day_gift: {},
+      showGiftPup: false
+    }
+  },
+  computed: {
+    giftStates() {
+      if (this.day_gift.get) {
+        return 2
+      } else if (this.day_gift.num >= this.day_gift.limit) {
+        return 1
+      } else {
+        return 0
+      }
     }
   },
   created() {
@@ -87,8 +116,9 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { is_admin, list } = response_data
+          const { is_admin, list, day_gift } = response_data
           this.is_admin = is_admin
+          this.day_gift = day_gift
           this.vxc('setActStatus', 1)
           this.vxc('setIs_admin', is_admin)
           this.vxc('setList', list)
@@ -109,8 +139,13 @@ export default {
       let regstr = getString('token')
       location.href = `./index3.html?token=${regstr}`
     },
+    goRank() {
+      let regstr = getString('token')
+      location.href = `./index4.html?token=${regstr}`
+    },
     showRules() {
-      this.showRule = true
+      let regstr = getString('token')
+      location.href = `./index5.html?is_admin=${this.is_admin}`
     },
     closeRule() {
       this.showRule = false
@@ -125,6 +160,28 @@ export default {
         }
       }, 10)
     },
+    getGift() {
+      if (this.giftStates == 1) {
+        api.getBeat().then(res => {
+          if (res.data.response_status.code == 0) {
+            this.showGiftPup = true
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      } else {
+        this.showGiftPup = true
+      }
+    },
+    closeGift() {
+      if (this.giftStates == 1) {
+        this.day_gift.get = true
+      }
+      this.showGiftPup = false
+    },
+    addCount() {
+      this.day_gift.num++
+    }
   }
 }
 </script>
@@ -160,10 +217,10 @@ body::-webkit-scrollbar {
     .tipsBox {
       position: absolute;
       right: 0;
-      top: 0.12rem;
-      &.top {
-        top: 1.5rem;
-      }
+      top: 3.13rem;
+      // &.top {
+      //   top: 1.5rem;
+      // }
       .ruleTips {
         display: block;
         width: 1.89rem;
@@ -176,10 +233,6 @@ body::-webkit-scrollbar {
         text-indent: 0.15rem;
         margin-bottom: 0.11rem;
       }
-      .ruleTips2 {
-        width: 1.42rem;
-        margin-left: 0.47rem;
-      }
     }
     .actTitle {
       width: 3.04rem;
@@ -189,6 +242,24 @@ body::-webkit-scrollbar {
       position: absolute;
       bottom: 0.16rem;
       left: 2.23rem;
+    }
+    .giftTips {
+      width: 1.36rem;
+      height: 1.51rem;
+      background: url(../assets/img/giftIconBlack.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: 3.69rem;
+      left: 0.09rem;
+      &.act {
+        background: url(../assets/img/giftIcon.png);
+        background-size: 100% 100%;
+        animation: jiggle 2s ease-in-out infinite;
+        -o-animation: jiggle 2s ease-in infinite;
+        -webkit-animation: jiggle 2s ease-in infinite;
+        -moz-animation: jiggle 2s ease-in infinite;
+        -ms-animation: jiggle 2s ease-in infinite;
+      }
     }
   }
   .guaBox {
@@ -228,6 +299,46 @@ body::-webkit-scrollbar {
       color: #a884d8;
       margin-top: 0.28rem;
     }
+  }
+}
+.giftPup {
+  width: 5.9rem;
+  height: 2.54rem;
+  background: rgba(104, 30, 181, 1);
+  border-radius: 0.4rem;
+  position: relative;
+  padding-top: 1.24rem;
+  p {
+    text-align: center;
+    font-size: 0.28rem;
+    color: rgba(191, 255, 254, 1);
+    padding: 0 0.4rem;
+  }
+  .num {
+    font-size: 0.4rem;
+    color: rgba(255, 250, 100, 1);
+    margin: 0.31rem auto 0;
+    text-align: center;
+  }
+  .btn {
+    width: 2.74rem;
+    height: 0.9rem;
+    background: url(../assets/img/commitBtn.png);
+    background-size: 100% 100%;
+    text-align: center;
+    line-height: 0.9rem;
+    font-size: 0.32rem;
+    margin: 0.25rem auto 0;
+  }
+  .close {
+    display: block;
+    width: 0.58rem;
+    height: 0.58rem;
+    background: url(../assets/img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0;
+    top: -0.7rem;
   }
 }
 .goTop {

@@ -30,8 +30,9 @@
           <span>{{lang.actBarTips5}}{{item.comments}}</span>
           <!-- <span v-else>{{lang.actBarTips5}}</br>{{lang.actBarTips6}}</span> -->
         </div>
-        <div class="setBtn" v-if="item.apply_status != 2 && item.fail_nums !=2" @click="changeMsg(item.id)">{{lang.actBarChang}}</div>
-        <span class="singMsg" @click="showPeople(item.id)" v-if="item.apply_status == 2">{{lang.singUpDetil}}</span>
+        <div class="actScore" v-if="item.status == 2" @click="showScore(item.id,item.final_score)">Poin {{item.final_score}}</div>
+        <div class="setBtn" v-else-if="item.apply_status != 2 && item.fail_nums !=2" @click="changeMsg(item.id)">{{lang.actBarChang}}</div>
+        <span class="singMsg" @click="showPeople(item.id)" v-else-if="item.apply_status == 2">{{lang.singUpDetil}}</span>
       </li>
     </ul>
     <div class="mask" v-show="showPeopleList">
@@ -66,6 +67,22 @@
         </div>
       </transition>
     </div>
+    <div class="mask" v-show="showActScore">
+      <transition name="slide">
+        <div class="actScorePup" v-if="showActScore">
+          <i class="close" @click="closeActScorePup()"></i>
+          <div class="scoreItem">
+            <ul>
+              <li v-for="(item,index) in scoreObj" :key="index">
+                <span class="name"></span>
+                <span class="itemScore">{{item.score}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="actItemScore">{{pupScore}}</div>
+        </div>
+      </transition>
+    </div>
     <Loading />
   </div>
 </template>
@@ -95,7 +112,10 @@ export default {
       mainLoaded: false,
       mainMore: true,
       showSingUp: false,
-      singUpTips: {}
+      singUpTips: {},
+      showActScore: false,
+      scoreObj: {},
+      pupScore: 0
     }
   },
   created() {
@@ -198,6 +218,21 @@ export default {
     getTime(tm) {
       return getDate(new Date(tm * 1000), '~')
     },
+    showScore(id, score) {
+      this.pupScore = score
+      api.actScore(id).then(res => {
+        let record = res.data.response_data.record
+        if (record) {
+          this.scoreObj = record
+          this.showActScore = true
+        } else {
+          this.toast('Tiada poin acara round ini')
+        }
+      })
+    },
+    closeActScorePup() {
+      this.showActScore = false
+    }
   }
 }
 </script>
@@ -220,37 +255,22 @@ body {
     width: 7.15rem;
     margin: 0 auto;
     li {
-      height: 3.52rem;
-      background: url(../../assets/img/minCar1.png);
+      height: 4.51rem;
+      background: url(../../assets/img/list1.png);
       background-size: 100% 100%;
       position: relative;
       margin-bottom: 0.2rem;
-      &.max {
-        height: 4.51rem;
-        background: url(../../assets/img/maxCar1.png);
-        background-size: 100% 100%;
-        .title {
-          // height: 0.7rem;
-          // line-height: 0.7rem;
-        }
-      }
-      &.black {
-        height: 4.51rem;
-        background: url(../../assets/img/blackCarBg.png);
-        background-size: 100% 100%;
-        // .title {
-        //   height: 0.7rem;
-        //   line-height: 0.7rem;
-        // }
-      }
       .title {
-        height: 0.54rem;
-        line-height: 0.54rem;
-        font-size: 0.32rem;
-        text-align: center;
+        height: 1rem;
+        line-height: 1rem;
+        font-size: 0.46rem;
+        text-indent: 0.29rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
       }
       .actCon {
-        height: 1.68rem;
+        height: 1.48rem;
         display: flex;
         align-items: center;
         .userAv {
@@ -261,30 +281,35 @@ body {
           margin-left: 0.31rem;
         }
         .userMsg {
-          width: 4.5rem;
+          // width: 3.5rem;
           margin-left: 0.19rem;
-          opacity: 0.6;
-          // color: #d8beff;
           .name {
             height: 0.4rem;
             font-size: 0.22rem;
             display: flex;
+            align-items: center;
             strong {
               display: block;
-              font-size: 0.24rem;
+              font-size: 0.3rem;
               font-weight: 500;
               max-width: 3rem;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
-              color: #fff;
+              margin-left: 0.15rem;
+              font-weight: 600;
+            }
+          }
+          .roomMsg {
+            font-size: 0.26rem;
+            em {
+              margin-left: 0.15rem;
+              font-weight: 600;
             }
           }
           .time {
-            font-size: 0.24rem;
-          }
-          .roomMsg {
-            font-size: 0.22rem;
+            font-size: 0.46rem;
+            font-weight: 600;
           }
         }
         .userTop {
@@ -315,7 +340,7 @@ body {
       }
       .barBox {
         height: 1.2rem;
-        padding-left: 0.44rem;
+        padding-left: 0.34rem;
         .barTitle {
           font-size: 0.24rem;
           text-indent: 0.1rem;
@@ -323,13 +348,13 @@ body {
         .bar {
           width: 3.49rem;
           height: 0.04rem;
-          background: #6119ab;
+          background: rgba(255, 255, 255, 1);
           border-radius: 0.02rem;
           position: relative;
           margin: 0.22rem 0 0 0.4rem;
           .actBar {
             height: 0.04rem;
-            background: #ffefb6;
+            background: rgba(92, 238, 255, 1);
             border-radius: 0.02rem;
             position: absolute;
             top: 0;
@@ -338,7 +363,7 @@ body {
           i {
             width: 0.1rem;
             height: 0.1rem;
-            background: rgba(97, 25, 171, 1);
+            background: rgba(92, 238, 255, 1);
             border-radius: 50%;
             position: absolute;
             top: -0.03rem;
@@ -349,14 +374,14 @@ body {
               background-size: 100% 100%;
               margin: -0.13rem 0 0 -0.1rem;
               em {
-                color: #ffefb6;
-                bottom: -0.55rem;
+                color: rgba(92, 238, 255, 1);
+                bottom: -0.35rem;
               }
             }
             &.over {
-              background: #ffefb6;
+              background: rgba(92, 238, 255, 1);
               em {
-                color: #ffefb6;
+                color: rgba(92, 238, 255, 1);
               }
             }
             &.black {
@@ -364,25 +389,21 @@ body {
               height: 0.3rem;
               background: url(../../assets/img/no.png);
               background-size: 100% 100%;
-              margin: -0.13rem 0 0 -0.1rem;
               em {
-                color: #850074;
-                bottom: -0.55rem;
+                color: rgba(92, 238, 255, 1);
+                bottom: -0.35rem;
               }
             }
             em {
-              display: flex;
-              height: 0.6rem;
-              align-items: center;
-              justify-content: center;
+              display: block;
               text-align: center;
-              width: 1.3rem;
-              font-size: 0.22rem;
-              color: #6119ab;
+              width: 1.5rem;
+              font-size: 0.24rem;
+              color: rgba(255, 255, 255, 1);
               position: absolute;
-              bottom: -0.65rem;
+              bottom: -0.45rem;
               left: -0.6rem;
-              // white-space: nowrap;
+              white-space: nowrap;
             }
             &.spot1 {
               left: 0;
@@ -397,10 +418,9 @@ body {
         }
       }
       .noTips {
-        width: 4.2rem;
-        margin-left: 0.39rem;
-        font-size: 0.24rem;
-        color: #bffffe;
+        margin: 0 0.39rem;
+        font-size: 0.22rem;
+        color: rgba(255, 253, 200, 1);
         line-height: 0.3rem;
         margin-top: 0.1rem;
         // &.end {
@@ -409,15 +429,17 @@ body {
       }
       .singMsg {
         display: block;
-        width: 1.96rem;
-        height: 0.68rem;
-        border: 0.02rem solid rgba(255, 239, 182, 1);
-        border-radius: 0.34rem;
+        width: 1.78rem;
+        height: 0.64rem;
         text-align: center;
-        line-height: 0.25rem;
+        line-height: 0.64rem;
         position: absolute;
-        right: 0.38rem;
-        bottom: 0.26rem;
+        font-size: 0.26rem;
+        color: rgba(255, 255, 255, 1);
+        right: 0.22rem;
+        bottom: 0.97rem;
+        background: url(../../assets/img/singUpMsgBtn.png);
+        background-size: 100% 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -426,39 +448,56 @@ body {
         display: block;
         width: 1.78rem;
         height: 0.64rem;
+        line-height: 0.64rem;
         background: url(../../assets/img/followBtn1.png);
         background-size: 100% 100%;
         font-size: 0.26rem;
         font-weight: 500;
         text-align: center;
         position: absolute;
-        right: 0.38rem;
-        bottom: 0.26rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        right: 0.22rem;
+        bottom: 0.97rem;
+      }
+      .actScore {
+        width: 1.78rem;
+        height: 0.62rem;
+        background: rgba(67, 195, 232, 1);
+        border: 0.04rem solid rgba(255, 255, 255, 1);
+        border-radius: 0.31rem;
+        position: absolute;
+        right: 0.22rem;
+        bottom: 0.97rem;
+        text-align: center;
+        line-height: 0.62rem;
+        font-size: 0.26rem;
+      }
+      &.list1 {
+        &.black {
+          background: url(../../assets/img/black1.png);
+          background-size: 100% 100%;
+        }
       }
       &.list2 {
-        background: url(../../assets/img/minCar2.png);
+        background: url(../../assets/img/list2.png);
         background-size: 100% 100%;
-        &.max {
-          background: url(../../assets/img/maxCar2.png);
+        &.black {
+          background: url(../../assets/img/black2.png);
           background-size: 100% 100%;
         }
       }
       &.list3 {
-        background: url(../../assets/img/minCar3.png);
+        background: url(../../assets/img/list3.png);
         background-size: 100% 100%;
-        &.max {
-          background: url(../../assets/img/maxCar3.png);
+        &.black {
+          background: url(../../assets/img/black3.png);
           background-size: 100% 100%;
         }
       }
       &.list4 {
-        background: url(../../assets/img/minCar4.png);
+        background: url(../../assets/img/list4.png);
         background-size: 100% 100%;
-        &.max {
-          background: url(../../assets/img/maxCar4.png);
+        &.black {
+          background: url(../../assets/img/black4.png);
           background-size: 100% 100%;
         }
       }
@@ -512,13 +551,13 @@ body {
         margin-left: 0.14rem;
       }
       .userMsg {
-        width: 1.55rem;
+        width: 2rem;
         margin-left: 0.15rem;
         font-size: 0.24rem;
         .name {
-          max-width: 1.55rem;
-          white-space: nowrap;
+          max-width: 2rem;
           overflow: hidden;
+          white-space: nowrap;
           text-overflow: ellipsis;
         }
         .uid {
@@ -526,18 +565,15 @@ body {
         }
       }
       .singUpMsg {
-        width: 1.68rem;
+        width: 1.31rem;
         height: 0.5rem;
         border: 0.02rem solid rgba(255, 225, 106, 1);
         border-radius: 0.25rem;
         text-align: center;
+        line-height: 0.5rem;
         margin-right: 0.16rem;
-        font-size: 0.22rem;
+        font-size: 0.24rem;
         color: #ffe16a;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 0.25rem;
       }
       .sendMsg {
         display: block;
@@ -610,6 +646,64 @@ body {
       line-height: 0.9rem;
       margin: 0.16rem auto 0.53rem;
     }
+  }
+}
+.actScorePup {
+  width: 6.21rem;
+  height: 7.39rem;
+  background: url(../../assets/img/actScoreBg.png);
+  background-size: 100% 100%;
+  position: relative;
+  .close {
+    display: block;
+    width: 0.58rem;
+    height: 0.58rem;
+    background: url(../../assets/img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0;
+    top: -0.7rem;
+  }
+  .scoreItem {
+    width: 4.65rem;
+    height: 5.3rem;
+    position: absolute;
+    right: 0;
+    top: 1.4rem;
+    ul {
+      li {
+        height: 0.54rem;
+        display: flex;
+        text-align: center;
+        font-size: 0.22rem;
+        color: rgba(217, 181, 255, 1);
+        line-height: 0.54rem;
+        // margin-bottom: 0.05rem;
+        .name {
+          width: 3.13rem;
+          display: flex;
+          line-height: 0.25rem;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+        .itemScore {
+          line-height: 0.6rem;
+          flex: 1;
+        }
+      }
+    }
+  }
+  .actItemScore {
+    width: 1.5rem;
+    height: 0.5rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    line-height: 0.5rem;
+    font-size: 0.26rem;
+    color: rgba(248, 70, 255, 1);
   }
 }
 @import "../../assets/scss/common.scss";

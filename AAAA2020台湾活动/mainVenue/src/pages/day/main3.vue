@@ -125,8 +125,7 @@ export default {
           },
           {
             day: 10,
-            act: '年度人物評選開賽<br/>盛典嘉年華開賽',
-            style: 'red',
+            act: null,
             singIn: false,
             gift: []
           },
@@ -138,7 +137,8 @@ export default {
           },
           {
             day: 12,
-            act: null,
+            act: '年度人物評選開賽<br/>盛典嘉年華開賽',
+            style: 'red',
             singIn: false,
             gift: []
           },
@@ -445,7 +445,13 @@ export default {
             act: null,
             singIn: false,
             gift: []
-          }
+          },
+          {
+            day: 31,
+            act: null,
+            singIn: false,
+            gift: []
+          },
         ],
         1: [
           {},

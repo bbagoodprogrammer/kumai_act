@@ -92,19 +92,19 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/top1.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           },
           {
             "uid": '',
             "avatar": require("../assets/img/top2.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           },
           {
             "uid": '',
             "avatar": require("../assets/img/top3.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ],
@@ -112,19 +112,19 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/top1.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           },
           {
             "uid": '',
             "avatar": require("../assets/img/top2.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           },
           {
             "uid": '',
             "avatar": require("../assets/img/top3.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ]
@@ -134,7 +134,7 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/title/default_3.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ],
@@ -142,7 +142,7 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/title/default_3.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ],
@@ -150,7 +150,7 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/title/default_2.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ],
@@ -158,7 +158,7 @@ export default {
           {
             "uid": '',
             "avatar": require("../assets/img/title/default_2.png"),
-            "nick": "虚位以待",
+            "nick": "虛位以待",
             "rank": 1
           }
         ]
