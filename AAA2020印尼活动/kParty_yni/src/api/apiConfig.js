@@ -173,6 +173,16 @@ function getMyAct(from, isMore) {
 function getActData(id) {
     return get(`${actName}/partyData.php?token=${token}&id=${id}`)
 }
+
+//獲取金豆
+function getBeat() {
+    return get(`${actName}/getDayBean.php?token=${token}`)
+}
+
+//活動積分
+function actScore(id) {
+    return get(`${actName}/score.php?token=${token}&id=${id}`)
+}
 const httpConfig = {
     getDefault,
     getList,
@@ -182,6 +192,8 @@ const httpConfig = {
     singUp,
     getPeopleList,
     getMyAct,
-    getActData
+    getActData,
+    getBeat,
+    actScore
 }
 export default httpConfig

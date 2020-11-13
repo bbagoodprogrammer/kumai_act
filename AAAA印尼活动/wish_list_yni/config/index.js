@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/': {
-        target: 'http://activity.wekarapp.com/',
+        target: 'https://activity.wekarapp.com',
         changeOrigin: true
       }
     },
@@ -47,6 +47,7 @@ module.exports = {
     index2: path.resolve(__dirname, '../dist/index2.html'),
     index3: path.resolve(__dirname, '../dist/index3.html'),
     index4: path.resolve(__dirname, '../dist/index4.html'),
+    index5: path.resolve(__dirname, '../dist/index5.html'),
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',

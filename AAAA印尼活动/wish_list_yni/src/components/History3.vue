@@ -27,6 +27,7 @@
 <script>
 import { mapState } from 'vuex'
 import api from "../api/apiConfig"
+import getUrlString from '../utils/getString.js';
 export default {
   data() {
     return {
@@ -46,7 +47,9 @@ export default {
   },
   methods: {
     goSing() {
-      location.href = "goto:songLibrary"
+      // location.href = "goto:songLibrary"
+      let regstr = getUrlString('token')
+      location.href = `./index5.html?token=${regstr}`
     },
     onScroll() {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;

@@ -351,7 +351,8 @@ export default {
       location.href = `uid:${uid}`
     },
     gosing() {
-      location.href = "goto:songLibrary"
+     let regstr = getUrlString('token')
+      location.href = `./index5.html?token=${regstr}&t=1`
     }
   },
 }

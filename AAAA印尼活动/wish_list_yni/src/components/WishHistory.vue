@@ -34,13 +34,13 @@ import History2 from './History2'
 import History3 from './History3'
 import MsgToast from "../components/commonToast"
 export default {
-  components: { History1, History2, History3 ,MsgToast},
+  components: { History1, History2, History3, MsgToast },
   data() {
     return {
       tabArr: [
-        { name: 'Kirim keinginan' },
         { name: 'Sudah selesai' },
-        { name: 'Belum selesai' }
+        { name: 'Belum selesai' },
+        { name: 'Keinginan diambil' }
       ],
       showCom: 'History1',
       currentSong: '',
@@ -81,7 +81,7 @@ export default {
       }
     },
     setAudio(path, songId) {
-      if(path == ''){
+      if (path == '') {
         this.showT = true
         this.tastMsg = 'lagu ini udah dihapus'
         return
@@ -129,7 +129,7 @@ export default {
       this.$store.commit('changHistory3', {})
       this.$emit('closePup')
     },
-    closeToast(){
+    closeToast() {
       this.showT = false
     }
   }

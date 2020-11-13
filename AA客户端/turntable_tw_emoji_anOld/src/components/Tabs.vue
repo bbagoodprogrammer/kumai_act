@@ -36,7 +36,7 @@ export default {
           name: '寶箱獎勵'
         },
         {
-          name: '表情包'
+          name: '貼圖'
         }
       ],
       showType: -1

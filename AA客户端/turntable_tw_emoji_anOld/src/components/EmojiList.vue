@@ -5,7 +5,7 @@
       <strong>{{bag.remark}}</strong>
     </div>
     <div class="list">
-        <p v-if="loading" class="loading">加載中...</p>
+      <p v-if="loading" class="loading">加載中...</p>
       <div class="emojiItem">
         <span v-for="(item,index) in bag.emoticons" :key="index">
           <img :src="item.pic_url" alt="" @click="shouCanvas($event,index)">
@@ -50,7 +50,7 @@ export default {
       mainHeight: 0,
       showGiftPup: false,
       lateImg: '',
-      giftPupName: '恭喜你兌換獲得表情包成功，在K房即可使用！',
+      giftPupName: '恭喜你兌換獲得貼圖成功，在K房即可使用！',
       dataArr: [],
       loading: false,
       user_wallet: {},
@@ -89,7 +89,7 @@ export default {
           this.bag = response_data.bag
           this.downloaderData(this.filderArr)
         } else {
-          this.tastMsg = '表情包加載失敗！'
+          this.tastMsg = '貼圖加載失敗！'
           this.showT = true
         }
       })
@@ -174,7 +174,7 @@ export default {
           }
         })
       } else {
-        this.tastMsg = '您的表情包碎片不足哦~快去獲取碎片吧！'
+        this.tastMsg = '您的貼圖碎片不足哦~快去獲取碎片吧！'
         this.showT = true
       }
     },

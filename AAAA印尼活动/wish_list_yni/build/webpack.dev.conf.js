@@ -31,7 +31,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     hot: true,
     contentBase: false, // since we use CopyWebpackPlugin.
     compress: true,
-    host: `0.0.0.0`, // HOST || config.dev.host
+    host: HOST || config.dev.host,
     port: PORT || config.dev.port,
     open: config.dev.autoOpenBrowser,
     overlay: config.dev.errorOverlay
@@ -75,6 +75,12 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       template: 'index4.html',
       inject: true,
       chunks: ['app4']
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index5.html',
+      template: 'index5.html',
+      inject: true,
+      chunks: ['app5']
     }),
     // copy custom static assets
     new CopyWebpackPlugin([

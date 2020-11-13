@@ -46,7 +46,7 @@
     </div>
     <!-- 抽獎記錄 -->
     <div class="mask" v-show="showHistory">
-      <transition name="slise">
+      <transition name="slide">
         <div class="historyPup" v-show="showHistory">
           <i class="close" @click="closeHistory()"></i>
           <div class="title"></div>
@@ -217,8 +217,8 @@ export default {
     },
     goHistory() {
       api.record1(0).then(res => {
-        this.historyList = res.data.response_data.list
         this.showHistory = true
+        this.historyList = res.data.response_data ? res.data.response_data.list : []
       })
     },
     goTask() {

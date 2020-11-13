@@ -14,11 +14,11 @@ const lang = {
     singUp: 'mendaftar',
     actDetil: 'Detail acara ',
     attention: 'Ikuti',
-    attention2: 'Kancel perhatikan',
+    attention2: 'Bata',
     rid: 'Nomor kamar:',
     actTips: 'Deskripsi acara',
     actGifts: 'Hadiah acara',
-    goRoom: 'Masuk ke kamar utk pemanasan',
+    goRoom: 'Masuk',
     singUpTips1: 'Tulis profil pribadi akan bisa kirim pendaftaran',
     singUpTips2: 'Pendiri acara akan kabari anda hasil pendaftaran,silakan tunggu ya',
     singUpTips3: 'Aku di Wekara ada fansnya 2131, aku pandai menyanyi, sangat pandai lagu {Dekat di hati}, aku harap bisa menjadi tamu yg acara kalian.(contoh)',
@@ -31,9 +31,10 @@ const lang = {
     actBarTips5: 'Tinjau komentar: ',
     actBarTips6: ' Program acara bagus, ayo cepat panggil teman2 ikuti acara!! ',
     actBarChang: 'Ubah program',
-    singUpDetil: 'Detail pendaftaran',
+    singUpDetil: 'Detail',
     singUpNoData: ' belum mendaftar,undangan teman2 dulu!',
     singUpMsg: 'Pendaftaran pendahuluan',
-    ms: 'Kirim pesan'
+    ms: 'Kirim pesan',
+    rank: 'Peringkat'
 }
 export default lang

@@ -49,7 +49,7 @@
               </li>
             </ul>
           </vue-seamless-scroll>
-          <div class="share" v-if="packetType == 1">提醒好友搶紅包</div>
+          <div class="share" v-if="packetType == 1" @click="shareAct()">提醒好友搶紅包</div>
         </div>
       </transition>
     </div>
@@ -59,7 +59,7 @@
         <div class="packetRes" v-if="packetRes">
           <i class="close" @click="closePacketPup()"></i>
           <div class="resHeader">
-            <div class="title">{{coins?'恭喜获得':'手慢了,紅包派完了'}}</div>
+            <div class="title">{{coins?'恭喜獲得':'手慢了,紅包派完了'}}</div>
             <div class="coins" v-if="coins">
               <span>{{coins}}</span>
               <span class="icon"></span>
@@ -77,6 +77,7 @@
       <transition name="slide">
         <div class="packetRecord" v-show="packetRecore">
           <i class="close" @click="closePacketPup()"></i>
+          <!-- <p class="red">{{dtime}}</p> -->
           <div class="resHeader">
             <div class="tips" v-if="recoreData.time">{{recoreData.users}}個紅包,{{recoreData.time}}秒被搶完</div>
             <div class="tips" v-else>
@@ -85,9 +86,9 @@
             </div>
           </div>
           <ul class="recoreList">
-            <li v-for="(item,index) in recoreData.list" :key="index">
+            <li v-for="(item,index) in recoreData.list" :key="index" @click="goUser(item.uid)">
               <img v-lazy="item.avatar" alt="" class="av">
-              <div class="msg" @click="goUser(item.uid)">
+              <div class="msg">
                 <div class="nick">{{item.nick}}</div>
                 <div class="tm">{{getDate(item.time)}}</div>
               </div>
@@ -107,6 +108,9 @@ import api from "../api/apiConfig"
 import { mapState } from "vuex"
 import getDate from "../utils/getDate"
 import { globalBus } from '../utils/eventBus'
+import getString from "../utils/getString"
+
+
 export default {
   data() {
     return {
@@ -118,7 +122,10 @@ export default {
       coins: null,  //有没有抢到 有为数值
       recoreData: {},
       loaded: false,
-      more: true
+      more: true,
+      timer: null,
+      timer2: null,
+      dtime: 0
     }
   },
   computed: {
@@ -128,13 +135,18 @@ export default {
         limitMoveNum: 4,
         hoverStop: false,
         openTouch: false,
-        autoPlay: true
+        autoPlay: true,
       }
     }
   },
   watch: {
     redPacket(val) {
+      this.dtime = val.dtime
+      if (typeof (val.dtime) != 'undefined' && this.timer2 == null) {
+        this.nextRedPacket(val.dtime * 1000)
+      }
       if (val.status == 1) { //红包倒计时
+        this.packetType = 1
         this.redPacket_downTime = true
         this.downTime = val.time
         this.downTimeGo()
@@ -172,10 +184,11 @@ export default {
       })
     },
     downTimeGo() {
-      let tiemr = setInterval(() => {
+      clearInterval(this.timer)
+      this.timer = setInterval(() => {
         this.downTime--
         if (this.downTime <= 0) {
-          clearInterval(tiemr)
+          clearInterval(this.timer)
           this.packetType = 2
         }
       }, 1000)
@@ -186,6 +199,10 @@ export default {
           this.packetRes = true
           this.redPacket_downTime = false
           this.coins = res.data.response_data.coins
+          if (typeof (res.data.response_data.dtime) != 'undefined' && this.timer2 == null) {
+            this.dtime = res.data.response_data.dtime
+            this.nextRedPacket(res.data.response_data.dtime * 1000)
+          }
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -196,6 +213,9 @@ export default {
         this.packetRecore = true
         // res.data.response_data
         this.recoreData = res.data.response_data
+        if (!res.data.response_data.list.length) {
+          this.nextRedPacket(0)
+        }
         // {
         //   "users": 300, // 红包总人数
         //   "coins": 1088, // 红包总金币数
@@ -277,13 +297,50 @@ export default {
     closePacketPup() {
       this.packetRes = false
       this.packetRecore = false
-      api.hideRedPacket()
+      // api.hideRedPacket()
     },
     goUser(uid) { //跳转
       location.href = `uid:${uid}`
     },
     goSong(sid) {
       location.href = 'songid:{"songlist":[' + sid + '],"index":0}';
+    },
+    shareAct() {
+      api.report('packet')
+      var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      let uid = getString('uid')
+      // console.log(this.chioneUserMsg)
+      var data = {
+        "share_title": `快來！爆紅包啦！`,
+        "share_content": "點擊預約搶紅包,還能收到提醒哦>>",
+        "share_image": `http://activity.17sing.tw/static_html/2020/songking2020/share.png?v=2`,
+        "link": `http://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#`,
+        "image": `http://activity.17sing.tw/static_html/2020/songking2020/share.png?v=2`,
+        "share_url": `http://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#`
+      }
+      if (ios) {
+        if (window.share != undefined) {
+          share(JSON.stringify(data))
+        } else {
+          location.href = `shareUserInfo://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#&shareText=點擊預約搶紅包,還能收到提醒哦>>&userImg=http://activity.17sing.tw/static_html/2020/songking2020/share.png?v=2&title=快來！年度魅力歌王大賽準備爆紅包啦！`;
+        }
+      } else {
+        javascript: JSInterface.share(JSON.stringify(data));
+      }
+    },
+    nextRedPacket(dtime) {
+      clearTimeout(this.timer2)
+      this.timer2 = setTimeout(() => {
+        // clearTimeout(this.timer2)
+        this.redPacket_downTime = false
+        this.packetRes = false
+        this.packetRecore = false
+        // this.packetType = 1
+        api.getDefault('more').then(res => {
+          // this.$parent.getDefaultData()
+          this.vxc('setRedPacket', res.data.response_data.redPacket)
+        })
+      }, dtime)
     }
   }
 }
@@ -501,6 +558,7 @@ export default {
             border: 0.03rem solid rgba(255, 255, 255, 0.4);
           }
           strong {
+            width: 3.3rem;
             margin-left: 0.15rem;
             font-size: 0.24rem;
             white-space: nowrap;
@@ -530,6 +588,7 @@ export default {
       line-height: 0.8rem;
       color: rgba(126, 26, 6, 1);
       text-align: center;
+      z-index: 10;
     }
   }
   .packetRes {
@@ -594,6 +653,10 @@ export default {
     background-size: 100% 100%;
     position: relative;
     padding-top: 0.8rem;
+    .red {
+      font-size: 0.4rem;
+      color: red;
+    }
     .resHeader {
       height: 2.5rem;
       display: flex;
@@ -615,7 +678,7 @@ export default {
     }
     .recoreList {
       width: 5rem;
-      height: 3.6rem;
+      height: 3.15rem;
       overflow-y: scroll;
       margin: 0.5rem auto 0;
       li {
@@ -645,8 +708,11 @@ export default {
         }
         .gift {
           width: 1.4rem;
-          text-align: right;
           margin-left: 0.15rem;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: center;
           .nums {
             font-size: 0.24rem;
             color: rgba(51, 51, 51, 1);
@@ -656,6 +722,7 @@ export default {
             align-items: center;
             color: rgba(176, 115, 8, 1);
             font-size: 0.22rem;
+            white-space: nowrap;
             i {
               width: 0.37rem;
               height: 0.43rem;

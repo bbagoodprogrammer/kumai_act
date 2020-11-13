@@ -1,7 +1,7 @@
 <template>
   <div class="emojiGiftBox" :style="{height:pupHeight+'px'}">
     <div class="herder">
-      <i class="back" @click="closeGiftBox"></i> 表情包<i class="close" @click="closeGiftBox"></i>
+      <i class="back" @click="closeGiftBox"></i> 貼圖<i class="close" @click="closeGiftBox"></i>
     </div>
     <EmojiList />
   </div>
