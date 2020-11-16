@@ -107,7 +107,7 @@ export default {
       let regstr = getString('token')
       let uid = getString('uid')
       let aid = getString('aid')
-      location.href = `http://activity.17sing.tw/static_html/2020/ceremony202000/index.html?token=${regstr}&uid=${uid}&aid=${aid}`
+      location.href = `https://activity.wekarapp.com/static_html/2020/ceremony202000/index.html?token=${regstr}&uid=${uid}&aid=${aid}`
     },
     goRule() {
       let uid = getString('uid')
@@ -118,7 +118,7 @@ export default {
       let uid = getString('uid')
       let regstr = getString('token')
       let aid = getString('aid')
-      location.href = `http://activity.17sing.tw/static_html/2020/singervote2020/index.html?token=${regstr}&uid=${uid}&aid=${aid}`
+      location.href = `https://activity.wekarapp.com/static_html/2020/singervote2020/index.html?token=${regstr}&uid=${uid}&aid=${aid}`
     },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
@@ -127,7 +127,7 @@ export default {
     },
     async bannerGo() {
       let canvas = document.getElementById('bannerBg')
-      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/svga/a347802f5e975d5f7c7cdef2ee390dc5_1604924309.svga`);
+      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/svga/d33266b2aaf3ca2004efa57cf5ffb9b6_1605520727.svga`);
       const data = await parser.do(fileData);
       let player = new Player(canvas)
       await player.mount(data)

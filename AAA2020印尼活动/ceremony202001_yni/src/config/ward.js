@@ -7,7 +7,7 @@ export const wardName = {
     4: "VIP (1 hari)",
     5: "50 koin emas",
     6: "Palu emas(60 kacang emas)",
-    7: "VIP（3天）",
+    7: "VIP（3 hari）",
     8: "5% Kupon Topup",
     9: "Anggur(2 koin emas)",
     10: "Kupon sawer penuh 100 akan bonus 10",

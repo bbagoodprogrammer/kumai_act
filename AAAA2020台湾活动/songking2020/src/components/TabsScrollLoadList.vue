@@ -10,7 +10,7 @@
     </div>
     <div class="rankTips">
       <div class="giftTips" v-if="mainTab == 0">
-        <p>閃耀值=作品收到點讚數X10+作品收到金幣禮物魅力值 <br />參賽作品收到以下特定禮物，魅力值增幅5%</p>
+        <p>閃耀值=參賽作品收到點讚數X10+ 參賽作品收到金幣禮物魅力值 <br />參賽作品收到以下特定禮物，魅力值增幅5%</p>
         <div class="giftItem">
           <div class="item" v-for="(item,index) in giftArr" :key="index">
             <div class="imgBox">
@@ -31,7 +31,7 @@
         <li v-for="(item,index) in rank.list" :key="index" :class="'rank' +item.rank">
           <div class="rank">{{item.rank}}</div>
           <div class="imgBox" @click="goUser(item.uid)">
-            <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
+            <img v-if="item.frame &&item.frame != ''" :src="item.frame" class="frame" alt="">
             <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
             <img v-else-if="item.noble > 0" :src="require(`../assets/img/nob/${item.noble}.png`)" class="nob" alt="">
             <img v-lazy="item.avatar" alt="" class="av">
@@ -133,7 +133,7 @@ export default {
         '支持你',
         '玫瑰花束',
         '彩虹獨角獸',
-        '福運禮盒禮物'
+        '啤酒乾杯'
       ]
     }
   },
@@ -396,12 +396,12 @@ export default {
             }
             .boxIcon {
               display: block;
-              width: 1.12rem;
+              width: 1.24rem;
               height: 0.34rem;
               background: url(../assets/img/rank/boxIcon.png);
               background-size: 100% 100%;
               position: absolute;
-              left: 0.25rem;
+              left: 0.18rem;
             }
           }
           strong {
@@ -599,7 +599,7 @@ export default {
           }
         }
         .msg {
-          width: 2rem;
+          width: 1.8rem;
           .nick {
             font-size: 0.28rem;
             overflow: hidden;
@@ -623,6 +623,7 @@ export default {
         }
         .score {
           flex: 1;
+          width: 2.48rem;
           .lv {
             white-space: nowrap;
             color: rgba(252, 245, 193, 1);

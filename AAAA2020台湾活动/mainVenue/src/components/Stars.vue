@@ -227,7 +227,7 @@ export default {
           return false
         }
       } else {
-        if (this.nowAct.attension >= 100) {
+        if (this.nowAct.data >= 100) {
           if (this.nowAct.act_id == 5) {
             return `已有${this.nowAct.data}家族參與`
           } else if (this.nowAct.act_id == 8) {
