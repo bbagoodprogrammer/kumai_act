@@ -9,7 +9,7 @@
       <p>19 November 09: 00-3 Desember 21:00</p>
       <h5>Hadiah Acara</h5>
       <div class="giftsItem">
-        <div class="item" v-for="(item,index) in 28" :key="index">
+        <div class="item" v-for="(item,index) in 24" :key="index">
           <div class="imgBg">
             <img :src="require(`../../assets/img/ruleGifts/${item}.png`)" alt="">
           </div>
@@ -114,34 +114,35 @@ export default {
     return {
       type: 1,
       giftName: [
-        '助攻MVP<br/>認證',
-        '禮物冠名',
-        '歡樂嘉年華<br/>徽章',
-        '初級助攻<br/>徽章',
-        '中級助攻<br/>徽章',
-        '高級助攻<br/>徽章',
-        '助攻MVP<br/>徽章',
-        '支持你<br/>徽章',
-        '玫瑰花束<br/>徽章',
-        '彩虹獨角獸<br/>徽章',
-        '應援棒<br/>徽章',
-        '巨星登場<br/>徽章',
-        '告白煙火<br/>徽章',
-        '紅毯座駕',
-        '馴鹿座駕',
-        '白玉仙舟<br/>座駕',
-        '中級助攻<br/>頭飾',
-        '高級助攻<br/>頭飾',
-        '助攻MVP<br/>頭飾',
-        '抽獎獎勵<br/>背包禮物',
-        '助攻獎勵<br/> 背包禮物',
-        '儲值返利獎勵<br/>背包禮物',
-        '邁凱倫座駕',
-        'GTR座駕',
-        '儲值返利券',
-        '送禮返利券',
-        '海量金幣',
-        '海量金豆'
+        'Hadiah Rose flower',
+        'Hadiah Mobil mini',
+        'Hadiah Cupid\'s Arrow',
+        'Mount Kapal Terbang',
+        'Kacang emas besar-besaran',
+        'Kupon sawer',
+        'Penolong Junior',
+        'Penolong Menengah',
+        'Penolong Maju',
+        'Koin emas besar-besaran',
+        'Kupon top up',
+        'Lencana MVP Penolong',
+        'Mount Karpet Merah',
+        'VIP',
+        'Hadiah I Love You',
+        'Mount obil klasik',
+        'Lencana Karnaval',
+        'Mount Singa',
+        ' Kuda Kayu Impian',
+        'Kapal Pesair Galaksi',
+        'Naga Emas',
+        'Kincir Ria Merah Muda',
+        'Ginger bon',
+        'Anggur',
+        // 'GTR座駕',
+        // '儲值返利券',
+        // '送禮返利券',
+        // '海量金幣',
+        // '海量金豆'
       ]
     }
   },
@@ -225,7 +226,7 @@ body {
     }
     .giftsItem {
       width: 6.31rem;
-      height: 17.57rem;
+      height: 15.57rem;
       padding: 0.81rem 0.48rem 0;
       background: url(../../assets/img/ruleGifts/rulebg.png);
       background-size: 100% 100%;
@@ -234,6 +235,7 @@ body {
       flex-wrap: wrap;
       justify-content: space-between;
       .item {
+        width: 25%;
         .imgBg {
           width: 1.4rem;
           height: 1.4rem;
@@ -246,9 +248,10 @@ body {
             margin: 0 auto;
           }
         }
-
         strong {
           display: block;
+          width: 100%;
+          height: 0.6rem;
           font-size: 0.24rem;
           text-align: center;
         }

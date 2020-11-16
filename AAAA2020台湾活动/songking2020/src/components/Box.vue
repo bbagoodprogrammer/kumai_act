@@ -40,10 +40,10 @@
         <div class="boxGifts tipsPup" v-if="showTipsPup">
           <i class="close" @click="showTipsPup = !showTipsPup"></i>
           <h3>閃耀值獲取攻略</h3>
-          <p class="yel">閃耀值=作品收到點讚數X10+作品收到金幣禮物魅力值 </p>
+          <p class="yel">閃耀值=參賽作品收到點讚數X10+參賽作品收到金幣禮物魅力值</p>
           <p><span class="yel">點讚數：</span>僅限前30個讚計入成績</p>
-          <p><span class="yel">特定禮物加成：</span>參賽作品以下收到4個特定禮物，支持你（10金幣）、玫瑰花束（188金幣）、彩虹獨角獸（520金幣），福運禮盒中的XXXX（XX金幣），參賽作品魅力值增幅5%</p>
-          <p><span class="yel">特定時間加成：</span>活動期間21:00-21:10参賽作品收金幣禮，魅力值額外加成10%</p>
+          <p><span class="yel">特定禮物加成：</span>參賽作品以下收到4個特定禮物，支持你（10金幣）、玫瑰花束（188金幣）、彩虹獨角獸（399金幣），作品高級福運禮盒中的啤酒乾杯（110金幣），參賽作品魅力值增幅5%</p>
+          <p><span class="yel">特定時間加成：</span>活動期間21:00-21:10參賽作品收金幣禮物，魅力值額外加成10%</p>
           <span class="ok" @click="showTipsPup = !showTipsPup">我知道啦</span>
         </div>
       </transition>
