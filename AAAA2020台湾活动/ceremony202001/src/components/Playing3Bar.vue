@@ -62,7 +62,7 @@ export default {
         2: {
           gift: {
             type: 'beat',
-            num: 50
+            num: 60
           }
         },
         3: {

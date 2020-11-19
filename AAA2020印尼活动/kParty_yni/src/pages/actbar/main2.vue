@@ -263,7 +263,7 @@ body {
       .title {
         height: 1rem;
         line-height: 1rem;
-        font-size: 0.46rem;
+        font-size: 0.32rem;
         text-indent: 0.29rem;
         font-weight: 600;
         display: flex;

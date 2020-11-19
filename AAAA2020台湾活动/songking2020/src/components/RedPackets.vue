@@ -109,7 +109,7 @@ import { mapState } from "vuex"
 import getDate from "../utils/getDate"
 import { globalBus } from '../utils/eventBus'
 import getString from "../utils/getString"
-
+import store from "../store/stores"
 
 export default {
   data() {
@@ -204,7 +204,9 @@ export default {
             this.nextRedPacket(res.data.response_data.dtime * 1000)
           }
         } else {
-          this.toast(res.data.response_status.error)
+          if (res.data.response_status.code != 20008) {
+            this.toast(res.data.response_status.error)
+          }
         }
       })
     },

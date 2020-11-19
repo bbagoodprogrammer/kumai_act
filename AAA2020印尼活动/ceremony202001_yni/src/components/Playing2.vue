@@ -418,6 +418,7 @@ export default {
             margin-left: 0.18rem;
           }
           .score {
+            text-align: center;
             font-size: 0.28rem;
             flex: 1;
             em {
