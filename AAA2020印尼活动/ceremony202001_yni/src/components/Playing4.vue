@@ -61,8 +61,8 @@
         </div>
         <div class="tips">
           <p>{{lang.chuzTips1}}</p>
-          <p v-if="type == 1">{{lang.chuzTips2}}</p>
-          <p v-else>{{lang.chuzTips3}}</p>
+          <p>{{lang.chuzTips2}}</p>
+          <!-- <p v-else>{{lang.chuzTips3}}</p> -->
         </div>
       </div>
     </div>

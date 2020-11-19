@@ -208,7 +208,7 @@ export default {
             strArr.push(this.lang.luckTips13)
           }
         });
-        return strArr.join(',') + '。'
+        return strArr.join(',')
       }
     },
     closeGetGift() {
@@ -444,9 +444,12 @@ export default {
     }
     .fiveTitle {
       height: 1.83rem;
-      line-height: 1.83rem;
       color: rgba(255, 255, 255, 1);
       font-size: 0.32rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.5rem;
     }
     .gift {
       height: 4.5rem;

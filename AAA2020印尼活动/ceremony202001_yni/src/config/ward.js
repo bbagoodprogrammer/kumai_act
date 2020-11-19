@@ -1,18 +1,18 @@
 
 
 export const wardName = {
-    1: "Tanduk ajaib(60 kacang emas)",
+    1: "Tanduk ajaib",
     2: "Kupon sawer penuh 500 akan bonus 60",
     3: "40 koin karnaval",
     4: "VIP (1 hari)",
     5: "50 koin emas",
-    6: "Palu emas(60 kacang emas)",
+    6: "Palu emas",
     7: "VIP（3 hari）",
     8: "5% Kupon Topup",
-    9: "Anggur(2 koin emas)",
+    9: "Anggur",
     10: "Kupon sawer penuh 100 akan bonus 10",
     11: "Mobil klasik (7 hari)",
-    12: "Ginger bon(1 koin emas)"
+    12: "Ginger bon"
 }
 export const wardImg = {
     1: require("../assets/img/giftPup/ward1.png"),
@@ -41,7 +41,7 @@ export const tickGiftList = {
         },
         {
             img: require("../assets/img/ticket/gift/gift2.png"),
-            name: 'Kuda Kayu Impian (senilai 3520 koin emas)'
+            name: 'Bayangan di laut dalam (senilai 3888 koin emas)'
         },
     ],
     2: [
@@ -55,7 +55,7 @@ export const tickGiftList = {
         },
         {
             img: require("../assets/img/ticket/gift/gift3.png"),
-            name: 'Kapal Pesair Galaksi (senilai 2288 koin emas)'
+            name: 'Gelembung Impian (senilai 2128 koin emas)'
         },
     ],
     3: [
@@ -69,7 +69,7 @@ export const tickGiftList = {
         },
         {
             img: require("../assets/img/ticket/gift/gift4.png"),
-            name: 'Naga Emas (senilai 1888 koin emas)'
+            name: 'Kapal Paisar (senilai 1888 koin emas)'
         },
     ],
     4: [
@@ -83,7 +83,7 @@ export const tickGiftList = {
         },
         {
             img: require("../assets/img/ticket/gift/gift5.png"),
-            name: 'Kincir Ria Merah Muda (senilai 1520 koin emas)'
+            name: 'Mimpi Balon Udara Panas (senilai 1520 koin emas)'
         },
     ]
 }

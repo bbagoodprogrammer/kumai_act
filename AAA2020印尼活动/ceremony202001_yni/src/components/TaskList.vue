@@ -40,7 +40,7 @@ export default {
     return {
       taskName: {
         login: 'Sign-in tiap hari',
-        publicWork: 'Rilis nynyian publik yang tidak dikumpulkan',
+        publicWork: 'Rilis nyanyian publik yang tidak dikumpulkan',
         noDel: 'Nyanyian publik yang tidak dikumpulkan yang diriliskan kemarin belum dihapus',
         like5: 'Suka 5 nyanyian',
         stayKtv: 'Tinggal di kamar karaoke yang tidak terkunci selama 20 menit',

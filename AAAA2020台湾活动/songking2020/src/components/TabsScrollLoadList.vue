@@ -41,7 +41,7 @@
             <div class="add" v-if="item.ratio > 0">加成{{item.ratio}}%</div>
           </div>
           <div class="score">
-            <div class="lv">Lv.{{item.level}} <em class="lvScore">闪耀值：{{item.score}}</em> </div>
+            <div class="lv">Lv.{{item.level}} <em class="lvScore">閃耀值：{{item.score}}</em> </div>
             <div class="iconScore">
               <span> <i class="sIcon1"></i>{{item.like}}</span>
               <span> <i class="sIcon2"></i>{{item.charm}}</span>

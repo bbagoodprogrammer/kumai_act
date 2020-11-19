@@ -23,7 +23,7 @@
             <img v-lazy="nowMsg.user.avatar" alt="" class="av">
           </div>
           <div class="score">
-            <div class="lv">Lv.{{nowMsg.level}} <em class="lvScore">闪耀值：{{nowMsg.score}}</em> </div>
+            <div class="lv">Lv.{{nowMsg.level}} <em class="lvScore">閃耀值：{{nowMsg.score}}</em> </div>
             <div class="iconScore">
               <span> <i class="sIcon1"></i>{{nowMsg.like}}</span>
               <span> <i class="sIcon2"></i>{{nowMsg.charm}}</span>
