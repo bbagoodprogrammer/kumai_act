@@ -84,16 +84,16 @@ function getDefault(step) {
 }
 //海选榜
 function auditionRank(from) {
-    return get(`/posc2020/auditionRank.php?from=${from}&token=${token}`);
+    return get(``);
 }
 //对战榜
 function pkRank(from) {
-    return get(`/posc2020/pkRank.php?from=${from}&token=${token}`)
+    return get(``)
 }
 
 //团战榜
 function teamRank(from) {
-    return get(`/posc2020/teamRank.php?from=${from}&token=${token}`)
+    return get(``)
 }
 
 
@@ -104,7 +104,7 @@ function teamSubRank(tid, from) {
 
 //出道榜
 function upgradeRank(from) {
-    return get(`/posc2020/upgradeRank.php?from=${from}&token=${token}`)
+    return get(``)
 }
 
 const httpConfig = {

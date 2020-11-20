@@ -15,8 +15,12 @@ const store = new Vuex.Store({
         },
         isShare: false, //分享
         showType: 1, // 当前活动进行阶段
-        nowStep: 0, // 当前阶段活动状态   0 1 2
-        initGrounps: {},
+        initGrounps: {
+            1: {},
+            2: {},
+            3: {},
+            4: {}
+        },
         rankGroups: {},  //储存當天的信息
         groupsUserMsg: {},  //儲存各種天數的個人信息
     },
@@ -49,12 +53,9 @@ const store = new Vuex.Store({
         setNowShowType(state, val) {
             state.showType = val
         },
-        setNowStep(state, val) {
-            state.nowStep = val
-        },
         setInitGroup(state, val) {
             state.initGrounps[val.key] = val.data
-            console.log(state.initGrounps)
+
         },
         changGroupsUserMsg(state, obj) {
             if (obj && typeof obj.key != 'undefined') {
@@ -69,6 +70,7 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.rankGroups = Object.assign({}, state.rankGroups, { [key]: Object.assign({}, state.rankGroups[key], obj) });
             }
+            console.log(state.rankGroups)
         },
     },
     actions: {

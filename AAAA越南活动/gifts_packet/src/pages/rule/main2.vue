@@ -4,7 +4,7 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Thể lệ</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Phần thưởng</a>
     </div>
-    <div class="actTime">Thời gian: 12:00 25/9 ~ 23:00 4/10</div>
+    <div class="actTime">Thời gian: 12:00 23/11 ~ 22:00 2/12</div>
     <div class="ruleTips" v-show="tab == 0">
       <h5>Thể lệ:</h5>
       <p>1. Cần báo danh tham gia sự kiện, sau khi báo danh mới bắt đầu tính điểm.</p>
