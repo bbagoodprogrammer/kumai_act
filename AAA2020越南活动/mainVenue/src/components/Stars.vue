@@ -221,13 +221,13 @@ export default {
     },
     nowActTips() {
       if (this.nowAct.step == 0) {
-        if (this.nowAct.attension >= 100) {
+        if (this.nowAct.attension >= 0) {
           return `${this.nowAct.attension} người hẹn trước`
         } else {
           return false
         }
       } else {
-        if (this.nowAct.data >= 100) {
+        if (this.nowAct.data >= 0) {
           if (this.nowAct.act_id == 5) {
             return `Đã có ${this.nowAct.data} gia tộc tham gia`
           } else if (this.nowAct.act_id == 8) {
