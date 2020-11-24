@@ -87,7 +87,7 @@ function getInitInfo() {
 
 //獲取自定義禮物
 function getRoomDraw() {
-    return axios.get(`/index.php?action=roomDraw.customDrawTicketList&token=${token}&rid=${rid}&uid=${uid}`)
+    return axios.get(`/action/index.php?action=roomDraw.customDrawTicketList&token=${token}&rid=${rid}&uid=${uid}`)
 }
 
 //發起自定義抽獎
@@ -102,7 +102,7 @@ function createCustomDraw(ticket_id, prise_id, participator_limit, time_limit) {
         time_limit
     }
     return axios({
-        url: '/index.php?action=roomDraw.createCustomDraw',
+        url: '/action/index.php?action=roomDraw.createCustomDraw',
         method: 'post',
         data: qs.stringify(data),
         headers: {
@@ -121,7 +121,7 @@ function createFixedDraw(fix_draw_prise_id, participator_limit) {
         participator_limit
     }
     return axios({
-        url: '/index.php?action=roomDraw.createFixedDraw',
+        url: '/action/index.php?action=roomDraw.createFixedDraw',
         method: 'post',
         data: qs.stringify(data),
         headers: {
@@ -132,25 +132,25 @@ function createFixedDraw(fix_draw_prise_id, participator_limit) {
 
 //獲取自定義獎品
 function getcustomDrawPriseList(prise_type) {
-    return axios.get(`/index.php?action=roomDraw.customDrawPriseList&token=${token}&rid=${rid}&uid=${uid}&prise_type=${prise_type}`)
+    return axios.get(`/action/index.php?action=roomDraw.customDrawPriseList&token=${token}&rid=${rid}&uid=${uid}&prise_type=${prise_type}`)
 }
 
 //固定抽獎列表
 function fixedDraw() {
-    return axios.get(`/index.php?action=roomDraw.fixedDrawPriseList&token=${token}&rid=${rid}&uid=${uid}`)
+    return axios.get(`/action/index.php?action=roomDraw.fixedDrawPriseList&token=${token}&rid=${rid}&uid=${uid}`)
 }
 
 //抽獎詳情
 function getDrawDetil(draw_id) {
-    return get(`/index.php?action=roomDraw.getDetail&token=${token}&rid=${rid}&uid=${uid}&draw_id=${draw_id}`)
+    return get(`/action/index.php?action=roomDraw.getDetail&token=${token}&rid=${rid}&uid=${uid}&draw_id=${draw_id}`)
 }
 
 //抽獎詳情
 function getHistory(logid, from) {
     if (from) {
-        return axios.get(`/index.php?action=roomDraw.getHistoryDetailList&token=${token}&rid=${rid}&uid=${uid}&log_id=${logid}&from=${from}`)
+        return axios.get(`/action/index.php?action=roomDraw.getHistoryDetailList&token=${token}&rid=${rid}&uid=${uid}&log_id=${logid}&from=${from}`)
     }
-    return get(`/index.php?action=roomDraw.getHistoryDetailList&token=${token}&rid=${rid}&uid=${uid}&log_id=${logid}&from=${from}`)
+    return get(`/action/index.php?action=roomDraw.getHistoryDetailList&token=${token}&rid=${rid}&uid=${uid}&log_id=${logid}&from=${from}`)
 }
 export {
     loadData,

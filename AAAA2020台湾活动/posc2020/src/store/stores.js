@@ -23,6 +23,8 @@ const store = new Vuex.Store({
         },
         rankGroups: {},  //储存當天的信息
         groupsUserMsg: {},  //儲存各種天數的個人信息
+        nowTab: 1, //当前tab
+        kol: false,
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -33,6 +35,9 @@ const store = new Vuex.Store({
         },
         setActStatus(state, val) {
             state.actStatus = val
+        },
+        setKol(state, val) {
+            state.kol = val
         },
         setUserMsg(state, val) {
             state.userMsg = val
@@ -55,7 +60,7 @@ const store = new Vuex.Store({
         },
         setInitGroup(state, val) {
             state.initGrounps[val.key] = val.data
-
+            console.log(state.initGrounps)
         },
         changGroupsUserMsg(state, obj) {
             if (obj && typeof obj.key != 'undefined') {
@@ -63,6 +68,7 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.groupsUserMsg = Object.assign({}, state.groupsUserMsg, { [key]: Object.assign({}, state.groupsUserMsg[key], obj) });
             }
+            console.log(state.groupsUserMsg)
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.key != 'undefined') {
@@ -70,8 +76,11 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.rankGroups = Object.assign({}, state.rankGroups, { [key]: Object.assign({}, state.rankGroups[key], obj) });
             }
-            console.log(state.rankGroups)
+            // console.log(state.rankGroups)
         },
+        setNowTab(state, val) {
+            state.nowTab = val
+        }
     },
     actions: {
         setloading({ commit }, boolean) {

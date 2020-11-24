@@ -1,15 +1,16 @@
 <template>
-  <div class="box">
+  <div class="box" :class="{pb:nowInitData.reg,pb2:nowUserScore.up}">
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <span class="ruleTips" :class="{top:isShare}" @click="goRule()"></span>
+      <span class="ruleTips" @click="goMain()">主會場 <i></i> </span>
+      <span class="ruleTips top" @click="goRule()">規則&獎勵 <i></i> </span>
     </div>
     <div class="giftImg"></div>
     <TabsScrollLoadList />
-    <!-- <act-footer></act-footer> -->
-    <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
+    <act-footer></act-footer>
+    <!-- <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
   </div>
 </template>
 
@@ -22,6 +23,8 @@ import ActFooter from "../components/ActFooter"
 import MsgToast from "../components/commonToast"
 import { globalBus } from '../utils/eventBus'
 import TabsScrollLoadList from "../components/TabsScrollLoadList"
+import { mapState } from 'vuex'
+
 export default {
   components: { MsgToast, ActFooter, TabsScrollLoadList },
   data() {
@@ -41,7 +44,17 @@ export default {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
-  mounted() {
+  computed: {
+    ...mapState(['nowTab', "initGrounps"]),
+    nowUserScore() {
+      return this.initGrounps[this.nowTab].owner ? this.initGrounps[this.nowTab].owner : {
+        uid1: { user: {} },
+        uid2: { user: {} }
+      }
+    },
+    nowInitData() {
+      return this.initGrounps[this.nowTab]
+    }
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -49,14 +62,6 @@ export default {
       this.vxc('setShareState', this.isShare) //分享状态
     },
     getDefaultData(val) { //初始化
-      // api.getDefault().then(res => {
-      //   const { response_status, response_data } = res.data
-      //   if (response_status.code == 0) {
-
-      //   } else {
-      //     this.toast(response_status.error)
-      //   }
-      // })
     },
     downApp() {
       APP()
@@ -64,6 +69,12 @@ export default {
     goRule() {
       let regstr = getString('token')
       location.href = `./index2.html?token=${regstr}`
+    },
+    goMain() {
+      let regstr = getString('token')
+      let uid = getString('uid')
+      let aid = getString('aid')
+      location.href = `/static_html/2020/ceremony202000/index.html?token=${regstr}&uid=${uid}&aid=${aid}`
     },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
@@ -88,7 +99,13 @@ body::-webkit-scrollbar {
   background: rgba(28, 21, 44, 1) url(../assets/img/banner.png) center 0
     no-repeat;
   background-size: 100% auto;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
+  &.pb {
+    padding-bottom: 3rem;
+  }
+  &.pb2 {
+    padding-bottom: 4rem;
+  }
   .shareBar {
     position: fixed;
     z-index: 1000;
@@ -108,15 +125,30 @@ body::-webkit-scrollbar {
     height: 8.45rem;
     position: relative;
     .ruleTips {
-      width: 1.7rem;
-      height: 0.56rem;
-      // background: url(../assets/img/ruleTips.png);
+      width: 1.64rem;
+      height: 0.79rem;
+      background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
       position: absolute;
       right: 0;
-      top: 0.17rem;
+      top: 6.56rem;
+      text-align: center;
+      color: rgba(176, 77, 39, 1);
+      font-size: 0.28rem;
+      display: flex;
+      justify-content: center;
+      line-height: 0.65rem;
+      padding-left: 0.2rem;
+      font-weight: 600;
+      i {
+        width: 0.24rem;
+        height: 0.23rem;
+        background: url(../assets/img/arr.png);
+        background-size: 100% 100%;
+        margin: 0.2rem 0 0 0.05rem;
+      }
       &.top {
-        top: 1.5rem;
+        top: 7.4rem;
       }
     }
   }
