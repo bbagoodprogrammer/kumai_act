@@ -1,13 +1,13 @@
 <template>
   <div class="rule">
-    <h5>Bình chọn Nhân Vật</h5>
+    <h5>Bình Chọn Tiêu Biểu</h5>
     <h6>Thời gian:</h6>
-    <p>18:00:00 24/11/2020 – 20:00:00 11/1/2021</p>
+    <p>18:00:00 25/11/2020 – 20:00:00 11/1/2021</p>
     <h6>Hướng dẫn:</h6>
     <p>Hạng mục bình chọn gồm top 10 nữ ca sĩ, top 10 nam ca sĩ, top 10 MV, top 10 đơn ca. Mỗi hạng mục xếp hạng dựa theo số phiếu bình chọn thí sinh hoặc bài hát nhận được từ cao đến thấp. Người tham gia có thể nhận Thẻ Gala tại sự kiện [Rút Thưởng Gala] trong [Lễ Hội Gala]. Dùng Thẻ Gala để bỏ phiếu cho thí sinh hoặc bài hát mình thích. Trong mỗi hạng mục bình chọn, mỗi người mỗi ngày chỉ được bỏ 1 phiếu.</p>
     <h5>Lễ Hội Gala</h5>
     <h6>Thời gian:</h6>
-    <p>18:00:00 24/11/2020 – 20:00:00 11/1/2021</p>
+    <p>18:00:00 25/11/2020 – 20:00:00 11/1/2021</p>
     <h6>Hướng dẫn:</h6>
     <p>1. Rút thưởng Gala – hoàn thành nhiệm vụ mỗi ngày để nhận Xu Gala tham gia rút thưởng, nếu rút trúng Thẻ Gala có thể bỏ phiếu trong sự kiện [Bình chọn nhân vật của năm].</p>
     <p>2. MVP – tặng 1 xu quà nhận 10 điểm Hỗ Trợ, điểm Hỗ Trợ đạt mốc yêu cầu sẽ được nhận Rương phần thưởng.</p>
@@ -48,12 +48,12 @@
     <h6>Thời gian:</h6>
     <p>18:00:00 25/12/2020-20:00:00 1/1/2021</p>
     <h6>Hướng dẫn:</h6>
-    <p>1. Những thí sinh từng đạt top 300 các cuộc thi The Voice và Võ Đài các quý mới được báo danh tham gia, sau khi báo danh mỗi người cần đăng 1 bài hát đơn ca để dự thi. </p>
+    <p>1. Những thí sinh từng đạt top 600 cuộc thi The Voice các kỳ, top 300 Người Người Võ Đài mùa 1 và mùa 2 mới được báo danh tham gia, sau khi báo danh mỗi người cần đăng 1 bài hát đơn ca để dự thi. </p>
     <p>2. Các bài hát đã báo danh sẽ được khán giả tham gia bình chọn theo cơ chế giấu mặt. Kết quả xếp hạng dựa theo tổng điểm số nhận được trong thời gian bình chọn.</p>
     <p>3. Top 10 thí sinh sẽ nhận được phần thưởng cực khủng, top 3 thí sinh còn được tham gia đêm nhạc Gala và chia sẻ tiền mặt trong đêm nhạc, người tham gia bình chọn sẽ nhận thưởng Đậu.</p>
     <h5>Gia Tộc Mạnh Nhất</h5>
     <h6>Thời gian:</h6>
-    <p>12:00:00 21/12/2020-20:00:00 8/1/2021</p>
+    <p>12:00:00 28/12/2020-20:00:00 1/1/2021 </p>
     <h6>Hướng dẫn:</h6>
     <p>1. Toàn bộ gia tộc đều tự động báo danh tham gia cuộc thi. Vòng Bảo Hộ Gia Tộc xếp hạng dựa vào thành viên gia tộc hoàn thành nhiệm vụ gia tộc và mị lực quà xu nhận được. Top 300 gia tộc sẽ được vào vòng sau.</p>
     <p>2. Trong vòng PK, các gia tộc sẽ đấu với nhau theo cơ chế sắp đặt ngẫu nhiên, nếu tặng quà gia tộc chỉ định được tăng thêm 3% điểm số. Trong mỗi trận, gia tộc nào điểm số cao hơn sẽ được vào vòng sau.</p>

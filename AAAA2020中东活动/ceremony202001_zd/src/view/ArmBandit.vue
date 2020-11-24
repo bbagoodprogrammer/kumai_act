@@ -127,7 +127,7 @@ export default {
     },
     async bannerGo() {
       let canvas = document.getElementById('bannerBg')
-      const fileData = await downloader.get(`https://fstatic.cat1314.com/uc/svga/d33266b2aaf3ca2004efa57cf5ffb9b6_1605520727.svga`);
+      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/djnh04/9c204c4a09ab1b1988061816d8442553_1606101569zdjnh04`);
       const data = await parser.do(fileData);
       let player = new Player(canvas)
       await player.mount(data)
@@ -198,7 +198,7 @@ body {
         background-size: 100% 100%;
       }
       .ruleTips2 {
-        width: 1.48rem;
+        width: 1.28rem;
         height: 0.66rem;
         background: url(../assets/img/ruleTips2.png);
         background-size: 100% 100%;

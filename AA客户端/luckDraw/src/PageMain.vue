@@ -4,7 +4,13 @@
     <router-link to="history" class="history"></router-link>
     <i class="close" @click="closeWeb()"></i>
     <div class="turnBox">
-
+      <div class="openUser" v-show="creator_id">
+        <div class="userMsg">
+          發起者:
+          <img v-lazy="creator_avatar" alt="">
+          <span class="nick">{{creator_nick}}</span>
+        </div>
+      </div>
       <div class="linght1" :class="{act:linghtStatus}"></div>
       <div class="linght2" :class="{act:linghtStatus}"></div>
       <div class="aniBall" :class="{ani:ballAni}" v-if="ballAni">
@@ -57,7 +63,10 @@ export default {
       linghtStatus: false,
       surplusTime: {},
       leftTime: 0,
-      luckAv: ''
+      luckAv: '',
+      creator_id: null,
+      creator_nick: '',
+      creator_avatar: ''
     }
   },
   computed: {
@@ -94,6 +103,13 @@ export default {
       getDrawDetil(draw_id).then(res => {
         if (res.data.response_data || res.data.response_data == null) {
           let data = res.data.response_data
+          // 發起抽獎人信息
+          if (data) {
+            this.creator_id = data.creator_id
+            this.creator_nick = data.creator_nick
+            this.creator_avatar = data.creator_avatar
+          }
+          //倒计时结束抽奖
           if (cb) {
             this.luckAv = data ? data.winner_avatar : ''
             cb(data.winner_id)
@@ -208,6 +224,7 @@ export default {
       }, 1000)
     },
     goSetting() {
+      console.log(this.luckStatus)
       if (this.luckStatus == 2) {
         callApp("showGiftPanel", this.luckMsg.ticket_gid)
         return
@@ -269,6 +286,38 @@ export default {
   .turnBox {
     position: relative;
     height: 9.89rem;
+    .openUser {
+      width: 4.07rem;
+      height: 1.11rem;
+      background: url(./img/openPeople.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: 0.37rem;
+      left: 1.72rem;
+      z-index: 20;
+      .userMsg {
+        width: 3.3rem;
+        height: 0.53rem;
+        margin: 0 auto;
+        font-size: 0.22rem;
+        color: rgba(226, 255, 255, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 0.4rem;
+          height: 0.4rem;
+          border-radius: 50%;
+          margin: 0 0.06rem 0 0.03rem;
+        }
+        .nick {
+          max-width: 1.5rem;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
+    }
     .linght1 {
       display: block;
       width: 6.68rem;

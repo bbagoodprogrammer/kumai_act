@@ -181,9 +181,9 @@ export default {
         // if (gid == 4) {  欢卡
         //   return this.lang.luckTips7
         // } else 
-        if (gid == 1 || gid == 6 || gid == 9 || gid == 12) {
+        if (gid == 1 || gid == 6 || gid == 9 || gid == 2) {
           return this.lang.luckTips8
-        } else if (gid == 2 || gid == 8 || gid == 10) {
+        } else if (gid == 4 || gid == 8 || gid == 10) {
           return this.lang.luckTips9
         } else {
           return ''
@@ -198,14 +198,14 @@ export default {
           // if (element == 4) {欢卡
           //   strArr.push(this.lang.luckTips10)
           // } else
-          if ((element == 1 || element == 6 || element == 9 || element == 12) && !status) {
+          if ((element == 1 || element == 6 || element == 9 || element == 2) && !status) {
             status = true
             strArr.push(this.lang.luckTips11)
-          } else if (element == 8) {
-            strArr.push(this.lang.luckTips12)
-          } else if ((element == 2 || element == 10) && !status2) {
-            status2 = true
+          } else if (element == 4 || element == 10) {
             strArr.push(this.lang.luckTips13)
+          } else if ((element == 8) && !status2) {
+            status2 = true
+            strArr.push(this.lang.luckTips12)
           }
         });
         return strArr.join(',')

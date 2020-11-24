@@ -82,6 +82,16 @@ function getDefault(step) {
         return get(`/posc2020/init.php`);
     }
 }
+
+
+//团战榜子榜单
+function teamSubRank(tid, from, more) {
+    if (more) {
+        return axios.get(`/posc2020/teamSubRank.php?tid=${tid}&from=${from}&token=${token}`)
+    }
+    return get(`/posc2020/teamSubRank.php?tid=${tid}&from=${from}&token=${token}`)
+}
+
 //海选榜
 function auditionRank(from) {
     return get(``);
@@ -95,13 +105,6 @@ function pkRank(from) {
 function teamRank(from) {
     return get(``)
 }
-
-
-//团战榜子榜单
-function teamSubRank(tid, from) {
-    return get(`/teamSubRank.php?tid=${tid}&from=${from}&token=${token}`)
-}
-
 //出道榜
 function upgradeRank(from) {
     return get(``)
