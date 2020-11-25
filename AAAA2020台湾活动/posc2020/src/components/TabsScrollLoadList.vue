@@ -19,7 +19,7 @@
     </div>
     <div class="actTips">
       <p>在比賽期間向選手送以上禮物，選手可獲得10%的人氣加成喔</p>
-      <p><span>高光時刻：</span>比賽期間每日21:00～21:00送出的禮物可以獲得10%的人氣值加成</p>
+      <p><span>高光時刻：</span>比賽期間每日21:00:00~21:10:00送出的禮物可以獲得10%的人氣值加成</p>
     </div>
     <div class="downTimebox">
       <div class="timeTips">
@@ -47,7 +47,7 @@
           <em>秒</em>
         </div>
       </div>
-      <div class="rankTips" v-if="nowTab != 4"></div>
+      <div class="rankTips" v-if="nowTab != 4 && rank.list.length"></div>
     </div>
     <ul v-if="nowTab ==1" class="stage1List">
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goPeople(item.uid)">
@@ -154,13 +154,14 @@
       </ul>
     </div>
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-    <div class="listTips">
+    <div class="listTipsBox">
       <div v-if="rank.loading" class="scrollLoading">加載中...</div>
-      <div v-if="rank.none && rank.list.length == 0 " class="scrollNone">
+      <div v-else-if="nowTab > showType" class="dengdai">敬請期待！</div>
+      <div v-else-if="rank.none && rank.list.length == 0 " class="scrollNone">
         目前暫無歌友上榜</br>
         虛位以待，等你來哦！
       </div>
-      <div v-if="nowTab > showType" class="dengdai">敬請期待！</div>
+
     </div>
     <!--榜单提示彈窗 -->
     <div class="mask" v-show="showRankTips">
@@ -220,6 +221,8 @@
         </div>
       </transition>
     </div>
+
+    <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
   </div>
 </template>
 
@@ -349,7 +352,7 @@ export default {
     lastlistTop() {
       if (this.rank.list.length) {
         return this.rank.list.slice(0, 11)
-      } else if (this.showType == 4) {
+      } else if (this.nowTab == 4) {
         let arr = []
         for (let i = 0; i < 11; i++) {
           arr.push({
@@ -484,11 +487,16 @@ export default {
         }
       }
     },
+    refrsh() { //刷新
+      this.rotatePx = 540 * ++this.rotatec  //旋转动
+      this.init(this.nowTab)
+      this.onRefresh()
+    },
     onRefresh() {
       if (this.rank.loading) return
-      this.rotatePx = 540 * ++this.rotatec  //旋转动画
+      // this.rotatePx = 540 * ++this.rotatec  //旋转动画
       this.$store.commit('updateRankGroups', {
-        key: this.rankKey,
+        key: this.nowTab,
         loadCount: 0,
         loadEnd: false,
         loading: false,
@@ -1686,6 +1694,11 @@ export default {
   }
 }
 
+.listTipsBox {
+  margin: 0.4rem auto 0;
+  position: relative;
+  z-index: 30;
+}
 .pupTips {
   width: 6.53rem;
   // height: 7.87rem;
@@ -1735,17 +1748,17 @@ export default {
   font-size: 80%;
   margin-top: 0.8rem;
 }
-#refresh {
+.refresh {
   display: block;
   width: 0.94rem;
   height: 1rem;
   position: fixed;
   right: 0.08rem;
-  bottom: 1.35rem;
-  // background: url(../assets/img/refresh.png) no-repeat;
-  // background-size: contain;
+  bottom: 2rem;
+  background: url(../assets/img/refresh.png) no-repeat;
+  background-size: contain;
   transition: all 1s;
   text-indent: -999rem;
-  z-index: 100;
+  z-index: 10000;
 }
 </style>

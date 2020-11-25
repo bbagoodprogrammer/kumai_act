@@ -127,7 +127,7 @@ export default {
     },
     async bannerGo() {
       let canvas = document.getElementById('bannerBg')
-      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/nsd3/af44084b55bfb77a7dde3ec0803a266c_1605773198ynsd3`);
+      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/njnh/67baafa0d0985eb1a05e913c1f3329b1_1605695547ynjnh`);
       const data = await parser.do(fileData);
       let player = new Player(canvas)
       await player.mount(data)

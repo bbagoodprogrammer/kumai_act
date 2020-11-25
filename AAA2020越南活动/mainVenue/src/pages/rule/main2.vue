@@ -14,7 +14,7 @@
     <p>3. Quà vinh danh – người nhận được số lượng quà chỉ định cao nhất, được quyền vinh danh trong quà tặng đó (thông tin vinh danh hiển thị trên giao diện mua quà tặng). Thu thập quà tặng còn có thể mở khoá phần thưởng cấp bậc.</p>
     <p>4. Ưu đãi nạp 12% - vào dịp Lễ Tạ Ơn 26/11 và Giáng Sinh 25/12 nạp xu với mức bất kỳ được tặng thêm 12% số xu nạp.</p>
     <p>5. Thời Khắc Vĩ Đại – trong sự kiện Gia Tộc Mạnh Nhất, Vua Ca Nhạc, Gương Mặt Đại Diện, Nam Nữ Thần Kara, vào ngày chỉ định từ 21:00:00 – 21:10:00 sẽ nhận thêm 10% điểm số.</p>
-    <h5>Cuộc thi Vua Ca Nhạc</h5>
+    <h5>Vua Ca Nhạc Gala </h5>
     <h6>Thời gian:</h6>
     <p>18:00:00 30/11/2020 – 20:00:00 09/12/2020</p>
     <h6>Hướng dẫn:</h6>
@@ -53,7 +53,7 @@
     <p>3. Top 10 thí sinh sẽ nhận được phần thưởng cực khủng, top 3 thí sinh còn được tham gia đêm nhạc Gala và chia sẻ tiền mặt trong đêm nhạc, người tham gia bình chọn sẽ nhận thưởng Đậu.</p>
     <h5>Gia Tộc Mạnh Nhất</h5>
     <h6>Thời gian:</h6>
-    <p>12:00:00 28/12/2020-20:00:00 1/1/2021 </p>
+    <p>12:00:00 28/12/2020-20:00:00 8/1/2021 </p>
     <h6>Hướng dẫn:</h6>
     <p>1. Toàn bộ gia tộc đều tự động báo danh tham gia cuộc thi. Vòng Bảo Hộ Gia Tộc xếp hạng dựa vào thành viên gia tộc hoàn thành nhiệm vụ gia tộc và mị lực quà xu nhận được. Top 300 gia tộc sẽ được vào vòng sau.</p>
     <p>2. Trong vòng PK, các gia tộc sẽ đấu với nhau theo cơ chế sắp đặt ngẫu nhiên, nếu tặng quà gia tộc chỉ định được tăng thêm 3% điểm số. Trong mỗi trận, gia tộc nào điểm số cao hơn sẽ được vào vòng sau.</p>

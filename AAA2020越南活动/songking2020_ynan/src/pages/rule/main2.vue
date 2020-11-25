@@ -6,7 +6,7 @@
     </div>
     <div class="ruleTips" v-if="tab == 1">
       <h5>Thời gian</h5>
-      <p>18:00 30/11 – 20:00 /12</p>
+      <p>18:00 30/11 - 20:00 9/12</p>
       <img src="../../assets/img/rule/gifts.png" alt="" class="gift">
       <h5>Rương thưởng cấp</h5>
       <img src="../../assets/img/rule/img1.png" alt="" class="img1">
@@ -15,11 +15,11 @@
       <h5>Thưởng tăng tốc BXH</h5>
       <p>1、Bài hát gắn thẻ “Vua Ca Nhạc” trong vòng 48h sau khi đăng nếu nhận đủ 20k mị lực quà xu sẽ tăng 20% điểm xếp hạng trên BXH ca khúc trên app.</p>
       <h5>Thưởng top 10 Vua Ca Nhạc</h5>
-      <p class="mg">Hạng nhất:<br /> 16500000 VND + chứng nhận Vua Ca Nhạc (1 năm) + huy chương Vua Ca Nhạc (1 tháng) + ID đẹp (4 số, liên hệ ban tổ chức để nhận) + VIP (1 năm) + Phiếu Nạp 3% (6 tháng) + trang sức Vua Ca Nhạc (1 tháng) + Xe Thảm Đỏ (1 tháng) + 3 túi quà Cô Bé Huơu (666 xu) + 10000 đậu + đổi 30% quà nhận đêm nhạc Gala</p>
-      <p class="mg">Hạng nhì:<br />4000000 VND + chứng nhận Vua Ca Nhạc (6 tháng) + huy chương Vua Ca Nhạc (1 tháng) + ID đẹp (4 số, liên hệ ban tổ chức để nhận) + VIP (3 tháng) + Phiếu Nạp 3% (3 tháng) + trang sức Vua Ca Nhạc (1 tháng) + Xe Thảm Đỏ (1 tháng) + 2 túi quà Cô Bé Huơu (666 xu) + 7000 đậu + đổi 25% quà nhận đêm nhạc Gala</p>
-      <p class="mg">Hạng ba:<br /> 3000000 VND + chứng nhận Vua Ca Nhạc (3 tháng) + huy chương Vua Ca Nhạc (1 tháng) + ID đẹp (4 số, liên hệ ban tổ chức để nhận) + VIP (2 tháng) + Phiếu Nạp 3% (3 tháng) + trang sức Vua Ca Nhạc (1 tháng) + Xe Thảm Đỏ (1 tháng) + 2 túi quà Cô Bé Huơu (666 xu) + 5000 đậu + đổi 20% quà nhận đêm nhạc Gala</p>
-      <p class="mg">Hạng 4-5:<br /> Huy chương Vua Ca Nhạc (1 tháng) + VIP (2 tháng) + Phiếu Nạp 3% (1 tháng) + trang sức Vua Ca Nhạc (1 tháng) + Xe Thảm Đỏ (1 tháng) + 1 túi quà Cô Bé Huơu (666 xu) + 3000 xu + 3000 đậu</p>
-      <p class="mg">Hạng 6-10:<br /> Huy chương Vua Ca Nhạc (1 tháng) + VIP (1 tháng) + Phiếu Nạp 3% (1 tháng) + trang sức Vua Ca Nhạc (1 tháng) + Xe Thảm Đỏ (1 tháng) + 1 túi quà Cô Bé Huơu (666 xu) + 2000 xu + 2000 đậu</p>
+      <p class="mg">Hạng nhất:<br /> 16500000 VND + chứng nhận Vua Ca Nhạc (1 năm) + huy chương Vua Ca Nhạc (1 tháng) + ID đẹp (4 số, liên hệ ban tổ chức để nhận) + VIP (1 năm) + Phiếu Nạp 3% (6 tháng) + trang sức Vua Ca Nhạc (1 tháng) + Xe Thảm Đỏ (1 tháng) + 3 túi quà Cô Bé Hươu (666 xu) + 10000 đậu + đổi 30% quà nhận đêm nhạc Gala</p>
+      <p class="mg">Hạng nhì:<br />4000000 VND + chứng nhận Vua Ca Nhạc (6 tháng) + huy chương Vua Ca Nhạc (1 tháng) + ID đẹp (4 số, liên hệ ban tổ chức để nhận) + VIP (3 tháng) + Phiếu Nạp 3% (3 tháng) + trang sức Vua Ca Nhạc (1 tháng) + Xe Thảm Đỏ (1 tháng) + 2 túi quà Cô Bé Hươu (666 xu) + 7000 đậu + đổi 25% quà nhận đêm nhạc Gala</p>
+      <p class="mg">Hạng ba:<br /> 3000000 VND + chứng nhận Vua Ca Nhạc (3 tháng) + huy chương Vua Ca Nhạc (1 tháng) + ID đẹp (4 số, liên hệ ban tổ chức để nhận) + VIP (2 tháng) + Phiếu Nạp 3% (3 tháng) + trang sức Vua Ca Nhạc (1 tháng) + Xe Thảm Đỏ (1 tháng) + 2 túi quà Cô Bé Hươu (666 xu) + 5000 đậu + đổi 20% quà nhận đêm nhạc Gala</p>
+      <p class="mg">Hạng 4-5:<br /> Huy chương Vua Ca Nhạc (1 tháng) + VIP (2 tháng) + Phiếu Nạp 3% (1 tháng) + trang sức Vua Ca Nhạc (1 tháng) + Xe Thảm Đỏ (1 tháng) + 1 túi quà Cô Bé Hươu (666 xu) + 3000 xu + 3000 đậu</p>
+      <p class="mg">Hạng 6-10:<br /> Huy chương Vua Ca Nhạc (1 tháng) + VIP (1 tháng) + Phiếu Nạp 3% (1 tháng) + trang sức Vua Ca Nhạc (1 tháng) + Xe Thảm Đỏ (1 tháng) + 1 túi quà Cô Bé Hươu (666 xu) + 2000 xu + 2000 đậu</p>
       <h5>Hướng dẫn dùng phần thưởng</h5>
       <p>1、Phần thưởng túi quà có thời hạn 14 ngày, mời chú ý sử dụng.</p>
       <p>2、Phần thưởng được phát trong vòng 14 ngày làm việc sau khi kết thúc sự kiện.</p>
@@ -27,7 +27,7 @@
     </div>
     <div class="giftItem" v-else>
       <h5>Thời gian</h5>
-      <p>18:00 30/11 – 20:00 /12</p>
+      <p>18:00 30/11 - 20:00 9/12</p>
       <h4>Thể lệ</h4>
       <h5 class="mt">Báo danh:</h5>
       <p>1、Sau khi nhấn báo danh, thí sinh đăng công khai bài hát tuỳ ý (trừ hát chay 5 phút) để dự thi, có thể đăng nhiều bài hát dự thi, sau khi báo danh bài hát mới được tính điểm quà nhận. Nếu xoá bài hát trong thời gian sự kiện, điểm số của bài hát đã xoá sẽ mất.</p>
@@ -72,7 +72,7 @@ export default {
     }
   },
   created() {
-    document.title = '規則&獎勵'
+    document.title = 'Thể lệ & thưởng'
   },
   methods: {
     tabClick(val) {

@@ -6,7 +6,7 @@
         <div class="petItem">
           <span v-for="(item,index) in pets" :class="[{act:tab == index},'tab' + index]" :key="index" @click="tabClick(index)"></span>
         </div>
-        <p class="tips" v-html="lang.petTips5.replace('N',pets[tab]?pets[tab].name:'').replace('S',pets[tab]?pets[tab].name:'')"></p>
+        <p class="tips" v-html="lang.petTips5.replace('$',pets[tab]?pets[tab].name:'').replace('%',pets[tab]?pets[tab].name:'')"></p>
       </div>
     </div>
     <div class="rank3" :style="{height:listHeight+'rem'}">

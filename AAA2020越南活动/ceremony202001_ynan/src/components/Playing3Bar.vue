@@ -235,6 +235,7 @@ export default {
   }
 }
 .noData {
+  padding: 0 0.8rem;
   margin-top: 0.6rem;
   text-align: center;
 }
