@@ -6,7 +6,7 @@
     </div>
     <div class="gifts" v-if="type == 1">
       <h5>Thời gian</h5>
-      <p>18:00:00 24/11 – 20:00:00 11/1</p>
+      <p>18:00:00 25/11 – 20:00:00 11/1</p>
       <h5>Phần thưởng</h5>
       <div class="giftsItem">
         <div class="item" v-for="(item,index) in 28" :key="index">
@@ -55,7 +55,7 @@
     </div>
     <div class="ruleItem" v-else>
       <h5>Thời gian</h5>
-      <p>18:00:00 24/11 – 20:00:00 11/1</p>
+      <p>18:00:00 25/11 – 20:00:00 11/1</p>
       <h5>Báo danh</h5>
       <!-- <h6 class="minTop">Pendaftaran Acara</h6> -->
       <p>1. Nhấn báo danh để tham gia sự kiện Rút Thưởng Gala, MVP, Quà Vinh Danh. Sau khi báo danh mới bắt đầu tính điểm sự kiện. Ưu đãi nạp 12% và Thời Khắc Vĩ Đại không cần báo danh tham gia.</p>
@@ -90,12 +90,12 @@
       <h5>Thời Khắc Vĩ Đại</h5>
       <h6 class="minTop">Thể lệ Thời Khắc Vĩ Đại</h6>
       <p>1. Trong thời gian từ 21:00:00 – 21:10:00, điểm số sự kiện nhận được sẽ tăng 10%.</p>
-      <h6>Vua Ca Nhạc</h6>
+      <h6>Vua Ca Nhạc Gala </h6>
       <p class="ytime">30/11 – 8/12</p>
       <h6>Nam Nữ Thần Kara</h6>
       <p class="ytime">7/12 – 17/12</p>
       <h6>Gương Mặt Đại Diện</h6>
-      <p class="ytime">14/12 – 25/12</p>
+      <p class="ytime">14/12-22/12</p>
       <h6>Gia Tộc Mạnh Nhất </h6>
       <p class="ytime">5/1 – 7/1</p>
       <h5 class="other">Quy định khác</h5>
@@ -139,7 +139,7 @@ export default {
         'Trang sức MVP',
         'Túi quà rút thưởng',
         'Túi quà thưởng MVP',
-        'Túi quà Phiếu nạp',
+        'Túi quà thưởng Ưu Đãi Nạp',
         'Xe McLaren',
         'Xe Bão Tố',
         'Phiếu nạp',

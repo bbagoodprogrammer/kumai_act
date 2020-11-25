@@ -19,7 +19,7 @@
       <div class="userMsg">
         <h5 v-if="nowActTips">{{nowActTips}}</h5>
         <span class="actBtn " v-if="nowAct.step == 0">
-          <em class="atted" v-if="nowAct.is_attension">Bạn đã hẹn trước</em>
+          <em class="atted" v-if="nowAct.is_attension">Đã hẹn trước</em>
           <em class="att" v-else @click="actAttension(nowAct.act_id)">Hẹn trước</em>
         </span>
         <span class="actBtn go" @click="goActHtml(nowAct.url)" v-else>Xem thử</span>
@@ -221,13 +221,13 @@ export default {
     },
     nowActTips() {
       if (this.nowAct.step == 0) {
-        if (this.nowAct.attension >= 0) {
+        if (this.nowAct.attension >= 100) {
           return `${this.nowAct.attension} người hẹn trước`
         } else {
           return false
         }
       } else {
-        if (this.nowAct.data >= 0) {
+        if (this.nowAct.data >= 100) {
           if (this.nowAct.act_id == 5) {
             return `Đã có ${this.nowAct.data} gia tộc tham gia`
           } else if (this.nowAct.act_id == 8) {

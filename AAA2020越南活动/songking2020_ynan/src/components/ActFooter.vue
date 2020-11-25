@@ -68,7 +68,8 @@ export default {
               let top = res.data.response_data.top
               if (top) {
                 this.vxc('setToast', {
-                  msg: `Chúc mừng bạn từ tháng 1-10 năm 2020 nhận tổng mị lực quà xu từ bài hát đạt hạng ${top[0]}, được tăng thêm ${top[1]}% mị lực bảng xếp hạng trong sự kiện Vua Ca Nhạc!`,
+                  msg:  `Từ tháng 1-10/2020 bạn nhận tổng mị lực quà xu bài hát đạt hạng ${top[0]}, được tăng ${top[1]}% mị lực BXH trong sự kiện Vua Ca Nhạc Gala `,
+                 
                 })
               }
             } else {

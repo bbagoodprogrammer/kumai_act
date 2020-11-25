@@ -50,7 +50,7 @@
               </li>
             </ul>
           </vue-seamless-scroll>
-          <div class="share" v-if="packetType == 1" @click="shareAct()">Nhắc bạn bè giật lì xì</div>
+          <div class="share" v-if="packetType == 1" @click="shareAct()">Nhắc bạn bè</div>
         </div>
       </transition>
     </div>

@@ -360,6 +360,7 @@ export default {
 .noData {
   margin-top: 0.6rem;
   text-align: center;
+  padding: 0 0.8rem;
 }
 .getGiftCon {
   width: 6.4rem;

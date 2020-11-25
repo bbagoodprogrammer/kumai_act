@@ -215,14 +215,14 @@ export default {
           },
           {
             day: 24,
-            act: 'mở Bình Chọn Nhân Vật<br/>Mở Lễ Hội Gala',
-            style: 'red',
+            act: null,
             singIn: false,
             gift: []
           },
           {
             day: 25,
-            act: null,
+            act: 'mở Bình Chọn Tiêu Biểu<br/>Mở Lễ Hội Gala',
+            style: 'red',
             singIn: false,
             gift: []
           },
@@ -252,7 +252,7 @@ export default {
           },
           {
             day: 30,
-            act: ' mở Vua Ca Nhạc',
+            act: 'mở Vua Ca Nhạc Gala',
             style: 'red',
             singIn: false,
             gift: []
@@ -311,7 +311,7 @@ export default {
           },
           {
             day: 9,
-            act: ' chung kết Vua Ca Nhạc ',
+            act: 'chung kết Vua Ca Nhạc Gala',
             style: 'crown',
             singIn: false,
             gift: []
@@ -524,7 +524,7 @@ export default {
           },
           {
             day: 11,
-            act: 'chung kết Nhân Vật Tiêu Biểu <br/> Chung kết Lễ Hội Gala',
+            act: 'chung kết Bình Chọn Tiêu Biểu <br/>Chung kết Lễ Hội Gala ',
             style: 'crown',
             singIn: false,
             gift: []

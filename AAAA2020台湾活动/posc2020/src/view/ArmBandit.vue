@@ -1,5 +1,5 @@
 <template>
-  <div class="box" :class="{pb:nowInitData.reg,pb2:nowUserScore.up}">
+  <div class="box" :class="{pb:nowInitData.reg || !kol,pb2:nowUserScore.up}">
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
@@ -10,7 +10,7 @@
     <div class="giftImg"></div>
     <TabsScrollLoadList />
     <act-footer></act-footer>
-    <!-- <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
+
   </div>
 </template>
 
@@ -45,7 +45,7 @@ export default {
     this.getDefaultData()
   },
   computed: {
-    ...mapState(['nowTab', "initGrounps"]),
+    ...mapState(['nowTab', "initGrounps", "kol"]),
     nowUserScore() {
       return this.initGrounps[this.nowTab].owner ? this.initGrounps[this.nowTab].owner : {
         uid1: { user: {} },
@@ -159,18 +159,18 @@ body::-webkit-scrollbar {
     background-size: 100% 100%;
   }
 }
-.refresh {
-  display: block;
-  width: 0.94rem;
-  height: 1rem;
-  position: fixed;
-  left: 0.08rem;
-  bottom: 1.35rem;
-  background: url(../assets/img/refresh.png) no-repeat;
-  background-size: contain;
-  transition: transform 1s;
-  z-index: 1000;
-}
+// .refresh {
+//   display: block;
+//   width: 0.94rem;
+//   height: 1rem;
+//   position: fixed;
+//   left: 0.08rem;
+//   bottom: 1.35rem;
+//   background: url(../assets/img/refresh.png) no-repeat;
+//   background-size: contain;
+//   transition: transform 1s;
+//   z-index: 1000;
+// }
 </style>
 
 

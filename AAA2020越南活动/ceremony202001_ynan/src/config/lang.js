@@ -40,7 +40,7 @@ const Lang = {
     luckTips1: 'Chúc mừng bạn trúng ', //恭喜您成功抽中了
     luckTips2: 'Thời gian', //抽獎時間
     luckTips3: 'Nhận thưởng', //獲得的獎品
-    luckTips4: 'Chưa có lịch sử rút thưởng<br/>Mau lấy thêm xu Gala nào!', //抽獎紀錄空空如也<br />快去賺取盛典幣抽獎吧！
+    luckTips4: 'Chưa có lịch sử rút thưởng,Mau lấy thêm xu Gala nào!', //抽獎紀錄空空如也<br />快去賺取盛典幣抽獎吧！
     luckTips5: 'Không thể rút thưởng', //無法抽獎
     luckTips6: 'Bạn chưa báo danh, không thể rút thưởng,Mau báo danh nào! ', //您還未報名，無法抽獎  快去報名吧！
     luckTips7: 'Thẻ Gala dùng để bỏ phiếu bình chọn trong sự kiện Nhân Vật Tiêu Biểu',
@@ -54,8 +54,8 @@ const Lang = {
     petTips2: 'Thời gian', //收集時間
     petTips3: 'Quà', //收集禮物
     petTips4: 'Chưa có lịch sử nhận', // 暫無收集紀錄
-    petTips5: 'Xếp hạng theo số lượng quà <em>N</em> nhận được, top 1 được quyền vinh danh quà <em>S</em>, top 10 nhận phần thưởng khủng.',
-    petTips6: 'Bạn bè chưa có hạng </br>Còn trống, đang đợi bạn đó!',
+    petTips5: 'Xếp hạng theo số lượng quà <em>$</em> nhận được, top 1 được quyền vinh danh quà <em>%</em>, top 10 nhận phần thưởng khủng.',
+    petTips6: 'Bạn bè chưa có hạng ,Còn trống, đang đợi bạn đó!',
     petTips7: 'Mỗi khi nhận 1 loại quà tặng sẽ mở phần thưởng 1 cấp,<em>S</em>người thu thập đủ 6 loại quà tặng',
     actTips1: 'Trong thời gian quy định dưới đây, từ 21:00:00 - 21:10:00 điểm số sự kiện sẽ tăng 10%'
 }

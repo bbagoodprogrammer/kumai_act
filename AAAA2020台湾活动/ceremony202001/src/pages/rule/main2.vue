@@ -95,7 +95,7 @@
       <h6>年度K房男神女神賽</h6>
       <p class="ytime">11月23日-12月3日</p>
       <h6>年度C位爭奪賽</h6>
-      <p class="ytime">11月30日-12月11日</p>
+      <p class="ytime">11月30日-12月8日</p>
       <h6>年度最強家族戰 </h6>
       <p class="ytime">12月22日-12月24日</p>
       <h5 class="other">其他說明</h5>
