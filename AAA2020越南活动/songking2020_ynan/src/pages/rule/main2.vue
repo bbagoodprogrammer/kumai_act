@@ -11,7 +11,7 @@
       <h5>Rương thưởng cấp</h5>
       <img src="../../assets/img/rule/img1.png" alt="" class="img1">
       <h5>Thưởng lì xì</h5>
-      <p>1、Trong thời gian sự kiện, bài hát gắn thẻ “Vua Ca Nhạc” mỗi khi nhận đủ 1000 quà “Ủng Hộ Bạn” (10 xu), sẽ nổ 1 lì xì trị giá 1088 xu, mỗi lần sẽ có 200 bao lì xì, ai đến trước nhận trước.</p>
+      <p>1、Trong thời gian sự kiện, bài hát gắn thẻ “Vua Ca Nhạc” mỗi khi nhận đủ 800 quà “Ủng Hộ Bạn” (10 xu), sẽ nổ 1 lì xì trị giá 1088 xu, mỗi lần sẽ có 200 bao lì xì, ai đến trước nhận trước.</p>
       <h5>Thưởng tăng tốc BXH</h5>
       <p>1、Bài hát gắn thẻ “Vua Ca Nhạc” trong vòng 48h sau khi đăng nếu nhận đủ 20k mị lực quà xu sẽ tăng 20% điểm xếp hạng trên BXH ca khúc trên app.</p>
       <h5>Thưởng top 10 Vua Ca Nhạc</h5>
@@ -49,7 +49,7 @@
       <p>2、Toàn bộ rương sẽ hết hạn khi kết thúc sự kiện, mời chú ý nhận~</p>
       <img src="../../assets/img/rule/img1.png" alt="" class="img1 mt">
       <h5>Thể lệ lì xì</h5>
-      <p>1. Trong thời gian sự kiện, bài hát gắn thẻ “Vua Ca Nhạc” mỗi khi nhận đủ 1000 quà “Ủng Hộ Bạn” (10 xu), sẽ nổ 1 lì xì trị giá 1088 xu, mỗi lần sẽ có 200 bao lì xì, ai đến trước nhận trước.</p>
+      <p>1. Trong thời gian sự kiện, bài hát gắn thẻ “Vua Ca Nhạc” mỗi khi nhận đủ 800 quà “Ủng Hộ Bạn” (10 xu), sẽ nổ 1 lì xì trị giá 1088 xu, mỗi lần sẽ có 200 bao lì xì, ai đến trước nhận trước.</p>
       <p>2. Nhấn hẹn trước lì xì, khi nổ lì xì hệ thống sẽ nhắc nhở đến nhận, nhấn huỷ hẹn để không nhận nhắc nhở lì xì từ hệ thống</p>
       <h5>Quy định khác</h5>
       <p>Trong quá trình diễn ra sự kiện, nếu phát hiện người dùng gian lận trong sự kiện, ban tổ chức sẽ dựa theo mức độ vi phạm để xử lý, người vi phạm sẽ bị loại khỏi sự kiện hoặc khoá tài khoản. Bao gồm nhưng không giới hạn bởi các hành vi sau:</p>

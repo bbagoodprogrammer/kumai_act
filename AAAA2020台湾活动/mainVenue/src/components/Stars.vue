@@ -245,7 +245,7 @@ export default {
         if (this.nowAct.act_id == 4 || this.nowAct.act_id == 5) {
           return this.nowAct.list[0].slice(0, 1)
         } else {
-          return this.nowAct.list[0]
+          return this.nowAct.list[0].slice(0, 3)
         }
       } else {
         if (this.nowAct.act_id == 4 || this.nowAct.act_id == 5) {

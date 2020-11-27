@@ -2,18 +2,24 @@
   <div class="giftBox">
     <div class="blindBoxItem">
       <div class="boxItem left" :class="{open:packet.dayOpened}">
+        <strong class="title1"></strong>
         <p class="title">{{lang.oneDayOpen}}</p>
         <div class="sonw">
-          <div class="blineBox" :class="{heartbeat:!packet.dayOpened && userLv > 0}"></div>
+          <canvas id="goldNo" v-show="!packet.dayOpened"></canvas>
+          <canvas id="goldGo" v-show="packet.dayOpened"></canvas>
+          <!-- <div class="blineBox" :class="{heartbeat:!packet.dayOpened && userLv > 0}"></div> -->
         </div>
-        <span class="openBtn" @click="openBox1()">{{packet.dayOpened?lang.opened:lang.open}}</span>
+        <span class="openBtn openBtn1" :class="{isOpen:packet.dayOpened}" @click="openBox1()">{{packet.dayOpened?lang.opened:lang.open}}</span>
       </div>
       <div class="boxItem right" :class="{open:packet.totalOpened}">
+        <strong class="title2"></strong>
         <p class="title">{{lang.actOpen}}</p>
         <div class="sonw">
-          <div class="blineBox" :class="{heartbeat:!packet.totalOpened && isTop}"></div>
+          <canvas id="masonryNo" v-show="!packet.totalOpened"></canvas>
+          <canvas id="masonryGo" v-show="packet.totalOpened"></canvas>
+          <!-- <div class="blineBox" :class="{heartbeat:!packet.totalOpened && isTop}"></div> -->
         </div>
-        <span class="openBtn" @click="openBox2(2)">{{packet.totalOpened?lang.opened:lang.open}}</span>
+        <span class="openBtn openBtn2" :class="{isOpen:packet.totalOpened}" @click="openBox2(2)">{{packet.totalOpened?lang.opened:lang.open}}</span>
       </div>
     </div>
     <bar :newPcket="newPcket" />
@@ -51,7 +57,7 @@
                 <span class="giftBg">
                   <img src="../assets/img/gift/ticket.png" alt="" class="img2">
                 </span>
-                <em>{{prizes.rebate}}% {{lang.ticket}} </em>
+                <em>{{prizes.rebate}}{{lang.ticket}}</em>
               </div>
               <div class="giftItem ticket" v-if="prizes.gift">
                 <span class="giftBg">
@@ -85,7 +91,7 @@
                 <span class="giftBg">
                   <img src="../assets/img/gift/ticket.png" alt="" class="img2">
                 </span>
-                <em>{{prizes2.rebate}}% {{lang.ticket}}</em>
+                <em>{{prizes2.rebate}}{{lang.ticket}}</em>
               </div>
               <div class="giftItem ticket" v-if="prizes2.gift">
                 <span class="giftBg">
@@ -119,8 +125,14 @@ import { mapState } from "vuex"
 import api from "../api/apiConfig"
 import MsgToast from "../components/commonToast"
 import { globalBus } from "../utils/eventBus"
+import { Downloader, Parser, Player } from 'svga.lite'
+import { setTimeout } from 'timers';
+
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
 export default {
   components: { bar, MsgToast },
+  props: ["defaultPro"],
   data() {
     return {
       showOpenBox1: false,
@@ -132,7 +144,22 @@ export default {
       prizes: {},
       prizes2: {},
       tastMsg: '',
-      showT: false
+      showT: false,
+      svgaAddress: {
+        goldNo: {
+          addres: "https://fstatic.cat1314.com/uc/svga/239ef0688202b774a9e979296edb2723_1605024158.svga", //黃金未觸發
+        },
+        goldGo: {
+          addres: "https://fstatic.cat1314.com/uc/svga/f68db5fb9e57412caaaf99f070a89be3_1605024188.svga", //黃金觸發
+        },
+        masonryNo: {
+          addres: "https://fstatic.cat1314.com/uc/svga/2afa3ac091c63774be601d33636c80c0_1605024221.svga", //磚石未觸發
+        },
+        masonryGo: {
+          addres: "https://fstatic.cat1314.com/uc/svga/d1c4e70c8da8cdf12e0c6b59281b5b7a_1605024251.svga", //磚石觸發
+        }
+      },
+      plarerArr: {}
     }
   },
   computed: {
@@ -154,7 +181,13 @@ export default {
     },
     isTop() {  //是否達到終極寶箱
       return this.packet.totalScore >= this.packet.level[this.packet.level.length - 1]
-    }
+    },
+  },
+  created() {
+    let pro2 = this.downloaderData(this.svgaAddress)
+    Promise.all([this.defaultPro, pro2]).then((val) => {
+      this.svgaGo()
+    })
   },
   methods: {
     openBox1() {
@@ -177,12 +210,21 @@ export default {
           this.box2Tips = this.lang.noSingUpTips
           this.showOpenBox2 = true
         } else if (this.isTop && !this.packet.totalOpened) {
+          let player = this.plarerArr['masonryGo'].player
+          if (!player) {
+            this.tastMsg = `Sumber daya blm berhasil dimuat, nanti coba lagi!`
+            this.showT = true
+            return
+          }
           api.openBox(type).then(res => {
             if (res.data.response_status.code == 0) {
-              this.prizes2 = res.data.response_data.prizes
-              this.showPup2Type2 = true
-              this.showOpenBox2 = true
               this.vuexCommit('setTotalState', true)
+              player.start()
+              this.prizes2 = res.data.response_data.prizes
+              setTimeout(() => {
+                this.showPup2Type2 = true
+                this.showOpenBox2 = true
+              }, 2000)
             } else {
               this.tastMsg = res.data.response_status.error
               this.showT = true
@@ -198,11 +240,22 @@ export default {
       if (!this.registered) {
         this.showOpenBox1 = false
       } else if (!this.packet.dayOpened && this.userLv > 0) {
+        let player = this.plarerArr['goldGo'].player
+        if (!player) {
+          this.tastMsg = `Sumber daya blm berhasil dimuat, nanti coba lagi!`
+          this.showT = true
+          return
+        }
         api.openBox(type).then(res => {
           if (res.data.response_status.code == 0) {
-            this.prizes = res.data.response_data.prizes
-            this.showPup1Type2 = true
+            this.showOpenBox1 = false
             this.vuexCommit('setDayBoxState', true)
+            player.start()
+            this.prizes = res.data.response_data.prizes
+            setTimeout(() => {
+              this.showPup1Type2 = true
+              this.showOpenBox1 = true
+            }, 2000)
           } else {
             this.tastMsg = res.data.response_status.error
             this.showT = true
@@ -210,6 +263,59 @@ export default {
         })
       } else {
         this.showOpenBox1 = false
+      }
+    },
+    downloaderData(arr) {
+      return new Promise((res, rej) => {
+        let PromiseArr = []
+        for (let item in arr) {
+          PromiseArr.push(this.loadSvgaData(arr[item]))
+        }
+        Promise.all(PromiseArr).then((values) => {
+          res(values)
+        })
+      })
+    },
+    loadSvgaData(fileItem) {
+      return new Promise((resolve, reject) => {
+        ; (async () => {
+          const fileData = await downloader.get(fileItem.addres);
+          const data = await parser.do(fileData);
+          fileItem.data = data
+          resolve(data);
+        })()
+      });
+    },
+    svgaGo() {
+      if (this.packet.dayOpened) {
+        this.svgaStart('goldGo', 44, true, this.svgaAddress['goldGo'].data)
+      } else {
+        this.svgaStart('goldNo', 1, false, this.svgaAddress['goldNo'].data)
+        this.svgaStart('goldGo', 1, true, this.svgaAddress['goldGo'].data, 'stop')
+      }
+      if (this.packet.totalOpened) {
+        this.svgaStart('masonryGo', 44, true, this.svgaAddress['masonryGo'].data)
+      } else {
+        this.svgaStart('masonryNo', 1, false, this.svgaAddress['masonryNo'].data)
+        this.svgaStart('masonryGo', 1, true, this.svgaAddress['masonryGo'].data, 'stop')
+      }
+    },
+    async svgaStart(className, start, num, data, stop) {
+      let canvas = document.getElementById(className)
+      let player = new Player(canvas)
+      player.set({ startFrame: start })
+      if (num) {
+        player.set({ startFrame: start, loop: 1, }) //
+      } else {
+        player.set({ startFrame: start })
+      }
+      await player.mount(data)
+      player.start()
+      if (stop) {
+        player.pause()
+      }
+      this.plarerArr[className] = {
+        player,
       }
     },
     closePup1() {
@@ -229,74 +335,20 @@ export default {
 <style lang="scss" scoped>
 .giftBox {
   height: 7.66rem;
-  margin-top: -0.02rem;
   background: url(../assets/img/boxBg.png) center 0 no-repeat;
   background-size: 100% auto;
   .blindBoxItem {
     padding: 0 0.15rem;
     height: 4.26rem;
     display: flex;
+    justify-content: space-between;
     .boxItem {
-      width: 3.66rem;
-      height: 3.59rem;
-      padding-top: 0.67rem;
+      width: 3.5rem;
+      height: 4.57rem;
+      padding-top: 0.41rem;
       position: relative;
-      &.left {
-        background: url(../assets/img/letfBoxBg.png);
-        background-size: 100% 100%;
-        .sonw {
-          padding-top: 0.12rem;
-          height: 2.37rem;
-          .blineBox {
-            width: 1.91rem;
-            height: 1.98rem;
-            margin: 0 auto 0;
-            background: url(../assets/img/box1.png);
-            background-size: 100% 100%;
-          }
-        }
-
-        .openBtn {
-          background: url(../assets/img/openBtn1.png);
-          background-size: 100% 100%;
-        }
-        &.open {
-          .blineBox {
-            background: url(../assets/img/openBox1.png);
-            background-size: 100% 100%;
-          }
-          .openBtn {
-            background: url(../assets/img/openedBtnBg.png);
-            background-size: 100% 100%;
-          }
-        }
-      }
-      &.right {
-        background: url(../assets/img/rightBoxBg.png);
-        background-size: 100% 100%;
-        margin-left: -0.15rem;
-        .blineBox {
-          width: 2.14rem;
-          height: 2.12rem;
-          margin: 0 auto 0;
-          background: url(../assets/img/box2.png);
-          background-size: 100% 100%;
-        }
-        .openBtn {
-          background: url(../assets/img/openBtn2.png);
-          background-size: 100% 100%;
-        }
-        &.open {
-          .blineBox {
-            background: url(../assets/img/openBox2.png);
-            background-size: 100% 100%;
-          }
-          .openBtn {
-            background: url(../assets/img/openedBtnBg.png);
-            background-size: 100% 100%;
-          }
-        }
-      }
+      background: url(../assets/img/letfBoxBg.png);
+      background-size: 100% 100%;
       .heartbeat {
         animation: heartbeat 1s infinite;
       }
@@ -307,25 +359,51 @@ export default {
         font-size: 0.24rem;
         font-weight: 600;
       }
-      .sonw {
-        width: 3.1rem;
-        height: 2.49rem;
-        background: url(../assets/img/sonw.png);
+      .title1 {
+        display: block;
+        width: 2.23rem;
+        height: 0.44rem;
+        background: url(../assets/img/title1.png);
         background-size: 100% 100%;
-        margin: 0.14rem auto;
-        padding-top: 0.23;
+        margin: 0 auto;
+      }
+      .title2 {
+        display: block;
+        width: 2.23rem;
+        height: 0.44rem;
+        background: url(../assets/img/title2.png);
+        background-size: 100% 100%;
+        margin: 0 auto;
+      }
+      .sonw {
+        width: 2.92rem;
+        height: 2.69rem;
+        margin: 0 auto;
+        position: relative;
+        margin-top: -0.3rem;
+        canvas {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
       }
       .openBtn {
         display: block;
-        width: 2.43rem;
-        height: 0.8rem;
+        width: 1.79rem;
+        height: 0.66rem;
         text-align: center;
-        line-height: 0.75rem;
-        color: #a24e04;
-        font-weight: 800;
-        position: absolute;
-        left: 0.62rem;
-        bottom: -0.15rem;
+        line-height: 0.66rem;
+        font-weight: 500;
+        margin: 0 auto;
+        white-space: nowrap;
+        background: url(../assets/img/openBtn1.png);
+        background-size: 100% 100%;
+        &.isOpen {
+          background: url(../assets/img/openBtn3.png);
+          background-size: 100% 100%;
+        }
       }
     }
   }
@@ -388,7 +466,7 @@ export default {
       top: 2.5rem;
       .luckTitle {
         text-align: center;
-        font-size: 0.32rem;
+        font-size: 0.36rem;
         font-weight: bold;
       }
       .openTips {

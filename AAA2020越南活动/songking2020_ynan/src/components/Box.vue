@@ -121,7 +121,7 @@ export default {
     },
     getGiftName(item) {
       if (item.type == 'gift') {
-        return 'N Quà (C xu) *S'.replace('N', item.name).replace('C', item.coin).replace('S', item.count)
+        return 'Quà @ (# xu) *$'.replace('@', item.name).replace('#', item.coin).replace('$', item.count)
       } else if (item.type == 'coupon') {
         return `Phiếu Nạp ${item.ratio}%`
       } else if (item.type == 'vip') {
@@ -131,7 +131,7 @@ export default {
       } else if (item.type == 'coin') {
         return `${item.count}xu`
       } else if (item.type == 'medal') {
-        return `${item.name}`
+        return `${item.name}(7 ngày)`
       }
     }
   }

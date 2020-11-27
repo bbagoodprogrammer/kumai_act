@@ -13,7 +13,7 @@
     </div>
     <div class="redTips">
       <!-- {{redPacket.step}}  -->
-      Bài hát gắn thẻ “Vua Ca Nhạc” mỗi khi nhận đủ 1000 quà <i></i>, tất cả mọi người có thể đều có thể mở lì xì
+      Bài hát gắn thẻ “Vua Ca Nhạc” mỗi khi nhận đủ {{redPacket.step}} quà <i></i>, tất cả mọi người có thể đều có thể mở lì xì
     </div>
     <div class="subscribe" @click="subscribe()">
       {{redPacket.subscribe?'Huỷ hẹn':'Hẹn giật lì xì'}}
@@ -78,7 +78,7 @@
       <transition name="slide">
         <div class="packetRecord" v-show="packetRecore">
           <i class="close" @click="closePacketPup()"></i>
-          <p class="red">{{dtime}}</p>
+          <!-- <p class="red">{{dtime}}</p> -->
           <div class="resHeader">
             <div class="tips" v-if="recoreData.time">{{recoreData.users}} lì xì, hết sau {{recoreData.time}} giây</div>
             <div class="tips" v-else>

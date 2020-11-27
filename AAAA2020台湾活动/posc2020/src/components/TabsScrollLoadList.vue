@@ -181,7 +181,7 @@
         <div class="pkUserPup" v-show="showPkMsgPup">
           <i class="close" @click.stop="showPkMsgPup = false"></i>
           <div class="userItem" :class="{icon:index2== 0}" v-for="(item2,index2) in pkUsers" :key="index2">
-            <div class="imgBox">
+            <div class="imgBox" @click="goPeople(item2.uid)">
               <img v-if="item2.frame &&item2.frame != ''" :src="item2.frame" class="frame">
               <img v-lazy="item2.avatar" alt="" class="av" :class="{bor:!item2.frame ||item2.frame == ''}">
               <i class='up' :class="{lose:item2.cancel,up:item2.up}" v-if="item2.cancel || item2.up"></i>
@@ -276,7 +276,7 @@ export default {
           tm: '11.30~12.02'
         },
         {
-          name: '1V1對決',
+          name: '1v1對戰',
           tm: '12.03~12.05'
         },
         {
@@ -553,7 +553,7 @@ export default {
       this.userItem2 = item
     },
     showPkMsg(users) {
-      console.l
+      console.log(users)
       this.pkUsers = users
       this.showPkMsgPup = true
     }
@@ -603,6 +603,7 @@ export default {
           display: block;
           font-size: 0.2rem;
           color: rgba(255, 192, 92, 1);
+          margin-top: -0.05rem;
         }
         &.act {
           color: rgba(178, 79, 40, 1);
@@ -1091,15 +1092,18 @@ export default {
       .peopleList {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
         width: 3.84rem;
         margin: 0.23rem 0 0 2.22rem;
         .userItem {
           width: 1rem;
+          margin-right: 0.42rem;
           .imgBox {
             width: 0.88rem;
             height: 0.88rem;
             position: relative;
+            display: block;
+            margin: 0 auto;
             .frame {
               width: 1.5rem;
               height: 1.5rem;
@@ -1116,7 +1120,6 @@ export default {
               margin: 0 auto;
             }
           }
-
           .nick {
             display: block;
             overflow: hidden;
@@ -1146,6 +1149,9 @@ export default {
               // text-align: center;
             }
           }
+        }
+        .userItem:last-child{
+            margin-right: 0;
         }
       }
       &.rank1 {
@@ -1553,6 +1559,9 @@ export default {
   justify-content: space-between;
   margin: 0 0.7rem;
   position: relative;
+  .close {
+    left: 2.7rem;
+  }
   .userItem {
     width: 1.5rem;
     .imgBox {

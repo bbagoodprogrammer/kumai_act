@@ -44,5 +44,7 @@ const lang = {
     gift: 'Hadiah',
     noData: 'Belum ada data',
     noSingUpTips: 'Silakan mendaftar utk ikut acara ',
+    gx: 'Selamat',
+    get: 'dapatkan'
 }
 export default lang

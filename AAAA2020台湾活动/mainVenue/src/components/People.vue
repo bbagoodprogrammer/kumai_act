@@ -178,7 +178,7 @@ export default {
         if (item.act_id == 4 || item.act_id == 5) {
           return item.show_data[0].slice(0, 1)
         } else {
-          return item.show_data[0]
+          return item.show_data[0].slice(0, 3)
         }
       } else {
         if (item.act_id == 4 || item.act_id == 5) {
