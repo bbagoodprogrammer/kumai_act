@@ -20,7 +20,7 @@
     <h6>Hướng dẫn:</h6>
     <!-- <p>魅力歌王大賽活動攻略</p> -->
     <p>1. Sau khi báo danh phải đăng bài hát dự thi, xếp hạng theo độ Rực Rỡ. Độ Rực Rỡ = lượt thích bài hát x10 + mị lực quà xu bài hát nhận được. Nếu nhận quà đặc biệt, nhận quà trong thời gian 21:00:00 – 21:10:00, top 100 bài hát nhận tổng quà xu cao nhất từ tháng 1 đến tháng 10 năm 2020 sẽ được cộng thêm điểm.</p>
-    <p>2. Bài hát dự thi mỗi khi nhận đủ 100 quà "Hoa Hồng" sẽ nổ lì xì 1088 xu.</p>
+    <p>2. Bài hát dự thi mỗi khi nhận đủ 800 quà "Ủng Hộ Bạn" sẽ nổ lì xì 1088 xu.</p>
     <p>3. Bài hát dự thi sau khi đăng trong vòng 48h nhận đủ 50k mị lực quà xu, điểm số bảng xếp hạng của bài hát trên app sẽ tăng thêm 20%.</p>
     <p>4. Điểm Rực rỡ đạt cấp yêu cầu sẽ được nhận rương phần thưởng.</p>
     <h5>Nam Nữ Thần Kara</h5>

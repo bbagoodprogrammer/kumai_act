@@ -8,7 +8,7 @@
     </div>
     <ul class="stage1List">
       <li v-for="(item,index) in groupData.list" :key="index" :class="'rank'+item.rank" @click="goPeople(item.uid)">
-        <div class="imgBox">
+        <div class="imgBox" @click="goUser(item.uid)">
           <span class="avBg" v-if="item.rank <=3"></span>
           <img v-else-if="item.frame &&item.frame != ''" :src="item.frame" class="frame">
           <img v-lazy="item.avatar" alt="">
@@ -62,6 +62,9 @@ export default {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
+    goUser(uid) {
+      location.href = `uid:${uid}`
+    },
     onScroll() {
       const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
       if (scrollToBottom && !this.loaded && this.more) {

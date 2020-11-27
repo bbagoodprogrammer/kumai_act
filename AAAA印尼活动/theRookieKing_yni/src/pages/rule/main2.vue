@@ -19,10 +19,11 @@
     <div class="rule" v-else>
       <p class="time">Waktu Acara: {{totalTime}}</p>
       <h5>Hadiah dari Daftar Total:</h5>
-      <p class="ruleone">Top 1 : Hak istimewa bangsawan kaisar ( 1 bulan) + Lencana Newcomer King ( 14 hari ) + 2000 Koin emas + 5000 Kacang emas</p>
-      <p>Top 2 : Hak istimewa bangsawan duke ( 1 bulan) + Lencana Newcomer King ( 14 hari ) + 1500 Koin emas + 3000 Kacang emas</p>
-      <p>Top 3 : Hak istimewa bangsawan duke ( 1 bulan) + Lencana Newcomer King ( 14 hari ) + 1000 Koin emas + 2000 Kacang emas</p>
-      <p>Top 4 ~ 10 : 500 Koin emas + 1000 Kacang emas</p>
+      <p class="ruleone">TOP 1：Mount GTR (30 hari)+Lencana Newcomer King ( 30 hari ) + 1500 Koin emas + 3000 Kacang emas</p>
+      <p>TOP 2：Mount GTR (15 hari)+Lencana Newcomer King ( 21 hari ) + 1000 Koin emas + 2000 Kacang emas</p>
+      <p>TOP 3：Mount GTR (15 hari)+Lencana Newcomer King ( 15 hari ) + 800 Koin emas + 1000 Kacang emas</p>
+      <p>TOP 4~5：Mount GTR (7 hari)+Lencana Newcomer King ( 7 hari ) + 500 Koin emas + 1000 Kacang emas</p>
+      <p>TOP 6~10：300 Koin emas + 500 Kacang emas</p>
       <p class="jies">Hak interpretasi acara dipegang oleh penyelenggara acara</p>
     </div>
     <Loading></Loading>

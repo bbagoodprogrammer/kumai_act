@@ -16,7 +16,7 @@
         <div>
           <img src="../assets/img/wardsBg.png" alt="" class="imgBg">
           <img src="../assets/img/badge_06.png" alt="" class="imgB2">
-          <span>Hak istimewa</br>bangsawan kaisar</span>
+          <span>Mount GTR</span>
         </div>
         <div>
           <img src="../assets/img/wardsBg.png" alt="" class="imgBg">

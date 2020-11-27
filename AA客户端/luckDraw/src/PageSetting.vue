@@ -57,7 +57,7 @@
             <ul>
               <li v-for="(item,index) in fixedDrawList" :key="index" :class="{act:index== fixeActIndex}" @click="setFixedGift(item,index)">
                 <i class="prise_type">{{tabArr[item.prise_type - 1]}}</i>
-                <img class="giftImg" :src="item.prise_pic" alt="">
+                <img class="giftImg" :class="{card:item.prise_type == 6,bg:item.prise_type == 7}" :src="item.prise_pic" alt="">
                 <span class="name">{{item.prise_name}}</span>
                 <span class="price"><i :class="{bean:item.ticket_currency == 'bean'}"></i><strong>{{item.prise_price}}</strong> </span>
               </li>
@@ -102,7 +102,7 @@
         <div class="giftList">
           <div class="blurMask"></div>
           <div class="tabs">
-            <span v-for="(item,index) in tabArr" :key="index" :class="{act:tabIndex-1 == index}" @click="tabClick(index+1)">{{item}}</span>
+            <span v-for="(item,index) in tabArr" :key="index" :class="{act:tabIndex-1 == index,pd0:item == null}" @click="tabClick(index+1)" >{{item}}</span>
           </div>
           <p v-if="tabGift[tabIndex] && tabGift[tabIndex].loading" class="tabLoading">加載中...</p>
           <div class="vipCon" v-show="tabIndex == 1">
@@ -119,7 +119,7 @@
           <!-- 名片 -->
           <div class="vipCon" v-show="tabIndex == 6">
             <div class="vipBox">
-              <div class="vipItem">
+              <div class="vipItem mt">
                 <div class="item2" :class="{act:cardType == index}" @click="cardsClick(index,item)" v-for="(item,index) in nowTabGift[0]" :key="index">
                   <div class="imgBox">
                     <img :src="item.pic" alt="">
@@ -131,10 +131,10 @@
               </div>
             </div>
           </div>
-          <!-- 背景 -->
+          <!-- 主題 -->
           <div class="vipCon" v-show="tabIndex == 7">
             <div class="vipBox">
-              <div class="vipItem">
+              <div class="vipItem mt2">
                 <div class="item2 bg" :class="{act:cardType == index}" @click="cardsClick(index,item)" v-for="(item,index) in nowTabGift[0]" :key="index">
                   <div class="imgBox">
                     <img :src="item.pic" alt="">
@@ -215,7 +215,7 @@ export default {
       timeIndex: null,
       showSgiftPup: false,
       tabIndex: 1,
-      tabArr: ["VIP", "禮物", "座駕", "頭飾", "貼圖", "名片", "主題"],
+      tabArr: ["VIP", "禮物", "座駕", "頭飾", null, "名片", "主題"],
       tabGift: {},   //tab對應的禮物
       balance: {},
       tabLoading: false,
@@ -600,6 +600,9 @@ body {
         text-align: center;
         color: rgba(255, 255, 255, 0.4);
         position: relative;
+        &.pd0{
+          padding:0;
+        }
         &.act {
           font-weight: bold;
           color: rgba(255, 255, 255, 1);
@@ -612,7 +615,7 @@ body {
           background: rgba(255, 255, 255, 1);
           border-radius: 0.06rem;
           position: absolute;
-          bottom: 0rem;
+          bottom: 0.13rem;
           left: 40%;
         }
       }
@@ -653,6 +656,12 @@ body {
         overflow-y: hidden;
         margin-top: 0.24rem;
         white-space: nowrap;
+        &.mt {
+          margin-top: 0.36rem;
+        }
+        &.mt2 {
+          margin-top: -0.04rem;
+        }
         .item {
           display: inline-block;
           width: 2.18rem;
@@ -723,7 +732,7 @@ body {
               }
             }
             strong {
-              font-size: 0.18rem !important;
+              font-size: 0.2rem !important;
             }
           }
           .select {
@@ -1034,6 +1043,18 @@ body {
           height: 1.4rem;
           display: block;
           margin: 0.3rem auto 0;
+          &.bg {
+            width: 0.94rem;
+            height: 1.3rem;
+            border-radius: 0.16rem;
+            margin: 0.4rem auto 0;
+          }
+          &.card {
+            width: 1.3rem;
+            height: 0.95rem;
+            border-radius: 0.16rem;
+            margin: 0.75rem auto 0;
+          }
         }
         span {
           display: block;

@@ -4,7 +4,7 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Aturan</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Hadiah</a>
     </div>
-    <h6 class="time">Waktu acara : Pukul 18:00 Tgl 7 Ags. ~ Pukul 22:00 Tgl 15 Ags.</h6>
+    <h6 class="time">Waktu acara : Jam 18:00 tgl 1 Des. 2020 ~ Jam 22:00 tgl 9 Des. 2020</h6>
     <div class="ruleTips" v-show="tab == 0">
       <h6>Aturan</h6>
       <p>1. semua pengguna bisa mendaftar utk ikut acara.</p>
@@ -16,15 +16,15 @@
       </p>
       <h6>Waktu daftar harian:</h6>
       <p class="dayTime">
-        Day1: 18:00 1/10 - 00:00 2/10</br>
-        Day2：00:00 2/10- 00:00 3/10</br>
-        Day3：00:00 3/10- 00:00 4/10</br>
-        Day4：00:00 4/10- 00:00 5/10</br>
-        Day5：00:00 5/10- 00:00 6/10</br>
-        Day6：00:00 6/10- 00:00 7/10</br>
-        Day7：00:00 7/10- 00:00 8/10</br>
-        Day8: 00:00 8/10- 00:00 9/10</br>
-        Day9: 00:00 9/10- 22:00 9/10
+        Day1: 18:00 1/12 ~00:00 2/12<br />
+        Day2: 00:00 2/12 ~00:00 3/12<br />
+        Day3: 00:00 3/12 ~00:00 4/12<br />
+        Day4: 00:00 4/12 ~00:00 5/12<br />
+        Day5: 00:00 5/12 ~00:00 6/12<br />
+        Day6: 00:00 6/12 ~00:00 7/12<br />
+        Day7: 00:00 7/12 ~00:00 8/12<br />
+        Day8: 00:00 8/12 ~00:00 9/12<br />
+        Day9: 00:00 9/12 ~22:00 9/12
       </p>
       <h6>Level beruntung:</h6>
       <p class="dayTime">
@@ -52,13 +52,11 @@
         </span>
         <span>
           <img src="../../assets/img/ruleGift/2.png" alt="">
-          <strong>Hak istimewat
-            bangsawan kaisar</strong>
+          <strong>Hadiah ransel pulau impian</strong>
         </span>
         <span>
           <img src="../../assets/img/ruleGift/3.png" alt="">
-          <strong>Hak istimewat
-            bangsawan duke</strong>
+          <strong>Kopun bonus ukt topup</strong>
         </span>
         <span>
           <img src="../../assets/img/ruleGift/4.png" alt="">
@@ -78,9 +76,9 @@
       <h6>Hadiah daftar harian</h6>
       <p> top 1~3 masing-masing hadiahi 15%、12%、10% kupon utk top up dan akan dikirim oleh sistem secara otomatis pada pukul 24 hari ini,hadiah daftar harian akan dikirim ketika acara selesai.</p>
       <h6>Hadiah daftar total:</h6>
-      <p>Top 1: lencana beruntung (30 hari ) +hak istimewa bangsawan kaisar (31 hari )+ mount mobil badai (14 hari ) + 1000 koin emas+ 5000 kacang emas</p>
-      <p>Top 2: lencana beruntung (30 hari ) + hak istimewa bangsawan duke(31 hari )+ mount mobil badai (14 hari )+800 koin emas+ 3000 kacang emas</p>
-      <p>Top 3: lencana beruntung (30 hari ) + hak istimewa bangsawan duke(31 hari )+ mount mobil badai (14 hari )+600 koin emas+ 2000 kacang emas</p>
+      <p>Top 1: lencana beruntung (30 hari ) + Hadiah ransel pulau impian (senilai 1999 koin) + mount mobil badai (14 hari ) + 1000 koin emas+ 5000 kacang emas</p>
+      <p>Top 2: lencana beruntung (30 hari ) + Hadiah ransel pulau impian (senilai 1999 koin) + mount mobil badai (14 hari )+800 koin emas+ 3000 kacang emas</p>
+      <p>Top 3: lencana beruntung (30 hari ) + Hadiah ransel pulau impian (senilai 1999 koin) + mount mobil badai (14 hari )+600 koin emas+ 2000 kacang emas</p>
       <p>Top 4~10: lencana beruntung (30 hari ) + 200 koin emas + 1000 kacang emas</p>
       <h6>Perhatikan:</h6>
       <p>1. Kupon bonus utk top up setelah dikirim ke ransel ,hanya berlaku selama 24 jam, tolong menggunakannya pada tepat waktu. </p>

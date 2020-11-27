@@ -92,7 +92,7 @@ export default {
         white-space: nowrap;
         text-overflow: ellipsis;
         font-size: 0.24rem;
-        margin-left: 0.15rem;
+        margin: 0 0.15rem;
       }
       .giftIcon {
         width: 0.48rem;

@@ -347,56 +347,22 @@ export default {
       height: 4.57rem;
       padding-top: 0.41rem;
       position: relative;
-      &.left {
-        background: url(../assets/img/letfBoxBg.png);
-        background-size: 100% 100%;
-        .blineBox {
-          width: 1.91rem;
-          height: 1.98rem;
-          margin: 0 auto 0;
-          background: url(../assets/img/box1.png);
-          background-size: 100% 100%;
-        }
-        &.open {
-          .blineBox {
-            background: url(../assets/img/openBox1.png);
-            background-size: 100% 100%;
-          }
-          .openBtn {
-            background: url(../assets/img/openedBtnBg.png);
-            background-size: 100% 100%;
-          }
-        }
-      }
-      &.right {
-        background: url(../assets/img/letfBoxBg.png);
-        background-size: 100% 100%;
-        margin-left: -0.15rem;
-        .blineBox {
-          width: 2.14rem;
-          height: 2.12rem;
-          margin: 0 auto 0;
-          background: url(../assets/img/box2.png);
-          background-size: 100% 100%;
-        }
-        &.open {
-          .blineBox {
-            background: url(../assets/img/openBox2.png);
-            background-size: 100% 100%;
-          }
-          .openBtn {
-            background: url(../assets/img/openedBtnBg.png);
-            background-size: 100% 100%;
-          }
-        }
-      }
+      background: url(../assets/img/letfBoxBg.png);
+      background-size: 100% 100%;
       .heartbeat {
         animation: heartbeat 1s infinite;
+      }
+      .title {
+        padding: 0 0.3rem;
+        text-align: center;
+        color: #651a00;
+        font-size: 0.24rem;
+        font-weight: 600;
       }
       .title1 {
         display: block;
         width: 1.49rem;
-        height: 0.43rem;
+        height: 0.44rem;
         background: url(../assets/img/title1.png);
         background-size: 100% 100%;
         margin: 0 auto;
@@ -404,21 +370,17 @@ export default {
       .title2 {
         display: block;
         width: 1.49rem;
-        height: 0.43rem;
+        height: 0.44rem;
         background: url(../assets/img/title2.png);
         background-size: 100% 100%;
         margin: 0 auto;
       }
-      .title {
-        text-align: center;
-        font-size: 0.24rem;
-        font-weight: 600;
-      }
       .sonw {
         width: 2.92rem;
         height: 2.69rem;
-        margin: 0rem auto;
+        margin: 0 auto;
         position: relative;
+        margin-top: -0.3rem;
         canvas {
           width: 100%;
           height: 100%;
@@ -434,16 +396,12 @@ export default {
         text-align: center;
         line-height: 0.66rem;
         font-weight: 800;
+        margin: 0 auto;
         background: url(../assets/img/openBtn1.png);
         background-size: 100% 100%;
-        margin: 0.09rem auto 0;
-        &.isOpen {
-          background: url(../assets/img/openBtn3.png) !important;
-          background-size: 100% 100% !important;
-        }
-        &.openBtn2 {
-          // background: url(../assets/img/openBtn2.png);
-          // background-size: 100% 100%;
+        &.open {
+          background: url(../assets/img/openBtn3.png);
+          background-size: 100% 100%;
         }
       }
     }

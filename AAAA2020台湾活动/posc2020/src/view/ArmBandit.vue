@@ -8,7 +8,7 @@
       <span class="ruleTips top" @click="goRule()">規則&獎勵 <i></i> </span>
     </div>
     <div class="giftImg"></div>
-    <TabsScrollLoadList />
+    <TabsScrollLoadList ref="list" />
     <act-footer></act-footer>
 
   </div>

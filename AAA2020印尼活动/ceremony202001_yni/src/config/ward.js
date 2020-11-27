@@ -41,7 +41,7 @@ export const tickGiftList = {
         },
         {
             img: require("../assets/img/ticket/gift/gift2.png"),
-            name: 'Bayangan di laut dalam (senilai 3888 koin emas)'
+            name: 'Kuda Terbang（senilai 3888 koin emas）'
         },
     ],
     2: [
@@ -69,7 +69,7 @@ export const tickGiftList = {
         },
         {
             img: require("../assets/img/ticket/gift/gift4.png"),
-            name: 'Kapal Paisar (senilai 1888 koin emas)'
+            name: 'Malam Cinta（senilai 1888 koin emas）'
         },
     ],
     4: [

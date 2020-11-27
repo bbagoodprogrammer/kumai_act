@@ -9,11 +9,11 @@
         <div class="signUp" v-if="showType == 1" @click="goSingNing()">快去簽約</div>
       </div>
       <div class="user_1" :class="{up:nowUserScore.up}" v-if="astState == 3 || astState == 5 || astState == 6">
-        <p v-if="nowUserScore.up && astState == 3">恭喜您代表站隊成功晉級，快去準備終極決賽吧，出道位在等著你～</p>
+        <p v-if="nowUserScore.up && astState == 3">恭喜您成功晉級，快去準備下一輪比賽吧～ </p>
         <p v-else-if="nowUserScore.up && astState == 5">恭喜您代表戰隊成功晉級，快去準備終極決賽吧，出道位在等著你～</p>
         <p v-else-if="nowUserScore.up && astState == 6">恭喜您通過重重考驗，終於以第{{nowUserScore.rank}}名成功出道，成為歡選之子2020的一員！</p>
         <div class="user_1_msg" :class="[{icon:astState == 6},'rank' + nowUserScore.rank]">
-          <div class="imgBox">
+          <div class="imgBox" @click="goUser(nowUserScore.uid)">
             <span class="avBg" v-if="nowUserScore.rank <=3"></span>
             <img v-else-if="nowUserMsg.frame &&nowUserMsg.frame != ''" :src="nowUserMsg.frame" class="frame">
             <img v-lazy="nowUserMsg.avatar" alt="">
@@ -32,10 +32,11 @@
           </div>
         </div>
       </div>
-      <div class="user_2" :class="{up:nowUserScore.up}" v-if="astState == 4">
-        <p v-if="nowUserScore.up">恭喜您成功晉級，快去準備下一輪比賽吧～</p>
+      <div class="user_2" :class="{up:nowUserScore.up}" v-if="astState == 4" @click="shouCards()">
+        <p v-if="nowUserScore.up">恭喜您成功晉級，快去準備下一輪比賽吧～ </p>
         <div class="pkMsg">
-          <span class="rank" :class="{textL:nowUserScore.rank <=3}">{{nowUserScore.rank}}</span>
+          <!-- :class="{textL:nowUserScore.rank <=3}" -->
+          <span class="rank">{{nowUserScore.rank}}</span>
           <div class="pkUser">
             <div class="userItem">
               <div class="imgBox">
@@ -117,6 +118,20 @@ export default {
       let uid = getString('uid')
       let token = getString('token')
       location.href = `http://act.17sing.tw/signing/index.html?uid=${uid}&token=${token}`
+    },
+    goUser(uid) {
+      location.href = `uid:${uid}`
+    },
+    shouCards() {
+      let uid1 = this.nowUserScore.uid1
+      let uid2 = this.nowUserScore.uid2
+      for (let i in uid1.user) {
+        uid1[i] = uid1.user[i]
+      }
+      for (let i in uid2.user) {
+        uid2[i] = uid2.user[i]
+      }
+      this.$parent.$refs.list.showPkMsg([uid1, uid2])
     }
   }
 }
