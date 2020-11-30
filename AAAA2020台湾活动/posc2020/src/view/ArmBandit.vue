@@ -1,10 +1,11 @@
 <template>
-  <div class="box" :class="{pb:nowInitData.reg || !kol,pb2:nowUserScore.up}">
+  <div class="box" :class="{pb:nowInitData.reg || !kol,pb2:nowUserScore.up,bg:!showBannerBg}">
+    <canvas id="bannerBg" v-show="!showBannerBg"></canvas>
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <span class="ruleTips" @click="goMain()">主會場 <i></i> </span>
+      <span class="ruleTips" @click="goMain()">年度盛典主會場 <i></i> </span>
       <span class="ruleTips top" @click="goRule()">規則&獎勵 <i></i> </span>
     </div>
     <div class="giftImg"></div>
@@ -25,6 +26,11 @@ import { globalBus } from '../utils/eventBus'
 import TabsScrollLoadList from "../components/TabsScrollLoadList"
 import { mapState } from 'vuex'
 
+import { Downloader, Parser, Player } from 'svga.lite'
+
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
+
 export default {
   components: { MsgToast, ActFooter, TabsScrollLoadList },
   data() {
@@ -37,12 +43,15 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
-
+      showBannerBg: true,
     }
   },
   created() {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
+  },
+  mounted() {
+    this.bannerGo()
   },
   computed: {
     ...mapState(['nowTab', "initGrounps", "kol"]),
@@ -83,6 +92,15 @@ export default {
     },
     tabClick(val) {
       this.actStep = val
+    },
+    async bannerGo() {
+      let canvas = document.getElementById('bannerBg')
+      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/ndcw06/5498fe48dca56453c16ae46a4af8d427_1606720734zndcw06`);
+      const data = await parser.do(fileData);
+      let player = new Player(canvas)
+      await player.mount(data)
+      this.showBannerBg = false
+      player.start()
     }
   }
 }
@@ -106,6 +124,17 @@ body::-webkit-scrollbar {
   &.pb2 {
     padding-bottom: 4rem;
   }
+  &.bg {
+    background: url(../assets/img/banner1.jpg) center 0 no-repeat;
+    background-size: 100% auto;
+  }
+  #bannerBg {
+    width: 7.5rem;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   .shareBar {
     position: fixed;
     z-index: 1000;
@@ -125,7 +154,7 @@ body::-webkit-scrollbar {
     height: 8.45rem;
     position: relative;
     .ruleTips {
-      width: 1.64rem;
+      width: 2.08rem;
       height: 0.79rem;
       background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
@@ -134,7 +163,8 @@ body::-webkit-scrollbar {
       top: 6.56rem;
       text-align: center;
       color: rgba(176, 77, 39, 1);
-      font-size: 0.28rem;
+      font-size: 0.26rem;
+      white-space: nowrap;
       display: flex;
       justify-content: center;
       line-height: 0.65rem;
@@ -157,6 +187,8 @@ body::-webkit-scrollbar {
     height: 6.27rem;
     background: url(../assets/img/giftImg.png);
     background-size: 100% 100%;
+    position: relative;
+    z-index: 50;
   }
 }
 // .refresh {

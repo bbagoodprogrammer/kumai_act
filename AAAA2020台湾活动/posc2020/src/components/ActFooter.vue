@@ -11,7 +11,7 @@
       <div class="user_1" :class="{up:nowUserScore.up}" v-if="astState == 3 || astState == 5 || astState == 6">
         <p v-if="nowUserScore.up && astState == 3">恭喜您成功晉級，快去準備下一輪比賽吧～ </p>
         <p v-else-if="nowUserScore.up && astState == 5">恭喜您代表戰隊成功晉級，快去準備終極決賽吧，出道位在等著你～</p>
-        <p v-else-if="nowUserScore.up && astState == 6">恭喜您通過重重考驗，終於以第{{nowUserScore.rank}}名成功出道，成為歡選之子2020的一員！</p>
+        <p v-else-if="nowUserScore.up && astState == 6">恭喜您通過重重考驗，終於以第{{nowUserScore.rank}}名成功在年度C位爭奪賽出道！</p>
         <div class="user_1_msg" :class="[{icon:astState == 6},'rank' + nowUserScore.rank]">
           <div class="imgBox" @click="goUser(nowUserScore.uid)">
             <span class="avBg" v-if="nowUserScore.rank <=3"></span>
@@ -74,7 +74,7 @@ export default {
         1: "節奏王者",
         2: "Melodic",
         3: "閱動人間",
-        4: "BOM 109"
+        4: "BPM 109"
       }
     }
   },
@@ -84,8 +84,6 @@ export default {
       // return 1
       if (this.actStatus === 0) { //活动未开始
         return 0
-      } else if (this.actStatus === 2) { //活动已结束
-        return 2
       } else if (!this.kol || this.isShare) { //不是签约用户
         return 1
       } else if (this.nowTab == 1 && this.nowInitData.reg && this.showType >= this.nowTab) { //活动开始已报名
