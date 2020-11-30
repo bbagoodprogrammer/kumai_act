@@ -19,7 +19,7 @@
     </div>
     <div class="actTips">
       <p>在比賽期間向選手送以上禮物，選手可獲得10%的人氣加成喔</p>
-      <p><span>高光時刻：</span>比賽期間每日21:00:00~21:10:00送出的禮物可以獲得10%的人氣值加成</p>
+      <p v-if="nowTab != 4"><span>高光時刻：</span>比賽期間每日21:00:00~21:10:00送出的禮物可以獲得10%的人氣值加成</p>
     </div>
     <div class="downTimebox">
       <div class="timeTips">
@@ -134,7 +134,7 @@
       <!-- v-if="nowTab == 4 && showType == 4" -->
       <ul class="lastList">
         <li v-for="(item,index) in lastlist" :key="index" :class="'rank'+item.rank">
-          <div class="imgBox" @click.stop="showUserMsg(item)">
+          <div class="imgBox" @click.stop="goPeople(item.uid)">
             <span class="avBg" v-if="item.rank <=3"></span>
             <img v-else-if="item.frame &&item.frame != ''" :src="item.frame" class="frame">
             <img v-lazy="item.avatar" alt="">
@@ -156,7 +156,7 @@
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
     <div class="listTipsBox">
       <div v-if="rank.loading" class="scrollLoading">加載中...</div>
-      <div v-else-if="nowTab > showType" class="dengdai">敬請期待！</div>
+      <div v-else-if="nowTab > showType && actStatus == 1" class="dengdai">敬請期待！</div>
       <div v-else-if="rank.none && rank.list.length == 0 " class="scrollNone">
         目前暫無歌友上榜</br>
         虛位以待，等你來哦！
@@ -594,7 +594,8 @@ export default {
       span {
         display: inline-block;
         width: 1.82rem;
-        height: 0.82rem;
+        height: 0.77rem;
+        padding-top: 0.05rem;
         text-align: center;
         color: rgba(255, 191, 92, 1);
         font-size: 0.32rem;
@@ -603,7 +604,7 @@ export default {
           display: block;
           font-size: 0.2rem;
           color: rgba(255, 192, 92, 1);
-          margin-top: -0.05rem;
+          margin-top: -0.02rem;
         }
         &.act {
           color: rgba(178, 79, 40, 1);
@@ -1150,8 +1151,8 @@ export default {
             }
           }
         }
-        .userItem:last-child{
-            margin-right: 0;
+        .userItem:last-child {
+          margin-right: 0;
         }
       }
       &.rank1 {

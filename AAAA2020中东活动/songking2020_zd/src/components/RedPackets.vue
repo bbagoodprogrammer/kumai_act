@@ -328,6 +328,7 @@ export default {
         }
       } else {
         javascript: JSInterface.share(JSON.stringify(data));
+        //javascript: JSInterface.share('http://activity.gosingapp.com/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#', 'تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!', 'انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>', 'http://activity.gosingapp.com/static_html/2020/songking2020/share.png?v=2');
       }
     },
     nextRedPacket(dtime) {
