@@ -49,7 +49,7 @@
               </li>
             </ul>
           </vue-seamless-scroll>
-          <div class="share" v-if="packetType == 1" @click="shareAct()">تذكير الأصدقاء لاقتسام المغلف الأحمر</div>
+          <div class="share" v-if="packetType == 1" @click="shareAct()">تذكير الأصدقاء</div>
         </div>
       </transition>
     </div>
@@ -79,7 +79,7 @@
           <i class="close" @click="closePacketPup()"></i>
           <!-- <p class="red">{{dtime}}</p> -->
           <div class="resHeader">
-            <div class="tips" v-if="recoreData.time">{{recoreData.time}} مغلف أحمر، وتم اقتسامها أثناء {{recoreData.users}} ثانية</div>
+            <div class="tips" v-if="recoreData.time">{{recoreData.users}} مغلف أحمر، وتم اقتسامها أثناء {{recoreData.time}} ثانية</div>
             <div class="tips" v-else>
               <span>تم الاستلام {{recoreData.users}}\{{recoreData.gotUsers}}، </span>
               <span>و{{recoreData.gotCoins}}\{{recoreData.coins}} عملة</span>
@@ -327,8 +327,8 @@ export default {
           location.href = `shareUserInfo://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#&shareText=انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>&userImg=http://activity.gosingapp.com/static_html/2020/songking2020/share.png?v=2&title=تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!`;
         }
       } else {
-        javascript: JSInterface.share(JSON.stringify(data));
-        //javascript: JSInterface.share('http://activity.gosingapp.com/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#', 'تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!', 'انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>', 'http://activity.gosingapp.com/static_html/2020/songking2020/share.png?v=2');
+        // javascript: JSInterface.share(JSON.stringify(data));
+        javascript: JSInterface.share('http://activity.gosingapp.com/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#', 'تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!', 'انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>', 'http://activity.gosingapp.com/static_html/2020/songking2020/share.png?v=2');
       }
     },
     nextRedPacket(dtime) {
