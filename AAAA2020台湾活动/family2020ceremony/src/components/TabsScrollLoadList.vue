@@ -12,8 +12,8 @@
     <div class="downTimebox">
       <div class="timeTips">
         <i class="left"></i>
-        <p v-if="actStatus == 0">赛段结束倒计时</p>
-        <p v-else-if="actStatus == 1">赛段开始倒计时</p>
+        <p v-if="showType == nowTab ">赛段结束倒计时</p>
+        <p v-else-if="showType > nowTab">赛段开始倒计时</p>
         <p v-else>赛段已结束</p>
         <i class="right"></i>
       </div>
@@ -49,15 +49,19 @@
         </div>
       </div>
     </div>
+    <!-- 禮物圖片 -->
+    <img src="../assets/img/rankGift.png" alt="" class="rankGift" v-if="showType == 2">
     <!-- 文案提示 -->
     <p v-if="showType == 1" class="tankTips">本賽段閃耀值=守護值+家族成員作品/K房收禮魅力值</p>
+    <p v-else-if="showType == 2" class="tankTips">本賽段閃耀值=家族成員作品/K房金幣收禮魅力值</p>
+    <p v-else-if="showType == 3" class="tankTips">本賽段閃耀值=家族成員作品/K房收禮魅力值<br /> （本賽段本年度前五十家族有加成6%-10%的閃耀值）<span>本賽段每日21:00-21:10分有10%魅力值加成</span></p>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs" v-if="showType == 1">
       <div class="tabs">
         <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">家族守護任務</a>
         <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">家族排名</a>
       </div>
-      <!-- <a @click.prevent="onRefresh" href="" v-if="tab == nowDay && !isShare && actStatus===1" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a> -->
+      <!-- <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a> -->
     </div>
 
     <!-- 日榜 -->
@@ -79,9 +83,6 @@
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goPeople(item.uid,item.live)">
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
-          <!-- <img v-if="item.info.level" :src="require(`../assets/img/fLv/${item.info.level}.png`)" class="nob" alt=""> -->
-          <!-- <i class="vip" v-else-if="item.vip > 0">VIP{{item.vip}}</i>
-          <span class="imgBg" v-if="item.nob ==  0"></span> -->
           <img v-lazy="item.info.avatar" alt="" class="imgItem">
           <span class="fLv" :class="{lv2:item.info.level >5 && item.info.level <=10,lv3:item.info.level >10 && item.info.level <=15,lv4:item.info.level >15}">
             <i class="num">{{item.info.level}}</i>
@@ -109,44 +110,63 @@
           <div class="familyMsg">
             <div class="family1 family">
               <img v-lazy="item.pk_data.left.avatar" class="fImg" alt="" @click.stop="showFamily(item.pk_data.left.fid)">
-              <!-- <div class="msg">
-                <div class="nick">{{item.pk_data.left.name}}</div>
-                <div class="star"><i></i><strong>{{item.pk_data.left.score}}</strong></div>
-              </div> -->
+              <span class="fLv" :class="{lv2:item.pk_data.left.level >5 && item.pk_data.left.level <=10,lv3:item.pk_data.left.level >10 && item.pk_data.left.level <=15,lv4:item.pk_data.left.level >15}">
+                <i class="num">{{item.pk_data.left.level}}</i>
+                <strong>家族</strong>
+              </span>
             </div>
             <div class="fLiner" v-if="!item.empty">
-              <span class="left" :style="{width:getWidth(item.pk_data.left.score,item.pk_data.right.score)}"><i class="giftBox"></i></span>
-              <!-- <span class="right"></span> -->
+              <span class="left" :style="{width:getWidth(item.pk_data.left.score,item.pk_data.right.score),top:item.pk_data.right.score > 0}"></span>
+              <div class="star lScore"><i></i><strong>{{item.pk_data.left.score}}</strong></div>
+              <div class="star rScore"><i></i><strong>{{item.pk_data.right.score}}</strong></div>
             </div>
-            <div class="family2 family">
-              <!-- <p class="noOpponents" v-if="item.empty">幸運輪空，直接晉級</p>
-              <div class="msg" v-else>
-                <div class="nick">{{item.pk_data.right.name}}</div>
-                <div class="star"><i></i><strong>{{item.pk_data.right.score}}</strong></div>
-              </div> -->
+            <div class="leftMsg" v-else>
+              <div class="leftName">
+                {{item.pk_data.left.name}}
+              </div>
+              <div class="star lScore"><i></i><strong>{{item.pk_data.left.score}}</strong></div>
+            </div>
+            <div class="family2 family" v-if="!item.empty">
               <img v-lazy="item.pk_data.right.avatar" class="fImg2" alt="" v-if="!item.empty" @click.stop="showFamily(item.pk_data.right.fid)">
+              <span class="fLv" :class="{lv2:item.pk_data.right.level >5 && item.pk_data.right.level <=10,lv3:item.pk_data.right.level >10 && item.pk_data.right.level <=15,lv4:item.pk_data.right.level >15}">
+                <i class="num">{{item.pk_data.right.level}}</i>
+                <strong>家族</strong>
+              </span>
+            </div>
+            <div class="noFamily" v-else>
+              幸運輪空，直接晉級
             </div>
           </div>
-
+          <div class="familyName" v-if="!item.empty">
+            <div class="leftName">
+              {{item.pk_data.left.name}}
+            </div>
+            <div class="rightName">
+              {{item.pk_data.right.name}}
+            </div>
+          </div>
         </div>
       </li>
     </ul>
     <ul v-else class="list stage3List">
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank">
-
+        <i class="adScore"></i>
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
-          <!-- <span class="imgBg"></span> -->
-          <img v-lazy="item.avatar" alt="" class="imgItem" @click.stop="showFamily(item.fid)">
+          <img v-lazy="item.info.avatar" alt="" class="imgItem" @click.stop="showFamily(item.fid)">
+          <span class="fLv" :class="{lv2:item.info.level >5 && item.info.level <=10,lv3:item.info.level >10 && item.info.level <=15,lv4:item.info.level >15}">
+            <i class="num">{{item.info.level}}</i>
+            <strong>家族</strong>
+          </span>
         </div>
         <div class="userMsg">
-          <div class="name" :class="'lv'+item.level"><strong>{{item.name}} </strong> </div>
-          <div class="score"><i></i> <strong>{{item.score}}</strong> </div>
+          <div class="name"><strong>{{item.info.familyname}} </strong> </div>
+          <div class="score"><i></i> <strong>{{item.info.score}}</strong> </div>
         </div>
         <div class="userList">
           <div class="userItem" v-for="(item2,index2) in item.users" :key="index2">
             <span class="userImgBox" @click="goPeople(item2.uid)">
-              <span :class="'user'+ (index2+1)"></span>
+              <span></span>
               <img v-lazy="item2.avatar" alt="">
             </span>
             <strong>{{item2.score}}</strong>
@@ -160,7 +180,7 @@
       目前暫無歌友上榜</br>
       虛位以待，等你來哦！
     </div>
-    <div v-if="mainTab==0 && tab > nowDay" class="dengdai">敬請期待！</div>
+    <div v-if="mainTab==0 && showType > nowTab" class="dengdai">敬請期待！</div>
     <!--  -->
     <div class="mask" v-show="showFcards">
       <transition name="slide">
@@ -236,24 +256,10 @@ export default {
       }
     }
   },
-  watch: {
-    nowDay(val) {
-      this.tab = val
-      this.$nextTick(() => {
-        if (!this.rank.loadCount) {
-          this.onScroll();
-        }
-      });
-    },
-  },
   computed: {
-    ...mapState(['rankGroups', 'task', "nowShowType", "nowDay", "oneNowDay", "dateArr", "inited", "isShare", "actStatus", "showType", "timeObj"]),
+    ...mapState(['rankGroups', 'nowTab', 'task', "nowShowType", "dateArr", "inited", "isShare", "actStatus", "showType", "timeObj"]),
     rankKey() {
-      // return ['one', 'two', 'three'][this.tab];
-      if (this.showType == 2 || this.showType == 3) {
-        return 'total'
-      }
-      return this.mainTab == 1 ? 'total' : this.tab;
+      return this.showType
     },
     rankApi() {
       if (this.isShare) {
@@ -320,13 +326,6 @@ export default {
     setShowType(val) {
       if (val !== this.showType) {
         this.vxc('setShowType', val)
-        if (val == 1) {
-          this.tab = this.oneNowDay
-          this.mainTab = 0
-        } else {
-          this.tab = 'total'
-        }
-        this.vxc("changTab", this.rankKey)
         this.$nextTick(() => {
           if (!this.rank.loadCount) {
             this.onScroll();
@@ -335,18 +334,7 @@ export default {
       }
     },
     mainTabClick(tab) { //总榜切换
-      this.mainTab = tab;
-      this.vxc("changTab", this.rankKey)
-      this.$nextTick(() => {
-        if (!this.rank.loadCount) {
-          this.onScroll();
-        }
-      });
-    },
-    tabClick(tab) { //日榜切换
-      this.tab = tab;
-      var nowTab = this.rankKey >= this.oneNowDay ? this.oneNowDay : this.rankKey //存当天选择的tab索引用于底部个人信息查找
-      this.vxc("changTab", nowTab)
+      this.mainTab = tab
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
           this.onScroll();
@@ -382,14 +370,7 @@ export default {
               set('loadEnd', true);
               return;
             }
-            // console.log(this.showType, this.rankKey, response_data.c_time)
-            if (this.showType == 1) {
-              //console.log(this.$parent.computedInitSecond(this.showType, this.rankKey, response_data.c_time))
-              set('second', this.$parent.computedInitSecond(this.showType, this.rankKey, response_data.c_time))
-            } else if (this.showType == 2 || this.showType == 3) {
-
-              set('second', this.$parent.computedInitSecond(this.showType, this.rankKey, response_data.c_time))
-            }
+            set('second', this.$parent.computedInitSecond(this.showType, response_data.c_time))
             const arr = response_data.list;
             //跟随榜单变换个人信息
             if (response_data.rank) {
@@ -698,10 +679,22 @@ export default {
       }
     }
   }
+  .rankGift {
+    width: 7rem;
+    height: 2.78rem;
+    display: block;
+    margin: 0.2rem auto 0.3rem;
+  }
   .tankTips {
     text-align: center;
     font-size: 0.24rem;
     color: rgba(255, 181, 104, 1);
+    span {
+      display: block;
+      font-size: 0.24rem;
+      color: rgba(219, 255, 198, 1);
+      margin: 0.15rem 0 0.2rem;
+    }
   }
   .list {
     margin: 0.19rem auto;
@@ -713,28 +706,72 @@ export default {
           height: 0.96rem;
           border-radius: 0.16rem;
         }
+        .fLv {
+          display: block;
+          width: 1.06rem;
+          height: 0.37rem;
+          background: url(../assets/img/fLv/1.png);
+          background-size: 100% 100%;
+          display: flex;
+          align-items: center;
+          position: absolute;
+          left: 0;
+          bottom: -0.05rem;
+          z-index: 10;
+          .num {
+            width: 0.32rem;
+            height: 0.32rem;
+            line-height: 0.32rem;
+            text-align: center;
+            font-size: 0.12rem;
+            color: #e63ba8;
+            margin-left: 0.05rem;
+          }
+          strong {
+            flex: 1;
+            font-size: 0.18rem;
+            margin-left: 0.1rem;
+            margin-top: 0.01rem;
+          }
+          &.lv2 {
+            background: url(../assets/img/fLv/2.png);
+            background-size: 100% 100%;
+            .num {
+              color: #a939ff;
+            }
+          }
+          &.lv3 {
+            background: url(../assets/img/fLv/3.png);
+            background-size: 100% 100%;
+            .num {
+              margin-left: 0.04rem;
+              color: #a939ff;
+            }
+          }
+          &.lv4 {
+            background: url(../assets/img/fLv/4.png);
+            background-size: 100% 100%;
+            .num {
+              margin-left: 0.09rem;
+              color: #4f5ff4;
+            }
+          }
+        }
       }
       .userMsg {
         width: 2.3rem;
         margin-right: 0.15rem;
         .name {
-          width: 1.44rem;
-          height: 0.54rem;
-          padding-left: 0.63rem;
-          background: url(../assets/img/lv0.png);
+          width: 2.29rem;
+          height: 0.67rem;
+          background: url(../assets/img/fNameBg.png);
           background-size: 100% 100%;
-          &.lv1 {
-            background: url(../assets/img/lv1.png);
-            background-size: 100% 100%;
-          }
-          &.lv2 {
-            background: url(../assets/img/lv2.png);
-            background-size: 100% 100%;
-          }
-          &.lv3 {
-            background: url(../assets/img/lv3.png);
-            background-size: 100% 100%;
-          }
+          line-height: 0.8rem;
+          text-indent: 0.45rem;
+          font-style: italic;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
         .score {
           display: flex;
@@ -743,7 +780,7 @@ export default {
           i {
             width: 0.4rem;
             height: 0.38rem;
-            background: url(../assets/img/star.png);
+            background: url(../assets/img/store.png);
             background-size: 100% 100%;
           }
           strong {
@@ -752,6 +789,8 @@ export default {
         }
       }
       .userList {
+        background: linear-gradient(90deg, rgba(113, 72, 58, 0.2) 1%);
+        // opacity: 0.2;
         flex: 1;
         justify-content: center;
         .userItem {
@@ -958,6 +997,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        border-radius: 0.1rem 0 0 0.1rem;
         .userItem {
           position: relative;
           .userImgBox {
@@ -973,21 +1013,10 @@ export default {
               position: absolute;
               z-index: 2;
             }
-            .user1 {
-              background: url(../assets/img/user1.png);
-              background-size: 100% 100%;
-            }
-            .user2 {
-              background: url(../assets/img/user2.png);
-              background-size: 100% 100%;
-            }
-            .user3 {
-              background: url(../assets/img/user3.png);
-              background-size: 100% 100%;
-            }
             img {
-              width: 0.6rem;
-              height: 0.6rem;
+              width: 0.56rem;
+              height: 0.56rem;
+              border: 0.02rem solid rgba(255, 220, 42, 1);
               border-radius: 50%;
               position: absolute;
               top: 0.07rem;
@@ -1052,20 +1081,21 @@ export default {
       }
       .PKmsg {
         flex: 1;
-        margin-left: 0.2rem;
+        height: 100%;
         position: relative;
-        padding-right: .15rem;
+        padding: 0 0.15rem 0 0.2rem;
         .up {
           display: block;
           width: 1.18rem;
-          height: 0.38rem;
-          background: url(../assets/img/jinji.png);
+          height: 0.4rem;
+          background: url(../assets/img/up2.png);
           background-size: 100% 100%;
           position: absolute;
-          top: 0.13rem;
+          top: 0rem;
+          z-index: 10;
           &.left {
             left: 0;
-            background: url(../assets/img/jinji2.png);
+            background: url(../assets/img/up.png);
             background-size: 100% 100%;
           }
           &.right {
@@ -1073,38 +1103,70 @@ export default {
           }
         }
         .familyMsg {
-          height: 1.4rem;
+          margin-top: 0.2rem;
+          // height: 1.4rem;
           display: flex;
-          align-items: center;
           justify-content: space-between;
           .family {
-            display: flex;
-            align-items: center;
+            position: relative;
+            width: 1rem;
+            height: 1rem;
             img {
               width: 1rem;
               height: 1rem;
-              border-radius: 0.16rem;
+              border-radius: 0.2rem;
+              border: 0.03rem solid rgba(251, 253, 148, 1);
+              box-sizing: border-box;
             }
-            .msg {
-              margin-left: 0.14rem;
-              .nick {
-                height: 0.5rem;
-                max-width: 2rem;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
+            .fLv {
+              display: block;
+              width: 1.06rem;
+              height: 0.37rem;
+              background: url(../assets/img/fLv/1.png);
+              background-size: 100% 100%;
+              display: flex;
+              align-items: center;
+              position: absolute;
+              left: 0;
+              bottom: -0.05rem;
+              z-index: 10;
+              .num {
+                width: 0.32rem;
+                height: 0.32rem;
+                line-height: 0.32rem;
+                text-align: center;
+                font-size: 0.12rem;
+                color: #e63ba8;
+                margin-left: 0.05rem;
               }
-              .star {
-                display: flex;
-                align-items: center;
-                font-size: 0.24rem;
-                color: rgba(255, 251, 237, 1);
-                i {
-                  width: 0.31rem;
-                  height: 0.29rem;
-                  background: url(../assets/img/star.png);
-                  background-size: 100% 100%;
-                  margin-right: 0.06rem;
+              strong {
+                flex: 1;
+                font-size: 0.18rem;
+                margin-left: 0.1rem;
+                margin-top: 0.01rem;
+              }
+              &.lv2 {
+                background: url(../assets/img/fLv/2.png);
+                background-size: 100% 100%;
+                .num {
+                  color: #a939ff;
+                }
+              }
+              &.lv3 {
+                background: url(../assets/img/fLv/3.png);
+                background-size: 100% 100%;
+                .num {
+                  margin-left: 0.04rem;
+                  color: #a939ff;
+                }
+              }
+              &.lv4 {
+                background: url(../assets/img/fLv/4.png);
+                background-size: 100% 100%;
+                left: -0.03rem;
+                .num {
+                  margin-left: 0.09rem;
+                  color: #4f5ff4;
                 }
               }
             }
@@ -1115,35 +1177,68 @@ export default {
           height: 0.16rem;
           display: flex;
           align-items: center;
-          margin: 0 auto;
-          background: rgba(0, 0, 0, 0.2);
+          margin: 0.37rem auto;
+          background: linear-gradient(-90deg, #b1ffef 0%, #fbf734 100%);
           border-radius: 0.08rem;
+          position: relative;
           span {
+            max-width: 100%;
             height: 100%;
+            &.top {
+              max-width: 99%;
+            }
           }
           .left {
-            width: 50%;
             background: linear-gradient(90deg, #ff5bb1 0%, #ff3838 100%);
             position: relative;
             border-radius: 0.08rem;
-            // .giftBox {
-            //   position: absolute;
-            //   width: 0.53rem;
-            //   height: 0.54rem;
-            //   background: url(../assets/img/giftBox.png);
-            //   background-size: 100% 100%;
-            //   right: -0.27rem;
-            //   top: -0.24rem;
-            // }
           }
-          .right {
-            flex: 1;
-            border-radius: 0 0.08rem 0.08rem 0;
-            background: linear-gradient(
-              90deg,
-              rgba(255, 141, 40, 1) 39%,
-              rgba(255, 208, 106, 1) 100%
-            );
+          .star {
+            display: flex;
+            align-items: center;
+            color: rgba(255, 251, 237, 0.8);
+            font-size: 0.24rem;
+            position: absolute;
+            bottom: -0.45rem;
+            i {
+              width: 0.4rem;
+              height: 0.38rem;
+              background: url(../assets/img/star.png);
+              background-size: 100% 100%;
+              margin-right: 0.08rem;
+            }
+            &.lScore {
+              left: 0;
+            }
+            &.rScore {
+              right: 0;
+            }
+          }
+        }
+        .leftMsg {
+          margin-top: -0.07rem;
+          .leftName {
+            width: 2.29rem;
+            height: 0.67rem;
+            background: url(../assets/img/fNameBg.png);
+            background-size: 100% 100%;
+            line-height: 0.8rem;
+            text-indent: 0.45rem;
+            font-style: italic;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+          .star {
+            display: flex;
+            align-items: center;
+            i {
+              width: 0.4rem;
+              height: 0.38rem;
+              background: url(../assets/img/star.png);
+              background-size: 100% 100%;
+              margin-right: 0.09rem;
+            }
           }
         }
         .family2 {
@@ -1154,6 +1249,31 @@ export default {
             font-size: 0.24rem;
             color: rgba(255, 245, 129, 1);
           }
+        }
+        .familyName {
+          display: flex;
+          justify-content: space-between;
+          margin: 0.13rem auto 0;
+          > div {
+            width: 2.29rem;
+            height: 0.67rem;
+            background: url(../assets/img/fNameBg.png);
+            background-size: 100% 100%;
+            line-height: 0.8rem;
+            text-indent: 0.45rem;
+            font-style: italic;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+        }
+        .noFamily {
+          font-size: 0.24rem;
+          color: rgba(255, 251, 128, 1);
+          white-space: nowrap;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
 

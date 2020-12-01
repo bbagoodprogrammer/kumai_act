@@ -4,8 +4,8 @@
       <div class="noAct" v-if="astState === 0">{{lang.noAct}}</div>
       <div class="noAct" v-if="astState === 2">{{lang.actEd}}</div>
       <div class="goAct" :class="{type1:showType == 1}" v-if="astState === 1">
-        <p v-if="showType == 1">本活動僅對簽約用戶開發參賽資格，<br />快去簽約成為簽約用戶</p>
-        <p v-else>本活動僅對簽約用戶開發參賽資格，<br /> 快去成為粉絲，Pick你喜歡的選手送他們出道吧！</p>
+        <p v-if="showType == 1">本活動僅對簽約用戶開放參賽資格，<br />快去簽約成為簽約用戶</p>
+        <p v-else>本活動僅對簽約用戶開放參賽資格，<br /> 快去成為粉絲，Pick你喜歡的選手送他們出道吧！</p>
         <div class="signUp" v-if="showType == 1" @click="goSingNing()">快去簽約</div>
       </div>
       <div class="user_1" :class="{up:nowUserScore.up}" v-if="astState == 3 || astState == 5 || astState == 6">

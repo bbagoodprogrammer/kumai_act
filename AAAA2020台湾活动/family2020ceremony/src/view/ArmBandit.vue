@@ -56,11 +56,11 @@ export default {
       etime3: 0,
       step: 0,
       step_level: 1,
-      days: 0,
       arrLength: 0,
       seconed: 0,
       fid: 0,
-      hList: []
+      hList: [],
+      nowTab: 0
     }
   },
   created() {
@@ -76,7 +76,7 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { ctime, days, second, stime, stime1, stime2, stime3, etime, etime1, etime2, etime3, fid, list, rank, step, step_level, user_info, task } = response_data
+          const { ctime, second, stime, stime1, stime2, stime3, etime, etime1, etime2, etime3, fid, list, rank, step, step_level, user_info, task, isRegistered, charm } = response_data
           this.ctime = ctime
           this.stime1 = stime1
           this.stime2 = stime2
@@ -86,13 +86,15 @@ export default {
           this.etime3 = etime3
           this.step_level = step_level
           this.step = step
-          this.days = days
           this.fid = fid
           this.seconed = second
           this.vxc('setTask', task)
           this.vxc('setActStatus', step)
           this.vxc("setInited", 1)  //是否初始化頁面
-          this.vxc('setUserSingUp', user_info.registered)
+          this.vxc('setUserSingUp', isRegistered)
+          if (charm) {
+            this.vxc('setCharm', charm)
+          }
           let nowTime = getDateArr(stime1, etime1)
           // this.vxc('setActiIme', response_data.time_data)
           this.vxc('setDateArr', nowTime.arr)
@@ -101,22 +103,21 @@ export default {
           sessionStorage.setItem('stime', stime)
           sessionStorage.setItem('etime', etime)
           if (!val) {
-            this.vxc("setShowType", step_level)
-            this.vxc("changTab", step_level == 1 ? days : 'total')
-            this.vxc('setNowDay', step_level == 1 ? days : 'total')
-            this.vxc('setOneNowDay', days)
+            this.vxc("setShowType", step_level)  //當前展示tab
+            this.vxc("changTab", step_level)  //當前進度
+            this.nowTab = step_level
           }
           this.vxc('setnowShowType', step_level)
           let obj = {
             type: step_level,
             data: { //当前日榜信息
-              key: step_level == 1 ? days : 'total',
+              key: step_level,
               loadCount: 0,
               loadEnd: list.length < 20,
               loading: false,
               none: list.length < 20,
               list: list,
-              second: this.computedInitSecond(step_level, days, ctime)
+              second: this.computedInitSecond(step_level, ctime)
             }
           }
           this.vxc('updateRankGroups', obj)
@@ -124,7 +125,7 @@ export default {
           let userObj = {
             type: step_level,
             data: { //当前日榜信息
-              key: step_level == 1 ? days : 'total',
+              key: step_level,
               msg: rank ? rank : {}
             }
           }
@@ -134,7 +135,7 @@ export default {
         }
       })
     },
-    computedInitSecond(type, day, ctime) {
+    computedInitSecond(type, ctime) {
       if (this.step == 0) {  //活動未開始  計算三個階斷的開始時間
         if (type == 1) {
           return this.stime1 - ctime
@@ -146,27 +147,24 @@ export default {
       } else if (this.step == 2) {
         return 0
       } else {   //活動開始狀態
-        if (type == 1) {
-          if (day == 'total') {
+        if (type < this.nowTab) {
+          return 0
+        } else if (type == this.nowTab) {
+          if (type == 1) {
             return this.etime1 - ctime
-          } else if (day == this.days || day == this.arrLength) {  //當天或者最後一天
-            return this.seconed
-          } else {
-            return this.seconed + 84600 * (day - this.days)
-          }
-        } else if (type == 2) {
-          if (this.step_level == 1) {
-            return this.stime2 - ctime
-          } else {
+          } else if (type == 2) {
             return this.etime2 - ctime
-          }
-        } else if (type == 3) {
-          if (this.step_level == 1 || this.step_level == 2) {
-            return this.stime3 - ctime
           } else {
             return this.etime3 - ctime
           }
-
+        } else {
+          if (type == 1) {
+            return this.stime1 - ctime
+          } else if (type == 2) {
+            return this.stime2 - ctime
+          } else {
+            return this.stime3 - ctime
+          }
         }
       }
     },
