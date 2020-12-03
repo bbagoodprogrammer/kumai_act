@@ -80,7 +80,7 @@
       </ul>
     </div>
     <ul v-else-if="showType ==1 && mainTab == 1" class="list day">
-      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goPeople(item.uid,item.live)">
+      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="showFamily(item.info.fid)">
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
           <img v-lazy="item.info.avatar" alt="" class="imgItem">
@@ -141,6 +141,9 @@
             <div class="leftName">
               {{item.pk_data.left.name}}
             </div>
+            <i class="vs">
+
+            </i>
             <div class="rightName">
               {{item.pk_data.right.name}}
             </div>
@@ -150,7 +153,7 @@
     </ul>
     <ul v-else class="list stage3List">
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank">
-        <i class="adScore"></i>
+        <i class="adScore" v-if="item.pro">+{{item.pro}}%</i>
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
           <img v-lazy="item.info.avatar" alt="" class="imgItem" @click.stop="showFamily(item.fid)">
@@ -184,30 +187,21 @@
     <!--  -->
     <div class="mask" v-show="showFcards">
       <transition name="slide">
-        <div class="familyCard" v-if="showFcards">
+        <div class="familyCard" v-show="showFcards">
           <i class="close" @click="closeCards()"></i>
-          <div class="title">家族名片</div>
-          <div class="msg">
-            <img v-lazy="cardsMsg.family.avatar" alt="" @click="goFroom()">
-            <div class="nick">{{cardsMsg.family.familyname}}</div>
-            <div class="id">家族ID：<strong>{{cardsMsg.family.fid}}</strong></div>
-            <div class="score"><i></i><strong>{{cardsMsg.family.score}}</strong> </div>
-          </div>
-          <div class="fUserList">
-            <ul>
-              <li v-for="(item,index) in cardsMsg.list" :key="index" @click="goPeople(item.userinfo.uid)">
-                <div class="rank" :class="'rank' + item.rank">{{item.rank}}</div>
-                <div class="avBox">
-                  <span :class="'user' + item.rank"></span>
-                  <img v-lazy="item.userinfo.avatar" alt="">
-                </div>
-                <div class="nick">{{item.userinfo.nick}}</div>
-                <div class="score">
-                  <i></i>
-                  <strong>{{item.score}}</strong>
-                </div>
-              </li>
-            </ul>
+          <h3>家族貢獻</h3>
+          <ul class="scrollable">
+            <li v-for="(item,index) in cardsMsg" :key="index" @click="goPeople(item.uid)">
+              <div class="avBox">
+                <img v-lazy="item.avatar" alt="">
+              </div>
+              <div class="score">
+                <strong>{{item.score}}</strong>
+              </div>
+            </li>
+          </ul>
+          <div class="goFamily" @click="goFroom()">
+            進入家族
           </div>
         </div>
       </transition>
@@ -244,7 +238,7 @@ export default {
       uidCon: 0,
       peopleArr: [],
       showFcards: false,
-      cardsMsg: {},
+      cardsMsg: [],
       taskName: {
         login: '登入本活動頁面完成1次家族簽到',
         mic: '每日在家族K房單次上麥超過60S',
@@ -253,7 +247,10 @@ export default {
         share: '每日分享2位家族成員的作品',
         sendGift: '每日贈送2個家族禮物',
         mark: ''
-      }
+      },
+      loaded: false,
+      more: true,
+      pupFid: 0
     }
   },
   computed: {
@@ -318,6 +315,11 @@ export default {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
+    // 守護榜單
+    this.scrollable = this.$el.querySelector('.scrollable');
+    if (this.scrollable) {
+      this.scrollable.addEventListener('scroll', this.onScroll2);
+    }
   },
   beforeDestroy() {
     window.removeEventListener('scroll', this.onScroll);
@@ -462,9 +464,9 @@ export default {
       location.href = `uid:${uid}`
     },
     showFamily(fid) {
-      let type = this.showType == 2 ? 0 : 1
-      api.fCards(type, fid).then(res => {
-        this.cardsMsg = res.data.response_data
+      this.pupFid = fid
+      api.getLastRank(this.showType, fid, 0).then(res => {
+        this.cardsMsg = res.data.response_data.list
         this.showFcards = true
       })
     },
@@ -475,8 +477,25 @@ export default {
       this.showFcards = false
     },
     goFroom() {
-      location.href = `fid:${this.cardsMsg.family.fid}`
-    }
+      location.href = `fid:${this.pupFid}`
+    },
+    onScroll2() {
+      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
+      if (scrollToBottom) { //滾動加載，沒有加載完成
+        if (this.loaded) return
+        if (this.more) {
+          this.more = false
+          api.getLastRank(this.showType, this.pupFid, this.cardsMsg.length, 'more').then(res => {
+            this.more = true
+            if (res.data.response_data.list.length === 0) {
+              this.loaded = true
+            } else {
+              this.cardsMsg = this.cardsMsg.concat(res.data.response_data.list)
+            }
+          })
+        }
+      }
+    },
   },
 }
 </script>
@@ -700,6 +719,20 @@ export default {
     margin: 0.19rem auto;
     width: 7.1rem;
     &.stage3List {
+      .adScore {
+        display: block;
+        width: 0.77rem;
+        height: 0.4rem;
+        background: url(../assets/img/adScore.png);
+        background-size: 100% 100%;
+        position: absolute;
+        right: -0.1rem;
+        top: -0.1rem;
+        text-align: center;
+        line-height: 0.4rem;
+        font-size: 0.22rem;
+        color: rgba(94, 54, 19, 1);
+      }
       .uerImg {
         .imgItem {
           width: 0.96rem;
@@ -986,7 +1019,7 @@ export default {
         display: block;
         width: 1.09rem;
         height: 0.4rem;
-        background: url(../assets/img/up.png);
+        background: url(../assets/img/up2.png);
         background-size: 100% 100%;
         position: absolute;
         top: 0;
@@ -1254,6 +1287,7 @@ export default {
           display: flex;
           justify-content: space-between;
           margin: 0.13rem auto 0;
+          position: relative;
           > div {
             width: 2.29rem;
             height: 0.67rem;
@@ -1265,6 +1299,16 @@ export default {
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+          }
+          .vs {
+            display: block;
+            width: 1.38rem;
+            height: 1.38rem;
+            background: url(../assets/img/vs.png);
+            background-size: 100% 100%;
+            position: absolute;
+            left: 2.1rem;
+            bottom: -0.4rem;
           }
         }
         .noFamily {
@@ -1290,8 +1334,8 @@ export default {
   }
 }
 .familyCard {
-  width: 4.62rem;
-  height: 6.49rem;
+  width: 4.92rem;
+  height: 6.11rem;
   background: url(../assets/img/familyCard.png);
   background-size: 100% 100%;
   position: relative;
@@ -1302,132 +1346,65 @@ export default {
     background: url(../assets/img/close.png);
     background-size: 100% 100%;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 0.15rem;
+    top: 0.21rem;
   }
-  .title {
-    height: 0.65rem;
-    line-height: 0.65rem;
+  h3 {
+    height: 0.8rem;
+    line-height: 0.8rem;
     text-align: center;
-  }
-  .msg {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     color: rgba(137, 63, 30, 1);
-    margin-top: 0.1rem;
-    img {
-      width: 1.4rem;
-      height: 1.4rem;
-      border-radius: 0.16rem;
-    }
-    .nick {
-      font-size: 0.32rem;
-      font-weight: 600;
-      margin-top: 0.08rem;
-    }
-    .id {
-      font-size: 0.24rem;
-      margin-top: -0.05rem;
-    }
-    .score {
-      display: flex;
-      align-items: center;
-      margin-top: 0.1rem;
-      i {
-        width: 0.4rem;
-        height: 0.38rem;
-        background: url(../assets/img/star.png);
-        background-size: 100% 100%;
-        margin-right: 0.09rem;
-      }
-    }
+    font-size: 0.34rem;
+    font-weight: 600;
   }
-  .fUserList {
-    width: 3.4rem;
-    height: 2.39rem;
-    background: rgba(65, 36, 12, 0.15);
-    border-radius: 0.12rem;
-    margin: 0.1rem auto;
+  ul {
+    margin-right: 0.2rem;
+    padding: 0.22rem 0.15rem 0 0.55rem;
+    height: 3rem;
     overflow-y: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.4rem;
     li {
-      height: 0.8rem;
-      display: flex;
-      align-items: center;
-      padding-right: 0.05rem;
-      .rank {
-        width: 0.4rem;
-        text-align: center;
-        font-size: 0.24rem;
-        color: #e99d2c;
-        &.rank1 {
-          color: rgba(252, 255, 1, 1);
-        }
-        &.rank2 {
-          color: rgba(227, 229, 231, 1);
-        }
-        &.rank3 {
-          color: rgba(255, 171, 89, 1);
-        }
-      }
+      width: 33%;
+      margin-bottom: 0.2rem;
       .avBox {
-        display: block;
-        width: 0.62rem;
-        height: 0.68rem;
-        position: relative;
-        margin-right: 0.08rem;
-        span {
-          display: block;
-          width: 0.62rem;
-          height: 0.68rem;
-          position: absolute;
-          z-index: 2;
-        }
-        .user1 {
-          background: url(../assets/img/user1.png);
-          background-size: 100% 100%;
-        }
-        .user2 {
-          background: url(../assets/img/user2.png);
-          background-size: 100% 100%;
-        }
-        .user3 {
-          background: url(../assets/img/user3.png);
-          background-size: 100% 100%;
-        }
         img {
-          width: 0.6rem;
-          height: 0.6rem;
+          display: block;
+          width: 1rem;
+          height: 1rem;
           border-radius: 50%;
-          position: absolute;
-          top: 0.07rem;
-          left: 0.01rem;
+          margin: 0 auto;
         }
-      }
-      .nick {
-        width: 1rem;
-        font-size: 0.24rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
       }
       .score {
-        display: flex;
-        align-items: center;
-        color: rgba(255, 226, 163, 1);
-
         strong {
+          display: block;
           font-size: 0.24rem;
-        }
-        i {
-          width: 0.4rem;
-          height: 0.38rem;
-          background: url(../assets/img/star.png);
-          background-size: 100% 100%;
-          margin-right: 0.09rem;
+          color: rgba(137, 63, 30, 1);
+          text-align: center;
         }
       }
     }
+  }
+  ul::-webkit-scrollbar {
+    width: 0.06rem;
+    background: rgba(160, 116, 57, 0.2);
+  }
+  ul::-webkit-scrollbar-thumb {
+    width: 0.06rem;
+    background: rgba(197, 127, 59, 1);
+  }
+  .goFamily {
+    width: 2.27rem;
+    height: 0.72rem;
+    background: url(../assets/img/creat.png);
+    background-size: 100% 100%;
+    text-align: center;
+    line-height: 0.72rem;
+    color: #412c06;
+    font-size: 0.24rem;
+    margin: 0.32rem auto 0;
   }
 }
 .peopleList {

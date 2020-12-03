@@ -1,19 +1,19 @@
 <template>
   <div class="box">
-    <div class="shareBar" v-if="isShare">
+    <canvas id="bannerBg" v-show="!showBannerBg"></canvas>
+    <div class="shareBar" v-if="isShare" :class="{bg:!showBannerBg}">
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
       <div class="tipsBox" :class="{top:isShare}">
-        <span class="ruleTips" @click="goRule()">規則&獎勵</span>
-        <span class="rank" @click="goLastRank()">家族守護榜</span>
-        <span class="history" @click="showHistoryPup()">開獎明細</span>
+        <span class="rank" @click="goMain()">年度盛典主會場 >></span>
+        <span class="ruleTips" @click="goRule()">活動獎勵&規則 >></span>
       </div>
     </div>
     <!-- <div class="wards"></div> -->
     <TabsScrollLoadList :stime1="stime1" :stime2="stime2" :stime3="stime3" :etime1="etime1" :etime2="etime2" :etime3="etime3" ref="scorll" @getDefaultData="getDefaultData"></TabsScrollLoadList>
     <act-footer :fid="fid"></act-footer>
-    <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
+    <!-- <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
     <div class="mask" v-show="showHistory">
       <transition name="slide">
         <history :hList="hList" v-if="showHistory" />
@@ -33,6 +33,12 @@ import { globalBus } from '../utils/eventBus'
 import getDateArr from "../utils/getDateArr"
 import TabsScrollLoadList from "../components/TabsScrollLoadList"
 import history from "../components/History"
+
+import { Downloader, Parser, Player } from 'svga.lite'
+
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
+
 export default {
   components: { MsgToast, ActFooter, TabsScrollLoadList, history },
   data() {
@@ -60,12 +66,16 @@ export default {
       seconed: 0,
       fid: 0,
       hList: [],
-      nowTab: 0
+      nowTab: 0,
+      showBannerBg: true,
     }
   },
   created() {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
+  },
+  mounted() {
+    this.bannerGo()
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -175,9 +185,11 @@ export default {
       let regstr = getString('token')
       location.href = `./index2.html?token=${regstr}`
     },
-    goLastRank() {
+    goMain() {
       let regstr = getString('token')
-      location.href = `./index3.html?token=${regstr}`
+      let uid = getString('uid')
+      let aid = getString('aid')
+      location.href = `/static_html/2020/ceremony202000/index.html?token=${regstr}&uid=${uid}&aid=${aid}`
     },
     showHistoryPup() {
       api.getHistory(0).then(res => {
@@ -193,6 +205,15 @@ export default {
         this.getDefaultData('ref')
         // this.$refs.scorll.onRefresh()
       }
+    },
+    async bannerGo() {
+      let canvas = document.getElementById('bannerBg')
+      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/svga/bc1495fed83cc05a2162f09834dc40cb_1606984129.svga`);
+      const data = await parser.do(fileData);
+      let player = new Player(canvas)
+      await player.mount(data)
+      this.showBannerBg = false
+      player.start()
     }
   }
 }
@@ -209,6 +230,17 @@ body::-webkit-scrollbar {
   background: rgba(29, 14, 9, 1) url(../assets/img/banner.png) center 0
     no-repeat;
   background-size: 100% auto;
+  // &.bg {
+  //   background: url(../assets/img/banner1.jpg) center 0 no-repeat;
+  //   background-size: 100% auto;
+  // }
+  #bannerBg {
+    width: 7.5rem;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
   .shareBar {
     position: fixed;
     z-index: 1000;
@@ -239,24 +271,18 @@ body::-webkit-scrollbar {
     .rank,
     .history {
       display: block;
-      width: 1.59rem;
-      height: 0.54rem;
+      width: 2.21rem;
+      height: 0.69rem;
       background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
       font-size: 0.24rem;
       text-align: center;
       color: #764d2e;
-      line-height: 0.54rem;
+      line-height: 0.69rem;
       text-indent: 0.2rem;
       margin-bottom: 0.08rem;
+      white-space: nowrap;
     }
-  }
-  .wards {
-    width: 7.15rem;
-    height: 4.99rem;
-    background: url(../assets/img/wards.png);
-    background-size: 100% 100%;
-    margin: 0 auto;
   }
 }
 .refresh {

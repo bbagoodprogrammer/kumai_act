@@ -1,0 +1,271 @@
+a, b, body, button, em, h1, h2, h3, h4, h5, h6, html, i, img, input, li, ol, p, strong, table, td, textarea, th, tr, ul {
+  margin: 0;
+  padding: 0;
+  font-size: .3rem;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  font-family: "San Francisco", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Noto Sans CJK", "Droid Sans", "Droid Sans Fallback", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+}
+
+li {
+  list-style: none;
+}
+
+.dialog-open {
+  position: fixed;
+  width: 100%;
+}
+
+img {
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+a, button, input, textarea {
+  outline: none;
+}
+
+@media (max-width: 720px) {
+  .pc-nav {
+    display: none;
+  }
+}
+
+@media (min-width: 720px) {
+  a, b, body, button, em, h1, h2, h3, h4, h5, h6, html, i, img, input, li, ol, p, strong, table, td, textarea, th, tr, ul {
+    font-size: .3rem;
+  }
+}
+
+a, body {
+  color: #fff;
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-enter-active {
+  animation-name: slideInUp;
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+}
+
+.slide-leave-active {
+  animation-name: slideOutDown;
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+}
+
+@keyframes slideInUp {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideOutDown {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(0);
+  }
+}
+
+body {
+  background: #f2f2f2 url("../img/shareBg.png") no-repeat;
+  background-size: 100% auto;
+  
+}
+body #app{
+  direction: rtl;
+}
+body #app .header {
+  height: 0.88rem;
+  line-height: 0.88rem;
+  font-size: 0.36rem;
+  text-align: center;
+  position: relative;
+}
+
+body #app .header .black {
+  display: block;
+  width: 0.18rem;
+  height: 0.32rem;
+  background: url(../img/bArr.png);
+  background-size: 100% 100%;
+  position: absolute;
+  left: 0.28rem;
+  top: 0.28rem;
+}
+
+body #app .singInDay {
+  height: 2.47rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+body #app .singInDay .userMsg .userAv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -0.1rem;
+}
+
+body #app .singInDay .userMsg .userAv .av {
+  width: 1.38rem;
+  height: 1.38rem;
+  border-radius: 50%;
+}
+
+body #app .singInDay .userMsg strong {
+  display: block;
+  max-width: 1.4rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+body #app .singInDay .userMsg .userTips {
+  font-size: 0.28rem;
+  margin-top: 0.1rem;
+}
+
+body #app .singInDay > strong {
+  font-size: 0.32rem;
+  line-height: 0.48rem;
+  font-weight: 600;
+  text-shadow: 0 0.03rem 0.06rem rgba(0, 0, 0, 0.16);
+  text-align: center;
+  margin-top: -0.2rem;
+}
+
+body #app .singInDay.mHeigth {
+  height: 2.47rem;
+}
+
+body #app .shareTips {
+  padding-top: 0.4rem;
+}
+
+body #app .shareTips .shareBtn {
+  width: 5.8rem;
+  height: 0.88rem;
+  background: #ff6a3e;
+  border-radius: 0.53rem;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 0.36rem;
+  line-height: 0.88rem;
+}
+
+body #app .shareTips .verTips {
+  text-align: center;
+  color: #999;
+  font-size: 0.24rem;
+  margin-top: 0.22rem;
+}
+
+body #app .shareTips > .tips {
+  color: #999999;
+  padding: 0.3rem 0.32rem 0 0.28rem;
+}
+
+body #app .shareTips > .tips h6 {
+  font-size: 0.28rem;
+}
+
+body #app .shareTips > .tips p {
+  margin-top: 0.13rem;
+  font-size: 0.26rem;
+}
+
+body #app .shareTips > .tips p.first {
+  margin-top: 0.02rem;
+}
+
+.sharePeople {
+  width: 6.92rem;
+  height: 3.16rem;
+  background: white;
+  border-radius: 0.12rem;
+  margin: 0 auto;
+}
+
+.sharePeople.pt {
+  padding-top: 1.02rem;
+  height: 2.14rem;
+}
+
+.sharePeople .time {
+  height: 1.02rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.26rem;
+  color: #666666;
+}
+
+.sharePeople .peopleList {
+  padding: 0 1.32rem;
+  display: flex;
+}
+
+.sharePeople .peopleList span {
+  flex: 1;
+}
+
+.sharePeople .peopleList span img {
+  display: block;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.sharePeople .peopleList span strong {
+  display: block;
+  font-size: 0.26rem;
+  color: #999999;
+  text-align: center;
+  margin-top: 0.12rem;
+  max-width: 1.4rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sharePeople .peopleList span strong.act {
+  color: #111111;
+}

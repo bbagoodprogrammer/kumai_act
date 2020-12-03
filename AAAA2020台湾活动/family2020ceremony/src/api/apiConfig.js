@@ -87,7 +87,6 @@ function selectSong(id) {
     return get(`/family2020ceremony/pushSong.php?token=${token}&sid=${id}`)
 }
 
-//家族卡片
 function fCards(type, fid) {
     return get(`/family2020ceremony/getAttr.php?token=${token}&type=${type}&fid=${fid}`)
 }
@@ -106,11 +105,19 @@ function getPeopleList(uid) {
     return get(`/family2020ceremony/gift_contest/getRecord.php?uid=${uid}`)
 }
 
-function getLastRank(from, more) {
+
+
+//守護榜單
+function getLastRank(step, fid, from, more) {
     if (more) {
-        return axios.get(`/family2020ceremony/guard.php?token=${token}&from=${from}`)
+        return axios.get(`/family2020ceremony/guard.php?token=${token}&from=${from}&step=${step}&fid=${fid}`)
     }
-    return get(`/family2020ceremony/guard.php?token=${token}&from=${from}`)
+    return get(`/family2020ceremony/guard.php?token=${token}&from=${from}&step=${step}&fid=${fid}`)
+}
+
+//一鍵召喚
+function call(fid) {
+    return get(`/family2020ceremony/guard.php?token=${token}&fid=${fid}`)
 }
 const httpConfig = {
     getDefault,
@@ -120,6 +127,7 @@ const httpConfig = {
     getSongList,
     selectSong,
     fCards,
-    getHistory
+    getHistory,
+    call
 }
 export default httpConfig
