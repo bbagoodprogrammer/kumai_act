@@ -14,7 +14,7 @@ const store = new Vuex.Store({
         isShare: false, //分享
         inited: 0, //是否初次加載
         showType: 1,    //默認顯示那個類型的榜單
-        nowTab: 0,//當前進行階段
+        nowTab: 1,//當前進行階段
         totalDay: 0,
         nowShowType: 0,
         rankGroups: {

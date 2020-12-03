@@ -56,7 +56,8 @@
           <div class="fiexList">
             <ul>
               <li v-for="(item,index) in fixedDrawList" :key="index" :class="{act:index== fixeActIndex}" @click="setFixedGift(item,index)">
-                <img class="giftImg" :src="item.prise_pic" alt="">
+                <i class="prise_type">{{tabArr[item.prise_type - 1]}}</i>
+                <img class="giftImg" :class="{card:item.prise_type == 6,bg:item.prise_type == 7}" :src="item.prise_pic" alt="">
                 <span class="name">{{item.prise_name}}</span>
                 <span class="price"><i :class="{bean:item.ticket_currency == 'bean'}"></i><strong>{{item.prise_price}}</strong> </span>
               </li>
@@ -74,6 +75,7 @@
         </div>
         <div class="commitBtn" :class="{act:isCommit || (!luckType &&peopleType)}" @click="showPricePup()">Bắt đầu</div>
       </div>
+      <!-- 抽獎資格彈窗 -->
       <van-popup v-model="show" position="bottom" :round="true" :style="{background:'none'}" overlay-class="bgopt">
         <div class="giftList">
           <div class="blurMask"></div>
@@ -93,11 +95,13 @@
           <div class="queryBtn" @click="queryGift()">Xác nhận</div>
         </div>
       </van-popup>
+
+      <!-- 獎品選擇 -->
       <van-popup v-model="showSgiftPup" position="bottom" :round="true" :style="{background:'none'}" overlay-class="bgopt">
         <div class="giftList">
           <div class="blurMask"></div>
           <div class="tabs">
-            <span v-for="(item,index) in tabArr" :key="index" :class="{act:tabIndex-1 == index}" @click="tabClick(index+1)">{{item}}</span>
+            <span v-for="(item,index) in tabArr" :key="index" :class="{act:tabIndex-1 == index,pd0:item == null}" @click="tabClick(index+1)">{{item}}</span>
           </div>
           <p v-if="tabGift[tabIndex] && tabGift[tabIndex].loading" class="tabLoading">Đang tải...</p>
           <div class="vipCon" v-show="tabIndex ==1">
@@ -110,9 +114,39 @@
                 </div>
               </div>
             </div>
-
           </div>
-          <van-swipe class="my-swipe-sGift" :loop="false" v-show="tabIndex !=1">
+          <!-- 名片 -->
+          <div class="vipCon" v-show="tabIndex == 6">
+            <div class="vipBox">
+              <div class="vipItem mt">
+                <div class="item2" :class="{act:cardType == index}" @click="cardsClick(index,item)" v-for="(item,index) in nowTabGift[0]" :key="index">
+                  <div class="imgBox">
+                    <img :src="item.pic" alt="">
+                    <i class="select" v-if="cardType == index"></i>
+                  </div>
+                  <div class="name">{{item.name}}</div>
+                  <span class="price"><i :class="{coins:item.currency == 'coin'}"></i> <strong>{{item.price}}</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 主題 -->
+          <div class="vipCon" v-show="tabIndex == 7">
+            <div class="vipBox">
+              <div class="vipItem mt2">
+                <div class="item2 bg" :class="{act:cardType == index}" @click="cardsClick(index,item)" v-for="(item,index) in nowTabGift[0]" :key="index">
+                  <div class="imgBox">
+                    <img :src="item.pic" alt="">
+                    <i class="select" v-if="cardType == index"></i>
+                  </div>
+                  <div class="name">{{item.name}}</div>
+                  <span class="price"><i :class="{coins:item.currency == 'coin'}"></i> <strong>{{item.price}}</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 其他 -->
+          <van-swipe class="my-swipe-sGift" :loop="false" v-show="tabIndex == 2 || tabIndex == 3||tabIndex == 4||tabIndex == 5">
             <van-swipe-item v-for="(item,index) in nowTabGift" :key="index">
               <div class="giftItem" v-for="(item2,index2) in item" :key="index2" @click="setSactGift(item2)">
                 <div class="actCon" v-if="item2.id == sActGiftT.id"></div>
@@ -132,6 +166,8 @@
           <div class="queryBtn" @click="querySgift()">Xác nhận</div>
         </div>
       </van-popup>
+
+      <!-- 倒計時選擇彈窗 -->
       <van-popup v-model="showTimePup" position="bottom" :round="true">
         <ul class="timeList">
           <li v-for="(item,index) in timeArr" :key="index" :class="{act:timeIndex == index}" @click="timeQuery(index)">{{item}}phút</li>
@@ -178,11 +214,12 @@ export default {
       timeIndex: null,
       showSgiftPup: false,
       tabIndex: 1,
-      tabArr: ["VIP", "Quà", "Xe", "Khung ghế"],
+      tabArr: ["VIP", "Quà", "Xe", "Trang sức", null, "Danh thiếp", "Chủ đề"],
       tabGift: {},   //tab對應的禮物
       balance: {},
       tabLoading: false,
       vipType: 0,
+      cardType: 0,
       peopleType: 1,
       showCommitPup: false,
       fixedDrawList: [],
@@ -314,6 +351,10 @@ export default {
     },
     vipClick(index, item) {
       this.vipType = index
+      this.sActGiftT = item
+    },
+    cardsClick(index, item) {
+      this.cardType = index
       this.sActGiftT = item
     },
     formackArr(arr) {
@@ -535,28 +576,32 @@ body {
     }
   }
   .giftList {
-    // position: absolute;
-    // bottom: 0;
-    // left: 0;
-    // right: 0;
     height: 5.74rem;
     border-radius: 0.32rem 0.32rem 0 0;
     overflow: hidden;
     position: relative;
     .tabs {
-      height: 0.8rem;
-      padding: 0 0.4rem;
+      width: 6.7rem;
+      height: 1rem;
+      // padding: 0 0.4rem;
+      margin: 0 auto;
       margin-bottom: 0.2rem;
       color: rgba(20, 16, 38, 1);
-      display: flex;
       font-size: 0.32rem;
       position: relative;
+      overflow-x: scroll;
+      text-align: center;
+      white-space: nowrap;
       span {
+        display: inline-block;
         padding: 0 0.2rem;
         line-height: 1rem;
         text-align: center;
         color: rgba(255, 255, 255, 0.4);
         position: relative;
+        &.pd0 {
+          padding: 0;
+        }
         &.act {
           font-weight: bold;
           color: rgba(255, 255, 255, 1);
@@ -569,10 +614,13 @@ body {
           background: rgba(255, 255, 255, 1);
           border-radius: 0.06rem;
           position: absolute;
-          bottom: 0rem;
+          bottom: 0.13rem;
           left: 40%;
         }
       }
+    }
+    .tabs::-webkit-scrollbar {
+      display: none;
     }
     .blurMask {
       position: absolute;
@@ -580,13 +628,11 @@ body {
       right: 0;
       top: 0;
       bottom: 0;
-      // filter: blur(0.1rem);
       background: rgba(20, 16, 38, 0.95);
     }
     .my-swipe {
       width: 7.5rem;
       height: 4.62rem;
-      // filter: blur(0.39rem);
       position: relative;
       padding-top: 0.6rem;
     }
@@ -599,18 +645,22 @@ body {
         font-size: 0.26rem;
       }
       .vipBox {
-        height: 2.6rem;
+        // height: 2.6rem;
         overflow: hidden;
       }
       .vipItem {
-        // display: flex;
-        // justify-content: space-between;
-        // align-items: center;
         padding: 0 0.4rem 0 0.4rem;
-        height: 2.6rem;
+        // height: 2.6rem;
         overflow-x: scroll;
+        overflow-y: hidden;
         margin-top: 0.24rem;
         white-space: nowrap;
+        &.mt {
+          margin-top: 0.36rem;
+        }
+        &.mt2 {
+          margin-top: -0.04rem;
+        }
         .item {
           display: inline-block;
           width: 2.18rem;
@@ -645,6 +695,82 @@ body {
             }
           }
         }
+        .item2 {
+          display: inline-block;
+          width: 3rem;
+          color: rgba(255, 255, 255, 1);
+          margin-right: 0.2rem;
+          position: relative;
+          .imgBox {
+            padding: 0;
+          }
+          img {
+            width: 100%;
+            height: 2.19rem;
+            border-radius: 0.16rem;
+          }
+          .name {
+            height: 0.45rem;
+            font-size: 0.22rem;
+            line-height: 0.5rem;
+            text-align: center;
+          }
+          .price {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            i {
+              width: 0.17rem;
+              height: 0.17rem;
+              background: url(./img/bead.png);
+              background-size: 100% 100%;
+              margin-right: 0.1rem;
+              &.coins {
+                background: url(./img/coins.png);
+                background-size: 100% 100%;
+              }
+            }
+            strong {
+              font-size: 0.2rem !important;
+            }
+          }
+          .select {
+            display: block;
+            width: 0.31rem;
+            height: 0.32rem;
+            background: url(./img/select.png);
+            background-size: 100% 100%;
+            position: absolute;
+            top: 0.16rem;
+            right: 0.15rem;
+          }
+          &.act {
+            color: rgba(255, 225, 74, 1);
+            .price {
+              i {
+                background: url(./img/bead2.png) !important;
+                background-size: 100% 100% !important;
+                &.coins {
+                  background: url(./img/coins3.png) !important;
+                  background-size: 100% 100% !important;
+                }
+              }
+            }
+          }
+          &.bg {
+            width: 2.01rem;
+            .imgBox {
+              height: 2.77rem;
+              img {
+                width: 2.01rem;
+                height: 2.77rem;
+              }
+            }
+          }
+        }
+      }
+      .vipItem::-webkit-scrollbar {
+        display: none;
       }
     }
     .van-swipe {
@@ -665,17 +791,6 @@ body {
         .giftMsg {
           position: relative;
           z-index: 3;
-          &.act {
-            top: -0.36rem;
-            img {
-              // transform: scale(1.13);
-              width: 1.13rem;
-              height: 1.13rem;
-            }
-            .pirce {
-              margin-top: 0.07rem;
-            }
-          }
           img {
             display: block;
             width: 1rem;
@@ -708,6 +823,25 @@ body {
             }
             strong {
               font-size: 0.18rem !important;
+            }
+          }
+          &.act {
+            top: -0.36rem;
+            color: rgba(255, 225, 74, 1);
+            img {
+              width: 1.13rem;
+              height: 1.13rem;
+            }
+            .pirce {
+              margin-top: 0.07rem;
+              i {
+                background: url(./img/bead2.png) !important;
+                background-size: 100% 100% !important;
+                &.coins {
+                  background: url(./img/coins3.png) !important;
+                  background-size: 100% 100% !important;
+                }
+              }
             }
           }
         }
@@ -888,11 +1022,39 @@ body {
         border-radius: 0.16rem;
         box-sizing: border-box;
         margin-bottom: 0.2rem;
+        position: relative;
+        .prise_type {
+          display: block;
+          min-width: 0.56rem;
+          padding: 0 0.1rem;
+          height: 0.34rem;
+          font-size: 0.24rem;
+          background: #cccccc;
+          opacity: 1;
+          text-align: center;
+          line-height: 0.36rem;
+          border-radius: 0.16rem 0 0.16rem 0;
+          position: absolute;
+          left: -0.01rem;
+          top: -0.01rem;
+        }
         .giftImg {
           width: 1.4rem;
           height: 1.4rem;
           display: block;
           margin: 0.3rem auto 0;
+          &.bg {
+            width: 0.94rem;
+            height: 1.3rem;
+            border-radius: 0.16rem;
+            margin: 0.4rem auto 0;
+          }
+          &.card {
+            width: 1.3rem;
+            height: 0.95rem;
+            border-radius: 0.16rem;
+            margin: 0.75rem auto 0;
+          }
         }
         span {
           display: block;
@@ -929,6 +1091,9 @@ body {
         }
         &.act {
           border: 1px solid rgba(252, 64, 57, 1);
+          .prise_type {
+            background: rgba(252, 64, 57, 1);
+          }
         }
       }
       li:nth-child(3n-1) {

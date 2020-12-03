@@ -102,7 +102,7 @@
         <div class="giftList">
           <div class="blurMask"></div>
           <div class="tabs">
-            <span v-for="(item,index) in tabArr" :key="index" :class="{act:tabIndex-1 == index,pd0:item == null}" @click="tabClick(index+1)" >{{item}}</span>
+            <span v-for="(item,index) in tabArr" :key="index" :class="{act:tabIndex-1 == index,pd0:item == null}" @click="tabClick(index+1)">{{item}}</span>
           </div>
           <p v-if="tabGift[tabIndex] && tabGift[tabIndex].loading" class="tabLoading">加載中...</p>
           <div class="vipCon" v-show="tabIndex == 1">
@@ -600,8 +600,8 @@ body {
         text-align: center;
         color: rgba(255, 255, 255, 0.4);
         position: relative;
-        &.pd0{
-          padding:0;
+        &.pd0 {
+          padding: 0;
         }
         &.act {
           font-weight: bold;

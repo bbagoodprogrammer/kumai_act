@@ -1,5 +1,5 @@
 <template>
-  <div class="footerBar">
+  <div class="footerBar" v-if="astState">
     <div class="acrStatus" :class="{noBg:astState === 3 && showType == 2 && !nowUsrMsg.pk_data}">
       <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
@@ -47,7 +47,7 @@
         </div>
         <div class="score">
           <i>+</i>
-          <div class="star"><i></i> {{nowUsrMsg.gift}}</div>
+          <div class="star"><i></i> {{nowUsrMsg.score - nowUsrMsg.task}}</div>
           <div class="num"><i></i> {{nowUsrMsg.task}}</div>
         </div>
         <span class="award" v-if="nowUsrMsg.join"></span>
@@ -91,10 +91,30 @@
             <div class="leftName">
               {{nowUsrMsg.pk_data.left.name}}
             </div>
+            <i class="vs"></i>
             <div class="rightName">
               {{nowUsrMsg.pk_data.right.name}}
             </div>
           </div>
+        </div>
+      </div>
+      <div class="stage3List" v-else-if="astState === 6">
+        <i class="adScore"></i>
+        <div class="rank">{{nowUsrMsg.rank}}</div>
+        <div class="uerImg">
+          <img v-lazy="nowUsrMsg.info.avatar" alt="" class="imgItem" @click.stop="showFamily(nowUsrMsg.fid)">
+          <span class="fLv" :class="{lv2:nowUsrMsg.info.level >5 && nowUsrMsg.info.level <=10,lv3:nowUsrMsg.info.level >10 && nowUsrMsg.info.level <=15,lv4:nowUsrMsg.info.level >15}">
+            <i class="num">{{nowUsrMsg.info.level}}</i>
+            <strong>家族</strong>
+          </span>
+        </div>
+        <div class="userMsg">
+          <div class="name"><strong>{{nowUsrMsg.info.familyname}} </strong> </div>
+          <div class="score"><i></i> <strong>{{nowUsrMsg.info.score}}</strong> </div>
+        </div>
+        <div class="shareBtn" v-if="nowUsrMsg.owner" @click="call()">
+          一鍵召喚<br />
+          家族成員
         </div>
       </div>
     </div>
@@ -132,7 +152,7 @@ export default {
   computed: {
     ...mapState(['actStatus', 'dateArr', 'groupsUserMsg', "nowTab", "showType", "isShare", "registered", "charm"]),
     astState() {
-      return 4
+      // return 4
       if (this.actStatus === 0) { //活动未开始
         return 0
       } else if (this.actStatus === 2) { //活动已结束
@@ -143,13 +163,15 @@ export default {
         return 3
       } else if (this.showType == 1) {
         return 4
-      } else if (this.showType == 2) {
+      } else if (this.showType == 2 && this.nowUsrMsg.pk_data) {
         return 5
+      } else if (this.showType == 3 && this.nowUsrMsg.fid) {
+        return 6
       }
     },
     nowUsrMsg() {
-      let nowList = this.groupsUserMsg[this.showType][this.nowTab] || {}
-      console.log(nowList, this.groupsUserMsg)
+      let nowList = this.groupsUserMsg[this.showType][this.showType] || {}
+      console.log(this.showType, nowList, this.groupsUserMsg)
       return nowList.msg || {
         info: {}
       }
@@ -188,6 +210,15 @@ export default {
     getWidth(score1, score2) {
       return score1 / (score1 + score2) * 100 + '%'
     },
+    call() {
+      api.call(this.fid).then(res => {
+        if (res.data.response_status.code == 0) {
+           this.toast('已進行一鍵召喚')
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+    }
   }
 }
 </script>
@@ -377,7 +408,8 @@ export default {
   }
 }
 
-.actIng {
+.actIng,
+.stage3List {
   width: 100%;
   height: 1.61rem;
   display: flex;
@@ -564,7 +596,7 @@ export default {
     display: block;
     width: 1.09rem;
     height: 0.4rem;
-    background: url(../assets/img/up.png);
+    background: url(../assets/img/up2.png);
     background-size: 100% 100%;
     position: absolute;
     top: 0;
@@ -637,14 +669,115 @@ export default {
     }
   }
 }
-
+.stage3List {
+  .uerImg {
+    .imgItem {
+      width: 0.96rem;
+      height: 0.96rem;
+      border-radius: 0.16rem;
+    }
+    .fLv {
+      display: block;
+      width: 1.06rem;
+      height: 0.37rem;
+      background: url(../assets/img/fLv/1.png);
+      background-size: 100% 100%;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      bottom: -0.05rem;
+      z-index: 10;
+      .num {
+        width: 0.32rem;
+        height: 0.32rem;
+        line-height: 0.32rem;
+        text-align: center;
+        font-size: 0.12rem;
+        color: #e63ba8;
+        margin-left: 0.05rem;
+      }
+      strong {
+        flex: 1;
+        font-size: 0.18rem;
+        margin-left: 0.1rem;
+        margin-top: 0.01rem;
+      }
+      &.lv2 {
+        background: url(../assets/img/fLv/2.png);
+        background-size: 100% 100%;
+        .num {
+          color: #a939ff;
+        }
+      }
+      &.lv3 {
+        background: url(../assets/img/fLv/3.png);
+        background-size: 100% 100%;
+        .num {
+          margin-left: 0.04rem;
+          color: #a939ff;
+        }
+      }
+      &.lv4 {
+        background: url(../assets/img/fLv/4.png);
+        background-size: 100% 100%;
+        .num {
+          margin-left: 0.09rem;
+          color: #4f5ff4;
+        }
+      }
+    }
+  }
+  .userMsg {
+    width: 2.3rem;
+    margin-right: 0.15rem;
+    .name {
+      width: 2.29rem;
+      height: 0.67rem;
+      background: url(../assets/img/fNameBg.png);
+      background-size: 100% 100%;
+      line-height: 0.8rem;
+      text-indent: 0.45rem;
+      font-style: italic;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .score {
+      display: flex;
+      align-items: center;
+      margin-top: 0.06rem;
+      i {
+        width: 0.4rem;
+        height: 0.38rem;
+        background: url(../assets/img/store.png);
+        background-size: 100% 100%;
+      }
+      strong {
+        font-size: 0.26rem;
+      }
+    }
+  }
+  .shareBtn {
+    width: 2.22rem;
+    height: 0.9rem;
+    background: url(../assets/img/shareBtn.png);
+    background-size: 100% 100%;
+    text-align: center;
+    color: rgba(65, 44, 6, 1);
+    font-size: 0.26rem;
+    font-weight: 600;
+    line-height: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 .stage2List {
+  width: 100%;
+  padding-top: 0.4rem;
   display: flex;
   align-items: center;
-  height: 2.17rem;
-  margin-bottom: 0.2rem;
-  background: url(../assets/img/stage2ListBg.png);
-  background-size: 100% 100%;
   position: relative;
   .rank {
     width: 0.9rem;
@@ -653,12 +786,13 @@ export default {
     font-size: 0.42rem;
     font-weight: bold;
     opacity: 0.5;
+    margin-left: 0.3rem;
   }
   .PKmsg {
     flex: 1;
     height: 100%;
     position: relative;
-    padding: 0 0.15rem 0 0.2rem;
+    padding: 0 0.15rem 0 0;
     .up {
       display: block;
       width: 1.18rem;
@@ -678,7 +812,7 @@ export default {
       }
     }
     .familyMsg {
-      margin-top: 0.2rem;
+      // margin-top: 0.2rem;
       // height: 1.4rem;
       display: flex;
       justify-content: space-between;
@@ -828,7 +962,7 @@ export default {
     .familyName {
       display: flex;
       justify-content: space-between;
-      margin: 0.13rem auto 0;
+      margin: 0rem auto;
       > div {
         width: 2.29rem;
         height: 0.67rem;
@@ -840,6 +974,16 @@ export default {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+      }
+      .vs {
+        display: block;
+        width: 1.38rem;
+        height: 1.38rem;
+        background: url(../assets/img/vs.png);
+        background-size: 100% 100%;
+        position: absolute;
+        left: 2.35rem;
+        bottom: -0.2rem;
       }
     }
     .noFamily {
