@@ -38,7 +38,7 @@
         <div class="downTimePacket" v-if="redPacket_downTime" :class="{open:packetType == 2}">
           <i class="close" @click="redPacket_downTime = false"></i>
           <h5 v-if="packetType == 1">Hitung mundur buka angpau</h5>
-          <div class="timeDown" v-if="packetType == 1"> Angpaumu akan datang dan dibuka setelah <em>{{downTime}}</em> detik</div>
+          <div class="timeDown" v-if="packetType == 1"> Angpau akan dibuka setelah <em>{{downTime}}</em> detik</div>
           <span class="rotate" v-if="packetType == 2" @click="openRedPacket()"></span>
           <vue-seamless-scroll :class-option="optionHover" :data="redPacket.record" class="seamless-warp">
             <ul class="item">
@@ -81,7 +81,7 @@
           <div class="resHeader">
             <div class="tips" v-if="recoreData.time">angpau udah diambil dgn {{recoreData.time}} detik</div>
             <div class="tips" v-else>
-              <span>Udah menerima <em>{{recoreData.gotUsers}}/{{recoreData.users}}</em></span>
+              <span>Udah diambil <em>{{recoreData.gotUsers}}/{{recoreData.users}}</em></span>
               <span>total <em>{{recoreData.gotCoins}}/{{recoreData.coins}}</em> koin emas </span>
             </div>
           </div>
@@ -93,7 +93,7 @@
                 <div class="tm">{{getDate(item.time)}}</div>
               </div>
               <div class="gift">
-                <div class="nums">{{item.coin}} xu</div>
+                <div class="nums">{{item.coin}} koin emas</div>
                 <div class="luck" v-if="item.lucky"><i></i> Keberuntungan terbaik</div>
               </div>
             </li>
@@ -522,7 +522,7 @@ export default {
     .timeDown {
       text-align: center;
       color: rgba(151, 77, 22, 1);
-      font-size: 0.32rem;
+      font-size: 0.28rem;
       margin-top: 0.25rem;
       em {
         font-size: 0.64rem;
@@ -585,9 +585,12 @@ export default {
       background: url(../assets/img/redPackets/shareBtn.png);
       background-size: 100% 100%;
       margin: 0.35rem auto 0;
-      font-size: 0.32rem;
-      font-weight: 600;
-      line-height: 0.8rem;
+      font-size: 0.28rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // line-height: 0.8rem;
       color: rgba(126, 26, 6, 1);
       text-align: center;
       z-index: 10;

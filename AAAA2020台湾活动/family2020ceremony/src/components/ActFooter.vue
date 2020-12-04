@@ -7,7 +7,7 @@
       <div class="noKroom" v-if="astState === 3">
         <p>- 申請創建家族 -</p>
         <div class="creatMsg">
-          <div class="rank">{{nowUsrMsg.rank}}</div>
+          <!-- <div class="rank">{{nowUsrMsg.rank}}</div> -->
           <div class="family">
             <img v-lazy="nowUsrMsg.info.avatar" class="fImg" alt="" @click.stop="showFamily(nowUsrMsg.info.fid)">
             <span class="fLv" :class="{lv2:nowUsrMsg.info.level >5 && nowUsrMsg.info.level <=10,lv3:nowUsrMsg.info.level >10 && nowUsrMsg.info.level <=15,lv4:nowUsrMsg.info.level >15}">
@@ -17,18 +17,18 @@
           </div>
           <div class="msg">
             <div class="scoreTips">房間收禮金幣魅力值</div>
-            <div class="score">650000</div>
+            <div class="score">{{charm}}</div>
             <div class="bar">收禮進度
               <div class="liner">
-                <div class="actLiner">
+                <div class="actLiner" :style="{width:charm / 2000 +'%'}">
                   <i class="giftBox"></i>
                 </div>
               </div>
             </div>
           </div>
           <div class="creatBtn">
-            <div class="look" @click="goFamily()"></div>
-            <div class="join" @click="creatFamily()">加入家族</div>
+            <div class="look" @click="creatFamily()"></div>
+            <div class="join" @click="goFamily()">加入家族</div>
           </div>
         </div>
       </div>
@@ -159,7 +159,7 @@ export default {
         return 2
       } else if ((!this.registered && this.charm == -1) || this.isShare) { //沒家族沒K房
         return 1
-      } else if (this.registered && this.charm) { //沒家族有K房
+      } else if (!this.registered && this.charm != -1) { //沒家族有K房
         return 3
       } else if (this.showType == 1) {
         return 4
@@ -213,7 +213,7 @@ export default {
     call() {
       api.call(this.fid).then(res => {
         if (res.data.response_status.code == 0) {
-           this.toast('已進行一鍵召喚')
+          this.toast('已進行一鍵召喚')
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -283,6 +283,7 @@ export default {
           position: relative;
           width: 1rem;
           height: 1rem;
+          margin: 0 0.15rem 0 0.25rem;
           img {
             width: 1rem;
             height: 1rem;
@@ -386,7 +387,7 @@ export default {
         }
       }
       .creatBtn {
-        margin-left: 0.05rem;
+        margin-left: 0.5rem;
         .look {
           width: 1.57rem;
           height: 0.42rem;

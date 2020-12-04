@@ -18,7 +18,9 @@
       <transition name="slide">
         <div class="boxGifts" v-if="showBoxGift">
           <i class="close" @click="showBoxGift = !showBoxGift"></i>
-          <h3>Điểm Rực Rỡ đạt <em>{{packets.levels[showBoxIndex]}}</em> nhận</h3>
+          <h3>
+            <span> Nilai bersinar mencapai {{packets.levels[showBoxIndex]}} bisa menerima</span>
+          </h3>
           <strong class="needLv">(yaitu mencapai Lv {{showBoxIndex}} )</strong>
           <div class="giftList">
             <div class="giftItem" v-for="(item,index) in showBoxItem" :key="index">
@@ -45,7 +47,7 @@
             <p>Jumlah klik like:hanya 30 like bisa hitung dalam skor </p>
             <p>Nilai pesona hadiah koin emas : Nyanyian yg ikut acara tiap kali menerima 1 koin emas hadiah, sama dgn 10 nilai pesona.</p>
             <p>Meningkat nilai pesona dari hadiah tertentu:Hadiah tertentu utk acara ini adalah hadiah Mendukungmu (15 koin emas) ,Akordeo (168 Koin emas), Unicorn pelangi (499 koin emas),Balon cinta(888 koin emas ). Jika nyanyianmu menerima hadiah tertentu ini, nilai pesona akan meningkat 5%. </p>
-            <p>Meningkat nilai pesona selama Waktu Tertentu: kalo nyanyian yg ikut acara menerima hadiah yg tertentu pd pukul 21:00 - 21:10 selama acara,nilai pesona akan meningkat 10%</p>
+            <p>Meningkat nilai pesona selama Waktu Tertentu: kalo nyanyian yg ikut acara menerima hadiah nyanyian apapun pd pukul 21:00 - 21:10 selama acara,nilai pesona akan meningkat 10%</p>
           </div>
           <span class="ok" @click="showTipsPup = !showTipsPup">Ya</span>
         </div>
@@ -302,13 +304,22 @@ export default {
     h3 {
       width: 6.98rem;
       height: 0.78rem;
-      line-height: 0.78rem;
+      // line-height: 0.78rem;
       text-align: center;
       font-size: 0.32rem;
       background: url(../assets/img/box/boxPupTitle.png);
       background-size: 100% 100%;
       margin: 0 auto;
       color: rgba(252, 245, 193, 1);
+      span {
+        display: block;
+        width: 4rem;
+        height: 0.78rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+      }
     }
     .needLv {
       display: block;
@@ -395,6 +406,8 @@ export default {
     }
     h3 {
       margin-bottom: 0.5rem;
+      line-height: 0.78rem;
+      font-size: 0.28rem;
     }
     .yel {
       color: rgba(252, 245, 193, 1);

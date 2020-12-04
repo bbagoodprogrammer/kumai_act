@@ -1,5 +1,6 @@
 <template>
   <div class="rankGroups">
+    <a @click.prevent="onRefresh" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh" v-if="actStatus == 1">刷新</a>
     <!-- 三個類別 -->
     <div class="typeMainTabs">
       <i class="liner"></i>
@@ -52,7 +53,7 @@
     <!-- 禮物圖片 -->
     <img src="../assets/img/rankGift.png" alt="" class="rankGift" v-if="showType == 2">
     <!-- 文案提示 -->
-    <p v-if="showType == 1" class="tankTips">本賽段閃耀值=守護值+家族成員作品/K房收禮魅力值</p>
+    <p v-if="showType == 1" class="tankTips">本賽段閃耀值=守護值+家族成員作品/K房金幣收禮魅力值</p>
     <p v-else-if="showType == 2" class="tankTips">本賽段閃耀值=家族成員作品/K房金幣收禮魅力值</p>
     <p v-else-if="showType == 3" class="tankTips">本賽段閃耀值=家族成員作品/K房收禮魅力值<br /> （本賽段本年度前五十家族有加成6%-10%的閃耀值）<span>本賽段每日21:00-21:10分有10%魅力值加成</span></p>
     <!-- 日榜、总榜切换主Tabs -->
@@ -61,7 +62,6 @@
         <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">家族守護任務</a>
         <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">家族排名</a>
       </div>
-      <!-- <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a> -->
     </div>
 
     <!-- 日榜 -->
@@ -263,9 +263,9 @@ export default {
         var dayApi = ''
         if (this.showType == 1) {
           if (this.mainTab == 0) {
-            dayApi = `/family2020ceremony/list${this.showType}.php?from={from}&time={tm}`;
+            dayApi = `/family2020ceremony/list${this.showType}.php?from={from}`;
           } else {
-            dayApi = `/family2020ceremony/list${this.showType}.php?from={from}&time=0`;
+            dayApi = `/family2020ceremony/list${this.showType}.php?from={from}`;
           }
         } else {
           dayApi = `/family2020ceremony/list${this.showType}.php?from={from}`;
@@ -273,14 +273,14 @@ export default {
         // var totalApi = `/family2020ceremony/list${this.showType}.php?token={token}&from={from}`;
         // var api = this.rankKey == 'total' ? totalApi : dayApi;
         const token = getUrlString('token') || '';
-        return dayApi.replace('{token}', token).replace('{tm}', this.getNowDate())
+        return dayApi.replace('{token}', token)
       } else {
         var dayApi = ''
         if (this.showType == 1) {
           if (this.mainTab == 0) {
-            dayApi = `/family2020ceremony/list${this.showType}.php?token={token}&from={from}&time={tm}`;
+            dayApi = `/family2020ceremony/list${this.showType}.php?token={token}&from={from}`;
           } else {
-            dayApi = `/family2020ceremony/list${this.showType}.php?token={token}&from={from}&time=0`;
+            dayApi = `/family2020ceremony/list${this.showType}.php?token={token}&from={from}`;
           }
         } else {
           dayApi = `/family2020ceremony/list${this.showType}.php?token={token}&from={from}`;
@@ -288,7 +288,7 @@ export default {
         // var totalApi = `/family2020ceremony/list${this.showType}.php?token={token}&from={from}`;
         // var api = this.rankKey == 'total' ? totalApi : dayApi;
         const token = getUrlString('token') || '';
-        return dayApi.replace('{token}', token).replace('{tm}', this.getNowDate())
+        return dayApi.replace('{token}', token)
       }
     },
     rankSize() {
@@ -343,12 +343,12 @@ export default {
         }
       });
     },
-    onScroll() {
+    onScroll(ref) {
       // if (this.tab > this.nowDay) return (this.tab > this.nowDay && this.rankKey !== 'total') || 
       if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
         return
       }
-      if (!this.rank.loading && !this.rank.loadEnd && !(this.mainTab == 0 && this.showType == 1)) {
+      if (!this.rank.loading && !this.rank.loadEnd && (!(this.mainTab == 0 && this.showType == 1) || ref)) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
         if (scrollToBottom || notFull) {
@@ -417,6 +417,10 @@ export default {
     onRefresh() {
       if (this.rank.loading) return
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
+      if (this.showType == 1 && this.mainTab == 0) {
+        this.$parent.getDefaultData('ref')
+        return
+      }
       let obj = {
         type: this.showType,
         data: { //当前日榜信息
@@ -430,7 +434,7 @@ export default {
         }
       }
       this.vxc('updateRankGroups', obj)
-      this.$nextTick(this.onScroll);
+      this.$nextTick(this.onScroll('ref'));
     },
     downTimeGo(timeName, val) {
       clearInterval(this.timer)
@@ -1580,10 +1584,10 @@ export default {
   position: fixed;
   right: 0.08rem;
   bottom: 1.35rem;
-  // background: url(../assets/img/refresh.png) no-repeat;
-  // background-size: contain;
+  background: url(../assets/img/refresh.png) no-repeat;
+  background-size: contain;
   transition: all 1s;
   text-indent: -999rem;
-  z-index: 100;
+  z-index: 10000;
 }
 </style>

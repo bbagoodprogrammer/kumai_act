@@ -21,7 +21,7 @@
             <strong>{{item}}</strong>
           </div>
         </div>
-        <p class="timeTips">Kalo nyanyian yg ikut acara menerima hadiah yg tertentu pd pukul 21:00 - 21:10 selama acara,nilai pesona akan meningkat 10%</p>
+        <p class="timeTips">Kalo nyanyian yg ikut acara menerima hadiah nyanyian apapun pd pukul 21:00 - 21:10 selama acara,nilai pesona akan meningkat 10%</p>
       </div>
       <p v-else>1.Nyanyian dgn label “Kontes King Penyanyi Pesona”dalam waktu 48 jam setelah diposting, kalo menerima hadiah dgn 20000 nilai pesona koin emas,skor daftar akan bisa meningkat 20%</p>
     </div>

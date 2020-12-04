@@ -63,6 +63,8 @@ export default {
   background-size: 100% 100%;
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 50;
   .horn {
     display: block;
     width: 0.26rem;
