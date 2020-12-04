@@ -2,7 +2,7 @@
   <div class="song">
     <div class="noSong" v-if="!isLength">
       <h5>Kamu belum ada nyanyian yg cocok utk ikut acara</h5>
-      <div class="sing" @click="goSing()">Nyanyikan lagu dulu</div>
+      <span class="sing" @click="goSing()">Nyanyikan lagu dulu</span>
     </div>
     <div class="haSong" v-else>
       <h5>Pilih nyanyian yg paling kamu sukai utk ikut acara</h5>
@@ -13,14 +13,14 @@
               <span class="name">{{item.name}}</span>
               <span class="tm">{{item.time}}</span>
             </div>
-            <span class="joinBtn" @click="choiceSong(item.sid,index)">Pilih utk ikut acara</span>
+            <span class="joinBtn" @click="choiceSong(item.sid,index)">Ikut acara</span>
           </li>
 
         </ul>
       </div>
       <div class="goSing" :class="{border:isLength}">
         <p v-if="isLength">Apakah gak ada lagu yg cocok dgn kamu?</p>
-        <div class="sing" @click="goSing()">Nyanyikan lagu dulu</div>
+        <span class="sing" @click="goSing()">Nyanyikan lagu dulu</span>
         <span v-if="isLength">Ingatlah utk kembali dan menyelesaikan pendaftaran setelah bernyanyi</span>
       </div>
     </div>
@@ -154,9 +154,13 @@ body {
     h5 {
       text-align: center;
       font-size: 0.32rem;
+      padding: 0 0.15rem;
     }
     .sing {
-      width: 1.8rem;
+      display: block;
+      width: 2.8rem;
+      padding: 0 0.15rem;
+      white-space: nowrap;
       height: 0.56rem;
       margin: 0.33rem auto 0;
       background: linear-gradient(255deg, #ffbf5e, #ffdda3);
@@ -196,7 +200,9 @@ body {
             }
           }
           .joinBtn {
-            width: 1.8rem;
+            // width: 1.8rem;
+            padding: 0 0.15rem;
+            white-space: nowrap;
             height: 0.56rem;
             background: linear-gradient(255deg, #ffbf5e, #ffdda3);
             border-radius: 0.28rem;
@@ -235,7 +241,10 @@ body {
         font-size: 0.32rem;
       }
       .sing {
-        width: 1.8rem;
+        display: block;
+        width: 2.8rem;
+        padding: 0 0.15rem;
+        white-space: nowrap;
         height: 0.56rem;
         background: linear-gradient(255deg, #ffbf5e, #ffdda3);
         border-radius: 0.28rem;

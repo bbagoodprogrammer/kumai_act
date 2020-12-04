@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       list: [
-        { id: 1, src: require("../../assets/img/ward2.png") },
+        { id: 1, src: require("../../assets/img/ward1.png") },
         { id: 2, src: require("../../assets/img/ward2.png") },
         { id: 3, src: require("../../assets/img/ward3.png") },
         { id: 4, src: require("../../assets/img/ward4.png") },
