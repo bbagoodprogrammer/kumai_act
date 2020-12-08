@@ -5,24 +5,24 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <Box :nick="nick" />
       <div class="house" :class="{easy: !reg ||  easy.less.length > 1}">
         <div class="userTitle">
-          <p v-if="!reg">你的清新甜品屋還沒開張 <strong>清新值:????</strong> </p>
+          <p v-if="!reg">你的歡樂甜品屋還沒開張 <strong>歡樂值:????</strong> </p>
           <div class="userHouers" v-else>
-            <p><em>{{nick}}</em>的清新甜品屋</p>
-            <strong>清新值：{{score}}</strong>
+            <p><em>{{nick}}</em>的歡樂甜品屋</p>
+            <strong>歡樂值：{{score}}</strong>
           </div>
         </div>
         <div class="people"></div>
         <div class="sweetsStatus" v-if="reg && easy.less.length == 0">
-          <p class="ok">有可製作的清新<br />清新甜品</p>
+          <p class="ok">有可製作的歡樂<br />歡樂甜品</p>
           <span class="scorllTop" @click="scorllTo()">點擊製作</span>
         </div>
         <div class="sweetsStatus" v-else-if="reg && easy.less.length == 1 ">
           <img :src="require(`../assets/img/sweets/creatIcon${easy.id}.png`)" alt="">
           <p class="less">还差{{easy.less[0].count}}份{{easy.less[0].name}}可制作{{easy.name}}</p>
         </div>
+        <Box :nick="nick" />
       </div>
       <div class="wards">
         <div class="title"></div>
@@ -53,7 +53,6 @@
           <i class="close" @click="closeInviatPup()"></i>
           <ul class="pList">
             <li v-for="(item,index) in friends" :key="index" @click="inviteation(item.uid,index)">
-              <!-- <div class="userRank">{{item.rank}}</div> -->
               <div class="lsitItem">
                 <div class="imgBox">
                   <span class="avBg" v-if="item.rank<=3"></span>
@@ -68,7 +67,7 @@
               </div>
             </li>
           </ul>
-          <p>成功邀請你開張清新甜品屋的好友，<br />有機會獲得 <i></i> x5份</p>
+          <p>成功邀請你開張歡樂甜品屋的好友，<br />有機會獲得 <i></i> x5份</p>
           <div class="singUpBtn" @click="invitSingUp()"></div>
         </div>
       </transition>
@@ -200,7 +199,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.showInviatPup = false
           this.vxc('setReg', true)
-          this.toast('你的清新甜品屋開張啦！！<br/>快去製作清新甜品吧')
+          this.toast('你的歡樂甜品屋開張啦！！<br/>快去製作歡樂甜品吧')
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -237,8 +236,8 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: url(../assets/img/banner.png) center 0 no-repeat;
-  background-size: 100% auto;
+  // background: url(../assets/img/banner.png) center 0 no-repeat;
+  // background-size: 100% auto;
   .shareBar {
     position: fixed;
     z-index: 1000;
@@ -255,28 +254,33 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 8.8rem;
-    padding-top: 1.49rem;
+    // height: 8.8rem;
+    // padding-top: 1.49rem;
     position: relative;
     .house {
       width: 7.5rem;
-      height: 7.97rem;
+      height: 8.52rem;
       background: url(../assets/img/houseBg2.png) no-repeat;
-      background-size: 100% 100%;
+      background-size: 100% auto;
       margin: 0 auto 0;
       position: relative;
       &.easy {
         background: url(../assets/img/houseBg.png) no-repeat;
-        background-size: 100% 100%;
+        background-size: 100% auto;
       }
       .userTitle {
         width: 4.5rem;
-        height: 0.7rem;
+        height: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
-        top: 0.65rem;
+        top: 1rem;
         left: 1.5rem;
         text-align: center;
-        color: RGBA(141, 75, 255, 1);
+        text-shadow: RGBA(251, 150, 31, 1) 1px 0 0,
+          RGBA(251, 150, 31, 1) 0 1px 0, RGBA(251, 150, 31, 1) -1px 0 0,
+          RGBA(251, 150, 31, 1) 0 -1px 0;
         p {
           font-weight: 600;
         }
@@ -307,15 +311,15 @@ body::-webkit-scrollbar {
         background: url(../assets/img/people.png);
         background-size: 100% 100%;
         position: absolute;
-        top: 1.97rem;
-        left: 0.92rem;
+        top: 2.75rem;
+        left: 1.1rem;
       }
       .sweetsStatus {
-        width: 2.2rem;
-        height: 2.4rem;
+        width: 2.25rem;
+        height: 2.35rem;
         position: absolute;
         right: 0.9rem;
-        top: 2.05rem;
+        top: 3rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -355,12 +359,11 @@ body::-webkit-scrollbar {
       height: 2.91rem;
       background: url(../assets/img/wards.png);
       background-size: 100% 100%;
-      position: absolute;
-      top: 7.44rem;
-      left: 0.22rem;
+      position: relative;
+      margin: -0.3rem auto;
       .title {
         width: 4.67rem;
-        height: 1.47rem;
+        height: 1.22rem;
         background: url(../assets/img/title1.png) no-repeat;
         background-size: 100% 100%;
         position: absolute;
@@ -391,8 +394,9 @@ body::-webkit-scrollbar {
     }
     .tipsBox {
       position: absolute;
+      z-index: 100;
       right: 0;
-      top: 5.78rem;
+      top: 0.78rem;
       width: 1.54rem;
       span {
         display: block;
@@ -500,6 +504,7 @@ body::-webkit-scrollbar {
     }
     > p {
       text-align: center;
+      color: rgba(233, 140, 86, 1);
       i {
         display: inline-block;
         width: 0.3rem;

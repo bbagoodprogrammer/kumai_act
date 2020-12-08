@@ -4,7 +4,7 @@
     <ul class="caiList">
       <li v-for="(item,index) in desserts" :key="index">
         <div class="name">{{item.name}}
-          <span class="score">清新值:{{item.score}}</span>
+          <span class="score">歡樂值:{{item.score}}</span>
         </div>
         <div class="msg">
           <img :src="require(`../assets/img/sweets/sweet_${index}.png`)" alt="">
@@ -88,7 +88,7 @@
                 <img v-lazy="item.avatar" alt="">
               </div>
               <div class="nick">{{item.nick}}</div>
-              <div class="score">清新值<em>{{item.score}}</em></div>
+              <div class="score">歡樂值<em>{{item.score}}</em></div>
             </li>
           </ul>
           <div class="inivitBtn" @click="showPelple()"></div>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="nick">
                   <div>{{item.nick}}</div>
-                  <div class="tips">還沒有清新甜品屋</div>
+                  <div class="tips">還沒有歡樂甜品屋</div>
                 </div>
                 <div class="shareBtn" :class="{share2:item.status == 1}" @click="shareAct(item,index)"></div>
               </div>
@@ -149,12 +149,12 @@
             <div class="title">製作成功</div>
             <img :src="require(`../assets/img/sweets/sweet_${creatIndex}.png`)" alt="" class="dessertsImg">
             <p class="creatName">{{desserts[creatIndex].name}}x{{cNum}}</p>
-            <p class="creatScore">增加清新值：{{desserts[creatIndex].score * cNum}}</p>
+            <p class="creatScore">增加歡樂值：{{desserts[creatIndex].score * cNum}}</p>
             <div class="goPack" @click="doTask('mic')">去背包查看</div>
           </div>
           <div class="creatSuc" v-show="creatType == 2">
             <canvas id="creatAni"></canvas>
-            <p class="doing">清新甜品製作中......{{rSecond}}s</p>
+            <p class="doing">歡樂甜品製作中......{{rSecond}}s</p>
           </div>
         </div>
       </transition>
@@ -228,10 +228,10 @@ export default {
         share: '分享活動到line或fb',
         create: '創建/接唱/合聲作品',
         friend: '交友熱力每提升20',
-        invite: '邀請好友開清新甜品屋',
+        invite: '邀請好友開歡樂甜品屋',
         charge: '儲值任意金額',
         room: '自己房間的人氣值達到8000',
-        gift: '收到任意清新甜品禮物30份'
+        gift: '收到任意歡樂甜品禮物30份'
       },
       creatIndex: 0,
       maxTips: false,
@@ -375,8 +375,8 @@ export default {
           share({
             from: '2',
             url: `http://activity.udateapp.com/static_html/2020/sweetHouse/index.html?type=2&nick=${this.nick}`,
-            title: `我開了一家清新甜品屋，製作了很多清新好吃的甜品，快來一起玩吧`,
-            desc: `我開了一家清新甜品屋，製作了很多清新好吃的甜品，快來一起玩吧`,
+            title: `我開了一家歡樂甜品屋，製作了很多歡樂好吃的甜品，快來一起玩吧`,
+            desc: `我開了一家歡樂甜品屋，製作了很多歡樂好吃的甜品，快來一起玩吧`,
             image: 'http://activity.udateapp.com/static_html/2020/sweetHouse/share.jpg'
           })
         } catch (e) { }
@@ -482,15 +482,15 @@ export default {
 }
 .list {
   width: 6.68rem;
-  height: 13.81rem;
+  height: 14.1rem;
   background: url(../assets/img/listBg.png);
   background-size: 100% 100%;
-  margin: 0.81rem auto 0;
+  margin: 1.4rem auto 0;
   padding: 0.26rem 0.2rem 0;
   position: relative;
   > .title {
     width: 4.67rem;
-    height: 1.47rem;
+    height: 1.22rem;
     background: url(../assets/img/title2.png);
     background-size: 100% 100%;
     position: absolute;
@@ -514,7 +514,7 @@ export default {
         align-items: center;
         justify-content: space-between;
         font-size: 0.4rem;
-        color: rgba(57, 114, 166, 1);
+        color: rgba(212, 62, 25, 1);
         font-weight: 500;
         .score {
           width: 1.6rem;
@@ -552,6 +552,7 @@ export default {
             align-items: center;
             position: relative;
             margin-bottom: 0.21rem;
+            color: rgba(215, 55, 18, 1);
             i {
               width: 0.4rem;
               height: 0.4rem;
@@ -607,6 +608,7 @@ export default {
           bottom: 0.23rem;
           font-size: 0.26rem;
           font-weight: 500;
+          color: rgba(215, 55, 18, 1);
         }
       }
     }
@@ -778,7 +780,7 @@ export default {
             .giftBar {
               width: 2.87rem;
               height: 0.12rem;
-              background: rgba(104, 179, 255, 1);
+              background: rgba(204, 101, 41, 1);
               box-shadow: 0 0.01rem 0.09rem 0 rgba(8, 78, 126, 0.38);
               border-radius: 0.06rem;
               margin-top: 0.08rem;
@@ -843,7 +845,7 @@ export default {
               .liner {
                 width: 1.2rem;
                 height: 0.12rem;
-                background: rgba(104, 179, 255, 1);
+                background: rgba(204, 101, 41, 1);
                 box-shadow: 0 0.01rem 0.09rem 0 rgba(8, 78, 126, 0.38);
                 border-radius: 0.06rem;
                 position: relative;
@@ -860,7 +862,7 @@ export default {
             }
             .invite {
               font-size: 0.24rem;
-              color: rgba(255, 21, 54, 1);
+              color: rgba(164, 67, 10, 1);
               font-weight: 600;
             }
           }
@@ -1044,7 +1046,7 @@ export default {
       line-height: 1.1rem;
       font-size: 0.4rem;
       font-weight: 600;
-      color: rgba(41, 182, 255, 1);
+      color: rgba(174, 6, 5, 1);
     }
     .creatQuyer {
       .con {
@@ -1064,7 +1066,7 @@ export default {
             white-space: nowrap;
             font-size: 0.24rem;
             text-align: center;
-            color: rgba(41, 182, 255, 1);
+            color: rgba(233, 140, 86, 1);
           }
         }
         .creatNum {
@@ -1084,7 +1086,7 @@ export default {
               border: none;
               outline: none;
               background: #fff;
-              color: rgba(59, 188, 255, 1);
+              color: rgba(196, 68, 46, 1);
               font-size: 0.4rem;
               text-align: center;
             }
@@ -1098,13 +1100,13 @@ export default {
           .tips {
             white-space: nowrap;
             font-size: 0.24rem;
-            color: rgba(41, 182, 255, 1);
+            color: rgba(233, 140, 86, 1);
             margin-top: 0.3rem;
           }
           .overNum {
             white-space: nowrap;
             font-size: 0.24rem;
-            color: rgba(255, 53, 86, 1);
+            color: rgba(174, 6, 5, 1);
           }
         }
       }
@@ -1119,13 +1121,13 @@ export default {
           line-height: 0.67rem;
         }
         .cancel {
-          color: rgba(133, 213, 254, 1);
-          background: RGBA(228, 247, 254, 1);
-          border-radius: 0 0 0 0.3rem;
+          color: rgba(247, 140, 76, 1);
+          background: RGBA(248, 234, 221, 1);
+          border-radius: 0 0 0 0.5rem;
         }
         .ok {
-          background: RGBA(126, 212, 255, 1);
-          border-radius: 0 0 0.3rem 0;
+          background: RGBA(248, 176, 129, 1);
+          border-radius: 0 0 0.5rem 0;
         }
       }
     }
@@ -1153,9 +1155,10 @@ export default {
       }
       .creatName {
         text-align: center;
-        color: rgba(89, 187, 237, 1);
+        color: rgba(233, 140, 86, 1);
         font-size: 0.24rem;
         font-weight: 500;
+        height: 0.36rem;
       }
       .creatScore {
         text-align: center;
@@ -1167,8 +1170,8 @@ export default {
         height: 0.69rem;
         line-height: 0.69rem;
         text-align: center;
-        background: RGBA(137, 214, 254, 1);
-        border-radius: 0 0 0.3rem 0.3rem;
+        background: RGBA(243, 168, 118, 1);
+        border-radius: 0 0 0.5rem 0.5rem;
       }
     }
     .close {
@@ -1184,7 +1187,7 @@ export default {
   display: block;
   width: 0.51rem;
   height: 0.51rem;
-  background: url(../assets/img/close2.png);
+  background: url(../assets/img/close.png);
   background-size: 100% 100%;
   position: absolute;
   right: 0.34rem;

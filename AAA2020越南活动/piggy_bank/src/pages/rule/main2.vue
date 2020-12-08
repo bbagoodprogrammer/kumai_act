@@ -6,7 +6,7 @@
     </div>
     <div class="rule" v-show="mainTab == 0">
       <h3 class="noTop">Thời gian</h3>
-      <p class="time">10h ngày 12/10 đến 21h ngày 22/10</p>
+      <p class="time">{{actTime}}</p>
       <h3>Báo danh</h3>
       <p>- Khi sự kiện bắt đầu, toàn bộ idol tháng này tự động báo danh tham gia sự kiện, không cần vào trang sự kiện để báo danh.</p>
       <p>- Trong thời gian sự kiện, người dùng tặng quà idol đang live xem như báo danh thành công, không cần vào trang sự kiện để báo danh.</p>
@@ -65,11 +65,20 @@
 </template>
 
 <script>
+
+import getDate from "../../utils/getDate"
 export default {
   data() {
     return {
-      mainTab: 0
+      mainTab: 0,
+      actTime: ''
     }
+  },
+  created() {
+    let stime = sessionStorage.getItem('stime')
+    let etime = sessionStorage.getItem('etime')
+    this.actTime = getDate(new Date(stime * 1000), 2) + " đến " + getDate(new Date(etime * 1000), 2)
+
   },
   methods: {
     mainTabClick(tab) {

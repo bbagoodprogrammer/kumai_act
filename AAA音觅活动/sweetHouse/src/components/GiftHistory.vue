@@ -7,7 +7,7 @@
         <div class="time">{{getTime(item.list[0].time,1)}}</div>
         <div class="taskItem" v-for="(item2,index2) in item.list" :key="index2">
           <span class="name">{{item2.type=='raw'?taskName[item2.key]:`製作${item2.name}*${item2.count}份`}}</span>
-          <span class="wards">{{item2.type=='raw'?`${item2.name}+${item2.count}`:`清新值+${item2.score}`}}</span>
+          <span class="wards">{{item2.type=='raw'?`${item2.name}+${item2.count}`:`歡樂值+${item2.score}`}}</span>
           <span class="timeItem">{{getTime(item2.time,2)}}</span>
         </div>
       </li>
@@ -40,10 +40,10 @@ export default {
         share: '分享活動到line或fb',
         create: '創建/接唱/和聲作品',
         friend: '交友熱力每提升20',
-        invite: '邀請好友開清新甜品屋',
+        invite: '邀請好友開歡樂甜品屋',
         charge: '儲值任意金額',
         room: '自己房間的人氣值達到5000',
-        gift: '收到任意清新甜品禮15份',
+        gift: '收到任意歡樂甜品禮15份',
         sharep: '進階分享'
       },
     }
@@ -123,7 +123,7 @@ export default {
     display: block;
     width: 0.5rem;
     height: 0.5rem;
-    background: url(../assets/img/close2.png);
+    background: url(../assets/img/close.png);
     background-size: 100% 100%;
     position: absolute;
     right: 0.45rem;
@@ -136,6 +136,7 @@ export default {
     // background-size: 100% 100%;
     margin: 0.43rem auto 0;
     text-align: center;
+    color: rgba(215, 55, 17, 1);
   }
   .itemList {
     max-height: 6.8rem;
@@ -151,8 +152,10 @@ export default {
       .time {
         margin: 0.25rem 0 0.28rem;
         font-size: 0.28rem;
+        color: rgba(215, 55, 17, 1);
       }
       .taskItem {
+        color: rgba(233, 140, 86, 1);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -198,5 +201,6 @@ export default {
 .noData {
   text-align: center;
   margin-top: 0.4rem;
+  color: rgba(215, 55, 17, 1);
 }
 </style>

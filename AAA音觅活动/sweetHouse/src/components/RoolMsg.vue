@@ -4,7 +4,7 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-            <em>恭喜{{item.nick}}成功製作{{item.dessert}}{{item.count}}份,獲得{{item.score}}清新值</em>
+            <em>恭喜{{item.nick}}成功製作{{item.dessert}}{{item.count}}份,獲得{{item.score}}歡樂值</em>
           </li>
         </ul>
       </div>
@@ -62,9 +62,12 @@ export default {
 }
 
 .roll-msg {
+  width: 100%;
   height: 0.56rem;
   display: flex;
   justify-content: center;
+  position: fixed;
+  z-index: 100;
   .popup {
     width: 100%;
     padding: 0 0.2rem;

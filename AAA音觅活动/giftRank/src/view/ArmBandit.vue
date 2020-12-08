@@ -37,17 +37,28 @@
             <h6>1 活動時間</h6>
             <p>{{aTimer}}</p>
             <h6>2 榜單排名</h6>
-            <p>榜單按照活動期間內收到的月餅或月兔禮物數量的前100名玩家從高到低排名</p>
+            <p>榜單按照活動期間內收到的聖誕樹或者聖誕老人禮物數量的前100名玩家從高到低排名</p>
             <p>榜單展示指定禮物的實時累計數據</p>
             <h6>3 活動獎勵</h6>
-            <!-- <span class="giftImg"></span> -->
+
             <div class="giftBox">
-              <p>第一名：萌兔過中秋-頭像框（10天）、仙兔座駕（7天）</p>
-              <p>第二名：萌兔過中秋-頭像框（5天）</p>
-              <p>第三名：萌兔過中秋-頭像框（3天）</p>
+              <h5>聖誕樹榜：</h5>
+              <p> 第一名：繽紛聖誕-頭像框（7天）、銀色瑪莎拉蒂座駕（7天）<br />
+                第二名：繽紛聖誕-頭像框（5天）<br />
+                第三名：繽紛聖誕-頭像框（3天）
+              </p>
+              <h5>聖誕老人榜：</h5>
+              <div class="giftBox">
+                <p>
+                  第一名：繽紛聖誕-頭像框（15天）、銀色瑪莎拉蒂座駕（10天）<br />
+                  第二名：繽紛聖誕-頭像框（7天）、銀色瑪莎拉蒂座駕（7天）<br />
+                  第三名：繽紛聖誕-頭像框（5天）
+                </p>
+              </div>
             </div>
             <h6>4 注意事項 </h6>
             <p>榜單獎勵在活動結束後五個工作日內發放獎勵</p>
+            <p>本活動與蘋果公司無關</p>
             <p class="lastTips">本活動最終解釋權歸活動主辦方所有</p>
           </div>
         </div>
@@ -174,7 +185,8 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: #fcfac7 url(../assets/img/banner.png) center 0 no-repeat;
+  background: rgba(3, 62, 180, 1) url(../assets/img/banner.png) center 0
+    no-repeat;
   background-size: 100% auto;
   .shareBar {
     position: fixed;
@@ -267,10 +279,11 @@ body::-webkit-scrollbar {
       top: -0.4rem;
     }
     .lastTips {
-      color: rgba(182, 96, 36, 1);
+      color: rgba(247, 217, 140, 1);
       font-size: 0.2rem;
       margin-top: 0.24rem;
       text-align: center;
+      text-indent: 0;
     }
     .giftImg {
       display: block;
@@ -283,7 +296,7 @@ body::-webkit-scrollbar {
     .giftBox {
       h5 {
         padding-left: 0.3rem;
-        color: rgba(182, 96, 36, 1);
+        color: rgba(247, 217, 140, 1);
       }
       p {
         padding-left: 0.6rem;
@@ -292,13 +305,13 @@ body::-webkit-scrollbar {
     }
     h6 {
       font-size: 0.24rem;
-      color: rgba(182, 96, 36, 1);
+      color: rgba(247, 217, 140, 1);
       font-weight: 800;
       margin-top: 0.1rem;
     }
     p {
       font-size: 0.24rem;
-      color: rgba(182, 96, 36, 1);
+      color: rgba(247, 217, 140, 1);
       font-weight: 500;
       text-indent: 0.5rem;
       // margin-top: 0.1rem;
