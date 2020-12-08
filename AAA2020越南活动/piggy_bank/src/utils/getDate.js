@@ -8,6 +8,9 @@ function getDate(datem, type) {
     if (type == 1) {
         return `${date}/${month}`
     }
+    if (type == 2) {
+        return `${hours}h ${date}/${month}`
+    }
     if (type == "~") {
         return `${hours}:${minute}:${second}   ${date}/${month}/${year}`
     }

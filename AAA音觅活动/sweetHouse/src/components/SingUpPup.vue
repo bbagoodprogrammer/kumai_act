@@ -4,11 +4,11 @@
       <div class="sCon" v-if="showSingUp">
         <i class="close" @click="closeSingUp()"></i>
         <div class="house">
-          <p class="houseName"><em>{{nick}}</em>的清新甜品屋</p>
+          <p class="houseName"><em>{{nick}}</em>的歡樂甜品屋</p>
         </div>
         <div class="tips">
-          <h3>清新甜品屋</h3>
-          <p>開一間清新甜品屋，合成清新甜品 <em>背包禮物</em>，還能贏 <em>限定頭像框</em>、<em>座駕及金幣</em>獎勵</p>
+          <h3>歡樂甜品屋</h3>
+          <p>開一間歡樂甜品屋，合成歡樂甜品 <em>背包禮物</em>，還能贏 <em>限定頭像框</em>、<em>座駕及金幣</em>獎勵</p>
         </div>
         <div class="gift">
           <span v-for="(item,index) in giftArr" :key="index">
@@ -50,7 +50,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.vxc('setReg', true)
           this.vxc('setSingUp')
-          this.toast('你的清新甜品屋開張啦！！<br/>快去製作清新甜品吧')
+          this.toast('你的歡樂甜品屋開張啦！！<br/>快去製作歡樂甜品吧')
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -92,9 +92,9 @@ export default {
         width: 3.8rem;
         margin: 0 auto;
         text-align: center;
-        line-height: 0.6rem;
+        line-height: 0.8rem;
         font-size: 0.32rem;
-        color: rgba(141, 75, 255, 1);
+        // color: rgba(141, 75, 255, 1);
         font-weight: 600;
         display: flex;
         justify-content: center;
@@ -114,14 +114,16 @@ export default {
         text-align: center;
         font-size: 0.36rem;
         font-weight: 800;
+        color: rgba(233, 140, 86, 1);
       }
       p {
         padding: 0 0.64rem;
         font-size: 0.24rem;
         text-align: center;
+        color: rgba(233, 140, 86, 1);
         em {
           font-size: 0.24rem;
-          color: rgba(254, 77, 181, 1);
+          color: rgba(227, 27, 27, 1);
         }
       }
     }
@@ -140,6 +142,7 @@ export default {
           display: block;
           text-align: center;
           margin-top: 0.1rem;
+          color: rgba(212, 62, 25, 1);
         }
       }
     }
@@ -154,7 +157,7 @@ export default {
       display: block;
       width: 0.51rem;
       height: 0.51rem;
-      background: url(../assets/img/close2.png);
+      background: url(../assets/img/close.png);
       background-size: 100% 100%;
       position: absolute;
       right: 0.34rem;

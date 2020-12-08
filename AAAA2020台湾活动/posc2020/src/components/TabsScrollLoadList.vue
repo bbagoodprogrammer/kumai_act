@@ -1094,11 +1094,11 @@ export default {
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        width: 3.84rem;
+        width: 4.14rem;
         margin: 0.23rem 0 0 2.22rem;
         .userItem {
-          width: 1rem;
-          margin-right: 0.42rem;
+          width: 1.4rem;
+          margin-right: 0.22rem;
           .imgBox {
             width: 0.88rem;
             height: 0.88rem;
@@ -1128,8 +1128,9 @@ export default {
             text-overflow: ellipsis;
             color: rgba(255, 255, 255, 0.6);
             font-size: 0.26rem;
-            margin: 0.06rem 0 0.04rem;
+            margin: 0.1rem 0 0.04rem;
             text-align: center;
+            height: 0.3rem;
           }
           .score {
             display: flex;

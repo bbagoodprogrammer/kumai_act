@@ -98,6 +98,8 @@ export default {
           this.ecountdown = ecountdown
           this.balance = balance
           this.actDate = this.getDate(stime, etime)
+          sessionStorage.setItem('stime', stime)
+          sessionStorage.setItem('etime', etime)
           this.vxc('setActStatus', step)
           this.vxc('setUserMsg', user_info)
           const is_anchor = user_info.is_anchor

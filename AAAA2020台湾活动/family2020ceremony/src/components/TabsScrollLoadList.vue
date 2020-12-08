@@ -164,7 +164,7 @@
         </div>
         <div class="userMsg">
           <div class="name"><strong>{{item.info.familyname}} </strong> </div>
-          <div class="score"><i></i> <strong>{{item.info.score}}</strong> </div>
+          <div class="score"><i></i> <strong>{{item.score}}</strong> </div>
         </div>
         <div class="userList">
           <div class="userItem" v-for="(item2,index2) in item.users" :key="index2">

@@ -117,7 +117,7 @@ function getLastRank(step, fid, from, more) {
 
 //一鍵召喚
 function call(fid) {
-    return get(`/family2020ceremony/guard.php?token=${token}&fid=${fid}`)
+    return get(`/family2020ceremony/call.php?token=${token}&fid=${fid}`)
 }
 const httpConfig = {
     getDefault,

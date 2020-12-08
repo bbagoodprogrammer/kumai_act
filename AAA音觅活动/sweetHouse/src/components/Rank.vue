@@ -1,7 +1,8 @@
 <template>
   <div class="rank">
     <i class="close" @click="close()"></i>
-    <ul class="scrollable">
+    <p class="noData" v-if="rank.length == 0">暫無數據</p>
+    <ul class="scrollable" :class="{noData:rank.length == 0}">
       <li v-for="(item,index) in rank" :key="index" :class="'list' + item.rank" @click="goUser(item.uid)">
         <div class="userRank" v-if="item.rank>1">{{item.rank}}</div>
         <div class="imgBox">
@@ -9,7 +10,7 @@
           <img v-lazy="item.avatar" alt="">
         </div>
         <div class="nick">{{item.nick}}</div>
-        <div class="score">清新值<em>{{item.score}}</em></div>
+        <div class="score">歡樂值<em>{{item.score}}</em></div>
       </li>
     </ul>
     <div class="userMsg" v-if="reg">
@@ -19,7 +20,7 @@
         <img v-lazy="omerMsg.avatar" alt="">
       </div>
       <div class="nick">{{omerMsg.nick}}</div>
-      <div class="score">清新值<em>{{omerMsg.score}}</em></div>
+      <div class="score">歡樂值<em>{{omerMsg.score}}</em></div>
     </div>
   </div>
 </template>
@@ -76,6 +77,10 @@ export default {
 }
 </script>
 <style lang="scss">
+.noData {
+  text-align: center;
+  margin: 0.5rem auto 0;
+}
 .rank {
   width: 7.1rem;
   height: 10rem;
@@ -86,6 +91,9 @@ export default {
   ul {
     height: 8.4rem;
     overflow-y: scroll;
+    &.noData {
+      height: 7rem;
+    }
   }
   li,
   .userMsg {
@@ -213,7 +221,7 @@ export default {
     display: block;
     width: 0.51rem;
     height: 0.51rem;
-    background: url(../assets/img/close2.png);
+    background: url(../assets/img/close.png);
     background-size: 100% 100%;
     position: absolute;
     right: 0.54rem;

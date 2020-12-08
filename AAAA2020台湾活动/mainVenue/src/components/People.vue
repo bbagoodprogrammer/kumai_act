@@ -29,18 +29,18 @@
       <!-- K房男女神榜单 -->
       <div class="kroomList" v-else-if="item.act_id ==3">
         <div class="noData">
-          <div class="man" :class="{girl:index==1}" v-for="(item,index) in item.show?item.show_data:kroomDefault" :key="index">
+          <div class="man" :class="{girl:index==1}" v-for="(item2,index) in item.show?item.show_data:kroomDefault" :key="index">
             <ul class="userList">
-              <li v-for="(item2,index2) in item" :key="index2" :class="'item' + index2">
-                <img :src="item2.avatar" alt="" class="defaultAv" v-if="!item.show">
-                <div class="imgBox" :class="'top' + item2.rank" v-else @click="goUser(item2)">
+              <li v-for="(item3,index2) in item2.slice(0, 3)" :key="index2" :class="'item' + index2">
+                <img :src="item3.avatar" alt="" class="defaultAv" v-if="!item.show">
+                <div class="imgBox" :class="'top' + item3.rank" v-else @click="goUser(item3)">
                   <span class="avBg"></span>
-                  <img v-lazy="item2.avatar" alt="" class="av">
+                  <img v-lazy="item3.avatar" alt="" class="av">
                 </div>
-                <strong class="nick" :class="{act:item.show}">{{item2.nick}}</strong>
+                <strong class="nick" :class="{act:item.show}">{{item3.nick}}</strong>
               </li>
             </ul>
-            <div class="more" @click="showMore(item[index])" v-if="item.show">查看更多</div>
+            <div class="more" @click="showMore(item2)" v-if="item.show">查看更多</div>
           </div>
         </div>
       </div>

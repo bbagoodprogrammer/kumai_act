@@ -11,7 +11,7 @@
       <div class="top1" v-if="top1.uid">
         <div class="top1Rank">
           <div class="imgBox" @click="goUser(top1.uid)">
-            <!-- <img src="../assets/img/top1.png" alt="" class="top1Tips"> -->
+            <img src="../assets/img/top1.png" alt="" class="top1Tips">
             <img v-lazy="top1.avatar" alt="" class="top1Avatar">
           </div>
           <div class="userMsg">
@@ -293,7 +293,7 @@ export default {
   width: 6.88rem;
   padding: 1.68rem 0 2rem;
   position: relative;
-  background: #f8ffe6 url(../assets/img/listBg.png) no-repeat;
+  background: rgba(3, 62, 180, 1) url(../assets/img/listBg.png) no-repeat;
   background-size: 100% auto;
   margin: 0.37rem auto;
   > li {
@@ -301,8 +301,8 @@ export default {
   }
   .mainTabs {
     display: flex;
-    width: 3.15rem;
-    height: 0.48rem;
+    width: 4.44rem;
+    height: 0.6rem;
     background: url(../assets/img/tab1.png);
     background-size: 100% 100%;
     display: flex;
@@ -337,11 +337,11 @@ export default {
           height: 2.3rem;
           position: relative;
           .top1Tips {
-            width: 2.73rem;
-            height: 2.73rem;
+            width: 1.65rem;
+            height: 1.65rem;
             position: absolute;
-            // top: 0.25rem;
-            // left: 0.21rem;
+            left: 0.53rem;
+            top: 0.34rem;
             z-index: 2;
           }
           .top1Avatar {
@@ -357,14 +357,14 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
-          color: #a7621b;
+          color: rgba(247, 217, 140, 1);
           .nick {
             max-width: 2rem;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
             font-weight: 800;
-            color: rgba(182, 96, 36, 1);
+            color: rgba(247, 217, 140, 1);
           }
           .score {
             margin-left: 0.28rem;
@@ -387,14 +387,14 @@ export default {
         right: 0.4rem;
         strong {
           display: block;
-          color: rgba(182, 96, 36, 1);
+          color: rgba(247, 217, 140, 1);
           font-size: 0.24rem;
           font-weight: 500;
         }
         em {
           display: block;
           font-size: 0.72rem;
-          color: rgba(182, 96, 36, 1);
+          color: rgba(247, 217, 140, 1);
           font-weight: 800;
         }
       }
@@ -413,7 +413,7 @@ export default {
       .rank {
         width: 1.12rem;
         line-height: 0.94rem;
-        color: rgba(190, 255, 208, 1);
+        color: rgba(255, 239, 230, 1);
         text-align: center;
         font-weight: bold;
         font-size: 0.42rem;
