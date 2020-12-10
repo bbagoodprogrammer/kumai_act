@@ -2,15 +2,15 @@
   <div class="rank">
     <i class="close" @click="close()"></i>
     <p v-if="rank.length == 0">không có dữ liệu</p>
-    <ul class="scrollable">
-      <li v-for="(item,index) in rank" :key="index" :class="'list' + item.rank">
+    <ul class="scrollable" :class="{noData:rank.length == 0}">
+      <li v-for="(item,index) in rank" :key="index" :class="'list' + item.rank" @click="goUser(item.uid)">
         <div class="userRank" v-if="item.rank>1">{{item.rank}}</div>
         <div class="imgBox">
           <span class="avBg" v-if="item.rank<=3"></span>
           <img v-lazy="item.avatar" alt="">
         </div>
         <div class="nick">{{item.nick}}</div>
-        <div class="score">Điểm sảng khoái<em>{{item.score}}</em></div>
+        <div class="score">Điểm<em>{{item.score}}</em></div>
       </li>
     </ul>
     <div class="userMsg" v-if="reg">
@@ -20,7 +20,7 @@
         <img v-lazy="omerMsg.avatar" alt="">
       </div>
       <div class="nick">{{omerMsg.nick}}</div>
-      <div class="score">Điểm sảng khoái<em>{{omerMsg.score}}</em></div>
+      <div class="score">Điểm<em>{{omerMsg.score}}</em></div>
     </div>
   </div>
 </template>
@@ -64,11 +64,23 @@ export default {
     },
     close() {
       this.$parent.showRank = false
-    }
+    },
+    goUser(uid) { //跳转
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
+      }
+    },
   }
 }
 </script>
 <style lang="scss">
+.noData {
+  text-align: center;
+  margin: 0.5rem auto 0;
+}
 .rank {
   width: 7.1rem;
   height: 10rem;
@@ -79,6 +91,9 @@ export default {
   ul {
     height: 8.4rem;
     overflow-y: scroll;
+    &.noData {
+      height: 7rem;
+    }
   }
   li,
   .userMsg {
@@ -138,7 +153,7 @@ export default {
     }
     &.list1 {
       width: 2.2rem;
-      height: 3.18rem;
+      height: 3.45rem;
       flex-direction: column;
       background: none;
       margin: 0 auto;
@@ -159,7 +174,7 @@ export default {
           position: absolute;
           width: 1.72rem;
           height: 1.72rem;
-          top: 0.12rem;
+          top: 0.1rem;
           left: 0.24rem;
           margin: 0;
           border-radius: 50%;
@@ -169,12 +184,14 @@ export default {
         width: 100%;
         font-weight: 600;
         text-align: center;
+        color: rgba(212, 62, 25, 1);
       }
       .score {
         width: 100%;
         text-align: center;
         font-size: 0.24rem;
         font-weight: 500;
+        color: rgba(233, 140, 86, 1);
         em {
           font-size: 0.33rem;
           font-weight: 800;
@@ -206,7 +223,7 @@ export default {
     display: block;
     width: 0.51rem;
     height: 0.51rem;
-    background: url(../assets/img/close2.png);
+    background: url(../assets/img/close.png);
     background-size: 100% 100%;
     position: absolute;
     right: 0.54rem;

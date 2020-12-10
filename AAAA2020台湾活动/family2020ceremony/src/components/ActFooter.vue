@@ -110,9 +110,9 @@
         </div>
         <div class="userMsg">
           <div class="name"><strong>{{nowUsrMsg.info.familyname}} </strong> </div>
-          <div class="score"><i></i> <strong>{{nowUsrMsg.info.score}}</strong> </div>
+          <div class="score"><i></i> <strong>{{nowUsrMsg.score}}</strong> </div>
         </div>
-        <div class="shareBtn" v-if="nowUsrMsg.owner" @click="call()">
+        <div class="shareBtn" v-if="nowUsrMsg.owner" @click="sendMsg()">
           一鍵召喚<br />
           家族成員
         </div>
@@ -134,6 +134,29 @@
         </div>
       </transition>
     </div>
+    <div class="mask" v-show="showCommitPup">
+      <transition name="slide">
+        <div class="commitMsg" v-show="showCommitPup">
+          <i class="close" @click="showCommitPup = false"></i>
+          <h3>召喚成員</h3>
+          <div class="title">通知正文</div>
+          <input id='msg' maxlength="20" v-model="comMsg" />
+          <div class="title">K歌房ID（選填）</div>
+          <input id='rid' maxlength="10" v-model="comRid" />
+          <div class="tipsBox" v-if="sendType == 3">
+            本月可召喚{{nowUsrMsg.nums}}次<br />
+            收到通知的成員，點擊通知直接進入家族主頁或知道K歌房<br />
+            如填入ID時，成員點擊通知可直接進入對應K歌房，請確保ID正確
+          </div>
+          <div class="tipsBox" v-else-if="sendType == 1">
+            家族等級達到10級後解鎖該功能
+          </div>
+          <div class="commitBtn" @click="call()" :class="{black:nowUsrMsg.nums <= 0 || sendType == 1}">
+            發送
+          </div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -146,7 +169,11 @@ export default {
   props: ['fid'],
   data() {
     return {
-      showQuery: false
+      showQuery: false,
+      showCommitPup: false,
+      comMsg: '',
+      comRid: '',
+      sendType: 3
     }
   },
   computed: {
@@ -210,9 +237,25 @@ export default {
     getWidth(score1, score2) {
       return score1 / (score1 + score2) * 100 + '%'
     },
+    sendMsg() {
+      if (this.nowUsrMsg.info.level < 10) {
+        this.sendType = 1
+      } else {
+        this.sendType = 3
+      }
+      this.showCommitPup = true
+    },
     call() {
-      api.call(this.fid).then(res => {
+      if (this.nowUsrMsg.nums <= 0 || this.sendType == 1) {
+        return
+      } else if (this.comMsg == '') {
+        this.toast(`請填寫通知內容~`)
+        return
+      }
+      api.call(this.fid, this.comMsg, this.comRid).then(res => {
+        this.showCommitPup = false
         if (res.data.response_status.code == 0) {
+          this.vxc('reduexNums')
           this.toast('已進行一鍵召喚')
         } else {
           this.toast(res.data.response_status.error)
@@ -405,6 +448,75 @@ export default {
           line-height: 0.72rem;
         }
       }
+    }
+  }
+}
+
+.commitMsg {
+  width: 4.72rem;
+  height: 6.9rem;
+  background: url(../assets/img/commitMsg.png);
+  background-size: 100% 100%;
+  padding: 0 0.52rem;
+  position: relative;
+  .close {
+    display: block;
+    width: 0.58rem;
+    height: 0.6rem;
+    background: url(../assets/img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0.2rem;
+    top: 0.2rem;
+  }
+  h3 {
+    height: 0.7rem;
+    text-align: center;
+    line-height: 0.7rem;
+    color: RGBA(69, 43, 6, 1);
+    font-size: 0.34rem;
+    margin-bottom: 0.1rem;
+  }
+  .title {
+    color: rgba(137, 63, 30, 1);
+    font-size: 0.26rem;
+    margin: 0.1rem 0;
+  }
+  input {
+    background: none;
+    outline: none;
+    border: none;
+    background: linear-gradient(-9deg, #d7b67f 0%, #f1d8a6 100%);
+    border-radius: 0.1rem;
+    width: 4.38rem;
+    // color: #fff;
+    padding: 0.15rem;
+    &#msg {
+      height: 0.94rem;
+    }
+    &#rid {
+      height: 0.3rem;
+    }
+  }
+  .tipsBox {
+    height: 1.7rem;
+    color: rgba(255, 139, 124, 1);
+    font-size: 0.22rem;
+    margin-top: 0.22rem;
+  }
+  .commitBtn {
+    width: 2.27rem;
+    height: 0.72rem;
+    background: url(../assets/img/creat.png);
+    background-size: 100% 100%;
+    text-align: center;
+    line-height: 0.72rem;
+    color: rgba(65, 44, 6, 1);
+    font-size: 0.26rem;
+    margin: 0.29rem auto 0;
+    &.black {
+      background: url(../assets/img/creat_black.png);
+      background-size: 100% 100%;
     }
   }
 }

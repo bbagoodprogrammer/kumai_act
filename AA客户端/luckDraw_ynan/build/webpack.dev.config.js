@@ -36,7 +36,7 @@ module.exports = {
         //disableHostCheck: true,
         proxy: {
             '/': {
-                target: 'http://test.singnowapp.com/',
+                target: 'http://act.singnowapp.com/',
                 changeOrigin: true
             }
         }

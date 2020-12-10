@@ -6,7 +6,7 @@
           <img v-lazy="info.avatar" alt="">
           <div class="msg">
             <div class="nick">{{info.nick}}</div>
-            <div class="tips">製作了多款歡樂甜品</div>
+            <div class="tips">製作了多款聖誕甜品</div>
             <p class="tips">歡樂值達到了<em>{{score}}</em> </p>
           </div>
         </div>
@@ -24,10 +24,10 @@
     <div class="share2" v-else>
       <div class="shareCon">
         <div class="tips">
-          <p>我開了一家歡樂甜品屋，製作了很多歡樂好吃的甜品，快來一起玩吧。</p>
+          <p>我開了一家甜品屋，製作了很多好吃的甜品，快來一起玩吧。</p>
         </div>
         <div class="house">
-          <p class="houseName"><em>{{nick}}</em> 的歡樂甜品屋</p>
+          <p class="houseName"><em>{{nick}}</em> 的甜品屋</p>
         </div>
         <h6>收穫限量禮物</h6>
         <div class="gift">
@@ -193,7 +193,7 @@ export default {
         text-align: center;
         line-height: 0.6rem;
         font-size: 0.32rem;
-        color: rgba(141, 75, 255, 1);
+        color: rgba(215, 55, 18, 1);
         font-weight: 600;
         display: flex;
         justify-content: center;

@@ -93,6 +93,9 @@ const store = new Vuex.Store({
         },
         setCharm(state, val) {
             state.charm = val
+        },
+        reduexNums(state, val) {
+            state.groupsUserMsg[3][3].msg.nums--
         }
     },
     actions: {

@@ -40,10 +40,10 @@ export default {
         share: '分享活動到line或fb',
         create: '創建/接唱/和聲作品',
         friend: '交友熱力每提升20',
-        invite: '邀請好友開歡樂甜品屋',
+        invite: '邀請好友開甜品屋',
         charge: '儲值任意金額',
         room: '自己房間的人氣值達到5000',
-        gift: '收到任意歡樂甜品禮15份',
+        gift: '收到任意聖誕甜品禮15份',
         sharep: '進階分享'
       },
     }

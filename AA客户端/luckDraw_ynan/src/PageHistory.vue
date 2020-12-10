@@ -1,16 +1,19 @@
 <template>
   <div class="page pageHistory">
-    <div class="title"><i class="back" @click="$router.go(-1)"></i> Chi tiết</div>
+    <div class="title"><i class="back" @click="$router.go(-1)"></i> Lịch sử </div>
     <InnerScrollLoadList class="scrollable" :url="url" :parse="parse">
       <template slot-scope="{list, loading, none}">
         <ul>
           <li v-for="(item,index) in list" :key="index" @click="goDetail(item)">
-            <div class="name"><strong class="nick">{{item.creator_nick}}</strong> mở rút thưởng <strong>{{item.prise_str}}</strong></div>
-            <div class="time">{{item.end_date}} Mở</div>
+            <!--  <strong>{{item.prise_str}}</strong> -->
+            <div class="name">
+              <strong class="nick">{{item.creator_nick}}</strong> mở, phần thưởng: <strong class="mg">{{item.prise_name}}</strong>
+            </div>
+            <div class="time">{{item.end_date}} mở thưởng, nhấn để xem chi tiết.</div>
             <i class="arr"></i>
           </li>
         </ul>
-        <p class="lastTips">Chỉ hiện phiếu 3 ngày gần đây</p>
+        <p class="lastTips">Chỉ hiện lịch sử 3 ngày gần đây</p>
         <div v-show="loading" class="scrollLoading">{{lang.list_loading}}</div>
         <div v-show="none" class="scrollNone">{{lang.list_empty}}</div>
       </template>
@@ -138,7 +141,6 @@ export default {
         justify-content: center;
         position: relative;
         .name {
-          color: rgba(255, 255, 255, 0.6);
           display: flex;
           align-items: center;
           .nick {
@@ -146,13 +148,22 @@ export default {
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+            margin-right: 0.1rem;
+            color: #ffff00;
+            font-weight: 600;
           }
           strong {
             color: #fff;
+            &.mg {
+              margin-left: 0.1rem;
+              color: #ffff00;
+              font-weight: 600;
+            }
           }
         }
         .time {
           font-size: 0.26rem;
+          margin-top: 0.1rem;
         }
         .arr {
           display: block;

@@ -5,7 +5,7 @@
       </div> -->
       <div class="settIngCon">
         <div class="tipsBox">
-          <h3 class="tipsTitle">Rút thưởng</h3>
+          <h3 class="tipsTitle">Cách mở rút thưởng:</h3>
           <p class="tips" v-if="luckType">
             Bạn dùng xu để mua VIP hoặc quà phòng Kara làm phần thưởng. Người trong phòng tặng quà yêu cầu sẽ có cơ hội rút thưởng. Khi hết đếm ngược, 1 trong số những người tham dự sẽ nhận phần thưởng của bạn.
             <br />Nếu không ai tham gia, phần thưởng gửi lại cho người mở.
@@ -18,7 +18,7 @@
         </div>
         <div class="from" v-if="luckType">
           <div class="fromItem">
-            <span>Cách rút thưởng</span>
+            <span>Quà tặng:</span>
             <div class="itemCon" @click="changGift()">
               <span v-if="actGift.id" class="actGift1"><img :src="actGift.pic" alt=""><strong>{{actGift.name}}</strong></span>
               <span v-else class="noSet">Chưa chọn</span>
@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="fromItem">
-            <span>Đếm ngược</span>
+            <span>Đếm ngược: </span>
             <div class="itemCon" @click="setTime()">
               <span v-if="timeIndex != null">{{timeArr[timeIndex]}}phút</span>
               <span v-else class="noSet">Chưa chọn</span>
@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="fromItem">
-            <span>Chọn phần thưởng</span>
+            <span>Phần thưởng</span>
             <!-- <div class="itemCon"> -->
             <div class="itemCon" @click="setSgift(1)">
               <span v-if="sActGift.id" class="actGift1"><img :src="sActGift.pic" alt="" v-if="sActGift.prise_type !=1"> <strong :class="{textIndex:sActGift.prise_type ==1}">{{sActGift.name}}</strong> </span>
@@ -44,7 +44,7 @@
             <!-- </div> -->
           </div>
           <div class="setpeopleType">
-            <span>Ai được tham dự</span>
+            <span>Người rút thưởng:</span>
             <div class="peopleType">
               <span @click="setPeopleType(1)"><i :class="{act:peopleType == 1}"></i><strong>Tất cả</strong></span>
               <span @click="setPeopleType(2)"><i :class="{act:peopleType == 2}"></i><strong>Người trên mic</strong></span>
@@ -52,7 +52,7 @@
           </div>
         </div>
         <div class="setGift" v-else>
-          <h3 class="tipsTitle">Chọn phần thưởng</h3>
+          <h3 class="tipsTitle">Phần thưởng</h3>
           <div class="fiexList">
             <ul>
               <li v-for="(item,index) in fixedDrawList" :key="index" :class="{act:index== fixeActIndex}" @click="setFixedGift(item,index)">
@@ -109,7 +109,7 @@
             <div class="vipBox">
               <div class="vipItem">
                 <div class="item" :class="{act:vipType == index}" @click="vipClick(index,item)" v-for="(item,index) in nowTabGift[0]" :key="index">
-                  <span class="tm">{{item.prise_days}}ngày</span>
+                  <span class="tm">{{item.prise_days}} ngày</span>
                   <span class="price"><i></i> <strong>{{item.price}}</strong></span>
                 </div>
               </div>
@@ -170,7 +170,7 @@
       <!-- 倒計時選擇彈窗 -->
       <van-popup v-model="showTimePup" position="bottom" :round="true">
         <ul class="timeList">
-          <li v-for="(item,index) in timeArr" :key="index" :class="{act:timeIndex == index}" @click="timeQuery(index)">{{item}}phút</li>
+          <li v-for="(item,index) in timeArr" :key="index" :class="{act:timeIndex == index}" @click="timeQuery(index)">{{item}} phút</li>
         </ul>
       </van-popup>
       <div class="mask" v-if="showCommitPup">
@@ -308,7 +308,7 @@ export default {
         this.showSgiftPup = !this.showSgiftPup
         this.sActGift = Object.assign({}, this.sActGiftT)
       } else {
-        toast(`Chọn phần thưởng!`)
+        toast(`Phần thưởng!`)
       }
     },
     setTime() {
@@ -538,6 +538,7 @@ body {
         align-items: center;
         margin-left: 0.5rem;
         span {
+          white-space: nowrap;
           color: rgba(55, 55, 55, 1);
           display: flex;
           align-items: center;

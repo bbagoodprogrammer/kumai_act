@@ -2,30 +2,34 @@
   <div class="rule">
     <i class="close" @click="closeRules()"></i>
     <div class="tips">
-      <p>每天做任務獲得甜品材料，製作歡樂甜品（背包禮物），獲得歡樂值還能贏限定頭像框、座駕、金幣獎勵</p>
+      <p>每天做任務獲得甜品材料，製作聖誕甜品（背包禮物），獲得歡樂值還能贏限定頭像框、座駕、金幣獎勵</p>
       <div class="tabs">
         <span :class="{act:type==1}" @click="tabClick(1)">活動規則</span>
         <span :class="{act:type==2}" @click="tabClick(2)">活動獎勵</span>
       </div>
-      <p class="actTime">2020/09/08 18:00-09/22 21:00</p>
+      <p class="actTime">2020/12/10 18：00-12/25 22：00</p>
       <div class="tipsCon">
         <div class="tips1" v-if="type==1">
-          <h6>如何玩轉歡樂甜品屋？</h6>
-          <p>做任務收集甜品材料,製作歡樂甜品（背包禮物）獲得歡樂值>>積纍歡樂值完成進階任務領取獎勵</p>
-          <p class="blue">*製作成功的歡樂甜品將發放到用戶背包可在任意房間送給任意其他用戶</p>
-          <h6>如何玩轉歡樂甜品屋？</h6>
+          <h6>如何玩轉甜品屋？</h6>
+          <p>做任務收集甜品材料,製作聖誕甜品（背包禮物）獲得歡樂值>>積纍歡樂值完成進階任務領取獎勵</p>
+          <p class="blue">*製作成功的甜品將發放到玩家背包，可在任意房間送給任意其他玩家；活動中所有背包禮物的有效期為7天，不送出去會失效哦~</p>
+          <h6>如何玩轉甜品屋？</h6>
           <img src="../assets/img/rules/ruleTab1.png" alt="" class="img1">
           <h6>如何積累歡樂值？</h6>
-          <p>製作完成指定歡樂甜品后即可獲得對應歡樂值</p>
+          <p>製作完成指定聖誕甜品后即可獲得對應歡樂值</p>
           <img src="../assets/img/rules/ruleTab2.png" alt="" class="img2">
+          <p class="blue">*本活動與蘋果公司無關</p>
+          <p class="blue">*活動最終解釋權歸活動主辦方所有</p>
         </div>
         <div class="tips2" v-else>
           <h6>進階任務及獎勵</h6>
           <img src="../assets/img/rules/ruleTab3.png" alt="" class="img3">
-          <h6>如何玩轉歡樂甜品屋？</h6>
+          <h6>如何玩轉甜品屋？</h6>
           <img src="../assets/img/rules/ruleTab4.png" alt="" class="img4">
           <h6>注意事項</h6>
           <p class="blue">榜單獎勵在5個工作日內發放</p>
+          <p class="blue">*本活動與蘋果公司無關</p>
+          <p class="blue">*活動最終解釋權歸活動主辦方所有</p>
         </div>
       </div>
     </div>

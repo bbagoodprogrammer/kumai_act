@@ -7,8 +7,8 @@
           <p class="houseName">Gian hàng đồ ngọt của <em>{{nick}}</em></p>
         </div>
         <div class="tips">
-          <h3>Gian hàng đồ ngọt</h3>
-          <p>Mở Gian hàng đồ ngọt, sảng khoái cả mùa hè, tạo túi quà đồ ngọt sảng khoái</p>
+          <h3>Noel đến</h3>
+          <p>Mở gian hàng Noel, tạo nên những món quà Noel cho bạn bè, nhận quà đặc biệt đón năm mới.</p>
         </div>
         <div class="gift">
           <span v-for="(item,index) in giftArr" :key="index">
@@ -50,7 +50,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.vxc('setReg', true)
           this.vxc('setSingUp')
-          this.toast('Gian hàng đồ ngọt của bạn đã khai trương!Mau chế biến đồ đồ ngọt')
+          this.toast("Gian hàng Noel của bạn đã được mở! Mau tạo sản phẩm cho gian hàng của bạn.")
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -154,7 +154,7 @@ export default {
       display: block;
       width: 0.51rem;
       height: 0.51rem;
-      background: url(../assets/img/close2.png);
+      background: url(../assets/img/close.png);
       background-size: 100% 100%;
       position: absolute;
       right: 0.34rem;

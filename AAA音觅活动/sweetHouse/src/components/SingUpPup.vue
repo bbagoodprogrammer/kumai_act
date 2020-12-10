@@ -4,11 +4,11 @@
       <div class="sCon" v-if="showSingUp">
         <i class="close" @click="closeSingUp()"></i>
         <div class="house">
-          <p class="houseName"><em>{{nick}}</em>的歡樂甜品屋</p>
+          <p class="houseName"><em>{{nick}}</em>的甜品屋</p>
         </div>
         <div class="tips">
-          <h3>歡樂甜品屋</h3>
-          <p>開一間歡樂甜品屋，合成歡樂甜品 <em>背包禮物</em>，還能贏 <em>限定頭像框</em>、<em>座駕及金幣</em>獎勵</p>
+          <h3>甜品屋</h3>
+          <p>開一間甜品屋，合成聖誕甜品 <em>背包禮物</em>，還能贏 <em>限定頭像框</em>、<em>座駕及金幣</em>獎勵</p>
         </div>
         <div class="gift">
           <span v-for="(item,index) in giftArr" :key="index">
@@ -50,7 +50,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.vxc('setReg', true)
           this.vxc('setSingUp')
-          this.toast('你的歡樂甜品屋開張啦！！<br/>快去製作歡樂甜品吧')
+          this.toast('你的甜品屋開張啦！！<br/>快去製作聖誕甜品吧')
         } else {
           this.toast(res.data.response_status.error)
         }

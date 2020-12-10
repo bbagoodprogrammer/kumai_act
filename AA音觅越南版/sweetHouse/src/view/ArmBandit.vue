@@ -5,13 +5,12 @@
       <div class="bar" @click="downApp()"></div>
     </div> -->
     <div class="header">
-      <Box :nick="nick" />
       <div class="house" :class="{easy: !reg ||  easy.less.length > 1}">
         <div class="userTitle">
-          <p v-if="!reg">Gian hàng chưa khai trương <strong>Điểm sảng khoái:????</strong> </p>
+          <p v-if="!reg">Gian hàng chưa khai trương <strong>Điểm:????</strong> </p>
           <div class="userHouers" v-else>
             <p>Gian hàng đồ ngọt của <em> {{nick}}</em></p>
-            <strong>Điểm sảng khoái:{{score}}</strong>
+            <strong>Điểm:{{score}}</strong>
           </div>
         </div>
         <div class="people"></div>
@@ -23,6 +22,7 @@
           <img :src="require(`../assets/img/sweets/creatIcon${easy.id}.png`)" alt="">
           <p class="less">Còn {{easy.less[0].count}} phần {{easy.less[0].name}} có thể chế biến {{easy.name}}</p>
         </div>
+        <Box :nick="nick" />
       </div>
       <div class="wards">
         <div class="title"></div>
@@ -237,8 +237,8 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: url(../assets/img/banner.png) center 0 no-repeat;
-  background-size: 100% auto;
+  // background: url(../assets/img/banner.png) center 0 no-repeat;
+  // background-size: 100% auto;
   .shareBar {
     position: fixed;
     z-index: 1000;
@@ -255,31 +255,36 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 8.8rem;
-    padding-top: 1.49rem;
+    // height: 8.8rem;
+    // padding-top: 1.49rem;
     position: relative;
     .house {
       width: 7.5rem;
-      height: 7.97rem;
+      height: 8.52rem;
       background: url(../assets/img/houseBg2.png) no-repeat;
-      background-size: 100% 100%;
+      background-size: 100% auto;
       margin: 0 auto 0;
       position: relative;
       &.easy {
         background: url(../assets/img/houseBg.png) no-repeat;
-        background-size: 100% 100%;
+        background-size: 100% auto;
       }
       .userTitle {
         width: 4.5rem;
-        height: 0.7rem;
+        height: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
-        top: 0.65rem;
+        top: 1rem;
         left: 1.5rem;
         text-align: center;
-        color: RGBA(141, 75, 255, 1);
-        // p {
-        //   font-weight: 600;
-        // }
+        text-shadow: RGBA(251, 150, 31, 1) 1px 0 0,
+          RGBA(251, 150, 31, 1) 0 1px 0, RGBA(251, 150, 31, 1) -1px 0 0,
+          RGBA(251, 150, 31, 1) 0 -1px 0;
+        p {
+          font-weight: 600;
+        }
         strong {
           display: block;
           font-size: 0.22rem;
@@ -293,7 +298,7 @@ body::-webkit-scrollbar {
             justify-content: center;
             em {
               display: block;
-              max-width: 1.6rem;
+              max-width: 2.3rem;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
@@ -307,15 +312,15 @@ body::-webkit-scrollbar {
         background: url(../assets/img/people.png);
         background-size: 100% 100%;
         position: absolute;
-        top: 1.97rem;
-        left: 0.92rem;
+        top: 2.75rem;
+        left: 1.1rem;
       }
       .sweetsStatus {
-        width: 2.2rem;
-        height: 2.4rem;
+        width: 2.25rem;
+        height: 2.35rem;
         position: absolute;
         right: 0.9rem;
-        top: 2.05rem;
+        top: 3rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -343,9 +348,9 @@ body::-webkit-scrollbar {
           line-height: 0.62rem;
           background: url(../assets/img/creat2.png);
           background-size: 100% 100%;
-          font-size: 0.22rem;
+          font-size: 0.24rem;
           color: rgba(114, 0, 91, 1);
-          font-weight: 500;
+          font-weight: 600;
           margin-top: 0.2rem;
         }
       }
@@ -355,12 +360,11 @@ body::-webkit-scrollbar {
       height: 2.91rem;
       background: url(../assets/img/wards.png);
       background-size: 100% 100%;
-      position: absolute;
-      top: 7.44rem;
-      left: 0.22rem;
+      position: relative;
+      margin: -0.3rem auto;
       .title {
         width: 4.67rem;
-        height: 1.47rem;
+        height: 1.22rem;
         background: url(../assets/img/title1.png) no-repeat;
         background-size: 100% 100%;
         position: absolute;
@@ -391,8 +395,9 @@ body::-webkit-scrollbar {
     }
     .tipsBox {
       position: absolute;
+      z-index: 100;
       right: 0;
-      top: 5.78rem;
+      top: 0.78rem;
       width: 1.54rem;
       span {
         display: block;
@@ -500,6 +505,7 @@ body::-webkit-scrollbar {
     }
     > p {
       text-align: center;
+      color: rgba(233, 140, 86, 1);
       i {
         display: inline-block;
         width: 0.3rem;

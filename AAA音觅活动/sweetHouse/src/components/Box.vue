@@ -141,8 +141,8 @@ export default {
         share({
           from: this.packets[this.showIndex].score,
           url: `http://activity.udateapp.com/static_html/2020/sweetHouse/index.html?type=${this.packets[this.showIndex].score}&uid=${this.uid}&score=${this.packets[this.showIndex].score}`,
-          title: `制作了多款歡樂甜品，歡樂值达到${this.score}`,
-          desc: `制作了多款歡樂甜品，歡樂值达到${this.score}`,
+          title: `制作了多款聖誕甜品，歡樂值达到${this.score}`,
+          desc: `制作了多款聖誕甜品，歡樂值达到${this.score}`,
           image: 'http://activity.udateapp.com/static_html/2020/sweetHouse/share.jpg'
         })
       } catch (e) { }

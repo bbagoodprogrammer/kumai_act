@@ -76,7 +76,7 @@ export default {
 
 <style lang="scss">
 body {
-  background-color: rgba(93, 197, 230, 1);
+  background-color: rgba(40, 48, 121, 1);
 }
 #app {
   max-width: 750px;
