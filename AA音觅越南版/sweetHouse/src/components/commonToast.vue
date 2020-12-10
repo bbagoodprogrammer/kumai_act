@@ -62,20 +62,20 @@ export default {
     line-height: 1rem;
     text-align: center;
     font-size: 0.4rem;
-    color: rgba(41, 182, 255, 1);
+    color: rgba(215, 55, 17, 1);
     font-weight: bold;
   }
   > p {
     font-size: 0.24rem;
-    color: rgba(89, 187, 237, 1);
+    color: rgba(233, 140, 86, 1);
     text-align: center;
     height: 1rem;
   }
   .ok {
     width: 5.07rem;
     height: 0.75rem;
-    background: url(../assets/img/singUpSucBtn.png);
-    background-size: 100% 100%;
+    // background: url(../assets/img/singUpSucBtn.png);
+    // background-size: 100% 100%;
     margin: 0 auto;
     text-align: center;
     line-height: 0.75rem;

@@ -337,20 +337,20 @@ export default {
           height: 2.3rem;
           position: relative;
           .top1Tips {
-            width: 1.65rem;
-            height: 1.65rem;
+            width: 2.04rem;
+            height: 2.04rem;
             position: absolute;
-            left: 0.53rem;
-            top: 0.34rem;
+            left: 0.35rem;
+            top: 0;
             z-index: 2;
           }
           .top1Avatar {
-            width: 1.65rem;
-            height: 1.65rem;
+            width: 2.04rem;
+            height: 2.04rem;
             border-radius: 50%;
             position: absolute;
-            left: 0.53rem;
-            top: 0.34rem;
+            left: 0.35rem;
+            top: 0;
           }
         }
         .userMsg {
@@ -480,12 +480,12 @@ export default {
 }
 .scrollLoading {
   text-align: center;
-  color: #056005;
+  color: #fff;
   font-size: 80%;
 }
 .scrollNone {
   text-align: center;
-  color: #056005;
+  color: #fff;
   font-size: 80%;
 }
 #refresh {

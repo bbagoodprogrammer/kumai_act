@@ -13,9 +13,9 @@
     <div class="downTimebox">
       <div class="timeTips">
         <i class="left"></i>
-        <p v-if="showType == nowTab ">赛段结束倒计时</p>
-        <p v-else-if="showType > nowTab">赛段开始倒计时</p>
-        <p v-else>赛段已结束</p>
+        <p v-if="showType == nowTab ">賽段結束倒計時</p>
+        <p v-else-if="showType > nowTab">賽段開始倒計時</p>
+        <p v-else>賽段已結束</p>
         <i class="right"></i>
       </div>
       <!-- surplusTime.day &&-->
@@ -53,9 +53,9 @@
     <!-- 禮物圖片 -->
     <img src="../assets/img/rankGift.png" alt="" class="rankGift" v-if="showType == 2">
     <!-- 文案提示 -->
-    <p v-if="showType == 1" class="tankTips">本賽段閃耀值=守護值+家族成員作品/K房金幣收禮魅力值</p>
-    <p v-else-if="showType == 2" class="tankTips">本賽段閃耀值=家族成員作品/K房金幣收禮魅力值</p>
-    <p v-else-if="showType == 3" class="tankTips">本賽段閃耀值=家族成員作品/K房收禮魅力值<br /> （本賽段本年度前五十家族有加成6%-10%的閃耀值）<span>本賽段每日21:00-21:10分有10%魅力值加成</span></p>
+    <p v-if="showType == 1" class="tankTips">本賽段閃光值=守護值+家族成員作品/K房金幣收禮魅力值</p>
+    <p v-else-if="showType == 2" class="tankTips">本賽段閃光值=家族成員作品/K房金幣收禮魅力值</p>
+    <p v-else-if="showType == 3" class="tankTips">本賽段閃光值=家族成員作品/K房收禮金幣魅力值 <br /> （本賽段本年度前五十家族有6%-10%的閃光值加成）<span>本賽段每日21:00-21:10分有10%魅力值加成</span></p>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs" v-if="showType == 1">
       <div class="tabs">
@@ -222,7 +222,7 @@ import getDate from "../utils/getDate"
 
 export default {
   components: { DayTabs },
-  props: ['stime1', 'stime2', 'stime3', 'etime1', 'etime2', 'etime3'],
+  props: ['stime1', 'stime2', 'stime3', 'etime1', 'etime2', 'etime3','all_task'],
   data() {
     return {
       mainTab: 0,
@@ -253,6 +253,13 @@ export default {
       pupFid: 0
     }
   },
+watch:{
+  all_task(val){
+    if(val){
+      this.mainTabClick(1)
+    }
+  }
+},
   computed: {
     ...mapState(['rankGroups', 'nowTab', 'task', "nowShowType", "dateArr", "inited", "isShare", "actStatus", "showType", "timeObj"]),
     rankKey() {

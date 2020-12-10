@@ -11,7 +11,7 @@
       <transition name="slide">
         <div class="giftBox" v-if="closePup">
           <i class="close" @click="closeGiftPup()"></i>
-          <div class="title">Điểm sảng khoái đạt {{packets[showIndex].score}}</div>
+          <div class="title">Điểm đạt {{packets[showIndex].score}}</div>
           <div class="giftItem">
             <span v-for="(item,index) in gift[showIndex+1].gift" :key="index">
               <span class="imgBox">
@@ -149,8 +149,8 @@ export default {
         share({
           from: this.packets[this.showIndex].score,
           url: `http://activity.alochatapp.com/static_html/2020/sweetHouse/index.html?type=${this.packets[this.showIndex].score}&uid=${this.uid}&score=${this.packets[this.showIndex].score}`,
-          title: `tạo nhiều đồ ngọt，điểm sảng khoái ${this.score}`,
-          desc: `tạo nhiều đồ ngọt，điểm sảng khoái ${this.score}`,
+          title: `tạo nhiều đồ ngọt，Điểm ${this.score}`,
+          desc: `tạo nhiều đồ ngọt，Điểm ${this.score}`,
           image: 'http://activity.alochatapp.com/static_html/2020/sweetHouse/share.jpg'
         })
       } catch (e) { }
@@ -166,7 +166,8 @@ export default {
   width: 7.5rem;
   height: 2rem;
   position: absolute;
-  top: 0.31rem;
+  bottom: 0.6rem;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -266,7 +267,7 @@ export default {
       line-height: 0.76rem;
       text-align: center;
       font-size: 0.34rem;
-      color: rgba(41, 182, 255, 1);
+      color: rgba(174, 6, 5, 1);
       font-weight: 800;
     }
     .giftItem {
@@ -298,7 +299,7 @@ export default {
         height: 0.4rem;
         line-height: 0.4rem;
         text-align: center;
-        color: rgba(89, 187, 237, 1);
+        color: rgba(212, 62, 25, 1);
         font-size: 0.24rem;
       }
     }
@@ -353,8 +354,8 @@ export default {
     .boxShare {
       width: 5.07rem;
       height: 0.75rem;
-      background: url(../assets/img/singUpSucBtn.png);
-      background-size: 100% 100%;
+      // background: url(../assets/img/singUpSucBtn.png);
+      // background-size: 100% 100%;
       margin: 0 auto;
       p {
         font-size: 0.24rem;

@@ -11,7 +11,7 @@
       </div>
     </div>
     <!-- <div class="wards"></div> -->
-    <TabsScrollLoadList :stime1="stime1" :stime2="stime2" :stime3="stime3" :etime1="etime1" :etime2="etime2" :etime3="etime3" ref="scorll" @getDefaultData="getDefaultData"></TabsScrollLoadList>
+    <TabsScrollLoadList :stime1="stime1" :stime2="stime2" :stime3="stime3" :etime1="etime1" :etime2="etime2" :etime3="etime3" :all_task="all_task" ref="scorll"  @getDefaultData="getDefaultData"></TabsScrollLoadList>
     <act-footer :fid="fid"></act-footer>
     <!-- <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
     <div class="mask" v-show="showHistory">
@@ -68,6 +68,7 @@ export default {
       hList: [],
       nowTab: 0,
       showBannerBg: true,
+      all_task: false
     }
   },
   created() {
@@ -86,7 +87,8 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { ctime, second, stime, stime1, stime2, stime3, etime, etime1, etime2, etime3, fid, list, rank, step, step_level, user_info, task, isRegistered, charm } = response_data
+          const { all_task, ctime, second, stime, stime1, stime2, stime3, etime, etime1, etime2, etime3, fid, list, rank, step, step_level, user_info, task, isRegistered, charm } = response_data
+          this.all_task = all_task
           this.ctime = ctime
           this.stime1 = stime1
           this.stime2 = stime2

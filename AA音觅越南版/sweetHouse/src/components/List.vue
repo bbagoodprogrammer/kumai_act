@@ -88,7 +88,7 @@
                 <img v-lazy="item.avatar" alt="">
               </div>
               <div class="nick">{{item.nick}}</div>
-              <div class="score">Điểm sảng khoái<em>{{item.score}}</em></div>
+              <div class="score">Điểm<em>{{item.score}}</em></div>
             </li>
           </ul>
           <div class="inivitBtn" @click="showPelple()"></div>
@@ -149,12 +149,12 @@
             <div class="title">Chế biến thành công</div>
             <img :src="require(`../assets/img/sweets/sweet_${creatIndex}.png`)" alt="" class="dessertsImg">
             <p class="creatName">{{desserts[creatIndex].name}}x{{cNum}}</p>
-            <p class="creatScore">thêm điểm sảng khoái:{{desserts[creatIndex].score * cNum}}</p>
+            <p class="creatScore">thêm Điểm:{{desserts[creatIndex].score * cNum}}</p>
             <div class="goPack" @click="doTask('mic')">vào túi quà xem</div>
           </div>
           <div class="creatSuc" v-show="creatType == 2">
             <canvas id="creatAni"></canvas>
-            <p class="doing">Đang chế biến nguyên liệu ......{{rSecond}}s</p>
+            <p class="doing">Đồ ngọt đang được tạo ......{{rSecond}}s</p>
           </div>
         </div>
       </transition>
@@ -481,15 +481,15 @@ export default {
 }
 .list {
   width: 6.68rem;
-  height: 13.81rem;
+  height: 14.1rem;
   background: url(../assets/img/listBg.png);
   background-size: 100% 100%;
-  margin: 0.81rem auto 0;
+  margin: 1.4rem auto 0;
   padding: 0.26rem 0.2rem 0;
   position: relative;
   > .title {
     width: 4.67rem;
-    height: 1.47rem;
+    height: 1.22rem;
     background: url(../assets/img/title2.png);
     background-size: 100% 100%;
     position: absolute;
@@ -513,7 +513,7 @@ export default {
         align-items: center;
         justify-content: space-between;
         font-size: 0.4rem;
-        color: rgba(57, 114, 166, 1);
+        color: rgba(212, 62, 25, 1);
         font-weight: 500;
         .score {
           width: 1.6rem;
@@ -551,6 +551,7 @@ export default {
             align-items: center;
             position: relative;
             margin-bottom: 0.21rem;
+            color: rgba(215, 55, 18, 1);
             i {
               width: 0.4rem;
               height: 0.4rem;
@@ -590,7 +591,7 @@ export default {
           background: url(../assets/img/creat1.png);
           background-size: 100% 100%;
           text-align: center;
-          font-size: 0.26rem;
+          font-size: 0.28rem;
           color: rgba(37, 186, 74, 1);
           line-height: 0.62rem;
           font-weight: 500;
@@ -606,6 +607,7 @@ export default {
           bottom: 0.23rem;
           font-size: 0.26rem;
           font-weight: 500;
+          color: rgba(215, 55, 18, 1);
         }
       }
     }
@@ -727,10 +729,10 @@ export default {
       ul {
         li {
           width: 5.94rem;
-          min-height: 1.17rem;
+          height: 1.17rem;
           background: url(../assets/img/taskItemBg.png);
           background-size: 100% 100%;
-          padding: 0.1rem 0.15rem 0.35rem;
+          padding: 0.1rem 0.15rem 0.25rem;
           display: flex;
           align-items: center;
           .taskMsg {
@@ -741,7 +743,7 @@ export default {
             justify-content: center;
             padding-left: 0.18rem;
             .name {
-              font-size: 0.28rem;
+              font-size: 0.24rem;
               font-weight: 500;
               i {
                 display: inline-block;
@@ -777,7 +779,7 @@ export default {
             .giftBar {
               width: 2.87rem;
               height: 0.12rem;
-              background: rgba(104, 179, 255, 1);
+              background: rgba(204, 101, 41, 1);
               box-shadow: 0 0.01rem 0.09rem 0 rgba(8, 78, 126, 0.38);
               border-radius: 0.06rem;
               margin-top: 0.08rem;
@@ -812,29 +814,30 @@ export default {
             }
           }
           .status {
-            width: 1.7rem;
+            width: 1.86rem;
             height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             .btn {
-              width: 1.55rem;
+              width: 1.86rem;
               height: 0.52rem;
               background: url(../assets/img/creat2.png);
-              background-size: auto 100%;
+              background-size: 100% 100%;
               text-align: center;
               line-height: 0.52rem;
-              font-size: 0.22rem;
+              font-size: 0.24rem;
               color: rgba(114, 0, 91, 1);
-              font-weight: 500;
+              font-weight: 600;
+              white-space: nowrap;
               &.not {
                 background: url(../assets/img/getBlack.png);
-                background-size: auto 100%;
+                background-size: 100 100%;
               }
               &.get {
                 background: url(../assets/img/getRaws.png);
-                background-size: auto 100%;
+                background-size: 100 100%;
               }
             }
             .oneLiner {
@@ -842,7 +845,7 @@ export default {
               .liner {
                 width: 1.2rem;
                 height: 0.12rem;
-                background: rgba(104, 179, 255, 1);
+                background: rgba(204, 101, 41, 1);
                 box-shadow: 0 0.01rem 0.09rem 0 rgba(8, 78, 126, 0.38);
                 border-radius: 0.06rem;
                 position: relative;
@@ -859,7 +862,7 @@ export default {
             }
             .invite {
               font-size: 0.24rem;
-              color: rgba(255, 21, 54, 1);
+              color: rgba(164, 67, 10, 1);
               font-weight: 600;
             }
           }
@@ -867,10 +870,9 @@ export default {
       }
     }
     .lastTips {
-      padding: 0 0.3rem;
       text-align: center;
       font-size: 0.24rem;
-      margin-top: 0rem;
+      margin-top: 0.7rem;
     }
   }
   .sharePup {
@@ -883,7 +885,6 @@ export default {
     .giftTips {
       text-align: center;
       margin-bottom: 0.1rem;
-      padding: 0 0.25rem;
       i {
         display: inline-block;
         width: 0.3rem;
@@ -1045,7 +1046,7 @@ export default {
       line-height: 1.1rem;
       font-size: 0.4rem;
       font-weight: 600;
-      color: rgba(41, 182, 255, 1);
+      color: rgba(174, 6, 5, 1);
     }
     .creatQuyer {
       .con {
@@ -1065,7 +1066,7 @@ export default {
             white-space: nowrap;
             font-size: 0.24rem;
             text-align: center;
-            color: rgba(41, 182, 255, 1);
+            color: rgba(233, 140, 86, 1);
           }
         }
         .creatNum {
@@ -1085,7 +1086,7 @@ export default {
               border: none;
               outline: none;
               background: #fff;
-              color: rgba(59, 188, 255, 1);
+              color: rgba(196, 68, 46, 1);
               font-size: 0.4rem;
               text-align: center;
             }
@@ -1099,13 +1100,13 @@ export default {
           .tips {
             white-space: nowrap;
             font-size: 0.24rem;
-            color: rgba(41, 182, 255, 1);
+            color: rgba(233, 140, 86, 1);
             margin-top: 0.3rem;
           }
           .overNum {
             white-space: nowrap;
             font-size: 0.24rem;
-            color: rgba(255, 53, 86, 1);
+            color: rgba(174, 6, 5, 1);
           }
         }
       }
@@ -1120,13 +1121,13 @@ export default {
           line-height: 0.67rem;
         }
         .cancel {
-          color: rgba(133, 213, 254, 1);
-          background: RGBA(228, 247, 254, 1);
-          border-radius: 0 0 0 0.3rem;
+          color: rgba(247, 140, 76, 1);
+          background: RGBA(248, 234, 221, 1);
+          border-radius: 0 0 0 0.5rem;
         }
         .ok {
-          background: RGBA(126, 212, 255, 1);
-          border-radius: 0 0 0.3rem 0;
+          background: RGBA(248, 176, 129, 1);
+          border-radius: 0 0 0.5rem 0;
         }
       }
     }
@@ -1154,9 +1155,10 @@ export default {
       }
       .creatName {
         text-align: center;
-        color: rgba(89, 187, 237, 1);
+        color: rgba(233, 140, 86, 1);
         font-size: 0.24rem;
         font-weight: 500;
+        height: 0.36rem;
       }
       .creatScore {
         text-align: center;
@@ -1168,8 +1170,8 @@ export default {
         height: 0.69rem;
         line-height: 0.69rem;
         text-align: center;
-        background: RGBA(137, 214, 254, 1);
-        border-radius: 0 0 0.3rem 0.3rem;
+        background: RGBA(243, 168, 118, 1);
+        border-radius: 0 0 0.5rem 0.5rem;
       }
     }
     .close {
@@ -1185,7 +1187,7 @@ export default {
   display: block;
   width: 0.51rem;
   height: 0.51rem;
-  background: url(../assets/img/close2.png);
+  background: url(../assets/img/close.png);
   background-size: 100% 100%;
   position: absolute;
   right: 0.34rem;

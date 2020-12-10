@@ -110,7 +110,7 @@
                 </div>
                 <div class="nick">
                   <div>{{item.nick}}</div>
-                  <div class="tips">還沒有歡樂甜品屋</div>
+                  <div class="tips">還沒有甜品屋</div>
                 </div>
                 <div class="shareBtn" :class="{share2:item.status == 1}" @click="shareAct(item,index)"></div>
               </div>
@@ -154,7 +154,7 @@
           </div>
           <div class="creatSuc" v-show="creatType == 2">
             <canvas id="creatAni"></canvas>
-            <p class="doing">歡樂甜品製作中......{{rSecond}}s</p>
+            <p class="doing">聖誕甜品製作中......{{rSecond}}s</p>
           </div>
         </div>
       </transition>
@@ -206,17 +206,17 @@ export default {
         {
           type: 1,
           msg: '水果',
-          tips: '可用於製作薄荷檸檬水、卡通冰激凌、抹茶蛋糕、草莓綿綿冰'
+          tips: '可用於製作麋鹿棉花糖、薑餅人、抹茶紅豆蛋糕、草莓雪人聖誕杯'
         },
         {
           type: 2,
           msg: '奶製品',
-          tips: '可用於製作卡通冰激凌、焦糖拿鐵、抹茶蛋糕、草莓綿綿冰'
+          tips: '可用於製作薑餅人、聖誕馬卡龍、抹茶紅豆蛋糕、草莓雪人聖誕杯'
         },
         {
           type: 3,
           msg: '繽紛小料',
-          tips: '可用於製作焦糖拿鐵、抹茶蛋糕、草莓綿綿冰'
+          tips: '可用於製作聖誕馬卡龍、抹茶紅豆蛋糕、草莓雪人聖誕杯'
         }
       ],
       rooms: {},
@@ -224,14 +224,14 @@ export default {
       invitedList: [],
       taskName: {
         mic: '在房間上麥15min（私密房不算）',
-        coin: '在房間送出500金幣',
+        coin: '在房間送出800金幣',
         share: '分享活動到line或fb',
         create: '創建/接唱/合聲作品',
         friend: '交友熱力每提升20',
-        invite: '邀請好友開歡樂甜品屋',
+        invite: '邀請好友開甜品屋',
         charge: '儲值任意金額',
         room: '自己房間的人氣值達到8000',
-        gift: '收到任意歡樂甜品禮物30份'
+        gift: '收到任意聖誕甜品禮物30份'
       },
       creatIndex: 0,
       maxTips: false,
@@ -375,8 +375,8 @@ export default {
           share({
             from: '2',
             url: `http://activity.udateapp.com/static_html/2020/sweetHouse/index.html?type=2&nick=${this.nick}`,
-            title: `我開了一家歡樂甜品屋，製作了很多歡樂好吃的甜品，快來一起玩吧`,
-            desc: `我開了一家歡樂甜品屋，製作了很多歡樂好吃的甜品，快來一起玩吧`,
+            title: `我開了一家甜品屋，製作了很多好吃的甜品，快來一起玩吧`,
+            desc: `我開了一家甜品屋，製作了很多好吃的甜品，快來一起玩吧`,
             image: 'http://activity.udateapp.com/static_html/2020/sweetHouse/share.jpg'
           })
         } catch (e) { }
@@ -454,7 +454,7 @@ export default {
     showRoomTips() {
       this.vxc('setToast', {
         title: "房間人氣值",
-        msg: '1玩家一分鐘貢獻10人氣值 <br/>1金幣貢獻1人氣值'
+        msg: '1玩家一分鐘貢獻8人氣值 <br/>1金幣貢獻1人氣值'
       })
     },
     closeTask() {

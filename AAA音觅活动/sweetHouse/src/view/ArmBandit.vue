@@ -7,15 +7,15 @@
     <div class="header">
       <div class="house" :class="{easy: !reg ||  easy.less.length > 1}">
         <div class="userTitle">
-          <p v-if="!reg">你的歡樂甜品屋還沒開張 <strong>歡樂值:????</strong> </p>
+          <p v-if="!reg">你的甜品屋還沒開張 <strong>歡樂值:????</strong> </p>
           <div class="userHouers" v-else>
-            <p><em>{{nick}}</em>的歡樂甜品屋</p>
+            <p><em>{{nick}}</em>的甜品屋</p>
             <strong>歡樂值：{{score}}</strong>
           </div>
         </div>
         <div class="people"></div>
         <div class="sweetsStatus" v-if="reg && easy.less.length == 0">
-          <p class="ok">有可製作的歡樂<br />歡樂甜品</p>
+          <p class="ok">有可製作的<br />聖誕甜品</p>
           <span class="scorllTop" @click="scorllTo()">點擊製作</span>
         </div>
         <div class="sweetsStatus" v-else-if="reg && easy.less.length == 1 ">
@@ -67,7 +67,7 @@
               </div>
             </li>
           </ul>
-          <p>成功邀請你開張歡樂甜品屋的好友，<br />有機會獲得 <i></i> x5份</p>
+          <p>成功邀請你開張甜品屋的好友，<br />有機會獲得 <i></i> x5份</p>
           <div class="singUpBtn" @click="invitSingUp()"></div>
         </div>
       </transition>
@@ -199,7 +199,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.showInviatPup = false
           this.vxc('setReg', true)
-          this.toast('你的歡樂甜品屋開張啦！！<br/>快去製作歡樂甜品吧')
+          this.toast('你的甜品屋開張啦！！<br/>快去製作聖誕甜品吧')
         } else {
           this.toast(res.data.response_status.error)
         }

@@ -7,7 +7,7 @@
           <div class="msg">
             <div class="nick">{{info.nick}}</div>
             <div class="tips">tạo nhiều đồ ngọt，</div>
-            <p class="tips">điểm sảng khoái<em>{{score}}</em> </p>
+            <p class="tips">Điểm<em>{{score}}</em> </p>
           </div>
         </div>
         <img src="../assets/img/share/share1Img.png" alt="" class="share1Img">
@@ -147,6 +147,7 @@ export default {
       display: flex;
       justify-content: space-between;
       margin-top: 0.15rem;
+
       span {
         img {
           width: 1.73rem;
@@ -157,6 +158,7 @@ export default {
           display: block;
           text-align: center;
           margin-top: 0.1rem;
+          color: rgba(212, 62, 25, 1);
         }
       }
     }
@@ -191,7 +193,7 @@ export default {
         text-align: center;
         line-height: 0.6rem;
         font-size: 0.32rem;
-        color: rgba(141, 75, 255, 1);
+        color: rgba(215, 55, 18, 1);
         font-weight: 600;
         display: flex;
         justify-content: center;

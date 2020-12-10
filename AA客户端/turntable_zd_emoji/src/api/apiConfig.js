@@ -102,25 +102,25 @@ function get(url, config) {
 
 //获取活动基础信息
 function getDefault(status) {
-    return axios.get(`/big_turntable/init.php?token=${token}&status=${status}&page=${entryType}`);
+    return axios.get(`/new_big_turntable/init.php?token=${token}&status=${status}&page=${entryType}`);
 }
 //抽奖
 function luckDraw(status) {
-    return axios.get(`/big_turntable/go.php?token=${token}&status=${status}&page=${entryType}`);
+    return axios.get(`/new_big_turntable/go.php?token=${token}&status=${status}&page=${entryType}`);
 }
 //抽奖记录
 function getHistroy(from) {
-    return axios.get(`/big_turntable/userrecord.php?token=${token}&from=${from}&page=${entryType}`);
+    return axios.get(`/new_big_turntable/userrecord.php?token=${token}&from=${from}&page=${entryType}`);
 }
 
 // 获取礼物列表
 function getGiftList(type) {
-    return axios.get(`/big_turntable/getpuzzlegiftlist.php?token=${token}&gift_type=${type}&page=${entryType}`)
+    return axios.get(`/new_big_turntable/getpuzzlegiftlist.php?token=${token}&gift_type=${type}&page=${entryType}`)
 }
 
 //兌換禮物
 function getGift(type, gid) {
-    return get(`/big_turntable/getpuzzlegift.php?token=${token}&gift_type=${type}&gift_id=${gid}&page=${entryType}`)
+    return get(`/new_big_turntable/getpuzzlegift.php?token=${token}&gift_type=${type}&gift_id=${gid}&page=${entryType}`)
 }
 
 //獲取表情包SVGA

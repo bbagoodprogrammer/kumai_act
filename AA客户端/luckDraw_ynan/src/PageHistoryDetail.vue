@@ -2,7 +2,7 @@
   <div class="page pageHistoryDetail">
     <div class="title"><i class="back" @click="$router.go(-1)"></i> {{actItem.end_date}}</div>
     <div class="luckUser">
-      <div class="title">trúng thưởng lớn!</div>
+      <div class="title"> Chúc mừng trúng thưởng!</div>
       <div class="userMsg">
         <div class="imgBox">
           <span class="bg"></span>
@@ -10,7 +10,8 @@
         </div>
         <div class="userName">
           <div class="nick">{{actItem.winner_nick}}</div>
-          <div class="gift">Thưởng: <img :src="actItem.prise_pic" alt=""> x1</div>
+          <!-- <img :src="actItem.prise_pic" alt=""> -->
+          <div class="gift">Thưởng: {{actItem.prise_name}} x1</div>
         </div>
       </div>
     </div>
@@ -142,9 +143,8 @@ export default {
   background-size: 100% 100%;
   margin: 0.08rem auto 0;
   .title {
-    font-size: 0.32rem;
-    color: rgba(255, 246, 94, 1);
-    font-size: 0.32rem;
+    font-size: 0.34rem;
+    // color: rgba(255, 246, 94, 1);
     height: 0.82rem;
     line-height: 0.95rem;
     text-align: center;
@@ -174,14 +174,16 @@ export default {
       }
     }
     .userName {
+      .nick {
+        font-size: 0.32rem;
+        color: #ffff00;
+        font-weight: 600;
+      }
       .gift {
         display: flex;
         align-items: center;
         font-size: 0.24rem;
-        color: rgba(255, 255, 255, 0.8);
-        .nick {
-          font-size: 0.32rem;
-        }
+        // color: rgba(255, 255, 255, 0.8);
         img {
           width: 0.48rem;
           height: 0.47rem;

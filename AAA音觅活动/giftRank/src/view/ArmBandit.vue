@@ -43,16 +43,16 @@
 
             <div class="giftBox">
               <h5>聖誕樹榜：</h5>
-              <p> 第一名：繽紛聖誕-頭像框（7天）、銀色瑪莎拉蒂座駕（7天）<br />
-                第二名：繽紛聖誕-頭像框（5天）<br />
-                第三名：繽紛聖誕-頭像框（3天）
+              <p> 第一名：歡樂聖誕-頭像框（7天）、銀色瑪莎拉蒂座駕（7天）<br />
+                第二名：歡樂聖誕-頭像框（5天）<br />
+                第三名：歡樂聖誕-頭像框（3天）
               </p>
               <h5>聖誕老人榜：</h5>
               <div class="giftBox">
                 <p>
-                  第一名：繽紛聖誕-頭像框（15天）、銀色瑪莎拉蒂座駕（10天）<br />
-                  第二名：繽紛聖誕-頭像框（7天）、銀色瑪莎拉蒂座駕（7天）<br />
-                  第三名：繽紛聖誕-頭像框（5天）
+                  第一名：歡樂聖誕-頭像框（15天）、銀色瑪莎拉蒂座駕（10天）<br />
+                  第二名：歡樂聖誕-頭像框（7天）、銀色瑪莎拉蒂座駕（7天）<br />
+                  第三名：歡樂聖誕-頭像框（5天）
                 </p>
               </div>
             </div>
@@ -234,8 +234,8 @@ body::-webkit-scrollbar {
     background: url(../assets/img/downTime.png);
     background-size: 100% 100%;
     position: absolute;
-    bottom: 0.44rem;
-    left: 1.16rem;
+    bottom: 0.7rem;
+    left: 1.27rem;
     > div {
       height: 100%;
       line-height: 0.6rem;
@@ -252,10 +252,12 @@ body::-webkit-scrollbar {
       }
     }
     .hours,
-    .min,
     .second {
-      margin-left: 0.25rem;
+      margin-left: 0.23rem;
       text-align: center;
+    }
+    .min {
+      margin-left: 0.24rem;
     }
     .second {
       margin-left: 0.25rem;
