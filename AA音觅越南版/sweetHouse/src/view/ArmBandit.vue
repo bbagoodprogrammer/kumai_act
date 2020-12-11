@@ -417,7 +417,7 @@ body::-webkit-scrollbar {
         margin: 0.1rem 0;
       }
       .ruleTips3 {
-        width: 2.02rem;
+        width: 1.09rem;
         height: 0.4rem;
         background: url(../assets/img/tips3.png) no-repeat;
         background-size: 100% 100%;

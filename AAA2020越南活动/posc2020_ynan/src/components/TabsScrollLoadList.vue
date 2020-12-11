@@ -253,7 +253,7 @@
                   <div class="nick">{{item.nick}}</div>
                   <div class="score"> <i></i> {{item.score}}</div>
                 </div>
-                <div class="nums">{{31 - item.rank}}</div>
+                <div class="nums">{{micList.length - item.rank +1}}</div>
               </li>
             </ul>
           </div>
@@ -1949,6 +1949,6 @@ export default {
   background-size: contain;
   transition: all 1s;
   text-indent: -999rem;
-  z-index: 1000;
+  z-index: 10000;
 }
 </style>

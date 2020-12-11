@@ -174,21 +174,21 @@ const downloader = new Downloader()
 const parser = new Parser({ disableWorker: true })
 
 window.onShareSuccess = async (from, uid, type, typeName) => {
-  if (type == 2 || type == 3 || type == 0) {
-    if (from != 2) {
-      api.shareSuc(from)
-      this.toast(`Chia sẻ thành công`)
-    } else {
-      api.shareCb().then(res => {
-        if (res.data.response_status.code == 0) {
-          store.commit('setTask', 'share')
-          this.toast(`Chia sẻ thành công`)
-        } else {
-          this.toast(res.data.response_status.error)
-        }
-      })
-    }
+  // if (type == 2 || type == 3 || type == 0) {
+  if (from != 2) {
+    api.shareSuc(from)
+    this.toast(`Chia sẻ thành công`)
+  } else {
+    api.shareCb().then(res => {
+      if (res.data.response_status.code == 0) {
+        store.commit('setTask', 'share')
+        this.toast(`Chia sẻ thành công`)
+      } else {
+        this.toast(res.data.response_status.error)
+      }
+    })
   }
+  // }
 }
 export default {
   props: ['nick'],
@@ -223,13 +223,13 @@ export default {
       invitedList: [],
       taskName: {
         mic: ' Lên mic trong phòng 15 phút (phòng khóa không tính) ',
-        coin: 'Phòng tặng đi 500 xu',
+        coin: 'Phòng tặng đi 800 xu',
         share: 'chia sẻ tới bạn bè ngoài app',
         create: 'Tạo tác phẩm mới/đăng tác phẩm hát nối/đăng tác phẩm song ca',
         friend: 'Tăng điểm kết bạn 20',
         invite: 'Mời bạn bè tham gia mở gian hàng đồ ngọt',
         charge: 'Nạp số xu bất kì',
-        room: 'Điểm sôi nổi phòng đạt 5000',
+        room: 'Điểm sôi nổi phòng đạt 8000',
         gift: 'nhận quà đồ ngọt mùa hè bất kì 15 chiếc',
       },
       creatIndex: 0,
@@ -833,11 +833,11 @@ export default {
               white-space: nowrap;
               &.not {
                 background: url(../assets/img/getBlack.png);
-                background-size: 100 100%;
+                background-size: 100% 100%;
               }
               &.get {
                 background: url(../assets/img/getRaws.png);
-                background-size: 100 100%;
+                background-size: 100% 100%;
               }
             }
             .oneLiner {

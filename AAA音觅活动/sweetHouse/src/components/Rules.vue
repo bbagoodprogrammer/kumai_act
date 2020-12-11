@@ -24,7 +24,7 @@
         <div class="tips2" v-else>
           <h6>進階任務及獎勵</h6>
           <img src="../assets/img/rules/ruleTab3.png" alt="" class="img3">
-          <h6>如何玩轉甜品屋？</h6>
+          <h6>榜单奖励</h6>
           <img src="../assets/img/rules/ruleTab4.png" alt="" class="img4">
           <h6>注意事項</h6>
           <p class="blue">榜單獎勵在5個工作日內發放</p>
@@ -66,7 +66,7 @@ export default {
     color: rgba(233, 140, 86, 1);
   }
   .tips {
-    padding: 0 0.51rem;
+    // padding: 0 0.51rem;
     .tabs {
       width: 5.65rem;
       height: 0.73rem;
@@ -95,6 +95,10 @@ export default {
     .tipsCon {
       height: 6.8rem;
       overflow-y: scroll;
+      h6,
+      p {
+        padding: 0 0.51rem;
+      }
     }
     .blue {
       color: rgba(174, 6, 5, 1);
@@ -120,9 +124,11 @@ export default {
       margin-left: 0.3rem;
     }
     .img4 {
+      display: block;
       width: 6.67rem;
       height: 4.29rem;
-      margin-left: -0.6rem;
+      margin-left: 0.2rem;
+      z-index: 10;
     }
   }
   .close {

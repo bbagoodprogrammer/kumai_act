@@ -58,7 +58,7 @@
         <div class="noData">
           <div class="man" :class="{girl:index==1}" v-for="(item,index) in nowAct.show?nowAct.list:kroomDefault" :key="index">
             <ul class="userList">
-              <li v-for="(item2,index) in item" :key="index" :class="'item' + index">
+              <li v-for="(item2,index) in item.slice(0, 3)" :key="index" :class="'item' + index">
                 <img :src="item2.avatar" alt="" class="defaultAv" v-if="!nowAct.show">
                 <div class="imgBox" :class="'top' + item2.rank" v-else @click="goUser(item2)">
                   <span class="avBg"></span>
@@ -67,7 +67,7 @@
                 <strong class="nick" :class="{act:nowAct.show}">{{item2.nick}}</strong>
               </li>
             </ul>
-            <div class="more" @click="showMore(item[index])" v-if="nowAct.show">Xem thêm</div>
+            <div class="more" @click="showMore(item)" v-if="nowAct.show">Xem thêm</div>
           </div>
         </div>
       </div>
@@ -228,7 +228,7 @@ export default {
         }
       } else {
         if (this.nowAct.data >= 100) {
-          if (this.nowAct.act_id == 5) {
+          if (this.nowAct.act_id == 7) {
             return `Đã có ${this.nowAct.data} gia tộc tham gia`
           } else if (this.nowAct.act_id == 8) {
             return `Đã có ${this.nowAct.data} người trực tuyến`
@@ -245,7 +245,7 @@ export default {
         if (this.nowAct.act_id == 4 || this.nowAct.act_id == 5) {
           return this.nowAct.list[0].slice(0, 1)
         } else {
-          return this.nowAct.list[0]
+          return this.nowAct.list[0].slice(0, 3)
         }
       } else {
         if (this.nowAct.act_id == 4 || this.nowAct.act_id == 5) {

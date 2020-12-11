@@ -292,9 +292,9 @@ export default {
 <style lang="scss">
 .rankGroups {
   width: 6.88rem;
-  padding: 1.49rem 0 2rem;
+  padding: 1.68rem 0 2rem;
   position: relative;
-  background: RGBA(251, 249, 237, 1) url(../assets/img/listBg.png) no-repeat;
+  background: rgba(3, 62, 180, 1) url(../assets/img/listBg.png) no-repeat;
   background-size: 100% auto;
   margin: 0.37rem auto;
   > li {
@@ -309,7 +309,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0.3rem auto;
+    margin: 0 auto;
     &.current {
       background: url(../assets/img/tab2.png);
       background-size: 100% 100%;
@@ -320,11 +320,11 @@ export default {
     }
   }
   .list {
-    margin: 0.19rem auto;
+    margin: 0.3rem auto;
     position: relative;
     z-index: 10;
     .top1 {
-      height: 2.8rem;
+      height: 3.17rem;
       margin-bottom: 0.11rem;
       display: flex;
       justify-content: center;
@@ -334,32 +334,38 @@ export default {
         height: 100%;
         position: relative;
         .imgBox {
-          width: 1.82rem;
-          height: 1.82rem;
+          width: 2.73rem;
+          height: 2.3rem;
           position: relative;
-          background: url(../assets/img/topAvBg.png);
-          background-size: 100% 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto;
+          .top1Tips {
+            width: 2.04rem;
+            height: 2.04rem;
+            position: absolute;
+            left: 0.35rem;
+            top: 0;
+            z-index: 2;
+          }
           .top1Avatar {
-            width: 1.7rem;
-            height: 1.7rem;
+            width: 2.04rem;
+            height: 2.04rem;
             border-radius: 50%;
+            position: absolute;
+            left: 0.35rem;
+            top: 0;
           }
         }
         .userMsg {
           display: flex;
           justify-content: center;
           align-items: center;
+          color: rgba(247, 217, 140, 1);
           .nick {
             max-width: 2rem;
-            color: rgba(181, 96, 35, 1);
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
             font-weight: 800;
+            color: rgba(247, 217, 140, 1);
           }
           .score {
             margin-left: 0.28rem;
@@ -382,14 +388,14 @@ export default {
         right: 0.4rem;
         strong {
           display: block;
-          color: rgba(181, 96, 35, 1);
+          color: rgba(247, 217, 140, 1);
           font-size: 0.24rem;
           font-weight: 500;
         }
         em {
           display: block;
           font-size: 0.72rem;
-          color: rgba(181, 96, 35, 1);
+          color: rgba(247, 217, 140, 1);
           font-weight: 800;
         }
       }
@@ -408,7 +414,7 @@ export default {
       .rank {
         width: 1.12rem;
         line-height: 0.94rem;
-        color: rgba(190, 255, 207, 1);
+        color: rgba(255, 239, 230, 1);
         text-align: center;
         font-weight: bold;
         font-size: 0.42rem;
@@ -475,12 +481,12 @@ export default {
 }
 .scrollLoading {
   text-align: center;
-  color: #056005;
+  color: #fff;
   font-size: 80%;
 }
 .scrollNone {
   text-align: center;
-  color: #056005;
+  color: #fff;
   font-size: 80%;
 }
 #refresh {
