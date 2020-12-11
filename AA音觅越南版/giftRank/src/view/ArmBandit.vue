@@ -36,23 +36,29 @@
             <i class="close" @click="closeRule()"></i>
             <h6>1 Thời gian</h6>
             <p>{{aTimer}}</p>
-            <h6>2 Bảng xếp hạng</h6>
-            <p> BXH dựa vào tổng số quà nhận được từ 2 quà sự kiện Bánh Trung Thu (100 xu) và Trăng rằm (200 xu)
-              <h6>3 Giải thưởng</h6>
-              <!-- <div class="giftItemBox">
-              <span class="giftImg2"></span>
-              <span class="giftImg"></span>
-            </div> -->
+            <h6>2. Bảng xếp hạng</h6>
+            <p>Hệ thống sẽ sắp xếp thứ tự dựa trên số lượng phần thưởng cây thông Noel và ông già Noel.
+              <br /> Bảng xếp hạng hiển thị số lượng quà chỉ định.
+            </p>
+            <h6>3. Thưởng</h6>
+            <div class="giftBox">
+              <h5>BXH Cây thông Noel：</h5>
+              <p>Top 1：Khung ảnh Giáng sinh vui nhộn（7 ngày）、Xe Maserati bạc（7 ngày）<br />
+                Top 2：Khung ảnh Giáng sinh vui nhộn (5 ngày）<br />
+                Top 3：Khung ảnh Giáng sinh vui nhộn（3 ngày）
+              </p>
+              <h5>BXH Ông già Noel：</h5>
               <div class="giftBox">
                 <p>
-                  Giải nhất: Xe Kiệu Hằng Nga 10 ngày, 10% số xu nhận được.<br />
-                  Giải nhì: Xe Kiệu Hằng Nga 5 ngày, 5% số xu nhận được.<br />
-                  Giải ba: Xe Kiệu Hằng Nga 3 ngày, 3% số xu nhận được."
+                  Top 1：Khung ảnh Giáng sinh vui nhộn（15 ngày）、Xe Maserati bạc（10 ngày）<br />
+                  Top 2：Khung ảnh Giáng sinh vui nhộn（7 ngày）、Xe Maserati bạc（7ngày）<br />
+                  Top 3：Khung ảnh Giáng sinh vui nhộn（5 ngày）
                 </p>
               </div>
-              <h6>4 Chú ý </h6>
-              <p>Giải thưởng được phát sau khi sự kiện kết thúc 7 ngày.</p>
-              <p class="lastTips">Quyết định cuối cùng thuộc về Alochat</p>
+            </div>
+            <h6>4 Chú ý </h6>
+            <p>Giải thưởng được phát sau khi sự kiện kết thúc 7 ngày.</p>
+            <p class="lastTips">Quyết định cuối cùng thuộc về Alochat</p>
           </div>
         </div>
       </transition>
@@ -167,12 +173,16 @@ export default {
 body::-webkit-scrollbar {
   width: 0;
 }
+.con {
+  height: 7.6rem;
+  overflow-y: scroll;
+}
 .box {
   max-width: 750px;
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: RGBA(36, 25, 90, 1) url(../assets/img/banner.png) center 0
+  background: rgba(3, 62, 180, 1) url(../assets/img/banner.png) center 0
     no-repeat;
   background-size: 100% auto;
   .shareBar {
@@ -191,24 +201,21 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 8.41rem;
+    height: 8.3rem;
     position: relative;
     .ruleTips {
       width: 1.22rem;
       height: 0.36rem;
-      color: rgba(155, 69, 66, 1);
-      font-size: 0.18rem;
       background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
-      text-align: center;
-      line-height: 0.36rem;
       position: absolute;
       right: 0;
-      top: 4.56rem;
+      text-align: center;
+      top: 4.8rem;
     }
   }
   .gifts {
-    width: 7.16rem;
+    width: 6.88rem;
     height: 5.78rem;
     background: url(../assets/img/giftBg.png);
     background-size: 100% 100%;
@@ -216,7 +223,7 @@ body::-webkit-scrollbar {
     position: relative;
   }
   .timeDown {
-    width: 3.63rem;
+    width: 4.3rem;
     height: 0.53rem;
     // padding: 0 0.09rem;
     margin: 0.17rem auto 0;
@@ -225,8 +232,8 @@ body::-webkit-scrollbar {
     background: url(../assets/img/downTime.png);
     background-size: 100% 100%;
     position: absolute;
-    bottom: 0.44rem;
-    left: 1.69rem;
+    bottom: 0.7rem;
+    left: 1.27rem;
     > div {
       height: 100%;
       line-height: 0.6rem;
@@ -234,37 +241,33 @@ body::-webkit-scrollbar {
       align-items: center;
       strong {
         display: block;
-        width: 0.74rem;
+        width: 0.9rem;
         height: 0.42rem;
         line-height: 0.42rem;
-        letter-spacing: 0.215rem;
+        letter-spacing: 0.32rem;
         text-indent: 0.1rem;
         color: #ffeeb7;
       }
     }
     .hours,
     .second {
-      margin-left: 0.2rem;
+      margin-left: 0.23rem;
       text-align: center;
     }
     .min {
-      margin-left: 0.23rem;
+      margin-left: 0.24rem;
     }
     .second {
       margin-left: 0.25rem;
     }
   }
   .rule {
-    width: 6.36rem;
-    height: 8.11rem;
-    padding: 1.35rem 0.4rem 0;
+    width: 6rem;
+    height: 9rem;
+    padding: 1.15rem 0.4rem 0;
     background: url(../assets/img/ruleBg.png);
     background-size: 100% 100%;
     position: relative;
-    .con {
-      height: 7.6rem;
-      overflow-y: scroll;
-    }
     .close {
       display: block;
       width: 0.21rem;
@@ -276,35 +279,24 @@ body::-webkit-scrollbar {
       top: -0.4rem;
     }
     .lastTips {
-      color: rgba(181, 96, 35, 1);
+      color: rgba(247, 217, 140, 1);
       font-size: 0.2rem;
       margin-top: 0.24rem;
       text-align: center;
+      text-indent: 0;
     }
-    .giftItemBox {
-      display: flex;
-      justify-content: center;
-      .giftImg {
-        display: block;
-        width: 1.81rem;
-        height: 1.81rem;
-        background: url(../assets/img/giftCar.png);
-        background-size: 100% 100%;
-      }
-      .giftImg2 {
-        display: block;
-        width: 1.81rem;
-        height: 1.81rem;
-        background: url(../assets/img/gift2.png);
-        background-size: 100% 100%;
-        margin-right: 0.19rem;
-      }
+    .giftImg {
+      display: block;
+      width: 1.81rem;
+      height: 1.81rem;
+      background: url(../assets/img/giftCar.png);
+      background-size: 100% 100%;
+      margin: 0.18rem auto 0.38rem;
     }
-
     .giftBox {
       h5 {
         padding-left: 0.3rem;
-        color: rgba(181, 96, 35, 1);
+        color: rgba(247, 217, 140, 1);
       }
       p {
         padding-left: 0.6rem;
@@ -313,15 +305,15 @@ body::-webkit-scrollbar {
     }
     h6 {
       font-size: 0.24rem;
-      color: rgba(181, 96, 35, 1);
+      color: rgba(247, 217, 140, 1);
       font-weight: 800;
       margin-top: 0.1rem;
     }
     p {
       font-size: 0.24rem;
-      color: rgba(181, 96, 35, 1);
+      color: rgba(247, 217, 140, 1);
       font-weight: 500;
-      padding-left: 0.5rem;
+      text-indent: 0.5rem;
       // margin-top: 0.1rem;
     }
   }

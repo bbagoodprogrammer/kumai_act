@@ -7,18 +7,18 @@
         <div class="tipsBox">
           <h3 class="tipsTitle">Cách mở rút thưởng:</h3>
           <p class="tips" v-if="luckType">
-            Bạn dùng xu để mua VIP hoặc quà phòng Kara làm phần thưởng. Người trong phòng tặng quà yêu cầu sẽ có cơ hội rút thưởng. Khi hết đếm ngược, 1 trong số những người tham dự sẽ nhận phần thưởng của bạn.
-            <br />Nếu không ai tham gia, phần thưởng gửi lại cho người mở.
+             Bạn dùng xu mua phần thưởng để mở rút thường, người trong phòng tặng quà theo yêu cầu sẽ có cơ hội rút thưởng. Khi hết đếm ngược, 1 trong số những người tham dự sẽ nhận phần thưởng.
+            <br />Nếu không ai tham gia rút thườn, phần thưởng gửi lại cho người mở.
           </p>
           <p class="tips" v-else>
-            1. Bạn chọn phần thưởng và dùng số xu tương ứng để mở rút thưởng.<br />
-            2. Khi đếm ngược, tất cả người trong phòng tặng quà yêu cầu để có cơ hội rút thưởng. Hết đếm ngược sẽ mở thưởng, 1 người tham gia được nhận thưởng.<br />
+            1. Bạn có thểchọn phần thưởng và dùng số xu tương ứng để mở rút thưởng.<br />
+            2. Khi đếm ngược, tất cả người trong phòng tặng quà yêu cầu để có cơ hội rút thưởng. Hết đếm ngược sẽ mở thưởng, tặng quà theo yêu cầu càng nhiều, cơ hội trúng thưởng càng cao.<br />
             3. Nếu không ai tham gia, phần thưởng gửi lại cho người mở.
           </p>
         </div>
         <div class="from" v-if="luckType">
           <div class="fromItem">
-            <span>Quà tặng:</span>
+            <span>Quà yêu cầu:</span>
             <div class="itemCon" @click="changGift()">
               <span v-if="actGift.id" class="actGift1"><img :src="actGift.pic" alt=""><strong>{{actGift.name}}</strong></span>
               <span v-else class="noSet">Chưa chọn</span>
@@ -28,7 +28,7 @@
           <div class="fromItem">
             <span>Đếm ngược: </span>
             <div class="itemCon" @click="setTime()">
-              <span v-if="timeIndex != null">{{timeArr[timeIndex]}}phút</span>
+              <span v-if="timeIndex != null">{{timeArr[timeIndex]}} phút</span>
               <span v-else class="noSet">Chưa chọn</span>
               <i class="arr"></i>
             </div>
@@ -62,11 +62,11 @@
                 <span class="price"><i :class="{bean:item.ticket_currency == 'bean'}"></i><strong>{{item.prise_price}}</strong> </span>
               </li>
             </ul>
-            <div class="sGift"><span>Cách tham dự: </span> tặng <img :src="fixeActDraw.ticket_gpic" alt="">x{{fixeActDraw.ticket_amount}} ({{fixeActDraw.ticket_price}} {{giftType[fixeActDraw.ticket_currency]}})</div>
-            <div class="fTime"><span>Đếm ngược: </span> {{fixeActDraw.time_limit}}phút</div>
+            <div class="sGift"><span>Quà yêu cầu:</span><img :src="fixeActDraw.ticket_gpic" alt="">x{{fixeActDraw.ticket_amount}} ({{fixeActDraw.ticket_price}} {{giftType[fixeActDraw.ticket_currency]}})</div>
+            <div class="fTime"><span>Đếm ngược: </span>{{fixeActDraw.time_limit}} phút</div>
           </div>
           <div class="setpeopleType">
-            <span>Ai được<br /> tham dự</span>
+            <span>Người tham dự: </span>
             <div class="peopleType">
               <span @click="setPeopleType(1)"><i :class="{act:peopleType == 1}"></i><strong>Tất cả</strong></span>
               <span @click="setPeopleType(2)"><i :class="{act:peopleType == 2}"></i><strong>Người trên mic</strong></span>
@@ -105,7 +105,7 @@
           </div>
           <p v-if="tabGift[tabIndex] && tabGift[tabIndex].loading" class="tabLoading">Đang tải...</p>
           <div class="vipCon" v-show="tabIndex ==1">
-            <p class="vipTips">Chọn số tháng VIP (nếu đã có VIP sẽ cộng dồn thời hạn)</p>
+            <p class="vipTips">Chọn số ngày VIP (Nếu đã có VIP sẽ cộng dồn thời hạn.)</p>
             <div class="vipBox">
               <div class="vipItem">
                 <div class="item" :class="{act:vipType == index}" @click="vipClick(index,item)" v-for="(item,index) in nowTabGift[0]" :key="index">
@@ -214,7 +214,7 @@ export default {
       timeIndex: null,
       showSgiftPup: false,
       tabIndex: 1,
-      tabArr: ["VIP", "Quà", "Xe", "Trang sức", null, "Danh thiếp", "Chủ đề"],
+      tabArr: ["Hội viên", "Quà", "Xe", "Trang sức", null, "Danh thiếp", "Chủ đề"],
       tabGift: {},   //tab對應的禮物
       balance: {},
       tabLoading: false,
@@ -253,9 +253,9 @@ export default {
     },
     price() {
       if (this.luckType) {
-        return `${this.sActGift.price}${this.giftType[this.sActGift.currency]}`
+        return `${this.sActGift.price} ${this.giftType[this.sActGift.currency]}`
       } else {
-        return `${this.fixeActDraw.prise_price}${this.giftType[this.fixeActDraw.prise_currency]}`
+        return `${this.fixeActDraw.prise_price} ${this.giftType[this.fixeActDraw.prise_currency]}`
       }
     }
   },
@@ -478,7 +478,7 @@ body {
         font-weight: 500;
       }
       .itemCon {
-        width: 5.23rem;
+        width: 4.3rem;
         height: 0.8rem;
         background: rgba(255, 255, 255, 1);
         border: 1px solid rgba(230, 230, 230, 1);
@@ -532,11 +532,12 @@ body {
         color: rgba(12, 12, 12, 1);
         font-size: 0.34rem;
         font-weight: 500;
+        white-space: nowrap;
       }
       .peopleType {
         display: flex;
         align-items: center;
-        margin-left: 0.5rem;
+        margin-left: 0.2rem;
         span {
           white-space: nowrap;
           color: rgba(55, 55, 55, 1);

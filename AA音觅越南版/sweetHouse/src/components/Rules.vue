@@ -7,7 +7,7 @@
         <span :class="{act:type==1}" @click="tabClick(1)">Thể lệ </span>
         <span :class="{act:type==2}" @click="tabClick(2)">Giai thưởng</span>
       </div>
-      <p class="actTime">Thời gian: 18:00 9/9- 18:00 23/9</p>
+      <p class="actTime">Thời gian: 18h 11/12 - 23:59 25/12</p>
       <div class="tipsCon">
         <div class="tips1" v-if="type==1">
           <h6>Cách chế biến đồ ngọt cho gian hàng của bạn?</h6>
@@ -18,15 +18,15 @@
           </p>
           <p class="blue">* Hoàn thành chế biến đồ ngọt mùa hè sẽ được gửi vào túi quà, có thể dùng túi quà trong phòng tặng người khác. </p>
           <h6>Cách chế biến đồ ngọt cho gian hàng của bạn?</h6>
-          <img src="../assets/img/rules/ruleTab1.png" alt="" class="img1">
+          <img src="../assets/img/rules/ruleTab2.png" alt="" class="img2">
           <h6>Nhận Điểm như thế nào?</h6>
           <p>chế biến hoàn chỉnh một đồ ngọt nhận Điểm tương ứng</p>
-          <img src="../assets/img/rules/ruleTab2.png" alt="" class="img2">
+          <img src="../assets/img/rules/ruleTab1.png" alt="" class="img1">
         </div>
         <div class="tips2" v-else>
-          <h6>nhiệm vụ tiếp theo và thưởng</h6>
+          <h6>Thưởng nhiệm vụ</h6>
           <img src="../assets/img/rules/ruleTab3.png" alt="" class="img3">
-          <h6>Cách chế biến đồ ngọt cho gian hàng của bạn?</h6>
+          <h6>Thưởng BXH</h6>
           <img src="../assets/img/rules/ruleTab4.png" alt="" class="img4">
           <h6>Chú ý:</h6>
           <p class="blue">1. Thưởng được phát sau khi sự kiện kết thúc 7 ngày</p>
@@ -67,7 +67,6 @@ export default {
     color: rgba(233, 140, 86, 1);
   }
   .tips {
-    padding: 0 0.51rem;
     .tabs {
       width: 5.65rem;
       height: 0.73rem;
@@ -96,6 +95,10 @@ export default {
     .tipsCon {
       height: 6.8rem;
       overflow-y: scroll;
+      h6,
+      p {
+        padding: 0 0.51rem;
+      }
     }
     .blue {
       color: rgba(174, 6, 5, 1);
@@ -123,6 +126,7 @@ export default {
     .img4 {
       width: 6.26rem;
       height: 4.29rem;
+      margin-left: 0.2rem;
     }
   }
   .close {

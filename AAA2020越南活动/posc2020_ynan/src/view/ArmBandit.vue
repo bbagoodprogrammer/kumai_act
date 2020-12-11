@@ -5,8 +5,8 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <span class="ruleTips" @click="goMain()">Hội trường Gala năm>> <i></i> </span>
-      <span class="ruleTips top" @click="goRule()">Thể lệ & Giải thưởng>><i></i> </span>
+      <span class="ruleTips" @click="goMain()">Hội trường Gala<i></i> </span>
+      <span class="ruleTips top" @click="goRule()">Thể lệ&Thưởng<i></i> </span>
     </div>
     <div class="giftImg"></div>
     <TabsScrollLoadList ref="list" />

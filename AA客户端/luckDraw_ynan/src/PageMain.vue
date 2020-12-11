@@ -25,9 +25,9 @@
           <div class="msg">
             <span v-if="luckIng">Đang rút thưởng...</span>
             <span v-else-if="luckMsg.status == 1">Đếm ngược <em>{{surplusTime.minute}}:{{surplusTime.second}}</em></span>
-            <span v-else class="nick">Chúc mừng:<em>{{luckMsg.winner_nick}}</em> </span>
+            <span v-else class="nick">Chúc mừng : <em>{{luckMsg.winner_nick}}</em> </span>
           </div>
-          <div class="gift">Thưởng:{{luckMsg.prise_str}}</div>
+          <div class="gift">Thưởng : {{luckMsg.prise_str}}</div>
         </div>
       </div>
       <div class="luckBtn" :class="{luckIng:luckStatus == 3,luck:luckStatus==2,again:luckStatus == 1}" @click="goSetting()"></div>
