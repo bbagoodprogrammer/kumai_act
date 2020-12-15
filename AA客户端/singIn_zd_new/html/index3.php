@@ -140,9 +140,9 @@ if($response_info && isset($response_info['response_data'])){
             methods: {
                 share: function () {
                     if (this.second <= 0) return
-                    openApp("hsing://gosingapp.com/" + "\{\"inviteCode\":\"" + inviteCode + "\"\}",
+                    openApp("hsing://cat2345.com/" + "\{\"inviteCode\":\"" + inviteCode + "\"\}",
                         null, null,
-                        "Gaoge://inviteCode=" + inviteCode)
+                        "SuperVoice://inviteCode=" + inviteCode)
                 },
                 downTimeGo: function () {
                     var hour = 0

@@ -55,7 +55,7 @@
     <!-- 文案提示 -->
     <p v-if="showType == 1" class="tankTips">本賽段閃光值=守護值+家族成員作品/K房金幣收禮魅力值</p>
     <p v-else-if="showType == 2" class="tankTips">本賽段閃光值=家族成員作品/K房金幣收禮魅力值</p>
-    <p v-else-if="showType == 3" class="tankTips">本賽段閃光值=家族成員作品/K房收禮金幣魅力值 <br /> （本賽段本年度前五十家族有6%-10%的閃光值加成）<span>本賽段每日21:00-21:10分有10%魅力值加成</span></p>
+    <p v-else-if="showType == 3" class="tankTips">本賽段閃光值=家族成員作品/K房金幣收禮魅力值 <br /> （本賽段本年度前五十家族有6%-10%的閃光值加成）<span>本賽段每日21:00-21:10分有10%魅力值加成</span></p>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs" v-if="showType == 1">
       <div class="tabs">
@@ -178,12 +178,14 @@
       </li>
     </ul>
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-    <div v-if="rank.loading" class="scrollLoading">加載中...</div>
-    <div v-if="rank.none && rank.list.length == 0 " class="scrollNone">
-      目前暫無歌友上榜</br>
-      虛位以待，等你來哦！
+    <div class="tipsBox" v-if="!(showType == 1 && mainTab== 0)">
+      <div v-if="rank.loading" class="scrollLoading">加載中...</div>
+      <div v-if="rank.none && rank.list.length == 0 " class="scrollNone">
+        目前暫無歌友上榜</br>
+        虛位以待，等你來哦！
+      </div>
+      <div v-if="mainTab==0 && showType > nowTab" class="dengdai">敬請期待！</div>
     </div>
-    <div v-if="mainTab==0 && showType > nowTab" class="dengdai">敬請期待！</div>
     <!--  -->
     <div class="mask" v-show="showFcards">
       <transition name="slide">
@@ -222,7 +224,7 @@ import getDate from "../utils/getDate"
 
 export default {
   components: { DayTabs },
-  props: ['stime1', 'stime2', 'stime3', 'etime1', 'etime2', 'etime3','all_task'],
+  props: ['stime1', 'stime2', 'stime3', 'etime1', 'etime2', 'etime3', 'all_task'],
   data() {
     return {
       mainTab: 0,
@@ -253,13 +255,13 @@ export default {
       pupFid: 0
     }
   },
-watch:{
-  all_task(val){
-    if(val){
-      this.mainTabClick(1)
+  watch: {
+    all_task(val) {
+      if (val) {
+        this.mainTabClick(1)
+      }
     }
-  }
-},
+  },
   computed: {
     ...mapState(['rankGroups', 'nowTab', 'task', "nowShowType", "dateArr", "inited", "isShare", "actStatus", "showType", "timeObj"]),
     rankKey() {

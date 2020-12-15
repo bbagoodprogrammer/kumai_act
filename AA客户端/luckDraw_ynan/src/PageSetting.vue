@@ -11,7 +11,7 @@
             <br />Nếu không ai tham gia rút thườn, phần thưởng gửi lại cho người mở.
           </p>
           <p class="tips" v-else>
-            1. Bạn có thểchọn phần thưởng và dùng số xu tương ứng để mở rút thưởng.<br />
+            1. Bạn có thể chọn phần thưởng và dùng số xu tương ứng để mở rút thưởng.<br />
             2. Khi đếm ngược, tất cả người trong phòng tặng quà yêu cầu để có cơ hội rút thưởng. Hết đếm ngược sẽ mở thưởng, tặng quà theo yêu cầu càng nhiều, cơ hội trúng thưởng càng cao.<br />
             3. Nếu không ai tham gia, phần thưởng gửi lại cho người mở.
           </p>
@@ -59,7 +59,7 @@
                 <i class="prise_type">{{tabArr[item.prise_type - 1]}}</i>
                 <img class="giftImg" :class="{card:item.prise_type == 6,bg:item.prise_type == 7}" :src="item.prise_pic" alt="">
                 <span class="name">{{item.prise_name}}</span>
-                <span class="price"><i :class="{bean:item.ticket_currency == 'bean'}"></i><strong>{{item.prise_price}}</strong> </span>
+                <span class="price"><i :class="{bean:item.prise_currency == 'bean'}"></i><strong>{{item.prise_price}}</strong> </span>
               </li>
             </ul>
             <div class="sGift"><span>Quà yêu cầu:</span><img :src="fixeActDraw.ticket_gpic" alt="">x{{fixeActDraw.ticket_amount}} ({{fixeActDraw.ticket_price}} {{giftType[fixeActDraw.ticket_currency]}})</div>
