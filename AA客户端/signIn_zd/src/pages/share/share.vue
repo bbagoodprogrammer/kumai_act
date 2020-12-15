@@ -119,7 +119,8 @@ export default {
   methods: {
     share() {
       if (this.type == 2) {
-        APP(`hsing://gosingapp.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `Gaoge://inviteCode=${this.inviteCode}`)
+        // let app = getString('app')
+        APP(`hsing://cat2345.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `SuperVoice://inviteCode=${this.inviteCode}`)
       } else {
         var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
         var ua = navigator.userAgent;

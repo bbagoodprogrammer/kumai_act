@@ -11,7 +11,7 @@
       </div>
     </div>
     <!-- <div class="wards"></div> -->
-    <TabsScrollLoadList :stime1="stime1" :stime2="stime2" :stime3="stime3" :etime1="etime1" :etime2="etime2" :etime3="etime3" :all_task="all_task" ref="scorll"  @getDefaultData="getDefaultData"></TabsScrollLoadList>
+    <TabsScrollLoadList :stime1="stime1" :stime2="stime2" :stime3="stime3" :etime1="etime1" :etime2="etime2" :etime3="etime3" :all_task="all_task" ref="scorll" @getDefaultData="getDefaultData"></TabsScrollLoadList>
     <act-footer :fid="fid"></act-footer>
     <!-- <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
     <div class="mask" v-show="showHistory">
@@ -210,7 +210,7 @@ export default {
     },
     async bannerGo() {
       let canvas = document.getElementById('bannerBg')
-      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/svga/bc1495fed83cc05a2162f09834dc40cb_1606984129.svga`);
+      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/svga/35dcedff43b68915327cef819beb8260_1608016728.svga`);
       const data = await parser.do(fileData);
       let player = new Player(canvas)
       await player.mount(data)

@@ -59,7 +59,7 @@
                 <i class="prise_type">{{tabArr[item.prise_type - 1]}}</i>
                 <img class="giftImg" :class="{card:item.prise_type == 6,bg:item.prise_type == 7}" :src="item.prise_pic" alt="">
                 <span class="name">{{item.prise_name}}</span>
-                <span class="price"><i :class="{bean:item.ticket_currency == 'bean'}"></i><strong>{{item.prise_price}}</strong> </span>
+                <span class="price"><i :class="{bean:item.prise_currency == 'bean'}"></i><strong>{{item.prise_price}}</strong> </span>
               </li>
             </ul>
             <div class="sGift"><span>參與方式：</span> 送出 <img :src="fixeActDraw.ticket_gpic" alt="">x{{fixeActDraw.ticket_amount}} ({{fixeActDraw.ticket_price}}{{giftType[fixeActDraw.ticket_currency]}}) 參與抽獎</div>

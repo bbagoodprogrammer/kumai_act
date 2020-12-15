@@ -225,7 +225,7 @@ export default {
     creatFamily() {
       let token = getString('token')
       let uid = getString('uid')
-      location.href = `http://act.17sing.tw/createFamily/index.html?uid=${uid}&token=${token}`
+      location.href = `http://act.singnowapp.com/createFamily/index.html?uid=${uid}&token=${token}`
     },
     showCards(fid) {
       this.$parent.$refs.scorll.showFamily(fid)
