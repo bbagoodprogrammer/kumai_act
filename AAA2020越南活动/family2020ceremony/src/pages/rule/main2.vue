@@ -120,7 +120,7 @@ export default {
     }
   },
   created() {
-    document.title = '規則&獎勵'
+    document.title = 'Thể lệ&Thưởng'
     this.stime = sessionStorage.getItem('stime')
     this.etime = sessionStorage.getItem('etime')
   },
