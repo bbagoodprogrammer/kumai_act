@@ -134,7 +134,7 @@
               </span>
             </div>
             <div class="noFamily" v-else>
-              幸運輪空，直接晉級
+              Lượt trống, vào thẳng vòng sau
             </div>
           </div>
           <div class="familyName" v-if="!item.empty">
