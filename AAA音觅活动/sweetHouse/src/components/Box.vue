@@ -73,7 +73,7 @@ export default {
             },
             {
               type: 3,
-              name: '头像框（3天）'
+              name: '頭像框（3天）'
             },
           ]
         },
@@ -85,7 +85,7 @@ export default {
             },
             {
               type: 3,
-              name: '头像框（7天）'
+              name: '頭像框（7天）'
             }
           ]
         },

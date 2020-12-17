@@ -130,15 +130,15 @@ export default {
           "share_title": `لقد قمت بتسجيل الوصول لمدة ${this.days} أيام متتالية`,
           "share_content": `لقد سجلت الدخول لمدة ${this.days} أيام متتالية. فزت بجائزة عند التقليب. أحتاج إلى مساعدتك. تعال`,
           "share_image": this.master.headImg,
-          "link": `http://gosingapp.com/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
+          "link": `http://cat2345.com/singIn_zd_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
           "image": this.master.headImg,
-          "share_url": `http://gosingapp.com/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
+          "share_url": `http://cat2345.com/singIn_zd_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
         }
         if (ios) {
           if (window.shareOutside != undefined) {
             shareOutside(JSON.stringify(data))
           } else {
-            location.href = `shareUserInfo://gosingapp.com/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=لقد سجلت الدخول لمدة ${this.days} أيام متتالية. فزت بجائزة عند التقليب. أحتاج إلى مساعدتك. تعال&userImg=${this.master.headImg}&title=لقد قمت بتسجيل الوصول لمدة ${this.days} أيام متتالية`;
+            location.href = `shareUserInfo://cat2345.com/singIn_zd_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=لقد سجلت الدخول لمدة ${this.days} أيام متتالية. فزت بجائزة عند التقليب. أحتاج إلى مساعدتك. تعال&userImg=${this.master.headImg}&title=لقد قمت بتسجيل الوصول لمدة ${this.days} أيام متتالية`;
           }
         } else {
           javascript: JSInterface.shareOutside(JSON.stringify(data));
