@@ -55,14 +55,14 @@
           <div class="fiexList">
             <ul>
               <li v-for="(item,index) in fixedDrawList" :key="index" :class="{act:index== fixeActIndex}" @click="setFixedGift(item,index)">
-                <i class="prise_type">{{tabArr[item.prise_type - 1]}}</i>
+                <!-- <i class="prise_type">{{tabArr[item.prise_type - 1]}}</i> -->
                 <img class="giftImg" :class="{card:item.prise_type == 6,bg:item.prise_type == 7}" :src="item.prise_pic" alt="">
                 <span class="name">{{item.prise_name}}</span>
                 <span class="price"><i :class="{bean:item.ticket_currency == 'bean'}"></i><strong>{{item.prise_price}}</strong> </span>
               </li>
             </ul>
             <div class="sGift">
-              طريقة المشاركة: أرسل <img :src="fixeActDraw.ticket_gpic" alt="">x{{fixeActDraw.ticket_amount}} ({{fixeActDraw.ticket_price}}{{giftType[fixeActDraw.ticket_currency]}}) للمشاركة في السحب
+              طريقة المشاركة: ارسل <img :src="fixeActDraw.ticket_gpic" alt="">x{{fixeActDraw.ticket_amount}} ({{fixeActDraw.ticket_price}}{{giftType[fixeActDraw.ticket_currency]}}) للسحب
             </div>
             <div class="fTime"><span>العد التنازلي:</span> {{fixeActDraw.time_limit}}دقيقة</div>
           </div>
@@ -214,7 +214,8 @@ export default {
       timeIndex: null,
       showSgiftPup: false,
       tabIndex: 1,
-      tabArr: ["VIP", "هدية", "سيارة", "أغطية الرأس", null, "بطاقة", "موضوع"],
+      //  null, "بطاقة", "موضوع"
+      tabArr: ["VIP", "هدية", "سيارة", "أغطية الرأس"],
       tabGift: {},   //tab對應的禮物
       balance: {},
       tabLoading: false,
@@ -432,6 +433,7 @@ export default {
 <style lang="scss">
 #app {
   position: relative;
+  direction: rtl;
 }
 .tabLoading {
   text-align: center;
@@ -476,6 +478,7 @@ body {
         color: rgba(12, 12, 12, 1);
         font-size: 0.34rem;
         font-weight: 500;
+        flex: 1;
       }
       .itemCon {
         width: 5.23rem;
@@ -528,30 +531,36 @@ body {
       display: flex;
       align-items: center;
       margin-top: 0.55rem;
+      //  white-space: nowrap;
       > span {
         color: rgba(12, 12, 12, 1);
         font-size: 0.34rem;
         font-weight: 500;
+        white-space: nowrap;
       }
       .peopleType {
+        flex:1;
         display: flex;
         align-items: center;
-        margin-left: 0.5rem;
+        margin-right: 0.2rem;
         span {
+          width: 2.2rem;
           color: rgba(55, 55, 55, 1);
           display: flex;
           align-items: center;
-          margin-right: 0.4rem;
           i {
             width: 0.3rem;
             height: 0.3rem;
             background: url(./img/cVoteIcon1.png);
             background-size: 100% 100%;
-            margin-right: 0.2rem;
+            margin-left: 0.2rem;
             &.act {
               background: url(./img/cVoteIcon3.png);
               background-size: 100% 100%;
             }
+          }
+          strong {
+            flex: 1;
           }
         }
       }
@@ -567,11 +576,7 @@ body {
       text-align: center;
       line-height: 0.8rem;
       &.act {
-        background: linear-gradient(
-          274deg,
-          rgba(252, 2, 116, 1) 0%,
-          rgba(252, 82, 40, 1) 100%
-        );
+        background: #00ddcc;
       }
     }
   }
@@ -1089,7 +1094,7 @@ body {
           }
         }
         &.act {
-          border: 1px solid rgba(252, 64, 57, 1);
+          border: 1px solid #00ddcc;
           .prise_type {
             background: rgba(252, 64, 57, 1);
           }

@@ -897,10 +897,6 @@ body {
           background: url(../../assets/img/day/crown.png);
           background-size: 100% 100%;
         }
-        &.sed {
-          background: url(../../assets/img/day/sed.png);
-          background-size: 100% 100%;
-        }
         &.gift {
           color: rgba(95, 26, 4, 1);
           background: url(../../assets/img/day/gift.png);
@@ -909,6 +905,10 @@ body {
         &.now {
           color: rgba(255, 223, 113, 1);
           background: url(../../assets/img/day/item.png);
+          background-size: 100% 100%;
+        }
+        &.sed {
+          background: url(../../assets/img/day/sed.png);
           background-size: 100% 100%;
         }
       }
