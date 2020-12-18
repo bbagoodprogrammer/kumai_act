@@ -66,6 +66,14 @@ function getConfig() {
             iosDown: 'http://gosingapp.com/goto_appstore',
             tips: 'يرجى النقر في الزاوية العلوية اليمنية... </ b> تختار متصفح النظام لفتح هذا الربط'
         },
+        cat2345: {
+            name: 'gosingapp',
+            androidSchema: 'gosingapp://gosingapp.com',
+            androidDown: 'http://gosingapp.com/goto_googleplay',
+            iosSchema: 'supervoice://',
+            iosDown: 'http://gosingapp.com/goto_appstore',
+            tips: 'يرجى النقر في الزاوية العلوية اليمنية... </ b> تختار متصفح النظام لفتح هذا الربط'
+        },
     };
 
     var host = location.host;

@@ -26,7 +26,9 @@
     <div class="mask" v-show="showPup">
       <transition name="slide">
         <div class="retroactivePup" v-if="showPup">
-          <div class="title"> هل تنفق عملات {{data.compensate.coins}} الذهبية من أجل تسجيل الدخول الإضافي؟</div>
+          <div class="title">
+            هل تنفق {{data.compensate.coins}} عملة ذهبية من أجل تسجيل الدخول الإضافي؟
+          </div>
           <div class="tips">
             تاريخ تسجيل الوصول الذي فاتك مؤخرًا: {{data.compensate.date}}
             </br>بعد تسجيل الدخول الإضافي ، يكون عدد أيام تسجيل الدخول المتتالية هو {{data.compensate.days}} أيام
@@ -242,7 +244,7 @@ body {
   }
   .retroactivePup {
     width: 5.2rem;
-    height: 2.81rem;
+    // height: 2.81rem;
     background: rgba(255, 255, 255, 1);
     border-radius: 0.12rem;
     position: relative;
@@ -256,13 +258,13 @@ body {
       font-size: 0.24rem;
       color: #666;
       text-align: center;
-      margin-top: 0.12rem;
+      margin: 0.12rem 0;
     }
     .btnBox {
       width: 100%;
       height: 0.8rem;
-      position: absolute;
-      bottom: 0;
+      // position: absolute;
+      // bottom: 0;
       border-top: 0.15px solid #dddddc;
       display: flex;
       span {
