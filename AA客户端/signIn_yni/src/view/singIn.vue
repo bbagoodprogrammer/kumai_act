@@ -243,7 +243,7 @@ body {
   }
   .retroactivePup {
     width: 5.2rem;
-    height: 3.32rem;
+    // height: 3.32rem;
     background: rgba(255, 255, 255, 1);
     border-radius: 0.12rem;
     position: relative;
@@ -257,13 +257,13 @@ body {
       font-size: 0.24rem;
       color: #666;
       text-align: center;
-      margin-top: 0.12rem;
+      margin: 0.12rem 0;
     }
     .btnBox {
       width: 100%;
       height: 0.8rem;
-      position: absolute;
-      bottom: 0;
+      // position: absolute;
+      // bottom: 0;
       border-top: 0.15px solid #dddddc;
       display: flex;
       span {
