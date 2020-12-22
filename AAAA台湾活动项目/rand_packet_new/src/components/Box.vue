@@ -65,6 +65,12 @@
                 </span>
                 <em>{{prizes.gift.name}}*{{prizes.gift.count}}</em>
               </div>
+              <div class="giftItem ticket" v-if="prizes.frame">
+                <span class="giftBg">
+                  <img :src="prizes.frame.image" alt="" class="img3">
+                </span>
+                <em>{{prizes.frame.name}}({{prizes.frame.day}}{{lang.day}})</em>
+              </div>
             </div>
             <p class="sucPup1" v-html="lang.sucPup1Tips"></p>
           </div>
@@ -104,6 +110,12 @@
                   <img :src="prizes2.car.image" alt="" class="img3">
                 </span>
                 <em>{{prizes2.car.name}}({{prizes2.car.day}}{{lang.day}})</em>
+              </div>
+              <div class="giftItem car" v-if="prizes2.frame">
+                <span class="giftBg">
+                  <img :src="prizes2.frame.image" alt="" class="img3">
+                </span>
+                <em>{{prizes2.frame.name}}({{prizes2.frame.day}}{{lang.day}})</em>
               </div>
             </div>
             <p class="sucPup1" v-html="lang.sucPup1Tips"></p>

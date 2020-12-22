@@ -173,7 +173,7 @@
       <!-- 倒計時選擇彈窗 -->
       <van-popup v-model="showTimePup" position="bottom" :round="true">
         <ul class="timeList">
-          <li v-for="(item,index) in timeArr" :key="index" :class="{act:timeIndex == index}" @click="timeQuery(index)">{{item}}分鐘</li>
+          <li v-for="(item,index) in timeArr" :key="index" :class="{act:timeIndex == index}" @click="timeQuery(index)">{{item}}menit</li>
         </ul>
       </van-popup>
       <div class="mask" v-if="showCommitPup">
@@ -478,6 +478,8 @@ body {
         color: rgba(12, 12, 12, 1);
         font-size: 0.34rem;
         font-weight: 500;
+        flex: 1;
+        margin-right: 0.15rem;
       }
       .itemCon {
         width: 5.23rem;
@@ -967,7 +969,7 @@ body {
 }
 .commitQueryPup {
   width: 5.6rem;
-  height: 3.08rem;
+  // height: 3.08rem;
   background: rgba(255, 255, 255, 1);
   border-radius: 0.3rem;
   padding-top: 0.46rem;
@@ -991,8 +993,8 @@ body {
     line-height: 1.04rem;
     display: flex;
     border-top: 1px solid rgba(236, 236, 236, 1);
-    position: absolute;
-    bottom: 0;
+    // position: absolute;
+    // bottom: 0;
     span {
       flex: 1;
       text-align: center;
@@ -1030,7 +1032,8 @@ body {
         position: relative;
         .prise_type {
           display: block;
-          width: 0.76rem;
+          // width: 0.76rem;
+          padding: 0 .1rem;
           height: 0.34rem;
           font-size: 0.24rem;
           background: #cccccc;

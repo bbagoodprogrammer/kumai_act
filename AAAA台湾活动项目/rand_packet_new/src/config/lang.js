@@ -10,7 +10,7 @@ const lang = {
     rudexScore: '距離終極驚喜寶箱累積值还差：',
     dayRank: '日榜',
     totalRank: '總榜',
-    dayRankTips: '驚喜值= 歌房/作品/語聊送禮金幣魅力值總和',
+    dayRankTips: '驚喜值= 歌房/作品送禮金幣魅力值總和',
     dayDownTime: '今日日榜結束倒計時',
     dayStartTime: '本日榜開始倒計時',
     dayNoTime: '本日榜已結束',

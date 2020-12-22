@@ -10,7 +10,7 @@ const lang = {
     rudexScore: ' Mở quà cuối cần thêm:',   //距離終極驚喜盲盒累積值还差：
     dayRank: 'BXH Ngày',         //日榜
     totalRank: 'BXH Tổng',       //總榜
-    dayRankTips: 'Điểm Bất Ngờ = tổng Mị Lực tặng quà xu phòng Kara/Radio/Bài Hát',  //驚喜值= 歌房/作品/語聊送禮金幣魅力值總和
+    dayRankTips: 'Điểm Bất Ngờ = tổng Mị Lực tặng quà xu phòng Kara/Bài Hát',  //驚喜值= 歌房/作品/語聊送禮金幣魅力值總和
     dayDownTime: 'Đếm ngược BXH Ngày hôm nay',  //今日日榜結束倒計時
     dayStartTime: 'Đếm ngược mở BXH Ngày này',  //本日榜開始倒計時
     dayNoTime: 'BXH ngày này đã kêt thúc',      //本日榜已結束

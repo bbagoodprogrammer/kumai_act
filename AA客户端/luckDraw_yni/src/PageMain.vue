@@ -6,7 +6,7 @@
     <div class="turnBox">
       <div class="openUser" v-show="creator_id">
         <div class="userMsg">
-          Pemilik pemulai:
+          Sponsor:
           <img v-lazy="creator_avatar" alt="">
           <span class="nick">{{creator_nick}}</span>
         </div>
@@ -27,7 +27,7 @@
             <span v-else-if="luckMsg.status == 1">Mundur hitung <em>{{surplusTime.minute}}:{{surplusTime.second}}</em></span>
             <span v-else class="nick">Selamat:<em>{{luckMsg.winner_nick}}</em> </span>
           </div>
-          <div class="gift">Hadiah：{{luckMsg.prise_str}}</div>
+          <div class="gift">Hadiah:{{luckMsg.prise_str}}</div>
         </div>
       </div>
       <div class="luckBtn" :class="{luckIng:luckStatus == 3,luck:luckStatus==2,again:luckStatus == 1}" @click="goSetting()"></div>
@@ -420,6 +420,8 @@ export default {
         font-size: 0.32rem;
       }
       .luckIng {
+        width: 100%;
+        height: 100%;
         .msg {
           color: rgba(255, 242, 40, 1);
           font-size: 0.32rem;
@@ -441,6 +443,8 @@ export default {
           color: rgba(255, 255, 255, 1);
           font-size: 0.28rem;
           text-align: center;
+          width: 100%;
+          word-break: break-all;
           //   margin-top: 0.12rem;
         }
       }
