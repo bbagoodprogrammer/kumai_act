@@ -305,7 +305,7 @@ h3 {
       display: block;
       width: 0.32rem;
       height: 0.32rem;
-      background: RGBA(253, 68, 69, 1);
+      background: #00ddcc;
       border-radius: 50%;
       text-align: center;
       line-height: 0.32rem;
@@ -335,7 +335,7 @@ h3 {
     display: block;
     width: 0.32rem;
     height: 0.32rem;
-    background: RGBA(253, 68, 69, 1);
+    background: #00ddcc;
     border-radius: 50%;
     text-align: center;
     line-height: 0.32rem;
@@ -402,7 +402,7 @@ h3 {
     }
     i {
       display: block;
-      width: 0.36rem;
+      width: 0.31rem;
       height: 0.31rem;
       background: url(../assets/img/setBlack.png);
       background-size: 100% 100%;

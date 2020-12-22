@@ -8,10 +8,10 @@
     <div class="ruleTips" v-show="tab == 0">
       <h6>Thể lệ:</h6>
       <p>1. Toàn bộ người dùng đều có thể báo danh tham gia.</p>
-      <p>2. Sau khi báo danh, thí sinh tặng quà xu cho bài hát, tại phòng Kara, phòng Radio đều nhận được điểm Bất Ngờ, khi điểm đạt cấp yêu cầu sẽ có thể mở hộp quà nhưng mỗi người mỗi ngày chỉ được mở 1 lần, quà từ hộp quà sẽ được gửi tự động vào tài khoản của thí sinh.</p>
+      <p>2. Sau khi báo danh, thí sinh tặng quà xu cho bài hát, tại phòng Kara, đều nhận được điểm Bất Ngờ, khi điểm đạt cấp yêu cầu sẽ có thể mở hộp quà nhưng mỗi người mỗi ngày chỉ được mở 1 lần, quà từ hộp quà sẽ được gửi tự động vào tài khoản của thí sinh.</p>
       <p>
-        3. Quy tắc xếp hạng
-        <strong>BXH ngày: điểm Bất Ngờ= tổng mị lực quà xu tặng cho bài hát, tại phòng Kara/Radio, điểm càng nhiều xếp hạng càng cao, BXH ngày xoá hết vào 0h ngày hôm sau, BXH Ngày chỉ hiện top 100 thí sinh.</strong>
+        3. Quy tắc xếp hạng
+        <strong>BXH ngày: điểm Bất Ngờ= tổng mị lực quà xu tặng cho bài hát, tại phòng Kara, điểm càng nhiều xếp hạng càng cao, BXH ngày xoá hết vào 0h ngày hôm sau, BXH Ngày chỉ hiện top 100 thí sinh.</strong>
         <strong>BXH Tổng: xếp hạng theo tổng điểm Bất Ngờ trong thời gian sự kiện từ cao đến thấp, BXH Tổng chỉ hiện top 100 thí sinh.</strong>
         <strong>Trong tình hình thí sinh cùng điểm thì thí sinh đạt trước sẽ được xếp hạng trước.</strong>
       </p>
@@ -40,9 +40,9 @@
       </p>
       <h6>Chú ý:</h6>
       <p>1.Nếu phát hiện thí sinh có hành vi gian lận, ban tổ chức sẽ loại ngay, xoá hết điểm dự thi và thu hồi toàn bộ phần thưởng, cấm tham gia các sự kiện khác.</p>
-      <p>2. Top 1-3 lần lượt nhận phiếu quà nạp 15%, 12%, 10%. 0h hôm sau hệ thống tự động gửi, ngày cuối sẽ gửi ngay khi kết thúc sự kiện.</p>
-      <p>3. Toàn bộ Túi quà từ sự kiện có hạn sử dụng 14 ngày.</p>
-      <p>4. Mỗi người mỗi ngày được mở tối đa 1 hộp quà, khi đạt đến cấp độ có thể mở nhiều hộp quà sẽ mặc định mở hộp quà cấp cao nhất. </p>
+      <p>2.Top 1-3 lần lượt nhận phiếu quà nạp (Chỉ dùng 1 lần) 15%, 12%, 10%. 0h hôm sau hệ thống tự động gửi, ngày cuối sẽ gửi ngay khi kết thúc sự kiện.</p>
+      <p>3.Toàn bộ Túi quà từ sự kiện có hạn sử dụng 14 ngày.</p>
+      <p>4.Mỗi người mỗi ngày được mở tối đa 1 hộp quà, khi đạt đến cấp độ có thể mở nhiều hộp quà sẽ mặc định mở hộp quà cấp cao nhất. </p>
     </div>
     <div class="giftTips" v-show="tab ==1">
       <div class="giftBox">

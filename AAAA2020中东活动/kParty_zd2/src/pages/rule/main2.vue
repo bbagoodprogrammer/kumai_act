@@ -458,26 +458,27 @@ body {
   }
   .actTips {
     position: relative;
+    background: rgba(92, 45, 156, 1);
+    border: 0.01rem solid rgba(48, 9, 101, 1);
+    border-radius: 0.1rem;
+    padding-bottom: 0.3rem;
     .tipsNum {
       width: 0.7rem;
       position: absolute;
-      bottom: 0.35rem;
-      right: 0.17rem;
+      bottom: 0.15rem;
+      left: 0.17rem;
       font-size: 0.22rem;
       text-align: center;
       color: #a072de;
     }
   }
   textarea {
-    background: red;
-    width: 6.46rem;
-    height: 1.15rem;
-    margin: 0.16rem auto 0.24rem;
-    background: rgba(92, 45, 156, 1);
-    border: 0.01rem solid rgba(48, 9, 101, 1);
-    border-radius: 0.1rem;
+    display: block;
+    width: 6.45rem;
+    height: 1.25rem;
+    margin: 0.16rem auto 0.2rem;
     font-size: 0.24rem;
-    padding: 0.13rem 0.15rem 0.42rem 0.24rem;
+    // padding: 0.13rem 0.15rem 0.42rem 0.24rem;
     color: #a072de;
   }
   textarea::-webkit-input-placeholder {

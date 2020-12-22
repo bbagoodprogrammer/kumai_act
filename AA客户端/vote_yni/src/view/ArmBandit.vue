@@ -254,10 +254,13 @@ body::-webkit-scrollbar {
   padding: 0 0.3rem;
 }
 .describeBox {
+  height: 2.36rem;
   position: relative;
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgb(8, 6, 6);
   .describeNum {
     position: absolute;
-    bottom: 0.26rem;
+    bottom: 0.1rem;
     right: 0.2rem;
     color: rgba(186, 186, 186, 1);
     font-size: 0.28rem;
@@ -274,10 +277,8 @@ h3 {
 #describe {
   width: 6.3rem;
   height: 1.62rem;
-  background: rgba(255, 255, 255, 1);
-  border: 1px solid rgba(230, 230, 230, 1);
   border-radius: 0.1rem;
-  padding: 0.24rem 0.3rem;
+  margin: 0.24rem 0.3rem;
 }
 .optionTitle {
   margin-top: 0.3rem;
@@ -439,10 +440,12 @@ h3 {
         height: 100%;
       }
       span {
+        width: 0.9rem;
         color: rgba(55, 55, 55, 1);
+        font-size: 0.24rem;
       }
     }
-    span {
+    > span {
       font-size: 0.24rem;
       width: 1.6rem;
       color: rgba(144, 144, 144, 1);

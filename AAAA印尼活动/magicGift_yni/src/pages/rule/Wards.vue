@@ -1,6 +1,6 @@
 <template>
   <div class="wards">
-    <p class="activeTime">Waktu Acara:Tgl 4 Oct , 18:00 - tgl 14 Oct , 21:00 </p>
+    <p class="activeTime">Waktu acara : Tgl 22 Dec, 18:00 - tgl 1 Jan, 21:00</p>
     <h5>Hadiah untuk Top 10 dari Top Hegemon Nyanyian:</h5>
     <div class="wardTop">
       <h5>Top 1:</h5>

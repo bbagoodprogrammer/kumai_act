@@ -12,7 +12,6 @@
             <i class="yes" v-show="userMsg.go_count >= item.must_get"></i>
           </span>
         </div>
-        <!-- :style="{height:barHeight + '%'}" -->
         <div class="actBar" :style="{height:barHeight + '%'}">
           <StarEffects v-if="barHeight>=30" />
         </div>
@@ -343,7 +342,7 @@ export default {
     font-size: 0.26rem;
     em {
       display: block;
-      margin: -0.08rem 0 0 -0.1rem;
+      margin-top: -0.08rem;
       font-size: 0.2rem;
       opacity: 0.5;
     }
