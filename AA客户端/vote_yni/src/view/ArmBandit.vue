@@ -6,7 +6,7 @@
       <textarea name="" v-model="describe" id="describe" maxlength="300" placeholder="Input deskripsi agar user mengerti tujuan vote"></textarea>
       <span class="describeNum">{{describe.length}}/300</span>
     </div>
-    <h3 class="optionTitle">Pilihan vote <u class="optionType" @click="setOptionType()">{{optionType?'Pilihan kustom':'Pakai user yg ada di antrian'}}</u></h3>
+    <h3 class="optionTitle">Pilihan vote <span class="optionType" @click="setOptionType()">{{optionType?'Pilihan kustom':'Pakai user yg Mic'}}</span></h3>
     <div v-if="!optionType">
       <div class="optionBox" v-for="(item,index) in option" :key="index">
         <i class="close" @click="delOption(index)" v-if="index != 0">x</i>
@@ -257,7 +257,7 @@ body::-webkit-scrollbar {
   height: 2.36rem;
   position: relative;
   background: rgba(255, 255, 255, 1);
-  border: 1px solid rgb(8, 6, 6);
+  // border: 1px solid rgb(8, 6, 6);
   .describeNum {
     position: absolute;
     bottom: 0.1rem;
@@ -289,6 +289,12 @@ h3 {
     color: rgba(9, 22, 255, 1);
     font-size: 0.3rem;
     font-weight: normal;
+  }
+  span {
+    height: 0.4rem;
+    line-height: 0.45rem;
+    border-bottom: 1px solid rgba(9, 22, 255, 1);
+    white-space: nowrap;
   }
 }
 .peopleList {

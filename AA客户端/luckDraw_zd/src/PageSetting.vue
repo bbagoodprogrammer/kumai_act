@@ -523,7 +523,8 @@ body {
           background-size: 100% 100%;
           position: absolute;
           top: 0.3rem;
-          right: 0.2rem;
+          left: 0.2rem;
+          transform: rotate(180deg);
         }
       }
     }
@@ -539,7 +540,7 @@ body {
         white-space: nowrap;
       }
       .peopleType {
-        flex:1;
+        flex: 1;
         display: flex;
         align-items: center;
         margin-right: 0.2rem;
@@ -688,7 +689,7 @@ body {
                 height: 0.27rem;
                 background: url(./img/coins2.png);
                 background-size: 100% 100%;
-                margin-right: 0.06rem;
+                margin-left: 0.06rem;
               }
             }
           }
@@ -820,7 +821,7 @@ body {
               height: 0.17rem;
               background: url(./img/bead.png);
               background-size: 100% 100%;
-              margin-right: 0.1rem;
+              margin-left: 0.1rem;
               &.coins {
                 background: url(./img/coins.png);
                 background-size: 100% 100%;
@@ -873,13 +874,13 @@ body {
         display: flex;
         align-items: center;
         i {
-          margin-right: 0.08rem;
+          margin-left: 0.08rem;
         }
         strong {
           font-size: 0.26rem;
         }
         &.coin {
-          margin-right: 0.1rem;
+          margin-left: 0.1rem;
           i {
             width: 0.28rem;
             height: 0.28rem;
@@ -901,7 +902,8 @@ body {
         height: 0.16rem;
         background: url(./img/back.png);
         background-size: 100% 100%;
-        margin-left: 0.07rem;
+        margin-right: 0.07rem;
+        transform: rotate(180deg);
       }
     }
     .queryBtn {
@@ -1086,7 +1088,7 @@ body {
             height: 0.24rem;
             background: url(./img/coins2.png);
             background-size: 100% 100%;
-            margin-right: 0.08rem;
+            margin-left: 0.08rem;
             &.bean {
               background: url(./img/bean.png);
               background-size: 100% 100%;

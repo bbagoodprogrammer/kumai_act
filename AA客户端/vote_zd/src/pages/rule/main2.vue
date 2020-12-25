@@ -182,7 +182,7 @@ body {
     .overVote {
       font-size: 0.28rem;
       font-weight: bold;
-      color: rgba(255, 31, 31, 1);
+      color: #00ddcc;
       position: absolute;
       right: 0.3rem;
     }
@@ -198,12 +198,13 @@ body {
     background: rgba(236, 236, 236, 1);
   }
   .tltle {
-    margin: 0.4rem 0;
+    margin: 0.4rem 0 0.16rem;
     padding: 0 0.4rem;
     min-height: 0.53rem;
     font-weight: bold;
     line-height: 0.35rem;
     color: rgba(38, 38, 38, 1);
+    font-size: 0.38rem;
   }
   // .chioneBtn {
   // flex: 1;
@@ -282,11 +283,7 @@ body {
     text-align: center;
     background: rgba(230, 230, 230, 1);
     &.act {
-      background: linear-gradient(
-        313deg,
-        rgba(252, 2, 116, 1) 0%,
-        rgba(252, 82, 40, 1) 100%
-      );
+      background: #00ddcc;
     }
   }
 }

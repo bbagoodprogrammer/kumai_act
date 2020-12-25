@@ -7,29 +7,31 @@
     <!-- <div class="actTime">活動時間：{{timer}}</div> -->
     <div class="ruleItem" v-if="type==1">
       <div class="topTips textColor">
-        <p>Cuộc thi Gia Tộc Mạnh Nhất chỉ dành cho gia tộc, toàn bộ gia tộc tự động báo danh</p>
+        <p>Cuộc thi Gia Tộc Mạnh Nhất chỉ dành cho gia tộc, toàn bộ gia tộc tự động báo danh.</p>
         <p>Nếu chưa có gia tộc, người chơi được nhấn báo danh tham gia, sau đó vào gia tộc hoặc xin lập gia tộc để tham gia sự kiện.</p>
         <p>Gia Tộc Mạnh Nhất gồm 3 vòng: Bảo Hộ - PK Gia Tộc – Tranh Bá</p>
       </div>
       <h6>I. Vòng Bảo Hộ:</h6>
       <p>1. Thời gian: 12:00:00 28/12/2020 – 23:59:59 31/12/2020 </p>
-      <p>2. Điểm Lấp Lánh= điểm bảo hộ + mị lực bài hát/phòng Kara của thành viên gia tộc nhận</p>
+      <p>2. Điểm Lấp Lánh = điểm bảo hộ + mị lực quà xu thành viên gia tộc nhận được từ bài hát và phòng Kara.</p>
       <p>3. Thành viên gia tộc hoàn thành nhiệm vụ và nhận quà để tăng điểm Lấp Lánh.</p>
-      <p>4. Sau khi hết vòng này, 300 gia tộc hạng cao nhất được vào vòng PK Gia Tộc, 3 gia tộc hạng cao nhất được nhận túi quà gia tộc, gửi cho thành viên gia tộc dựa theo số điểm Lấp Lánh đã cống hiến (vòng này thành viên cống hiến điểm Lấp Lánh cho gia tộc mới được nhận thưởng túi quà gia tộc)</p>
+      <p>4. Sau khi hết vòng này, 300 gia tộc hạng cao nhất được vào vòng PK Gia Tộc, 3 gia tộc hạng cao nhất được nhận túi quà gia tộc, gửi cho thành viên gia tộc dựa theo số điểm Lấp Lánh đã cống hiến (vòng này thành viên cống hiến điểm Lấp Lánh cho gia tộc mới được nhận thưởng túi quà gia tộc).</p>
       <p>5. Trong thời gian diễn ra vòng Bảo Hộ, nếu thoát gia tộc, điểm số của thành viên sẽ không bị trừ, nếu vào lại gia tộc sẽ tính lại số điểm cũ. Nếu tạo gia tộc mới hoặc vào gia tộc khác, điểm số sẽ tính lại từ đầu.</p>
       <h6>II. Vòng PK Gia Tộc:</h6>
-      <p>1. Thời gian: 00:00:00 1/1/2021 – 23:59:59 4/1/2021</p>
-      <p>2. Điểm Lấp Lánh= Mị lực bài hát/phòng Kara của thành viên gia tộc nhận</p>
-      <p>3. Gia tộc vào vòng này được ghép cặp PK ngẫu nhiên, dựa vào điểm Lấp Lánh nhận trong vòng này phân định thắng thua. </p>
+      <p>1. Thời gian: 00:05:00 1/1/2021 – 23:59:59 4/1/2021</p>
+      <p>2. Điểm Lấp Lánh = mị lực quà xu thành viên gia tộc nhận được từ bài hát và phòng Kara.</p>
+      <p>3. Gia tộc vào vòng này được ghép cặp PK ngẫu nhiên, dựa vào điểm Lấp Lánh nhận trong vòng này phân định thắng thua. Gia tộc Top 15 điểm lấp lánh sẽ nhận được Túi quà gia tộc vòng PK Gia Tộc (thắng thua đều có), gửi cho thành viên gia tộc dựa theo số điểm Lấp Lánh đã cống hiến (vòng này thành viên cống hiến điểm Lấp Lánh cho gia tộc mới được nhận thưởng túi quà gia tộc).</p>
       <p>4. Tặng quà gia tộc đặc biệt sẽ tăng 3% điểm Lấp Lánh nhận được.</p>
-      <p>5. Trong thời gian diễn ra vòng Bảo Hộ, nếu thoát gia tộc, điểm số của thành viên sẽ không bị trừ, nếu vào lại gia tộc sẽ tính lại số điểm cũ. Nếu tạo gia tộc mới hoặc vào gia tộc khác, xem như chưa qua vòng.</p>
-      <!-- <p>6.PK雙方分數相同，則倆個家族都無法晉級</p> -->
+      <p>5. Trong thời gian diễn ra vòng PK Gia Tộc, nếu thoát gia tộc, điểm số của thành viên sẽ không bị trừ, nếu vào lại gia tộc sẽ tính lại số điểm cũ. Nếu tạo gia tộc mới hoặc vào gia tộc khác, điểm số sẽ tính lại từ đầu.</p>
+      <!-- <p>6. Nếu hai gia tộc PK bằng điểm, hai gia tộc đều xem như chưa qua vòng.</p> -->
       <h6>III. Vòng Tranh Bá:</h6>
-      <p>1. Thời gian: 00:00:00 5/1/2021 – 23:59:59 8/1/2021</p>
-      <p>2. Điểm Lấp Lánh= Mị lực bài hát/phòng Kara của thành viên gia tộc nhận, vòng này mỗi ngày 21:00 – 21:10 được tặng thêm 10% quà nhận, top 50 gia tộc trong năm nay được tăng thêm 6-10% điểm nhận.</p>
+      <p>1. Thời gian: 00:05:00 5/1/2021 – 23:59:59 8/1/2021</p>
+      <p>2. Điểm Lấp Lánh = mị lực quà xu thành viên gia tộc nhận được từ bài hát và phòng Kara. Vòng này mỗi ngày 21:00 – 21:10 được tặng thêm 10% quà nhận, top 50 gia tộc trong năm nay được tăng thêm 6-10% điểm nhận.</p>
       <p>3. Gia tộc đã qua vòng được xếp hạng theo điểm Lấp Lánh nhận được, 3 gia tộc hạng cao nhất và đại diện của gia tộc trở thành Gia Tộc Của Năm, gia tộc hạng nhất được chứng nhận Gia Tộc Mạnh Nhất. </p>
       <p>4. 10 gia tộc hạng cao nhất và thành viên gia tộc sẽ nhận phần thưởng phong phú.</p>
-      <p>5. Trong thời gian diễn ra vòng Bảo Hộ, nếu thoát gia tộc, điểm số của thành viên sẽ không bị trừ, nếu vào lại gia tộc sẽ tính lại số điểm cũ. Nếu tạo gia tộc mới hoặc vào gia tộc khác, xem như chưa qua vòng.</p>
+      <p>5. Gia tộc đạt Gia Tộc Mạnh Nhất sẽ được đề cử 1 thành viên tham gia Đêm nhạc Gala, thành viên này sẽ được thưởng 30% tiền mặt từ quà xu nhận trong Đêm nhạc Gala.</p>
+      <p>6. Trong thời gian diễn ra vòng Tranh Bá, nếu thoát gia tộc, điểm số của thành viên sẽ không bị trừ, nếu vào lại gia tộc sẽ tính lại số điểm cũ.</p>
+
     </div>
     <div class="wardItem" v-else>
       <img src="../../assets/img/wardImg.png" alt="" class="wardImg">
@@ -86,7 +88,7 @@
       <h6 class="textColor minsize">Top 30 gia tộc có điểm Lấp Lánh cao nhất vòng này, 50 thành viên cống hiến nhiều nhất trong gia tộc nhận 1 phần thưởng, cống hiến điểm Lấp Lánh càng nhiều quà nhận được càng giá trị.
         <br />Ghi chú: Nếu gia tộc không đủ 50 người hoặc bảng xếp hạng bảo hộ không đủ 50 người, số quà dư sẽ bị bỏ qua.</h6>
       <img src="../../assets/img/wardImg2.png" alt="" class="wardImg2">
-      <h5>Túi quà gia tộc vòng PK Gia Tộc (5000 xu)*15</h5>
+      <h5>Túi quà gia tộc vòng PK Gia Tộc (Giá trị 5000 xu)*15</h5>
       <h6 class="textColor minsize">Top 15 gia tộc có điểm Lấp Lánh cao nhất vòng này (bất kể thắng hay thua), 60 thành viên cống hiến nhiều nhất trong gia tộc nhận 1 phần thưởng, cống hiến điểm Lấp Lánh càng nhiều quà nhận được càng giá trị.
         <br />Ghi chú: Nếu gia tộc không đủ 60 người hoặc bảng xếp hạng PK không đủ 50 người, số quà dư sẽ bị bỏ qua.
       </h6>
@@ -97,12 +99,14 @@
       <p>3. Thời hạn nâng số người phòng Kara được tính từ lúc phát thưởng.</p>
       <p>4. Trong vòng 7 ngày làm việc sau khi kết thúc sự kiện, ban tổ chức sẽ liên hệ với tộc trưởng để tổng hợp thông tin nhận thưởng, nếu tộc trưởng không cung cấp thông tin nhận thưởng đúng hạn xem như bỏ phần thưởng.</p>
       <p>5. Trang sức và quà động nhận từ sự kiện cần cập nhật bản mới nhất để dùng, nếu không sẽ bỏ lỡ hiệu ứng của quà tặng.</p>
-      <!-- <p>6、頭飾和活動獎勵特效禮物請更新至最新版本軟體使用，否則可能會錯過絢麗特效哦</p> -->
+      <!-- <p>6. Những phần thưởng Trang sực và quà hiệu ứng cần bạn cập nhật đến phiên bản mới nhất mới có thể trải nghiệm.</p> -->
       <p>6. Toàn bộ phần thưởng túi quà đều có thời hạn 7 ngày.</p>
     </div>
     <p class="lastTips">Quyết định của ban tổ chức là quyết định cuối cùng</p>
   </div>
 </template>
+
+
 
 <script>
 import getDate from "../../utils/getDate"

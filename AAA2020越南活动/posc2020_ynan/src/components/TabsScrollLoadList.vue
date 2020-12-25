@@ -1304,6 +1304,8 @@ export default {
           }
           .nick {
             width: 100%;
+            height: .36rem;
+            line-height: .36rem;
             display: block;
             overflow: hidden;
             white-space: nowrap;

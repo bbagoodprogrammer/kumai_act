@@ -439,9 +439,10 @@ h3 {
         color: rgba(55, 55, 55, 1);
       }
     }
-    span {
+    > span {
       color: rgba(144, 144, 144, 1);
       margin-left: 0.1rem;
+      flex: 1;
     }
   }
   p {
@@ -463,11 +464,7 @@ h3 {
   border-radius: 0.8rem;
   &.act {
     border: 1px solid rgba(0, 0, 0, 0);
-    background: linear-gradient(
-      313deg,
-      rgba(252, 2, 116, 1) 0%,
-      rgba(252, 82, 40, 1) 100%
-    );
+    background: #00ddcc;
   }
 }
 input::-webkit-input-placeholder,

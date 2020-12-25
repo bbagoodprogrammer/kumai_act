@@ -53,9 +53,9 @@
     <!-- 禮物圖片 -->
     <img src="../assets/img/rankGift.png" alt="" class="rankGift" v-if="showType == 2">
     <!-- 文案提示 -->
-    <p v-if="showType == 1" class="tankTips">Điểm Lấp Lánh= điểm bảo hộ + mị lực bài hát/phòng Kara của thành viên gia tộc nhận</p>
-    <p v-else-if="showType == 2" class="tankTips">Điểm Lấp Lánh= điểm bảo hộ + mị lực bài hát/phòng Kara của thành viên gia tộc nhận</p>
-    <p v-else-if="showType == 3" class="tankTips">Điểm Lấp Lánh= điểm bảo hộ + mị lực bài hát/phòng Kara của thành viên gia tộc nhận <br />(Top 50 gia tộc năm nay được tăng 6-10% điểm vòng này)<span>Vòng này mỗi ngày 21:00 – 21:10 tăng 10% mị lực</span></p>
+    <p v-if="showType == 1" class="tankTips">Điểm Lấp Lánh = điểm bảo hộ + mị lực quà xu <br /> thành viên gia tộc nhận được từ bài hát và phòng Kara</p>
+    <p v-else-if="showType == 2" class="tankTips">Điểm Lấp Lánh = mị lực quà xu thành viên<br /> gia tộc nhận được từ bài hát và phòng Kara</p>
+    <p v-else-if="showType == 3" class="tankTips">Điểm Lấp Lánh = mị lực quà xu thành viên<br /> gia tộc nhận được từ bài hát và phòng Kara <br />(Top 50 gia tộc năm nay được tăng 6-10% điểm vòng này)<span>Vòng này mỗi ngày 21:00 – 21:10 tăng 10% mị lực</span></p>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs" v-if="showType == 1">
       <div class="tabs">
@@ -1327,7 +1327,7 @@ export default {
         .noFamily {
           font-size: 0.24rem;
           color: rgba(255, 251, 128, 1);
-          white-space: nowrap;
+          // white-space: nowrap;
           display: flex;
           align-items: center;
           justify-content: center;

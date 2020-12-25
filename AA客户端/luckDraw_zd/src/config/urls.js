@@ -2,12 +2,12 @@ let test = false;
 const host = location.host;
 
 let folder = '';
-let origin = 'http://act.17sing.tw';
+let origin = '';
 let socketUri = 'ws://xws.17sing.tw/websocketx';
 if (/\d+\.\d+\.\d+\.\d+/.test(host) || /localhost/i.test(host) || /^t(est)?\./i.test(host)) {
     test = true;
-    folder = '/action';
-    origin = 'http://test.17sing.tw';
+    folder = '/action'; // '/action'
+    origin = '';
     socketUri = 'ws://beatupload.17sing.tw/websocket';
 }
 
