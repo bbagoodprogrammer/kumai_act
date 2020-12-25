@@ -26,7 +26,7 @@
             <img :src="lateImg" alt="">
             <em>{{giftPupName}}</em>
           </div>
-          <p v-if="showVerTips && !Version" class="verTips">تحتاج إلى التحديث إلى أحدث إصدار لاستخدام الجائزة</p>
+          <!-- <p v-if="showVerTips && !Version" class="verTips">تحتاج إلى التحديث إلى أحدث إصدار لاستخدام الجائزة</p> -->
           <div class="querBtn" @click="closePup()">تحديد</div>
         </div>
       </transition>

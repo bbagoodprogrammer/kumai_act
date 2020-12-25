@@ -222,10 +222,24 @@ export default {
           this.box2Tips = this.lang.noSingUpTips
           this.showOpenBox2 = true
         } else if (this.isTop && !this.packet.totalOpened) {
-          let player = this.plarerArr['masonryGo'].player
+          let player = this.plarerArr['masonryGo'] ? this.plarerArr['masonryGo'].player : false
           if (!player) {
-            this.tastMsg = `資源未加載完成，請稍後再試！`
-            this.showT = true
+            // this.tastMsg = `資源未加載完成，請稍後再試！`
+            // this.showT = true
+            api.openBox(type).then(res => {
+              if (res.data.response_status.code == 0) {
+                this.vuexCommit('setTotalState', true)
+                // player.start()
+                this.prizes2 = res.data.response_data.prizes
+                // setTimeout(() => {
+                this.showPup2Type2 = true
+                this.showOpenBox2 = true
+                // }, 2000)
+              } else {
+                this.tastMsg = res.data.response_status.error
+                this.showT = true
+              }
+            })
             return
           }
           api.openBox(type).then(res => {
@@ -252,10 +266,25 @@ export default {
       if (!this.registered) {
         this.showOpenBox1 = false
       } else if (!this.packet.dayOpened && this.userLv > 0) {
-        let player = this.plarerArr['goldGo'].player
+        let player = this.plarerArr['goldGo'] ? this.plarerArr['goldGo'].player : false
         if (!player) {
-          this.tastMsg = `資源未加載完成，請稍後再試！`
-          this.showT = true
+          // this.tastMsg = `資源未加載完成，請稍後再試！`
+          // this.showT = true
+          api.openBox(type).then(res => {
+            if (res.data.response_status.code == 0) {
+              this.showOpenBox1 = false
+              this.vuexCommit('setDayBoxState', true)
+              // player.start()
+              this.prizes = res.data.response_data.prizes
+              // setTimeout(() => {
+              this.showPup1Type2 = true
+              this.showOpenBox1 = true
+              // }, 2000)
+            } else {
+              this.tastMsg = res.data.response_status.error
+              this.showT = true
+            }
+          })
           return
         }
         api.openBox(type).then(res => {

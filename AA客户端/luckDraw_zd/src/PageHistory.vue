@@ -164,7 +164,8 @@ export default {
           background-size: 100% 100%;
           position: absolute;
           top: 0.54rem;
-          right: 0.29rem;
+          left: 0.29rem;
+          transform: rotate(180deg);
         }
       }
     }

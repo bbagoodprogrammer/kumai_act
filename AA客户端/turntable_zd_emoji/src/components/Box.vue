@@ -36,7 +36,7 @@
             <img :src="imgSrc" alt="">
             <em>{{giftPupName}}</em>
           </div>
-          <p v-if="showVerTips && !Version" class="verTips">تحتاج إلى التحديث إلى أحدث إصدار لاستخدام الجائزة</p>
+          <!-- <p v-if="showVerTips && !Version" class="verTips">تحتاج إلى التحديث إلى أحدث إصدار لاستخدام الجائزة</p> -->
           <div class="querBtn" @click="closePup()">{{pupType==1?'تحديد':'اذهب افتح صندوق الكنز'}}</div>
         </div>
       </transition>
