@@ -36,13 +36,13 @@
     <div class="wardItem" v-else>
       <img src="../../assets/img/wardImg.png" alt="" class="wardImg">
       <h6>Gia tộc hạng nhất:</h6>
-      <p>1. Toàn bộ thành viên gia tộc được chứng nhận Gia Tộc Mạnh Nhất Năm (12 tháng)</p>
-      <p>2. Toàn bộ thành viên gia tộc nhận huy chương Gia Tộc Của Năm (1 tháng)</p>
-      <p>3. Điểm cấp gia tộc 10000 + phòng gia tộc tăng lên 800 (vĩnh viễn)</p>
-      <p>4. Toàn bộ thành viên gia tộc nhận 800 đậu.</p>
-      <p>5. Trang sức Gia Tộc Vô Địch (1 tháng)</p>
-      <p>6. Ảnh nền gia tộc (1 tháng)</p>
-      <p>7. Khung ảnh bìa gia tộc (1 tháng)</p>
+      <!-- <p>1. Toàn bộ thành viên gia tộc được chứng nhận Gia Tộc Mạnh Nhất Năm (12 tháng)</p> -->
+      <p>1. Toàn bộ thành viên gia tộc nhận huy chương Gia Tộc Của Năm (1 tháng)</p>
+      <p>2. Điểm cấp gia tộc 10000 + phòng gia tộc tăng lên 800 (vĩnh viễn)</p>
+      <p>3. Toàn bộ thành viên gia tộc nhận 800 đậu.</p>
+      <p>4. Trang sức Gia Tộc Vô Địch (1 tháng)</p>
+      <p>5. Ảnh nền gia tộc (1 tháng)</p>
+      <p>6. Khung ảnh bìa gia tộc (1 tháng)</p>
       <h6 class="textColor">Thưởng top thành viên cống hiến điểm Lấp Lánh </h6>
       <p>Hạng nhất: quà phòng Kara Mộng Đêm Hè (3520 xu) + 1000 xu + Xe Thảm Đỏ (1 tháng) </p>
       <p>Hạng nhì: quà phòng Kara Mộng Cá Heo (2520 xu) + 800 xu + Xe Thảm Đỏ (1 tháng)</p>
@@ -50,13 +50,13 @@
       <p>Hạng tư: quà phòng Kara Chung Tình (520 xu) + 300 xu + Xe Thảm Đỏ (1 tháng) </p>
       <p>Hạng năm: quà bài hát Đu Quay (388 xu) + 100 xu + Xe Thảm Đỏ (1 tháng) </p>
       <h6>Gia tộc hạng nhì: </h6>
-      <p>1. Toàn bộ thành viên gia tộc được chứng nhận Gia Tộc Của Năm (6 tháng) </p>
-      <p>2. Toàn bộ thành viên gia tộc nhận huy chương Gia Tộc Của Năm (1 tháng)</p>
-      <p>3. Điểm cấp gia tộc 8000 + phòng gia tộc tăng lên 700 (vĩnh viễn) </p>
-      <p>4. Toàn bộ thành viên gia tộc nhận 700 đậu.</p>
-      <p>5. Trang sức Gia Tộc Hạng Nhì (1 tháng)</p>
-      <p>6. Ảnh nền gia tộc (1 tháng)</p>
-      <p>7. Khung ảnh bìa gia tộc (1 tháng)</p>
+      <!-- <p>1. Toàn bộ thành viên gia tộc được chứng nhận Gia Tộc Của Năm (6 tháng) </p> -->
+      <p>1. Toàn bộ thành viên gia tộc nhận huy chương Gia Tộc Của Năm (1 tháng)</p>
+      <p>2. Điểm cấp gia tộc 8000 + phòng gia tộc tăng lên 700 (vĩnh viễn) </p>
+      <p>3. Toàn bộ thành viên gia tộc nhận 700 đậu.</p>
+      <p>4. Trang sức Gia Tộc Hạng Nhì (1 tháng)</p>
+      <p>5. Ảnh nền gia tộc (1 tháng)</p>
+      <p>6. Khung ảnh bìa gia tộc (1 tháng)</p>
       <h6 class="textColor">Thưởng top thành viên cống hiến điểm Lấp Lánh </h6>
       <p>Hạng nhất: quà phòng Kara Mộng Cá Heo (2520 xu) + 800 xu + Xe Thảm Đỏ (1 tháng) </p>
       <p>Hạng nhì: quà bài hát Cô Bé Huơu (999 xu) + 500 xu + Xe Thảm Đỏ (1 tháng)</p>
@@ -64,13 +64,13 @@
       <p>Hạng tư: quà bài hát Đu Quay (388 xu) + 100 xu + Xe Thảm Đỏ (1 tháng)</p>
       <p>Hạng năm: quà phòng Kara LOVE YOU (150 xu) + 80 xu + Xe Thảm Đỏ (1 tháng) </p>
       <h6>Gia tộc hạng ba: </h6>
-      <p>1. Toàn bộ thành viên gia tộc được chứng nhận Gia Tộc Của Năm (3 tháng) </p>
-      <p>2. Toàn bộ thành viên gia tộc nhận huy chương Gia Tộc Của Năm (1 tháng)</p>
-      <p>3. Điểm cấp gia tộc 5000 + phòng gia tộc tăng lên 600 (vĩnh viễn) </p>
-      <p>4. Toàn bộ thành viên gia tộc nhận 600 đậu.</p>
-      <p>5. Trang sức Gia Tộc Hạng Ba (1 tháng)</p>
-      <p>6. Ảnh nền gia tộc (1 tháng)</p>
-      <p>7. Khung ảnh bìa gia tộc (1 tháng)</p>
+      <!-- <p>1. Toàn bộ thành viên gia tộc được chứng nhận Gia Tộc Của Năm (3 tháng) </p> -->
+      <p>1. Toàn bộ thành viên gia tộc nhận huy chương Gia Tộc Của Năm (1 tháng)</p>
+      <p>2. Điểm cấp gia tộc 5000 + phòng gia tộc tăng lên 600 (vĩnh viễn) </p>
+      <p>3. Toàn bộ thành viên gia tộc nhận 600 đậu.</p>
+      <p>4. Trang sức Gia Tộc Hạng Ba (1 tháng)</p>
+      <p>5. Ảnh nền gia tộc (1 tháng)</p>
+      <p>6. Khung ảnh bìa gia tộc (1 tháng)</p>
       <h6 class="textColor">Thưởng top thành viên cống hiến điểm Lấp Lánh </h6>
       <p>Hạng nhất: quà bài hát Cô Bé Huơu (999 xu) + 500 xu + Xe Thảm Đỏ (1 tháng)</p>
       <p>Hạng nhì: quà phòng Kara Chung Tình (520 xu) + 300 xu + Xe Thảm Đỏ (1 tháng) </p>

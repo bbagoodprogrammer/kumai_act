@@ -127,7 +127,7 @@ function getGift(type, gid) {
 function getSvga(bid) {
     // return axios.jsonp(`http://test.17sing.tw/action/index.php?action=emoticon.getEmoticonBagById&bid=${bid}&uid=${uid}&token=${token}`, "test")
     return new Promise((resolve, reject) => {
-        jsonp(`http://act.cat2345.com/index.php?action=emoticon.getEmoticonBagById&bid=${bid}&uid=${uid}&token=${token}`, null, (err, data) => {
+        jsonp(`http://act.supervoice-app.com/index.php?action=emoticon.getEmoticonBagById&bid=${bid}&uid=${uid}&token=${token}`, null, (err, data) => {
             if (err) {
                 reject(err);
             } else {
