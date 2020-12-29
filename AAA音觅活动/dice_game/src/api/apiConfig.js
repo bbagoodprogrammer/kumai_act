@@ -86,7 +86,7 @@ function singUp(fuid) {
 
 //每日任務
 function dayTask() {
-    return get(`/index.php?action=richMan.tasks&signture=innerserver&uid=${uid}&token=${token}`)
+    return get(`/index.php?action=richMan.shop&signture=innerserver&uid=${uid}&token=${token}`)
 }
 //好友列表
 function getFriendList(from, invited) {
@@ -119,8 +119,8 @@ function roolMsg() {
 
 
 //投下骰子前進
-function goDice() {
-    return get(`/index.php?action=richMan.run&signture=innerserver&uid=${uid}&token=${token}`)
+function goDice(times) {
+    return get(`/index.php?action=richMan.run&signture=innerserver&uid=${uid}&token=${token}&times=${times}`)
 }
 
 //放棄限時任務

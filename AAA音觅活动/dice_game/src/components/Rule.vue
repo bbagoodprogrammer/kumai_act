@@ -2,18 +2,23 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">活動時間:9/21 18:00 -10/09 22:00</div>
+    <div class="actTime">活動時間:2020年12月29日 -2021年1月5日</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">活動規則</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">活動獎勵</span>
     </div>
     <div class="ruleTips" v-if="type== 1">
-      <h6>1.搖骰子做富翁</h6>
-      <p>通過做任務、購買可以獲得骰子，活動期間內累計步數從高到低進行排名，前10名玩家可獲得相關獎勵</p>
-      <h6>2.搖骰子贏限定</h6>
-      <p>驚喜大禮包有機會開出Land Rover-座駕、BMW-座駕、甜蜜蛋糕-特效禮物、甜甜圈-背包禮物、狗子餵投者-頭像框</p>
+      <h6>1、搖骰子做富翁</h6>
+      <p>通過購買可以獲得骰子,活動期間內累計步數從高到低進行排名，前10名玩家可獲得相關獎勵；</p>
+      <p>活動結束後，若有骰子未使用，則按照50金幣/顆回退相應金幣到賬號中</p>
+      <h6>2、獎勵概率</h6>
+      <img src="../assets/img/rule/table1.png" alt="" class="table">
+      <p class="red">若前300次沒有中幸運錦鯉背包禮物，第301次必中幸運錦鯉-背包禮物</p>
+      <p>儲值返利券使用說明：獲獎當天儲值任意金幣，在次日可獲得對應的金幣返利（不可疊加返利比例）。若一天同時獲得多張儲值返利券，按照所獲得的儲值返利券的最高比例來返利。返利券僅獲得當天有效</p>
       <h6>3.注意事項</h6>
-      <p>小號不參與本次活動</p>
+      <p>1、活動中，若發現玩家用不正當手段參與活動，小音有權在不事先通知的情況下按情節嚴重對參與玩家、違規者取消上榜資格、封禁賬號、收回該玩家所有獎勵等處罰，包括但不限於：</p>
+      <p>活動期間對參賽玩家進行惡意評論、造謠、影射他人</p>
+      <p>2、此活動與蘋果公司無關</p>
     </div>
     <div class="wardsTips" v-if="type== 2">
       <h6>1.總榜第1-3名</h6>
@@ -43,29 +48,29 @@ export default {
       gift1: [
         {
           img: require('../assets/img/rule/Certification_01.png'),
-          name: '【音覓大富翁】認證15天'
+          name: '【音覓大富翁】認證7天'
         },
         {
           img: require('../assets/img/rule/badge.png'),
-          name: '大富翁勛章15天'
+          name: '音覓大富翁勛章10天'
         },
         {
-          img: require('../assets/img/rule/BMW.png'),
-          name: 'BMW座駕15天'
+          img: require('../assets/img/rule/car1.png'),
+          name: '紅色法拉利座駕10天'
         }
       ],
       gift2: [
         {
           img: require('../assets/img/rule/Certification_01.png'),
-          name: '【聚財小天使】認證10天'
+          name: '【聚財小天使】認證7天'
         },
         {
           img: require('../assets/img/rule/badge.png'),
-          name: '大富翁勛章15天'
+          name: '音覓大富翁勛章7天'
         },
         {
           img: require('../assets/img/rule/BMW.png'),
-          name: 'BMW座駕15天'
+          name: 'BMW座駕10天'
         }
       ]
     }
@@ -81,6 +86,14 @@ export default {
 }
 </script>
 <style lang="scss">
+.red {
+  color: #ffe747 !important;
+}
+.table {
+  width: 5.88rem;
+  height: 2.83rem;
+  margin: 0 auto 0.1rem;
+}
 .rule {
   width: 6.48rem;
   height: 10rem;
@@ -102,7 +115,7 @@ export default {
       display: block;
       width: 5.14rem;
       height: 1.42rem;
-      background: url(../assets/img/title/title_15.png);
+      background: url(../assets/img/title/title_14.png);
       background-size: 100% 100%;
     }
   }
@@ -135,6 +148,7 @@ export default {
   }
   .ruleTips {
     height: 7.8rem;
+    overflow-y: scroll;
     padding: 0 0.31rem;
     h6 {
       font-size: 0.28rem;
@@ -191,6 +205,7 @@ export default {
   .lastTips {
     text-align: center;
     font-size: 0.24rem;
+    margin-top: 0.2rem;
   }
 }
 </style>

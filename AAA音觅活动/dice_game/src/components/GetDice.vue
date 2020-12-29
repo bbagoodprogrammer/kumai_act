@@ -4,7 +4,7 @@
       <i class="close" @click="closeGetDicePup()"></i>
       <div class="title"><i></i></div>
       <div class="taskMsgList">
-        <p class="tips">每日任務 <em>（每日0點更新）</em></p>
+        <!-- <p class="tips">每日任務 <em>（每日0點更新）</em></p>
         <ul class="taskItem">
           <li v-for="(item,index) in dayTask.tasks" :key="index">
             <div class="diceImg">
@@ -27,7 +27,7 @@
               <u v-if="index == 'invite'" @click="showSharePup()" class="invite">已邀請{{item.invited}}人</u>
             </div>
           </li>
-        </ul>
+        </ul> -->
         <p class="tips tips2">購買骰子 <span @click="gowalletpage()"><i></i><strong>{{dayTask.balance}}</strong> <i class="add"></i></span></p>
         <ul class="priceList">
           <li v-for="(item,index) in dayTask.goods" :key="index">
@@ -37,7 +37,7 @@
             </div>
             <div class="price">
               <div class="nowPrice">{{item.price}}</div>
-              <del class="original">{{item.original}}</del>
+              <!-- <del class="original">{{item.original}}</del> -->
             </div>
             <div class="buy" @click="buyDice(index)">購買</div>
           </li>
@@ -45,7 +45,7 @@
       </div>
 
     </div>
-    <div class="mask" v-show="showShare">
+    <!-- <div class="mask" v-show="showShare">
       <transition name="slide">
         <div class="sharePup" v-if="showShare">
           <i class="close" @click="closeSharePup()"></i>
@@ -75,7 +75,6 @@
           <p v-if="peopleListHas.length == 0" class="noData">暫無可邀請好友，快去添加好友吧~</p>
           <ul class="pList">
             <li v-for="(item,index) in peopleListHas" :key="index">
-              <!-- <div class="userRank">{{item.rank}}</div> -->
               <div v-if="item.status!=2" class="lsitItem">
                 <div class="imgBox">
                   <span class="avBg" v-if="item.rank<=3"></span>
@@ -94,7 +93,7 @@
           </ul>
         </div>
       </transition>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>

@@ -56,9 +56,10 @@
         <div class="rule" v-show="showRule">
           <i class="close" @click="showRule = false"></i>
           <h5 class="mt">活動時間</h5>
-          <p class="txtc">2020.12.29~2021.01.04</p>
+          <p class="txtc">2020/12/29 18:00~2021/01/04 20:00</p>
           <h5>規則</h5>
-          <p>以在活動時間內對出道成員的出道作品送出的金幣禮物魅力值計算，成為每位出道成員的第1名頭號粉絲可獲得獎勵</p>
+          <p>1、以在活動時間內對出道成員的出道作品送出的金幣禮物魅力值計算，成為每位出道成員的第1名頭號粉絲可獲得獎勵；</p>
+          <p>2、若活動期間出道成員刪除出道作品，則視為退出出道專輯活動，粉絲獎勵也將被取消。</p>
           <h5>獎勵</h5>
           <p>每位頭號粉絲可獲得年度C位爭奪賽作品待定禮物紀念禮包一份，內含實力Vocal（39金幣）*5+送你出道（520金幣）*1</p>
         </div>
@@ -119,7 +120,8 @@ export default {
     },
     goRule() {
       let regstr = getString('token')
-      location.href = `./index2.html?token=${regstr}`
+      let uid = getString('uid')
+      location.href = `http://activity.17sing.tw/static_html/2020/recruit/index.html?uid=${uid}&token=${regstr}`
     },
     goUser(uid) {
       location.href = `uid:${uid}`
@@ -266,6 +268,7 @@ body::-webkit-scrollbar {
         .msg {
           width: 2.5rem;
           margin-left: 0.27rem;
+          white-space: nowrap;
           .nick {
             font-weight: bold;
             font-size: 0.36rem;
@@ -419,7 +422,7 @@ body::-webkit-scrollbar {
 .rule {
   width: 6.3rem;
   height: 6.07rem;
-  padding: 1.03rem 0.44rem 0;
+  padding: 0.6rem 0.44rem 0.3rem;
   background: url(../assets/img/cards.png);
   background-size: 100% 100%;
   position: relative;
@@ -439,7 +442,7 @@ body::-webkit-scrollbar {
   }
   h5 {
     font-size: 0.32rem;
-    margin: 0.64rem 0 0.15rem;
+    margin: 0.24rem 0 0.15rem;
   }
   p {
     font-size: 0.26rem;

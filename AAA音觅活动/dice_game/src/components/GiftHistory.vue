@@ -11,6 +11,7 @@
           <div class="neme" v-else-if="item2.type == 'bean'">{{item2.count}}金豆</div>
           <div class="neme" v-else-if="item2.type == 'coin'">{{item2.count}}金幣</div>
           <div class="neme" v-else-if="item2.type == 'dice'">骰子*{{item2.count}}</div>
+          <div class="neme" v-else-if="item2.type == 'coupon'">{{item2.ratio}}%儲值返利券</div>
           <div class="tu">{{taskName[item2.pid]}}</div>
           <span class="timeItem">{{getTime(item2.time,2)}}</span>
         </div>
@@ -39,18 +40,18 @@ export default {
       more: true,
       loading: false,
       taskName: {
-        1001: '在公開房間上麥30min',
-        1002: '自己魅力值增加500 ',
-        1003: '送出80金幣禮物 ',
-        1004: '自己房間的人氣值增加5000 ',
-        1005: '邀請一個活動新用戶',
+        1001: '購買',
+        1002: '購買 ',
+        1003: '購買 ',
+        1004: '購買 ',
+        1005: '購買',
         2001: '購買',
         2002: '購買',
         2003: '購買',
-        3001: '完成送禮限時任務',
-        3002: '完成邀請限時任務',
-        4001: '榜單獎勵',
-        5001: '成功邀請一個新玩家'
+        3001: '購買',
+        3002: '購買',
+        4001: '日榜獎勵',
+        5001: '購買'
       },
     }
   },

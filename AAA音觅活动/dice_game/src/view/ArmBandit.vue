@@ -102,7 +102,7 @@ export default {
           this.vxc('setDay', day)
           this.vxc('setTotal', total)
           this.vxc('setReg', reg)
-          if (friends.length && !reg) {
+          if (friends && !reg) {
             this.peopleList = friends
             this.invitation = true
           }
