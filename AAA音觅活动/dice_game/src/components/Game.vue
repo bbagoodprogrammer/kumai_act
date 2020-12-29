@@ -11,6 +11,7 @@
       <span>{{dice}}</span>
       <i class="add" @click="showDayTaskPup()"></i>
     </div>
+    <div class="goTen" @click="luckGoFive(5)">搖5次</div>
     <div class="mask" v-show="showGiftPup">
       <transition name="slide">
         <div class="giftPup" :class="{mHeight:showGift.type == 'packet'}" v-if="showGiftPup">
@@ -30,25 +31,27 @@
                 <img src="../assets/img/coins.png" alt="" v-if="showGift.type == 'coin'">
                 <img src="../assets/img/bean.png" alt="" v-else-if="showGift.type == 'bean'">
                 <img src="../assets/img/dice.png" alt="" v-else-if="showGift.type == 'dice'">
+                <img src="../assets/img/coupon.png" alt="" v-else-if="showGift.type == 'coupon'">
                 <img :src="showGift.image" alt="" v-else>
               </div>
               <div class="nick">{{getGigtName(showGift)}}</div>
             </div>
-            <div class="giftItem" v-else v-for="(item,index) in showGift.packet" :key="index">
+            <div class="giftItem" v-else v-for="(item,index) in showGift" :key="index">
               <div class="imgBox">
                 <img src="../assets/img/coins.png" alt="" v-if="item.type == 'coin'">
                 <img src="../assets/img/bean.png" alt="" v-else-if="item.type == 'bean'">
                 <img src="../assets/img/dice.png" alt="" v-else-if="item.type == 'dice'">
+                <img src="../assets/img/coupon.png" alt="" v-else-if="item.type == 'coupon'">
                 <img :src="item.image" alt="" v-else>
               </div>
               <div class="nick">{{getGigtName(item)}}</div>
             </div>
           </div>
-          <div class="packTips" v-if="showGift.type == 'packet' &&showType == null">
+          <!-- <div class="packTips" v-if="showGift.type == 'packet' &&showType == null">
             <h3>驚喜大禮包</h3>
-            <!-- <em v-for="(item,index) in showGift.packet" :key="index">{{getGigtName(item)}}</em> -->
+        
             <p>隨機獲得以下獎勵之一：骰子*1、Land Rover座駕*5天、BMW座駕*5天、66金豆、甜甜圈背包禮物*1、甜蜜蛋糕特效禮物*1、狗子餵投者頭像框*5天 </p>
-          </div>
+          </div> -->
           <div class="ok" @click="closeGiftPup()">
             <em v-if="showGift.type=='dice'">繼續遊戲</em>
             <em v-else-if="!luck">我知道了</em>
@@ -253,18 +256,20 @@ export default {
     luckGo() {
       if (this.dice > 0 && !this.lucking) {
         this.lucking = true
-        api.goDice().then(res => {
+        api.goDice(1).then(res => {
           this.showDiceAni = true
           this.player.start()
           setTimeout(() => {
             let data = res.data.response_data
             let forward = data.extra.forward
-            let prize = data.prize
+            let prize = data.prizes[0]
             let goForward = 0
             this.player.clear()
             this.forward = forward
             this.showForwardImg = true
-            this.vxc('reduexDiceNum')
+            this.vxc('reduexDiceNum', 1)
+            this.vxc('addScore', forward)
+            this.luck = true
             setTimeout(() => {
               this.showDiceAni = false
               let timer = setInterval(() => {
@@ -274,21 +279,7 @@ export default {
                   //禮物彈窗
                   this.lucking = false
                   this.showGift = prize
-                  if (prize.pid == '101' || prize.pid == '204' || prize.pid == '301') {
-                    this.vxc('addDice')
-                  }
-                  if (prize.type == "task") {
-                    this.showTask = true
-                    this.showGift['task'] = data.extra.task
-                    if (data.extra.rid) {
-                      this.showGift['rid'] = data.extra.rid
-                    }
-                    this.downTimeGo('time2', 180)
-                  } else if (prize.type != "empty") {
-                    this.showType = 2
-                    this.luck = true
-                    this.showGiftPup = true
-                  }
+                  this.showGiftPup = true
                   return
                 }
                 this.vxc('addPosition')
@@ -296,6 +287,30 @@ export default {
               }, 500)
             }, 800)
           }, 1000)
+        })
+      } else if (!this.lucking) {
+        this.showDayTaskPup()
+      }
+    },
+    luckGoFive() {
+      if (this.dice >= 5 && !this.lucking) {
+        this.lucking = true
+        api.goDice(5).then(res => {
+          this.showDiceAni = true
+          let data = res.data.response_data
+          let forward = data.extra.forward
+          let prize = data.prizes
+          this.vxc('reduexDiceNum', 5)
+          this.showDiceAni = false
+          this.showForwardImg = false
+          //禮物彈窗
+          this.lucking = false
+          this.luck = true
+          this.showGift = prize
+          this.showGift['type'] = 'packet'
+          this.showGiftPup = true
+          this.vxc('addPositionForWard', forward)
+          this.vxc('addScore', forward)
         })
       } else if (!this.lucking) {
         this.showDayTaskPup()
@@ -332,6 +347,8 @@ export default {
         return `${gift.count} 金豆`
       } else if (gift.type == 'dice') {
         return `骰子* 1`
+      } else if (gift.type == 'coupon') {
+        return `${gift.ratio}%儲值返利券`
       }
     },
     async aniGo() {
@@ -433,6 +450,17 @@ export default {
       top: 0.1rem;
     }
   }
+  .goTen {
+    width: 1.88rem;
+    height: 0.64rem;
+    background: url(../assets/img/goTen.png);
+    background-size: 100% 100%;
+    text-align: center;
+    line-height: 0.64rem;
+    position: absolute;
+    left: 2.7rem;
+    bottom: 0.75rem;
+  }
   .userIcon {
     display: block;
     width: 1.28rem;
@@ -460,10 +488,10 @@ export default {
     background: url(../assets/img/icon/empty.png);
     background-size: 100% 100%;
     position: absolute;
-    // &.gift1 {
-    //   background: url(../assets/img/icon/gift1.png);
-    //   background-size: 100% 100%;
-    // }
+    &.gift1 {
+      background: url(../assets/img/icon/gift1.png);
+      background-size: 100% 100%;
+    }
     &.gift2 {
       background: url(../assets/img/icon/gift2.png);
       background-size: 100% 100%;
@@ -472,15 +500,21 @@ export default {
       background: url(../assets/img/icon/gift3.png);
       background-size: 100% 100%;
     }
-    &.gift4 {
-      background: url(../assets/img/icon/gift4.png);
+    &.gift6 {
+      background: url(../assets/img/icon/gift9.png);
       background-size: 100% 100%;
     }
-    &.frame6 {
-      background: url(../assets/img/icon/frame.png);
+    &.frame4 {
+      background: url(../assets/img/icon/frame5.png);
       background-size: 100% 100%;
     }
-    &.coin5 {
+    &.frame5 {
+      background: url(../assets/img/icon/frame5.png);
+      background-size: 100% 100%;
+    }
+    &.coin5,
+    &.coin10,
+    &.coin8 {
       background: url(../assets/img/icon/coin.png);
       background-size: 100% 100%;
     }
@@ -492,6 +526,18 @@ export default {
     &.packet6,
     &.packet7 {
       background: url(../assets/img/icon/packet.png);
+      background-size: 100% 100%;
+    }
+    &.coupon7 {
+      background: url(../assets/img/icon/coupon11.png);
+      background-size: 100% 100%;
+    }
+    &.car5 {
+      background: url(../assets/img/icon/car6.png);
+      background-size: 100% 100%;
+    }
+    &.bean7 {
+      background: url(../assets/img/icon/bean7.png);
       background-size: 100% 100%;
     }
   }
@@ -508,12 +554,17 @@ export default {
     &.mHeight {
       height: 9rem;
       .giftBox {
-        height: 5.6rem;
+        height: 7rem;
         overflow-y: scroll;
         .giftItem {
-          margin: 0 0.5rem 0.2rem;
+          width: 1.7rem;
+          margin: 0 0.2rem 0.2rem;
           .nick {
             margin-top: 0.05rem;
+          }
+          .imgBox {
+            width: 1.7rem;
+            height: 1.7rem;
           }
         }
       }

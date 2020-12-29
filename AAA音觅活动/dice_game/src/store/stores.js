@@ -116,11 +116,18 @@ const store = new Vuex.Store({
                 state.position++
             }
         },
+        addPositionForWard(state, val) {
+            state.position = (state.position + val) % 22
+        },
         reduexDiceNum(state, val) {
-            state.dice--
+            state.dice -= val
         },
         addDice(state, val) {
             state.dice++
+        },
+        addScore(state, val) {
+            state.day.score += val
+            state.total.score += val
         }
     },
     actions: {
