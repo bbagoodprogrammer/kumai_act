@@ -4,75 +4,41 @@
     <div class="top1" v-if="list.length> 0">
       <div class="nickMsg">
         <div class="nick">家族名稱</div>
-        <div class="nick clor">{{top1User.nick}}</div>
+        <div class="nick clor">{{top1User.info.familyname}}</div>
       </div>
-      <div class="imgBox">
+      <div class="imgBox" @click="goFlist(top1User.uid)">
         <span class="avBg"></span>
-        <img v-lazy="top1User.avatar" alt="">
+        <img v-lazy="top1User.info.avatar" alt="">
       </div>
-
       <div class="scoreMsg">
-        <div class="pNums">家族人數: <span>999</span> </div>
-        <div class="score">成功推薦人數 <i></i> <span>999</span> </div>
+        <div class="pNums">家族人數: <span>{{top1User.info.nums}}</span> </div>
+        <div class="score">成功推薦人數 <i></i> <span>{{top1User.score}}</span> </div>
       </div>
     </div>
     <ul>
       <li v-for="(item,index) in lastRank" :key="index">
         <div class="rank">{{item.rank}}</div>
-        <img v-lazy="item.avatar" alt="">
+        <img v-lazy="item.info.avatar" alt="" @click="goFlist(item.uid)">
         <div class="nickMsg">
           <div class="nick">家族名稱</div>
-          <div class="nick clor">{{item.nick}}</div>
+          <div class="nick clor">{{item.info.familyname}}</div>
         </div>
         <div class="scoreMsg">
-          <div class="pNums">家族人數: <span>999</span> </div>
-          <div class="score">成功推薦 <i></i> <span>999</span> </div>
+          <div class="pNums">家族人數: <span>{{item.info.nums}}</span> </div>
+          <div class="score">成功推薦 <i></i> <span>{{item.score}}</span> </div>
         </div>
       </li>
     </ul>
   </div>
 </template>
 <script>
+
+import { mapState } from "vuex"
+import api from "../api/apiConfig"
+import getString from "../utils/getString"
 export default {
   data() {
     return {
-      list: [
-        {
-          avatar: '',
-          rank: 1,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 2,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 3,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 4,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 5,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        }
-      ],
       isMore: true,
       loaded: false
     }
@@ -85,6 +51,7 @@ export default {
     window.removeEventListener('scroll', this.onScroll)
   },
   computed: {
+    ...mapState(['list']),
     top1User() {
       return this.list.slice(0, 1)[0]
     },
@@ -93,17 +60,23 @@ export default {
     }
   },
   methods: {
+    goFlist(fid) {
+      let regstr = getString('token')
+      location.href = `./index4.html?token=${regstr}&fid=${fid}`
+    },
     onScroll() { //滾動加載
       const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100
       if (scrollToBottom && this.isMore && !this.loaded) {
-        console.log('xxx')
         this.isMore = false
-        this.list = this.list.concat([])
-        this.isMore = true
-        let list = []
-        if (list.length < 20) {
-          this.loaded = true
-        }
+        api.list(this.list.length).then(res => {
+          let addList = res.data.response_data.list
+          this.vxc('addList', addList)
+          // this.list = this.list.concat(addList)
+          this.isMore = true
+          if (addList.length < 20) {
+            this.loaded = true
+          }
+        })
       }
     }
   }

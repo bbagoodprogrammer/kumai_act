@@ -362,7 +362,8 @@ export default {
     goActHtml(url) {
       let regstr = getString('token')
       let uid = getString('uid')
-      location.href = `${url}?uid=${uid}&token=${regstr}`
+       let aid = getString('aid')
+      location.href = `${url}?uid=${uid}&token=${regstr}&gameid=123&aid=${aid}`
     },
     clearTimer() {
       clearInterval(this.timer)

@@ -4,11 +4,11 @@
     <div class="fromList">
       <div class="input1">
         <span>Star UID</span>
-        <input type="text">
+        <input type="text" v-model="suid" @input="setNick()">
       </div>
       <div class="input1">
         <span>Star 暱稱</span>
-        <input type="text">
+        <input type="text" v-model="sNick">
       </div>
       <div class="input2">
         <span>推薦TA的原因</span>
@@ -27,27 +27,68 @@
       </p>
       <p> 以上維度官方將綜合評分，評審通過後系統將根據規則派發星探獎勵，同時通過小助手消息推送通知到您！</p>
     </div>
-    <div class="commit">提交</div>
+    <div class="commit" @click="push()">提交</div>
     <i class='fire'> </i>
     <loading />
+    <msg-toast></msg-toast>
   </div>
 </template>
 <script>
 import api from "../../api/apiConfig"
 import loading from "../../components/Loading"
 import getDate from "../../utils/getDate"
+import MsgToast from "../../components/commonToast"
+
 export default {
-  components: { loading },
+  components: { loading, MsgToast },
   data() {
     return {
+      suid: '',
+      sNick: '',
       msg3: '',
       loaded: false,
-      more: true
+      more: true,
+      timer: null
     }
   },
   created() {
     document.title = '推薦Star信息登記處'
   },
+  methods: {
+    setNick() {
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        api.info(this.suid).then(res => {
+          if (res.data.response_data.nick) {
+            this.sNick = res.data.response_data.nick
+          } else {
+            this.toast('搜索不到此ID')
+          }
+        })
+      }, 1000)
+    },
+    push() {
+      if (this.suid == '') {
+        this.toast('請填寫推薦人UID！')
+      } else if (this.msg3 == '') {
+        this.toast('請填寫推薦TA的原因！')
+      } else {
+        api.push(this.suid, this.msg3).then(res => {
+          if (res.data.response_status.code == 0) {
+            this.vxc('setToast', {
+              title: '提交成功，感謝推薦',
+              msg: '我們將盡快審核，審核通過將發送消息通知你！'
+            })
+          } else {
+            this.vxc('setToast', {
+              title: '抱歉，提交失敗',
+              msg: res.data.response_status.error
+            })
+          }
+        })
+      }
+    }
+  }
 }
 </script>
 <style lang="scss">
@@ -110,15 +151,17 @@ body {
         }
       }
       span {
-        width: 1.98rem;
+        width: 2rem;
         text-align: center;
         font-size: 0.26rem;
         color: rgba(254, 254, 184, 1);
       }
       input {
-        flex: 1;
-        padding: 0 0.3rem;
+        width: 3rem;
+        // flex: 1;
+        // padding: 0 0.3rem 0 ;
         color: #fff;
+        margin-left: 0.3rem;
       }
     }
   }

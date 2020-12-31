@@ -4,7 +4,10 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <span class="ruleTips" :class="{top:isShare}" @click="goRule()"></span>
+      <div class="tipsBox" :class="{top:isShare}">
+        <span class="ruleTips" @click="goRule()">活動規則&獎勵</span>
+        <span class="ruleTips" @click="goHistory()">我的推薦記錄</span>
+      </div>
     </div>
     <Time />
     <Rank />
@@ -50,14 +53,26 @@ export default {
       this.vxc('setShareState', this.isShare) //分享状态
     },
     getDefaultData(val) { //初始化
-      // api.getDefault().then(res => {
-      //   const { response_status, response_data } = res.data
-      //   if (response_status.code == 0) {
-
-      //   } else {
-      //     this.toast(response_status.error)
-      //   }
-      // })
+      api.getDefault().then(res => {
+        const { response_status, response_data } = res.data
+        if (response_status.code == 0) {
+          const { step, user_info, isRegistered, stime, etime, pstime, petime, ctime, limit, prize, list, myRank, fid } = response_data
+          this.vxc('setActStatus', step)
+          this.vxc('setPrize', prize)
+          this.vxc('setStime', stime)
+          this.vxc('setEtime', etime)
+          this.vxc('setCtime', ctime)
+          this.vxc('setList', list)
+          this.vxc('setUserMsg', user_info)
+          this.vxc('setPetime', petime)
+          this.vxc('setIsRegistered', isRegistered)
+          if (fid) {
+            this.vxc('setFid', fid)
+          }
+        } else {
+          this.toast(response_status.error)
+        }
+      })
     },
     downApp() {
       APP()
@@ -65,6 +80,10 @@ export default {
     goRule() {
       let regstr = getString('token')
       location.href = `./index2.html?token=${regstr}`
+    },
+    goHistory() {
+      let regstr = getString('token')
+      location.href = `./index3.html?token=${regstr}`
     },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
@@ -104,16 +123,26 @@ body::-webkit-scrollbar {
   .header {
     height: 6.7rem;
     position: relative;
-    .ruleTips {
-      width: 1.7rem;
-      height: 0.56rem;
-      // background: url(../assets/img/ruleTips.png);
-      background-size: 100% 100%;
+    .tipsBox {
       position: absolute;
       right: 0;
-      top: 0.17rem;
-      &.top {
-        top: 1.5rem;
+      top: 4.88rem;
+    }
+    .ruleTips {
+      display: block;
+      width: 2.03rem;
+      height: 0.79rem;
+      background: url(../assets/img/ruleTips.png);
+      background-size: 100% 100%;
+      text-align: center;
+      line-height: 0.79rem;
+      font-size: 0.24rem;
+      text-shadow: rgba(16, 20, 77, 1) 0.02rem 0 0,
+        rgba(16, 20, 77, 1) 0 0.02rem 0, rgba(16, 20, 77, 1) -0.02rem 0 0,
+        rgba(16, 20, 77, 1) 0 -0.02rem 0;
+      text-indent: 0.15rem;
+      &.mt {
+        margin-top: 0.17rem;
       }
     }
   }
@@ -124,9 +153,9 @@ body::-webkit-scrollbar {
 .refresh {
   display: block;
   width: 0.94rem;
-  height: 1rem;
+  height: 0.94rem;
   position: fixed;
-  left: 0.08rem;
+  right: 0.08rem;
   bottom: 1.35rem;
   background: url(../assets/img/refresh.png) no-repeat;
   background-size: contain;

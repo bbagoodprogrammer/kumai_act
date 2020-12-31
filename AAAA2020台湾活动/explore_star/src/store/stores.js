@@ -14,6 +14,14 @@ const store = new Vuex.Store({
             cb: null
         },
         isShare: false, //分享
+        prize: 0,
+        stime: 0,
+        etime: 0,
+        ctime: 0,
+        petime: 0,
+        list: [],
+        isRegistered: 0,
+        fid: 0
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -40,6 +48,33 @@ const store = new Vuex.Store({
         },
         closeToast(state, val) {
             state.toastObj.toast = false
+        },
+        setPrize(state, val) {
+            state.prize = val
+        },
+        setStime(state, val) {
+            state.stime = val
+        },
+        setEtime(state, val) {
+            state.etime = val
+        },
+        setCtime(state, val) {
+            state.ctime = val
+        },
+        setList(state, val) {
+            state.list = val
+        },
+        addList(state, val) {
+            state.list = state.list.concat(val)
+        },
+        setPetime(state, val) {
+            state.petime = val
+        },
+        setIsRegistered(state, val) {
+            state.isRegistered = val
+        },
+        setFid(state, val) {
+            state.fid = val
         }
     },
     actions: {

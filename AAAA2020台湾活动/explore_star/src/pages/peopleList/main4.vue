@@ -6,12 +6,12 @@
       <ul class="scrollable">
         <li v-for="(item,index) in list" :key="index">
           <div class="rank">{{item.rank}}</div>
-          <img v-lazy="item.avatar" alt="">
+          <img v-lazy="item.avatar" alt="" @click="goUser(item.uid)">
           <div class="nickMsg">
             <div class="nick clor">{{item.nick}}</div>
           </div>
           <div class="scoreMsg">
-            <div class="score">成功推薦 <i></i> <span>999</span> </div>
+            <div class="score">成功推薦 <i></i> <span>{{item.score}}</span> </div>
           </div>
         </li>
       </ul>
@@ -36,47 +36,13 @@
 import api from "../../api/apiConfig"
 import loading from "../../components/Loading"
 import getDate from "../../utils/getDate"
+import getString from "../../utils/getString"
+
 export default {
   components: { loading },
   data() {
     return {
-      list: [
-        {
-          avatar: '',
-          rank: 1,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 2,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 3,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 4,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 5,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        }
-      ],
+      list: [],
       loaded: false,
       more: true
     }
@@ -84,7 +50,8 @@ export default {
   created() {
     document.title = '家族推薦排行榜'
     sessionStorage.setItem("need-refresh", true);
-    api.getHistory(0).then(res => {
+    this.fid = getString('fid')
+    api.gurad(this.fid, 0).then(res => {
       this.list = res.data.response_data.list
     })
   },
@@ -95,13 +62,16 @@ export default {
     }
   },
   methods: {
+    goUser(uid) {
+      location.href = `uid:${uid}`
+    },
     onScroll() {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
         if (this.loaded) return
         if (this.more) {
           this.more = false
-          api.getHistory(this.list.length, 'more').then(res => {
+          api.gurad(this.fid, this.list.length, 'more').then(res => {
             this.more = true
             if (res.data.response_data.list.length === 0) {
               this.loaded = true
@@ -144,7 +114,7 @@ body {
   }
   ul {
     width: 7.17rem;
-    height: 7rem;
+    max-height: 7rem;
     margin: 0.33rem auto;
     overflow-y: scroll;
     li {
@@ -205,7 +175,7 @@ body {
   .listTips {
     font-size: 0.26rem;
     color: rgba(208, 184, 237, 1);
-    padding: 0 2rem 0 0.6rem;
+    padding: 0 0.6rem;
   }
   .lastTips {
     font-size: 0.2rem;
@@ -213,6 +183,9 @@ body {
     padding: 0 1.22rem 0 0.6rem;
   }
   .fire {
+    position: fixed;
+    bottom: 0;
+    left: 0;
     display: block;
     width: 7.5rem;
     height: 1.57rem;

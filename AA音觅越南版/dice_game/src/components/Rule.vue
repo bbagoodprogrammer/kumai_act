@@ -2,36 +2,36 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">Thời gian: 18:00 ngày 23/9 - 18:00 ngày 11/10</div>
+    <div class="actTime">Thời gian: 18:00 ngày 30/12 _ 18:00 ngày 6/1</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">Thể lệ</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">Thưởng</span>
     </div>
     <div class="ruleTips" v-if="type== 1">
-      <h6>1.Làm phú ông</h6>
-      <p>Thông qua làm nhiệm vụ có thể nhận được xúc xắc, trong thời gian sự kiện nhận số xúc xắc xếp hạng từ cao xuống thấp, Top 10 nhận thưởng.</p>
-      <h6>2. Đổ xúc xắc nhận hộp quà</h6>
-      <p>Đổ xúc xắc nhận quà bất kỳ bao gồm túi quà lọ điều ước, xu, vịt tập bơi, khung ảnh thanh lịch, và hộp quà bất ngờ cực khủng.
-        Hộp quà bất ngờ sẽ bao gồm xe land rover, xe BMW,quà động bánh kem,quà bánh đôi, khung ảnh cảnh khuyển </p>
-      <h6>3.Chú ý:</h6>
-      <p>tài khoản phụ không được tham gia</p>
+      <h6>1. Đổ xúc xắc làm phú ông:</h6>
+      <p>Mua xúc xắc quay thưởng, trúng nhiều phần thưởng hấp dẫn. </p>
+      <P>Top 10 đổ xúc xắc đi được nhiều bước nhất sẽ nhận thưởng. </P>
+      <P>Sau khi sự kiện kết thúc, nếu xúc xắc còn không đổ hết sẽ được trả lại xu vớ mức tính 50 xu 1 xúc xắc.</P>
+      <h6>2. Chú ý: </h6>
+      <p>* Trong thời gian sự kiện diễn ra, nếu người dùng có hành vi gian lận tuỳ trường hợp, app sẽ tiến hành cảnh cáo, huỷ tư cách tham gia hoặc xoá tài khoản. </p>
+      <P>* Sự kiện không liên quan đến tập đoàn apple.</P>
     </div>
     <div class="wardsTips" v-if="type== 2">
-      <h6>1.BXH Tổng Top 1-3</h6>
+      <h6>1. Top 1-3</h6>
       <div class="giftBox">
         <span v-for="(item,index) in gift1" :key="index">
           <img :src="item.img" alt="">
           <strong>{{item.name}}</strong>
         </span>
       </div>
-      <h6>2.BXH Tổng Top 4-10</h6>
+      <h6>2. Top 4-10</h6>
       <div class="giftBox">
         <span v-for="(item,index) in gift2" :key="index">
           <img :src="item.img" alt="">
           <strong>{{item.name}}</strong>
         </span>
       </div>
-      <h6>3. Top 1 BXH ngày nhận 5 xúc xắc, phát vào 0h ngày tiếp theo. </h6>
+      <h6>3. Top 1 BXH ngày nhận 5 xúc xắc được phát vào 0h ngày kế tiếp </h6>
     </div>
     <p class="lastTips">*Quyết định cuối cùng thuộc về alochat</p>
   </div>
@@ -43,30 +43,30 @@ export default {
       type: 1,
       gift1: [
         {
-          img: require('../assets/img/coins.png'),
-          name: '2000 Xu'
+          img: require('../assets/img/rule/Certification_01.png'),
+          name: 'Danh hiệu Đại Phú ông 7 ngày'
         },
         {
           img: require('../assets/img/rule/badge.png'),
-          name: 'Huy chương Phú ông 15 ngày'
+          name: 'Huy chương Đại phú ông 10 ngày'
         },
         {
-          img: require('../assets/img/rule/BMW.png'),
-          name: 'Xe BMW 15 ngày'
+          img: require('../assets/img/rule/car1.png'),
+          name: 'Xe Ferrari đỏ 10 ngày'
         }
       ],
       gift2: [
         {
-          img: require('../assets/img/bean.png'),
-          name: '2000 Đậu'
+          img: require('../assets/img/rule/Certification_01.png'),
+          name: 'Danh hiệu Đại Phú ông 7 ngày'
         },
         {
           img: require('../assets/img/rule/badge.png'),
-          name: 'Huy chương Phú ông 10 ngày'
+          name: 'Huy chương Đại phú ông 7 ngày'
         },
         {
           img: require('../assets/img/rule/BMW.png'),
-          name: 'Xe BMW 15 ngày'
+          name: 'Xe BMW 10 ngày'
         }
       ]
     }
@@ -82,6 +82,14 @@ export default {
 }
 </script>
 <style lang="scss">
+.red {
+  color: #ffe747 !important;
+}
+.table {
+  width: 5.88rem;
+  height: 2.83rem;
+  margin: 0 auto 0.1rem;
+}
 .rule {
   width: 6.48rem;
   height: 10rem;
@@ -103,7 +111,7 @@ export default {
       display: block;
       width: 5.14rem;
       height: 1.42rem;
-      background: url(../assets/img/title/title_15.png);
+      background: url(../assets/img/title/title_14.png);
       background-size: 100% 100%;
     }
   }
@@ -136,6 +144,7 @@ export default {
   }
   .ruleTips {
     height: 7.8rem;
+    overflow-y: scroll;
     padding: 0 0.31rem;
     h6 {
       font-size: 0.28rem;
@@ -148,6 +157,8 @@ export default {
     }
   }
   .wardsTips {
+    height: 7.8rem;
+    overflow-y: scroll;
     padding: 0 0.3rem;
     h6 {
       margin: 0.2rem auto;
@@ -192,6 +203,7 @@ export default {
   .lastTips {
     text-align: center;
     font-size: 0.24rem;
+    margin-top: 0.2rem;
   }
 }
 </style>

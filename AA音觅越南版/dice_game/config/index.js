@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/': {
-        target: 'http://activity.alochatapp.com/',
+        target: 'http://activity.alochatapp.com',
         changeOrigin: true
       }
     },
