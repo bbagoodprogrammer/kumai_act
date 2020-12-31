@@ -3,7 +3,7 @@
     <transition name="slide">
       <div class="promptBox" v-show="toastObj.toast">
         <i class="close" @click="close()"></i>
-        <div class="title">{{toastObj.toastTitle}}</div>
+        <div class="pupTitle">{{toastObj.toastTitle}}</div>
         <p v-html="toastObj.toastMsg"></p>
         <div class="ok" @click="close()">
           {{lang.ok}}
@@ -63,7 +63,7 @@ export default {
     right: 0.26rem;
   }
 
-  .title {
+  .pupTitle {
     font-size: 0.4rem;
   }
   p {

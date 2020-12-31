@@ -37,22 +37,22 @@
             <h6>1 活動時間</h6>
             <p>{{aTimer}}</p>
             <h6>2 榜單排名</h6>
-            <p>榜單按照活動期間內收到的聖誕樹或者聖誕老人禮物數量的前100名玩家從高到低排名</p>
+            <p>榜單按照活動期間內收到的手持煙花或者牛氣沖天禮物數量的前100名玩家從高到低排名</p>
             <p>榜單展示指定禮物的實時累計數據</p>
             <h6>3 活動獎勵</h6>
 
             <div class="giftBox">
-              <h5>聖誕樹榜：</h5>
-              <p> 第一名：歡樂聖誕-頭像框（7天）、銀色瑪莎拉蒂座駕（7天）<br />
-                第二名：歡樂聖誕-頭像框（5天）<br />
-                第三名：歡樂聖誕-頭像框（3天）
+              <h5>手持煙花榜：</h5>
+              <p>第一名：2021-頭像框（10天）、紅色法拉利座駕（7天）<br />
+                第二名：2021-頭像框（7天）<br />
+                第三名：2021-頭像框（5天）
               </p>
-              <h5>聖誕老人榜：</h5>
+              <h5>牛氣沖天榜：</h5>
               <div class="giftBox">
                 <p>
-                  第一名：歡樂聖誕-頭像框（15天）、銀色瑪莎拉蒂座駕（10天）<br />
-                  第二名：歡樂聖誕-頭像框（7天）、銀色瑪莎拉蒂座駕（7天）<br />
-                  第三名：歡樂聖誕-頭像框（5天）
+                  第一名：2021-頭像框（15天）、紅色法拉利座駕（10天）<br />
+                  第二名：2021-頭像框（7天）、紅色法拉利座駕（7天）<br />
+                  第三名：2021-頭像框（5天）
                 </p>
               </div>
             </div>
@@ -185,7 +185,7 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: rgba(3, 62, 180, 1) url(../assets/img/banner.png) center 0
+  background: rgba(37, 22, 83, 1) url(../assets/img/banner.png) center 0
     no-repeat;
   background-size: 100% auto;
   .shareBar {
@@ -204,7 +204,7 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 8.3rem;
+    height: 7.22rem;
     position: relative;
     .ruleTips {
       width: 1.22rem;
@@ -281,7 +281,7 @@ body::-webkit-scrollbar {
       top: -0.4rem;
     }
     .lastTips {
-      color: rgba(247, 217, 140, 1);
+      color: #a2291f;
       font-size: 0.2rem;
       margin-top: 0.24rem;
       text-align: center;
@@ -298,7 +298,7 @@ body::-webkit-scrollbar {
     .giftBox {
       h5 {
         padding-left: 0.3rem;
-        color: rgba(247, 217, 140, 1);
+        color: #a2291f;
       }
       p {
         padding-left: 0.6rem;
@@ -307,13 +307,13 @@ body::-webkit-scrollbar {
     }
     h6 {
       font-size: 0.24rem;
-      color: rgba(247, 217, 140, 1);
+      color: #a2291f;
       font-weight: 800;
       margin-top: 0.1rem;
     }
     p {
       font-size: 0.24rem;
-      color: rgba(247, 217, 140, 1);
+      color: #a2291f;
       font-weight: 500;
       text-indent: 0.5rem;
       // margin-top: 0.1rem;

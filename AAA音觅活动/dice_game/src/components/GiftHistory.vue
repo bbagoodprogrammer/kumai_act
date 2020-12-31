@@ -2,6 +2,7 @@
   <div class="giftHistory">
     <div class="title"><i></i></div>
     <i class="close" @click="closeHistory()"></i>
+    <p class='dice'>已搖骰子:{{dice}}</p>
     <ul class="itemList scrollable">
       <li class="item" v-for="(item,index) in makeData" :key="index">
         <div class="time">{{item.key}}</div>
@@ -36,6 +37,7 @@ export default {
   data() {
     return {
       list: [],
+      dice: 0,
       loaded: false,
       more: true,
       loading: false,
@@ -60,6 +62,7 @@ export default {
     api.getHistroy(0).then(res => {
       this.loading = false
       this.list = res.data.response_data.list
+      this.dice = res.data.response_data.dice
     })
   },
   computed: {
@@ -188,6 +191,9 @@ export default {
       background-size: 100% 100%;
     }
   }
+}
+.dice {
+  margin: 0.8rem auto 0;
 }
 .close {
   display: block;

@@ -6,7 +6,8 @@
           <li v-for="(item, index) in list" :key="index">
             <em>
               Chúc mừng {{item.nick}} tiến được {{item.forward}} bước, nhận
-              <strong v-if="item.prize.name"> <i v-if="item.prize.type == 'gift'">túi quà</i> <i v-if="item.prize.type == 'frame'">khung ảnh</i><i v-if="item.prize.type == 'car'">Xe</i> {{item.prize.name}} *{{item.prize.day?`${item.prize.day}ngày`:'1'}}</strong>
+              <!-- *{{item.prize.day?`${item.prize.day}ngày`:'1'}} -->
+              <strong v-if="item.prize.name"> <i v-if="item.prize.type == 'gift'">túi quà</i> <i v-if="item.prize.type == 'frame'">khung ảnh</i><i v-if="item.prize.type == 'car'">Xe</i> {{item.prize.name}} </strong>
               <strong v-else-if="item.prize.type == 'coin'"> {{item.prize.count}}Xu</strong>
               <strong v-else-if="item.prize.type == 'bean'"> {{item.prize.count}}Đậu</strong>
               <strong v-else-if="item.prize.type == 'task'">nhiệm vụ</strong>

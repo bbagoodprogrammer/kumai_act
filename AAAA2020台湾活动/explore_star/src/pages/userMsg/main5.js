@@ -6,6 +6,10 @@ import store from "../../store/stores"
 
 Vue.config.productionTip = false
 import lang from "../../config/lang"
+import common from "../../utils/common"
+
+Vue.prototype.toast = common.toast
+Vue.prototype.vxc = common.vuexCommit
 Vue.prototype.lang = lang
 /* eslint-disable no-new */
 
@@ -15,5 +19,5 @@ new Vue({
     el: '#app',
     store,
     components: { main5 },
-    template: '<main5/>'
+    render: h => h(main5)
 })

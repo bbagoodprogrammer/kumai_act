@@ -3,8 +3,8 @@
     <div class="acrStatus">
       <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
-      <span class="goAct" v-if="astState === 1" @click="singUp()">點擊推薦</span>
-      <div class="actIng" v-if="astState === 3">
+      <span class="goAct" v-if="astState === 1" @click="push()">點擊推薦</span>
+      <!-- <div class="actIng" v-if="astState === 3">
         <div class="rank">{{userMsg.rank}}</div>
         <img v-lazy="userMsg.avatar" alt="">
         <div class="nickMsg">
@@ -15,7 +15,7 @@
           <div class="pNums">家族人數: <span>999</span> </div>
           <div class="score">成功推薦 <i></i> <span>999</span> </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="mask" v-show="showQueryPup">
       <transition name="slide">
@@ -33,6 +33,8 @@
 </template>
 <script>
 import { mapState } from 'vuex'
+import getString from "../utils/getString"
+
 export default {
   data() {
     return {
@@ -41,28 +43,38 @@ export default {
     }
   },
   computed: {
-    ...mapState(['actStatus', 'userMsg', "isShare"]),
+    ...mapState(['actStatus', 'userMsg', 'isShare', 'petime', 'ctime', 'isRegistered', 'fid']),
     astState() {
-      return 3
       if (this.actStatus === 0) { //活动未开始
         return 0
       } else if (this.actStatus === 2) { //活动已结束
         return 2
-      } else if (!this.userMsg.registered || this.isShare) { //活动开始未报名，或者分享
+      } else { //活动开始未报名，或者分享
         return 1
-      } else if (this.userMsg.registered) { //活动开始已报名
-        return 3
       }
     }
   },
   methods: {
+    push() {
+      if (this.ctime > this.petime) {
+        this.vxc('setToast', {
+          msg: '抱歉，本期推薦已截止！'
+        })
+      } else if (!this.isRegistered) {
+        this.showQueryPup = true
+      } else {
+        let token = getString('token')
+        let uid = getString('uid')
+        location.href = `./index5.html?uid=${uid}&token=${token}`
+      }
+    },
     goFamily() {
       location.href = `fid:${this.fid}`
     },
     creatFamily() {
       let token = getString('token')
       let uid = getString('uid')
-      location.href = `http://act.singnowapp.com/createFamily/index.html?uid=${uid}&token=${token}`
+      location.href = `http://act.17sing.tw/createFamily/index.html?uid=${uid}&token=${token}`
     },
   }
 }

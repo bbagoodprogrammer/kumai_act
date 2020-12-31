@@ -1,11 +1,14 @@
 <template>
   <div class="timeDown">
     <div class="time">
-      活動還有:{{surplusTime.day}}天{{surplusTime.hour}}時{{surplusTime.minute}}分{{surplusTime.second}}秒
+      <div class="timeDown" v-if="actStatus == 1">
+        活動還有:{{surplusTime.day}}天{{surplusTime.hour}}時{{surplusTime.minute}}分{{surplusTime.second}}秒
+      </div>
+
     </div>
     <div class="nums">
       <span v-for="(item,index) in numStr" :key="index">
-        <i :class="[{zi:index== 0 && nums<10000},'num' + item]"></i>
+        <i :class="[{zi:index== 0 && prize<10000},'num' + item]"></i>
       </span>
       <i class="liner"></i>
     </div>
@@ -17,23 +20,33 @@
 <script>
 
 import downTime from "../utils/downTime"
+import { mapState } from "vuex"
+
 export default {
   data() {
     return {
       surplusTime: {},
-      nums: 9999
     }
   },
   computed: {
+    ...mapState(['actStatus', 'ctime', 'etime', 'prize']),
     numStr() {
-      if (this.nums < 10000) {
-        return `0${this.nums}`.split('')
+      if (this.prize < 10000) {
+        return `0${this.prize}`.split('')
       }
-      return this.nums.toString().split('')
+      return this.prize.toString().split('')
+    }
+  },
+  watch: {
+    actStatus(val) {
+      if (val == 1) {
+        console.log(this.etime - this.ctime)
+        this.downTimeGo('time', this.etime - this.ctime)
+      }
     }
   },
   created() {
-    this.downTimeGo('time', 9999)
+
   },
   methods: {
     downTimeGo(timeName, val) {
@@ -146,6 +159,8 @@ export default {
     text-align: center;
     color: rgba(255, 255, 255, 0.8);
     font-size: 0.22rem;
+    position: relative;
+    z-index: 10;
   }
 }
 </style>

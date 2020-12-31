@@ -4,7 +4,7 @@
       <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">Hadiah acara</a>
       <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">Aturan acara</a>
     </div>
-    <p class="actTime">Waktu acara : Tgl 11 Nov, 18:00 - tgl 22 Nov, 21:00</p>
+    <p class="actTime">Waktu acara : Tgl 1 Jan, 18:00 - tgl 15 Jan, 21:00</p>
     <div class="wards" v-if="mainTab == 0">
       <h5>Hadiah acara</h5>
       <img src="../../assets/img/wardsImg.png" alt="" class="wardImg">

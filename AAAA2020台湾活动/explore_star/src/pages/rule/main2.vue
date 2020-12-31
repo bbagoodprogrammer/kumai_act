@@ -70,6 +70,9 @@ export default {
       type: 1
     }
   },
+  created() {
+    document.title = '活動規則&獎勵'
+  }
 }
 </script>
 

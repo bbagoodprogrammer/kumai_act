@@ -4,7 +4,7 @@
       <i class="close" @click="closeGetDicePup()"></i>
       <div class="title"><i></i></div>
       <div class="taskMsgList">
-        <p class="tips">Nhiệm vụ mỗi ngày <em>(0 giờ mỗi ngày cập nhật lại)</em></p>
+        <!-- <p class="tips">Nhiệm vụ mỗi ngày <em>(0 giờ mỗi ngày cập nhật lại)</em></p>
         <ul class="taskItem">
           <li v-for="(item,index) in dayTask.tasks" :key="index">
             <div class="diceImg">
@@ -27,7 +27,7 @@
               <u v-if="index == 'invite'" @click="showSharePup()" class="invite">Đã mời {{item.invited}} người</u>
             </div>
           </li>
-        </ul>
+        </ul> -->
         <p class="tips tips2">Mua Xúc xắc<span @click="gowalletpage()"><i></i><strong>{{dayTask.balance}}</strong> <i class="add"></i></span></p>
         <ul class="priceList">
           <li v-for="(item,index) in dayTask.goods" :key="index">
@@ -45,7 +45,7 @@
       </div>
 
     </div>
-    <div class="mask" v-show="showShare">
+    <!-- <div class="mask" v-show="showShare">
       <transition name="slide">
         <div class="sharePup" v-if="showShare">
           <i class="close" @click="closeSharePup()"></i>
@@ -75,7 +75,6 @@
           <p v-if="peopleListHas.length == 0" class="noData">Chưa có bạn bè, mau kết bạn</p>
           <ul class="pList">
             <li v-for="(item,index) in peopleListHas" :key="index">
-              <!-- <div class="userRank">{{item.rank}}</div> -->
               <div v-if="item.status!=2" class="lsitItem">
                 <div class="imgBox">
                   <span class="avBg" v-if="item.rank<=3"></span>
@@ -94,7 +93,7 @@
           </ul>
         </div>
       </transition>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>

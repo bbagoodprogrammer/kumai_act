@@ -4,7 +4,7 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">活動規則</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">活動獎勵</a>
     </div>
-    <div class="actTime">活動時間：2020年12月30日12:00:00—2020年1月7日22:00:00</div>
+    <div class="actTime">活動時間：2020年12月30日12:00:00—2021年1月7日22:00:00</div>
     <div class="ruleTips" v-show="tab == 0">
       <h5>活動規則：</h5>
       <p>1.活動需報名參賽，參賽後計算數值</p>

@@ -11,9 +11,13 @@
         <p v-if="list.length == 0" class="noData">暫無數據</p>
         <ul class="scrollable">
           <li v-for="(item,index) in list" :key="index">
-            <span class="time">Star暱稱</span>
-            <span class="code">Star uid</span>
-            <span class="score">審核結果</span>
+            <span class="time">{{item.nick.nick}}</span>
+            <span class="code">{{item.nick.uid}}</span>
+            <span class="score">
+              <em v-if="item.status == 0">未處理</em>
+              <em v-else-if="item.status == 1">已通過</em>
+              <em v-else>已拒絕</em>
+            </span>
           </li>
         </ul>
       </div>
@@ -30,78 +34,40 @@ export default {
   components: { loading },
   data() {
     return {
-      list: [
-        {
-          avatar: '',
-          rank: 1,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 2,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 3,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 4,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        },
-        {
-          avatar: '',
-          rank: 5,
-          nick: 'xxxx',
-          nums: 999,
-          score: 9999
-        }
-      ],
-      loaded: false,
-      more: true
+      list: [],
     }
   },
   created() {
     document.title = '我的推薦記錄'
     sessionStorage.setItem("need-refresh", true);
-    api.getHistory(0).then(res => {
+    api.pushList().then(res => {
       this.list = res.data.response_data.list
     })
   },
-  mounted() {
-    this.scrollable = this.$el.querySelector('.scrollable');
-    if (this.scrollable) {
-      this.scrollable.addEventListener('scroll', this.onScroll);
-    }
-  },
+  // mounted() {
+  //   this.scrollable = this.$el.querySelector('.scrollable');
+  //   if (this.scrollable) {
+  //     this.scrollable.addEventListener('scroll', this.onScroll);
+  //   }
+  // },
   methods: {
-    onScroll() {
-      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
-      if (scrollToBottom) { //滾動加載，沒有加載完成
-        if (this.loaded) return
-        if (this.more) {
-          this.more = false
-          api.getHistory(this.list.length, 'more').then(res => {
-            this.more = true
-            if (res.data.response_data.list.length === 0) {
-              this.loaded = true
-            } else {
-              this.list = this.list.concat(res.data.response_data.list)
-            }
-          })
-        }
-      }
-    },
+    // onScroll() {
+    //   const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
+    //   if (scrollToBottom) { //滾動加載，沒有加載完成
+    //     if (this.loaded) return
+    //     if (this.more) {
+    //       this.more = false
+    //       api.pushList(this.list.length, 'more').then(res => {
+    //         this.more = true
+    //         if (res.data.response_data.list.length === 0) {
+    //           this.loaded = true
+    //         } else {
+    //           this.list = this.list.concat(res.data.response_data.list)
+    //         }
+    //       })
+    //     }
+    //   }
+    // },
     getTime(tm) {
       return getDate(new Date(tm * 1000), '~')
     },

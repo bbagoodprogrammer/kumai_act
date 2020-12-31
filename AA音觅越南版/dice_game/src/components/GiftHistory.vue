@@ -2,15 +2,17 @@
   <div class="giftHistory">
     <div class="title"><i></i></div>
     <i class="close" @click="closeHistory()"></i>
+    <p class='dice'>đã đổ xúc xắc:{{dice}}</p>
     <ul class="itemList scrollable">
       <li class="item" v-for="(item,index) in makeData" :key="index">
         <div class="time">{{item.key}}</div>
         <div class="taskItem" v-for="(item2,index2) in item.list" :key="index2">
           <div class="neme" v-if="item2.name">{{item2.name}}</div>
           <!-- <div class="neme" v-else-if="item2.type == 'task'">{{item2.pid==3001?'送禮':'分享'}}限時任務</div> -->
-          <div class="neme" v-else-if="item2.type == 'bean'">{{item2.count}}金豆</div>
+          <div class="neme" v-else-if="item2.type == 'bean'">{{item2.count}} đậu</div>
           <div class="neme" v-else-if="item2.type == 'coin'">{{item2.count}}Xu</div>
           <div class="neme" v-else-if="item2.type == 'dice'">Xúc xắc*{{item2.count}}</div>
+          <div class="neme" v-else-if="item2.type == 'coupon'"> phiếu nạp xu {{item2.ratio}}%</div>
           <div class="tu">{{taskName[item2.pid]}}</div>
           <span class="timeItem">{{getTime(item2.time,2)}}</span>
         </div>
@@ -35,22 +37,23 @@ export default {
   data() {
     return {
       list: [],
+      dice: 0,
       loaded: false,
       more: true,
       loading: false,
       taskName: {
-        1001: 'Lên ghế tại phòng công khai 30 phút',
-        1002: 'Điểm thu hút tăng 500 ',
-        1003: 'Tặng 80 xu ',
-        1004: 'Điểm sôi nổi tăng 5000 ',
-        1005: 'Mời bạn chưa tham gia sự kiện',
+        1001: 'Mua',
+        1002: 'Mua ',
+        1003: 'Mua ',
+        1004: 'Mua',
+        1005: 'Mua',
         2001: 'Mua',
         2002: 'Mua',
         2003: 'Mua',
-        3001: 'Hoàn thành nhiệm vụ tặng quà',
-        3002: 'Hoàn thành nhiệm vụ mời bạn',
+        3001: 'Mua',
+        3002: 'Mua',
         4001: 'Thưởng BXH',
-        5001: 'Thành công '
+        5001: 'Mua '
       },
     }
   },
@@ -59,6 +62,7 @@ export default {
     api.getHistroy(0).then(res => {
       this.loading = false
       this.list = res.data.response_data.list
+      this.dice = res.data.response_data.dice
     })
   },
   computed: {
