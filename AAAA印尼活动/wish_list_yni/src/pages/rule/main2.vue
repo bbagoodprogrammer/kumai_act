@@ -35,10 +35,10 @@
         </span>
         <span>
           <div class="imgBox">
-            <img src="../../assets/img/vip.png" alt="">
+            <img src="../../assets/img/ward2.png" alt="">
           </div>
           <em>
-            VIP(1 bulan)
+            Nilai kekayaan bangsawan duke
           </em>
         </span>
         <span>
@@ -62,10 +62,10 @@
         </span>
         <span>
           <div class="imgBox">
-            <img src="../../assets/img/vip.png" alt="">
+            <img src="../../assets/img/ward5.png" alt="">
           </div>
           <em>
-            VIP(1 bulan)
+            Nilai kekayaan bangsawan marquis
           </em>
         </span>
         <span>

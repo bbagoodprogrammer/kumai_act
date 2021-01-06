@@ -124,9 +124,10 @@ body::-webkit-scrollbar {
     height: 6.7rem;
     position: relative;
     .tipsBox {
-      position: absolute;
+      position: fixed;
       right: 0;
       top: 4.88rem;
+      z-index: 1000;
     }
     .ruleTips {
       display: block;

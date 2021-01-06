@@ -1,0 +1,49 @@
+@import "./reset.css";
+
+body {
+    color: $text-gray;
+    background: $bg;
+}
+
+a {
+    color: $skin;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+
+#app {
+    max-width: 750px;
+    margin: auto;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+.bounce-enter-active {
+    transition: opacity .3s;
+    .content {
+        animation: bounce .3s;
+    }
+}
+.bounce-leave-active {
+    transition: opacity .3s;
+    .content {
+        animation: bounce .3s reverse;
+    }
+}
+
+.page {
+    box-sizing: border-box;
+}

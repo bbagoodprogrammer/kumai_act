@@ -480,7 +480,7 @@ export default {
           },
           {
             day: 4,
-            act: 'null',
+            act: null,
             singIn: false,
             gift: []
           },
