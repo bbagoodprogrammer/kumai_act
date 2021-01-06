@@ -5,7 +5,7 @@
       <template slot-scope="{list, loading, none}">
         <ul>
           <li v-for="(item,index) in list" :key="index" @click="goDetail(item)">
-            <div class="name"><strong class="nick">{{item.creator_nick}}</strong> 發起 <strong>{{item.prise_str}}</strong> 抽獎</div>
+            <div class="name"><strong class="nick">{{item.creator_nick}}</strong> 發起 <strong>{{item.prise_name}}{{item.prise_str}}</strong> 抽獎</div>
             <div class="time">{{item.end_date}}開獎</div>
             <i class="arr"></i>
           </li>
