@@ -114,3 +114,24 @@ a,a:hover {
       transform: scale(0);
     }
   }
+
+  @keyframes jiggle {
+    70%,
+    100% {
+      transform: rotate(0);
+    }
+    73%,
+    79%,
+    84%,
+    90%,
+    96% {
+      transform: rotate(-10deg);
+    }
+    76%,
+    81%,
+    87%,
+    93%,
+    99% {
+      transform: rotate(10deg);
+    }
+  }

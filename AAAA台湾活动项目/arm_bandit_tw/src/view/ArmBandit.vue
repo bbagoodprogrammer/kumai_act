@@ -85,7 +85,8 @@ export default {
       var contentScrollTop = this.$refs.wardsToast.$refs.wardContent.scrollTop
       var contentScrollHeight = this.$refs.wardsToast.$refs.wardContent.scrollHeight
       var that = this
-      if (contentScrollHeight - contentScrollTop <= conentHight) { // conentHight + contentScrollTop >= contentScrollHeight -100 寬鬆寫法
+      //contentScrollHeight - contentScrollTop <= conentHight
+      if (conentHight + contentScrollTop >= contentScrollHeight - 100) { // conentHight + contentScrollTop >= contentScrollHeight -100 寬鬆寫法
         if (that.moreList) {
           that.moreList = false
           that.historyNum = that.historyList.length

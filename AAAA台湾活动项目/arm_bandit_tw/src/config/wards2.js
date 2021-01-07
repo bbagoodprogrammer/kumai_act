@@ -26,7 +26,8 @@ const wards = {
     // 25: "Quý tộc Tử Tước", //子爵贵族
     // 26: "Quý tộc Bá Tước", //伯爵贵族
     27: "Vip(3天)", //会员3天
-    28: "7位数靓号", //8位靓号
-    29: "Double卡" //double卡
+    28: "4-6位新靚號", //8位靓号
+    29: "Double卡", //double卡
+    30: "幸運兌換券"
 }
 export default wards

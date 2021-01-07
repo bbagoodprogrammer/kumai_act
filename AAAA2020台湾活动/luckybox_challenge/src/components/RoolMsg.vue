@@ -4,7 +4,7 @@
     <div class="popup">
       <div class="msgBox">
         <ul class="lb" :class="{marquee_top:animate}">
-          <li v-for="(item, index) in list" :key="index"> UID:{{item.uid}} <em>{{item.nick}}</em> {{lang.roolMsg2}} <em>{{boxName[item.pid]}}</em></li>
+          <li v-for="(item, index) in list" :key="index"> UID:{{item.uid}} <em>{{item.nick}}</em> {{lang.roolMsg2}} <em>{{item.name}}</em></li>
         </ul>
       </div>
     </div>
@@ -72,6 +72,13 @@ export default {
   margin: 0 auto;
   background: url(../img/roolBg.png);
   background-size: 100% 100%;
+  .laba {
+    width: 0.28rem;
+    height: 0.28rem;
+    background: url(../img/sing.png);
+    background-size: 100% 100%;
+    margin: 0 0.12rem;
+  }
   .popup {
     flex: 1;
     border-radius: 0.2rem;
@@ -105,7 +112,7 @@ export default {
           font-size: 0.26rem;
           white-space: nowrap;
           color: #cccccc;
-          padding-left: 0.6rem;
+          // padding-left: 0.6rem;
           em {
             color: rgba(254, 240, 98, 1);
             margin: 0 0.1rem;

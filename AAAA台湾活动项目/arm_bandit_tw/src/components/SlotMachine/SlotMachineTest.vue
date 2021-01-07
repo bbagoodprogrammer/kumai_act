@@ -51,6 +51,7 @@ export default {
         { id: 27, src: require("../../assets/img/ward19.png") },
         { id: 28, src: require("../../assets/img/ward20.png") },
         { id: 29, src: require("../../assets/img/ward21.png") },
+        { id: 30, src: require("../../assets/img/ward22.png") },
       ],
       result: [],
       imgindex: 0,

@@ -10,10 +10,10 @@
     <div class="list" v-if="showState ===3 ">
       <div class="rank" :class="{norank:myMsg.rank==0}">{{myMsg.rank==0?lang.noRank:myMsg.rank}}</div>
       <div class="uerImg">
-        <img v-if="myMsg.nob > 0" :src="require(`../img/nob/${myMsg.nob}.png`)" class="nob" alt="">
-        <i class="vip" v-else-if="myMsg.vip > 0">VIP{{myMsg.vip}}</i>
-        <span class="imgBg" v-if="myMsg.nob ==  0"></span>
-        <img v-lazy="myMsg.avatar" alt="" class="imgItem">
+        <img v-if="myMsg.avatar_frame &&myMsg.avatar_frame != ''" :src="myMsg.avatar_frame" class="frame" alt="">
+        <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
+        <img v-else-if="myMsg.nob > 0" :src="require(`../img/nob/${myMsg.nob}.png`)" class="nob" alt="">
+        <img v-lazy="myMsg.avatar" alt="" class="av">
       </div>
       <div class="scoreBox">
         <div class="score"><i :class="{coins:mainTab == 'total'}"></i>{{myMsg.score}}</div>
@@ -114,50 +114,32 @@ export default {
       }
     }
     .uerImg {
-      width: 1rem;
-      height: 1.01rem;
+      width: 1.1rem;
+      height: 1.1rem;
       position: relative;
-      margin: 0 0.15rem 0 0.2rem;
-      .imgBg {
-        width: 1rem;
-        height: 1.01rem;
-        // background: url(../assets/img/av4.png);
-        // background-size: 100% 100%;
-        position: absolute;
-        z-index: 10;
-      }
-      .imgItem {
-        width: 0.94rem;
-        height: 0.94rem;
-        border: 0.03rem solid RGBA(212, 189, 249, 1);
-        box-sizing: border-box;
-        position: absolute;
-        top: 0.035rem;
-        left: 0.03rem;
-        border-radius: 50%;
-      }
       .nob {
-        width: 1.2rem;
-        height: 1.2rem;
+        width: 1.1rem;
+        height: 1.1rem;
         position: absolute;
-        top: -0.1rem;
-        left: -0.1rem;
+        top: 0rem;
+        left: 0rem;
         z-index: 10;
       }
-      .vip {
-        display: block;
-        width: 0.8rem;
-        height: 0.3rem;
-        background: #fc6161;
-        font-size: 0.24rem;
-        color: #fffca1;
+      .frame {
+        width: 1.5rem;
+        height: 1.5rem;
         position: absolute;
-        bottom: 0rem;
-        border-radius: 0.3rem;
-        text-align: center;
-        line-height: 0.3rem;
-        left: 0.1rem;
-        z-index: 11;
+        top: -0.21rem;
+        left: -0.2rem;
+        z-index: 10;
+      }
+      .av {
+        width: 0.88rem;
+        height: 0.88rem;
+        position: absolute;
+        top: 0.1rem;
+        left: 0.11rem;
+        border-radius: 50%;
       }
     }
     .scoreBox {

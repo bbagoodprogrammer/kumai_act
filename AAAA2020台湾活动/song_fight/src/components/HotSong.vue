@@ -45,7 +45,7 @@
         <div class="choiceSong" v-if="cSongPup">
           <i class="close" @click="closeSongPup()"></i>
           <h3>選擇你最滿意的打擂作品參賽吧</h3>
-          <p class="red">歌曲提交后，若活動期間刪除一首打擂歌曲，則分數扣一分</p>
+          <p class="red"> 歌曲提交後，若活動期間刪除一首打擂歌曲，則分數扣2分</p>
           <ul class="choiceSongList">
             <li v-for="(item,index) in mySong" :key="index">
               <div class="songMsg">

@@ -5,8 +5,9 @@
     </div>
     <div class="header">
       <div class="tipsBox">
-        <span class="ruleTips" @click="goMain()"></span>
-        <router-link to="agreement" class="ruleTips2"></router-link>
+        <router-link to="agreement" class="ruleTips"></router-link>
+        <span class="ruleTips2" @click="showHistory()"></span>
+
       </div>
     </div>
     <RoolMsg :roolmsg="roolmsgArr" />
@@ -74,6 +75,19 @@ export default {
 
 <style lang="scss">
 .pageIndex {
+  .shareBar {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    .bar {
+      width: 7.5rem;
+      height: 1.2rem;
+      margin: auto;
+    }
+  }
   .header {
     height: 9.7rem;
     .tipsBox {

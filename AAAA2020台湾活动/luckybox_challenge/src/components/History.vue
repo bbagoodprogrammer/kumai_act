@@ -2,21 +2,21 @@
   <div class="mask">
     <div class="historyList" :class="{noData: hList.length== 0}">
       <i class="close" @click="closeHistory()"></i>
-      <div class="hasData" v-if="hList.length">
-        <div class="listHeader">
+      <div class="hasData">
+        <div class="listHeader" v-if="hList.length != 0">
           <span class="time">{{lang.lickTime}}</span>
           <span class="boxType">{{lang.luckType}}</span>
           <span class="gift">{{lang.luckGift}}</span>
         </div>
         <ul class='scrollable'>
           <li v-for="(item,index) in hList" :key="index">
-            <div class="time">{{item.time}}</div>
+            <div class="time">{{getDateStr(item.time)}}</div>
             <div class="boxType">{{boxName[item.gid]}}</div>
             <div class="gift">{{item.name}}</div>
           </li>
         </ul>
       </div>
-      <div class="noData" v-else>
+      <div class="noData" v-if="hList.length == 0">
         {{lang.luckNoData}}
       </div>
     </div>
@@ -24,6 +24,9 @@
 </template>
 <script>
 import { getList } from '../apis';
+import getDate from "../utils/getDate"
+import { replaceLang } from '../utils';
+
 export default {
   props: ['hList'],
   data() {
@@ -44,7 +47,18 @@ export default {
     }
   },
   methods: {
+    getDateStr(tm) {
+      let datem = new Date(tm * 1000)
+      var year = datem.getFullYear(),
+        month = (datem.getMonth() + 1) < 10 ? '0' + (datem.getMonth() + 1) : datem.getMonth() + 1,
+        date = datem.getDate() < 10 ? '0' + datem.getDate() : datem.getDate(),
+        hours = datem.getHours() < 10 ? '0' + datem.getHours() : datem.getHours(),
+        minute = datem.getMinutes() < 10 ? '0' + datem.getMinutes() : datem.getMinutes(),
+        second = datem.getSeconds() < 10 ? '0' + datem.getSeconds() : datem.getSeconds();
+      return replaceLang(this.lang.time, year, month, date, hours, minute, second)
+    },
     onScroll() {
+      console.log('xxx')
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
         if (this.loaded) return
@@ -63,6 +77,7 @@ export default {
     },
     closeHistory() {
       this.$parent.showHistoryList = false
+      this.loaded = false
     }
   }
 }

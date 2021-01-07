@@ -165,23 +165,29 @@ body {
       display: flex;
       justify-content: center;
       span {
-        width: 3.54rem;
+        display: block;
+        width: 3.55rem;
         height: 0.88rem;
+        text-align: center;
+        line-height: 0.84rem;
+        color: rgba(255, 255, 255, 0.6);
       }
       .p1Tab1 {
-        background: url(../../assets/img/rules/ruleTab1.png);
+        background: url(../img/tab3.png);
         background-size: 100% 100%;
         &.act {
-          background: url(../../assets/img/rules/ruleTab1_act.png);
+          color: rgba(255, 255, 255, 1);
+          background: url(../img/tab4.png);
           background-size: 100% 100%;
         }
       }
 
       .p1Tab2 {
-        background: url(../../assets/img/rules/ruleTab2.png);
+        background: url(../img/tab2.png);
         background-size: 100% 100%;
         &.act {
-          background: url(../../assets/img/rules/ruleTab2_act.png);
+          color: rgba(255, 255, 255, 1);
+          background: url(../img/tab1.png);
           background-size: 100% 100%;
         }
       }
