@@ -14,10 +14,10 @@
         <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid)">
           <div class="rank">{{item.rank}}</div>
           <div class="uerImg">
-            <img v-if="item.nob > 0" :src="require(`../img/nob/${item.nob}.png`)" class="nob" alt="">
-            <i class="vip" v-else-if="item.vip > 0">VIP{{item.vip}}</i>
-            <span class="imgBg" v-if="item.nob ==  0"></span>
-            <img v-lazy="item.avatar" alt="" class="imgItem">
+            <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
+            <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
+            <img v-else-if="item.nob > 0" :src="require(`../img/nob/${item.nob}.png`)" class="nob" alt="">
+            <img v-lazy="item.avatar" alt="" class="av">
           </div>
           <div class="nick">{{item.nick}}</div>
           <div class="score"><i></i>{{item.score}}</div>
@@ -32,10 +32,10 @@
         <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid)">
           <div class="rank">{{item.rank}}</div>
           <div class="uerImg">
-            <img v-if="item.nob > 0" :src="require(`../img/nob/${item.nob}.png`)" class="nob" alt="">
-            <i class="vip" v-else-if="item.vip > 0">VIP{{item.vip}}</i>
-            <span class="imgBg" v-if="item.nob ==  0"></span>
-            <img v-lazy="item.avatar" alt="" class="imgItem">
+            <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
+            <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
+            <img v-else-if="item.nob > 0" :src="require(`../img/nob/${item.nob}.png`)" class="nob" alt="">
+            <img v-lazy="item.avatar" alt="" class="av">
           </div>
           <div class="nick">{{item.nick}}</div>
           <div class="score"><i class="coins"></i>{{item.score}}</div>
@@ -141,16 +141,16 @@ export default {
         }
       })
     },
-    onScroll() {
+    onScroll(isRefresh) {
+      // console.log('xxx')
       // if (this.tab > this.nowDay) return (this.tab > this.nowDay && this.rankKey !== 'total') || 
-      if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
-        return
-      }
-
+      // if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
+      //   return
+      // }
       if (!this.rank.loading && !this.rank.loadEnd) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
-        if (scrollToBottom || notFull) {
+        if (scrollToBottom || notFull || isRefresh) {
           const key = this.rankKey;
 
           const set = (k, v) => {
@@ -217,7 +217,10 @@ export default {
         none: false,
         list: [],
       });
-      this.$nextTick(this.onScroll);
+      this.$nextTick(() => {
+        this.onScroll(1)
+        this.$parent.initData()
+      });
     },
 
     goUser(uid) { //跳转
@@ -308,48 +311,32 @@ export default {
         font-weight: bold;
       }
       .uerImg {
-        width: 1rem;
-        height: 1.01rem;
+        width: 1.1rem;
+        height: 1.1rem;
         position: relative;
-        margin: 0 0.15rem 0 0.08rem;
-        .imgBg {
-          width: 1rem;
-          height: 1.01rem;
-          // background: url(../assets/img/av4.png);
-          // background-size: 100% 100%;
-          position: absolute;
-          z-index: 10;
-        }
-        .imgItem {
-          width: 0.94rem;
-          height: 0.94rem;
-          position: absolute;
-          top: 0.035rem;
-          left: 0.03rem;
-          border-radius: 50%;
-        }
         .nob {
-          width: 1.2rem;
-          height: 1.2rem;
+          width: 1.1rem;
+          height: 1.1rem;
           position: absolute;
-          top: -0.1rem;
-          left: -0.1rem;
+          top: 0rem;
+          left: 0rem;
           z-index: 10;
         }
-        .vip {
-          display: block;
-          width: 0.8rem;
-          height: 0.3rem;
-          background: #fc6161;
-          font-size: 0.24rem;
-          color: #fffca1;
+        .frame {
+          width: 1.5rem;
+          height: 1.5rem;
           position: absolute;
-          bottom: 0rem;
-          border-radius: 0.3rem;
-          text-align: center;
-          line-height: 0.3rem;
-          left: 0.1rem;
-          z-index: 11;
+          top: -0.21rem;
+          left: -0.2rem;
+          z-index: 10;
+        }
+        .av {
+          width: 0.88rem;
+          height: 0.88rem;
+          position: absolute;
+          top: 0.1rem;
+          left: 0.11rem;
+          border-radius: 50%;
         }
       }
       .nick {
@@ -431,8 +418,8 @@ export default {
   position: fixed;
   right: 0.08rem;
   bottom: 1.35rem;
-  // background: url(../assets/img/refresh.png) no-repeat;
-  // background-size: contain;
+  background: url(../img/refresh.png) no-repeat;
+  background-size: contain;
   transition: all 1s;
   text-indent: -999rem;
   z-index: 100;

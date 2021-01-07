@@ -4,6 +4,7 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
+      <div class="taskIcon" :class="{shake:!task_finished}" @click="showTask = true"></div>
       <div class="tipsBox" :class="{top:isShare}">
         <span class="ruleTips" @click="goRule()">規則&獎勵</span>
         <span class="rank" @click="goLastRank()">家族守護榜</span>
@@ -17,6 +18,27 @@
     <div class="mask" v-show="showHistory">
       <transition name="slide">
         <history :hList="hList" v-if="showHistory" />
+      </transition>
+    </div>
+    <div class="mask" v-show="showTask">
+      <transition name="slide">
+        <div class="taskList" v-show="showTask">
+          <h3>名星任務</h3>
+          <i class="close" @click="showTask = false"></i>
+          <div class="taskHeader">
+            <span class="name">名星任務</span>
+            <span class="score">任務值</span>
+            <span class="bar">進度</span>
+          </div>
+          <ul class="taskListItem">
+            <li v-for="(item,index) in task" :key="index">
+              <span class="name">{{taskName[item.action]}}</span>
+              <span class="score">{{item.chance}}</span>
+              <span class="bar">{{item.schule >= item.limit?'已達成':`${item.schule}/${item.limit}`}}</span>
+            </li>
+          </ul>
+          <p class="taskTips">名星任務每日０點自動更新</p>
+        </div>
       </transition>
     </div>
   </div>
@@ -60,7 +82,19 @@ export default {
       arrLength: 0,
       seconed: 0,
       fid: 0,
-      hList: []
+      hList: [],
+      task: {},
+      taskName: {
+        login: '每日登入家族主頁完成簽到',
+        online: '每日在本家族K房中停留3分鐘',
+        mic: '每日在本家族K房單次上麥60秒',
+        praise: '每日點贊2位家族成員作品',
+        work: '每日發布1首公開作品',
+        sendGift: '每日給家族成員贈送1個家族禮物',
+      },
+      showTask: false,
+      task_finished: false
+
     }
   },
   created() {
@@ -76,7 +110,9 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { ctime, days, second, stime, stime1, stime2, stime3, etime, etime1, etime2, etime3, fid, list, rank, step, step_level, user_info } = response_data
+          const { task, task_finished, ctime, days, second, stime, stime1, stime2, stime3, etime, etime1, etime2, etime3, fid, list, rank, step, step_level, user_info } = response_data
+          this.task = task
+          this.task_finished = task_finished
           this.ctime = ctime
           this.stime1 = stime1
           this.stime2 = stime2
@@ -231,6 +267,24 @@ body::-webkit-scrollbar {
   .header {
     height: 7.75rem;
     position: relative;
+    .taskIcon {
+      display: block;
+      width: 1.2rem;
+      height: 1.3rem;
+      position: absolute;
+      top: 6.2rem;
+      left: 0.31rem;
+      z-index: 100;
+      background: url(../assets/img/taskIcon.png);
+      background-size: 100% 100%;
+      &.shake {
+        animation: jiggle 2s ease-in-out infinite;
+        -o-animation: jiggle 2s ease-in infinite;
+        -webkit-animation: jiggle 2s ease-in infinite;
+        -moz-animation: jiggle 2s ease-in infinite;
+        -ms-animation: jiggle 2s ease-in infinite;
+      }
+    }
     .tipsBox {
       position: absolute;
       right: 0;
@@ -263,6 +317,65 @@ body::-webkit-scrollbar {
     margin: 0 auto;
   }
 }
+.taskList {
+  width: 7.12rem;
+  height: 6.71rem;
+  background: url(../assets/img/taskListBg.png);
+  background-size: 100% 100%;
+  position: relative;
+  h3 {
+    height: 0.8rem;
+    line-height: 0.9rem;
+    text-align: center;
+    color: rgba(144, 72, 12, 1);
+    font-size: 0.4rem;
+    font-weight: bold;
+  }
+  .name {
+    width: 3.5rem;
+    text-indent: 0.83rem;
+    white-space: nowrap;
+    color: rgba(255, 210, 164, 1);
+  }
+  .score {
+    width: 1.5rem;
+    color: rgba(255, 210, 164, 1);
+  }
+  .bar {
+    flex: 1;
+    color: rgba(255, 210, 164, 1);
+  }
+  .taskHeader {
+    display: flex;
+    height: 0.75rem;
+    line-height: 0.75rem;
+    text-align: center;
+    font-size: 0.26rem;
+    span {
+      color: rgba(255, 235, 127, 1) !important;
+    }
+  }
+
+  ul {
+    li {
+      height: 0.69rem;
+      line-height: 0.69rem;
+      display: flex;
+      text-align: center;
+      font-size: 0.22rem;
+      color: rgba(255, 243, 164, 1);
+      .name {
+        text-indent: 0.47rem;
+      }
+    }
+  }
+  .taskTips {
+    color: rgba(255, 170, 100, 1);
+    font-size: 0.22rem;
+    margin: 0.2rem auto 0;
+    text-align: center;
+  }
+}
 .refresh {
   display: block;
   width: 0.94rem;
@@ -274,6 +387,16 @@ body::-webkit-scrollbar {
   background-size: contain;
   transition: transform 1s;
   z-index: 1000;
+}
+.close {
+  display: block;
+  width: 0.58rem;
+  height: 0.6rem;
+  background: url(../assets/img/close.png);
+  background-size: 100% 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 </style>
 

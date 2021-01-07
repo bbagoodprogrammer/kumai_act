@@ -1,3 +1,50 @@
 html.vi {
-    
+    .pageIndex {
+        background: #47205b url(./img/banner.png) no-repeat;
+        background-size: 100% auto;
+      }
+      .dayGift{
+
+        background: url(./img/dayGiftBg.png);
+        background-size: 100% 100%;
+      }
+      .giftShow{
+        background: url(./img/showGiftBg.png);
+        background-size: 100% 100%;
+      }
+      .getGiftPup{
+        background: url(./img/getGiftPup.png);
+        background-size: 100% 100%;
+      }
+      .ruleTips{
+          width: 2.1rem;
+          height: .65rem;
+          background: url(./img/rule.png);
+          background-size: 100% 100%;
+          // margin-left: .22rem;
+      }
+      .ruleTips2{
+        width:1.36rem;
+        height: .65rem;
+        background: url(./img/history.png);
+        background-size: 100% 100%;
+        margin: .24rem 0 0 .74rem;
+      }
+      .historyList{
+        background: url(./img/historyBg.png);
+        background-size: 100% 100%;
+          &.noData{
+            padding-top: 3.5rem;
+            height: 1.94rem;
+            background: url(./img/historyNodata.png);
+            background-size: 100% 100%;
+          }
+      }
+      .shareBar{
+        .bar{
+          background: url(./img/share_bar.png) no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+      
 }
