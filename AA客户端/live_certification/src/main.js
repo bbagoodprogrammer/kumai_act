@@ -6,7 +6,10 @@ import Vue from 'vue'
 import App from './App'
 import store from './store'
 import router from './router'
-import { replaceLang } from './utils';
+import { replaceLang, toast } from './utils';
+
+
+Vue.prototype.toast = toast
 
 Vue.config.productionTip = false
 

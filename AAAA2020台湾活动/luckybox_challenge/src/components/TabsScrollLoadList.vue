@@ -280,12 +280,13 @@ export default {
     z-index: 10;
     p {
       text-align: center;
-      font-size: 0.32rem;
+      font-size: 0.26rem;
       color: rgba(255, 255, 255, 1);
-      font-weight: 500;
       height: 0.5rem;
       line-height: 0.5rem;
       margin-bottom: 0.2rem;
+      white-space: nowrap;
+      letter-spacing: -0.015rem;
     }
     ul {
       width: 6.78rem;

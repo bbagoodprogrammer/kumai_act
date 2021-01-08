@@ -3,7 +3,7 @@
     <div class="process">
       <span v-for="(item,index) in processTitle" :key="index">{{item}}</span>
       <div class="liner">
-        <span class="store" :class="[{act:stage == (index+1)},'store' + index]" v-for="(item,index) in processTitle" :key="index"></span>
+        <span class="store" :class="[{act:(stage==3&& stage>= (index+1) ) || (stage==4 && index== 0)},'store' + index]" v-for="(item,index) in processTitle" :key="index"></span>
       </div>
     </div>
     <div class="stage1" v-if="stage == 1">
@@ -32,7 +32,7 @@
       <div class="lastTips">
         為了保證身份的真實性，需要你進行身份驗證，如發現證件假造將永久封號。
       </div>
-      <div class="nextBtn">下一步</div>
+      <div class="nextBtn" @click="idCardNext()">下一步</div>
     </div>
     <div class="stage2" v-else-if="stage == 2">
       <div class="uploadImg">
@@ -46,7 +46,7 @@
         點擊提交，即表示同意
         <span>《歡歌直播協議與行為規範》</span>
       </div>
-      <div class="nextBtn mt">提交</div>
+      <div class="nextBtn mt" @click="uploadImg()">提交</div>
     </div>
     <div class="stage3" v-else-if="stage == 3">
       <div class="commitTips">
@@ -67,7 +67,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex';
-import { getApplyStatus } from '../apis';
+import { getApplyStatus, applyAnchor } from '../apis';
 
 export default {
   data() {
@@ -81,8 +81,8 @@ export default {
         2: '身份驗證已提交<br/> 無需重複提交，請直接進入下一步'
       },
       reject_reason: '',  //已拒绝信息
-      cardImg: '',  //身份证照片
-      liveImg: '' //直播照片
+      liveImg: '', //直播照片
+      idcard_img: '', //身份证照片
     }
   },
   created() {
@@ -90,18 +90,43 @@ export default {
       //status 6已申请过（审核中），7已申请过（已拒绝），8未申请认证
       //reject_reason 此字段仅当 status = 7 时有效，拒绝原因：0无原因，1证件照不符合要求，2封面图不符合要求，3账号存在异常
       //idcard_verified 此字段仅当 status in (5,7,8) 时有效，1表示已验证过证件照，0表示未验证过
-      const { status, idcard_verified, reject_reason } = res.data.response_data
-      this.reject_reason = reject_reason
-      let nums = 8
-      if (nums == 7 || nums == 6) {
-        this.stage = 3
-        nums == 7 ? this.commitStatus = 0 : this.commitStatus = 1
-      } else if (nums == 8 && idcard_verified == 1) {
-        this.stage = 2
+      if (res.data.response_data) {
+        const { status, idcard_verified, reject_reason } = res.data.response_data
+        this.reject_reason = reject_reason
+        if (status == 7 || status == 6) {
+          this.stage = 3
+          status == 7 ? this.commitStatus = 0 : this.commitStatus = 1
+        } else if (status == 8 && idcard_verified == 1) {
+          this.stage = 4
+        }
+      } else {
+        this.toast(res.data.response_status.error)
       }
     })
   },
   methods: {
+    idCardNext() {
+      if (!this.idcard_img) {
+        this.toast(`請上傳認證照片！`)
+      } else {
+        this.stage = 2
+      }
+    },
+    uploadImg() {
+      if (!this.liveImg) {
+        this.toast(`請上傳直播封面！`)
+      } else {
+        applyAnchor(this.idcard_img, this.liveImg).then(res => {
+          if (res.data.response_data) {
+            this.stage = 3
+            this.commitStatus = 1
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      }
+
+    },
     goSkill() {
       this.$router.push({ path: 'Skill' })
     }

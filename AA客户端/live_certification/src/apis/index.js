@@ -84,15 +84,29 @@ function getApplyStatus() {
 }
 
 //用户直播认证申请
-function applyAnchor() {
-    const data = { uid, token, lang };
+function applyAnchor(idcard_img, cover) {
+    const data = { uid, token, lang, idcard_img, cover };
     return post(`${API_ROOT}/index.php?action=Live.applyAnchor`, data)
 }
+
+//獲取當前主播封面
+function getCover() {
+    return get(`${API_ROOT}/index.php?action=Live.getCoverInfo&uid=${uid}&token=${token}&lang=${lang}`)
+}
+
+//上傳封面
+function uploadCover(cover) {
+    const data = { uid, token, lang, cover };
+    return post(`${API_ROOT}/index.php?action=Live.uploadCover`, data)
+}
+
 export {
     loadData,
     getInitInfo,
     getUserData,
     apply,
     getApplyStatus,
-    applyAnchor
+    applyAnchor,
+    getCover,
+    uploadCover
 }

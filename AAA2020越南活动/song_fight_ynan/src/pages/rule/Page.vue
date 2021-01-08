@@ -30,7 +30,9 @@
       <p class="red">2.Mỗi người báo danh thành công (có 1 bài hát tham gia thi đấu trước khi sự kiện kết thúc), sau khi sự kiện kết thúc nhận thưởng 50 đậu.</p>
       <h6>Thưởng giám khảo:</h6>
       <p>1. Mỗi giám khảo mỗi ngày bình chọn 30 bài đầu, mỗi chọn 1 bài được thưởng 5 đậu. (gửi thưởng ngay sau chọn bài)<br />
-        2. Mỗi kỳ liên tục chọn trúng 5 bài có thể nhận ngẫu nhiên 1 túi quà Hộp Nhạc (360 đậu) / Túi quà Kẹo Bông (1 xu) / VIP (2 ngày) / Chiến Đấu Cơ (2 ngày).</p>
+        2. Mỗi kỳ liên tục chọn trúng 5 bài có thể nhận ngẫu nhiên 1 túi quà Hộp Nhạc (360 đậu) / Túi quà Kẹo Bông (1 xu) / VIP (2 ngày) / Chiến Đấu Cơ (2 ngày).<br />
+        3. Bình chọn đủ 50 lần sẽ được thưởng túi quà Sách Thiên Sứ (7 ngày), mỗi kỳ chỉ có thể nhận thưởng 1 lần (phần thưởng sẽ được phát trong 7 ngày sau khi kết thúc sự kiện).
+      </p>
       <h6>Danh hiệu và quyền giám khảo:</h6>
       <img src="../../assets/img/chTab.png" alt="" class="chTabImg">
       <p>Chú ý: </p>
@@ -65,18 +67,18 @@
         <p>1. Cần hát ca khúc chỉ định và đăng sau {{stime}} để tham dự (tức cần nhấn hát ca khúc được chuyển đến sau khi nhấn tham gia võ đài).</p>
         <p>2. Chỉ được tham gia bằng bài hát đơn ca.</p>
         <p>3. Mỗi bài hát chỉ được tham dự 1 lần.</p>
-        <p>4. Mỗi kỳ có thể chọn nhiều bài hátk để dự thi.</p>
+        <p>4. Mỗi kỳ có thể chọn nhiều bài hát để dự thi.</p>
         <p>5. Bài hát dự thi phải là bài hát hoàn chỉnh (thời gian bài hát chỉ có thể ngắn hơn thời gian nhạc nền 30s), nếu không sẽ không thể gửi bài hát</p>
         <p>6. Nếu sau khi chọn bài hát dự thi và ghép cặp đấu xong, thí sinh xoá bài hát dự thi xem như bỏ thi đấu, thành tích bài hát dự thi của cả 2 đều tính là thất bại, thí sinh còn lại tiếp tục tham gia lượt ghép cặp đấu tiếp theo.</p>
         <p>7. Hệ thống sẽ tự động ghép 2 thí sinh dự thi có ca khúc tương đồng thành 1 cặp đấu, sau đó cho giám khảo bình chọn bằng cách bỏ phiếu. Tính đến khi sự kiện kết thúc, thí sinh nào nhận nhiều phiếu hơn sẽ thắng cuộc.</p>
-        <p>8. Nếu 1 bài hát cả 2 thí sinh nhận tổng cộng từ 50 phiếu trở lên, và 1 thí sinh chiếm từ 80% số phiếu trở lên (tức là số phiếu của 1 thí sinh chia cho tổng số phiếu của bài hát đạt từ 80% trở lên), thí sinh thắng cuộc nhận thêm 2 điểm, thí sinh thua cuộc trừ 1 điểm. Nếu bài hát nhận dưới 50 phiếu hoặc thí sinh thắng cuộc không chiếm tới 80% số phiếu, thí sinh thắng cuộc nhận thêm 1 điểm, thí sinh thua cuộc trừ 1 điểm.Nếu số điểm hai bên bằng nhau, hai người thi đấu sẽ không nhận thêm hoặc trừ điểm, người giám khảo cũng không tính vào chọn trúng.</p>
+        <p>8. Nếu 1 bài hát cả 2 thí sinh nhận tổng cộng từ 50 phiếu trở lên, và 1 thí sinh chiếm từ 80% số phiếu trở lên (tức là số phiếu của 1 thí sinh chia cho tổng số phiếu của bài hát đạt từ 80% trở lên), thí sinh thắng cuộc nhận thêm 2 điểm, thí sinh thua cuộc không bị trừ điểm điểm. Nếu bài hát nhận dưới 50 phiếu hoặc thí sinh thắng cuộc không chiếm tới 80% số phiếu, thí sinh thắng cuộc nhận thêm 1 điểm, thí sinh thua cuộc không bị trừ điểm.Nếu số điểm hai bên bằng nhau, hai người thi đấu sẽ không nhận thêm hoặc trừ điểm, người giám khảo cũng không tính vào chọn trúng.</p>
         <p class="orange">9. Sau khi gửi bài hát, trong thời gian sự kiện diễn ra, xóa 1 bài hát dự thi trừ 1 điểm.</p>
       </div>
       <h6>Thể lệ xếp hạng Bảng Võ Đài mỗi kỳ: </h6>
       <p>1. Xếp hạng theo điểm số thí sinh nhận được mỗi kỳ. Nếu điểm số bằng nhau, bài hát nhận nhiều phiếu hơn sẽ xếp hạng cao hơn.</p>
       <h6>Thể lệ Bảng Vua Ca Hát Mùa: </h6>
       <p>1. Xếp hạng dựa theo cấp, tức là tổng điểm nhận được trong toàn bộ các kỳ. Nếu điểm số bằng nhau, thí sinh nhận nhiều phiếu hơn sẽ xếp hạng cao hơn.</p>
-      <p>2. Bắt đầu mỗi kỳ, cấp thí sinh mặc định sẽ là 0. Cứ nhận 1 điểm sẽ tăng 1 cấp, trừ 1 điểm bị giảm 1 cấp, cấp có thể là số âm.</p>
+      <p>2. Bắt đầu mỗi kỳ, cấp thí sinh mặc định sẽ là 0. Cứ nhận 1 điểm sẽ tăng 1 cấp, thua sẽ không bị trừ điểm và giảm cấp.</p>
       <h3>Quy định khác</h3>
       <p>Trong quá trình diễn ra sự kiện, nếu phát hiện người dùng gian lận trong sự kiện, ban tổ chức sẽ dựa theo mức độ vi phạm để xử lý, người vi phạm sẽ bị loại khỏi sự kiện hoặc khoá tài khoản. Bao gồm các hành vi sau:</p>
       <p>1. Bài hát dự thi không đúng quy định, bài hát không do thí sinh biểu diễn hoặc dùng/thu bài hát của người khác.</p>

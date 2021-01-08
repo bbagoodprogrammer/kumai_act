@@ -6,7 +6,7 @@
     </div>
     <div class="gifts" v-if="type == 1">
       <h5>Thời gian</h5>
-      <p>18h ngày 15/01 - 20h ngày 23/01</p>
+      <p>18h 12/1 - 21h 20/1</p>
       <h5>Phần thưởng</h5>
       <div class="giftsItem">
         <!-- <div class="item" v-for="(item,index) in 28" :key="index">
@@ -46,7 +46,7 @@
     </div>
     <div class="ruleItem" v-else>
       <h5>Thời gian</h5>
-      <p>18h ngày 15/01 - 20h ngày 23/01</p>
+      <p>18h 12/1 - 21h 20/1</p>
       <h5>Quy tắc</h5>
       <h6 class="minTop">Báo danh</h6>
       <p>1、Nhấn “Báo danh” sẽ báo danh thành công, sau khi báo danh mới bắt đầu tính điểm</p>
@@ -60,7 +60,7 @@
       <h5>Quy tắc Quà Hàng Ngày</h5>
       <p>
         1.Mỗi ngày nhận được Hộp quà, Hộp quà cao, Hộp quà siêu, có thể nhận quà tương ứng<br />
-        2.Hộp May Mắn cấp càng cao, nhận được quà càng giá trị, lần thứ 5 nhận Hộp quà siêu sẽ trúng Trang Sức Ma Kết<br />
+        2.Hộp May Mắn cấp càng cao, nhận được quà càng giá trị, lần thứ 5 nhận Hộp quà siêu sẽ trúng Huy Chương May Mắn<br />
         3.Phần thưởng mỗi loại Hộp May Mắn mỗi ngày chỉ có thể nhận 1 lần, có hiệu lực trong ngày
       </p>
     </div>
