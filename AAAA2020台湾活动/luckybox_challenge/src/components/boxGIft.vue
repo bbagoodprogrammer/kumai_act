@@ -159,7 +159,7 @@ export default {
   }
   .giftTips {
     font-size: 0.26rem;
-    padding-left: 0.73rem;
+    padding: 0 0.5rem 0 0.73rem;
     margin-top: 0.15rem;
   }
   .giftShow {

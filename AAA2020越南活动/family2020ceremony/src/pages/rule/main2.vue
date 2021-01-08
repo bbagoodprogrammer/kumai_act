@@ -25,7 +25,7 @@
       <p>5. Trong thời gian diễn ra vòng PK Gia Tộc, nếu thoát gia tộc, điểm số của thành viên sẽ không bị trừ, nếu vào lại gia tộc sẽ tính lại số điểm cũ. Nếu tạo gia tộc mới hoặc vào gia tộc khác, điểm số sẽ tính lại từ đầu.</p>
       <!-- <p>6. Nếu hai gia tộc PK bằng điểm, hai gia tộc đều xem như chưa qua vòng.</p> -->
       <h6>III. Vòng Tranh Bá:</h6>
-      <p>1. Thời gian: 00:05:00 5/1/2021 – 23:59:59 8/1/2021</p>
+      <p>1. Thời gian: 00:05:00 5/1/2021 – 19:59:59 8/1/2021</p>
       <p>2. Điểm Lấp Lánh = mị lực quà xu thành viên gia tộc nhận được từ bài hát và phòng Kara. Vòng này mỗi ngày 21:00 – 21:10 được tặng thêm 10% quà nhận, top 50 gia tộc trong năm nay được tăng thêm 6-10% điểm nhận.</p>
       <p>3. Gia tộc đã qua vòng được xếp hạng theo điểm Lấp Lánh nhận được, 3 gia tộc hạng cao nhất và đại diện của gia tộc trở thành Gia Tộc Của Năm, gia tộc hạng nhất được chứng nhận Gia Tộc Mạnh Nhất. </p>
       <p>4. 10 gia tộc hạng cao nhất và thành viên gia tộc sẽ nhận phần thưởng phong phú.</p>
