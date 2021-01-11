@@ -9,7 +9,7 @@ function getDate(datem, type) {
         return `${hours}h  ${date}/${month}`
     }
     if (type == 1) {
-        return `${year}年${month}月${date}日${hours}:${minute}`
+        return `${month}.${date}`
     } else if (type == 2) {
         return `${month}月${date}日${hours}:${minute}`
     }

@@ -5,10 +5,10 @@
       <label for="rid">يرجي إدخال رقم الغرفة بدقة</label>
       <input type="number" name="" id="rid" v-model="actRid" @input="roomChange()">
     </div>
-    <div class="roomType" v-if="roomType != -1">
+    <!-- <div class="roomType" v-if="roomType != -1">
       <span :class="{act:roomType==1}">غرفة الغناء</span>
       <span :class="{act:roomType==2}">غرفة الدردشة</span>
-    </div>
+    </div> -->
     <h3>موضوع النشاط<span> *لازم تملأ</span> </h3>
     <div class="inputBox">
       <label for="actTitle">يرجي إدخال موضوع الحفلة</label>

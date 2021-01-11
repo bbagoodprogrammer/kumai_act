@@ -1,7 +1,7 @@
 const isIOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
 
 window.bindCallbacks = {};
-window.onMobiChecker = jsonStr => {
+window.onUploadPhoto = jsonStr => {
     const res = JSON.parse(jsonStr);
     const callback = res.callback;
     if (window.bindCallbacks && typeof window.bindCallbacks[callback] == 'function') {
@@ -25,19 +25,17 @@ const emptyResult = {
 };
 
 const defaultParams = {
-    from: 'signing',
     callback: 'bind_callback',
-    action: 'bind',
-    mobile: '',
-    country: '',
+    lwRatio: 1,
 };
 
-function getBindMobile(data = {}) {
+function getUploadImg(data = {}) {
+
     return new Promise((resolve, reject) => {
         if (typeof data != 'object') {
             resolve(emptyResult);
         }
-        
+
         data = Object.assign(defaultParams, data);
 
         window.bindCallbacks[data.callback] = res => {
@@ -47,11 +45,14 @@ function getBindMobile(data = {}) {
         try {
             const dataStr = JSON.stringify(data);
             if (isIOS) {
-                window.showMobiChecker(dataStr);
+                window.Native.JSCall('onUploadPhoto', data, (res) => {
+                    resolve(JSON.parse(res));
+                })
             } else {
-                window.JSInterface.showMobiChecker(dataStr);
+                console.log(dataStr)
+                window.JSInterface.uploadPhoto(dataStr);
             }
-        } catch(e) {
+        } catch (e) {
             resolve(emptyResult);
         }
     });
@@ -59,5 +60,5 @@ function getBindMobile(data = {}) {
 
 export {
     bindStatus,
-    getBindMobile,
+    getUploadImg,
 }

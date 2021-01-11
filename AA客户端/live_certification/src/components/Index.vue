@@ -3,9 +3,10 @@
     <div class="process">
       <span v-for="(item,index) in processTitle" :key="index">{{item}}</span>
       <div class="liner">
-        <span class="store" :class="[{act:(stage==3&& stage>= (index+1) ) || (stage==4 && index== 0)},'store' + index]" v-for="(item,index) in processTitle" :key="index"></span>
+        <span class="store" :class="[{act:(stage!=4&& stage>= (index+1) ) || (stage==4 && index== 0)},'store' + index]" v-for="(item,index) in processTitle" :key="index"></span>
       </div>
     </div>
+    <!-- 上傳身份證 -->
     <div class="stage1" v-if="stage == 1">
       <div class="uploadPhoto">
         <div class="uploadTips">
@@ -13,9 +14,10 @@
           <div class="msg">上傳成功後，我們會加快審核</div>
         </div>
         <div class="uploadImg">
-          <div class="imgBg">
+          <div class="imgBg" @click="callApp(1)" v-if="!idcard_img">
             <i class="addIcon"></i>
           </div>
+          <img :src="idcard_img" alt="" v-else>
         </div>
       </div>
       <div class="uploadPhoto noBg">
@@ -32,11 +34,15 @@
       <div class="lastTips">
         為了保證身份的真實性，需要你進行身份驗證，如發現證件假造將永久封號。
       </div>
-      <div class="nextBtn" @click="idCardNext()">下一步</div>
+      <div class="nextBtn" :class="{act:idcard_img}" @click="idCardNext()">下一步</div>
     </div>
+    <!-- 上傳直播封面 -->
     <div class="stage2" v-else-if="stage == 2">
       <div class="uploadImg">
-        <div class="imgBg"></div>
+        <div class="imgBg" v-if="!liveImg" @click="callApp(2)">
+          <span class="upTips">點擊上傳封面圖</span>
+        </div>
+        <img :src="liveImg" alt="" v-else>
       </div>
       <div class="tips">
         封面圖爲人工審核，請上傳本人面部清晰的照片請勿上傳暴露/低俗/包含邊框、相機水印的圖片儘量上傳真實，自然的自拍圖，更容易審核通過。 點擊查看
@@ -46,8 +52,9 @@
         點擊提交，即表示同意
         <span>《歡歌直播協議與行為規範》</span>
       </div>
-      <div class="nextBtn mt" @click="uploadImg()">提交</div>
+      <div class="nextBtn mt" :class="{act:liveImg}" @click="uploadImg()">提交</div>
     </div>
+    <!-- 第三階段 -->
     <div class="stage3" v-else-if="stage == 3">
       <div class="commitTips">
         <span class="tipsIcon" :class="{err:commitStatus == 0}"></span>
@@ -55,6 +62,7 @@
       </div>
       <div class="nextBtn mt2 act" v-if="commitStatus== 0" @click="stage = 1">重新申請</div>
     </div>
+    <!-- 身份已經驗證 -->
     <div class="stage3" v-else-if="stage == 4">
       <div class="commitTips">
         <span class="tipsIcon ipone"></span>
@@ -68,7 +76,8 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 import { getApplyStatus, applyAnchor } from '../apis';
-
+import { getUrlString } from "../utils"
+import { getUploadImg } from "../utils/getUploadImg"
 export default {
   data() {
     return {
@@ -99,6 +108,7 @@ export default {
         } else if (status == 8 && idcard_verified == 1) {
           this.stage = 4
         }
+        // this.stage = 4
       } else {
         this.toast(res.data.response_status.error)
       }
@@ -129,7 +139,58 @@ export default {
     },
     goSkill() {
       this.$router.push({ path: 'Skill' })
-    }
+    },
+    async callApp(type) {
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
+      let uid = getUrlString('uid')
+      let token = getUrlString('token')
+      let callback = type == 1 ? 'idCard' : 'liveCover'
+      const resData = await getUploadImg({
+        callback,
+        lwRatio: 1,
+        maxWidth: 1000,
+        minWidth: 100
+      })
+      if (resData.code == 0) {
+        if (type == 1) {
+          this.idcard_img = resData.base64
+        } else {
+          this.liveImg = resData.base64
+        }
+      } else {
+        this.toast(resData.error)
+      }
+      // window.Native.JSCall('onUploadPhoto', { 'uid': uid, 'token': token, 'callback': callBackKey, lwRatio: 1 }, (res) => {
+      //   let resData = JSON.parse(res)
+      //   if (resData.code == 0) {
+      //     if (type == 1) {
+      //       this.idcard_img = resData.base64
+      //     } else {
+      //       this.liveImg = resData.base64
+      //     }
+      //   } else {
+      //     this.toast(resData.error)
+      //   }
+      // })
+      // } else {
+      //   JSInterface.uploadPhoto();
+      //   this.loadImg(type)
+      // WebView.loadUrl("javascript:onCreateFamilyComplete()");
+      // JSInterface.onCreateFamilyComplete();
+      // }
+    },
+    // async loadImg(type) {
+    //   const base64ImgData = await onUploadPhoto()
+    //   if (base64ImgData.code == 0) {
+    //     if (type == 1) {
+    //       this.idcard_img = base64ImgData.base64
+    //     } else {
+    //       this.liveImg = base64ImgData.base64
+    //     }
+    //   } else {
+    //     this.toast(base64ImgData.error)
+    //   }
+    // }
   },
 }
 </script>
@@ -245,6 +306,14 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+        > img {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
         .imgBg {
           width: 3.68rem;
           height: 2.32rem;
@@ -283,11 +352,27 @@ export default {
       background: #ffffff;
       border-radius: 0.12rem;
       margin: 0.3rem auto 0;
+      > img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
       .imgBg {
         width: 100%;
         height: 100%;
         background: url(../img/card3.png);
         background-size: 100% 100%;
+        position: relative;
+        .upTips {
+          width: 100%;
+          height: 0.6rem;
+          color: #fff;
+          text-align: center;
+          position: absolute;
+          bottom: 0;
+        }
       }
     }
     .tips {
