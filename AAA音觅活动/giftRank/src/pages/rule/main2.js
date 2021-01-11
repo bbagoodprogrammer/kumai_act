@@ -10,5 +10,5 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   components: { main2 },
-  template: '<main2/>'
+  render: h => h(main2)
 })

@@ -1,12 +1,12 @@
 <template>
-  <div class="footer">
-    <div class="noAct" v-if="showState ===0">
+  <div class="footer" v-if="showState">
+    <div class="noAct" v-if="showState ===1">
       {{lang.noAct}}
     </div>
-    <div class="noAct" v-if="showState ===1">
+    <div class="noAct" v-if="showState ===2">
       {{lang.actEd}}
     </div>
-    <span class="singUp" @click="goSingUp()" v-if="showState ===2"></span>
+    <!-- <span class="singUp" @click="goSingUp()" v-if="showState ===2"></span> -->
     <div class="list" v-if="showState ===3 ">
       <div class="rank" v-if="myMsg.rank>0">{{myMsg.rank>100?'100+':myMsg.rank}}</div>
       <div class="noRank" v-else>未上榜</div>
@@ -38,11 +38,9 @@ export default {
     showState() {
       if (this.actStatus == 0) {
         //活動未開始
-        return 0
+        return 1
       } else if (this.actStatus == 2) {
         //活動已結束
-        return 1
-      } else if (this.isShare || !this.isSingUp) {
         return 2
       } else if (this.isSingUp) { //已报名
         return 3

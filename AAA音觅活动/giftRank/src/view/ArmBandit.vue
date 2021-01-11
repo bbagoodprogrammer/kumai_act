@@ -6,6 +6,7 @@
     <div class="header">
       <roolMsg :roolMsgs="roolMsgs" />
       <span class="ruleTips" @click="goRule()"></span>
+      <span class="ruleTips rank" @click="showRank()"></span>
     </div>
     <div class="gifts">
       <div class="timeDown" v-if="!surplusTime.end">
@@ -37,24 +38,23 @@
             <h6>1 活動時間</h6>
             <p>{{aTimer}}</p>
             <h6>2 榜單排名</h6>
-            <p>榜單按照活動期間內收到的手持煙花或者牛氣沖天禮物數量的前100名玩家從高到低排名</p>
+            <p>無需報名，收禮即可上榜，榜單按照活動期間內收到的向日葵或者美好紀念冊禮物數量的前100名玩家從高到低排名</p>
             <p>榜單展示指定禮物的實時累計數據</p>
             <h6>3 活動獎勵</h6>
-
             <div class="giftBox">
-              <h5>手持煙花榜：</h5>
-              <p>第一名：2021-頭像框（10天）、紅色法拉利座駕（7天）<br />
+              <!-- <h5>手持煙花榜：</h5> -->
+              <p>第一名：2021-頭像框（10天）、銀色瑪莎拉蒂座駕（7天）<br />
                 第二名：2021-頭像框（7天）<br />
                 第三名：2021-頭像框（5天）
               </p>
-              <h5>牛氣沖天榜：</h5>
+              <!-- <h5>牛氣沖天榜：</h5>
               <div class="giftBox">
                 <p>
                   第一名：2021-頭像框（15天）、紅色法拉利座駕（10天）<br />
                   第二名：2021-頭像框（7天）、紅色法拉利座駕（7天）<br />
                   第三名：2021-頭像框（5天）
                 </p>
-              </div>
+              </div> -->
             </div>
             <h6>4 注意事項 </h6>
             <p>榜單獎勵在活動結束後五個工作日內發放獎勵</p>
@@ -161,6 +161,11 @@ export default {
     goRule() {
       this.showRules = true
     },
+    showRank() {
+      let token = getString('token')
+      let uid = getString('uid')
+      location.href = `./index2.html?token=${token}&uid=${uid}`
+    },
     closeRule() {
       this.showRules = false
     }
@@ -185,7 +190,7 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: rgba(37, 22, 83, 1) url(../assets/img/banner.png) center 0
+  background: rgba(235, 103, 185, 1) url(../assets/img/banner.png) center 0
     no-repeat;
   background-size: 100% auto;
   .shareBar {
@@ -207,13 +212,18 @@ body::-webkit-scrollbar {
     height: 7.22rem;
     position: relative;
     .ruleTips {
-      width: 1.22rem;
-      height: 0.36rem;
+      width: 1.04rem;
+      height: 0.43rem;
       background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
       position: absolute;
       right: 0;
       top: 4.8rem;
+      &.rank {
+        background: url(../assets/img/ruleTips2.png);
+        background-size: 100% 100%;
+        top: 5.3rem;
+      }
     }
   }
   .gifts {
