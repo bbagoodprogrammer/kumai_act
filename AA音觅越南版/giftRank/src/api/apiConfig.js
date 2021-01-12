@@ -88,10 +88,16 @@ function roolMsg() {
 function getRank(gid, from) {
     return get(`/index.php?action=giftRank.rank&gid=${gid}&from=${from}&signture=innerserver&uid=${uid}&token=${token}`)
 }
+
+//名人堂
+function lastRank(vol) {
+    return get(`/index.php?action=giftRank.vols&vol=${vol}&signture=innerserver&uid=${uid}&token=${token}`)
+}
 const httpConfig = {
     getDefault,
     singUp,
     roolMsg,
-    getRank
+    getRank,
+    lastRank
 }
 export default httpConfig

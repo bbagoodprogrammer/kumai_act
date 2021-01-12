@@ -5,8 +5,10 @@ function getDate(datem, type) {
         hours = datem.getHours() < 10 ? '0' + datem.getHours() : datem.getHours(),
         minute = datem.getMinutes() < 10 ? '0' + datem.getMinutes() : datem.getMinutes(),
         second = datem.getSeconds() < 10 ? '0' + datem.getSeconds() : datem.getSeconds();
-    if (type == "1") {
-        return `${hours}:${minute}  ${date}/${month}`
+    if (type == 1) {
+        return `${date}/${month}`
+    } else if (type == 2) {
+        return `${date}/${month} ${hours}:${minute}:${second}`
     }
     if (type == "pai") {
         if (minute < 10) {

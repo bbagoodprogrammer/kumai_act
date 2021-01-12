@@ -5,7 +5,8 @@
     </div>
     <div class="header">
       <roolMsg :roolMsgs="roolMsgs" />
-      <span class="ruleTips" @click="goRule()">Thể lệ</span>
+      <span class="ruleTips" @click="goRule()"></span>
+      <span class="ruleTips rank" @click="showRank()"></span>
     </div>
     <div class="gifts">
       <div class="timeDown" v-if="!surplusTime.end">
@@ -42,19 +43,12 @@
             </p>
             <h6>3. Thưởng</h6>
             <div class="giftBox">
-              <h5>BXH Cây thông Noel：</h5>
-              <p>Top 1：Khung ảnh Giáng sinh vui nhộn（7 ngày）、Xe Maserati bạc（7 ngày）<br />
-                Top 2：Khung ảnh Giáng sinh vui nhộn (5 ngày）<br />
-                Top 3：Khung ảnh Giáng sinh vui nhộn（3 ngày）
+
+              <p>Hạng 1: Khung ảnh 2021 (10 ngày), xe Maserati 7 ngày<br />
+                Hạng 2: Khung ảnh 2021 7 ngày<br />
+                Hạng 3: Khung ảnh 2021 5 ngày
               </p>
-              <h5>BXH Ông già Noel：</h5>
-              <div class="giftBox">
-                <p>
-                  Top 1：Khung ảnh Giáng sinh vui nhộn（15 ngày）、Xe Maserati bạc（10 ngày）<br />
-                  Top 2：Khung ảnh Giáng sinh vui nhộn（7 ngày）、Xe Maserati bạc（7ngày）<br />
-                  Top 3：Khung ảnh Giáng sinh vui nhộn（5 ngày）
-                </p>
-              </div>
+
             </div>
             <h6>4 Chú ý </h6>
             <p>Giải thưởng được phát sau khi sự kiện kết thúc 7 ngày.</p>
@@ -101,7 +95,7 @@ export default {
   },
   computed: {
     aTimer() {
-      return getDate(new Date(this.stime * 1000), '1') + '-' + getDate(new Date(this.etime * 1000), '1')
+      return getDate(new Date(this.stime * 1000), '2') + '-' + getDate(new Date(this.etime * 1000), '2')
     }
   },
   methods: {
@@ -158,6 +152,11 @@ export default {
     goRule() {
       this.showRules = true
     },
+    showRank() {
+      let token = getString('token')
+      let uid = getString('uid')
+      location.href = `./index2.html?token=${token}&uid=${uid}`
+    },
     closeRule() {
       this.showRules = false
     }
@@ -182,7 +181,7 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: rgba(3, 62, 180, 1) url(../assets/img/banner.png) center 0
+  background: rgba(235, 103, 185, 1) url(../assets/img/banner.png) center 0
     no-repeat;
   background-size: 100% auto;
   .shareBar {
@@ -201,17 +200,21 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 8.3rem;
+    height: 6.45rem;
     position: relative;
     .ruleTips {
-      width: 1.22rem;
-      height: 0.36rem;
+      width: 1.65rem;
+      height: 0.46rem;
       background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
       position: absolute;
       right: 0;
-      text-align: center;
       top: 4.8rem;
+      &.rank {
+        background: url(../assets/img/ruleTips2.png);
+        background-size: 100% 100%;
+        top: 5.3rem;
+      }
     }
   }
   .gifts {
@@ -246,7 +249,7 @@ body::-webkit-scrollbar {
         line-height: 0.42rem;
         letter-spacing: 0.32rem;
         text-indent: 0.1rem;
-        color: #ffeeb7;
+        color: #a2291f;
       }
     }
     .hours,
@@ -279,7 +282,7 @@ body::-webkit-scrollbar {
       top: -0.4rem;
     }
     .lastTips {
-      color: rgba(247, 217, 140, 1);
+      color: #a2291f;
       font-size: 0.2rem;
       margin-top: 0.24rem;
       text-align: center;
@@ -296,7 +299,7 @@ body::-webkit-scrollbar {
     .giftBox {
       h5 {
         padding-left: 0.3rem;
-        color: rgba(247, 217, 140, 1);
+        color: #a2291f;
       }
       p {
         padding-left: 0.6rem;
@@ -305,13 +308,13 @@ body::-webkit-scrollbar {
     }
     h6 {
       font-size: 0.24rem;
-      color: rgba(247, 217, 140, 1);
+      color: #a2291f;
       font-weight: 800;
       margin-top: 0.1rem;
     }
     p {
       font-size: 0.24rem;
-      color: rgba(247, 217, 140, 1);
+      color: #a2291f;
       font-weight: 500;
       text-indent: 0.5rem;
       // margin-top: 0.1rem;

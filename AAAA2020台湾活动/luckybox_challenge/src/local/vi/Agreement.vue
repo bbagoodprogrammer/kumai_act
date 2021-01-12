@@ -49,12 +49,13 @@
       <p>18h 12/1 - 21h 20/1</p>
       <h5>Quy tắc</h5>
       <h6 class="minTop">Báo danh</h6>
-      <p>1、Nhấn “Báo danh” sẽ báo danh thành công, sau khi báo danh mới bắt đầu tính điểm</p>
+      <p>1.Nhấn “Báo danh” sẽ báo danh thành công, sau khi báo danh mới bắt đầu tính điểm</p>
+      <p>2.Cách tặng Hộp May Mắn quà bài hát: Vào bài hát chọn Quà - sự kiện - chọn hộp quà tương ứng và tặng</p>
       <h5>Quy tắc BXH</h5>
       <h6>BXH may mắn:</h6>
       <p>1.Xếp hạng dựa vào tổng mị lực 3 loại Hộp May Mắn quà bài hát nhận được sau khi báo danh</p>
       <P>2.Hiển thị top 100, nếu bằng điểm, ai đạt được điểm trước xếp trước </P>
-      <h6>BXH may mắn:</h6>
+      <h6>BXH tiếp ứng:</h6>
       <p>1.Xếp hạng dựa vào số xu tiêu phí tặng ra 3 loại Hộp May Mắn quà bài hát sau khi báo danh</p>
       <P>2.Hiển thị top 100, nếu bằng điểm, ai đạt được điểm trước xếp trước</P>
       <h5>Quy tắc Quà Hàng Ngày</h5>
@@ -160,8 +161,8 @@ body {
       }
     }
     .giftsItem {
-      width: 7.02rem;
-      height: 7.4rem;
+      width: 7.12rem;
+      height: 5.2rem;
       background: url(./img/ruleImg1.png);
       background-size: 100% 100%;
     }
