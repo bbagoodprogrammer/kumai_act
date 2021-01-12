@@ -22,7 +22,7 @@
           <em class="atted" v-if="nowAct.is_attension">您已預約</em>
           <em class="att" v-else @click="actAttension(nowAct.act_id)">參加預約</em>
         </span>
-        <span class="actBtn go" @click="goActHtml(nowAct.url)" v-else>前去看看</span>
+        <span class="actBtn go" @click="goActHtml(nowAct.url,nowAct.act_id)" v-else>前去看看</span>
       </div>
     </div>
     <!--榜單切換過渡效果 -->
@@ -359,11 +359,15 @@ export default {
         location.href = 'songid:{"songlist":[' + item.sid + '],"index":0}';
       }
     },
-    goActHtml(url) {
-      let regstr = getString('token')
-      let uid = getString('uid')
-      let aid = getString('aid')
-      location.href = `${url}?uid=${uid}&token=${regstr}&gameid=134&aid=${aid}`
+    goActHtml(url, act_id) {
+      if (act_id == 8) {
+        location.href = `rid:11`
+      } else {
+        let regstr = getString('token')
+        let uid = getString('uid')
+        let aid = getString('aid')
+        location.href = `${url}?uid=${uid}&token=${regstr}&gameid=134&aid=${aid}`
+      }
     },
     clearTimer() {
       clearInterval(this.timer)

@@ -269,7 +269,7 @@ export default {
     },
     goUser(uid) { //跳转
       var u = navigator.userAgent;
-      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
       if (isiOS) {
         sendJsData('app://userInfo?uid=' + uid);
@@ -294,7 +294,7 @@ export default {
   width: 6.88rem;
   padding: 1.68rem 0 2rem;
   position: relative;
-  background: rgba(3, 62, 180, 1) url(../assets/img/listBg.png) no-repeat;
+  background: rgba(235, 103, 185, 1) url(../assets/img/listBg.png) no-repeat;
   background-size: 100% auto;
   margin: 0.37rem auto;
   > li {
@@ -358,14 +358,14 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
-          color: rgba(247, 217, 140, 1);
+          color: #a2291f;
           .nick {
             max-width: 2rem;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
             font-weight: 800;
-            color: rgba(247, 217, 140, 1);
+            color: #a2291f;
           }
           .score {
             margin-left: 0.28rem;
@@ -388,14 +388,14 @@ export default {
         right: 0.4rem;
         strong {
           display: block;
-          color: rgba(247, 217, 140, 1);
+          color: #a2291f;
           font-size: 0.24rem;
           font-weight: 500;
         }
         em {
           display: block;
           font-size: 0.72rem;
-          color: rgba(247, 217, 140, 1);
+          color: #a2291f;
           font-weight: 800;
         }
       }
@@ -462,16 +462,10 @@ export default {
       &.rank2 {
         background: url(../assets/img/top2.png);
         background-size: 100% 100%;
-        .rank {
-          text-indent: -999rem;
-        }
       }
       &.rank3 {
         background: url(../assets/img/top3.png);
         background-size: 100% 100%;
-        .rank {
-          text-indent: -999rem;
-        }
       }
     }
   }

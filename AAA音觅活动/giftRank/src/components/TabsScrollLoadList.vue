@@ -268,7 +268,7 @@ export default {
     },
     goUser(uid) { //跳转
       var u = navigator.userAgent;
-      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
       if (isiOS) {
         sendJsData('app://userInfo?uid=' + uid);
@@ -461,16 +461,10 @@ export default {
       &.rank2 {
         background: url(../assets/img/top2.png);
         background-size: 100% 100%;
-        .rank {
-          text-indent: -999rem;
-        }
       }
       &.rank3 {
         background: url(../assets/img/top3.png);
         background-size: 100% 100%;
-        .rank {
-          text-indent: -999rem;
-        }
       }
     }
   }
