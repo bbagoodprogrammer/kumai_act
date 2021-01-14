@@ -2,7 +2,7 @@
   <div class="rankGroups">
     <!-- 三個類別 -->
     <div class="typeMainTabs">
-      <span @click="setShowType(1)" :class="{act:showType == 1}">BXH KOL</span>
+      <span @click="setShowType(1)" :class="{act:showType == 1}">BXH STAR</span>
       <span @click="setShowType(2)" :class="{act:showType == 2}">BXH Chủ Phòng</span>
       <span @click="setShowType(3)" :class="{act:showType == 3}">BXH Ca Sĩ</span>
     </div>
@@ -52,7 +52,7 @@
           <em>giây</em>
         </div>
       </div>
-      <p class="rankTips" v-if="showType==1">Xếp hạng theo số xu quà tặng yêu cầu mà KOL nhận từ bài hát và phòng Kara <span v-if="mainTab == 0">Top 3 BXH ngày lần lượt chia 3%, 2.5%, 2% thưởng tiền mặt BXH</span> </p>
+      <p class="rankTips" v-if="showType==1">Xếp hạng theo số xu quà tặng yêu cầu mà STAR nhận từ bài hát và phòng Kara <span v-if="mainTab == 0">Top 3 BXH ngày lần lượt chia 3%, 2.5%, 2% thưởng tiền mặt BXH</span> </p>
       <p class="rankTips" v-if="showType==2">Xếp hạng theo số xu quà yêu cầu được tặng tại phòng Kara của chủ phòng đã ký hợp đồng. <span v-if="mainTab == 0">Top 3 BXH ngày lần lượt chia 2%, 1.5%, 1% thưởng tiền mặt BXH</span> </p>
       <p class="rankTips" v-if="showType==3">Xếp hạng theo số xu quà tặng yêu cầu mà ca sĩ nhận từ bài hát và phòng Kara<span v-if="mainTab == 0">Top 3 BXH ngày lần lượt chia 8%, 5%, 3% thưởng tiền mặt BXH</span></p>
     </div>
@@ -588,7 +588,7 @@ export default {
           display: inline-block;
           width: 48%;
           height: 50%;
-          color: RGBA(253, 204, 235, 1);
+          color: RGBA(255, 192, 136, 1);
           display: flex;
           align-items: center;
           em {

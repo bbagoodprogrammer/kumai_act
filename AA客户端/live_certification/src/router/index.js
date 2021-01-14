@@ -42,6 +42,14 @@ export default new Router({
             meta: {
                 title: _lang.page_skill_title
             }
-        }
+        },
+        // {
+        //     path: '/standard',
+        //     name: 'standard',
+        //     component: standard,
+        //     meta: {
+        //         title: _lang.page_skill_title
+        //     }
+        // },
     ]
 })

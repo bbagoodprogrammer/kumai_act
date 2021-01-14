@@ -6,10 +6,12 @@ import Vue from 'vue'
 import App from './App'
 import store from './store'
 import router from './router'
-import { replaceLang } from './utils';
+import { replaceLang, toast } from './utils';
 import VueLazyLoad from 'vue-lazyload';
 import 'vant/lib/index.css';
 import { Swipe, SwipeItem, Popup } from 'vant';
+
+Vue.prototype.toast = toast
 
 Vue.use(Popup);
 Vue.use(Swipe);

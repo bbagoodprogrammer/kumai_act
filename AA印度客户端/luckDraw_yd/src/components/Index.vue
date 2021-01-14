@@ -1,12 +1,12 @@
 <template>
   <div class="page pageMain">
-    <router-link to="rule" class="qustion"></router-link>
+    <router-link to="qustion" class="qustion"></router-link>
     <router-link to="history" class="history"></router-link>
     <i class="close" @click="closeWeb()"></i>
     <div class="turnBox">
       <div class="openUser" v-show="creator_id">
         <div class="userMsg">
-          發起者:
+          {{lang.page_start}}
           <img v-lazy="creator_avatar" alt="">
           <span class="nick">{{creator_nick}}</span>
         </div>
@@ -20,18 +20,19 @@
       <div class="turnBg"></div>
       <div id="game" ref="" class="game"></div>
       <div class="luckMsg">
-        <div class="noLuck" v-if="!luckMsg || (luckMsg&&!luckMsg.id)">當前暫無抽獎</div>
+        <div class="noLuck" v-if="!luckMsg || (luckMsg&&!luckMsg.id)">{{lang.page_noLuck}}</div>
         <div class="luckIng" v-else>
           <div class="msg">
-            <span v-if="luckIng">正在抽獎...</span>
-            <span v-else-if="luckMsg.status == 1">倒計時 <em>{{surplusTime.minute}}:{{surplusTime.second}}</em></span>
-            <span v-else class="nick">恭喜：<em>{{luckMsg.winner_nick}}</em> </span>
+            <span v-if="luckIng">{{lang.page_luckIng}}</span>
+            <span v-else-if="luckMsg.status == 1">{{lang.page_downTime}} <em>{{surplusTime.minute}}:{{surplusTime.second}}</em></span>
+            <span v-else class="nick">{{lang.page_lc}}<em>{{luckMsg.winner_nick}}</em> </span>
           </div>
-          <div class="gift">獎品：{{luckMsg.prise_str}}</div>
+          <div class="gift">{{lang.page_gift}}{{luckMsg.prise_str}}</div>
         </div>
       </div>
       <div class="luckBtn" :class="{luckIng:luckStatus == 3,luck:luckStatus==2,again:luckStatus == 1}" @click="goSetting()"></div>
-      <div class="sGiftTips" v-if="luckMsg&&luckMsg.status == 1">送出<img :src="luckMsg.ticket_gpic" alt="">x1 即可參加抽獎</div>
+      <div class="sGiftTips" v-if="luckMsg&&luckMsg.status == 1">{{lang.page_gift_tips}}<img :src="luckMsg.ticket_gpic" alt="">x1 {{lang.page_gift_tips2}}
+      </div>
       <img :src="luckMsg&&luckMsg.winner_avatar" alt="" class="luckAv" v-if="luckMsg && luckStatus== 1" />
     </div>
     <div class="buttons">
@@ -418,6 +419,7 @@ export default {
       .noLuck {
         color: rgba(255, 255, 255, 0.4);
         font-size: 0.32rem;
+        text-align: center;
       }
       .luckIng {
         .msg {
@@ -445,28 +447,28 @@ export default {
         }
       }
     }
-    .luckBtn {
-      width: 4.57rem;
-      height: 1.3rem;
-      position: absolute;
-      left: 1.48rem;
-      bottom: 0.54rem;
-      background: url(../img/creatBtn1.png);
-      background-size: 100% 100%;
-      z-index: 10;
-      &.again {
-        background: url(../img/againBtn.png);
-        background-size: 100% 100%;
-      }
-      &.luck {
-        background: url(../img/luckStatus1.png);
-        background-size: 100% 100%;
-      }
-      &.luckIng {
-        background: url(../img/luckStatus2.png);
-        background-size: 100% 100%;
-      }
-    }
+    // .luckBtn {
+    //   width: 4.57rem;
+    //   height: 1.3rem;
+    //   position: absolute;
+    //   left: 1.48rem;
+    //   bottom: 0.54rem;
+    //   background: url(../img/creatBtn1.png);
+    //   background-size: 100% 100%;
+    //   z-index: 10;
+    //   &.again {
+    //     background: url(../img/againBtn.png);
+    //     background-size: 100% 100%;
+    //   }
+    //   &.luck {
+    //     background: url(../img/luckStatus1.png);
+    //     background-size: 100% 100%;
+    //   }
+    //   &.luckIng {
+    //     background: url(../img/luckStatus2.png);
+    //     background-size: 100% 100%;
+    //   }
+    // }
     .sGiftTips {
       width: 100%;
       height: 0.5rem;

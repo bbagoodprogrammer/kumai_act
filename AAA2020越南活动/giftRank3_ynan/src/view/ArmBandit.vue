@@ -130,7 +130,7 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: rgba(241, 128, 180, 1) url(../assets/img/banner.png) center 0
+  background: rgba(177, 33, 0, 1) url(../assets/img/banner.png) center 0
     no-repeat;
   background-size: 100% auto;
   .shareBar {
@@ -155,6 +155,9 @@ body::-webkit-scrollbar {
       position: absolute;
       right: 0;
       top: 0.17rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
       &.top {
         top: 1.5rem;
       }
@@ -166,17 +169,13 @@ body::-webkit-scrollbar {
       height: 0.64rem;
       background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
-      font-size: 0.23rem;
+      font-size: 0.24rem;
       text-align: center;
       line-height: 0.64rem;
-      white-space: nowrap;
-    }
-    .ruleTips {
-      margin-left: 0.93rem;
     }
     .histyry {
-      margin-top: 0.08rem;
       width: 2.43rem;
+      margin-top: 0.08rem;
       background: url(../assets/img/ruleTips2.png);
       background-size: 100% 100%;
     }

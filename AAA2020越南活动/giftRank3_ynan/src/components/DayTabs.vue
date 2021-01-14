@@ -87,7 +87,7 @@ export default {
   margin: 0.29rem auto 0;
   width: 6.66rem;
   height: 0.92rem;
-  background: rgba(218, 100, 156, 1);
+  background: RGBA(147, 27, 0, 1);
   border-radius: 0.46rem;
   padding: 0 0.17rem;
   .pre {
@@ -119,7 +119,7 @@ export default {
         background: url(../assets/img/dayTabBg3.png);
         background-size: 100% 100%;
         line-height: 0.63rem;
-        color: rgba(249, 180, 194, 1);
+        color: RGBA(255, 169, 139, 1);
         font-size: 80%;
         position: relative;
         z-index: 10;
@@ -139,7 +139,7 @@ export default {
       }
       &.over {
         em {
-          color: rgba(242, 128, 180, 1);
+          color: RGBA(106, 20, 1, 1);
           background: url(../assets/img/dayTabBg1.png);
           background-size: 100% 100%;
         }

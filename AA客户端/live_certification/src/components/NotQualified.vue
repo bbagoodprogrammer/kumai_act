@@ -2,13 +2,13 @@
   <div class="notQualified">
     <div class="commitTips">
       <span class="tipsIcon"></span>
-      <p class="commitMsg">您還未獲得申請主播的資格</p>
+      <p class="commitMsg">{{lang.notQualified_tip1}}</p>
     </div>
     <div class="tipList">
-      <h3>如何獲得主播申請資格：</h3>
-      <p>1.主播申請資格咨詢可聯繫官方號ID1000，官方會根據用戶在平台內的個人形象，唱功表現，活躍行為等多方面進行綜合考慮，多發作品，多參與官方活動更容易獲得主播申請資格喔。</p>
-      <p>2.獲得主播申請資格的用戶，還需綁定手機號碼，並提交身份認證，審核通過後才可開播。</p>
-      <p>3.開播需遵守平台主播行為規範，違者將按主播開播政策處罰。</p>
+      <h3>{{lang.notQualified_tip2}}</h3>
+      <p>{{lang.notQualified_tip3}}</p>
+      <p>{{lang.notQualified_tip3}}</p>
+      <p>{{lang.notQualified_tip5}}</p>
     </div>
   </div>
 </template>

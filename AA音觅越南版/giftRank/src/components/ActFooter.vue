@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer" v-if="showState">
     <div class="noAct" v-if="showState ===0">
       {{lang.noAct}}
     </div>
@@ -42,8 +42,6 @@ export default {
       } else if (this.actStatus == 2) {
         //活動已結束
         return 1
-      } else if (this.isShare || !this.isSingUp) {
-        return 2
       } else if (this.isSingUp) { //已报名
         return 3
       }
