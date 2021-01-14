@@ -1,72 +1,50 @@
 export default {
     //html/index.html
-    title: 'Ký hợp đồng',
-
+    title: 'Chứng nhận Idol',
+    page_skill_title: 'Kỹ xảo ảnh bìa',
+    page_notQualified_title: 'Về quyền hạn', //權限說明
+    page_LiveCover_title: 'Ảnh bìa',// 直播封面
     // router/index
-    page_data: 'Đạt yêu cầu',
-    page_bind: 'Liên kết số điện thoại',
-    page_apply: 'Yêu cầu ký',
-    page_agreement: 'Thoả thuận người dùng',
+    page_cardTips: 'Hãy tải thêm hình', //請上傳認證照片
+    page_cardTips2: 'Sau khi tải thành công, chúng tôi sẽ nhanh chóng xét duyệt',//上傳成功後，我們會加快審核
+    page_examples: 'Ví dụ',//示例
+    page_examples_tip1: 'Tay cầm CMND, chụp theo hình mẫu',//手持身份證正面<br />按照示例圖拍照
+    page_examples_tip2: 'Để bảo đảm tính xác thực của danh tính, bạn cần xác minh danh tính, nếu phát hiện CMND giả sẽ bị khóa tài khoản vĩnh viễn.',//為了保證身份的真實性，需要你進行身份驗證，如發現證件假造將永久封號。
+    page_next: 'Bước tiếp',//下一步
+    page_upCover: 'Nhấn tải ảnh bìa',//點擊上傳封面圖
+    page_upCover_tip1: 'Ảnh bìa xét duyệt thủ công, vui lòng không tải ảnh hở hang/thô tục/chứa đường viền và hình ảnh mờ, hãy cố gắng tải ảnh chân thật, tự nhiên, sẽ dễ dàng được xét duyệt. Nhấn xem',// 封面圖爲人工審核，請上傳本人面部清晰的照片請勿上傳暴露/低俗/包含邊框、相機水印的圖片儘量上傳真實，自然的自拍圖，更容易審核通過。 點擊查看
+    page_upCover_tip2: '《Kỹ xảo ảnh bìa》',//《歡歌直播封面技巧》
+    page_upCover_tip3: 'Nhấn gửi, và biểu thị đồng ý',//點擊提交，即表示同意
+    page_upCover_tip4: '《Thỏa thuật và quy tắc livestream》',//《歡歌直播協議與行為規範》
+    page_upCover_commit: 'Gửi',//提交
+    page_upCover_tip6: 'Xin lại',//重新申請
+    processTitle: ['Ảnh CMND', 'Ảnh bìa', 'Gửi xét duyệt'],
+    commitMsg: {
+        0: 'Xét duyệt bị từ chối <br/>Nguyên nhân：$',
+        1: 'Đã xét duyệt thành công<br/>Vui lòng đợi, chúng tôi sẽ nhanh chóng xét duyệt',
+        2: 'Giấy CMND đã gửi<br/> Không cần gửi lại, hãy chuyển sang bước tiếp theo'
+    },
+    page_commit_tip1: 'Hãy tải lên ảnh CMND!',//請上傳認證照片！
+    page_commit_tip2: 'Hãy tải lên ảnh bìa!',//請上傳直播封面！
 
-    // Index
-    sign: 'Ký ngay',
-    signed: 'Đã ký',
-    sign_rule: 'Về ký hợp đồng:',
-    sign_rule_1: '1. Người chưa ký hợp đồng không được đổi ngọc thành tiền, chỉ được đổi xu. Mỗi lần đổi ít nhất 20,000 Ngọc, không thể đổi ít hơn 20,000 Ngọc',
-    sign_rule_2: '2. Sau khi ký hợp đồng mới được đổi tiền, cấp bậc càng cao tỷ lệ đổi càng cao. Mỗi lần đổi ít nhất 500,000 Ngọc.',
 
-    // Task
-    data_name: 'Đạt yêu cầu, có thể ký hợp đồng',
-    data_desc: 'Số liệu đạt yêu cầu mới được ký hợp đồng',
-    bind_name: 'Liên kết số điện thoại',
-    bind_desc: 'Mời liên kết số điện thoại',
-    sign_name: 'Ký ngay',
-    sign_desc: 'Nhận ưu đãi dành riêng cho người ký hợp đồng',
-    do: 'Làm ngay',
-    done: 'Đã xong',
-    sign_tips: '2 bước trước chưa xong\nKhông thể ký hợp đồng',
-    ok: 'Xác nhận',
+    //cover
+    cover_now: 'Ảnh bìa hiện tại',//當前封面
+    cover_examine: 'Đang duyệt',//審核中
+    cover_change: 'Thay đổi',//更改
+    cover_coverImg: 'Ảnh bìa',//直播封面圖
+    cover_tips1: 'Ảnh bìa xét duyệt thủ công, vui lòng không tải ảnh hở hang/thô tục/chứa đường viền và hình ảnh mờ, hãy cố gắng tải ảnh chân thật, tự nhiên, sẽ dễ dàng được xét duyệt.',//封面圖爲人工審核，請上傳本人面部清晰的照片請勿上傳暴露/低俗/包含邊框、相機水印的圖片儘量上傳真實，自然的自拍圖，更容易審核通過。
+    cover_upImg: 'Tải lên ảnh bìa',//上傳封面
+    cover_tips2: 'Ảnh bìa lần trước không phù hợp yêu cầu, không thông qua xét duyệt, hãy tải lại',//上次提交的封面圖不符合要求，未能審核通過，請重新上傳
+    cover_tips3: 'Đang tải, sau khi xét duyệt có hiệu lực',//封面上傳中，審核通過後生效
+    cover_upSuc: 'Tải lên thành công',//上傳成功
+    cover_tips4: 'Hãy chọn ảnh muốn thay đổi!',//請選擇需要更改的封面！
 
-    // Bind
-    bind_succ: 'Tài khoản đã liên kết\nsố điện thoại: %s',
+    //NotQualified
+    notQualified_tip1: 'Bạn vẫn chưa nhận được tư cách idol', // 您還未獲得申請主播的資格
+    notQualified_tip2: 'Làm sao để nhận được tư cách idol:', //如何獲得主播申請資格：
+    notQualified_tip3: '1.Để được tư vấn về xét duyệt tư cách có thể liên hệ tài khoản ID:1000, chúng tôi sẽ dựa vào hình tượng, biểu hiện ca hát, độ năng động tiến hành xem xét, phát hành nhiều tác phẩm, tham gia nhiều hoạt động có thể dễ dàng đạt được tư cách livestream.', //主播申請資格咨詢可聯繫官方號ID1000，官方會根據用戶在平台內的個人形象，唱功表現，活躍行為等多方面進行綜合考慮，多發作品，多參與官方活動更容易獲得主播申請資格喔。
+    notQualified_tip4: '2.Người dùng nhận được tư cách idol, còn cần phải cố định số điện thoại, gửi CMND, sau khi thông qua xét duyệt mới có thể idol.', //獲得主播申請資格的用戶，還需綁定手機號碼，並提交身份認證，審核通過後才可開播。
+    notQualified_tip5: '3.Idol cần phải tuân thủ quy tắc, người vi phạm sẽ bị trừng phạt theo quy tắc.', //開播需遵守平台主播行為規範，違者將按主播開播政策處罰。
 
-    // Data
-    count_title: 'Kém chỉ tiêu ký hợp đồng',
-    count_income: 'Thu nhập Ngọc',
-    count_numbers: '（{0}/{1}）',
-    count_time: 'Kỳ này tính từ {1}/{0}-{3}/{2}\nCòn {4} ngày đến kỳ sau, cố lên',
-    done_tips: 'Bạn đã đạt yêu cầu\nMau ký hợp đồng nhé',
-    undone_tips: 'Bạn chưa đạt yêu cầu\nChưa thể ký hợp đồng',
-    done_give: 'Ký hợp đồng sẽ nhận:',
-    done_give_1: '1. Đổi ngọc thành tiền, cấp bậc càng cao tỷ lệ đổi càng cao',
-    done_give_2: '2. Được đổi xu với tỷ lệ cao hơn, mỗi lần đổi ít nhất 100 Ngọc',
-
-    // Apply
-    apply_title: 'Bước cuối ký hợp đồng:',
-    apply_desc: 'Ký hợp đồng cần gửi CMND để xét duyệt, sau khi được duyệt xem như ký xong',
-    card_title: 'Tay cầm mặt chính CMND như hình mẫu',
-    card_desc: 'Để xác thực danh tính thật, bạn cần chứng thực danh tính của mình,\nMời gửi ảnh như hình mẫu, nếu dùng giấy tờ giả sẽ bị khoá tài khoản vĩnh viễn.',
-    re_upload: 'Gửi lại',
-    upload_title: 'Mời gửi ảnh xác thực',
-    upload_desc: 'Sau khi gửi xong, chúng tôi sẽ nhanh chóng xét duyệt',
-    agree_agreement: 'Ký hợp đồng tức đồng ý với ',
-    apply_agreement: '"Điều khoản sử dụng"',
-    submit_apply: 'Gửi ký hợp đồng',
-    card_submited: 'Đã gửi CMND\nKhông cần gửi lại\nCó thể ký hợp đồng luôn',
-
-    // Result
-    re_submit: 'Yêu cầu lại',
-    result_checking: 'Đã gửi yêu cầu\nChúng tôi sẽ nhanh chóng xét duyệt',
-    result_success: 'Chúc mừng bạn đã ký hợp đồng',
-    result_fail: 'Yêu cầu của bạn bị từ chối',
-    result_fail_reason: 'Lý do: %s',
-    result_fail_contact: 'Thông tin chi tiết xin liên hệ ID%s',
-    result_reject: 'Yêu cầu của bạn không được duyệt, chúng tôi sẽ sớm ra mắt chính sách dành cho idol, vui lòng đợi.',
-    sign_give: 'Ký xong được hưởng quyền lợi:',
-    sign_give_1: '1. Đăng bài hát và phòng Kara cá nhân được ưu tiên hơn, được đề cử nhiều hơn.',
-    sign_give_2: '2. Thêm lượt tiếp cận và thêm fan.',
-    sign_give_3: '3. Đổi Ngọc thành tiền mặt, cấp càng cao tỷ lệ đổi càng cao.',
-    sign_give_4: '4. Đổi xu với tỷ lệ cao hơn, mỗi lần đổi ít nhất 100 Ngọc.',
-
-    skip_upload: 'Bỏ qua và ký hợp đồng',
 }

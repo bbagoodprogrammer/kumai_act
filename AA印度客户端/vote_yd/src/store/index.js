@@ -25,6 +25,7 @@ export default new vuex.Store({
     },
     mutations: {
         updateLoading(state, value) {
+            console.log(value)
             state.loading = value;
         },
         setShareState(state, boolean) {

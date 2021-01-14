@@ -42,72 +42,72 @@ function getTimeObj(ts) {
     };
 }
 
-function getBase64Image(file, maxWidth = 750) {
-    return new Promise((resolve, reject) => {
-        if (file && /^image/.test(file.type) && typeof FileReader != 'undefined') {
-            const reader = new FileReader();
-            reader.onload = e => {
-                const img = new Image();
-                img.onload = () => {
-                    import(/*webpackChunkName:"exif"*/'exif-js').then(({ default: EXIF }) => {
-                        EXIF.getData(img, function () {
-                            const orientation = EXIF.getTag(this, 'Orientation');
+// function getBase64Image(file, maxWidth = 750) {
+//     return new Promise((resolve, reject) => {
+//         if (file && /^image/.test(file.type) && typeof FileReader != 'undefined') {
+//             const reader = new FileReader();
+//             reader.onload = e => {
+//                 const img = new Image();
+//                 img.onload = () => {
+//                     import(/*webpackChunkName:"exif"*/'exif-js').then(({ default: EXIF }) => {
+//                         EXIF.getData(img, function () {
+//                             const orientation = EXIF.getTag(this, 'Orientation');
 
-                            const imgW = img.width;
-                            const imgH = img.height;
+//                             const imgW = img.width;
+//                             const imgH = img.height;
 
-                            const canvas = document.createElement('canvas');
-                            const ctx = canvas.getContext('2d');
-                            if (4 < orientation && orientation < 9) {
-                                canvas.width = imgH;
-                                canvas.height = imgW;
-                            } else {
-                                canvas.width = imgW;
-                                canvas.height = imgH;
-                            }
+//                             const canvas = document.createElement('canvas');
+//                             const ctx = canvas.getContext('2d');
+//                             if (4 < orientation && orientation < 9) {
+//                                 canvas.width = imgH;
+//                                 canvas.height = imgW;
+//                             } else {
+//                                 canvas.width = imgW;
+//                                 canvas.height = imgH;
+//                             }
 
-                            // https://github.com/recurser/exif-orientation-examples
-                            // https://stackoverflow.com/questions/20600800/js-client-side-exif-orientation-rotate-and-mirror-jpeg-images
-                            switch (orientation) {
-                                case 2: ctx.transform(-1, 0, 0, 1, imgW, 0); break;
-                                case 3: ctx.transform(-1, 0, 0, -1, imgW, imgH); break;
-                                case 4: ctx.transform(1, 0, 0, -1, 0, imgH); break;
-                                case 5: ctx.transform(0, 1, 1, 0, 0, 0); break;
-                                case 6: ctx.transform(0, 1, -1, 0, imgH, 0); break;
-                                case 7: ctx.transform(0, -1, -1, 0, imgH, imgW); break;
-                                case 8: ctx.transform(0, -1, 1, 0, 0, imgW); break;
-                                default: break;
-                            }
+//                             // https://github.com/recurser/exif-orientation-examples
+//                             // https://stackoverflow.com/questions/20600800/js-client-side-exif-orientation-rotate-and-mirror-jpeg-images
+//                             switch (orientation) {
+//                                 case 2: ctx.transform(-1, 0, 0, 1, imgW, 0); break;
+//                                 case 3: ctx.transform(-1, 0, 0, -1, imgW, imgH); break;
+//                                 case 4: ctx.transform(1, 0, 0, -1, 0, imgH); break;
+//                                 case 5: ctx.transform(0, 1, 1, 0, 0, 0); break;
+//                                 case 6: ctx.transform(0, 1, -1, 0, imgH, 0); break;
+//                                 case 7: ctx.transform(0, -1, -1, 0, imgH, imgW); break;
+//                                 case 8: ctx.transform(0, -1, 1, 0, 0, imgW); break;
+//                                 default: break;
+//                             }
 
-                            ctx.drawImage(img, 0, 0);
+//                             ctx.drawImage(img, 0, 0);
 
-                            const newImg = new Image();
-                            newImg.onload = () => {
-                                const canvas = document.createElement('canvas');
-                                const ctx = canvas.getContext('2d');
+//                             const newImg = new Image();
+//                             newImg.onload = () => {
+//                                 const canvas = document.createElement('canvas');
+//                                 const ctx = canvas.getContext('2d');
 
-                                const scale = newImg.width > maxWidth ? maxWidth / newImg.width : 1;
-                                const width = parseInt(newImg.width * scale);
-                                const height = parseInt(newImg.height * scale);
-                                canvas.width = width;
-                                canvas.height = height;
+//                                 const scale = newImg.width > maxWidth ? maxWidth / newImg.width : 1;
+//                                 const width = parseInt(newImg.width * scale);
+//                                 const height = parseInt(newImg.height * scale);
+//                                 canvas.width = width;
+//                                 canvas.height = height;
 
-                                ctx.drawImage(newImg, 0, 0, width, height);
-                                const base64Str = canvas.toDataURL(file.type);
-                                resolve(base64Str);
-                            };
-                            newImg.src = canvas.toDataURL(file.type);
-                        });
-                    });
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        } else {
-            resolve('');
-        }
-    });
-}
+//                                 ctx.drawImage(newImg, 0, 0, width, height);
+//                                 const base64Str = canvas.toDataURL(file.type);
+//                                 resolve(base64Str);
+//                             };
+//                             newImg.src = canvas.toDataURL(file.type);
+//                         });
+//                     });
+//                 };
+//                 img.src = e.target.result;
+//             };
+//             reader.readAsDataURL(file);
+//         } else {
+//             resolve('');
+//         }
+//     });
+// }
 
 function getHiddenMobile(mobile) {
     let txt = '';
@@ -235,12 +235,33 @@ function showAppDialog(callback, data) {
     appShowDialog(obj);
 }
 
+function replaceUrl(url, data = {}, post = false) {
+    const rid = getUrlString('rid') || '';
+    const uid = getUrlString('uid') || '';
+    const token = getUrlString('token') || '';
+    data = data ? Object.assign({}, data, { rid, uid, token }) : {};
+
+    if (post === true) {
+        data.t = Date.now();
+        data.room_id = rid;
+        return data;
+    }
+
+    for (let key in data) {
+        url = url.replace('{' + key + '}', encodeURIComponent(data[key]));
+    }
+    return url + '&t=' + Date.now();
+}
+// function getPostData(data = {}) {
+//     return replaceUrl('', data, true);
+// }
+
 export {
     getUrlString,
     toast,
     getLangHtml,
     getTimeObj,
-    getBase64Image,
+    // getBase64Image,
     getHiddenMobile,
     replaceLang,
     toThousands,
@@ -251,4 +272,6 @@ export {
     appShowPage,
     appShowDialog,
     showAppDialog,
+    replaceUrl,
+
 }

@@ -4,20 +4,20 @@
       <div class="now">
         <i class='iconAdd'></i>
         <img :src="nowCover" alt="" v-if="nowCover">
-        <span class="nowTips">當前封面</span>
+        <span class="nowTips">{{lang.cover_now}}</span>
       </div>
       <div class="rep">
         <i class='iconAdd'></i>
         <img :src="repCover" alt="" v-if="repCover">
-        <span class="nowTips" v-if="repCover">審核中</span>
-        <span class='change'><i class="icon"></i> 更改</span>
+        <span class="nowTips" v-if="repCover">{{lang.cover_examine}}</span>
+        <span class='change'><i class="icon"></i> {{lang.cover_change}}</span>
       </div>
     </div>
     <div class="tipList">
-      <h3>直播封面圖</h3>
-      <p>封面圖爲人工審核，請上傳本人面部清晰的照片請勿上傳暴露/低俗/包含邊框、相機水印的圖片儘量上傳真實，自然的自拍圖，更容易審核通過。</p>
+      <h3>{{lang.cover_coverImg}}</h3>
+      <p>{{lang.cover_tips1}}</p>
     </div>
-    <div class="nextBtn act" @click="upload()">上傳封面</div>
+    <div class="nextBtn act" @click="upload()">{{lang.cover_upImg}}</div>
   </div>
 </template>
 <script>
@@ -38,7 +38,7 @@ export default {
         this.nowCover = cover
         this.repCover = cover_audit
         if (reject_notice) {
-          this.toast(`上次提交的封面圖不符合要求，未能審核通過，請重新上傳`)
+          this.toast(this.lang.cover_tips2)
         }
       } else {
         this.toast(res.data.response_status.error)
@@ -48,17 +48,17 @@ export default {
   methods: {
     upload() {
       if (!this.upCover) {
-        this.toast(`封面上傳中，審核通過後生效`)
+        this.toast(this.lang.cover_tips3)
         uploadCover(this.upCover).then(res => {
           if (res.data.response_data) {
-            this.toast(`上傳成功`)
+            this.toast(this.lang.cover_upSuc)
             this.repCover = this.upCover
           } else {
             this.toast(res.data.response_status.error)
           }
         })
       } else {
-        this.toast(`請選擇需要更改的封面！`)
+        this.toast(this.lang.cover_tips4)
       }
     }
   }
@@ -110,7 +110,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 0.96rem;
+      padding: 0 0.1rem;
       height: 0.4rem;
       background: rgba(0, 0, 0, 0.4);
       border-radius: 1rem;

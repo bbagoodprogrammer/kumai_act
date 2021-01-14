@@ -30,7 +30,7 @@ module.exports = {
         chunkFilename: 'js/[name].js'
     },
     resolve: {
-        extensions: ['.js', '.vue', '.json'],
+        extensions: ['.js', '.vue', '.json', '.ts'],
         alias: {
             'vue$': 'vue/dist/vue.runtime.esm.js',
             '@': resolve('src')

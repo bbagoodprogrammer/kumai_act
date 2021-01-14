@@ -1,3 +1,24 @@
 html.en {
-    
+    .luckBtn {
+        width: 4.57rem;
+        height: 1.3rem;
+        position: absolute;
+        left: 1.48rem;
+        bottom: 0.54rem;
+        background: url(./img/creatBtn1.png);
+        background-size: 100% 100%;
+        z-index: 10;
+        &.again {
+          background: url(./img/againBtn.png);
+          background-size: 100% 100%;
+        }
+        &.luck {
+          background: url(./img/luckStatus1.png);
+          background-size: 100% 100%;
+        }
+        &.luckIng {
+          background: url(./img/luckStatus2.png);
+          background-size: 100% 100%;
+        }
+      }
 }

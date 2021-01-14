@@ -4,28 +4,27 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Thể lệ</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Thưởng</a>
     </div>
-    <h6 class="time">Thời gian: 12h 23/12 ~ 23:59:59 31/12</h6>
+    <h6 class="time">Thời gian: 12h 14/1 ~ 23:59:59 21/1</h6>
     <div class="ruleTips" v-show="tab == 0">
       <h6>Thể lệ:</h6>
       <p>1. Toàn bộ người dùng đều có thể báo danh tham gia.</p>
-      <p>2. Sau khi báo danh, thí sinh tặng quà xu cho bài hát, tại phòng Kara, đều nhận được điểm Bất Ngờ, khi điểm đạt cấp yêu cầu sẽ có thể mở hộp quà nhưng mỗi người mỗi ngày chỉ được mở 1 lần, quà từ hộp quà sẽ được gửi tự động vào tài khoản của thí sinh.</p>
+      <p>2. Sau khi báo danh, thí sinh tặng quà xu cho bài hát, tại phòng Kara, đều nhận được điểm Bất Ngờ, khi điểm đạt cấp yêu cầu sẽ có thể mở hộp quà nhưng mỗi người mỗi ngày chỉ được mở 1 lần, quà từ hộp quà sẽ được gửi tự động vào tài khoản của thí sinh.</p>
       <p>
-        3. Quy tắc xếp hạng
-        <strong>BXH ngày: điểm Bất Ngờ= tổng mị lực quà xu tặng cho bài hát, tại phòng Kara, điểm càng nhiều xếp hạng càng cao, BXH ngày xoá hết vào 0h ngày hôm sau, BXH Ngày chỉ hiện top 100 thí sinh.</strong>
+        3. Quy tắc xếp hạng
+        <strong>BXH ngày: điểm Bất Ngờ= tổng mị lực quà xu tặng cho bài hát, tại phòng Kara, điểm càng nhiều xếp hạng càng cao, BXH ngày xoá hết vào 0h ngày hôm sau, BXH Ngày chỉ hiện top 100 thí sinh.</strong>
         <strong>BXH Tổng: xếp hạng theo tổng điểm Bất Ngờ trong thời gian sự kiện từ cao đến thấp, BXH Tổng chỉ hiện top 100 thí sinh.</strong>
         <strong>Trong tình hình thí sinh cùng điểm thì thí sinh đạt trước sẽ được xếp hạng trước.</strong>
       </p>
       <h6>Thời gian BXH Ngày:</h6>
       <p class="dayTime">
-        Ngày1：12:00 23/12 - 00:00 24/12</br>
-        Ngày2：00:00 24/12 - 00:00 25/12</br>
-        Ngày3：00:00 25/12 - 00:00 26/12</br>
-        Ngày4：00:00 26/12 - 00:00 27/12</br>
-        Ngày5：00:00 27/12 - 00:00 28/12</br>
-        Ngày6：00:00 28/12 - 00:00 29/12</br>
-        Ngày7：00:00 29/12 - 00:00 30/12</br>
-        Ngày8：00:00 30/12 - 00:00 31/12</br>
-        Ngày9：00:00 31/12 - 23:59:59 31/12
+        Ngày1：12:00 14/1 - 00:00 15/1</br>
+        Ngày2：00:00 15/1 - 00:00 16/1</br>
+        Ngày3：00:00 16/1 - 00:00 17/1</br>
+        Ngày4：00:00 17/1 - 00:00 18/1</br>
+        Ngày5：00:00 18/1 - 00:00 19/1</br>
+        Ngày6：00:00 19/1 - 00:00 20/1</br>
+        Ngày7：00:00 20/1 - 00:00 21/1</br>
+        Ngày8：00:00 21/1 - 23:59:59 21/1
       </p>
       <h6>Cấp may mắn:</h6>
       <p class="dayTime">
@@ -40,7 +39,7 @@
       </p>
       <h6>Chú ý:</h6>
       <p>1.Nếu phát hiện thí sinh có hành vi gian lận, ban tổ chức sẽ loại ngay, xoá hết điểm dự thi và thu hồi toàn bộ phần thưởng, cấm tham gia các sự kiện khác.</p>
-      <p>2.Top 1-3 lần lượt nhận phiếu quà nạp (Chỉ dùng 1 lần) 15%, 12%, 10%. 0h hôm sau hệ thống tự động gửi, ngày cuối sẽ gửi ngay khi kết thúc sự kiện.</p>
+      <p>2.Top 1-3 lần lượt nhận phiếu quà nạp (Chỉ dùng 1 lần) 15%, 12%, 10%. 0h hôm sau hệ thống tự động gửi, ngày cuối sẽ gửi ngay khi kết thúc sự kiện.</p>
       <p>3.Toàn bộ Túi quà từ sự kiện có hạn sử dụng 14 ngày.</p>
       <p>4.Mỗi người mỗi ngày được mở tối đa 1 hộp quà, khi đạt đến cấp độ có thể mở nhiều hộp quà sẽ mặc định mở hộp quà cấp cao nhất. </p>
     </div>
@@ -56,7 +55,7 @@
         </span>
         <span>
           <img src="../../assets/img/ruleGift/3.png" alt="">
-          <strong>Xe Tuần Lộc</strong>
+          <strong>Mừng Năm Mới</strong>
         </span>
         <span>
           <img src="../../assets/img/ruleGift/8.png" alt="">
@@ -69,10 +68,10 @@
       <h6>Thưởng BXH Ngày</h6>
       <p>Top 1-3 lần lượt nhận phiếu quà nạp 15%, 12%, 10%. 0h hôm sau hệ thống tự động gửi, ngày cuối sẽ gửi ngay khi kết thúc sự kiện.</p>
       <h6>Thưởng BXH Tổng:</h6>
-      <p>Hạng 1: huy chương Hộp Quà(31 ngày)+Quà Giáng Sinh(1225 xu)*2+ Trang sức Giáng Sinh(31 ngày)+Tuần Lộc(31 ngày) + 3000 xu + 5000 đậu</p>
-      <p>Hạng 2: huy chương Hộp Quà(31 ngày)+Quà Giáng Sinh(1225 xu)*2+ Trang sức Giáng Sinh(31 ngày)+ Tuần Lộc(31 ngày) + 2000 xu +3000 đậu</p>
-      <p>Hạng 3: huy chương Hộp Quà(31 ngày)+Quà Giáng Sinh(1225 xu)*2+ Trang sức Giáng Sinh(31 ngày)+Tuần Lộc(31 ngày) + 1000 xu + 2000 đậu</p>
-      <p>Hạng 4-10: huy chương Hộp Quà(31 ngày)+Trang sức Giáng Sinh(31 ngày)+Tuần Lộc(31 ngày)+ 500 xu + 1000 đậu</p>
+      <p>Hạng 1: huy chương Hộp Quà(31 ngày)+Vui Tết 2021(2021 xu)+ Mừng Năm Mới(31 ngày) +Chào mừng 2021(31 ngày)+ 3000 xu + 5000 đậu</p>
+      <p>Hạng 2: huy chương Hộp Quà(31 ngày)+Vui Tết 2021(2021 xu)+ Mừng Năm Mới(31 ngày) + Chào mừng 2021(31 ngày)+2000 xu +3000 đậu</p>
+      <p>Hạng 3: huy chương Hộp Quà(31 ngày)+Vui Tết 2021(2021 xu)+ Mừng Năm Mới(31 ngày) + Chào mừng 2021(31 ngày)+1000 xu + 2000 đậu</p>
+      <p>Hạng 4-10: huy chương Hộp Quà(31 ngày)+Mừng Năm Mới(31 ngày)+ Chào mừng 2021(31 ngày)+500 xu + 1000 đậu</p>
       <h6>Chú ý:</h6>
       <p>1. Phiếu quà nạp nhận từ sự kiện có thời hạn 1 ngày kể từ khi nhận, mời sử dụng kịp thời.</p>
       <p>2. Toàn bộ Túi quà từ sự kiện có hạn sử dụng 14 ngày.</p>

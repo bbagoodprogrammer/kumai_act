@@ -10,8 +10,8 @@
     <div class="stage1" v-if="stage == 1">
       <div class="uploadPhoto">
         <div class="uploadTips">
-          <h3>請上傳認證照片</h3>
-          <div class="msg">上傳成功後，我們會加快審核</div>
+          <h3>{{lang.page_cardTips}}</h3>
+          <div class="msg">{{lang.page_cardTips2}}</div>
         </div>
         <div class="uploadImg">
           <div class="imgBg" @click="callApp(1)" v-if="!idcard_img">
@@ -22,8 +22,8 @@
       </div>
       <div class="uploadPhoto noBg">
         <div class="uploadTips">
-          <h3>示例</h3>
-          <div class="msg">手持身份證正面<br />按照示例圖拍照</div>
+          <h3>{{lang.page_examples}}</h3>
+          <div class="msg">{{lang.page_examples_tip1}}</div>
         </div>
         <div class="uploadImg">
           <div class="imgBg card">
@@ -32,35 +32,35 @@
         </div>
       </div>
       <div class="lastTips">
-        為了保證身份的真實性，需要你進行身份驗證，如發現證件假造將永久封號。
+        {{lang.page_examples_tip2}}
       </div>
-      <div class="nextBtn" :class="{act:idcard_img}" @click="idCardNext()">下一步</div>
+      <div class="nextBtn" :class="{act:idcard_img}" @click="idCardNext()">{{lang.page_next}}</div>
     </div>
     <!-- 上傳直播封面 -->
     <div class="stage2" v-else-if="stage == 2">
       <div class="uploadImg">
         <div class="imgBg" v-if="!liveImg" @click="callApp(2)">
-          <span class="upTips">點擊上傳封面圖</span>
+          <span class="upTips">{{lang.page_upCover}}</span>
         </div>
         <img :src="liveImg" alt="" v-else>
       </div>
       <div class="tips">
-        封面圖爲人工審核，請上傳本人面部清晰的照片請勿上傳暴露/低俗/包含邊框、相機水印的圖片儘量上傳真實，自然的自拍圖，更容易審核通過。 點擊查看
-        <span>《歡歌直播封面技巧》</span>
+        {{lang.page_upCover_tip1}}
+        <span>{{lang.page_upCover_tip2}}</span>
       </div>
       <div class="commitTips">
-        點擊提交，即表示同意
-        <span>《歡歌直播協議與行為規範》</span>
+        {{lang.page_upCover_tip3}}
+        <span>{{lang.page_upCover_tip4}}</span>
       </div>
-      <div class="nextBtn mt" :class="{act:liveImg}" @click="uploadImg()">提交</div>
+      <div class="nextBtn mt" :class="{act:liveImg}" @click="uploadImg()">{{lang.page_upCover_commit}}</div>
     </div>
     <!-- 第三階段 -->
     <div class="stage3" v-else-if="stage == 3">
       <div class="commitTips">
         <span class="tipsIcon" :class="{err:commitStatus == 0}"></span>
-        <p class="commitMsg" v-html="commitMsg[commitStatus].replace('B',reject_reason)"></p>
+        <p class="commitMsg" v-html="commitMsg[commitStatus].replace('$',reject_reason)"></p>
       </div>
-      <div class="nextBtn mt2 act" v-if="commitStatus== 0" @click="stage = 1">重新申請</div>
+      <div class="nextBtn mt2 act" v-if="commitStatus== 0" @click="stage = 1">{{lang.page_upCover_tip6}}</div>
     </div>
     <!-- 身份已經驗證 -->
     <div class="stage3" v-else-if="stage == 4">
@@ -68,7 +68,7 @@
         <span class="tipsIcon ipone"></span>
         <p class="commitMsg" v-html="commitMsg[2]"></p>
       </div>
-      <div class="nextBtn mt2 act" @click="stage = 2">下一步</div>
+      <div class="nextBtn mt2 act" @click="stage = 2">{{lang.page_next}}</div>
     </div>
   </div>
 </template>
@@ -83,15 +83,23 @@ export default {
     return {
       stage: 1,
       commitStatus: 0, //0  已拒绝 1 已提交
-      processTitle: ['證件照', '直播封面圖', '提交審核'],
-      commitMsg: {
-        0: '你的申請被拒絕 <br/>原因：B',
-        1: '已成功提交申請<br/>請耐心等待，我們會盡快為你審核',
-        2: '身份驗證已提交<br/> 無需重複提交，請直接進入下一步'
-      },
+      // processTitle: ['證件照', '直播封面圖', '提交審核'],
+      // commitMsg: {
+      //   0: '你的申請被拒絕 <br/>原因：B',
+      //   1: '已成功提交申請<br/>請耐心等待，我們會盡快為你審核',
+      //   2: '身份驗證已提交<br/> 無需重複提交，請直接進入下一步'
+      // },
       reject_reason: '',  //已拒绝信息
       liveImg: '', //直播照片
       idcard_img: '', //身份证照片
+    }
+  },
+  computed: {
+    processTitle() {
+      return this.lang.processTitle
+    },
+    commitMsg() {
+      return this.lang.commitMsg
     }
   },
   created() {
@@ -117,14 +125,14 @@ export default {
   methods: {
     idCardNext() {
       if (!this.idcard_img) {
-        this.toast(`請上傳認證照片！`)
+        this.toast(this.lang.page_commit_tip1)
       } else {
         this.stage = 2
       }
     },
     uploadImg() {
       if (!this.liveImg) {
-        this.toast(`請上傳直播封面！`)
+        this.toast(this.lang.page_commit_tip2)
       } else {
         applyAnchor(this.idcard_img, this.liveImg).then(res => {
           if (res.data.response_data) {

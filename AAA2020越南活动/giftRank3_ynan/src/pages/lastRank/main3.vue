@@ -5,7 +5,7 @@
     <div class="list">
       <div class="listItem" v-for="(item,index) in list" :key="index">
         <div class="listTitle">
-          <span v-if="index === 'creator'">BXH KOL</span>
+          <span v-if="index === 'creator'">BXH STAR</span>
           <span v-else-if="index === 'room'">BXH Chủ Phòng</span>
           <span v-else>BXH Ca Sĩ</span>
         </div>
@@ -87,7 +87,7 @@ export default {
 </script>
 <style lang="scss">
 body {
-  background-color: rgba(241, 128, 180, 1);
+  background-color: rgba(177, 33, 0, 1);
   .lastRank {
     background: url(../../assets/img/lastRankBg.png) no-repeat;
     background-size: 100% auto;
@@ -120,13 +120,13 @@ body {
         height: 0.96rem;
         line-height: 0.96rem;
         text-align: center;
-        background: rgba(218, 100, 156, 1);
+        background: rgba(255, 157, 84, 1);
         border-radius: 0.2rem 0.2rem 0 0;
         font-weight: 500;
       }
     }
     ul {
-      background: RGBA(229, 114, 167, 1);
+      background: rgba(243, 129, 97, 1);
       padding: 0.27rem 0 0.4rem;
       border-radius: 0 0 0.2rem 0.2rem;
       li {

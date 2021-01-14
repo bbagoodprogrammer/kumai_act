@@ -5,54 +5,53 @@
       </div> -->
       <div class="settIngCon">
         <div class="tipsBox">
-          <h3 class="tipsTitle">抽獎玩法</h3>
+          <h3 class="tipsTitle">{{lang.setting_instructions}}</h3>
           <p class="tips" v-if="luckType">
-            由你發起抽獎並支付一定金幣購買VIP會員或K房禮 物作爲抽獎獎品在倒計時間內，房間內的用戶送出 你指定的抽獎資格禮物即可獲得抽獎機會，倒計時 結束立即開獎，抽取其中一名參與者爲得獎者，獲 得你的獎品。
-            <br />無人參與則獎品歸發起人所有。
+            {{lang.setting_tips1}}
           </p>
           <p class="tips" v-else>
-            1.由你選擇以下抽獎獎品，並支付對應金幣，可發起抽獎<br />
-            2.在倒計時間內，房間內的用戶送出參與方式指定的抽獎入場券禮物即可獲得抽獎機會，倒計時結束立即開獎，抽取其中一名參與者爲得獎者，獲得你的獎品。<br />
-            3.無人參與則獎品歸發起人所有。
+            {{lang.setting_tips2}}<br />
+            {{lang.setting_tips3}}<br />
+            {{lang.setting_tips4}}
           </p>
         </div>
         <div class="from" v-if="luckType">
           <div class="fromItem">
-            <span>抽獎資格</span>
+            <span>{{lang.setting_seniority}}</span>
             <div class="itemCon" @click="changGift()">
               <span v-if="actGift.id" class="actGift1"><img :src="actGift.pic" alt=""><strong>{{actGift.name}}</strong></span>
-              <span v-else class="noSet">未設置</span>
+              <span v-else class="noSet">{{lang.setting_noSet}}</span>
               <i class="arr"></i>
             </div>
           </div>
           <div class="fromItem">
-            <span>倒計時</span>
+            <span>{{lang.page_downTime}}</span>
             <div class="itemCon" @click="setTime()">
-              <span v-if="timeIndex != null">{{timeArr[timeIndex]}}分鐘</span>
-              <span v-else class="noSet">未設置</span>
+              <span v-if="timeIndex != null">{{timeArr[timeIndex]}}{{lang.common_min}}</span>
+              <span v-else class="noSet">{{lang.setting_noSet}}</span>
               <i class="arr"></i>
             </div>
           </div>
           <div class="fromItem">
-            <span>獎品選擇</span>
+            <span>{{lang.setting_giftSet}}</span>
             <!-- <div class="itemCon"> -->
             <div class="itemCon" @click="setSgift(1)">
               <span v-if="sActGift.id" class="actGift1"><img :src="sActGift.pic" alt="" v-if="sActGift.prise_type !=1"> <strong :class="{textIndex:sActGift.prise_type ==1}">{{sActGift.name}}</strong> </span>
-              <span v-else class="noSet">未設置</span>
+              <span v-else class="noSet">{{lang.setting_noSet}}</span>
               <i class="arr"></i>
             </div>
             <!-- </div> -->
           </div>
           <div class="setpeopleType">
-            <span>誰可參與</span>
+            <span>{{lang.setting_who}}</span>
             <div class="peopleType">
-              <span @click="setPeopleType(1)"><i :class="{act:peopleType == 1}"></i><strong>所有人</strong></span>
-              <span @click="setPeopleType(2)"><i :class="{act:peopleType == 2}"></i><strong>麥上用戶</strong></span>
+              <span @click="setPeopleType(1)"><i :class="{act:peopleType == 1}"></i><strong>{{lang.setting_every}}</strong></span>
+              <span @click="setPeopleType(2)"><i :class="{act:peopleType == 2}"></i><strong>{{lang.setting_other}}</strong></span>
             </div>
           </div>
         </div>
         <div class="setGift" v-else>
-          <h3 class="tipsTitle">選擇抽獎獎品</h3>
+          <h3 class="tipsTitle">{{lang.setting_cGift}}</h3>
           <div class="fiexList">
             <ul>
               <li v-for="(item,index) in fixedDrawList" :key="index" :class="{act:index== fixeActIndex}" @click="setFixedGift(item,index)">
@@ -62,25 +61,25 @@
                 <span class="price"><i :class="{bean:item.prise_currency == 'bean'}"></i><strong>{{item.prise_price}}</strong> </span>
               </li>
             </ul>
-            <div class="sGift"><span>參與方式：</span> 送出 <img :src="fixeActDraw.ticket_gpic" alt="">x{{fixeActDraw.ticket_amount}} ({{fixeActDraw.ticket_price}}{{giftType[fixeActDraw.ticket_currency]}}) 參與抽獎</div>
-            <div class="fTime"><span>倒計時：</span> {{fixeActDraw.time_limit}}分鐘</div>
+            <div class="sGift"><span>{{lang.setting_type}}</span> {{lang.page_gift_tips}} <img :src="fixeActDraw.ticket_gpic" alt="">x{{fixeActDraw.ticket_amount}} ({{fixeActDraw.ticket_price}}{{giftType[fixeActDraw.ticket_currency]}}) {{lang.setting_type2}}</div>
+            <div class="fTime"><span>{{lang.page_downTime}}：</span> {{fixeActDraw.time_limit}}{{lang.common_min}}</div>
           </div>
           <div class="setpeopleType">
-            <span>誰可參與</span>
+            <span>{{lang.setting_who}}</span>
             <div class="peopleType">
-              <span @click="setPeopleType(1)"><i :class="{act:peopleType == 1}"></i><strong>所有人</strong></span>
-              <span @click="setPeopleType(2)"><i :class="{act:peopleType == 2}"></i><strong>麥上用戶</strong></span>
+              <span @click="setPeopleType(1)"><i :class="{act:peopleType == 1}"></i><strong>{{lang.setting_every}}</strong></span>
+              <span @click="setPeopleType(2)"><i :class="{act:peopleType == 2}"></i><strong>{{lang.setting_other}}</strong></span>
             </div>
           </div>
         </div>
-        <div class="commitBtn" :class="{act:isCommit || (!luckType &&peopleType)}" @click="showPricePup()">開始抽獎</div>
+        <div class="commitBtn" :class="{act:isCommit || (!luckType &&peopleType)}" @click="showPricePup()">{{lang.setting_start}}</div>
       </div>
 
       <!-- 抽獎資格彈窗 -->
       <van-popup v-model="show" position="bottom" :round="true" :style="{background:'none'}" overlay-class="bgopt">
         <div class="giftList">
           <div class="blurMask"></div>
-          <p v-if="tabLoading" class="tabLoading">加載中...</p>
+          <p v-if="tabLoading" class="tabLoading">{{lang.common_loading}}</p>
           <van-swipe class="my-swipe" :loop="false">
             <van-swipe-item v-for="(item,index) in pageGiftList" :key="index">
               <div class="giftItem" v-for="(item2,index2) in item" :key="index2" @click="setactGift(item2)">
@@ -93,7 +92,7 @@
               </div>
             </van-swipe-item>
           </van-swipe>
-          <div class="queryBtn" @click="queryGift()">確定</div>
+          <div class="queryBtn" @click="queryGift()">{{lang.common_ok}}</div>
         </div>
       </van-popup>
 
@@ -104,13 +103,13 @@
           <div class="tabs">
             <span v-for="(item,index) in tabArr" :key="index" :class="{act:tabIndex-1 == index,pd0:item == null}" @click="tabClick(index+1)">{{item}}</span>
           </div>
-          <p v-if="tabGift[tabIndex] && tabGift[tabIndex].loading" class="tabLoading">加載中...</p>
+          <p v-if="tabGift[tabIndex] && tabGift[tabIndex].loading" class="tabLoading">{{lang.common_loading}}</p>
           <div class="vipCon" v-show="tabIndex == 1">
-            <p class="vipTips">選擇VIP會員月數（已是會員獲得獎品則疊加時長）</p>
+            <p class="vipTips">{{lang.setting_vipTips}}</p>
             <div class="vipBox">
               <div class="vipItem">
                 <div class="item" :class="{act:vipType == index}" @click="vipClick(index,item)" v-for="(item,index) in nowTabGift[0]" :key="index">
-                  <span class="tm">{{item.prise_days}}天</span>
+                  <span class="tm">{{item.prise_days}}{{lang.common_day}}</span>
                   <span class="price"><i></i> <strong>{{item.price}}</strong></span>
                 </div>
               </div>
@@ -164,26 +163,26 @@
             <span class="bean"><i></i><strong>{{balance.bean}}</strong></span>
             <i class="back" @click="goStored()"></i>
           </div>
-          <div class="queryBtn" @click="querySgift()">確定</div>
+          <div class="queryBtn" @click="querySgift()">{{lang.common_ok}}</div>
         </div>
       </van-popup>
 
       <!-- 倒計時選擇彈窗 -->
       <van-popup v-model="showTimePup" position="bottom" :round="true">
         <ul class="timeList">
-          <li v-for="(item,index) in timeArr" :key="index" :class="{act:timeIndex == index}" @click="timeQuery(index)">{{item}}分鐘</li>
+          <li v-for="(item,index) in timeArr" :key="index" :class="{act:timeIndex == index}" @click="timeQuery(index)">{{item}}{{lang.common_min}}</li>
         </ul>
       </van-popup>
       <div class="mask" v-if="showCommitPup">
         <transition name="slise">
           <div class="commitQueryPup" v-show="showCommitPup">
-            <div class="title">提示</div>
-            <p class="msg">確認支付{{price}}購買獎品<br />
-              並發起抽獎？
+            <div class="title">{{lang.common_tips}}</div>
+            <p class="msg">
+              {{lang.setting_query.replace('$',price)}}
             </p>
             <div class="btnBox">
-              <span class="cancel" @click="closeCommitPup()">取消</span>
-              <span class="query" @click="commitLuck()">確定</span>
+              <span class="cancel" @click="closeCommitPup()">{{lang.common_no}}</span>
+              <span class="query" @click="commitLuck()">{{lang.common_ok}}</span>
             </div>
           </div>
         </transition>
@@ -200,7 +199,7 @@ import { getRoomDraw, getcustomDrawPriseList, fixedDraw, createCustomDraw, creat
 import { toast, getUrlString } from "../utils"
 import store from "../store"
 export default {
-//   components: { Loading },
+  //   components: { Loading },
   data() {
     return {
       luckType: 0, //當前用戶身份  1房主管理員主持人 0 普通用戶
@@ -215,7 +214,7 @@ export default {
       timeIndex: null,
       showSgiftPup: false,
       tabIndex: 1,
-      tabArr: ["VIP", "禮物", "座駕", "頭飾", null, "名片", "主題"],
+      // tabArr: ["VIP", "禮物", "座駕", "頭飾", null, "名片", "主題"],
       tabGift: {},   //tab對應的禮物
       balance: {},
       tabLoading: false,
@@ -226,11 +225,7 @@ export default {
       fixedDrawList: [],
       fixeActDraw: {},
       fixeActIndex: 0,
-      giftType: {
-        coin: '金幣',
-        bean: '金豆',
-        free: ''
-      }
+
     }
   },
   computed: {
@@ -258,6 +253,12 @@ export default {
       } else {
         return `${this.fixeActDraw.prise_price}${this.giftType[this.fixeActDraw.prise_currency]}`
       }
+    },
+    tabArr() {
+      return this.lang.tabArr
+    },
+    giftType() {
+      return this.lang.giftType
     }
   },
   watch: {
@@ -301,7 +302,7 @@ export default {
         this.show = !this.show
         this.actGift = Object.assign({}, this.actGiftT)
       } else {
-        toast(`請選擇抽獎資格！`)
+        toast(this.lang.setting_commit_tips1)
       }
     },
     querySgift() {
@@ -309,7 +310,7 @@ export default {
         this.showSgiftPup = !this.showSgiftPup
         this.sActGift = Object.assign({}, this.sActGiftT)
       } else {
-        toast(`請選擇獎品！`)
+        toast(this.lang.setting_commit_tips2)
       }
     },
     setTime() {
@@ -381,7 +382,7 @@ export default {
         createCustomDraw(this.actGift.id, this.sActGift.id, this.peopleType, this.timeArr[this.timeIndex]).then(res => {
           store.commit('updateLoading', false);
           if (res.data.response_data) {
-            toast('抽獎已發起')
+            toast(this.setting_commit_tips3)
             setTimeout(() => {
               this.closeWeb()
             }, 300)
@@ -395,7 +396,7 @@ export default {
         createFixedDraw(this.fixeActDraw.id, this.peopleType).then(res => {
           store.commit('updateLoading', false);
           if (res.data.response_data) {
-            toast('抽獎已發起')
+            toast(this.setting_commit_tips3)
             setTimeout(() => {
               this.closeWeb()
             }, 300)
@@ -477,9 +478,10 @@ body {
         color: rgba(12, 12, 12, 1);
         font-size: 0.34rem;
         font-weight: 500;
+        flex: 1;
       }
       .itemCon {
-        width: 5.23rem;
+        width: 5rem;
         height: 0.8rem;
         background: rgba(255, 255, 255, 1);
         border: 1px solid rgba(230, 230, 230, 1);
@@ -533,11 +535,13 @@ body {
         color: rgba(12, 12, 12, 1);
         font-size: 0.34rem;
         font-weight: 500;
+        flex: 1;
       }
       .peopleType {
+        width: 5.2rem;
         display: flex;
         align-items: center;
-        margin-left: 0.5rem;
+        margin-left: 0.2rem;
         span {
           color: rgba(55, 55, 55, 1);
           display: flex;
@@ -553,6 +557,9 @@ body {
               background: url(../img/cVoteIcon3.png);
               background-size: 100% 100%;
             }
+          }
+          strong {
+            flex: 1;
           }
         }
       }
@@ -1025,8 +1032,9 @@ body {
         margin-bottom: 0.2rem;
         position: relative;
         .prise_type {
+          white-space: nowrap;
           display: block;
-          width: 0.76rem;
+          padding: 0 0.1rem;
           height: 0.34rem;
           font-size: 0.24rem;
           background: #cccccc;
