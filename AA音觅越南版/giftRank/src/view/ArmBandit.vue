@@ -38,9 +38,7 @@
             <h6>1 Thời gian</h6>
             <p>{{aTimer}}</p>
             <h6>2. Bảng xếp hạng</h6>
-            <p>Hệ thống sẽ sắp xếp thứ tự dựa trên số lượng phần thưởng cây thông Noel và ông già Noel.
-              <br /> Bảng xếp hạng hiển thị số lượng quà chỉ định.
-            </p>
+            <p>Bảng xếp hạng dựa trên số lượng nhận quà hoa hướng dương và tệp ảnh. Bảng xếp hạng hiển thị điểm là số lượng quà tặng.</p>
             <h6>3. Thưởng</h6>
             <div class="giftBox">
 

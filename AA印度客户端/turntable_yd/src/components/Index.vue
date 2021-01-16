@@ -2,8 +2,8 @@
   <div id="box" :style="{height:boxHeight+'px'}">
     <div class="turnHeader">
       <div class="tabs">
-        <span class="trun" :class="{act:shoCom=='Trun'}" @click="tabClick('Trun')">幸運轉盤</span>
-        <span class="trunBox" :class="{act:shoCom=='Box'}" @click="tabClick('Box')">驚喜寶箱</span>
+        <span class="trun" :class="{act:shoCom=='Trun'}" @click="tabClick('Trun')">{{lang.title}}</span>
+        <span class="trunBox" :class="{act:shoCom=='Box'}" @click="tabClick('Box')">{{lang.title_box}}</span>
         <i class="boxNum"> {{userMsg.lock_box>99?'···':userMsg.lock_box}}</i>
       </div>
       <i class="close" @click="closeWeb()"></i>
@@ -166,17 +166,21 @@ body::-webkit-scrollbar {
     .tabs {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      width: 3.5rem;
+      // justify-content: space-between;
+      width: 6rem;
       height: 1rem;
       margin-left: 0.37rem;
       span {
-        width: 1.5rem;
+        flex: 1;
         height: 1rem;
         line-height: 1rem;
         font-size: 120%;
         font-weight: 600;
         position: relative;
+        text-align: center;
+      }
+      .trunBox {
+        margin-left: 0.15rem;
       }
       .boxNum {
         width: 0.32rem;
@@ -189,7 +193,7 @@ body::-webkit-scrollbar {
         border-radius: 50%;
         position: absolute;
         top: 0.15rem;
-        left: 3.68rem;
+        left: 5.58rem;
         text-align: center;
         color: #fff !important;
       }
@@ -205,7 +209,7 @@ body::-webkit-scrollbar {
         border-radius: 0.03rem;
         position: absolute;
         bottom: 0;
-        left: 0.45rem;
+        left: 1.2rem;
       }
     }
     .close {

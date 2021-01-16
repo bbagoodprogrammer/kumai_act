@@ -16,7 +16,7 @@ const lang = {
     tips1: 'Setiap 5 hari berturut-turut utk menyelesaikan semua tugas harian, Anda bisa mendapatkan Mount Ferrari (5 hari) Hadiah akan dikirim secara otomatis,silakan cek~',
     rechargeTitle: 'Tugas top up',
     rechargeToday: 'Hari ini Anda udah top up X koin emas',
-    rechargeTips: 'Anda bisa mendapatkan 1 kali utk gali ketika setiap top up 30 koin emas, dapatkan nilai kekayaan melalui menggali mineral dan menyelamatkan penambang, dan menukarnya dengan hadiah',
+    rechargeTips: 'Anda bisa mendapatkan 1 kali utk gali ketika setiap top up 50 koin emas, dapatkan nilai kekayaan melalui menggali mineral dan menyelamatkan penambang, dan menukarnya dengan hadiah',
     goRecharge: 'Top up dulu',
     warsds: 'Hadiah harian berlaku hari ini utk menerima,pd pukul 24:00:00 akan dihapus',
     lv: 'peringkat',

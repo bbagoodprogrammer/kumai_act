@@ -5,7 +5,7 @@
       <strong>{{bag.remark}}</strong>
     </div>
     <div class="list">
-      <p v-if="loading" class="loading">加載中...</p>
+      <p v-if="loading" class="emLoading">{{lang.common_loading}}</p>
       <div class="emojiItem">
         <span v-for="(item,index) in bag.emoticons" :key="index">
           <img :src="item.pic_url" alt="" @click="shouCanvas($event,index)">
@@ -13,7 +13,7 @@
         </span>
       </div>
     </div>
-    <div class="getBtn" @click="showPup()"><i></i>{{listItem.pay_num}}碎片兌換</div>
+    <div class="getBtn" @click="showPup()"><i></i>{{lang.emoji_getNums.replace('$',listItem.pay_num)}}</div>
     <Footer :type="type" :user_wallet="user_wallet" />
     <div class="mask" :style="{height:mainHeight+'px'}" v-show="showGiftPup">
       <transition name="slide">
@@ -22,8 +22,8 @@
           <div class="imgBox">
             <img :src="lateImg" alt="">
           </div>
-          <em>{{giftPupName}}</em>
-          <div class="querBtn" @click="closePup()">確定</div>
+          <em>{{lang.emoji_get_suc}}</em>
+          <div class="querBtn" @click="closePup()">{{lang.common_ok}}</div>
         </div>
       </transition>
     </div>
@@ -49,7 +49,7 @@ export default {
       mainHeight: 0,
       showGiftPup: false,
       lateImg: '',
-      giftPupName: '恭喜你兌換獲得貼圖成功，在K房即可使用！',
+      // giftPupName: '恭喜你兌換獲得貼圖成功，在K房即可使用！',
       dataArr: [],
       loading: false,
       user_wallet: {},
@@ -88,7 +88,7 @@ export default {
           this.bag = response_data.bag
           this.downloaderData(this.filderArr)
         } else {
-          this.tastMsg = '貼圖加載失敗！'
+          this.tastMsg = this.lang.emoji_get_noupData
           this.showT = true
         }
       })
@@ -173,7 +173,7 @@ export default {
           }
         })
       } else {
-        this.tastMsg = '您的貼圖碎片不足哦~快去獲取碎片吧！'
+        this.tastMsg = this.lang.emoji_get_noGet
         this.showT = true
       }
     },
@@ -201,7 +201,7 @@ export default {
     -webkit-overflow-scrolling: touch; //有回弹效果
     -webkit-overflow-scrolling: auto; //滑到哪停到哪
   }
-  .loading {
+  .emLoading {
     text-align: center;
   }
   .title {

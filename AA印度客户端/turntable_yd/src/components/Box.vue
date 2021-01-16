@@ -19,8 +19,9 @@
       </div>
     </div>
     <p class="tips">
-      繼續儲值{{userMsg.diff_charge}}金幣即可獲得一把鑰匙</br>
-      <em>（2月22日0時起計算）</em>
+      {{lang.box_tips.replace('$',userMsg.diff_charge)}}
+      </br>
+      <em>{{lang.box_tmTips}}</em>
     </p>
     <Tabs />
     <div class="mask" :style="{height:mainHeight+'px'}" v-show="showT">
@@ -32,13 +33,13 @@
       <transition name="slide">
         <div class="giftPupCon" v-show="showGiftPup">
           <i class="close" @click="closePup()"></i>
-          <p>{{pupType==1?'恭喜獲得':pupTitle}}</p>
+          <p>{{pupType==1?lang.common_luck:pupTitle}}</p>
           <div class="imgBox">
             <img :src="imgSrc" alt="">
             <em>{{giftPupName}}</em>
           </div>
-          <p v-if="showVerTips && !Version" class="verTips">該獎品需要更新到最新版本才可使用</p>
-          <div class="querBtn" @click="closePup()">{{pupType==1?'確定':'去開寶箱'}}</div>
+          <p v-if="showVerTips && !Version" class="verTips">{{lang.box_giftTips}}</p>
+          <div class="querBtn" @click="closePup()">{{pupType==1?lang.common_ok:lang.box_openBox}}</div>
         </div>
       </transition>
     </div>
@@ -145,7 +146,7 @@ export default {
   methods: {
     openBox() {
       if (!this.isDown) {
-        this.tastMsg = '資源未加載完成，請稍後再試！'
+        this.tastMsg = this.lang.common_noOpen
         this.showT = true
         return
       }
@@ -188,10 +189,10 @@ export default {
           }
         })
       } else if (this.userMsg.lock_box <= 0) {
-        this.tastMsg = '您的寶箱不足哦,快去獲取寶箱吧！'
+        this.tastMsg = this.lang.box_noOpen_tips1
         this.showT = true
       } else if (this.userMsg.box_key <= 0) {
-        this.tastMsg = '您的鑰匙不足哦,不能開啟寶箱！'
+        this.tastMsg = this.lang.box_noOpen_tips2
         this.showT = true
       }
     },
@@ -211,7 +212,7 @@ export default {
       this.imgSrc = item.picture
       this.giftPupName = item.name
       this.pupType = 2
-      this.pupTitle = `第${item.must_get}次必中`
+      this.pupTitle = this.lang.box_must.replace('$', item.must_get)
       this.showGiftPup = true  //禮物彈窗
     },
     // goCun() {
@@ -323,19 +324,6 @@ export default {
         /* z-index: ; */
       }
     }
-    .open {
-      width: 3.31rem;
-      height: 0.91rem;
-      background: url(../img/openBlack.png);
-      background-size: 100% 100%;
-      position: absolute;
-      bottom: -0.72rem;
-      left: 1.37rem;
-      &.act {
-        background: url(../img/openAct.png);
-        background-size: 100% 100%;
-      }
-    }
   }
   .tips {
     text-align: center;
@@ -389,7 +377,7 @@ export default {
   }
   p {
     text-align: center;
-    margin-top: 0.24rem;
+    margin-top: 0.5rem;
     font-size: 0.32rem;
   }
   .imgBox {

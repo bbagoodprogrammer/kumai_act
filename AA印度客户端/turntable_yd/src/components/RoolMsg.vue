@@ -4,7 +4,7 @@
     <div class="popup">
       <div class="msgBox">
         <ul class="lb" :class="{marquee_top:animate}">
-          <li v-for="(item, index) in list" :key="index">恭喜 <em>{{item.nick}}</em> 抽中 <em>{{item.name}}</em></li>
+          <li v-for="(item, index) in list" :key="index">{{lang.roolMsg_gx}} <em>{{item.nick}}</em> {{lang.footer_get}} <em>{{item.name}}</em></li>
         </ul>
       </div>
     </div>

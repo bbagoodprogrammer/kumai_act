@@ -15,15 +15,15 @@
     <div class="tips1" :style="{height:pupHeight+'px'}" v-show="showTips">
       <transition name="slide">
         <div class="tipsCon" v-show="showTips">
-          <div class="title"> 遊戲規則<i class="close" @click="closeTips1()"></i></div>
+          <div class="title"> {{lang.footer_rule_title}}<i class="close" @click="closeTips1()"></i></div>
           <div class="con">
-            <p>1.每累計消費100金幣即可進行轉盤抽獎；</p>
-            <p>2.每累計儲值300金幣即可獲得一把驚喜鑰匙，驚喜鑰匙可用於開啟驚喜寶箱；</p>
-            <p>3.禮物碎片可用於兌換禮物禮盒中的稀有禮物，稀有禮物為k房禮物；</p>
-            <p>4.貼圖碎片可用於兌換整套貼圖，兌換的貼圖有效期為永久，每位玩家每種貼圖只可兌換一次，已擁有對應貼圖則無法再進行兌換；</p>
-            <p>5.幸運寶箱第三次及第八次必中稀有道具及高價值金幣；</p>
-            <p>6.每月初會進行稀有道具更換，並重置必中進度；</p>
-            <p>7.期限道具可以進行使用期限累計疊加</p>
+            <p>{{lang.footer_rule_p1}}</p>
+            <p>{{lang.footer_rule_p2}}</p>
+            <p>{{lang.footer_rule_p3}}</p>
+            <p>{{lang.footer_rule_p4}}</p>
+            <p>{{lang.footer_rule_p5}}</p>
+            <p>{{lang.footer_rule_p6}}</p>
+            <p>{{lang.footer_rule_p7}}</p>
           </div>
         </div>
       </transition>
@@ -31,17 +31,17 @@
     <div class="historyList" :style="{height:pupHeight+'px'}" v-show="showHistory">
       <transition name="slide">
         <div class="historyCon" v-show="showHistory">
-          <div class="title">抽獎記錄<i class="close" @click="closeHistory()"></i></div>
+          <div class="title">{{lang.footer_history_title}}<i class="close" @click="closeHistory()"></i></div>
           <div class="list">
-            <p v-if="loading" class="loadingTips">加載中...</p>
-            <p class="noDateTips" v-if="record.length==0 && !loading">暫無抽獎信息！</p>
+            <p v-if="loading" class="loadingTips">{{lang.common_loading}}</p>
+            <p class="noDateTips" v-if="record.length==0 && !loading">{{lang.footer_history_noData}}</p>
             <ul class="scrollable">
               <li v-for="(item,index) in record" :key="index">
                 <span class="time">{{getTime(item.tm)}}</span>
                 <div class="gift">
                   <!-- <img src="../img/icon1.png" alt="">
                   <em>x99</em> -->
-                  從 <em>{{item.status==0?'幸運轉盤':'驚喜寶箱'}}</em> 抽出 <em>{{item.name}}</em>
+                  {{lang.footer_co}} <em>{{item.status==0?lang.title:lang.title_box}}</em> {{lang.footer_get}} <em>{{item.name}}</em>{{item.emty}}
                 </div>
               </li>
             </ul>
@@ -257,6 +257,7 @@ export default {
     justify-content: center;
     .tipsCon {
       width: 5.2rem;
+      height: 6rem;
       background: rgba(124, 65, 241, 1);
       border-radius: 0.16rem;
       /* position: absolute;
@@ -284,7 +285,9 @@ export default {
       .con {
         line-height: 0.4rem;
         color: #cccccc;
-        padding: 0.39rem 0.28rem 0.53rem;
+        padding: 0.39rem 0.28rem 0;
+        max-height: 4.5rem;
+        overflow-y: scroll;
         p {
           font-size: 0.26rem;
         }

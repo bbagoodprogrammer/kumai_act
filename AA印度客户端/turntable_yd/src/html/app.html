@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -21,6 +22,19 @@
             if (!doc.addEventListener) return;
             win.addEventListener(resizeEvt, recalc, false);
             doc.addEventListener('DOMContentLoaded', recalc, false);
+
+            //// 设置用户入口类型（调接口需传给APP） 全屏为2 默认为1 
+            var vars = {};
+            var type = 1
+            window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, k, v) => {
+                vars[k] = v;
+            });
+            if (type && typeof vars[type] != 'undefined') {
+                type = 2
+            }
+
+
+            sessionStorage.setItem('entryType', type)
         })(document, window);
     </script>
     <script src="//fstatic.cat1314.com/js/es6-promise.auto.min.js"></script>
@@ -31,9 +45,12 @@
     <script src="//fstatic.cat1314.com/js/vue-router.min.js"></script>
     <!-- <script src="//fstatic.cat1314.com/js/vue-lazyload.js"></script> -->
     <!-- <script src="//fstatic.cat1314.com/js/svga.lite.min.js"></script> -->
-    <script>_hash=$hash$;</script>
+    <script>_hash = $hash$;</script>
+
 </head>
+
 <body>
     <div id="app"></div>
 </body>
+
 </html>

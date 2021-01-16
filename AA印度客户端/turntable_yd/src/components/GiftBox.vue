@@ -1,7 +1,7 @@
 <template>
   <div class="giftGiftBox" :style="{height:pupHeight+'px'}">
     <div class="herder">
-      <i class="back" @click="closeGiftBox"></i> 禮盒 <i class="close" @click="closeGiftBox"></i>
+      <i class="back" @click="closeGiftBox"></i> {{lang.giftBox_title}} <i class="close" @click="closeGiftBox"></i>
     </div>
     <GiftBoxList />
   </div>

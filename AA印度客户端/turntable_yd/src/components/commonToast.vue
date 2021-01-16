@@ -3,7 +3,7 @@
   <div class="promptBox">
     <p v-html="msg"></p>
     <div class="ok">
-      <a href="javascript:;" @click="close()">確認</a>
+      <a href="javascript:;" @click="close()">{{lang.common_ok}}</a>
     </div>
     <!-- </div> -->
 

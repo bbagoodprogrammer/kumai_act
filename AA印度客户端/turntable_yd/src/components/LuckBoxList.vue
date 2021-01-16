@@ -1,6 +1,6 @@
 <template>
   <div class="luckBoxList" :class="{overTurn:!this.type}" :style="{maxHeight:!this.type?pupMaxHeight-20+'px':'none'}">
-    <p v-if="loading" class="loading">加载中...</p>
+    <p v-if="loading" class="loading">{{lang.common_loading}}</p>
     <div class="list">
       <div class="item" v-for="(item,index) in list" :key="index">
         <span>

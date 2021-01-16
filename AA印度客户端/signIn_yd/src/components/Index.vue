@@ -161,7 +161,7 @@ body {
     align-items: center;
     strong {
       text-indent: 0.28rem;
-
+      font-size: 0.26rem;
       em {
         font-size: 0.45rem;
         color: #ff6a3e;
