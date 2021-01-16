@@ -1,3 +1,43 @@
 html.en {
-    
+    .jian {
+        width: 2.38rem;
+        height: 2.38rem;
+        background: url(./img/trunBgCon.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.black {
+          background: url(./img/trunBgConBlack.png);
+          background-size: 100% 100%;
+        }
+        img {
+          width: 0.99rem;
+          height: 0.99rem;
+          position: absolute;
+          top: 0.73rem;
+          left: 0.73rem;
+          opacity: 0;
+          &.giftLate {
+            animation: giftLate 1s linear;
+          }
+        }
+      }
+      .open {
+        width: 3.31rem;
+        height: 0.91rem;
+        background: url(./img/openBlack.png);
+        background-size: 100% 100%;
+        position: absolute;
+        bottom: -0.72rem;
+        left: 1.37rem;
+        &.act {
+          background: url(./img/openAct.png);
+          background-size: 100% 100%;
+        }
+      }
 }

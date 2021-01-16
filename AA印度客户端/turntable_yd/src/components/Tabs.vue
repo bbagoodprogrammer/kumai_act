@@ -26,19 +26,24 @@ export default {
   computed: {
     ...mapState(['openType', 'userMsg'])
   },
+  computed: {
+    tabArr() {
+      return this.lang.tabArr
+    }
+  },
   data() {
     return {
-      tabArr: [
-        {
-          name: '禮盒'
-        },
-        {
-          name: '寶箱獎勵'
-        },
-        {
-          name: '貼圖'
-        }
-      ],
+      // tabArr: [
+      //   {
+      //     name: '禮盒'
+      //   },
+      //   {
+      //     name: '寶箱獎勵'
+      //   },
+      //   {
+      //     name: '貼圖'
+      //   }
+      // ],
       showType: -1
     }
   },

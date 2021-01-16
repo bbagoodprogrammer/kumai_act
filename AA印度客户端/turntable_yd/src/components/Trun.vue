@@ -13,21 +13,22 @@
       </div>
     </div>
     <p class="tips">
-      繼續消費{{userMsg.diff_ktvgift}}金幣即可獲得一張抽獎券</br>
-      <em>（2月22日0時起計算）</em>
+      {{lang.turn_tips1.replace('$',userMsg.diff_ktvgift)}}
+      </br>
+      <em>{{lang.box_tmTips}}</em>
     </p>
     <Tabs />
     <div class="mask" :style="{height:mainHeight+'px'}" v-show="showGiftPup">
       <transition name="slide">
         <div class="giftPupCon" v-show="showGiftPup">
           <i class="close" @click="closePup()"></i>
-          <p>恭喜獲得</p>
+          <p>{{lang.common_luck}}</p>
           <div class="imgBox">
             <img :src="lateImg" alt="">
             <em>{{giftPupName}}</em>
           </div>
-          <p v-if="showVerTips && !Version" class="verTips">該獎品需要更新到最新版本才可使用</p>
-          <div class="querBtn" @click="closePup()">確定</div>
+          <p v-if="showVerTips && !Version" class="verTips">{{lang.turn_newVer}}</p>
+          <div class="querBtn" @click="closePup()">{{lang.common_ok}}</div>
         </div>
       </transition>
     </div>
@@ -126,7 +127,7 @@ export default {
           }, 5000);
         })
       } else {
-        this.tastMsg = `您的抽獎券不足哦，快去獲得抽獎券吧！`
+        this.tastMsg = this.lang.turn_noGet
         this.showT = true
       }
     },
@@ -233,34 +234,34 @@ export default {
       }
     }
   }
-  .jian {
-    width: 2.38rem;
-    height: 2.38rem;
-    background: url(../img/trunBgCon.png);
-    background-size: 100% 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &.black {
-      background: url(../img/trunBgConBlack.png);
-      background-size: 100% 100%;
-    }
-    img {
-      width: 0.99rem;
-      height: 0.99rem;
-      position: absolute;
-      top: 0.73rem;
-      left: 0.73rem;
-      opacity: 0;
-      &.giftLate {
-        animation: giftLate 1s linear;
-      }
-    }
-  }
+  // .jian {
+  //   width: 2.38rem;
+  //   height: 2.38rem;
+  //   background: url(../img/trunBgCon.png);
+  //   background-size: 100% 100%;
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   &.black {
+  //     background: url(../img/trunBgConBlack.png);
+  //     background-size: 100% 100%;
+  //   }
+  //   img {
+  //     width: 0.99rem;
+  //     height: 0.99rem;
+  //     position: absolute;
+  //     top: 0.73rem;
+  //     left: 0.73rem;
+  //     opacity: 0;
+  //     &.giftLate {
+  //       animation: giftLate 1s linear;
+  //     }
+  //   }
+  // }
 }
 .tips {
   text-align: center;

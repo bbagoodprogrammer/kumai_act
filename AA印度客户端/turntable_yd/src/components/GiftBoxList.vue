@@ -1,7 +1,7 @@
 <template>
   <div class="giftBoxList" :class="{overTurn:!this.type}" :style="{maxHeight:!this.type?pupMaxHeight+'px':'none'}">
-    <p>集齊碎片兌換稀有禮物</p>
-    <p v-if="loading" class="loading">加載中...</p>
+    <p>{{lang.giftBox_tips}}</p>
+    <p v-if="loading" class="emLoading">{{lang.common_loading}}</p>
     <div class="list">
       <div class="item" v-for="(item,index) in list" :key="index">
         <span>
@@ -11,7 +11,7 @@
           </em>
           <strong> <i></i> {{item.pay_num}}</strong>
         </span>
-        <div class="btn" @click="showPup(item)">兌換</div>
+        <div class="btn" @click="showPup(item)">{{lang.giftBox_exchange}}</div>
       </div>
     </div>
     <Footer :user_wallet="user_wallet" :type="type" />
@@ -19,12 +19,12 @@
       <transition name="slide">
         <div class="giftPupCon" v-show="showGiftPup">
           <i class="close" @click="closePup()"></i>
-          <p>恭喜獲得</p>
+          <p>{{lang.common_luck}}</p>
           <div class="imgBox">
             <img :src="lateImg" alt="">
             <em>{{giftPupName}}</em>
           </div>
-          <div class="querBtn" @click="closePup()">確定</div>
+          <div class="querBtn" @click="closePup()">{{lang.common_ok}}</div>
         </div>
       </transition>
     </div>
@@ -97,7 +97,7 @@ export default {
           }
         })
       } else {
-        this.tastMsg = '您的禮物碎片不足哦~快去獲取碎片吧！'
+        this.tastMsg = this.lang.giftBox_noGet
         this.showT = true
       }
     },
@@ -123,7 +123,7 @@ export default {
     font-size: 0.26rem;
     text-align: center;
   }
-  .loading {
+  .emLoading {
     text-align: center;
     margin-top: 0.7rem;
   }

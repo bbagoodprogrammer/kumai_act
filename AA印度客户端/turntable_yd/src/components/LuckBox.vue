@@ -1,7 +1,7 @@
 <template>
   <div class="luckGiftBox" :style="{height:pupHeight+'px'}">
     <div class="herder">
-      <i class="back" @click="closeGiftBox"></i> 寶箱獎勵<i class="close" @click="closeGiftBox"></i>
+      <i class="back" @click="closeGiftBox"></i> {{lang.luckBox_title}}<i class="close" @click="closeGiftBox"></i>
     </div>
     <LuckBoxList />
   </div>

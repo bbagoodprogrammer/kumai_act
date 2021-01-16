@@ -46,7 +46,7 @@
       </div>
       <div class="tips">
         {{lang.page_upCover_tip1}}
-        <span>{{lang.page_upCover_tip2}}</span>
+        <span @click="goSkill()">{{lang.page_upCover_tip2}}</span>
       </div>
       <div class="commitTips">
         {{lang.page_upCover_tip3}}
@@ -78,6 +78,7 @@ import { mapState, mapGetters } from 'vuex';
 import { getApplyStatus, applyAnchor } from '../apis';
 import { getUrlString } from "../utils"
 import { getUploadImg } from "../utils/getUploadImg"
+import store from "../store"
 export default {
   data() {
     return {
@@ -116,7 +117,7 @@ export default {
         } else if (status == 8 && idcard_verified == 1) {
           this.stage = 4
         }
-        // this.stage = 4
+        // this.stage = 2
       } else {
         this.toast(res.data.response_status.error)
       }
@@ -134,7 +135,9 @@ export default {
       if (!this.liveImg) {
         this.toast(this.lang.page_commit_tip2)
       } else {
+        store.commit('updateLoading', true);
         applyAnchor(this.idcard_img, this.liveImg).then(res => {
+          store.commit('updateLoading', false);
           if (res.data.response_data) {
             this.stage = 3
             this.commitStatus = 1
@@ -360,6 +363,7 @@ export default {
       background: #ffffff;
       border-radius: 0.12rem;
       margin: 0.3rem auto 0;
+      position: relative;
       > img {
         width: 100%;
         height: 100%;

@@ -5,14 +5,14 @@
       <span :class="{act:showType== 1}" @click="tabClick(1)"> Hadiah acara</span>
     </div>
     <div class="rules" v-show="showType == 0">
-      <p class="actTime"> Waktu acara ： tgl 17 Dec ,18:00 - tgl 31 Dec ,21:00</p>
+      <p class="actTime">Waktu acara : Tgl 17 Jan, 18:00 - tgl 2 Feb, 21:00</p>
       <h5>Aturan peringkat nilai kekayaan</h5>
       <p>1.Setelah pendaftaran utk ikut acara, nilai kekayaan yang diperoleh dengan menggali mineral dan menyelamatkan penambang<span>Nilai kekayaan=total nilai kekayaan yg dihadiahi melalui menggali mineral dan menyelamatkan penambang</span></p>
       <img src="../../assets/img/ruleImg1.png" alt="" class="ruleImg1">
       <p>2.Jika nilai kekayaan yg didapatkan adalah sama, maka siapa yang pertama mencapai nilai kekayaan itu,peringkat siapa akan di depan</p>
       <p>3.Daftar ini menampilkan hasil kompetisi pengguna dari Top 100 </p>
       <h5>Penjelasan tugas</h5>
-      <p>1.Tugas top up:Anda bisa mendapatkan 1 kali utk gali ketika setiap top up 30 koin emas, dapatkan nilai kekayaan melalui menggali mineral dan menyelamatkan penambang, dan menukarnya dengan hadiah</p>
+      <p>1.Tugas top up:Anda bisa mendapatkan 1 kali utk gali ketika setiap top up 50 koin emas, dapatkan nilai kekayaan melalui menggali mineral dan menyelamatkan penambang, dan menukarnya dengan hadiah</p>
       <p>2.Tugas harian:Nyanyian publik apapun kemarin yg dipublikasikan belum dihapus. Pada pukul 12:00 tiap hari akan cek nyanyian umum dari kemarin, jika nyanyian tersebut belum dihapus, maka akan mendapatkan 1 kali utk gali</p>
       <h5>Cara gali</h5>
       <div class="block1">
@@ -30,7 +30,7 @@
       <p class="otherTips2">Jika pengguna ditemukan menggunakan cara yang tidak benar untuk berpartisipasi dalam acara, apakah peserta atau tidak,pihak Wekara akan secara permanen membekukan semua akun besar atau kecil dari pelanggar. Setelah acara berakhir,pihak Wekara berhak untuk mengambil kembali semua hadiah dari pengguna/pelanggar ini.</p>
     </div>
     <div class="wards" v-show="showType == 1">
-      <p class="actTime"> Waktu acara ： tgl 17 Dec ,18:00 - tgl 31 Dec ,21:00</p>
+      <p class="actTime">Waktu acara : Tgl 17 Jan, 18:00 - tgl 2 Feb, 21:00</p>
       <h5 class="title1">Hadiah harian</h5>
       <p class="centerTips">Nilai kekayaan yg dihadiahi tiap hari=total nilai kekayaan hari ini </p>
       <img src="../../assets/img/ruleImg2.png" alt="" class="ruleImg2">

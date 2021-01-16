@@ -6,7 +6,7 @@ import { testGet } from './test';
 let API_ROOT = '';
 const host = location.host;
 if (/\d+\.\d+\.\d+\.\d+/.test(host) || /localhost/i.test(host) || /^t(est)?\./i.test(host)) {
-    API_ROOT = '/action';
+    API_ROOT = '';
 }
 
 const defaultUid = 2233806;
@@ -65,22 +65,22 @@ function loadData(apiFunc, commitName) {
 
 //获取活动基础信息
 function getDefault() {
-    return get(`/action/index.php?action=signInTask.getMedalTask&uid=${uid}&token=${token}`);
+    return get(`/index.php?action=signInTask.getMedalTask&uid=${uid}&token=${token}`);
 
 }
 //補簽
 function sateSingIn() {
-    return get(`/action/index.php?action=signInTask.compensateSignIn&uid=${uid}&token=${token}`)
+    return get(`/index.php?action=signInTask.compensateSignIn&uid=${uid}&token=${token}`)
 }
 
 //獲取KEY
 function gerKey() {
-    return get(`/action/index.php?action=signInTask.inviteFriends&uid=${uid}&token=${token}`)
+    return get(`/index.php?action=signInTask.inviteFriends&uid=${uid}&token=${token}`)
 }
 
 //查詢邀請信息
 function queryShre(inviteCode) {
-    return get(`/action/index.php?action=signInTask.getInvitedFriends&inviteCode=${inviteCode}`) //&uid=${uid}&token=${token}
+    return get(`/index.php?action=signInTask.getInvitedFriends&inviteCode=${inviteCode}`) //&uid=${uid}&token=${token}
 }
 
 const httpConfig = {

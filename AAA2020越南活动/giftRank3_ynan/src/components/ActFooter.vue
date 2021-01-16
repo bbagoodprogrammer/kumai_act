@@ -21,7 +21,7 @@
       <transition name="slide">
         <div class="queryBox" v-if="showQuery">
           <i class="close" @click="close()"></i>
-          <p>Sau khi báo danh tham gia sự kiện, điểm số kỳ này chỉ tính vào BXH Ca Sĩ, các nhận tham gia?</p>
+          <p>Sau khi báo danh tham gia sự kiện, điểm số kỳ này chỉ tính vào BXH Ca Sĩ,xác nhận tham gia?</p>
           <div class="btnBox">
             <span @click="close()">Huỷ</span>
             <span class="ok" @click="singUp()">Xác nhận</span>

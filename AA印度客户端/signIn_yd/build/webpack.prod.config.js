@@ -26,8 +26,8 @@ module.exports = {
     entry: {
         local: './src/local.js',
         app: './src/main.js',
-        app2: './src/page/rule/main2.js',
-        app3: './src/page/share/share.js',
+        app2: './src/pages/rule/main2.js',
+        app3: './src/pages/share/share.js',
         ...files,
     },
     output: {

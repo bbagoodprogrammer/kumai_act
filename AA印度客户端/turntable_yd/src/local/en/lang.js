@@ -1,70 +1,71 @@
 export default {
     //html/index.html
-    title: 'Sign with us',
+    title: 'Lucky turntable', //幸運轉盤
+    title_box: 'Surprise box',//驚喜寶箱
+    //common
+    common_luck: 'Congratulations on winning',//恭喜獲得
+    common_ok: 'Confirm',//確定
+    common_noOpen: 'Resource not loaded, please try again later!',//資源未加載完成，請稍後再試！
+    common_loading: 'Loading...',//加載中...
 
-    // router/index
-    page_data: 'Data up to standard',
-    page_bind: 'Bind the phone number',
-    page_apply: 'Apply for contract',
-    page_agreement: 'Platform Access Agreement',
+    //box
+    box_tips: 'Keep depositing $ coins to get a key',// 繼續儲值$金幣即可獲得一把鑰匙
+    box_tmTips: '(calculated from 00:00 on February 22)',//（2月22日0時起計算）
+    box_giftTips: 'Need to update to the latest version to use the prize',//該獎品需要更新到最新版本才可使用
+    box_openBox: 'Open the lucky box',//去開寶箱
+    box_noOpen_tips1: 'You don\'t have enough lucky boxes.Go get more!', //您的寶箱不足哦,快去獲取寶箱吧
+    box_noOpen_tips2: 'You don\'t have enough keys to open the lucky box!', // 您的鑰匙不足哦,不能開啟寶箱！
+    box_must: 'The $ th time must win',//第$次必中
 
-    // Index
-    sign: 'Go sign up',
-    signed: 'Signed',
-    sign_rule: 'Contract Description：',
-    sign_rule_1: '1. Non-contract users may not withdraw the proceeds from diamonds, which can only be exchanged for coins, and at least 20,000 diamonds must be exchanged each time, less than 20,000 diamonds are not allowed to be exchanged.',
-    sign_rule_2: '2. Become a contract user, you can withdraw the proceeds from diamonds, and the higher the contract level, the higher the withdrawal ratio; as well as enjoy a higher ratio of coin exchange, and each time you can withdraw a minimum of 100 diamonds.',
+    //emoji
+    emoji_title: 'Stickers',//貼圖
+    emoji_getNums: ' Exchange with $ pieces',//$碎片兌換
+    emoji_get_suc: 'ongratulations on the successful exchange of the sticker, you can use it in the K-room!',//恭喜你兌換獲得貼圖成功，在K房即可使用！
+    emoji_get_noupData: 'Failed to load stickers!',//貼圖加載失敗！
+    emoji_get_noGet: 'Your sticker pieces are not enough~ Go get pieces!',//您的貼圖碎片不足哦~快去獲取碎片吧！
 
-    // Task
-    data_name: 'Data up to standard, become a contract user',
-    data_desc: 'You can apply for the contract only after meeting the data requirements',
-    bind_name: 'Bind cell phone number',
-    bind_desc: 'Please bind cell phone number first',
-    sign_name: 'Sign up now',
-    sign_desc: 'Enjoy exclusive privileged benefits for contracted users',
-    do: 'Finish it',
-    done: 'Finished',
-    sign_tips: 'The first two steps have not been completed \n cannot apply for a contract',
-    ok: 'Confirm',
+    //footer
+    footer_rule_title: 'Game rules',//遊戲規則
+    footer_rule_p1: '1. Each accumulative consumption of 100 coins will be eligible for the lucky turntable lottery', //1.每累計消費100金幣即可進行轉盤抽獎；
+    footer_rule_p2: '2. Each accumulative storage value of 300 coins can get a surprise key, which can be used to open the surprise box;',//2.每累計儲值300金幣即可獲得一把驚喜鑰匙，驚喜鑰匙可用於開啟驚喜寶箱；
+    footer_rule_p3: '3. Gift pieces can be exchanged for rare gifts in the gift box, which are K-room gifts;',//3.禮物碎片可用於兌換禮物禮盒中的稀有禮物，稀有禮物為k房禮物；
+    footer_rule_p4: '4. Sticker pieces can be used to redeem a complete set of stickers, and the exchanged stickers are permanently valid. Each player can only redeem each type of sticker once, and cannot redeem it if they already have the corresponding sticker;',//4.貼圖碎片可用於兌換整套貼圖，兌換的貼圖有效期為永久，每位玩家每種貼圖只可兌換一次，已擁有對應貼圖則無法再進行兌換；
+    footer_rule_p5: '5. The third and the eighth time to open the lucky box must win rare props and high-value coins;', //5.幸運寶箱第三次及第八次必中稀有道具及高價值金幣；
+    footer_rule_p6: '6. At the beginning of each month, the rare props will be changed and the time of must-win will be reset;', //6.每月初會進行稀有道具更換，並重置必中進度；
+    footer_rule_p7: '7. Expired props can be accumulated and stacked for the duration of use.', //7.期限道具可以進行使用期限累計疊加
+    footer_history_title: 'Draw record',//抽獎記錄
+    footer_history_noData: 'No draw information!',//暫無抽獎信息！
+    footer_co: 'Draw', //從
+    footer_get: 'from',//抽出
+    footer_emty: '',
+    //giftBox
+    giftBox_title: 'Gift box',//禮盒
+    giftBox_tips: 'Collect the pieces to exchange for rare gifts',//集齊碎片兌換稀有禮物
+    giftBox_exchange: 'Exchange',//兌換
+    giftBox_noGet: 'Your gift pieces are not enough~ Go get them!',//您的禮物碎片不足哦~快去獲取碎片吧！
 
-    // Bind
-    bind_succ: 'Your account successfully bound to \n cell phone number: %s',
+    //luckBox
+    luckBox_title: 'Treasure box award',//寶箱獎勵
 
-    // Data
-    count_title: 'from reaching the standard sign-ups',
-    count_income: 'Diamond income',
-    count_numbers: '（{0}/{1}）',
-    count_time: 'This statistical cycle is from {0} month {1} to {2} month {3}. \n There are {4} days left to enter the next statistical cycle. Please go for it',
-    done_tips: 'You have met the requirements to become a contracted user \n Go ahead and sign up',
-    undone_tips: 'You have not yet met the contracted user requirements and cannot sign up',
-    done_give: 'Successful sign-ups will receive:',
-    done_give_1: '1. Diamond proceeds can be withdrawn, and the higher the contract level, the higher the withdrawal ratio.',
-    done_give_2: '2. Get a higher ratio of coin exchange, and each time you can withdraw a minimum of 100 diamonds.',
+    //roolMsg
+    roolMsg_gx: 'Congratulations to ',//恭喜
 
-    // Apply
-    apply_title: 'The final step of the contract application:',
-    apply_desc: 'Signing a contract requires uploading an ID card for verification, and the application is successful once the verification is approved',
-    card_title: 'Hold the front of your ID card and take a picture according to the sample picture',
-    card_desc: 'to ensure the authenticity of the identity, we need to verify your ID, \n please submit a photo in accordance with the sample picture, if the ID found false you will be permanently blocked.',
-    re_upload: 'Upload again',
-    upload_title: 'Please upload a certified photo',
-    upload_desc: 'Once it\'s uploaded, we\'ll review it as soon as possible',
-    agree_agreement: 'To apply for contract is to agree',
-    apply_agreement: 'Platform Access Agreement',
-    submit_apply: 'Submit and apply for contract',
-    card_submited: 'Identity verification submitted \n No need to re-submit \n You can apply for signing directly',
+    //tabs
+    tabArr: [
+        {
+            name: 'Gift box'
+        },
+        {
+            name: 'Treasure box award'
+        },
+        {
+            name: 'Stickers'
+        }
+    ],
 
-    // Result
-    re_submit: 'Re-apply',
-    result_checking: 'Your application successfully submitted \n We will review it as soon as possible',
-    result_success: 'Congratulations, you have become a contracted user of the platform',
-    result_fail: 'Your application has been rejected',
-    result_fail_reason: 'Reason: %s',
-    result_fail_contact: 'Contact the official operation ID%s for details',
-    result_reject: 'Your application is not approved. We will be available as soon as possible for anchors of the signing process, stay tuned.',
-    sign_give: 'Successful sign-ups will receive:',
-    sign_give_1: '1. Higher priority and more recommendations for published recordings and their own Karaoke rooms.',
-    sign_give_2: '2. More exposure and more followers.',
-    sign_give_3: '3. Diamond proceeds can be withdrawn, and the higher the contract level, the higher the withdrawal ratio.',
-    sign_give_4: '4. Get a higher ratio of coin exchange, and each time you can withdraw a minimum of 100 diamonds.',
+
+    //turn
+    turn_tips1: 'ontinue to spend $ coins to get a raffle ticket',// 繼續消費$金幣即可獲得一張抽獎券
+    turn_newVer: 'Need to update to the latest version to use the prize',//該獎品需要更新到最新版本才可使用
+    turn_noGet: 'Your raffle tickets are not enough, go get them now!',//您的抽獎券不足哦，快去獲得抽獎券吧！
 }
