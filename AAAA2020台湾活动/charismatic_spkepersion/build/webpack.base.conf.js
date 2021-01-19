@@ -15,7 +15,8 @@ module.exports = {
   entry: {
     app: './src/main.js',
     app2: './src/pages/rule/main2.js',
-    app3: './src/pages/song/main3.js'
+    app3: './src/pages/song/main3.js',
+    app4: './src/pages/lastRank/main3.js'
   },
   output: {
     path: config.build.assetsRoot,

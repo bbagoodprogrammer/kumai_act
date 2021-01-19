@@ -108,14 +108,13 @@ export default {
 
 <style lang="scss">
 .slotMachineItem {
-  width: 1rem;
-  height: 2rem;
+  width: 1.51rem;
+  height: 2.5rem;
   overflow: hidden;
-  margin-left: 0.42rem;
   padding-top: 0.1rem;
   .hide {
-    height: 1.75rem;
-    margin-top: 0.1rem;
+    height: 2.5rem;
+    // margin-top: 0.1rem;
     overflow: hidden;
   }
   ul {
@@ -125,7 +124,7 @@ export default {
   }
   li {
     width: 100%;
-    height: 2rem;
+    height: 2.5rem;
     text-align: center;
     overflow: hidden;
     display: flex;
@@ -139,8 +138,8 @@ export default {
     }
     img {
       // margin-top: 0.3rem;
-      width: 0.9rem;
-      height: 0.9rem;
+      width: 1.25rem;
+      height: 1.25rem;
     }
   }
 }

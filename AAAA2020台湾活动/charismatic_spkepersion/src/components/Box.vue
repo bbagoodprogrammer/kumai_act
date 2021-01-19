@@ -7,57 +7,38 @@
     </div>
     <div class="liner">
       <div class="actLiner" :style="{width:actWidth}"></div>
-      <div class="boxItem" v-for="(item,index) in packets.levels " :key="index" :class="'box'+ index">
-        <span class="item " :class="{black:!packets.status[index] && packets.score < item,ani:!packets.status[index] && packets.score >= item}" @click="showGiftPup(index)"></span>
-        <div class="lv">Lv.{{index}}</div>
-        <div class="score" :class="{act:packets.status[index] || packets.score >= item}">{{item}}</div>
-        <i class="ligt" v-if="!packets.status[index] && packets.score >= item"></i>
+      <div class="boxItem" v-for="(item,index) in packets" :key="index" :class="'box'+ item.level">
+        <span class="item " @click="boxClick(item,index)"></span>
+        <div class="lv">Lv.{{item.level}}</div>
+        <div class="score">{{item.limit}}</div>
+        <i class="ligt"></i>
       </div>
     </div>
-    <div class="mask">
+    <div class="mask" v-show="shouLuckPup">
       <transition name="slide">
-        <div class="luckPup">
-          <slot-machine-test ref="luck"></slot-machine-test>
-          <div class="luckGo" @click="goLuck()"></div>
+        <div class="luckPup" v-show="shouLuckPup">
+          <i class="close" @click="shouLuckPup = false"></i>
+          <slot-machine-test ref="luck" :cilckItem="cilckItem" @setPacketStatus="setPacketStatus"></slot-machine-test>
+          <div class="luckGo" :class="{can:cilckItem.can,ed:cilckItem.get}" @click="goLuck()"></div>
         </div>
-
       </transition>
     </div>
-    <!-- 寶箱禮物展示 -->
-    <!-- <div class="mask" v-show="showBoxGift">
+    <!-- 不能開 -->
+    <div class="mask" v-show="showNotSingup">
       <transition name="slide">
-        <div class="boxGifts" v-if="showBoxGift">
-          <i class="close" @click="showBoxGift = !showBoxGift"></i>
-          <h3>助攻值達到 <em>{{packets.levels[showBoxIndex]}}</em> 可領取</h3>
-          <strong class="needLv">(即升級到Lv.{{showBoxIndex}}等級)</strong>
-          <div class="giftList">
-            <div class="giftItem" v-for="(item,index) in showBoxItem" :key="index">
-              <div class="imgBox">
-                <img :src="item.image" alt="" v-if="item.image">
-                <img :src="require(`../assets/img/box/${item.type}.png`)" alt="" v-else>
-              </div>
-              <strong class="gName">{{getGiftName(item)}}</strong>
-            </div>
+        <div class="suc_not" v-if="showNotSingup">
+          <i class="close" @click="showNotSingup = false"></i>
+          <div class="title"></div>
+          <p>
+            需升級到Lv.{{cilckItem.level}}，
+            及星光值達到{{cilckItem.limit}}才可抽獎哦！
+          </p>
+          <div class="okBtn" @click="showNotSingup = false">
+            我知道啦
           </div>
-          <div class="getStatus" :class="{act:isOpen}" @click="getGift()">{{packets.status[showBoxIndex]?'已領取':'領取'}}</div>
         </div>
       </transition>
-    </div> -->
-
-    <!-- 弹窗提示 -->
-    <!-- <div class="mask" v-show="showTipsPup">
-      <transition name="slide">
-        <div class="boxGifts tipsPup" v-if="showTipsPup">
-          <i class="close" @click="showTipsPup = !showTipsPup"></i>
-          <h3>閃耀值獲取攻略</h3>
-          <p class="yel">閃耀值=參賽作品收到點讚數X10+參賽作品收到金幣禮物魅力值</p>
-          <p><span class="yel">點讚數：</span>僅限前30個讚計入成績</p>
-          <p><span class="yel">特定禮物加成：</span>參賽作品以下收到4個特定禮物，支持你（10金幣）、玫瑰花束（188金幣）、彩虹獨角獸（399金幣），作品高級福運禮盒中的啤酒乾杯（110金幣），參賽作品魅力值增幅5%</p>
-          <p><span class="yel">特定時間加成：</span>活動期間21:00-21:10參賽作品收金幣禮物，魅力值額外加成10%</p>
-          <span class="ok" @click="showTipsPup = !showTipsPup">我知道啦</span>
-        </div>
-      </transition>
-    </div> -->
+    </div>
   </div>
 </template>
 <script>
@@ -72,7 +53,11 @@ export default {
     return {
       showBoxGift: false,
       showTipsPup: false,
-      showBoxIndex: {}
+      showBoxIndex: {},
+      shouLuckPup: false,
+      cilckItem: {},
+      cilckIndex: null,
+      showNotSingup: false
     }
   },
   computed: {
@@ -111,46 +96,20 @@ export default {
     goLuck() {
       this.$refs.luck.startGame()
     },
-    getGift() {
-      globalBus.$emit('commonEvent', () => {
-        if (this.isOpen) {
-          api.openPacket(this.showBoxIndex).then(res => {
-            if (res.data.response_status.code == 0) {
-              this.showBoxGift = false
-              this.vxc('setBoxStatus', this.showBoxIndex)
-              this.vxc('setToast', {
-                title: '領取成功',
-                msg: '對應獎勵已派發到您的賬戶上,<br/>請注意查收'
-              })
-            } else {
-              this.toast(res.data.response_status.error)
-            }
-          })
-        } else if (!this.packets.status[this.showBoxIndex]) {
-          this.vxc('setToast', {
-            title: '無法領取',
-            msg: `等級達到Lv.${this.showBoxIndex}(閃耀值達到${this.packets.levels[this.showBoxIndex]})<br/>才可領取喔`
-          })
-        }
-      })
+    boxClick(item, index) {
+      this.cilckItem = item
+      this.shouLuckPup = true
     },
-    getGiftName(item) {
-      if (item.type == 'gift') {
-        return 'N禮物(C金幣) *S'.replace('N', item.name).replace('C', item.coin).replace('S', item.count)
-      } else if (item.type == 'coupon') {
-        return `${item.ratio}%儲值返利券`
-      } else if (item.type == 'vip') {
-        return `${item.day}天vip`
-      } else if (item.type == 'bean') {
-        return `${item.count}金豆`
-      } else if (item.type == 'coin') {
-        return `${item.count}金幣`
-      }
+    setPacketStatus() {
+      console.log(this.cilckItem)
+      this.cilckItem.get = true
+      this.cilckItem.can = false
+      this.vxc('setPacketStatus', this.cilckItem.level - 1)
     }
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .giftBox {
   width: 7.22rem;
   height: 3.43rem;
@@ -396,13 +355,34 @@ export default {
 .luckPup {
   width: 7.5rem;
   height: 11.62rem;
-  background: url(../assets/img/luck_img/bg.png);
+  background: url(../assets/img/luck_img/luck_bg.png);
   background-size: 100% 100%;
+  position: relative;
+  .close {
+    width: 0.47rem;
+    height: 0.47rem;
+    background: url(../assets/img/close2.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0.35rem;
+    top: 1.3rem;
+  }
   .luckGo {
     width: 4rem;
     height: 1rem;
-    background: url(../assets/img/luck_img/go.png);
+    background: url(../assets/img/luck_img/go_black.png);
     background-size: 100% 100%;
+    position: absolute;
+    bottom: 3.2rem;
+    left: 1.7rem;
+    &.ed {
+      background: url(../assets/img/luck_img/luck_ed.png);
+      background-size: 100% 100%;
+    }
+    &.can {
+      background: url(../assets/img/luck_img/go.png);
+      background-size: 100% 100%;
+    }
   }
 }
 .giftBox::before {
@@ -420,5 +400,51 @@ export default {
   position: absolute;
   top: 0.88rem;
   left: 0.06rem;
+}
+.suc_not {
+  width: 7.18rem;
+  height: 4.74rem;
+  background: url(../assets/img/pup/pup_bg.png);
+  background-size: 100% 100%;
+  position: relative;
+  .close {
+    display: block;
+    width: 0.3rem;
+    height: 0.3rem;
+    background: url(../assets/img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0.2rem;
+    top: 0.2rem;
+  }
+  .title {
+    width: 3.7rem;
+    height: 1.26rem;
+    background: url(../assets/img/pup/luck_not.png);
+    background-size: 100% 100%;
+    position: absolute;
+    top: -0.6rem;
+    left: 1.7rem;
+  }
+  p {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.32rem;
+    padding: 0 0.3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .okBtn {
+    width: 2.22rem;
+    height: 0.65rem;
+    background: url(../assets/img/footer/commit.png);
+    background-size: 100% 100%;
+    margin: 0 auto;
+    color: rgba(133, 88, 14, 1);
+    text-align: center;
+    line-height: 0.65rem;
+  }
 }
 </style>

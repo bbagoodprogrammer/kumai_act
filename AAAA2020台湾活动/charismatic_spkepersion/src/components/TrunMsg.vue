@@ -3,14 +3,16 @@
     <i class="horn"></i>
     <div class="trunMsg">
       <p class="msgItem" v-for="(item,index) in notice" :key="index" v-if="index == msgIndex">
-        UID:{{item.uid}} <em class="nick"> {{item.nick}}</em>收到{{item.count}}個 <i class="giftIcon"> </i> 禮物
+        UID:{{item.uid}} <em class="nick"> {{item.nick}}</em>抽到了 <img :src="gifts[item.count].img" alt=""> <em>{{gifts[item.count].name}}</em>
+
       </p>
     </div>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex'
-import { setTimeout } from 'timers';
+import { giftArr } from "../config/gifts"
+
 export default {
   data() {
     return {
@@ -27,6 +29,10 @@ export default {
   },
   computed: {
     ...mapState(['notice']),
+    gifts() {
+      console.log(giftArr)
+      return giftArr
+    }
   },
   mounted() {
     // this.msgGo()
@@ -91,10 +97,12 @@ export default {
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        font-size: 0.24rem;
         margin-left: 0.15rem;
       }
-      .giftIcon {
+      em {
+        font-size: 0.24rem;
+      }
+      img {
         width: 0.48rem;
         height: 0.48rem;
         background: url(../assets/img/giftIcon.png);

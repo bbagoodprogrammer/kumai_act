@@ -110,7 +110,7 @@ export default {
     goHtml() {
       let token = getString("token")
       let uid = getString("uid")
-      location.href = `http://act.gosingapp.com/html/member_new/index.html?token=${token}&uid=${uid}&v=2`
+      location.href = `http://act.supervoice-app.com/html/member_new/index.html?token=${token}&uid=${uid}&v=2&lang=ar`
     }
   }
 }

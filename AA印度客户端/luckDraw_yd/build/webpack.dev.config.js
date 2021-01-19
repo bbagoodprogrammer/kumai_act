@@ -22,6 +22,7 @@ module.exports = {
     entry: {
         local: './src/local.js',
         app: './src/main.js',
+        setting: './src/pages/setting/main3.js',
         ...files,
     },
     output: {
@@ -155,6 +156,11 @@ module.exports = {
             filename: 'index.html',
             template: 'src/html/index.html',
             chunks: ['vendor', 'local', 'app'],
+        }),
+        new HtmlPlugin({
+            filename: 'setting.html',
+            template: 'src/html/index.html',
+            chunks: ['vendor', 'local', 'setting'],
         }),
 
         new VueLoaderPlugin(),

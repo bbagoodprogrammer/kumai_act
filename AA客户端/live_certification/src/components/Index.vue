@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="process">
-      <span v-for="(item,index) in processTitle" :key="index">{{item}}</span>
+      <span v-for="(item,index) in processTitle" :key="index" :class="[{act:(stage!=4&& stage>= (index+1) ) || (stage==4 && index== 0)},'store' + index]">{{item}}</span>
       <div class="liner">
         <span class="store" :class="[{act:(stage!=4&& stage>= (index+1) ) || (stage==4 && index== 0)},'store' + index]" v-for="(item,index) in processTitle" :key="index"></span>
       </div>
@@ -17,7 +17,7 @@
           <div class="imgBg" @click="callApp(1)" v-if="!idcard_img">
             <i class="addIcon"></i>
           </div>
-          <img :src="idcard_img" alt="" v-else>
+          <img :src="idcard_img" alt="" v-else class="id_cardImg">
         </div>
       </div>
       <div class="uploadPhoto noBg">
@@ -40,6 +40,7 @@
     <div class="stage2" v-else-if="stage == 2">
       <div class="uploadImg">
         <div class="imgBg" v-if="!liveImg" @click="callApp(2)">
+          <i class="tips_icon">{{lang.page_examples}}</i>
           <span class="upTips">{{lang.page_upCover}}</span>
         </div>
         <img :src="liveImg" alt="" v-else>
@@ -221,7 +222,7 @@ export default {
       font-size: 0.28rem;
       color: #999999;
       &.act {
-        color: rgba(17, 17, 17, 1);
+        color: #111111;
       }
     }
     .liner {
@@ -235,8 +236,8 @@ export default {
         display: block;
         width: 0.1rem;
         height: 0.1rem;
-        background: #ff8a8a;
-        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.16);
+        background: #fc3a3a;
+        // box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.16);
         border-radius: 50%;
         position: absolute;
         top: -0.04rem;
@@ -293,6 +294,8 @@ export default {
       &.noBg {
         margin: 0.5rem auto 0;
         box-shadow: none;
+        background: #fff;
+        border-radius: 0.12rem;
       }
       .uploadTips {
         margin-left: 0.3rem;
@@ -319,11 +322,11 @@ export default {
         justify-content: center;
         position: relative;
         > img {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          left: 0;
-          top: 0;
+          width: 3.68rem;
+          height: 2.32rem;
+          // position: absolute;
+          // left: 0;
+          // top: 0;
         }
         .imgBg {
           width: 3.68rem;
@@ -364,6 +367,21 @@ export default {
       border-radius: 0.12rem;
       margin: 0.3rem auto 0;
       position: relative;
+      .tips_icon {
+        display: block;
+        width: 0.76rem;
+        height: 0.4rem;
+        background: #000000;
+        opacity: 0.5;
+        border-radius: 0.06rem;
+        font-size: 0.24rem;
+        text-align: center;
+        line-height: 0.4rem;
+        position: absolute;
+        top: 0.2rem;
+        left: 0.2rem;
+        color: #fff;
+      }
       > img {
         width: 100%;
         height: 100%;

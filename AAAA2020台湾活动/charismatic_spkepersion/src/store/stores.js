@@ -24,6 +24,10 @@ const store = new Vuex.Store({
         groupsUserMsg: {},  //儲存各種天數的個人信息
         tab: 'total',  //当前选中tab
         setInited: 0,
+        dateArr: [],
+        totalDay: 0,
+        c_day: 0,
+        inited: 0
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -78,6 +82,7 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.groupsUserMsg = Object.assign({}, state.groupsUserMsg, { [key]: Object.assign({}, state.groupsUserMsg[key], obj) });
             }
+            console.log(state.groupsUserMsg)
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.key != 'undefined') {
@@ -85,11 +90,26 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.rankGroups = Object.assign({}, state.rankGroups, { [key]: Object.assign({}, state.rankGroups[key], obj) });
             }
-            // console.log(state.rankGroups)
+            console.log(state.rankGroups)
         },
         changTab(state, val) {
             state.tab = val
         },
+        setPacketStatus(state, val) {
+            state.packets[val].get = true
+        },
+        setTimeArr(state, val) {
+            state.dateArr = val
+        },
+        setTotalDay(state, val) {
+            state.totalDay = val
+        },
+        setC_day(state, val) {
+            state.c_day = val
+        },
+        setInited(state, val) {
+            state.inited = val
+        }
     },
     actions: {
         setloading({ commit }, boolean) {

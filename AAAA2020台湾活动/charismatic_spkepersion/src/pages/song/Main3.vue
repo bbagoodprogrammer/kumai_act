@@ -138,11 +138,11 @@ export default {
 </script>
 <style lang="scss">
 body {
-  background: RGBA(34, 33, 31, 1);
+  background: RGBA(162, 119, 243, 1);
 }
 
 .song {
-  padding-top: 1.07rem;
+  padding-top: 0.3rem;
   .noSong {
     width: 7.16rem;
     height: 2.24rem;

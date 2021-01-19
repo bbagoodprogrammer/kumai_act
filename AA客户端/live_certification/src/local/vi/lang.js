@@ -5,8 +5,8 @@ export default {
     page_notQualified_title: 'Về quyền hạn', //權限說明
     page_LiveCover_title: 'Ảnh bìa',// 直播封面
     // router/index
-    page_cardTips: 'Hãy tải thêm hình', //請上傳認證照片
-    page_cardTips2: 'Sau khi tải thành công, chúng tôi sẽ nhanh chóng xét duyệt',//上傳成功後，我們會加快審核
+    page_cardTips: 'Tải hình: ', //請上傳認證照片
+    page_cardTips2: 'Tải thành công, chúng tôi sẽ xét duyệt',//上傳成功後，我們會加快審核
     page_examples: 'Ví dụ',//示例
     page_examples_tip1: 'Tay cầm CMND, chụp theo hình mẫu',//手持身份證正面<br />按照示例圖拍照
     page_examples_tip2: 'Để bảo đảm tính xác thực của danh tính, bạn cần xác minh danh tính, nếu phát hiện CMND giả sẽ bị khóa tài khoản vĩnh viễn.',//為了保證身份的真實性，需要你進行身份驗證，如發現證件假造將永久封號。
@@ -47,4 +47,64 @@ export default {
     notQualified_tip4: '2.Người dùng nhận được tư cách idol, còn cần phải cố định số điện thoại, gửi CMND, sau khi thông qua xét duyệt mới có thể idol.', //獲得主播申請資格的用戶，還需綁定手機號碼，並提交身份認證，審核通過後才可開播。
     notQualified_tip5: '3.Idol cần phải tuân thủ quy tắc, người vi phạm sẽ bị trừng phạt theo quy tắc.', //開播需遵守平台主播行為規範，違者將按主播開播政策處罰。
 
+    //skill
+    group1: {
+        1: {
+            title: 'Nét mặt rõ ràng, hình ảnh đẹp',
+            img: [1, 2, 3]
+        },
+        2: {
+            title: 'Làm nổi bật đặc điểm cá nhân',
+            img: [4, 5, 6]
+        },
+        3: {
+            title: 'Nội dung rõ ràng',
+            img: [7, 8, 9]
+        }
+    },
+    group2: {
+        1: {
+            title: 'Hình ảnh mờ, không thấy rõ nét mặt',
+            img: [10, 11, 12]
+        },
+        2: {
+            title: 'Khuôn mặt bị cắt, không ngay giữa',
+            img: [13, 14, 15]
+        },
+
+    },
+    group3: {
+        title: [
+            'Hình ảnh sạch sẽ, rõ ràng, kín đáo',
+            'Ảnh nửa người đẹp nhất, khoe ra đường nét thanh tú',
+            'Không được ảnh khoả thân, viền đen viền trắng, văn bản, logo khác, không phải hình người'
+        ],
+        img: [16, 17, 18, 19, 20, 21]
+    },
+    group4: [
+        {
+            img: 22,
+            name: 'Tôi đang live ẩm thực'
+        },
+        {
+            img: 23,
+            name: 'Tôi biết nấu ăn'
+        },
+        {
+            img: 24,
+            name: 'Tôi đang Cosplay'
+        },
+        {
+            img: 25,
+            name: 'Tôi đang tán gái'
+        },
+        {
+            img: 26,
+            name: 'Tôi đang tập thể dục'
+        },
+        {
+            img: 27,
+            name: 'Tôi đang nhảy múa'
+        },
+    ]
 }

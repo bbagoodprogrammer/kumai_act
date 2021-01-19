@@ -71,85 +71,87 @@ function get(url, config) {
 //获取活动基础信息
 function getDefault(more) {
     if (more) {
-        return axios.get(`/songking2020/init.php?token=${token}`);
+        return axios.get(`/charismatic_spkepersion/init.php?token=${token}`);
     }
     if (token) {
-        return get(`/songking2020/init.php?token=${token}`);
+        return get(`/charismatic_spkepersion/init.php?token=${token}`);
     } else {
-        return get(`/songking2020/init.php`);
+        return get(`/charismatic_spkepersion/init.php`);
     }
 }
 
 //開箱
 function openPacket(level) {
-    return get(`/songking2020/openPacket.php?level=${level}&token=${token}`)
+    return get(`/charismatic_spkepersion/openPacket.php?level=${level}&token=${token}`)
 }
 
 //紅包訂閱
 function subscribe() {
-    return get(`/songking2020/subscribe.php?token=${token}`)
+    return get(`/charismatic_spkepersion/subscribe.php?token=${token}`)
 }
 
 
 //開紅包
 function openRedPacket() {
-    return get(`/songking2020/openRedPacket.php?token=${token}`)
+    return get(`/charismatic_spkepersion/openRedPacket.php?token=${token}`)
+}
+
+//關閉紅包彈窗
+function hideRedPacket() {
+    return axios.get(`/charismatic_spkepersion/hideRedPacket.php?token=${token}`)
 }
 
 //紅包記錄
 function redPacketHistory(from, more) {
     if (more) {
-        return axios.get(`/songking2020/redPacketHistory.php?from=${from}&token=${token}`)
+        return axios.get(`/charismatic_spkepersion/redPacketHistory.php?from=${from}&token=${token}`)
     }
-    return get(`/songking2020/redPacketHistory.php?from=${from}&token=${token}`)
+    return get(`/charismatic_spkepersion/redPacketHistory.php?from=${from}&token=${token}`)
 }
 
-//關閉紅包彈窗
-function hideRedPacket() {
-    return axios.get(`/songking2020/hideRedPacket.php?token=${token}`)
-}
 
 //報名作品列表
 function song() {
-    return get(`/songking2020/song.php?token=${token}`)
+    return get(`/charismatic_spkepersion/song.php?token=${token}`)
 }
 
 //選擇作品報名
 function upload(sid) {
-    return get(`/songking2020/upload.php?token=${token}&sid=${sid}`)
+    return get(`/charismatic_spkepersion/upload.php?token=${token}&sid=${sid}`)
 }
 
 
-
+//開寶箱記錄
+function openPacketList() {
+    return get(`/charismatic_spkepersion/openPacketList.php?token=${token}`)
+}
 
 //報名
 function singUp() {
-    return get(`/songking2020/reg.php?token=${token}`)
+    return get(`/charismatic_spkepersion/reg.php?token=${token}`)
 }
 
-
-
-//飆升作品記錄
-function upRank() {
-    if (token) {
-        return get(`/songking2020/upRank.php?token=${token}`)
-    }
-    return get(`/songking2020/upRank.php`)
-}
-
-//魅力歌王榜
-function rank(from) {
-    if (token) {
-        return get(`/songking2020/rank.php?token=${token}&from=${from}`)
-    }
-    return get(`/songking2020/rank.php?from=${from}`)
-}
-
-
-//上上报
+//上报
 function report(from) {
-    return axios.get(`/songking2020/report.php?from=${from}&token=${token}`)
+    return axios.get(`/charismatic_spkepersion/report.php?from=${from}&token=${token}`)
 }
+
+
+//月榜
+function mounth() {
+    return axios.get(`/charismatic_spkepersion/month.php`)
+}
+
+// //魅力歌王榜
+// function rank(from) {
+//     if (token) {
+//         return get(`/songking2020/rank.php?token=${token}&from=${from}`)
+//     }
+//     return get(`/songking2020/rank.php?from=${from}`)
+// }
+
+
+
 
 
 
@@ -160,13 +162,13 @@ const httpConfig = {
     singUp,
     song,
     upload,
-    upRank,
-    rank,
     subscribe,
     openPacket,
     openRedPacket,
     redPacketHistory,
     hideRedPacket,
-    report
+    report,
+    openPacketList,
+    mounth
 }
 export default httpConfig

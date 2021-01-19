@@ -3,31 +3,53 @@
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
-        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href=""></a>
-        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href=""></a>
+        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">魅力日榜</a>
+        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">魅力總榜</a>
       </div>
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh" v-if="actStatus == 1">刷新</a>
     </div>
     <div class="rankTips">
-      <div class="giftTips" v-if="mainTab == 0">
-        <p>閃耀值=參賽作品收到點讚數X10+ 參賽作品收到金幣禮物魅力值 <br />參賽作品收到以下特定禮物，魅力值增幅5%</p>
-        <div class="giftItem">
-          <div class="item" v-for="(item,index) in giftArr" :key="index">
-            <div class="imgBox">
-              <i class="boxIcon" v-if="index == 3"></i>
-              <img :src="require(`../assets/img/rank/gift/gift${index + 1}.png`)" alt="">
-            </div>
-            <strong>{{item}}</strong>
-          </div>
-        </div>
-        <p class="timeTips">21:00-21:10參賽作品收到金幣禮物，魅力值額外加成10%</p>
+      <div class="giftTips">
+        <p>星光值=收到點讚數X10+收到金幣禮物魅力值</p>
+        <p class="timeTips">每冠名贊助1次紅包，星光值加成2%，上限10%</p>
       </div>
-      <p v-else>帶有“年度魅力歌王大賽”標籤的參賽作品，在發佈後48小時內，收到50000金幣魅力值的禮物，可在APP內的歡歌榜分數飆升20%</p>
+    </div>
+    <DayTabs :tab="tab" @changeClick="tabClick" v-if="mainTab == 0" />
+    <!-- 倒計時 -->
+    <div class="downTimeBox2">
+      <div v-if="mainTab == 0">
+        <p v-if="tab == c_day">今日日榜結束倒計時</p>
+        <p v-else-if="tab > c_day">今日日榜開始倒計時</p>
+        <div class="noTime" v-else>今日日榜已結束</div>
+      </div>
+      <div v-if="mainTab == 1">
+        <p v-if="actStatus == 0">總榜開始倒計時</p>
+        <p v-else-if="actStatus == 1">總榜結束倒計時</p>
+        <div class="noTime" v-else>活動已結束</div>
+      </div>
+      <div class="timeDown" v-if=" surplusTime.day">
+        <div class="day">
+          <strong>{{surplusTime.day}}</strong>
+          <em>天</em>
+        </div>
+        <div class="hours">
+          <strong>{{surplusTime.hour}}</strong>
+          <em>時</em>
+        </div>
+        <div class="min">
+          <strong>{{surplusTime.minute}}</strong>
+          <em>分</em>
+        </div>
+        <div class="second">
+          <strong>{{surplusTime.second}}</strong>
+          <em>秒</em>
+        </div>
+      </div>
     </div>
 
     <!-- 总榜 -->
     <div class="rankList">
-      <ul v-if="mainTab==0" class="list day">
+      <ul class="list day">
         <li v-for="(item,index) in rank.list" :key="index" :class="'rank' +item.rank">
           <div class="rank">{{item.rank}}</div>
           <div class="imgBox" @click="goUser(item.uid)">
@@ -38,48 +60,19 @@
           </div>
           <div class="msg">
             <div class="nick">{{item.nick}}</div>
-            <div class="add" v-if="item.ratio > 0">加成{{item.ratio}}%</div>
+            <div class="add" v-if="item.rate > 0">加成{{item.rate}}%</div>
           </div>
           <div class="score">
-            <div class="lv">Lv.{{item.level}} <em class="lvScore">閃耀值：{{item.score}}</em> </div>
+            <!-- Lv.{{item.level}}  -->
+            <div class="lv"><em class="lvScore">{{mainTab == 0?'星光值：':'名人值：'}}{{item.score}}</em> </div>
             <div class="iconScore">
-              <span> <i class="sIcon1"></i>{{item.like}}</span>
-              <span> <i class="sIcon2"></i>{{item.charm}}</span>
+              <!-- is_prize -->
+              <span v-if="item.pro">中獎概率:{{item.pro}}%</span>
+              <span v-if="item.is_prize" class="luck_ed">中獎</span>
             </div>
           </div>
         </li>
       </ul>
-      <!-- 飙升 -->
-      <div class="upTopRank" v-else-if="mainTab==1">
-        <div class="topTabs">
-          <span :class="{act:tab == 1}" @click="tabClick(1)">48小時內發佈</span>
-          <span :class="{act:tab == 2}" @click="tabClick(2)">48小時前發佈</span>
-        </div>
-        <div class="listHeader">
-          <span class="name">作品名稱</span>
-          <span class="bar">收禮進度</span>
-          <span class="status">當前狀態</span>
-        </div>
-        <ul class="list total">
-          <li v-for="(item,index) in rank.list" :key="index">
-            <div class="rank">{{index +1}}</div>
-            <img :src="item.cover" alt="" class="av" @click="goSong(item.sid)">
-            <div class="songMsg">
-              <div class="nick">{{item.name}}</div>
-              <div class="tm">{{getDate(item.time,1)}}</div>
-            </div>
-            <div class="bar">
-              <strong>{{item.score}}/{{item.target}}</strong>
-              <span class="actBar" :class="{max:(item.score/item.target) *100 >93,min:item.score > 0,black:tab == 2 && item.status == 0}" :style="{width:(item.score/item.target) *100+'%'}"></span>
-            </div>
-            <div class="status">
-              <strong v-if="tab == 2">{{item.status == 1?'已飙升':'已超時'}}</strong>
-              <strong v-else>{{item.status == 1?'已飙升':'待飙升'}}</strong>
-              <span v-if="!item.status && tab == 1">剩餘：{{getDate(item.ltime,2)}}</span>
-            </div>
-          </li>
-        </ul>
-      </div>
 
       <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
       <div class="listTipsBox" v-if="rank.loading|| rank.none">
@@ -100,6 +93,8 @@ import getUrlString from '../utils/getString.js';
 import APP from "../utils/openApp"
 import api from "../api/apiConfig"
 import getDate from "../utils/getDate"
+import DayTabs from "./DayTabs"
+import downTime from '../utils/downTime.js'
 // 为了清晰显示各字段以及提供更灵活的配置，不采用mixin实现
 // store.js 每项包含以下字段（需要修改的字段只有loadOnce，其它为当前榜单加载状态）：loadCount loading loadEnd none list <loadOnce>
 // 如果不需要设置loadOnce，直接设置空对象即可rankGroups:{}
@@ -118,7 +113,7 @@ import getDate from "../utils/getDate"
 // }
 
 export default {
-  components: {},
+  components: { DayTabs },
   data() {
     return {
       mainTab: 0,
@@ -128,42 +123,37 @@ export default {
       timer2: null,
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
-      firstTask: true,
-      giftArr: [
-        '支持你',
-        '玫瑰花束',
-        '彩虹獨角獸',
-        '啤酒乾杯'
-      ]
+      firstTask: true
     }
   },
   watch: {
-    // nowDay(val) {
-    //   this.tab = val
-    //   this.$nextTick(() => {
-    //     if (!this.rank.loadCount) {
-    //       this.onScroll();
-    //     }
-    //   });
-    // }
+    c_day(val) {
+      this.tab = val
+      this.$nextTick(() => {
+        if (!this.rank.loadCount) {
+          this.onScroll();
+        }
+      });
+    }
   },
   computed: {
-    ...mapState(['rankGroups', "setInited", "isShare", "actStatus"]),
+    ...mapState(['rankGroups', "setInited", "isShare", "actStatus", "c_day", "inited", "dateArr"]),
     rankKey() {
-      return this.mainTab == 0 ? 'total' : this.tab;
+      return this.mainTab == 1 ? 'total' : this.tab;
     },
     rankApi() {
       if (this.isShare) {
-        var dayApi = `/songking2020/upRank.php?`;
-        var totalApi = `/songking2020/rank.php?from={from}`;
+        var dayApi = `/charismatic_spkepersion/rank.php?tm={day}&from={from}`;
+        var totalApi = `/charismatic_spkepersion/rank.php?from={from}`;
         var api = this.rankKey == 'total' ? totalApi : dayApi;
-        return api
+        return api.replace('{day}', this.dateArr[this.tab - 1]).replace('{type}', this.showType);
       } else {
-        var dayApi = `/songking2020/upRank.php?token={token}`;
-        var totalApi = `/songking2020/rank.php?token={token}&from={from}`;
+        var dayApi = `/charismatic_spkepersion/rank.php?token={token}&tm={day}&from={from}`;
+        var totalApi = `/charismatic_spkepersion/rank.php?token={token}&from={from}`;
         var api = this.rankKey == 'total' ? totalApi : dayApi;
         const token = getUrlString('token') || '';
-        return api.replace('{token}', token);
+        console.log(this.tab)
+        return api.replace('{day}', getDate(new Date(this.dateArr[this.tab - 1] * 1000), 4)).replace('{token}', token)
       }
     },
     rankSize() {
@@ -173,6 +163,9 @@ export default {
     rank() {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
+      if (rankConf.second && rankConf.second > 0) {
+        this.downTimeGo('time' + this.rankKey, rankConf.second)
+      }
       return rankConf;
     },
   },
@@ -196,15 +189,18 @@ export default {
     },
     tabClick(tab) { //日榜切换
       this.tab = tab;
-      // this.vxc('changTab', this.rankKey)
-      // this.vxc('changTab', this.rankKey)
-      // this.$nextTick(() => {
-      //   if (!this.rank.loadCount) {
-      //     this.onScroll();
-      //   }
-      // });
+      // var nowTab = this.rankKey >= this.c_day ? this.c_day : this.rankKey //存当天选择的tab索引用于底部个人信息查找
+      this.vxc("changTab", this.rankKey)
+      this.$nextTick(() => {
+        if (!this.rank.loadCount) {
+          this.onScroll();
+        }
+      });
     },
     onScroll() {
+      if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
+        return
+      }
       if (!this.rank.loading && !this.rank.loadEnd) {
 
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
@@ -226,34 +222,18 @@ export default {
               set('loadEnd', true);
               return;
             }
-            //跟随榜单变换个人信息
-            if (mainTab == 1) {
-              let user = response_data.user
-              user['total'] = response_data.infos.total
-              user['up'] = response_data.infos.up
-              this.vxc('updateRankGroups', { //当前日榜信息
-                key: 1,
-                loadCount: 1,
-                loadEnd: response_data.infos.valid.length < 20,
-                loading: false,
-                none: response_data.infos.valid.length == 0,
-                list: response_data.infos.valid,
-              })
-              this.vxc('updateRankGroups', { //当前日榜信息
-                key: 2,
-                loadCount: 1,
-                loadEnd: response_data.infos.invalid.length < 20,
-                loading: false,
-                none: response_data.infos.invalid.length == 0,
-                list: response_data.infos.invalid,
-              })
-              this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
-                key: key,
-                msg: user
+            //个人信息
+            if (response_data.rank) {
+              this.vxc("changGroupsUserMsg", {//初始当前日榜个人信息
+                key: this.rankKey,
+                msg: response_data.rank
               })
             }
+
+            //倒计时
+            set('second', response_data.load)
             const arr = response_data.list;
-            if (arr.slice && mainTab == 0) {
+            if (arr.slice) {
               const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
               set('loadCount', loadCount + 1);
               if (arr.length) {
@@ -319,7 +299,21 @@ export default {
         var a, i, e = parseInt(t / 3600);
         return (e < 10 ? "0" + e : e) + "h" + ((a = parseInt(t % 3600 / 60)) < 10 ? "0" + a : a) + "min";
       }
-    }
+    },
+    downTimeGo(timeName, val) {
+      clearInterval(this.timer)
+      if (!downTime(timeName)) {
+        downTime(timeName, val);
+      }
+      this.surplusTime = downTime(timeName);
+      this.timer = setInterval(() => {
+        this.surplusTime = downTime(timeName);
+        if (this.surplusTime.end) {
+          clearInterval(this.timer)
+          // this.$store.commit("changday_down_time", 0)  //當天剩餘時間
+        }
+      }, 1000)
+    },
   },
 }
 </script>
@@ -330,39 +324,30 @@ export default {
   padding: 0.24rem 0 0;
   position: relative;
   .mainTabs {
-    // width: 7rem;
-    height: 0.9rem;
     margin: 0 auto;
     position: relative;
     .tabs {
-      height: 0.9rem;
+      width: 7.18rem;
+      height: 0.88rem;
       display: flex;
       justify-content: center;
       align-items: center;
       margin: 0 auto;
+      background: url(../assets/img/rankTabs.png);
+      background-size: 100% 100%;
       a {
         display: block;
-        width: 3.75rem;
+        width: 3.56rem;
         height: 100%;
         text-align: center;
         line-height: 0.9rem;
-        color: rgba(200, 249, 205, 1);
+        font-size: 0.32rem;
+        color: rgba(255, 255, 255, 0.6);
         transition: all 0.1s linear;
-        &.tab1 {
-          background: url(../assets/img/rank/rankTab1.png);
+        &.current {
+          color: rgba(133, 88, 14, 1);
+          background: url(../assets/img/rank_tab_act.png);
           background-size: 100% 100%;
-          &.current {
-            background: url(../assets/img/rank/rankTab1_act.png);
-            background-size: 100% 100%;
-          }
-        }
-        &.tab2 {
-          background: url(../assets/img/rank/rankTab2.png);
-          background-size: 100% 100%;
-          &.current {
-            background: url(../assets/img/rank/rankTab2_act.png);
-            background-size: 100% 100%;
-          }
         }
       }
     }
@@ -373,10 +358,7 @@ export default {
         text-align: center;
         font-size: 0.28rem;
         line-height: 0.4rem;
-        margin: 0.25rem 0 0.2rem;
-      }
-      .timeTips {
-        margin: 0.75rem 0 0.24rem;
+        margin: 0.1rem 0;
       }
       .giftItem {
         padding: 0 0.2rem;
@@ -420,10 +402,12 @@ export default {
     }
   }
   .rankList {
-    width: 7.1rem;
-    border: 0.05rem solid RGBA(255, 228, 152, 1);
+    width: 7.2rem;
+    background: url(../assets/img/rankBg.png) no-repeat;
+    background-size: 100% auto;
     border-radius: 0.2rem;
-    margin: 0 auto;
+    margin: 0.28rem auto;
+    padding-top: 0.05rem;
     .upTopRank {
       .topTabs {
         width: 6.4rem;
@@ -471,6 +455,7 @@ export default {
     }
     .list {
       width: 7.1rem;
+      margin: 0 auto;
       &.total {
         .rank {
           width: 0.4rem;
@@ -559,6 +544,9 @@ export default {
         align-items: center;
         position: relative;
         padding: 0 0.3rem;
+        margin-bottom: 0.04rem;
+        background: url(../assets/img/rank/rank4.png);
+        background-size: 100% 100%;
         .rank {
           width: 0.76rem;
           height: 0.65rem;
@@ -609,13 +597,13 @@ export default {
           .add {
             width: 1.07rem;
             height: 0.33rem;
-            background: linear-gradient(90deg, #d19d51 0%, #edca92 100%);
+            background: linear-gradient(90deg, #ffd6ba 0%, #fdf2d5 100%);
             border: 0.02rem solid #ffef9d;
             box-sizing: border-box;
             border-radius: 0.17rem;
             text-align: center;
             line-height: 0.33rem;
-            color: rgba(96, 37, 0, 1);
+            color: rgba(133, 88, 14, 1);
             font-size: 0.22rem;
             margin-top: 0.15rem;
             white-space: nowrap;
@@ -623,12 +611,12 @@ export default {
         }
         .score {
           flex: 1;
-          width: 2.48rem;
+          width: 2.58rem;
           .lv {
             white-space: nowrap;
             color: rgba(252, 245, 193, 1);
             font-size: 0.24rem;
-            text-align: center;
+            text-align: right;
             em {
               font-size: 0.24rem;
             }
@@ -636,11 +624,12 @@ export default {
           .iconScore {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-end;
             font-size: 0.28rem;
             margin-top: 0.15rem;
+            white-space: nowrap;
             span {
-              font-size: 0.28rem;
+              font-size: 0.22rem;
               display: flex;
               align-items: center;
               i {
@@ -657,9 +646,19 @@ export default {
                 background-size: 100% 100%;
               }
             }
+            .luck_ed {
+              width: 0.64rem;
+              height: 0.32rem;
+              background: linear-gradient(90deg, #ff4571 0%, #ff67b2 100%);
+              border-radius: 0.16rem;
+              font-size: 0.21rem;
+              margin-left: 0.1rem;
+            }
           }
         }
         &.rank1 {
+          background: url(../assets/img/rank/rank1.png);
+          background-size: 100% 100%;
           .rank {
             text-indent: -999rem;
             background: url(../assets/img/rank/top1.png);
@@ -667,6 +666,8 @@ export default {
           }
         }
         &.rank2 {
+          background: url(../assets/img/rank/rank2.png);
+          background-size: 100% 100%;
           .rank {
             text-indent: -999rem;
             background: url(../assets/img/rank/top2.png);
@@ -674,6 +675,8 @@ export default {
           }
         }
         &.rank3 {
+          background: url(../assets/img/rank/rank3.png);
+          background-size: 100% 100%;
           .rank {
             text-indent: -999rem;
             background: url(../assets/img/rank/top3.png);
@@ -711,6 +714,47 @@ export default {
   justify-content: center;
   color: #fef978;
   font-size: 0.24rem;
+}
+
+.downTimeBox2 {
+  margin: 0.11rem auto 0;
+  width: 6.98rem;
+  text-align: center;
+  position: relative;
+  p {
+    width: 6.98rem;
+    color: rgba(255, 255, 255, 1);
+    font-size: 0.32rem;
+  }
+  .timeDown {
+    width: 5.15rem;
+    padding: 0 0.09rem;
+    margin: 0.17rem auto 0;
+    display: flex;
+    justify-content: space-between;
+    > div {
+      height: 100%;
+      line-height: 0.6rem;
+      display: flex;
+      align-items: center;
+      strong {
+        display: block;
+        text-align: center;
+        width: 0.98rem;
+        height: 0.98rem;
+        line-height: 0.98rem;
+        background: url(../assets/img/tmBg.png);
+        background-size: 100% 100%;
+      }
+      em {
+        font-size: 0.24rem;
+        margin: 0.2rem 0.05 0;
+      }
+    }
+  }
+  .noTime {
+    line-height: 0.6rem;
+  }
 }
 .listBtn {
   width: 7.05rem;

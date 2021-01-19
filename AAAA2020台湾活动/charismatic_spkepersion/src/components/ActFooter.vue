@@ -2,32 +2,17 @@
   <div class="footerBar">
     <div class="acrStatus" :class="{noStart:astState == 0,actEd:astState == 2,singUp:astState == 1}" @click="singUp()">
       <div class="actIng" v-if="astState === 3">
-        <div class="total" v-if="tab != 'total'">
+        <div class="total" :class="'rank' + nowMsg.rank">
+          <div class="rank">{{nowMsg.rank == 0?'未上榜':nowMsg.rank}}</div>
           <div class="imgBox" @click="goUser(nowMsg.uid)">
             <img v-if="nowMsg.frame &&nowMsg.frame != ''" :src="nowMsg.frame" class="frame" alt="">
             <img v-else-if="nowMsg.nob > 0" :src="require(`../assets/img/nob/${nowMsg.nob}.png`)" class="nob" alt="">
             <img v-lazy="nowMsg.avatar" alt="" class="av">
           </div>
-          <!-- <img :src="nowMsg.avatar" alt="" class="av"> -->
           <div class="songMsg">
-            <div class="mySong">我的參賽歌曲數：{{nowMsg.total}}</div>
-            <div class="topNum">已飆升歌曲數：{{nowMsg.up}}</div>
-          </div>
-          <div class="commitSongBtn" @click="commitSong()">上傳作品</div>
-        </div>
-        <div class="left" :class="'rank' +nowMsg.rank" v-else>
-          <div class="rank">{{nowMsg.rank}}</div>
-          <div class="imgBox" @click="goUser(nowMsg.user.uid)">
-            <img v-if="nowMsg.user.frame &&nowMsg.user.frame != ''" :src="nowMsg.user.frame" class="frame" alt="">
-            <img v-else-if="nowMsg.user.nob > 0" :src="require(`../assets/img/nob/${nowMsg.user.nob}.png`)" class="nob" alt="">
-            <img v-lazy="nowMsg.user.avatar" alt="" class="av">
-          </div>
-          <div class="score">
-            <div class="lv">Lv.{{nowMsg.level}} <em class="lvScore">閃耀值：{{nowMsg.score}}</em> </div>
-            <div class="iconScore">
-              <span> <i class="sIcon1"></i>{{nowMsg.like}}</span>
-              <span> <i class="sIcon2"></i>{{nowMsg.charm}}</span>
-            </div>
+            <div class="score" v-if="tab == 'total'">總榜星光值:{{nowMsg.score}}</div>
+            <div class="score" v-else>{{act_day}}日榜星光值:{{nowMsg.score}}</div>
+            <div class="add" v-if="nowMsg.rate > 0">加成{{nowMsg.rate}}%</div>
           </div>
           <div class="commitSongBtn" @click="commitSong()">上傳作品</div>
         </div>
@@ -40,9 +25,11 @@ import { mapState } from 'vuex'
 import { globalBus } from '../utils/eventBus'
 import api from "../api/apiConfig"
 import getString from "../utils/getString"
+import getDate from "../utils/getDate"
+
 export default {
   computed: {
-    ...mapState(['actStatus', 'reg', 'tab', 'groupsUserMsg', "isShare"]),
+    ...mapState(['actStatus', 'reg', 'tab', 'groupsUserMsg', "isShare", "dateArr", "c_day"]),
     astState() {
       if (this.actStatus === 0) { //活动未开始
         return 0
@@ -50,32 +37,29 @@ export default {
         return 2
       } else if (!this.reg || this.isShare) { //活动开始未报名，或者分享
         return 1
-      } else if (this.reg) { //活动开始已报名
+      } else if (this.reg && this.tab <= this.c_day) { //活动开始已报名
         return 3
       }
     },
     nowMsg() {
       return this.groupsUserMsg[this.tab] ? this.groupsUserMsg[this.tab].msg : {}
+    },
+    act_day() {
+      return getDate(new Date(this.dateArr[this.tab] * 1000), 3)
     }
   },
   methods: {
     singUp() {
       globalBus.$emit('commonEvent', () => {
-        if (this.astState == 1) {
-          api.singUp().then(res => {
-            if (res.data.response_status.code == 0) {
-              this.$parent.$refs.scorll.onRefresh()
-              let top = res.data.response_data.top
-              if (top) {
-                this.vxc('setToast', {
-                  msg: `恭喜您2020年1-10月作品總收金幣禮魅力值排名第${top[0]},獲得本活動魅力歌王榜魅力值加成${top[1]}%`,
-                })
-              }
-            } else {
-              this.toast(res.data.response_status.error)
-            }
-          })
-        }
+        api.singUp().then(res => {
+          if (res.data.response_status.code == 0) {
+            this.$parent.$refs.scorll.onRefresh()
+            this.$parent.$refs.getDefaultData()
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+
       })
     },
     commitSong() {
@@ -102,13 +86,12 @@ export default {
   z-index: 1000;
   .acrStatus {
     width: 7.5rem;
-    height: 1.27rem;
+    height: 1.4rem;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url(../assets/img/footer.png);
-    background-size: contain;
+
     &.noStart {
       height: 0.96rem;
       background: url(../assets/img/footer/noStart.png);
@@ -128,17 +111,24 @@ export default {
   .actIng {
     width: 100%;
     height: 100%;
+    border-top: 0.04rem solid RGBA(255, 246, 219, 1);
+    background: linear-gradient(-60deg, #9b69f8, #9953ff);
     .total {
       width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: flex-start;
+      .rank {
+        width: 1.3rem;
+        text-align: center;
+        white-space: nowrap;
+      }
       .imgBox {
         width: 1.1rem;
         height: 1.1rem;
         position: relative;
-        margin-left: 0.6rem;
+        margin-left: 0.1rem;
         .nob {
           width: 1.1rem;
           height: 1.1rem;
@@ -170,9 +160,54 @@ export default {
         }
       }
       .songMsg {
+        white-space: nowrap;
         font-size: 0.26rem;
         .topNum {
           margin-top: 0.1rem;
+        }
+        .add {
+          width: 1.07rem;
+          height: 0.33rem;
+          background: linear-gradient(90deg, #ffd6ba 0%, #fdf2d5 100%);
+          border: 0.02rem solid #ffef9d;
+          box-sizing: border-box;
+          border-radius: 0.17rem;
+          text-align: center;
+          line-height: 0.33rem;
+          color: rgba(133, 88, 14, 1);
+          font-size: 0.22rem;
+          margin-top: 0.15rem;
+          white-space: nowrap;
+        }
+      }
+      &.rank1 {
+        .rank {
+          width: 0.75rem;
+          height: 0.65rem;
+          margin-left: 0.5rem;
+          text-indent: -999rem;
+          background: url(../assets/img/rank/top1.png);
+          background-size: 100% 100%;
+        }
+      }
+      &.rank2 {
+        .rank {
+          width: 0.75rem;
+          height: 0.65rem;
+          margin-left: 0.5rem;
+          text-indent: -999rem;
+          background: url(../assets/img/rank/top2.png);
+          background-size: 100% 100%;
+        }
+      }
+      &.rank3 {
+        .rank {
+          width: 0.75rem;
+          height: 0.65rem;
+          margin-left: 0.5rem;
+          text-indent: -999rem;
+          background: url(../assets/img/rank/top3.png);
+          background-size: 100% 100%;
         }
       }
     }
@@ -185,132 +220,7 @@ export default {
       font-size: 0.24rem;
       color: rgba(126, 26, 6, 1);
       line-height: 0.65rem;
-      margin-left: 0.7rem;
-    }
-  }
-  .left {
-    height: 1.4rem;
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding: 0 0.3rem;
-    .rank {
-      width: 0.76rem;
-      height: 0.65rem;
-      text-align: center;
-      line-height: 0.65rem;
-      font-size: 0.32rem;
-    }
-    .imgBox {
-      width: 1.1rem;
-      height: 1.1rem;
-      position: relative;
-      .nob {
-        width: 1.1rem;
-        height: 1.1rem;
-        position: absolute;
-        top: 0rem;
-        left: 0rem;
-        z-index: 10;
-      }
-      .frame {
-        width: 1.5rem;
-        height: 1.5rem;
-        position: absolute;
-        top: -0.21rem;
-        left: -0.2rem;
-        z-index: 10;
-      }
-      .av {
-        width: 0.88rem;
-        height: 0.88rem;
-        position: absolute;
-        top: 0.1rem;
-        left: 0.11rem;
-        border-radius: 50%;
-        box-sizing: border-box;
-        border: 0.04rem solid #f7e0a0;
-      }
-    }
-    .msg {
-      width: 2rem;
-      .nick {
-        font-size: 0.28rem;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
-      .add {
-        width: 1.07rem;
-        height: 0.33rem;
-        background: linear-gradient(90deg, #d19d51 0%, #edca92 100%);
-        border: 0.02rem solid #ffef9d;
-        box-sizing: border-box;
-        border-radius: 0.17rem;
-        text-align: center;
-        line-height: 0.33rem;
-        color: rgba(96, 37, 0, 1);
-        font-size: 0.22rem;
-        margin-top: 0.15rem;
-      }
-    }
-    .score {
-      flex: 1;
-      .lv {
-        white-space: nowrap;
-        color: rgba(252, 245, 193, 1);
-        font-size: 0.24rem;
-        text-align: center;
-        em {
-          font-size: 0.24rem;
-        }
-      }
-      .iconScore {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 0.28rem;
-        margin-top: 0.15rem;
-        span {
-          font-size: 0.28rem;
-          display: flex;
-          align-items: center;
-          i {
-            width: 0.36rem;
-            height: 0.36rem;
-            margin-right: 0.05rem;
-          }
-          .sIcon1 {
-            background: url(../assets/img/rank/sIcon1.png);
-            background-size: 100% 100%;
-          }
-          .sIcon2 {
-            background: url(../assets/img/rank/sIcon2.png);
-            background-size: 100% 100%;
-          }
-        }
-      }
-    }
-    &.rank1 {
-      .rank {
-        text-indent: -999rem;
-        background: url(../assets/img/rank/top1.png);
-        background-size: 100% 100%;
-      }
-    }
-    &.rank2 {
-      .rank {
-        text-indent: -999rem;
-        background: url(../assets/img/rank/top2.png);
-        background-size: 100% 100%;
-      }
-    }
-    &.rank3 {
-      .rank {
-        text-indent: -999rem;
-        background: url(../assets/img/rank/top3.png);
-        background-size: 100% 100%;
-      }
+      margin-left: 0.4rem;
     }
   }
 }

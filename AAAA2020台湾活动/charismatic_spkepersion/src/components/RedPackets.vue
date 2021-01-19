@@ -12,14 +12,15 @@
       </div>
     </div>
     <div class="redTips">
-      帶“年度魅力歌王大賽”標籤作品每收到{{redPacket.step}}個<i></i>禮物<br /> 全體用戶可開啟紅包
+      帶“魅力代言人大賽”標籤作品每收到{{redPacket.step}}個<i></i>禮物<br /> 全體用戶可開啟紅包
     </div>
     <div class="subscribe" @click="subscribe()">
       {{redPacket.subscribe?'取消預約':'預約搶紅包'}}
     </div>
-    <div class="lastOpenPacketPeople" v-if="naming.uid">
-      <div class="title">上一輪紅包由以下歌友冠名贊助</div>
-      <div class="people">
+    <!-- -->
+    <div class="lastOpenPacketPeople">
+      <div class="title"> <span v-if="naming.uid" @click="peopleType = 1" :class="{act:peopleType == 1}">上一輪紅包由以下歌友冠名贊助</span> <span @click="peopleType = 2" :class="{act:peopleType == 2}">我的赞助</span></div>
+      <div class="people" v-if="naming.uid && peopleType == 1">
         <div class="imgBox" @click="goSong(naming.sid)">
           <img v-lazy="naming.avatar" alt="" class="av">
           <span class="br"></span>
@@ -28,6 +29,14 @@
         <div class="score">
           <i></i>
           <strong>x{{naming.count}}</strong>
+        </div>
+      </div>
+      <div class="my_vote" v-else>
+        <div class="tips">我贊助的紅包數：{{rate.num}}<span>加成:{{rate.rate}}%</span></div>
+        <div class="liner">
+          <div class="actLiner" :style="{width:rate.rate*10 +'%'}"></div>
+          <span v-for="(item,index) in 5" :key="index"> <em>{{item*2}}%</em></span>
+          <i class="add">加成:</i>
         </div>
       </div>
     </div>
@@ -101,6 +110,21 @@
         </div>
       </transition>
     </div>
+    <!-- 预约失败 -->
+    <div class="mask" v-show="showNotSingup">
+      <transition name="slide">
+        <div class="suc_not" v-if="showNotSingup">
+          <i class="close" @click="showNotSingup = false"></i>
+          <div class="title"></div>
+          <p>
+            還未報名活動，無法搶紅包哦， 快點擊“立即報名”參賽吧
+          </p>
+          <div class="okBtn" @click="showNotSingup = false">
+            我知道啦
+          </div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 <script>
@@ -112,6 +136,7 @@ import getString from "../utils/getString"
 import store from "../store/stores"
 
 export default {
+  props: ['rate'],
   data() {
     return {
       redPacket_downTime: false,  //倒计时红包
@@ -125,7 +150,9 @@ export default {
       more: true,
       timer: null,
       timer2: null,
-      dtime: 0
+      dtime: 0,
+      showNotSingup: false,
+      peopleType: 1
     }
   },
   computed: {
@@ -169,10 +196,7 @@ export default {
   methods: {
     subscribe() {
       if (!this.reg) {
-        this.vxc('setToast', {
-          title: '預約失敗',
-          msg: '還未報名活動,無法搶紅包哦,<br/>快點擊"立即報名"參賽吧'
-        })
+        this.showNotSingup = true
         return
       }
       api.subscribe().then(res => {
@@ -347,11 +371,11 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .redPactets {
   .packet {
     width: 7.5rem;
-    height: 5.79rem;
+    height: 4.78rem;
     background: url(../assets/img/redPackBg.png);
     background-size: 100% 100%;
     position: relative;
@@ -435,7 +459,7 @@ export default {
     background: url(../assets/img/box/okBtn.png);
     background-size: 100% 100%;
     font-size: 0.32rem;
-    color: rgba(126, 26, 6, 1);
+    color: rgba(133, 88, 14, 1);
     font-weight: 600;
     margin: 0.2rem auto 0;
     text-align: center;
@@ -447,6 +471,79 @@ export default {
       font-size: 0.28rem;
       color: rgba(252, 245, 193, 1);
       text-align: center;
+      span {
+        font-size: 0.28rem;
+        position: relative;
+        &.act {
+          color: rgba(252, 255, 255, 0.6);
+        }
+        &.act::before {
+          content: "";
+          width: 100%;
+          height: 1px;
+          position: absolute;
+          bottom: 0;
+          background: rgba(252, 255, 255, 0.6);
+        }
+      }
+    }
+    .my_vote {
+      width: 7.26rem;
+      height: 1.4rem;
+      margin: 0.2rem auto 0;
+      background: url(../assets/img/people.png);
+      background-size: 100% 100%;
+      .tips {
+        height: 0.63rem;
+        text-align: center;
+        line-height: 0.63rem;
+        font-size: 0.24rem;
+        span {
+          margin-left: 0.2rem;
+        }
+      }
+      .liner {
+        width: 6.8rem;
+        height: 0.24rem;
+        background: #9c50ff;
+        box-sizing: border-box;
+        border: 0.03rem solid RGBA(254, 228, 199, 1);
+        border-radius: 0.12rem;
+        margin: 0 auto;
+        display: flex;
+        position: relative;
+        .actLiner {
+          max-width: 98%;
+          // width: 50%;
+          height: 100%;
+          background: linear-gradient(0deg, #ffd7bb, #fdf1d4);
+          position: absolute;
+          left: 0.02rem;
+          top: 0;
+          border-radius: 0.12rem 0 0 0.12rem;
+        }
+        span {
+          flex: 1;
+          border-right: 0.02rem solid RGBA(254, 228, 199, 1);
+          position: relative;
+          z-index: 1;
+          em {
+            position: absolute;
+            right: -0.15rem;
+            bottom: -0.4rem;
+            font-size: 0.24rem;
+          }
+        }
+        span:last-child {
+          border-right: 0;
+        }
+        .add {
+          font-size: 0.24rem;
+          position: absolute;
+          left: -0.05rem;
+          bottom: -0.4rem;
+        }
+      }
     }
     .people {
       width: 7.26rem;
@@ -500,8 +597,8 @@ export default {
     }
   }
   .downTimePacket {
-    width: 6.17rem;
-    height: 7.75rem;
+    width: 7.26rem;
+    height: 7.38rem;
     background: url(../assets/img/redPackets/open_downTime.png);
     background-size: 100% 100%;
     position: relative;
@@ -516,12 +613,12 @@ export default {
     h5 {
       height: 0.4rem;
       text-align: center;
-      color: rgba(174, 91, 29, 1);
+      color: #fff;
       font-size: 0.32rem;
     }
     .timeDown {
       text-align: center;
-      color: rgba(151, 77, 22, 1);
+      color: #fff;
       font-size: 0.32rem;
       margin-top: 0.25rem;
       em {
@@ -531,20 +628,20 @@ export default {
     }
     .rotate {
       display: block;
-      width: 1.84rem;
-      height: 1.84rem;
+      width: 1.7rem;
+      height: 1.7rem;
       background: url(../assets/img/redPackets/rotate.png);
       background-size: 100% 100%;
       animation: rotateLingth 3s linear infinite;
       position: absolute;
-      left: 2.15rem;
-      top: 2.55rem;
+      left: 2.8rem;
+      top: 2.2rem;
     }
     .seamless-warp {
       width: 4.6rem;
       height: 1.86rem;
       overflow: hidden;
-      margin: 2.5rem auto 0;
+      margin: 2rem auto 0;
       .item {
         width: 4rem;
         height: 1.86rem;
@@ -557,14 +654,14 @@ export default {
             width: 0.48rem;
             height: 0.48rem;
             border-radius: 50%;
-            border: 0.03rem solid rgba(255, 255, 255, 0.4);
+            border: 0.03rem solid RGBA(248, 155, 187, 1);
           }
           strong {
             width: 3.3rem;
             margin-left: 0.15rem;
             font-size: 0.24rem;
             white-space: nowrap;
-            color: rgba(151, 77, 22, 1);
+            color: #fff;
             display: flex;
             align-items: center;
             .nick {
@@ -588,7 +685,7 @@ export default {
       font-size: 0.32rem;
       font-weight: 600;
       line-height: 0.8rem;
-      color: rgba(126, 26, 6, 1);
+      color: rgba(133, 88, 14, 1);
       text-align: center;
       z-index: 10;
     }
@@ -608,11 +705,11 @@ export default {
       flex-direction: column;
       .title {
         font-size: 0.36rem;
-        color: rgba(111, 83, 34, 1);
+        color: #fff;
       }
       .coins {
         font-size: 1.08rem;
-        color: rgba(111, 83, 34, 1);
+        color: #fff;
         display: flex;
         align-items: center;
         margin-top: 0.16rem;
@@ -643,7 +740,7 @@ export default {
         font-size: 0.32rem;
         font-weight: 600;
         line-height: 0.8rem;
-        color: rgba(126, 26, 6, 1);
+        color: rgba(133, 88, 14, 1);
         text-align: center;
       }
     }
@@ -666,14 +763,14 @@ export default {
       justify-content: center;
       flex-direction: column;
       .tips {
-        color: rgba(151, 77, 22, 1);
+        color: #fff;
         font-size: 0.32rem;
         span {
           display: block;
           margin-bottom: 0.15rem;
           em {
             font-size: 0.4rem;
-            color: rgba(93, 45, 9, 1);
+            color: #fff;
           }
         }
       }
@@ -691,7 +788,7 @@ export default {
           width: 0.48rem;
           height: 0.48rem;
           border-radius: 50%;
-          border: 0.03rem solid rgba(255, 255, 255, 0.4);
+          border: 0.03rem solid RGBA(249, 160, 183, 1);
         }
         .msg {
           width: 2.3rem;
@@ -701,11 +798,11 @@ export default {
             white-space: nowrap;
             text-overflow: ellipsis;
             font-size: 0.24rem;
-            color: rgba(51, 51, 51, 1);
+            color: #fff;
           }
           .tm {
             font-size: 0.22rem;
-            color: rgba(51, 51, 51, 0.6);
+            color: #fff;
           }
         }
         .gift {
@@ -717,12 +814,12 @@ export default {
           justify-content: center;
           .nums {
             font-size: 0.24rem;
-            color: rgba(51, 51, 51, 1);
+            color: #fff;
           }
           .luck {
             display: flex;
             align-items: center;
-            color: rgba(176, 115, 8, 1);
+            color: rgba(255, 251, 189, 1);
             font-size: 0.22rem;
             white-space: nowrap;
             i {
@@ -737,7 +834,7 @@ export default {
     }
     .recoreList::-webkit-scrollbar {
       width: 0.06rem;
-      background: rgba(207, 147, 41, 1);
+      background: rgba(126, 33, 151, 1);
     }
     .recoreList::-webkit-scrollbar-thumb {
       width: 0.06rem;
@@ -748,25 +845,71 @@ export default {
     display: block;
     width: 0.65rem;
     height: 0.65rem;
-    background: url(../assets/img/close.png);
+    background: url(../assets/img/close3.png);
     background-size: 100% 100%;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 0.7rem;
+    top: -0.5rem;
   }
   .packetRes::before,
   .downTimePacket::before,
   .packetRecord::before {
-    content: "";
+    // content: "";
+    // display: block;
+    // width: 7.5rem;
+    // height: 7.05rem;
+    // background: url(../assets/img/redPackets/packetBg.png);
+    // background-size: 100% 100%;
+    // position: absolute;
+    // left: -0.665rem;
+    // top: 1.8rem;
+    // z-index: -1;
+  }
+}
+.suc_not {
+  width: 7.18rem;
+  height: 4.74rem;
+  background: url(../assets/img/pup/pup_bg.png);
+  background-size: 100% 100%;
+  position: relative;
+  .close {
     display: block;
-    width: 7.5rem;
-    height: 7.05rem;
-    background: url(../assets/img/redPackets/packetBg.png);
+    width: 0.3rem;
+    height: 0.3rem;
+    background: url(../assets/img/close.png);
     background-size: 100% 100%;
     position: absolute;
-    left: -0.665rem;
-    top: 1.8rem;
-    z-index: -1;
+    right: 0.2rem;
+    top: 0.2rem;
+  }
+  .title {
+    width: 3.7rem;
+    height: 1.26rem;
+    background: url(../assets/img/pup/suc_not.png);
+    background-size: 100% 100%;
+    position: absolute;
+    top: -0.6rem;
+    left: 1.7rem;
+  }
+  p {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.32rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.3rem;
+  }
+  .okBtn {
+    width: 2.22rem;
+    height: 0.65rem;
+    background: url(../assets/img/footer/commit.png);
+    background-size: 100% 100%;
+    margin: 0 auto;
+    color: rgba(133, 88, 14, 1);
+    text-align: center;
+    line-height: 0.65rem;
   }
 }
 </style>

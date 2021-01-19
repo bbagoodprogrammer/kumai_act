@@ -1,19 +1,19 @@
 let test = false;
 const host = location.host;
-
+import { getUrlString } from '../utils'
 let folder = '';
-let origin = 'http://act.17sing.tw';
+let origin = '';
 let socketUri = 'ws://xws.17sing.tw/websocketx';
 if (/\d+\.\d+\.\d+\.\d+/.test(host) || /localhost/i.test(host) || /^t(est)?\./i.test(host)) {
     test = true;
     // folder = '/action';
-    origin = 'http://test.17sing.tw';
+    origin = '';
     socketUri = 'ws://beatupload.17sing.tw/websocket';
 }
 
 const socketApiRoot = origin + folder;
 const httpApiRoot = test ? folder : socketApiRoot;
-
+const app_lang = getUrlString('lang')
 export default {
     host,
     origin,
@@ -25,5 +25,5 @@ export default {
     socketApi: socketApiRoot + '/index.php?action=luck.wsApi',
 
     getInitInfo: httpApiRoot + '/index.php?action=luck.getInitInfo&uid={uid}&token={token}',
-    getHistory: httpApiRoot + '/index.php?action=roomDraw.getHistory&last_id={from}&rid={rid}&uid={uid}&token={token}',
+    getHistory: httpApiRoot + `/index.php?action=roomDraw.getHistory&last_id={from}&rid={rid}&uid={uid}&token={token}&lang=${app_lang}`,
 }

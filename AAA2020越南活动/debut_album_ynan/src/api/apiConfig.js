@@ -79,7 +79,7 @@ function getDefault() {
 
 //APP關注
 function appAttemsion(touid) {
-    return get(`http://act.17sing.tw/index.php?&uid=${uid}&action=FocusExt&singerUid=${touid}&token=${token}`)
+    return get(`http://act.singnowapp.com/index.php?uid=${uid}&action=FocusExt&singerUid=${touid}&token=${token}`)
 }
 const httpConfig = {
     getDefault,

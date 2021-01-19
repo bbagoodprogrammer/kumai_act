@@ -19,7 +19,7 @@
             </div>
             <div class="msg">
               <div class="nick">{{item.nick}}</div>
-              <div class="score">Điểm debut:<i></i>{{item.score}}</div>
+              <div class="score">Điểm debut: <br /><i></i>{{item.score}}</div>
             </div>
             <div class="follow" :class="{ed:item.attension}" @click="follow(item.uid,index,item.attension)"></div>
           </div>
@@ -278,12 +278,13 @@ body::-webkit-scrollbar {
             text-overflow: ellipsis;
           }
           .score {
-            display: flex;
-            align-items: center;
+            // display: flex;
+            // align-items: center;
             font-size: 0.28rem;
             color: rgba(251, 232, 181, 1);
             margin-top: 0.1rem;
             i {
+              display: inline-block;
               width: 0.38rem;
               height: 0.3rem;
               background: url(../assets/img/scoreIcon.png);

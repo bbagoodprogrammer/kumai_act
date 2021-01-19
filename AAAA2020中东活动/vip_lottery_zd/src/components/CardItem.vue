@@ -156,8 +156,12 @@ export default {
           this.showShare = true
           this.$refs.link.select()
         } else {
-          javascript: JSInterface.share('http://activity.gosingapp.com/static_html/2020/vip_lottery/index.html?uid=' + uid + '&code=' + code, 'إمتيازات VIP ينتظر مشاركتك~', 'استمتع بكثير من الفوائد الخاصة لVIP بعد شرائها~', 'http://activity.gosingapp.com/static_html/2020/vip_lottery/share.jpg');
-          // javascript: JSInterface.share(JSON.stringify(data));
+          try {
+            javascript: JSInterface.share(JSON.stringify(data));
+
+          } catch (error) {
+            javascript: JSInterface.share('http://activity.gosingapp.com/static_html/2020/vip_lottery/index.html?uid=' + uid + '&code=' + code, 'إمتيازات VIP ينتظر مشاركتك~', 'استمتع بكثير من الفوائد الخاصة لVIP بعد شرائها~', 'http://activity.gosingapp.com/static_html/2020/vip_lottery/share.jpg');
+          }
         }
       })
     },

@@ -9,6 +9,12 @@
       <span class="ruleTips rank" @click="showRank()"></span>
     </div>
     <div class="gifts">
+      <div class="giftItem">
+        <div class="item" v-for="(item,index) in prizes" :key="index">
+          <strong>{{item.name}}</strong>
+          <img :src="item.image" alt="">
+        </div>
+      </div>
       <div class="timeDown" v-if="!surplusTime.end">
         <div class="day">
           <strong>{{surplusTime.day}}</strong>
@@ -38,7 +44,7 @@
             <h6>1 Thời gian</h6>
             <p>{{aTimer}}</p>
             <h6>2. Bảng xếp hạng</h6>
-            <p>Bảng xếp hạng dựa trên số lượng nhận quà hoa hướng dương và tệp ảnh. Bảng xếp hạng hiển thị điểm là số lượng quà tặng.</p>
+            <p>Bảng xếp hạng dựa trên số lượng nhận quà mũ len và chụp tai. Bảng xếp hạng hiển thị điểm là số lượng quà tặng. </p>
             <h6>3. Thưởng</h6>
             <div class="giftBox">
 
@@ -105,7 +111,8 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { step, gifts, downTime, stime, etime, owner } = response_data
+          const { step, gifts, downTime, stime, etime, owner, prizes } = response_data
+          this.prizes = prizes
           this.stime = stime
           this.etime = etime
           this.vxc('setActStatus', step)
@@ -217,11 +224,30 @@ body::-webkit-scrollbar {
   }
   .gifts {
     width: 6.88rem;
-    height: 5.78rem;
+    height: 4.58rem;
     background: url(../assets/img/giftBg.png);
     background-size: 100% 100%;
     margin: 0 auto;
     position: relative;
+    padding-top: 1.2rem;
+    .giftItem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0.1 rem auto 0;
+      padding: 0 0.8rem;
+      .item {
+        img {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+        strong {
+          color: #a2291f;
+          display: block;
+          text-align: center;
+        }
+      }
+    }
   }
   .timeDown {
     width: 4.3rem;

@@ -31,6 +31,7 @@ export default {
   },
   created() {
     globalBus.$on('commonEvent', (callback) => {
+      console.log(this.isShare, this.actStatus)
       if (this.isShare) {
         APP()
         return

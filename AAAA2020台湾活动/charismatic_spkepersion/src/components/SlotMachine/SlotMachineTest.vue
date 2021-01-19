@@ -1,12 +1,23 @@
 <template>
   <div class="sloat">
     <SlotMachine @end="onEnd" :size="3" :list="list" :result="result" />
-    <div class="handle" :style="{'background-position-Y':imgPos[imgindex]}"></div>
-    <!-- <img :src="require('../../assets/img/'+imgindex+'.png')" alt="" class="handle"> -->
-    <!-- <transition name="slide">
-      <min-wards-toast v-show="showMinToast" @hideToast="hideToast()"></min-wards-toast>
-    </transition> -->
-    <msg-toast :msg="tastMsg" @closeToast="closeToast()" v-show="showT"></msg-toast>
+    <div class="mask" v-show="showMinToast">
+      <transition name="slide">
+        <div class="giftPup" v-show="showMinToast">
+          <i class="close" @click="showMinToast = false"></i>
+          <div class="title"></div>
+          <div class="giftArr">
+            <div class="giftItem" v-for="(item,index) in result " :key="index">
+              <div class="imgBg">
+                <img :src="giftArr[item].img" alt="">
+              </div>
+              <strong>{{giftArr[item].name}}</strong>
+            </div>
+          </div>
+          <p>以上獎品已成功派發到您的賬號上，請注意查收</p>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -18,55 +29,75 @@ import MsgToast from "../commonToast.vue"
 import APP from "../../utils/openApp.js"
 import { globalBus } from '../../utils/eventBus.js'
 import { mapState } from "vuex"
+import { giftArr } from "../../config/gifts"
 export default {
+  props: ['cilckItem'],
   data() {
     return {
       list: [
-        { id: 1, src: require("../../assets/img/gifts/ward1.png") },
-        { id: 2, src: require("../../assets/img/gifts/ward2.png") },
-        { id: 3, src: require("../../assets/img/gifts/ward3.png") },
-        { id: 4, src: require("../../assets/img/gifts/ward4.png") },
-        { id: 5, src: require("../../assets/img/gifts/ward4.png") },
-        { id: 6, src: require("../../assets/img/gifts/ward4.png") },
-        { id: 7, src: require("../../assets/img/gifts/ward5.png") },
-        { id: 8, src: require("../../assets/img/gifts/ward6.png") },
-        { id: 9, src: require("../../assets/img/gifts/ward7.png") },
-        { id: 10, src: require("../../assets/img/gifts/ward8.png") },
-        { id: 11, src: require("../../assets/img/gifts/ward9.png") },
-        { id: 12, src: require("../../assets/img/gifts/ward10.png") },
-        { id: 13, src: require("../../assets/img/gifts/ward11.png") },
-        { id: 14, src: require("../../assets/img/gifts/ward12.png") },
-        { id: 15, src: require("../../assets/img/gifts/ward12.png") },
-        { id: 16, src: require("../../assets/img/gifts/ward12.png") },
-        { id: 17, src: require("../../assets/img/gifts/ward12.png") },
-        { id: 18, src: require("../../assets/img/gifts/ward13.png") },
-        { id: 19, src: require("../../assets/img/gifts/ward14.png") },
-        { id: 20, src: require("../../assets/img/gifts/ward15.png") },
-        { id: 21, src: require("../../assets/img/gifts/ward15.png") },
-        { id: 22, src: require("../../assets/img/gifts/ward15.png") },
-        { id: 23, src: require("../../assets/img/gifts/ward15.png") },
-        // { id: 24, src: require("../../assets/img/gifts/ward16.png") },
-        // { id: 25, src: require("../../assets/img/gifts/ward17.png") },
-        // { id: 26, src: require("../../assets/img/gifts/ward18.png") },
-        { id: 27, src: require("../../assets/img/gifts/ward19.png") },
-        { id: 28, src: require("../../assets/img/gifts/ward20.png") },
-        { id: 29, src: require("../../assets/img/gifts/ward21.png") },
-        { id: 30, src: require("../../assets/img/gifts/ward22.png") },
+        { id: 1, src: require("../../assets/img/gifts/beans.png") },
+        { id: 2, src: require("../../assets/img/gifts/beans.png") },
+        { id: 3, src: require("../../assets/img/gifts/gift1.png") },
+        { id: 4, src: require("../../assets/img/gifts/gift2.png") },
+        { id: 5, src: require("../../assets/img/gifts/ticket2.png") },
+        { id: 6, src: require("../../assets/img/gifts/ticket2.png") },
+        { id: 7, src: require("../../assets/img/gifts/vip.png") },
+        { id: 8, src: require("../../assets/img/gifts/gift3.png") },
+        { id: 9, src: require("../../assets/img/gifts/gift5.png") },
+        { id: 10, src: require("../../assets/img/gifts/gift4.png") },
+        { id: 11, src: require("../../assets/img/gifts/gift6.png") },
+        { id: 12, src: require("../../assets/img/gifts/ticket2.png") },
+        { id: 13, src: require("../../assets/img/gifts/ticket2.png") },
+        { id: 14, src: require("../../assets/img/gifts/gift1.png") },
+        { id: 15, src: require("../../assets/img/gifts/gift2.png") },
+        { id: 16, src: require("../../assets/img/gifts/vip.png") },
+        { id: 17, src: require("../../assets/img/gifts/gift3.png") },
+        { id: 18, src: require("../../assets/img/gifts/coins.png") },
+        { id: 19, src: require("../../assets/img/gifts/gift9.png") },
+        { id: 20, src: require("../../assets/img/gifts/gift8.png") },
+        { id: 21, src: require("../../assets/img/gifts/ticket2.png") },
+        { id: 22, src: require("../../assets/img/gifts/ticket2.png") },
+        { id: 23, src: require("../../assets/img/gifts/gift7.png") },
+        { id: 24, src: require("../../assets/img/gifts/coins.png") },
+        { id: 25, src: require("../../assets/img/gifts/vip.png") },
+        { id: 26, src: require("../../assets/img/gifts/gift3.png") },
+        { id: 27, src: require("../../assets/img/gifts/gift10.png") },
+        { id: 28, src: require("../../assets/img/gifts/coins.png") },
+        { id: 29, src: require("../../assets/img/gifts/gift13.png") },
+        { id: 30, src: require("../../assets/img/gifts/gift12.png") },
+
+        { id: 31, src: require("../../assets/img/gifts/ticket2.png") },
+        { id: 32, src: require("../../assets/img/gifts/ticket2.png") },
+        { id: 33, src: require("../../assets/img/gifts/gift11.png") },
+        { id: 34, src: require("../../assets/img/gifts/gift6.png") },
+        { id: 35, src: require("../../assets/img/gifts/vip.png") },
+        { id: 36, src: require("../../assets/img/gifts/gift3.png") },
+        { id: 37, src: require("../../assets/img/gifts/gift10.png") },
+
+        { id: 38, src: require("../../assets/img/gifts/gift12.png") },
+        { id: 39, src: require("../../assets/img/gifts/gift10.png") },
+        { id: 40, src: require("../../assets/img/gifts/coins.png") },
+        { id: 41, src: require("../../assets/img/gifts/gift12.png") },
+        { id: 42, src: require("../../assets/img/gifts/gift15.png") },
+        { id: 43, src: require("../../assets/img/gifts/ticket2.png") },
+        { id: 44, src: require("../../assets/img/gifts/ticket2.png") },
+        { id: 45, src: require("../../assets/img/gifts/gift14.png") },
+        { id: 46, src: require("../../assets/img/gifts/vip.png") },
+        { id: 47, src: require("../../assets/img/gifts/gift3.png") },
+
       ],
       result: [],
       imgindex: 0,
       drawSwitch: true,    // 抽奖开关，避免重复抽奖
       timerSet: 0,
       showMinToast: false,  //弹窗开关
-      tastMsg: '',       //弹窗提示
-      showT: false,
-      imgPos: [
-        "-.1rem", "-2.5rem", "-4.83rem", "-7.2rem", "-9.56rem", "-7.2rem", "-4.83rem", "-2.5rem", "-.1rem"
-      ]
     };
   },
   computed: {
-    ...mapState(["drawCions", "actState", "coins", "isShare"])
+    ...mapState([]),
+    giftArr() {
+      return giftArr
+    }
   },
   created() {
     this.total();
@@ -83,64 +114,27 @@ export default {
       });
     },
     startGame() {
-      var that = this
-       var lotterylist = [1,2,3]
-              that.result = lotterylist       //开启奖品滚动效果
-              return
-      if (that.isShare) { //分享模式下打开APP
-        APP()
-        return
-      }
-      if (that.drawSwitch && that.actState === 1) { //避免重复请求  活动开始转动
-        that.drawSwitch = false  //关闭开关
-        if (that.coins < that.drawCions) {  //老虎币不足
-          that.drawSwitch = true  //弹窗提示，重置抽奖开关
-          that.tastMsg = `老虎幣不足！`
-          that.showT = true
+      globalBus.$emit('commonEvent', (callback) => {
+        if (!this.cilckItem.can && !this.cilckItem.get) {
+          this.$parent.showNotSingup = true
           return
-        } else {  //老虎币足够开启抽奖
-          var nowCoins = that.coins - that.drawCions
-          that.$store.commit('changcoins', nowCoins)  //减少当前用户老虎币
-          api.luckDraw(that.drawCions).then(function (res) { // 获取抽奖结果
+        }
+        if (this.drawSwitch && this.cilckItem.can) { //避免重复请求  活动开始转动
+          this.drawSwitch = false  //关闭开关
+          api.openPacket(this.cilckItem.level).then(res => { // 获取抽奖结果
             if (res.data.response_status.code === 0) {
-              var lotterylist = res.data.response_data.lotterylist
-              that.result = lotterylist       //开启奖品滚动效果
+              var prizes = res.data.response_data.prizes
+              this.result = prizes       //开启奖品滚动效果
+              this.$emit('setPacketStatus')
+            } else {
+              this.toast(res.data.response_status.error)
             }
           })
-          if (this.imgindex !== 0) return
-          this.timerSet = setInterval(() => { //把手动画开始
-            this.imgindex++
-            if (this.imgindex >= this.imgPos.length) {
-              this.imgindex = 0
-              clearInterval(this.timerSet)
-            }
-          }, 100)
         }
-      } else if (that.actState === 0) { //活动未开始
-        that.tastMsg = `活動未開始！` //弹窗提示，重置抽奖开关
-        that.drawSwitch = true
-        that.showT = true
-      } else if (that.actState === 2) { //活动结束
-        that.tastMsg = `活動已結束！` //弹窗提示，重置抽奖开关
-        that.drawSwitch = true
-        that.showT = true
-      }
+      })
     },
     onEnd(result) { //动画结束时重置开关
-      this.$store.commit('changlotterylist', result) //提交抽奖结果，后弹窗
-      //判断有无抽中老虎币，有的话更新当前用户老虎币数量
-      var getCoins = 0
-      result.forEach(element => {
-        if (element == 10) {
-          getCoins += 50
-        } else if (element == 11) {
-          getCoins += 100
-        } else if (element == 12) {
-          getCoins += 150
-        }
-      });
-      //更新老虎币
-      this.$store.commit('changcoins', (this.coins + getCoins))
+
       this.drawSwitch = true //请求开启开关
       this.showMinToast = true
     },
@@ -160,22 +154,71 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 button {
   padding: 0.1rem 0.2rem;
   position: absolute;
 }
 .sloat {
   position: absolute;
-  top: 4.5rem;
-  left: 1.85rem;
+  top: 4.2rem;
+  left: 1.45rem;
 }
-.handle {
-  width: 0.56rem;
-  height: 2.56rem;
-  position: absolute;
-  right: -0.98rem;
-  // background: url(../../assets/img/handle.png) no-repeat;
-  // background-size: 100% auto;
+.giftPup {
+  width: 7.18rem;
+  height: 4.74rem;
+  background: url(../../assets/img/pup/pup_bg.png);
+  background-size: 100% 100%;
+  position: relative;
+  .close {
+    display: block;
+    width: 0.3rem;
+    height: 0.3rem;
+    background: url(../../assets/img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0.2rem;
+    top: 0.2rem;
+  }
+  .title {
+    width: 3.7rem;
+    height: 1.26rem;
+    background: url(../../assets/img/pup/luckTitle.png);
+    background-size: 100% 100%;
+    position: absolute;
+    top: -0.6rem;
+    left: 1.7rem;
+  }
+  .giftArr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+    padding: 0 0.58rem;
+    .giftItem {
+      width: 1.6rem;
+    }
+    .imgBg {
+      width: 1.6rem;
+      height: 1.6rem;
+      background: rgba(135, 65, 227, 1);
+      border-radius: 0.12rem;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    strong {
+      display: block;
+      height: 0.9rem;
+      font-size: 0.24rem;
+      text-align: center;
+    }
+  }
+  p {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.24rem;
+  }
 }
 </style>
