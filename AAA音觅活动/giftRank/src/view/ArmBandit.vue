@@ -9,6 +9,12 @@
       <span class="ruleTips rank" @click="showRank()"></span>
     </div>
     <div class="gifts">
+      <div class="giftItem">
+        <div class="item" v-for="(item,index) in prizes" :key="index">
+          <strong>{{item.name}}</strong>
+          <img :src="item.image" alt="">
+        </div>
+      </div>
       <div class="timeDown" v-if="!surplusTime.end">
         <div class="day">
           <strong>{{surplusTime.day}}</strong>
@@ -38,7 +44,7 @@
             <h6>1 活動時間</h6>
             <p>{{aTimer}}</p>
             <h6>2 榜單排名</h6>
-            <p>無需報名，收禮即可上榜，榜單按照活動期間內收到的向日葵或者美好紀念冊禮物數量的前100名玩家從高到低排名</p>
+            <p>無需報名，收禮即可上榜，榜單按照活動期間內收到榜單指定禮物數量的前100名玩家從高到低排名</p>
             <p>榜單展示指定禮物的實時累計數據</p>
             <h6>3 活動獎勵</h6>
             <div class="giftBox">
@@ -95,7 +101,8 @@ export default {
       surplusTime: {},
       showRules: false,
       stime: 0,
-      etime: 0
+      etime: 0,
+      prizes: {}
     }
   },
   created() {
@@ -116,7 +123,8 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { step, gifts, downTime, stime, etime, owner } = response_data
+          const { step, gifts, downTime, stime, etime, owner, prizes } = response_data
+          this.prizes = prizes
           this.stime = stime * 1000
           this.etime = etime * 1000
           this.vxc('setActStatus', step)
@@ -228,11 +236,30 @@ body::-webkit-scrollbar {
   }
   .gifts {
     width: 6.88rem;
-    height: 5.78rem;
+    height: 4.58rem;
     background: url(../assets/img/giftBg.png);
     background-size: 100% 100%;
     margin: 0 auto;
     position: relative;
+    padding-top: 1.2rem;
+    .giftItem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0.1 rem auto 0;
+      padding: 0 0.8rem;
+      .item {
+        img {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+        strong {
+          color: #a2291f;
+          display: block;
+          text-align: center;
+        }
+      }
+    }
   }
   .timeDown {
     width: 4.3rem;

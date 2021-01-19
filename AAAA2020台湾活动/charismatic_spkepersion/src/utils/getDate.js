@@ -8,8 +8,14 @@ function getDate(datem, type) {
     if (type == 1) {
         return `${month}-${date} ${hours}:${minute}`
     }
-    if (type == 2) {
-        return `${hours}h${minute}min`
+    if (type == 3) {
+        return `${month}.${date}`
+    }
+    if (type == 4) {
+        return `${year}${month}${date}`
+    }
+    if (type == 5) {
+        return `${year} ${month}/${date} ${hours}:${minute}`
     }
 }
 export default getDate

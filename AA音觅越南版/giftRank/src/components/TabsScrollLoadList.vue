@@ -2,8 +2,8 @@
   <div class="rankGroups">
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs" :class="{current:mainTab==1}">
-      <a @click.prevent="mainTabClick(0)" href=""></a>
-      <a @click.prevent="mainTabClick(1)" href=""></a>
+      <a @click.prevent="mainTabClick(0)" href="" :class="{act:mainTab==0}"><img :src="gifts[0].image" alt=""> {{gifts[0].name}}</a>
+      <a @click.prevent="mainTabClick(1)" href="" :class="{act:mainTab==1}"> <img :src="gifts[1].image" alt="">{{gifts[1].name}}</a>
       <a @click.prevent="onRefresh" href="" v-if="!isShare && actStatus===1" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
     <!-- 日榜 -->
@@ -317,6 +317,19 @@ export default {
     a {
       flex: 1;
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.24rem;
+      color: RGBA(247, 217, 140, 1);
+      img {
+        width: 0.3rem;
+        height: 0.3rem;
+        margin-right: 0.1rem;
+      }
+      &.act {
+        color: RGBA(123, 61, 24, 1);
+      }
     }
   }
   .list {

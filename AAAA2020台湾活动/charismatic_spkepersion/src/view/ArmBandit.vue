@@ -1,20 +1,51 @@
 <template>
   <div class="box" :class="{bg:!showBannerBg}">
-    <canvas id="bannerBg" v-show="!showBannerBg"></canvas>
+    <!-- <canvas id="bannerBg" v-show="!showBannerBg"></canvas> -->
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <div class="tipsBox">
-        <span class="ruleTips ruleTips2" :class="{top:isShare}" @click="goMain()"></span>
-        <span class="ruleTips" :class="{top:isShare}" @click="goRule()"></span>
+      <div class="tipsBox" :class="{top:isShare}">
+        <span class="ruleTips ruleTips2" @click="goMain()"></span>
+        <span class="ruleTips" @click="goRule()"></span>
+        <span class="ruleTips ruleTips3" @click="showHistory()"></span>
       </div>
     </div>
     <TrunMsg />
     <Box />
-    <RedPackets />
+    <RedPackets :rate="rate" />
     <TabsScrollLoadList ref="scorll" />
     <act-footer></act-footer>
+    <div class="mask" v-show="showHistoryPup">
+      <transition name="clide">
+        <div class="history" v-show="showHistoryPup">
+          <i class="close" @click="showHistoryPup = false"></i>
+          <div class="title"></div>
+          <div class="history_con">
+            <div class="his_header">
+              <span>抽獎時間</span>
+              <span>獲得獎品</span>
+            </div>
+            <ul>
+              <li v-for="(item,index) in historyList" :key="index">
+                <div class="tmBox">
+                  <div class="tm">{{getDate(item.tm)}}</div>
+                  <div class="lv">Lv.{{item.level}}等級</div>
+                </div>
+                <div class="giftArr">
+                  <div class="giftItem" v-for="(item,index) in item.prize " :key="index">
+                    <div class="imgBg">
+                      <img :src="giftArr[item].img" alt="">
+                    </div>
+                    <strong>{{giftArr[item].name}}</strong>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </transition>
+    </div>
     <!-- <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div> -->
   </div>
 </template>
@@ -31,8 +62,9 @@ import TrunMsg from "../components/TrunMsg"
 import Box from "../components/Box"
 import RedPackets from "../components/RedPackets"
 import TabsScrollLoadList from "../components/TabsScrollLoadList"
-
+import { giftArr } from "../config/gifts"
 import { Downloader, Parser, Player } from 'svga.lite'
+import getDate from "../utils/getDate"
 
 const downloader = new Downloader()
 const parser = new Parser({ disableWorker: true })
@@ -50,14 +82,19 @@ export default {
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
       showBannerBg: true,
+      rate: {},
+      historyList: [],
+      showHistoryPup: false
     }
   },
   created() {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
-  mounted() {
-    this.bannerGo()
+  computed: {
+    giftArr() {
+      return giftArr
+    }
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -68,168 +105,20 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { step, reg, packet, redPacket, naming, owner, notice } = response_data
+          const { step, c_day, reg, gift, redPacket, naming, owner, notice, rate, stime, etime, days } = response_data
+          this.rate = rate
           this.vxc('setActStatus', step)
-          this.vxc("changGroupsUserMsg", {//初始当前日榜个人信息
-            key: 'total',
-            msg: owner
-          })
           this.vxc('setReg', reg)
-          this.vxc('setPacket', packet
-            // {
-            //   "level": 2, //我的等级
-            //   "score": 3000, //闪耀值
-            //   "levels": { // 宝箱等级配置 等级 => 分值
-            //     "1": 100,
-            //     "2": 1000,
-            //     "3": 10000,
-            //     "4": 50000,
-            //     "5": 100000
-            //   },
-            //   "prizes": { // 宝箱等级奖励
-            //     "1": [
-            //       {
-            //         "id": 1,
-            //         "name": "放飛心情",
-            //         "image": "http://img.17sing.tw/uc/gift/old/1.png",
-            //         "type": "gift",
-            //         "count": 2,
-            //         "coin": 1, // 礼物价值
-            //         "day": 14
-            //       },
-            //       {
-            //         "type": "coupon", // 储值返利券
-            //         "id": 1,
-            //         "ratio": 1, // 返利比例
-            //         "day": 14
-            //       },
-            //       {
-            //         "type": "vip",
-            //         "day": 2
-            //       },
-            //       {
-            //         "type": "bean",
-            //         "count": 100
-            //       }
-            //     ],
-            //     "2": [
-            //       {
-            //         "id": 1,
-            //         "name": "放飛心情",
-            //         "image": "http://img.17sing.tw/uc/gift/old/1.png",
-            //         "type": "gift",
-            //         "count": 2,
-            //         "coin": 3,
-            //         "day": 14
-            //       },
-            //       {
-            //         "type": "coupon",
-            //         "id": 1,
-            //         "ratio": 1,
-            //         "day": 14
-            //       },
-            //       {
-            //         "type": "vip",
-            //         "day": 3
-            //       },
-            //       {
-            //         "type": "bean",
-            //         "count": 150
-            //       }
-            //     ],
-            //     "3": [
-            //       {
-            //         "id": 1,
-            //         "name": "放飛心情",
-            //         "image": "http://img.17sing.tw/uc/gift/old/1.png",
-            //         "type": "gift",
-            //         "count": 2,
-            //         "coin": 18,
-            //         "day": 14
-            //       },
-            //       {
-            //         "type": "coupon",
-            //         "id": 1,
-            //         "ratio": 2,
-            //         "day": 14
-            //       },
-            //       {
-            //         "type": "vip",
-            //         "day": 5
-            //       },
-            //       {
-            //         "type": "coin",
-            //         "count": 10
-            //       }
-            //     ],
-            //     "4": [
-            //       {
-            //         "id": 1,
-            //         "name": "放飛心情",
-            //         "image": "http://img.17sing.tw/uc/gift/old/1.png",
-            //         "type": "gift",
-            //         "count": 2,
-            //         "coin": 68,
-            //         "day": 14
-            //       },
-            //       {
-            //         "type": "coupon",
-            //         "id": 1,
-            //         "ratio": 2,
-            //         "day": 14
-            //       },
-            //       {
-            //         "type": "vip",
-            //         "day": 7
-            //       },
-            //       {
-            //         "type": "coin",
-            //         "count": 30
-            //       }
-            //     ],
-            //     "5": [
-            //       {
-            //         "id": 1,
-            //         "name": "放飛心情",
-            //         "image": "http://img.17sing.tw/uc/gift/old/1.png",
-            //         "type": "gift",
-            //         "count": 2,
-            //         "coin": 128,
-            //         "day": 14
-            //       },
-            //       {
-            //         "type": "coupon",
-            //         "id": 1,
-            //         "ratio": 3,
-            //         "day": 14
-            //       },
-            //       {
-            //         "type": "vip",
-            //         "day": 9
-            //       },
-            //       {
-            //         "type": "coin",
-            //         "count": 100
-            //       }
-            //     ]
-            //   },
-            //   "status": { // 宝箱开启状态 等级 => 状态
-            //     "1": 1,
-            //     "2": 0,
-            //     "3": 0,
-            //     "4": 0,
-            //     "5": 0
-            //   }
-            // }
-          )
+          this.vxc('setPacket', gift)
+          // redPacket
           this.vxc('setRedPacket', redPacket
-            //  { // 红包信息
+            // { // 红包信息
             //   "total": 1088, // 每个红包金币数
             //   "step": 100, // 每轮爆红包收礼数
             //   "current": 0, // 当前轮收礼进度
             //   "subscribe": false, // 是否预约了红包提醒
-            //   "status": 3, // 红包状态 1倒计时 2可抢 3抢完 0其它
-            //   "time": 5, // 有红包开抢前3分钟倒计时（单位：秒）
+            //   "status": 1, // 红包状态 1倒计时 2可抢 3抢完 0其它
+            //   "time": 50, // 有红包开抢前3分钟倒计时（单位：秒）
             //   "coins": 0, // 本轮已抢得金币数
             //   "size": 0, // 红包剩余量
             //   "lose": false, // 没有抢到
@@ -268,6 +157,11 @@ export default {
           this.vxc('setNaming', naming)
           this.vxc('setUserMsg', owner)
           this.vxc('setNotice', notice)
+          this.vxc('setTimeArr', this.getDateArr(stime, etime))
+          this.vxc('setTotalDay', days)
+          this.vxc('setC_day', c_day)
+          this.vxc('changTab', c_day)
+          this.vxc('setInited', 1)
         } else {
           this.toast(response_status.error)
         }
@@ -284,21 +178,29 @@ export default {
       let regstr = getString('token')
       let uid = getString('uid')
       let aid = getString('aid')
-      location.href = `/static_html/2020/ceremony202000/index.html?token=${regstr}&uid=${uid}&aid=${aid}`
+      location.href = `./index4.html?token=${regstr}`
     },
     refrsh() { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       window.removeEventListener("scroll", this.onScroll)
       this.getDefaultData('ref')
     },
-    async bannerGo() {
-      let canvas = document.getElementById('bannerBg')
-      const fileData = await downloader.get(`http://fstatic.cat1314.com/uc/w02/46d39fb6e7d302137865a7449c913fa2_1605494257gw02`);
-      const data = await parser.do(fileData);
-      let player = new Player(canvas)
-      await player.mount(data)
-      this.showBannerBg = false
-      player.start()
+    getDateArr(stime, etime) {
+      let arr = []
+      for (let i = stime * 1; i <= etime * 1; i += 86400) {
+        arr.push(i)
+      }
+      return arr
+    },
+    getDate(tm) {
+      return getDate(new Date(tm * 1000), 5)
+    },
+    showHistory() {
+      api.openPacketList().then(res => {
+        console.log(res)
+        this.historyList = res.data.response_data.list
+        this.showHistoryPup = true
+      })
     }
   }
 }
@@ -343,22 +245,26 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 8.79rem;
+    height: 6.12rem;
     position: relative;
     .tipsBox {
       position: absolute;
       right: 0;
-      top: 1rem;
+      top: 3.8rem;
       .ruleTips {
         display: block;
-        width: 1.97rem;
-        height: 0.56rem;
+        width: 1.81rem;
+        height: 0.61rem;
         background: url(../assets/img/ruleTips1.png);
         background-size: 100% 100%;
+        margin-bottom: 0.15rem;
         &.ruleTips2 {
           background: url(../assets/img/ruleTips2.png);
           background-size: 100% 100%;
-          margin-bottom: 0.15rem;
+        }
+        &.ruleTips3 {
+          background: url(../assets/img/ruleTips3.png);
+          background-size: 100% 100%;
         }
       }
       &.top {
@@ -368,6 +274,104 @@ body::-webkit-scrollbar {
   }
   .guaBox {
     position: relative;
+  }
+}
+.history {
+  width: 7.18rem;
+  height: 9.24rem;
+  padding-top: 1.02rem;
+  background: url(../assets/img/history_bg.png);
+  background-size: 100% 100%;
+  position: relative;
+  .close {
+    display: block;
+    width: 0.3rem;
+    height: 0.3rem;
+    background: url(../assets/img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0.3rem;
+    top: 0.3rem;
+  }
+  .title {
+    width: 3.7rem;
+    height: 1.26rem;
+    background: url(../assets/img/history_title.png);
+    background-size: 100% 100%;
+    position: absolute;
+    top: -0.6rem;
+    left: 1.7rem;
+  }
+  .history_con {
+    padding: 0 0.4rem;
+    .his_header {
+      display: flex;
+      justify-content: space-between;
+    }
+    ul {
+      max-height: 8rem;
+      overflow-y: scroll;
+      li {
+        height: 2.6rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        .tmBox {
+          .lv {
+            width: 1.1rem;
+            height: 0.32rem;
+            background: linear-gradient(90deg, #ffd6ba 0%, #fdf2d5 100%);
+            border-radius: 0.16rem;
+            text-align: center;
+            line-height: 0.32rem;
+            color: rgba(133, 88, 14, 1);
+            font-size: 0.22rem;
+            margin-top: 0.12rem;
+          }
+        }
+        .giftArr {
+          width: 3.2rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .giftItem {
+            width: 1rem;
+          }
+          .imgBg {
+            width: 1rem;
+            height: 1rem;
+            background: rgba(135, 65, 227, 1);
+            border-radius: 0.12rem;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          strong {
+            display: block;
+            height: 0.9rem;
+            font-size: 0.24rem;
+            text-align: center;
+          }
+        }
+      }
+      li::before {
+        content: "";
+        display: block;
+        width: 7.1rem;
+        height: 0.02rem;
+        background: linear-gradient(
+          90deg,
+          rgba(252, 245, 193, 0),
+          rgba(252, 245, 193, 0.5),
+          rgba(252, 245, 193, 0)
+        );
+        border-radius: 0.02rem;
+        position: absolute;
+        bottom: 0;
+      }
+    }
   }
 }
 .refresh {

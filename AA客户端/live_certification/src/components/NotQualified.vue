@@ -19,9 +19,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 .commitTips {
+  width: 6.9rem;
+  height: 4rem;
   text-align: center;
   font-size: 0.26rem;
-  margin-top: 0.7rem;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 0.12rem;
   span {
     color: rgba(103, 160, 226, 1);
   }
@@ -29,7 +33,7 @@ export default {
     display: block;
     width: 1.6rem;
     height: 1.6rem;
-    margin: 0 auto;
+    margin: 0.7rem auto 0;
     background: url(../img/status_warning.png);
     background-size: 100% 100%;
   }
@@ -40,7 +44,7 @@ export default {
   }
 }
 .tipList {
-  margin-top: 1.32rem;
+  margin-top: 0.3rem;
   padding: 0 0.48rem;
   h3 {
     font-size: 0.28rem;
