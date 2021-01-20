@@ -19,7 +19,7 @@
     </div>
     <!-- -->
     <div class="lastOpenPacketPeople">
-      <div class="title"> <span v-if="naming.uid" @click="peopleType = 1" :class="{act:peopleType == 1}">上一輪紅包由以下歌友冠名贊助</span> <span @click="peopleType = 2" :class="{act:peopleType == 2}">我的赞助</span></div>
+      <div class="title"> <span v-if="naming.uid" @click="peopleType = 1" :class="{act:peopleType == 1}">上一輪紅包由以下歌友冠名贊助</span> <span @click="peopleType = 2" :class="{act:peopleType == 2}">我的贊助</span></div>
       <div class="people" v-if="naming.uid && peopleType == 1">
         <div class="imgBox" @click="goSong(naming.sid)">
           <img v-lazy="naming.avatar" alt="" class="av">

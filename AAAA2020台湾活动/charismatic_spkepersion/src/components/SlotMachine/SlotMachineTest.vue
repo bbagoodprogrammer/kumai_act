@@ -161,7 +161,7 @@ button {
 }
 .sloat {
   position: absolute;
-  top: 4.2rem;
+  top: 4rem;
   left: 1.45rem;
 }
 .giftPup {

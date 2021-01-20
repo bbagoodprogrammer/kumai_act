@@ -124,7 +124,7 @@ export default {
   }
   li {
     width: 100%;
-    height: 2.5rem;
+    height: 1.3rem;
     text-align: center;
     overflow: hidden;
     display: flex;
@@ -138,8 +138,8 @@ export default {
     }
     img {
       // margin-top: 0.3rem;
-      width: 1.25rem;
-      height: 1.25rem;
+      width: 1.1rem;
+      height: 1.1rem;
     }
   }
 }

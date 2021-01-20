@@ -20,12 +20,13 @@ export default {
 <style lang="scss" scoped>
 .commitTips {
   width: 6.9rem;
-  height: 4rem;
+  height: 3.4rem;
   text-align: center;
   font-size: 0.26rem;
   margin: 0 auto;
   background: #fff;
   border-radius: 0.12rem;
+  padding-top: 0.6rem;
   span {
     color: rgba(103, 160, 226, 1);
   }
@@ -33,7 +34,7 @@ export default {
     display: block;
     width: 1.6rem;
     height: 1.6rem;
-    margin: 0.7rem auto 0;
+    margin: 0 auto;
     background: url(../img/status_warning.png);
     background-size: 100% 100%;
   }

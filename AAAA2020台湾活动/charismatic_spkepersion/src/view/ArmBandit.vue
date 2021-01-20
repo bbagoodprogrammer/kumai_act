@@ -12,7 +12,7 @@
       </div>
     </div>
     <TrunMsg />
-    <Box />
+    <Box :level="level" :score="score" />
     <RedPackets :rate="rate" />
     <TabsScrollLoadList ref="scorll" />
     <act-footer></act-footer>
@@ -84,7 +84,9 @@ export default {
       showBannerBg: true,
       rate: {},
       historyList: [],
-      showHistoryPup: false
+      showHistoryPup: false,
+      level: 0,
+      score: 0
     }
   },
   created() {
@@ -162,6 +164,8 @@ export default {
           this.vxc('setC_day', c_day)
           this.vxc('changTab', c_day)
           this.vxc('setInited', 1)
+          this.level = owner.level
+          this.score = owner.score
         } else {
           this.toast(response_status.error)
         }
