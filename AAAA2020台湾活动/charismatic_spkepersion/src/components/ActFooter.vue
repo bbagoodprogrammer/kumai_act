@@ -37,7 +37,7 @@ export default {
         return 2
       } else if (!this.reg || this.isShare) { //活动开始未报名，或者分享
         return 1
-      } else if (this.reg && this.tab <= this.c_day) { //活动开始已报名
+      } else if (this.reg && (this.tab <= this.c_day || this.tab == 'total')) { //活动开始已报名
         return 3
       }
     },
@@ -45,12 +45,15 @@ export default {
       return this.groupsUserMsg[this.tab] ? this.groupsUserMsg[this.tab].msg : {}
     },
     act_day() {
-      return getDate(new Date(this.dateArr[this.tab] * 1000), 3)
+      return getDate(new Date(this.dateArr[this.tab - 1] * 1000), 3)
     }
   },
   methods: {
     singUp() {
       globalBus.$emit('commonEvent', () => {
+        if (this.astState != 1) {
+          return
+        }
         api.singUp().then(res => {
           if (res.data.response_status.code == 0) {
             this.$parent.$refs.scorll.onRefresh()
@@ -160,7 +163,6 @@ export default {
         }
       }
       .songMsg {
-        white-space: nowrap;
         font-size: 0.26rem;
         .topNum {
           margin-top: 0.1rem;

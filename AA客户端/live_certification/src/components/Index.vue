@@ -159,7 +159,7 @@ export default {
       let callback = type == 1 ? 'idCard' : 'liveCover'
       const resData = await getUploadImg({
         callback,
-        lwRatio: 1,
+        lwRatio: type == 1 ? 0.63 : 1,
         maxWidth: 1000,
         minWidth: 100
       })
@@ -209,7 +209,7 @@ export default {
 
 <style lang="scss" scoped>
 .page {
-  background: #ffffff;
+  background: #fafafa;
   position: relative;
   .process {
     height: 1.28rem;
@@ -324,6 +324,7 @@ export default {
         > img {
           width: 3.68rem;
           height: 2.32rem;
+          border-radius: 0.12rem;
           // position: absolute;
           // left: 0;
           // top: 0;
@@ -385,6 +386,7 @@ export default {
       > img {
         width: 100%;
         height: 100%;
+        border-radius: 0.12rem;
         position: absolute;
         left: 0;
         top: 0;

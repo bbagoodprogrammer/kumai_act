@@ -61,7 +61,7 @@ export default {
     history_eligibility: 'Raffle eligibility', // 抽獎資格
     history_startP: 'Initiator:',//發起者:
     history_jionsNums: 'Participants:',//參與人數:
-    history_tips: 'Send out $ gifts and get % draw opportunities',//送出$份禮物，獲得%個抽獎機會
+    history_tips: 'Send out $ gifts and get $ draw opportunities',//送出$份禮物，獲得%個抽獎機會
 
     //config
     tabArr: ["VIP", "Platform gift", "Cars", "Headdress", null, "Card", "Theme"],

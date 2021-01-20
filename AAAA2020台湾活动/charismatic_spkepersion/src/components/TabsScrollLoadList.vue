@@ -64,7 +64,7 @@
           </div>
           <div class="score">
             <!-- Lv.{{item.level}}  -->
-            <div class="lv"><em class="lvScore">{{mainTab == 0?'星光值：':'名人值：'}}{{item.score}}</em> </div>
+            <div class="lv"><em class="lvScore">星光值：{{item.score}}</em> </div>
             <div class="iconScore">
               <!-- is_prize -->
               <span v-if="item.pro">中獎概率:{{item.pro}}%</span>

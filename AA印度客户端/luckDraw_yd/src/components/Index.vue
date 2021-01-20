@@ -250,6 +250,10 @@ export default {
 </script>
 
 <style lang="scss">
+html,
+body {
+  background: transparent !important;
+}
 .pageMain {
   background: url(../img/gameBg.png) no-repeat;
   background-size: 100% auto;
