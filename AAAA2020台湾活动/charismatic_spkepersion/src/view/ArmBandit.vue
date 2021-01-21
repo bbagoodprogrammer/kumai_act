@@ -112,60 +112,19 @@ export default {
           this.vxc('setActStatus', step)
           this.vxc('setReg', reg)
           this.vxc('setPacket', gift)
-          // redPacket
-          this.vxc('setRedPacket', redPacket
-            // { // 红包信息
-            //   "total": 1088, // 每个红包金币数
-            //   "step": 100, // 每轮爆红包收礼数
-            //   "current": 0, // 当前轮收礼进度
-            //   "subscribe": false, // 是否预约了红包提醒
-            //   "status": 1, // 红包状态 1倒计时 2可抢 3抢完 0其它
-            //   "time": 50, // 有红包开抢前3分钟倒计时（单位：秒）
-            //   "coins": 0, // 本轮已抢得金币数
-            //   "size": 0, // 红包剩余量
-            //   "lose": false, // 没有抢到
-            //   "hide": false, // 是否主动关闭了红包弹窗
-            //   "record": [ // 本轮收礼前30名用户动态
-            //     {
-            //       "uid": 100880,
-            //       "nick": "啾咪、欣戀撒大大大大大所多",
-            //       "avatar": "http://img.17sing.tw/uc/img/head_100880_1591328073.png_small",
-            //       "sex": 0,
-            //       "noble": 100,
-            //       "frame": "http://img.17sing.tw/uc/avatarFrame/resource_url_1589524839.png",
-            //       "count": 100
-            //     },
-            //     {
-            //       "uid": 100880,
-            //       "nick": "啾咪、欣戀撒大大大大大所多",
-            //       "avatar": "http://img.17sing.tw/uc/img/head_100880_1591328073.png_small",
-            //       "sex": 0,
-            //       "noble": 100,
-            //       "frame": "http://img.17sing.tw/uc/avatarFrame/resource_url_1589524839.png",
-            //       "count": 100
-            //     },
-            //     {
-            //       "uid": 100880,
-            //       "nick": "啾咪、欣戀撒大大大大大所多",
-            //       "avatar": "http://img.17sing.tw/uc/img/head_100880_1591328073.png_small",
-            //       "sex": 0,
-            //       "noble": 100,
-            //       "frame": "http://img.17sing.tw/uc/avatarFrame/resource_url_1589524839.png",
-            //       "count": 100
-            //     }
-            //   ]
-            // }
-          )
+          this.vxc('setRedPacket', redPacket)
           this.vxc('setNaming', naming)
           this.vxc('setUserMsg', owner)
           this.vxc('setNotice', notice)
           this.vxc('setTimeArr', this.getDateArr(stime, etime))
           this.vxc('setTotalDay', days)
-          this.vxc('setC_day', c_day)
-          this.vxc('changTab', c_day)
           this.vxc('setInited', 1)
           this.level = owner.level
           this.score = owner.score
+          if (!val) {
+            this.vxc('setC_day', c_day)
+            this.vxc('changTab', c_day)
+          }
         } else {
           this.toast(response_status.error)
         }
@@ -313,7 +272,9 @@ body::-webkit-scrollbar {
       justify-content: space-between;
     }
     ul {
+      padding-right: 0.2rem;
       max-height: 8rem;
+      overflow-x: hidden;
       overflow-y: scroll;
       li {
         height: 2.6rem;

@@ -26,7 +26,8 @@ const store = new Vuex.Store({
         total: {},
         reg: false,
         tab: 0,
-        dayTask: {}
+        dayTask: {},
+        prog: []
     },
     mutations: {
         isLoaging(state, boolean) {
@@ -128,6 +129,14 @@ const store = new Vuex.Store({
         addScore(state, val) {
             state.day.score += val
             state.total.score += val
+        },
+        setProg(state, val) {
+            console.log(val)
+            state.prog = val
+        },
+        setTotalLuckNums(state, val) {
+            console.log(this)
+            Vue.set(state.prog, 0, val)
         }
     },
     actions: {

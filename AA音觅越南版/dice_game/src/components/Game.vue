@@ -1,6 +1,10 @@
 <template>
   <div class="game">
     <i class="start"></i>
+    <div class="must_liner">
+      <span class="act_liner" :style="{width:prog[0]/prog[1]*100 + '%'}">{{prog[0]}}/{{prog[1]}}次</span>
+      <i class="gift_icon"></i>
+    </div>
     <i class="userIcon" :style="{left:userposition.left-.1+ 'rem',top:userposition.top-.8 + 'rem'}" :class="{ani:lucking}">
       <img v-lazy="owner.avatar" alt="">
     </i>
@@ -237,7 +241,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['steps', 'position', 'dice', 'owner', 'reg']),
+    ...mapState(['steps', 'position', 'dice', 'owner', 'reg', 'prog']),
     userposition() {
       return this.iconPosition[this.position]
     },
@@ -259,11 +263,13 @@ export default {
         api.goDice(1).then(res => {
           this.showDiceAni = true
           this.player.start()
+
           setTimeout(() => {
             let data = res.data.response_data
             let forward = data.extra.forward
             let prize = data.prizes[0]
             let goForward = 0
+            this.vxc('setTotalLuckNums', data.prog)
             this.player.clear()
             this.forward = forward
             this.showForwardImg = true
@@ -406,6 +412,39 @@ export default {
   height: 10.5rem;
   margin: 1.46rem auto 0;
   position: relative;
+  .must_liner {
+    width: 3.63rem;
+    height: 0.37rem;
+    background: url(../assets/img/linerBg.png);
+    background-size: 100% 100%;
+    position: absolute;
+    left: 1.65rem;
+    top: 5.5rem;
+
+    .act_liner {
+      max-width: 100%;
+      height: 0.27rem;
+      background: url(../assets/img/actLiner.png);
+      background-size: auto 100%;
+      border-radius: 0.2rem;
+      position: absolute;
+      left: 0.05rem;
+      top: 0.05rem;
+      text-align: center;
+      color: rgba(106, 38, 205, 1);
+      font-size: 0.21rem;
+    }
+    .gift_icon {
+      display: block;
+      width: 0.99rem;
+      height: 1.01rem;
+      background: url(../assets/img/must_gift.png);
+      background-size: 100% 100%;
+      position: absolute;
+      right: -0.45rem;
+      top: -0.4rem;
+    }
+  }
   .start {
     display: block;
     width: 1.12rem;
@@ -506,6 +545,14 @@ export default {
       background: url(../assets/img/icon/gift9.png);
       background-size: 100% 100%;
     }
+    &.gift7 {
+      background: url(../assets/img/icon/gift7.png);
+      background-size: 100% 100%;
+    }
+    &.frame1 {
+      background: url(../assets/img/icon/frame1.png);
+      background-size: 100% 100%;
+    }
     &.frame4 {
       background: url(../assets/img/icon/frame5.png);
       background-size: 100% 100%;
@@ -536,6 +583,10 @@ export default {
     }
     &.car5 {
       background: url(../assets/img/icon/car6.png);
+      background-size: 100% 100%;
+    }
+    &.car6 {
+      background: url(../assets/img/icon/car7.png);
       background-size: 100% 100%;
     }
     &.bean7 {

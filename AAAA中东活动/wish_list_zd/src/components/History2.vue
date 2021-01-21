@@ -12,7 +12,7 @@
           <div class="songName">{{item.song_name}}</div>
           <div class="userName">From: {{item.nick}}</div>
           <div class="getUid">
-            <span v-if="!item.fuser">該心願未被摘取</span>
+            <span v-if="!item.fuser">لم يتم قطف الرغبة</span>
             <span v-else>قطف {{item.fuser.uid}} هذه الرغبة</span>
           </div>
         </div>

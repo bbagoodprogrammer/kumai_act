@@ -1,24 +1,28 @@
 <template>
-  <div class="sloat">
-    <SlotMachine @end="onEnd" :size="3" :list="list" :result="result" />
-    <div class="mask" v-show="showMinToast">
-      <transition name="slide">
-        <div class="giftPup" v-show="showMinToast">
-          <i class="close" @click="showMinToast = false"></i>
-          <div class="title"></div>
-          <div class="giftArr">
-            <div class="giftItem" v-for="(item,index) in result " :key="index">
-              <div class="imgBg">
-                <img :src="giftArr[item].img" alt="">
+  <div class="dfbox">
+    <div class="sloat">
+      <SlotMachine @end="onEnd" :size="3" :list="list" :result="result" />
+      <div class="mask" v-show="showMinToast">
+        <transition name="slide">
+          <div class="giftPup" v-show="showMinToast">
+            <i class="close" @click="showMinToast = false"></i>
+            <div class="title"></div>
+            <div class="giftArr">
+              <div class="giftItem" v-for="(item,index) in result " :key="index">
+                <div class="imgBg">
+                  <img :src="giftArr[item].img" alt="">
+                </div>
+                <strong>{{giftArr[item].name}}</strong>
               </div>
-              <strong>{{giftArr[item].name}}</strong>
             </div>
+            <p>以上獎品已成功派發到您的賬號上，請注意查收</p>
           </div>
-          <p>以上獎品已成功派發到您的賬號上，請注意查收</p>
-        </div>
-      </transition>
+        </transition>
+      </div>
     </div>
+
   </div>
+
 </template>
 
 <script>
@@ -115,7 +119,9 @@ export default {
     },
     startGame() {
       globalBus.$emit('commonEvent', (callback) => {
-        if (!this.cilckItem.can && !this.cilckItem.get) {
+        if (this.cilckItem.get) {
+          return
+        } else if (!this.cilckItem.can && !this.cilckItem.get) {
           this.$parent.showNotSingup = true
           return
         }
@@ -159,10 +165,18 @@ button {
   padding: 0.1rem 0.2rem;
   position: absolute;
 }
-.sloat {
+.dfbox {
+  height: 1.2rem;
   position: absolute;
   top: 4rem;
   left: 1.45rem;
+  padding-top: 1.4rem;
+  overflow: hidden;
+}
+.sloat {
+  // position: absolute;
+  // top: 4rem;
+  // left: 1.45rem;
 }
 .giftPup {
   width: 7.18rem;

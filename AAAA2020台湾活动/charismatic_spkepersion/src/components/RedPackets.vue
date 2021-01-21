@@ -12,14 +12,14 @@
       </div>
     </div>
     <div class="redTips">
-      帶“魅力代言人大賽”標籤作品每收到{{redPacket.step}}個<i></i>禮物<br /> 全體用戶可開啟紅包
+      帶“魅力代言人大賽”標籤作品每收到{{redPacket.step}}個 <img :src="redPacket.img" /> 禮物<br /> 全體用戶可開啟紅包
     </div>
     <div class="subscribe" @click="subscribe()">
       {{redPacket.subscribe?'取消預約':'預約搶紅包'}}
     </div>
     <!-- -->
     <div class="lastOpenPacketPeople">
-      <div class="title"> <span v-if="naming.uid" @click="peopleType = 1" :class="{act:peopleType == 1}">上一輪紅包由以下歌友冠名贊助</span> <span @click="peopleType = 2" :class="{act:peopleType == 2}">我的贊助</span></div>
+      <div class="title"> <span v-if="naming.uid" @click="peopleType = 1" :class="{act:peopleType == 2}">上一輪紅包由以下歌友冠名贊助</span> <span @click="peopleType = 2" :class="{act:peopleType == 1}">我的贊助</span></div>
       <div class="people" v-if="naming.uid && peopleType == 1">
         <div class="imgBox" @click="goSong(naming.sid)">
           <img v-lazy="naming.avatar" alt="" class="av">
@@ -27,14 +27,14 @@
         </div>
         <div class="nick">{{naming.nick}}</div>
         <div class="score">
-          <i></i>
+          <img :src="redPacket.img" />
           <strong>x{{naming.count}}</strong>
         </div>
       </div>
       <div class="my_vote" v-else>
         <div class="tips">我贊助的紅包數：{{rate.num}}<span>加成:{{rate.rate}}%</span></div>
         <div class="liner">
-          <div class="actLiner" :style="{width:rate.rate*10 +'%'}"></div>
+          <div class="actLiner" :class="{max:rate.rate*10 >= 100}" :style="{width:rate.rate*10 +'%'}"></div>
           <span v-for="(item,index) in 5" :key="index"> <em>{{item*2}}%</em></span>
           <i class="add">加成:</i>
         </div>
@@ -54,7 +54,7 @@
               <li v-for="(item,index) in redPacket.record" :key="index">
                 <img :src="item.avatar" alt="" v-if="item.avatar" @click="goUser(item.uid)">
                 <img src="../assets/img/default.png" alt="" v-else @click="goUser(item.uid)">
-                <strong> <em class="nick">{{item.nick}}</em>收到{{item.count}}個“玫瑰花束”</strong>
+                <strong> <em class="nick">{{item.nick}}</em>收到{{item.count}}個 <img :src="redPacket.img" /></strong>
               </li>
             </ul>
           </vue-seamless-scroll>
@@ -339,16 +339,16 @@ export default {
       var data = {
         "share_title": `快來！爆紅包啦！`,
         "share_content": "點擊預約搶紅包,還能收到提醒哦>>",
-        "share_image": `http://activity.17sing.tw/static_html/2020/songking2020/share.png?v=2`,
-        "link": `http://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#`,
-        "image": `http://activity.17sing.tw/static_html/2020/songking2020/share.png?v=2`,
-        "share_url": `http://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#`
+        "share_image": `http://activity.17sing.tw/static_html/2020/charismatic_spkepersion/share.png?v=5`,
+        "link": `http://activity.17sing.tw/static_html/2020/charismatic_spkepersion/index.html?uid=#ID#&token=#TOKEN#`,
+        "image": `http://activity.17sing.tw/static_html/2020/charismatic_spkepersion/share.png?v=5`,
+        "share_url": `http://activity.17sing.tw/static_html/2020/charismatic_spkepersion/index.html?uid=#ID#&token=#TOKEN#`
       }
       if (ios) {
         if (window.share != undefined) {
           share(JSON.stringify(data))
         } else {
-          location.href = `shareUserInfo://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#&shareText=點擊預約搶紅包,還能收到提醒哦>>&userImg=http://activity.17sing.tw/static_html/2020/songking2020/share.png?v=2&title=快來！年度魅力歌王大賽準備爆紅包啦！`;
+          location.href = `shareUserInfo://activity.17sing.tw/static_html/2020/charismatic_spkepersion/index.html?uid=#ID#&token=#TOKEN#&shareText=點擊預約搶紅包,還能收到提醒哦>>&userImg=http://activity.17sing.tw/static_html/2020/charismatic_spkepersion/share.png?v=5&title=快來！年度魅力歌王大賽準備爆紅包啦！`;
         }
       } else {
         javascript: JSInterface.share(JSON.stringify(data));
@@ -444,12 +444,12 @@ export default {
     vertical-align: bottom;
     padding-top: 0.02rem;
     margin-top: 0.1rem;
-    i {
+    img {
       display: inline-block;
       width: 0.58rem;
       height: 0.58rem;
-      background: url(../assets/img/giftIcon.png);
-      background-size: 100% 100%;
+      // background: url(../assets/img/giftIcon.png);
+      // background-size: 100% 100%;
       margin: 0 0.05rem -0.2rem;
     }
   }
@@ -513,14 +513,17 @@ export default {
         display: flex;
         position: relative;
         .actLiner {
-          max-width: 98%;
+          // max-width: 98%;
           // width: 50%;
           height: 100%;
           background: linear-gradient(0deg, #ffd7bb, #fdf1d4);
           position: absolute;
-          left: 0.02rem;
+          left: 0rem;
           top: 0;
           border-radius: 0.12rem 0 0 0.12rem;
+          &.max {
+            border-radius: 0.12rem;
+          }
         }
         span {
           flex: 1;
@@ -586,11 +589,11 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        i {
+        img {
           width: 0.58rem;
           height: 0.58rem;
-          background: url(../assets/img/giftIcon.png);
-          background-size: 100% 100%;
+          // background: url(../assets/img/giftIcon.png);
+          // background-size: 100% 100%;
           margin-right: 0.06rem;
         }
       }
@@ -650,7 +653,7 @@ export default {
           margin-bottom: 0.12rem;
           display: flex;
           align-items: center;
-          img {
+          > img {
             width: 0.48rem;
             height: 0.48rem;
             border-radius: 50%;
@@ -672,6 +675,14 @@ export default {
               white-space: nowrap;
               text-overflow: ellipsis;
             }
+            img {
+              display: inline-block;
+              width: 0.33rem;
+              height: 0.33rem;
+              // background: url(../assets/img/giftIcon.png);
+              // background-size: 100% 100%;
+              margin-left: 0.05rem;
+            }
           }
         }
       }
@@ -691,8 +702,8 @@ export default {
     }
   }
   .packetRes {
-    width: 6.17rem;
-    height: 7.75rem;
+    width: 7.18rem;
+    height: 8.33rem;
     background: url(../assets/img/redPackets/open_ed.png);
     background-size: 100% 100%;
     position: relative;
@@ -746,8 +757,8 @@ export default {
     }
   }
   .packetRecord {
-    width: 6.17rem;
-    height: 7.75rem;
+    width: 7.18rem;
+    height: 8.33rem;
     background: url(../assets/img/redPackets/open_ed.png);
     background-size: 100% 100%;
     position: relative;
@@ -776,14 +787,17 @@ export default {
       }
     }
     .recoreList {
-      width: 5rem;
+      width: 4.3rem;
       height: 3.15rem;
       overflow-y: scroll;
-      margin: 0.5rem auto 0;
+      margin: 0.9rem auto 0;
+      padding-right: 0.2rem;
       li {
         display: flex;
         align-items: center;
         margin-bottom: 0.12rem;
+        position: relative;
+        height: 0.7rem;
         .av {
           width: 0.48rem;
           height: 0.48rem;
@@ -830,6 +844,16 @@ export default {
             }
           }
         }
+      }
+      li:before {
+        content: "";
+        display: block;
+        width: 3.55rem;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.3);
+        position: absolute;
+        bottom: 0;
+        right: 0;
       }
     }
     .recoreList::-webkit-scrollbar {

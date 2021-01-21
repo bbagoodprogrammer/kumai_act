@@ -2,7 +2,7 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">Thời gian: 18:00 ngày 30/12 _ 18:00 ngày 6/1</div>
+    <div class="actTime">Thời gian: 20:00 ngày 21/1 - 23:59 ngày 27/1</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">Thể lệ</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">Thưởng</span>
@@ -12,7 +12,9 @@
       <p>Mua xúc xắc quay thưởng, trúng nhiều phần thưởng hấp dẫn. </p>
       <P>Top 10 đổ xúc xắc đi được nhiều bước nhất sẽ nhận thưởng. </P>
       <P>Sau khi sự kiện kết thúc, nếu xúc xắc còn không đổ hết sẽ được trả lại xu vớ mức tính 50 xu 1 xúc xắc.</P>
-      <h6>2. Chú ý: </h6>
+      <h6>2. Tỉ lệ trúng thưởng </h6>
+      <img src="../assets/img/rule/table.png" alt="" class="gl_img">
+      <h6>3. Chú ý: </h6>
       <p>* Trong thời gian sự kiện diễn ra, nếu người dùng có hành vi gian lận tuỳ trường hợp, app sẽ tiến hành cảnh cáo, huỷ tư cách tham gia hoặc xoá tài khoản. </p>
       <P>* Sự kiện không liên quan đến tập đoàn apple.</P>
     </div>
@@ -85,11 +87,12 @@ export default {
 .red {
   color: #ffe747 !important;
 }
-.table {
+.gl_img {
   width: 5.88rem;
   height: 2.83rem;
-  margin: 0 auto 0.1rem;
+  margin: 0.15rem auto;
 }
+
 .rule {
   width: 6.48rem;
   height: 10rem;

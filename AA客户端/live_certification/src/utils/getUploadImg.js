@@ -45,7 +45,7 @@ function getUploadImg(data = {}) {
         try {
             const dataStr = JSON.stringify(data);
             if (isIOS) {
-                window.Native.JSCall('onUploadPhoto', data, (res) => {
+                window.Native.JSCall('uploadPhoto', data, (res) => {
                     resolve(JSON.parse(res));
                 })
             } else {
