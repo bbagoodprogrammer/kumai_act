@@ -92,7 +92,7 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { step, steps, day, total, position, position2, owner, dice, reg, friends } = response_data
+          const { step, prog, steps, day, total, position, position2, owner, dice, reg, friends } = response_data
           this.vxc('setActStatus', step)
           this.vxc('setSteps', steps)
           this.vxc('setSecond', total.dtime)
@@ -102,6 +102,7 @@ export default {
           this.vxc('setDay', day)
           this.vxc('setTotal', total)
           this.vxc('setReg', reg)
+          this.vxc('setProg', prog)
           if (friends && !reg) {
             this.peopleList = friends
             this.invitation = true

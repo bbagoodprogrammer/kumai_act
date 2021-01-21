@@ -1,6 +1,6 @@
 export default {
     //html/index.html
-    title: 'Consecutive check-in badge description', //連簽徽章說明
+    title: 'Check-in badge rules', //連簽徽章說明
     sign_day: 'Checked in for',//你已連續簽到
     sign_day2: 'consecutive days',
     sign_retroactive: ' Re-check in',//補簽

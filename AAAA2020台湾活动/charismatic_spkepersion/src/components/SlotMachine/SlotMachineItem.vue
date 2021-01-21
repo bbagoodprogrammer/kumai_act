@@ -31,7 +31,7 @@ export default {
   computed: {
     items() {
       const list = Object.assign([], this.list).sort(() => 0.5 - Math.random());
-      return list.concat(list).concat(list).concat(list).concat(list);
+      return list.concat(list).concat(list).concat(list)
     },
     nodes() {
       return this.$el.getElementsByTagName('li');
@@ -55,7 +55,7 @@ export default {
             if (this.index == this.size - 1) {
               this.$emit('end');
             }
-          }, 5000);
+          }, 3000);
         }, delay);
       }
     },
@@ -65,7 +65,12 @@ export default {
       //Webpack开发模式使用style-loader插入样式时，不延时会导致计算不准
       const itemHeight = this.nodes[0].clientHeight;
       this.itemHeight = itemHeight;
+
       this.offsetY = (this.$el.clientHeight - itemHeight) / 2;
+      var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (ios) {
+        this.offsetY -= itemHeight
+      }
       this.translateY = this.getDefaultY();
     }, 100);
   },
@@ -110,32 +115,32 @@ export default {
 .slotMachineItem {
   width: 1.51rem;
   height: 2.5rem;
-  overflow: hidden;
+  // overflow: hidden;
   padding-top: 0.1rem;
   .hide {
     height: 2.5rem;
     // margin-top: 0.1rem;
-    overflow: hidden;
+    // overflow: hidden;
   }
   ul {
     &.active {
-      transition: all 5s ease;
+      transition: all 3s ease;
     }
   }
   li {
     width: 100%;
-    height: 1.3rem;
+    height: 1.25rem;
     text-align: center;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    span {
-      display: block;
-      width: 100%;
-      height: 100%;
-      color: red;
-    }
+    // span {
+    //   display: block;
+    //   width: 100%;
+    //   height: 100%;
+    //   color: red;
+    // }
     img {
       // margin-top: 0.3rem;
       width: 1.1rem;

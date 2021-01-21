@@ -121,11 +121,15 @@ export default {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       window.removeEventListener("scroll", this.onScroll)
       this.getDefaultData('ref')
+      if (this.showCom == 'people') {
+        this.load = false
+        this.tabClick('people')
+      }
     },
     closeToast() {
       this.showT = false
     },
-    downApp(){
+    downApp() {
       APP()
     }
   }

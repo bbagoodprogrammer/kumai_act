@@ -192,6 +192,9 @@ export default {
     }
   }
 }
+.dice {
+  margin: 0.8rem auto 0;
+}
 .close {
   display: block;
   width: 0.72rem;

@@ -3,7 +3,8 @@
     <i class="horn"></i>
     <div class="trunMsg">
       <p class="msgItem" v-for="(item,index) in notice" :key="index" v-if="index == msgIndex">
-        UID:{{item.uid}} <em class="nick"> {{item.nick}}</em>抽到了 <img :src="gifts[item.count].img" alt=""> <em>{{gifts[item.count].name}}</em>
+        <!-- <img :src="gifts[item.gid].img" alt=""> -->
+        UID:{{item.uid}} <em class="nick"> {{item.nick}}</em>抽到了 <em>{{gifts[item.gid].name}}</em>
 
       </p>
     </div>
@@ -45,7 +46,7 @@ export default {
           setTimeout(() => {
             this.msgIndex = 0
           }, 0)
-        }, 5000);
+        }, 6000);
       } else {
         this.timer = setInterval(() => {
           if (this.msgIndex == this.notice.length - 1) {
@@ -53,7 +54,7 @@ export default {
           } else {
             this.msgIndex++
           }
-        }, 5000);
+        }, 6000);
       }
 
     }
@@ -83,6 +84,7 @@ export default {
     position: relative;
     overflow: hidden;
     .msgItem {
+      // width: 5.3rem;
       height: 100%;
       font-size: 0.24rem;
       display: flex;
@@ -90,7 +92,7 @@ export default {
       position: absolute;
       left: 100%;
       white-space: nowrap;
-      animation: trun linear 5s;
+      animation: trun linear 6s;
       color: rgba(252, 245, 193, 1);
       .nick {
         max-width: 1.5rem;

@@ -5,7 +5,7 @@
         <div class="total" :class="'rank' + nowMsg.rank">
           <div class="rank">{{nowMsg.rank == 0?'未上榜':nowMsg.rank}}</div>
           <div class="imgBox" @click="goUser(nowMsg.uid)">
-            <img v-if="nowMsg.frame &&nowMsg.frame != ''" :src="nowMsg.frame" class="frame" alt="">
+            <img v-if="nowMsg.avatar_frame &&nowMsg.avatar_frame != ''" :src="nowMsg.avatar_frame" class="frame" alt="">
             <img v-else-if="nowMsg.nob > 0" :src="require(`../assets/img/nob/${nowMsg.nob}.png`)" class="nob" alt="">
             <img v-lazy="nowMsg.avatar" alt="" class="av">
           </div>

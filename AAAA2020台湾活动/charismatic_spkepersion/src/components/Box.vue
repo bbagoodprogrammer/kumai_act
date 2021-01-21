@@ -20,7 +20,7 @@
           <i class="close" @click="shouLuckPup = false"></i>
           <p class="lvTips">星光值達到{{cilckItem.limit}}可抽獎 <em>(即升級到Lv.{{cilckItem.level}}等級)</em></p>
           <slot-machine-test ref="luck" :cilckItem="cilckItem" @setPacketStatus="setPacketStatus"></slot-machine-test>
-          <div class="luckGo" :class="{can:cilckItem.can,ed:cilckItem.get}" @click="goLuck()"></div>
+          <div class="luckGo" :class="{can:cilckItem.can && !cilckItem.get,ed:cilckItem.get}" @click="goLuck()"></div>
         </div>
       </transition>
     </div>
@@ -370,7 +370,7 @@ export default {
     background-size: 100% 100%;
     position: absolute;
     right: 0.35rem;
-    top: 1.3rem;
+    top: 1.02rem;
   }
   .lvTips {
     width: 4.7rem;

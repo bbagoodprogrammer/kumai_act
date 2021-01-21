@@ -27,7 +27,7 @@
         <p v-else-if="actStatus == 1">總榜結束倒計時</p>
         <div class="noTime" v-else>活動已結束</div>
       </div>
-      <div class="timeDown" v-if=" surplusTime.day">
+      <div class="timeDown" v-if="surplusTime&& !surplusTime.end">
         <div class="day">
           <strong>{{surplusTime.day}}</strong>
           <em>天</em>
@@ -46,14 +46,14 @@
         </div>
       </div>
     </div>
-
+    <img src="../assets/img/rule/gifts3.png" alt="" class="img3" v-if="mainTab == 0">
     <!-- 总榜 -->
     <div class="rankList">
       <ul class="list day">
         <li v-for="(item,index) in rank.list" :key="index" :class="'rank' +item.rank">
           <div class="rank">{{item.rank}}</div>
           <div class="imgBox" @click="goUser(item.uid)">
-            <img v-if="item.frame &&item.frame != ''" :src="item.frame" class="frame" alt="">
+            <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
             <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
             <img v-else-if="item.noble > 0" :src="require(`../assets/img/nob/${item.noble}.png`)" class="nob" alt="">
             <img v-lazy="item.avatar" alt="" class="av">
@@ -67,8 +67,9 @@
             <div class="lv"><em class="lvScore">星光值：{{item.score}}</em> </div>
             <div class="iconScore">
               <!-- is_prize -->
-              <span v-if="item.pro">中獎概率:{{item.pro}}%</span>
               <span v-if="item.is_prize" class="luck_ed">中獎</span>
+              <span v-if="item.pro">中獎概率:{{item.pro}}%</span>
+
             </div>
           </div>
         </li>
@@ -163,9 +164,9 @@ export default {
     rank() {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
-      if (rankConf.second && rankConf.second > 0) {
-        this.downTimeGo('time' + this.rankKey, rankConf.second)
-      }
+      // if (rankConf.second && rankConf.second > 0) {
+      this.downTimeGo('time' + this.rankKey, rankConf.second)
+      // }
       return rankConf;
     },
   },
@@ -265,7 +266,7 @@ export default {
     onRefresh() {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
-      this.$parent.getDefaultData()
+      this.$parent.getDefaultData('ref')
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,
         loadCount: 0,
@@ -308,7 +309,7 @@ export default {
       this.surplusTime = downTime(timeName);
       this.timer = setInterval(() => {
         this.surplusTime = downTime(timeName);
-        if (this.surplusTime.end) {
+        if (this.surplusTime && this.surplusTime.end) {
           clearInterval(this.timer)
           // this.$store.commit("changday_down_time", 0)  //當天剩餘時間
         }
@@ -628,23 +629,24 @@ export default {
             font-size: 0.28rem;
             margin-top: 0.15rem;
             white-space: nowrap;
-            span {
+            > span {
               font-size: 0.22rem;
-              display: flex;
-              align-items: center;
-              i {
-                width: 0.36rem;
-                height: 0.36rem;
-                margin-right: 0.05rem;
-              }
-              .sIcon1 {
-                background: url(../assets/img/rank/sIcon1.png);
-                background-size: 100% 100%;
-              }
-              .sIcon2 {
-                background: url(../assets/img/rank/sIcon2.png);
-                background-size: 100% 100%;
-              }
+              // display: flex;
+              // align-items: center;
+              // justify-content: center;
+              // i {
+              //   width: 0.36rem;
+              //   height: 0.36rem;
+              //   margin-right: 0.05rem;
+              // }
+              // .sIcon1 {
+              //   background: url(../assets/img/rank/sIcon1.png);
+              //   background-size: 100% 100%;
+              // }
+              // .sIcon2 {
+              //   background: url(../assets/img/rank/sIcon2.png);
+              //   background-size: 100% 100%;
+              // }
             }
             .luck_ed {
               width: 0.64rem;
@@ -653,6 +655,8 @@ export default {
               border-radius: 0.16rem;
               font-size: 0.21rem;
               margin-left: 0.1rem;
+              text-align: center;
+              line-height: 0.32rem;
             }
           }
         }
@@ -715,7 +719,12 @@ export default {
   color: #fef978;
   font-size: 0.24rem;
 }
-
+.img3 {
+  display: block;
+  width: 7.18rem;
+  height: 2.13rem;
+  margin: 0.15rem auto;
+}
 .downTimeBox2 {
   margin: 0.11rem auto 0;
   width: 6.98rem;

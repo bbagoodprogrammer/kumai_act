@@ -138,7 +138,7 @@ export const giftArr = {
         img: require('../assets/img/gifts/gift11.png')
     },
     34: {
-        name: '小蛋糕禮物(110金幣)',
+        name: '小蛋糕禮物(10金幣)',
         img: require('../assets/img/gifts/gift6.png')
     },
     35: {
@@ -157,7 +157,7 @@ export const giftArr = {
     //5擋
     38: {
         name: '1月魅力代言人徽章(9天)',
-        img: require('../assets/img/gifts/gift10.png')
+        img: require('../assets/img/gifts/gift16.png')
     },
     39: {
         name: '水瓶座頭飾(9天)',
