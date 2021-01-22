@@ -1,71 +1,73 @@
 <template>
   <div class="rule">
     <div class="topTabs">
-      <span :class="{act:tab == 1}" @click="tabClick(1)">活動獎勵</span>
-      <span :class="{act:tab == 2}" @click="tabClick(2)">活動規則</span>
+      <span :class="{act:tab == 1}" @click="tabClick(1)">Phần thưởng</span>
+      <span :class="{act:tab == 2}" @click="tabClick(2)">Quy tắc</span>
     </div>
     <div class="ruleTips" v-if="tab == 1">
-      <h5>活動時間</h5>
-      <p class="tm">11月16日18:00:00-11月25日20:00:00</p>
+      <h5>Thời gian</h5>
+      <p class="tm">18:00:00 ngày 25/1-21:00:00 ngày 3/2</p>
       <img src="../../assets/img/rule/gifts.png" alt="" class="gift">
-      <h5>等級抽獎獎勵-每次抽獎獎勵3個</h5>
+      <h5>Phần thưởng rút thưởng level-Mỗi lần rút thưởng thưởng 3 cái</h5>
       <img src="../../assets/img/rule/gifts2.png" alt="" class="img1">
-      <h5>魅力日榜中獎獎勵</h5>
-      <h5>魅力榜總榜前10名獎勵</h5>
-      <p>第一名：<br />歡歌1月魅力代言人認證（30天）+魅力代言人大禮包獎勵（首頁加魅力代言人歌曲標籤歌曲推薦1首+2000金幣）+1月魅力代言人徽章（30天）+摩羯座頭飾（30天）+紅毯座駕（30天）+會員VIP（30天）+摩羯座背包禮物（169金幣）*3+5000金幣+5000金豆 </p>
-      <p>第二名：<br /> 1月魅力代言人徽章（30天）+摩羯座頭飾（30天）+紅毯座駕（30天）+會員VIP（30天）+摩羯座背包禮物（169金幣）*2+3000金幣+3000金豆</p>
-      <p>第三名：<br />1月魅力代言人徽章（30天）+摩羯座頭飾（30天）+紅毯座駕（30天）+會員VIP（30天）+摩羯座背包禮物（169金幣）*2+2000金幣+1000金豆</p>
-      <p>第四-五名：<br />1月魅力代言人徽章（30天）+紅毯座駕（30天）+會員VIP（30天）+摩羯座背包禮物（169金幣）*1+1500金幣+1500金豆</p>
-      <p>第六-十名：<br />紅毯座駕（30天）+會員VIP（30天）+摩羯座背包禮物（169金幣）*1+1000金幣+1000金豆</p>
-      <h5>獎勵使用規則</h5>
-      <p>1、本活動獎勵的背包禮物有效期均為14天，請在有效期內使用</p>
-      <p>2、儲值返利券及金幣返利券，將放入背包中，限領取後24小時內有效，返利獎勵金幣將即時發放到賬戶上</p>
+      <h5>Phần thưởng trúng thưởng bảng mị lực ngày</h5>
+      <img src="../../assets/img/rule/gifts3.png" alt="" class="img3">
+      <p>PS: 20 người ngẫu nhiền của top 100 bảng mị lực ngày, có thể nhận 50 xu. Danh sách trúng thưởng sẽ rút vào 12h tối mỗi ngày, ngày thách đấu cuối cùng sẽ rút khi thách đấu kết thúc, túi quà sẽ tự động gửi vào tài khoản</p>
+      <h5>Phần thưởng top 10 bảng tổng mị lực</h5>
+      <p>Hạng 1: <br />Chứng nhận người phát ngôn tháng 1 (30 ngày)+ Túi quà người phát ngôn (1 bài hát được đề xuất trên trang chủ với nhãn người phát ngôn +2000 xu)+Huy chương phát ngôn tháng 1 (30 ngày)+Trang sức cung Bảo Bình (30 ngày)+Xe Thảm Đỏ (30 ngày)+Hội viên VIP (30 ngày)+3 Túi quà mị lực khắp nơi (109 xu)+3500 xu+7000 đậu</p>
+      <p>Hạng 2:<br />Huy chương phát ngôn tháng 1 (30 ngày)+Trang sức cung Bảo Bình (30 ngày)+Xe Thảm Đỏ (30 ngày)+Hội viên VIP (30 ngày)+2 Túi quà mị lực khắp nơi (109 xu)+2500 xu+5000 đậu</p>
+      <p>Hạng 3:<br />Huy chương người phát ngôn tháng 1 (30 ngày)+Trang sức cung Bảo Bình (30 ngày)+Xe Thảm Đỏ (30 ngày)+Hội viên VIP (30 ngày)+2 Túi quà mị lực khắp nơi (109 xu)+2000 xu+4000 đậu</p>
+      <p>Hạng 4-5<br />Huy chương người phát ngôn tháng 1 (30 ngày)+ Xe Thảm Đỏ (30 ngày)+Hội viên VIP (30 ngày)+1 Túi quà mị lực khắp nơi (109 xu)+1500 xu+3000 đậu</p>
+      <p>Hạng 6-10:<br />Xe Thảm Đỏ (30 ngày)+Hội viên VIP (30 ngày)+1 Túi quà mị lực khắp nơi (109 xu)+1000 xu+2000 đậu</p>
+      <h5>Quy tắc sử dụng phần thưởng</h5>
+      <p>1、Túi quà sự kiện này có thời hạn 14 ngày, hãy nhanh chóng sử dụng</p>
+      <p>2、Phiếu quà tặng sẽ được gửi vào túi, có giá trị trong 24h sau khi nhận, quà xu sẽ gửi tới tài khoản kịp thời</p>
     </div>
     <div class="giftItem" v-else>
-      <h5 class="mb">活動時間</h5>
-      <p>11月16日18:00:00-11月25日20:00:00</p>
-      <h4>活動規則</h4>
-      <h6>活動報名：</h6>
-      <p>1、點擊“立即報名”後在活動頁面上上傳任意公開作品（清唱5分鐘除外）報名，可上傳多首作品參賽，報名後作品收禮以及收到的讚才會被計算，若刪除活動期間報名的參賽作品，該刪除作品收禮總魅力值以及收到的讚數作廢</p>
-      <h5>活動榜單排名規則</h5>
-      <h6>魅力總榜：</h6>
-      <p>1、按照報名參賽後，獲得的星光值排名 <br />
-        2、星光值獲取攻略： 星光值=參賽作品收到點讚數X10+參賽作品收到金幣禮物魅力值<br />
-        <span>點讚數</span>：僅限參賽作品前30個讚計入成績<br />
-        <span>金幣禮物魅力值</span>:參賽作品每收到1金幣禮物，折算10魅力值<br />
-        <span>星光值加成</span>：每冠名贊助1次紅包，星光值加成2%，上限10%<br />
-        3、若獲得的星光值相同，則先到達該成長值的排名在前面榜單展示前100名用戶的比賽成績
+      <h5 class="mb">Thời gian</h5>
+      <p>18:00:00 ngày 25/1-21:00:00 ngày 3/2</p>
+      <h4>Quy tắc</h4>
+      <h6>Báo danh:</h6>
+      <p>1、Nhấn “Lập tức” Sau khi báo danh trên trang sự kiện tải lên tác phẩm công khai bất kỳ (ngoại trừ hát acapella 5 phút), có thể tham gia nhiều tác phẩm, sau khi báo danh tác phẩm nhận được quà và like mới được tính, nếu xóa tác phẩm trong thời gian báo danh, mị lực và số like của tác phẩm sẽ vô hiệu.</p>
+      <h5>Quy tắc xếp hạng bảng sự kiện</h5>
+      <h6>Bảng tổng mị lực</h6>
+      <p>1、Sau khi báo danh thách đấu, xếp hạng điểm sao nhận được <br />
+        2、Sách lược nhận điểm sao： Điểm sao=số like tác phẩm nhận được X10+mị lực quà xu tác phẩm nhận được<br />
+        Chỉ 30 lượt like đầu tiên của tác phẩm mới được tính thành tích<br />
+        Mị lực quà xu: Tác phẩm thách đấu mỗi lần nhận được 1 quà xu, được tính là 10 mị lực<br />
+        Tăng thêm điểm sao: Mỗi quán quân tài trợ lì xì 1 lần, điểm sao tăng thêm 2%, giới hạn 10% <br />
+        Nếu điểm sao nhận được bằng nhau, đạt được điểm số này trước sẽ xếp trước. Bảng hiển thị top 100 thành tích người dùng
 
       </p>
-      <h6>魅力日榜：</h6>
+      <h6>Bảng mị lực ngày:</h6>
       <p>
-        1、魅力日榜按照日榜星光值排名 <br />
-        2、若獲得的日榜星光值相同，則先到達該星光值的排名在前面。日榜星光值排名前100用戶可進入名人日榜 <br />
-        3、名人日榜前100名用戶中的隨機20位，可獲得XX禮物（50金幣） <br />
-        4、中獎概率=本人日榜星光值/前100名用戶當天日榜總星光值
+        1、Bảng mị lực ngày xếp hạng dựa vào điểm sao <br />
+        2、Nếu điểm sao nhận được bằng nhau, đạt được điểm sao này trước sẽ xếp trước. Top 100 bảng sao ngày có thể vào bảng mị lực ngày <br />
+        3、Chọn ngẫu nhiên 20 người trong top 100 bảng mị lực ngày, có thể nhận 50 xu<br />
+        4、Tỉ lệ trúng thưởng=điểm sao bảng ngày/top 100 điểm sao của người dùng trong ngày
       </p>
-      <h6>等級抽獎攻略：</h6>
+      <h6>Sách lược rút thưởng level:</h6>
       <p>
-        1、寶箱共有5個，星光值達到分別達到100、1000、10000、50000、100000，可抽取對應的寶箱獎勵，每次抽獎將得到3樣獎品。領取後獎勵將自動到賬，每人僅可抽取同一個寶箱獎勵1次<br />
-        2、所有寶箱領取有效期為活動結束前，請及時抽獎唷~
+        1、Tổng cộng có 5 rương, điểm sao lần lượt đạt đến 100, 1000, 10000, 50000, 100000, có thể rút được rương tương ứng, mỗi lần rút sẽ nhận được 3 phần quà. Sau khi nhận phần thưởng sẽ tự động gửi vào tài khoản, mỗi người chỉ có thể rút cùng 1 rương 1 lần<br />
+        2、Tất cả rương nhận được có thời hạn trước khi sự kiện kết thúc, hãy nhanh chóng rút!
       </p>
-      <h6>紅包攻略：</h6>
+      <h6>Sách lược kì xì：</h6>
       <p>
-        1、在活動期間，帶有“魅力代言人大賽”標籤作品每收到100個“XX”禮物（168金幣），會爆1次總金額888金幣的拼手氣紅包，每次爆紅包個數200個，先到先得<br />
-        2、點擊“預約搶紅包”後，爆紅包時將收到系統提醒，點擊“取消預約”，則不再收到爆紅包的系統提醒
+        1、Trong thời gian sự kiện, tác phẩm có nhãn “Thách đấu người phát ngôn” mỗi lần nhận được 1000 Vỗ tay (10 xu), sẽ nổ 1 lần lì xì may mắn 666 xu, mỗi lần nổ lì xì 200 cái, đến trước có trước<br />
+        2、Sau khi nhấn “Hẹn cướp lì xì”, khi nổ lì xì sẽ nhận được nhắc nhở của hệ thống, nhấn “Hủy hẹn”, sẽ không nhận được nhắc nhở nổ lì xì nữa
       </p>
-      <h5>其他說明</h5>
-      <p class="mg">比賽過程中，若發現用戶使用不正當手段參與活動，小歡有權在事先不通知的前提下按情節嚴重對參賽者、違規者做取消其參賽資格或封禁帳號等處罰，包括但不限於：</p>
+      <h5>Giải thích khác</h5>
+      <p class="mg">Trong quá trình thách đấu, nếu phát hiện người dùng dùng hành vi không chính đáng tham gia sự kiện,chúng tôi có quyền xử lý tùy theo tình trạng nghiêm trọng mà không cần báo trước, người vi phạm có thể bị hủy tư cách hoặc bị khóa tài khoản, bao gồm nhưng không giới hạn:</p>
       <p>
-        1）活動作品非本人原唱或盜錄他人作品； <br />
-        2）盜用或借用他人已有帳號參與活動；<br />
-        3）同一用戶註冊多個帳號參與活動；<br />
-        4）比賽期間對參賽作品進行惡意評論，廣告等； <br />
-        5）通過其他違規行為參與活動。
+        1）Tác phẩm không phải bản thân hát hoặc vi phạm bản quyền <br />
+        2）Chiếm dụng hoặc mượn tài khoản người khác tham gia sự kiện <br />
+        3）Cùng 1 người dùng đăng ký nhiều tài khoản tham gia sự kiện<br />
+        4）Trong thời gian thách đấu bình luận ác ý, quảng cáo đối với các tác phẩm <br />
+        5）Thông qua các hành vi vi phạm khác tham gia sự kiện
       </p>
-      <p> 若為主動作弊者，無論是否為參賽者永久封禁該用戶所有大小號，活動結束后小歡任有權收回該用戶所有獎勵</p>
+      <p>Nếu gian đối, bất luận có khóa tài khoản của người dùng hay không, sau khi sự kiện kết thúc chúng tôi có quyền thu hồi tất cả phần thưởng</p>
     </div>
-    <p class="lastTips">本活動的最終解釋權歸活動主辦方所有</p>
+    <p class="lastTips">Quyền giải thích cuối cùng của sự kiện thuộc về ban tổ chức sự kiện</p>
   </div>
 </template>
 
@@ -77,7 +79,7 @@ export default {
     }
   },
   created() {
-    document.title = '規則&獎勵'
+    document.title = 'Hướng dẫn'
   },
   methods: {
     tabClick(val) {
@@ -120,7 +122,7 @@ body {
     p {
       font-size: 0.28rem;
       font-weight: 500;
-      padding-left: 0.7rem;
+      padding-left: 0.5rem;
       margin-bottom: 0.4rem;
       em {
         font-size: 0.28rem;
@@ -141,6 +143,11 @@ body {
       width: 7.02rem;
       height: 6.01rem;
       margin: 0 auto 0.34rem;
+    }
+    .img3 {
+      width: 7.18rem;
+      height: 2.13rem;
+      margin: 0 auto;
     }
     .mg {
       margin-bottom: 0.5rem;

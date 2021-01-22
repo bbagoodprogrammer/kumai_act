@@ -1,11 +1,11 @@
 <template>
   <div class="song">
     <div class="noSong" v-if="!isLength">
-      <h5>你還沒有符合參賽要求的參賽作品喔</h5>
-      <div class="sing" @click="goSing()">去唱一首</div>
+      <h5>Bạn chưa có bài hát đạt yêu cầu dự thi</h5>
+      <div class="sing" @click="goSing()">Hát 1 bài</div>
     </div>
     <div class="haSong" v-else>
-      <h5>選擇你最滿意的作品報名參賽吧</h5>
+      <h5>Chọn bài hát bạn ưng ý nhất dự thi nhé</h5>
       <div class="songList">
         <ul>
           <li v-for="(item,index) in songList" :key="index">
@@ -13,34 +13,35 @@
               <span class="name">{{item.name}}</span>
               <span class="tm">{{item.time}}</span>
             </div>
-            <span class="joinBtn" @click="choiceSong(item.sid,index)">選擇參賽</span>
+            <span class="joinBtn" @click="choiceSong(item.sid,index)">Chọn</span>
           </li>
         </ul>
       </div>
       <div class="goSing" :class="{border:isLength}">
-        <p v-if="isLength">沒有符合心意的歌曲嗎？</p>
-        <div class="sing" @click="goSing()">去唱一首</div>
-        <span v-if="isLength">唱完記得回來完成報名喔</span>
+        <p v-if="isLength">Chưa có bài hát vừa ý sao?</p>
+        <div class="sing" @click="goSing()">Hát 1 bài</div>
+        <span v-if="isLength">Hát xong nhớ trở lại báo danh nhé</span>
       </div>
     </div>
     <div class="tipsBox">
-      <p class="tips"><i>1.</i>參賽作品需為11月16日18:00:00后發佈的任意公開作品(清唱5分鐘除外)</p>
-      <p class="tips"><i>2.</i>可上傳多首作品參賽，報名後作品收禮才會被計算</p>
-      <p class="tips"><i>3.</i>若刪除活動期間報名的參賽作品，該刪除作品收禮魅力值作廢</p>
+      <p class="tips"><i>1.</i>Bài hát dự thi phải là bài hát đăng công khai sau 18:00 25/1 (không tính Hát Chay 5 phút)</p>
+      <p class="tips"><i>2.</i>Có thể đăng nhiều bài hát dự thi, sau khi báo danh xong mới tính điểm quà nhận.</p>
+      <p class="tips"><i>3.</i>Nếu xoá bài hát trong thời gian sự kiện, điểm số của bài hát bị xoá sẽ mất đi.</p>
     </div>
 
     <div class="determinePup" v-if="showPup">
       <div class="determinCon">
-        <p>確認提交這一首作品參賽嗎？</p>
+        <p>Xác nhận gửi bài hát này dự thi?</p>
         <div class="chang">
-          <span class="no" @click="hdPup()">取消</span>
-          <span class="ok" @click="changed()">確定</span>
+          <span class="no" @click="hdPup()">Huỷ</span>
+          <span class="ok" @click="changed()">Xác nhận</span>
         </div>
       </div>
     </div>
     <Loading></Loading>
   </div>
 </template>
+
 <script>
 import api from "../../api/apiConfig.js"
 import Loading from "../../components/Loading"
@@ -65,7 +66,7 @@ export default {
     }
   },
   created() {
-    document.title = '上傳作品'
+    document.title = 'Tải tác phẩm'
     api.song().then((res) => { //请求歌曲列表
       if (res.data.response_status.code === 0) {
         this.songList = res.data.response_data.list

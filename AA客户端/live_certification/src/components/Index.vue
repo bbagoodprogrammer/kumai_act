@@ -51,7 +51,7 @@
       </div>
       <div class="commitTips">
         {{lang.page_upCover_tip3}}
-        <span>{{lang.page_upCover_tip4}}</span>
+        <span @click="goStandard()">{{lang.page_upCover_tip4}}</span>
       </div>
       <div class="nextBtn mt" :class="{act:liveImg}" @click="uploadImg()">{{lang.page_upCover_commit}}</div>
     </div>
@@ -151,6 +151,9 @@ export default {
     },
     goSkill() {
       this.$router.push({ path: 'Skill' })
+    },
+    goStandard() {
+      this.$router.push({ path: 'standard' })
     },
     async callApp(type) {
       var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端

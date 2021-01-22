@@ -12,14 +12,14 @@
       </div>
     </div>
     <div class="redTips">
-      帶“魅力代言人大賽”標籤作品每收到{{redPacket.step}}個<i></i>禮物<br /> 全體用戶可開啟紅包
+      Tác phẩm mang nhãn “Thách đấu người phát ngôn” mỗi lần nhận được {{redPacket.step}} <img :src="redPacket.img" /> phần quà, toàn bộ người dùng có thể mở lì xì
     </div>
     <div class="subscribe" @click="subscribe()">
-      {{redPacket.subscribe?'取消預約':'預約搶紅包'}}
+      {{redPacket.subscribe?'Hủy hẹn':'Hẹn cướp lì xì'}}
     </div>
     <!-- -->
     <div class="lastOpenPacketPeople">
-      <div class="title"> <span v-if="naming.uid" @click="peopleType = 1" :class="{act:peopleType == 1}">上一輪紅包由以下歌友冠名贊助</span> <span @click="peopleType = 2" :class="{act:peopleType == 2}">我的赞助</span></div>
+      <div class="title"> <span v-if="naming.uid" @click="peopleType = 1" :class="{act:peopleType == 2}">Quán quân tài trợ lì xì vòng trước</span> <span @click="peopleType = 2" :class="{act:peopleType == 1}">Tài trợ của tôi</span></div>
       <div class="people" v-if="naming.uid && peopleType == 1">
         <div class="imgBox" @click="goSong(naming.sid)">
           <img v-lazy="naming.avatar" alt="" class="av">
@@ -27,16 +27,16 @@
         </div>
         <div class="nick">{{naming.nick}}</div>
         <div class="score">
-          <i></i>
+          <img :src="redPacket.img" />
           <strong>x{{naming.count}}</strong>
         </div>
       </div>
       <div class="my_vote" v-else>
-        <div class="tips">我贊助的紅包數：{{rate.num}}<span>加成:{{rate.rate}}%</span></div>
+        <div class="tips">Số lì xì tôi tài trợ:{{rate.num}}<span>Tăng thêm:{{rate.rate}}%</span></div>
         <div class="liner">
-          <div class="actLiner" :style="{width:rate.rate*10 +'%'}"></div>
+          <div class="actLiner" :class="{max:rate.rate*10 >= 100}" :style="{width:rate.rate*10 +'%'}"></div>
           <span v-for="(item,index) in 5" :key="index"> <em>{{item*2}}%</em></span>
-          <i class="add">加成:</i>
+          <i class="add">Tăng thêm</i>
         </div>
       </div>
     </div>
@@ -46,19 +46,19 @@
       <transition name="slide">
         <div class="downTimePacket" v-if="redPacket_downTime" :class="{open:packetType == 2}">
           <i class="close" @click="redPacket_downTime = false"></i>
-          <h5 v-if="packetType == 1">開紅包倒計時</h5>
-          <div class="timeDown" v-if="packetType == 1">您的紅包還有<em>{{downTime}}</em>秒到現場</div>
+          <h5 v-if="packetType == 1">Đếm ngược mở lì xì</h5>
+          <div class="timeDown" v-if="packetType == 1">Lì xì của bạn còn <em>{{downTime}}</em> giây nữa sẽ đến! </div>
           <span class="rotate" v-if="packetType == 2" @click="openRedPacket()"></span>
           <vue-seamless-scroll :class-option="optionHover" :data="redPacket.record" class="seamless-warp">
             <ul class="item">
               <li v-for="(item,index) in redPacket.record" :key="index">
                 <img :src="item.avatar" alt="" v-if="item.avatar" @click="goUser(item.uid)">
                 <img src="../assets/img/default.png" alt="" v-else @click="goUser(item.uid)">
-                <strong> <em class="nick">{{item.nick}}</em>收到{{item.count}}個“玫瑰花束”</strong>
+                <strong> <em class="nick">{{item.nick}}</em>nhận được {{item.count}} <img :src="redPacket.img" /></strong>
               </li>
             </ul>
           </vue-seamless-scroll>
-          <div class="share" v-if="packetType == 1" @click="shareAct()">提醒好友搶紅包</div>
+          <div class="share" v-if="packetType == 1" @click="shareAct()">Nhắc bạn bè cướp lì xì</div>
         </div>
       </transition>
     </div>
@@ -68,7 +68,7 @@
         <div class="packetRes" v-if="packetRes">
           <i class="close" @click="closePacketPup()"></i>
           <div class="resHeader">
-            <div class="title">{{coins?'恭喜獲得':'手慢了,紅包派完了'}}</div>
+            <div class="title">{{coins?'Chúc mừng nhận được':'Chậm tay rồi, lì xì đã hết'}}</div>
             <div class="coins" v-if="coins">
               <span>{{coins}}</span>
               <span class="icon"></span>
@@ -76,7 +76,7 @@
           </div>
           <div class="resBottom">
             <div class="bar"></div>
-            <div class="resBtn" @click="redPacketHistory()">查看領取詳情</div>
+            <div class="resBtn" @click="redPacketHistory()">Xem chi tiết đã nhận</div>
           </div>
         </div>
       </transition>
@@ -88,10 +88,10 @@
           <i class="close" @click="closePacketPup()"></i>
           <!-- <p class="red">{{dtime}}</p> -->
           <div class="resHeader">
-            <div class="tips" v-if="recoreData.time">{{recoreData.users}}個紅包,{{recoreData.time}}秒被搶完</div>
+            <div class="tips" v-if="recoreData.time">{{recoreData.users}}bao lì xì,{{recoreData.time}}giây bị cướp hết</div>
             <div class="tips" v-else>
-              <span>已領取 <em>{{recoreData.gotUsers}}/{{recoreData.users}}</em>個 </span>
-              <span>共 <em>{{recoreData.gotCoins}}/{{recoreData.coins}}</em>金幣 </span>
+              <span>Đã nhận <em>{{recoreData.gotUsers}}/{{recoreData.users}}</em></span>
+              <span>tổng cộng <em>{{recoreData.gotCoins}}/{{recoreData.coins}}</em>xu </span>
             </div>
           </div>
           <ul class="recoreList">
@@ -102,8 +102,8 @@
                 <div class="tm">{{getDate(item.time)}}</div>
               </div>
               <div class="gift">
-                <div class="nums">{{item.coin}}金幣</div>
-                <div class="luck" v-if="item.lucky"><i></i> 手氣最佳</div>
+                <div class="nums">{{item.coin}}xu</div>
+                <div class="luck" v-if="item.lucky"><i></i> May mắn nhất</div>
               </div>
             </li>
           </ul>
@@ -117,10 +117,10 @@
           <i class="close" @click="showNotSingup = false"></i>
           <div class="title"></div>
           <p>
-            還未報名活動，無法搶紅包哦， 快點擊“立即報名”參賽吧
+            Vẫn chưa báo danh, không thể cướp lì xì, nhanh nhấn “Báo danh” tham gia thách đấu
           </p>
           <div class="okBtn" @click="showNotSingup = false">
-            我知道啦
+            Tôi biết rồi!
           </div>
         </div>
       </transition>
@@ -188,10 +188,10 @@ export default {
     }
   },
   mounted() {
-    this.scrollable = this.$el.querySelector('.recoreList');
-    if (this.scrollable) {
-      this.scrollable.addEventListener('scroll', this.onScroll);
-    }
+    // this.scrollable = this.$el.querySelector('.recoreList');
+    // if (this.scrollable) {
+    //   this.scrollable.addEventListener('scroll', this.onScroll);
+    // }
   },
   methods: {
     subscribe() {
@@ -304,22 +304,22 @@ export default {
     getDate(tm) {
       return getDate(new Date(tm * 1000), 1)
     },
-    onScroll() {
-      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
-      if (scrollToBottom) { //滾動加載，沒有加載完成
-        if (this.loaded) return
-        if (this.more) {
-          this.more = false
-          api.redPacketHistory(this.recoreData.list.length, 'more').then(res => {
-            this.more = true
-            this.recoreData.list = this.recoreData.list.concat(res.data.response_data.list)
-            if (res.data.response_data.list.length < 20) {
-              this.loaded = true
-            }
-          })
-        }
-      }
-    },
+    // onScroll() {
+    //   const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
+    //   if (scrollToBottom) { //滾動加載，沒有加載完成
+    //     if (this.loaded) return
+    //     if (this.more) {
+    //       this.more = false
+    //       api.redPacketHistory(this.recoreData.list.length, 'more').then(res => {
+    //         this.more = true
+    //         this.recoreData.list = this.recoreData.list.concat(res.data.response_data.list)
+    //         if (res.data.response_data.list.length < 20) {
+    //           this.loaded = true
+    //         }
+    //       })
+    //     }
+    //   }
+    // },
     closePacketPup() {
       this.packetRes = false
       this.packetRecore = false
@@ -337,18 +337,18 @@ export default {
       let uid = getString('uid')
       // console.log(this.chioneUserMsg)
       var data = {
-        "share_title": `快來！爆紅包啦！`,
-        "share_content": "點擊預約搶紅包,還能收到提醒哦>>",
-        "share_image": `http://activity.17sing.tw/static_html/2020/songking2020/share.png?v=2`,
-        "link": `http://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#`,
-        "image": `http://activity.17sing.tw/static_html/2020/songking2020/share.png?v=2`,
-        "share_url": `http://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#`
+        "share_title": `Nổ lì xì! Mau đến nào!`,
+        "share_content": "Nhấn hẹn cướp lì xì, sẽ nhận thông báo trước!",
+        "share_image": `http://activity.singnowapp.com/static_html/2020/charismatic_spkepersion/share.png?v=5`,
+        "link": `http://activity.singnowapp.com/static_html/2020/charismatic_spkepersion/index.html?uid=#ID#&token=#TOKEN#`,
+        "image": `http://activity.singnowapp.com/static_html/2020/charismatic_spkepersion/share.png?v=5`,
+        "share_url": `http://activity.singnowapp.com/static_html/2020/charismatic_spkepersion/index.html?uid=#ID#&token=#TOKEN#`
       }
       if (ios) {
         if (window.share != undefined) {
           share(JSON.stringify(data))
         } else {
-          location.href = `shareUserInfo://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#&shareText=點擊預約搶紅包,還能收到提醒哦>>&userImg=http://activity.17sing.tw/static_html/2020/songking2020/share.png?v=2&title=快來！年度魅力歌王大賽準備爆紅包啦！`;
+          location.href = `shareUserInfo://activity.singnowapp.com/static_html/2020/charismatic_spkepersion/index.html?uid=#ID#&token=#TOKEN#&shareText=點擊預約搶紅包,還能收到提醒哦>>&userImg=http://activity.singnowapp.com/static_html/2020/charismatic_spkepersion/share.png?v=5&title=快來！年度魅力歌王大賽準備爆紅包啦！`;
         }
       } else {
         javascript: JSInterface.share(JSON.stringify(data));
@@ -444,12 +444,12 @@ export default {
     vertical-align: bottom;
     padding-top: 0.02rem;
     margin-top: 0.1rem;
-    i {
+    img {
       display: inline-block;
       width: 0.58rem;
       height: 0.58rem;
-      background: url(../assets/img/giftIcon.png);
-      background-size: 100% 100%;
+      // background: url(../assets/img/giftIcon.png);
+      // background-size: 100% 100%;
       margin: 0 0.05rem -0.2rem;
     }
   }
@@ -513,14 +513,17 @@ export default {
         display: flex;
         position: relative;
         .actLiner {
-          max-width: 98%;
+          // max-width: 98%;
           // width: 50%;
           height: 100%;
           background: linear-gradient(0deg, #ffd7bb, #fdf1d4);
           position: absolute;
-          left: 0.02rem;
+          left: 0rem;
           top: 0;
           border-radius: 0.12rem 0 0 0.12rem;
+          &.max {
+            border-radius: 0.12rem;
+          }
         }
         span {
           flex: 1;
@@ -586,11 +589,11 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        i {
+        img {
           width: 0.58rem;
           height: 0.58rem;
-          background: url(../assets/img/giftIcon.png);
-          background-size: 100% 100%;
+          // background: url(../assets/img/giftIcon.png);
+          // background-size: 100% 100%;
           margin-right: 0.06rem;
         }
       }
@@ -650,7 +653,7 @@ export default {
           margin-bottom: 0.12rem;
           display: flex;
           align-items: center;
-          img {
+          > img {
             width: 0.48rem;
             height: 0.48rem;
             border-radius: 50%;
@@ -672,6 +675,14 @@ export default {
               white-space: nowrap;
               text-overflow: ellipsis;
             }
+            img {
+              display: inline-block;
+              width: 0.33rem;
+              height: 0.33rem;
+              // background: url(../assets/img/giftIcon.png);
+              // background-size: 100% 100%;
+              margin-left: 0.05rem;
+            }
           }
         }
       }
@@ -691,8 +702,8 @@ export default {
     }
   }
   .packetRes {
-    width: 6.17rem;
-    height: 7.75rem;
+    width: 7.18rem;
+    height: 8.33rem;
     background: url(../assets/img/redPackets/open_ed.png);
     background-size: 100% 100%;
     position: relative;
@@ -746,8 +757,8 @@ export default {
     }
   }
   .packetRecord {
-    width: 6.17rem;
-    height: 7.75rem;
+    width: 7.18rem;
+    height: 8.33rem;
     background: url(../assets/img/redPackets/open_ed.png);
     background-size: 100% 100%;
     position: relative;
@@ -776,14 +787,17 @@ export default {
       }
     }
     .recoreList {
-      width: 5rem;
+      width: 4.3rem;
       height: 3.15rem;
       overflow-y: scroll;
-      margin: 0.5rem auto 0;
+      margin: 0.9rem auto 0;
+      padding-right: 0.2rem;
       li {
         display: flex;
         align-items: center;
         margin-bottom: 0.12rem;
+        position: relative;
+        height: 0.7rem;
         .av {
           width: 0.48rem;
           height: 0.48rem;
@@ -830,6 +844,16 @@ export default {
             }
           }
         }
+      }
+      li:before {
+        content: "";
+        display: block;
+        width: 3.55rem;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.3);
+        position: absolute;
+        bottom: 0;
+        right: 0;
       }
     }
     .recoreList::-webkit-scrollbar {

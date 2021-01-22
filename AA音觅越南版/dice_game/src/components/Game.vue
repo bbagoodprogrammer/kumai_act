@@ -2,7 +2,8 @@
   <div class="game">
     <i class="start"></i>
     <div class="must_liner">
-      <span class="act_liner" :style="{width:prog[0]/prog[1]*100 + '%'}">{{prog[0]}}/{{prog[1]}}次</span>
+      <em class='step_nums'>{{prog[0]}}/{{prog[1]}}Lượt</em>
+      <span class="act_liner" :style="{width:prog[0]/prog[1]*100 + '%'}"></span>
       <i class="gift_icon"></i>
     </div>
     <i class="userIcon" :style="{left:userposition.left-.1+ 'rem',top:userposition.top-.8 + 'rem'}" :class="{ani:lucking}">
@@ -420,7 +421,14 @@ export default {
     position: absolute;
     left: 1.65rem;
     top: 5.5rem;
-
+    .step_nums {
+      height: 0.25rem;
+      line-height: 0.25rem;
+      position: absolute;
+      left: 0;
+      top: -0.25rem;
+      font-size: 0.22rem;
+    }
     .act_liner {
       max-width: 100%;
       height: 0.27rem;

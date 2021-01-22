@@ -1,9 +1,9 @@
 <template>
   <div class="giftBox">
     <div class="userLv">
-      <div class="lv">我的等級 <strong>Lv.{{packets.level}}</strong></div>
+      <div class="lv">Level của tôi: <strong>Lv.{{level}}</strong></div>
       <!-- <i class="quest" @click="showTipsPup = true"></i> -->
-      <div class="score">星光值 <strong>{{packets.score}}</strong> </div>
+      <div class="score">Điểm sao: <strong>{{score}}</strong> </div>
     </div>
     <div class="liner">
       <div class="actLiner" :style="{width:actWidth}"></div>
@@ -11,15 +11,18 @@
         <span class="item " @click="boxClick(item,index)"></span>
         <div class="lv">Lv.{{item.level}}</div>
         <div class="score">{{item.limit}}</div>
-        <i class="ligt"></i>
+        <i class="ligt" v-if="item.can || item.get" :class="{rotate:!item.get && item.can}"></i>
       </div>
     </div>
     <div class="mask" v-show="shouLuckPup">
       <transition name="slide">
-        <div class="luckPup" v-show="shouLuckPup">
+        <div class="luckPup" v-if="shouLuckPup">
           <i class="close" @click="shouLuckPup = false"></i>
+          <p class="lvTips">
+            Điểm sao đạt {{cilckItem.limit}} có thể rút thưởng <em>(tức là đến Lv.{{cilckItem.level}})</em>
+          </p>
           <slot-machine-test ref="luck" :cilckItem="cilckItem" @setPacketStatus="setPacketStatus"></slot-machine-test>
-          <div class="luckGo" :class="{can:cilckItem.can,ed:cilckItem.get}" @click="goLuck()"></div>
+          <div class="luckGo" :class="{can:cilckItem.can && !cilckItem.get,ed:cilckItem.get}" @click="goLuck()"></div>
         </div>
       </transition>
     </div>
@@ -30,11 +33,10 @@
           <i class="close" @click="showNotSingup = false"></i>
           <div class="title"></div>
           <p>
-            需升級到Lv.{{cilckItem.level}}，
-            及星光值達到{{cilckItem.limit}}才可抽獎哦！
+            Thăng cấp đến Lv.{{cilckItem.level}}, và điểm sao đạt đến {{cilckItem.limit}} mới có thể rút thưởng!
           </p>
           <div class="okBtn" @click="showNotSingup = false">
-            我知道啦
+            Tôi biết rồi!
           </div>
         </div>
       </transition>
@@ -49,6 +51,7 @@ import { globalBus } from '../utils/eventBus'
 import SlotMachineTest from "../components/SlotMachine/SlotMachineTest.vue"
 export default {
   components: { SlotMachineTest },
+  props: ["score", "level"],
   data() {
     return {
       showBoxGift: false,
@@ -231,7 +234,10 @@ export default {
         z-index: -1;
         position: absolute;
         left: -0.1rem;
-        top: -0.1rem;
+        top: -0.2rem;
+        &.rotate {
+          animation: rotateLingth 10s linear infinite;
+        }
       }
     }
   }
@@ -365,7 +371,21 @@ export default {
     background-size: 100% 100%;
     position: absolute;
     right: 0.35rem;
-    top: 1.3rem;
+    top: 1.02rem;
+  }
+  .lvTips {
+    width: 4.7rem;
+    height: 0.5rem;
+    white-space: nowrap;
+    position: absolute;
+    top: 3.2rem;
+    left: 1.4rem;
+    font-size: 0.22rem;
+    line-height: 0.5rem;
+    text-align: center;
+    em {
+      font-size: 0.22rem;
+    }
   }
   .luckGo {
     width: 4rem;

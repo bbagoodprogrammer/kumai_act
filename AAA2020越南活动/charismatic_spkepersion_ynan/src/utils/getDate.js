@@ -6,16 +6,16 @@ function getDate(datem, type) {
         minute = datem.getMinutes() < 10 ? '0' + datem.getMinutes() : datem.getMinutes(),
         second = datem.getSeconds() < 10 ? '0' + datem.getSeconds() : datem.getSeconds();
     if (type == 1) {
-        return `${month}-${date} ${hours}:${minute}`
+        return `${date}/${month} ${hours}:${minute}`
     }
     if (type == 3) {
-        return `${month}.${date}`
+        return `${date}/${month}`
     }
     if (type == 4) {
-        return `${year}${month}${date}`
+        return `${date}${month}${year}`
     }
     if (type == 5) {
-        return `${year} ${month}/${date} ${hours}:${minute}`
+        return `${date}/${month}/${year} ${hours}:${minute}`
     }
 }
 export default getDate

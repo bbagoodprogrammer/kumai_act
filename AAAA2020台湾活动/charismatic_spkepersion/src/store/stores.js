@@ -82,7 +82,7 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.groupsUserMsg = Object.assign({}, state.groupsUserMsg, { [key]: Object.assign({}, state.groupsUserMsg[key], obj) });
             }
-            console.log(state.groupsUserMsg)
+            // console.log(state.groupsUserMsg)
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.key != 'undefined') {
@@ -90,7 +90,7 @@ const store = new Vuex.Store({
                 delete obj['key'];
                 state.rankGroups = Object.assign({}, state.rankGroups, { [key]: Object.assign({}, state.rankGroups[key], obj) });
             }
-            console.log(state.rankGroups)
+            // console.log(state.rankGroups)
         },
         changTab(state, val) {
             state.tab = val

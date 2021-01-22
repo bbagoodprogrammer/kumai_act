@@ -9,6 +9,7 @@
         <span class="ruleTips ruleTips2" @click="goMain()"></span>
         <span class="ruleTips" @click="goRule()"></span>
         <span class="ruleTips ruleTips3" @click="showHistory()"></span>
+
       </div>
     </div>
     <TrunMsg />
@@ -214,6 +215,9 @@ body::-webkit-scrollbar {
       position: absolute;
       right: 0;
       top: 3.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
       .ruleTips {
         display: block;
         width: 1.81rem;

@@ -188,10 +188,10 @@ export default {
     }
   },
   mounted() {
-    this.scrollable = this.$el.querySelector('.recoreList');
-    if (this.scrollable) {
-      this.scrollable.addEventListener('scroll', this.onScroll);
-    }
+    // this.scrollable = this.$el.querySelector('.recoreList');
+    // if (this.scrollable) {
+    //   this.scrollable.addEventListener('scroll', this.onScroll);
+    // }
   },
   methods: {
     subscribe() {
@@ -304,22 +304,22 @@ export default {
     getDate(tm) {
       return getDate(new Date(tm * 1000), 1)
     },
-    onScroll() {
-      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
-      if (scrollToBottom) { //滾動加載，沒有加載完成
-        if (this.loaded) return
-        if (this.more) {
-          this.more = false
-          api.redPacketHistory(this.recoreData.list.length, 'more').then(res => {
-            this.more = true
-            this.recoreData.list = this.recoreData.list.concat(res.data.response_data.list)
-            if (res.data.response_data.list.length < 20) {
-              this.loaded = true
-            }
-          })
-        }
-      }
-    },
+    // onScroll() {
+    //   const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
+    //   if (scrollToBottom) { //滾動加載，沒有加載完成
+    //     if (this.loaded) return
+    //     if (this.more) {
+    //       this.more = false
+    //       api.redPacketHistory(this.recoreData.list.length, 'more').then(res => {
+    //         this.more = true
+    //         this.recoreData.list = this.recoreData.list.concat(res.data.response_data.list)
+    //         if (res.data.response_data.list.length < 20) {
+    //           this.loaded = true
+    //         }
+    //       })
+    //     }
+    //   }
+    // },
     closePacketPup() {
       this.packetRes = false
       this.packetRecore = false

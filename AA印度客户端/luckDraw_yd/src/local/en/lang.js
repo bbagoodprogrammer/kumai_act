@@ -55,7 +55,7 @@ export default {
     history_startPeople: 'initiated',//发起
     history_startPeople2: 'lucky draw',//抽奖
     history_open: 'Raffle result',//開獎
-    history_threeDay: 'Show only the last 3 days of voting',//僅顯示最近3天發起的投票
+    history_threeDay: 'Only show records in the last 3 days',//僅顯示最近3天發起的投票
 
     history_bigLuck: 'Drew the grand prize!',//抽到了大獎！
     history_eligibility: 'Raffle eligibility', // 抽獎資格

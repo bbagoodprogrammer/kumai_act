@@ -3,72 +3,73 @@
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
-        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">魅力日榜</a>
-        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">魅力總榜</a>
+        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">Bảng mị lực ngày</a>
+        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">Bảng tổng mị lực</a>
       </div>
-      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh" v-if="actStatus == 1">刷新</a>
+      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh" v-if="actStatus == 1"></a>
     </div>
     <div class="rankTips">
       <div class="giftTips">
-        <p>星光值=收到點讚數X10+收到金幣禮物魅力值</p>
-        <p class="timeTips">每冠名贊助1次紅包，星光值加成2%，上限10%</p>
+        <p>Điểm sao=Số like nhận được X10+ mị lực quà xu nhận được</p>
+        <p class="timeTips">Mỗi quán quân tài trợ lì xì 1 lần, điểm sao tăng 2%, giới hạn 10%</p>
       </div>
     </div>
     <DayTabs :tab="tab" @changeClick="tabClick" v-if="mainTab == 0" />
     <!-- 倒計時 -->
     <div class="downTimeBox2">
       <div v-if="mainTab == 0">
-        <p v-if="tab == c_day">今日日榜結束倒計時</p>
-        <p v-else-if="tab > c_day">今日日榜開始倒計時</p>
-        <div class="noTime" v-else>今日日榜已結束</div>
+        <p v-if="tab == c_day">Đếm ngược bảng ngày kết thúc</p>
+        <p v-else-if="tab > c_day">Đếm ngược bảng ngày hôm nay</p>
+        <div class="noTime" v-else>Bảng ngày hôm nay đã kết thúc</div>
       </div>
       <div v-if="mainTab == 1">
-        <p v-if="actStatus == 0">總榜開始倒計時</p>
-        <p v-else-if="actStatus == 1">總榜結束倒計時</p>
-        <div class="noTime" v-else>活動已結束</div>
+        <p v-if="actStatus == 0">Đếm ngược bắt đầu bảng tổng</p>
+        <p v-else-if="actStatus == 1">Đếm ngược kết thúc bảng tổng</p>
+        <div class="noTime" v-else>Sự kiện đã kết thúc</div>
       </div>
-      <div class="timeDown" v-if=" surplusTime.day">
+      <div class="timeDown" v-if="surplusTime&& !surplusTime.end">
         <div class="day">
           <strong>{{surplusTime.day}}</strong>
-          <em>天</em>
+          <em>ngày</em>
         </div>
         <div class="hours">
           <strong>{{surplusTime.hour}}</strong>
-          <em>時</em>
+          <em>Giờ</em>
         </div>
         <div class="min">
           <strong>{{surplusTime.minute}}</strong>
-          <em>分</em>
+          <em>Phút</em>
         </div>
         <div class="second">
           <strong>{{surplusTime.second}}</strong>
-          <em>秒</em>
+          <em>Giây</em>
         </div>
       </div>
     </div>
-
+    <img src="../assets/img/rule/gifts3.png" alt="" class="img3" v-if="mainTab == 0">
     <!-- 总榜 -->
     <div class="rankList">
       <ul class="list day">
         <li v-for="(item,index) in rank.list" :key="index" :class="'rank' +item.rank">
           <div class="rank">{{item.rank}}</div>
           <div class="imgBox" @click="goUser(item.uid)">
-            <img v-if="item.frame &&item.frame != ''" :src="item.frame" class="frame" alt="">
+            <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
             <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
             <img v-else-if="item.noble > 0" :src="require(`../assets/img/nob/${item.noble}.png`)" class="nob" alt="">
             <img v-lazy="item.avatar" alt="" class="av">
           </div>
           <div class="msg">
             <div class="nick">{{item.nick}}</div>
-            <div class="add" v-if="item.rate > 0">加成{{item.rate}}%</div>
+            <div class="add" v-if="item.rate > 0">Tăng thêm {{item.rate}}%</div>
           </div>
           <div class="score">
             <!-- Lv.{{item.level}}  -->
-            <div class="lv"><em class="lvScore">{{mainTab == 0?'星光值：':'名人值：'}}{{item.score}}</em> </div>
+            <div class="lv"><em class="lvScore">Điểm sao:{{item.score}}</em> </div>
             <div class="iconScore">
               <!-- is_prize -->
-              <span v-if="item.pro">中獎概率:{{item.pro}}%</span>
-              <span v-if="item.is_prize" class="luck_ed">中獎</span>
+              <span v-if="item.is_prize" class="luck_ed">Trúng thưởng</span>
+              <span v-if="item.pro">Tỉ lệ trúng thưởng:{{item.pro}}%</span>
+
             </div>
           </div>
         </li>
@@ -76,9 +77,9 @@
 
       <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
       <div class="listTipsBox" v-if="rank.loading|| rank.none">
-        <div v-if="rank.loading" class="scrollLoading">加載中...</div>
+        <div v-if="rank.loading" class="scrollLoading">Đang tải...</div>
         <div v-if="rank.none " class="scrollNone">
-          暫無數據
+          Còn trống
         </div>
       </div>
     </div>
@@ -163,9 +164,9 @@ export default {
     rank() {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
-      if (rankConf.second && rankConf.second > 0) {
-        this.downTimeGo('time' + this.rankKey, rankConf.second)
-      }
+      // if (rankConf.second && rankConf.second > 0) {
+      this.downTimeGo('time' + this.rankKey, rankConf.second)
+      // }
       return rankConf;
     },
   },
@@ -265,7 +266,7 @@ export default {
     onRefresh() {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
-      this.$parent.getDefaultData()
+      this.$parent.getDefaultData('ref')
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,
         loadCount: 0,
@@ -308,7 +309,7 @@ export default {
       this.surplusTime = downTime(timeName);
       this.timer = setInterval(() => {
         this.surplusTime = downTime(timeName);
-        if (this.surplusTime.end) {
+        if (this.surplusTime && this.surplusTime.end) {
           clearInterval(this.timer)
           // this.$store.commit("changday_down_time", 0)  //當天剩餘時間
         }
@@ -595,7 +596,8 @@ export default {
             text-overflow: ellipsis;
           }
           .add {
-            width: 1.07rem;
+            display: inline-block;
+            padding: 0 0.05rem;
             height: 0.33rem;
             background: linear-gradient(90deg, #ffd6ba 0%, #fdf2d5 100%);
             border: 0.02rem solid #ffef9d;
@@ -628,23 +630,24 @@ export default {
             font-size: 0.28rem;
             margin-top: 0.15rem;
             white-space: nowrap;
-            span {
+            > span {
               font-size: 0.22rem;
-              display: flex;
-              align-items: center;
-              i {
-                width: 0.36rem;
-                height: 0.36rem;
-                margin-right: 0.05rem;
-              }
-              .sIcon1 {
-                background: url(../assets/img/rank/sIcon1.png);
-                background-size: 100% 100%;
-              }
-              .sIcon2 {
-                background: url(../assets/img/rank/sIcon2.png);
-                background-size: 100% 100%;
-              }
+              // display: flex;
+              // align-items: center;
+              // justify-content: center;
+              // i {
+              //   width: 0.36rem;
+              //   height: 0.36rem;
+              //   margin-right: 0.05rem;
+              // }
+              // .sIcon1 {
+              //   background: url(../assets/img/rank/sIcon1.png);
+              //   background-size: 100% 100%;
+              // }
+              // .sIcon2 {
+              //   background: url(../assets/img/rank/sIcon2.png);
+              //   background-size: 100% 100%;
+              // }
             }
             .luck_ed {
               width: 0.64rem;
@@ -653,6 +656,8 @@ export default {
               border-radius: 0.16rem;
               font-size: 0.21rem;
               margin-left: 0.1rem;
+              text-align: center;
+              line-height: 0.32rem;
             }
           }
         }
@@ -715,7 +720,12 @@ export default {
   color: #fef978;
   font-size: 0.24rem;
 }
-
+.img3 {
+  display: block;
+  width: 7.18rem;
+  height: 2.13rem;
+  margin: 0.15rem auto;
+}
 .downTimeBox2 {
   margin: 0.11rem auto 0;
   width: 6.98rem;

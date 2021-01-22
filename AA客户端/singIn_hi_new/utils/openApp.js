@@ -66,6 +66,14 @@ function getConfig() {
             iosDown: 'http://gosingapp.com/goto_appstore',
             tips: 'يرجى النقر في الزاوية العلوية اليمنية... </ b> تختار متصفح النظام لفتح هذا الربط'
         },
+        karaing: {
+            name: 'karaing',
+            androidSchema: 'india://karaing.com',
+            androidDown: 'https://play.google.com/store/apps/details?id=com.km.ikara',
+            iosSchema: '',
+            iosDown: '',
+            tips: 'Click the upper right corner...</br>select system default browser to open'
+        },
     };
 
     var host = location.host;

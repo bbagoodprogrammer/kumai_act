@@ -22,8 +22,8 @@ export default {
     common_ok: ' Confirm', //確定
 
     //share
-    share_title: '',//邀請好友
-    share_day: 'He/she has checked in for $ consecutive days. Now he/she needs your help. Please help him/her quickly',//已連續簽到$天，現在需要你的助力，快幫他助力吧
+    share_title: ' Invite friends    ',//邀請好友
+    share_day: 'Your friend has checked in for $ day. Would you help?',//已連續簽到$天，現在需要你的助力，快幫他助力吧
     share_threeDay: ' You have checked in for $ consecutive days<br/>You can flip once more by successfully inviting 3 friends to help',//你已連續簽到$天</br>成功邀請3位好友助力可再翻牌一次
     share_tmor: 'Please try again tomorrow',//請明天再試
     share_help: 'Help him',//幫他助力
@@ -40,7 +40,7 @@ export default {
     share_con: 'I\'ve checked in for S consecutive days, now I need your help to flip another card, come help me',//我已在歡歌連續簽到$天啦，翻牌得獎品，需要你的助力，快來
 
     share_downTm: 'Helping countdown',//助力倒計時
-    share_wait: 'To be invited', //待邀請
+    share_wait: 'Await', //待邀請
 
     //rule
     rile_title: 'Check-in rules', //簽到規則說明
