@@ -1,24 +1,28 @@
 <template>
-  <div class="sloat">
-    <SlotMachine @end="onEnd" :size="3" :list="list" :result="result" />
-    <div class="mask" v-show="showMinToast">
-      <transition name="slide">
-        <div class="giftPup" v-show="showMinToast">
-          <i class="close" @click="showMinToast = false"></i>
-          <div class="title"></div>
-          <div class="giftArr">
-            <div class="giftItem" v-for="(item,index) in result " :key="index">
-              <div class="imgBg">
-                <img :src="giftArr[item].img" alt="">
+  <div class="dfbox">
+    <div class="sloat">
+      <SlotMachine @end="onEnd" :size="3" :list="list" :result="result" />
+      <div class="mask" v-show="showMinToast">
+        <transition name="slide">
+          <div class="giftPup" v-show="showMinToast">
+            <i class="close" @click="showMinToast = false"></i>
+            <div class="title"></div>
+            <div class="giftArr">
+              <div class="giftItem" v-for="(item,index) in result " :key="index">
+                <div class="imgBg">
+                  <img :src="giftArr[item].img" alt="">
+                </div>
+                <strong>{{giftArr[item].name}}</strong>
               </div>
-              <strong>{{giftArr[item].name}}</strong>
             </div>
+            <p>Phần thưởng trên đã gửi đến tài khoản của bạn, hãy chú ý nhận</p>
           </div>
-          <p>以上獎品已成功派發到您的賬號上，請注意查收</p>
-        </div>
-      </transition>
+        </transition>
+      </div>
     </div>
+
   </div>
+
 </template>
 
 <script>
@@ -43,15 +47,19 @@ export default {
         { id: 6, src: require("../../assets/img/gifts/ticket2.png") },
         { id: 7, src: require("../../assets/img/gifts/vip.png") },
         { id: 8, src: require("../../assets/img/gifts/gift3.png") },
+
+
         { id: 9, src: require("../../assets/img/gifts/gift5.png") },
         { id: 10, src: require("../../assets/img/gifts/gift4.png") },
-        { id: 11, src: require("../../assets/img/gifts/gift6.png") },
+        { id: 11, src: require("../../assets/img/gifts/gift17.png") },
         { id: 12, src: require("../../assets/img/gifts/ticket2.png") },
         { id: 13, src: require("../../assets/img/gifts/ticket2.png") },
         { id: 14, src: require("../../assets/img/gifts/gift1.png") },
         { id: 15, src: require("../../assets/img/gifts/gift2.png") },
         { id: 16, src: require("../../assets/img/gifts/vip.png") },
         { id: 17, src: require("../../assets/img/gifts/gift3.png") },
+
+
         { id: 18, src: require("../../assets/img/gifts/coins.png") },
         { id: 19, src: require("../../assets/img/gifts/gift9.png") },
         { id: 20, src: require("../../assets/img/gifts/gift8.png") },
@@ -62,26 +70,26 @@ export default {
         { id: 25, src: require("../../assets/img/gifts/vip.png") },
         { id: 26, src: require("../../assets/img/gifts/gift3.png") },
         { id: 27, src: require("../../assets/img/gifts/gift10.png") },
+
         { id: 28, src: require("../../assets/img/gifts/coins.png") },
         { id: 29, src: require("../../assets/img/gifts/gift13.png") },
         { id: 30, src: require("../../assets/img/gifts/gift12.png") },
-
         { id: 31, src: require("../../assets/img/gifts/ticket2.png") },
         { id: 32, src: require("../../assets/img/gifts/ticket2.png") },
         { id: 33, src: require("../../assets/img/gifts/gift11.png") },
-        { id: 34, src: require("../../assets/img/gifts/gift6.png") },
+        { id: 34, src: require("../../assets/img/gifts/gift17.png") },
         { id: 35, src: require("../../assets/img/gifts/vip.png") },
         { id: 36, src: require("../../assets/img/gifts/gift3.png") },
         { id: 37, src: require("../../assets/img/gifts/gift10.png") },
 
-        { id: 38, src: require("../../assets/img/gifts/gift12.png") },
+        { id: 38, src: require("../../assets/img/gifts/gift16.png") },
         { id: 39, src: require("../../assets/img/gifts/gift10.png") },
         { id: 40, src: require("../../assets/img/gifts/coins.png") },
         { id: 41, src: require("../../assets/img/gifts/gift12.png") },
         { id: 42, src: require("../../assets/img/gifts/gift15.png") },
         { id: 43, src: require("../../assets/img/gifts/ticket2.png") },
         { id: 44, src: require("../../assets/img/gifts/ticket2.png") },
-        { id: 45, src: require("../../assets/img/gifts/gift14.png") },
+        { id: 45, src: require("../../assets/img/gifts/gift17.png") },
         { id: 46, src: require("../../assets/img/gifts/vip.png") },
         { id: 47, src: require("../../assets/img/gifts/gift3.png") },
 
@@ -115,7 +123,9 @@ export default {
     },
     startGame() {
       globalBus.$emit('commonEvent', (callback) => {
-        if (!this.cilckItem.can && !this.cilckItem.get) {
+        if (this.cilckItem.get) {
+          return
+        } else if (!this.cilckItem.can && !this.cilckItem.get) {
           this.$parent.showNotSingup = true
           return
         }
@@ -159,10 +169,18 @@ button {
   padding: 0.1rem 0.2rem;
   position: absolute;
 }
-.sloat {
+.dfbox {
+  height: 1.2rem;
   position: absolute;
-  top: 4.2rem;
+  top: 4rem;
   left: 1.45rem;
+  padding-top: 1.4rem;
+  overflow: hidden;
+}
+.sloat {
+  // position: absolute;
+  // top: 4rem;
+  // left: 1.45rem;
 }
 .giftPup {
   width: 7.18rem;

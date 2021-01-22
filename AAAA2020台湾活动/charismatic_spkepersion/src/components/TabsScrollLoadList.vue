@@ -616,21 +616,21 @@ export default {
           .lv {
             white-space: nowrap;
             color: rgba(252, 245, 193, 1);
-            font-size: 0.24rem;
+            font-size: 0.26rem;
             text-align: right;
             em {
-              font-size: 0.24rem;
+              font-size: 0.26rem;
             }
           }
           .iconScore {
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            font-size: 0.28rem;
+            font-size: 0.26rem;
             margin-top: 0.15rem;
             white-space: nowrap;
             > span {
-              font-size: 0.22rem;
+              font-size: 0.26rem;
               // display: flex;
               // align-items: center;
               // justify-content: center;

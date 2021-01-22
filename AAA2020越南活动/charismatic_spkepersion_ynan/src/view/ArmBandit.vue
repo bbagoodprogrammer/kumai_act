@@ -6,13 +6,14 @@
     </div>
     <div class="header">
       <div class="tipsBox" :class="{top:isShare}">
-        <span class="ruleTips ruleTips2" @click="goMain()"></span>
+
         <span class="ruleTips" @click="goRule()"></span>
         <span class="ruleTips ruleTips3" @click="showHistory()"></span>
+        <span class="ruleTips ruleTips2" @click="goMain()"></span>
       </div>
     </div>
     <TrunMsg />
-    <Box />
+    <Box :level="level" :score="score" />
     <RedPackets :rate="rate" />
     <TabsScrollLoadList ref="scorll" />
     <act-footer></act-footer>
@@ -23,14 +24,14 @@
           <div class="title"></div>
           <div class="history_con">
             <div class="his_header">
-              <span>抽獎時間</span>
-              <span>獲得獎品</span>
+              <span>Thời gian rút thưởng</span>
+              <span>Nhận phần thưởng</span>
             </div>
             <ul>
               <li v-for="(item,index) in historyList" :key="index">
                 <div class="tmBox">
                   <div class="tm">{{getDate(item.tm)}}</div>
-                  <div class="lv">Lv.{{item.level}}等級</div>
+                  <div class="lv">Lv.{{item.level}}</div>
                 </div>
                 <div class="giftArr">
                   <div class="giftItem" v-for="(item,index) in item.prize " :key="index">
@@ -77,14 +78,16 @@ export default {
       isMore: true,   //加载更多
       activite: 1,    //活动状态
       showT: false,  //提示弹窗显示
-      tastMsg: "提示信息",  //基础弹窗提示信息
+      tastMsg: "",  //基础弹窗提示信息
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
       showBannerBg: true,
       rate: {},
       historyList: [],
-      showHistoryPup: false
+      showHistoryPup: false,
+      level: 0,
+      score: 0
     }
   },
   created() {
@@ -110,58 +113,20 @@ export default {
           this.vxc('setActStatus', step)
           this.vxc('setReg', reg)
           this.vxc('setPacket', gift)
-          // redPacket
-          this.vxc('setRedPacket', redPacket
-            // { // 红包信息
-            //   "total": 1088, // 每个红包金币数
-            //   "step": 100, // 每轮爆红包收礼数
-            //   "current": 0, // 当前轮收礼进度
-            //   "subscribe": false, // 是否预约了红包提醒
-            //   "status": 1, // 红包状态 1倒计时 2可抢 3抢完 0其它
-            //   "time": 50, // 有红包开抢前3分钟倒计时（单位：秒）
-            //   "coins": 0, // 本轮已抢得金币数
-            //   "size": 0, // 红包剩余量
-            //   "lose": false, // 没有抢到
-            //   "hide": false, // 是否主动关闭了红包弹窗
-            //   "record": [ // 本轮收礼前30名用户动态
-            //     {
-            //       "uid": 100880,
-            //       "nick": "啾咪、欣戀撒大大大大大所多",
-            //       "avatar": "http://img.17sing.tw/uc/img/head_100880_1591328073.png_small",
-            //       "sex": 0,
-            //       "noble": 100,
-            //       "frame": "http://img.17sing.tw/uc/avatarFrame/resource_url_1589524839.png",
-            //       "count": 100
-            //     },
-            //     {
-            //       "uid": 100880,
-            //       "nick": "啾咪、欣戀撒大大大大大所多",
-            //       "avatar": "http://img.17sing.tw/uc/img/head_100880_1591328073.png_small",
-            //       "sex": 0,
-            //       "noble": 100,
-            //       "frame": "http://img.17sing.tw/uc/avatarFrame/resource_url_1589524839.png",
-            //       "count": 100
-            //     },
-            //     {
-            //       "uid": 100880,
-            //       "nick": "啾咪、欣戀撒大大大大大所多",
-            //       "avatar": "http://img.17sing.tw/uc/img/head_100880_1591328073.png_small",
-            //       "sex": 0,
-            //       "noble": 100,
-            //       "frame": "http://img.17sing.tw/uc/avatarFrame/resource_url_1589524839.png",
-            //       "count": 100
-            //     }
-            //   ]
-            // }
-          )
+          this.vxc('setRedPacket', redPacket)
           this.vxc('setNaming', naming)
           this.vxc('setUserMsg', owner)
           this.vxc('setNotice', notice)
           this.vxc('setTimeArr', this.getDateArr(stime, etime))
+          console.log(this.getDateArr(stime, etime))
           this.vxc('setTotalDay', days)
-          this.vxc('setC_day', c_day)
-          this.vxc('changTab', c_day)
           this.vxc('setInited', 1)
+          this.level = owner.level
+          this.score = owner.score
+          if (!val) {
+            this.vxc('setC_day', c_day)
+            this.vxc('changTab', c_day)
+          }
         } else {
           this.toast(response_status.error)
         }
@@ -251,6 +216,9 @@ body::-webkit-scrollbar {
       position: absolute;
       right: 0;
       top: 3.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
       .ruleTips {
         display: block;
         width: 1.81rem;
@@ -259,16 +227,15 @@ body::-webkit-scrollbar {
         background-size: 100% 100%;
         margin-bottom: 0.15rem;
         &.ruleTips2 {
+          width: 3.09rem;
           background: url(../assets/img/ruleTips2.png);
           background-size: 100% 100%;
         }
         &.ruleTips3 {
+          width: 2.45rem;
           background: url(../assets/img/ruleTips3.png);
           background-size: 100% 100%;
         }
-      }
-      &.top {
-        top: 1.5rem;
       }
     }
   }
@@ -303,13 +270,15 @@ body::-webkit-scrollbar {
     left: 1.7rem;
   }
   .history_con {
-    padding: 0 0.4rem;
+    padding: 0 0.3rem;
     .his_header {
       display: flex;
       justify-content: space-between;
     }
     ul {
+      padding-right: 0.2rem;
       max-height: 8rem;
+      overflow-x: hidden;
       overflow-y: scroll;
       li {
         height: 2.6rem;
@@ -331,15 +300,15 @@ body::-webkit-scrollbar {
           }
         }
         .giftArr {
-          width: 3.2rem;
+          width: 3.7rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
           .giftItem {
-            width: 1rem;
+            width: 1.2rem;
           }
           .imgBg {
-            width: 1rem;
+            width: 1.1rem;
             height: 1rem;
             background: rgba(135, 65, 227, 1);
             border-radius: 0.12rem;

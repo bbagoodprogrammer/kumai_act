@@ -7,13 +7,13 @@
     </div>
     <ul>
       <li v-for="(item,index) in shouList" :key="index">
-        <i class="mounthIcon">{{index +1}}月</i>
+        <i class="mounthIcon">Tháng {{index +1}}</i>
         <img :src="item.avatar" alt="">
         <strong>{{item.nick}}</strong>
       </li>
     </ul>
-    <h5>魅力代言人大禮包獎勵：</h5>
-    <p>每成為1次歡歌魅力代言人，獎勵1個代言人大禮包：首頁加魅力代言人歌曲標籤歌曲推薦1首+2000金幣，活動結束後7天內發放</p>
+    <h5>Phần thưởng Túi quà người phát ngôn:</h5>
+    <p>Mỗi lần trở thành Người phát ngôn 1 lần, thưởng 1 Túi quà người phát ngôn: 1 bài hát được đề xuất trên trang chủ với nhãn người phát ngôn +2000 xu, phát sau khi sự kiện kết thúc 7 ngày</p>
   </div>
 </template>
 <script>
@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       default: {
-        nick: '虛位以待',
+        nick: 'Để trống',
         avatar: require(`../../assets/img/rank/empty.png`)
       },
       list: []
@@ -45,7 +45,7 @@ export default {
     }
   },
   created() {
-    document.title= '往期代言人'
+    document.title = 'Người phát ngôn kỳ trước'
     api.mounth().then(res => {
       this.list = res.data.response_data.list
     })
@@ -98,7 +98,8 @@ body {
         margin-bottom: 0.3rem;
         i {
           display: block;
-          width: 0.6rem;
+          // width: 0.6rem;
+          padding: 0 0.1rem;
           height: 0.32rem;
           background: url(../../assets/img/rank/mounthIcon.png);
           background-size: 100% 100%;

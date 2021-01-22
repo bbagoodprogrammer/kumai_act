@@ -117,25 +117,26 @@ export default {
   methods: {
     share() {
       if (this.type == 2) {
-        APP(`hsing://17sing.tw/{"inviteCode":"${this.inviteCode}"}`, null, null, `Gaoge://inviteCode=${this.inviteCode}`)
+        APP(`india://karaing.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `Gaoge://inviteCode=${this.inviteCode}`)
       } else {
         var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
         var ua = navigator.userAgent;
         let token = getUrlString("token")
         let uid = getUrlString("uid")
+        let lang_str = getUrlString("lang")
         var data = {
           "share_title": this.lang.share_signDays.replace('$', this.days),
           "share_content": this.lang.share_con.replace('$', this.days),
           "share_image": this.master.headImg,
-          "link": `http://17sing.tw/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
+          "link": `http://karaing.com/singIn_hi_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&lang=${lang_str}`,
           "image": this.master.headImg,
-          "share_url": `http://17sing.tw/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
+          "share_url": `http://karaing.com/singIn_hi_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&lang=${lang_str}`
         }
         if (ios) {
           if (window.shareOutside != undefined) {
             shareOutside(JSON.stringify(data))
           } else {
-            location.href = `shareUserInfo://17sing.tw/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=${this.lang.share_con.replace('$', this.days)}&userImg=${this.master.headImg}&title=${this.lang.share_signDays.replace('$', this.days)}`;
+            location.href = `shareUserInfo://karaing.com/singIn_hi_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=${this.lang.share_con.replace('$', this.days)}&userImg=${this.master.headImg}&title=${this.lang.share_signDays.replace('$', this.days)}&lang=${lang_str}`;
           }
         } else {
           javascript: JSInterface.shareOutside(JSON.stringify(data));

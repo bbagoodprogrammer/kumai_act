@@ -16,6 +16,9 @@
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.live)">
         <div class="rank">{{item.rank}}</div>
         <div class="imgBox">
+          <img v-if="item.userinfo.avatar_frame &&item.userinfo.avatar_frame != ''" :src="item.userinfo.avatar_frame" class="frame" alt="">
+          <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
+          <img v-else-if="item.userinfo.noble > 0" :src="require(`../assets/img/nob/${item.userinfo.noble}.png`)" class="nob" alt="">
           <img v-lazy="item.userinfo.avatar" alt="" class="av">
         </div>
         <div class="nick">
@@ -368,11 +371,35 @@ export default {
         font-weight: 700;
       }
       .imgBox {
-        margin-left: 0.13rem;
+        width: 1.1rem;
+        height: 1.1rem;
+        position: relative;
+        margin: 0 0.1rem;
+        .nob {
+          width: 1.1rem;
+          height: 1.1rem;
+          position: absolute;
+          top: 0rem;
+          left: 0rem;
+          z-index: 10;
+        }
+        .frame {
+          width: 1.5rem;
+          height: 1.5rem;
+          position: absolute;
+          top: -0.21rem;
+          left: -0.2rem;
+          z-index: 10;
+        }
         .av {
-          width: 1rem;
-          height: 1rem;
+          width: 0.88rem;
+          height: 0.88rem;
+          border: 0.04rem solid rgba(247, 224, 160, 1);
+          box-sizing: border-box;
+          top: 0.1rem;
+          left: 0.11rem;
           border-radius: 50%;
+          position: absolute;
         }
       }
       .nick {

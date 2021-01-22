@@ -5,7 +5,7 @@ import Index from '../components/Index'
 import skill from '../components/skill'
 import NotQualified from "../components/NotQualified"
 import LiveCover from "../components/LiveCover"
-
+import Standard from "../components/Standard"
 
 Vue.use(Router)
 
@@ -32,7 +32,7 @@ export default new Router({
             name: 'NotQualified',
             component: NotQualified,
             meta: {
-                title: _lang.page_skill_title
+                title: _lang.page_notQualified_title
             }
         },
         {
@@ -40,16 +40,16 @@ export default new Router({
             name: 'LiveCover',
             component: LiveCover,
             meta: {
-                title: _lang.page_skill_title
+                title: _lang.page_LiveCover_title
             }
         },
-        // {
-        //     path: '/standard',
-        //     name: 'standard',
-        //     component: standard,
-        //     meta: {
-        //         title: _lang.page_skill_title
-        //     }
-        // },
+        {
+            path: '/standard',
+            name: 'standard',
+            component: Standard,
+            meta: {
+                title: _lang.page_standard_title
+            }
+        },
     ]
 })

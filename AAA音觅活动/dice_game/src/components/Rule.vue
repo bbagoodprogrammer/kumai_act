@@ -2,7 +2,7 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">活動時間:1月21日 19:00-1月27日24:00</div>
+    <div class="actTime">活動時間:1月22日19：00-1月28日24：00</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">活動規則</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">活動獎勵</span>

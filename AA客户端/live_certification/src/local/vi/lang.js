@@ -4,6 +4,7 @@ export default {
     page_skill_title: 'Kỹ xảo ảnh bìa',
     page_notQualified_title: 'Về quyền hạn', //權限說明
     page_LiveCover_title: 'Ảnh bìa',// 直播封面
+    page_standard_title: 'Platform\'s Live Streaming Agreement and Code of Conduct',//平台直播協議與行為規範
     // router/index
     page_cardTips: 'Tải hình: ', //請上傳認證照片
     page_cardTips2: 'Tải thành công, chúng tôi sẽ xét duyệt',//上傳成功後，我們會加快審核
