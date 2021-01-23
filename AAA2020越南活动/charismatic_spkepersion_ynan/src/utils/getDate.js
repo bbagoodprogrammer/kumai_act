@@ -12,7 +12,7 @@ function getDate(datem, type) {
         return `${date}/${month}`
     }
     if (type == 4) {
-        return `${date}${month}${year}`
+        return `${year}${month}${date}`
     }
     if (type == 5) {
         return `${date}/${month}/${year} ${hours}:${minute}`

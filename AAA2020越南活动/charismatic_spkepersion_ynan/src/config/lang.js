@@ -1,6 +1,6 @@
 const lang = {
-    noAct: '活動未開始',
-    actEd: '活動已結束',
-    ok: '我知道啦'
+    noAct: 'Sự kiện chưa mở',
+    actEd: 'Sự kiện đã kết thúc',
+    ok: ' Tôi biết rồi!'
 }
 export default lang

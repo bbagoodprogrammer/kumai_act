@@ -1,8 +1,8 @@
 export default {
     //html/index.html
-    title: '主播認證',
+    // title: 'Chứng nhận Idol',
     // router/skill
-    page_skill_title: '直播封面技巧',
+    // page_skill_title: '直播封面技巧',
 
     // router/index
     // page_data: '數據達標',

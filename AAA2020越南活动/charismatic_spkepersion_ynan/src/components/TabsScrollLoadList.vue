@@ -67,8 +67,8 @@
             <div class="lv"><em class="lvScore">Điểm sao:{{item.score}}</em> </div>
             <div class="iconScore">
               <!-- is_prize -->
-              <span v-if="item.is_prize" class="luck_ed">Trúng thưởng</span>
-              <span v-if="item.pro">Tỉ lệ trúng thưởng:{{item.pro}}%</span>
+              <span v-if="item.is_prize" class="luck_ed">Đã trúng</span>
+              <span v-if="item.pro">Tỷ lệ:{{item.pro}}%</span>
 
             </div>
           </div>
@@ -617,21 +617,21 @@ export default {
           .lv {
             white-space: nowrap;
             color: rgba(252, 245, 193, 1);
-            font-size: 0.24rem;
+            font-size: 0.26rem;
             text-align: right;
             em {
-              font-size: 0.24rem;
+              font-size: 0.26rem;
             }
           }
           .iconScore {
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            font-size: 0.28rem;
+            font-size: 0.26rem;
             margin-top: 0.15rem;
             white-space: nowrap;
             > span {
-              font-size: 0.22rem;
+              font-size: 0.26rem;
               // display: flex;
               // align-items: center;
               // justify-content: center;
@@ -650,12 +650,13 @@ export default {
               // }
             }
             .luck_ed {
-              width: 0.64rem;
+              // width: 0.64rem;
+              padding: 0 0.1rem;
               height: 0.32rem;
               background: linear-gradient(90deg, #ff4571 0%, #ff67b2 100%);
               border-radius: 0.16rem;
               font-size: 0.21rem;
-              margin-left: 0.1rem;
+              margin: 0 0.1rem;
               text-align: center;
               line-height: 0.32rem;
             }
