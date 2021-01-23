@@ -300,16 +300,18 @@ body::-webkit-scrollbar {
           }
         }
         .giftArr {
-          width: 3.7rem;
+          width: 4rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
           .giftItem {
-            width: 1.2rem;
+            width: 1.3rem;
           }
           .imgBg {
+            display: block;
+            margin: 0 auto;
             width: 1.1rem;
-            height: 1rem;
+            height: 1.1rem;
             background: rgba(135, 65, 227, 1);
             border-radius: 0.12rem;
             img {
@@ -320,7 +322,7 @@ body::-webkit-scrollbar {
           strong {
             display: block;
             height: 0.9rem;
-            font-size: 0.24rem;
+            font-size: 0.22rem;
             text-align: center;
           }
         }

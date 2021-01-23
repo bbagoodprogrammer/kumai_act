@@ -4,12 +4,11 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-
+      <div class="ruleTips" @click="goRule()">Thưởng&Thể lệ</div>
     </div>
     <div class="giftList">
       <h3>Phần thưởng</h3>
       <div class="giftItem" v-for="(item,index) in giftList" :key="index">
-
         <div class="imgBg">
           <img :src="item.img" alt="">
         </div>
@@ -17,6 +16,8 @@
       </div>
     </div>
     <Integral />
+    <TabsScrollLoadList />
+    <Footer />
   </div>
 </template>
 
@@ -25,9 +26,11 @@ import { mapState } from 'vuex';
 import { getUrlString } from '../utils'
 import APP from "../utils/openApp"
 import Integral from "./Integral"
+import TabsScrollLoadList from "./TabsScrollLoadList"
+import Footer from "./Footer"
 
 export default {
-  components: { Integral },
+  components: { Integral, TabsScrollLoadList, Footer },
   data() {
     return {
       isShare: false,
@@ -73,6 +76,9 @@ export default {
     downApp() {
       APP()
     },
+    goRule() {
+      this.$router.push('Rule')
+    }
   },
 }
 </script>
@@ -81,15 +87,31 @@ export default {
 .pageIndex {
   .header {
     height: 6.84rem;
+    .ruleTips {
+      width: 2.13rem;
+      height: 0.64rem;
+      background: url(../img/ruleTips.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: 5.41rem;
+      right: 0;
+      font-size: 0.26rem;
+      color: rgba(60, 34, 169, 1);
+      text-align: center;
+      line-height: 0.64rem;
+    }
   }
   .giftList {
-    width: 6.25rem;
-    height: 4.63rem;
-    padding: 1.51rem 0 0 0.57rem;
+    width: 5.69rem;
+    height: 4.13rem;
+    padding: 1.51rem 0.57rem 0.5rem;
     background: url(../img/giftList_bg.png);
     background-size: 100% 100%;
     margin: 0 auto;
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     h3 {
       font-size: 0.36rem;
       color: rgba(87, 61, 197, 1);
@@ -102,10 +124,10 @@ export default {
       top: 0;
     }
     .giftItem {
-      display: inline-block;
+      // display: inline-block;
       width: 1.5rem;
       height: 1.5rem;
-      margin: 0 0.58rem 0.25rem 0;
+      // margin: 0 0.58rem 0.25rem 0;
       .imgBg {
         width: 1.5rem;
         height: 1.5rem;
@@ -117,11 +139,12 @@ export default {
       strong {
         display: block;
         width: 1.7rem;
-        // height: 0.4rem;
+        height: 0.4rem;
         margin-left: -0.1rem;
         font-size: 0.22rem;
         color: rgba(226, 205, 255, 1);
         text-align: center;
+        line-height: 0.25rem;
       }
     }
   }

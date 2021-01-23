@@ -1,53 +1,95 @@
 <template>
   <div class="Integral">
     <div class="scoreTips">
-      <div class="lv">Cấp độ phóng khoáng <span> Lv.4</span></div>
-      <div class="score">Tiêu phí xu <span>300</span></div>
+      <div class="lv">Cấp độ phóng khoáng <span> Lv.{{Lv}}</span></div>
+      <div class="score">Tiêu phí xu <span>{{score}}</span></div>
     </div>
     <div class="giftLiner">
-      <div class="liner_act_hid">
+      <div class="liner_act_hid" :style="{width:giftArr[5].act_width}">
         <div class="liner_act_show"></div>
       </div>
-      <div class="giftItem" v-for="(item,index) in giftArr" :key="index" :class="'item' + index">
+      <div class="giftItem" v-for="(item,index) in giftArr" :key="index" :class="'item' + index" @click="getGift(index)">
         <span class="lv">Lv.{{index}}</span>
-        <span class="coins">Lv.{{item.name}}</span>
+        <span class="coins">{{item.name}}</span>
         <img :src="item.img" alt="">
+        <div class="linght" v-if="level[index] && level[index].can && !level[index].get"></div>
+        <span class="gift_day" v-if="item.gift_tips">{{item.gift_tips}}</span>
       </div>
     </div>
     <div class="tips">
-      在禮物紅包/福運禮物/砸蛋探寶中消費金幣可獲得相應獎勵
+      Trong Lì Xì/Hộp May Mắn/Đập Trứng tiêu phí xu có thể nhận quà tương ứng
+    </div>
+    <div class="mask" v-show="showGiftPup">
+      <transition name="slide">
+        <div class="gift_pup" v-if="showGiftPup">
+          <i class="close" @click="showGiftPup = false"></i>
+          <div class="title">恭喜获得</div>
+          <div class="imgBox">
+            <img :src="giftArr[act_lv].img" alt="">
+          </div>
+          <div class="name">{{giftArr[act_lv].name}}</div>
+          <div class="gift_coins">5金幣/個</div>
+          <div class="gift_tips">獎勵獎通過系統自動發放到您的帳戶上</div>
+          <span class="ok" @click="showGiftPup = false">确定</span>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
 <script>
+import { mapState } from "vuex"
+import { getGiftApi } from "../apis"
 export default {
   data() {
     return {
+      showGiftPup: false,
+      act_lv: 0,
       giftArr: {
         1: {
           gift_tips: 'x30',
           img: require('../img/get_gift/giftItem_1.png'),
-          name: '10金币'
+          name: '10xu',
+          act_width: '13%'
         },
         2: {
-          gift_tips: '7天',
+          gift_tips: '7ngày',
           img: require('../img/get_gift/giftItem_2.png'),
-          name: '30金币'
+          name: '30xu',
+          act_width: '30%'
         },
         3: {
           img: require('../img/get_gift/giftItem_3.png'),
-          name: '100金币'
+          name: '100xu',
+          act_width: '50%'
         },
         4: {
           img: require('../img/get_gift/giftItem_4.png'),
-          name: '300金币'
+          name: '300xu',
+          act_width: '70%'
         },
         5: {
-          gift_tips: '7天',
+          gift_tips: '7ngày',
           img: require('../img/get_gift/giftItem_5.png'),
-          name: '50金币'
+          name: '50xu',
+          act_width: '100%'
         },
       }
+    }
+  },
+  computed: {
+    ...mapState(['level', 'Lv', 'score'])
+  },
+  methods: {
+    getGift(lv) {
+      getGiftApi(lv).then(res => {
+        if (res.data.response_status.code == 0) {
+          this.act_lv = lv
+          this.showGiftPup = true
+          this.vxc('setLvState', lv)
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
     }
   }
 }
@@ -78,11 +120,10 @@ export default {
     position: relative;
     margin: 0.8rem auto;
     .liner_act_hid {
-      width: 100%;
       height: 100%;
       position: absolute;
-      width: 50%;
       overflow: hidden;
+      border-radius: 0.12rem;
       .liner_act_show {
         width: 100%;
         height: 100%;
@@ -100,6 +141,42 @@ export default {
       img {
         width: 100%;
         height: 100%;
+        position: absolute;
+        z-index: 3;
+      }
+      .lv,
+      .coins {
+        display: block;
+        width: 0.8rem;
+        text-align: center;
+        font-size: 0.22rem;
+        position: absolute;
+        white-space: nowrap;
+      }
+      .lv {
+        top: -0.4rem;
+      }
+      .linght {
+        width: 100%;
+        height: 100%;
+        background: url(../img/get_gift/lingt.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .gift_day {
+        font-size: 0.22rem;
+        font-weight: 600;
+        text-shadow: rgba(89, 36, 197, 1) 1px 0 0, rgba(89, 36, 197, 1) 0 1px 0,
+          rgba(89, 36, 197, 1) -1px 0 0, rgba(89, 36, 197, 1) 0 -1px 0;
+        position: absolute;
+        bottom: -0.05rem;
+        right: -0.1rem;
+        z-index: 5;
+      }
+      .coins {
+        bottom: -0.4rem;
       }
       &.item1 {
         left: 0.33rem;
@@ -114,7 +191,7 @@ export default {
         left: 3.7rem;
       }
       &.item5 {
-        right: 0.2rem;
+        right: 0.3rem;
       }
     }
   }
@@ -122,6 +199,62 @@ export default {
     font-size: 0.22rem;
     color: rgba(255, 254, 173, 1);
     text-align: center;
+  }
+  .gift_pup {
+    width: 4.77rem;
+    height: 4.43rem;
+    background: url(../img/get_gift/gift_bg.png);
+    background-size: 100% 100%;
+    position: relative;
+    .close {
+      display: block;
+      width: 0.64rem;
+      height: 0.64rem;
+      background: url(../img/close.png);
+      background-size: 100% 100%;
+      position: absolute;
+      bottom: -1rem;
+      left: 2.06rem;
+    }
+    .title {
+      height: 0.92rem;
+      line-height: 1rem;
+      text-align: center;
+    }
+    .imgBox {
+      width: 1.5rem;
+      height: 1.5rem;
+      background: url(../img/get_gift/gift_item_bg.png);
+      background-size: 100% 100%;
+      margin: 0 auto;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .gift_coins,
+    .name {
+      font-size: 0.22rem;
+      text-align: center;
+    }
+    .gift_coins {
+      opacity: 0.5;
+    }
+    .gift_tips {
+      font-size: 0.22rem;
+      color: rgba(248, 211, 255, 1);
+      margin: 0.1rem auto 0;
+      text-align: center;
+    }
+    .ok {
+      display: block;
+      width: 1.4rem;
+      height: 0.54rem;
+      background: url(../img/get_gift/ok.png);
+      background-size: 100% 100%;
+      text-align: center;
+      margin: 0.1rem auto 0;
+    }
   }
 }
 </style>

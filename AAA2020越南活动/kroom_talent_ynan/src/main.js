@@ -6,7 +6,15 @@ import Vue from 'vue'
 import App from './App'
 import store from './store'
 import router from './router'
+import VueLazyload from 'vue-lazyload'
 import { replaceLang, vuexCommit, toast, ModalHelper } from './utils';
+
+Vue.use(VueLazyload, {
+    preLoad: 1.3,
+    error: require('./img/default.png'),
+    loading: require('./img/default.png'),
+    attempt: 1
+})
 
 Vue.prototype.toast = toast
 Vue.prototype.vxc = vuexCommit

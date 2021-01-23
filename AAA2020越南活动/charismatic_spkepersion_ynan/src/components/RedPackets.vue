@@ -58,7 +58,7 @@
               </li>
             </ul>
           </vue-seamless-scroll>
-          <div class="share" v-if="packetType == 1" @click="shareAct()">Nhắc bạn bè cướp lì xì</div>
+          <div class="share" v-if="packetType == 1" @click="shareAct()">Nhắc bạn bè cướp</div>
         </div>
       </transition>
     </div>
@@ -670,7 +670,7 @@ export default {
             .nick {
               display: inline-block;
               font-size: 0.24rem;
-              max-width: 1.5rem;
+              max-width: 1.3rem;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;

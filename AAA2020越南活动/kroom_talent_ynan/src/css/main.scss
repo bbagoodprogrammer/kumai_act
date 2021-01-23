@@ -17,6 +17,18 @@ a:hover {
     max-width: 750px;
     margin: auto;
 }
+.mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10000;
+    background: rgba(0,0,0,.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 @keyframes bounce {
     0% {
