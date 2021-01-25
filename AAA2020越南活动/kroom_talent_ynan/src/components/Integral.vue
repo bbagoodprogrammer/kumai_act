@@ -5,7 +5,7 @@
       <div class="score">Tiêu phí xu <span>{{score}}</span></div>
     </div>
     <div class="giftLiner">
-      <div class="liner_act_hid" :style="{width:giftArr[5].act_width}">
+      <div class="liner_act_hid" :style="{width:giftArr[1].act_width}">
         <div class="liner_act_show"></div>
       </div>
       <div class="giftItem" v-for="(item,index) in giftArr" :key="index" :class="'item' + index" @click="getGift(index)">
@@ -17,20 +17,20 @@
       </div>
     </div>
     <div class="tips">
-      Trong Lì Xì/Hộp May Mắn/Đập Trứng tiêu phí xu có thể nhận quà tương ứng
+      Tiêu xu bằng nổ Lì Xì/ tặng Hộp May Mắn/ chơi Đập Trứng sẽ nhận thưởng tương ứng.
     </div>
     <div class="mask" v-show="showGiftPup">
       <transition name="slide">
         <div class="gift_pup" v-if="showGiftPup">
           <i class="close" @click="showGiftPup = false"></i>
-          <div class="title">恭喜获得</div>
+          <div class="title">Chúc mừng nhận được</div>
           <div class="imgBox">
             <img :src="giftArr[act_lv].img" alt="">
           </div>
-          <div class="name">{{giftArr[act_lv].name}}</div>
-          <div class="gift_coins">5金幣/個</div>
-          <div class="gift_tips">獎勵獎通過系統自動發放到您的帳戶上</div>
-          <span class="ok" @click="showGiftPup = false">确定</span>
+          <div class="name">{{giftArr[act_lv].gname}}</div>
+          <!-- <div class="gift_coins">5金幣/個</div> -->
+          <div class="gift_tips">Phần thưởng sẽ tự động gửi tới tài khoản bạn</div>
+          <span class="ok" @click="showGiftPup = false">Xác nhận</span>
         </div>
       </transition>
     </div>
@@ -49,29 +49,34 @@ export default {
           gift_tips: 'x30',
           img: require('../img/get_gift/giftItem_1.png'),
           name: '10xu',
-          act_width: '13%'
+          act_width: '13%',
+          gname: '30 đậu'
         },
         2: {
           gift_tips: '7ngày',
           img: require('../img/get_gift/giftItem_2.png'),
           name: '30xu',
-          act_width: '30%'
+          act_width: '30%',
+          gname: 'VIP 7 ngày'
         },
         3: {
           img: require('../img/get_gift/giftItem_3.png'),
           name: '100xu',
-          act_width: '50%'
+          act_width: '50%',
+          gname: 'Hoa Hồng （180 đậu）'
         },
         4: {
           img: require('../img/get_gift/giftItem_4.png'),
           name: '300xu',
-          act_width: '70%'
+          act_width: '70%',
+          gname: 'Pháo Tết（5 xu）'
         },
         5: {
           gift_tips: '7ngày',
           img: require('../img/get_gift/giftItem_5.png'),
           name: '50xu',
-          act_width: '100%'
+          act_width: '100%',
+          gname: 'Kẹo Ngọt 7 ngày（110 xu）'
         },
       }
     }
@@ -199,6 +204,7 @@ export default {
     font-size: 0.22rem;
     color: rgba(255, 254, 173, 1);
     text-align: center;
+    padding: 0 0.4rem;
   }
   .gift_pup {
     width: 4.77rem;

@@ -4,7 +4,7 @@
     <span class="noAct" v-if="astState === 2">Sự kiện đã kết thúc</span>
     <span class="signUp" @click="signUpClick()" v-if="astState === 3">Báo danh</span>
     <div class="actIng" v-if="astState == 4">
-      <div class="rank" :class="{noRank:nowUserMsg.rank == 0}">{{nowUserMsg.rank == 0?'Chưa lên bảng':nowUserMsg.rank}}</div>
+      <div class="rank" :class="{noRank:nowUserMsg.rank == 0}">{{nowUserMsg.rank == 0?'Chưa lên BXH':nowUserMsg.rank}}</div>
       <div class="uerImg">
         <img v-if="nowUserMsg.avatar_frame &&nowUserMsg.avatar_frame != ''" :src="nowUserMsg.avatar_frame" class="frame" alt="">
         <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
@@ -18,7 +18,7 @@
       <div class="score"><i></i>{{nowUserMsg.score}}</div>
     </div>
     <div class="actIng" v-if="astState == 5">
-      <div class="rank" :class="{noRank:nowUserMsg.rank == 0}">{{nowUserMsg.rank == 0?'Chưa lên bảng':nowUserMsg.rank}}</div>
+      <div class="rank" :class="{noRank:nowUserMsg.rank == 0}">{{nowUserMsg.rank == 0?'Chưa lên BXH':nowUserMsg.rank}}</div>
       <div class="uerImg">
         <!-- <img v-if="nowUserMsg.avatar_frame &&nowUserMsg.avatar_frame != ''" :src="nowUserMsg.avatar_frame" class="frame" alt=""> -->
         <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
@@ -35,7 +35,7 @@
       <transition name="slide">
         <div class="signUp_suc" v-show="showGiftPup">
           <i class="close" @click="showGiftPup = false"></i>
-          报名成功！
+          Báo danh thành công
         </div>
       </transition>
     </div>
@@ -52,17 +52,17 @@ export default {
     }
   },
   computed: {
-    ...mapState(['step', 'tab', 'user_info', 'groupsUserMsg']),
+    ...mapState(['step', 'tab', 'user_info', 'groupsUserMsg', 'reg']),
     astState() {
       if (this.step === 0) { //活动未开始
         return 1
       } else if (this.step === 2) { //活动已结束
         return 2
-      } else if (!this.user_info.registered || this.isShare) { //活动开始未报名，或者分享
+      } else if (!this.reg || this.isShare) { //活动开始未报名，或者分享
         return 3
-      } else if (this.user_info.registered && this.tab == 0) { //活动开始已报名
+      } else if (this.reg && this.tab == 0) { //活动开始已报名
         return 4
-      } else if (this.user_info.registered && this.tab == 'total' && this.nowUserMsg.info.rid) { //活动开始已报名
+      } else if (this.reg && this.tab == 'total' && this.nowUserMsg.info.rid) { //活动开始已报名
         return 5
       }
     },

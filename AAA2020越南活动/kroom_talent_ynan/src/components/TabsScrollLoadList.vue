@@ -3,16 +3,16 @@
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
-        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tab1">BXH Phóng Khoáng</a>
-        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tab2">BXH Nhân Khí</a>
+        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tab1">Bảng Thần Tượng</a>
+        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tab2">Bảng Phòng Kara</a>
       </div>
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
     <!-- 倒计时 -->
     <div class="downTimebox">
       <!-- <div class="timeTips"> -->
-      <p v-if="step==0">Sự kiện bắt đầu</p>
-      <p v-else-if="step == 1">Sự kiện kết thúc</p>
+      <p v-if="step==0">Đếm ngược sự kiện bắt đầu</p>
+      <p v-else-if="step == 1">Đếm ngược sự kiện kết thúc</p>
       <!-- </div> -->
       <div class="timeDown" v-if="surplusTime&& !surplusTime.end">
         <strong>{{surplusTime.day}}</strong>
@@ -25,8 +25,8 @@
         <em>Giây</em>
       </div>
       <p class="tips">
-        Xếp hạng dựa vào mị lực của Lì Xì/ Hộp Quà May Mắn trong phòng<br />
-        Trong phòng mỗi lần phóng tên lửa sẽ tăng 10000 điểm
+        Xếp hạng theo điểm mị từ nổ Lì Xì /tặng Hộp Quà May Mắn. <br />
+        Trong phòng mỗi lần nổ tên lửa sẽ tăng 10000 điểm.
       </p>
     </div>
     <div class="list day" v-if="mainTab==0 && rank.list.length">
@@ -51,7 +51,7 @@
     <!-- 总榜 -->
     <div v-else-if="mainTab==1 && rank.list.length" class="list total">
       <ul>
-        <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid)">
+        <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goKroom(item.info.rid)">
           <div class="rank">{{item.rank}}</div>
           <div class="uerImg">
             <!-- <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt=""> -->
@@ -255,6 +255,9 @@ export default {
 
     goUser(uid) { //跳转
       location.href = `uid:${uid}`
+    },
+    goKroom(rid) {
+      location.href = `rid:${rid}`
     },
     downTimeGo(timeName, val) {
       clearInterval(this.timer)

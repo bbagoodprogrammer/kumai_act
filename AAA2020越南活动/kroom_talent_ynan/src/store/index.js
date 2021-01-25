@@ -14,7 +14,8 @@ export default new vuex.Store({
         groupsUserMsg: {},  //儲存各種天數的個人信息
         load: 0,
         step: 0,
-        tab: 0
+        tab: 0,
+        reg: false
     },
     getters: {
         signed: state => {
@@ -27,7 +28,10 @@ export default new vuex.Store({
         },
 
         setInitInfo(state, data) {
-            Object.assign(state, data);
+            // state1 = JSON.parse(JSON.stringify(Object.assign(state, data)))
+            Object.assign(state, Object.assign({}, data))
+            console.log(state, data)
+            state.reg = data.user_info.registered
 
         },
         setShareState(state, val) {
@@ -43,7 +47,7 @@ export default new vuex.Store({
                 delete obj['key'];
                 state.groupsUserMsg = Object.assign({}, state.groupsUserMsg, { [key]: Object.assign({}, state.groupsUserMsg[key], obj) });
             }
-            console.log(state.groupsUserMsg)
+            // console.log(state.groupsUserMsg)
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.key != 'undefined') {
@@ -55,6 +59,9 @@ export default new vuex.Store({
         },
         changTab(state, val) {
             state.tab = val
+        },
+        setReg(state, val) {
+            state.reg = false
         }
     },
     actions: {

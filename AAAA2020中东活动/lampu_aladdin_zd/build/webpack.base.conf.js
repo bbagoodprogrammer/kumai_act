@@ -16,7 +16,7 @@ module.exports = {
     app: './src/main.js',//['babel-polyfill','./src/main.js' ],
     app2: './src/pages/rule/main2.js',//['babel-polyfill', './src/pages/rule/main2.js'],
     app3: './src/pages/history/main4.js',//['babel-polyfill', './src/pages/history/main4.js'],
-    app4: './src/pages/test/main5.js'//['babel-polyfill', './src/pages/test/main5.js']
+    //  app4: './src/pages/test/main5.js'//['babel-polyfill', './src/pages/test/main5.js']
   },
   output: {
     path: config.build.assetsRoot,

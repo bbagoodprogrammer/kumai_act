@@ -12,8 +12,8 @@
         <strong>{{item.nick}}</strong>
       </li>
     </ul>
-    <h5>Phần thưởng Túi quà người phát ngôn:</h5>
-    <p>Mỗi lần trở thành Người phát ngôn 1 lần, thưởng 1 Túi quà người phát ngôn: 1 bài hát được đề xuất trên trang chủ với nhãn người phát ngôn +2000 xu, phát sau khi sự kiện kết thúc 7 ngày</p>
+    <h5>Phần thưởng Túi quà Người Đại Diện:</h5>
+    <p>Mỗi lần trở thành Người Đại Diện, thưởng 1 phần quà Người Đại Diện: 1 bài hát được đề xuất trên trang chủ với nhãn bài hát Người Đại Diện + 2000 xu, phát thưởng sau khi sự kiện kết thúc 7 ngày.</p>
   </div>
 </template>
 <script>
@@ -45,7 +45,7 @@ export default {
     }
   },
   created() {
-    document.title = 'Người phát ngôn kỳ trước'
+    document.title = 'Người Đại Diện Các Kỳ'
     api.mounth().then(res => {
       this.list = res.data.response_data.list
     })

@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="redTips">
-      Tác phẩm mang nhãn “Thách đấu người phát ngôn” mỗi lần nhận được {{redPacket.step}} <img :src="redPacket.img" /> phần quà, toàn bộ người dùng có thể mở lì xì
+      Tác phẩm mang nhãn sự kiện Thách Đấu Người Đại Diện mỗi lần nhận được <img :src="redPacket.img" />x{{redPacket.step}}, toàn bộ người dùng có thể mở lì xì
     </div>
     <div class="subscribe" @click="subscribe()">
       {{redPacket.subscribe?'Hủy hẹn':'Hẹn cướp lì xì'}}
@@ -54,7 +54,7 @@
               <li v-for="(item,index) in redPacket.record" :key="index">
                 <img :src="item.avatar" alt="" v-if="item.avatar" @click="goUser(item.uid)">
                 <img src="../assets/img/default.png" alt="" v-else @click="goUser(item.uid)">
-                <strong> <em class="nick">{{item.nick}}</em>nhận được {{item.count}} <img :src="redPacket.img" /></strong>
+                <strong> <em class="nick">{{item.nick}} </em> nhận được <img :src="redPacket.img" /> x{{item.count}}</strong>
               </li>
             </ul>
           </vue-seamless-scroll>
@@ -88,10 +88,10 @@
           <i class="close" @click="closePacketPup()"></i>
           <!-- <p class="red">{{dtime}}</p> -->
           <div class="resHeader">
-            <div class="tips" v-if="recoreData.time">{{recoreData.users}}bao lì xì,{{recoreData.time}}giây bị cướp hết</div>
+            <div class="tips" v-if="recoreData.time">{{recoreData.users}} bao lì xì,{{recoreData.time}} giây bị cướp hết</div>
             <div class="tips" v-else>
               <span>Đã nhận <em>{{recoreData.gotUsers}}/{{recoreData.users}}</em></span>
-              <span>tổng cộng <em>{{recoreData.gotCoins}}/{{recoreData.coins}}</em>xu </span>
+              <span>Tổng cộng <em>{{recoreData.gotCoins}}/{{recoreData.coins}} </em> xu </span>
             </div>
           </div>
           <ul class="recoreList">
@@ -102,7 +102,7 @@
                 <div class="tm">{{getDate(item.time)}}</div>
               </div>
               <div class="gift">
-                <div class="nums">{{item.coin}}xu</div>
+                <div class="nums">{{item.coin}} xu</div>
                 <div class="luck" v-if="item.lucky"><i></i> May mắn nhất</div>
               </div>
             </li>
@@ -668,6 +668,7 @@ export default {
             display: flex;
             align-items: center;
             .nick {
+              margin: 0 0.1rem;
               display: inline-block;
               font-size: 0.24rem;
               max-width: 1.3rem;
@@ -805,9 +806,10 @@ export default {
           border: 0.03rem solid RGBA(249, 160, 183, 1);
         }
         .msg {
-          width: 2.3rem;
+          width: 1.7rem;
           margin-left: 0.13rem;
           .nick {
+            width: 1.7rem;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
