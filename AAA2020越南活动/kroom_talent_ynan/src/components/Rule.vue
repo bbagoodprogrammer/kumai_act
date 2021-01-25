@@ -1,39 +1,39 @@
 <template>
   <div class="rule">
     <div class="tabs">
-      <a @click.prevent="mainTab=0" :class="{current:mainTab==0}" class="tab1">BXH Phóng Khoáng</a>
-      <a @click.prevent="mainTab=1" :class="{current:mainTab==1}" class="tab2">BXH Nhân Khí</a>
+      <a @click.prevent="mainTab=0" :class="{current:mainTab==0}" class="tab1">Bảng Thần Tượng</a>
+      <a @click.prevent="mainTab=1" :class="{current:mainTab==1}" class="tab2">Bảng Phòng Kara</a>
     </div>
     <div class="ruleItem" v-if="mainTab == 0">
       <h5>Thời gian</h5>
-      <p>11月12日18:00-11月21日22:00</p>
+      <p>18:00 27/1 - 22:00 5/2</p>
       <h5>Thể lệ</h5>
-      <p>1）Hoạt động cần báo danh, trị số tính sau cuộc thi </p>
-      <p>2）BXH phân thành BXH Phóng Khoáng và BXH Nhân Khí</p>
-      <p>BXH Phóng Khoáng: xếp hạng dựa vào số xu người dùng tiêu phí Lì Xì và Hộp Quà May Mắn trong thời gian hoạt động, trong phòng Kara mỗi lần phóng tên lửa tăng 1000 điểm</p>
-      <p>BXH Nhân Khí: xếp hạng dựa vào mị lực sinh ra từ Lì Xì và Hộp Quà May Mắn trong thời gian hoạt động, trong phòng Kara mỗi lần phóng tên lửa tăng 10000 điểm</p>
+      <p>1）Bắt đầu tính dữ liệu sau khi báo danh sự kiện. </p>
+      <p>2）Bảng Thần Tượng Phòng Kara và Bảng Phòng Kara Sôi Nổi</p>
+      <p>Bảng Thần Tượng: Xếp hạng theo số xu người dùng tiêu bằng nổ Lì Xì /tặng Hộp Quà May Mắn, trong phòng mỗi lần nổ tên lửa sẽ tăng 1000 điểm.</p>
+      <p>Bảng Phòng Kara: Xếp hạng theo điểm mị từ nổ Lì Xì /tặng Hộp Quà May Mắn trong phòng, trong phòng mỗi lần nổ tên lửa sẽ tăng 10000 điểm.</p>
       <h5>Ghi chú:</h5>
-      <p>1）Phòng Kara không ghi lại số liệu hoạt động</p>
-      <p>2）Mỗi người dùng chỉ có thể dùng 1 tài khoản tham gia hoạt động</p>
-      <p>Dùng hành vi vi phạm tham gia hoạt động sẽ bị hủy tư cách tham gia, hủy quà hoạt động, khóa tài khoản</p>
+      <p>1）Dữ liệu trong phòng kara riêng tư sẽ không được tính.</p>
+      <p>2）Mỗi người dùng chỉ có thể dùng 1 tài khoản tham gia sự kiện.</p>
+      <p>Tất cả hành vi vi phạm sẽ bị hủy tư cách tham dự, phần thưởng sự kiện sẽ bị hủy, những tài khoản vi phạm nghiêm trọng sẽ bi khóa.</p>
     </div>
     <div class="gift" v-else>
       <h5>Thời gian</h5>
-      <p>11月12日18:00-11月21日22:00</p>
+      <p>18:00 27/1 - 22:00 5/2</p>
       <h5>Phần thưởng</h5>
-      <p>BXH Phóng Khoáng</p>
-      <p>Hạng 1: Huy Chương Phóng Khoáng (30 ngày)+Xe Grand Debut (30 ngày)+Dạ Khúc (2880 xu)+2000 xu</p>
-      <p>Hạng 2: Huy Chương Phóng Khoáng (30 ngày)+Xe Grand Debut (30 ngày)+Sao Ước Nguyện (1880 xu)+1500 xu</p>
-      <p>Hạng 3: Huy Chương Phóng Khoáng (30 ngày)+Xe Grand Debut (30 ngày)+Mưa Sao Băng (1280 xu)+1000 xu</p>
-      <p>Hạng 4-10: Huy Chương Phóng Khoáng (30 ngày)+Xe Grand Debut (30 ngày)+Mưa Bong Bóng (820 xu)+500 xu</p>
-      <p class="mt">BXH Nhân Khí (Quà cho chủ phòng và quản lý)</p>
-      <p>Hạng 1: 200 xu+2000 đậu+ chủ đề nhân khí phòng 30 ngày</p>
-      <p>Hạng 2: 150 xu+1500 đậu+ chủ đề nhân khí phòng 30 ngày</p>
-      <p>Hạng 3: 100 xu+1000 đậu+ chủ đề nhân khí phòng 30 ngày</p>
-      <p>Hạng 4-10: 50 xu+500 đậu+ chủ đề nhân khí phòng 30 ngày</p>
+      <p>Bảng Thần Tượng</p>
+      <p>Hạng 1: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Dạ Khúc (2880 xu) + 2000 xu</p>
+      <p>Hạng 2: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Sao Ước Nguyện (1880 xu) + 1500 xu</p>
+      <p>Hạng 3: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Mưa Sao Băng (1280 xu) + 1000 xu</p>
+      <p>Hạng 4-10: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Mưa Bong Bóng (820 xu) + 500 xu</p>
+      <p class="mt">Bảng Phòng Kara (thưởng cho chủ phòng và quản lý)</p>
+      <p>Hạng 1: 200 Xu + 2000 Đậu + Chủ Đề Phòng Sôi Nổi (30 ngày)</p>
+      <p>Hạng 2: 150 Xu + 1500 Đậu + Chủ Đề Phòng Sôi Nổi (30 ngày)</p>
+      <p>Hạng 3: 100 Xu + 1000 Đậu + Chủ Đề Phòng Sôi Nổi (30 ngày)</p>
+      <p>Hạng 4-10: 50 Xu + 500 Đậu + Chủ Đề Phòng Sôi Nổi (30 ngày)</p>
       <h5>Ghi chú:</h5>
-      <p>1. phần thưởng gửi trong vòng 7 ngày sau khi kết thúc cuộc thi.</p>
-      <p>Quà có thời hạn 7 ngày, hãy nhanh chóng sử dụng</p>
+      <p>1. Phần thưởng gửi trong vòng 7 ngày sau khi kết thúc sự kiện.</p>
+      <p>2.Túi quà có thời hạn 7 ngày, hãy nhanh chóng sử dụng.</p>
     </div>
 
     <p class="lastTips">Quyết định của ban tổ chức là quyết định cuối cùng.</p>

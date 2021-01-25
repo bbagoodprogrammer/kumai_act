@@ -10,8 +10,8 @@
     </div>
     <div class="rankTips">
       <div class="giftTips">
-        <p>Điểm sao=Số like nhận được X10+ mị lực quà xu nhận được</p>
-        <p class="timeTips">Mỗi quán quân tài trợ lì xì 1 lần, điểm sao tăng 2%, giới hạn 10%</p>
+        <p>Điểm sao=Lượt thích nhận *10 + Điểm mị quà xu nhận</p>
+        <p class="timeTips">Mỗi tài trợ lì xì 1 lần, điểm sao tăng thêm 2%, tối đa 10%</p>
       </div>
     </div>
     <DayTabs :tab="tab" @changeClick="tabClick" v-if="mainTab == 0" />

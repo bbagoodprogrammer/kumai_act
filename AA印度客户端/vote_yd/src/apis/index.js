@@ -19,6 +19,7 @@ const uid = getUrlString('uid') || (isDebug ? defaultUid : '');
 const token = getUrlString('token') || (isDebug ? defaultToken : '');
 let rid = getUrlString("rid")
 let vote_id = getUrlString("vote_id")
+const app_lang = getUrlString('lang')
 const lang = __lang;
 
 
@@ -83,6 +84,7 @@ function commitVote(descriptions, option_type, options, voter_type_limit, user_l
         option_type,
         options: JSON.stringify(options),
         voter_type_limit,
+        lang: app_lang
     }
     if (user_level_limit != '') {
         data['user_level_limit'] = user_level_limit
@@ -105,9 +107,9 @@ function commitVote(descriptions, option_type, options, voter_type_limit, user_l
 //投票詳情
 function voteMsg(reset) {
     if (reset) {
-        axios.get(`/index.php?action=roomVote.voteDetail&uid=${uid}&token=${token}&rid=${rid}&vote_id=${vote_id}`)
+        axios.get(`/index.php?action=roomVote.voteDetail&uid=${uid}&token=${token}&rid=${rid}&vote_id=${vote_id}&lang=${app_lang}`)
     }
-    return get(`/index.php?action=roomVote.voteDetail&uid=${uid}&token=${token}&rid=${rid}&vote_id=${vote_id}`)
+    return get(`/index.php?action=roomVote.voteDetail&uid=${uid}&token=${token}&rid=${rid}&vote_id=${vote_id}&lang=${app_lang}`)
 }
 
 //結束投票
@@ -116,7 +118,8 @@ function endVote() {
         token,
         uid,
         rid,
-        vote_id
+        vote_id,
+        lang: app_lang
     }
     return axios({
         url: '/index.php?action=roomVote.closeVote',
@@ -135,7 +138,8 @@ function commitChione(option) {
         uid,
         rid,
         vote_id,
-        option
+        option,
+        lang: app_lang
     }
     return axios({
         url: '/index.php?action=roomVote.vote',
@@ -150,9 +154,9 @@ function commitChione(option) {
 //投票記錄
 function getVoteHistory(last_id, more) {
     if (more) {
-        return axios.get(`/index.php?action=roomVote.getVoteHistory&uid=${uid}&token=${token}&rid=${rid}&last_id=${last_id}`)
+        return axios.get(`/index.php?action=roomVote.getVoteHistory&uid=${uid}&token=${token}&rid=${rid}&last_id=${last_id}&lang=${app_lang}`)
     }
-    return get(`/index.php?action=roomVote.getVoteHistory&uid=${uid}&token=${token}&rid=${rid}&last_id=${last_id}`)
+    return get(`/index.php?action=roomVote.getVoteHistory&uid=${uid}&token=${token}&rid=${rid}&last_id=${last_id}&lang=${app_lang}`)
 }
 
 const httpConfig = {

@@ -19,7 +19,7 @@ export default {
     common_tips: 'टिप',//提示
     // common_bead: 'Beans',//金豆
     // common_coins: 'Coins',//金幣
-    common_noData: 'List is empty',//列表为空
+    common_noData: 'कोई डेटा नही',//列表为空
 
     //setting
     setting_instructions: 'नियम ',//抽獎玩法
@@ -55,7 +55,7 @@ export default {
     history_startPeople: 'ने लाटरी',//发起
     history_startPeople2: 'शुरू किया',//抽奖
     history_open: 'लाटरी ड्रा करें',//開獎
-    history_threeDay: 'केवल इन 3 दिनों में शुरू किया वोट दिखाता है',//僅顯示最近3天發起的投票
+    history_threeDay: 'केवल इन 3 दिनों में शुरू किया लाटरी दिखाता ह',//僅顯示最近3天發起的投票
 
     history_bigLuck: 'सबसे बड़ा पुरस्कार मिला!',//抽到了大獎！
     history_eligibility: 'लाटरी के लिए ज़रूरी शर्तें', // 抽獎資格

@@ -4,7 +4,7 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <div class="ruleTips" @click="goRule()">Thưởng&Thể lệ</div>
+      <div class="ruleTips" @click="goRule()">Hướng Dẫn</div>
     </div>
     <div class="giftList">
       <h3>Phần thưởng</h3>

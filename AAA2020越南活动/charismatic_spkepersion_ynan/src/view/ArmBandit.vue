@@ -227,13 +227,11 @@ body::-webkit-scrollbar {
         background-size: 100% 100%;
         margin-bottom: 0.15rem;
         &.ruleTips2 {
-          width: 3.09rem;
-          background: url(../assets/img/ruleTips2.png);
+          background: url(../assets/img/ruleTips3.png);
           background-size: 100% 100%;
         }
         &.ruleTips3 {
-          width: 2.45rem;
-          background: url(../assets/img/ruleTips3.png);
+          background: url(../assets/img/ruleTips2.png);
           background-size: 100% 100%;
         }
       }
@@ -287,6 +285,9 @@ body::-webkit-scrollbar {
         justify-content: space-between;
         position: relative;
         .tmBox {
+          .tm {
+            font-size: 0.26rem;
+          }
           .lv {
             width: 1.1rem;
             height: 0.32rem;

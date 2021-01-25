@@ -16,6 +16,7 @@ const isDebug = getUrlString('debug');
 // const isDebug = true;
 const uid = getUrlString('uid') || (isDebug ? defaultUid : '');
 const token = getUrlString('token') || (isDebug ? defaultToken : '');
+const app_lang = getUrlString('lang')
 let entryType = sessionStorage.getItem('entryType')
 
 
@@ -68,32 +69,32 @@ function loadData(apiFunc, commitName) {
 
 //获取活动基础信息
 function getDefault(status) {
-    return axios.get(`/big_turntable/init.php?token=${token}&status=${status}&page=${entryType}`);
+    return axios.get(`/big_turntable/init.php?token=${token}&status=${status}&page=${entryType}&lang=${app_lang}`);
 }
 //抽奖
 function luckDraw(status) {
-    return axios.get(`/big_turntable/go.php?token=${token}&status=${status}&page=${entryType}`);
+    return axios.get(`/big_turntable/go.php?token=${token}&status=${status}&page=${entryType}&lang=${app_lang}`);
 }
 //抽奖记录
 function getHistroy(from) {
-    return axios.get(`/big_turntable/userrecord.php?token=${token}&from=${from}&page=${entryType}`);
+    return axios.get(`/big_turntable/userrecord.php?token=${token}&from=${from}&page=${entryType}&lang=${app_lang}`);
 }
 
 // 获取礼物列表
 function getGiftList(type) {
-    return axios.get(`/big_turntable/getpuzzlegiftlist.php?token=${token}&gift_type=${type}&page=${entryType}`)
+    return axios.get(`/big_turntable/getpuzzlegiftlist.php?token=${token}&gift_type=${type}&page=${entryType}&lang=${app_lang}`)
 }
 
 //兌換禮物
 function getGift(type, gid) {
-    return get(`/big_turntable/getpuzzlegift.php?token=${token}&gift_type=${type}&gift_id=${gid}&page=${entryType}`)
+    return get(`/big_turntable/getpuzzlegift.php?token=${token}&gift_type=${type}&gift_id=${gid}&page=${entryType}&lang=${app_lang}`)
 }
 
 //獲取表情包SVGA
 function getSvga(bid) {
     // return axios.jsonp(`http://test.17sing.tw/action/index.php?action=emoticon.getEmoticonBagById&bid=${bid}&uid=${uid}&token=${token}`, "test")
     return new Promise((resolve, reject) => {
-        jsonp(`http://act.17singapp.com/index.php?action=emoticon.getEmoticonBagById&bid=${bid}&uid=${uid}&token=${token}`, null, (err, data) => {
+        jsonp(`http://act.17singapp.com/index.php?action=emoticon.getEmoticonBagById&bid=${bid}&uid=${uid}&token=${token}&lang=${app_lang}`, null, (err, data) => {
             if (err) {
                 reject(err);
             } else {
