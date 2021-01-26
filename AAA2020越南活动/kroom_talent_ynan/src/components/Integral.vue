@@ -1,14 +1,14 @@
 <template>
   <div class="Integral">
     <div class="scoreTips">
-      <div class="lv">Cấp độ phóng khoáng <span> Lv.{{Lv}}</span></div>
+      <div class="lv">Cấp thần tượng<span> Lv.{{Lv}}</span></div>
       <div class="score">Tiêu phí xu <span>{{score}}</span></div>
     </div>
     <div class="giftLiner">
-      <div class="liner_act_hid" :style="{width:giftArr[1].act_width}">
+      <div class="liner_act_hid" :style="{width:giftArr[Lv]?giftArr[Lv].act_width:'0%'}">
         <div class="liner_act_show"></div>
       </div>
-      <div class="giftItem" v-for="(item,index) in giftArr" :key="index" :class="'item' + index" @click="getGift(index)">
+      <div class="giftItem" v-for="(item,index) in giftArr" :key="index" :class="'item' + index" @click="getGiftApi(index)">
         <span class="lv">Lv.{{index}}</span>
         <span class="coins">{{item.name}}</span>
         <img :src="item.img" alt="">
@@ -38,7 +38,7 @@
 </template>
 <script>
 import { mapState } from "vuex"
-import { getGiftApi } from "../apis"
+import { getGift } from "../apis"
 export default {
   data() {
     return {
@@ -48,33 +48,33 @@ export default {
         1: {
           gift_tips: 'x30',
           img: require('../img/get_gift/giftItem_1.png'),
-          name: '10xu',
+          name: '10 xu',
           act_width: '13%',
           gname: '30 đậu'
         },
         2: {
-          gift_tips: '7ngày',
+          gift_tips: '7 ngày',
           img: require('../img/get_gift/giftItem_2.png'),
-          name: '30xu',
+          name: '30 xu',
           act_width: '30%',
           gname: 'VIP 7 ngày'
         },
         3: {
           img: require('../img/get_gift/giftItem_3.png'),
-          name: '100xu',
+          name: '100 xu',
           act_width: '50%',
           gname: 'Hoa Hồng （180 đậu）'
         },
         4: {
           img: require('../img/get_gift/giftItem_4.png'),
-          name: '300xu',
+          name: '300 xu',
           act_width: '70%',
           gname: 'Pháo Tết（5 xu）'
         },
         5: {
-          gift_tips: '7ngày',
+          gift_tips: '7 ngày',
           img: require('../img/get_gift/giftItem_5.png'),
-          name: '50xu',
+          name: '500 xu',
           act_width: '100%',
           gname: 'Kẹo Ngọt 7 ngày（110 xu）'
         },
@@ -85,16 +85,19 @@ export default {
     ...mapState(['level', 'Lv', 'score'])
   },
   methods: {
-    getGift(lv) {
-      getGiftApi(lv).then(res => {
-        if (res.data.response_status.code == 0) {
-          this.act_lv = lv
-          this.showGiftPup = true
-          this.vxc('setLvState', lv)
-        } else {
-          this.toast(res.data.response_status.error)
-        }
-      })
+    getGiftApi(lv) {
+      if (!this.level[lv].get && this.level[lv].can) {
+        getGift(lv).then(res => {
+          if (res.data.response_status.code == 0) {
+            this.act_lv = lv
+            this.showGiftPup = true
+            this.vxc('setLvState', lv)
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      }
+
     }
   }
 }
@@ -256,6 +259,8 @@ export default {
       display: block;
       width: 1.4rem;
       height: 0.54rem;
+      line-height: 0.46rem;
+      font-size: 0.26rem;
       background: url(../img/get_gift/ok.png);
       background-size: 100% 100%;
       text-align: center;

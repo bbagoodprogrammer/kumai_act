@@ -15,7 +15,9 @@ export default new vuex.Store({
         load: 0,
         step: 0,
         tab: 0,
-        reg: false
+        reg: false,
+        Lv: 0,
+        score: 0
     },
     getters: {
         signed: state => {
@@ -32,7 +34,6 @@ export default new vuex.Store({
             Object.assign(state, Object.assign({}, data))
             console.log(state, data)
             state.reg = data.user_info.registered
-
         },
         setShareState(state, val) {
             state.share = val

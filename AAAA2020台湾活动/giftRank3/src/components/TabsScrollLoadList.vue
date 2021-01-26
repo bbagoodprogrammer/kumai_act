@@ -60,8 +60,10 @@
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.rid)">
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
-          <span class="imgBg"></span>
-          <img v-lazy="item.avatar" alt="" class="imgItem">
+          <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
+          <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
+          <img v-else-if="item.nob > 0" :src="require(`../assets/img/nob/${item.nob}.png`)" class="nob" alt="">
+          <img v-lazy="item.avatar" alt="" class="av">
         </div>
         <div class="userMsg">
           <div class="rName" v-if="item.rname">{{item.rname}}</div>
@@ -81,8 +83,10 @@
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.rid)">
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
-          <span class="imgBg"></span>
-          <img v-lazy="item.avatar" alt="" class="imgItem">
+          <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
+          <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
+          <img v-else-if="item.nob > 0" :src="require(`../assets/img/nob/${item.nob}.png`)" class="nob" alt="">
+          <img v-lazy="item.avatar" alt="" class="av">
         </div>
         <div class="userMsg">
           <div class="rName" v-if="item.rname">{{item.rname}}</div>
@@ -527,25 +531,36 @@ export default {
         margin-left: 0.13rem;
       }
       .uerImg {
-        width: 1.21rem;
-        height: 1.01rem;
+        width: 1.3rem;
+        height: 1.1rem;
         position: relative;
-        margin-left: 0.21rem;
-        .imgBg {
-          width: 1rem;
-          height: 1.01rem;
-          background: url(../assets/img/av4.png);
-          background-size: 100% 100%;
+        .nob {
+          width: 1.1rem;
+          height: 1.1rem;
           position: absolute;
+          top: 0rem;
+          left: 0rem;
           z-index: 10;
         }
-        .imgItem {
-          width: 0.94rem;
-          height: 0.94rem;
+        .frame {
+          width: 1.5rem;
+          height: 1.5rem;
           position: absolute;
-          top: 0.035rem;
-          left: 0.03rem;
+          top: -0.21rem;
+          left: -0.2rem;
+          z-index: 10;
+        }
+        .av {
+          width: 0.88rem;
+          height: 0.88rem;
+          position: absolute;
+          top: 0.1rem;
+          left: 0.11rem;
           border-radius: 50%;
+          &.room {
+            border-radius: 0.14rem;
+            border: 0.02rem solid rgba(251, 235, 137, 1);
+          }
         }
       }
       .userMsg {
