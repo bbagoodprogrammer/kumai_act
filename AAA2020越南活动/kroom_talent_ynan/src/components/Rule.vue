@@ -1,8 +1,8 @@
 <template>
   <div class="rule">
     <div class="tabs">
-      <a @click.prevent="mainTab=0" :class="{current:mainTab==0}" class="tab1">Bảng Thần Tượng</a>
-      <a @click.prevent="mainTab=1" :class="{current:mainTab==1}" class="tab2">Bảng Phòng Kara</a>
+      <a @click.prevent="mainTab=0" :class="{current:mainTab==0}" class="tab1">Thể lệ</a>
+      <a @click.prevent="mainTab=1" :class="{current:mainTab==1}" class="tab2">Phần thưởng</a>
     </div>
     <div class="ruleItem" v-if="mainTab == 0">
       <h5>Thời gian</h5>
@@ -10,12 +10,12 @@
       <h5>Thể lệ</h5>
       <p>1）Bắt đầu tính dữ liệu sau khi báo danh sự kiện. </p>
       <p>2）Bảng Thần Tượng Phòng Kara và Bảng Phòng Kara Sôi Nổi</p>
-      <p>Bảng Thần Tượng: Xếp hạng theo số xu người dùng tiêu bằng nổ Lì Xì /tặng Hộp Quà May Mắn, trong phòng mỗi lần nổ tên lửa sẽ tăng 1000 điểm.</p>
-      <p>Bảng Phòng Kara: Xếp hạng theo điểm mị từ nổ Lì Xì /tặng Hộp Quà May Mắn trong phòng, trong phòng mỗi lần nổ tên lửa sẽ tăng 10000 điểm.</p>
+      <p>Bảng Thần Tượng: Xếp hạng theo số xu thí sinh tiêu bằng nổ Lì Xì/ tặng Hộp Quà May Mắn/ chơi Đập Trứng.(Đập trứng cần hoàn thành quá trình đập trứng mới được tính điểm, chỉ mua búa không được tính điểm.)</p>
+      <p>Bảng Phòng Kara: Xếp hạng theo điểm mị từ nổ Lì Xì /tặng Hộp Quà May Mắn trong phòng, (Ví dụ nổ lì xì 38 xu, sẽ tính 380 điểm mị, tặng hộp quà may mắn 10 xu, sẽ tính 100 điểm mị), trong phòng mỗi lần nổ tên lửa sẽ tăng 10000 điểm.</p>
       <h5>Ghi chú:</h5>
       <p>1）Dữ liệu trong phòng kara riêng tư sẽ không được tính.</p>
       <p>2）Mỗi người dùng chỉ có thể dùng 1 tài khoản tham gia sự kiện.</p>
-      <p>Tất cả hành vi vi phạm sẽ bị hủy tư cách tham dự, phần thưởng sự kiện sẽ bị hủy, những tài khoản vi phạm nghiêm trọng sẽ bi khóa.</p>
+      <p>3）Tất cả hành vi vi phạm sẽ bị hủy tư cách tham dự, phần thưởng sự kiện sẽ bị hủy, những tài khoản vi phạm nghiêm trọng sẽ bi khóa.</p>
     </div>
     <div class="gift" v-else>
       <h5>Thời gian</h5>
@@ -33,7 +33,7 @@
       <p>Hạng 4-10: 50 Xu + 500 Đậu + Chủ Đề Phòng Sôi Nổi (30 ngày)</p>
       <h5>Ghi chú:</h5>
       <p>1. Phần thưởng gửi trong vòng 7 ngày sau khi kết thúc sự kiện.</p>
-      <p>2.Túi quà có thời hạn 7 ngày, hãy nhanh chóng sử dụng.</p>
+      <p>2. Túi quà có thời hạn 7 ngày, hãy nhanh chóng sử dụng.</p>
     </div>
 
     <p class="lastTips">Quyết định của ban tổ chức là quyết định cuối cùng.</p>

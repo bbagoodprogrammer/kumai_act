@@ -24,14 +24,18 @@
         <strong>{{surplusTime.second}}</strong>
         <em>Giây</em>
       </div>
-      <p class="tips">
-        Xếp hạng theo điểm mị từ nổ Lì Xì /tặng Hộp Quà May Mắn. <br />
+      <p class="tips" v-if="mainTab==0">
+        Xếp hạng theo số xu người dùng tiêu bằng <br />
+        nổ Lì Xì/ tặng Hộp Quà May Mắn/ chơi Đập Trứng.
+      </p>
+      <p class="tips" v-if="mainTab==1">
+        Xếp hạng theo điểm mị từ nổ Lì Xì /tặng Hộp Quà May Mắn.<br />
         Trong phòng mỗi lần nổ tên lửa sẽ tăng 10000 điểm.
       </p>
     </div>
     <div class="list day" v-if="mainTab==0 && rank.list.length">
       <ul>
-        <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid)">
+        <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.kmic)">
           <div class="rank">{{item.rank}}</div>
           <div class="uerImg">
             <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
@@ -40,10 +44,10 @@
             <img v-lazy="item.avatar" alt="" class="av">
           </div>
           <div class="nickBox">
-            <div class="nick">{{item.nick}}</div>
+            <div class="nickTips"><span class="nick">{{item.nick}}</span> <i class="ktvIng" v-if="item.kmic"></i> </div>
             <div class="uid">{{item.uid}}</div>
           </div>
-          <div class="score"><i></i>{{item.score}}</div>
+          <div class="score"><i class="coins"></i>{{item.score}}</div>
         </li>
       </ul>
     </div>
@@ -60,10 +64,10 @@
             <img v-lazy="item.info.pic_url" alt="" class="av room">
           </div>
           <div class="nickBox">
-            <div class="nick">{{item.info.rname}}</div>
-            <div class="uid">{{item.info.rid}} <i class="scoreIcon" :class="'icon'+item.rockt" v-if="item.rockt"></i> <i class="red_packet" v-if="item.red_packet"></i> </div>
+            <div class="nickTips"><span class="nick">{{item.info.rname}}</span><i class="scoreIcon" :class="'icon'+item.rockt" v-if="item.rockt"></i></div>
+            <div class="uid">{{item.info.rid}} <i class="red_packet" v-if="item.red_packet"></i> </div>
           </div>
-          <div class="score"><i class="coins"></i>{{item.score}}</div>
+          <div class="score"><i></i>{{item.score}}</div>
         </li>
       </ul>
     </div>
@@ -249,11 +253,15 @@ export default {
       });
       this.$nextTick(() => {
         this.onScroll(1)
-        this.$parent.initData()
+        // this.$parent.initData()
       });
     },
 
-    goUser(uid) { //跳转
+    goUser(uid, kmic) { //跳转
+      if (kmic) {
+        this.goKroom(kmic)
+        return
+      }
       location.href = `uid:${uid}`
     },
     goKroom(rid) {
@@ -321,7 +329,8 @@ export default {
       display: flex;
       justify-content: space-between;
       strong {
-        font-size: 0.48rem;
+        color: #69c5ff;
+        font-size: 0.63rem;
         font-weight: bold;
         display: block;
         width: 1.12rem;
@@ -372,6 +381,7 @@ export default {
       display: flex;
       align-items: center;
       margin-bottom: 0.04rem;
+      position: relative;
       .rank {
         width: 0.43rem;
         height: 0.6rem;
@@ -418,21 +428,26 @@ export default {
         }
       }
       .nickBox {
+        width: 3.2rem;
         margin-left: 0.2rem;
-        .nick {
-          width: 2.8rem;
-          overflow: hidden;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          font-size: 0.32rem;
-          color: rgba(255, 255, 255, 1);
-        }
-        .uid {
-          color: rgba(226, 205, 255, 1);
-          font-size: 0.28rem;
-          margin-top: 0.1rem;
+        .nickTips {
           display: flex;
           align-items: center;
+          .nick {
+            max-width: 1.7rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 0.32rem;
+            color: rgba(255, 255, 255, 1);
+          }
+          .ktvIng {
+            width: 0.29rem;
+            height: 0.26rem;
+            background: url(../img/ktvIng.png);
+            background-size: 100% 100%;
+            margin-left: 0.1rem;
+          }
           .scoreIcon {
             width: 1.29rem;
             height: 0.65rem;
@@ -464,6 +479,13 @@ export default {
               background-size: 100% 100%;
             }
           }
+        }
+        .uid {
+          color: rgba(226, 205, 255, 1);
+          font-size: 0.28rem;
+          display: flex;
+          align-items: center;
+
           .red_packet {
             width: 1.41rem;
             height: 0.57rem;
@@ -487,9 +509,9 @@ export default {
           background-size: 100% 100%;
           margin-right: 0.1rem;
           &.coins {
-            height: 0.37rem;
-            // background: url(../img/coinsIcon.png);
-            // background-size: 100% 100%;
+            height: 0.25rem;
+            background: url(../img/coinsIcon.png);
+            background-size: 100% 100%;
           }
         }
       }
@@ -515,6 +537,17 @@ export default {
         }
       }
     }
+    li::before {
+      content: "";
+      display: block;
+      width: 6.42rem;
+      height: 1px;
+      background: #ffffff;
+      opacity: 0.3;
+      position: absolute;
+      bottom: 0;
+      left: 0.31rem;
+    }
   }
 }
 .dengdai {
@@ -536,12 +569,12 @@ export default {
 #refresh {
   display: block;
   width: 0.94rem;
-  height: 1rem;
+  height: 0.94rem;
   position: fixed;
   right: 0.08rem;
   bottom: 1.35rem;
-  // background: url(../img/refresh.png) no-repeat;
-  // background-size: contain;
+  background: url(../img/refresh.png) no-repeat;
+  background-size: contain;
   transition: all 1s;
   text-indent: -999rem;
   z-index: 100;

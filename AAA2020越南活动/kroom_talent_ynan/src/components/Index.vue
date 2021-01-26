@@ -37,11 +37,11 @@ export default {
       giftList: [
         {
           img: require("../img/giftList/gift1.png"),
-          name: 'Huy Chương Phóng Khoáng'
+          name: 'Huy Chương Thần Tượng Phòng Kara'
         },
         {
           img: require("../img/giftList/gift2.png"),
-          name: 'Chủ đề nhân khí phòng Kara'
+          name: 'Chủ Đề Phòng Sôi Nổi'
         },
         {
           img: require("../img/giftList/gift3.png"),
@@ -103,8 +103,8 @@ export default {
   }
   .giftList {
     width: 5.69rem;
-    height: 4.13rem;
-    padding: 1.51rem 0.57rem 0.5rem;
+    height: 4.73rem;
+    padding: 1.31rem 0.57rem 0;
     background: url(../img/giftList_bg.png);
     background-size: 100% 100%;
     margin: 0 auto;
@@ -127,10 +127,12 @@ export default {
       // display: inline-block;
       width: 1.5rem;
       height: 1.5rem;
-      // margin: 0 0.58rem 0.25rem 0;
+      margin-bottom: 0.1rem;
       .imgBg {
         width: 1.5rem;
         height: 1.5rem;
+        background: url(../img/giftItem_bg.png);
+        background-size: 100% 100%;
         img {
           width: 100%;
           height: 100%;
@@ -139,8 +141,8 @@ export default {
       strong {
         display: block;
         width: 1.7rem;
-        height: 0.4rem;
-        margin-left: -0.1rem;
+        height: 0.9rem;
+        margin: 0.1rem 0 0 -0.1rem;
         font-size: 0.22rem;
         color: rgba(226, 205, 255, 1);
         text-align: center;

@@ -155,6 +155,9 @@ body::-webkit-scrollbar {
       position: absolute;
       right: 0;
       top: 0.17rem;
+      &.top {
+        top: 1.5rem;
+      }
     }
     .ruleTips,
     .histyry {
@@ -169,9 +172,6 @@ body::-webkit-scrollbar {
     }
     .histyry {
       margin-top: 0.08rem;
-    }
-    &.top {
-      top: 1.5rem;
     }
   }
   .wards {

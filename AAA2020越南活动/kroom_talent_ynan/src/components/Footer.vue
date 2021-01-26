@@ -15,7 +15,7 @@
         <div class="nick">{{nowUserMsg.nick}}</div>
         <div class="uid">{{nowUserMsg.uid}}</div>
       </div>
-      <div class="score"><i></i>{{nowUserMsg.score}}</div>
+      <div class="score"><i class="coins"></i>{{nowUserMsg.score}}</div>
     </div>
     <div class="actIng" v-if="astState == 5">
       <div class="rank" :class="{noRank:nowUserMsg.rank == 0}">{{nowUserMsg.rank == 0?'Chưa lên BXH':nowUserMsg.rank}}</div>
@@ -29,7 +29,7 @@
         <div class="nick">{{nowUserMsg.info.rname}}</div>
         <div class="uid">{{nowUserMsg.info.rid}} <i class="scoreIcon" :class="'icon'+nowUserMsg.rockt" v-if="nowUserMsg.rockt"></i> <i class="red_packet" v-if="nowUserMsg.red_packet"></i> </div>
       </div>
-      <div class="score"><i class="coins"></i>{{nowUserMsg.score}}</div>
+      <div class="score"><i></i>{{nowUserMsg.score}}</div>
     </div>
     <div class="mask" v-show="showGiftPup">
       <transition name="slide">
@@ -238,9 +238,9 @@ export default {
         background-size: 100% 100%;
         margin-right: 0.1rem;
         &.coins {
-          height: 0.37rem;
-          // background: url(../img/coinsIcon.png);
-          // background-size: 100% 100%;
+          height: 0.25rem;
+          background: url(../img/coinsIcon.png);
+          background-size: 100% 100%;
         }
       }
     }
