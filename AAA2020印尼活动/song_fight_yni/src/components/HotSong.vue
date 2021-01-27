@@ -6,13 +6,13 @@
     </div>
     <div class="noSongTips" v-if="nextTips || noTips">
       <div class="next" v-show="nextTips">
-        <h3>此歌曲為下期打擂歌曲</h3>
-        <p>快去練習吧</p>
-        <p>非下期打擂期間發佈的練習歌曲無法報名參賽</p>
+        <h3>Lagu ini adalah lagu arena berikutnya</h3>
+        <p>Berlatihlah</p>
+        <p>Lagu latihan yg diposting tidak termasuk lagu arena lain kali tidak  bisa mendaftar utk ikut acara</p>
       </div>
       <div class="noSong" v-show="noTips">
-        <h3>本期暫無該打擂歌曲</h3>
-        <p>先看看大家都在唱的熱歌吧</p>
+        <h3>Lagu arena ini gak ada dlm periode ini</h3>
+        <p>Mari kita lihat lagu hot </p>
       </div>
     </div>
     <ul class="hotSongList">
@@ -20,14 +20,14 @@
         <div class="songMsg">
           <!-- <i v-if="item.mp3 != ''"></i> -->
           <div class="sName">{{item.name}} </div>
-          <div class="songNick"><em>{{item.artist}}</em><strong> / 打擂 {{item.join}} 人</strong></div>
+          <div class="songNick"><em>{{item.artist}}</em><strong> / org lakukan arena {{item.join}} </strong></div>
         </div>
         <div class="songStatusBtn" :class="{black:!can||item.deleted}">
-          <em v-if="item.deleted">已退賽</em>
-          <em v-else-if="item.current ==1" @click="goSong(item.accid)">練習</em>
-          <em v-else-if="item.status == 0" @click="goSong(item.accid)">打擂</em>
-          <em v-else-if="item.status == 1" @click="commitSong(item.accid,index)">提交歌曲</em>
-          <em v-else-if="item.status == 2">已參賽</em>
+          <em v-if="item.deleted">Udah keluar arena</em>
+          <em v-else-if="item.current ==1" @click="goSong(item.accid)">Berlatih</em>
+          <em v-else-if="item.status == 0" @click="goSong(item.accid)">Arena</em>
+          <em v-else-if="item.status == 1" @click="commitSong(item.accid,index)">Kirim nyanyian</em>
+          <em v-else-if="item.status == 2">Udah ikut arena</em>
         </div>
       </li>
     </ul>
@@ -35,9 +35,9 @@
       <transition name="slide">
         <div class="overTime" v-show="isOverTime">
           <i class="close" @click="closeOverTime()"></i>
-          <h3>無法打擂</h3>
-          <p>本期打擂時間已結束，快去做評委評分吧！<br />超多好禮在等你</p>
-          <div class="goBtn" @click="goSongVote()">去做評委</div>
+          <h3>Gak bisa ikut arena</h3>
+          <p>Waktu arena sudah berakhir, ayo menjadi juri utk kasih skor! Hadiah Super menunggumu</p>
+          <div class="goBtn" @click="goSongVote()">Menjadi juri</div>
         </div>
       </transition>
     </div>
@@ -45,8 +45,8 @@
       <transition name="slide">
         <div class="choiceSong" v-if="cSongPup">
           <i class="close" @click="closeSongPup()"></i>
-          <h3>選擇你最滿意的打擂作品參賽吧</h3>
-          <p class="red"> 歌曲提交後，若活動期間刪除一首打擂歌曲，則分數扣2分</p>
+          <h3>Pilih nyanyianmu yg paling memuaskan utk ikut acara</h3>
+          <!-- <p class="red"> 歌曲提交後，若活動期間刪除一首打擂歌曲，則分數扣2分</p> -->
           <ul class="choiceSongList">
             <li v-for="(item,index) in mySong" :key="index">
               <div class="songMsg">
@@ -56,16 +56,17 @@
                 <div class="songNick">{{getDateSecond(item.addtime)}}</div>
               </div>
               <div class="songStatusBtn" @click="commit(item)">
-                <em>選擇</em>
+                <em>Pilih</em>
               </div>
             </li>
           </ul>
           <div class="choicetips">
-            <p>1、需演唱{{time}}後發佈的官方指定伴奏參賽（即需演唱點擊打擂後跳轉的伴奏），演唱其他伴奏無法參賽</p>
-            <p>2、參賽作品類型僅限獨唱</p>
-            <p>3、每一首伴奏僅可選擇一首作品參賽</p>
-            <p>4、每期最多可選擇20首伴奏參加打擂</p>
-            <p>5、演唱歌曲需為完整歌曲（歌曲時長最多比伴奏時長短30S），否則無法提交歌曲參賽</p>
+            <p>1. Anda perlu menyanyikan lagu resmi yg ditentukan(yaitu Anda perlu menyanyikan lagu iringan yg melompat setelah Klik Lagu Arena)setelah pukul {{time}} utk berpartisipasi dalam acara, menyanyikan lagu iringan lain tidak bisa ikut acara.</p>
+            <p>2. Jenis nyanyian yg ikut acara hanya terbatas pada solo</p>
+            <p>3. Satu lagu iringan hanya dapat dipilih 1 nyanyian untuk ikut acara</p>
+            <p>4. Beberapa lagu iringan dapat dipilih untuk berpartisipasi dalam arena di setiap periode. Pengguna akan menerima 1 hadiah ransel ketika setiap kali upload 1 lagu arena(setiap orang hanya bisa menerima sebanyak 1 hadiah, dan banyak hadiah ransel akan dkirimkan secara acak).</p>
+            <p>5. Pengguna yang ikut acara harus memiliki setidaknya 1 lagu online setelah acara berakhir, dan mereka akan dptkan 50 kacang emas.</p>
+            <p>6. Selama acara, kalo hapus 1 lagu yg ikut acara ,kamu akan dikurangi 1 poin. </p>
           </div>
         </div>
       </transition>
@@ -105,7 +106,7 @@ export default {
       return getDate(new Date(this.act.stime * 1000), 3)
     },
     songNum() {
-      return `本期打擂歌曲(${this.hotSong.length})`
+      return `Lagu arena periode ini(${this.hotSong.length})`
     }
   },
   methods: {
@@ -153,16 +154,16 @@ export default {
           this.isOverTime = true
           return
         }
-        if (!this.is_push) {
-          this.vxc('setToast', {
-            msg: "每人每期最多僅可參加20首歌曲打擂"
-          })
-          return
-        }
+        // if (!this.is_push) {
+        //   this.vxc('setToast', {
+        //     msg: "每人每期最多僅可參加20首歌曲打擂"
+        //   })
+        //   return
+        // }
         var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
         if (!this.update) {
           this.vxc('setToast', {
-            msg: "此版本過低，無法參賽！請前往app store下載“高歌”參賽喔"
+            msg: "Versi ini terlalu rendah ,gak bisa ikut acara! Silakan pergi ke App Store utk mengunduh \"Wekara\" utk ikut acara"
           })
           return
         }
@@ -182,12 +183,12 @@ export default {
         this.isOverTime = true
         return
       }
-      if (!this.is_push) {
-        this.vxc('setToast', {
-          msg: "每人每期最多僅可參加20首歌曲打擂"
-        })
-        return
-      }
+      // if (!this.is_push) {
+      //   this.vxc('setToast', {
+      //     msg: "每人每期最多僅可參加20首歌曲打擂"
+      //   })
+      //   return
+      // }
       this.sid = sid
       this.cindex = cindex
       api.searchMySong(sid).then(res => {
@@ -306,11 +307,16 @@ export default {
         background: url(../assets/img/songActBtn.png);
         background-size: 100% 100%;
         text-align: center;
-        line-height: 0.66rem;
         color: rgba(174, 72, 0, 1);
         font-size: 0.26rem;
         em {
+          height: 100%;
           font-weight: bold;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 0.25rem;
+          font-size: 0.26rem;
         }
         &.black {
           color: rgba(255, 255, 255, 1);

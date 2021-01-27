@@ -2,26 +2,26 @@
   <div class="fightTabTime">
     <div class="actTime">
       <div class="timeTips">
-        <p v-if="actStatus == 0">本期打擂日榜開始倒計時</p>
-        <p v-else-if="actStatus == 1">本期打擂日榜結束倒計時</p>
-        <p v-else>本期打擂已結束</p>
+        <p v-if="actStatus == 0">Hitung mundur mulai arena Daftar Harian </p>
+        <p v-else-if="actStatus == 1">Hitung mundur akhir Daftar Harian</p>
+        <p v-else>Arena udah berakhir</p>
       </div>
       <div class="timeDown" v-if="surplusTime.day">
         <div class="day">
           <strong>{{surplusTime.day}}</strong>
-          <em>天</em>
+          <em>Hari</em>
         </div>
         <div class="hours">
           <strong>{{surplusTime.hour}}</strong>
-          <em>時</em>
+          <em>Jam</em>
         </div>
         <div class="min">
           <strong>{{surplusTime.minute}}</strong>
-          <em>分</em>
+          <em>Menit</em>
         </div>
         <div class="second">
           <strong>{{surplusTime.second}}</strong>
-          <em>秒</em>
+          <em>Detik</em>
         </div>
       </div>
     </div>

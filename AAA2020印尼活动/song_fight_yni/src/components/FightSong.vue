@@ -2,7 +2,7 @@
   <div class="fSongList">
     <ul :class="{isDown:isDown}" :style="{height:useTotalTop+'rem'}">
       <li v-for="(item,index) in list" :style="{zIndex:-index+100,top:item.top +'rem'}" :key="item.name">
-        <div class="songName"><em>打擂作品：</em> <strong>《{{item.name}}》</strong> </div>
+        <div class="songName"><em>Nyanyian yg ikut arena：</em> <strong>《{{item.name}}》</strong> </div>
         <div class="pkUser">
           <div class="user">
             <span class="results" :class="{victory:item.result==1}" v-if="item.result != 0"></span>
@@ -26,18 +26,18 @@
             </div>
           </div>
         </div>
-        <div class="pkTips" v-if="item.status == 0 && set">匹配對手中...</div>
-        <div class="pkTips" v-else-if="item.status == 1 && item.result == 0">打擂中...</div>
+        <div class="pkTips" v-if="item.status == 0 && set">Sedang mencocokkan lawan ...</div>
+        <div class="pkTips" v-else-if="item.status == 1 && item.result == 0">Sedang arena...</div>
         <div class="peopleNum" v-else-if="item.result != 0 && item.judges.length">
           <div class="peopleBox">
             <img v-lazy="item2.avatar" alt="" v-for="item2 in item.judges" :key="item2.judge_nums">
           </div>
-          <u @click="goVotePeople(item.id,item.judge_nums)">{{item.judge_nums}}人支持我 >></u>
+          <u @click="goVotePeople(item.id,item.judge_nums)">{{item.judge_nums}}org dorongku >></u>
         </div>
       </li>
     </ul>
     <div class="listBtn" v-if="list.length>1"></div>
-    <span @click="setDownStatus()" class="setBtn" v-if="list.length>1">{{isDown?'收起':'展開'}} <i :class="{upper:isDown}"></i></span>
+    <span @click="setDownStatus()" class="setBtn" v-if="list.length>1">{{isDown?'Tutup':'Buka'}} <i :class="{upper:isDown}"></i></span>
   </div>
 </template>
 <script>

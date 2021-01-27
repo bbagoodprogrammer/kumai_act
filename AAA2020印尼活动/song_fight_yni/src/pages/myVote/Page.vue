@@ -1,21 +1,21 @@
 <template>
   <div class="myVote">
-    <div class="title">我的投票 <i class="questIcon" @click="tipsClick()"></i></div>
+    <div class="title">Vote yg ku beri <i class="questIcon" @click="tipsClick()"></i></div>
     <div class="userMsg">
       <img v-lazy="userinfo.avatar" alt="">
       <div class="msg">
         <!-- <em>Lv.{{star}}</em> -->
         <div class="nick"><strong>{{userinfo.nick}}</strong> </div>
         <div class="tips">
-          <span>累計投選<em> {{dat.all}} </em>組</span>
-          <span>總投中率：<em>{{dat.right}}%</em></span>
+          <span>Total vote <em> {{dat.all}} </em>group</span>
+          <span>Rate total win:<em>{{dat.right}}%</em></span>
         </div>
       </div>
     </div>
     <div class="preResTime" v-for="(item,index) in list " :key="index">
       <div class="timeTips">
-        <p class="noRes" v-if="item.result == 0">{{getDate(item.etime,2)}}公佈投票結果</p>
-        <p v-else><span class="time">{{getDate(item.stime,1)}}-{{getDate(item.etime,1)}}</span>投選{{item.counts}}組，投中率{{item.right}}%<span v-if="item.title!=0">，獲得{{err[item.title]}}稱號</span> <br /> <strong v-if="item.eight > 0">{{item.eight}}次連投8組投中</strong> </p>
+        <p class="noRes" v-if="item.result == 0">Memberitahu hasil vote pd {{getDate(item.etime,2)}}</p>
+        <p v-else><span class="time">{{getDate(item.stime,1)}}-{{getDate(item.etime,1)}}</span>Pilih {{item.counts}}grup，rate vote{{item.right}}%<span v-if="item.title!=0">，Dptkan {{err[item.title]}}</span> <br /> <strong v-if="item.eight > 0">{{item.eight}}kali berturut-turut vote 8 grup menang </strong> </p>
       </div>
       <VoteSongList :list="item.list" :index="index" v-if="item.list" />
     </div>
@@ -23,12 +23,15 @@
       <transition name="slide">
         <div class="lvTips" v-show="showTips">
           <i class="close" @click="tipsClick()"></i>
-          <h3>評委稱號及特權</h3>
-          <img src="../../assets/img/chTab.png" alt="" class="chTab">
-          <p>PS.</p>
-          <p>1、稱號展示在下一期的活動中</p>
-          <p>2、如本期獲得金耳朵稱號，下期每投一票相當於普通用戶投2票</p>
-          <p>3、本期獲得的評委稱號及投票特權僅在下一期活動中生效</p>
+          <div class="con">
+            <h3>Judul juri dan hadiah hak istimewa :</h3>
+            <img src="../../assets/img/chTab.png" alt="" class="chTab">
+            <p>Tips:</p>
+            <p>1. Judul akan ditampilkan di periode berikutnya</p>
+            <p>2.Misalnya kamu dapatkan Judul telinga emas di periode ini, maka dlm periode berikutnya kamu tiap kali vote 1 tiket sama dgn pengguna biasa vote 2 tiket </p>
+            <p>3. Judul juri dan hak istimewa vote yg didapatkan dlm periode ini hanya berlaku pd periode berikutnya</p>
+          </div>
+
         </div>
       </transition>
     </div>
@@ -49,11 +52,11 @@ export default {
       userinfo: {},
       star: 0,
       dat: {},
-      err: ['', '鐵耳朵', '銅耳朵', '銀耳朵', '金耳朵', '白金耳朵']
+      err: ['', 'Judul telinga besi', 'Judul telinga tembaga', 'Judul telinga perak', 'Judul telinga emas', 'Judul telinga platinum']
     }
   },
   created() {
-    document.title = '我的投票'
+    document.title = 'Vote yg ku beri'
     api.myJun().then(res => {
       const { data, star, userinfo, dat } = res.data.response_data
       this.userinfo = userinfo
@@ -170,6 +173,11 @@ body {
     border-radius: 0.4rem;
     padding: 0.36rem 0.26rem;
     position: relative;
+
+    .con {
+      height: 7rem;
+      overflow-y: scroll;
+    }
     .close {
       display: block;
       width: 0.6rem;

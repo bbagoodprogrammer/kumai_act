@@ -1,56 +1,60 @@
 <template>
   <div class="rule">
     <div class="tabs">
-      <span :class="{act:type==1}" @click="tabClick(1)">活動獎勵</span>
-      <span :class="{act:type==2}" @click="tabClick(2)">活動規則</span>
+      <span :class="{act:type==1}" @click="tabClick(1)">Hadiah acara</span>
+      <span :class="{act:type==2}" @click="tabClick(2)">Aturan acara</span>
     </div>
     <div class="gift" v-if="type == 1">
-      <h3>活動獎勵</h3>
+      <h3>Hadiah acara</h3>
       <img src="../../assets/img/gift.png" alt="" class="giftImg">
-      <h6>本期打擂榜前10名獎勵：</h6>
-      <p>第1名</p>
-      <p>音樂練習生徽章+300金幣+1個月VIP+1000金豆</p>
-      <p>第2名</p>
-      <p>音樂練習生徽章+200金幣+1個月VIP+600金豆</p>
-      <p>第3名 </p>
-      <p>音樂練習生徽章+100金幣+1個月VIP+400金豆</p>
-      <p>第4-10名</p>
-      <p>音樂練習生徽章+50金幣+1個月VIP+200金豆</p>
-      <h6>本賽季前100名獎勵：</h6>
-      <p>第1-3名：音樂教父</p>
-      <p>音樂教父徽章+600金幣+VIP（1個月）+1200金豆</p>
-      <p>第4-10名：音樂大師</p>
-      <p>音樂大師徽章+500金幣+VIP（1個月）+1000金豆</p>
-      <p>第11-50名：音樂明星 </p>
-      <p>音樂明星徽章+300金幣+VIP（1個月）+600金豆</p>
-      <p>第51-100：音樂達人</p>
-      <p>音樂達人徽章+100金幣+VIP（1個月）+300金豆</p>
-      <h6>提交參賽作品獎勵：</h6>
-      <p>用戶每提交一首打擂歌曲（僅限每日提交的第一首）可獲得1個隨機背包禮物：小星星背包禮物（60金豆）/國際郵票背包禮物（90金豆）/薄荷糖背包禮物（120金豆）/潤喉糖背包禮物（1金幣）/撩一下背包禮物（1金幣）/小情書背包禮物（2金幣）/波板糖背包禮物（3金幣）/草莓水果茶背包禮物（5金幣）</p>
-      <h6>評委獎勵：</h6>
-      <p>評委每天評分前30組歌每組歌曲將獲得5金豆<br />
-        當期每連投8組投中，可隨機獲得一個玩具百寶箱背包禮物（600金豆）/聖誕雪花背包禮物（2金幣）/2天VIP/新年快樂座駕（2天）<br />
-        每期評委獲得白金耳朵稱號獎勵30金幣，獲得金耳朵獎勵20金幣</p>
-      <h6>評委稱號及特權獎勵：</h6>
+      <h6>Hadiah arena periode ini dari Top 10</h6>
+      <p>Top 1 </p>
+      <p>300 koin emas + VIP(15 hari) +1000 kacang emas</p>
+      <p>Top 2 </p>
+      <p>200 koin emas + VIP(15 hari) +600 kacang emas</p>
+      <p>Top 3 </p>
+      <p>100 koin emas +VIP(15 hari) +400 kacang emas</p>
+      <p>Top 4 - 10 </p>
+      <p>50 koin emas +VIP(15 hari) +200 kacang emas</p>
+      <h6>Hadiah pertandingan season ini dari Top 100</h6>
+      <p>Top 1-3 : Godfather Musik</p>
+      <p>Lencana godfather musik +600 koin emas + VIP(15 hari) +1200 kacang emas</p>
+      <p>Top 4 - 10 : Talent Musik</p>
+      <p>Lencana talent musik + 500 koin emas + VIP(15 hari) +1000 kacang emas</p>
+      <p>Top 11 - 50 : Bintang Musik</p>
+      <p>Lencana bintang musik + 300 koin emas + VIP(15 hari) + 600 kacang emas</p>
+      <p>Top 51 - 100 : Master Musik</p>
+      <p>Lencana master musik + 100 koin emas + VIP(15 hari) + 300 kacang emas</p>
+      <h6>Hadiah utk upload lagu:</h6>
+      <p>Pengguna akan menerima 1 hadiah ransel ketika setiap kali kirim 1 lagu arena,pengguna yang ikut acara harus memiliki setidaknya 1 lagu online setelah acara berakhir, dan mereka akan dptkan 50 kacang emas.</p>
+
+      <!-- <h6>提交參賽作品獎勵：</h6>
+      <p>用戶每提交一首打擂歌曲（僅限每日提交的第一首）可獲得1個隨機背包禮物：小星星背包禮物（60金豆）/國際郵票背包禮物（90金豆）/薄荷糖背包禮物（120金豆）/潤喉糖背包禮物（1金幣）/撩一下背包禮物（1金幣）/小情書背包禮物（2金幣）/波板糖背包禮物（3金幣）/草莓水果茶背包禮物（5金幣）</p> -->
+      <h6>Hadiah juri:</h6>
+      <p>Kalo juri menilai 30 grup lagu setiap hari ,maka setiap grup lagu akan mendapatkan 2 kacang emas.<br />
+        Kalo 8 grup menang dgn berturut-turut yg kamu vote dalam periode saat ini,
+        kamu bisa secara acak mendapatkan hadiah ransel kotak musik (360 kacang emas ) / hadiah ransel permen kapas (1 koin emas) / 2 hari VIP /Mount Eagle Fighting (2 hari)<br />
+        Ketika setiap vote 50 group, kamu akan mendapatkan hadiah nyanyian Malaikat hati* 1 (7 hari), dan kamu hanya memiliki 1 kesempatan untuk mendapatkannya di setiap periode (hadiah akan dikirim ke ransel dalam waktu 7 hari setelah acara berakhir)</p>
+      <h6>Judul juri dan hadiah hak istimewa :</h6>
       <img src="../../assets/img/chTab.png" alt="" class="chTabImg">
-      <p>PS.</p>
-      <p>1、稱號展示在下一期的活動中</p>
-      <p>2、如本期獲得金耳朵稱號，下期每投一票相當於普通用戶投2票</p>
-      <p>3、本期獲得的評委稱號及投票特權僅在下一期活動中生效</p>
-      <h6>獎勵說明：</h6>
-      <p>1、背包禮物獎勵有效期為7天</p>
-      <p>2、發佈作品獎勵和評委金豆獎勵即時發放，連投獎勵將由系統在活動結束時發放，本期打擂榜前10名將在活動結束後7天內發放，本賽季前100名獎勵將在本賽季活動結束後7天內發放</p>
+      <p>Tips:</p>
+      <p>1. Judul akan ditampilkan di periode berikutnya</p>
+      <p>2.Misalnya kamu dapatkan Judul telinga emas di periode ini, maka dlm periode berikutnya kamu tiap kali vote 1 tiket sama dgn pengguna biasa vote 2 tiket </p>
+      <p>3. Judul juri dan hak istimewa vote yg didapatkan dlm periode ini hanya berlaku pd periode berikutnya</p>
+      <h6>Deskripsi hadiah:</h6>
+      <p>1.Hadiah ransel berlaku selama 14 hari</p>
+      <p>2. Hadiah kacang emas dari Juri akan segera kirim, hadiah utk vote dgn berturut-turut akan dikirim oleh sistem setelah acara berakhir. Hadiah utk Top 10 pemain dlm periode acara ini akan dikirim dalam selama 7 hari setelah acara berakhir, hadiah utk Top 100 pemain dlm pertandingan season ini akan dikirim dalam selama 7 hari setelah pertandingan season acara berakhir</p>
     </div>
     <div class="ruleTips" v-else>
       <div class="actTime">
-        <p>本期擂台賽時間：</p>
+        <p>Waktu arena periode ini :</p>
         <p class="timeItem">{{stime}}-{{etime}}</p>
-        <p>本期報名打擂時間：</p>
+        <p>Waktu mendaftar arena periode ini :</p>
         <p class="timeItem">{{pstime}}-{{petime}}</p>
-        <p>本期匹配對手時間：</p>
-        <p class="timeItem">10:00:00-22:00:00，匹配時間段內每2個小時匹配一次對手，即10:00:00，12:00:00，14:00:00，16:00:00，18:00:00，20:00:00，22:00:00；但本期比賽最後一天只在當天10:00:00，12:00:00兩個時間匹配對手，過後即不再匹配</p>
-        <p>本賽季擂台賽時間：</p>
-        <p class="timeItem">{{zsetime}}-{{zeetime}}，每週五～下週一</p>
+        <p>Waktu mencocokkan lawan periode ini :</p>
+        <p class="timeItem">10: 00: 00-22: 00: 00, mencocokkan 1 kali lawan setiap 2 jam dlm periode waktu yg mencocokkan, yaitu 10:00:00, 12:00:00, 14:00:00, 16:00:00, 18 : 00: 00, 20:00:00, 22:00:00; Tapi pd hari terakhir pertandingan hanya akan mencocokkan lawan pd pukul 10:00:00 dan 12:00:00, dan tidak mencocokkan lawan lagi setelah waktu itu.</p>
+        <p>Waktu arena pertandingan season ini :</p>
+        <p class="timeItem">{{zsetime}}-{{zeetime}}，Tiap Jumat~ Senin minggu depan</p>
         <!-- <p>活動時間規律說明：</p>
         <div class="timeTips">
           <p>每期時間：</p>
@@ -59,35 +63,35 @@
           <p>每3個自然月為一個賽季</p>
         </div> -->
       </div>
-      <h3>活動規則</h3>
-      <h6>參賽規則：</h6>
+      <h3>Aturan acara</h3>
+      <h6>Aturan ikut acara:</h6>
       <div class="mTips">
-        <p>1、需演唱{{stime}}後發佈的官方指定伴奏參賽（即需演唱點擊打擂後跳轉的伴奏），演唱其他伴奏無法參賽</p>
-        <p>2、參賽作品類型僅限獨唱。若以獨唱類型提交，但作品內出現2人及以上不同聲音，或本人和聲，也視為合唱類型，按違規處理</p>
-        <p>3、每一首伴奏僅可選擇一首作品參賽</p>
-        <p class="red">4、每期最多可選擇20首伴奏參加打擂</p>
-        <p>5、演唱歌曲需為完整歌曲（歌曲時長最多比伴奏時長短30S），否則無法提交歌曲參賽</p>
-        <p>6、若成功選擇打擂歌曲參賽並匹配打擂對手後，刪除該打擂歌曲作品，視為自動棄權，雙方該歌曲打擂成績均失效，另一方將參與下一輪的匹配重新參與打擂</p>
-        <p>7、系統會自動匹配相同曲目的兩個參賽選手組成一組，推送給大眾評委進行盲選投票，截止活動結束，每一首歌曲獲得票數多的選手獲勝</p>
-        <p>8、若一首歌曲中，兩位選手的總票數超過50，且某一方獲得80%及以上的票數時（即某一方獲得的票數/該歌曲雙方票數之和*100%>=80%），贏的一方可增加2分，輸的人只減1分；若雙方該歌曲的票數之和沒有達到50或者贏的一方獲得的票數沒有達到80%，贏的一方可增加1分，而失敗的則減1分；平票的話，雙方均不加分也不減分，投票的用戶也不算投中</p>
-        <p class="red">9、歌曲提交後，若活動期間刪除一首打擂歌曲，則分數扣2分</p>
+        <p>1.Anda perlu menyanyikan lagu resmi yg ditentukan(yaitu Anda perlu menyanyikan lagu iringan yg melompat setelah Klik Lagu Arena)setelah pukul {{stime}} utk berpartisipasi dalam acara, menyanyikan lagu iringan lain tidak bisa ikut acara.</p>
+        <p>2. Jenis nyanyian yg ikut acara hanya terbatas pada solo.</p>
+        <p>3. Satu lagu iringan hanya dapat dipilih 1 nyanyian untuk ikut acara.</p>
+        <p class="red">4. Beberapa lagu iringan dapat dipilih untuk berpartisipasi dalam arena di setiap periode. Lagu yang dinyanyikan harus lagu yang lengkap (durasi lagu paling lama 30 S lebih pendek dari durasi pengiring), jika tidak lagu tersebut tidak dapat dikirim utk ikut acara.</p>
+        <p>5. Kamu berhasil memilih lagu arena dan mencocokkan lawan untuk ikut acara, kalo kamu hapus lagu arena ini akan dianggap abstain otomatis. Hasil lagu arena akan tidak dihitung dari kedua pihak, dan pihak lain akan berpartisipasi di babak berikutnya utk ikut acara.</p>
+        <p>6、Sistem akan secara otomatis mencocokkan dua kontestan dari lagu yg sama untuk membentuk grup yg sama, dan lagu tersebut akan ditampilkan ke juri publik untuk pemungutan suara. Kontestan dengan suara lebih banyak utk per lagu akan menang sampai acara berakhir.</p>
+        <p>7. Jika dalam sebuah lagu, jumlah total suara dari dua kontestan melebihi 50, dan salah satu pihak mendapatkan 80% atau lebih jumlah suara (yaitu, jumlah suara yang diperoleh oleh salah satu pihak /total suara untuk lagu tersebut * 100 %>= 80%), pemenang bisa menambah 2 poin, dan yang kalah tidak kurang poin. Jika total suara lagu ini tidak mencapai 50 atau jumlah suara yang diperoleh oleh pihak menang tidak mencapai 80% , maka pemenang hanya bisa menambah 1 poin, dan yang kalah tidak kurang poin. Jika suara vote sama, kedua pihak yang akan tidak menambah atau mengurangi poin, dan pengguna yang berikan suara juga tidak dihitung sebagai pemenang.</p>
+        <p>8. Setelah lagu dikirimkan, jika kamu hapus 1 lagu arena yg ikut acara selama acara , 1 poin akan dipotong.</p>
+        <!-- <p class="red">9、歌曲提交後，若活動期間刪除一首打擂歌曲，則分數扣2分</p> -->
       </div>
-      <h6>每期打擂榜排名規則：</h6>
-      <p>1、根據本期獲得的分數排名，如果分數相同，本期參賽歌曲獲得更多票數的排名在前面</p>
-      <h6>季歌王榜排名規則：</h6>
-      <p>1、本季歌王榜根據等級，即所有期數獲得的分數總和排名；如果等級相同，獲得更多票數的排名在前面</p>
-      <p>2、每個賽季開始，選手默認的等級為Lv.0，每期擂台賽每獲得1分升一級，每減1分降一級，等級可能為負數</p>
-      <h3>其他說明</h3>
-      <p>比賽過程中，若發現用戶使用不正當手段參與活動，小歡有權在事先不通知的前提下按情節嚴重對參賽者、違規者做取消其參賽資格或封禁帳號等處罰，包括但不限於：</p>
-      <p>1）活動作品非本人原唱或盜錄他人作品；</p>
-      <p>2）盜用或借用他人已有帳號參與活動；</p>
-      <p>3）同一用戶註冊多個帳號參與活動；</p>
-      <p>4）比賽期間對參賽作品進行惡意評論，廣告等；</p>
-      <p>5）通過其他違規行為參與活動。</p>
-      <p>6）本期打擂歌單會在上期的打擂歌單預告上進行細微調整 </p>
-      <p class="mt"> 若為主動作弊者，無論是否為參賽者永久封禁該用戶所有大小號，活動結束后小歡任有權收回該用戶所有獎勵</p>
+      <h6>Aturan peringkat utk Daftar arena:</h6>
+      <p>1.Peringkat akan menurut skor yg didapatkan dlm periode ini , jika skor sama, maka peringkat dgn jumlah vote lebih banyak akan berada di depan.</p>
+      <h6>Aturan peringkat utk Daftar Raja Penyanyi season ini</h6>
+      <p>1. Peringkat Daftar Raja Penyanyi season ini akan menurut level , yaitu total skor yg diperoleh di semua periode; jika level sama, maka peringkat dgn jumlah vote lebih banyak akan berada di depan.</p>
+      <p>2. Setiap pertandingan season mulai, level yg default pemain adalah Lv.0. Setiap periode pertandingan arena kamu akan naik 1 level ketika tiap kali dptkan 1 poin ,kalo kalah juga gak kurangi poin dan level.</p>
+      <h3>Lainnya</h3>
+      <p>Selama acara, jika pengguna ditemukan menggunakan cara yang tidak benar untuk berpartisipasi dalam acara, pihak Wekara berhak untuk membatalkan/diskualifikasi pengguna tanpa memberi tahu terlebih dahulu. Jika situasi serius maka pihak resmi wekara akan membekukan akun tersebut,termasuk tetapi tidak terbatas pada:</p>
+      <p>1.Nyanyian yang ikut acara bukan penyanyi asli (bernyanyi dengan sendiri) atau membajak nyanyian orang lain;</p>
+      <p>2.Penyalahgunaan atau meminjam akun orang lain untuk berpartisipasi dalam acara;</p>
+      <p>3. Pengguna yang sama mendaftar beberapa akun tuyul untuk berpartisipasi dalam acara;</p>
+      <p>4.Selama acara membuat komentar kurang sopan, iklan dan lain lain pada nyanyian yang ikut acara ;</p>
+      <p>5.Berpartisipasi dalam acara melalui pelanggaran lain.</p>
+      <!-- <p>6）本期打擂歌單會在上期的打擂歌單預告上進行細微調整 </p> -->
+      <p class="mt">Jika ditemukan kecurangan,apakah peserta atau tidak,pihak Wekara akan secara permanen membekukan semua akun besar atau kecil dari pelanggar. Setelah acara berakhir,pihak Wekara berhak untuk mengambil kembali semua hadiah dari pelanggar ini.</p>
     </div>
-    <p class="lastTips">本活動的最終解釋權歸活動主辦方所有</p>
+    <p class="lastTips">Hak interpretasi akhir dari acara ini dipegang oleh penyelenggara acara</p>
   </div>
 </template>
 
@@ -101,7 +105,7 @@ export default {
     }
   },
   created() {
-    document.title = '獎勵&規則'
+    document.title = 'Aturan hadiah'
     this.time = JSON.parse(sessionStorage.getItem('time'))
     console.log(this.time)
   },

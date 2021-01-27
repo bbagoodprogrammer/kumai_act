@@ -88,7 +88,7 @@ export default {
         if (response_status.code == 0) {
           const { act, version_allowed, device, jun, c_time, list, push, can, status, userinfo, next, time, update, is_push } = response_data
           if (val == 'toast') {
-            this.toast(`提交成功！`)
+            this.toast(`Berhasil kirim!`)
           }
           this.is_push = is_push
           this.id = act.id

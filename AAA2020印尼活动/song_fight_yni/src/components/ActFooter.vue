@@ -4,8 +4,8 @@
       <!-- <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span> -->
       <div class="actIng" :class="{center:!next}">
-        <span class="notice" @click="goTrailer()" v-if="next">打擂歌單預告>></span>
-        <span class="Judges" @click="goSongVote() ">做評委>> <em>{{jun}}人</em></span>
+        <span class="notice" @click="goTrailer()" v-if="next">Pratinjau Daftar Lagu Arena>></span>
+        <span class="Judges" @click="goSongVote() ">Menjadi juri>> <em>{{jun}}orang</em></span>
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@ export default {
     goSongVote() {
       globalBus.$emit('commonEvent', () => {
         if (!this.device) {
-          this.toast(`不可以註冊多個帳號評分哦！`)
+          this.toast(`Gak bisa pakai beberapa akun kecil utk dinilai oh`)
           return
         }
         let regstr = getString('token')

@@ -1,37 +1,40 @@
 <template>
   <div class="myStandings">
-    <div class="title">我的戰績 <i class="questIcon" @click="tipsClick()"></i></div>
+    <div class="title">Rekorku <i class="questIcon" @click="tipsClick()"></i></div>
     <div class="userMsg">
       <img v-lazy="userinfo.avatar" alt="">
       <div class="msg">
-        <div class="nick"><strong>{{userinfo.nick}}</strong> <em>本賽季等級：</em> <i>Lv.{{star}}</i> </div>
+        <div class="nick"><strong>{{userinfo.nick}}</strong> <em>LV season ini: </em> <i>Lv.{{star}}</i> </div>
         <div class="tips">
-          <span>本賽季打擂歌曲數：<em>{{nums}}首</em> </span>
+          <span>Jumlah lagu arena pertandingan season ini:<em>{{nums}}</em> </span>
           <!-- <span>支持率：<em>{{pop/10}}%</em></span> -->
         </div>
       </div>
     </div>
     <div class="preSong" v-for="(item,index) in newData" :key="index">
       <div class="preMsg">
-        <span class="pre">第{{item.key}}期
+        <span class="pre">Periode ke-{{item.key}}
           <strong class="time">{{getDate(item.stime)}}-{{getDate(item.etime) }}</strong>
         </span>
-        <span class="score" v-if="item.key != id || status!=1">當期得分 <em>{{item.score>0?`+${item.score}`:item.score}}</em> </span>
+        <span class="score" v-if="item.key != id || status!=1">Skor periode ini <em>{{item.score>0?`+${item.score}`:item.score}}</em> </span>
       </div>
       <FightSong :list="item.hList" :set="item.key == id && status==1"></FightSong>
     </div>
     <div class="mask" v-show="showTips">
       <transition name="slide">
         <div class="lvTips" v-show="showTips">
-          <i class="close" @click="tipsClick()"></i>
-          <h3>等級說明</h3>
-          <div class="tipsItem">
-            <p>1、本季歌王榜根據等級，即所有期數獲得的分數總和排名；如果等級相同，獲得更多票數的排名在前面</p>
-            <p>2、每個賽季開始，選手默認的等級為Lv.0，每期擂台賽每獲得1分升一級，每減1分降一級，等級可能為負數</p>
+          <div class="con">
+            <i class="close" @click="tipsClick()"></i>
+            <h3>Keterangan level</h3>
+            <div class="tipsItem">
+              <p>1. Peringkat Daftar Raja Penyanyi season ini akan menurut level , yaitu total skor yg diperoleh di semua periode; jika level sama, maka peringkat dgn jumlah vote lebih banyak akan berada di depan.</p>
+              <p>2. Setiap pertandingan season mulai, level yg default pemain adalah Lv.0. Setiap periode pertandingan arena kamu akan naik 1 level ketika tiap kali dptkan 1 poin .</p>
+            </div>
+            <p>Ketika pertandingan season berakhir, Top 100 pemain akan dptkan hadiah lencana yg berlaku selama 1 bulan :</p>
+            <img src="../../assets/img/lvTab.png" alt="" class="lvTab">
+            <span class="ok" @click="tipsClick()">Ya</span>
           </div>
-          <p>賽季結束時，前100名選手將獲得有效期為1個月的徽章獎勵：</p>
-          <img src="../../assets/img/lvTab.png" alt="" class="lvTab">
-          <span class="ok" @click="tipsClick()">我知道啦</span>
+
         </div>
       </transition>
     </div>
@@ -103,7 +106,7 @@ export default {
     this.status = sessionStorage.getItem('status')
     this.id = sessionStorage.getItem('id')
     console.log(this.id, this.status)
-    document.title = '我的戰績'
+    document.title = 'Rekorku'
     api.myPushWorkHistory(0).then(res => {
       const { list, nums, pop, star, userinfo } = res.data.response_data
       this.userinfo = userinfo
@@ -247,6 +250,11 @@ body {
     border-radius: 0.4rem;
     padding: 0.33rem 0.37rem;
     position: relative;
+    overflow-y: scroll;
+    .con {
+      height: 7rem;
+      overflow-y: scroll;
+    }
     .close {
       display: block;
       width: 0.6rem;

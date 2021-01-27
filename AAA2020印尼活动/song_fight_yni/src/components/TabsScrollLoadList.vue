@@ -1,15 +1,15 @@
 <template>
   <div class="rankGroups">
-    <div class="title">打擂榜</div>
+    <div class="title">Daftar arena</div>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
         <!-- {{rStime}}-{{rEtime}} -->
-        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{rStime}}-{{rEtime}}打擂榜</a>
-        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">本季歌王榜</a>
-        <a @click.prevent="mainTabClick(2)" :class="{current:mainTab==2}" href="">往季歌王榜</a>
+        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{rStime}}-{{rEtime}}Daftar arena</a>
+        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">Daftar raja penyanyi season ini</a>
+        <a @click.prevent="mainTabClick(2)" :class="{current:mainTab==2}" href="">Riwayat Daftar Raja Penyanyi</a>
       </div>
-      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a>
+      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
 
     <ul class="list day">
@@ -23,22 +23,22 @@
         </div>
         <div class="nick">
           <strong class="userNick">{{item.userinfo.nick}}</strong>
-          <strong class="songNum" v-if="mainTab==0">打擂歌曲數：{{item.songs}}</strong>
-          <strong class="songNum" v-if="mainTab==0">已刪除歌曲數量：{{item.del}}</strong>
+          <strong class="songNum" v-if="mainTab==0">Jumlah lagu arena:{{item.songs}}</strong>
+          <strong class="songNum" v-if="mainTab==0">Jumlah lagu yg hapus:{{item.del}}</strong>
         </div>
         <div class="score">
-          <em v-if="mainTab==0">本期分數：{{item.star}}</em>
-          <em v-else>本賽季等級：<i>Lv.{{item.star}}</i></em>
+          <em v-if="mainTab==0">Skor periode ini： {{item.star}}</em>
+          <em v-else>LV season ini:<i>Lv.{{item.star}}</i></em>
           <!-- <em>平均支持率：<i>{{item.pp}}%</i> </em> -->
         </div>
       </li>
     </ul>
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
     <div class="listTipsBox">
-      <div v-if="rank.loading" class="scrollLoading">加載中...</div>
+      <div v-if="rank.loading" class="scrollLoading">Loading...</div>
       <div v-if="rank.none " class="scrollNone">
-        目前暫無歌友上榜</br>
-        虛位以待，等你來哦！
+        Saat ini gak ada penyanyi masuk daftar </br>
+        Tunggumu naik!
       </div>
     </div>
   </div>
@@ -403,7 +403,7 @@ export default {
         }
       }
       .nick {
-        width: 2.3rem;
+        width: 2rem;
         margin-left: 0.17rem;
         .userNick {
           height: 0.4rem;
@@ -424,14 +424,9 @@ export default {
         em {
           font-size: 0.24rem;
           color: rgba(94, 255, 230, 1);
-          white-space: nowrap;
           margin-top: 0.1rem;
           display: flex;
           align-items: center;
-          i {
-            font-size: 0.24rem;
-            // font-weight: bold;
-          }
           > i {
             display: block;
             width: 0.81rem;
@@ -442,6 +437,7 @@ export default {
             text-align: center;
             line-height: 0.36rem;
             font-size: 0.24rem;
+            margin-left: 0.1rem;
           }
         }
       }
