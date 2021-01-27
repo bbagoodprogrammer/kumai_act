@@ -9,44 +9,44 @@
       <h3>Thưởng BXH Ngôi Sao Xuất Hiện</h3>
       <h6>Gia tộc hạng nhất</h6>
       <p>1. Toàn bộ thành viên gia tộc nhận Huy chương Sao Gia Tộc (1 tháng).</p>
-      <p>2. Điểm cấp gia tộc 10k + tăng giới hạn phòng Kara gia tộc lên 300 người (vĩnh viễn).</p>
+      <p>2. Điểm cấp gia tộc 10k + Chủ đề phòng hát gia tộc (30 ngày).</p>
       <p>3. Toàn bộ thành viên nhận 500 đậu.</p>
       <p>4. Top 10 BXH điểm sao Ngôi Sao Xuất Hiện:</p>
-      <p>Hạng 1: Siêu Xe Đỏ (3498 xu) + 1000 xu + 2000 đậu + Xe Ferrari (30 ngày)</p>
-      <p>Hạng 2: Rồng Hoàng Kim(1888 xu) + 800 xu + 1000 đậu + Xe Ferrari(30 ngày)</p>
-      <p>Hạng 3: Cổ Vũ Bạn(888 xu) + 500 xu + 500 đậu + Xe Ferrari(30 ngày)</p>
-      <p>Hạng 4-10: Pháo Gia Tộc(555 xu) + 200 xu + 500 đậu + Xe Ferrari(30 ngày)</p>
+      <p>Hạng 1: Vui Tết 2021 (2021 xu) + 1000 xu + 2000 đậu + Mừng Năm Mới (30 ngày)</p>
+      <p>Hạng 2: Đu Quay Hồng(1520 xu) + 800 xu + 1000 đậu + Mừng Năm Mới(30 ngày)</p>
+      <p>Hạng 3: Cổ Vũ Bạn(888 xu) + 500 xu + 500 đậu + Mừng Năm Mới(30 ngày)</p>
+      <p>Hạng 4-10: Pháo Gia Tộc(555 xu) + 200 xu + 500 đậu + Mừng Năm Mới(30 ngày)</p>
       <h6>Gia tộc hạng nhì</h6>
       <p>1. Toàn bộ thành viên gia tộc nhận Huy chương Sao Gia Tộc (1 tháng).</p>
-      <p>2. Điểm cấp gia tộc 8k + tăng giới hạn phòng Kara gia tộc lên 300 người (vĩnh viễn).</p>
+      <p>2. Điểm cấp gia tộc 8k + Chủ đề phòng hát gia tộc (30 ngày).</p>
       <p>3. Toàn bộ thành viên nhận 500 đậu.</p>
       <p>4. Top 10 BXH điểm sao Ngôi Sao Xuất Hiện:</p>
-      <p>Hạng 1: Rồng Hoàng Kim(1888 xu) + 800 xu + 1000 đậu + Xe Ferrari(30 ngày)</p>
-      <p>Hạng 2: Cổ Vũ Bạn(888 xu) + 500 xu + 500 đậu + Xe Ferrari(30 ngày)</p>
-      <p>Hạng 3: Pháo Gia Tộc(555 xu) + 200 xu + 500 đậu + Xe Ferrari(30 ngày)</p>
-      <p>Hạng 4-10: Cảm Ơn Bạn(299 xu) + 200 xu + 500 đậu + Xe Ferrari(30 ngày)</p>
+      <p>Hạng 1: Đu Quay Hồng(1520 xu) + 800 xu + 1000 đậu + Mừng Năm Mới(30 ngày)</p>
+      <p>Hạng 2: Cổ Vũ Bạn(888 xu) + 500 xu + 500 đậu + Mừng Năm Mới(30 ngày)</p>
+      <p>Hạng 3: Pháo Gia Tộc(555 xu) + 200 xu + 500 đậu + Mừng Năm Mới(30 ngày)</p>
+      <p>Hạng 4-10: Cảm Ơn Bạn(299 xu) + 200 xu + 500 đậu + Mừng Năm Mới(30 ngày)</p>
       <h6>Gia tộc hạng ba</h6>
       <p>1. Toàn bộ thành viên gia tộc nhận Huy chương Sao Gia Tộc (1 tháng).</p>
-      <p>2. Điểm cấp gia tộc 5k + tăng giới hạn phòng Kara gia tộc lên 300 người (vĩnh viễn).</p>
+      <p>2. Điểm cấp gia tộc 5k + Chủ đề phòng hát gia tộc (30 ngày).</p>
       <p>3. Toàn bộ thành viên nhận 300 đậu.</p>
       <p>4. Top 10 BXH điểm sao Ngôi Sao Xuất Hiện:</p>
-      <p>Hạng 1: Cổ Vũ Bạn(888 xu) + 800 xu + 1000 đậu + Xe Ferrari(30 ngày)</p>
-      <p>Hạng 2: Pháo Gia Tộc(555 xu)+ 500 xu + 500 đậu + Xe Ferrari(30 ngày)</p>
-      <p>Hạng 3: Cảm Ơn Bạn(299 xu) + 200 xu + 500 đậu + Xe Ferrari(30 ngày)</p>
-      <p>Hạng 4-10: Sao Gia Tộc (233 xu) + 200 xu + 500 đậu + Xe Ferrari(30 ngày)</p>
+      <p>Hạng 1: Cổ Vũ Bạn(888 xu) + 800 xu + 1000 đậu + Mừng Năm Mới(30 ngày)</p>
+      <p>Hạng 2: Pháo Gia Tộc(555 xu)+ 500 xu + 500 đậu + Mừng Năm Mới(30 ngày)</p>
+      <p>Hạng 3: Cảm Ơn Bạn(299 xu) + 200 xu + 500 đậu + Mừng Năm Mới(30 ngày)</p>
+      <p>Hạng 4-10: Sao Gia Tộc (233 xu) + 200 xu + 500 đậu + Mừng Năm Mới(30 ngày)</p>
       <h6>Gia tộc hạng 4-10</h6>
       <p>1. Toàn bộ thành viên gia tộc nhận Huy chương Sao Gia Tộc (1 tháng).</p>
-      <p>2. Điểm cấp gia tộc 2k + tăng giới hạn phòng Kara gia tộc lên 200 người (vĩnh viễn).</p>
+      <p>2. Điểm cấp gia tộc 2k + Chủ đề phòng hát gia tộc (30 ngày).</p>
       <p>3. Toàn bộ thành viên nhận 200 đậu.</p>
       <p>4. Top 10 BXH điểm sao Ngôi Sao Xuất Hiện:</p>
-      <p>Hạng 1: Pháo Gia Tộc (555 xu) + 800 xu + 1000 đậu + Xe Ferrari(30 ngày)</p>
-      <p>Hạng 2: Cảm Ơn Bạn(299 xu) + 500 xu + 500 đậu + Xe Ferrari(30 ngày)</p>
-      <p>Hạng 3: Sao Gia Tộc (233 xu) + 200 xu + 500 đậu + Xe Ferrari(30 ngày)</p>
+      <p>Hạng 1: Pháo Gia Tộc (555 xu) + 800 xu + 1000 đậu + Mừng Năm Mới(30 ngày)</p>
+      <p>Hạng 2: Cảm Ơn Bạn(299 xu) + 500 xu + 500 đậu + Mừng Năm Mới(30 ngày)</p>
+      <p>Hạng 3: Sao Gia Tộc (233 xu) + 200 xu + 500 đậu + Mừng Năm Mới(30 ngày)</p>
       <p>Hạng 4-10: Sao Gia Tộc (233 xu)+ 100 xu + 500 đậu</p>
       <h3>BXH Bảo Hộ Gia Tộc</h3>
-      <p>Hạng 1: Phiếu nạp xu 5% (1 ngày) + Xe Ferrari(30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 10000 đậu</p>
-      <p>Hạng 2: Phiếu nạp xu 4% (1 ngày) + Xe Ferrari(30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 5000 đậu</p>
-      <p>Hạng 3: Phiếu nạp xu 3% (1 ngày) + Xe Ferrari(30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 3000 đậu</p>
+      <p>Hạng 1: Phiếu nạp xu 5% (1 ngày) + Mừng Năm Mới(30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 10000 đậu</p>
+      <p>Hạng 2: Phiếu nạp xu 4% (1 ngày) + Mừng Năm Mới(30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 5000 đậu</p>
+      <p>Hạng 3: Phiếu nạp xu 3% (1 ngày) + Mừng Năm Mới(30 ngày) + Huy chương Người Bảo Hộ (30 ngày) + 3000 đậu</p>
       <p>Hạng 4-10: Huy chương Người Bảo Hộ (30 ngày) + 2000 đậu</p>
       <h3>Phần thưởng túi quà gia tộc:</h3>
       <img src="../../assets/img/giftImg.png" alt="" class="giftBox">
@@ -64,22 +64,22 @@
       <h3>Thể lệ</h3>
       <p>Cuộc thi Ngôi Sao Gia Tộc chia làm 3 vòng: Sao Lấp Lánh – Sao Sáng Nhất – Ngôi Sao Xuất Hiện, chỉ người đã vào gia tộc mới được tham gia.</p>
       <h3>Sao Lấp Lánh:</h3>
-      <p>1. Thời gian<em class="tm"> 12:00 6/11 - 22:00 10/11</em> </p>
-      <p>2. Người đã vào gia tộc nhấn báo danh tham gia sự kiện, điểm sao = mị lực quà xu nhận từ bài hát/phòng Kara, top 300 BXH Tổng đại diện gia tộc vào vòng sau.</p>
+      <p>1. Thời gian<em class="tm"> 12:00 1/2 - 22:00 5/2</em> </p>
+      <p>2. Người đã vào gia tộc nhấn báo danh tham gia sự kiện, điểm sao= điểm mị quà xu nhận tại phòng hát/tác phẩm + điểm nhiệm vụ, top 300 BXH Tổng đại diện gia tộc vào vòng sau.</p>
       <p>3. BXH Ngày dựa vào điểm sao nhận trong ngày, top 100 được tham gia rút thưởng, mỗi ngày chọn 20 người nhận túi quà Sao Lấp Lánh (68 xu). Tỷ lệ trúng = điểm sao trong ngày/tổng điểm sao của top 100</p>
       <p>4. Thoát gia tộc trong thời gian vòng thi Sao Lấp Lánh sẽ xoá điểm trên BXH, không được rút thưởng, sau khi vào gia tộc khác tính điểm lại từ đầu.</p>
       <h3>Sao Sáng Nhất</h3>
       <p>
-        1.Thời gian:<em class="tm">22:05 10/11 - 18:00 14/11</em><br />
-        2. Người vào vòng sau nếu cùng gia tộc sẽ tạo thành 1 đội, đại diện gia tộc tham gia thi đấu. Cặp đấu được ghép cặp ngẫu nhiên và dựa vào điểm sao để xác định thắng thua. Đội thắng được vào vòng sau và nhận túi quà gia tộc. Điểm sao = mị lực quà xu nhận từ bài hát/phòng Kara.<br />
+        1.Thời gian:<em class="tm">22:05 5/2 - 18:00 9/2</em><br />
+        2. Người vào vòng sau nếu cùng gia tộc sẽ tạo thành 1 đội, đại diện gia tộc tham gia thi đấu. Cặp đấu được ghép cặp ngẫu nhiên và dựa vào điểm sao để xác định thắng thua. Đội thắng được vào vòng sau và nhận túi quà gia tộc. Điểm sao = Điểm mị quà xu nhận tại phòng hát/tác phẩm + Điểm nhiệm vụ.<br />
         3. Khi kết thúc vòng đấu nếu cả 2 bằng điểm nhau đều sẽ bị loại, PK thua nhưng tổng điểm sao đạt 300k trở lên cũng được vào vòng sau<br />
         4. Thí sinh vào vòng sau nhưng thoát gia tộc sẽ không bị trừ điểm BXH Tổng, khi vào lại gia tộc sẽ bảo lưu điểm số và tính tiếp, nếu vào gia tộc khác xem như bị loại, không thể tham gia thi đấu tiếp.<br />
         5. Mỗi gia tộc có 30 phần thưởng túi quà, mỗi người tối đa nhận 1 phần thưởng, vòng thi kết thúc sẽ tự động phát thưởng.
       </p>
       <h3>Sao Xuất Hiện</h3>
-      <p>1. Thời gian: <em class="tm">18:05 14/11 - 22:00 15/11</em> <br />
-        2. Điểm sao = mị lực quà xu nhận từ bài hát + phòng Kara, 20 – 22h ngày 15/11 được tăng 10%.<br />
-        Khi kết thúc vòng đấu nếu cả 2 bằng điểm nhau đều sẽ bị loại, PK thua nhưng tổng điểm sao đạt 300k trở lên cũng được vào vòng sau<br />
+      <p>1. Thời gian: <em class="tm">18:05 9/2 - 22:00 10/2</em> <br />
+        2. Điểm sao = điểm mị quà xu nhận tại phòng hát/tác phẩm + điểm nhiệm vụ, 20-22h ngày cuối cùng được tăng 10%.<br />
+        3.Khi kết thúc vòng đấu nếu cả 2 bằng điểm nhau đều sẽ bị loại, PK thua nhưng tổng điểm sao đạt 300k trở lên cũng được vào vòng sau<br />
         4. Điểm sao tổng đạt đến điểm số yêu cầu sẽ tăng cấp gia tộc, hệ thống tự động phát thưởng Túi quà. Cấp I, II, III tương ứng 10k, 100k, 500k điểm sao. Túi quà lần lượt gồm 30, 50, 100 phần.<br />
         5. Thí sinh vào vòng sau nhưng thoát gia tộc sẽ không bị trừ điểm BXH Tổng, khi vào lại gia tộc sẽ bảo lưu điểm số và tính tiếp, nếu vào gia tộc khác xem như bị loại, không thể tham gia thi đấu tiếp.
       </p>
@@ -89,7 +89,7 @@
         2. Túi quà gia tộc được thưởng có thể xem tại Chi tiết thưởng.<br />
         3. BXH ngày sẽ phát thưởng vào 24h mỗi ngày, ngày cuối cuộc thi gửi vào 22h.<br />
         4. Sau khi báo danh vòng thi Sao Lấp Lánh, cần gửi bài hát, tất cả bài hát công khai của cá nhân đều được tính điểm. Nếu xoá bài hát trong thời gian sự kiện, sẽ bị trừ điểm mị lực tương ứng của bài đã xoá.<br />
-        5. Vòng thi Sao Xuất Hiện cần gửi bài hát đăng sau 0h 14/11, bài hát mới được tính điểm.
+        5. Vòng thi Sao Xuất Hiện cần gửi bài hát đăng trong thời gian sự kiện, bài hát nhận quà mới được tính điểm.<br />
         6. Toàn bộ túi quà được hệ thống gửi tự động, mỗi người 1 lần nhận tối đa 1 phần thưởng<br />
         7. Trong thời gian sự kiện nếu phát hiện bất cứ hành vi gian lận điểm nào, thí sinh sẽ bị loại và huỷ phần thưởng, nếu nghiêm trọng sẽ khoá tài khoản.
       </p>

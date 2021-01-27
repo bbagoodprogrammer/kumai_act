@@ -1,6 +1,6 @@
 <template>
   <div class="votePeople">
-    <div class="title">評委列表</div>
+    <div class="title">Daftar juri</div>
     <ul class="list">
       <li v-for="(item,index) in list " :key="index" :class="'rank'+(index+1)">
         <div class="rank">{{index+1}}</div>
@@ -12,7 +12,7 @@
           <!-- <strong class="songNum">打擂歌曲數：{{item.nums}}</strong> -->
         </div>
         <div class="score">
-          <strong v-if="item.title!=0">投票時為{{err[item.title]}}評委</strong>
+          <strong v-if="item.title!=0">Juri telinga{{err[item.title]}}vote</strong>
           <em>+{{item.nums}}</em>
         </div>
       </li>
@@ -31,7 +31,7 @@ export default {
       list: [],
       ismore: true,
       loaded: false,
-      err: ['', '鐵耳朵', '銅耳朵', '銀耳朵', '金耳朵', '白金耳朵']
+      err: ['', 'besi saat', 'tembaga saat', 'perak saat ', 'emas saat', 'platinum saat']
     }
   },
   // mounted() {
@@ -41,7 +41,7 @@ export default {
   //   window.removeEventListener('scroll', this.onScroll)
   // },
   created() {
-    document.title = '評委列表'
+    document.title = 'Daftar juri'
     let rid = getString('rid')
     api.getWorkComList(rid).then(res => {
       console.log(res)

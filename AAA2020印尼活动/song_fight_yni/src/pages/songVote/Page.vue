@@ -2,7 +2,7 @@
   <div class="songVote" @click="closeMusic()">
     <div class="title"></div>
     <div class="songCon">
-      <div class="pkTitle">打擂台</div>
+      <div class="pkTitle">Ikut arena</div>
       <div class="errorTips" v-if="errorTips != ''" v-html="errorTips"></div>
       <div class="con" v-else>
         <div class="sName">《{{sounds[0]?sounds[0].name:''}}》</div>
@@ -39,23 +39,23 @@
         </div>
         <div class="chioneBtn">
           <div class="chioneItem" v-if="!chioneState">
-            <span @click="chione(0)">選他贏</span>
-            <span @click="chione(1)">選他贏</span>
+            <span @click="chione(0)">Pilih dia </span>
+            <span @click="chione(1)">Pilih dia </span>
           </div>
           <div class="chioneUserBtn" v-else>
             <i class="comments" @click="comments(chioneUserMsg.sid)">komentar</i>
-            <span @click="attention(chioneUserMsg.uid,chioneUserMsg.attension)"> {{chioneUserMsg.attension?'已關注':'+關注'}}</span>
+            <span @click="attention(chioneUserMsg.uid,chioneUserMsg.attension)"> {{chioneUserMsg.attension?'Udah follow':'+ Follow'}}</span>
             <i class="share" @click="share()">Berbagi</i>
           </div>
         </div>
       </div>
     </div>
     <div class="chioneChange">
-      <div class="next" @click="clearHowl()" v-if="chioneState">下一組></div>
+      <div class="next" @click="clearHowl()" v-if="chioneState">Grup yg berikut></div>
       <p class="chioneTips">
-        1、點擊播放按鈕收聽參賽歌曲，每首收聽10S後選擇其中一位勝出<br />
-        2、評委每天評分前30組歌每組歌曲將獲得5金豆<br />
-        3、當期每連投8組投中（所投的歌曲在PK中獲得更多票數），可隨機獲得一個皇冠車背包禮物（600金豆）/船錨背包禮物（1金幣）/2天VIP/法拉利座駕（2天）
+        1.Klik tombol play utk mendengarkan lagu yg ikut acara.Setelah mendengarkan setiap lagu selama 10 detik, pilih salah satu menjadi pemenang.<br />
+        2.Kalo juri menilai 30 grup lagu setiap hari ,maka setiap grup lagu akan mendapatkan 2 kacang emas.<br />
+        3.Kalo 8 grup menang dgn berturut-turut yg kamu vote dalam periode saat ini, kamu bisa secara acak mendapatkan hadiah ransel kotak musik (360 kacang emas ) / hadiah ransel permen kapas (1 koin emas) / 2 hari VIP /Mount Eagle Fighting (2 hari)
       </p>
     </div>
     <loading />
@@ -122,7 +122,7 @@ export default {
     // }
   },
   created() {
-    document.title = '打擂台'
+    document.title = 'Ikut arena'
     sessionStorage.setItem("need-refresh", true);
     this.setData()
   },
@@ -302,11 +302,11 @@ export default {
     chione(val) {
       console.log(this.listenTime1, this.listenTime2)
       if (this.listenTime1 < 10 && this.listenTime2 < 10) {
-        this.toast(`每位選手聽夠10S 才能投票，2位選手都還未聽夠10S喔`)
+        this.toast(`Setiap pemain bisa vote setelah mendengar cukup 10S, skrg 2 pemain  belum mendengar cukup 10S.`)
       } else if (this.listenTime1 < 10) {
-        this.toast(`每位選手聽夠10S 才能投票，左邊的選手還未聽夠10S喔 `)
+        this.toast(`Setiap pemain bisa vote setelah mendengar cukup 10S,pemain di sebelah kiri belum mendengar cukup 10S oh. `)
       } else if (this.listenTime2 < 10) {
-        this.toast(`每位選手聽夠10S 才能投票，右邊的選手還未聽夠10S喔 `)
+        this.toast(`Setiap pemain bisa vote setelah mendengar cukup 10S,pemain di sebelah kanan belum mendengar cukup 10S oh. `)
       } else {
         api.selectWork(this.pk, this.sounds[val].id).then(res => {
           if (res.data.response_status.code == 0) {
@@ -397,15 +397,15 @@ export default {
         "share_title": this.chioneUserMsg.song.name,
         "share_content": this.chioneUserMsg.song.desc,
         "share_image": this.chioneUserMsg.userinfo.avatar,
-        "link": `http://17sing.tw/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge`,
+        "link": `https://wekarapp.com/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge`,
         "image": this.chioneUserMsg.userinfo.avatar,
-        "share_url": `http://17sing.tw/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge`
+        "share_url": `https://wekarapp.com/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge`
       }
       if (ios) {
         if (window.share != undefined) {
           share(JSON.stringify(data))
         } else {
-          location.href = `shareUserInfo://17sing.tw/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge&shareText=${this.chioneUserMsg.desc}&userImg=${this.chioneUserMsg.userinfo.avatar}&title=${this.chioneUserMsg.song.name}`;
+          location.href = `shareUserInfo://wekarapp.com/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge&shareText=${this.chioneUserMsg.desc}&userImg=${this.chioneUserMsg.userinfo.avatar}&title=${this.chioneUserMsg.song.name}`;
         }
       } else {
         javascript: JSInterface.share(JSON.stringify(data));

@@ -60,18 +60,18 @@
           <em>giây</em>
         </div>
       </div>
-      <p class="rankTips" v-if="showType==1 && mainTab == 0">Điểm Sao = Mị lực quà xu bài hát + phòng Kara </p>
+      <p class="rankTips" v-if="showType==1 && mainTab == 0">Điểm sao = Điểm mị quà xu nhận tại phòng hát/tác phẩm + Điểm nhiệm vụ. </p>
       <p class="rankTips" v-if="showType==1 && mainTab == 1">
-        Điểm Sao = Mị lực quà xu bài hát + phòng Kara<br />
+        Điểm sao = Điểm mị quà xu nhận tại phòng hát/tác phẩm + Điểm nhiệm vụ.<br />
         Dựa vào tổng điểm sao trong vòng thi Sao Lấp Lánh, top 500 vào vòng sau
       </p>
-      <p class="rankTips" v-if="showType==2">Điểm Sao = Mị lực quà xu bài hát + phòng Kara<br />
+      <p class="rankTips" v-if="showType==2">Điểm sao = Điểm mị quà xu nhận tại phòng hát/tác phẩm + Điểm nhiệm vụ.<br />
         Thí sinh vào vòng sau cùng gia tộc tạo thành 1 đội, đại diện gia tộc tham gia thi đấu.<br />
         phe thắng vào vòng sau và nhận túi quà Gia Tộc.
       </p>
       <p class="rankTips" v-if="showType==3">
         Gia tộc tăng cấp được thưởng túi quà, cấp I, II, III tương ứng điểm sao 10k, 100k, 500k.<br />
-        Điểm sao = mị lực quà xu nhận từ bài hát + phòng Kara, 20-22h ngày cuối cùng được tăng 10%.
+        Điểm sao = Điểm mị quà xu nhận tại phòng hát/tác phẩm + Điểm nhiệm vụGia tộc tăng cấp được thưởng túi quà, 20-22h ngày cuối cùng được tăng 10%.
       </p>
     </div>
     <!-- 日榜 -->

@@ -5,7 +5,7 @@
     <span class="signUp" @click="signUpClick()" v-if="astState === 3">Báo danh</span>
     <div class="actIng" v-if="astState == 4">
       <div class="rank" :class="{noRank:nowUserMsg.rank == 0}">{{nowUserMsg.rank == 0?'Chưa lên BXH':nowUserMsg.rank}}</div>
-      <div class="uerImg">
+      <div class="uerImg" @click="goUser(nowUserMsg.uid,nowUserMsg.kmic)">
         <img v-if="nowUserMsg.avatar_frame &&nowUserMsg.avatar_frame != ''" :src="nowUserMsg.avatar_frame" class="frame" alt="">
         <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
         <img v-else-if="nowUserMsg.nob > 0" :src="require(`../img/nob/${nowUserMsg.nob}.png`)" class="nob" alt="">
@@ -19,7 +19,7 @@
     </div>
     <div class="actIng" v-if="astState == 5">
       <div class="rank" :class="{noRank:nowUserMsg.rank == 0}">{{nowUserMsg.rank == 0?'Chưa lên BXH':nowUserMsg.rank}}</div>
-      <div class="uerImg">
+      <div class="uerImg" @click="goKroom(nowUserMsg.info.rid)">
         <!-- <img v-if="nowUserMsg.avatar_frame &&nowUserMsg.avatar_frame != ''" :src="nowUserMsg.avatar_frame" class="frame" alt=""> -->
         <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
         <!-- <img v-else-if="nowUserMsg.nob > 0" :src="require(`../img/nob/${nowUserMsg.nob}.png`)" class="nob" alt=""> -->
@@ -80,7 +80,17 @@ export default {
           this.toast(res.data.response_status.error)
         }
       })
-    }
+    },
+    goKroom(rid) {
+      location.href = `rid:${rid}`
+    },
+    goUser(uid, kmic) { //跳转
+      if (kmic) {
+        this.goKroom(kmic)
+        return
+      }
+      location.href = `uid:${uid}`
+    },
   }
 }
 </script>

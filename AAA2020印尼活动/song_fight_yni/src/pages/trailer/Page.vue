@@ -1,13 +1,13 @@
 <template>
   <div class="trailer">
-    <div class="title">打擂歌單預告</div>
+    <div class="title">Pratinjau Daftar Lagu Arena</div>
     <div class="searchBox">
-      <input type="text" placeholder="打擂歌曲/歌手名" v-on:input="inputChange()" v-model="searchMsg">
+      <input type="text" placeholder="Lagu arena/Nama penyanyi" v-on:input="inputChange()" v-model="searchMsg">
       <span class="search" @click="search()"></span>
     </div>
-    <p class="tips">下期歌單{{stime}}-{{etime}}<br />非下期打擂期間發佈的練習歌曲無法報名參賽</p>
+    <p class="tips">Daftar lagu berikutnya: {{stime}}-{{etime}}<br />Lagu latihan yg diposting tidak termasuk lagu arena lain kali tidak  bisa mendaftar utk ikut acara</p>
     <div class="noSongTips">
-      <h3 v-if="noData">預告歌單暫無該打擂歌曲</h3>
+      <h3 v-if="noData">Tidak ada lagu arena ini dlm Daftar Lagu Teaser</h3>
     </div>
     <ul class="songList scrollable">
       <li v-for="(item,index) in showSong" :key="index">
@@ -17,7 +17,7 @@
           <div class="songNick"><em>{{item.artist}}</em></div>
         </div>
         <div class="songStatusBtn" @click="goSong(item.accid)">
-          <em>練習</em>
+          <em>Berlatih</em>
         </div>
       </li>
     </ul>
@@ -56,7 +56,7 @@ export default {
     }
   },
   created() {
-    document.title = '打擂歌曲預告'
+    document.title = ' Lagu arena teaser'
     this.version_allowed = sessionStorage.getItem('version_allowed')
     this.update = sessionStorage.getItem('update')
     api.getNextSong().then(res => {
@@ -99,7 +99,7 @@ export default {
       var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
       if (!this.update) {
         this.vxc('setToast', {
-          msg: "此版本過低，無法參賽！請前往app store下載“高歌”參賽喔"
+          msg: "Versi ini terlalu rendah ,gak bisa ikut acara! Silakan pergi ke App Store utk mengunduh \"Wekara\" utk ikut acara"
         })
         return
       }
