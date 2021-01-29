@@ -4,10 +4,10 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <div class="ruleTips" @click="goRule()">Hướng Dẫn</div>
+      <div class="ruleTips" @click="goRule()">{{lang.rule}}</div>
     </div>
     <div class="giftList">
-      <h3>Phần thưởng</h3>
+      <h3>{{lang.gift_title}}</h3>
       <div class="giftItem" v-for="(item,index) in giftList" :key="index">
         <div class="imgBg">
           <img :src="item.img" alt="">
@@ -34,39 +34,41 @@ export default {
   data() {
     return {
       isShare: false,
-      giftList: [
-        {
-          img: require("../img/giftList/gift1.png"),
-          name: 'Huy Chương Thần Tượng Phòng Kara'
-        },
-        {
-          img: require("../img/giftList/gift2.png"),
-          name: 'Chủ Đề Phòng Sôi Nổi'
-        },
-        {
-          img: require("../img/giftList/gift3.png"),
-          name: 'Xe Grand Debut'
-        },
-        {
-          img: require("../img/giftList/gift4.png"),
-          name: 'Quà hiếm có'
-        },
-        {
-          img: require("../img/giftList/gift5.png"),
-          name: 'Vô số xu'
-        },
-        {
-          img: require("../img/giftList/gift6.png"),
-          name: 'Vô số đậu'
-        }
-      ]
+      // giftList: [
+      //   {
+      //     img: require("../img/giftList/gift1.png"),
+      //     name: 'Huy Chương Thần Tượng Phòng Kara'
+      //   },
+      //   {
+      //     img: require("../img/giftList/gift2.png"),
+      //     name: 'Chủ Đề Phòng Sôi Nổi'
+      //   },
+      //   {
+      //     img: require("../img/giftList/gift3.png"),
+      //     name: 'Xe Grand Debut'
+      //   },
+      //   {
+      //     img: require("../img/giftList/gift4.png"),
+      //     name: 'Quà hiếm có'
+      //   },
+      //   {
+      //     img: require("../img/giftList/gift5.png"),
+      //     name: 'Vô số xu'
+      //   },
+      //   {
+      //     img: require("../img/giftList/gift6.png"),
+      //     name: 'Vô số đậu'
+      //   }
+      // ]
     }
   },
   created() {
     this.judgeShare()
   },
   computed: {
-
+    giftList() {
+      return this.lang.giftList
+    }
   },
   methods: {
     judgeShare() {//判断是否为分享环境,请求相应的接口 

@@ -53,11 +53,11 @@
       </div>
       <h3>Phần thưởng bảo hộ</h3>
       <div class="anthorWards">
-        <p>- Hạng nhất: trả lại 8% số xu bảo hộ trong thời gian sự kiện, xe Chiến Đấu Cơ (30 ngày)</p>
-        <p>- Hạng nhì: trả lại 7% số xu bảo hộ trong thời gian sự kiện, xe Chiến Đấu Cơ (30 ngày)</p>
-        <p>- Hạng ba: trả lại 6% số xu bảo hộ trong thời gian sự kiện, xe Chiến Đấu Cơ (30 ngày)</p>
-        <p>- Hạng 4 - 5: trả lại 5% số xu bảo hộ trong thời gian sự kiện, xe Chiến Đấu Cơ (30 ngày)</p>
-        <p>- Hạng 6 – 10: - Hạng nhất: trả lại 4% số xu bảo hộ trong thời gian sự kiện, xe Chiến Đấu Cơ (30 ngày)</p>
+        <p>- Hạng nhất: trả lại 8% số xu bảo hộ trong thời gian sự kiện, xe Thuyền Ngọc Tiên (30 ngày)</p>
+        <p>- Hạng nhì: trả lại 7% số xu bảo hộ trong thời gian sự kiện, xe Thuyền Ngọc Tiên (30 ngày)</p>
+        <p>- Hạng ba: trả lại 6% số xu bảo hộ trong thời gian sự kiện, xe Thuyền Ngọc Tiên (30 ngày)</p>
+        <p>- Hạng 4 - 5: trả lại 5% số xu bảo hộ trong thời gian sự kiện, xe Thuyền Ngọc Tiên (30 ngày)</p>
+        <p>- Hạng 6 – 10: - Hạng nhất: trả lại 4% số xu bảo hộ trong thời gian sự kiện, xe Thuyền Ngọc Tiên (30 ngày)</p>
       </div>
     </div>
     <p class="lastTips">Quyết định của ban tổ chức là quyết định cuối cùng!</p>

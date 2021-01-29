@@ -1,70 +1,100 @@
 export default {
     //html/index.html
-    title: '簽約',
+    title: '人氣K房達人賽',
+    rule_title: '人氣K房達人賽',
 
-    // router/index
-    page_data: '數據達標',
-    page_bind: '綁定手機號碼',
-    page_apply: '申請簽約',
-    page_agreement: '平臺准用協議',
+    //footer
+    act_noStart: '活動未開始',  //活動未開始
+    act_end: '活動已結束',  //活動已結束
+    singUp: '立即報名',  //立即報名
+    noRank: '未上榜', //未上榜
+    singUp_suc: '報名成功', //報名成功
 
-    // Index
-    sign: '去簽約',
-    signed: '已簽約',
-    sign_rule: '簽約說明：',
-    sign_rule_1: '1、非簽約用戶不可對歡鑽收益進行提款，僅可兌換成金幣，且每次至少兌換20000歡鑽，低於20000歡鑽不允許兌換；',
-    sign_rule_2: '2、成爲簽約用戶，即可對歡鑽收益進行提款，且簽約等級越高，提款比例越高；兌換金幣比例更高，且每次最低可兌換100歡鑽。',
+    //index
+    rule: '活動規則',  //活動規則
+    gift_title: '活動獎勵', //活動獎勵
+    giftList: [
+        {
+            img: require("../../img/giftList/gift1.png"),
+            name: 'K房達人徽章'
+        },
+        {
+            img: require("../../img/giftList/gift2.png"),
+            name: '人氣K房主題'
+        },
+        {
+            img: require("../../img/giftList/gift3.png"),
+            name: '隆重登場座駕'
+        },
+        {
+            img: require("../../img/giftList/gift4.png"),
+            name: '稀有特效禮物'
+        },
+        {
+            img: require("../../img/giftList/gift5.png"),
+            name: '海量金幣'
+        },
+        {
+            img: require("../../img/giftList/gift6.png"),
+            name: '海量金豆'
+        }
+    ],
+    //Integral
+    integral_lv: '我的達人等級',//我的達人等級
+    integral_coins: '消費金幣',//消費金幣
+    integral_tips: '在禮物紅包/福運禮物/砸蛋探寶中消費金幣可獲得相應獎勵',//在禮物紅包/福運禮物/砸蛋探寶中消費金幣可獲得相應獎勵
+    integral_luck: '恭喜獲得',//恭喜獲得
+    integral_luckTips: '獎勵獎通過系統自動發放到您的帳戶上',//獎勵獎通過系統自動發放到您的帳戶上
+    integral_ok: '確定',//確定
+    giftArr: {
+        1: {
+            gift_tips: 'x30',
+            img: require('../../img/get_gift/giftItem_1.png'),
+            name: '10 金幣',
+            act_width: '13%',
+            gname: '30 金豆'
+        },
+        2: {
+            gift_tips: '7天',
+            img: require('../../img/get_gift/giftItem_2.png'),
+            name: '30 金幣',
+            act_width: '30%',
+            gname: 'VIP7天'
+        },
+        3: {
+            img: require('../../img/get_gift/giftItem_3.png'),
+            name: '100 金幣',
+            act_width: '50%',
+            gname: '紅玫瑰（180金豆）'
+        },
+        4: {
+            img: require('../../img/get_gift/giftItem_6.png'),
+            name: '300 金幣',
+            act_width: '70%',
+            gname: '雞尾酒（5金幣）'
+        },
+        5: {
+            gift_tips: '7天',
+            img: require('../../img/get_gift/giftItem_5.png'),
+            name: '500 金幣',
+            act_width: '100%',
+            gname: '糖果城名片7天（110金幣）'
+        },
+    },
 
-    // Task
-    data_name: '數據達標，成爲簽約用戶',
-    data_desc: '達標數據要求後才可申請簽約',
-    bind_name: '綁定手機號碼',
-    bind_desc: '請先綁定手機號碼',
-    sign_name: '立即簽約',
-    sign_desc: '享受簽約用戶的專屬特權福利',
-    do: '去完成',
-    done: '已完成',
-    sign_tips: '前兩步還未完成時\n不可申請簽約',
-    ok: '確認',
 
-    // Bind
-    bind_succ: '你的帳號已成功綁定\n手機號碼：%s',
+    //rank
+    rank_title1: 'K房達人榜',  //K房達人榜
+    rank_title2: '人氣K房榜',//人氣K房榜
+    rank_timeDown1: '活動結束倒計時', //活動結束倒計時
+    rank_timeDown2: '活動開始倒計時', //活動開始倒計時
+    rank_day: '天',//天
+    rank_hour: '時',//時
+    rank_min: '分',//分
+    rank_second: '秒', //秒
+    rank_tips1: '根據用戶個人在禮物紅包/福運禮盒/砸蛋探寶中所花費的金幣進行排名', //根據用戶個人在禮物紅包/福運禮盒/砸蛋探寶中所花費的金幣進行排名
+    rank_tips2: '根據房間中禮物紅包/福運禮盒產生的魅力值進行排名房間內每開啟一次火箭活動分數增加10000', //根據房間中禮物紅包/福運禮盒產生的魅力值進行排名房間內每開啟一次火箭活動分數增加10000
+    loading: '加載中...',//加載中...
+    noData: '暫無數據', //暫無數據
 
-    // Data
-    count_title: '距離達標簽約用戶',
-    count_income: '歡鑽收入',
-    count_numbers: '（{0}/{1}）',
-    count_time: '本次統計周期爲{0}月{1}日-{2}月{3}\n還有{4}天結束進入下一統計周期，請加油',
-    done_tips: '您已達標簽約用戶要求\n快去申請成爲簽約用戶吧',
-    undone_tips: '您還未達標簽約用戶要求\n還不可以申請成爲簽約用戶',
-    done_give: '成功簽約即可獲得：',
-    done_give_1: '1、可對歡鑽收益進行提款，且簽約等級越高，提款比例越高；',
-    done_give_2: '2、可獲更高的兌換金幣比例，且每次最低可兌換100歡鑽。',
-
-    // Apply
-    apply_title: '申請簽約最後一步：',
-    apply_desc: '簽約需要提交身分證進行審核，審核通過幾申請成功',
-    card_title: '手持身份證正面，按照示例圖拍照',
-    card_desc: '為了保證身份的真實性，需要你進行身份驗證，\n請按照示例圖提交照片，如發現證件假造將永久封號。',
-    re_upload: '重新上傳',
-    upload_title: '請上傳認證照片',
-    upload_desc: '上傳成功後，我們會加快審核',
-    agree_agreement: '申請簽約，即表示同意',
-    apply_agreement: '《平臺准用協議》',
-    submit_apply: '提交並申請簽約',
-    card_submited: '身份驗證已提交\n無需重複提交\n可直接申請簽約',
-
-    // Result
-    re_submit: '重新申請',
-    result_checking: '已成功提交申請\n我們會盡快為你審核',
-    result_success: '恭喜您已成為平台簽約用戶',
-    result_fail: '你的申請被拒絕',
-    result_fail_reason: '原因：%s',
-    result_fail_contact: '具體請聯繫官方運營ID%s',
-    result_reject: '你的申請不通過，我們會盡快上線適用於主播的簽約流程，敬請期待。',
-    sign_give: '成功簽約即可獲得：',
-    sign_give_1: '1、發布的作品或自己的K歌房有更高的權重，獲得更多的推薦；',
-    sign_give_2: '2、更多的曝光以及更多的粉絲關注；',
-    sign_give_3: '3、可對歡鑽收益進行提款，且簽約等級越高，提款比例越高；',
-    sign_give_4: '4、可獲更高的兌換金幣比例，且每次最低可兌換100歡鑽。',
 }

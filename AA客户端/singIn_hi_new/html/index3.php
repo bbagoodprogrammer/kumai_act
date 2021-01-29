@@ -2,8 +2,14 @@
 
 
 $inviteCode= $_REQUEST['inviteCode'];
+$langArr=["en","hi"];
+$lang = $_REQUEST['lang'] ?? "en";
+if(!in_array($lang,$langArr)){
+	$lang="en";
+}
+
 $ch = curl_init();
-$url= "http://test.17sing.tw/action/index.php?action=signInTask.getInvitedFriends&inviteCode=$inviteCode";
+$url= "http://act.singstarapp.com/index.php?action=signInTask.getInvitedFriends&inviteCode=$inviteCode";
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
 curl_setopt($ch, CURLOPT_TIMEOUT, 5);
@@ -26,6 +32,14 @@ if($response_info && isset($response_info['response_data'])){
         $ret=1;
     }
 }
+ $webTitleMap=array("en"=>"Friend support","hi"=>"दोस्त की मदद");
+ $titleMap=array("en"=>"I have checked in for %s consecutive days","hi"=>" मैंने लगातार %s दिन के लिए साइन इन किया");
+ $contentMap=array("en"=>"I've checked in for %s consecutive days, now I need your help to flip another card, come help me",
+ 									 "hi"=>"मैंने लगातार %s दिन के लिए साइन इन किया, अभी मुझे आपकी मदद चाहिए, जल्दी आइए");
+ 									 
+ $title=sprintf($titleMap[$lang],$days);
+ $content=sprintf($titleMap[$lang],$days);
+ $webTitle=$webTitleMap[$lang];
 
 
 ?>
@@ -39,12 +53,12 @@ if($response_info && isset($response_info['response_data'])){
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
-    <meta property="og:title" content="我已連續簽到<?php echo $days; ?>天">
-    <meta property="og:description" content="我已在歡歌連續簽到<?php echo $days; ?>天啦，翻牌得獎品，需要你的助力，快來">
+    <meta property="og:title" content="<?php echo $title; ?>">
+    <meta property="og:description" content="<?php echo $content;?>">
     <meta property="og:image" content="<?php echo $headImg; ?>">
     <meta property="og:image:width" content="330">
     <meta property="og:image:height" content="330">
-    <title>好友助力</title>
+    <title><?php echo $webTitle; ?></title>
     <script>
         (function (doc, win) {
             var docEl = doc.documentElement,
@@ -106,9 +120,9 @@ if($response_info && isset($response_info['response_data'])){
     <script type="text/javascript">
         <?php if ($lang=='en'){ ?>
         window.lang = {
-            singIn_day:'He/she has checked in for $ consecutive days. Now he/she needs your help. Please help him/her quickly',
+            singIn_day:'Your friend has checked in for $ day. Would you help?',
             downTimeTips:' Helping countdown',
-            share:'To be invited',
+            share:'Await',
             help_him:'Help him',
             try_tmor:'Please try again tomorrow',
             new_edition:'Helping needs to be updated to the latest version',
@@ -121,10 +135,10 @@ if($response_info && isset($response_info['response_data'])){
         }
     <?php }elseif ($lang=='hi'){ ?>
         window.lang = {
-            singIn_day:'लगातार साइन इन के लिए $ दिन हैं, अभी उसे आपकी मदद चाहिए, चलें और मदद करें',
+            singIn_day:'आपके दोस्त ने $ दिन के लिए लगातार साइन इन किया। उसकी मदद करें?',
             downTimeTips:'मदद काउंटडाउन',
-            share:'आमंत्रण की प्रतीक्षा में',
-            help_him:'उसकी मदद करें',
+            share:'दोस्त',
+            help_him:'मदद करें',
             try_tmor:'कृपया कल कोशिश करें',
             new_edition:'मदद देने के लिए नया वर्शन अपडेट करना चाहिए',
             rule_title:'मदद देने का नियम',
@@ -177,7 +191,7 @@ if($response_info && isset($response_info['response_data'])){
             methods: {
                 share: function () {
                     if (this.second <= 0) return
-                    openApp("hsing://17sing.tw/" + "\{\"inviteCode\":\"" + inviteCode + "\"\}",
+                    openApp("india://singstarapp.com/" + "\{\"inviteCode\":\"" + inviteCode + "\"\}",
                         null, null,
                         "Gaoge://inviteCode=" + inviteCode)
                 },

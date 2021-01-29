@@ -1,0 +1,17 @@
+html.zh {
+    .shareBar {
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        .bar {
+          width: 7.5rem;
+          height: 1.2rem;
+          margin: auto;
+          background: url(./img/share_bar.png) no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+}

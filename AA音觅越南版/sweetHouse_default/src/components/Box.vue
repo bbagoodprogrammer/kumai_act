@@ -63,10 +63,10 @@ export default {
               type: 1,
               name: '600 đậu'
             },
-            {
-              type: 2,
-              name: '500 xu'
-            },
+            // {
+            //   type: 2,
+            //   name: '500 xu'
+            // },
           ]
         },
         3: {
@@ -75,10 +75,10 @@ export default {
               type: 1,
               name: '1000 đậu'
             },
-            {
-              type: 2,
-              name: '800 xu'
-            },
+            // {
+            //   type: 2,
+            //   name: '800 xu'
+            // },
           ]
         },
         4: {
@@ -87,10 +87,10 @@ export default {
               type: 1,
               name: '2000 đậu'
             },
-            {
-              type: 2,
-              name: '2000 xu'
-            },
+            // {
+            //   type: 2,
+            //   name: '2000 xu'
+            // },
             {
               type: 4,
               name: 'khung ảnh 5 ngày'

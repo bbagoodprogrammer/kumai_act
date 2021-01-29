@@ -23,8 +23,8 @@
         </div>
         <div class="nick">
           <strong class="userNick">{{item.userinfo.nick}}</strong>
-          <strong class="songNum" v-if="mainTab==0">Jumlah lagu arena:{{item.songs}}</strong>
-          <strong class="songNum" v-if="mainTab==0">Jumlah lagu yg hapus:{{item.del}}</strong>
+          <strong class="songNum" v-if="mainTab==0">Total lagu arena:{{item.songs}}</strong>
+          <strong class="songNum" v-if="mainTab==0">Lagu yg hapus:{{item.del}}</strong>
         </div>
         <div class="score">
           <em v-if="mainTab==0">Skor periode ini： {{item.star}}</em>
@@ -353,7 +353,7 @@ export default {
   .list {
     margin: 0.43rem auto;
     li {
-      height: 1.13rem;
+      min-height: 1.13rem;
       // background: url(../assets/img/listBg.png);
       // margin-bottom: 0.17rem;
       background-size: 100% 100%;

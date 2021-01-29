@@ -157,6 +157,7 @@ body #app .singInDay .userMsg strong {
 body #app .singInDay .userMsg .userTips {
   font-size: 0.28rem;
   margin-top: 0.1rem;
+  text-align: center;
 }
 
 body #app .singInDay > strong {
@@ -217,7 +218,7 @@ body #app .shareTips > .tips p.first {
   height: 3.16rem;
   background: white;
   border-radius: 0.12rem;
-  margin: 0 auto;
+  margin: 0.25rem auto 0;
 }
 
 .sharePeople.pt {
