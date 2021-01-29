@@ -4,7 +4,7 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Aturan</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Hadiah</a>
     </div>
-    <h6 class="time">Waktu acara : Jam 18:00 tgl 1 Des. 2020 ~ Jam 22:00 tgl 9 Des. 2020</h6>
+    <h6 class="time">Waktu acara : Jam 18:00 tgl 1 Feb. 2021 ~ Jam 22:00 tgl 9 Feb. 2021</h6>
     <div class="ruleTips" v-show="tab == 0">
       <h6>Aturan</h6>
       <p>1. semua pengguna bisa mendaftar utk ikut acara.</p>
@@ -16,15 +16,15 @@
       </p>
       <h6>Waktu daftar harian:</h6>
       <p class="dayTime">
-        Day1: 18:00 1/12 ~00:00 2/12<br />
-        Day2: 00:00 2/12 ~00:00 3/12<br />
-        Day3: 00:00 3/12 ~00:00 4/12<br />
-        Day4: 00:00 4/12 ~00:00 5/12<br />
-        Day5: 00:00 5/12 ~00:00 6/12<br />
-        Day6: 00:00 6/12 ~00:00 7/12<br />
-        Day7: 00:00 7/12 ~00:00 8/12<br />
-        Day8: 00:00 8/12 ~00:00 9/12<br />
-        Day9: 00:00 9/12 ~22:00 9/12
+        Day1: 18:00 1/2 ~00:00 2/2<br />
+        Day2: 00:00 2/2 ~00:00 3/2<br />
+        Day3: 00:00 3/2 ~00:00 4/2<br />
+        Day4: 00:00 4/2 ~00:00 5/2<br />
+        Day5: 00:00 5/2 ~00:00 6/2<br />
+        Day6: 00:00 6/2 ~00:00 7/2<br />
+        Day7: 00:00 7/2 ~00:00 8/2<br />
+        Day8: 00:00 8/2 ~00:00 9/2<br />
+        Day9: 00:00 9/2 ~22:00 9/2
       </p>
       <h6>Level beruntung:</h6>
       <p class="dayTime">
@@ -52,7 +52,7 @@
         </span>
         <span>
           <img src="../../assets/img/ruleGift/2.png" alt="">
-          <strong>Hadiah ransel pulau impian</strong>
+          <strong>Hutan jamur</strong>
         </span>
         <span>
           <img src="../../assets/img/ruleGift/3.png" alt="">
@@ -76,10 +76,11 @@
       <h6>Hadiah daftar harian</h6>
       <p> top 1~3 masing-masing hadiahi 15%、12%、10% kupon utk top up dan akan dikirim oleh sistem secara otomatis pada pukul 24 hari ini,hadiah daftar harian akan dikirim ketika acara selesai.</p>
       <h6>Hadiah daftar total:</h6>
-      <p>Top 1: lencana beruntung (30 hari ) + Hadiah ransel pulau impian (senilai 1999 koin) + mount mobil badai (14 hari ) + 1000 koin emas+ 5000 kacang emas</p>
-      <p>Top 2: lencana beruntung (30 hari ) + Hadiah ransel pulau impian (senilai 1999 koin) + mount mobil badai (14 hari )+800 koin emas+ 3000 kacang emas</p>
-      <p>Top 3: lencana beruntung (30 hari ) + Hadiah ransel pulau impian (senilai 1999 koin) + mount mobil badai (14 hari )+600 koin emas+ 2000 kacang emas</p>
-      <p>Top 4~10: lencana beruntung (30 hari ) + 200 koin emas + 1000 kacang emas</p>
+      <p>Top 1: Lencana beruntung (30 hari )+Mount mobil badai (14 hari ) + Bingkai Hutan jamur (30 hari) + VIP (1 bulan)+1000 koin emas+ 5000 kacang emas</p>
+      <p>Top 2: Lencana beruntung (30 hari )+Mount mobil badai (14 hari ) + Bingkai Hutan jamur (30 hari) + VIP (1 bulan)+800 koin emas+ 3000 kacang emas</p>
+      <p>Top 3: Lencana beruntung (30 hari )+Mount mobil badai (14 hari ) + Bingkai Hutan jamur (30 hari) + VIP (1 bulan)+600 koin emas+ 2000 kacang emas</p>
+      <p>Top 4~5: lencana beruntung (30 hari ) +Mount mobil badai (7 hari ) + Bingkai Hutan jamur (15 hari) + 300 koin emas + 1000 kacang emas</p>
+      <p>Top 6~10: lencana beruntung (30 hari ) + 200 koin emas + 500 kacang emas</p>
       <h6>Perhatikan:</h6>
       <p>1. Kupon bonus utk top up setelah dikirim ke ransel ,hanya berlaku selama 24 jam, tolong menggunakannya pada tepat waktu. </p>
       <p>2. Hadiah ransel yang didapatkan berlaku selama 14 hari, silakan gunakannya dalam periode validitas.</p>

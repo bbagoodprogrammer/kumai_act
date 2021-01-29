@@ -1,8 +1,8 @@
 <template>
   <div class="Integral">
     <div class="scoreTips">
-      <div class="lv">Cấp thần tượng<span> Lv.{{Lv}}</span></div>
-      <div class="score">Tiêu phí xu <span>{{score}}</span></div>
+      <div class="lv">{{lang.integral_lv}}<span> Lv.{{Lv}}</span></div>
+      <div class="score">{{lang.integral_coins}} <span>{{score}}</span></div>
     </div>
     <div class="giftLiner">
       <div class="liner_act_hid" :style="{width:giftArr[Lv]?giftArr[Lv].act_width:'0%'}">
@@ -17,20 +17,20 @@
       </div>
     </div>
     <div class="tips">
-      Tiêu xu bằng nổ Lì Xì/ tặng Hộp May Mắn/ chơi Đập Trứng sẽ nhận thưởng tương ứng.
+      {{lang.integral_tips}}
     </div>
     <div class="mask" v-show="showGiftPup">
       <transition name="slide">
         <div class="gift_pup" v-if="showGiftPup">
           <i class="close" @click="showGiftPup = false"></i>
-          <div class="title">Chúc mừng nhận được</div>
+          <div class="title">{{lang.integral_luck}}</div>
           <div class="imgBox">
             <img :src="giftArr[act_lv].img" alt="">
           </div>
           <div class="name">{{giftArr[act_lv].gname}}</div>
           <!-- <div class="gift_coins">5金幣/個</div> -->
-          <div class="gift_tips">Phần thưởng sẽ tự động gửi tới tài khoản bạn</div>
-          <span class="ok" @click="showGiftPup = false">Xác nhận</span>
+          <div class="gift_tips">{{lang.integral_luckTips}}</div>
+          <span class="ok" @click="showGiftPup = false">{{lang.integral_ok}}</span>
         </div>
       </transition>
     </div>
@@ -44,45 +44,48 @@ export default {
     return {
       showGiftPup: false,
       act_lv: 0,
-      giftArr: {
-        1: {
-          gift_tips: 'x30',
-          img: require('../img/get_gift/giftItem_1.png'),
-          name: '10 xu',
-          act_width: '13%',
-          gname: '30 đậu'
-        },
-        2: {
-          gift_tips: '7 ngày',
-          img: require('../img/get_gift/giftItem_2.png'),
-          name: '30 xu',
-          act_width: '30%',
-          gname: 'VIP 7 ngày'
-        },
-        3: {
-          img: require('../img/get_gift/giftItem_3.png'),
-          name: '100 xu',
-          act_width: '50%',
-          gname: 'Hoa Hồng （180 đậu）'
-        },
-        4: {
-          img: require('../img/get_gift/giftItem_4.png'),
-          name: '300 xu',
-          act_width: '70%',
-          gname: 'Pháo Tết（5 xu）'
-        },
-        5: {
-          gift_tips: '7 ngày',
-          img: require('../img/get_gift/giftItem_5.png'),
-          name: '500 xu',
-          act_width: '100%',
-          gname: 'Kẹo Ngọt 7 ngày（110 xu）'
-        },
-      }
+      // giftArr: {
+      //   1: {
+      //     gift_tips: 'x30',
+      //     img: require('../img/get_gift/giftItem_1.png'),
+      //     name: '10 xu',
+      //     act_width: '13%',
+      //     gname: '30 đậu'
+      //   },
+      //   2: {
+      //     gift_tips: '7 ngày',
+      //     img: require('../img/get_gift/giftItem_2.png'),
+      //     name: '30 xu',
+      //     act_width: '30%',
+      //     gname: 'VIP 7 ngày'
+      //   },
+      //   3: {
+      //     img: require('../img/get_gift/giftItem_3.png'),
+      //     name: '100 xu',
+      //     act_width: '50%',
+      //     gname: 'Hoa Hồng （180 đậu）'
+      //   },
+      //   4: {
+      //     img: require('../img/get_gift/giftItem_4.png'),
+      //     name: '300 xu',
+      //     act_width: '70%',
+      //     gname: 'Pháo Tết（5 xu）'
+      //   },
+      //   5: {
+      //     gift_tips: '7 ngày',
+      //     img: require('../img/get_gift/giftItem_5.png'),
+      //     name: '500 xu',
+      //     act_width: '100%',
+      //     gname: 'Kẹo Ngọt 7 ngày（110 xu）'
+      //   },
+      // }
     }
   },
   computed: {
-    ...mapState(['level', 'Lv', 'score'])
+    ...mapState(['level', 'Lv', 'score']),
+    giftArr() {
+      return this.lang.giftArr
+    }
   },
   methods: {
     getGiftApi(lv) {

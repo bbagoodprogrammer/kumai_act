@@ -59,7 +59,7 @@ function getConfig() {
         },
         karaing: {
             name: 'karaing',
-            androidSchema: 'india://karaing.com',
+            androidSchema: 'india://singstarapp.com',
             androidDown: 'https://play.google.com/store/apps/details?id=com.km.ikara',
             iosSchema: '',
             iosDown: '',

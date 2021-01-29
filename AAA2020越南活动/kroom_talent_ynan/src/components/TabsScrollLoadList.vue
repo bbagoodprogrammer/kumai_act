@@ -3,34 +3,30 @@
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
-        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tab1">Bảng Thần Tượng</a>
-        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tab2">Bảng Phòng Kara</a>
+        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tab1">{{lang.rank_title1}}</a>
+        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tab2">{{lang.rank_title2}}</a>
       </div>
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
     <!-- 倒计时 -->
     <div class="downTimebox">
       <!-- <div class="timeTips"> -->
-      <p v-if="step==0">Đếm ngược sự kiện bắt đầu</p>
-      <p v-else-if="step == 1">Đếm ngược sự kiện kết thúc</p>
+      <p v-if="step==0">{{lang.rank_timeDown1}}</p>
+      <p v-else-if="step == 1">{{lang.rank_timeDown2}}</p>
       <!-- </div> -->
       <div class="timeDown" v-if="surplusTime&& !surplusTime.end">
         <strong>{{surplusTime.day}}</strong>
-        <em>ngày</em>
+        <em>{{lang.rank_day}}</em>
         <strong>{{surplusTime.hour}}</strong>
-        <em>Giờ</em>
+        <em>{{lang.rank_hour}}</em>
         <strong>{{surplusTime.minute}}</strong>
-        <em>Phút</em>
+        <em>{{lang.rank_min}}</em>
         <strong>{{surplusTime.second}}</strong>
-        <em>Giây</em>
+        <em>{{lang.rank_second}}</em>
       </div>
-      <p class="tips" v-if="mainTab==0">
-        Xếp hạng theo số xu người dùng tiêu bằng <br />
-        nổ Lì Xì/ tặng Hộp Quà May Mắn/ chơi Đập Trứng.
+      <p class="tips" v-if="mainTab==0" v-html="lang.rank_tips1">
       </p>
-      <p class="tips" v-if="mainTab==1">
-        Xếp hạng theo điểm mị từ nổ Lì Xì /tặng Hộp Quà May Mắn.<br />
-        Trong phòng mỗi lần nổ tên lửa sẽ tăng 10000 điểm.
+      <p class="tips" v-if="mainTab==1" v-html="lang.rank_tips2">
       </p>
     </div>
     <div class="list day" v-if="mainTab==0 && rank.list.length">
@@ -74,9 +70,9 @@
     <!-- 任務列表 -->
     <!-- <taskList v-else></taskList> -->
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-    <div v-if="rank.loading" class="scrollLoading">Đang tải...</div>
+    <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
     <div v-if="rank.none" class="scrollNone">
-      Chưa có số liệu
+      {{lang.noData}}
     </div>
     <!-- <div class="dengdai">敬請期待！</div> -->
   </div>

@@ -9,13 +9,13 @@
       <img src="../../assets/img/gift.png" alt="" class="giftImg">
       <h6>Hadiah arena periode ini dari Top 10</h6>
       <p>Top 1 </p>
-      <p>300 koin emas + VIP(15 hari) +1000 kacang emas</p>
+      <p>Lencana trainee musik+300 koin emas + VIP(15 hari) +1000 kacang emas</p>
       <p>Top 2 </p>
-      <p>200 koin emas + VIP(15 hari) +600 kacang emas</p>
+      <p>Lencana trainee musik+200 koin emas + VIP(15 hari) +600 kacang emas</p>
       <p>Top 3 </p>
-      <p>100 koin emas +VIP(15 hari) +400 kacang emas</p>
+      <p>Lencana trainee musik+100 koin emas +VIP(15 hari) +400 kacang emas</p>
       <p>Top 4 - 10 </p>
-      <p>50 koin emas +VIP(15 hari) +200 kacang emas</p>
+      <p>Lencana trainee musik+50 koin emas +VIP(15 hari) +200 kacang emas</p>
       <h6>Hadiah pertandingan season ini dari Top 100</h6>
       <p>Top 1-3 : Godfather Musik</p>
       <p>Lencana godfather musik +600 koin emas + VIP(15 hari) +1200 kacang emas</p>
@@ -31,7 +31,7 @@
       <!-- <h6>提交參賽作品獎勵：</h6>
       <p>用戶每提交一首打擂歌曲（僅限每日提交的第一首）可獲得1個隨機背包禮物：小星星背包禮物（60金豆）/國際郵票背包禮物（90金豆）/薄荷糖背包禮物（120金豆）/潤喉糖背包禮物（1金幣）/撩一下背包禮物（1金幣）/小情書背包禮物（2金幣）/波板糖背包禮物（3金幣）/草莓水果茶背包禮物（5金幣）</p> -->
       <h6>Hadiah juri:</h6>
-      <p>Kalo juri menilai 30 grup lagu setiap hari ,maka setiap grup lagu akan mendapatkan 2 kacang emas.<br />
+      <p>Kalo juri menilai 30 grup lagu setiap hari ,maka setiap grup lagu akan mendapatkan 5 kacang emas.<br />
         Kalo 8 grup menang dgn berturut-turut yg kamu vote dalam periode saat ini,
         kamu bisa secara acak mendapatkan hadiah ransel kotak musik (360 kacang emas ) / hadiah ransel permen kapas (1 koin emas) / 2 hari VIP /Mount Eagle Fighting (2 hari)<br />
         Ketika setiap vote 50 group, kamu akan mendapatkan hadiah nyanyian Malaikat hati* 1 (7 hari), dan kamu hanya memiliki 1 kesempatan untuk mendapatkannya di setiap periode (hadiah akan dikirim ke ransel dalam waktu 7 hari setelah acara berakhir)</p>
@@ -53,8 +53,8 @@
         <p class="timeItem">{{pstime}}-{{petime}}</p>
         <p>Waktu mencocokkan lawan periode ini :</p>
         <p class="timeItem">10: 00: 00-22: 00: 00, mencocokkan 1 kali lawan setiap 2 jam dlm periode waktu yg mencocokkan, yaitu 10:00:00, 12:00:00, 14:00:00, 16:00:00, 18 : 00: 00, 20:00:00, 22:00:00; Tapi pd hari terakhir pertandingan hanya akan mencocokkan lawan pd pukul 10:00:00 dan 12:00:00, dan tidak mencocokkan lawan lagi setelah waktu itu.</p>
-        <p>Waktu arena pertandingan season ini :</p>
-        <p class="timeItem">{{zsetime}}-{{zeetime}}，Tiap Jumat~ Senin minggu depan</p>
+        <!-- <p>Waktu arena pertandingan season ini :</p>
+        <p class="timeItem">{{zsetime}}-{{zeetime}}，Tiap Jumat~ Senin minggu depan</p> -->
         <!-- <p>活動時間規律說明：</p>
         <div class="timeTips">
           <p>每期時間：</p>

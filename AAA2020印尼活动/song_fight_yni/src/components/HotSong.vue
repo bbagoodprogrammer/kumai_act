@@ -61,10 +61,10 @@
             </li>
           </ul>
           <div class="choicetips">
-            <p>1. Anda perlu menyanyikan lagu resmi yg ditentukan(yaitu Anda perlu menyanyikan lagu iringan yg melompat setelah Klik Lagu Arena)setelah pukul {{time}} utk berpartisipasi dalam acara, menyanyikan lagu iringan lain tidak bisa ikut acara.</p>
+            <p>1. Anda perlu menyanyikan lagu resmi yg ditentukan(yaitu Anda perlu menyanyikan lagu iringan yg melompat setelah Klik Lagu Arena)setelah {{time}} utk berpartisipasi dalam acara, menyanyikan lagu iringan lain tidak bisa ikut acara.</p>
             <p>2. Jenis nyanyian yg ikut acara hanya terbatas pada solo</p>
             <p>3. Satu lagu iringan hanya dapat dipilih 1 nyanyian untuk ikut acara</p>
-            <p>4. Beberapa lagu iringan dapat dipilih untuk berpartisipasi dalam arena di setiap periode. Pengguna akan menerima 1 hadiah ransel ketika setiap kali upload 1 lagu arena(setiap orang hanya bisa menerima sebanyak 1 hadiah, dan banyak hadiah ransel akan dkirimkan secara acak).</p>
+            <p>4. Beberapa lagu iringan dapat dipilih untuk berpartisipasi dalam arena di setiap periode. Pengguna akan menerima 1 hadiah ransel ketika setiap kali upload 1 lagu arena(setiap orang hanya bisa menerima sebanyak 1 hadiah tiap hari, dan banyak hadiah ransel akan dkirimkan secara acak).</p>
             <p>5. Pengguna yang ikut acara harus memiliki setidaknya 1 lagu online setelah acara berakhir, dan mereka akan dptkan 50 kacang emas.</p>
             <p>6. Selama acara, kalo hapus 1 lagu yg ikut acara ,kamu akan dikurangi 1 poin. </p>
           </div>

@@ -71,7 +71,8 @@
       </p>
       <p class="rankTips" v-if="showType==3">
         Gia tộc tăng cấp được thưởng túi quà, cấp I, II, III tương ứng điểm sao 10k, 100k, 500k.<br />
-        Điểm sao = Điểm mị quà xu nhận tại phòng hát/tác phẩm + Điểm nhiệm vụGia tộc tăng cấp được thưởng túi quà, 20-22h ngày cuối cùng được tăng 10%.
+        Điểm sao = Điểm mị quà xu nhận tại phòng hát/tác phẩm + Điểm nhiệm vụ<br />
+        Gia tộc tăng cấp được thưởng túi quà, 20-22h ngày cuối cùng được tăng 10%.
       </p>
     </div>
     <!-- 日榜 -->

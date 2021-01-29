@@ -18,7 +18,7 @@ export default new Router({
         {
             path: '/Rule',
             name: 'Rule',
-            component: Rule,
+            component: _agreement,
             meta: {
                 title: _lang.rule_title
             }

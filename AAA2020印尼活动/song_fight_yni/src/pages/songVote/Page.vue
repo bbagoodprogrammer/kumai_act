@@ -43,9 +43,9 @@
             <span @click="chione(1)">Pilih dia </span>
           </div>
           <div class="chioneUserBtn" v-else>
-            <i class="comments" @click="comments(chioneUserMsg.sid)">komentar</i>
+            <i class="comments" @click="comments(chioneUserMsg.sid)"></i>
             <span @click="attention(chioneUserMsg.uid,chioneUserMsg.attension)"> {{chioneUserMsg.attension?'Udah follow':'+ Follow'}}</span>
-            <i class="share" @click="share()">Berbagi</i>
+            <i class="share" @click="share()"></i>
           </div>
         </div>
       </div>
@@ -382,7 +382,7 @@ export default {
     attention(uid, type) {
       if (type) { return }
       api.appAttemsion(uid).then(res => {
-        if (res.data.response_data) {
+        if (res.response_data) {
           this.chioneUserMsg.attension = true
         } else {
           this.toast(res.data.response_status.error)

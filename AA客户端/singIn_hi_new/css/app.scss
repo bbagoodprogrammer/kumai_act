@@ -146,6 +146,7 @@ a,a:hover {
           .userTips {
             font-size: 0.28rem;
             margin-top: 0.1rem;
+            text-align: center;
           }
         }
         > strong {
@@ -200,7 +201,7 @@ a,a:hover {
     height: 3.16rem;
     background: rgba(255, 255, 255, 1);
     border-radius: 0.12rem;
-    margin: 0 auto;
+    margin: 0.25rem auto 0;
     &.pt {
       padding-top: 1.02rem;
       height: 2.14rem;

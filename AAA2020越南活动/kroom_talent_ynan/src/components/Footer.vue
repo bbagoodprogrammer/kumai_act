@@ -1,10 +1,10 @@
 <template>
   <div class='footerBar' v-if="astState">
-    <span class="noAct" v-if="astState === 1">Sự kiện chưa mở</span>
-    <span class="noAct" v-if="astState === 2">Sự kiện đã kết thúc</span>
-    <span class="signUp" @click="signUpClick()" v-if="astState === 3">Báo danh</span>
+    <span class="noAct" v-if="astState === 1">{{lang.act_noStart}}</span>
+    <span class="noAct" v-if="astState === 2">{{lang.act_end}}</span>
+    <span class="signUp" @click="signUpClick()" v-if="astState === 3">{{lang.singUp}}</span>
     <div class="actIng" v-if="astState == 4">
-      <div class="rank" :class="{noRank:nowUserMsg.rank == 0}">{{nowUserMsg.rank == 0?'Chưa lên BXH':nowUserMsg.rank}}</div>
+      <div class="rank" :class="{noRank:nowUserMsg.rank == 0}">{{nowUserMsg.rank == 0?lang.noRank:nowUserMsg.rank}}</div>
       <div class="uerImg" @click="goUser(nowUserMsg.uid,nowUserMsg.kmic)">
         <img v-if="nowUserMsg.avatar_frame &&nowUserMsg.avatar_frame != ''" :src="nowUserMsg.avatar_frame" class="frame" alt="">
         <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
@@ -18,7 +18,7 @@
       <div class="score"><i class="coins"></i>{{nowUserMsg.score}}</div>
     </div>
     <div class="actIng" v-if="astState == 5">
-      <div class="rank" :class="{noRank:nowUserMsg.rank == 0}">{{nowUserMsg.rank == 0?'Chưa lên BXH':nowUserMsg.rank}}</div>
+      <div class="rank" :class="{noRank:nowUserMsg.rank == 0}">{{nowUserMsg.rank == 0?lang.noRank:nowUserMsg.rank}}</div>
       <div class="uerImg" @click="goKroom(nowUserMsg.info.rid)">
         <!-- <img v-if="nowUserMsg.avatar_frame &&nowUserMsg.avatar_frame != ''" :src="nowUserMsg.avatar_frame" class="frame" alt=""> -->
         <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
@@ -35,7 +35,7 @@
       <transition name="slide">
         <div class="signUp_suc" v-show="showGiftPup">
           <i class="close" @click="showGiftPup = false"></i>
-          Báo danh thành công
+          {{lang.singUp_suc}}
         </div>
       </transition>
     </div>

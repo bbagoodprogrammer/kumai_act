@@ -44,7 +44,7 @@
             <h6>1 Thời gian</h6>
             <p>{{aTimer}}</p>
             <h6>2. Bảng xếp hạng</h6>
-            <p>Bảng xếp hạng dựa trên số lượng nhận quà mũ len và chụp tai. Bảng xếp hạng hiển thị điểm là số lượng quà tặng. </p>
+            <p>Bảng xếp hạng dựa trên số lượng nhận quà chỉ định. Bảng xếp hạng hiển thị điểm là số lượng quà tặng. </p>
             <h6>3. Thưởng</h6>
             <div class="giftBox">
 
