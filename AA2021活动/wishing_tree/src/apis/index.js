@@ -71,8 +71,13 @@ function init() {
     return get(`/wishing_tree/init.php?token=${token}`)
 }
 
+
+function getTask(tid) {
+    return axios.get(`/getTask.php?token=${token}&tid=${tid}`)
+}
 export {
     loadData,
     getInitInfo,
-    init
+    init,
+    getTask
 }

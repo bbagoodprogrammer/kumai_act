@@ -85,12 +85,12 @@ export default {
       hList: [],
       task: {},
       taskName: {
-        login: 'Điểm danh tại trang chủ gia tộc ',
-        online: 'Vào phòng gia tộc đạt 3 phú',
+        login: 'Điểm danh trang chủ gia tộc',
+        online: 'Vào phòng gia tộc đạt 3 phút',
         mic: 'Lên mic 60s tại phòng gia tộc',
         praise: 'Thích tác phẩm của 2 thành viên gia tộc',
         work: 'Đăng 1 tác phẩm công khai',
-        sendGift: 'Tặng 1 quà gia tộc cho thànhviên gia tộc',
+        sendGift: 'Tặng 1 quà gia tộc cho thành viên gia tộc',
       },
       showTask: false,
       task_finished: false
