@@ -4,7 +4,8 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-
+      <Tree />
+      <Integral />
     </div>
     <TabsScrollLoadList ref="scorll" />
   </div>
@@ -17,10 +18,10 @@ import APP from "../utils/openApp"
 import TabsScrollLoadList from "./TabsScrollLoadList"
 import { init } from "../apis"
 import Tree from "./Tree"
-
+import Integral from "./Integral"
 
 export default {
-  components: { TabsScrollLoadList },
+  components: { TabsScrollLoadList, Tree, Integral },
   data() {
     return {
       isShare: false
@@ -37,8 +38,10 @@ export default {
     init() {
       init().then(res => {
         console.log(res)
-        const { c_day, days, step, stime, etime, schule } = res.data.response_data
+        const { c_day, days, step, stime, etime, schule, score } = res.data.response_data
         this.vxc('setSchule', schule)
+        this.vxc('setStep', step)
+        this.vxc('setScore', score)
       })
     },
     judgeShare() {//判断是否为分享环境,请求相应的接口 
@@ -55,9 +58,11 @@ export default {
 
 <style lang="scss">
 .pageIndex {
-  background: #ff7784;
+  background: #ff7784 url(../img/banner.png) no-repeat;
+  background-size: 100% auto;
   .header {
-    height: 12.4rem;
+    height: 7.97rem;
+    padding-top: 4.43rem;
   }
 }
 </style>

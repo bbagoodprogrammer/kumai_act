@@ -16,7 +16,9 @@ export default new vuex.Store({
         totalDay: 0,
         c_day: 0,
         tab: 1,
-        schule: {}
+        schule: {},
+        step: 0,
+        score: 0
     },
     getters: {
         signed: state => {
@@ -67,6 +69,12 @@ export default new vuex.Store({
         },
         setSchule(state, val) {
             state.schule = val
+        },
+        setStep(state, val) {
+            state.step = val
+        },
+        setScore(state, val) {
+            state.score = val
         }
     },
     actions: {
