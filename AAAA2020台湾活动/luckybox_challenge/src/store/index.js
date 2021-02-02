@@ -15,6 +15,8 @@ export default new vuex.Store({
         isShare: false,
         mainTab: 0,
         registered: false,
+        stime: 0,
+        etime: 0
     },
     getters: {
         signed: state => {
@@ -56,6 +58,13 @@ export default new vuex.Store({
         },
         setRegistered(state, val) {
             state.registered = val
+        },
+        setStime(state, val) {
+            console.log(val)
+            state.stime = val
+        },
+        setEtime(state, val) {
+            state.etime = val
         }
     },
     actions: {

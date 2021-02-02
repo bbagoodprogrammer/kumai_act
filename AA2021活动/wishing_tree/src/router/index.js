@@ -14,6 +14,14 @@ export default new Router({
             meta: {
                 title: _lang.title
             }
+        },
+        {
+            path: '/rule',
+            name: 'rule',
+            component: _agreement,
+            meta: {
+                title: _lang.rule_title
+            }
         }
     ]
 })

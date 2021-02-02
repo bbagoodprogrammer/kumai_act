@@ -111,7 +111,7 @@ export default {
   },
   computed: {
     aTimer() {
-      return getDate(new Date(this.stime), 1) + '-' + getDate(new Date(this.etime), 2)
+      return getDate(new Date(this.stime), 2) + '-' + getDate(new Date(this.etime), 2)
     }
   },
   methods: {

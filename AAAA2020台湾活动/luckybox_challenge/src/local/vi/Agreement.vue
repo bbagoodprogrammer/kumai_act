@@ -6,7 +6,7 @@
     </div>
     <div class="gifts" v-if="type == 1">
       <h5>Thời gian</h5>
-      <p>18h 12/1 - 21h 20/1</p>
+      <p>{{actTime}}</p>
       <h5>Phần thưởng</h5>
       <div class="giftsItem">
         <!-- <div class="item" v-for="(item,index) in 28" :key="index">
@@ -46,7 +46,7 @@
     </div>
     <div class="ruleItem" v-else>
       <h5>Thời gian</h5>
-      <p>18h 12/1 - 21h 20/1</p>
+      <p>{{actTime}}</p>
       <h5>Quy tắc</h5>
       <h6 class="minTop">Báo danh</h6>
       <p>1.Nhấn “Báo danh” sẽ báo danh thành công, sau khi báo danh mới bắt đầu tính điểm</p>
@@ -70,10 +70,22 @@
 </template>
 
 <script>
+
+
+import getDate from "../../utils/getDate"
+import { mapState } from "vuex"
+
 export default {
   data() {
     return {
       type: 1
+    }
+  },
+  computed: {
+    ...mapState(['stime', 'etime']),
+    actTime() {
+      console.log(this.stime)
+      return getDate(new Date(this.stime * 1000), 4) + '-' + getDate(new Date(this.etime * 1000), 4)
     }
   },
   methods: {

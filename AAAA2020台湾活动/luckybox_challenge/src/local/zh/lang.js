@@ -11,14 +11,14 @@ export default {
     getTips: '*每日收到3檔作品福運禮盒，可領取對應獎勵，每天可領取1次，僅限當天領取',
     giftTitle: '可能獲得的獎品:',
     giftTips1: '福運禮盒級別越高，獎品越豐厚；',
-    giftTips2: '第5次領取超級禮盒獎勵，必中福運徽章',
+    giftTips2: '第5次領取超級禮盒獎勵，必中福運徽章Ⅱ',
     giftTipsSuc: '恭喜您抽到了$，已派發到您的賬戶上， 請注意查收！',
     ok: '我知道啦',
     boxArr: ['福運禮盒', '高級福運禮盒', '超級福運禮盒'],
     giftList: [
         {
             imgIcon: require('../../img/gift/01.png'),
-            name: '摩羯座頭飾'
+            name: '水瓶座頭飾'
         },
         {
             imgIcon: require('./img/02.png'),

@@ -73,11 +73,22 @@ function init() {
 
 
 function getTask(tid) {
-    return axios.get(`/getTask.php?token=${token}&tid=${tid}`)
+    return axios.get(`/wishing_tree/getTask.php?token=${token}&tid=${tid}`)
+}
+
+function singUp() {
+    return get(`/wishing_tree/register.php?token=${token}`)
+}
+
+
+function histtoryList(type, from) {
+    return axios.get(`/wishing_tree/giftRecord.php?token=${token}&type=${type}&from=${from}`)
 }
 export {
     loadData,
     getInitInfo,
     init,
-    getTask
+    getTask,
+    singUp,
+    histtoryList
 }

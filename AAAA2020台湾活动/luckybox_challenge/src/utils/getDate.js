@@ -14,6 +14,12 @@ function getDate(datem, type) {
     if (type == 2) {
         return `${hours}:${minute}:${second} ${date}/${month}`
     }
+    if (type == 3) {
+        return `${month}月${date}日 ${hours}:${minute}:${second} `
+    }
+    if (type == 4) {
+        return `${hours}h ${date}/${month} `
+    }
     if (type == "pai") {
         if (minute < 10) {
             minute = "0" + minute

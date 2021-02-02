@@ -3,28 +3,32 @@
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
-        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">魅力日榜</a>
-        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">魅力總榜</a>
+        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">許願日榜</a>
+        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">許願總榜</a>
       </div>
-      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh" v-if="actStatus == 1">刷新</a>
-    </div>
-    <div class="rankTips">
-      <div class="giftTips">
-        <p>星光值=收到點讚數X10+收到金幣禮物魅力值</p>
-        <p class="timeTips">每冠名贊助1次紅包，星光值加成2%，上限10%</p>
-      </div>
+      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh" v-if="step == 1">刷新</a>
     </div>
     <DayTabs :tab="tab" @changeClick="tabClick" v-if="mainTab == 0" />
+    <div class="dayGift" v-if="mainTab == 0">
+      <div class="giftTips">
+        根據活動期間每日用戶貢獻的許願值進行排名<br />
+        每日許願值超過888積分的用戶將可獲得
+      </div>
+      <img src="../img/dayGift.png" alt="">
+      <div class="giftName">
+        幸運櫻花(66金幣)
+      </div>
+    </div>
     <!-- 倒計時 -->
-    <div class="downTimeBox2">
-      <div v-if="mainTab == 0">
+    <div class="downTimeBox2" v-if="mainTab == 1">
+      <!-- <div v-if="mainTab == 0">
         <p v-if="tab == c_day">今日日榜結束倒計時</p>
         <p v-else-if="tab > c_day">今日日榜開始倒計時</p>
         <div class="noTime" v-else>今日日榜已結束</div>
-      </div>
-      <div v-if="mainTab == 1">
-        <p v-if="actStatus == 0">總榜開始倒計時</p>
-        <p v-else-if="actStatus == 1">總榜結束倒計時</p>
+      </div> -->
+      <div>
+        <p v-if="step == 0">總榜開始倒計時</p>
+        <p v-else-if="step == 1">總榜結束倒計時</p>
         <div class="noTime" v-else>活動已結束</div>
       </div>
       <div class="timeDown" v-if="surplusTime&& !surplusTime.end">
@@ -45,8 +49,10 @@
           <em>秒</em>
         </div>
       </div>
+      <p class="timeTips">根據活動期間用戶貢獻的許願值進行排名<br />
+        活動結束時排名前10的用戶可獲得豐厚獎勵</p>
     </div>
-    <!-- <img src="../assets/img/rule/gifts3.png" alt="" class="img3" v-if="mainTab == 0"> -->
+
     <!-- 总榜 -->
     <div class="rankList">
       <ul class="list day">
@@ -55,22 +61,15 @@
           <div class="imgBox" @click="goUser(item.uid)">
             <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
             <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
-            <!-- <img v-else-if="item.noble > 0" :src="require(`../assets/img/nob/${item.noble}.png`)" class="nob" alt=""> -->
+            <img v-else-if="item.noble > 0" :src="require(`../img/nob/${item.noble}.png`)" class="nob" alt="">
             <img v-lazy="item.avatar" alt="" class="av">
           </div>
           <div class="msg">
             <div class="nick">{{item.nick}}</div>
-            <div class="add" v-if="item.rate > 0">加成{{item.rate}}%</div>
+            <div class="add">UID:{{item.uid}}</div>
           </div>
           <div class="score">
-            <!-- Lv.{{item.level}}  -->
-            <div class="lv"><em class="lvScore">星光值：{{item.score}}</em> </div>
-            <div class="iconScore">
-              <!-- is_prize -->
-              <span v-if="item.is_prize" class="luck_ed">中獎</span>
-              <span v-if="item.pro">中獎概率:{{item.pro}}%</span>
-
-            </div>
+            <div class="lv"><i></i><em class="lvScore">{{item.score}}</em> </div>
           </div>
         </li>
       </ul>
@@ -135,25 +134,28 @@ export default {
           this.onScroll();
         }
       });
+    },
+    down_second(val) {
+      this.downTimeGo('time1', val)
     }
   },
   computed: {
-    ...mapState(['rankGroups', "setInited", "isShare", "actStatus", "c_day", "inited", "dateArr"]),
+    ...mapState(['rankGroups', "setInited", "isShare", "step", "c_day", "inited", "dateArr", "down_second"]),
     rankKey() {
       return this.mainTab == 1 ? 'total' : this.tab;
     },
     rankApi() {
       if (this.isShare) {
-        var dayApi = `/charismatic_spkepersion/rank.php?tm={day}&from={from}`;
-        var totalApi = `/charismatic_spkepersion/rank.php?from={from}`;
+        var dayApi = `/wishing_tree/allList.php?time={day}&from={from}`;
+        var totalApi = `/wishing_tree/allList.php?from={from}`;
         var api = this.rankKey == 'total' ? totalApi : dayApi;
         return api.replace('{day}', this.dateArr[this.tab - 1]).replace('{type}', this.showType);
       } else {
-        var dayApi = `/charismatic_spkepersion/rank.php?token={token}&tm={day}&from={from}`;
-        var totalApi = `/charismatic_spkepersion/rank.php?token={token}&from={from}`;
+        var dayApi = `/wishing_tree/allList.php?token={token}&time={day}&from={from}`;
+        var totalApi = `/wishing_tree/allList.php?token={token}&from={from}`;
         var api = this.rankKey == 'total' ? totalApi : dayApi;
         const token = getUrlString('token') || '';
-        console.log(this.tab)
+
         return api.replace('{day}', getDate(new Date(this.dateArr[this.tab - 1] * 1000), 4)).replace('{token}', token)
       }
     },
@@ -165,7 +167,7 @@ export default {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       // if (rankConf.second && rankConf.second > 0) {
-      this.downTimeGo('time' + this.rankKey, rankConf.second)
+      // this.downTimeGo('time' + this.rankKey, rankConf.second)
       // }
       return rankConf;
     },
@@ -224,10 +226,10 @@ export default {
               return;
             }
             //个人信息
-            if (response_data.rank) {
+            if (response_data.myrank) {
               this.vxc("changGroupsUserMsg", {//初始当前日榜个人信息
                 key: this.rankKey,
-                msg: response_data.rank
+                msg: response_data.myrank
               })
             }
 
@@ -266,7 +268,7 @@ export default {
     onRefresh() {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
-      this.$parent.getDefaultData('ref')
+      this.$parent.init('ref')
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,
         loadCount: 0,
@@ -302,6 +304,7 @@ export default {
       }
     },
     downTimeGo(timeName, val) {
+      console.log(timeName, val)
       clearInterval(this.timer)
       if (!downTime(timeName)) {
         downTime(timeName, val);
@@ -319,9 +322,9 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .rankGroups {
-  padding: 0.24rem 0 0;
+  padding: 0.24rem 0 1.5rem;
   position: relative;
   .mainTabs {
     margin: 0 auto;
@@ -333,8 +336,8 @@ export default {
       justify-content: center;
       align-items: center;
       margin: 0 auto;
-      // background: url(../assets/img/rankTabs.png);
-      // background-size: 100% 100%;
+      background: url(../img/tabs.png);
+      background-size: 100% 100%;
       a {
         display: block;
         width: 3.56rem;
@@ -342,14 +345,39 @@ export default {
         text-align: center;
         line-height: 0.9rem;
         font-size: 0.32rem;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(255, 245, 219, 1);
         transition: all 0.1s linear;
         &.current {
-          color: rgba(133, 88, 14, 1);
-          // background: url(../assets/img/rank_tab_act.png);
-          // background-size: 100% 100%;
+          color: rgba(145, 77, 68, 1);
+          background: url(../img/tab_act.png);
+          background-size: 100% 100%;
         }
       }
+    }
+  }
+  .dayGift {
+    width: 6.44rem;
+    height: 2.83rem;
+    background: rgba(193, 58, 65, 0.2);
+    border-radius: 0.2rem;
+    margin: 0.25rem auto 0;
+    padding-top: 0.22rem;
+    .giftTips {
+      color: rgba(255, 255, 255, 1);
+      font-size: 0.22rem;
+      text-align: center;
+    }
+    > img {
+      display: block;
+      width: 1.25rem;
+      height: 1.25rem;
+      margin: 0.18rem auto 0;
+    }
+    .giftName {
+      text-align: center;
+      margin: 0.15rem auto 0;
+      font-size: 0.24rem;
+      color: #fff;
     }
   }
   .rankTips {
@@ -394,67 +422,14 @@ export default {
         }
       }
     }
-    > p {
-      text-align: center;
-      font-size: 0.28rem;
-      padding: 0 0.27rem;
-      margin: 0.43rem 0 0.55rem;
-    }
   }
   .rankList {
-    width: 7.2rem;
-    // background: url(../assets/img/rankBg.png) no-repeat;
-    // background-size: 100% auto;
+    width: 7.17rem;
     border-radius: 0.2rem;
-    margin: 0.28rem auto;
+    margin: 0.1rem auto;
     padding-top: 0.05rem;
-    .upTopRank {
-      .topTabs {
-        width: 6.4rem;
-        height: 0.88rem;
-        display: flex;
-        align-self: center;
-        // background: url(../assets/img/rank/topTabsBg.png);
-        // background-size: 100% 100%;
-        margin: 0.38rem auto 0;
-        span {
-          width: 3.2rem;
-          height: 0.8rem;
-          text-align: center;
-          line-height: 0.88rem;
-          color: rgba(144, 133, 118, 1);
-          font-size: 0.28rem;
-          &.act {
-            font-size: 0.32rem;
-            color: rgba(126, 26, 6, 1);
-            // background: url(../assets/img/rank/topTabsAct.png);
-            // background-size: 100% 100%;
-          }
-        }
-      }
-      .listHeader {
-        padding: 0 0.39rem;
-        font-size: 0.28rem;
-        color: rgba(252, 245, 193, 1);
-        display: flex;
-        white-space: nowrap;
-        margin: 0.2rem 0 0.1rem;
-        .name {
-          width: 2.6rem;
-          text-align: right;
-        }
-        .bar {
-          width: 2.8rem;
-          text-align: center;
-        }
-        .status {
-          flex: 1;
-          text-align: center;
-        }
-      }
-    }
     .list {
-      width: 7.1rem;
+      width: 7.17rem;
       margin: 0 auto;
       &.total {
         .rank {
@@ -539,14 +514,14 @@ export default {
         }
       }
       li {
-        height: 1.4rem;
+        height: 1.35rem;
         display: flex;
         align-items: center;
         position: relative;
         padding: 0 0.3rem;
         margin-bottom: 0.04rem;
-        // background: url(../assets/img/rank/rank4.png);
-        // background-size: 100% 100%;
+        background: url(../img/top_rank.png);
+        background-size: 100% 100%;
         .rank {
           width: 0.76rem;
           height: 0.65rem;
@@ -595,16 +570,8 @@ export default {
             text-overflow: ellipsis;
           }
           .add {
-            width: 1.07rem;
-            height: 0.33rem;
-            background: linear-gradient(90deg, #ffd6ba 0%, #fdf2d5 100%);
-            border: 0.02rem solid #ffef9d;
-            box-sizing: border-box;
-            border-radius: 0.17rem;
-            text-align: center;
-            line-height: 0.33rem;
-            color: rgba(133, 88, 14, 1);
-            font-size: 0.22rem;
+            color: rgba(255, 119, 132, 1);
+            font-size: 0.24rem;
             margin-top: 0.15rem;
             white-space: nowrap;
           }
@@ -613,12 +580,20 @@ export default {
           flex: 1;
           width: 2.58rem;
           .lv {
-            white-space: nowrap;
-            color: rgba(252, 245, 193, 1);
-            font-size: 0.26rem;
-            text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            i {
+              width: 0.41rem;
+              height: 0.42rem;
+              background: url(../img/gift_icon.png);
+              background-size: 100% 100%;
+              margin-right: 0.15rem;
+            }
             em {
-              font-size: 0.26rem;
+              font-size: 0.24rem;
+              color: rgba(249, 121, 145, 1);
+              font-weight: bold;
             }
           }
           .iconScore {
@@ -659,33 +634,33 @@ export default {
             }
           }
         }
-        // &.rank1 {
-        //   background: url(../assets/img/rank/rank1.png);
-        //   background-size: 100% 100%;
-        //   .rank {
-        //     text-indent: -999rem;
-        //     background: url(../assets/img/rank/top1.png);
-        //     background-size: 100% 100%;
-        //   }
-        // }
-        // &.rank2 {
-        //   background: url(../assets/img/rank/rank2.png);
-        //   background-size: 100% 100%;
-        //   .rank {
-        //     text-indent: -999rem;
-        //     background: url(../assets/img/rank/top2.png);
-        //     background-size: 100% 100%;
-        //   }
-        // }
-        // &.rank3 {
-        //   background: url(../assets/img/rank/rank3.png);
-        //   background-size: 100% 100%;
-        //   .rank {
-        //     text-indent: -999rem;
-        //     background: url(../assets/img/rank/top3.png);
-        //     background-size: 100% 100%;
-        //   }
-        // }
+        &.rank1 {
+          background: url(../img/top3_rank.png);
+          background-size: 100% 100%;
+          .rank {
+            text-indent: -999rem;
+            background: url(../img/top1.png);
+            background-size: 100% 100%;
+          }
+        }
+        &.rank2 {
+          background: url(../img/top3_rank.png);
+          background-size: 100% 100%;
+          .rank {
+            text-indent: -999rem;
+            background: url(../img/top2.png);
+            background-size: 100% 100%;
+          }
+        }
+        &.rank3 {
+          background: url(../img/top3_rank.png);
+          background-size: 100% 100%;
+          .rank {
+            text-indent: -999rem;
+            background: url(../img/top3.png);
+            background-size: 100% 100%;
+          }
+        }
       }
       li:last-child::before {
         display: none;
@@ -748,17 +723,25 @@ export default {
       strong {
         display: block;
         text-align: center;
-        width: 0.98rem;
-        height: 0.98rem;
-        line-height: 0.98rem;
-        // background: url(../assets/img/tmBg.png);
-        // background-size: 100% 100%;
+        width: 0.7rem;
+        height: 0.7rem;
+        line-height: 0.7rem;
+        background: url(../img/time_bg.png);
+        background-size: 100% 100%;
+        color: rgba(145, 77, 68, 1);
+        font-size: 0.36rem;
       }
       em {
         font-size: 0.24rem;
-        margin: 0.2rem 0.05 0;
+        margin: 0.05rem 0.05rem 0 0.2rem;
+        color: rgba(255, 198, 212, 1);
       }
     }
+  }
+  .timeTips {
+    font-size: 0.24rem;
+    text-align: center;
+    margin: 0.13rem auto 0;
   }
   .noTime {
     line-height: 0.6rem;
@@ -777,11 +760,11 @@ export default {
   height: 0.94rem;
   position: fixed;
   right: 0.08rem;
-  bottom: 1.35rem;
-  // background: url(../assets/img/refresh.png) no-repeat;
-  // background-size: contain;
+  bottom: 1.55rem;
+  background: url(../img/refresh.png) no-repeat;
+  background-size: contain;
   transition: all 1s;
   text-indent: -999rem;
-  z-index: 100;
+  z-index: 5000;
 }
 </style>
