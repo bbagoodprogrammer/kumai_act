@@ -6,7 +6,7 @@ function getDate(datem, type) {
         minute = datem.getMinutes() < 10 ? '0' + datem.getMinutes() : datem.getMinutes(),
         second = datem.getSeconds() < 10 ? '0' + datem.getSeconds() : datem.getSeconds();
     if (type == 1) {
-        return `${month}-${date} ${hours}:${minute}`
+        return `${month}.${date} ${hours}:${minute}`
     }
     if (type == 3) {
         return `${month}.${date}`

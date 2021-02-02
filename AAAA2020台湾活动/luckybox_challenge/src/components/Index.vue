@@ -53,11 +53,13 @@ export default {
     },
     initData() {
       init().then(res => {
-        const { step, gift, list, rank, user_info, top } = res.data.response_data
+        const { step, gift, list, rank, user_info, top, etime, stime } = res.data.response_data
         this.$store.commit('setStep', step)
         this.$store.commit('setGift', gift)
         this.$store.commit('setRegistered', user_info.registered)
         this.roolmsgArr = top
+        this.$store.commit('setStime', stime)
+        this.$store.commit('setEtime', etime)
       })
     },
     showHistory() {

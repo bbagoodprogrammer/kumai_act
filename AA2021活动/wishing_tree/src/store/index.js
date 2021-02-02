@@ -10,15 +10,21 @@ export default new vuex.Store({
         loading: false,
         share: true,
         rankGroups: {},  //储存當天的信息
+        rankGroups_history: {},
         groupsUserMsg: {},  //儲存各種天數的個人信息
-        setInited: 0,
+        inited: 0,
         dateArr: [],
         totalDay: 0,
         c_day: 0,
         tab: 1,
         schule: {},
         step: 0,
-        score: 0
+        score: 0,
+        all_score: 0,
+        down_second: 0,
+        reg: false,
+        myScore: 0,
+        notice: []
     },
     getters: {
         signed: state => {
@@ -42,7 +48,7 @@ export default new vuex.Store({
                 delete obj['key'];
                 state.groupsUserMsg = Object.assign({}, state.groupsUserMsg, { [key]: Object.assign({}, state.groupsUserMsg[key], obj) });
             }
-            // console.log(state.groupsUserMsg)
+            console.log(state.groupsUserMsg)
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.key != 'undefined') {
@@ -51,6 +57,14 @@ export default new vuex.Store({
                 state.rankGroups = Object.assign({}, state.rankGroups, { [key]: Object.assign({}, state.rankGroups[key], obj) });
             }
             // console.log(state.rankGroups)
+        },
+        updateRankGroups_history(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.rankGroups_history = Object.assign({}, state.rankGroups_history, { [key]: Object.assign({}, state.rankGroups_history[key], obj) });
+            }
+            console.log(state.rankGroups_history)
         },
         changTab(state, val) {
             state.tab = val
@@ -75,6 +89,22 @@ export default new vuex.Store({
         },
         setScore(state, val) {
             state.score = val
+        },
+        setAll_score(state, val) {
+            state.all_score = val
+        },
+        setDown_second(state, val) {
+
+            state.down_second = val
+        },
+        setReg(state, val) {
+            state.reg = val
+        },
+        setMyScore(state, val) {
+            state.myScore = val
+        },
+        setNotice(state, val) {
+            state.notice = val
         }
     },
     actions: {

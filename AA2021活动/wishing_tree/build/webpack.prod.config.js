@@ -152,7 +152,11 @@ module.exports = {
             template: 'src/html/app.html',
             chunks: ['runtime', 'local', 'app'],
         }),
-
+        new HtmlPlugin({
+            filename: 'index_vi.html',
+            template: 'src/html/app_vi.html',
+            chunks: ['runtime', 'local', 'vendor', 'common', 'config', 'app'],
+        }),
         // 内联runtime到html主要考虑将来在项目中动态导入文件导致所有页面主脚本文件缓存失效问题
         // 动态导入类似这样：import(/*webpackChunkName:"lazyload"*/'vue-lazyload')
         // 动态导入文件如果已经打包到项目中，再执行一样的文件动态导入打包会出错

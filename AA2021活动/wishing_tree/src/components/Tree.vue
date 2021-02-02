@@ -1,11 +1,12 @@
 <template>
-  <div class="tree">
+  <div class="tree" :class="{bg:!banner_tree_svga}">
+    <canvas id="banner_tree" v-show="banner_tree_svga"></canvas>
     <span id="lottie"></span>
     <span class="ball" :class="[{move:item.move,can:item.suc && !item.move},'ball' + index]" v-for="(item,index) in newObj" :key="index" @click="showCarrotAnim(index)">
       <em :class="{act:!item.get && item.suc}">+{{item.chance}}</em>
       <span class="ballTips">{{item.suc?'可領取':`任務${index}`}}</span>
     </span>
-    <span class="ball ball6" :class="{move:score_move}" @click="getScore()" v-if="score"></span>
+    <span class="ball ball6" :class="{move:score_move}" @click="getScore()" v-if="score"><em>+{{score}}</em></span>
     <div class="mask" v-show="showPup">
       <transition name="slide">
         <div class="taskPup" v-if="showPup">
@@ -31,7 +32,9 @@ export default {
       newObj: {},
       score_move: false,
       act_index: 1,
-      showPup: false
+      showPup: false,
+      ani: false,
+      banner_tree_svga: false
     }
   },
   watch: {
@@ -49,9 +52,14 @@ export default {
   },
   methods: {
     showCarrotAnim(index) {
+      if (this.ani) {
+        return
+      }
       globalBus.$emit('commonEvent', () => {
+        this.ani = true
         if (this.newObj[index].suc) {
           getTask(index).then(res => {
+            this.ani = false
             if (res.data.response_status.code == 0) {
               this.newObj[index].move = true
               this.$forceUpdate();
@@ -60,6 +68,7 @@ export default {
             }
           })
         } else {
+          this.ani = false
           this.showPup = true
           this.act_index = index
         }
@@ -67,9 +76,15 @@ export default {
     },
     getScore() {
       globalBus.$emit('commonEvent', () => {
-        this.score_move = true
-        this.vxc('setScore', 0)
+        getTask(6).then(res => {
+          this.ani = false
+          if (res.data.response_status.code == 0) {
+            this.score_move = true
+          }
+          // this.vxc('setScore', 0)
+        })
       })
+
     }
   }
 }
@@ -84,13 +99,17 @@ export default {
   top: 2rem;
   opacity: 0;
 }
-.tree {
+.tree,
+#banner_tree {
   width: 5.34rem;
   height: 5.13rem;
-  background: url(../img/tree.png);
-  background-size: 100% 100%;
   margin: 0 auto;
   position: relative;
+  &.bg {
+    background: url(../img/tree.png);
+    background-size: 100% 100%;
+  }
+
   .ball {
     width: 0.93rem;
     height: 0.93rem;

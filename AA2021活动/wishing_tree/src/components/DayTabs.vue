@@ -84,43 +84,40 @@ export default {
   display: flex;
   align-items: center;
   margin: 0.29rem auto 0;
-  padding: 0 0.5rem;
+  padding: 0 0.7rem;
   .pre {
-    width: 0.44rem;
-    height: 0.44rem;
-    // background: url(../assets/img/pre.png) no-repeat;
-    // background-size: auto 100%;
+    width: 0.56rem;
+    height: 0.58rem;
+    background: url(../img/pre.png) no-repeat;
+    background-size: auto 100%;
     margin-right: 0.17rem;
   }
   .next {
-    width: 0.44rem;
-    height: 0.44rem;
-    // background: url(../assets/img/next.png) no-repeat;
-    // background-size: auto 100%;
+    width: 0.56rem;
+    height: 0.58rem;
+    background: url(../img/next.png) no-repeat;
+    background-size: auto 100%;
     margin-left: 0.17rem;
   }
   .days {
-    height: 0.78rem;
-    background: rgba(155, 80, 255, 0);
-    border: 0.03rem solid RGBA(254, 220, 192, 1);
+    height: 0.63rem;
     overflow: hidden;
-    border-radius: 0.12rem;
     flex: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     a {
       height: 100%;
       position: relative;
-      border-right: 0.02rem solid RGBA(254, 228, 199, 1);
       em {
-        width: 1.3rem;
+        width: 0.99rem;
+        height: 0.63rem;
+        background: #f35e64;
+        border-radius: 0.32rem;
+        color: rgba(255, 198, 212, 1);
         display: inline-block;
-        height: 100%;
         text-align: center;
-        // background: url(../assets/img/dayTabBg3.png);
-        // background-size: 100% 100%;
-        line-height: 0.78rem;
+        line-height: 0.63rem;
         color: RGBA(255, 255, 255, 0.6);
         font-size: 80%;
         position: relative;
@@ -130,9 +127,9 @@ export default {
         em {
           // width: 1.24rem;
           // height: 0.72rem;
-          color: #fff;
-          // background: url(../assets/img/dayTab_act.png);
-          // background-size: 100% 100%;
+          color: rgba(145, 77, 68, 1);
+          background: url(../img/dayTab_act.png);
+          background-size: 100% 100%;
         }
       }
       a:last-child {

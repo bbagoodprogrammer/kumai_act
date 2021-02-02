@@ -72,7 +72,7 @@
           <div class="userMsg">
             <div class="name">{{item.nick}}</div>
             <div class="score"><i></i><em>{{item.score}}</em></div>
-            <div class="flag"> <img :src="item.flag" alt=""></div>
+            <!-- <div class="flag"> <img :src="item.flag" alt=""></div> -->
             <div class="ticket" v-if="mainTab == 0">{{lang.ticket.replace('X',item.rebate)}}</div>
           </div>
         </div>
@@ -82,15 +82,15 @@
           <div class="rank">{{item.rank}}</div>
           <div class="uerImg">
             <img v-lazy="item.avatar" alt="" class="imgItem">
-            <img v-if="item.frame.indexOf('.png') > -1" :src="item.frame" alt="" class="noble">
-            <i v-else-if="item.vip>0" class="vip">VIP{{item.vip}}</i>
+            <!-- <img v-if="item.frame.indexOf('.png') > -1" :src="item.frame" alt="" class="noble"> -->
+            <i v-if="item.vip>0" class="vip">VIP{{item.vip}}</i>
           </div>
           <div class="userMsg">
             <div class="name">
               <span>{{item.nick}}</span>
             </div>
             <div class="probability" v-if="mainTab == 0">{{lang.luckGrade}}<em>{{lang.lv}}{{item.level?item.level:0}}</em></div>
-            <div class="flag"> <img :src="item.flag" alt=""></div>
+            <!-- <div class="flag"> <img :src="item.flag" alt=""></div> -->
           </div>
           <div class="score"><i></i><em>{{item.score}}</em></div>
         </li>
