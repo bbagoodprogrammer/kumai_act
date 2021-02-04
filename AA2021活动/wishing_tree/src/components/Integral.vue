@@ -1,28 +1,26 @@
 <template>
   <div class="Integral">
     <div class="ownerScore">
-      <span>個人許願值:</span>
+      <span>{{lang.ownerScore}}</span>
       <div class="ownerLiner">
         <div class="linerMark"></div>
-        <div class="actLiner" :style="{width:actWidth}"></div>
+        <div class="actLiner" :style="{width:actWidth}" :class="{min:myScore >= 1000}"></div>
         <div class="scoreNums">
           <span class="numsItem" v-for="(item,index) in ownerScore" :key="index">{{item}}</span>
         </div>
       </div>
     </div>
     <div class="totalScore">
-      <span>全服許願值:</span>
+      <span>{{lang.allScore}}</span>
       <div class="ownerLiner">
         <div class="linerMark"></div>
-        <div class="actLiner" :style="{width:all_actWidth}"></div>
+        <div class="actLiner" :style="{width:all_actWidth}" :class="{min:myScore >= 500000}"></div>
         <div class="scoreNums">
           <span class="numsItem" v-for="(item,index) in totalScore" :key="index">{{item/10000}}萬</span>
         </div>
       </div>
     </div>
-    <div class="linerTips">
-      全服許願值達到指定數值時許願樹便會顯靈<br />
-      貢獻的許願值越多
+    <div class="linerTips" v-html="lang.integralTips">
     </div>
   </div>
 </template>
@@ -75,7 +73,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .Integral {
-  width: 6.44rem;
+  width: 7.05rem;
   height: 2.46rem;
   background: url(../img/integral_bg.png);
   background-size: 100% 100%;
@@ -109,6 +107,9 @@ export default {
       border-radius: 0.07rem;
       top: 0.06rem;
       left: 0.1rem;
+      &.min {
+        min-width: 1.5%;
+      }
     }
     .scoreNums {
       width: 5.2rem;
@@ -118,7 +119,7 @@ export default {
       justify-content: space-between;
       position: absolute;
       bottom: -0.35rem;
-      left: -0.2rem;
+      left: -0.3rem;
       span {
         flex: 1;
       }
@@ -131,6 +132,12 @@ export default {
     font-size: 0.22rem;
     display: flex;
     align-items: center;
+    span {
+      width: 1.5rem;
+      text-align: center;
+      white-space: nowrap;
+      margin-right: 0.15rem;
+    }
   }
   .linerTips {
     text-align: center;

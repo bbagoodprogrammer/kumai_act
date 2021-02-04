@@ -28,7 +28,7 @@
           </div>
           <div class="tipsBox">
             <p>{{lang.giftTips1}}</p>
-            <p>{{lang.giftTips2}}</p>
+            <!-- <p>{{lang.giftTips2}}</p> -->
           </div>
         </div>
       </transition>
@@ -98,11 +98,14 @@ export default {
   position: relative;
   .showGfitPup {
     display: block;
-    width: 0.4rem;
-    height: 0.4rem;
+    width: 0.32rem;
+    height: 0.32rem;
     position: absolute;
-    right: 2.4rem;
-    top: 0.35rem;
+    right: 2.3rem;
+    top: 0.4rem;
+    z-index: 3;
+    background: url(../img/quest.png);
+    background-size: 100% 100%;
   }
   .gift {
     padding: 0 0.8rem;
@@ -127,6 +130,7 @@ export default {
         }
       }
       strong {
+        height: 0.6rem;
         display: block;
         text-align: center;
         font-size: 0.24rem;
@@ -139,7 +143,7 @@ export default {
         background: url(../img/getNo.png);
         background-size: 100% 100%;
         text-align: center;
-        margin: 0.24rem auto;
+        margin: 0.2rem auto 0.1rem;
         em {
           display: block;
           height: 100%;

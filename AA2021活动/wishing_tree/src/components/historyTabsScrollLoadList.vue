@@ -3,15 +3,15 @@
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
-        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">許願值記錄</a>
-        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">獎勵記錄</a>
+        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{lang.history_tab1}}</a>
+        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">{{lang.history_tab2}}</a>
       </div>
     </div>
     <div class="tabHeader">
-      <span>時間</span>
-      <span>途徑</span>
-      <span v-if="mainTab==0">獲得許願值</span>
-      <span v-else>獎勵</span>
+      <span>{{lang.history_tm}}</span>
+      <span>{{lang.history_get}}</span>
+      <span v-if="mainTab==0">{{lang.history_giftScore}}</span>
+      <span v-else>{{lang.history_gift}}</span>
     </div>
     <!-- 总榜 -->
     <div class="rankList_history">
@@ -28,9 +28,9 @@
 
       <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
       <div class="listTipsBox" v-if="rank.loading|| rank.none">
-        <div v-if="rank.loading" class="scrollLoading">加載中...</div>
+        <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
         <div v-if="rank.none " class="scrollNone">
-          暫無數據
+          {{lang.noData}}
         </div>
       </div>
     </div>
@@ -68,15 +68,15 @@ export default {
   data() {
     return {
       mainTab: 0,
-      channel1: {
-        0: '任務獲得',
-        1: '送禮獲得'
-      },
-      channel2: {
-        0: '全服許願值獎勵',
-        1: '個人許願值獎勵',
-        2: '日榜獎勵'
-      }
+      // channel1: {
+      //   0: '任務獲得',
+      //   1: '送禮獲得'
+      // },
+      // channel2: {
+      //   0: '全服許願值獎勵',
+      //   1: '個人許願值獎勵',
+      //   2: '日榜獎勵'
+      // }
     }
   },
   computed: {
@@ -99,6 +99,8 @@ export default {
       rankConf.list = rankConf.list || [];
       return rankConf;
     },
+    channel1: () => _lang.channel1,
+    channel2: () => _lang.channel2,
   },
   mounted() {
     this.scrollable = this.$el.querySelector('.rankList_history');
@@ -111,7 +113,7 @@ export default {
 
     mainTabClick(tab) { //总榜切换
       this.mainTab = tab;
-      this.vxc('changTab', this.rankKey)
+      // this.vxc('changTab', this.rankKey)
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
           this.onScroll();

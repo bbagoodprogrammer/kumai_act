@@ -78,7 +78,8 @@ export default {
     height: 0.28rem;
     background: url(../img/sing.png);
     background-size: 100% 100%;
-    margin: 0 0.12rem;
+    margin: 0 0.3rem 0 0.15rem;
+    transform: rotate(180deg);
   }
   .popup {
     flex: 1;

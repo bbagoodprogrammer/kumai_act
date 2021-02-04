@@ -9,22 +9,22 @@
       <img src="../../assets/img/gift.png" alt="" class="giftImg">
       <h6>Hadiah arena periode ini dari Top 10</h6>
       <p>Top 1 </p>
-      <p>Lencana trainee musik+300 koin emas + VIP(15 hari) +1000 kacang emas</p>
+      <p>Lencana trainee musik(7 hari)+300 koin emas +1000 kacang emas</p>
       <p>Top 2 </p>
-      <p>Lencana trainee musik+200 koin emas + VIP(15 hari) +600 kacang emas</p>
+      <p>Lencana trainee musik(7 hari)+200 koin emas +600 kacang emas</p>
       <p>Top 3 </p>
-      <p>Lencana trainee musik+100 koin emas +VIP(15 hari) +400 kacang emas</p>
+      <p>Lencana trainee musik(7 hari)+100 koin emas +400 kacang emas</p>
       <p>Top 4 - 10 </p>
-      <p>Lencana trainee musik+50 koin emas +VIP(15 hari) +200 kacang emas</p>
+      <p>Lencana trainee musik(7 hari)+50 koin emas +200 kacang emas</p>
       <h6>Hadiah pertandingan season ini dari Top 100</h6>
       <p>Top 1-3 : Godfather Musik</p>
-      <p>Lencana godfather musik +600 koin emas + VIP(15 hari) +1200 kacang emas</p>
+      <p>Lencana godfather musik(1 bulan)+500 koin emas + VIP(1 bulan) +1200 kacang emas</p>
       <p>Top 4 - 10 : Talent Musik</p>
-      <p>Lencana talent musik + 500 koin emas + VIP(15 hari) +1000 kacang emas</p>
+      <p>Lencana talent musik (1 bulan)+ 400 koin emas + VIP(1 bulan)+1000 kacang emas</p>
       <p>Top 11 - 50 : Bintang Musik</p>
-      <p>Lencana bintang musik + 300 koin emas + VIP(15 hari) + 600 kacang emas</p>
+      <p>Lencana bintang musik (1 bulan)+ 100 koin emas + VIP(1 bulan)+ 600 kacang emas</p>
       <p>Top 51 - 100 : Master Musik</p>
-      <p>Lencana master musik + 100 koin emas + VIP(15 hari) + 300 kacang emas</p>
+      <p>Lencana master musik (1 bulan)+ 50 koin emas VIP(1 bulan) + 300 kacang emas</p>
       <h6>Hadiah utk upload lagu:</h6>
       <p>Pengguna akan menerima 1 hadiah ransel ketika setiap kali kirim 1 lagu arena,pengguna yang ikut acara harus memiliki setidaknya 1 lagu online setelah acara berakhir, dan mereka akan dptkan 50 kacang emas.</p>
 
@@ -32,7 +32,7 @@
       <p>用戶每提交一首打擂歌曲（僅限每日提交的第一首）可獲得1個隨機背包禮物：小星星背包禮物（60金豆）/國際郵票背包禮物（90金豆）/薄荷糖背包禮物（120金豆）/潤喉糖背包禮物（1金幣）/撩一下背包禮物（1金幣）/小情書背包禮物（2金幣）/波板糖背包禮物（3金幣）/草莓水果茶背包禮物（5金幣）</p> -->
       <h6>Hadiah juri:</h6>
       <p>Kalo juri menilai 30 grup lagu setiap hari ,maka setiap grup lagu akan mendapatkan 5 kacang emas.<br />
-        Kalo 8 grup menang dgn berturut-turut yg kamu vote dalam periode saat ini,
+        Kalo 5 grup menang dgn berturut-turut yg kamu vote dalam periode saat ini,
         kamu bisa secara acak mendapatkan hadiah ransel kotak musik (360 kacang emas ) / hadiah ransel permen kapas (1 koin emas) / 2 hari VIP /Mount Eagle Fighting (2 hari)<br />
         Ketika setiap vote 50 group, kamu akan mendapatkan hadiah nyanyian Malaikat hati* 1 (7 hari), dan kamu hanya memiliki 1 kesempatan untuk mendapatkannya di setiap periode (hadiah akan dikirim ke ransel dalam waktu 7 hari setelah acara berakhir)</p>
       <h6>Judul juri dan hadiah hak istimewa :</h6>
@@ -73,13 +73,13 @@
         <p>5. Kamu berhasil memilih lagu arena dan mencocokkan lawan untuk ikut acara, kalo kamu hapus lagu arena ini akan dianggap abstain otomatis. Hasil lagu arena akan tidak dihitung dari kedua pihak, dan pihak lain akan berpartisipasi di babak berikutnya utk ikut acara.</p>
         <p>6、Sistem akan secara otomatis mencocokkan dua kontestan dari lagu yg sama untuk membentuk grup yg sama, dan lagu tersebut akan ditampilkan ke juri publik untuk pemungutan suara. Kontestan dengan suara lebih banyak utk per lagu akan menang sampai acara berakhir.</p>
         <p>7. Jika dalam sebuah lagu, jumlah total suara dari dua kontestan melebihi 50, dan salah satu pihak mendapatkan 80% atau lebih jumlah suara (yaitu, jumlah suara yang diperoleh oleh salah satu pihak /total suara untuk lagu tersebut * 100 %>= 80%), pemenang bisa menambah 2 poin, dan yang kalah tidak kurang poin. Jika total suara lagu ini tidak mencapai 50 atau jumlah suara yang diperoleh oleh pihak menang tidak mencapai 80% , maka pemenang hanya bisa menambah 1 poin, dan yang kalah tidak kurang poin. Jika suara vote sama, kedua pihak yang akan tidak menambah atau mengurangi poin, dan pengguna yang berikan suara juga tidak dihitung sebagai pemenang.</p>
-        <p>8. Setelah lagu dikirimkan, jika kamu hapus 1 lagu arena yg ikut acara selama acara , 1 poin akan dipotong.</p>
+        <p class="red">8. Setelah lagu dikirimkan, jika kamu hapus 1 lagu arena yg ikut acara selama acara , 1 poin akan dipotong.</p>
         <!-- <p class="red">9、歌曲提交後，若活動期間刪除一首打擂歌曲，則分數扣2分</p> -->
       </div>
       <h6>Aturan peringkat utk Daftar arena:</h6>
       <p>1.Peringkat akan menurut skor yg didapatkan dlm periode ini , jika skor sama, maka peringkat dgn jumlah vote lebih banyak akan berada di depan.</p>
       <h6>Aturan peringkat utk Daftar Raja Penyanyi season ini</h6>
-      <p>1. Peringkat Daftar Raja Penyanyi season ini akan menurut level , yaitu total skor yg diperoleh di semua periode; jika level sama, maka peringkat dgn jumlah vote lebih banyak akan berada di depan.</p>
+      <p>1. Peringkat Daftar Raja Penyanyi season ini akan menurut level , yaitu total skor yg diperoleh di <em class="red">6</em> periode; jika level sama, maka peringkat dgn jumlah vote lebih banyak akan berada di depan.</p>
       <p>2. Setiap pertandingan season mulai, level yg default pemain adalah Lv.0. Setiap periode pertandingan arena kamu akan naik 1 level ketika tiap kali dptkan 1 poin ,kalo kalah juga gak kurangi poin dan level.</p>
       <h3>Lainnya</h3>
       <p>Selama acara, jika pengguna ditemukan menggunakan cara yang tidak benar untuk berpartisipasi dalam acara, pihak Wekara berhak untuk membatalkan/diskualifikasi pengguna tanpa memberi tahu terlebih dahulu. Jika situasi serius maka pihak resmi wekara akan membekukan akun tersebut,termasuk tetapi tidak terbatas pada:</p>

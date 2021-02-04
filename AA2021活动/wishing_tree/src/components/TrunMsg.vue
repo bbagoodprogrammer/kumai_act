@@ -4,7 +4,7 @@
     <div class="trunMsg">
       <p class="msgItem" v-for="(item,index) in notice" :key="index" v-if="index == msgIndex">
         <!-- <img :src="gifts[item.gid].img" alt=""> -->
-        恭喜用戶 <em class="nick"> {{item.nick}}</em>獲得{{item.name}}
+        {{lang.luckGet}} <em class="nick"> {{item.nick}}</em> {{lang.luckGeted}}{{item.name}}
 
       </p>
     </div>

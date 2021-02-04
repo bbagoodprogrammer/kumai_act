@@ -8,8 +8,8 @@
       <div class="banner_title" v-if="!banner_title_svga"></div>
       <canvas id="banner_title" v-show="banner_title_svga"></canvas>
       <div class="tipsBox">
-        <span @click="$router.push('rule')">規則獎勵</span>
-        <span @click="showHistory = true">許願值明細</span>
+        <span @click="$router.push('rule')">{{lang.rule_title}}</span>
+        <span @click="showHistory = true">{{lang.scoreHistory}}</span>
       </div>
       <Tree ref="tree" />
       <Integral />
@@ -25,13 +25,13 @@
       <transition name="slide">
         <div class="luckPup" v-show="showOwnerGift">
           <i class="close" @click="showOwnerGift = false"></i>
-          <h3>恭喜你</h3>
-          <p class="luckTitle">個人許願值達到{{myScore}},獲得</p>
+          <h3>{{lang.luck}}</h3>
+          <p class="luckTitle">{{lang.luckOwnerScoreTips.replace('$',myScore)}}</p>
           <div class="imgBox">
             <img :src="show0.image" alt="">
           </div>
           <strong>{{show0.name}}</strong>
-          <p class="luckTips">獎勵已通過系統發放，請注意查收~</p>
+          <p class="luckTips">{{lang.luckTips}}</p>
         </div>
       </transition>
     </div>
@@ -39,13 +39,13 @@
       <transition name="slide">
         <div class="luckPup" v-show="showAllGift">
           <i class="close" @click="showAllGift = false"></i>
-          <h3>恭喜你</h3>
-          <p class="luckTitle">全服許願值達到{{all_score}},獲得</p>
+          <h3>{{lang.luck}}</h3>
+          <p class="luckTitle">{{lang.luckAllScoreTips.replace('$',all_score)}}</p>
           <div class="imgBox">
             <img :src="show1.image" alt="">
           </div>
           <strong>{{show1.name}}</strong>
-          <p class="luckTips">獎勵已通過系統發放，請注意查收~</p>
+          <p class="luckTips">{{lang.luckTips}}</p>
         </div>
       </transition>
     </div>
