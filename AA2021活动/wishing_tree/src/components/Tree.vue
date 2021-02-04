@@ -4,18 +4,20 @@
     <span id="lottie"></span>
     <span class="ball" :class="[{move:item.move,can:item.suc && !item.move},'ball' + index]" v-for="(item,index) in newObj" :key="index" @click="showCarrotAnim(index)">
       <em :class="{act:!item.get && item.suc}">+{{item.chance}}</em>
-      <span class="ballTips">{{item.suc?'可領取':`任務${index}`}}</span>
+      <span class="ballTips">{{item.suc?lang.c_get:`${lang.task}${index}`}}</span>
     </span>
-    <span class="ball ball6" :class="{move:score_move}" @click="getScore()" v-if="score"><em>+{{score}}</em></span>
+    <span class="ball ball6" :class="{move:score_move}" @click="getScore()" v-if="score">
+      <em>+{{score}}</em>
+      <span class="ballTips">{{lang.giving}}</span>
+    </span>
     <div class="mask" v-show="showPup">
       <transition name="slide">
         <div class="taskPup" v-if="showPup">
           <i class="close" @click="showPup = false"></i>
-          <div class="title">任務{{act_index}}</div>
-          <div class="taskName">
-            {{schule[act_index].desc}}
+          <div class="title">{{lang.task}}{{act_index}}</div>
+          <div class="taskName" v-html="schule[act_index].desc.replace(',','<br/>')">
           </div>
-          <div class="taskScore">+{{schule[act_index].chance}}許願值</div>
+          <div class="taskScore">+{{schule[act_index].chance}}{{lang.getScore}}</div>
         </div>
       </transition>
     </div>
@@ -26,6 +28,7 @@
 import { mapState } from "vuex"
 import { getTask } from "../apis"
 import { globalBus } from '../utils/eventBus'
+import { setTimeout } from 'timers';
 export default {
   data() {
     return {
@@ -52,6 +55,7 @@ export default {
   },
   methods: {
     showCarrotAnim(index) {
+      this.$parent.$refs.scorll.onRefresh()
       if (this.ani) {
         return
       }
@@ -60,9 +64,13 @@ export default {
         if (this.newObj[index].suc) {
           getTask(index).then(res => {
             this.ani = false
+            // this.vxc('addScore', this.newObj[index].chance)
             if (res.data.response_status.code == 0) {
               this.newObj[index].move = true
               this.$forceUpdate();
+              setTimeout(() => {
+                this.$parent.$refs.scorll.onRefresh()
+              }, 1000)
             } else {
               this.toast(res.data.response_status.error)
             }
@@ -79,9 +87,15 @@ export default {
         getTask(6).then(res => {
           this.ani = false
           if (res.data.response_status.code == 0) {
+            // this.vxc('addScore', this.score)
             this.score_move = true
+            setTimeout(() => {
+              this.$parent.$refs.scorll.onRefresh()
+            }, 1000)
+          } else {
+            this.toast(res.data.response_status.error)
           }
-          // this.vxc('setScore', 0)
+
         })
       })
 

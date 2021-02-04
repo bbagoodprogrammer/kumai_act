@@ -105,6 +105,10 @@ export default new vuex.Store({
         },
         setNotice(state, val) {
             state.notice = val
+        },
+        addScore(state, val) {
+            state.all_score += val
+            state.myScore += val
         }
     },
     actions: {

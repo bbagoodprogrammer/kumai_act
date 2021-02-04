@@ -253,20 +253,20 @@ export default {
         line-height: 0.84rem;
         color: rgba(255, 255, 255, 0.6);
         &.tab1 {
-          background: url(../img/tab3.png);
-          background-size: 100% 100%;
-          &.current {
-            color: rgba(255, 255, 255, 1);
-            background: url(../img/tab4.png);
-            background-size: 100% 100%;
-          }
-        }
-        &.tab2 {
           background: url(../img/tab2.png);
           background-size: 100% 100%;
           &.current {
             color: rgba(255, 255, 255, 1);
             background: url(../img/tab1.png);
+            background-size: 100% 100%;
+          }
+        }
+        &.tab2 {
+          background: url(../img/tab3.png);
+          background-size: 100% 100%;
+          &.current {
+            color: rgba(255, 255, 255, 1);
+            background: url(../img/tab4.png);
             background-size: 100% 100%;
           }
         }
@@ -282,10 +282,8 @@ export default {
       text-align: center;
       font-size: 0.26rem;
       color: rgba(255, 255, 255, 1);
-      height: 0.5rem;
-      line-height: 0.5rem;
+
       margin-bottom: 0.2rem;
-      white-space: nowrap;
       letter-spacing: -0.015rem;
     }
     ul {
@@ -347,18 +345,19 @@ export default {
         text-overflow: ellipsis;
         font-size: 0.32rem;
         color: rgba(255, 255, 255, 1);
+        margin-right: 0.15rem;
       }
       .score {
         display: flex;
         align-items: center;
         font-size: 0.28rem;
-        margin-left: 0.15rem;
+        margin-right: 0.15rem;
         i {
           width: 0.36rem;
           height: 0.32rem;
           background: url(../img/hearIcon.png);
           background-size: 100% 100%;
-          margin-right: 0.1rem;
+          margin-left: 0.1rem;
           &.coins {
             height: 0.37rem;
             background: url(../img/coinsIcon.png);

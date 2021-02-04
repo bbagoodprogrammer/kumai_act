@@ -3,20 +3,17 @@
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
-        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">許願日榜</a>
-        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">許願總榜</a>
+        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{lang.dayTab}}</a>
+        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">{{lang.allTab}}</a>
       </div>
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh" v-if="step == 1">刷新</a>
     </div>
     <DayTabs :tab="tab" @changeClick="tabClick" v-if="mainTab == 0" />
     <div class="dayGift" v-if="mainTab == 0">
-      <div class="giftTips">
-        根據活動期間每日用戶貢獻的許願值進行排名<br />
-        每日許願值超過888積分的用戶將可獲得
-      </div>
+      <div class="giftTips" v-html="lang.giftTips"></div>
       <img src="../img/dayGift.png" alt="">
       <div class="giftName">
-        幸運櫻花(66金幣)
+        {{lang.giftName}}
       </div>
     </div>
     <!-- 倒計時 -->
@@ -27,30 +24,29 @@
         <div class="noTime" v-else>今日日榜已結束</div>
       </div> -->
       <div>
-        <p v-if="step == 0">總榜開始倒計時</p>
-        <p v-else-if="step == 1">總榜結束倒計時</p>
-        <div class="noTime" v-else>活動已結束</div>
+        <p v-if="step == 0">{{lang.downTimeStart}}</p>
+        <p v-else-if="step == 1">{{lang.downTimeEnd}}</p>
+        <div class="noTime" v-else>{{lang.downTimeEd}}</div>
       </div>
       <div class="timeDown" v-if="surplusTime&& !surplusTime.end">
         <div class="day">
           <strong>{{surplusTime.day}}</strong>
-          <em>天</em>
+          <em>{{lang.day}}</em>
         </div>
         <div class="hours">
           <strong>{{surplusTime.hour}}</strong>
-          <em>時</em>
+          <em>{{lang.hour}}</em>
         </div>
         <div class="min">
           <strong>{{surplusTime.minute}}</strong>
-          <em>分</em>
+          <em>{{lang.min}}</em>
         </div>
         <div class="second">
           <strong>{{surplusTime.second}}</strong>
-          <em>秒</em>
+          <em>{{lang.second}}</em>
         </div>
       </div>
-      <p class="timeTips">根據活動期間用戶貢獻的許願值進行排名<br />
-        活動結束時排名前10的用戶可獲得豐厚獎勵</p>
+      <p class="timeTips" v-html="lang.timeTips"></p>
     </div>
 
     <!-- 总榜 -->
@@ -76,9 +72,9 @@
 
       <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
       <div class="listTipsBox" v-if="rank.loading|| rank.none">
-        <div v-if="rank.loading" class="scrollLoading">加載中...</div>
+        <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
         <div v-if="rank.none " class="scrollNone">
-          暫無數據
+          {{lang.noData}}
         </div>
       </div>
     </div>

@@ -310,8 +310,8 @@ body::-webkit-scrollbar {
     }
   }
   .wards {
-    width: 7.15rem;
-    height: 4.99rem;
+    width: 6.9rem;
+    height: 4.55rem;
     background: url(../assets/img/wards.png);
     background-size: 100% 100%;
     margin: 0 auto;

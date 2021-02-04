@@ -1,12 +1,12 @@
 <template>
   <div class="footerBar">
     <div class="acrStatus">
-      <div class="act_not" v-if="astState == 0">活動未開始</div>
-      <div class="act_not" v-else-if="astState == 2">活動已結束</div>
-      <div class="singUp" @click="singUp()" v-else-if="astState == 1">點擊報名</div>
+      <div class="act_not" v-if="astState == 0">{{lang.act_not}}</div>
+      <div class="act_not" v-else-if="astState == 2">{{lang.act_end}}</div>
+      <div class="singUp" @click="singUp()" v-else-if="astState == 1">{{lang.singUp}}</div>
       <div class="actIng" v-else-if="astState === 3" :class="'rank' + nowMsg.rank">
         <i class="day_tips" v-if="tab != 'total'">{{act_day}}</i>
-        <div class="rank" :class="{not_rank:nowMsg.rank == 0}">{{nowMsg.rank == 0?'未上榜':nowMsg.rank}}</div>
+        <div class="rank" :class="{not_rank:nowMsg.rank == 0}">{{nowMsg.rank == 0?lang.noRank:nowMsg.rank}}</div>
         <div class="imgBox" @click="goUser(nowMsg.userinfo.uid)">
           <img v-if="nowMsg.userinfo.avatar_frame && nowMsg.userinfo.avatar_frame != ''" :src="nowMsg.userinfo.avatar_frame" class="frame" alt="">
           <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
@@ -56,7 +56,8 @@ export default {
       globalBus.$emit('commonEvent', () => {
         singUp().then(res => {
           if (res.data.response_status.code == 0) {
-            this.$parent.$refs.init()
+            this.toast(`報名成功！`)
+            this.$parent.init()
           } else {
             this.toast(res.data.response_status.error)
           }
@@ -93,8 +94,9 @@ export default {
     background-size: 100% 100%;
     .act_not {
       margin-top: 1.3rem;
-      font-size: .32rem;
+      font-size: 0.32rem;
       font-weight: 600;
+      color: rgba(145, 77, 68, 1);
     }
     .singUp {
       width: 2.98rem;

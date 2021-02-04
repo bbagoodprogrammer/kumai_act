@@ -1,3 +1,65 @@
 html.ar {
-    direction: rtl;
+  letter-spacing: -0.015rem;
+    .pageIndex {
+        background: #47205b url(./img/banner.png) no-repeat;
+        background-size: 100% auto;
+      }
+      .dayGift{
+
+        background: url(./img/dayGiftBg.png);
+        background-size: 100% 100%;
+      }
+      .giftShow{
+        background: url(./img/showGiftBg.png);
+        background-size: 100% 100%;
+      }
+      .getGiftPup{
+        background: url(./img/getGiftPup.png);
+        background-size: 100% 100%;
+      }
+      .ruleTips{
+          width: 2.19rem;
+          height: .65rem;
+          background: url(./img/rule.png);
+          background-size: 100% 100%;
+          margin-left: .22rem;
+      }
+      .ruleTips2{
+        width: 2.86rem;
+        height: .91rem;
+        background: url(./img/history.png);
+        background-size: 100% 100%;
+        margin-top: .24rem;
+      }
+      .historyList{
+        background: url(./img/historyBg.png);
+        background-size: 100% 100%;
+          &.noData{
+            padding-top: 3.5rem;
+            height: 1.94rem;
+            background: url(./img/historyNodata.png);
+            background-size: 100% 100%;
+          }
+      }
+      .shareBar{
+        .bar{
+          background: url(./img/share_bar.png) no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+
+      .boxImg {
+        &.box1 {
+          background: url(../../img/lamp1.png)!important;
+          background-size: 100% 100%!important;
+        }
+        &.box2 {
+          background: url(../../img/lamp2.png)!important;
+          background-size: 100% 100%!important;
+        }
+        &.box3 {
+          background: url(../../img/lamp3.png)!important;
+          background-size: 100% 100%!important;
+        }
+      }
 }
