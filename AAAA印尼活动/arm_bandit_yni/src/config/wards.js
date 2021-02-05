@@ -27,6 +27,7 @@ const wards = {
     26: "Mount Bugatti", //伯爵贵族
     27: "VIP (3 hari)", //会员3天
     28: "akun UID yang baik dengan 7 digit/angka", //8位靓号
-    29: "Double Card" //double卡
+    29: "Double Card", //double卡
+    30: "ID unik 4 digit", //四位靚號
 }
 export default wards

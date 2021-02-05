@@ -8,6 +8,7 @@
       <li>Setiap kali undian bisa mendapatkan 3 hadiah sekaligus, dan hadiah akan dikirim ke akun secara real- time.Ketika hadiah undian yang Anda dapatkan salah satunya Double Card, maka 2 hadiah lainnya akan digandakan!</li>
       <li>Kupon bonus untuk top up dan kupon bonus untuk sawer yang didapatkan dalam acara akan dihitung nilai setelah Anda undian/mendapatkan kupon , dan koin emas akan dikirim setelah persyaratan dipenuhi!</li>
       <li>Ketika mode undian dengan 200 koin harimau / kali penuh 20 kali pasti bisa undian/mendapatkan akun UID yang baik dengan 7 digit/angka.Kalau Anda berhasil undian akun UID yang baik dengan 7 digit/angka,silakan hubungi Wekara Resmi (akun ID 10),pilih dan konfirmasikan ID yang baik dengan 7 digit yang diberikan oleh Wekara Resmi.</li>
+      <li>Ketika mode undian dengan 200 koin harimau / kali penuh 222 kali pasti bisa undian/mendapatkan akun UID unik dengan 4 digit/angka. Kalau Anda berhasil undian akun UID yang baik dengan 4 digit/angka, silakan hubungi Wekara Resmi (akun ID 10), pilih dan konfirmasikan ID yang baik dengan 4 digit yang diberikan oleh Wekara Resmi.</li>
     </ol>
     <p class="waordsMsg">Hadiah yang bisa diterima</p>
     <div class="wardsBox clearfix">
@@ -64,7 +65,7 @@
           <span>
             <img :src="require('../../assets/img/ward20.png')" alt="">
           </span>
-          <p>akun UID yang baik dengan 7 digit/angka</p>
+          <p>akun UID yang baik dengan 4 digit/angka</p>
         </li>
       </ul>
     </div>

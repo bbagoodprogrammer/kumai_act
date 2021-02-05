@@ -7,7 +7,7 @@ export default {
     noData: 'Chưa có dữ liệu',
     loading: 'ang tải...',
     //index.vue
-    scoreHistory: 'Chi tiết điểm cầu nguyện',
+    scoreHistory: 'Chi tiết điểm',
     luck: ' chúc mừng',
     luckOwnerScoreTips: 'Chúc mừng điểm cầu nguyện của bạn đạt $, chúc mừng bạn: ',
     luckAllScoreTips: 'Điểm cầu nguyện tổng đã đạt $, chúc mừng bạn nhận: ',
@@ -21,20 +21,20 @@ export default {
     noRank: 'Chưa lên bảng',
 
     // history.vue
-    history_tab1: '許願值記錄',
-    history_tab2: '獎勵記錄',
-    history_tm: '時間',
-    history_get: '途徑',
-    history_giftScore: '獲得許願值',
-    history_gift: '獎勵',
+    history_tab1: 'Lịch sử điểm',
+    history_tab2: 'Lịch sử thưởng',
+    history_tm: 'Thời gian',
+    history_get: 'Cách nhận',
+    history_giftScore: 'Nhận điểm cầu ',
+    history_gift: 'Phần thưởng',
     channel1: {
-        0: '任務獲得',
-        1: '送禮獲得'
+        0: 'Từ nhiệm vụ',
+        1: 'Từ tặng quà'
     },
     channel2: {
         0: 'Điểm cá nhân',
         1: 'Điểm tổng',
-        2: '日榜獎勵'
+        2: 'Thưởng bảng ngày'
     },
 
     //Integral.vue
@@ -47,9 +47,9 @@ export default {
     allTab: 'Bảng cầu nguyện tổng',
     giftTips: 'Xếp hạng theo điểm cầu nguyện người dùng cống hiến mỗi ngày trong thời gian sự kiện Người dùng có điểm cầu nguyện mỗi ngày vượt qua 666 sẽ nhận',
     giftName: ' Hoa Anh Đào May Mắn(66 xu)',
-    downTimeStart: '總榜開始倒計時',
+    downTimeStart: 'Đếm ngược bắt đầu bảng tổng',
     downTimeEnd: 'Đếm ngược sự kiện kết thúc',
-    downTimeEd: '活動已結束',
+    downTimeEd: 'Sự kiện đã kết thúc',
     day: 'ngày',
     hour: ' giờ',
     min: 'phút',
@@ -58,12 +58,13 @@ export default {
 
 
     //tree
-    c_get: '可領取',
+    c_get: 'Nhận',
     task: 'Nhiệm vụ',
-    getScore: '許願值',
+    getScore: 'Điểm cầu nguyện',
 
     //turnMsg
-    luckGet: '恭喜用戶',
-    luckGeted: '獲得'
+    luckGet: 'Chúc mừng bạn',
+    luckGeted: 'nhận được',
+    wan: 'K'
 
 }

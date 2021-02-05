@@ -16,7 +16,7 @@
         <div class="linerMark"></div>
         <div class="actLiner" :style="{width:all_actWidth}" :class="{min:myScore >= 500000}"></div>
         <div class="scoreNums">
-          <span class="numsItem" v-for="(item,index) in totalScore" :key="index">{{item/10000}}萬</span>
+          <span class="numsItem" v-for="(item,index) in totalScore" :key="index">{{APP_NAME=='singnow'?item/1000:item/10000}}{{lang.wan}}</span>
         </div>
       </div>
     </div>
@@ -36,6 +36,9 @@ export default {
   },
   computed: {
     ...mapState(['myScore', 'all_score']),
+    APP_NAME() {
+      return APP_NAME
+    },
     actWidth() {
       let arr = this.ownerScore
       for (let i = arr.length - 1; i >= 0; i--) {

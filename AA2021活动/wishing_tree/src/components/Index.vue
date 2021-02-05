@@ -83,19 +83,30 @@ export default {
       svgaAdress: {
         banner_title: 'http://fstatic.cat1314.com/uc/svga/5a09e6224a7de17d52f7ec5f9d40b3e0_1612174940.svga',
         banner_tree: 'http://fstatic.cat1314.com/uc/svga/e777f1868ecaad7da75e1dc4af72d52f_1612175000.svga'
+      },
+      singNowSvga: {
+        banner_title: '  http://fstatic.cat1314.com/uc/svga/fd7fb1edbcc9afc8fbc74c2e5933d9a9_1612497211.svga',
+        banner_tree: 'http://fstatic.cat1314.com/uc/svga/e777f1868ecaad7da75e1dc4af72d52f_1612175000.svga'
       }
     }
   },
   computed: {
-    ...mapState(['myScore', 'all_score'])
+    ...mapState(['myScore', 'all_score']),
+    svga() {
+      if (APP_NAME == 'singnow') {
+        return this.singNowSvga
+      } else {
+        return this.svgaAdress
+      }
+    }
   },
   created() {
     this.judgeShare()
     this.init()
   },
   mounted() {
-    for (let key in this.svgaAdress) {
-      this.svgaGo(key, this.svgaAdress[key])
+    for (let key in this.svga) {
+      this.svgaGo(key, this.svga[key])
     }
   },
   methods: {
