@@ -17,4 +17,17 @@ html.vi {
       .Integral{
         height: 3rem;
       }
+      .banner_title {
+
+        background: url(./img/banner_title.png)!important;
+        background-size: 100% 100%!important;
+      }
+      .tipsBox {
+      
+        span {
+          width: 1.74rem!important;
+          background: url(./img/ruleTips.png)!important;
+          background-size: 100% 100%!important;
+        }
+      }
 }

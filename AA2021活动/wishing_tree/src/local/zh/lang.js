@@ -67,5 +67,6 @@ export default {
     luckGeted: '獲得',
 
 
-    giving: '送禮'
+    giving: '送禮',
+    wan: '萬'
 }
