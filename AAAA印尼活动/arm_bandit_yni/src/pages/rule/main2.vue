@@ -63,7 +63,7 @@
         </li>
         <li>
           <span>
-            <img :src="require('../../assets/img/ward20.png')" alt="">
+            <img :src="require('../../assets/img/ward22.png')" alt="">
           </span>
           <p>akun UID yang baik dengan 4 digit/angka</p>
         </li>

@@ -28,6 +28,6 @@ const wardsImg = {
     27: "ward19", //会员3天
     28: "ward20", //8位靓号
     29: "ward21", //double卡
-    30: "ward21" //四位靚號
+    30: "ward22" //四位靚號
 }
 export default wardsImg

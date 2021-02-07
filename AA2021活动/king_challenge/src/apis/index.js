@@ -69,11 +69,11 @@ function getInitInfo() {
 
 //领奖
 function getGift(lv) {
-    return get(`/kroom_talent/getGift.php?token=${token}&track=${lv}`)
+    return get(`/king_challenge/getGift.php?token=${token}&track=${lv}`)
 }
 
 function signUp() {
-    return get(`/kroom_talent/register.php?token=${token}`)
+    return get(`/king_challenge/register.php?token=${token}`)
 }
 
 export {

@@ -1,10 +1,10 @@
 <template>
-  <div class="page pageIndex">
+  <div class="page pageIndex" :class="{pb:tab == 0 ||tab == 'total'}">
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <div class="ruleTips" @click="goRule()">{{lang.rule}}</div>
+      <div class="ruleTips" @click="goRule()"></div>
     </div>
     <div class="giftList">
       <!-- <h3>{{lang.gift_title}}</h3> -->
@@ -66,6 +66,7 @@ export default {
     this.judgeShare()
   },
   computed: {
+    ...mapState(['tab']),
     giftList() {
       return this.lang.giftList
     }
@@ -85,23 +86,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .pageIndex {
+  &.pb {
+    padding-bottom: 2rem;
+  }
   .header {
     height: 10.72rem;
-    .ruleTips {
-      width: 2.13rem;
-      height: 0.64rem;
-      background: url(../img/ruleTips.png);
-      background-size: 100% 100%;
-      position: absolute;
-      top: 5.41rem;
-      right: 0;
-      font-size: 0.26rem;
-      color: rgba(60, 34, 169, 1);
-      text-align: center;
-      line-height: 0.64rem;
-    }
   }
   .giftList {
     width: 6.09rem;

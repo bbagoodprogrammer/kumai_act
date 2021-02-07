@@ -60,8 +60,6 @@ body {
   .tabs {
     width: 7.5rem;
     height: 0.96rem;
-    background: url(../../img/tabs.png);
-    background-size: 100% 100%;
     display: flex;
     justify-content: center;
     align-items: center;

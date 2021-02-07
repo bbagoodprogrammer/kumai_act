@@ -14,7 +14,7 @@
       <span>{{lang.allScore}}</span>
       <div class="ownerLiner">
         <div class="linerMark"></div>
-        <div class="actLiner" :style="{width:all_actWidth}" :class="{min:myScore >= 500000}"></div>
+        <div class="actLiner" :style="{width:all_actWidth}" :class="{min:all_score >= 500000}"></div>
         <div class="scoreNums">
           <span class="numsItem" v-for="(item,index) in totalScore" :key="index">{{APP_NAME=='singnow'?item/1000:item/10000}}{{lang.wan}}</span>
         </div>

@@ -112,7 +112,7 @@ export default {
   methods: {
     init(val) {
       init().then(res => {
-        const { c_day, days, step, stime, etime, schule, score, all_score, now, user_info, myrank, notice, show0, show1 } = res.data.response_data
+        const { c_day, days, step, stime, etime, schule, score, all_score, my_score, now, user_info, myrank, notice, show0, show1 } = res.data.response_data
         this.vxc('setSchule', schule)
         this.vxc('setStep', step)
         this.vxc('setScore', score)
@@ -123,7 +123,7 @@ export default {
         this.vxc('setDown_second', this.down_second(step, stime, etime, now))
         this.vxc('setReg', user_info.registered)
         this.vxc('setInited', 1)
-        this.vxc('setMyScore', myrank.score)
+        this.vxc('setMyScore', my_score)
         this.vxc('setNotice', notice)
         if (show0) {
           this.show0 = show0
@@ -248,6 +248,8 @@ body {
   .luckTitle {
     color: rgba(145, 77, 68, 1);
     margin: 0.1rem auto;
+    padding: 0 0.4rem;
+    font-size: 0.26rem;
   }
   .imgBox {
     width: 1.2rem;
@@ -265,7 +267,7 @@ body {
     color: rgba(234, 105, 135, 1);
   }
   .luckTips {
-    font-size: 0.24rem;
+    font-size: 0.22rem;
     color: rgba(234, 105, 135, 1);
     margin-top: 0.15rem;
   }

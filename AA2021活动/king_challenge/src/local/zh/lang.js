@@ -1,7 +1,7 @@
 export default {
     //html/index.html
-    title: '人氣K房達人賽',
-    rule_title: '人氣K房達人賽',
+    title: '王者挑戰賽',
+    rule_title: '規則獎勵',
 
     //footer
     act_noStart: '活動未開始',  //活動未開始
@@ -9,6 +9,14 @@ export default {
     singUp: '立即報名',  //立即報名
     noRank: '未上榜', //未上榜
     singUp_suc: '報名成功', //報名成功
+    room_pk: '房間挑戰',//房間挑戰
+    room_pk_tips: '活動期間達到10000分的K房可獲得王者挑戰房間邊框7天',//活動期間達到10000分的K房可獲得王者挑戰房間邊框7天
+    room_gift_tips: '', // 獎勵將通過系統自動發放到你的賬戶上，請留意！
+
+    //common
+    lv: '段位',
+    ok: '確定',//確定
+
 
     //index
     rule: '活動規則',  //活動規則
@@ -47,48 +55,7 @@ export default {
             name: '海量金豆'
         }
     ],
-    //Integral
-    integral_lv: '我的達人等級',//我的達人等級
-    integral_coins: '消費金幣',//消費金幣
-    integral_tips: '在禮物紅包/福運禮物/砸蛋探寶中消費金幣可獲得相應獎勵',//在禮物紅包/福運禮物/砸蛋探寶中消費金幣可獲得相應獎勵
-    integral_luck: '恭喜獲得',//恭喜獲得
-    integral_luckTips: '獎勵獎通過系統自動發放到您的帳戶上',//獎勵獎通過系統自動發放到您的帳戶上
-    integral_ok: '確定',//確定
-    giftArr: {
-        1: {
-            gift_tips: 'x30',
-            img: require('../../img/get_gift/giftItem_1.png'),
-            name: '10 金幣',
-            act_width: '13%',
-            gname: '30 金豆'
-        },
-        2: {
-            gift_tips: '7天',
-            img: require('../../img/get_gift/giftItem_2.png'),
-            name: '30 金幣',
-            act_width: '30%',
-            gname: 'VIP7天'
-        },
-        3: {
-            img: require('../../img/get_gift/giftItem_3.png'),
-            name: '100 金幣',
-            act_width: '50%',
-            gname: '紅玫瑰（180金豆）'
-        },
-        4: {
-            img: require('../../img/get_gift/giftItem_6.png'),
-            name: '300 金幣',
-            act_width: '70%',
-            gname: '雞尾酒（5金幣）'
-        },
-        5: {
-            gift_tips: '7天',
-            img: require('../../img/get_gift/giftItem_5.png'),
-            name: '500 金幣',
-            act_width: '100%',
-            gname: '糖果城名片7天（110金幣）'
-        },
-    },
+
 
 
     //rank
@@ -105,5 +72,35 @@ export default {
     rank_tips2: '根據活動期間用戶在1v1PK/擂台PK/禮物挑戰/歡唱KTV/談天說地模式下產生的金幣魅力值進行排名', //根據房間中禮物紅包/福運禮盒產生的魅力值進行排名房間內每開啟一次火箭活動分數增加10000
     loading: '加載中...',//加載中...
     noData: '暫無數據', //暫無數據
+    room_model: {
+        1: '1v1PK',
+        2: '家族PK',
+        3: '擂台PK',
+        4: '禮物挑戰',
+        5: '談天說地',
+        6: '歡唱KTV',
+    }
+    ,
+
+    //history
+    history_tm: '時間',
+    history_get: '途徑',
+    history_gift: '獎勵',
+    singIn: '簽到', // 簽到
+    singIn_days: '連續簽到$天', //連續簽到{{item.mark}}天
+    singIn_lvGift: '段位獎勵', //段位獎勵
+
+
+    //tasks
+    tasksTips: '完成每日簽到任務領取豐厚獎勵',
+    tasksHistory: '獎勵記錄>',
+    tasks_signInDay: '已累計簽到$天',
+    tasks_signInDay2: '已連續簽到$天',
+    tasks_signInDay3: '連續簽到$天',
+    tasks_today: '今日簽到任務',
+    singIn_ed: '已簽到',
+    singIn_not: '未簽到',
+    singIn_dayNums: '第$天',
+    tasksTips2: '連續簽到獎勵',
 
 }

@@ -4,7 +4,7 @@
     <span id="lottie"></span>
     <span class="ball" :class="[{move:item.move,can:item.suc && !item.move},'ball' + index]" v-for="(item,index) in newObj" :key="index" @click="showCarrotAnim(index)">
       <em :class="{act:!item.get && item.suc}">+{{item.chance}}</em>
-      <span class="ballTips">{{item.suc?lang.c_get:`${lang.task}${index}`}}</span>
+      <span class="ballTips">{{item.suc?lang.c_get:`${lang.task} ${index}`}}</span>
     </span>
     <span class="ball ball6" :class="{move:score_move}" @click="getScore()" v-if="score">
       <em>+{{score}}</em>
