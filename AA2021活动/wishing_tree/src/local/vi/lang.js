@@ -32,8 +32,8 @@ export default {
         1: 'Từ tặng quà'
     },
     channel2: {
-        0: 'Điểm cá nhân',
-        1: 'Điểm tổng',
+        0: 'Điểm tổng',
+        1: 'Điểm cá nhân',
         2: 'Thưởng bảng ngày'
     },
 

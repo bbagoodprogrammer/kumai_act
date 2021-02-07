@@ -60,6 +60,27 @@ a:hover {
     box-sizing: border-box;
 }
 
+@keyframes jiggle {
+    70%,
+    100% {
+      transform: rotate(0);
+    }
+    73%,
+    79%,
+    84%,
+    90%,
+    96% {
+      transform: rotate(-10deg);
+    }
+    76%,
+    81%,
+    87%,
+    93%,
+    99% {
+      transform: rotate(10deg);
+    }
+  }
+
 // 从协议组件抽取出来避免重复打包
 .pageAgreement {
     color: #666;

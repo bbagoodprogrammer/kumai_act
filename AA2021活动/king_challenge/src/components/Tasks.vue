@@ -2,32 +2,36 @@
   <div class="tasks">
     <div class="taskCon">
       <div class="nowDayTaskTips">
-        <span> 完成每日簽到任務領取豐厚獎勵</span>
-        <span class="history">獎勵記錄></span>
+        <span> {{lang.tasksTips}}</span>
+        <span class="history" @click="showHistory = true">{{lang.tasksHistory}}</span>
       </div>
       <div class="userStatus">
-        <img v-lazy="" alt="">
+        <img v-lazy="user_info.avatar" alt="">
         <div class="userMsg">
-          <div class="nick">xxxx</div>
-          <span class="lv">白金段位</span>
+          <div class="nick">{{user_info.nick}}</div>
+          <span class="lv" v-if="Lv">{{level[Lv].name}}{{lang.lv}}</span>
         </div>
         <div class="singUpNums">
-          <span>已累計簽到1天</span>
-          <span>已連續簽到1天</span>
+          <span>{{lang.tasks_signInDay.replace('$',mark)}}</span>
+          <span>{{lang.tasks_signInDay2.replace('$',continuity)}}</span>
         </div>
       </div>
       <div class="nowDayTask">
-        <span class="tips">今日簽到任務</span>
+        <span class="tips">{{lang.tasks_today}}</span>
         <span class="desc">{{nowDayTask?nowDayTask.desc:''}}</span>
       </div>
       <div class="dayList">
         <div class="dayItem" v-for="(item,index) in task" :key="index">
-          <div class="sing_ed" v-if="item.finish">已簽到</div>
-          <div class="sing_not" v-else-if="!item.finish && index < nowDay_index">未簽到</div>
+          <div class="sing_ed" v-if="item.finish">{{lang.singIn_ed}}</div>
+          <div class="sing_not" v-else-if="!item.finish && index < nowDay_index">{{lang.singIn_not}}</div>
           <div class="taskMsg" v-else>
-            <div class="dayNums">第{{item.task_id}}天</div>
-            <img :src="item.img" alt="" class="giftImg">
-            <div class="giftName">{{item.name}}</div>
+            <div class="dayNums">{{lang.singIn_dayNums.replace('$',item.task_id)}}</div>
+            <span class="giftTips" v-if="item.num">{{item.type == 0?`x${item.num}`:`${item.num}${lang.rank_day}`}}</span>
+            <div class="imgBox nums">
+              <img :src="item.img" alt="" class="giftImg">
+
+            </div>
+
             <div class="schule">
               <strong>{{item.schule}}/{{item.limit}}</strong>
               <span class="actLiner" :style="{width:item.schule /item.limit *100+'%' }"></span>
@@ -37,37 +41,49 @@
         </div>
       </div>
       <div class="singUpGift">
-        <div class="title">連續簽到獎勵</div>
+        <div class="title">{{lang.tasksTips2}}</div>
         <div class="giftArr">
           <div class="giftItem" v-for="(item,index) in boxGiftArr" :key="index">
-            <img :src="item.img" alt="">
-            <strong>連續簽到{{index}}天</strong>
+            <img :src="index<=max_continuity?item.img:item.black_img" alt="">
+            <strong>{{lang.tasks_signInDay3.replace('$',index)}}</strong>
           </div>
         </div>
       </div>
+    </div>
+    <div class="mask" v-show="showHistory">
+      <transition name="slide">
+        <historyTabsScrollLoadList v-if="showHistory" />
+      </transition>
     </div>
   </div>
 </template>
 <script>
 import { mapState } from "vuex"
+import HistoryTabsScrollLoadList from "./HistoryTabsScrollLoadList"
+
 export default {
+  components: { HistoryTabsScrollLoadList },
   data() {
     return {
+      showHistory: false,
       boxGiftArr: {
         3: {
-          img: require('../img/boxImg/box_1.png')
-        },
-        5: {
-          img: require('../img/boxImg/box_2.png')
+          img: require('../img/boxImg/box_1.png'),
+          black_img: require('../img/boxImg/box_black.png')
         },
         7: {
-          img: require('../img/boxImg/box_3.png')
+          img: require('../img/boxImg/box_2.png'),
+          black_img: require('../img/boxImg/box_black.png')
+        },
+        10: {
+          img: require('../img/boxImg/box_3.png'),
+          black_img: require('../img/boxImg/box_black.png')
         }
       }
     }
   },
   computed: {
-    ...mapState(['task']),
+    ...mapState(['task', 'user_info', 'level', 'Lv', 'mark', 'continuity', 'continuity_gift']),
     nowDayTask() {
       for (let i in this.task) {
         if (this.task[i].today) {
@@ -81,6 +97,9 @@ export default {
           return i
         }
       }
+    },
+    max_continuity() {
+      return Math.max(...this.continuity_gift)
     }
   }
 }
@@ -88,7 +107,7 @@ export default {
 <style lang="scss" scoped>
 .tasks {
   width: 7.02rem;
-  height: 12.09rem;
+  height: 11.09rem;
   background: linear-gradient(180deg, #f8db5d, #f8db5d, #99c28c);
   border: 0.02rem solid #830943;
   border-radius: 0.28rem;
@@ -96,7 +115,7 @@ export default {
   padding-top: 0.21rem;
   .taskCon {
     width: 6.66rem;
-    height: 11.9rem;
+    height: 10.9rem;
     background: #fff2d8;
     border: 0.02rem solid #830943;
     border-radius: 0.16rem;
@@ -186,7 +205,7 @@ export default {
     }
   }
   .dayList {
-    height: 4.99rem;
+    height: 4.49rem;
     padding: 0 0.2rem;
     display: flex;
     justify-content: space-between;
@@ -195,7 +214,7 @@ export default {
     margin-top: 0.2rem;
     .dayItem {
       width: 1.12rem;
-      height: 2.2rem;
+      height: 1.82rem;
       padding: 0.1rem 0;
       background: #ffe9bd;
       border: 0.02rem solid #830943;
@@ -205,12 +224,7 @@ export default {
       justify-content: center;
       flex-direction: column;
       font-size: 0.22rem;
-      .giftImg {
-        display: block;
-        width: 0.75rem;
-        height: 0.75rem;
-        margin: 0.1rem 0;
-      }
+
       .schule {
         width: 0.91rem;
         height: 0.32rem;
@@ -221,6 +235,8 @@ export default {
         line-height: 0.32rem;
         position: relative;
         strong {
+          font-size: 0.22rem;
+          display: block;
           position: relative;
           z-index: 1;
         }
@@ -239,10 +255,44 @@ export default {
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        position: relative;
         .giftName {
           height: 0.7rem;
           font-size: 0.2rem;
           text-align: center;
+        }
+        .imgBox {
+          width: 0.8rem;
+          height: 0.8rem;
+          position: relative;
+          margin: 0.1rem 0;
+          overflow: hidden;
+          .giftImg {
+            display: block;
+            width: 0.75rem;
+            height: 0.75rem;
+          }
+          img {
+            display: block;
+            margin: 0 auto;
+          }
+
+          &.nums {
+            background: #fff2d8;
+            border: 0.02rem solid #830943;
+            border-radius: 50%;
+          }
+        }
+        .giftTips {
+          color: #fff;
+          text-shadow: #850c45 0.03rem 0 0, #850c45 0 0.03rem 0,
+            #850c45 -0.03rem 0 0, #850c45 0 -0.03rem 0;
+          font-size: 0.24rem;
+          font-weight: 600;
+          position: absolute;
+          z-index: 3;
+          bottom: 0.5rem;
+          right: 0;
         }
       }
     }

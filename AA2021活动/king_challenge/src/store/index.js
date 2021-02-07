@@ -11,14 +11,19 @@ export default new vuex.Store({
         share: true,
         level: {},
         rankGroups: {},  //储存當天的信息
+        rankGroups_history: {},
         groupsUserMsg: {},  //儲存各種天數的個人信息
         load: 0,
         step: 0,
-        tab: 0,
+        tab: 2,
         reg: false,
         Lv: 0,
         score: 0,
-        task: {}
+        task: {},
+        user_info: {},
+        mark: 0,
+        continuity: 0,
+        continuity_gift: [10]
     },
     getters: {
         signed: state => {
@@ -64,7 +69,19 @@ export default new vuex.Store({
         },
         setReg(state, val) {
             state.reg = false
-        }
+        },
+        setBoxStatus(state, val) {
+            state.level[val].get = false
+            state.level[val].can = true
+        },
+        updateRankGroups_history(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.rankGroups_history = Object.assign({}, state.rankGroups_history, { [key]: Object.assign({}, state.rankGroups_history[key], obj) });
+            }
+            console.log(state.rankGroups_history)
+        },
     },
     actions: {
         async getInitInfo() {

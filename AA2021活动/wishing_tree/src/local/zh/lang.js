@@ -40,7 +40,7 @@ export default {
     //Integral.vue
     ownerScore: '個人許願值:',
     allScore: '全服許願值:',
-    integralTips: '全服許願值達到指定數值時許願會派發獎勵<br/>貢獻的許願值越多，獲得稀有獎勵的幾率越大',
+    integralTips: '全服許願值達到指定數值時許願樹會派發獎勵<br/>貢獻的許願值越多，獲得稀有獎勵的機率越大',
 
     //TabsScrollLoadList
     dayTab: '許願日榜',

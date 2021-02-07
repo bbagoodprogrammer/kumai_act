@@ -53,6 +53,7 @@
     <div v-else-if="mainTab==1 && rank.list.length" class="list total">
       <ul>
         <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goKroom(item.info.rid)">
+          <span class="model" v-if="item.info.playmode">{{room_model[item.info.playmode]}} </span>
           <div class="rank">{{item.rank}}</div>
           <div class="uerImg">
             <img v-lazy="item.info.pic_url" alt="" class="av room">
@@ -110,7 +111,15 @@ export default {
       timer2: null,
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
-      surplusTime: {}
+      surplusTime: {},
+      // room_model: {
+      //   1: '1v1PK',
+      //   2: '家族PK',
+      //   3: '擂台PK',
+      //   4: '禮物挑戰',
+      //   5: '談天說地',
+      //   6: '歡唱KTV',
+      // }
     }
   },
   watch: {
@@ -126,13 +135,13 @@ export default {
     },
     rankApi() {
       if (this.isShare) {
-        var dayApi = `/kroom_talent/allList.php?from={from}&type=0`;
-        var totalApi = `/kroom_talent/allList.php?from={from}&type=1`;
+        var dayApi = `/king_challenge/allList.php?from={from}&type=0`;
+        var totalApi = `/king_challenge/allList.php?from={from}&type=1`;
         var api = this.rankKey == 'total' ? totalApi : dayApi;
         return api
       } else {
-        var dayApi = `/kroom_talent/allList.php?token={token}&from={from}&type=0`;
-        var totalApi = `/kroom_talent/allList.php?token={token}&from={from}&type=1`;
+        var dayApi = `/king_challenge/allList.php?token={token}&from={from}&type=0`;
+        var totalApi = `/king_challenge/allList.php?token={token}&from={from}&type=1`;
         var api = this.rankKey == 'total' ? totalApi : dayApi;
         const token = getUrlString('token') || '';
         return api.replace('{token}', token);
@@ -150,6 +159,7 @@ export default {
       // }
       return rankConf;
     },
+    room_model: () => _lang.room_model,
   },
   mounted() {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
@@ -279,7 +289,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .rankGroups {
   margin-top: 0.1rem;
   padding-bottom: 2rem;
@@ -360,36 +370,53 @@ export default {
   }
   .list {
     margin: 0.25rem auto;
-    width: 7.26rem;
+    width: 7.02rem;
+    padding: 0.18rem 0;
+    background: linear-gradient(180deg, #f8db5d, #f8db5d, #99c28c);
+    border: 0.02rem solid #830943;
+    border-radius: 0.28rem;
     position: relative;
     z-index: 10;
     ul {
-      width: 6.78rem;
-      padding: 0.13rem 0.16rem;
+      width: 6.66rem;
+      background: #fff2d8;
+      border: 0.02rem solid #830943;
+      border-radius: 0.16rem;
+      margin: 0 auto;
     }
     li {
-      height: 1.25rem;
-      margin-top: 0.05rem;
+      height: 1.39rem;
       display: flex;
       align-items: center;
       margin-bottom: 0.04rem;
       position: relative;
+      .model {
+        padding: 0 0.1rem;
+        height: 0.32rem;
+        line-height: 0.32rem;
+        font-size: 0.2rem;
+        background: #f8db5d;
+        border: 0.02rem solid #830943;
+        border-radius: 0 0 0.05rem 0.05rem;
+        position: absolute;
+        right: 0.22rem;
+        top: 0;
+      }
       .rank {
-        width: 0.43rem;
-        height: 0.6rem;
-        color: rgba(199, 225, 255, 1);
+        width: 0.75rem;
+        height: 0.56rem;
+        color: rgba(131, 9, 67, 1);
         text-align: center;
-        line-height: 0.6rem;
-        margin: 0 0.25rem 0 0.11rem;
+        line-height: 0.56rem;
+        margin: 0 0.15rem;
+        font-size: 0.32rem;
         font-weight: bold;
         white-space: nowrap;
-        font-size: 0.36rem;
       }
       .uerImg {
         width: 1.1rem;
         height: 1.1rem;
         position: relative;
-
         .nob {
           width: 1.1rem;
           height: 1.1rem;
@@ -413,14 +440,14 @@ export default {
           top: 0.1rem;
           left: 0.11rem;
           border-radius: 50%;
+          border: 0.02rem solid rgba(131, 9, 67, 1);
           &.room {
             border-radius: 0.14rem;
-            border: 0.02rem solid rgba(251, 235, 137, 1);
           }
         }
       }
       .nickBox {
-        width: 3.2rem;
+        width: 2.6rem;
         margin-left: 0.2rem;
         .nickTips {
           display: flex;
@@ -431,60 +458,21 @@ export default {
             white-space: nowrap;
             text-overflow: ellipsis;
             font-size: 0.32rem;
-            color: rgba(255, 255, 255, 1);
+            color: rgba(131, 9, 67, 1);
           }
           .ktvIng {
-            width: 0.29rem;
-            height: 0.26rem;
+            width: 0.28rem;
+            height: 0.22rem;
             background: url(../img/ktvIng.png);
             background-size: 100% 100%;
             margin-left: 0.1rem;
           }
-          .scoreIcon {
-            width: 1.29rem;
-            height: 0.65rem;
-            margin-left: 0.1rem;
-            &.icon1 {
-              background: url(../img/icon/icon_1.png);
-              background-size: 100% 100%;
-            }
-            &.icon2 {
-              background: url(../img/icon/icon_2.png);
-              background-size: 100% 100%;
-            }
-            &.icon3 {
-              background: url(../img/icon/icon_3.png);
-              background-size: 100% 100%;
-            }
-            &.icon4 {
-              background: url(../img/icon/icon_4.png);
-              background-size: 100% 100%;
-            }
-            &.icon5 {
-              width: 1.94rem;
-              background: url(../img/icon/icon_5.png);
-              background-size: 100% 100%;
-            }
-            &.icon100 {
-              width: 1.94rem;
-              background: url(../img/icon/icon_5.png);
-              background-size: 100% 100%;
-            }
-          }
         }
         .uid {
-          color: rgba(226, 205, 255, 1);
-          font-size: 0.28rem;
+          color: rgba(131, 9, 67, 1);
+          font-size: 0.26rem;
           display: flex;
           align-items: center;
-
-          .red_packet {
-            width: 1.41rem;
-            height: 0.57rem;
-            margin-left: 0.1rem;
-            background: url(../img/icon/red_packt.png);
-            background-size: 100% 100%;
-          }
         }
       }
 
@@ -492,16 +480,16 @@ export default {
         display: flex;
         align-items: center;
         font-size: 0.28rem;
-        margin-left: 0.35rem;
-        color: rgba(255, 227, 68, 1);
+        margin-left: 0.15rem;
+        color: rgba(131, 9, 67, 1);
         i {
-          width: 0.25rem;
-          height: 0.29rem;
+          width: 0.31rem;
+          height: 0.38rem;
           background: url(../img/fire.png);
           background-size: 100% 100%;
           margin-right: 0.1rem;
           &.coins {
-            height: 0.25rem;
+            width: 0.35rem;
             background: url(../img/coinsIcon.png);
             background-size: 100% 100%;
           }
@@ -532,13 +520,15 @@ export default {
     li::before {
       content: "";
       display: block;
-      width: 6.42rem;
-      height: 1px;
-      background: #ffffff;
-      opacity: 0.3;
+      width: 6.33rem;
+      height: 0rem;
+      border-bottom: 1px dashed rgba(131, 9, 67, 1);
       position: absolute;
       bottom: 0;
-      left: 0.31rem;
+      left: 0.17rem;
+    }
+    li:last-child:before {
+      border: none;
     }
   }
 }
@@ -548,13 +538,13 @@ export default {
 }
 .scrollLoading {
   text-align: center;
-  color: #ffefd7;
+  color: #830943;
   font-size: 80%;
   margin-top: 1rem;
 }
 .scrollNone {
   text-align: center;
-  color: #ffefd7;
+  color: #830943;
   font-size: 80%;
   margin-top: 1rem;
 }
