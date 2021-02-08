@@ -6,9 +6,9 @@
       <em :class="{act:!item.get && item.suc}">+{{item.chance}}</em>
       <span class="ballTips">{{item.suc?lang.c_get:`${lang.task} ${index}`}}</span>
     </span>
-    <span class="ball ball6" :class="{move:score_move}" @click="getScore()" v-if="score">
-      <em>+{{score}}</em>
-      <span class="ballTips">{{lang.giving}}</span>
+    <span class="ball ball6" :class="{move:score_move,can:score>0 && !score_move}" @click="getScore()" v-if="score">
+      <em class="act">+{{score}}</em>
+      <span class="ballTips">{{lang.c_get}}</span>
     </span>
     <div class="mask" v-show="showPup">
       <transition name="slide">
@@ -28,7 +28,8 @@
 import { mapState } from "vuex"
 import { getTask } from "../apis"
 import { globalBus } from '../utils/eventBus'
-import { setTimeout } from 'timers';
+
+
 export default {
   data() {
     return {

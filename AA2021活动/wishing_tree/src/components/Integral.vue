@@ -30,8 +30,8 @@ import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      ownerScore: [1000, 8000, 10000, 20000, 50000],
-      totalScore: [500000, 1500000, 3000000, 5000000, 8000000]
+      // ownerScore: [1000, 8000, 10000, 20000, 50000],
+      // totalScore: [500000, 1500000, 3000000, 5000000, 8000000]
     }
   },
   computed: {
@@ -70,6 +70,12 @@ export default {
           return '0%'
         }
       }
+    },
+    ownerScore() {
+      return _lang.ownerScoreConfig
+    },
+    totalScore() {
+      return _lang.totalScoreConfig
     }
   }
 }

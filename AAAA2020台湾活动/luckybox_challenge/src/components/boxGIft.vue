@@ -28,7 +28,7 @@
           </div>
           <div class="tipsBox">
             <p>{{lang.giftTips1}}</p>
-            <!-- <p>{{lang.giftTips2}}</p> -->
+            <p>{{lang.giftTips2}}</p>
           </div>
         </div>
       </transition>
@@ -181,6 +181,9 @@ export default {
       align-items: center;
       justify-content: space-between;
       margin-top: 0.22rem;
+      .giftItem {
+        width: 1.4rem;
+      }
       .imgBg {
         background: rgba(56, 38, 134, 0.3);
         border-radius: 0.1rem;
@@ -190,6 +193,7 @@ export default {
         }
       }
       strong {
+        height: 0.6rem;
         display: block;
         text-align: center;
         font-size: 0.26rem;
