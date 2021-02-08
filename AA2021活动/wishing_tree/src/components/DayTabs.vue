@@ -74,7 +74,7 @@ export default {
       // })
     },
     getday(time) {
-      return getDate(new Date(time * 1000), 3)
+      return getDate(new Date(time * 1000), 6)
     }
   }
 }

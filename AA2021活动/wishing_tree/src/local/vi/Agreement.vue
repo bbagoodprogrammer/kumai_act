@@ -5,32 +5,32 @@
       <a class="tab2" @click.prevent="mainTab=1" :class="{current:mainTab==1}" href="">Phần thưởng</a>
     </div>
     <div class="actTime">
-      Thời gian: 12:00 ngày 07/02- 24:00 ngày 18/02
+      Thời gian: 12:00 8/2- 24:00 19/02
     </div>
     <div class="rule" v-if="mainTab == 0">
-      <h5>Cầu nguyện Cây Ước Nguyện</h5>
-      <p>1. Người dùng sau khi báo danh mới có thể tham gia sự kiện, mới bắt đầu tích lũy điểm cầu nguyện.</p>
-      <p>2. Trong tác phẩm/Phòng Kara tặng quà xu hoặc hoàn thành nhiệm vụ có thể nhận điểm cầu nguyện, nhiệm vụ sẽ cập nhật vào 0h mỗi ngày, điểm cầu nguyện chưa nhận trong ngày sẽ xóa vào lúc 24h.</p>
-      <p>3. Điểm cầu nguyện cá nhân đạt đến giá trị nhất định có thể nhận phần thưởng tương ứng.</p>
+      <h5>Hướng dẫn tích điểm cầu nguyện:</h5>
+      <p>1. Nhấn [Báo danh] để tham gia sự kiện, bắt đầu tích điểm cầu nguyện sau khi báo danh, điểm cầu nguyện cần nhấn bong bóng tương ứng để tích điểm.</p>
+      <p>2. Tặng quà xu trong tác phẩm/ phòng Kara hoặc hoàn thành nhiệm vụ sẽ nhận điểm cầu nguyện, nhiệm vụ sẽ làm mới vào 0h mỗi ngày, điểm cầu nguyện chưa nhận trong ngày sẽ xóa vào lúc 24h.</p>
+      <p>3. Điểm cầu nguyện cá nhân đạt đến tiêu chuẩn, sẽ nhận phần thưởng tương ứng.</p>
       <img src="./img/table.png" alt="" class="table">
-      <p>4. Điểm cầu nguyện tổng trong thời gian sự kiện đạt đến giá trị nhất định, Cây Cầu Nguyện sẽ hiển linh ngẫu nhiên phát phần thưởng cho người tham gia.</p>
+      <p>4. Điểm cầu nguyện tổng đạt đến tiêu chuẩn, sẽ có những người dùng may mắn nhận thưởng, điểm cầu nguyện càng nhiều, tỉ lệ nhận càng cao.</p>
       <h5>Bảng cầu nguyện</h5>
-      <p>Bảng ngày: Xếp hạng theo điểm cầu nguyện người dùng cống hiến mỗi ngày trong thời gian sự kiện, người dùng có điểm cầu nguyện mỗi ngày vượt qua 666 có thể nhận phần thưởng.</p>
-      <p>Bảng tổng: Xếp hạng theo điểm cầu nguyện người dùng cống hiến trong thời gian sự kiện, 10 người dùng hạng đầu sẽ nhận được phần thưởng khủng khi sự kiện kết thúc.</p>
+      <p>Bảng ngày: Xếp hạng theo điểm cầu nguyện người dùng mỗi ngày trong thời gian sự kiện, người dùng có điểm cầu nguyện mỗi ngày vượt qua 666 có thể nhận phần thưởng.</p>
+      <p>Bảng tổng: Xếp hạng theo điểm cầu nguyện người dùng trong thời gian sự kiện, 10 thí sinh hạng đầu sẽ nhận thưởng khủng khi sự kiện kết thúc.</p>
       <h5>Chú thích:</h5>
-      <p>1. Trong thời gian sự kiện nếu có hành vi gian lận điểm, sẽ hủy bỏ phần thưởng và tư cách tham gia, nếu nghiêm trọng sẽ khóa tài khoản</p>
-      <p>2. Mỗi thiết bị chỉ có thể dùng 1 tài khoản tham gia sự kiện</p>
-      <p>3. Phần thưởng bảng cầu nguyện tổng sẽ phát trong vòng 7 ngày sau khi sự kiện kết thúc, phần thưởng do hệ thống phát tự động</p>
-      <p>4、所有私密作品/4. Tất cả số liệu tác phẩm/phòng kara khóa sẽ không được tính </p>
+      <p>1. Trong thời gian sự kiện nếu có hành vi gian lận điểm, sẽ hủy bỏ phần thưởng và tư cách tham gia, nếu nghiêm trọng sẽ khóa tài khoản.</p>
+      <p>2. Mỗi thiết bị chỉ có thể dùng 1 tài khoản tham gia sự kiện.</p>
+      <p>3. Phần thưởng bảng cầu nguyện tổng sẽ phát trong vòng 7 ngày sau khi sự kiện kết thúc, phần thưởng do hệ thống phát tự động.</p>
+      <p>4. Tất cả số liệu tác phẩm riêng tư và phòng riêng tư sẽ không được tính điểm.</p>
     </div>
     <div class="gift" v-else>
-      <h5>Cây Cầu Nguyện phát thưởng (Hiển thị những phần thưởng hiếm có)</h5>
+      <h5>Cây Cầu Nguyện phát thưởng<br /> (Hiển thị những phần thưởng hiếm có)</h5>
       <div class="giftList">
         <div class="giftItem" v-for="(item,index) in giftArr1" :key="index">
           <div class="imgBox">
             <img :src="item.img" alt="">
           </div>
-          <strong>{{item.name}}</strong>
+          <strong v-html="item.name"></strong>
         </div>
       </div>
       <h5>Phần thưởng bảng tổng</h5>
@@ -39,29 +39,29 @@
           <div class="imgBox">
             <img :src="item.img" alt="">
           </div>
-          <strong>{{item.name}}</strong>
+          <strong v-html="item.name"></strong>
         </div>
       </div>
       <p>
-        第1名<br />
-        單筆10%儲值返利券+新年許願徽章30天+新年許願頭飾30天+K房禮物夜之戀曲*1（2880金幣/個）+年獸座駕30天+3000金幣+8000金豆
+        Hạng 1:<br />
+        Phiếu quà nạp 10% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang sức Cây Cầu Nguyện (30 ngày) + Quà đặc hiệu Dạ Khúc (2880 xu) + Kỳ Lân Năm Mới (30 ngày) + 3000 xu + 8000 đậu
       </p>
       <p>
-        第2名<br />
-        單筆8%儲值返利券+新年許願徽章30天+新年許願頭飾30天+K房禮物夜之戀曲*1（2880金幣/個）+年獸座駕30天+2000金幣+5000金豆
+        Hạng 2:<br />
+        Phiếu quà nạp 8% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang sức Cây Cầu Nguyện (30 ngày) + Quà đặc hiệu Dạ Khúc (2880 xu) + Kỳ Lân Năm Mới (30 ngày) + 2000 xu + 5000 đậu
       </p>
       <p>
-        第3名<br />
-        單筆5%儲值返利券+新年許願徽章30天+新年許願頭飾30天+K房禮物夜之戀曲*1（2880金幣/個）+年獸座駕30天+1000金幣+3000金豆
+        Hạng 3:<br />
+        Phiếu quà nạp 5% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang sức Cây Cầu Nguyện (30 ngày) + Quà đặc hiệu Dạ Khúc (2880 xu) + Kỳ Lân Năm Mới (30 ngày) + 1000 xu + 3000 đậu
       </p>
       <p>
-        第4-10名<br />
-        單筆3%儲值返利券+新年許願徽章30天+新年許願頭飾30天+作品禮物浪漫摩天輪*1（388金幣/個）+年獸座駕30天+500金幣+1000金豆
+        Hạng 4-10: <br />
+        Phiếu quà nạp 3% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang sức Cây Cầu Nguyện (30 ngày) + Quà đặc hiệu Đu Quay (388 xu) + Kỳ Lân Năm Mới (30 ngày) + 5000 xu + 1000 đậu
       </p>
-      <h5>備註：</h5>
-      <p>1、所有背包禮物有效期為7天</p>
-      <p>2、頭飾獎勵可以在“我”頁面中“個性商城”里查看</p>
-      <p>3、活動中所有獎勵均需要手動點擊領取，實現許願的獎勵以K歌小助手信息為準</p>
+      <h5>Chú thích: </h5>
+      <p>1. Tất cả túi quà có thời hạn 7 ngày.</p>
+      <p>2. Phần thưởng trang sức có thể xem tại Tôi - Cửa hàng.</p>
+      <!-- <p>3、活動中所有獎勵均需要手動點擊領取，實現許願的獎勵以K歌小助手信息為準</p> -->
     </div>
   </div>
 </template>
@@ -73,11 +73,11 @@ export default {
       giftArr1: [
         {
           img: require("../../img/gift_icon/gift1.png"),
-          name: '巨星登場（168金幣/個）'
+          name: 'Siêu Sao<br />（118 xu）'
         },
         {
           img: require("../../img/gift_icon/gift2.png"),
-          name: '玫瑰花束（168金幣/個）'
+          name: 'Hoa Hồng<br />（118 xu）'
         },
         {
           img: require("../../img/gift_icon/gift3.png"),
@@ -91,19 +91,19 @@ export default {
       giftArr2: [
         {
           img: require("../../img/gift_icon/gift5.png"),
-          name: '新年許願徽章'
+          name: 'Huy chương Cây Cầu Nguyện'
         },
         {
           img: require("../../img/gift_icon/gift6.png"),
-          name: '新年許願頭飾'
+          name: 'Trang sức Cây Cầu Nguyện'
         },
         {
           img: require("../../img/gift_icon/gift7.png"),
-          name: '夜之戀曲（2880金幣 / 個）'
+          name: 'Dạ Khúc<br />	（2880 xu）'
         },
         {
           img: require("../../img/gift_icon/gift8.png"),
-          name: '年獸座駕'
+          name: 'Kỳ Lân Năm Mới'
         }
       ],
 

@@ -253,20 +253,20 @@ export default {
         line-height: 0.84rem;
         color: rgba(255, 255, 255, 0.6);
         &.tab1 {
-          background: url(../img/tab2.png);
-          background-size: 100% 100%;
-          &.current {
-            color: rgba(255, 255, 255, 1);
-            background: url(../img/tab1.png);
-            background-size: 100% 100%;
-          }
-        }
-        &.tab2 {
           background: url(../img/tab3.png);
           background-size: 100% 100%;
           &.current {
             color: rgba(255, 255, 255, 1);
             background: url(../img/tab4.png);
+            background-size: 100% 100%;
+          }
+        }
+        &.tab2 {
+          background: url(../img/tab2.png);
+          background-size: 100% 100%;
+          &.current {
+            color: rgba(255, 255, 255, 1);
+            background: url(../img/tab1.png);
             background-size: 100% 100%;
           }
         }

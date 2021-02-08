@@ -1,6 +1,6 @@
 export default {
     //html/index.html
-    title: 'Cây Cầu Nguyện Năm Mới',
+    title: 'Cây Cầu Nguyện',
     rule_title: 'Hướng dẫn',
 
     //common
@@ -8,10 +8,10 @@ export default {
     loading: 'ang tải...',
     //index.vue
     scoreHistory: 'Chi tiết điểm',
-    luck: ' chúc mừng',
-    luckOwnerScoreTips: 'Chúc mừng điểm cầu nguyện của bạn đạt $, chúc mừng bạn: ',
-    luckAllScoreTips: 'Điểm cầu nguyện tổng đã đạt $, chúc mừng bạn nhận: ',
-    luckTips: 'Phần thưởng đã gửi từ hệ thống, hãy chú ý nhận~',
+    luck: 'Chúc mừng!',
+    luckOwnerScoreTips: 'Điểm cầu nguyện của bạn đã đạt $, chúc mừng nhận:',
+    luckAllScoreTips: 'Điểm cầu nguyện tổng đã đạt $, chúc mừng nhận:',
+    luckTips: 'Phần thưởng đã gửi, hãy kiểm tra!',
 
 
     //footer.vue
@@ -25,7 +25,7 @@ export default {
     history_tab2: 'Lịch sử thưởng',
     history_tm: 'Thời gian',
     history_get: 'Cách nhận',
-    history_giftScore: 'Nhận điểm cầu ',
+    history_giftScore: 'Nhận điểm',
     history_gift: 'Phần thưởng',
     channel1: {
         0: 'Từ nhiệm vụ',
@@ -40,13 +40,13 @@ export default {
     //Integral.vue
     ownerScore: 'Điểm cá nhân:',
     allScore: 'Điểm tổng:',
-    integralTips: ' Tổng điểm cầu nguyện đạt điểm số chỉ định Cây Cầu Nguyện sẽ hiển linh<br />Điểm cầu nguyện cống hiến càng nhiều, tỉ lệ nhận thưởng càng cao',
+    integralTips: 'Điểm cầu nguyện tổng đạt đến tiêu chuẩn, sẽ có những người dùng<br /> nhận thưởng, điểm cầu nguyện càng nhiều, tỉ lệ nhận càng cao.',
 
     //TabsScrollLoadList
     dayTab: 'Bảng cầu nguyện ngày',
     allTab: 'Bảng cầu nguyện tổng',
-    giftTips: 'Xếp hạng theo điểm cầu nguyện người dùng cống hiến mỗi ngày trong thời gian sự kiện Người dùng có điểm cầu nguyện mỗi ngày vượt qua 666 sẽ nhận',
-    giftName: ' Hoa Anh Đào May Mắn(66 xu)',
+    giftTips: 'Xếp hạng theo điểm cầu nguyện người dùng mỗi ngày.<br/>Có điểm cầu nguyện mỗi ngày qua 666 sẽ được nhận.',
+    giftName: 'Hoa Anh Đào (66 xu)',
     downTimeStart: 'Đếm ngược bắt đầu bảng tổng',
     downTimeEnd: 'Đếm ngược sự kiện kết thúc',
     downTimeEd: 'Sự kiện đã kết thúc',
@@ -54,7 +54,7 @@ export default {
     hour: ' giờ',
     min: 'phút',
     second: 'giây',
-    timeTips: 'Xếp hạng dựa vào điểm cầu nguyện người dùng cống hiến trong thời gian sự kiện 10 người dùng hạng đầu sẽ nhận được quà khủng khi kết thúc',
+    timeTips: 'Xếp hạng theo điểm cầu nguyện người dùng mỗi ngày.<br/>10 thí sinh hạng đầu sẽ nhận thưởng khi kết thúc.',
 
 
     //tree
@@ -65,6 +65,8 @@ export default {
     //turnMsg
     luckGet: 'Chúc mừng bạn',
     luckGeted: 'nhận được',
-    wan: 'K'
-
+    wan: 'K',
+    singUpSucTips: 'Báo danh thành công!',
+    ownerScoreConfig: [800, 3000, 9000, 18000, 40000],
+    totalScoreConfig: [500000, 1500000, 3000000, 5000000, 8000000]
 }

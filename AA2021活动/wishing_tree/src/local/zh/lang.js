@@ -68,5 +68,8 @@ export default {
 
 
     giving: '送禮',
-    wan: '萬'
+    wan: '萬',
+    singUpSucTips: '報名成功！',
+    ownerScoreConfig: [1000, 8000, 10000, 20000, 50000],
+    totalScoreConfig: [500000, 1500000, 3000000, 5000000, 8000000]
 }

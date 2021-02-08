@@ -48,7 +48,7 @@ export default {
       return this.groupsUserMsg[this.tab] ? this.groupsUserMsg[this.tab].msg : { userinfo: {} }
     },
     act_day() {
-      return getDate(new Date(this.dateArr[this.tab - 1] * 1000), 3)
+      return getDate(new Date(this.dateArr[this.tab - 1] * 1000), 6)
     }
   },
   methods: {
@@ -56,7 +56,7 @@ export default {
       globalBus.$emit('commonEvent', () => {
         singUp().then(res => {
           if (res.data.response_status.code == 0) {
-            this.toast(`報名成功！`)
+            this.toast(this.lang.singUpSucTips)
             this.$parent.init()
           } else {
             this.toast(res.data.response_status.error)
@@ -138,8 +138,10 @@ export default {
         margin-left: 0.3rem;
         white-space: nowrap;
         &.not_rank {
-          font-size: 0.26rem;
-          font-weight: 600;
+          width: 1.2rem;
+          font-size: 0.22rem;
+          font-weight: normal;
+          white-space: pre-wrap;
         }
       }
       .imgBox {

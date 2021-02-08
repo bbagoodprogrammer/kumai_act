@@ -170,7 +170,7 @@ export default {
       }
     },
     getDate(tm) {
-      return getDate(new Date(tm * 1000), 1)
+      return getDate(new Date(tm * 1000), 7)
     },
     goUser(uid) { //跳转
       location.href = `uid:${uid}`
