@@ -464,11 +464,11 @@ export default {
               background: url(../img/icon/icon_4.png);
               background-size: 100% 100%;
             }
-            &.icon5 {
-              width: 1.94rem;
-              background: url(../img/icon/icon_5.png);
-              background-size: 100% 100%;
-            }
+            // &.icon5 {
+            //   width: 1.94rem;
+            //   background: url(../img/icon/icon_5.png);
+            //   background-size: 100% 100%;
+            // }
             &.icon100 {
               width: 1.94rem;
               background: url(../img/icon/icon_5.png);

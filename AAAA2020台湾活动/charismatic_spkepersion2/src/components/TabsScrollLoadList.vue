@@ -16,7 +16,7 @@
     </div>
     <DayTabs :tab="tab" @changeClick="tabClick" v-if="mainTab == 0" />
     <!-- 倒計時 -->
-    <div class="downTimeBox2">
+    <div class="downTimeBox2" v-if="mainTab == 1">
       <div v-if="mainTab == 0">
         <p v-if="tab == c_day">今日日榜結束倒計時</p>
         <p v-else-if="tab > c_day">今日日榜開始倒計時</p>

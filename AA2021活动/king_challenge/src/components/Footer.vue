@@ -108,7 +108,23 @@ export default {
     },
     linerWidth() {
       if (this.Lv) {
-        return this.nowUserMsg.score / this.level[this.level.length - 1].limit * 100 + '%'
+
+        let levelArr = Object.keys(this.level)
+        let score = this.nowUserMsg.score
+        for (let i = levelArr.length; i > 0; i--) {
+          if (score >= this.level[levelArr[levelArr.length - 1]].limit) {
+            return '100%'
+          } else if (score >= this.level[i].limit) {
+
+            let c = this.level[i + 1].limit - this.level[i].limit
+            let t = score - this.level[i].limit
+            console.log(c, t)
+            let a = (t / c) * 100 / 5
+            return (20 * i + a) + '%'
+          } else if (score < this.level[1].limit) {
+            return score / this.level[1].limit / 5 * 100 - 3.5 + '%'
+          }
+        }
       } else {
         return '0%'
       }

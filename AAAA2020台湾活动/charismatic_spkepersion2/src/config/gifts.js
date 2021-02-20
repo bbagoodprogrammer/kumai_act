@@ -104,7 +104,7 @@ export const giftArr = {
         img: require('../assets/img/gifts/vip.png')
     },
     26: {
-        name: '白玉仙舟座駕(5天)',
+        name: '白玉仙舟座駕(3天)',
         img: require('../assets/img/gifts/gift3.png')
     },
     27: {
@@ -113,43 +113,43 @@ export const giftArr = {
     },
 
     //4擋
-    28: {
+    38: {
         name: '元宵魅力代言人徽章（7天）        ',
         img: require('../assets/img/gifts/gift16.png')
     },
-    29: {
+    39: {
         name: '雙魚座頭飾（3天）',
         img: require('../assets/img/gifts/gift10.png')
     },
-    30: {
+    40: {
         name: '香檳禮物（50金幣）',
         img: require('../assets/img/gifts/gift8.png')
     },
-    31: {
+    41: {
         name: '月光精靈球禮物（80金幣）',
         img: require('../assets/img/gifts/gift13.png')
     },
-    32: {
+    42: {
         name: '感恩的心禮物（110金幣）        ',
         img: require('../assets/img/gifts/gift12.png')
     },
-    33: {
+    43: {
         name: '滿400返10送禮返利券        ',
         img: require('../assets/img/gifts/ticket2.png')
     },
-    34: {
+    44: {
         name: '薄荷糖禮物（120金豆）        ',
         img: require('../assets/img/gifts/gift11.png')
     },
-    35: {
+    45: {
         name: '小蛋糕禮物（10金幣）        ',
         img: require('../assets/img/gifts/gift6.png')
     },
-    36: {
+    46: {
         name: 'VIP(3天)        ',
         img: require('../assets/img/gifts/vip.png')
     },
-    37: {
+    47: {
         name: '白玉仙舟座駕（3天）        ',
         img: require('../assets/img/gifts/gift3.png')
     },

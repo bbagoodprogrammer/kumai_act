@@ -188,7 +188,7 @@ export default {
       if (!this.rank.loading && !this.rank.loadEnd && this.mainTab != 2) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
-        if (scrollToBottom || notFull || isRefresh) {
+        if (scrollToBottom || notFull || isRefresh || !this.rank.loadCount) {
           const key = this.rankKey;
 
           const set = (k, v) => {

@@ -5,7 +5,7 @@
       <span :class="{act:showType== 1}" @click="tabClick(1)">Thưởng</span>
     </div>
     <div class="rules" v-show="showType == 0">
-      <p class="actTime">18h 6/8/2020 – 20h 23/8/2020</p>
+      <p class="actTime">18h 20/2 2021-20h 7/3 2021</p>
       <h5>Thể lệ BXH Phú Hộ</h5>
       <p>1. Xếp hạng theo điểm phú hộ tương ứng với quặng đào được sau khi báo danh.<span>Điểm phú hộ = giá trị của quặng đào được</span></p>
       <img src="../../assets/img/ruleImg1.png" alt="" class="ruleImg1">
@@ -32,7 +32,7 @@
       <p class="otherTips2">Nếu cố tình vi phạm, cho dù người dùng có tham gia sự kiện hay không đều bị khoá vĩnh viễn toàn bộ tài khoản chính và phụ, sau khi sự kiện kết thúc ban tổ chức sẽ thu hồi toàn bộ phần thưởng.</p>
     </div>
     <div class="wards" v-show="showType == 1">
-      <p class="actTime">18h 15/5/2020 – 21h 29/5/2020</p>
+      <p class="actTime">18h 20/2 2021-20h 7/3 2021</p>
       <h5 class="title1">Thưởng mỗi ngày</h5>
       <p class="centerTips">Điểm phú hộ nhận thưởng mỗi ngày = điểm phú hộ nhận trong hôm đó</p>
       <img src="../../assets/img/ruleImg2.png" alt="" class="ruleImg2">
@@ -54,7 +54,7 @@
       </div>
       <h5>Cách dùng phần thưởng</h5>
       <div class="giftRules">
-        <p>1. Phiếu quà nạp chỉ có tác dụng trong ngày tính từ lúc nhận, nếu trong ngày 1 người dùng nhận được nhiều phiếu quà nạp, mức thưởng sẽ cộng dồn. Xu thưởng sẽ được tự động gửi ngay khi nạp thành công.</p>
+        <p>1. Phiếu quà nạp trong quà tăng cấp chỉ được dùng 1 lần, có hiệu lực trước 23:59:59 ngày nhận, nếu bạn nhận nhiều quà nạp tỷ lệ ( như phiếu quà nạp 3%), sẽ được cộng dồn, xu thưởng sẽ gửi vào tài khoản ngay sau khi dùng phiếu.</p>
         <p>2. Phần thưởng túi quà đều có thời hạn 7 ngày, mời dùng kịp thời.</p>
         <p>3. Túi quà trên phiên bản Android có thể xem tại Tôi – Túi quà, khi tặng quà có thể lựa chọn để tặng quà từ Túi. iOS cần cập nhật phiên bản mới nhất Việt Kara trên App Store để sử dụng.</p>
       </div>

@@ -36,7 +36,7 @@
               <strong>{{item.name}}</strong>
             </span>
           </div>
-          <div class="tips1" v-if="isTicket">Phiếu nạp có hiệu lực đến 23:59:59 hôm nay!</div>
+          <div class="tips1" v-if="isTicket">Phiếu quà nạp chỉ được dùng 1 lần, có hiệu lực trước 23:59:59 hôm nay, hãy sử dụng kịp thời!</div>
           <div class="tips2">{{lang.getBack}}</div>
         </div>
       </transition>
@@ -266,10 +266,11 @@ export default {
     color: red;
     font-weight: 500;
     text-align: center;
-    margin-top: 0.15rem;
+    margin-top: 0.1rem;
+    padding: 0 0.3rem;
   }
   .tips2 {
-    font-size: 0.22rem;
+    font-size: 0.21rem;
     color: #9f6151;
     font-weight: 500;
     text-align: center;

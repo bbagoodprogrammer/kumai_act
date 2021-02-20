@@ -1,70 +1,100 @@
 export default {
     //html/index.html
-    title: 'Menandatangani kontrak',
+    title: 'Kontes Master Kroom Populer',
+    rule_title: 'Kontes Master Kroom Populer    ',
 
-    // router/index
-    page_data: 'Datanya memenuhi target',
-    page_bind: 'Tautkan nomor HP',
-    page_apply: 'Minta terkontrak',
-    page_agreement: 'Perjanjian lisensi Wekara',
+    //footer
+    act_noStart: 'Acara blm mulai    ',  //活動未開始
+    act_end: 'Acara udh berakhir    ',  //活動已結束
+    singUp: 'Mendaftar    ',  //立即報名
+    noRank: 'Blm masuk', //未上榜
+    singUp_suc: 'Berhasil daftar    ', //報名成功
 
-    // Index
-    sign: 'Masuk utk menandatangani kontrak',
-    signed: 'Sudah ter kontrak',
-    sign_rule: 'Keterangan terkontrak：',
-    sign_rule_1: '1、Pengguna yg tidak terkontrak tidak bisa tarik tunai, hanya bisa menukar jadi koin emas, dan harus tukarkan minimum 20000 berlian Wekara tiap kali, yg tidak cukup 20000 berlian Wekara tidak ditukarkan；',
-    sign_rule_2: '2、Menjadi pengguna yg terkontrak akan bisa tarik pendapatannya, dan Level yg terkontrak makin tinggi, proporsi pertakuran koin makin tinggi, dan bisa tukarkan minimum 100 berlian Wekara tiap kali。',
+    //index
+    rule: 'Aturan acara    ',  //活動規則
+    gift_title: 'Hadiah acara    ', //活動獎勵
+    giftList: [
+        {
+            img: require("../../img/giftList/gift1.png"),
+            name: 'Lencana Master Kroom Populer            '
+        },
+        {
+            img: require("../../img/giftList/gift2.png"),
+            name: 'Tema Kroom Populer            '
+        },
+        {
+            img: require("../../img/giftList/gift3.png"),
+            name: 'Debut akbar            '
+        },
+        {
+            img: require("../../img/giftList/gift7.png"),
+            name: 'Bingkai Hutan jamur            '
+        },
+        {
+            img: require("../../img/giftList/gift5.png"),
+            name: 'Koin emas besar            '
+        },
+        {
+            img: require("../../img/giftList/gift6.png"),
+            name: 'Kacang emas besar            '
+        }
+    ],
+    //Integral
+    integral_lv: 'Level saya      ',//我的達人等級
+    integral_coins: 'Koin yg dikonsumsi     ',//消費金幣
+    integral_tips: 'Koin yg dikonsumsi di dalam Angpau hadiah / Kotak hadiah keberuntungan / Pukul telur, akan dapatkan hadiah yg sesuai',//在禮物紅包/福運禮物/砸蛋探寶中消費金幣可獲得相應獎勵
+    integral_luck: 'Selamat dapatkan',//恭喜獲得
+    integral_luckTips: 'Hadiah secara otomatis diberikan ke akun Anda melalui sistem',//獎勵獎通過系統自動發放到您的帳戶上
+    integral_ok: 'Ya',//確定
+    giftArr: {
+        1: {
+            gift_tips: 'x30',
+            img: require('../../img/get_gift/giftItem_1.png'),
+            name: '10 koin',
+            act_width: '13%',
+            gname: '50 kacang emas'
+        },
+        2: {
+            gift_tips: '7hari',
+            img: require('../../img/get_gift/giftItem_2.png'),
+            name: '30 koin',
+            act_width: '30%',
+            gname: 'VIP/7 hari'
+        },
+        3: {
+            img: require('../../img/get_gift/giftItem_7.png'),
+            name: '100 koin',
+            act_width: '50%',
+            gname: 'Naga/10 hari'
+        },
+        4: {
+            img: require('../../img/get_gift/giftItem_8.png'),
+            name: '300 koin',
+            act_width: '70%',
+            gname: 'Rusa/20 hari'
+        },
+        5: {
+            gift_tips: '7hari',
+            img: require('../../img/get_gift/giftItem_5.png'),
+            name: '500 koin',
+            act_width: '100%',
+            gname: 'Kota Permen/30 hari'
+        },
+    },
 
-    // Task
-    data_name: 'Datanya memenuhi target, menjadi pengguna yg terkontrak',
-    data_desc: 'Setelah datanya memenuhi target, baru bisa minta terkontrak',
-    bind_name: 'Tautkan nomor HP',
-    bind_desc: 'Tolong tautkan nomor HP dulu',
-    sign_name: 'Segera menandatangani',
-    sign_desc: 'Nikmati manfaat hak istimewa yg eksklusif  dari pengguna yg terkontrak',
-    do: 'Masuk',
-    done: 'Sudah',
-    sign_tips: 'Kalo dua langkah pertama belum selesai\n Tidak bisa minta terkontrak',
-    ok: 'Ya',
 
-    // Bind
-    bind_succ: 'Akun Anda sudah berhasil diikat\n nomor HP: %s',
+    //rank
+    rank_title1: 'Top Master    ',  //K房達人榜
+    rank_title2: 'Top Kroom Populer    ',//人氣K房榜
+    rank_timeDown1: 'Acara berakhir Hitung mundur    ', //活動結束倒計時
+    rank_timeDown2: ' Acara mulai Hitung mundur', //活動開始倒計時
+    rank_day: 'hari    ',//hari
+    rank_hour: 'jam    ',//時
+    rank_min: 'menit    ',//分
+    rank_second: 'detik    ', //秒
+    rank_tips1: 'Pemeringkatan berdasarkan koin emas yang dikonsumsi oleh pengguna dalam angpau hadiah / kotak hadiah keberuntungan / Pukul telur', //根據用戶個人在禮物紅包/福運禮盒/砸蛋探寶中所花費的koin進行排名
+    rank_tips2: 'Pemeringkatan berdasarkan nilai pesona yang dihasilkan oleh angpau hadiah dan kotak hadiah keberuntungan di kamar selama acara, Setiap kali roket dibuka di dalam ruangan, skornya bertambah 800    ', //根據房間中禮物紅包/福運禮盒產生的魅力值進行排名房間內每開啟一次火箭活動分數增加10000
+    loading: 'Sedang dimuat...',//加載中...
+    noData: 'Tiada data', //暫無數據
 
-    // Data
-    count_title: 'Pengguna yg akan mencapai persyaratnya',
-    count_income: 'Pendapatan berlian Wekara',
-    count_numbers: '（{0}/{1}）',
-    count_time: 'Periode statistik ini adalah tgl {1} bulan {0} ~ tgl {3} bulan {2}\nMasih ada {4} hari berakhir akan masuk ke periode statistik berikutnya, semangat ya',
-    done_tips: 'Anda sudah mencapai persyaratan pengguna yg terkontrak\nCepatlah minta untuk menjadi pengguna yg terkontrak',
-    undone_tips: 'Anda belum mencapai persyaratan pengguna yg terkontrak\nTidak bisa minta untuk menjadi pengguna yg terkontrak',
-    done_give: 'Setelah berhasih terkontrak, akan mendapatkan：',
-    done_give_1: '1、Bisa tarik pendapatannya, dan level yg terkontrak makin tinggi,proporsi tarik makin tinggi；',
-    done_give_2: '2、Bisa dapatkan proporsi pertukaran koin lebih tinggi, dan bisa tukarkan minimum 100 berlian Wekara tiap kali',
-
-    // Apply
-    apply_title: 'Langkah terakhir minta terkontrak：',
-    apply_desc: 'Menandatangani kontrak perlu menyerahkan KTP untuk ditinjau, dan berhasil ditinjau menunjukkan berhasil minta ',
-    card_title: 'Pegang bagian depan KTP dan ambil foto sesuai contoh gambar',
-    card_desc: 'Untuk memastikan keaslian identitas Anda, Anda perlu memverifikasi identitas Anda,\n Silakan kirimkan foto sesuai dengan contoh gambar,jika KTP ditemukan palsu, akun akan diblokir secara permanen',
-    re_upload: 'Unggah ulang',
-    upload_title: 'Tolong upload foto verifikasi',
-    upload_desc: 'Setalah berhasil upload, kami akan meninjaukan secepatnya',
-    agree_agreement: 'Permohonan kontrak berarti setuju',
-    apply_agreement: '《Perjanjian lisensi Wekara》',
-    submit_apply: 'Kirim dan permohonan kontrak',
-    card_submited: 'Verifikasi identitas sudah kirim\n Tidak perlu kirim ulang\nbisa langsung minta kontrak',
-
-    // Result
-    re_submit: 'Permintaan ulang',
-    result_checking: 'Permintaan telah berhasil dikirim \ nKami akan meninjau untuk Anda secepatnya',
-    result_success: 'Selamat Anda sudah menjadi pengguna yg terkontrak di Wekara',
-    result_fail: 'Permohonan Anda ditolak',
-    result_fail_reason: 'Alasan：%s',
-    result_fail_contact: 'Tentang detailnya, silakan hubungi Wekara resmi ID %s',
-    result_reject: 'Permintaan Anda tidak disetujui,kami akan melakukan proses penandatanganan untuk anchor secepatnya, mohon nantikan。',
-    sign_give: 'Setelah berhasih terkontrak, akan bisa mendapatkan：',
-    sign_give_1: '1、Nyanyian yg diterbitkan atau kamar karaoke sendiri memiliki bobot yang lebih tinggi dan mendapatkan lebih banyak rekomendasi；',
-    sign_give_2: '2、Lebih banyak eksposur dan lebih banyak perhatian penggemar；',
-    sign_give_3: '3、Bisa tarik pendapatannya, dan level yg terkontrak makin tinggi, proporsi tarik makin tinggi；',
-    sign_give_4: '4、Bisa dapatkan proporsi pertukaran koin lebih tinggi, dan bisa tukarkan minimum 100 berlian Wekara tiap kali',
 }

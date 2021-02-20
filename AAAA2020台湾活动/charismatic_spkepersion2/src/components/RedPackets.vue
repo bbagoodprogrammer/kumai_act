@@ -338,7 +338,7 @@ export default {
       // console.log(this.chioneUserMsg)
       var data = {
         "share_title": `快來！爆紅包啦！`,
-        "share_content": "點擊預約搶紅包,還能收到提醒哦>>",
+        "share_content": "點擊進入活動>>",
         "share_image": `http://activity.17sing.tw/static_html/2020/charismatic_spkepersion/share.png?v=5`,
         "link": `http://activity.17sing.tw/static_html/2020/charismatic_spkepersion/index.html?uid=#ID#&token=#TOKEN#`,
         "image": `http://activity.17sing.tw/static_html/2020/charismatic_spkepersion/share.png?v=5`,
