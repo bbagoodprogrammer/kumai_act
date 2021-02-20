@@ -71,16 +71,16 @@ export default {
         { id: 26, src: require("../../assets/img/gifts/gift3.png") },
         { id: 27, src: require("../../assets/img/gifts/gift10.png") },
 
-        { id: 28, src: require("../../assets/img/gifts/coins.png") },
-        { id: 29, src: require("../../assets/img/gifts/gift16.png") },
-        { id: 30, src: require("../../assets/img/gifts/gift8.png") },
-        { id: 31, src: require("../../assets/img/gifts/gift13.png") },
-        { id: 32, src: require("../../assets/img/gifts/gift12.png") },
-        { id: 33, src: require("../../assets/img/gifts/ticket2.png") },
-        { id: 34, src: require("../../assets/img/gifts/gift11.png") },
-        { id: 35, src: require("../../assets/img/gifts/gift6.png") },
-        { id: 36, src: require("../../assets/img/gifts/vip.png") },
-        { id: 37, src: require("../../assets/img/gifts/gift3.png") },
+        { id: 38, src: require("../../assets/img/gifts/gift16.png") },
+        { id: 39, src: require("../../assets/img/gifts/gift10.png") },
+        { id: 40, src: require("../../assets/img/gifts/gift8.png") },
+        { id: 41, src: require("../../assets/img/gifts/gift13.png") },
+        { id: 42, src: require("../../assets/img/gifts/gift12.png") },
+        { id: 43, src: require("../../assets/img/gifts/ticket2.png") },
+        { id: 44, src: require("../../assets/img/gifts/gift11.png") },
+        { id: 45, src: require("../../assets/img/gifts/gift6.png") },
+        { id: 46, src: require("../../assets/img/gifts/vip.png") },
+        { id: 47, src: require("../../assets/img/gifts/gift3.png") },
 
         // { id: 38, src: require("../../assets/img/gifts/gift12.png") },
         // { id: 39, src: require("../../assets/img/gifts/gift10.png") },
@@ -219,7 +219,7 @@ button {
     .imgBg {
       width: 1.6rem;
       height: 1.6rem;
-      background: rgba(135, 65, 227, 1);
+      background: #ef5a48;
       border-radius: 0.12rem;
       img {
         width: 100%;

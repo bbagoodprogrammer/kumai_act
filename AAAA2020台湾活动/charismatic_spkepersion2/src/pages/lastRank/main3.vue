@@ -1,14 +1,15 @@
 <template>
   <div class="lastRank">
-    <div class="title"></div>
+    <div class="title">{{title}}</div>
     <div class="top1">
-      <img :src="top1.avatar" alt="">
+      <img :src="top1.avatar" alt="" @click="goUser(top1.uid)">
       <strong>{{top1.nick}}</strong>
     </div>
     <ul>
       <li v-for="(item,index) in shouList" :key="index">
-        <i class="mounthIcon">{{index +1}}月</i>
-        <img :src="item.avatar" alt="">
+        <i class="mounthIcon" v-if="mark[index+1]">{{mark[index+1]}}</i>
+        <i class="mounthIcon" v-else>{{index +1}}月</i>
+        <img :src="item.avatar" alt="" @click="goUser(item.uid)">
         <strong>{{item.nick}}</strong>
       </li>
     </ul>
@@ -26,7 +27,9 @@ export default {
         nick: '虛位以待',
         avatar: require(`../../assets/img/rank/empty.png`)
       },
-      list: []
+      list: [],
+      title: '',
+      mark: {}
     }
   },
   computed: {
@@ -42,13 +45,21 @@ export default {
         arr.push(this.default)
       }
       return arr
-    }
+    },
+
   },
   created() {
     document.title = '往期代言人'
     api.mounth().then(res => {
       this.list = res.data.response_data.list
+      this.title = res.data.response_data.title
+      this.mark = res.data.response_data.mark
     })
+  },
+  methods: {
+    goUser(uid) {
+      location.href = `uid:${uid}`
+    }
   }
 }
 </script>
@@ -62,6 +73,11 @@ body {
       background: url(../../assets/img/rank/lastRankTitle.png);
       background-size: 100% 100%;
       margin: 0.4rem auto 0;
+      text-align: center;
+      line-height: 1.02rem;
+      font-size: 0.36rem;
+      font-weight: bold;
+      color: #fff9eb;
     }
     .top1 {
       width: 7.25rem;
@@ -98,15 +114,16 @@ body {
         margin-bottom: 0.3rem;
         i {
           display: block;
-          width: 0.6rem;
+          // width: 0.6rem;
+          padding: 0 0.15rem;
           height: 0.32rem;
-          background: url(../../assets/img/rank/mounthIcon.png);
-          background-size: 100% 100%;
+          background: linear-gradient(0deg, #fdf0d3, #ffdabd);
           position: absolute;
           text-align: center;
           line-height: 0.32rem;
           font-size: 0.22rem;
           color: rgba(133, 88, 14, 1);
+          border-radius: 0.12rem 0 0.12rem 0;
         }
         img {
           width: 2rem;

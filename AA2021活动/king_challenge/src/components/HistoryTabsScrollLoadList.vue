@@ -11,9 +11,9 @@
       <ul class="list day">
         <li v-for="(item,index) in rank.list" :key="index" :class="'rank' +item.rank">
           <span>{{getDate(item.time)}}</span>
-          <span v-if="type== 0">{{lang.singIn}}</span>
-          <span v-else-if="type== 2">{{lang.singIn_days.replace('$',item.mark)}}</span>
-          <span v-else-if="type== 3">{{lang.singIn_lvGift}}</span>
+          <span v-if="item.type== 0">{{lang.singIn}}</span>
+          <span v-else-if="item.type== 2">{{lang.singIn_days.replace('$',item.mark)}}</span>
+          <span v-else-if="item.type== 3">{{lang.singIn_lvGift}}</span>
           <span>{{item.name}}</span>
         </li>
       </ul>
@@ -77,7 +77,7 @@ export default {
       return this.mainTab == 1 ? 'total' : this.mainTab;
     },
     rankApi() {
-      var dayApi = `/wishing_tree/giftRecord.php?token={token}&from={from}&type={type}`;
+      var dayApi = `/king_challenge/receiveList.php?token={token}&from={from}&type={type}`;
       const token = getUrlString('token') || '';
       return dayApi.replace('{token}', token).replace('{type}', this.mainTab)
 

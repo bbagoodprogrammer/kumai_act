@@ -281,7 +281,8 @@ body::-webkit-scrollbar {
       overflow-x: hidden;
       overflow-y: scroll;
       li {
-        height: 2.6rem;
+        // height: 2.6rem;
+        padding: 0.2rem 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -302,7 +303,7 @@ body::-webkit-scrollbar {
         .giftArr {
           width: 3.2rem;
           display: flex;
-          align-items: center;
+          // align-items: center;
           justify-content: space-between;
           .giftItem {
             width: 1rem;
@@ -310,7 +311,7 @@ body::-webkit-scrollbar {
           .imgBg {
             width: 1rem;
             height: 1rem;
-            background: rgba(135, 65, 227, 1);
+            background: #ef5a48;
             border-radius: 0.12rem;
             img {
               width: 100%;
@@ -319,7 +320,7 @@ body::-webkit-scrollbar {
           }
           strong {
             display: block;
-            height: 0.9rem;
+            // height: 1.4rem;
             font-size: 0.24rem;
             text-align: center;
           }

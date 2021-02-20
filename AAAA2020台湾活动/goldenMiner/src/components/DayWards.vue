@@ -36,7 +36,7 @@
               <strong>{{item.name}}</strong>
             </span>
           </div>
-          <div class="tips2">{{lang.getBack}} <em v-if="showTicket">（禮券僅當天有效，請盡快使用）</em> </div>
+          <div class="tips2">{{lang.getBack}} <em v-if="showTicket">儲值返利券僅能使用1次，當天23:59:59前有效，請盡快使用~</em> </div>
         </div>
       </transition>
     </div>
@@ -260,6 +260,7 @@ export default {
     font-weight: 500;
     text-align: center;
     margin-top: 0.15rem;
+    padding: 0 0.3rem;
     em {
       display: block;
       text-align: center;

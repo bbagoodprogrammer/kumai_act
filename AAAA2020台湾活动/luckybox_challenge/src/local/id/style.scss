@@ -1,3 +1,51 @@
 html.id {
-    
+    .pageIndex {
+        background: #47205b url(./img/banner.png) no-repeat;
+        background-size: 100% auto;
+      }
+      .dayGift{
+        height: 4.7rem!important;
+        padding-top: 1.1rem!important;
+        background: url(./img/dayGiftBg.png);
+        background-size: 100% 100%;
+      }
+      .giftShow{
+        background: url(./img/showGiftBg.png);
+        background-size: 100% 100%;
+      }
+      .getGiftPup{
+        background: url(./img/getGiftPup.png);
+        background-size: 100% 100%;
+      }
+      .ruleTips{
+          width: 2.29rem;
+          height: .65rem;
+          background: url(./img/rule.png);
+          background-size: 100% 100%;
+          margin-left: .65rem;
+      }
+      .ruleTips2{
+        width: 2.94rem;
+        height: .65rem;
+        background: url(./img/history.png);
+        background-size: 100% 100%;
+        margin-top: .24rem;
+      }
+      .historyList{
+        background: url(./img/historyBg.png);
+        background-size: 100% 100%;
+          &.noData{
+            padding-top: 3.5rem;
+            height: 1.94rem;
+            background: url(./img/historyNodata.png);
+            background-size: 100% 100%;
+          }
+      }
+      .shareBar{
+        .bar{
+          background: url(./img/share_bar.png) no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+      
 }

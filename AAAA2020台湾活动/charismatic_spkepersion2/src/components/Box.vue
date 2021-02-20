@@ -1,9 +1,9 @@
 <template>
   <div class="giftBox">
     <div class="userLv">
-      <div class="lv">我的等級 <strong>Lv.{{level}}</strong> <i @click="giftPup= true" class="quest"></i></div>
+      <div class="lv">今日等級 <strong>Lv.{{level}}</strong> <i @click="giftPup= true" class="quest"></i></div>
       <!-- <i class="quest" @click="showTipsPup = true"></i> -->
-      <div class="score">星光值 <strong>{{score}}</strong> </div>
+      <div class="score">今日星光值 <strong>{{score}}</strong> </div>
     </div>
     <div class="liner">
       <div class="actLiner" :style="{width:actWidth}"></div>
@@ -14,11 +14,14 @@
         <i class="ligt" v-if="item.can || item.get" :class="{rotate:!item.get && item.can}"></i>
       </div>
     </div>
+    <div class="giftTips">
+      *每日達到對應的等級，可領取對應獎勵，每天可領取1次，僅限當天領取
+    </div>
     <div class="mask" v-show="shouLuckPup">
       <transition name="slide">
         <div class="luckPup" v-if="shouLuckPup">
           <i class="close" @click="shouLuckPup = false"></i>
-          <p class="lvTips">星光值達到{{cilckItem.limit}}可抽獎 <em>(即升級到Lv.{{cilckItem.level}}等級)</em></p>
+          <p class="lvTips">今日星光值達到{{cilckItem.limit}}可抽獎 <em>(即升級到Lv.{{cilckItem.level}}等級)</em></p>
           <slot-machine-test ref="luck" :cilckItem="cilckItem" @setPacketStatus="setPacketStatus"></slot-machine-test>
           <div class="luckGo" :class="{can:cilckItem.can && !cilckItem.get,ed:cilckItem.get}" @click="goLuck()"></div>
         </div>
@@ -153,7 +156,7 @@ export default {
 <style lang="scss" scoped>
 .giftBox {
   width: 7.22rem;
-  height: 3.43rem;
+  height: 4.26rem;
   background: url(../assets/img/box/boxBg.png);
   background-size: 100% 100%;
   margin: 0.25rem auto 0;
@@ -199,11 +202,11 @@ export default {
       border-radius: 0.05rem;
     }
     .boxItem {
-      width: 1.09rem;
-      height: 0.85rem;
+      width: 1.19rem;
+      height: 0.95rem;
       position: absolute;
       z-index: 20;
-      top: -0.4rem;
+      top: -0.45rem;
       .ani {
         animation: heartbeat 2.5s linear infinite;
       }
@@ -229,28 +232,28 @@ export default {
         // }
       }
       &.box1 {
-        left: -0.55rem;
+        left: -0.6rem;
         .item {
           background: url(../assets/img/box/01.png);
           background-size: auto 100%;
         }
       }
       &.box2 {
-        left: 1.25rem;
+        left: 1.2rem;
         .item {
           background: url(../assets/img/box/02.png);
           background-size: auto 100%;
         }
       }
       &.box3 {
-        left: 3.13rem;
+        left: 3.08rem;
         .item {
           background: url(../assets/img/box/03.png);
           background-size: auto 100%;
         }
       }
       &.box4 {
-        right: -0.55rem;
+        right: -0.5rem;
         .item {
           background: url(../assets/img/box/04.png);
           background-size: auto 100%;
@@ -504,6 +507,12 @@ export default {
     text-align: center;
     line-height: 0.65rem;
   }
+}
+.giftTips {
+  margin-top: 1rem;
+  padding: 0 0.5rem;
+  text-align: center;
+  font-size: 0.28rem;
 }
 .giftShow {
   width: 7.18rem;

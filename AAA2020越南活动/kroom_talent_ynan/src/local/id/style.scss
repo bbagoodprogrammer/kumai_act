@@ -1,3 +1,42 @@
 html.id {
-    
+    .shareBar {
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        .bar {
+          width: 7.5rem;
+          height: 1.2rem;
+          margin: auto;
+          background: url(./img/share_bar.png) no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+    .pageIndex{
+      width: 7.5rem;
+      background:rgba(30, 6, 99, 1) url(./img/banner.png) no-repeat;
+      background-size: 100% auto;
+    }
+    .scoreIcon {
+      width: 1.29rem;
+      height: 0.65rem;
+      margin-left: 0.1rem;
+      // &.icon5 {
+      //   width: 1.66rem!important;
+      //   background: url(./img/fireIcon.png)!important;
+      //   background-size: 100% 100%!important;
+      // }
+      &.icon100 {
+        width: 1.41rem;
+        background: url(./img/fireIcon.png)!important;
+        background-size: 100% 100%!important;
+      }
+    }
+    .red_packet{
+      width: 1.41rem;
+      background: url(./img/redPack.png)!important;
+      background-size: 100% 100%!important;
+    }
 }
