@@ -567,7 +567,7 @@ export default {
     margin-top: 0.58rem;
     padding: 0 0.19rem;
     p {
-      font-size: 0.26rem;
+      font-size: 0.23rem;
     }
   }
 }

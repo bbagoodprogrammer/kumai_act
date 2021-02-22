@@ -1,0 +1,15 @@
+.DS_Store
+.vscode
+*.iml
+.idea
+.tscache
+node_modules/
+typings/
+coverage/
+dist/
+test/
+temp/
+package-lock.json
+*.log
+button/
+button.zip

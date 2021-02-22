@@ -109,8 +109,8 @@ export default {
       //   var api = this.rankKey == 'total' ? totalApi : dayApi;
       //   return api.replace('{date}', this.getDate(this.dateArr[this.tab - 1]))
       // } else {
-      var dayApi = `/index.php?action=giftRank.rank&gid={gid}&from={from}&signture=innerserver&uid={uid}&token={token}`;
-      var totalApi = `/index.php?action=giftRank.rank&gid={gid}&from={from}&signture=innerserver&uid={uid}&token={token}`;
+      var dayApi = `/index.php?action=giftsRank.rank&gid={gid}&from={from}&signture=innerserver&uid={uid}&token={token}`;
+      var totalApi = `/index.php?action=giftsRank.rank&gid={gid}&from={from}&signture=innerserver&uid={uid}&token={token}`;
       var api = this.rankKey == 'total' ? totalApi : dayApi;
       const token = getUrlString('token') || '';
       const uid = getUrlString('uid') || '';
