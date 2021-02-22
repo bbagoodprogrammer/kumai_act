@@ -117,6 +117,7 @@ export default {
 
 <style lang="scss">
 body {
+  background: rgba(235, 103, 185, 1);
 }
 .rule {
   width: 100%;
@@ -132,19 +133,20 @@ body {
     margin: 0 auto;
   }
   .tabsList {
+    padding: 0 0.15rem;
     display: flex;
     align-items: center;
     justify-content: center;
     .tabItem {
       width: 1.58rem;
       height: 0.58rem;
-      font-size: 0.24rem;
+      font-size: 0.2rem;
       white-space: nowrap;
       background: url(../../assets/img/rankTab.png);
       background-size: 100% 100%;
       text-align: center;
       line-height: 0.58rem;
-      margin-right: 0.19rem;
+      // margin-right: 0.19rem;
       &.act {
         background: url(../../assets/img/rankTab_act.png);
         background-size: 100% 100%;
