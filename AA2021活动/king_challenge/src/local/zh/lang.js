@@ -24,7 +24,7 @@ export default {
     giftList: [
         {
             img: require("../../img/giftList/gift1.png"),
-            name: '挑戰王者徽章'
+            name: '王者挑戰徽章'
         },
         {
             img: require("../../img/giftList/gift2.png"),
@@ -69,7 +69,7 @@ export default {
     rank_min: '分',//分
     rank_second: '秒', //秒
     rank_tips1: '根據活動期間用戶在1v1PK/擂台PK/禮物挑戰/歡唱KTV/談天說地模式下收到的金幣魅力值進行排名', //根據用戶個人在禮物紅包/福運禮盒/砸蛋探寶中所花費的金幣進行排名
-    rank_tips2: '根據活動期間用戶在1v1PK/擂台PK/禮物挑戰/歡唱KTV/談天說地模式下產生的金幣魅力值進行排名', //根據房間中禮物紅包/福運禮盒產生的魅力值進行排名房間內每開啟一次火箭活動分數增加10000
+    rank_tips2: '根據活動期間報名用戶的房間在1v1PK/擂台PK/禮物挑戰/歡唱KTV/談天說地模式下產生的金幣魅力值進行排名', //根據房間中禮物紅包/福運禮盒產生的魅力值進行排名房間內每開啟一次火箭活動分數增加10000
     loading: '加載中...',//加載中...
     noData: '暫無數據', //暫無數據
     room_model: {
@@ -88,7 +88,7 @@ export default {
     history_gift: '獎勵',
     singIn: '簽到', // 簽到
     singIn_days: '連續簽到$天', //連續簽到{{item.mark}}天
-    singIn_lvGift: '段位獎勵', //段位獎勵
+    singIn_lvGift: '寶箱獎勵', //段位獎勵
 
 
     //tasks
@@ -102,5 +102,5 @@ export default {
     singIn_not: '未簽到',
     singIn_dayNums: '第$天',
     tasksTips2: '連續簽到獎勵',
-
+    onLine: '人在線'
 }

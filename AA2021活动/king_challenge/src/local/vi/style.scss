@@ -1,5 +1,4 @@
 html.vi {
-  letter-spacing: -0.015rem;
     .shareBar {
         position: fixed;
         z-index: 1000;
@@ -17,8 +16,79 @@ html.vi {
       }
     .pageIndex{
       width: 7.5rem;
-      background:rgba(30, 6, 99, 1) url(./img/banner.png) no-repeat;
+      background:RGBA(243, 191, 129, 1) url(./img/banner.png) no-repeat;
       background-size: 100% auto;
     }
-   
+    .giftList {
+      height: 6.18rem!important;
+      background: url(./img/giftList_bg.png)!important;
+      background-size: 100% 100%!important;
+    }
+    .footerBar{
+      .noAct{
+        width: 7.5rem;
+        height: .96rem;
+        &.noStatr{
+          background: url(./img/footerStatus/act_noStart.png);
+          background-size: 100% 100%;
+        }
+        
+        &.actEnd{
+          background: url(./img/footerStatus/act_end.png);
+          background-size: 100% 100%;
+        }
+      }
+      .signUp{
+        width: 100%;
+        height: .96rem;
+        background: url(./img/footerStatus/singUp.png);
+        background-size: 100% 100%;
+      }
+    }
+    .signUp_suc{
+      width: 7.02rem;
+      height: 5.69rem;
+      padding-top: .5rem;
+      background: url(./img/luckPup_bg.png)!important;
+      background-size: 100% 100%!important;
+    }
+    .ruleTips {
+      width: 1.72rem;
+      height: 0.64rem;
+      background: url(./img/ruleTips.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: 5.41rem;
+      right: 0;
+      font-size: 0.26rem;
+      color: rgba(60, 34, 169, 1);
+      text-align: center;
+      line-height: 0.64rem;
+    }
+    .history {
+      background: url(./img/history_bg.png);
+      background-size: 100% 100%;
+    }
+    .mainTabs{
+      .tabs{
+        a{
+          font-size: .24rem!important;
+          display: flex!important;
+          align-items: center!important;
+          justify-content: center!important;
+          line-height: .3rem!important;
+        }
+      }
+    }
+    .userStatus{
+      .userMsg{
+        width: 2.3rem!important;
+      }
+
+    }
+    .nowDayTaskTips{
+      .history{
+        white-space: nowrap!important;
+      }
+    }
 }

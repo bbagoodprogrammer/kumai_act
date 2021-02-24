@@ -13,7 +13,7 @@
         </div>
         <div class="nickBox">
           <div class="nickTips"><span class="nick">{{nowUserMsg.nick}}</span> <i class="ktvIng" v-if="nowUserMsg.kmic"></i> </div>
-          <span class="lv" v-if="Lv">{{level[Lv].name}}{{lang.lv}}</span>
+          <span class="lv" v-if="Lv">{{level[Lv].name}}</span>
         </div>
         <div class="score"><i class="coins"></i>{{nowUserMsg.score}}</div>
       </div>
@@ -32,6 +32,7 @@
           <!-- <img v-if="nowUserMsg.avatar_frame &&nowUserMsg.avatar_frame != ''" :src="nowUserMsg.avatar_frame" class="frame" alt="">
           <img v-else-if="nowUserMsg.nob > 0" :src="require(`../img/nob/${nowUserMsg.nob}.png`)" class="nob" alt=""> -->
           <img v-lazy="nowUserMsg.info.pic_url" alt="" class="av room">
+          <img :src="nowUserMsg.info.frame_resource_url" v-if="nowUserMsg.info.frame_resource_url" alt="" class="room_frame">
         </div>
         <div class="nickBox">
           <div class="nickTips"><span class="nick">{{nowUserMsg.info.rname}}</span> </div>
@@ -180,7 +181,7 @@ export default {
   justify-content: center;
   .userBoxStatus {
     width: 100%;
-    height: 2.59rem;
+    height: 2.85rem;
     background: #fff1d4;
     border-top: 0.04rem solid #830943;
     .userMsg {
@@ -199,6 +200,10 @@ export default {
         white-space: nowrap;
         &.notRank {
           margin-right: 0.3rem;
+          font-size: 0.2rem;
+          font-weight: normal;
+          white-space: normal;
+          line-height: 0.25rem;
         }
       }
       .uerImg {
@@ -219,6 +224,14 @@ export default {
           position: absolute;
           top: -0.21rem;
           left: -0.2rem;
+          z-index: 10;
+        }
+        .room_frame {
+          width: 0.94rem;
+          height: 0.94rem;
+          position: absolute;
+          top: 0.055rem;
+          left: 0.065rem;
           z-index: 10;
         }
         .av {
@@ -307,7 +320,7 @@ export default {
       .giftImg {
         width: 0.64rem;
         height: 0.64rem;
-        background: url(../img/top2.png);
+        background: url(../img/frame.png);
         background-size: 100% 100%;
         margin-left: 0.15rem;
       }
@@ -347,14 +360,15 @@ export default {
         position: absolute;
         top: -0.3rem;
         .lvTips {
+          white-space: nowrap;
           display: block;
           text-align: center;
-          width: 0.7rem;
+          width: 1rem;
           font-size: 0.24rem;
           color: rgba(131, 9, 67, 1);
           position: absolute;
           bottom: -0.4rem;
-          left: -0.1rem;
+          left: -0.25rem;
         }
         .box_icon {
           &.shake {
@@ -474,6 +488,7 @@ export default {
       align-items: center;
       justify-content: center;
       .giftItem {
+        width: 1.9rem;
         &.ml {
           margin-left: 0.3rem;
         }
@@ -482,6 +497,7 @@ export default {
           height: 1.6rem;
           background: #ffe6cb;
           border-radius: 0.12rem;
+          margin: 0 auto;
           img {
             width: 100%;
             height: 100%;

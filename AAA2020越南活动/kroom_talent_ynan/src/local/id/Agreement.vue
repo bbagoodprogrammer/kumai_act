@@ -6,11 +6,11 @@
     </div>
     <div class="ruleItem" v-if="mainTab == 0">
       <h5>Waktu acara</h5>
-      <p>Jam 18:00 tgl 10 Jan.~ Jam 22:00 tgl 17 Jan.</p>
+      <p>Jam 18:00 tgl 26 Feb. ~ Jam 21:00 tgl 7 Mar.</p>
       <h5>Aturan acara</h5>
       <p>1.Acara ini perlu didaftar utk ikut, stlh daftar baru hitung nilai</p>
       <p>2.Daftar tersebut terbagi menjadi Top Master dan Top Kroom Populer</p>
-      <p>Top Master: Pemeringkatan berdasarkan koin emas yang dikonsumsi oleh pengguna dalam angpau hadiah dan kotak hadiah keberuntungan selama acara, Setiap kali roket dibuka di dalam Kamar yg berada, skornya bertambah 80</p>
+      <p>Top Master: Pemeringkatan berdasarkan koin emas yang dikonsumsi oleh pengguna dalam angpau hadiah dan kotak hadiah keberuntungan selama acara</p>
       <p>Top Beruntung: Pemeringkatan berdasarkan nilai pesona yang dihasilkan oleh angpau hadiah dan kotak hadiah keberuntungan di kamar selama acara, Setiap kali roket dibuka di dalam ruangan, skornya bertambah 800</p>
       <h5>Perhatian:</h5>
       <p>1.Data acara di Kroom yg dikunci tidak akan dihitung</p>
@@ -19,7 +19,7 @@
     </div>
     <div class="gift" v-else>
       <h5>Waktu acara</h5>
-      <p>Jam 18:00 tgl 10 Jan.~ Jam 22:00 tgl 17 Jan.</p>
+      <p>Jam 18:00 tgl 26 Feb. ~ Jam 21:00 tgl 7 Mar.</p>
       <h5>Hadiah acara</h5>
       <p>Top Master Kroom</p>
       <p>Top 1: Lencana Master Kroom Populer (30 hari) + Mount Debut akbar(30 hari) + VIP (3 bulan)+ 1000 koin emas + 3000 kacang emas</p>

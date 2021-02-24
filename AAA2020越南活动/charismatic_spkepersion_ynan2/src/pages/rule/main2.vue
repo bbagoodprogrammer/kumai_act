@@ -6,7 +6,7 @@
     </div>
     <div class="ruleTips" v-if="tab == 1">
       <h5>Thời gian</h5>
-      <p class="tm">18:00:00 ngày 25/1-21:00:00 ngày 3/2</p>
+      <p class="tm">18:00 ngày 23/2 - 21:00 ngày 4/3</p>
       <img src="../../assets/img/rule/gifts.png" alt="" class="gift">
       <h5>Phần thưởng rút thưởng các level <br />Mỗi lần tối đa có thể trúng 3 cái</h5>
       <img src="../../assets/img/rule/gifts2.png" alt="" class="img1">
@@ -15,7 +15,7 @@
       <h5>Phần thưởng trúng thưởng bảng mị lực ngày</h5>
       <img src="../../assets/img/rule/gifts3.png" alt="" class="img3">
       <p>Chú ý: 20 người ngẫu nhiên trong top 100 bảng ngày có thể nhận 2 Chè Trôi Nước (20 xu). Danh sách trúng thưởng sẽ rút vào 12h tối mỗi ngày, ngày cuối cùng sẽ rút khi sự kiện kết thúc, túi quà sẽ tự động gửi vào tài khoản.</p>
-
+      <h5>Phần thưởng quán quân quà tặng</h5>
       <p>Trong thời gian sự kiện diễn ra, quán quân tài trợ lì xì với số lần nhiều nhất có thể nhận phần thưởng quán quân “Chè Trôi Nước” 30 ngày. Nếu số lần tài trợ bằng nhau, ai đạt trước sẽ xếp trước.</p>
       <h5>Phần thưởng top 10 bảng tổng</h5>
       <p>Hạng 1: <br />Chứng nhận Người Đại Diện Nguyên Tiêu (30 ngày) + ID đẹp 4 số (cần liên hệ UID 10) + Phần quà Người Đại Diện (1 bài hát được đề xuất trên trang chủ với nhãn bài hát Người Đại Diện + 2000 xu) + Huy chương Người Đại Diện Nguyên Tiêu (30 ngày) + Trang sức Song Ngư (30 ngày) + Kỳ Lân Năm Mới (30 ngày) + VIP (30 ngày)+ 3 Túi quà Tết Nguyên Tiêu (129 xu) + 3500 xu + 7000 đậu</p>
@@ -30,7 +30,7 @@
     </div>
     <div class="giftItem" v-else>
       <h5 class="mb">Thời gian</h5>
-      <p>18:00:00 ngày 25/1-21:00:00 ngày 3/2</p>
+      <p>18:00 ngày 23/2 - 21:00 ngày 4/3</p>
       <h4>Thể lệ</h4>
       <h6>Báo danh:</h6>
       <p>1、Sau khi nhấn [Báo danh] trên trang sự kiện, nhấn tải lên tác phẩm công khai bất kỳ (ngoại trừ hát chay 5 phút), có thể gửi nhiều tác phẩm dự thi , sau khi báo danh mới bắt đầu tính dữ liệu nhận quà và nhận thích, nếu xóa tác phẩm trong thời gian sự kiện, điểm mị và lượt thích của tác phẩm sẽ vô hiệu.</p>
@@ -48,7 +48,7 @@
       <p>
         1、Bảng ngày xếp hạng theo điểm sao ngày.<br />
         2、Nếu điểm sao nhận được bằng nhau, đạt được điểm sao này trước sẽ xếp trước. Bảng hiển thị điểm top 100 thí sinh.<br />
-        3、Hệ thống sẽ chọn ngẫu nhiên 20 người trong top 100 bảng ngày, có thể nhận 5 Cổ vũ (10 xu).<br />
+        3、Hệ thống sẽ chọn ngẫu nhiên 20 người trong top 100 bảng ngày, có thể nhận 2 Chè Trôi Nước (20 xu).<br />
         4、Tỉ lệ trúng =điểm sao cá nhân ngày/ điểm sao top 100 bảng ngày
       </p>
       <h6>Cách rút thưởng các level:</h6>

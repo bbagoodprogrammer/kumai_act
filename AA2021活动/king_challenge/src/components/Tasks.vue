@@ -9,7 +9,7 @@
         <img v-lazy="user_info.avatar" alt="">
         <div class="userMsg">
           <div class="nick">{{user_info.nick}}</div>
-          <span class="lv" v-if="Lv">{{level[Lv].name}}{{lang.lv}}</span>
+          <span class="lv" v-if="Lv">{{level[Lv].name}}</span>
         </div>
         <div class="singUpNums">
           <span>{{lang.tasks_signInDay.replace('$',mark)}}</span>
@@ -168,6 +168,7 @@ export default {
       }
     }
     .singUpNums {
+      white-space: nowrap;
       padding-right: 0.24rem;
       flex: 1;
       text-align: right;
@@ -182,8 +183,8 @@ export default {
   }
   .nowDayTask {
     margin: 0.3rem auto 0;
-    padding: 0 0.25rem;
-    width: 5.66rem;
+    padding: 0 0.35rem;
+    width: 5.46rem;
     height: 0.88rem;
     background: url(../img/nowDayTask.png);
     background-size: 100% 100%;
@@ -201,7 +202,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
+      text-align: right;
     }
   }
   .dayList {
@@ -224,7 +225,7 @@ export default {
       justify-content: center;
       flex-direction: column;
       font-size: 0.22rem;
-
+      text-align: center;
       .schule {
         width: 0.91rem;
         height: 0.32rem;
@@ -320,6 +321,7 @@ export default {
           display: block;
           text-align: center;
           margin-top: 0.23rem;
+          padding: 0 0.08rem;
         }
       }
     }
