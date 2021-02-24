@@ -17,7 +17,7 @@ function resolve(dir) {
 
 const files = {};
 const langs = process.env.LANG.split(',');
-for(let i = 0; i < langs.length; i++) {
+for (let i = 0; i < langs.length; i++) {
     const lang = langs[i];
     files[lang] = './src/local/' + lang;
 }
@@ -104,7 +104,7 @@ module.exports = {
                 ]
             },
             {
-                test:  /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 use: [
                     {
                         loader: 'url-loader',
@@ -125,7 +125,7 @@ module.exports = {
                 ]
             },
             {
-                test:   /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
                 use: {
                     loader: 'url-loader',
                     options: {
@@ -135,7 +135,7 @@ module.exports = {
                 }
             },
             {
-                test:  /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 use: {
                     loader: 'url-loader',
                     options: {
@@ -152,7 +152,11 @@ module.exports = {
             template: 'src/html/app.html',
             chunks: ['runtime', 'local', 'app'],
         }),
-
+        new HtmlPlugin({
+            filename: 'index_vi.html',
+            template: 'src/html/app_vi.html',
+            chunks: ['runtime', 'local', 'app'],
+        }),
         // 内联runtime到html主要考虑将来在项目中动态导入文件导致所有页面主脚本文件缓存失效问题
         // 动态导入类似这样：import(/*webpackChunkName:"lazyload"*/'vue-lazyload')
         // 动态导入文件如果已经打包到项目中，再执行一样的文件动态导入打包会出错
@@ -160,13 +164,13 @@ module.exports = {
             // inline: ['runtime', 'local', 'config']
             inline: ['runtime', 'local'] // 由于上线后配置也少改，cacheGroups中的config不内联到html，避免一些URL配置直接暴露出来
         }),
-        
+
         new MiniCssExtractPlugin({
             filename: 'css/[name].css?[contenthash:8]',
             chunkFilename: 'css/[id].css?[contenthash:8]'
         }),
         new webpack.BannerPlugin('Created by Guohui\nUser: webflash2007@gmail.com\nVersion: 1.0.0'),
-        new CleanWebpackPlugin('dist', {root:resolve('../')}),
+        new CleanWebpackPlugin('dist', { root: resolve('../') }),
         new VueLoaderPlugin(),
         // new CopyWebpackPlugin([
         //    {from: 'src/static', to: 'static'},

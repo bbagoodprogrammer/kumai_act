@@ -28,7 +28,9 @@ class LocalFilesHashPlugin {
             });
 
             const html = fs.readFileSync('./dist/index.html');
+            const html_vi = fs.readFileSync('./dist/index_vi.html');
             fs.writeFileSync('./dist/index.html', html.toString().replace('$hash$', JSON.stringify(obj)));
+            fs.writeFileSync('./dist/index_vi.html', html_vi.toString().replace('$hash$', JSON.stringify(obj)));
         });
     }
 }

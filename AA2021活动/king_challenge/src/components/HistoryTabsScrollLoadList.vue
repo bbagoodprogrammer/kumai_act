@@ -12,8 +12,8 @@
         <li v-for="(item,index) in rank.list" :key="index" :class="'rank' +item.rank">
           <span>{{getDate(item.time)}}</span>
           <span v-if="item.type== 0">{{lang.singIn}}</span>
-          <span v-else-if="item.type== 2">{{lang.singIn_days.replace('$',item.mark)}}</span>
-          <span v-else-if="item.type== 3">{{lang.singIn_lvGift}}</span>
+          <span v-else-if="item.type== 1">{{lang.singIn_days.replace('$',item.mark)}}</span>
+          <span v-else-if="item.type== 2">{{level[item.mark].name}} {{lang.singIn_lvGift}}</span>
           <span>{{item.name}}</span>
         </li>
       </ul>
@@ -72,7 +72,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['rankGroups_history']),
+    ...mapState(['rankGroups_history', 'level']),
     rankKey() {
       return this.mainTab == 1 ? 'total' : this.mainTab;
     },
@@ -162,6 +162,9 @@ export default {
       }
     },
     getDate(tm) {
+      if (_app == 'singnow') {
+        return getDate(new Date(tm * 1000), 6)
+      }
       return getDate(new Date(tm * 1000), 1)
     },
     goUser(uid) { //跳转
@@ -225,7 +228,7 @@ export default {
   }
   .rankList_history {
     width: 5.6rem;
-    height: 5.2rem;
+    height: 4.2rem;
     overflow-x: hidden;
     overflow-y: scroll;
     border-radius: 0.2rem;

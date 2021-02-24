@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="tipsBox">
-      <p class="tips"><i>1.</i>Bài hát dự thi phải là bài hát đăng công khai sau 18:00 25/1 (không tính Hát Chay 5 phút)</p>
+      <p class="tips"><i>1.</i>Bài hát dự thi phải là bài hát đăng công khai sau 18:00 23/2 (không tính Hát Chay 5 phút)</p>
       <p class="tips"><i>2.</i>Có thể đăng nhiều bài hát dự thi, sau khi báo danh xong mới tính điểm quà nhận.</p>
       <p class="tips"><i>3.</i>Nếu xoá bài hát trong thời gian sự kiện, điểm số của bài hát bị xoá sẽ mất đi.</p>
     </div>

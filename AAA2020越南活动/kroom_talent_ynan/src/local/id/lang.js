@@ -48,7 +48,7 @@ export default {
     integral_ok: 'Ya',//確定
     giftArr: {
         1: {
-            gift_tips: 'x30',
+            gift_tips: 'x50',
             img: require('../../img/get_gift/giftItem_1.png'),
             name: '10 koin',
             act_width: '13%',
@@ -62,21 +62,23 @@ export default {
             gname: 'VIP/7 hari'
         },
         3: {
+            gift_tips: '10hari',
             img: require('../../img/get_gift/giftItem_7.png'),
             name: '100 koin',
             act_width: '50%',
             gname: 'Naga/10 hari'
         },
         4: {
+            gift_tips: '20hari',
             img: require('../../img/get_gift/giftItem_8.png'),
             name: '300 koin',
             act_width: '70%',
             gname: 'Rusa/20 hari'
         },
         5: {
-            gift_tips: '7hari',
+            gift_tips: '30hari',
             img: require('../../img/get_gift/giftItem_5.png'),
-            name: '500 koin',
+            name: '800 koin',
             act_width: '100%',
             gname: 'Kota Permen/30 hari'
         },

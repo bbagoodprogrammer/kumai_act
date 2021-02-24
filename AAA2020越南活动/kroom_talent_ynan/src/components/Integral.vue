@@ -145,7 +145,7 @@ export default {
     .giftItem {
       width: 0.74rem;
       height: 0.74rem;
-      background: url(../img/get_gift/giftItem_bg.png);
+      background: url(../img/get_gift/gift_item_bg.png);
       background-size: 100% 100%;
       position: absolute;
       top: -0.35rem;

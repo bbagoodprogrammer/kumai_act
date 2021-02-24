@@ -1,9 +1,9 @@
 <template>
   <div class="giftBox">
     <div class="userLv">
-      <div class="lv">Level của tôi: <strong>Lv.{{level}}</strong> <i @click="giftPup= true" class="quest"></i></div>
+      <div class="lv">Level hôm nay: <strong>Lv.{{level}}</strong> <i @click="giftPup= true" class="quest"></i></div>
       <!-- <i class="quest" @click="showTipsPup = true"></i> -->
-      <div class="score">Điểm sao: <strong>{{score}}</strong> </div>
+      <div class="score"> Điểm sao hôm nay: <strong>{{score}}</strong> </div>
     </div>
     <div class="liner">
       <div class="actLiner" :style="{width:actWidth}"></div>
@@ -22,7 +22,8 @@
         <div class="luckPup" v-if="shouLuckPup">
           <i class="close" @click="shouLuckPup = false"></i>
           <p class="lvTips">
-            Điểm sao đạt {{cilckItem.limit}} có thể rút thưởng <em>(tức là đến Lv.{{cilckItem.level}})</em>
+            <!-- Điểm sao đạt {{cilckItem.limit}} có thể rút thưởng <em>(tức là đến Lv.{{cilckItem.level}})</em> -->
+            Điểm sao hôm nay đạt {{cilckItem.limit}} có thể rút thưởng
           </p>
           <slot-machine-test ref="luck" :cilckItem="cilckItem" @setPacketStatus="setPacketStatus"></slot-machine-test>
           <div class="luckGo" :class="{can:cilckItem.can && !cilckItem.get,ed:cilckItem.get}" @click="goLuck()"></div>

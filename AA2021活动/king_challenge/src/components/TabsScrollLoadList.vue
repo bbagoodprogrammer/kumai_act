@@ -7,7 +7,7 @@
         <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tab1">{{lang.rank_title1}}</a>
         <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tab2">{{lang.rank_title2}}</a>
       </div>
-      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
+      <a @click.prevent="onRefresh" href="" :class="{mb:mainTab == 0 || mainTab == 1}" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
     <Tasks v-if="mainTab == 2" />
     <!-- 倒计时 -->
@@ -56,11 +56,12 @@
           <span class="model" v-if="item.info.playmode">{{room_model[item.info.playmode]}} </span>
           <div class="rank">{{item.rank}}</div>
           <div class="uerImg">
-            <img v-lazy="item.info.pic_url" alt="" class="av room">
+            <img v-lazy="item.info.pic_url" alt="" class="av room" :class="{noBor:item.info.frame_resource_url}">
+            <img :src="item.info.frame_resource_url" alt="" v-if="item.info.frame_resource_url" class="room_frame">
           </div>
           <div class="nickBox">
-            <div class="nickTips"><span class="nick">{{item.info.rname}}</span><i class="scoreIcon" :class="'icon'+item.rockt" v-if="item.rockt"></i></div>
-            <div class="uid">{{item.info.rid}} <i class="red_packet" v-if="item.red_packet"></i> </div>
+            <div class="nickTips"><span class="nick">{{item.info.rname}}</span></div>
+            <div class="uid"><span>{{item.info.rid}}</span> <i>{{item.info.online}}{{lang.onLine}}</i> </div>
           </div>
           <div class="score"><i></i>{{item.score}}</div>
         </li>
@@ -257,7 +258,10 @@ export default {
       });
       this.$nextTick(() => {
         this.onScroll(1)
-        // this.$parent.initData()
+        if (this.mainTab == 2) {
+          this.$store.dispatch('getInitInfo');
+        }
+
       });
     },
 
@@ -433,6 +437,14 @@ export default {
           left: -0.2rem;
           z-index: 10;
         }
+        .room_frame {
+          width: 0.94rem;
+          height: 0.94rem;
+          position: absolute;
+          top: 0.055rem;
+          left: 0.065rem;
+          z-index: 10;
+        }
         .av {
           width: 0.88rem;
           height: 0.88rem;
@@ -443,6 +455,9 @@ export default {
           border: 0.02rem solid rgba(131, 9, 67, 1);
           &.room {
             border-radius: 0.14rem;
+            &.noBor {
+              border: none;
+            }
           }
         }
       }
@@ -469,10 +484,15 @@ export default {
           }
         }
         .uid {
-          color: rgba(131, 9, 67, 1);
+          color: rgba(131, 9, 67, 0.6);
           font-size: 0.26rem;
           display: flex;
           align-items: center;
+          margin-top: 0.06rem;
+          i {
+            font-size: 0.26rem;
+            margin-left: 0.15rem;
+          }
         }
       }
 
@@ -557,8 +577,11 @@ export default {
   bottom: 1.35rem;
   background: url(../img/refresh.png) no-repeat;
   background-size: contain;
-  transition: all 1s;
+  transition: transform 1s;
   text-indent: -999rem;
   z-index: 100;
+  &.mb {
+    bottom: 2.8rem;
+  }
 }
 </style>
