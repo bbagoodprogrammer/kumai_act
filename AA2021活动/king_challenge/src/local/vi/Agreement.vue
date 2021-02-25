@@ -6,7 +6,7 @@
     </div>
     <div class="ruleItem" v-if="mainTab == 0">
       <h5>Thời gian sự kiện</h5>
-      <p>12:00 25/2 - 22:00 6/3</p>
+      <p>18:00 25/2 - 22:00 6/3</p>
       <h5>Điểm danh vương giả</h5>
       <p>1, Người dùng sau khi báo danh mới có thể tham gia sự kiện, mới bắt đầu tích lũy điểm sự kiện.</p>
       <p>2, Trong thời gian sự kiện, mỗi ngày hoàn thành nhiệm vụ phòng Kara tương ứng, có thể điểm danh thành công (Nhiệm vụ ngày chỉ có giá trị hoàn thành trong ngày).</p>
@@ -26,7 +26,7 @@
     </div>
     <div class="gift" v-else>
       <h5>Thời gian sự kiện</h5>
-      <p>12:00 25/2 - 22:00 6/3</p>
+      <p>18:00 25/2 - 22:00 6/3</p>
       <h5>Điểm danh vương giả</h5>
       <img src="./img/table2.png" alt="" class="table2">
       <h5>Bảng thách đấu</h5>

@@ -1,26 +1,23 @@
 <template>
   <div class="listGrounp">
+    <a @click.prevent="onRefresh" href="" :class="{mb:type == 1}" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     <div class="tabs">
-      <span v-for="(item,index) in tabsArr" :class="{act:type == (index+1)}" :key="index" @click="type = (index+1)">
+      <span v-for="(item,index) in tabsArr" :class="{act:type == (index+1)}" :key="index" @click="tabClick(index) ">
         {{item}}
       </span>
     </div>
     <div class="time">
-      <div class="peopleNums listTips" v-if="type == 1 || type ==2">已有<em>184</em>拼團成功</div>
+      <div class="peopleNums listTips" v-if="type == 1 || type ==2">已有<em>{{finish}}</em>拼團成功</div>
       <div class="timeTips listTips" v-if="type==1">本輪拼團結束倒計時</div>
       <div class="downTimeBox2">
         <div class="timeDown" v-if="surplusTime&& !surplusTime.end">
-          <div class="day">
-            <strong>{{surplusTime.day}}</strong>
-            <em>{{lang.day}}</em>
-          </div>
           <div class="hours">
             <strong>{{surplusTime.hour}}</strong>
             <em>{{lang.hour}}</em>
           </div>
           <div class="min">
             <strong>{{surplusTime.minute}}</strong>
-            <em>{{lang.min}}</em>
+            <em>{{lang.minute}}</em>
           </div>
           <div class="second">
             <strong>{{surplusTime.second}}</strong>
@@ -31,8 +28,38 @@
       <div class="rankTips listTips" v-if="type==3">本期活動拼團成功后使用的金幣數</div>
     </div>
     <keep-alive>
-      <component :is="nowCom"></component>
+      <component :is="nowCom" ref="showCom"></component>
     </keep-alive>
+    <!-- 邀請彈窗 -->
+    <!-- 拼團 -->
+    <div class="mask" v-show="showInvite">
+      <transition name="slide">
+        <div class="getGift" v-if="showInvite">
+          <i class="close" @click="showInvite = false"></i>
+          <div class="giftItemMsg">
+            <div class="imgBox">
+              <img :src="invite.ginfo.img" alt="">
+            </div>
+            <div class="msg">
+              <div class="giftName">{{invite.ginfo.name}} <i>{{invite.ginfo.kind?'K房':'歌曲'}}</i></div>
+              <div class="price">
+                <span><em>{{invite.price}}</em></span> <i class="icon"></i><del>{{invite.max_price}}金幣</del>
+              </div>
+              <div class="giftPupTips">（若拼團未成功，金幣將退回您的錢包）</div>
+            </div>
+          </div>
+          <div class="selectType2">
+            <div class="buyTips">
+              您的好友{{invite.nick}}正在拼團禮物{{invite.ginfo.historyname}}，<br />
+              只需要支付{{invite.price}}金幣就可購買1件禮物{{invite.ginfo.name}}<br />
+              快來參與吧~
+            </div>
+            <div class="go" @click="getGift()">參與拼團</div>
+          </div>
+        </div>
+      </transition>
+    </div>
+
   </div>
 </template>
 <script>
@@ -41,6 +68,8 @@ import downTime from '../utils/downTime.js'
 import List1 from './List1'
 import List2 from './List2'
 import List3 from './List3'
+import { mapState } from "vuex"
+
 export default {
   components: { List1, List2, List3 },
   data() {
@@ -51,18 +80,39 @@ export default {
         '禮物拼圖',
         '拼團榜'
       ],
-      surplusTime: {}
+      surplusTime: {},
+      showInvite: false,
+      rotatePx: 0,    //刷新旋转动画
+      rotatec: 0,
+      first: true
     }
   },
   computed: {
+    ...mapState(['load', 'finish', 'invite']),
     nowCom() {
       return `List${this.type}`
     }
   },
-  created() {
-    this.downTimeGo('time' + this.rankKey, 898999)
+  watch: {
+    load(val) {
+      console.log(val)
+      this.downTimeGo('time' + this.rankKey, val)
+    },
+    invite(val) {
+      if (val && this.first) {
+        this.first = false
+        setTimeout(() => {
+          this.tabClick(1)
+          this.showInvite = true
+        })
+      }
+    }
   },
   methods: {
+    tabClick(index) {
+      this.type = index + 1
+      this.vxc('setType', this.type)
+    },
     downTimeGo(timeName, val) {
       console.log(timeName, val)
       clearInterval(this.timer)
@@ -77,6 +127,18 @@ export default {
           // this.$store.commit("changday_down_time", 0)  //當天剩餘時間
         }
       }, 1000)
+    },
+    getGift() {
+      this.$refs.showCom.showGetGiftPup(this.invite)
+      this.showInvite = false
+    },
+    onRefresh() {
+      this.rotatePx = 540 * ++this.rotatec  //旋转动画
+      this.$store.dispatch('getInitInfo');
+      this.vxc('clearInvite')
+      if (this.type == 2 || this.type == 3) {
+        this.$refs.showCom.refresh()
+      }
     },
   }
 }
@@ -129,7 +191,7 @@ export default {
     text-align: center;
     position: relative;
     .timeDown {
-      width: 5.15rem;
+      width: 4.15rem;
       padding: 0 0.09rem;
       margin: 0.17rem auto 0;
       display: flex;
@@ -163,6 +225,212 @@ export default {
     .noTime {
       line-height: 0.6rem;
     }
+  }
+}
+.getGift {
+  width: 6.6rem;
+  // height: 7.1rem;
+  padding-bottom: 0.32rem;
+  background: #ffffff;
+  border-radius: 0.12rem;
+  position: relative;
+  .giftItemMsg {
+    height: 2.24rem;
+    display: flex;
+    align-items: center;
+    .imgBox {
+      width: 1.6rem;
+      height: 1.6rem;
+      background: rgba(255, 245, 237, 0.92);
+      border-radius: 0.06rem;
+      margin: 0 0.14rem 0 0.2rem;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .msg {
+      width: 3.8rem;
+      .giftName {
+        display: flex;
+        align-items: center;
+        // justify-content: center;
+        font-size: 0.32rem;
+        color: rgba(133, 90, 55, 1);
+        i {
+          padding: 0 0.08rem;
+          height: 0.3rem;
+          line-height: 0.3rem;
+          border: 1px solid #ff7959;
+          border-radius: 0.06rem;
+          font-size: 0.22rem;
+          color: rgba(255, 121, 89, 1);
+          margin-left: 0.05rem;
+        }
+      }
+      .price {
+        font-size: 0.18rem;
+        display: flex;
+        align-items: center;
+        // justify-content: center;
+        span {
+          color: rgba(255, 121, 89, 1);
+          em {
+            color: rgba(255, 121, 89, 1);
+            font-size: 0.26rem;
+            font-weight: 600;
+            margin-left: 0.05rem;
+          }
+        }
+        i {
+          width: 0.28rem;
+          height: 0.28rem;
+          background: url(../img/coins.png);
+          background-size: 100% 100%;
+          margin: 0 0.06rem;
+        }
+        del {
+          font-size: 0.18rem;
+        }
+      }
+      .giftPupTips {
+        font-size: 0.18rem;
+        color: rgba(188, 168, 155, 1);
+      }
+    }
+  }
+  .selectSet {
+    height: 0.9rem;
+    padding: 0 0.32rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgba(133, 90, 55, 1);
+    font-size: 0.26rem;
+    .numsInput {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      input {
+        width: 0.84rem;
+        height: 0.36rem;
+        line-height: 0.36rem;
+        background: #fff6ee;
+        border-radius: 0.06rem;
+        border: none;
+        text-align: center;
+      }
+      .reduex {
+        margin-right: 0.05rem;
+      }
+      .add {
+        margin-left: 0.05rem;
+      }
+    }
+  }
+  .peopleList {
+    padding: 0 0.32rem;
+    margin-top: 0.3rem;
+    .peopleTips {
+      font-size: 0.26rem;
+      color: rgba(133, 90, 55, 1);
+      em {
+        font-size: 0.26rem;
+        color: rgba(255, 107, 87, 1);
+      }
+    }
+    .pList {
+      margin-top: 0.2rem;
+      img {
+        width: 0.56rem;
+        height: 0.56rem;
+        margin-right: 0.12rem;
+        border-radius: 50%;
+      }
+    }
+  }
+  .go {
+    width: 5.2rem;
+    height: 0.8rem;
+    background: linear-gradient(-90deg, #ff885a, #ff6957);
+    border-radius: 0.4rem;
+    text-align: center;
+    line-height: 0.8rem;
+    color: #fff;
+    font-size: 0.32rem;
+    margin: 0.4rem auto 0;
+    &.no {
+      margin: 0 auto;
+    }
+  }
+  .close {
+    display: block;
+    width: 0.27rem;
+    height: 0.27rem;
+    background: url(../img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    top: 0.32rem;
+    right: 0.26rem;
+  }
+}
+.selectType2 {
+  .buyTips {
+    height: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(133, 90, 55, 1);
+    font-size: 0.26rem;
+    em {
+      color: rgba(255, 121, 89, 1);
+    }
+    &.left {
+      display: block;
+      justify-content: flex-start;
+      padding: 0 0.3rem;
+      height: 0.8rem;
+      margin-top: 0.15rem;
+    }
+  }
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    span {
+      width: 2.8rem;
+      height: 0.8rem;
+      background: linear-gradient(
+        -90deg,
+        rgba(255, 136, 90, 0.1),
+        rgba(255, 105, 87, 0.1)
+      );
+      border-radius: 0.4rem;
+      text-align: center;
+      line-height: 0.8rem;
+      color: rgba(255, 133, 90, 1);
+      &.qurey {
+        color: #fff;
+        background: linear-gradient(-90deg, #ff885a, #ff6957);
+        margin-left: 0.43rem;
+      }
+    }
+  }
+}
+#refresh {
+  display: block;
+  width: 0.94rem;
+  height: 0.94rem;
+  position: fixed;
+  right: 0.08rem;
+  bottom: 1.35rem;
+  background: url(../img/refresh.png) no-repeat;
+  background-size: contain;
+  transition: transform 1s;
+  text-indent: -999rem;
+  z-index: 100;
+  &.mb {
+    bottom: 2.8rem;
   }
 }
 </style>

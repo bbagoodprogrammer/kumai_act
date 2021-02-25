@@ -64,10 +64,53 @@ function loadData(apiFunc, commitName) {
 
 function getInitInfo() {
     // return testGet('getInitInfo');
-    return get(`${API_ROOT}/index.php?action=kolExt.getInitInfo&uid=${uid}&token=${token}&lang=${lang}`);
+    return get(`/gift_group/init.php?token=${token}&from=100886&order_id=7`);
 }
 
+function start(gid, num) {
+    return get(`/gift_group/start.php?token=${token}&gid=${gid}&num=${num}`)
+}
+
+function search(gid) {
+    if (gid) {
+        return get(`/gift_group/search.php?token=${token}&gid=${gid}`)
+    }
+    return get(`/gift_group/search.php?token=${token}`)
+}
+
+function myFriend(from, more) {
+    if (more) {
+        return axios.get(`/gift_group/myFriend.php?token=${token}&from=${from}`)
+    }
+    return get(`/gift_group/myFriend.php?token=${token}&from=${from}`)
+}
+
+function invite(order_id, invite) {
+    return get(`/gift_group/invite.php?token=${token}&order_id=${order_id}&invite=${invite}`)
+}
+
+function searchFriend(uid) {
+    return get(`/gift_group/searchFriend.php?token=${token}&uid=${uid}`)
+}
+
+function join(order_id) {
+    return get(`/gift_group/join.php?token=${token}&order_id=${order_id}`)
+}
+
+function rank(from, more) {
+    if (more) {
+        return axios.get(`/gift_group/list.php?token=${token}&from=${from}`)
+    }
+    return get(`/gift_group/list.php?token=${token}&from=${from}`)
+}
 export {
     loadData,
     getInitInfo,
+    start,
+    search,
+    myFriend,
+    invite,
+    searchFriend,
+    join,
+    rank
 }

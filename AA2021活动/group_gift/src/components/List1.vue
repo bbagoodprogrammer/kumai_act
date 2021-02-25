@@ -1,14 +1,14 @@
 <template>
-  <div class="giftList">
+  <div class="giftList" :class="{my_gronp:my_group.length}">
     <ul>
-      <li v-for="(item,index) in giftList" :key="index" :class="{over:index%2 == 0}">
-        <div class="itemNums">{{item.nums}}/{{item.maxNums}}</div>
-        <img :src="item.img" alt="" class="giftImg">
-        <div class="giftName">{{item.name}} <i>歌房</i> </div>
+      <li v-for="(item,index) in gift" :key="index" :class="{over:item.group_num >= item.num}">
+        <div class="itemNums">{{item.group_num}}/{{item.num}}</div>
+        <img :src="item.image" alt="" class="giftImg">
+        <div class="giftName">{{item.name}} <i>{{item.kind?'K房':'歌曲'}}</i> </div>
         <div class="price">
-          <span>最低<em>800</em></span> <i class="icon"></i><del>1000金幣</del>
+          <span>最低<em>{{item.min_price}}</em></span> <i class="icon"></i><del>{{item.price}}金幣</del>
         </div>
-        <div class="buy" @click="showSelectGiftItem = true">
+        <div class="buy" @click="setGift(item)">
           發起拼團
         </div>
       </li>
@@ -20,12 +20,12 @@
           <i class="close" @click=" closePup()"></i>
           <div class="giftItemMsg">
             <div class="imgBox">
-              <img src="" alt="">
+              <img :src="actItem.image" alt="">
             </div>
             <div class="msg">
-              <div class="giftName">波霸 <i>歌房</i></div>
+              <div class="giftName">{{actItem.name}} <i>{{actItem.kind?'K房':'歌曲'}}</i></div>
               <div class="price">
-                <span><em>800</em></span> <i class="icon"></i><del>1000金幣</del>
+                <span><em>{{actItem.min_price}}</em></span> <i class="icon"></i><del>{{actItem.price}}金幣</del>
               </div>
               <div class="giftPupTips">（若拼團未成功，金幣將退回您的錢包）</div>
             </div>
@@ -34,7 +34,7 @@
             <div class="selectSet">
               <span>發起團人數</span>
               <div class="numsInput">
-                <span class="reduex" @click="selectNums >1?selectNums--:false">-</span>
+                <span class="reduex" @click="selectNums >2?selectNums--:false">-</span>
                 <input type="text" v-model="selectNums" readonly>
                 <span class="add" @click="selectNums <5?selectNums++:false">+</span>
               </div>
@@ -45,20 +45,20 @@
             </div>
             <div class="selectSet">
               <span>支付</span>
-              <div class="nums">202金幣</div>
+              <div class="nums">{{actItem.min_price* selectNums}}金幣</div>
             </div>
             <div class="go" @click="selectType = 2">發起拼團</div>
           </div>
           <div class="selectType2" v-else-if="selectType == 2">
-            <div class="buyTips">發起拼團，需要支付202金幣</div>
+            <div class="buyTips">發起拼團，需要支付{{actItem.min_price * selectNums}}金幣</div>
             <div class="btn">
               <span class="no" @click=" closePup()">否</span>
               <span class="qurey" @click="buy()">確認支付</span>
             </div>
           </div>
           <div class="selectType2" v-else-if="selectType == 3">
-            <div class="buyTips left">此團還差<em>2</em> 人就可以拼團成功，<br /> 每人可以以<em>202</em> 金幣購買珍珠奶茶*1</div>
-            <div class="go" @click="showFriends = true">邀請好友拼團</div>
+            <div class="buyTips left">此團還差<em>{{buyGiftData.surplus}}</em> 人就可以拼團成功，<br /> 每人可以以<em>{{buyGiftData.price}}</em> 金幣購買{{actItem.name}}*1</div>
+            <div class="go" @click="showFriendsPup()">邀請好友拼團</div>
           </div>
         </div>
       </transition>
@@ -69,14 +69,14 @@
         <div class="giftItemPup" v-show="showNoCoiosPup">
           <i class="close" @click="showNoCoiosPup = false"></i>
           <div class="noCoins">您的錢包餘額不足<br /> 請前去儲值</div>
-          <div class="go no">前去儲值</div>
+          <div class="go no" @click="stored()">前去儲值</div>
         </div>
       </transition>
     </div>
     <!-- 好友 -->
     <div class="mask" v-show="showFriends">
       <transition name="slide">
-        <Friends v-if="showFriends" />
+        <Friends v-if="showFriends" :order_id="order_id" />
       </transition>
     </div>
   </div>
@@ -84,64 +84,61 @@
 <script>
 
 import Friends from "./Friends"
+import { mapState } from "vuex"
+import { start } from "../apis"
+
 export default {
   components: { Friends },
   data() {
     return {
-      giftList: [
-        {
-          img: '',
-          name: '濃情巧克力',
-          type: '',
-          price1: '88',
-          price2: '99',
-          maxNums: '500',
-          nums: '300',
-          status: 0
-        }, {
-          img: '',
-          name: '珍珠奶茶',
-          type: '',
-          price1: '88',
-          price2: '99',
-          maxNums: '500',
-          nums: '300',
-          status: 0
-        }, {
-          img: '',
-          name: '珍珠奶茶',
-          type: '',
-          price1: '88',
-          price2: '99',
-          maxNums: '500',
-          nums: '300',
-          status: 0
-        }, {
-          img: '',
-          name: '珍珠奶茶',
-          type: '',
-          price1: '88',
-          price2: '99',
-          maxNums: '500',
-          nums: '300',
-          status: 0
-        }
-      ],
-      selectNums: 1,
+      selectNums: 2,
       selectType: 1,
       showNoCoiosPup: false,
       showSelectGiftItem: false,
-      showFriends: false
+      showFriends: false,
+      actItem: {},
+      buyGiftData: {},
+      order_id: null
     }
   },
+  computed: {
+    ...mapState(['gift', 'my_group'])
+  },
   methods: {
+    setGift(item) {
+      this.actItem = item
+      this.showSelectGiftItem = true
+    },
     buy() {
-      this.selectType = 3
+      start(this.actItem.gid, this.selectNums).then(res => {
+        if (res.data.response_status.code == 0) {
+          this.buyGiftData = res.data.response_data.data
+          this.selectType = 3
+        } else {
+          if (res.data.response_status.code == 10006) {
+            this.showNoCoiosPup = true
+            return
+          }
+          // this.showFriends = true
+          // this.order_id = 1
+          this.toast(res.data.response_status.error)
+        }
+
+      })
+
+    },
+    showFriendsPup() {
+      this.order_id = this.buyGiftData.id
+      this.showFriends = true
+
     },
     closePup() {
       this.showSelectGiftItem = false
       this.selectNums = 1
       this.selectType = 1
+    },
+    stored() {
+      location.href = "walletConfig://"
     }
   }
 }
@@ -151,6 +148,9 @@ export default {
 .giftList {
   margin-top: 0.46rem;
   padding-bottom: 0.6rem;
+  &.my_gronp {
+    padding-bottom: 3.6rem;
+  }
   ul {
     display: flex;
     flex-wrap: wrap;

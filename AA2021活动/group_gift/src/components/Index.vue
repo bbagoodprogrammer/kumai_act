@@ -1,12 +1,17 @@
 <template>
   <div class="page pageIndex">
-    <div class="header"></div>
+    <div class="header">
+      <div class="tipsBox">
+        <span class="history" @click="$router.push('HistoryTabsScrollLoadList')"></span>
+        <span class="rule" @click="$router.push('rule')"></span>
+      </div>
+    </div>
     <TrunMsg />
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
     <ListGrounp />
-    <!-- <ActFooter /> -->
+    <ActFooter />
   </div>
 </template>
 
@@ -27,7 +32,7 @@ export default {
   },
   created() {
     this.judgeShare()
-    this.init()
+    // this.init()
   },
   computed: {
 
@@ -64,6 +69,21 @@ export default {
   // background: url();
   .header {
     height: 10.32rem;
+    position: relative;
+    .tipsBox {
+      position: absolute;
+      top: 8.56rem;
+      right: 0;
+      .history,
+      .rule {
+        display: block;
+        width: 1.52rem;
+        height: 0.52rem;
+      }
+      .rule {
+        margin-top: 0.18rem;
+      }
+    }
   }
 }
 </style>

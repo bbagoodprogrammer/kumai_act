@@ -34,32 +34,6 @@ export default {
   data() {
     return {
       isShare: false,
-      // giftList: [
-      //   {
-      //     img: require("../img/giftList/gift1.png"),
-      //     name: 'Huy Chương Thần Tượng Phòng Kara'
-      //   },
-      //   {
-      //     img: require("../img/giftList/gift2.png"),
-      //     name: 'Chủ Đề Phòng Sôi Nổi'
-      //   },
-      //   {
-      //     img: require("../img/giftList/gift3.png"),
-      //     name: 'Xe Grand Debut'
-      //   },
-      //   {
-      //     img: require("../img/giftList/gift4.png"),
-      //     name: 'Quà hiếm có'
-      //   },
-      //   {
-      //     img: require("../img/giftList/gift5.png"),
-      //     name: 'Vô số xu'
-      //   },
-      //   {
-      //     img: require("../img/giftList/gift6.png"),
-      //     name: 'Vô số đậu'
-      //   }
-      // ]
     }
   },
   created() {

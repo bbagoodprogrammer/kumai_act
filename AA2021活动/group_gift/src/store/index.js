@@ -9,7 +9,16 @@ export default new vuex.Store({
     state: {
         loading: false,
         share: true,
-        notice: []
+        top: [],
+        gift: {},
+        load: 0,
+        finish: 0,
+        my_group: [],
+        user: {},
+        type: 1,
+        rankGroups_history: {},
+        end: 0,
+        invite: null
     },
     getters: {
         signed: state => {
@@ -22,15 +31,30 @@ export default new vuex.Store({
         },
 
         setInitInfo(state, data) {
+
             Object.assign(state, data);
+            console.log(state)
         },
         setShareState(state, val) {
             state.share = val
         },
-        setNotice(state, val) {
-            console.log(val)
-            state.notice = val
+        setUser(state, val) {
+            state.user = val
         },
+        setType(state, val) {
+            state.type = val
+        },
+        updateRankGroups_history(state, obj) {
+            if (obj && typeof obj.key != 'undefined') {
+                const key = obj.key;
+                delete obj['key'];
+                state.rankGroups_history = Object.assign({}, state.rankGroups_history, { [key]: Object.assign({}, state.rankGroups_history[key], obj) });
+            }
+            console.log(state.rankGroups_history)
+        },
+        clearInvite(state, val) {
+            state.invite = val
+        }
     },
     actions: {
         async getInitInfo() {
