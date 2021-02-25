@@ -17,39 +17,14 @@
   </div>
 </template>
 <script>
+
+import { rank } from "../apis"
 export default {
   data() {
     return {
-      list: [
-        {
-          uid: 123,
-          avatar: '',
-          rank: 1,
-          score: 999,
-          nick: 'xxxx'
-        },
-        {
-          uid: 123,
-          avatar: '',
-          rank: 1,
-          score: 999,
-          nick: 'xxxx'
-        },
-        {
-          uid: 123,
-          avatar: '',
-          rank: 1,
-          score: 999,
-          nick: 'xxxx'
-        },
-        {
-          uid: 123,
-          avatar: '',
-          rank: 1,
-          score: 999,
-          nick: 'xxxx'
-        }
-      ]
+      list: [],
+      loaded: false,
+      more: true,
     }
   },
   mounted() {
@@ -71,14 +46,36 @@ export default {
       console.log('xxx')
       const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
       const notFull = document.body.scrollHeight < window.innerHeigh;
-      if (scrollToBottom || notFull) {
-        console.log('over')
+      if (this.loaded) return
+      if (scrollToBottom && this.more) {
+        this.more = false
+        rank(this.list.length, 'more').then(res => {
+          this.vxc('setUser', res.data.response_data.rank)
+          this.more = true
+          if (res.data.response_data.list.length == 0) {
+            this.loaded = true
+          } else {
+            this.list = this.list.concat(res.data.response_data.list)
+          }
+        })
       }
     },
+    refresh() {
+      if (!this.more) {
+        return
+      } else {
+        this.list = []
+        this.loaded = false
+        this.onScroll();
+      }
+    }
   }
 }
 </script>
 <style lang='scss' scoped>
+.rank {
+  padding-bottom: 2rem;
+}
 ul {
   width: 7.02rem;
   background: #ffffff;
@@ -94,6 +91,7 @@ ul {
     .rank {
       width: 0.87rem;
       height: 0.7rem;
+      line-height: 0.7rem;
       text-align: center;
     }
     img {
@@ -102,11 +100,14 @@ ul {
       border-radius: 50%;
     }
     .msg {
-      width: 3.5rem;
+      width: 3.1rem;
       margin-left: 0.28rem;
       .nick {
         font-size: 0.32rem;
         color: rgba(133, 90, 55, 1);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       .uid {
         font-size: 0.26rem;

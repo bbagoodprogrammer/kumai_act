@@ -81,8 +81,8 @@
           <div class="resHeader">
             <div class="tips" v-if="recoreData.time">{{recoreData.users}} مغلف أحمر، وتم اقتسامها أثناء {{recoreData.time}} ثانية</div>
             <div class="tips" v-else>
-              <span>تم الاستلام {{recoreData.users}}\{{recoreData.gotUsers}}، </span>
-              <span>و{{recoreData.gotCoins}}\{{recoreData.coins}} عملة</span>
+              <span>تم الاستلام {{recoreData.users}}\{{recoreData.gotUsers}} ، </span>
+              <span>و {{recoreData.coins}}\{{recoreData.gotCoins}} عملة</span>
             </div>
           </div>
           <ul class="recoreList">
@@ -315,20 +315,25 @@ export default {
       var data = {
         "share_title": `تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!`,
         "share_content": "انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>",
-        "share_image": `http://activity.gosingapp.com/static_html/2020/songking2020/share.png?v=2`,
-        "link": `http://activity.gosingapp.com/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#`,
-        "image": `http://activity.gosingapp.com/static_html/2020/songking2020/share.png?v=2`,
-        "share_url": `http://activity.gosingapp.com/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#`
+        "share_image": `http://activity.supervoice-app.com/static_html/2020/songking2020/share.png?v=2`,
+        "link": `http://activity.supervoice-app.com/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#`,
+        "image": `http://activity.supervoice-app.com/static_html/2020/songking2020/share.png?v=2`,
+        "share_url": `http://activity.supervoice-app.com/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#`
       }
       if (ios) {
         if (window.share != undefined) {
           share(JSON.stringify(data))
         } else {
-          location.href = `shareUserInfo://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#&shareText=انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>&userImg=http://activity.gosingapp.com/static_html/2020/songking2020/share.png?v=2&title=تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!`;
+          location.href = `shareUserInfo://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#&shareText=انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>&userImg=http://activity.supervoice-app.com/static_html/2020/songking2020/share.png?v=2&title=تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!`;
         }
       } else {
+        try {
+          javascript: JSInterface.share(JSON.stringify(data));
+        } catch (e) {
+          javascript: JSInterface.share('http://activity.supervoice-app.com/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#', 'تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!', 'انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>', 'http://activity.supervoice-app.com/static_html/2020/songking2020/share.png?v=2');
+        }
         // javascript: JSInterface.share(JSON.stringify(data));
-        javascript: JSInterface.share('http://activity.gosingapp.com/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#', 'تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!', 'انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>', 'http://activity.gosingapp.com/static_html/2020/songking2020/share.png?v=2');
+
       }
     },
     nextRedPacket(dtime) {

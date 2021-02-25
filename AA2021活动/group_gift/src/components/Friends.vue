@@ -3,17 +3,17 @@
     <i class="close" @click="closeFriend()"></i>
     <div class="title">好友</div>
     <div class="selectFriend">
-      <input type="text" v-model="s_uid" class="s_input">
+      <input type="number" v-model="s_uid" class="s_input" @input="uidChange()">
       <div class="selectTips" v-if="!s_uid"><i></i><span>搜索</span></div>
     </div>
     <ul class='scrollable'>
-      <li v-for="(item,index) in list" :key="index" :class="'rank' + item.rank">
+      <li v-for="(item,index) in show_list" :key="index" :class="'rank' + item.rank">
         <img v-lazy="item.avatar" alt="" @click="goUser(item.uid)">
         <div class="msg">
           <div class="nick">{{item.nick}}</div>
           <div class="uid">UID {{item.uid}}</div>
         </div>
-        <div class="score">
+        <div class="score" @click="invite(item.uid,index,item.invite)" :class="{black:item.invite}">
           邀請好友
         </div>
       </li>
@@ -21,42 +21,29 @@
   </div>
 </template>
 <script>
+
+import { myFriend } from "../apis"
+import { invite, searchFriend } from "../apis"
+
 export default {
+  props: ['order_id'],
   data() {
     return {
       s_uid: null,
       showNoCoiosPup: false,
-      list: [
-        {
-          uid: 123,
-          avatar: '',
-          rank: 1,
-          score: 999,
-          nick: 'xxxx'
-        },
-        {
-          uid: 123,
-          avatar: '',
-          rank: 1,
-          score: 999,
-          nick: 'xxxx'
-        },
-        {
-          uid: 123,
-          avatar: '',
-          rank: 1,
-          score: 999,
-          nick: 'xxxx'
-        },
-        {
-          uid: 123,
-          avatar: '',
-          rank: 1,
-          score: 999,
-          nick: 'xxxx'
-        }
-      ]
+      show_list: [],
+      list: [],
+      s_list: [],
+      loaded: false,
+      more: true,
+      timer: null
     }
+  },
+  created() {
+    myFriend(0).then(res => {
+      this.list = res.data.response_data.list
+      this.show_list = this.list
+    })
   },
   mounted() {
     this.scrollable = this.$el.querySelector('.scrollable');
@@ -65,6 +52,35 @@ export default {
     }
   },
   methods: {
+    uidChange() {
+      console.log(this.s_uid)
+      if (this.s_uid && this.s_uid != '') {
+        clearTimeout(this.timer)
+        this.timer = setTimeout(() => {
+          searchFriend(this.s_uid).then(res => {
+            if (res.data.response_status.code == 0) {
+              this.s_list = res.data.response_data.info
+              this.show_list = [this.s_list]
+            } else {
+              this.toast(res.data.response_status.error)
+            }
+          })
+        }, 1500)
+      } else {
+        this.show_list = this.list
+      }
+    },
+    invite(uid, index, can) {
+      if (!can) {
+        invite(this.order_id, uid).then(res => {
+          if (res.data.response_status.code == 0) {
+            this.$set(this.list[index], 'invite', true)
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      }
+    },
     onScroll() {
       console.log('xxx')
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
@@ -72,12 +88,15 @@ export default {
         if (this.loaded) return
         if (this.more) {
           this.more = false
-          getList(this.hList.length, 'more').then(res => {
+          myFriend(this.list.length, 'more').then(res => {
             this.more = true
             if (res.data.response_data.list.length === 0) {
               this.loaded = true
             } else {
-              this.$emit('addhList', res.data.response_data.list)
+              // this.$emit('addhList', res.data.response_data.list)
+              console.log(this.list)
+              this.list = this.list.concat(res.data.response_data.list)
+              this.show_list = this.list
             }
           })
         }
@@ -171,6 +190,9 @@ export default {
         line-height: 0.56rem;
         font-size: 0.26rem;
         color: #fff;
+        &.black {
+          background: rgba(188, 188, 188, 1);
+        }
       }
     }
     li::before {

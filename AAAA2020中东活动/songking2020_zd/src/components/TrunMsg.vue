@@ -3,7 +3,7 @@
     <i class="horn"></i>
     <div class="trunMsg">
       <p class="msgItem" v-for="(item,index) in notice" :key="index" v-if="index == msgIndex">
-        UID:{{item.uid}} <em class="nick"> {{item.nick}}</em> يحصل على {{item.count}}個 <i class="giftIcon"> </i> هدية
+        UID:{{item.uid}} <em class="nick"> {{item.nick}}</em> يحصل على {{item.count}} <i class="giftIcon"> </i> هدية
       </p>
     </div>
   </div>

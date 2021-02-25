@@ -1,10 +1,10 @@
 <template>
-  <div class="trunbg" v-show="notice.length">
+  <div class="trunbg" v-show="top.length">
     <i class="horn"></i>
     <div class="trunMsg">
-      <p class="msgItem" v-for="(item,index) in notice" :key="index" v-if="index == msgIndex">
+      <p class="msgItem" v-for="(item,index) in top" :key="index" v-if="index == msgIndex">
         <!-- <img :src="gifts[item.gid].img" alt=""> -->
-        恭喜<em class="nick"> {{item.nick}}</em> 获得<em>{{item.name}}</em>
+        <em class="nick"> {{item.nick}}</em>uid:{{item.uid}}拼團{{item.name}}({{item.price}})金幣成功
 
       </p>
     </div>
@@ -21,21 +21,21 @@ export default {
     }
   },
   watch: {
-    notice(val) {
+    top(val) {
       if (val.length > 0 && this.timer == null) {
         this.msgGo()
       }
     }
   },
   computed: {
-    ...mapState(['notice']),
+    ...mapState(['top']),
   },
   mounted() {
     // this.msgGo()
   },
   methods: {
     msgGo() {
-      if (this.notice.length == 1) {
+      if (this.top.length == 1) {
         this.timer = setInterval(() => {
           this.msgIndex = null
           setTimeout(() => {
@@ -44,7 +44,7 @@ export default {
         }, 6000);
       } else {
         this.timer = setInterval(() => {
-          if (this.msgIndex == this.notice.length - 1) {
+          if (this.msgIndex == this.top.length - 1) {
             this.msgIndex = 0
           } else {
             this.msgIndex++

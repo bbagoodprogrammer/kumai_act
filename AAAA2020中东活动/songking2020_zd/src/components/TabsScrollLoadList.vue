@@ -129,9 +129,9 @@ export default {
       rotatec: 0,
       firstTask: true,
       giftArr: [
-        'أكون معك',
-        'تاج',
-        'وحيد القرن الملون',
+        'خذ قلبي',
+        ' microphone',
+        'باقة الحب ',
       ]
     }
   },
