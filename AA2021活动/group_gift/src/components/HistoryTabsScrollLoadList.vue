@@ -18,7 +18,7 @@
         <span>{{lang.history_price}}</span>
         <span>{{lang.status}}</span>
       </div>
-
+      <!-- <p class="noData" v-if="!rank.list.length">暫無數據</p> -->
       <ul class="list day" v-if="mainTab == 0">
         <li v-for="(item,index) in rank.list" :key="index" :class="{fail:item.status == 2}">
           <span>{{getDate(item.create_at)}}</span>
@@ -35,7 +35,7 @@
             <img :src="item.img" alt="">
           </div>
           <div class="msg">
-            <div class="giftName">{{item.name}} <i>{{item.kind?'K房':'歌曲'}}</i></div>
+            <div class="giftName">{{item.name}} <i>{{item.kind*1?'K房':'歌曲'}}</i></div>
             <div class="pNums">{{item.num}}人團，還差 <em>{{item.surplus}}</em> 人</div>
             <div class="price">
               <span><em>{{item.price}}</em></span> <i class="icon"></i>
@@ -221,6 +221,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.noData {
+  text-align: center;
+  font-size: 0.28rem;
+  color: rgba(133, 90, 55, 1);
+}
 .rankGroups {
   position: relative;
   .tmTips {

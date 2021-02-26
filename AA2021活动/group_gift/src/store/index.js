@@ -18,7 +18,8 @@ export default new vuex.Store({
         type: 1,
         rankGroups_history: {},
         end: 0,
-        invite: null
+        invite: null,
+        step: 0
     },
     getters: {
         signed: state => {

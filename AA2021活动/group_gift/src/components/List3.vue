@@ -1,9 +1,15 @@
 <template>
   <div class="rank">
+    <div class="noData" v-if="!list.length">暫無數據</div>
     <ul>
       <li v-for="(item,index) in list" :key="index" :class="'rank' + item.rank">
         <div class="rank">{{item.rank}}</div>
-        <img v-lazy="item.avatar" alt="" @click="goUser(item.uid)">
+        <div class="uerImg" @click="goUser(item.uid)">
+          <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
+          <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
+          <!-- <img v-else-if="item.nob > 0" :src="require(`../img/nob/${item.nob}.png`)" class="nob" alt=""> -->
+          <img v-lazy="item.avatar" alt="" class="av">
+        </div>
         <div class="msg">
           <div class="nick">{{item.nick}}</div>
           <div class="uid">UID {{item.uid}}</div>
@@ -76,6 +82,11 @@ export default {
 .rank {
   padding-bottom: 2rem;
 }
+.noData {
+  text-align: center;
+  font-size: 0.28rem;
+  color: rgba(133, 90, 55, 1);
+}
 ul {
   width: 7.02rem;
   background: #ffffff;
@@ -94,10 +105,49 @@ ul {
       line-height: 0.7rem;
       text-align: center;
     }
-    img {
-      width: 0.88rem;
-      height: 0.88rem;
-      border-radius: 50%;
+    .uerImg {
+      width: 1.1rem;
+      height: 1.1rem;
+      position: relative;
+      .nob {
+        width: 1.1rem;
+        height: 1.1rem;
+        position: absolute;
+        top: 0rem;
+        left: 0rem;
+        z-index: 10;
+      }
+      .frame {
+        width: 1.5rem;
+        height: 1.5rem;
+        position: absolute;
+        top: -0.21rem;
+        left: -0.2rem;
+        z-index: 10;
+      }
+      .room_frame {
+        width: 0.94rem;
+        height: 0.94rem;
+        position: absolute;
+        top: 0.055rem;
+        left: 0.065rem;
+        z-index: 10;
+      }
+      .av {
+        width: 0.88rem;
+        height: 0.88rem;
+        position: absolute;
+        top: 0.1rem;
+        left: 0.11rem;
+        border-radius: 50%;
+        border: 0.02rem solid rgba(131, 9, 67, 1);
+        &.room {
+          border-radius: 0.14rem;
+          &.noBor {
+            border: none;
+          }
+        }
+      }
     }
     .msg {
       width: 3.1rem;

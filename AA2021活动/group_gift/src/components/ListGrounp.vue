@@ -8,9 +8,17 @@
     </div>
     <div class="time">
       <div class="peopleNums listTips" v-if="type == 1 || type ==2">已有<em>{{finish}}</em>拼團成功</div>
-      <div class="timeTips listTips" v-if="type==1">本輪拼團結束倒計時</div>
+      <div class="timeTips listTips" v-if="type==1">
+        <p v-if="step == 0">本輪拼團開始倒計時</p>
+        <p v-else-if="step == 1">本輪拼團結束倒計時</p>
+        <p v-else-if="step == 2">活動已結束</p>
+      </div>
       <div class="downTimeBox2">
         <div class="timeDown" v-if="surplusTime&& !surplusTime.end">
+          <div class="day">
+            <strong>{{surplusTime.day}}</strong>
+            <em>{{lang.day}}</em>
+          </div>
           <div class="hours">
             <strong>{{surplusTime.hour}}</strong>
             <em>{{lang.hour}}</em>
@@ -41,7 +49,7 @@
               <img :src="invite.ginfo.img" alt="">
             </div>
             <div class="msg">
-              <div class="giftName">{{invite.ginfo.name}} <i>{{invite.ginfo.kind?'K房':'歌曲'}}</i></div>
+              <div class="giftName">{{invite.ginfo.name}} <i>{{invite.ginfo.kind*1?'K房':'歌曲'}}</i></div>
               <div class="price">
                 <span><em>{{invite.price}}</em></span> <i class="icon"></i><del>{{invite.max_price}}金幣</del>
               </div>
@@ -49,12 +57,18 @@
             </div>
           </div>
           <div class="selectType2">
-            <div class="buyTips">
+            <div class="buyTips" v-if="invite.status == 1">
+              此拼團人數已滿~您可以自己開團或者參與其他人的拼團~
+            </div>
+            <div class="buyTips" v-else-if="invite.status == 2">
+              此拼團已過期~您可以自己開團或者參與其他人的拼團~
+            </div>
+            <div class="buyTips" v-else>
               您的好友{{invite.nick}}正在拼團禮物{{invite.ginfo.historyname}}，<br />
               只需要支付{{invite.price}}金幣就可購買1件禮物{{invite.ginfo.name}}<br />
               快來參與吧~
             </div>
-            <div class="go" @click="getGift()">參與拼團</div>
+            <div class="go" :class="{over:invite.status != 0}" @click="getGift()">參與拼團</div>
           </div>
         </div>
       </transition>
@@ -77,7 +91,7 @@ export default {
       type: 1,
       tabsArr: [
         '禮物櫥窗',
-        '禮物拼圖',
+        '禮物拼團',
         '拼團榜'
       ],
       surplusTime: {},
@@ -88,7 +102,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['load', 'finish', 'invite']),
+    ...mapState(['load', 'finish', 'invite', 'ctime', 'etime', 'step']),
     nowCom() {
       return `List${this.type}`
     }
@@ -96,7 +110,14 @@ export default {
   watch: {
     load(val) {
       console.log(val)
-      this.downTimeGo('time' + this.rankKey, val)
+      this.downTimeGo('time' + 1, val)
+    },
+    type(val) {
+      if (val == 3) {
+        this.downTimeGo('time' + 3, this.etime - this.ctime)
+      } else {
+        this.downTimeGo('time' + 1)
+      }
     },
     invite(val) {
       if (val && this.first) {
@@ -129,6 +150,7 @@ export default {
       }, 1000)
     },
     getGift() {
+      if (this.invite.status != 0) { return }
       this.$refs.showCom.showGetGiftPup(this.invite)
       this.showInvite = false
     },
@@ -191,7 +213,7 @@ export default {
     text-align: center;
     position: relative;
     .timeDown {
-      width: 4.15rem;
+      width: 5.15rem;
       padding: 0 0.09rem;
       margin: 0.17rem auto 0;
       display: flex;
@@ -362,6 +384,9 @@ export default {
     &.no {
       margin: 0 auto;
     }
+    &.over {
+      background: rgba(188, 188, 188, 1);
+    }
   }
   .close {
     display: block;
@@ -382,6 +407,7 @@ export default {
     justify-content: center;
     color: rgba(133, 90, 55, 1);
     font-size: 0.26rem;
+    padding: 0 0.4rem;
     em {
       color: rgba(255, 121, 89, 1);
     }

@@ -6,6 +6,7 @@
       <input type="number" v-model="s_uid" class="s_input" @input="uidChange()">
       <div class="selectTips" v-if="!s_uid"><i></i><span>搜索</span></div>
     </div>
+    <p class="noData" v-if="!show_list.length">暂无可邀请好友</p>
     <ul class='scrollable'>
       <li v-for="(item,index) in show_list" :key="index" :class="'rank' + item.rank">
         <img v-lazy="item.avatar" alt="" @click="goUser(item.uid)">
@@ -71,10 +72,11 @@ export default {
       }
     },
     invite(uid, index, can) {
+      console.log(uid, index, this.list)
       if (!can) {
         invite(this.order_id, uid).then(res => {
           if (res.data.response_status.code == 0) {
-            this.$set(this.list[index], 'invite', true)
+            this.$set(this.show_list[index], 'invite', true)
           } else {
             this.toast(res.data.response_status.error)
           }
@@ -109,6 +111,15 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.noData {
+  text-align: center;
+  font-size: 0.28rem;
+  color: rgba(133, 90, 55, 1);
+  margin-top: 0.15rem;
+}
+.noData {
+  text-align: center;
+}
 .friendList {
   width: 6.6rem;
   height: 6.38rem;

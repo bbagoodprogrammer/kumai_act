@@ -16,7 +16,8 @@ const isDebug = getUrlString('debug');
 const uid = getUrlString('uid') || (isDebug ? defaultUid : '');
 const token = getUrlString('token') || (isDebug ? defaultToken : '');
 const lang = __lang;
-
+const order_id =  getUrlString('order_id') ||false;
+const from =  getUrlString('from') || false;
 function get(url, config) {
     return new Promise((resolve, reject) => {
         store.commit('updateLoading', true);
@@ -64,7 +65,7 @@ function loadData(apiFunc, commitName) {
 
 function getInitInfo() {
     // return testGet('getInitInfo');
-    return get(`/gift_group/init.php?token=${token}&from=100886&order_id=7`);
+    return get(`/gift_group/init.php?token=${token}&from=${from}&order_id=${order_id}`);
 }
 
 function start(gid, num) {

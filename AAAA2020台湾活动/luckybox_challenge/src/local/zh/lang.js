@@ -18,7 +18,7 @@ export default {
     giftList: [
         {
             imgIcon: require('../../img/gift/01.png'),
-            name: '水瓶座頭飾'
+            name: '雙魚座頭飾'
         },
         {
             imgIcon: require('./img/02.png'),

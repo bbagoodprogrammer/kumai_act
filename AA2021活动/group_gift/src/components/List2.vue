@@ -1,17 +1,17 @@
 <template>
   <div class="giftGruop">
     <div class="select" @click="showSelect = true">
-      <div class="giftName"> {{gift[selectIndex].name}}（已有人 {{gift[selectIndex].group_num}}發起）</div>
+      <div class="giftName"> {{selectIndex == -1?gift[0].name:gift[selectIndex].name}}（已有 {{selectIndex == -1?gift[0].start:gift[selectIndex].start}}人發起拼團）</div>
       <div class="icon"></div>
     </div>
     <p class="noData" v-if="giftList.length == 0">暫無拼團數據</p>
     <ul class='scrollable'>
-      <li v-for="(item,index) in giftList" :key="index">
+      <li v-for="(item,index) in giftList" :key="index" :class="{over: item.num - item.group_num <=1 || step != 1}">
         <div class="imgBox">
           <img :src="item.ginfo.img" alt="">
         </div>
         <div class="msg">
-          <div class="giftName">{{item.ginfo.name}} <i>{{item.ginfo.kind?'K房':'歌曲'}}</i></div>
+          <div class="giftName">{{item.ginfo.name}} <i>{{item.ginfo.kind*1?'K房':'作品'}}</i></div>
           <div class="pNums">{{item.num}}人團，還差 <em>{{item.surplus}}</em> 人</div>
           <div class="price">
             <span><em>{{item.price}}</em></span> <i class="icon"></i><del>{{item.max_price}}金幣</del>
@@ -28,10 +28,10 @@
         <div class="selectGiftList" v-if="showSelect">
           <i class="close" @click="showSelect = false"></i>
           <div class="selectItem">
-            {{gift[selectIndex].name}} <em>（已有 {{gift[selectIndex].group_num}}人發起）</em>
+            {{selectIndex == -1?gift[0].name:gift[selectIndex].name}} <em>（已有 {{selectIndex == -1?gift[0].start:gift[selectIndex].start}}人發起）</em>
           </div>
           <ul>
-            <li v-for="(item,index) in gift" :key="index" :class="{act:selectIndex == index}" @click="selectIndex = index">
+            <li v-for="(item,index) in gift" :key="index" :class="{act:selectIndex == index}" @click=" setGindex(index)">
               {{item.name}}
             </li>
           </ul>
@@ -51,7 +51,7 @@
               <img :src="act_item.ginfo.img" alt="">
             </div>
             <div class="msg">
-              <div class="giftName">{{act_item.ginfo.name}} <i>{{act_item.ginfo.kind?'K房':'歌曲'}}</i></div>
+              <div class="giftName">{{act_item.ginfo.name}} <i>{{act_item.ginfo.kind*1?'K房':'作品'}}</i></div>
               <div class="price">
                 <span><em>{{act_item.price}}</em></span> <i class="icon"></i><del>{{act_item.max_price}}金幣</del>
               </div>
@@ -146,7 +146,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['gift'])
+    ...mapState(['gift', 'step'])
   },
 
   created() {
@@ -162,6 +162,14 @@ export default {
     }
   },
   methods: {
+    setGindex(index) {
+      if (this.selectIndex == index) {
+        this.selectIndex = -1
+      } else {
+        this.selectIndex = index
+      }
+
+    },
     onScroll() {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
@@ -180,6 +188,7 @@ export default {
       }
     },
     showGetGiftPup(val) {
+      if (this.step != 1) { return }
       console.log(val)
       this.act_item = val
       this.showGetGift = true
@@ -211,7 +220,8 @@ export default {
       })
     },
     search() {
-      search(this.gift[this.selectIndex].gid).then(res => {
+      let gid = this.gift[this.selectIndex] ? this.gift[this.selectIndex].gid : false
+      search(gid).then(res => {
         this.showSelect = false
         this.giftList = res.data.response_data.list
       })
@@ -343,6 +353,12 @@ export default {
         line-height: 0.48rem;
         color: #fff;
         font-size: 0.24rem;
+      }
+      &.over {
+        .itemNums,
+        .buy {
+          background: rgba(188, 188, 188, 1);
+        }
       }
     }
     li::before {

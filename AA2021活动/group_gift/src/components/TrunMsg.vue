@@ -4,7 +4,7 @@
     <div class="trunMsg">
       <p class="msgItem" v-for="(item,index) in top" :key="index" v-if="index == msgIndex">
         <!-- <img :src="gifts[item.gid].img" alt=""> -->
-        <em class="nick"> {{item.nick}}</em>uid:{{item.uid}}拼團{{item.name}}({{item.price}})金幣成功
+        <em class="nick"> {{item.nick}}</em>(uid:{{item.uid}})拼團{{item.name}}({{item.price}}金幣)成功
 
       </p>
     </div>

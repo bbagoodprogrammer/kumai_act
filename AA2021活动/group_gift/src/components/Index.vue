@@ -38,21 +38,6 @@ export default {
 
   },
   methods: {
-    init() {
-      setTimeout(() => {
-        this.vxc('setNotice', [
-          {
-            nick: '111',
-            name: 'xxxxx'
-          },
-          {
-            nick: '111222',
-            name: 'xxxxx'
-          }
-        ])
-      }, 1000)
-
-    },
     judgeShare() {//判断是否为分享环境,请求相应的接口 
       this.isShare = getUrlString('token') ? false : true
       this.vxc('setShareState', this.isShare) //分享状态
