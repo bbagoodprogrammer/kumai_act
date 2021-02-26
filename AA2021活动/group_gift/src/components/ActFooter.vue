@@ -10,7 +10,7 @@
           <div class="msg">
             <div class="numsTips">{{item.num}}人團，已拼團{{item.num - item.surplus}}人，還差{{item.surplus}}人</div>
             <div class="time">{{actTime}} 後結束</div>
-            <div class="friendBtn">邀請好友拼團</div>
+            <div class="friendBtn" :class="{over:step!=1}" @click="showFriendsPup(item.id)">邀請好友拼團</div>
           </div>
         </van-swipe-item>
       </van-swipe>
@@ -19,7 +19,12 @@
     </div>
     <div class="userRank" v-if="footerStatus == 3" :class="'rank' +user.rank ">
       <div class="rank">{{user.rank?user.rank:'未上榜'}}</div>
-      <img v-lazy="user.avatar" alt="" @click="goUser(user.uid)">
+      <div class="uerImg" @click="goUser(user.uid)">
+        <img v-if="user.avatar_frame &&user.avatar_frame != ''" :src="user.avatar_frame" class="frame" alt="">
+        <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
+        <!-- <img v-else-if="user.nob > 0" :src="require(`../img/nob/${user.nob}.png`)" class="nob" alt=""> -->
+        <img v-lazy="user.avatar" alt="" class="av">
+      </div>
       <div class="msg">
         <div class="nick">{{user.nick}}</div>
         <div class="uid">UID {{user.uid}}</div>
@@ -29,6 +34,12 @@
         <i></i>
       </div>
     </div>
+    <!-- 好友 -->
+    <div class="mask" v-show="showFriends">
+      <transition name="slide">
+        <Friends v-if="showFriends" :order_id="order_id" />
+      </transition>
+    </div>
   </div>
 
 </template>
@@ -37,16 +48,20 @@
 <script>
 import { mapState } from "vuex"
 import getDate from "../utils/getDate"
+import Friends from "./Friends"
 export default {
+  components: { Friends },
   data() {
     return {
-      swiper: {}
+      swiper: {},
+      showFriends: false,
+      order_id: null
     }
   },
   computed: {
-    ...mapState(['my_group', 'user', 'type', 'end']),
+    ...mapState(['my_group', 'user', 'type', 'end', 'step']),
     footerStatus() {
-      if (this.type == 1) {
+      if (this.type == 1 && this.my_group.length) {
         return 1
       } else if (this.type == 3) {
         return 3
@@ -60,12 +75,21 @@ export default {
     this.swiper = this.$refs.swiper
   },
   methods: {
+    showFriendsPup(id) {
+      console.log(id)
+      this.order_id = id
+      this.showFriends = true
+
+    },
     pre() {
       console.log(this.swiper)
       this.swiper.prev()
     },
     next() {
       this.swiper.next()
+    },
+    goUser(uid) {
+      location.href = `uid:${uid}`
     },
   },
 };
@@ -77,18 +101,29 @@ export default {
   background: #ffffff;
   overflow-x: hidden;
   position: fixed;
+  z-index: 1000;
   bottom: -0.01rem;
   border-top: 0.02rem solid RGBA(255, 114, 88, 1);
   .tips {
-    height: 1.1rem;
-    line-height: 1.1rem;
+    width: 1.96rem;
+    height: 0.36rem;
+    line-height: 0.36rem;
+    background: linear-gradient(
+      -90deg,
+      rgba(255, 136, 90, 0.1),
+      rgba(255, 105, 87, 0.1)
+    );
+    border-radius: 0px 0px 0px 0.12rem;
     text-align: center;
-    color: rgba(133, 90, 55, 1);
-    font-size: 0.28rem;
+    color: rgba(255, 106, 87, 1);
+    font-size: 0.22rem;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
   .imgBox {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.4rem;
+    height: 1.4rem;
     background: rgba(255, 226, 206, 0.3);
     border-radius: 0.1rem;
     img {
@@ -120,6 +155,9 @@ export default {
       font-size: 0.24rem;
       color: #fff;
       margin-top: 0.23rem;
+      &.over {
+        background: rgba(188, 188, 188, 1);
+      }
     }
   }
 }
@@ -152,6 +190,7 @@ export default {
 //   overflow: visible !important ;
 // }
 .van-swipe-item {
+  padding-top: 0.4rem;
   height: 100%;
   display: flex;
   // align-items: center;
@@ -174,7 +213,7 @@ export default {
   left: 0;
   top: 0;
   z-index: 5;
-  top: 1.64rem;
+  top: 1rem;
   left: 0.26rem;
 }
 .next {
@@ -183,6 +222,7 @@ export default {
   background-size: 100% 100%;
 }
 .van-swipe__indicators {
+  bottom: 0.1rem !important;
   .van-swipe__indicator {
     background-color: #dddddd;
   }
@@ -255,6 +295,50 @@ export default {
       text-indent: -999rem;
       background: url(../img/top3.png) center center no-repeat;
       background-size: 0.44rem 0.55rem;
+    }
+  }
+}
+.uerImg {
+  width: 1.1rem;
+  height: 1.1rem;
+  position: relative;
+  .nob {
+    width: 1.1rem;
+    height: 1.1rem;
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    z-index: 10;
+  }
+  .frame {
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    top: -0.21rem;
+    left: -0.2rem;
+    z-index: 10;
+  }
+  .room_frame {
+    width: 0.94rem;
+    height: 0.94rem;
+    position: absolute;
+    top: 0.055rem;
+    left: 0.065rem;
+    z-index: 10;
+  }
+  .av {
+    width: 0.88rem;
+    height: 0.88rem;
+    position: absolute;
+    top: 0.1rem;
+    left: 0.11rem;
+    border-radius: 50%;
+    border: 0.02rem solid rgba(131, 9, 67, 1);
+    &.room {
+      border-radius: 0.14rem;
+      &.noBor {
+        border: none;
+      }
     }
   }
 }

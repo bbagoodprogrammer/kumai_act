@@ -12,7 +12,7 @@ export default new Router({
             name: 'index',
             component: Index,
             meta: {
-                title: _lang.title
+                // title: _lang.title
             }
         },
         {
@@ -20,14 +20,14 @@ export default new Router({
             name: 'HistoryTabsScrollLoadList',
             component: HistoryTabsScrollLoadList,
             meta: {
-                title: _lang.title
+                // title: _lang.title
             }
         }, {
             path: '/Rule',
             name: 'Rule',
             component: _agreement,
             meta: {
-                title: _lang.title
+                // title: _lang.title
             }
         }
     ]

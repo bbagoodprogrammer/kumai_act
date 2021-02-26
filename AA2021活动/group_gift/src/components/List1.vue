@@ -1,15 +1,16 @@
 <template>
   <div class="giftList" :class="{my_gronp:my_group.length}">
     <ul>
-      <li v-for="(item,index) in gift" :key="index" :class="{over:item.group_num >= item.num}">
+      <li v-for="(item,index) in gift" :key="index" :class="{over: item.num - item.group_num <=1 || step != 1}">
         <div class="itemNums">{{item.group_num}}/{{item.num}}</div>
         <img :src="item.image" alt="" class="giftImg">
-        <div class="giftName">{{item.name}} <i>{{item.kind?'K房':'歌曲'}}</i> </div>
+        <div class="giftName">{{item.name}} <i>{{item.kind*1?'K房':'作品'}}</i> </div>
         <div class="price">
           <span>最低<em>{{item.min_price}}</em></span> <i class="icon"></i><del>{{item.price}}金幣</del>
         </div>
         <div class="buy" @click="setGift(item)">
-          發起拼團
+          <em v-if="item.num - item.group_num <=1 ">結束</em>
+          <em v-else>發起拼團</em>
         </div>
       </li>
     </ul>
@@ -23,9 +24,9 @@
               <img :src="actItem.image" alt="">
             </div>
             <div class="msg">
-              <div class="giftName">{{actItem.name}} <i>{{actItem.kind?'K房':'歌曲'}}</i></div>
+              <div class="giftName">{{actItem.name}} <i>{{actItem.kind*1?'K房':'作品'}}</i></div>
               <div class="price">
-                <span><em>{{actItem.min_price}}</em></span> <i class="icon"></i><del>{{actItem.price}}金幣</del>
+                <span><em>{{Math.ceil(actItem.price* zhe)}}</em></span> <i class="icon"></i><del>{{actItem.price}}金幣</del>
               </div>
               <div class="giftPupTips">（若拼團未成功，金幣將退回您的錢包）</div>
             </div>
@@ -45,19 +46,19 @@
             </div>
             <div class="selectSet">
               <span>支付</span>
-              <div class="nums">{{actItem.min_price* selectNums}}金幣</div>
+              <div class="nums">{{Math.ceil(actItem.price * zhe)}}金幣</div>
             </div>
             <div class="go" @click="selectType = 2">發起拼團</div>
           </div>
           <div class="selectType2" v-else-if="selectType == 2">
-            <div class="buyTips">發起拼團，需要支付{{actItem.min_price * selectNums}}金幣</div>
+            <div class="buyTips">發起拼團，需要支付{{Math.ceil(actItem.price* zhe )}}金幣</div>
             <div class="btn">
               <span class="no" @click=" closePup()">否</span>
               <span class="qurey" @click="buy()">確認支付</span>
             </div>
           </div>
           <div class="selectType2" v-else-if="selectType == 3">
-            <div class="buyTips left">此團還差<em>{{buyGiftData.surplus}}</em> 人就可以拼團成功，<br /> 每人可以以<em>{{buyGiftData.price}}</em> 金幣購買{{actItem.name}}*1</div>
+            <div class="buyTips left">此團還差<em>{{buyGiftData.surplus}}</em> 人就可以拼團成功，<br /> 每人可以以<em>{{Math.ceil(actItem.price* zhe )}}</em> 金幣購買{{actItem.name}}*1</div>
             <div class="go" @click="showFriendsPup()">邀請好友拼團</div>
           </div>
         </div>
@@ -102,10 +103,22 @@ export default {
     }
   },
   computed: {
-    ...mapState(['gift', 'my_group'])
+    ...mapState(['gift', 'my_group', 'step']),
+    zhe() {
+      if (this.selectNums == 2) {
+        return 0.95
+      } else if (this.selectNums == 3) {
+        return 0.9
+      } if (this.selectNums == 4) {
+        return 0.85
+      } if (this.selectNums == 5) {
+        return 0.8
+      }
+    }
   },
   methods: {
     setGift(item) {
+      if (item.num - item.group_num <= 1 || this.step != 1) { return }
       this.actItem = item
       this.showSelectGiftItem = true
     },
@@ -134,7 +147,7 @@ export default {
     },
     closePup() {
       this.showSelectGiftItem = false
-      this.selectNums = 1
+      this.selectNums = 2
       this.selectType = 1
     },
     stored() {
@@ -235,6 +248,9 @@ export default {
         color: #fff;
         line-height: 0.48rem;
         margin: 0.15rem auto 0;
+        em {
+          font-size: 0.24rem;
+        }
       }
       &.over {
         .itemNums,

@@ -1,6 +1,6 @@
 export default {
     //html/index.html
-    title: '簽約',
+    title: '禮物拼拼樂',
     day: '天',
     hour: '時',
     minute: '分',
@@ -12,5 +12,7 @@ export default {
     history_type: '拼圖類型',
     history_nums: '購買個數',
     history_price: '花費',
-    status: '狀態'
+    status: '狀態',
+    noData: '暫無數據',
+    loading: '加載中...'
 }
