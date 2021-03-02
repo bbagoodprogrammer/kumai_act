@@ -16,9 +16,11 @@
         <img :src="item2" v-for="(item2,index2) in owner.medals" :key="index2" alt="">
       </div>
       <div class="score">
-        <strong>{{myMsg.score}}</strong>
-        <em>(Lên BXH còn {{myMsg.uscore}} chiếc)</em>
+        <!-- <strong>{{myMsg.score}}</strong>
+        <em>(Lên BXH còn {{myMsg.uscore}} chiếc)</em> -->
         <!-- <em v-else>(距上榜差 -- 個)</em> -->
+           <em>{{tab == 0?'Điểm hộp quà may mắn':'Điểm kỳ binh'}}</em>
+        <strong>{{myMsg.score}}</strong>
       </div>
     </div>
   </div>

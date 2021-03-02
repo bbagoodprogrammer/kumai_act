@@ -1,14 +1,48 @@
 <template>
   <div class="rankGroups">
+       <div class="timeDown" v-if="!surplusTime.end">
+        <div class="day">
+          <strong>{{surplusTime.day}}</strong>
+          
+        </div>
+        <div class="hours">
+          <strong>{{surplusTime.hour}}</strong>
+          
+        </div>
+        <div class="min">
+          <strong>{{surplusTime.minute}}</strong>
+         
+        </div>
+        <div class="second">
+          <strong>{{surplusTime.second}}</strong>
+         
+        </div>
+       </div>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs" :class="{current:mainTab==1}">
-      <a @click.prevent="mainTabClick(0)" href="" :class="{act:mainTab==0}"><img :src="gifts[0].image" alt=""> {{gifts[0].name}}</a>
-      <a @click.prevent="mainTabClick(1)" href="" :class="{act:mainTab==1}"> <img :src="gifts[1].image" alt="">{{gifts[1].name}}</a>
+      <div @click.prevent="mainTabClick(0)" class="tab" :class="{act:mainTab==0}">
+        <div class="imgBox">
+          <img :src="require('../assets/img/gift/tab1.png')" alt="">
+        </div>
+           <strong>幸運禮盒榜</strong>
+    </div>
+      <div @click.prevent="mainTabClick(1)" class="tab" :class="{act:mainTab==1}">
+           <div class="imgBox">
+          <img :src="require('../assets/img/gift/tab2.png')"  alt="">
+        </div>
+        <strong>尋寶奇兵榜</strong>
+      </div>
       <a @click.prevent="onRefresh" href="" v-if="!isShare && actStatus===1" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
+   
     <!-- 日榜 -->
     <div class="list day">
-      <div class="top1" v-if="top1.uid">
+        <div class="rankHeader">
+            <span class="rank">排名</span>
+            <span class="nick">暱稱</span>
+            <span  class="rankScore"><i></i> <em>{{mainTab == 0?'禮盒幸運值':'奇兵幸運值'}}</em> </span>
+        </div>
+      <!-- <div class="top1" v-if="top1.uid">
         <div class="top1Rank">
           <div class="imgBox" @click="goUser(top1.uid)">
             <img src="../assets/img/top1.png" alt="" class="top1Tips">
@@ -25,7 +59,7 @@
           <strong>收到禮物個數</strong>
           <em>{{top1.score}}</em>
         </div>
-      </div>
+      </div> -->
       <ul>
         <li v-for="(item,index) in surplusArr" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid)">
           <div class="rank">{{item.rank}}</div>
@@ -35,7 +69,7 @@
             <img v-for="(item2,index2) in item.medals" :src="item2" :key="index2" alt="">
           </div>
           <div class="score">
-            <strong>收到禮物個數</strong>
+            <!-- <strong>收到禮物個數</strong> -->
             <em>{{item.score}}</em>
           </div>
         </li>
@@ -55,6 +89,7 @@
 import axios from 'axios';
 import { mapState } from 'vuex';
 import getUrlString from '../utils/getString.js';
+import downTime from '../utils/downTime.js'
 import APP from "../utils/openApp"
 import api from "../api/apiConfig"
 // 为了清晰显示各字段以及提供更灵活的配置，不采用mixin实现
@@ -84,7 +119,8 @@ export default {
       timer2: null,
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
-      firstTask: true
+      firstTask: true,
+            surplusTime: {},
     }
   },
   watch: {
@@ -109,12 +145,12 @@ export default {
       //   var api = this.rankKey == 'total' ? totalApi : dayApi;
       //   return api.replace('{date}', this.getDate(this.dateArr[this.tab - 1]))
       // } else {
-      var dayApi = `/index.php?action=giftsRank.rank&gid={gid}&from={from}&signture=innerserver&uid={uid}&token={token}`;
-      var totalApi = `/index.php?action=giftsRank.rank&gid={gid}&from={from}&signture=innerserver&uid={uid}&token={token}`;
+      var dayApi = `/index.php?action=luckyRank.rank&type=1&from={from}&signture=innerserver&uid={uid}&token={token}`;
+      var totalApi = `/index.php?action=luckyRank.rank&type=2&from={from}&signture=innerserver&uid={uid}&token={token}`;
       var api = this.rankKey == 'total' ? totalApi : dayApi;
       const token = getUrlString('token') || '';
       const uid = getUrlString('uid') || '';
-      return api.replace('{gid}', this.gifts[this.mainTab].id).replace('{uid}', uid).replace('{token}', token);
+      return api.replace('{uid}', uid).replace('{token}', token);
       //}
     },
     rankSize() {
@@ -137,7 +173,7 @@ export default {
     },
     surplusArr() {
       if (this.rank.list.length) {
-        return this.rank.list.slice(1)
+        return this.rank.list.slice(0)
       }
       return []
     }
@@ -160,16 +196,6 @@ export default {
         }
       })
     },
-    // tabClick(tab) { //日榜切换
-    //   this.tab = tab;
-    //   var nowTab = this.rankKey >= this.nowDay ? this.nowDay : this.rankKey //存当天选择的tab索引用于底部个人信息查找
-    //   this.$store.commit("changTab", nowTab)
-    //   this.$nextTick(() => {
-    //     if (!this.rank.loadCount) {
-    //       this.onScroll();
-    //     }
-    //   });
-    // },
     onScroll() {
       if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
         return
@@ -291,9 +317,9 @@ export default {
 <style lang="scss">
 .rankGroups {
   width: 6.88rem;
-  padding: 1.68rem 0 2rem;
+  padding: .83rem 0 2rem;
   position: relative;
-  background: rgba(235, 103, 185, 1) url(../assets/img/listBg.png) no-repeat;
+  background: #0438DA url(../assets/img/listBg.png) no-repeat;
   background-size: 100% auto;
   margin: 0.37rem auto;
   > li {
@@ -301,40 +327,73 @@ export default {
   }
   .mainTabs {
     display: flex;
-    width: 4.44rem;
-    height: 0.6rem;
-    background: url(../assets/img/tab1.png);
-    background-size: 100% 100%;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 0 auto;
-    &.current {
-      background: url(../assets/img/tab2.png);
-      background-size: 100% 100%;
-    }
-    a {
-      flex: 1;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.24rem;
-      color: RGBA(247, 217, 140, 1);
-      img {
-        width: 0.3rem;
-        height: 0.3rem;
-        margin-right: 0.1rem;
+justify-content: space-between;
+    padding: 0 1.1rem;
+    height: 3rem;
+    .tab{
+        .imgBox{
+        width: 1.7rem;
+        height: 1.7rem;
+        background: url(../assets/img/giftImgBox.png) no-repeat;
+       background-size: 100% 100%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+      img{
+        width: 1.4rem;
+        height: 1.4rem;
       }
-      &.act {
-        color: RGBA(123, 61, 24, 1);
+}
+strong{
+          display: block;
+          text-align: center;
+          color:#1494E0;
+          font-size: .26rem;
       }
+&.act{
+    .imgBox{
+        width: 2.15rem;
+        height: 2.15rem;
     }
+}
+    }
+   
   }
   .list {
     margin: 0.3rem auto;
     position: relative;
     z-index: 10;
+    .rankHeader{
+        display: flex;
+        align-items: center;
+        color:#299BE3;
+        font-size: .18rem;
+        padding: 0 .23rem;
+        text-align: center;
+        margin-bottom: 0.06rem;
+        .rank{
+            width: 1.1rem;
+        }
+        .nick{
+width: 2.2rem;
+        }
+        .rankScore{
+            margin-left: 1.4rem;
+flex: 1;
+display: flex;
+align-items: center;
+em{
+    font-size: .18rem;
+}
+    i{
+        width: .33rem;
+        height: .33rem;
+            background: url(../assets/img/scoreIcon.png);
+      background-size: 100% 100%;
+    }
+        }
+    }
     .top1 {
       height: 3.17rem;
       margin-bottom: 0.11rem;
@@ -412,9 +471,6 @@ export default {
         }
       }
     }
-    ul {
-      // background: #f8ffe6;
-    }
     li {
       width: 6.44rem;
       height: 0.94rem;
@@ -454,10 +510,11 @@ export default {
         justify-content: center;
         img {
           width: 0.34rem;
-          height: 0.34rem;
+        //   height: 0.34rem;
         }
       }
       .score {
+          flex: 1;
         margin-left: 0.15rem;
         strong {
           display: block;
@@ -471,17 +528,64 @@ export default {
           text-align: center;
         }
       }
+       &.rank1 {
+        background: url(../assets/img/top1.png);
+        background-size: 100% 100%;
+        .rank{
+            text-indent: -999rem;
+        }
+      }
       &.rank2 {
         background: url(../assets/img/top2.png);
         background-size: 100% 100%;
+        .rank{
+            text-indent: -999rem;
+        }
       }
       &.rank3 {
         background: url(../assets/img/top3.png);
         background-size: 100% 100%;
+        .rank{
+            text-indent: -999rem;
+        }
       }
     }
   }
 }
+  .timeDown {
+    width: 4.3rem;
+    height: 0.53rem;
+    margin: 0.17rem auto 0;
+    display: flex;
+    background: url(../assets/img/downTime.png);
+    background-size: 100% 100%;
+    > div {
+      height: 100%;
+      line-height: 0.6rem;
+      display: flex;
+      align-items: center;
+      strong {
+        display: block;
+        width: 0.9rem;
+        height: 0.42rem;
+        line-height: 0.42rem;
+        letter-spacing: 0.32rem;
+        text-indent: 0.1rem;
+        color: #FFFFFF;
+      }
+    }
+    .hours,
+    .second {
+      margin-left: 0.23rem;
+      text-align: center;
+    }
+    .min {
+      margin-left: 0.24rem;
+    }
+    .second {
+      margin-left: 0.25rem;
+    }
+  }
 .dengdai {
   text-align: center;
 }

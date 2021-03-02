@@ -6,9 +6,18 @@
     <div class="header">
       <roolMsg :roolMsgs="roolMsgs" />
       <span class="ruleTips" @click="goRule()"></span>
-      <span class="ruleTips rank" @click="showRank()"></span>
+      <!-- <span class="ruleTips rank" @click="showRank()"></span> -->
     </div>
-    <div class="gifts">
+     <div class= "giftList">
+      <div class="giftItem" v-for="(item,index) in giftArr" :key="index">
+    
+        <div class="imgBox">
+          <img :src="item.img" alt="">
+        </div>
+          <strong>{{item.gname}}</strong>
+      </div>
+    </div>
+    <!-- <div class="gifts">
       <div class="giftItem">
         <div class="item" v-for="(item,index) in prizes" :key="index">
           <strong>{{item.name}}</strong>
@@ -18,22 +27,22 @@
       <div class="timeDown" v-if="!surplusTime.end">
         <div class="day">
           <strong>{{surplusTime.day}}</strong>
-          <!-- <em>天</em> -->
+          <em>天</em>
         </div>
         <div class="hours">
           <strong>{{surplusTime.hour}}</strong>
-          <!-- <em>時</em> -->
+          <em>時</em>
         </div>
         <div class="min">
           <strong>{{surplusTime.minute}}</strong>
-          <!-- <em>分</em> -->
+          <em>分</em>
         </div>
         <div class="second">
           <strong>{{surplusTime.second}}</strong>
-          <!-- <em>秒</em> -->
+          <em>秒</em>
         </div>
       </div>
-    </div>
+    </div> -->
     <TabsScrollLoadList ref="scorll" @getDefaultData="getDefaultData"></TabsScrollLoadList>
     <act-footer></act-footer>
     <div class="mask" v-show="showRules">
@@ -44,13 +53,15 @@
             <h6>1 Thời gian</h6>
             <p>{{aTimer}}</p>
             <h6>2. Bảng xếp hạng</h6>
-            <p>Bảng xếp hạng dựa trên số lượng nhận quà chỉ định. Bảng xếp hạng hiển thị điểm là số lượng quà tặng. </p>
+            <p>BXH Qùa may mắn được chia thành BXH Hộp quà may mắn và BXH Ky binh, Top 100 được hiển thị. </p>
+            <p>BXH Hộp quà may mắn: Dựa vào số xu quà tặng từ quà tại hộp quà may mắn, 1 xu =10 điểm</p>
+            <p>BXH Kỳ binh: Dựa vào số xu quà nhận được từ Kỳ binh kho báu, 1 xu = 10 điểm, 1 vỏ sò = 100 điểm, 1 kim cương = 1000 điểm</p>
             <h6>3. Thưởng</h6>
             <div class="giftBox">
 
-              <p>Hạng 1: Khung ảnh 2021 (10 ngày), xe Maserati 7 ngày<br />
-                Hạng 2: Khung ảnh 2021 7 ngày<br />
-                Hạng 3: Khung ảnh 2021 5 ngày
+              <p>Top 1: Khung ảnh 2021 7 ngày + Xe Maserati 7 ngày +2000 đậu<br />
+               Top 2: Khung ảnh 2021 5 ngày + 1500 đậu<br />
+                Top 3: Khung ảnh 2021 3 ngày +1000 đậu
               </p>
 
             </div>
@@ -91,6 +102,20 @@ export default {
       roolMsgs: [],
       surplusTime: {},
       showRules: false,
+      giftArr:[
+        {
+          img: require('../assets/img/gift/gift1.png'),
+          gname:'Khung ảnh'
+        },
+         {
+          img:require('../assets/img/gift/gift2.png'),
+          gname:'Xe'
+        },
+         {
+          img:require('../assets/img/gift/gift3.png'),
+          gname:'Đậu'
+        }
+      ]
     }
   },
   created() {
@@ -129,7 +154,7 @@ export default {
             msg: owner.rank2
           })
           if (downTime > 0) {
-            this.downTimeGo('timer1', downTime)
+               this.$refs.scorll.downTimeGo('timer1', downTime)
           }
         } else {
           this.toast(response_status.error)
@@ -186,7 +211,7 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: rgba(235, 103, 185, 1) url(../assets/img/banner.png) center 0
+  background: #0438DA url(../assets/img/banner.png) center 0
     no-repeat;
   background-size: 100% auto;
   .shareBar {
@@ -205,16 +230,17 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 6.45rem;
+    height: 6.44rem;
     position: relative;
     .ruleTips {
       width: 1.65rem;
-      height: 0.46rem;
+      height: 0.43rem;
       background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
       position: absolute;
       right: 0;
       top: 4.8rem;
+    
       &.rank {
         background: url(../assets/img/ruleTips2.png);
         background-size: 100% 100%;
@@ -222,12 +248,43 @@ body::-webkit-scrollbar {
       }
     }
   }
+  .giftList{
+    width: 6.07rem;
+    height: 3.74rem;
+      background: url(../assets/img/giftList.png) no-repeat;
+      background-size: 100% 100%;
+      padding: 0 .49rem;
+      margin: 0 auto ;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .giftItem{
+          margin-top: .3rem;
+          strong{
+              display: block;
+              text-align: center;
+              font-size: .24rem;
+              color:#1494E0;
+              margin-top: .15rem;
+          }
+.imgBox{
+  width: 1.7rem;
+  height: 1.7rem;
+     background: url(../assets/img/giftImgBox.png) no-repeat;
+      background-size: 100% 100%;
+      img{
+        width: 1.6rem;
+  height: 1.6rem;
+      }
+}
+      }
+  }
   .gifts {
     width: 6.88rem;
     height: 4.58rem;
     background: url(../assets/img/giftBg.png);
     background-size: 100% 100%;
-    margin: 0 auto;
+    margin: 0.29rem auto;
     position: relative;
     padding-top: 1.2rem;
     .giftItem {
@@ -249,48 +306,9 @@ body::-webkit-scrollbar {
       }
     }
   }
-  .timeDown {
-    width: 4.3rem;
-    height: 0.53rem;
-    // padding: 0 0.09rem;
-    margin: 0.17rem auto 0;
-    display: flex;
-    // justify-content: space-between;
-    background: url(../assets/img/downTime.png);
-    background-size: 100% 100%;
-    position: absolute;
-    bottom: 0.7rem;
-    left: 1.27rem;
-    > div {
-      height: 100%;
-      line-height: 0.6rem;
-      display: flex;
-      align-items: center;
-      strong {
-        display: block;
-        width: 0.9rem;
-        height: 0.42rem;
-        line-height: 0.42rem;
-        letter-spacing: 0.32rem;
-        text-indent: 0.1rem;
-        color: #a2291f;
-      }
-    }
-    .hours,
-    .second {
-      margin-left: 0.23rem;
-      text-align: center;
-    }
-    .min {
-      margin-left: 0.24rem;
-    }
-    .second {
-      margin-left: 0.25rem;
-    }
-  }
   .rule {
     width: 6rem;
-    height: 9rem;
+    height: 8.07rem;
     padding: 1.15rem 0.4rem 0;
     background: url(../assets/img/ruleBg.png);
     background-size: 100% 100%;
@@ -311,6 +329,7 @@ body::-webkit-scrollbar {
       margin-top: 0.24rem;
       text-align: center;
       text-indent: 0;
+      padding: 0 ;
     }
     .giftImg {
       display: block;
@@ -327,7 +346,6 @@ body::-webkit-scrollbar {
       }
       p {
         padding-left: 0.6rem;
-        text-indent: 0rem;
       }
     }
     h6 {
@@ -340,7 +358,8 @@ body::-webkit-scrollbar {
       font-size: 0.24rem;
       color: #a2291f;
       font-weight: 500;
-      text-indent: 0.5rem;
+       padding-left: 0.6rem;
+    //   text-indent: 0.5rem;
       // margin-top: 0.1rem;
     }
   }

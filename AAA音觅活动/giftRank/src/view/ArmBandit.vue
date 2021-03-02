@@ -6,9 +6,18 @@
     <div class="header">
       <roolMsg :roolMsgs="roolMsgs" />
       <span class="ruleTips" @click="goRule()"></span>
-      <span class="ruleTips rank" @click="showRank()"></span>
+      <!-- <span class="ruleTips rank" @click="showRank()"></span> -->
     </div>
-    <div class="gifts">
+    <div class= "giftList">
+      <div class="giftItem" v-for="(item,index) in giftArr" :key="index">
+    
+        <div class="imgBox">
+          <img :src="item.img" alt="">
+        </div>
+          <strong>{{item.gname}}</strong>
+      </div>
+    </div>
+    <!-- <div class="gifts">
       <div class="giftItem">
         <div class="item" v-for="(item,index) in prizes" :key="index">
           <strong>{{item.name}}</strong>
@@ -18,22 +27,22 @@
       <div class="timeDown" v-if="!surplusTime.end">
         <div class="day">
           <strong>{{surplusTime.day}}</strong>
-          <!-- <em>天</em> -->
+          <em>天</em>
         </div>
         <div class="hours">
           <strong>{{surplusTime.hour}}</strong>
-          <!-- <em>時</em> -->
+          <em>時</em>
         </div>
         <div class="min">
           <strong>{{surplusTime.minute}}</strong>
-          <!-- <em>分</em> -->
+          <em>分</em>
         </div>
         <div class="second">
           <strong>{{surplusTime.second}}</strong>
-          <!-- <em>秒</em> -->
+          <em>秒</em>
         </div>
       </div>
-    </div>
+    </div> -->
     <TabsScrollLoadList ref="scorll" @getDefaultData="getDefaultData"></TabsScrollLoadList>
     <act-footer></act-footer>
     <div class="mask" v-show="showRules">
@@ -44,23 +53,17 @@
             <h6>1 活動時間</h6>
             <p>{{aTimer}}</p>
             <h6>2 榜單排名</h6>
-            <p>無需報名，收禮即可上榜，榜單按照活動期間內收到榜單指定禮物數量的前100名玩家從高到低排名</p>
+            <p>禮物幸運榜分為幸運禮盒榜和尋寶奇兵榜，排名前100名玩家從高到低排名</p>
+           <p> 幸運禮盒榜：按照玩家在幸運禮盒中送出的幸運禮物的金幣數進行累計幸運值，1金幣=10幸運值</p>
+           <p>尋寶奇兵榜：按照玩家在尋寶奇兵中獲得的背包禮物或者道具的金幣數進行累計幸運值，1金幣=10幸運值，1貝殼=1000幸運值，1彩鑽=10000幸運值</p>
             <p>榜單展示指定禮物的實時累計數據</p>
             <h6>3 活動獎勵</h6>
             <div class="giftBox">
-              <!-- <h5>手持煙花榜：</h5> -->
-              <p>第一名：2021-頭像框（10天）、銀色瑪莎拉蒂座駕（7天）<br />
-                第二名：2021-頭像框（7天）<br />
-                第三名：2021-頭像框（5天）
+              <p>
+                第一名：2021頭像框7天+瑪莎拉蒂座駕7天+2000金豆<br />
+                第二名：2021頭像框5天+1500金豆<br />
+                第三名：2021頭像框3天+1000金豆
               </p>
-              <!-- <h5>牛氣沖天榜：</h5>
-              <div class="giftBox">
-                <p>
-                  第一名：2021-頭像框（15天）、紅色法拉利座駕（10天）<br />
-                  第二名：2021-頭像框（7天）、紅色法拉利座駕（7天）<br />
-                  第三名：2021-頭像框（5天）
-                </p>
-              </div> -->
             </div>
             <h6>4 注意事項 </h6>
             <p>榜單獎勵在活動結束後五個工作日內發放獎勵</p>
@@ -102,7 +105,21 @@ export default {
       showRules: false,
       stime: 0,
       etime: 0,
-      prizes: {}
+      prizes: {},
+      giftArr:[
+        {
+          img: require('../assets/img/gift/gift1.png'),
+          gname:'頭像框'
+        },
+         {
+          img:require('../assets/img/gift/gift2.png'),
+          gname:'座駕'
+        },
+         {
+          img:require('../assets/img/gift/gift3.png'),
+          gname:'金豆'
+        }
+      ]
     }
   },
   created() {
@@ -141,7 +158,7 @@ export default {
             msg: owner.rank2
           })
           if (downTime > 0) {
-            this.downTimeGo('timer1', downTime)
+            this.$refs.scorll.downTimeGo('timer1', downTime)
           }
         } else {
           this.toast(response_status.error)
@@ -198,7 +215,7 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: rgba(235, 103, 185, 1) url(../assets/img/banner.png) center 0
+  background: #0438DA url(../assets/img/banner.png) center 0
     no-repeat;
   background-size: 100% auto;
   .shareBar {
@@ -217,7 +234,7 @@ body::-webkit-scrollbar {
     }
   }
   .header {
-    height: 7.22rem;
+    height: 6.44rem;
     position: relative;
     .ruleTips {
       width: 1.04rem;
@@ -227,6 +244,7 @@ body::-webkit-scrollbar {
       position: absolute;
       right: 0;
       top: 4.8rem;
+    
       &.rank {
         background: url(../assets/img/ruleTips2.png);
         background-size: 100% 100%;
@@ -234,12 +252,43 @@ body::-webkit-scrollbar {
       }
     }
   }
+  .giftList{
+    width: 6.07rem;
+    height: 3.74rem;
+      background: url(../assets/img/giftList.png) no-repeat;
+      background-size: 100% 100%;
+      padding: 0 .49rem;
+      margin: 0 auto ;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .giftItem{
+          margin-top: .3rem;
+          strong{
+              display: block;
+              text-align: center;
+              font-size: .24rem;
+              color:#1494E0;
+              margin-top: .15rem;
+          }
+.imgBox{
+  width: 1.7rem;
+  height: 1.7rem;
+     background: url(../assets/img/giftImgBox.png) no-repeat;
+      background-size: 100% 100%;
+      img{
+        width: 1.6rem;
+  height: 1.6rem;
+      }
+}
+      }
+  }
   .gifts {
     width: 6.88rem;
     height: 4.58rem;
     background: url(../assets/img/giftBg.png);
     background-size: 100% 100%;
-    margin: 0 auto;
+    margin: 0.29rem auto;
     position: relative;
     padding-top: 1.2rem;
     .giftItem {
@@ -259,45 +308,6 @@ body::-webkit-scrollbar {
           text-align: center;
         }
       }
-    }
-  }
-  .timeDown {
-    width: 4.3rem;
-    height: 0.53rem;
-    // padding: 0 0.09rem;
-    margin: 0.17rem auto 0;
-    display: flex;
-    // justify-content: space-between;
-    background: url(../assets/img/downTime.png);
-    background-size: 100% 100%;
-    position: absolute;
-    bottom: 0.7rem;
-    left: 1.27rem;
-    > div {
-      height: 100%;
-      line-height: 0.6rem;
-      display: flex;
-      align-items: center;
-      strong {
-        display: block;
-        width: 0.9rem;
-        height: 0.42rem;
-        line-height: 0.42rem;
-        letter-spacing: 0.32rem;
-        text-indent: 0.1rem;
-        color: #ffeeb7;
-      }
-    }
-    .hours,
-    .second {
-      margin-left: 0.23rem;
-      text-align: center;
-    }
-    .min {
-      margin-left: 0.24rem;
-    }
-    .second {
-      margin-left: 0.25rem;
     }
   }
   .rule {
@@ -323,6 +333,7 @@ body::-webkit-scrollbar {
       margin-top: 0.24rem;
       text-align: center;
       text-indent: 0;
+      padding: 0 ;
     }
     .giftImg {
       display: block;
@@ -339,7 +350,6 @@ body::-webkit-scrollbar {
       }
       p {
         padding-left: 0.6rem;
-        text-indent: 0rem;
       }
     }
     h6 {
@@ -352,7 +362,8 @@ body::-webkit-scrollbar {
       font-size: 0.24rem;
       color: #a2291f;
       font-weight: 500;
-      text-indent: 0.5rem;
+       padding-left: 0.6rem;
+    //   text-indent: 0.5rem;
       // margin-top: 0.1rem;
     }
   }

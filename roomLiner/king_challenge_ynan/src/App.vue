@@ -2,10 +2,10 @@
   <div id="app">
     <div class="petsNum">
       <div class="time">
-        Kết thúc còn:{{surplusTime.hour}}:{{surplusTime.minute}}:{{surplusTime.second}}
+       {{surplusTime.hour}}:{{surplusTime.minute}}:{{surplusTime.second}}
       </div>
       <div class="user1" v-if="!user1.util">
-        <span v-if="!mic_uid">Chưa có người lên mic<br />Nhanh lên mic biểu diễn</span>
+        <span v-if="!mic_uid">Chưa có người lên mic Nhanh lên mic biểu diễn</span>
         <div class="msg" v-else>
           <img :src="user2.avatar" alt="">
           <div class="noSingUp" v-if="!user2.reg">Chưa báo danh sự kiện</div>
@@ -129,6 +129,7 @@ export default {
     line-height: 0.26rem;
     font-size: 0.12rem;
     font-weight: 500;
+    white-space: nowrap;
   }
   .user1,
   .user2 {

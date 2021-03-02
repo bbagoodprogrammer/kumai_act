@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      <div class="rankTips listTips" v-if="type==3">本期活動拼團成功后使用的金幣數</div>
+      <div class="rankTips listTips" v-if="type==3">本期活動拼團成功後使用的金幣數</div>
     </div>
     <keep-alive>
       <component :is="nowCom" ref="showCom"></component>

@@ -21,7 +21,7 @@
       <transition name="slide">
         <div class="luckPup" v-if="shouLuckPup">
           <i class="close" @click="shouLuckPup = false"></i>
-          <p class="lvTips">今日星光值達到{{cilckItem.limit}}可抽獎 <em>(即升級到Lv.{{cilckItem.level}}等級)</em></p>
+          <p class="lvTips">今日星光值達到{{cilckItem.limit}}可抽獎 <em>(升級到Lv.{{cilckItem.level}}等級)</em></p>
           <slot-machine-test ref="luck" :cilckItem="cilckItem" @setPacketStatus="setPacketStatus"></slot-machine-test>
           <div class="luckGo" :class="{can:cilckItem.can && !cilckItem.get,ed:cilckItem.get}" @click="goLuck()"></div>
         </div>

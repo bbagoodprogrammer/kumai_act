@@ -16,9 +16,10 @@
         <img :src="item2" v-for="(item2,index2) in owner.medals" :key="index2" alt="">
       </div>
       <div class="score">
+             <!-- <em>(距上榜差 {{myMsg.uscore}}個)</em> -->
+             <em>{{tab == 0?'禮盒幸運值':'奇兵幸運值'}}</em>
         <strong>{{myMsg.score}}</strong>
-        <em>(距上榜差 {{myMsg.uscore}}個)</em>
-        <!-- <em v-else>(距上榜差 -- 個)</em> -->
+     
       </div>
     </div>
   </div>
@@ -108,14 +109,14 @@ export default {
     .rank {
       width: 1.12rem;
       line-height: 0.94rem;
-      color: #014b41;
+    //   color: #014b41;
       text-align: center;
       font-weight: bold;
       font-size: 0.42rem;
     }
     .noRank {
       width: 1.12rem;
-      color: #014b41;
+    //   color: #014b41;
       font-size: 0.28rem;
       white-space: nowrap;
       text-align: center;

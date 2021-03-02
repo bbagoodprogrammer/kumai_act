@@ -1,5 +1,5 @@
 <template>
-  <div class="rank">
+  <div class="rankList">
     <div class="noData" v-if="!list.length">暫無數據</div>
     <ul>
       <li v-for="(item,index) in list" :key="index" :class="'rank' + item.rank">
@@ -79,7 +79,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-.rank {
+.rankList {
   padding-bottom: 2rem;
 }
 .noData {
