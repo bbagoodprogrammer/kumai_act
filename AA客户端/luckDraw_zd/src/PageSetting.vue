@@ -641,11 +641,13 @@ body {
       height: 4.62rem;
       position: relative;
       padding-top: 0.6rem;
+      direction: ltr !important;
     }
     .my-swipe-sGift,
     .vipCon {
       height: 3.8rem;
       position: relative;
+      direction: ltr !important;
       .vipTips {
         padding: 0 0.4rem;
         font-size: 0.26rem;
@@ -925,6 +927,7 @@ body {
     }
   }
 }
+
 .van-popup {
   background: none;
 }

@@ -3,8 +3,9 @@
     <div class="popup" v-show="list.length > 0">
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
-          <li v-for="(item, index) in list" :key="index">
-            <em> {{item.nick}}</em> tặng <em>{{item.tonick}}</em>quà {{item.gname}} X {{item.count}} <img :src="item.gimage" />
+         <li v-for="(item, index) in list" :key="index">
+              <span  v-if="item.type == 1"><em> {{item.nick}}</em> tặng <em> hộp quà may mắn </em> - nhận {{item.score}} điểm may mắn</span>
+                <span v-else> <em> {{item.nick}}</em> chơi kỳ binh kho báu trúng <em>{{item.name}}</em>   nhận {{item.score}} điểm may mắn</span>
           </li>
         </ul>
       </div>

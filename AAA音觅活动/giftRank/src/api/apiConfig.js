@@ -71,18 +71,21 @@ function get(url, config) {
 //获取活动基础信息
 function getDefault() {
     if (token) {
-        return get(`/index.php?action=giftsRank.init&signture=innerserver&uid=${uid}&token=${token}`);
+        return get(`/index.php?action=luckyRank.init&signture=innerserver&uid=${uid}&token=${token}`);
     } else {
-        return get(`/index.php?action=giftsRank.init&signture=innerserver`);
+        return get(`/index.php?action=luckyRank.init&signture=innerserver`);
     }
 }
+
+//抽奖记录
+function roolMsg() {
+    return get(`/index.php?action=luckyRank.notice&signture=innerserver&uid=${uid}&token=${token}`)
+}
+
+
 //註冊
 function singUp() {
     return get(`/index.php?action=giftsRank.reg&signture=innerserver&uid=${uid}&token=${token}`);
-}
-//抽奖记录
-function roolMsg() {
-    return get(`/index.php?action=giftsRank.notice&signture=innerserver&uid=${uid}&token=${token}`)
 }
 
 function getRank(gid, from) {

@@ -4,7 +4,8 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-            <em> {{item.nick}}</em> 送了 <em>{{item.tonick}}</em> {{item.gname}} X {{item.count}} <img :src="item.gimage" />
+              <span v-if="item.type == 1"> <em> {{item.nick}}</em> 送出 <em>幸運禮盒</em>- 獲得{{item.score}}幸運值</span>
+                <span v-else><em> {{item.nick}}</em>玩尋寶奇兵-抽中 <em>{{item.name}}</em> 獲得{{item.score}}幸運值</span>
           </li>
         </ul>
       </div>
