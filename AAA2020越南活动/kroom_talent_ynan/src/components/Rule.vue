@@ -6,12 +6,14 @@
     </div>
     <div class="ruleItem" v-if="mainTab == 0">
       <h5>Thời gian</h5>
-      <p>18:00 27/1 - 22:00 5/2</p>
+      <p>18:00 3/3 - 22:00 12/3</p>
       <h5>Thể lệ</h5>
       <p>1）Bắt đầu tính dữ liệu sau khi báo danh sự kiện. </p>
       <p>2）Bảng Thần Tượng Phòng Kara và Bảng Phòng Kara Sôi Nổi</p>
-      <p>Bảng Thần Tượng: Xếp hạng theo số xu thí sinh tiêu bằng nổ Lì Xì/ tặng Hộp Quà May Mắn/ chơi Đập Trứng.(Đập trứng cần hoàn thành quá trình đập trứng mới được tính điểm, chỉ mua búa không được tính điểm.)</p>
-      <p>Bảng Phòng Kara: Xếp hạng theo điểm mị từ nổ Lì Xì /tặng Hộp Quà May Mắn trong phòng, (Ví dụ nổ lì xì 38 xu, sẽ tính 380 điểm mị, tặng hộp quà may mắn 10 xu, sẽ tính 100 điểm mị), trong phòng mỗi lần nổ tên lửa sẽ tăng 10000 điểm.</p>
+      <p>Bảng Thần Tượng: Xếp hạng theo số xu thí sinh tiêu bằng nổ Lì Xì/ tặng Hộp Quà May Mắn/ chơi Đập Trứng.(Đập trứng cần hoàn thành quá trình đập trứng mới được tính điểm, chỉ mua búa không được
+        tính điểm.)</p>
+      <p>Bảng Phòng Kara: Xếp hạng theo điểm mị từ nổ Lì Xì /tặng Hộp Quà May Mắn trong phòng, (Ví dụ nổ lì xì 38 xu, sẽ tính 380 điểm mị, tặng hộp quà may mắn 10 xu, sẽ tính 100 điểm mị), trong phòng
+        mỗi lần nổ tên lửa sẽ tăng 10000 điểm.</p>
       <h5>Ghi chú:</h5>
       <p>1）Dữ liệu trong phòng kara riêng tư sẽ không được tính.</p>
       <p>2）Mỗi người dùng chỉ có thể dùng 1 tài khoản tham gia sự kiện.</p>
@@ -19,7 +21,7 @@
     </div>
     <div class="gift" v-else>
       <h5>Thời gian</h5>
-      <p>18:00 27/1 - 22:00 5/2</p>
+      <p>18:00 3/3 - 22:00 12/3</p>
       <h5>Phần thưởng</h5>
       <p>Bảng Thần Tượng</p>
       <p>Hạng 1: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Dạ Khúc (2880 xu) + 2000 xu</p>
@@ -41,7 +43,7 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       mainTab: 0
     }

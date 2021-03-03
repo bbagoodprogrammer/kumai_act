@@ -7,11 +7,11 @@
       </span>
     </div>
     <div class="time">
-      <div class="peopleNums listTips" v-if="type == 1 || type ==2">已有<em>{{finish}}</em>拼團成功</div>
+      <div class="peopleNums listTips" v-if="type == 1 || type ==2" v-html="lang.listGrounp_sucGroupNums.replace('$',finish)"> </div>
       <div class="timeTips listTips" v-if="type==1">
-        <p v-if="step == 0">本輪拼團開始倒計時</p>
-        <p v-else-if="step == 1">本輪拼團結束倒計時</p>
-        <p v-else-if="step == 2">活動已結束</p>
+        <p v-if="step == 0">{{lang.listGrounp_timeTips1}}</p>
+        <p v-else-if="step == 1">{{lang.listGrounp_timeTips2}}</p>
+        <p v-else-if="step == 2">{{lang.listGrounp_timeTips3}}</p>
       </div>
       <div class="downTimeBox2">
         <div class="timeDown" v-if="surplusTime&& !surplusTime.end">
@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      <div class="rankTips listTips" v-if="type==3">本期活動拼團成功後使用的金幣數</div>
+      <div class="rankTips listTips" v-if="type==3">{{lang.listGrounp_coinsTips}}</div>
     </div>
     <keep-alive>
       <component :is="nowCom" ref="showCom"></component>
@@ -49,26 +49,27 @@
               <img :src="invite.ginfo.img" alt="">
             </div>
             <div class="msg">
-              <div class="giftName">{{invite.ginfo.name}} <i>{{invite.ginfo.kind*1?'K房':'歌曲'}}</i></div>
+              <div class="giftName">{{invite.ginfo.name}} <i>{{invite.ginfo.kind*1?lang.people_Kroom:lang.people_song}}</i></div>
               <div class="price">
-                <span><em>{{invite.price}}</em></span> <i class="icon"></i><del>{{invite.max_price}}金幣</del>
+                <span><em>{{invite.price}}</em></span> <i class="icon"></i><del>{{invite.max_price}}{{lang.list1_icon}}</del>
               </div>
-              <div class="giftPupTips">（若拼團未成功，金幣將退回您的錢包）</div>
+              <div class="giftPupTips">{{lang.list2_buyFail}}</div>
             </div>
           </div>
           <div class="selectType2">
             <div class="buyTips" v-if="invite.status == 1">
-              此拼團人數已滿~您可以自己開團或者參與其他人的拼團~
+              {{lang.listGrounp_noSucGroup1}}
             </div>
             <div class="buyTips" v-else-if="invite.status == 2">
-              此拼團已過期~您可以自己開團或者參與其他人的拼團~
+              {{lang.listGrounp_noSucGroup2}}
             </div>
             <div class="buyTips" v-else>
-              您的好友{{invite.nick}}正在拼團禮物{{invite.ginfo.historyname}}，<br />
-              只需要支付{{invite.price}}金幣就可購買1件禮物{{invite.ginfo.name}}<br />
-              快來參與吧~
+              {{lang.listGrounp_noSucTips.replace('#',invite.nick).replace('$',invite.ginfo.historyname)}}
+              <br />
+              {{lang.listGrounp_noSucTips2.replace('#',invite.price).replace('$',invite.ginfo.name)}}<br />
+              {{lang.listGrounp_noSucTips3}}
             </div>
-            <div class="go" :class="{over:invite.status != 0}" @click="getGift()">參與拼團</div>
+            <div class="go" :class="{over:invite.status != 0}" @click="getGift()">{{lang.list2_addGroup}}</div>
           </div>
         </div>
       </transition>
@@ -86,14 +87,14 @@ import { mapState } from "vuex"
 
 export default {
   components: { List1, List2, List3 },
-  data() {
+  data () {
     return {
       type: 1,
-      tabsArr: [
-        '禮物櫥窗',
-        '禮物拼團',
-        '拼團榜'
-      ],
+      //   tabsArr: [
+      //     '禮物櫥窗',
+      //     '禮物拼團',
+      //     '拼團榜'
+      //   ],
       surplusTime: {},
       showInvite: false,
       rotatePx: 0,    //刷新旋转动画
@@ -103,23 +104,26 @@ export default {
   },
   computed: {
     ...mapState(['load', 'finish', 'invite', 'ctime', 'etime', 'step']),
-    nowCom() {
+    nowCom () {
       return `List${this.type}`
+    },
+    tabsArr () {
+      return this.lang.tabsArr
     }
   },
   watch: {
-    load(val) {
+    load (val) {
       console.log(val)
       this.downTimeGo('time' + 1, val)
     },
-    type(val) {
+    type (val) {
       if (val == 3) {
         this.downTimeGo('time' + 3, this.etime - this.ctime)
       } else {
         this.downTimeGo('time' + 1)
       }
     },
-    invite(val) {
+    invite (val) {
       if (val && this.first) {
         this.first = false
         setTimeout(() => {
@@ -130,11 +134,11 @@ export default {
     }
   },
   methods: {
-    tabClick(index) {
+    tabClick (index) {
       this.type = index + 1
       this.vxc('setType', this.type)
     },
-    downTimeGo(timeName, val) {
+    downTimeGo (timeName, val) {
       console.log(timeName, val)
       clearInterval(this.timer)
       if (!downTime(timeName)) {
@@ -149,12 +153,12 @@ export default {
         }
       }, 1000)
     },
-    getGift() {
+    getGift () {
       if (this.invite.status != 0) { return }
       this.$refs.showCom.showGetGiftPup(this.invite)
       this.showInvite = false
     },
-    onRefresh() {
+    onRefresh () {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       this.$store.dispatch('getInitInfo');
       this.vxc('clearInvite')

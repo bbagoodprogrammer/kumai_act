@@ -7,7 +7,7 @@
     <p class="actTime">{{actTime}}</p>
     <div class="ruleMsg" v-show="showTab == 'tab1'">
       <h5>Thể lệ sự kiện</h5>
-      <p>1. Người dùng nhấn đăng điều ước, ghi lại ước nguyện của mình, mỗi ngày mỗi người được đăng 5 lần.</p>
+      <p>1. Người dùng nhấn đăng điều ước, ghi lại ước nguyện của mình, mỗi ngày mỗi người được đăng 7 lần.</p>
       <p>2. Sau khi hái điều ước của người khác, nhấn Lịch sử-Đã gửi-Hát 1 bài, chọn một bài hát công khai bất kỳ đăng sau khi bắt đầu sự kiện (không tính hát chay 5 phút) và tặng để hoàn thành điều ước. Điều Ước đã lấy sẽ không hiện trên danh sách nữa và có thể kiểm tra trong phần lịch sử.</p>
       <p>3. Chủ nhân Điều Ước có thể kiểm tra lịch sử để xem ai đã hoàn thành điều ước của mình.</p>
       <p>4. Hãy gửi bài hát điều ước trong 12h sau khi hái về, nếu không điều ước này sẽ trở lại trạng thái đợi hái trên bảng điều ước</p>
@@ -30,8 +30,7 @@
             <img src="../../assets/img/ward1.png" alt="">
           </div>
           <em>
-            HC Đại Sứ Điều Ước
-          </em>
+            HC Đại Sứ Điều Ước</em>
         </span>
         <span>
           <div class="imgBox">

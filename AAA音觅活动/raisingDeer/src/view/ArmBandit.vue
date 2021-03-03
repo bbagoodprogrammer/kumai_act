@@ -43,12 +43,12 @@
       </transition>
     </div>
     <!-- 受邀請頁面 -->
-    <div class="mask" v-show="friendInivaList">
-      <transition>
-        <FriendInivat v-if="friendInivaList" :invite_users="invite_users" @closeFriendList="closeFriendList" />
-      </transition>
-    </div>
-    <act-footer></act-footer>
+              <div class="mask" v-show="friendInivaList">
+                  <transition>
+                  <FriendInivat v-if="friendInivaList" :invite_users="invite_users" @closeFriendList="closeFriendList" />
+                      </transition>
+              </div>
+        <act-footer></act-footer>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
   </div>
 </template>
@@ -134,6 +134,7 @@ export default {
         }
       })
     },
+    
     singUp(uid) {
       globalBus.$emit('commonEvent', () => {
         api.singUp(uid).then(res => {

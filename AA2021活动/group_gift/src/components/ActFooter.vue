@@ -1,15 +1,15 @@
 <template>
   <div class="footer">
     <div class="swiper" v-show="footerStatus == 1">
-      <div class="tips">我的拼團進行中</div>
+      <div class="tips">{{lang.myGroup}}</div>
       <van-swipe class="my-swipe-sGift" :loop="false" :touchable="false" :indicator-color="'#FF6A57'" ref="swiper">
         <van-swipe-item v-for="(item,index) in my_group" :key="index">
           <div class="imgBox">
             <img :src="item.img" alt="">
           </div>
           <div class="msg">
-            <div class="numsTips">{{item.num}}人團，已拼團{{item.num - item.surplus}}人，還差{{item.surplus}}人</div>
-            <div class="time">{{actTime}} 後結束</div>
+            <div class="numsTips">{{lang.groupMsg.replace('#',item.num).replace('$',item.num - item.surplus).replace('%',item.surplus)}}</div>
+            <div class="time">{{actTime}} {{lang.group_end}}</div>
             <div class="friendBtn" :class="{over:step!=1}" @click="showFriendsPup(item.id)">邀請好友拼團</div>
           </div>
         </van-swipe-item>
@@ -18,7 +18,7 @@
       <span class="next" @click="next()"></span>
     </div>
     <div class="userRank" v-if="footerStatus == 3" :class="'rank' +user.rank ">
-      <div class="rank">{{user.rank?user.rank:'未上榜'}}</div>
+      <div class="rank">{{user.rank?user.rank:lang.noRank}}</div>
       <div class="uerImg" @click="goUser(user.uid)">
         <img v-if="user.avatar_frame &&user.avatar_frame != ''" :src="user.avatar_frame" class="frame" alt="">
         <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
@@ -51,7 +51,7 @@ import getDate from "../utils/getDate"
 import Friends from "./Friends"
 export default {
   components: { Friends },
-  data() {
+  data () {
     return {
       swiper: {},
       showFriends: false,
@@ -60,35 +60,35 @@ export default {
   },
   computed: {
     ...mapState(['my_group', 'user', 'type', 'end', 'step']),
-    footerStatus() {
+    footerStatus () {
       if (this.type == 1 && this.my_group.length) {
         return 1
       } else if (this.type == 3) {
         return 3
       }
     },
-    actTime() {
+    actTime () {
       return getDate(new Date(this.end * 1000), 5)
     }
   },
-  mounted() {
+  mounted () {
     this.swiper = this.$refs.swiper
   },
   methods: {
-    showFriendsPup(id) {
+    showFriendsPup (id) {
       console.log(id)
       this.order_id = id
       this.showFriends = true
 
     },
-    pre() {
+    pre () {
       console.log(this.swiper)
       this.swiper.prev()
     },
-    next() {
+    next () {
       this.swiper.next()
     },
-    goUser(uid) {
+    goUser (uid) {
       location.href = `uid:${uid}`
     },
   },

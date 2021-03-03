@@ -1,12 +1,12 @@
 <template>
   <div class="friendList">
     <i class="close" @click="closeFriend()"></i>
-    <div class="title">好友</div>
+    <div class="title">{{lang.friends}}</div>
     <div class="selectFriend">
       <input type="number" v-model="s_uid" class="s_input" @input="uidChange()">
-      <div class="selectTips" v-if="!s_uid"><i></i><span>搜索</span></div>
+      <div class="selectTips" v-if="!s_uid"><i></i><span>{{lang.friends_search}}</span></div>
     </div>
-    <p class="noData" v-if="!show_list.length">暂无可邀请好友</p>
+    <p class="noData" v-if="!show_list.length">{{lang.friends_noData}}</p>
     <ul class='scrollable'>
       <li v-for="(item,index) in show_list" :key="index" :class="'rank' + item.rank">
         <img v-lazy="item.avatar" alt="" @click="goUser(item.uid)">
@@ -15,7 +15,7 @@
           <div class="uid">UID {{item.uid}}</div>
         </div>
         <div class="score" @click="invite(item.uid,index,item.invite)" :class="{black:item.invite}">
-          邀請好友
+          {{lang.friends_inivte}}
         </div>
       </li>
     </ul>
@@ -28,7 +28,7 @@ import { invite, searchFriend } from "../apis"
 
 export default {
   props: ['order_id'],
-  data() {
+  data () {
     return {
       s_uid: null,
       showNoCoiosPup: false,
@@ -40,20 +40,20 @@ export default {
       timer: null
     }
   },
-  created() {
+  created () {
     myFriend(0).then(res => {
       this.list = res.data.response_data.list
       this.show_list = this.list
     })
   },
-  mounted() {
+  mounted () {
     this.scrollable = this.$el.querySelector('.scrollable');
     if (this.scrollable) {
       this.scrollable.addEventListener('scroll', this.onScroll);
     }
   },
   methods: {
-    uidChange() {
+    uidChange () {
       console.log(this.s_uid)
       if (this.s_uid && this.s_uid != '') {
         clearTimeout(this.timer)
@@ -71,7 +71,7 @@ export default {
         this.show_list = this.list
       }
     },
-    invite(uid, index, can) {
+    invite (uid, index, can) {
       console.log(uid, index, this.list)
       if (!can) {
         invite(this.order_id, uid).then(res => {
@@ -83,7 +83,7 @@ export default {
         })
       }
     },
-    onScroll() {
+    onScroll () {
       console.log('xxx')
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
@@ -104,7 +104,7 @@ export default {
         }
       }
     },
-    closeFriend() {
+    closeFriend () {
       this.$parent.showFriends = false
     }
   }
@@ -207,7 +207,7 @@ export default {
       }
     }
     li::before {
-      content: "";
+      content: '';
       display: block;
       width: 5.1rem;
       height: 0.015rem;

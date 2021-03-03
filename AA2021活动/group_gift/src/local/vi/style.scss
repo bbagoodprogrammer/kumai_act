@@ -1,17 +1,76 @@
 html.vi {
-    .shareBar {
-        position: fixed;
-        z-index: 1000;
-        top: 0;
-        left: 0;
-        right: 0;
-        text-align: center;
-        .bar {
-          width: 7.5rem;
-          height: 1.2rem;
-          margin: auto;
-          background: url(./img/share_bar.png) no-repeat;
-          background-size: 100% 100%;
+    letter-spacing: -0.015rem;
+    .header{
+        height: 8.82rem!important;
+        .tipsBox{
+            top: 7.06rem!important;
+        }
+    }
+    .pageIndex {
+        background:RGBA(250, 225, 198, 1) url(./img/banner.jpg) no-repeat;
+        background-size: 100% auto;
+      }
+      .history{
+          width: 2.48rem!important;
+        background: url(./img/history.png);
+        background-size: 100% 100%;
+      }
+      .rule{
+          margin-left: .94rem;
+        background: url(./img/rule.png);
+        background-size: 100% 100%;
+      }
+      .giftList{
+          li{
+              height: auto!important;
+              padding: .28rem 0 .15rem 0!important;
+          }
+          .gType{
+            width: 1.17rem;
+            height: .36rem!important;
+            line-height: .36rem!important;
+            background: #FFF1EE;
+            border-radius: 0  .12rem 0 0!important;
+              position: absolute;
+              right: 0;
+              top: 0;
+              border:none!important;
+              font-size: .18rem!important;
+              text-align: center;
+          }
+          .buy{
+            width: 1.96rem!important;
+            height: .72rem!important;
+            line-height: .3rem!important;
+            background: linear-gradient(-90deg, #FF885A, #FF6957);
+            border-radius: .12rem!important; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        }
+        .price{
+          justify-content: start!important;
+          padding-left: .14rem;
+          margin-top: .1rem;
+          span{
+              font-size: .22rem!important;
+          }
+        }
+        .giftName{
+            padding:0 .14rem;
+            // height: .7rem;
+            justify-content: start!important;
+        }
+        .itemNums{
+            width: .96rem!important;
+            padding: 0!important;
+            border-radius: .12rem 0 0 0!important;
+        }
+        .del{
+            font-size: .22rem!important;
         }
       }
+    .giftImg{
+        margin: .2rem auto 0!important;
+    }
 }

@@ -1,79 +1,86 @@
 <template>
   <div class="footer" v-if="showState">
-    <div class="noAct" v-if="showState ===0">
-      {{lang.noAct}}
-    </div>
-    <div class="noAct" v-if="showState ===1">
-      {{lang.actEd}}
-    </div>
-    <span class="singUp" @click="goSingUp()" v-if="showState ===2">Báo Danh</span>
-    <div class="list" v-if="showState ===3 ">
-      <div class="rank" v-if="myMsg.rank>0">{{myMsg.rank>100?'100+':myMsg.rank}}</div>
+    <div class="noAct" v-if="showState === 0">{{ lang.noAct }}</div>
+    <div class="noAct" v-if="showState === 1">{{ lang.actEd }}</div>
+    <span class="singUp" @click="goSingUp()" v-if="showState === 2">Báo Danh</span>
+    <div class="list" v-if="showState === 3">
+      <div class="rank" v-if="myMsg.rank > 0">
+        {{ myMsg.rank > 100 ? "100+" : myMsg.rank }}
+      </div>
       <div class="noRank" v-else>Chưa có BXH</div>
-      <img v-lazy="owner.avatar" alt="" class="av">
-      <div class="nick">{{owner.nick}}</div>
+      <img v-lazy="owner.avatar" alt class="av" />
+      <div class="nick">{{ owner.nick }}</div>
       <div class="medals">
-        <img :src="item2" v-for="(item2,index2) in owner.medals" :key="index2" alt="">
+        <img :src="item2" v-for="(item2, index2) in owner.medals" :key="index2" alt />
       </div>
       <div class="score">
         <!-- <strong>{{myMsg.score}}</strong>
-        <em>(Lên BXH còn {{myMsg.uscore}} chiếc)</em> -->
+                  <em>(Lên BXH còn {{myMsg.uscore}} chiếc)</em>-->
         <!-- <em v-else>(距上榜差 -- 個)</em> -->
-           <em>{{tab == 0?'Điểm hộp quà may mắn':'Điểm kỳ binh'}}</em>
-        <strong>{{myMsg.score}}</strong>
+        <em>{{ tab == 0 ? "Điểm hộp quà may mắn" : "Điểm kỳ binh" }} </em>
+        <strong>{{ myMsg.score }} </strong>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { mapState } from "vuex"
-import APP from "../utils/openApp"
-import api from "../api/apiConfig"
-import { globalBus } from '../utils/eventBus'
+import { mapState } from "vuex";
+import APP from "../utils/openApp";
+import api from "../api/apiConfig";
+import { globalBus } from "../utils/eventBus";
 export default {
-  data() {
-    return {
-    }
+  data () {
+    return {};
   },
   computed: {
-    ...mapState(["groupsUserMsg", "actStatus", "isShare", "tab", "isSingUp", "owner", "gifts"]),
-    showState() {
+    ...mapState([
+      "groupsUserMsg",
+      "actStatus",
+      "isShare",
+      "tab",
+      "isSingUp",
+      "owner",
+      "gifts"
+    ]),
+    showState () {
       if (this.actStatus == 0) {
         //活動未開始
-        return 0
+        return 0;
       } else if (this.actStatus == 2) {
         //活動已結束
-        return 1
-      } else if (this.isSingUp) { //已报名
-        return 3
+        return 1;
+      } else if (this.isSingUp) {
+        //已报名
+        return 3;
       }
     },
-    myMsg() {
+    myMsg () {
       if (this.groupsUserMsg[this.tab]) {
-        return this.groupsUserMsg[this.tab].msg
+        return this.groupsUserMsg[this.tab].msg;
       }
-      return {}
+      return {};
     }
   },
   methods: {
-    goSingUp() {
-      globalBus.$emit('commonEvent', () => {
-        api.singUp().then((res) => {
-          const { response_data, response_status } = res.data
-          if (response_status.code === 0) {  //报名成功
-            this.vxc('setToast', {
-              title: 'Báo danh thành công',
+    goSingUp () {
+      globalBus.$emit("commonEvent", () => {
+        api.singUp().then(res => {
+          const { response_data, response_status } = res.data;
+          if (response_status.code === 0) {
+            //报名成功
+            this.vxc("setToast", {
+              title: "Báo danh thành công",
               msg: `Nhận ${this.gifts[0].name}</br>hoặc ${this.gifts[1].name}có thể lọt BXH`,
               cb: this.$parent.getDefaultData
-            })
+            });
           } else {
-            this.toast(response_status.error)
+            this.toast(response_status.error);
           }
-        })
-      })
+        });
+      });
     }
   }
-}
+};
 </script>
 <style lang="scss">
 .footer {

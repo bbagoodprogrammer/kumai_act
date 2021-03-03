@@ -1,6 +1,6 @@
 <template>
   <div class="rankList">
-    <div class="noData" v-if="!list.length">暫無數據</div>
+    <div class="noData" v-if="!list.length">{{lang.noData}}</div>
     <ul>
       <li v-for="(item,index) in list" :key="index" :class="'rank' + item.rank">
         <div class="rank">{{item.rank}}</div>
@@ -26,29 +26,29 @@
 
 import { rank } from "../apis"
 export default {
-  data() {
+  data () {
     return {
       list: [],
       loaded: false,
       more: true,
     }
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
-  activated() {
+  activated () {
     window.addEventListener('scroll', this.onScroll);
   },
-  deactivated() {
+  deactivated () {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
-    goUser(uid) {
+    goUser (uid) {
       location.href = `uid:${uid}`
     },
-    onScroll() {
+    onScroll () {
       console.log('xxx')
       const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
       const notFull = document.body.scrollHeight < window.innerHeigh;
@@ -66,7 +66,7 @@ export default {
         })
       }
     },
-    refresh() {
+    refresh () {
       if (!this.more) {
         return
       } else {
@@ -198,7 +198,7 @@ ul {
     }
   }
   li::before {
-    content: "";
+    content: '';
     display: block;
     width: 5.1rem;
     height: 0.015rem;

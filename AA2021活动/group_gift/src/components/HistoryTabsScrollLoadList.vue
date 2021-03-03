@@ -7,7 +7,7 @@
         <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">{{lang.history_tab2}}</a>
       </div>
     </div>
-    <div class="tmTips" v-if="mainTab == 1">{{actTime}}後結束</div>
+    <div class="tmTips" v-if="mainTab == 1">{{actTime}}{{lang.group_end}}</div>
     <!-- 总榜 -->
     <div class="rankList_history">
       <div class="tabHeader" v-if="mainTab == 0">
@@ -23,10 +23,10 @@
         <li v-for="(item,index) in rank.list" :key="index" :class="{fail:item.status == 2}">
           <span>{{getDate(item.create_at)}}</span>
           <span>{{item.name}}</span>
-          <span>{{item.num}}人團</span>
+          <span>{{lang.people_nums.replace('$',item.num)}}</span>
           <span>1</span>
           <span>{{item.price}}</span>
-          <span>{{item.status==1?'成功':'失敗'}}</span>
+          <span>{{item.status==1?lang.people_suc:lang.people_redux}}</span>
         </li>
       </ul>
       <ul class='scrollable' v-else>
@@ -35,14 +35,17 @@
             <img :src="item.img" alt="">
           </div>
           <div class="msg">
-            <div class="giftName">{{item.name}} <i>{{item.kind*1?'K房':'歌曲'}}</i></div>
-            <div class="pNums">{{item.num}}人團，還差 <em>{{item.surplus}}</em> 人</div>
-            <div class="price">
-              <span><em>{{item.price}}</em></span> <i class="icon"></i>
+            <div class="giftName">{{item.name}} <i>{{item.kind*1?lang.people_Kroom:lang.people_song}}</i></div>
+            <div class="pNums" v-html="lang.people_groupMsg.replace('$',item.num).replace('%',item.surplus)">
+
+              <!-- {{item.num}}人團，還差 <em>{{item.surplus}}</em> 人</div> -->
+              <div class="price">
+                <span><em>{{item.price}}</em></span> <i class="icon"></i>
+              </div>
             </div>
-          </div>
-          <div class="buy" @click="showFriendsPup(item.id)">
-            邀請好友拼團
+            <div class="buy" @click="showFriendsPup(item.id)">
+              {{lang.group_inivte}}
+            </div>
           </div>
         </li>
       </ul>
@@ -90,7 +93,7 @@ import Friends from "./Friends"
 
 export default {
   components: { Friends },
-  data() {
+  data () {
     return {
       mainTab: 0,
       showFriends: false,
@@ -108,40 +111,40 @@ export default {
   },
   computed: {
     ...mapState(['rankGroups_history', 'end']),
-    rankKey() {
+    rankKey () {
       return this.mainTab == 1 ? 'total' : this.mainTab;
     },
-    rankApi() {
+    rankApi () {
       var dayApi = `/gift_group/myGroup.php?token={token}&from={from}&type={type}`;
       const token = getUrlString('token') || '';
       return dayApi.replace('{token}', token).replace('{type}', this.mainTab)
 
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups_history[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       return rankConf;
     },
     channel1: () => _lang.channel1,
     channel2: () => _lang.channel2,
-    actTime() {
+    actTime () {
       return getDate(new Date(this.end * 1000), 5)
     }
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
-    mainTabClick(tab) { //总榜切换
+    mainTabClick (tab) { //总榜切换
       this.mainTab = tab;
       // this.vxc('changTab', this.rankKey)
       this.$nextTick(() => {
@@ -150,7 +153,7 @@ export default {
         }
       });
     },
-    onScroll() {
+    onScroll () {
       console.log('xxxxx')
       if (!this.rank.loading && !this.rank.loadEnd) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
@@ -203,16 +206,16 @@ export default {
         }
       }
     },
-    getDate(tm) {
+    getDate (tm) {
       return getDate(new Date(tm * 1000), 1)
     },
-    goUser(uid) { //跳转
+    goUser (uid) { //跳转
       location.href = `uid:${uid}`
     },
-    closeHistory() {
+    closeHistory () {
       this.$parent.showHistory = false
     },
-    showFriendsPup(id) {
+    showFriendsPup (id) {
       this.order_id = id
       this.showFriends = true
     },
@@ -441,7 +444,7 @@ export default {
     }
   }
   li::before {
-    content: "";
+    content: '';
     display: block;
     width: 5.1rem;
     height: 0.015rem;

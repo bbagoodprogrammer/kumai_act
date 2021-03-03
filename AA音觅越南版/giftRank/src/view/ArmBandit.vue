@@ -55,7 +55,7 @@
             <h6>2. Bảng xếp hạng</h6>
             <p>BXH Qùa may mắn được chia thành BXH Hộp quà may mắn và BXH Ky binh, Top 100 được hiển thị. </p>
             <p>BXH Hộp quà may mắn: Dựa vào số xu quà tặng từ quà tại hộp quà may mắn, 1 xu =10 điểm</p>
-            <p>BXH Kỳ binh: Dựa vào số xu quà nhận được từ Kỳ binh kho báu, 1 xu = 10 điểm, 1 vỏ sò = 100 điểm, 1 kim cương = 1000 điểm</p>
+            <p>BXH Kỳ binh: Dựa vào số xu quà nhận được từ Kỳ binh kho báu, 1 xu = 10 điểm, 1 vỏ sò = 1000 điểm, 1 kim cương = 10000 điểm</p>
             <h6>3. Thưởng</h6>
             <div class="giftBox">
 

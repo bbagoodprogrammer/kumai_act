@@ -1,10 +1,10 @@
 <template>
-  <div class="trunbg" v-show="top.length">
+  <div class="trunbg" v-show="notice.length">
     <i class="horn"></i>
     <div class="trunMsg">
-      <p class="msgItem" v-for="(item,index) in top" :key="index" v-if="index == msgIndex">
+      <p class="msgItem" v-for="(item,index) in notice" :key="index" v-if="index == msgIndex">
         <!-- <img :src="gifts[item.gid].img" alt=""> -->
-        <em class="nick"> {{item.nick}}</em>(uid:{{item.uid}}){{lang.group}}{{item.name}}({{item.price}}{{lang.list1_icon}}){{lang.people_suc}}
+        {{lang.luckGet}} <em class="nick"> {{item.nick}}</em> {{lang.luckGeted}} <em>{{item.name}}</em>
 
       </p>
     </div>
@@ -14,28 +14,28 @@
 import { mapState } from 'vuex'
 
 export default {
-  data () {
+  data() {
     return {
       msgIndex: 0,
       timer: null
     }
   },
   watch: {
-    top (val) {
+    notice(val) {
       if (val.length > 0 && this.timer == null) {
         this.msgGo()
       }
     }
   },
   computed: {
-    ...mapState(['top']),
+    ...mapState(['notice']),
   },
-  mounted () {
+  mounted() {
     // this.msgGo()
   },
   methods: {
-    msgGo () {
-      if (this.top.length == 1) {
+    msgGo() {
+      if (this.notice.length == 1) {
         this.timer = setInterval(() => {
           this.msgIndex = null
           setTimeout(() => {
@@ -44,7 +44,7 @@ export default {
         }, 6000);
       } else {
         this.timer = setInterval(() => {
-          if (this.msgIndex == this.top.length - 1) {
+          if (this.msgIndex == this.notice.length - 1) {
             this.msgIndex = 0
           } else {
             this.msgIndex++
@@ -58,15 +58,14 @@ export default {
 </script>
 <style lang="scss">
 .trunbg {
-  width: 7.12rem;
+  width: 7.18rem;
   height: 0.6rem;
   margin: 0 auto;
-  background: #fff;
+  background: linear-gradient(-10deg, rgba(255, 245, 180, 0.28));
   // opacity: 0.8;
   display: flex;
   align-items: center;
-  position: relative;
-  border-radius: 0.3rem;
+  position: absolute;
   .horn {
     display: block;
     width: 0.22rem;
@@ -90,7 +89,7 @@ export default {
       left: 100%;
       white-space: nowrap;
       animation: trun linear 6s;
-      color: rgba(133, 90, 55, 1);
+      color: rgba(255, 255, 255, 1);
       .nick {
         max-width: 1.5rem;
         overflow: hidden;
