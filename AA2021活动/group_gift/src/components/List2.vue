@@ -1,24 +1,25 @@
 <template>
   <div class="giftGruop">
     <div class="select" @click="showSelect = true">
-      <div class="giftName"> {{selectIndex == -1?gift[0].name:gift[selectIndex].name}}（已有 {{selectIndex == -1?gift[0].start:gift[selectIndex].start}}人發起拼團）</div>
+      <div class="giftName"> {{selectIndex == -1?gift[0].name:gift[selectIndex].name}}
+        {{lang.list2_groundNums.replace('$',selectIndex == -1?gift[0].start:gift[selectIndex].start)}}</div>
       <div class="icon"></div>
     </div>
-    <p class="noData" v-if="giftList.length == 0">暫無拼團數據</p>
+    <p class="noData" v-if="giftList.length == 0">{{lang.list2_noData}}</p>
     <ul class='scrollable'>
       <li v-for="(item,index) in giftList" :key="index" :class="{over: item.num - item.group_num <=1 || step != 1}">
         <div class="imgBox">
           <img :src="item.ginfo.img" alt="">
         </div>
         <div class="msg">
-          <div class="giftName">{{item.ginfo.name}} <i>{{item.ginfo.kind*1?'K房':'作品'}}</i></div>
-          <div class="pNums">{{item.num}}人團，還差 <em>{{item.surplus}}</em> 人</div>
+          <div class="giftName">{{item.ginfo.name}} <i>{{item.ginfo.kind*1?lang.people_Kroom:lang.people_song}}</i></div>
+          <div class="pNums" v-html="lang.people_groupMsg.replace('$',item.num).replace('%',item.surplus)"></div>
           <div class="price">
-            <span><em>{{item.price}}</em></span> <i class="icon"></i><del>{{item.max_price}}金幣</del>
+            <span><em>{{item.price}}</em></span> <i class="icon"></i><del>{{item.max_price}}{{lang.list1_icon}}</del>
           </div>
         </div>
         <div class="buy" @click="showGetGiftPup(item)">
-          去拼團
+          {{lang.list2_go}}
         </div>
       </li>
     </ul>
@@ -28,7 +29,7 @@
         <div class="selectGiftList" v-if="showSelect">
           <i class="close" @click="showSelect = false"></i>
           <div class="selectItem">
-            {{selectIndex == -1?gift[0].name:gift[selectIndex].name}} <em>（已有 {{selectIndex == -1?gift[0].start:gift[selectIndex].start}}人發起）</em>
+            {{selectIndex == -1?gift[0].name:gift[selectIndex].name}} <em> {{lang.list2_groundNums.replace('$',selectIndex == -1?gift[0].start:gift[selectIndex].start)}}</em>
           </div>
           <ul>
             <li v-for="(item,index) in gift" :key="index" :class="{act:selectIndex == index}" @click=" setGindex(index)">
@@ -36,7 +37,7 @@
             </li>
           </ul>
           <div class="ok" @click=" search()">
-            确定
+            {{lang.ok}}
           </div>
         </div>
       </transition>
@@ -51,54 +52,56 @@
               <img :src="act_item.ginfo.img" alt="">
             </div>
             <div class="msg">
-              <div class="giftName">{{act_item.ginfo.name}} <i>{{act_item.ginfo.kind*1?'K房':'作品'}}</i></div>
+              <div class="giftName">{{act_item.ginfo.name}} <i>{{act_item.ginfo.kind*1?lang.people_Kroom:lang.people_song}}</i></div>
               <div class="price">
-                <span><em>{{act_item.price}}</em></span> <i class="icon"></i><del>{{act_item.max_price}}金幣</del>
+                <span><em>{{act_item.price}}</em></span> <i class="icon"></i><del>{{act_item.max_price}}{{lang.list1_icon}}</del>
               </div>
-              <div class="giftPupTips">（若拼團未成功，金幣將退回您的錢包）</div>
+              <div class="giftPupTips">{{lang.list2_buyFail}}</div>
             </div>
           </div>
           <!-- 確認拼團彈窗 -->
           <div class="selectType1" v-if="selectType==1">
             <div class="selectSet">
-              <span>購買數量</span>
+              <span>{{lang.list1_buyNums}}</span>
               <div class="nums">1</div>
             </div>
             <div class="selectSet">
-              <span>支付</span>
-              <div class="nums">{{act_item.price}}金幣</div>
+              <span>{{lang.list1_pay}}</span>
+              <div class="nums">{{act_item.price}}{{lang.list1_icon}}</div>
             </div>
             <div class="peopleList">
-              <div class="peopleTips">還差<em>{{act_item.surplus}}</em>人</div>
+              <div class="peopleTips" v-html="lang.list2_reNums.replace('#',act_item.surplus)"></div>
               <div class="pList">
                 <img v-lazy="item.avatar" v-for="(item,index) in act_item.users" alt="" :key="index">
                 <img src="../img/pDefault.png" v-for="(item,index2) in act_item.surplus*1" alt="" :key="index2+'x'">
               </div>
             </div>
-            <div class="go" @click="selectType = 2">參與拼團</div>
+            <div class="go" @click="selectType = 2">{{lang.list2_addGroup}}</div>
           </div>
           <!-- 確認支付彈窗 -->
           <div class="selectType2" v-else-if="selectType == 2">
-            <div class="buyTips">參與此拼團，需要支付{{act_item.price}}金幣，確認支付嗎？</div>
+            <div class="buyTips">
+              {{lang.list2_addFailTips1.replace('$',act_item.price)}}
+            </div>
             <div class="btn">
-              <span class="no" @click="closePup()">否</span>
-              <span class="qurey" @click="buy()">確認支付</span>
+              <span class="no" @click="closePup()">{{lang.list1_no}}</span>
+              <span class="qurey" @click="buy()">{{lang.list1_query}}</span>
             </div>
           </div>
           <!-- 拼團成功，已發禮物 -->
           <div class="selectType2" v-else-if="selectType == 3">
-            <div class="buyTips">你已拼團成功，請查收背包禮物，快去送禮給好友吧~</div>
-            <div class="go" @click="showGetGift = false">繼續拼團</div>
+            <div class="buyTips">{{lang.list2_addFailTips2}}</div>
+            <div class="go" @click="showGetGift = false">{{lang.list2_nextGroup}}</div>
           </div>
           <!-- 拼團成功，未發禮物 -->
           <div class="selectType2" v-else-if="selectType == 4">
-            <div class="buyTips">此團還差{{buyGiftData.surplus}}人就可以拼團成功，每人可以以{{buyGiftData.price}}金幣購買{{act_item.ginfo.name}}*1</div>
-            <div class="go" @click="showFriendsPup()">邀請好友拼圖</div>
+            <div class="buyTips" v-html="lang.list1_buyTips.replace('#',buyGiftData.surplus).replace('$',buyGiftData.price).replace('%',act_item.ginfo.name)"></div>
+            <div class="go" @click="showFriendsPup()">{{lang.group_inivte}}</div>
           </div>
           <!-- 拼團失敗 -->
           <div class="selectType2" v-else-if="selectType == 5">
             <div class="buyTips">{{errTips}}</div>
-            <div class="go" @click="showGetGift = false">繼續拼團</div>
+            <div class="go" @click="showGetGift = false">{{lang.list2_nextGroup}}</div>
           </div>
         </div>
       </transition>
@@ -108,8 +111,8 @@
       <transition name="slide">
         <div class="giftItemPup" v-show="showNoCoiosPup">
           <i class="close" @click="showNoCoiosPup = false"></i>
-          <div class="noCoins">您的錢包餘額不足<br /> 請前去儲值</div>
-          <div class="go no" @click="stored()">前去儲值</div>
+          <div class="noCoins" v-html="lang.list1_notCoins"></div>
+          <div class="go no" @click="stored()">{{lang.list1_goStored}}</div>
         </div>
       </transition>
     </div>
@@ -128,7 +131,7 @@ import { mapState } from "vuex"
 
 export default {
   components: { Friends },
-  data() {
+  data () {
     return {
       giftList: [],
       loaded: false,
@@ -149,20 +152,20 @@ export default {
     ...mapState(['gift', 'step'])
   },
 
-  created() {
+  created () {
     search().then(res => {
       console.log(res)
       this.giftList = res.data.response_data.list
     })
   },
-  mounted() {
+  mounted () {
     this.scrollable = this.$el.querySelector('.scrollable');
     if (this.scrollable) {
       this.scrollable.addEventListener('scroll', this.onScroll);
     }
   },
   methods: {
-    setGindex(index) {
+    setGindex (index) {
       if (this.selectIndex == index) {
         this.selectIndex = -1
       } else {
@@ -170,7 +173,7 @@ export default {
       }
 
     },
-    onScroll() {
+    onScroll () {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
         if (this.loaded) return
@@ -187,17 +190,17 @@ export default {
         }
       }
     },
-    showGetGiftPup(val) {
+    showGetGiftPup (val) {
       if (this.step != 1) { return }
       console.log(val)
       this.act_item = val
       this.showGetGift = true
     },
-    closePup() {
+    closePup () {
       this.showGetGift = false
       this.selectType = 1
     },
-    buy() {
+    buy () {
       join(this.act_item.id).then(res => {
         if (res.data.response_status.code == 0) {
           this.buyGiftData = res.data.response_data.data
@@ -219,21 +222,21 @@ export default {
         }
       })
     },
-    search() {
+    search () {
       let gid = this.gift[this.selectIndex] ? this.gift[this.selectIndex].gid : false
       search(gid).then(res => {
         this.showSelect = false
         this.giftList = res.data.response_data.list
       })
     },
-    refresh() {
+    refresh () {
       this.search()
     },
 
-    stored() {
+    stored () {
       location.href = "walletConfig://"
     },
-    showFriendsPup() {
+    showFriendsPup () {
       this.order_id = this.buyGiftData.id
       this.showFriends = true
     },
@@ -362,7 +365,7 @@ export default {
       }
     }
     li::before {
-      content: "";
+      content: '';
       display: block;
       width: 5.1rem;
       height: 0.015rem;

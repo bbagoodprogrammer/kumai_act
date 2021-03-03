@@ -2,8 +2,8 @@
   <div class="rankGroups">
     <!-- 三個類別 -->
     <div class="typeMainTabs">
-      <span @click="setShowType(1)" :class="{act:showType == 1}">簽約者榜</span>
-      <span @click="setShowType(2)" :class="{act:showType == 2}">簽約房間榜</span>
+      <span @click="setShowType(1)" :class="{act:showType == 1}">創作者榜</span>
+      <span @click="setShowType(2)" :class="{act:showType == 2}">房主榜</span>
       <span @click="setShowType(3)" :class="{act:showType == 3}">用戶榜</span>
     </div>
     <!-- 日榜、总榜切换主Tabs -->
@@ -52,16 +52,18 @@
           <em>秒</em>
         </div>
       </div>
-      <p class="rankTips" v-if="showType==1">按照簽約者收到的作品和K房特定禮物金幣數排名 <span v-if="mainTab == 0">日榜前3獎勵分別獎勵榜單金幣3%/2.5%/2%現金分成</span> </p>
-      <p class="rankTips" v-if="showType==2">按照簽約者的房間收到的K房特定禮物金幣數排名 <span v-if="mainTab == 0"> 日榜前3名分別獎勵榜單金幣2%/1.5%/1%現金分成</span> </p>
+      <p class="rankTips" v-if="showType==1">按照簽約者收到的作品和K房特定禮物金幣數排名 <span v-if="mainTab == 0">日榜前3獎勵分別獎勵榜單金幣3%/2.5%/2%歡鑽分成</span> </p>
+      <p class="rankTips" v-if="showType==2">按照簽約者的房間收到的K房特定禮物金幣數排名 <span v-if="mainTab == 0"> 日榜前3名分別獎勵榜單金幣2%/1.5%/1%歡鑽分成</span> </p>
       <p class="rankTips" v-if="showType==3">按照用戶報名後收到的作品和K房特定活動禮物金幣數排名<span v-if="mainTab == 0">日榜前3名分別獎勵榜單金幣8%/5%/3%金幣分成</span></p>
     </div>
     <ul v-if="mainTab==0" class="list day">
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.rid)">
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
-          <span class="imgBg"></span>
-          <img v-lazy="item.avatar" alt="" class="imgItem">
+          <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
+          <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
+          <img v-else-if="item.nob > 0" :src="require(`../assets/img/nob/${item.nob}.png`)" class="nob" alt="">
+          <img v-lazy="item.avatar" alt="" class="av">
         </div>
         <div class="userMsg">
           <div class="rName" v-if="item.rname">{{item.rname}}</div>
@@ -81,8 +83,10 @@
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.rid)">
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg">
-          <span class="imgBg"></span>
-          <img v-lazy="item.avatar" alt="" class="imgItem">
+          <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
+          <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
+          <img v-else-if="item.nob > 0" :src="require(`../assets/img/nob/${item.nob}.png`)" class="nob" alt="">
+          <img v-lazy="item.avatar" alt="" class="av">
         </div>
         <div class="userMsg">
           <div class="rName" v-if="item.rname">{{item.rname}}</div>
@@ -155,7 +159,7 @@ import getDate from "../utils/getDate"
 
 export default {
   components: { DayTabs },
-  data() {
+  data () {
     return {
       mainTab: 0,
       tab: 0,
@@ -172,7 +176,7 @@ export default {
     }
   },
   watch: {
-    nowDay(val) {
+    nowDay (val) {
       this.tab = val
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
@@ -183,11 +187,11 @@ export default {
   },
   computed: {
     ...mapState(['rankGroups', "nowDay", "dateArr", "inited", "isShare", "actStatus", "showType", "timeObj"]),
-    rankKey() {
+    rankKey () {
       // return ['one', 'two', 'three'][this.tab];
       return this.mainTab == 1 ? 'total' : this.tab;
     },
-    rankApi() {
+    rankApi () {
       if (this.isShare) {
         var dayApi = `/gift_contest/list.php?type={type}&day={day}&from={from}`;
         var totalApi = `/gift_contest/list.php?type={type}&day=0&from={from}`;
@@ -201,11 +205,11 @@ export default {
         return api.replace('{day}', this.dateArr[this.tab - 1]).replace('{type}', this.showType).replace('{token}', token)
       }
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups[this.showType][this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       if (rankConf.second && rankConf.second > 0) {
@@ -213,20 +217,20 @@ export default {
       }
       return rankConf;
     },
-    actTime() {
+    actTime () {
       return getDate(new Date(this.timeObj.stime * 1000), '2') + ' ~ ' + getDate(new Date(this.timeObj.etime * 1000), '2')
     }
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
-    setShowType(val) {
+    setShowType (val) {
       if (val !== this.showType) {
         this.vxc('setShowType', val)
         this.tab = this.nowDay
@@ -238,7 +242,7 @@ export default {
         });
       }
     },
-    mainTabClick(tab) { //总榜切换
+    mainTabClick (tab) { //总榜切换
       this.mainTab = tab;
       this.vxc("changTab", this.rankKey)
       this.$nextTick(() => {
@@ -247,7 +251,7 @@ export default {
         }
       });
     },
-    tabClick(tab) { //日榜切换
+    tabClick (tab) { //日榜切换
       this.tab = tab;
       var nowTab = this.rankKey >= this.nowDay ? this.nowDay : this.rankKey //存当天选择的tab索引用于底部个人信息查找
       this.vxc("changTab", nowTab)
@@ -257,7 +261,7 @@ export default {
         }
       });
     },
-    onScroll() {
+    onScroll () {
       // if (this.tab > this.nowDay) return (this.tab > this.nowDay && this.rankKey !== 'total') || 
       if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
         return
@@ -330,7 +334,7 @@ export default {
         }
       }
     },
-    onRefresh() {
+    onRefresh () {
       if (this.rank.loading) return
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       let obj = {
@@ -348,7 +352,7 @@ export default {
       this.vxc('updateRankGroups', obj)
       this.$nextTick(this.onScroll);
     },
-    downTimeGo(timeName, val) {
+    downTimeGo (timeName, val) {
       clearInterval(this.timer)
       if (!downTime(timeName)) {
         downTime(timeName, val);
@@ -362,10 +366,10 @@ export default {
         }
       }, 1000)
     },
-    getDate(time) {
+    getDate (time) {
       return getDate(new Date(time * 1000), '2')
     },
-    goUser(uid, rid) { //跳转
+    goUser (uid, rid) { //跳转
       if (rid) {
         location.href = `rid:${rid}`
       } else if ((this.showType == 1 && this.mainTab == 1) || (this.showType == 3 && this.mainTab == 1)) {
@@ -378,11 +382,11 @@ export default {
         location.href = `uid:${uid}`
       }
     },
-    closePeople() {
+    closePeople () {
       this.actIndex = 0
       this.showPeopleList = false
     },
-    goPeople(uid) {
+    goPeople (uid) {
       location.href = `uid:${uid}`
     }
   },
@@ -527,25 +531,36 @@ export default {
         margin-left: 0.13rem;
       }
       .uerImg {
-        width: 1.21rem;
-        height: 1.01rem;
+        width: 1.3rem;
+        height: 1.1rem;
         position: relative;
-        margin-left: 0.21rem;
-        .imgBg {
-          width: 1rem;
-          height: 1.01rem;
-          background: url(../assets/img/av4.png);
-          background-size: 100% 100%;
+        .nob {
+          width: 1.1rem;
+          height: 1.1rem;
           position: absolute;
+          top: 0rem;
+          left: 0rem;
           z-index: 10;
         }
-        .imgItem {
-          width: 0.94rem;
-          height: 0.94rem;
+        .frame {
+          width: 1.5rem;
+          height: 1.5rem;
           position: absolute;
-          top: 0.035rem;
-          left: 0.03rem;
+          top: -0.21rem;
+          left: -0.2rem;
+          z-index: 10;
+        }
+        .av {
+          width: 0.88rem;
+          height: 0.88rem;
+          position: absolute;
+          top: 0.1rem;
+          left: 0.11rem;
           border-radius: 50%;
+          &.room {
+            border-radius: 0.14rem;
+            border: 0.02rem solid rgba(251, 235, 137, 1);
+          }
         }
       }
       .userMsg {

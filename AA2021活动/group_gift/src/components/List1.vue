@@ -4,13 +4,14 @@
       <li v-for="(item,index) in gift" :key="index" :class="{over: item.num - item.group_num <=1 || step != 1}">
         <div class="itemNums">{{item.group_num}}/{{item.num}}</div>
         <img :src="item.image" alt="" class="giftImg">
-        <div class="giftName">{{item.name}} <i>{{item.kind*1?'K房':'作品'}}</i> </div>
+        <div class="giftName">{{item.name}} <i class="gType">{{item.kind*1?lang.people_Kroom:lang.people_song}}</i> </div>
         <div class="price">
-          <span>最低<em>{{item.min_price}}</em></span> <i class="icon"></i><del>{{item.price}}金幣</del>
+          <span>{{lang.list1_minPrice}}<em>{{item.min_price}}</em></span> <i class="icon"></i><del v-if="_app == 'hsing'">{{item.price}}{{lang.list1_icon}}</del>
         </div>
+        <del v-if="_app == 'singnow'" class="del">{{item.price}}{{lang.list1_icon}}</del>
         <div class="buy" @click="setGift(item)">
-          <em v-if="item.num - item.group_num <=1 ">結束</em>
-          <em v-else>發起拼團</em>
+          <em v-if="item.num - item.group_num <=1 ">{{lang.list1_end}}</em>
+          <em v-else v-html="lang.list1_open"></em>
         </div>
       </li>
     </ul>
@@ -24,16 +25,16 @@
               <img :src="actItem.image" alt="">
             </div>
             <div class="msg">
-              <div class="giftName">{{actItem.name}} <i>{{actItem.kind*1?'K房':'作品'}}</i></div>
+              <div class="giftName">{{actItem.name}} <i>{{actItem.kind*1?lang.people_Kroom:lang.people_song}}</i></div>
               <div class="price">
-                <span><em>{{Math.ceil(actItem.price* zhe)}}</em></span> <i class="icon"></i><del>{{actItem.price}}金幣</del>
+                <span><em>{{Math.ceil(actItem.price* zhe)}}</em></span> <i class="icon"></i><del>{{actItem.price}}{{lang.list1_icon}}</del>
               </div>
-              <div class="giftPupTips">（若拼團未成功，金幣將退回您的錢包）</div>
+              <div class="giftPupTips">{{lang.list1_tips1}}</div>
             </div>
           </div>
           <div class="selectType1" v-if="selectType == 1">
             <div class="selectSet">
-              <span>發起團人數</span>
+              <span>{{lang.list1_openNums}}</span>
               <div class="numsInput">
                 <span class="reduex" @click="selectNums >2?selectNums--:false">-</span>
                 <input type="text" v-model="selectNums" readonly>
@@ -41,25 +42,28 @@
               </div>
             </div>
             <div class="selectSet">
-              <span>購買數量</span>
+              <span>{{lang.list1_buyNums}}</span>
               <div class="nums">1</div>
             </div>
             <div class="selectSet">
-              <span>支付</span>
-              <div class="nums">{{Math.ceil(actItem.price * zhe)}}金幣</div>
+              <span>{{lang.list1_pay}}</span>
+              <div class="nums">{{Math.ceil(actItem.price * zhe)}}{{lang.list1_icon}}</div>
             </div>
-            <div class="go" @click="selectType = 2">發起拼團</div>
+            <div class="go" @click="selectType = 2">{{lang.list1_open}}</div>
           </div>
           <div class="selectType2" v-else-if="selectType == 2">
-            <div class="buyTips">發起拼團，需要支付{{Math.ceil(actItem.price* zhe )}}金幣</div>
+            <div class="buyTips">{{lang.list1_payTips}}{{Math.ceil(actItem.price* zhe )}}{{lang.list1_icon}}</div>
             <div class="btn">
-              <span class="no" @click=" closePup()">否</span>
-              <span class="qurey" @click="buy()">確認支付</span>
+              <span class="no" @click=" closePup()">{{lang.list1_no}}</span>
+              <span class="qurey" @click="buy()">{{lang.list1_query}}</span>
             </div>
           </div>
           <div class="selectType2" v-else-if="selectType == 3">
-            <div class="buyTips left">此團還差<em>{{buyGiftData.surplus}}</em> 人就可以拼團成功，<br /> 每人可以以<em>{{Math.ceil(actItem.price* zhe )}}</em> 金幣購買{{actItem.name}}*1</div>
-            <div class="go" @click="showFriendsPup()">邀請好友拼團</div>
+            <div class="buyTips left" v-html="lang.list1_buyTips.replace('#',buyGiftData.surplus).replace('$',Math.ceil(actItem.price* zhe )).replace('%',actItem.name)">
+
+              <!-- 此團還差<em>{{}}</em> 人就可以拼團成功，<br /> 每人可以以<em>{{}}</em> 金幣購買{{}}*1</div> -->
+              <div class="go" @click="showFriendsPup()">{{lang.group_inivte}}</div>
+            </div>
           </div>
         </div>
       </transition>
@@ -69,8 +73,8 @@
       <transition name="slide">
         <div class="giftItemPup" v-show="showNoCoiosPup">
           <i class="close" @click="showNoCoiosPup = false"></i>
-          <div class="noCoins">您的錢包餘額不足<br /> 請前去儲值</div>
-          <div class="go no" @click="stored()">前去儲值</div>
+          <div class="noCoins" v-html="lang.list1_notCoins"></div>
+          <div class="go no" @click="stored()">{{lang.list1_goStored}}</div>
         </div>
       </transition>
     </div>
@@ -90,7 +94,7 @@ import { start } from "../apis"
 
 export default {
   components: { Friends },
-  data() {
+  data () {
     return {
       selectNums: 2,
       selectType: 1,
@@ -104,7 +108,7 @@ export default {
   },
   computed: {
     ...mapState(['gift', 'my_group', 'step']),
-    zhe() {
+    zhe () {
       if (this.selectNums == 2) {
         return 0.95
       } else if (this.selectNums == 3) {
@@ -114,15 +118,18 @@ export default {
       } if (this.selectNums == 5) {
         return 0.8
       }
+    },
+    _app () {
+      return _app
     }
   },
   methods: {
-    setGift(item) {
+    setGift (item) {
       if (item.num - item.group_num <= 1 || this.step != 1) { return }
       this.actItem = item
       this.showSelectGiftItem = true
     },
-    buy() {
+    buy () {
       start(this.actItem.gid, this.selectNums).then(res => {
         if (res.data.response_status.code == 0) {
           this.buyGiftData = res.data.response_data.data
@@ -140,17 +147,17 @@ export default {
       })
 
     },
-    showFriendsPup() {
+    showFriendsPup () {
       this.order_id = this.buyGiftData.id
       this.showFriends = true
 
     },
-    closePup() {
+    closePup () {
       this.showSelectGiftItem = false
       this.selectNums = 2
       this.selectType = 1
     },
-    stored() {
+    stored () {
       location.href = "walletConfig://"
     }
   }
@@ -212,6 +219,11 @@ export default {
           color: rgba(255, 121, 89, 1);
           margin-left: 0.05rem;
         }
+      }
+      .del {
+        font-size: 0.18rem;
+        color: rgba(133, 90, 55, 0.6);
+        margin-left: 0.14rem;
       }
       .price {
         font-size: 0.18rem;

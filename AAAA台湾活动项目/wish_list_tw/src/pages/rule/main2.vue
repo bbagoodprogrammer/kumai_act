@@ -101,7 +101,7 @@
           </em>
         </span>
       </div>
-      <p class="tips1">徽章，VIP有效期皆為31天</p>
+      <p class="tips1">徽章，VIP有效期皆為30天</p>
       <!-- <p class="tips2">Quyết định của ban tổ chức là quyết định cuối cùng</p> -->
     </div>
     <div class="lastTips">該活動的最終解釋權歸活動主辦方所有</div>
@@ -115,20 +115,20 @@ import getDate from "../../utils/getDate"
 import Loading from "../../components/Loading"
 export default {
   components: { Loading },
-  data() {
+  data () {
     return {
       showTab: 'tab1',
       actTime: ''
     }
   },
-  created() {
+  created () {
     api.getTime().then(res => {
       let resData = res.data.response_data
       this.actTime = getDate(new Date(resData.stime * 1000), 'pai') + ' - ' + getDate(new Date(resData.etime * 1000), 'pai')
     })
   },
   methods: {
-    changTab(tab) {
+    changTab (tab) {
       this.showTab = tab
     }
   }
@@ -288,7 +288,7 @@ body {
     color: #e8b7ff;
   }
   .clearfix:after {
-    content: "";
+    content: '';
     height: 0;
     line-height: 0;
     display: block;
@@ -302,5 +302,5 @@ body {
   text-align: center;
   margin-top: 1.56rem;
 }
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 </style>

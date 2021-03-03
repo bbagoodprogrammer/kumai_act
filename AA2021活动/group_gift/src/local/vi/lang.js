@@ -1,72 +1,85 @@
 export default {
     //html/index.html
-    title: 'Ký hợp đồng',
+    title: "Ghép quà",
+    day: "ngày ",
+    hour: "giờ",
+    minute: "phút",
+    second: "giây",
+    history_tab1: "Ghép nhóm đã kết thúc",
+    history_tab2: "Ghép nhóm chưa kết thúc",
+    history_tm: "Thời gian",
+    history_gift: "Quà",
+    history_type: "Loại nhóm",
+    history_nums: "Số lượng mua",
+    history_price: "Tiêu phí",
+    status: "Trạng thái",
+    noData: "Không có dữ liệu",
+    loading: "ang tải...",
+    noRank: "Chưa lên bảng", //未上榜
+    ok: "Xác nhận", //确定
+    //afooter
+    myGroup: "Đang tiến hành ghép nhóm", //我的拼團進行中
+    groupMsg: "Nhóm # người, đã ghép $ người, còn thiếu % người", //#人團，已拼團$人，還差%人
+    group_end: "kết thúc", //後結束
+    group_inivte: "Mời bạn bè ghép nhóm", //邀請好友拼團
 
-    // router/index
-    page_data: 'Đạt yêu cầu',
-    page_bind: 'Liên kết số điện thoại',
-    page_apply: 'Yêu cầu ký',
-    page_agreement: 'Thoả thuận người dùng',
+    //Friends
+    friends: "Bạn bè", //好友
+    friends_search: "Tìm kiếm", //搜索
+    friends_noData: "Không có bạn bè để mời", //暂无可邀请好友
+    friends_inivte: "Mời bạn bè", //邀請好友
 
-    // Index
-    sign: 'Ký ngay',
-    signed: 'Đã ký',
-    sign_rule: 'Về ký hợp đồng:',
-    sign_rule_1: '1. Người chưa ký hợp đồng không được đổi ngọc thành tiền, chỉ được đổi xu. Mỗi lần đổi ít nhất 20,000 Ngọc, không thể đổi ít hơn 20,000 Ngọc',
-    sign_rule_2: '2. Sau khi ký hợp đồng mới được đổi tiền, cấp bậc càng cao tỷ lệ đổi càng cao. Mỗi lần đổi ít nhất 500,000 Ngọc.',
+    //HistoryTabsScrollLoadList
+    people_nums: "Nhóm $ người", //人團
+    people_suc: "Thành công", //成功
+    people_redux: "Thất bại", //失敗
+    people_Kroom: "Phòng Kara", //
+    people_song: "Bài hát", //
+    people_groupMsg: "Nhóm $ người, còn thiếu <em>%</em> người", //$人團，還差 % 人
 
-    // Task
-    data_name: 'Đạt yêu cầu, có thể ký hợp đồng',
-    data_desc: 'Số liệu đạt yêu cầu mới được ký hợp đồng',
-    bind_name: 'Liên kết số điện thoại',
-    bind_desc: 'Mời liên kết số điện thoại',
-    sign_name: 'Ký ngay',
-    sign_desc: 'Nhận ưu đãi dành riêng cho người ký hợp đồng',
-    do: 'Làm ngay',
-    done: 'Đã xong',
-    sign_tips: '2 bước trước chưa xong\nKhông thể ký hợp đồng',
-    ok: 'Xác nhận',
+    //list1
+    list1_minPrice: "Thấp nhất", //最低
+    list1_icon: "xu", //金幣
+    list1_end: "kết thúc", //結束
+    list1_open: "Phát động <br/>ghép nhóm", //發起拼團
+    list1_tips1: "(Ghép nhóm chưa thành công, xu sẽ hoàn về túi của bạn)", //（若拼團未成功，金幣將退回您的錢包）
+    list1_openNums: "Số người nhóm phát động", // 發起團人數
+    list1_buyNums: "Số lượng mua", //購買數量
+    list1_pay: "Chi trả", //支付
+    list1_payTips: "Phát động ghép nhóm, cần trả", //發起拼團，需要支付
+    list1_no: "Không", //否
+    list1_query: "Xác nhận", //確認支付
+    list1_buyTips:
+        "Nhóm này còn thiếu <em>#</em> người mới ghép thành công, mỗi người có thể dùng <em>$</em> xu mua % quà*1", // 此團還差<em>#</em> 人就可以拼團成功，<br /> 每人可以以<em>$</em> 金幣購買%*1
+    list1_notCoins: "Số dư ví tiền không đủ, hãy nạp", //您的錢包餘額不足<br /> 請前去儲值
+    list1_goStored: "Đi nạp", //前去儲值
 
-    // Bind
-    bind_succ: 'Tài khoản đã liên kết\nsố điện thoại: %s',
+    //list2
+    list2_groundNums: "(Đã có $ người phát động ghép nhóm)", //（已有$人發起拼團）
+    list2_noData: "Không có số liệu ghép nhóm", //暫無拼團數據
+    list2_go: "Đến ghép nhóm", //去拼團
+    list2_buyFail: "(Ghép nhóm chưa thành công, xu sẽ hoàn về túi của bạn)）", //（若拼團未成功，金幣將退回您的錢包）
+    list2_reNums: "còn thiếu <em>#</em> người", //還差<em>#</em>人
+    list2_addGroup: "Tham gia ghép nhóm", //參與拼團
+    list2_nextGroup: "Tiếp tục ghép nhóm", // 繼續拼團
+    list2_addFailTips1: "Tham gia ghép nhóm, cần chi trả $ xu", //參與此拼團，需要支付{{act_item.price}}金幣，確認支付嗎？
+    list2_addFailTips2:
+        "Bạn đã ghép nhóm thành công, hãy kiểm tra túi quà, hãy nhanh tặng quà cho bạn bè", //你已拼團成功，請查收背包禮物，快去送禮給好友吧~
 
-    // Data
-    count_title: 'Kém chỉ tiêu ký hợp đồng',
-    count_income: 'Thu nhập Ngọc',
-    count_numbers: '（{0}/{1}）',
-    count_time: 'Kỳ này tính từ {1}/{0}-{3}/{2}\nCòn {4} ngày đến kỳ sau, cố lên',
-    done_tips: 'Bạn đã đạt yêu cầu\nMau ký hợp đồng nhé',
-    undone_tips: 'Bạn chưa đạt yêu cầu\nChưa thể ký hợp đồng',
-    done_give: 'Ký hợp đồng sẽ nhận:',
-    done_give_1: '1. Đổi ngọc thành tiền, cấp bậc càng cao tỷ lệ đổi càng cao',
-    done_give_2: '2. Được đổi xu với tỷ lệ cao hơn, mỗi lần đổi ít nhất 100 Ngọc',
-
-    // Apply
-    apply_title: 'Bước cuối ký hợp đồng:',
-    apply_desc: 'Ký hợp đồng cần gửi CMND để xét duyệt, sau khi được duyệt xem như ký xong',
-    card_title: 'Tay cầm mặt chính CMND như hình mẫu',
-    card_desc: 'Để xác thực danh tính thật, bạn cần chứng thực danh tính của mình,\nMời gửi ảnh như hình mẫu, nếu dùng giấy tờ giả sẽ bị khoá tài khoản vĩnh viễn.',
-    re_upload: 'Gửi lại',
-    upload_title: 'Mời gửi ảnh xác thực',
-    upload_desc: 'Sau khi gửi xong, chúng tôi sẽ nhanh chóng xét duyệt',
-    agree_agreement: 'Ký hợp đồng tức đồng ý với ',
-    apply_agreement: '"Điều khoản sử dụng"',
-    submit_apply: 'Gửi ký hợp đồng',
-    card_submited: 'Đã gửi CMND\nKhông cần gửi lại\nCó thể ký hợp đồng luôn',
-
-    // Result
-    re_submit: 'Yêu cầu lại',
-    result_checking: 'Đã gửi yêu cầu\nChúng tôi sẽ nhanh chóng xét duyệt',
-    result_success: 'Chúc mừng bạn đã ký hợp đồng',
-    result_fail: 'Yêu cầu của bạn bị từ chối',
-    result_fail_reason: 'Lý do: %s',
-    result_fail_contact: 'Thông tin chi tiết xin liên hệ ID%s',
-    result_reject: 'Yêu cầu của bạn không được duyệt, chúng tôi sẽ sớm ra mắt chính sách dành cho idol, vui lòng đợi.',
-    sign_give: 'Ký xong được hưởng quyền lợi:',
-    sign_give_1: '1. Đăng bài hát và phòng Kara cá nhân được ưu tiên hơn, được đề cử nhiều hơn.',
-    sign_give_2: '2. Thêm lượt tiếp cận và thêm fan.',
-    sign_give_3: '3. Đổi Ngọc thành tiền mặt, cấp càng cao tỷ lệ đổi càng cao.',
-    sign_give_4: '4. Đổi xu với tỷ lệ cao hơn, mỗi lần đổi ít nhất 100 Ngọc.',
-
-    skip_upload: 'Bỏ qua và ký hợp đồng',
-}
+    //ListGrounp
+    listGrounp_sucGroupNums: "Đã có <em>$</em> người ghép nhóm thành công", //已有<em>$</em>拼團成功
+    listGrounp_timeTips1: "Đếm ngược bắt đầu ghép nhóm vòng này", //本輪拼團開始倒計時
+    listGrounp_timeTips2: "Đếm ngược kết thúc ghép nhóm vòng này", //本輪拼團結束倒計時
+    listGrounp_timeTips3: "Sự kiện đã kết thúc", //活動已結束
+    listGrounp_coinsTips:
+        "Số xu sử dụng sau khi ghép nhóm thành công kỳ sự kiện này", //本期活動拼團成功後使用的金幣數
+    listGrounp_noSucGroup1:
+        "Nhóm này đã đầy. Bạn có thể tự mở nhóm hoặc cùng người khác ghép nhóm", //  此拼團人數已滿~您可以自己開團或者參與其他人的拼團~
+    listGrounp_noSucGroup2:
+        "Ghép nhóm này đã quá hạ,Bạn có thể tự mở nhóm hoặc cùng người khác ghép nhóm", //  此拼團已過期~您可以自己開團或者參與其他人的拼團~
+    listGrounp_noSucTips: "Bạn bè của bạn # đang ghép quà $, ", // 您的好友#正在拼團禮物$，
+    listGrounp_noSucTips2: "$Chỉ cần trả # xu có thể mua 1 quà", //只需要支付#金幣就可購買1件禮物$
+    listGrounp_noSucTips3: " Nhanh lại tham gia~", // 快來參與吧~
+    tabsArr: ["Cửa sổ quà tặng", "Nhóm quà tặng", "Bảng nhóm khuyến mãi"],
+    group: "Ghép nhóm" //拼團
+};
