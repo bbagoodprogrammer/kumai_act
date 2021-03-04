@@ -5,7 +5,7 @@
     <div class="list">
       <div class="listItem" v-for="(item,index) in list" :key="index">
         <div class="listTitle">
-          <span v-if="index === 'creator'">BXH KOL</span>
+          <span v-if="index === 'creator'">BXH STAR</span>
           <span v-else-if="index === 'room'">BXH Chủ Phòng</span>
           <span v-else>BXH Ca Sĩ</span>
         </div>
@@ -49,7 +49,7 @@ import Loading from "../../components/Loading"
 import api from "../../api/apiConfig"
 export default {
   components: { Loading },
-  data() {
+  data () {
     return {
       list: [],
       showPeopleList: false,
@@ -58,24 +58,24 @@ export default {
       uid: null
     }
   },
-  created() {
+  created () {
     document.title = 'Vào Sảnh Danh Vọng '
     api.getLastRank().then(res => {
       this.list = res.data.response_data.data
     })
   },
   methods: {
-    showList(list, uid) {
+    showList (list, uid) {
       this.uid = uid
       if (list) {
         this.peopleArr = list
       }
       this.showPeopleList = true
     },
-    closePeople() {
+    closePeople () {
       this.showPeopleList = false
     },
-    goPeople(uid) {
+    goPeople (uid) {
       if (uid) {
         location.href = `uid:${uid}`
       } else {
@@ -123,6 +123,14 @@ body {
         background: rgba(190, 106, 255, 1);
         border-radius: 0.2rem 0.2rem 0 0;
         font-weight: 500;
+        span {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 0.35rem;
+        }
       }
     }
     ul {
@@ -334,5 +342,5 @@ body {
     right: 0.25rem;
   }
 }
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 </style>

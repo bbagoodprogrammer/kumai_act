@@ -8,24 +8,22 @@
     <div class="ruleItem" v-if="type==1">
       <h5>Thể lệ:</h5>
       <h6>Báo danh:</h6>
-      <p>1.KOL đã ký hợp đồng sẽ được mặc định tham gia 2 BXH là BXH KOL và BXH Phòng. Nếu mình không có tạo Phòng, thì sẽ không tham gia BXH Chủ Phòng.</p>
-      <p>2.Người dùng chưa ký hợp đồng có thể báo danh và sẽ được mặc định tham gia BXH Ca Sĩ.</p>
-      <p>3.Idol có thể báo danh tham gia BXH Ca Sĩ, tuy nhiên sẽ không tính quà tặng khi livestream; quà tặng khi lên mic thường và bài hát sẽ được tính điểm bình thường. </p>
-      <p class="red">4.Sau khi người dùng (chưa ký hợp đồng) báo danh thành công, điểm số sẽ được bắt đầu tính vào BXH Ca Sĩ. Thành tích sự kiện kỳ này của người dùng (chưa ký hợp đồng) sẽ chỉ được
+      <p>1.STAR đã ký hợp đồng sẽ được mặc định tham gia 2 BXH là BXH STAR và BXH Chủ Phòng. Nếu mình không có tạo Phòng, thì sẽ không tham gia BXH Chủ Phòng.</p>
+      <p>2.Người dùng chưa ký hợp đồng STAR có thể báo danh và sẽ được mặc định tham gia BXH Ca Sĩ.</p>
+      <p>3.Idol (chưa ký hợp đồng STAR) có thể báo danh tham gia BXH Ca Sĩ, tuy nhiên sẽ không tính quà tặng khi livestream; quà tặng khi lên mic thường và bài hát sẽ được tính điểm bình thường. </p>
+      <p>4.Sau khi người dùng (chưa ký hợp đồng STAR) báo danh thành công, thành tích sẽ được bắt đầu tính vào BXH Ca Sĩ. Thành tích sự kiện kỳ này của người dùng (chưa ký hợp đồng STAR) sẽ chỉ được
         tính vào BXH Ca Sĩ.
-        <br />(Ghi chú: nếu ký hợp đồng trong thời gian sự kiện thì vẫn được hưởng chia quà tặng như thường, nhưng sẽ không được xếp vào BXH KOL và BXH Chủ Phòng)
+        <br />(Ghi chú: nếu ký hợp đồng STAR trong thời gian sự kiện thì vẫn được hưởng chia quà tặng như thường, nhưng sẽ không được xếp vào BXH STAR và BXH Chủ Phòng)
       </p>
-      <!-- <p>5. Sau khi báo danh xong, điểm số mới bắt đầu tính vào BXH, người dùng chưa ký hợp đồng chỉ được tính điểm vào BXH Ca Sĩ. -->
-      <!-- <br /> (Ghi chú: nếu ký hợp đồng trong thời gian sự kiện vẫn được chia quà tặng như thường, chỉ không được xếp vào BXH KOL và BXH chủ phòng)</p> -->
       <h6>Xếp hạng:</h6>
-      <p>1.BXH KOL, Chủ Phòng KOL và Ca Sĩ đều sẽ được chia thành BXH Ngày và BXH Tổng.</p>
-      <p>2.BXH KOL sẽ được xếp dựa theo số Xu quà tặng đặc biệt mà KOL nhận được từ bài hát và trong phòng Kara.</p>
-      <p>3.BXH Chủ Phòng KOL sẽ được xếp dựa theo số Xu quà tặng đặc biệt mà KOL nhận được trong phòng của mình.</p>
-      <p>4.BXH Ca Sĩ sẽ được xếp dựa theo số Xu quà tặng đặc biệt mà ca sĩ nhận được từ bài hát và trong phòng Kara.</p>
-      <p>5.BXH Ngày và Tổng sẽ chỉ hiển thị top 100. Nếu bằng điểm thì người đạt trước sẽ được xếp cao hơn. </p>
+      <p>1.BXH STAR, chủ phòng, ca sĩ đều chia thành BXH ngày và BXH tổng.</p>
+      <p>2.BXH STAR sẽ được xếp dựa theo số Xu quà tặng đặc biệt mà người dùng đã ký hợp đồng STAR nhận được từ bài hát và trong phòng Kara.</p>
+      <p>BXH CHủ Phòng sẽ được xếp hạng dựa theo số xu quà đặc biệt được tặng trong phòng của người dùng đã ký hợp đồng STAR (tức chủ phòng)</p>
+      <p>4.BXH Ca Sĩ dựa theo số xu quà tặng yêu cầu mà ca sĩ nhận từ bài hát và phòng Kara</p>
+      <p>5.BXH Ngày và BXH Tổng chỉ hiện top 100, nếu bằng điểm người đạt trước xếp hạng cao hơn.</p>
       <p>6.Quà đặc biệt cho tác phẩm tại sự kiện kỳ này là: Bình Bươm Bướm (10 xu), Tàu Nữ Hoàng (129 xu); Quà đặc biệt trong phòng Kara tại sự kiện kỳ này là: Túi Bươm Bướm (10 xu), Vương Miện Queen
         (129 xu). </p>
-      <P class="mt">Ghi chú: mọi thắc mắc về ký hợp đồng để trở thành KOL, xin vui lòng liên hệ Karaoke Now Official (ID: 12) để nhận được hỗ trợ.</P>
+      <P class="mt">Ghi chú: Mọi thông tin chi tiết về đăng ký để trở thành STAR, xin vui lòng liên hệ Karaoke Now Official (ID: 12) để nhận được hỗ trợ.</P>
       <h6>Quy định khác</h6>
       <p>Trong quá trình diễn ra sự kiện, nếu phát hiện người dùng gian lận trong sự kiện, ban tổ chức sẽ dựa theo mức độ vi phạm để xử lý, người vi phạm sẽ bị loại khỏi sự kiện hoặc khoá tài khoản.
         Bao gồm các hành vi sau:</p>
@@ -40,7 +38,7 @@
     <div class="wardItem" v-else>
       <h5>Phần thưởng</h5>
       <img src="../../assets/img/wardImg.png" alt="" class="wardImg">
-      <h5>Thưởng BXH STAR:</h5>
+      <h5>Thưởng BXH STAR</h5>
       <h6>Thưởng top 3 BXH Ngày</h6>
       <p> Lần lượt chia 3%, 2.5%, 2% thưởng tiền mặt BXH (dựa vào số liệu cuối cùng mỗi ngày)</p>
       <h6>Thưởng top 10 BXH Tổng:</h6>
@@ -52,7 +50,7 @@
       <p>Chia 3% tiền mặt BXH Tổng + khung Nữ Hoàng (15 ngày) + huy chương Ngôi Sao STAR (30 ngày) + xe Tường Vy (30 ngày) + 4,000 đậu + 1 túi quà phòng kara dành riêng cho STAR (50 xu)</p>
       <p>Hạng 4-10:</p>
       <p>Chia 2% tiền mặt BXH Tổng+ khung Nữ Hoàng (7 ngày) + xe Tường Vy (30 ngày) + 2,000 đậu + 1 túi quà phòng kara dành riêng cho STAR (50 xu)</p>
-      <h5>Thưởng BXH Chủ Phòng:</h5>
+      <h5>Thưởng BXH Chủ Phòng</h5>
       <h6>Thưởng top BXH Ngày</h6>
       <p>Lần lượt chia 2%, 1.5%, 1% thưởng tiền mặt BXH (dựa vào số liệu cuối cùng mỗi ngày)</p>
       <h6>Thưởng top 10 BXH Tổng:</h6>
@@ -68,8 +66,8 @@
       <p>Hạng 4-10:</p>
       <p>Chia 1% tiền mặt BXH Tổng + khung Nữ Hoàng (7 ngày) + danh hiệu Phòng Ngôi Sao (3 ngày) + xe Tường Vy (15 ngày) + 1 túi quà phòng kara dành riêng cho STAR (50 xu)</p>
       <h5>Thưởng BXH Ca Sĩ:</h5>
-      <h6>Thưởng top 3 BXH Ngày</h6>
-      <p>Lần lượt nhận được chia 8%, 5%, 3% thưởng tiền mặt (dựa vào số liệu cuối cùng hàng ngày)</p>
+      <h6>Thưởng top BXH Ngày</h6>
+      <p>Lần lượt chia 8%, 5%, 3% thưởng tiền mặt BXH (dựa vào số liệu cuối cùng mỗi ngày)</p>
       <h6>Thưởng top 10 BXH Tổng</h6>
       <p>Hạng 1: </p>
       <p>Huy chương Vua Qùa Tặng (30 ngày) + 3,000 xu + xe Tường Vy (30 ngày) + 1 túi quà Đảo Mộng (3,520 Xu) + 6,000 đậu.</p>
@@ -79,8 +77,8 @@
       <p>Huy chương Vua Qùa Tặng (30 ngày) + 2,000 xu + xe Tường Vy (30 ngày) + 1 túi quà Sao Ước Nguyện (1,880 Xu) + 4,000 đậu.</p>
       <p>Hạng 4-10:</p>
       <p>Huy chương Vua Qùa Tặng (30 ngày) + 1,000 xu + xe Tường Vy (15 ngày) + 1 túi quà Nhà Kẹo (899 Xu) + 2,000 đậu.</p>
-      <h5>Thưởng BXH bảo hộ</h5>
-      <p>Top 1 tặng quà cho top 3 của BXH KOL tổng và BXH Ca Sĩ tổng sẽ nhận được: Huy Chương Trùm Bảo hộ (30 ngày) + 10,000 Đậu.</p>
+      <h5>Thưởng BXH Bảo Hộ</h5>
+      <p>Top 1 tặng quà cho top 3 BXH STAR tổng và BXH Ca Sĩ tổng sẽ nhận: huy chương Trùm Bảo Hộ (30 ngày) + 10000 đậu</p>
       <p class="mt">Ghi chú:</p>
       <p>1. Phần thưởng BXH ngày và BXH tổng sẽ được phát ra trong vòng 7 ngày sau khi kết thúc sự kiện;</p>
       <p>2. Túi quà có thời hạn 14 ngày. Xin vui lòng lưu ý thời hạn sử dụng. Nếu qua hạn chưa sử dụng, ban tổ chức có quyền không bù lại;</p>
@@ -123,7 +121,7 @@ body {
   background-color: rgba(131, 56, 208, 1);
 }
 .red {
-  color: red !important;
+  color: #ffffaa !important;
   font-weight: 600;
 }
 .rule {
@@ -132,18 +130,18 @@ body {
   h5 {
     text-align: center;
     margin: 0.31rem auto;
-    color: rgba(255, 218, 124, 1);
+    color: rgba(255, 214, 115, 1);
 
     font-size: 0.28rem;
   }
   h6 {
-    color: rgba(48, 255, 238, 1);
+    color: rgba(255, 214, 115, 1);
     font-size: 0.26rem;
     margin-top: 0.31rem;
   }
   p {
     font-size: 0.22rem;
-    color: rgba(230, 164, 255, 1);
+    color: rgba(255, 243, 223, 1);
   }
   .tabs {
     display: flex;
@@ -172,7 +170,7 @@ body {
   }
   .actTime {
     text-align: center;
-    color: rgba(255, 230, 182, 1);
+    color: rgba(255, 230, 181, 1);
     font-weight: 500;
     font-size: 0.26rem;
     margin-top: 0.27rem;
@@ -181,14 +179,14 @@ body {
     .lastTips {
       margin-top: 5.8rem;
       text-align: center;
-      color: rgba(255, 168, 208, 1);
+      color: #fff;
     }
   }
   .wardItem {
     .lastTips {
       margin-top: 2rem;
       text-align: center;
-      color: rgba(255, 168, 208, 1);
+      color: #fff;
     }
   }
   .mt {

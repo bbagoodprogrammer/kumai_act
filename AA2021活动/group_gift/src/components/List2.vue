@@ -305,6 +305,8 @@ export default {
             font-size: 0.22rem;
             color: rgba(255, 121, 89, 1);
             margin-left: 0.05rem;
+            display: block;
+            white-space: nowrap;
           }
         }
         .pNums {
@@ -478,6 +480,8 @@ export default {
             font-size: 0.22rem;
             color: rgba(255, 121, 89, 1);
             margin-left: 0.05rem;
+            display: block;
+            white-space: nowrap;
           }
         }
         .price {
@@ -595,6 +599,7 @@ export default {
     justify-content: center;
     color: rgba(133, 90, 55, 1);
     font-size: 0.26rem;
+    padding: 0 0.2rem;
     em {
       color: rgba(255, 121, 89, 1);
     }
@@ -679,6 +684,9 @@ export default {
           font-size: 0.22rem;
           color: rgba(255, 121, 89, 1);
           margin-left: 0.05rem;
+          white-space: nowrap;
+          display: block;
+          white-space: nowrap;
         }
       }
       .price {

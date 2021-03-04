@@ -43,9 +43,9 @@
                 <span><em>{{item.price}}</em></span> <i class="icon"></i>
               </div>
             </div>
-            <div class="buy" @click="showFriendsPup(item.id)">
+            <span class="buy" @click="showFriendsPup(item.id)">
               {{lang.group_inivte}}
-            </div>
+            </span>
           </div>
         </li>
       </ul>
@@ -249,13 +249,17 @@ export default {
       align-items: center;
       margin: 0 auto;
       a {
-        display: block;
+        // display: block;
         width: 3.56rem;
         height: 0.82rem;
         border-radius: 0.41rem;
         text-align: center;
         line-height: 0.82rem;
         color: rgba(133, 90, 55, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0.3rem;
         &.current {
           color: #fff;
           background: linear-gradient(-90deg, #ff885a, #ff6957);
@@ -373,7 +377,8 @@ export default {
     color: rgba(133, 90, 55, 1);
     position: relative;
     .msg {
-      width: 3.5rem;
+      //   width: 3.5rem;
+      flex: 1;
       .giftName {
         display: flex;
         align-items: center;
@@ -432,8 +437,9 @@ export default {
       }
     }
     .buy {
-      // width: 1.36rem;
-      padding: 0 0.1rem;
+      display: inline-block;
+      max-width: 2.5rem;
+      padding: 0 0.2rem;
       height: 0.48rem;
       background: linear-gradient(-90deg, #ff885a, #ff6957);
       border-radius: 0.24rem;
@@ -441,6 +447,7 @@ export default {
       line-height: 0.48rem;
       color: #fff;
       font-size: 0.24rem;
+      white-space: nowrap;
     }
   }
   li::before {

@@ -201,6 +201,7 @@ export default {
         line-height: 0.56rem;
         font-size: 0.26rem;
         color: #fff;
+        margin-right: 0.2rem;
         &.black {
           background: rgba(188, 188, 188, 1);
         }
