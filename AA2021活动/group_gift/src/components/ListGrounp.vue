@@ -64,9 +64,9 @@
               {{lang.listGrounp_noSucGroup2}}
             </div>
             <div class="buyTips" v-else>
-              {{lang.listGrounp_noSucTips.replace('#',invite.nick).replace('$',invite.ginfo.historyname)}}
+              {{lang.listGrounp_noSucTips.replace('#',invite.nick).replace('$',invite.ginfo.name)}}
               <br />
-              {{lang.listGrounp_noSucTips2.replace('#',invite.price).replace('$',invite.ginfo.name)}}<br />
+              {{lang.listGrounp_noSucTips2.replace('#',invite.price).replace('$',invite.ginfo.name)}}
               {{lang.listGrounp_noSucTips3}}
             </div>
             <div class="go" :class="{over:invite.status != 0}" @click="getGift()">{{lang.list2_addGroup}}</div>

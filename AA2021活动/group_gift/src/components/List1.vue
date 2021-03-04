@@ -62,8 +62,9 @@
             <div class="buyTips left" v-html="lang.list1_buyTips.replace('#',buyGiftData.surplus).replace('$',Math.ceil(actItem.price* zhe )).replace('%',actItem.name)">
 
               <!-- 此團還差<em>{{}}</em> 人就可以拼團成功，<br /> 每人可以以<em>{{}}</em> 金幣購買{{}}*1</div> -->
-              <div class="go" @click="showFriendsPup()">{{lang.group_inivte}}</div>
+
             </div>
+            <div class="go" @click="showFriendsPup()">{{lang.group_inivte}}</div>
           </div>
         </div>
       </transition>

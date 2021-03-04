@@ -14,7 +14,7 @@ export default {
     history_price: "Tiêu phí",
     status: "Trạng thái",
     noData: "Không có dữ liệu",
-    loading: "ang tải...",
+    loading: "Đang tải...",
     noRank: "Chưa lên bảng", //未上榜
     ok: "Xác nhận", //确定
     //afooter
@@ -41,7 +41,7 @@ export default {
     list1_minPrice: "Thấp nhất", //最低
     list1_icon: "xu", //金幣
     list1_end: "kết thúc", //結束
-    list1_open: "Phát động <br/>ghép nhóm", //發起拼團
+    list1_open: "Phát động ghép nhóm", //發起拼團
     list1_tips1: "(Ghép nhóm chưa thành công, xu sẽ hoàn về túi của bạn)", //（若拼團未成功，金幣將退回您的錢包）
     list1_openNums: "Số người nhóm phát động", // 發起團人數
     list1_buyNums: "Số lượng mua", //購買數量
@@ -78,7 +78,7 @@ export default {
     listGrounp_noSucGroup2:
         "Ghép nhóm này đã quá hạ,Bạn có thể tự mở nhóm hoặc cùng người khác ghép nhóm", //  此拼團已過期~您可以自己開團或者參與其他人的拼團~
     listGrounp_noSucTips: "Bạn bè của bạn # đang ghép quà $, ", // 您的好友#正在拼團禮物$，
-    listGrounp_noSucTips2: "$Chỉ cần trả # xu có thể mua 1 quà", //只需要支付#金幣就可購買1件禮物$
+    listGrounp_noSucTips2: "$ Chỉ cần trả # xu có thể mua 1 quà", //只需要支付#金幣就可購買1件禮物$
     listGrounp_noSucTips3: " Nhanh lại tham gia~", // 快來參與吧~
     tabsArr: ["Cửa sổ quà tặng", "Nhóm quà tặng", "Bảng nhóm khuyến mãi"],
     group: "Ghép nhóm" //拼團

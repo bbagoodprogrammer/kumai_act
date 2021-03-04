@@ -2,7 +2,7 @@
   <div class="rankGroups">
     <!-- 三個類別 -->
     <div class="typeMainTabs">
-      <span @click="setShowType(1)" :class="{act:showType == 1}">BXH KOL</span>
+      <span @click="setShowType(1)" :class="{act:showType == 1}">BXH STAR</span>
       <span @click="setShowType(2)" :class="{act:showType == 2}">BXH Chủ Phòng</span>
       <span @click="setShowType(3)" :class="{act:showType == 3}">BXH Ca Sĩ</span>
     </div>
@@ -52,9 +52,12 @@
           <em>giây</em>
         </div>
       </div>
-      <p class="rankTips" v-if="showType==1">Xếp hạng theo số Xu quà đặc biệt mà KOL nhận được từ bài hát và trong Phòng Kara. <span v-if="mainTab == 0">Top 3 BXH Ngày sẽ lần lượt nhận được chia 3%, 2.5%, 2% thưởng tiền mặt BXH. </span> </p>
-      <p class="rankTips" v-if="showType==2">Xếp hạng theo số Xu quà đặc biệt mà KOL nhận được từ Phòng Kara của mình. <span v-if="mainTab == 0">Top 3 BXH Ngày sẽ lần lượt nhận được chia 2%, 1.5%, 1% thưởng tiền mặt BXH.</span> </p>
-      <p class="rankTips" v-if="showType==3">Xếp hạng theo số xu quà tặng yêu cầu mà ca sĩ nhận từ bài hát và phòng Kara<span v-if="mainTab == 0">Top 3 BXH ngày lần lượt chia 8%, 5%, 3% thưởng tiền mặt BXH</span></p>
+      <p class="rankTips" v-if="showType==1">Xếp hạng theo số xu quà tặng yêu cầu mà STAR nhận từ bài hát và phòng Kara <span v-if="mainTab == 0">Top 3 BXH ngày lần lượt chia 3%, 2.5%, 2% thưởng tiền
+          mặt BXH</span> </p>
+      <p class="rankTips" v-if="showType==2">Xếp hạng theo số xu quà yêu cầu được tặng tại phòng Kara của chủ phòng đã ký hợp đồng. <span v-if="mainTab == 0">Top 3 BXH ngày lần lượt chia 2%, 1.5%, 1%
+          thưởng tiền mặt BXH</span> </p>
+      <p class="rankTips" v-if="showType==3">Xếp hạng theo số xu quà tặng yêu cầu mà ca sĩ nhận từ bài hát và phòng Kara<span v-if="mainTab == 0">Top 3 BXH ngày lần lượt chia 8%, 5%, 3% thưởng tiền
+          mặt BXH</span></p>
     </div>
     <ul v-if="mainTab==0" class="list day">
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.rid)">
@@ -155,7 +158,7 @@ import getDate from "../utils/getDate"
 
 export default {
   components: { DayTabs },
-  data() {
+  data () {
     return {
       mainTab: 0,
       tab: 0,
@@ -172,7 +175,7 @@ export default {
     }
   },
   watch: {
-    nowDay(val) {
+    nowDay (val) {
       this.tab = val
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
@@ -183,11 +186,11 @@ export default {
   },
   computed: {
     ...mapState(['rankGroups', "nowDay", "dateArr", "inited", "isShare", "actStatus", "showType", "timeObj"]),
-    rankKey() {
+    rankKey () {
       // return ['one', 'two', 'three'][this.tab];
       return this.mainTab == 1 ? 'total' : this.tab;
     },
-    rankApi() {
+    rankApi () {
       if (this.isShare) {
         var dayApi = `/gift_contest/list.php?type={type}&day={day}&from={from}`;
         var totalApi = `/gift_contest/list.php?type={type}&day=0&from={from}`;
@@ -201,11 +204,11 @@ export default {
         return api.replace('{day}', this.dateArr[this.tab - 1]).replace('{type}', this.showType).replace('{token}', token)
       }
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups[this.showType][this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       if (rankConf.second && rankConf.second > 0) {
@@ -213,20 +216,20 @@ export default {
       }
       return rankConf;
     },
-    actTime() {
+    actTime () {
       return getDate(new Date(this.timeObj.stime * 1000), '2') + ' ~ ' + getDate(new Date(this.timeObj.etime * 1000), '2')
     }
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
-    setShowType(val) {
+    setShowType (val) {
       if (val !== this.showType) {
         this.vxc('setShowType', val)
         this.tab = this.nowDay
@@ -238,7 +241,7 @@ export default {
         });
       }
     },
-    mainTabClick(tab) { //总榜切换
+    mainTabClick (tab) { //总榜切换
       this.mainTab = tab;
       this.vxc("changTab", this.rankKey)
       this.$nextTick(() => {
@@ -247,7 +250,7 @@ export default {
         }
       });
     },
-    tabClick(tab) { //日榜切换
+    tabClick (tab) { //日榜切换
       this.tab = tab;
       var nowTab = this.rankKey >= this.nowDay ? this.nowDay : this.rankKey //存当天选择的tab索引用于底部个人信息查找
       this.vxc("changTab", nowTab)
@@ -257,7 +260,7 @@ export default {
         }
       });
     },
-    onScroll() {
+    onScroll () {
       // if (this.tab > this.nowDay) return (this.tab > this.nowDay && this.rankKey !== 'total') || 
       if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
         return
@@ -330,7 +333,7 @@ export default {
         }
       }
     },
-    onRefresh() {
+    onRefresh () {
       if (this.rank.loading) return
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       let obj = {
@@ -348,7 +351,7 @@ export default {
       this.vxc('updateRankGroups', obj)
       this.$nextTick(this.onScroll);
     },
-    downTimeGo(timeName, val) {
+    downTimeGo (timeName, val) {
       clearInterval(this.timer)
       if (!downTime(timeName)) {
         downTime(timeName, val);
@@ -362,10 +365,10 @@ export default {
         }
       }, 1000)
     },
-    getDate(time) {
+    getDate (time) {
       return getDate(new Date(time * 1000), '2')
     },
-    goUser(uid, rid) { //跳转
+    goUser (uid, rid) { //跳转
       if (rid) {
         location.href = `rid:${rid}`
       } else if ((this.showType == 1 && this.mainTab == 1) || (this.showType == 3 && this.mainTab == 1)) {
@@ -378,11 +381,11 @@ export default {
         location.href = `uid:${uid}`
       }
     },
-    closePeople() {
+    closePeople () {
       this.actIndex = 0
       this.showPeopleList = false
     },
-    goPeople(uid) {
+    goPeople (uid) {
       location.href = `uid:${uid}`
     }
   },

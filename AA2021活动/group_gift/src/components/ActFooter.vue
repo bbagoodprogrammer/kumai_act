@@ -10,7 +10,7 @@
           <div class="msg">
             <div class="numsTips">{{lang.groupMsg.replace('#',item.num).replace('$',item.num - item.surplus).replace('%',item.surplus)}}</div>
             <div class="time">{{actTime}} {{lang.group_end}}</div>
-            <div class="friendBtn" :class="{over:step!=1}" @click="showFriendsPup(item.id)">邀請好友拼團</div>
+            <div class="friendBtn" :class="{over:step!=1}" @click="showFriendsPup(item.id)">{{lang.group_inivte}}</div>
           </div>
         </van-swipe-item>
       </van-swipe>
@@ -105,7 +105,9 @@ export default {
   bottom: -0.01rem;
   border-top: 0.02rem solid RGBA(255, 114, 88, 1);
   .tips {
-    width: 1.96rem;
+    // width: 1.96rem;
+    white-space: nowrap;
+    padding: 0 0.15rem;
     height: 0.36rem;
     line-height: 0.36rem;
     background: linear-gradient(
@@ -133,6 +135,7 @@ export default {
   }
   .msg {
     margin-left: 0.22rem;
+    flex: 1;
     .numsTips {
       font-size: 0.26rem;
       color: rgba(133, 90, 55, 1);
