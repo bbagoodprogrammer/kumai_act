@@ -108,8 +108,8 @@ export default {
   height: 10.64rem;
   margin: 1rem auto;
   position: relative;
-  background: url('../img/feed_box.png');
-  background-size: 100% 100%;
+  //   background: url('../img/feed_box.png');
+  //   background-size: 100% 100%;
 
   .title {
     width: 5.6rem;
@@ -372,6 +372,26 @@ export default {
     }
     .land8 {
       right: 0.1rem;
+    }
+
+    .land0,
+    .land3,
+    .land6 {
+      background: url(../img/lands/3.1.png);
+      background-size: 100% 100%;
+    }
+
+    .land1,
+    .land4,
+    .land7 {
+      background: url(../img/lands/3.2.png);
+      background-size: 100% 100%;
+    }
+    .land2,
+    .land5,
+    .land8 {
+      background: url(../img/lands/3.3.png);
+      background-size: 100% 100%;
     }
   }
 }

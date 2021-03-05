@@ -52,7 +52,7 @@
             <div class="go" @click="selectType = 2">{{lang.list1_open}}</div>
           </div>
           <div class="selectType2" v-else-if="selectType == 2">
-            <div class="buyTips">{{lang.list1_payTips}}{{Math.ceil(actItem.price* zhe )}}{{lang.list1_icon}}</div>
+            <div class="buyTips">{{lang.list1_payTips}} {{Math.ceil(actItem.price* zhe )}} {{lang.list1_icon}}</div>
             <div class="btn">
               <span class="no" @click=" closePup()">{{lang.list1_no}}</span>
               <span class="qurey" @click="buy()">{{lang.list1_query}}</span>

@@ -68,7 +68,11 @@ export default {
       }
     },
     actTime () {
-      return getDate(new Date(this.end * 1000), 5)
+      if (_app == 'hsing') {
+        return getDate(new Date(this.end * 1000), 5)
+      } else if (_app == 'singnow') {
+        return getDate(new Date(this.end * 1000), 8)
+      }
     }
   },
   mounted () {

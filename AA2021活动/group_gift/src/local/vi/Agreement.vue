@@ -2,7 +2,7 @@
   <div class="ruleList">
     <div class="title">Hướng dẫn</div>
     <h5>Thời gian sự kiện</h5>
-    <p>Thời gian sự kiện: 12:00:00 ngày 1 tháng 3-23:59:59 ngày 3 tháng 3 <br />Sự kiện có 3 vòng, thời gian kết thúc mỗi vòng là 23:59:59 mỗi ngày </p>
+    <p>Thời gian sự kiện: 12:00:00 8/3 - 23:59:59 10/3 <br />Sự kiện có 3 vòng, thời gian kết thúc mỗi vòng là 23:59:59 mỗi ngày </p>
     <h5>Quy tắc</h5>
     <p>
       1. Người dùng có thể phát động ghép nhóm hoặc tham gia ghép nhóm, có thể chọn nhóm 2-5 người, nhóm có số người khác nhau, giá khác nhau, người dùng có thể tự chọn số lần phát động ghép nhóm
@@ -16,7 +16,7 @@
     <img src="./img/table.png" alt="">
     <h5>Phần thưởng</h5>
     <p>Danh sách dựa vào số xu người dùng sử dụng sau khi ghép nhóm thành công trong thời gia sự kiện</p>
-    <p>Hạng 1: Huy Chương Thần Tượng Ghép Nhóm (30 ngày)+ Danh Thiếp Thủ Lĩnh (30 ngày)+Trang Sức Thủ Lĩnh (30 ngày)+5 Quà Xu Bài Hát Đoàn Viên (100 xu)</p>
+    <p>Hạng 1: Huy Chương Thần Tượng Ghép Nhóm (30 ngày)+ Danh Thiếp Thủ Lĩnh (30 ngày)+Trang Sức Thủ Lĩnh (30 ngày)+5 Quà Xu Bài Hát Đoàn Viên (100 xu)+ ID đẹp 4-5 số*1</p>
     <p>Hạng 2: Huy Chương Thần Tượng Ghép Nhóm (15 ngày)+ Danh Thiếp Thủ Lĩnh (15 ngày)+Trang Sức Thủ Lĩnh (15 ngày)+4 Quà Xu Bài Hát Đoàn Viên (100 xu)</p>
     <p>Hạng 3: Huy Chương Thần Tượng Ghép Nhóm (7 ngày)+ Danh Thiếp Thủ Lĩnh (7 ngày)+Trang Sức Thủ Lĩnh (7 ngày)+3 Quà Xu Bài Hát Đoàn Viên (100 xu)</p>
     <p>Hạng 4-5: 2 Quà Xu Bài Hát Đoàn Viên (100 xu)</p>

@@ -31,7 +31,7 @@ export default {
 
     //HistoryTabsScrollLoadList
     people_nums: "Nhóm $ người", //人團
-    people_suc: "Thành công", //成功
+    people_suc: "thành công", //成功
     people_redux: "Thất bại", //失敗
     people_Kroom: "Phòng Kara", //
     people_song: "Bài hát", //
@@ -76,7 +76,7 @@ export default {
     listGrounp_noSucGroup1:
         "Nhóm này đã đầy. Bạn có thể tự mở nhóm hoặc cùng người khác ghép nhóm", //  此拼團人數已滿~您可以自己開團或者參與其他人的拼團~
     listGrounp_noSucGroup2:
-        "Ghép nhóm này đã quá hạ,Bạn có thể tự mở nhóm hoặc cùng người khác ghép nhóm", //  此拼團已過期~您可以自己開團或者參與其他人的拼團~
+        "Ghép nhóm này đã quá hạn, bạn có thể tự mở nhóm hoặc cùng người khác ghép nhóm", //  此拼團已過期~您可以自己開團或者參與其他人的拼團~
     listGrounp_noSucTips: "Bạn bè của bạn # đang ghép quà $, ", // 您的好友#正在拼團禮物$，
     listGrounp_noSucTips2: "$ Chỉ cần trả # xu có thể mua 1 quà", //只需要支付#金幣就可購買1件禮物$
     listGrounp_noSucTips3: " Nhanh lại tham gia~", // 快來參與吧~
