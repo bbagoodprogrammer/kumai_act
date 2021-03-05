@@ -132,7 +132,12 @@ export default {
     channel1: () => _lang.channel1,
     channel2: () => _lang.channel2,
     actTime () {
-      return getDate(new Date(this.end * 1000), 5)
+      if (_app == 'hsing') {
+        return getDate(new Date(this.end * 1000), 5)
+      } else if (_app == 'singnow') {
+        return getDate(new Date(this.end * 1000), 8)
+      }
+
     }
   },
   mounted () {
@@ -207,7 +212,11 @@ export default {
       }
     },
     getDate (tm) {
-      return getDate(new Date(tm * 1000), 1)
+      if (_app == 'hsing') {
+        return getDate(new Date(tm * 1000), 1)
+      } else if (_app == 'singnow') {
+        return getDate(new Date(tm * 1000), 2)
+      }
     },
     goUser (uid) { //跳转
       location.href = `uid:${uid}`

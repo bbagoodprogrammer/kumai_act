@@ -2,23 +2,30 @@
   <div @click.stop="" @touchend.stop="" class="land" :class="['land'+info.land_id, 'status'+info.status]">
     <!-- 空地 -->
     <ul @click="emptyClick()" class="choose" :class="'step'+empty">
-      <li v-if="owner_msg.free_seed" @click="plantSeed(false)" class="normal">播種</li>
+      <li v-if="owner_msg.free_seed" @click="plantSeed(false)" class="normal"></li>
       <li v-else @click="getSeed" class="normal">去領種子</li>
 
-      <li v-if="owner_msg.crazy_seed" @click="plantSeed(true)" class="crazy">播種</li>
+      <li v-if="owner_msg.crazy_seed" @click="plantSeed(true)" class="crazy"></li>
       <li v-else @click="buySeed" class="crazy">購賣</li>
     </ul>
 
     <!-- 生长中 -->
-    <div class="growing">
-      <div class="time"><span>{{time}}</span></div>
-      <div class="text"><span class="value" :class="'value'+info.value">x {{info.value}}</span></div>
+    <div class="growing" :class="'type'+info.seed" @click="showAccIcon = true">
+      <div class="time"><i class="accelerate" v-if="showAccIcon"></i><span>{{time}}</span></div>
+      <!-- :class="'value'+info.value" -->
+      <div class="text">
+        <span class="value"><i class="x"></i> <img v-for="(item,index) in numberStr" :key="index" :src="require(`../img/numbers/${item}.png`)" alt=""></span>
+
+      </div>
     </div>
 
     <!-- 成熟了 -->
-    <div @click="getCarrot()" class="mature" :class="'step'+mature">
+    <div @click="getCarrot()" class="mature" :class="['step'+mature,'type'+info.seed]">
       <div class="icon"></div>
-      <div class="text"><span class="value" :class="'value'+info.value">x {{info.value}}</span><span v-if="info.second" class="time">{{time}}</span></div>
+      <div class="text">
+        <!-- <span class="value" :class="'value'+info.value">x {{info.value}}</span><span v-if="info.second" class="time">{{time}}</span> -->
+        <span class="value"><i class="x"></i> <img v-for="(item,index) in numberStr" :key="index" :src="require(`../img/numbers/${item}.png`)" alt=""></span>
+      </div>
     </div>
   </div>
 </template>
@@ -32,44 +39,52 @@ import { debuglog } from 'util';
 
 export default {
   props: ['info'],
-  data() {
+  data () {
     return {
       mature: 1, //成熟阶段交互状态序号 1手指 2铲子 3萝卜。这个状态存在组件中是因为这个状态从一点击开始，后面状态自动走完，中间不能干预。
       time: '00:00',
       timer: null,
+      showAccIcon: false
     };
   },
   computed: {
     ...mapState(['owner_msg']),
-    empty() {
+    empty () {
       //空地阶段交互状态序号 1图标 2按钮
       //这个状态存在Store主要考虑点格子外自动状态重置（主要针对空地两种交互状态）
       return this.info.empty || 1;
     },
+    numberStr () {
+      console.log(String(this.info.value))
+      if (this.info.value) {
+        return String(this.info.value).split('')
+      }
+
+    }
   },
-  mounted() {
+  mounted () {
     this.startTimer();
   },
-  destroyed() {
+  destroyed () {
     this.stopTimer();
   },
   methods: {
-    updateEmptyStep(step) {
+    updateEmptyStep (step) {
       this.$store.commit('updateLandInfo', {
         land_id: this.info.land_id,
         empty: step,
       });
     },
-    updateMatureStep(step) {
+    updateMatureStep (step) {
       this.mature = step;
     },
-    updateStatus(status) {
+    updateStatus (status) {
       this.$store.commit('updateLandInfo', {
         land_id: this.info.land_id,
         status,
       });
     },
-    startTimer() {
+    startTimer () {
       const id = this.info.land_id;
       const timeKey = 'land' + id;
       this.timer = setInterval(() => {
@@ -81,7 +96,7 @@ export default {
             if (status == 1) {
               //成长中
               // const second = 60 * 60;
-              const second = 3;
+              const second = 10;
               downTime('land' + id, second);
               this.$store.commit('updateLandInfo', {
                 land_id: id,
@@ -114,20 +129,20 @@ export default {
         }
       }, 1000);
     },
-    stopTimer() {
+    stopTimer () {
       clearInterval(this.timer);
     },
-    emptyClick() {
+    emptyClick () {
       this.$store.commit('resetLandSteps', this.info.land_id);
       this.updateEmptyStep(2);
     },
-    getSeed() {
+    getSeed () {
       alert('去領種子');
     },
-    buySeed() {
+    buySeed () {
       alert('購賣瘋狂種子');
     },
-    async plantSeed(crazySeed) {
+    async plantSeed (crazySeed) {
       const id = this.info.land_id;
       const type = crazySeed ? 2 : 1;
 
@@ -140,8 +155,9 @@ export default {
       }
 
       // const second = 30 * 60;
-      const second = 3;
+      const second = 10;
       downTime('land' + id, second);
+
       this.$store.commit('updateLandInfo', {
         land_id: id,
         empty: 1,
@@ -150,7 +166,12 @@ export default {
         second: second,
         status: 1,
       });
-
+      setTimeout(() => {
+        this.$store.commit('updateLandInfo', {
+          land_id: id,
+          seed: 3,
+        });
+      }, second * 1000 / 2)
       this.$store.commit(type == 2 ? 'updateCrazySeed' : 'updateNormalSeed');
       return;
 
@@ -163,7 +184,8 @@ export default {
       }
     },
 
-    async getCarrot() {
+    async getCarrot () {
+      this.showAccIcon = false
       const id = this.info.land_id;
       this.updateMatureStep(2);
       setTimeout(() => {
@@ -190,7 +212,7 @@ export default {
       }
     },
 
-    showCarrotAnim() {
+    showCarrotAnim () {
       const elNums = document.getElementsByClassName('nums')[0];
       const landOffset = getOffset(this.$el);
       const valueOffset = getOffset(elNums);
@@ -250,6 +272,46 @@ export default {
   }
 }
 
+@keyframes circleHide {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  70% {
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes handAni {
+  0% {
+    opacity: 0;
+    left: 40%;
+    top: 40%;
+    transform: scale3d(0, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    left: 18%;
+    top: -5%;
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes handAniR {
+  0% {
+    opacity: 0;
+    left: 40%;
+    top: 40%;
+    transform: scale3d(0, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    left: 60%;
+    top: -5%;
+    transform: scale3d(1, 1, 1);
+  }
+}
 .land {
   width: 2.2rem;
   height: 1.8rem;
@@ -272,15 +334,16 @@ export default {
       li {
         visibility: hidden;
       }
-      background: url("../img/icon_seed.png") center 0.3rem no-repeat;
-      background-size: 0.8rem;
-      animation: packet 1s linear infinite alternate;
+      background: url('../img/lands/hand.png') center 0.8rem no-repeat;
+      background-size: 0.93rem 1rem;
+      //   animation: packet 1s linear infinite alternate;
+      animation: circleHide 1s ease infinite both;
     }
     &.step2 {
       padding: 0.2rem 0 0 0.35rem;
       li {
-        width: 1.66rem;
-        height: 0.72rem;
+        width: 0.5rem;
+        height: 0.5rem;
         text-align: center;
         overflow: hidden;
         box-sizing: border-box;
@@ -288,13 +351,17 @@ export default {
         font-size: 80%;
         background-repeat: no-repeat;
         background-size: 100% 100%;
+        position: absolute;
+
         &.normal {
           line-height: 0.7rem;
-          background-image: url("../img/common_seed.png");
+          background-image: url('../img/normal.png');
+          animation: handAni 0.3s ease forwards;
         }
         &.crazy {
           line-height: 0.78rem;
-          background-image: url("../img/crazy_seed.png");
+          background-image: url('../img/crazy.png');
+          animation: handAniR 0.3s ease forwards;
         }
       }
     }
@@ -302,20 +369,33 @@ export default {
 
   .growing,
   .mature {
-    &:before {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 110%;
-      background: url("../img/carrot.png") center center no-repeat;
-      background-size: 90%;
-      position: absolute;
-      left: 0;
-      bottom: 0.1rem;
-    }
+    // &:before {
+    //   content: '';
+    //   display: block;
+    //   width: 100%;
+    //   height: 110%;
+    //   background: url('../img/carrot.png') center center no-repeat;
+    //   background-size: 90%;
+    //   position: absolute;
+    //   left: 0;
+    //   bottom: 0.1rem;
+    // }
   }
 
   .growing {
+    background: url('../img/seed_1.png') center center no-repeat;
+    background-size: 0.63rem 0.46rem;
+    position: absolute;
+    left: 0;
+    bottom: 0.1rem;
+    &.type2 {
+      background: url('../img/seed_2.png') center center no-repeat;
+      background-size: 1.36rem 0.89rem;
+    }
+    &.type3 {
+      background: url('../img/carrot_1.png') center center no-repeat;
+      background-size: 1.8rem 1.2rem;
+    }
     .time,
     .text {
       position: absolute;
@@ -324,22 +404,58 @@ export default {
       text-align: center;
     }
     .time {
-      bottom: 1.2rem;
+      bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .accelerate {
+        width: 0.5rem;
+        height: 0.5rem;
+        background: url(../img/accelerate.png);
+        background-size: 100% 100%;
+        margin-right: 0.1rem;
+      }
       span {
         display: inline-block;
         padding: 0.05rem 0.15rem;
-        color: #beffcf;
         font-size: 90%;
-        background: rgba(21, 172, 163, 0.8);
+        background: rgba(255, 178, 151, 0.7);
         border-radius: 1rem;
       }
     }
     .text {
-      bottom: 0.7rem;
+      bottom: 1rem;
+      .value {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 0.23rem;
+          height: 0.3rem;
+        }
+        .x {
+          width: 0.28rem;
+          height: 0.3rem;
+          background: url(../img/numbers/x.png);
+          background-size: 100% 100%;
+        }
+      }
     }
   }
 
   .mature {
+    width: 100%;
+    height: 100%;
+    background: url('../img/carrot_2.png') center center no-repeat;
+    background-size: 1.82rem 1.22rem;
+    position: absolute;
+    left: 0;
+    bottom: 0rem;
+    // &.type2 {
+    //   background: url('../img/carrot_2.png') center center no-repeat;
+    //   background-size: 1.82rem 1.22rem;
+    // }
     .icon,
     .text {
       position: absolute;
@@ -347,16 +463,16 @@ export default {
       right: 0;
     }
     .icon {
-      bottom: 1rem;
-      height: 0.9rem;
+      bottom: 1.35rem;
+      height: 0.5rem;
       background-position: center bottom;
       background-repeat: no-repeat;
-      background-size: auto 0.9rem;
+      background-size: auto 0.5rem;
       animation: translateY 1s linear infinite alternate;
     }
     .text {
       text-align: center;
-      bottom: 0.5rem;
+      bottom: 1.1rem;
       .time {
         display: inline-block;
         padding: 0.05rem 0.1rem;
@@ -367,14 +483,30 @@ export default {
         margin-left: 0.1rem;
         vertical-align: middle;
       }
+      .value {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 0.23rem;
+          height: 0.3rem;
+        }
+        .x {
+          width: 0.28rem;
+          height: 0.3rem;
+          background: url(../img/numbers/x.png);
+          background-size: 100% 100%;
+        }
+      }
     }
 
     &.step1 .icon {
-      background-image: url("../img/finger.png");
+      background-image: url('../img/finger.png');
     }
     &.step2 {
       .icon {
-        background-image: url("../img/shovel.png");
+        background-image: url('../img/shovel.png');
         animation: shovel 1s linear infinite alternate;
       }
       .text {
@@ -387,7 +519,7 @@ export default {
       }
       .icon {
         visibility: hidden;
-        background-image: url("../img/rabbit_done.png");
+        background-image: url('../img/rabbit_done.png');
       }
       .time {
         display: none;
@@ -407,15 +539,6 @@ export default {
     background-position: center center;
     background-repeat: no-repeat;
     text-indent: -1000rem;
-    &.value5 {
-      background-image: url("../img/x5.png");
-    }
-    &.value100 {
-      background-image: url("../img/x100.png");
-    }
-    &.value110 {
-      background-image: url("../img/x110.png");
-    }
   }
 
   &.status0 .choose {
@@ -451,9 +574,9 @@ export default {
 }
 .carrotAnim {
   position: absolute;
-  width: 0.67rem;
-  height: 0.81rem;
-  background: url("../img/rabbit_done.png");
+  width: 0.8rem;
+  height: 0.8rem;
+  background: url('../img/rabbit_done.png');
   background-size: 100% 100%;
   transition: all 1s ease;
 }
