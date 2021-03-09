@@ -1,18 +1,26 @@
-import './css/main.scss'
+import "./css/main.scss";
 
-import 'es6-promise/auto'
-import 'regenerator-runtime/runtime'
-import Vue from 'vue'
-import App from './App'
-import store from './store'
-import router from './router'
-import { replaceLang, vuexCommit, toast, ModalHelper } from './utils';
+import "es6-promise/auto";
+import "regenerator-runtime/runtime";
+import Vue from "vue";
+import App from "./App";
+import store from "./store";
+import router from "./router";
+import VueLazyload from "vue-lazyload";
+import { replaceLang, vuexCommit, toast, ModalHelper } from "./utils";
 
-Vue.prototype.toast = toast
-Vue.prototype.vxc = vuexCommit
-Vue.prototype.ModalHelper = ModalHelper
+Vue.prototype.toast = toast;
+Vue.prototype.vxc = vuexCommit;
+Vue.prototype.ModalHelper = ModalHelper;
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+
+Vue.use(VueLazyload, {
+    preLoad: 1.3,
+    error: require("./img/default.png"),
+    loading: require("./img/default.png"),
+    attempt: 1
+});
 
 router.beforeEach((to, from, next) => {
     if (to.meta && to.meta.title) {
@@ -21,24 +29,24 @@ router.beforeEach((to, from, next) => {
     if (to.matched.length) {
         next();
     } else {
-        router.replace('/');
+        router.replace("/");
     }
-})
+});
 
 Vue.mixin({
     computed: {
         lang: () => _lang,
-        images: () => _images,
+        images: () => _images
     },
     methods: {
-        replaceLang,
-    },
-})
+        replaceLang
+    }
+});
 
 new Vue({
-    el: '#app',
+    el: "#app",
     store,
     router,
     components: { App },
     render: h => h(App)
-})
+});

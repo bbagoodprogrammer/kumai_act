@@ -1,3 +1,10 @@
 html.zh {
-    
+    .extension{
+        display: block;
+        width: 1.09rem;
+        height: 1.26rem;
+        background: url(./img/extension.png);
+        background-size: 100% 100%;
+        margin: 0.3rem auto;
+    }
 }

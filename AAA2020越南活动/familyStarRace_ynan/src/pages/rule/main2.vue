@@ -67,7 +67,7 @@
       <p>Cuộc thi Ngôi Sao Gia Tộc chia làm 3 vòng: Sao Lấp Lánh – Sao Sáng Nhất – Ngôi Sao Xuất Hiện, chỉ người đã vào gia tộc mới được tham gia.</p>
       <h3>Sao Lấp Lánh:</h3>
       <p>1. Thời gian<em class="tm"> 12:00 8/3 - 22:00 12/3</em> </p>
-      <p>2. Người đã vào gia tộc nhấn báo danh tham gia sự kiện, điểm sao= điểm mị quà xu nhận tại phòng hát/tác phẩm + điểm nhiệm vụ, top 300 BXH Tổng đại diện gia tộc vào vòng sau.</p>
+      <p>2. Người đã vào gia tộc nhấn báo danh tham gia sự kiện, điểm sao= điểm mị quà xu nhận tại phòng hát/tác phẩm + điểm nhiệm vụ, top 500 BXH Tổng đại diện gia tộc vào vòng sau.</p>
       <p>3. BXH Ngày dựa vào điểm sao nhận trong ngày, top 100 được tham gia rút thưởng, mỗi ngày chọn 20 người nhận túi quà Sao Lấp Lánh (68 xu). Tỷ lệ trúng = điểm sao trong ngày/tổng điểm sao của
         top 100</p>
       <p>4. Thoát gia tộc trong thời gian vòng thi Sao Lấp Lánh sẽ xoá điểm trên BXH, không được rút thưởng, sau khi vào gia tộc khác tính điểm lại từ đầu.</p>

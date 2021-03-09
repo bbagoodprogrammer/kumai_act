@@ -3,7 +3,7 @@ import { getUrlString, toast } from "../utils";
 import store from "../store";
 import { testGet } from "./test";
 
-let API_ROOT = "spring_flower";
+let API_ROOT = "/spring_flower";
 const host = location.host;
 if (
     /\d+\.\d+\.\d+\.\d+/.test(host) ||
@@ -83,15 +83,6 @@ function init() {
     return get(`${API_ROOT}/init.php?token=${token}`);
 }
 
-function singUp() {
-    return get(`${API_ROOT}/register.php?token=${token}`);
-}
-
-//扩建
-function extension() {
-    return get(`${API_ROOT}/extension.php?token=${token}`);
-}
-
 //种植
 function plant(no, type, num) {
     return get(
@@ -99,19 +90,46 @@ function plant(no, type, num) {
     );
 }
 
-//用加速器
-function spring_flower(no, num) {
-    return get(`${API_ROOT}/hoping.php?token=${token}&num=${num}&no=${no}`);
-}
-
 //摘
 function mature(no) {
     return get(`${API_ROOT}/mature.php?token=${token}&no=${no}`);
 }
 
+//用加速器
+function hoping(no, num) {
+    return get(`${API_ROOT}/hoping.php?token=${token}&num=${num}&no=${no}`);
+}
+
+//扩建
+function extension() {
+    return get(`${API_ROOT}/extension.php?token=${token}`);
+}
+
+//任务领种子
+function getSeed(key) {
+    return get(`${API_ROOT}/getSeed.php?token=${token}&task=${key}`);
+}
+
+//領儲值種子
+function getChargeGift() {
+    return get(`${API_ROOT}/getChargeGift.php?token=${token}`);
+}
+
 //列表
-function allList(from) {
+function allList(from, more) {
+    if (more) {
+        return axios.get(`${API_ROOT}/allList.php?token=${token}&from=${from}`);
+    }
     return get(`${API_ROOT}/allList.php?token=${token}&from=${from}`);
+}
+//報名
+function singUp() {
+    return get(`${API_ROOT}/register.php?token=${token}`);
+}
+
+//领取签到礼包
+function getDayGift(gift_id) {
+    return get(`${API_ROOT}/getDayGift.php?token=${token}&gift_id=${gift_id}`);
 }
 
 //抽奖
@@ -120,17 +138,13 @@ function lottery(track) {
 }
 
 //抽奖列表
-function lotteryRecord(track) {
+function lotteryRecord(from, more) {
+    if (more) {
+        return axios.get(
+            `${API_ROOT}/lotteryRecord.php?token=${token}&from=${from}`
+        );
+    }
     return get(`${API_ROOT}/lotteryRecord.php?token=${token}&from=${from}`);
-}
-//领取签到礼包
-function getDayGift(gift_id) {
-    return get(`${API_ROOT}/getDayGift.php?token=${token}&gift_id=${gift_id}`);
-}
-
-//抽奖列表
-function getChargeGift(track) {
-    return get(`${API_ROOT}/getChargeGift.php?token=${token}`);
 }
 
 export {
@@ -139,11 +153,12 @@ export {
     singUp,
     extension,
     plant,
-    spring_flower,
+    hoping,
     mature,
     allList,
     lottery,
     lotteryRecord,
     getDayGift,
-    getChargeGift
+    getChargeGift,
+    getSeed
 };

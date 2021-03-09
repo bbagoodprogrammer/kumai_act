@@ -1,21 +1,22 @@
 <template>
-  <div @click.stop="" @touchend.stop="" class="land" :class="['land'+info.land_id, 'status'+info.status]">
+  <div @click.stop="" @touchend.stop="" class="land" :class="[{able:!info.able},'land'+info.land_id, 'status'+info.status]">
+    <i class="extension" v-if="!info.able && openNums == info.land_id" @click="extensionClick()"></i>
     <!-- 空地 -->
-    <ul @click="emptyClick()" class="choose" :class="'step'+empty">
-      <li v-if="owner_msg.free_seed" @click="plantSeed(false)" class="normal"></li>
-      <li v-else @click="getSeed" class="normal">去領種子</li>
-
-      <li v-if="owner_msg.crazy_seed" @click="plantSeed(true)" class="crazy"></li>
-      <li v-else @click="buySeed" class="crazy">購賣</li>
+    <ul @click="emptyClick()" class="choose" :class="[{noBg:(!first && info.land_id == 1) || info.land_id != 1},'step'+empty]">
+      <!-- v-if="owner_msg.free_seed" -->
+      <li @click="species(1)" class="normal"></li>
+      <!-- <li v-else @click="getSeed" class="normal">去領種子</li> -->
+      <!-- v-if="owner_msg.crazy_seed" -->
+      <li @click="species(2)" class="crazy"></li>
+      <!-- <li v-else @click="buySeed" class="crazy">購賣</li> -->
     </ul>
 
     <!-- 生长中 -->
     <div class="growing" :class="'type'+info.seed" @click="showAccIcon = true">
-      <div class="time"><i class="accelerate" v-if="showAccIcon"></i><span>{{time}}</span></div>
+      <div class="time"><i class="accelerate" v-if="showAccIcon" @click="species(3)"></i><span>{{time}}</span></div>
       <!-- :class="'value'+info.value" -->
       <div class="text">
         <span class="value"><i class="x"></i> <img v-for="(item,index) in numberStr" :key="index" :src="require(`../img/numbers/${item}.png`)" alt=""></span>
-
       </div>
     </div>
 
@@ -27,16 +28,26 @@
         <span class="value"><i class="x"></i> <img v-for="(item,index) in numberStr" :key="index" :src="require(`../img/numbers/${item}.png`)" alt=""></span>
       </div>
     </div>
+
+    <!-- 普通种子确认弹窗 -->
+    <!-- <div class="mask" v-show="showOrdinary">
+      <transition name="slide">
+        <div class="ordinaryPup" v-show="showOrdinary">
+          <p class="ordinaryTips">確定消耗一顆普通種子<img src="../img/normal.png" alt="">,種植5朵星願花嗎</p>
+          <div class="ok" @click="plantSeed(false)">確認</div>
+        </div>
+      </transition>
+    </div> -->
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import downTime from '../utils/downTime';
-import { plant, feed } from '../apis';
+import { plant, feed, mature } from '../apis';
 import { getOffset } from '../utils';
 import { debuglog } from 'util';
-
+import { globalBus } from '../utils/eventBus'
 export default {
   props: ['info'],
   data () {
@@ -44,22 +55,32 @@ export default {
       mature: 1, //成熟阶段交互状态序号 1手指 2铲子 3萝卜。这个状态存在组件中是因为这个状态从一点击开始，后面状态自动走完，中间不能干预。
       time: '00:00',
       timer: null,
-      showAccIcon: false
+      showAccIcon: false,
+      act_id: -1,
+      nums: 0
     };
   },
   computed: {
-    ...mapState(['owner_msg']),
+    ...mapState(['owner_msg', 'first', 'land_info']),
     empty () {
       //空地阶段交互状态序号 1图标 2按钮
       //这个状态存在Store主要考虑点格子外自动状态重置（主要针对空地两种交互状态）
       return this.info.empty || 1;
     },
     numberStr () {
-      console.log(String(this.info.value))
+      //   console.log(String(this.info.value))
       if (this.info.value) {
         return String(this.info.value).split('')
       }
-
+    },
+    openNums () {
+      let n = 0
+      for (let i in this.land_info) {
+        if (this.land_info[i].able) {
+          n++
+        }
+      }
+      return n + 1
     }
   },
   mounted () {
@@ -69,6 +90,13 @@ export default {
     this.stopTimer();
   },
   methods: {
+
+    extensionClick () {
+      globalBus.$emit('commonEvent', () => {
+        this.$parent.extensionPup = true
+        this.vxc('setExtension', this.info.land_id)
+      })
+    },
     updateEmptyStep (step) {
       this.$store.commit('updateLandInfo', {
         land_id: this.info.land_id,
@@ -92,42 +120,15 @@ export default {
         if (timeObj) {
           this.time = timeObj.minute + ':' + timeObj.second;
           const status = this.info.status;
-          if (status > 0 && timeObj.end) {
-            if (status == 1) {
-              //成长中
-              // const second = 60 * 60;
-              const second = 10;
-              downTime('land' + id, second);
-              this.$store.commit('updateLandInfo', {
-                land_id: id,
-                second: second,
-                status: 2,
-              });
-            } else if (status == 2) {
-              //等待收成
-              const seed = this.info.seed;
-              if (seed == 1 && this.mature == 1) { //如果已经开始领取了，停止状态自动更新，让收成动画播放完整
-                //普通种子（1小时内不领取消失）
-                this.$store.commit('updateLandInfo', {
-                  land_id: id,
-                  empty: 1,
-                  status: 0,
-                });
-              } else if (seed == 2) {
-                //疯狂种子（倒计时结束，second设为0隐藏时间，因为用钱购卖的原因成熟1小时后也不自动消失）
-                if (this.info.second != 0) {
-                  this.$store.commit('updateLandInfo', {
-                    land_id: id,
-                    empty: 1,
-                    value: 100, //疯狂种子成熟一小时后值由110变为100
-                    second: 0,
-                  });
-                }
-              }
-            }
+          if (status == 1 && timeObj.end) {
+            // this.updateLandInfo(4)
+            this.vxc('updateLandInfo', {
+              id: this.info.id,
+              status: 2,
+            })
           }
         }
-      }, 1000);
+      }, 1000)
     },
     stopTimer () {
       clearInterval(this.timer);
@@ -142,65 +143,31 @@ export default {
     buySeed () {
       alert('購賣瘋狂種子');
     },
-    async plantSeed (crazySeed) {
-      const id = this.info.land_id;
-      const type = crazySeed ? 2 : 1;
-
-      if (type == 1 && !this.owner_msg.free_seed) {
-        alert('普通種子數量不足');
-        return;
-      } else if (type == 2 && !this.owner_msg.crazy_seed) {
-        alert('瘋狂種子數量不足');
-        return;
-      }
-
-      // const second = 30 * 60;
-      const second = 10;
-      downTime('land' + id, second);
-
-      this.$store.commit('updateLandInfo', {
-        land_id: id,
-        empty: 1,
-        seed: type,
-        value: 100,
-        second: second,
-        status: 1,
-      });
-      setTimeout(() => {
-        this.$store.commit('updateLandInfo', {
-          land_id: id,
-          seed: 3,
-        });
-      }, second * 1000 / 2)
-      this.$store.commit(type == 2 ? 'updateCrazySeed' : 'updateNormalSeed');
-      return;
-
-      const res = await plant(id, type);
-      if (res.data) {
-        const { response_status, response_data } = res.data;
-        if (response_status && response_status.code === 0) {
-
-        }
-      }
-    },
-
     async getCarrot () {
+      //   globalBus.$emit('commonEvent', () => {
       this.showAccIcon = false
       const id = this.info.land_id;
-      this.updateMatureStep(2);
-      setTimeout(() => {
-        this.updateMatureStep(3);
-        this.showCarrotAnim();
-        setTimeout(() => {
-          this.updateMatureStep(1);
-          this.$store.commit('addRadish', this.info.value);
-          this.$store.commit('updateLandInfo', {
-            land_id: id,
-            empty: 1,
-            status: 0,
-          });
-        }, 1000);
-      }, 2000);
+      mature(id).then(res => {
+        if (res.data.response_status.code == 0) {
+          this.updateMatureStep(2);
+          setTimeout(() => {
+            this.updateMatureStep(3);
+            this.showCarrotAnim();
+            setTimeout(() => {
+              this.updateMatureStep(1);
+              this.$store.commit('addChance', this.info.value);
+              this.$store.commit('updateLandInfo', {
+                land_id: id,
+                empty: 1,
+                status: 0,
+              });
+            }, 1000);
+          }, 2000);
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+
       return;
 
       const res = await feed(id);
@@ -210,6 +177,7 @@ export default {
 
         }
       }
+      //   })
     },
 
     showCarrotAnim () {
@@ -222,7 +190,7 @@ export default {
       div.style.top = landOffset.top + 'px';
       document.body.appendChild(div);
       setTimeout(() => {
-        console.log(valueOffset.left, valueOffset.top)
+        // console.log(valueOffset.left, valueOffset.top)
         div.style.left = valueOffset.left + 'px';
         div.style.top = valueOffset.top + 'px';
         div.style.transform = 'scale(.5)';
@@ -235,6 +203,30 @@ export default {
         }, 1000);
       }, 50);
     },
+
+    species (val) {
+      //val  1 普通種子 2白色種子 3加速器
+      let obj = {
+        land_id: this.info.land_id,
+        type: val == 3 ? 0 : val,
+      }
+      this.vxc('setSpeciesObj', obj)
+      if (val == 1) {
+        this.$parent.userNotType = 1
+        this.$parent.showOrdinary = true
+      } else if (val == 2) {
+        this.$parent.userNotType = 2
+        this.$parent.showWhitePup = true
+      } else {
+        if (this.info.seed == 2) {
+          this.$parent.acceleratorPup = true
+        } else {
+          this.$parent.acceleratorPup2 = true
+        }
+
+      }
+
+    }
   },
 };
 </script>
@@ -338,6 +330,9 @@ export default {
       background-size: 0.93rem 1rem;
       //   animation: packet 1s linear infinite alternate;
       animation: circleHide 1s ease infinite both;
+      &.noBg {
+        background: none !important;
+      }
     }
     &.step2 {
       padding: 0.2rem 0 0 0.35rem;
@@ -550,6 +545,24 @@ export default {
   &.status2 .mature {
     display: block;
   }
+  &.land7 {
+    &.able {
+      background: url('../img/lands/able_1.png') !important;
+      background-size: 100% 100% !important;
+    }
+  }
+  &.land8 {
+    &.able {
+      background: url('../img/lands/able_2.png') !important;
+      background-size: 100% 100% !important;
+    }
+  }
+  &.land9 {
+    &.able {
+      background: url('../img/lands/able_3.png') !important;
+      background-size: 100% 100% !important;
+    }
+  }
 }
 
 @keyframes headShake {
@@ -582,5 +595,28 @@ export default {
 }
 .carrotValueAnim {
   animation: headShake 1s linear infinite alternate;
+}
+
+.ordinaryPup {
+  width: 6rem;
+  .ordinaryTips {
+    height: 1.3rem;
+    padding: 0 0.6rem;
+    vertical-align: middle;
+    img {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+  }
+  .ok {
+    width: 2.54rem;
+    height: 0.74rem;
+    background: RGBA(255, 209, 165, 1);
+    text-align: center;
+    line-height: 0.74rem;
+    color: rgba(101, 72, 209, 1);
+    margin: 0 auto;
+    border-radius: 0.5rem;
+  }
 }
 </style>
