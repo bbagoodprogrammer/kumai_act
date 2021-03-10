@@ -1,13 +1,13 @@
 <template>
   <div class="trailer">
-    <div class="title">打擂歌單預告</div>
+    <div class="title">معاينة قائمة الأغاني المنافسة</div>
     <div class="searchBox">
-      <input type="text" placeholder="打擂歌曲/歌手名" v-on:input="inputChange()" v-model="searchMsg">
+      <input type="text" placeholder="اسم المغني\اغاني مسابقة" v-on:input="inputChange()" v-model="searchMsg">
       <span class="search" @click="search()"></span>
     </div>
-    <p class="tips">下期歌單{{stime}}-{{etime}}<br />非下期打擂期間發佈的練習歌曲無法報名參賽</p>
+    <p class="tips">قائمة الأغاني التالية <span class="dl">{{stime}}-{{etime}}</span> <br />لا يمكن تسجيل الأغاني التدريبية التي لم يتم إصدارها خلال المسابقة التالية في المسابقة</p>
     <div class="noSongTips">
-      <h3 v-if="noData">預告歌單暫無該打擂歌曲</h3>
+      <h3 v-if="noData">لا توجد مثل هذه الأغنية في معاينة قائمة الأغاني </h3>
     </div>
     <ul class="songList scrollable">
       <li v-for="(item,index) in showSong" :key="index">
@@ -16,7 +16,7 @@
           <div class="songNick"><em>{{item.artist}}</em></div>
         </div>
         <div class="songStatusBtn" @click="goSong(item.accid)">
-          <em>練習</em>
+          <em>ممارسة</em>
         </div>
       </li>
     </ul>
@@ -29,7 +29,7 @@ import loading from "../../components/Loading"
 import getDate from "../../utils/getDate"
 export default {
   components: { loading },
-  data() {
+  data () {
     return {
       sList: [],
       showSong: [],
@@ -43,19 +43,19 @@ export default {
     }
   },
   computed: {
-    stime() {
+    stime () {
       if (this.time.stime) {
         return getDate(new Date(this.time.stime * 1000), 2)
       }
     },
-    etime() {
+    etime () {
       if (this.time.etime) {
         return getDate(new Date(this.time.etime * 1000), 2)
       }
     }
   },
-  created() {
-    document.title = '打擂歌曲預告'
+  created () {
+    document.title = 'معاينة قائمة الأغاني المنافسة'
     this.version_allowed = sessionStorage.getItem('version_allowed')
     this.update = sessionStorage.getItem('update')
     api.getNextSong().then(res => {
@@ -65,14 +65,14 @@ export default {
       this.showSong = this.sList
     })
   },
-  mounted() {
+  mounted () {
     // this.scrollable = this.$el.querySelector('.scrollable');
     // if (this.scrollable) {
     //   this.scrollable.addEventListener('scroll', this.onScroll);
     // }
   },
   methods: {
-    inputChange() {
+    inputChange () {
       this.showSong = this.sList
       this.noData = false
     },
@@ -93,12 +93,12 @@ export default {
     //     }
     //   }
     // },
-    goSong(sid) {
+    goSong (sid) {
       // location.href = `record:${sid}`
       var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
       if (!this.update) {
         this.vxc('setToast', {
-          msg: "此版本過低，無法參賽！請前往app store下載“高歌”參賽喔"
+          msg: "هذا الإصدار منخفض جدًا للدخول! يرجى الذهاب إلى متجر التطبيقات لتنزيل \"Super Voice\" للمشاركة"
         })
         return
       }
@@ -113,7 +113,7 @@ export default {
       }
       // location.href = 'songid:{"songlist":[' + sid + ' ],"index":0}';
     },
-    search() {
+    search () {
       if (this.searchMsg != '') {
         api.searchSong(this.searchMsg, 1).then(res => {
           const data = res.data.response_data.data
@@ -222,8 +222,8 @@ body {
               display: inline-block;
               width: 0.7rem;
               height: 0.31rem;
-              background: url(../../assets/img/songIcon.png);
-              background-size: 100% 100%;
+              //   background: url(../../assets/img/songIcon.png);
+              //   background-size: 100% 100%;
               margin-left: 0.13rem;
             }
           }

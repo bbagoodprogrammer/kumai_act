@@ -1,5 +1,6 @@
 <template>
-  <div class="page pageIndex">
+  <div class="page pageIndex" :class="{bg:!showBannerBg}">
+    <canvas id="bannerBg" v-show="!showBannerBg"></canvas>
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
@@ -41,12 +42,18 @@ import ActFooter from "./ActFooter"
 import { globalBus } from '../utils/eventBus'
 import Luck from "./Luck"
 import Strategy from "./Strategy"
+
+import { Downloader, Parser, Player } from 'svga.lite'
+
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
 export default {
   data () {
     return {
       isShare: false,
       showLuck: false,
-      showStrategy: false
+      showStrategy: false,
+      showBannerBg: true,
     }
   },
   computed: {
@@ -57,6 +64,7 @@ export default {
     this.init()
   },
   mounted () {
+    this.bannerGo()
     document.addEventListener(isSupportedTouch ? 'touchend' : 'click', this.resetLandSteps);
     this.$store.commit('setLandInfo');
   },
@@ -115,7 +123,15 @@ export default {
     downApp () {
       APP()
     },
-
+    async bannerGo () {
+      let canvas = document.getElementById('bannerBg')
+      const fileData = await downloader.get(`	http://fstatic.cat1314.com/uc/svga/8f6a7b9695945d9de2515f0d45ff6ac3_1615357987.svga`);
+      const data = await parser.do(fileData);
+      let player = new Player(canvas)
+      await player.mount(data)
+      this.showBannerBg = false
+      player.start()
+    }
   },
   components: {
     LandsBox,
@@ -136,6 +152,20 @@ export default {
 .pageIndex {
   background: rgba(101, 98, 229, 1) url(../img/banner.png) no-repeat;
   background-size: 100% auto;
+  //   padding-bottom: 2rem;
+  &.bg {
+    // background: url(../assets/img/banner1.jpg) center 0 no-repeat;
+    // background-size: 100% auto;
+    background: rgba(101, 98, 229, 1);
+  }
+  #bannerBg {
+    width: 7.5rem;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
   .header {
     height: 4.85rem;
   }
@@ -143,15 +173,17 @@ export default {
     position: absolute;
     top: 0.54rem;
     right: 0.1rem;
+    overflow: hidden;
+    width: 1.8rem;
     > div {
-      margin-bottom: 0.1rem;
+      margin: 0 auto 0.1rem;
       width: 1.46rem;
       height: 1.23rem;
       background-size: 100% 100%;
       position: relative;
       span {
         display: block;
-        width: 100%;
+        width: 1.46rem;
         height: 0.4rem;
         text-align: center;
         font-size: 0.22rem;

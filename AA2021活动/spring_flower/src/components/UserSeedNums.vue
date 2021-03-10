@@ -7,7 +7,7 @@
       <div class="seed1">
         <div class="top">
           <div class="imgBox">
-            <img src="../img/seedIcon1.png" alt="">
+            <img src="../img/getSeed1.png" alt="">
             <div class="value"><i class="x"></i> <img v-for="(item,index) in String(seed).split('')" :key="index" :src="require(`../img/numbers/${item}.png`)" alt=""></div>
           </div>
           <strong>普通種子</strong>
@@ -19,7 +19,7 @@
       <div class="seed1">
         <div class="top">
           <div class="imgBox">
-            <img src="../img/seedIcon2.png" alt="">
+            <img src="../img/getSeed2.png" alt="">
             <div class="value"><i class="x"></i> <img v-for="(item,index) in String(seed1).split('')" :key="index" :src="require(`../img/numbers/${item}.png`)" alt=""></div>
           </div>
           <strong>白色種子</strong>
@@ -31,10 +31,10 @@
       <div class="seed1">
         <div class="top">
           <div class="imgBox">
-            <img src="../img/seedIcon3.png" alt="">
+            <img src="../img/accIcon.png" alt="">
             <div class="value"><i class="x"></i> <img v-for="(item,index) in String(hoping).split('')" :key="index" :src="require(`../img/numbers/${item}.png`)" alt=""></div>
           </div>
-          <strong>普通種子</strong>
+          <strong>花神祝福</strong>
         </div>
         <div class="buttom">
           消耗一次花神祝福，即可減少目標花圃中花朵10分鐘成長時間
@@ -52,12 +52,12 @@ export default {
   },
   methods: {
     scorllTo () {
-
+      //   document.getElementsByClassName('tabs')[0].scrollIntoView();
       let a = document.getElementsByClassName('tabs')[0].getBoundingClientRect().top
-      let c = document.documentElement.scrollTop
+      let c = document.documentElement.scrollTop || document.body.scrollTop
       let e = a + c - 10
       this.timer = setInterval(() => {
-        let c = document.documentElement.scrollTop
+        let c = document.documentElement.scrollTop || document.body.scrollTop
         let t = (e - c) / 10
         window.scrollTo(0, c + t)
         if (t < 8) {
@@ -71,6 +71,8 @@ export default {
 
 <style lang="scss">
 .seedNums {
+  position: relative;
+  z-index: 10;
   .get {
     width: 3.98rem;
     height: 1.67rem;

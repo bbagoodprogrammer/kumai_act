@@ -19,12 +19,12 @@
       <li v-for="(item,index) in showSong" :key="index">
         <div class="songMsg">
           <div class="sName">{{item.name}}<i v-if="item.mp3 != ''"></i> </div>
-          <div class="songNick"><em>{{item.artist}}</em><strong> / 打擂 {{item.join}} 人</strong></div>
+          <div class="songNick"><em>{{item.artist}}</em><strong> / {{item.join}} شخص في PK</strong></div>
         </div>
         <div class="songStatusBtn" :class="{black:!can||item.deleted}">
           <em v-if="item.deleted">انسحب من المسابقة</em>
           <em v-else-if="item.current ==1" @click="goSong(item.accid)">ممارسة</em>
-          <em v-else-if="item.status == 0" @click="goSong(item.accid)">打擂</em>
+          <em v-else-if="item.status == 0" @click="goSong(item.accid)">PK</em>
           <em v-else-if="item.status == 1" @click="commitSong(item.accid,index)">تقدّم الأغنية</em>
           <em v-else-if="item.status == 2">شاركت</em>
         </div>
@@ -34,8 +34,8 @@
       <transition name="slide">
         <div class="overTime" v-show="isOverTime">
           <i class="close" @click="closeOverTime()"></i>
-          <h3>無法打擂</h3>
-          <p>本期打擂時間已結束，快去做評委評分吧！<br />超多好禮在等你</p>
+          <h3>لا يمكن PK</h3>
+          <p>انتهى وقت PK في هذه المسابقة ، لذا لنحقق هدف الحكام! الكثير من الهدايا الجيدة في انتظارك</p>
           <div class="goBtn" @click="goSongVote()">كن الحكّم</div>
         </div>
       </transition>
@@ -54,12 +54,12 @@
                 <div class="songNick">{{getDateSecond(item.addtime)}}</div>
               </div>
               <div class="songStatusBtn" @click="commit(item)">
-                <em>選擇</em>
+                <em>اختار </em>
               </div>
             </li>
           </ul>
           <div class="choicetips">
-            <p>1、需演唱{{time}}後發佈的官方指定伴奏參賽（即需演唱點擊打擂後跳轉的伴奏），演唱其他伴奏無法參賽</p>
+            <p>1. من الضروري غناء المرافقة الرسمية الصادرة بعد {{time}} للمشاركة في المسابقة (يغنى المرافقة التي تقفز بعد النقر فوق الزر PK) ، والغناء المرافق الأخرى لا يمكن المشاركة</p>
             <p>2. تقتصر أنواع الأعمال المشاركة في المسابقة على عمل فردي</p>
             <p>3. يمكن اختيار عمل واحد فقط لكل مرافق للمشاركة في المسابقة</p>
             <p>4. يمكن اختيار 20 مرافقًا على الأكثر للمشاركة في PK في كل مسابقة</p>
@@ -160,7 +160,7 @@ export default {
         var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
         if (!this.update) {
           this.vxc('setToast', {
-            msg: "此版本過低，無法參賽！請前往app store下載“高歌”參賽喔"
+            msg: "هذا الإصدار منخفض جدًا للدخول! يرجى الذهاب إلى متجر التطبيقات لتنزيل \"Super Voice\" للمشاركة"
           })
           return
         }
@@ -282,12 +282,14 @@ export default {
             display: inline-block;
             width: 0.7rem;
             height: 0.31rem;
-            background: url(../assets/img/songIcon.png);
-            background-size: 100% 100%;
+            // background: url(../assets/img/songIcon.png);
+            // background-size: 100% 100%;
             margin-left: 0.13rem;
           }
         }
         .songNick {
+          display: flex;
+          align-items: center;
           em {
             font-size: 0.24rem;
             color: rgba(165, 218, 255, 1);
@@ -393,8 +395,8 @@ export default {
               display: inline-block;
               width: 0.7rem;
               height: 0.31rem;
-              background: url(../assets/img/songIcon.png);
-              background-size: 100% 100%;
+              //   background: url(../assets/img/songIcon.png);
+              //   background-size: 100% 100%;
               margin-left: 0.13rem;
             }
           }

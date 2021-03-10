@@ -77,7 +77,7 @@
             </span>
           </div>
           <div class="fallowNums">
-            減少成長時間<em>10</em>分鐘
+            減少成長時間<em>{{acceleratorNums * 10}}</em>分鐘
           </div>
           <div class="ok" @click="useAccelerator(1)">確認</div>
         </div>
@@ -270,6 +270,7 @@ export default {
     extensionClick () {
       extension().then(res => {
         if (res.data.response_status.code == 0) {
+          this.vxc('reduxExNums')
           this.extensionPup = false
           this.$store.commit('updateLandInfo', {
             land_id: this.land_id,

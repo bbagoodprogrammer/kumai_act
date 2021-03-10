@@ -3,7 +3,7 @@
     <span class="preSongTips" @click="listShowClcik()"><strong> التصويت للمجموعة {{list.length}}</strong> <i :class="{rotate:show}"></i> </span>
     <ul :class="{hide:!show}" v-if="index<=1">
       <li v-for="(item,index) in list " :key="index">
-        <span class="tips">投</span>
+        <span class="tips">تصويت</span>
         <img v-lazy="item.avatar" alt="" class="av">
         <div class="preUserMsg">
           <div class="nick">{{item.nick}}</div>

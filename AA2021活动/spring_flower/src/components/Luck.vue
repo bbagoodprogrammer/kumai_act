@@ -1,5 +1,6 @@
 <template>
   <div class="luck">
+    <canvas id="creatAni"></canvas>
     <i class="close" @click="closeLuckPup()"></i>
     <div class="luckTips">
       <span>搖一搖星願瓶掉落豐富獎勵！消耗20朵星願花搖一次哦！</span>
@@ -65,7 +66,7 @@
               <strong>{{item.name}}</strong>
             </div>
           </div>
-          <p class="luckTips2">獎勵已派發您的帳號上,請注意查收哦！</p>
+          <p class="luckTips2">獎勵已派發您的賬號上,請注意查收哦！</p>
           <div class="ok" @click="showLuckGiftPup = false">確認</div>
         </div>
       </transition>
@@ -103,6 +104,11 @@
 import { mapState } from "vuex"
 import { getDayGift, lottery, lotteryRecord } from "../apis"
 import History from "./History"
+import { Downloader, Parser, Player } from 'svga.lite'
+import { globalBus } from '../utils/eventBus'
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
+
 export default {
   components: { History },
   data () {
@@ -136,7 +142,7 @@ export default {
         3: [
           {
             img: require('../img/gift/gift4.png'),
-            name: '花神祝福*15'
+            name: '花神祝福*30'
           },
           {
             img: require('../img/gift/gift3.png'),
@@ -150,45 +156,69 @@ export default {
   computed: {
     ...mapState(['task_day_gift', 'day_flower', 'task_day', 'chance'])
   },
+  mounted () {
+    this.aniGo()
+  },
   methods: {
+
     luck (val) {
-      if (this.chance < val * 20) {
-        this.noFalowPup = true
-      } else {
-        this.act_index = val
-        lottery(val == 1 ? 0 : 1).then(res => {
+      globalBus.$emit('commonEvent', () => {
+        if (this.chance < val * 20) {
+          this.noFalowPup = true
+        } else {
+          lottery(val == 1 ? 0 : 1).then(res => {
+            if (res.data.response_status.code == 0) {
+              this.showLuckGiftPup = true
+              this.prize = res.data.response_data.prize
+              const ret = res.data.response_data.ret
+              this.vxc('addLuckSeed', ret)
+              this.vxc('reduxChance', val * 20)
+            } else {
+              this.toast(res.data.response_status.error)
+            }
+          })
+        }
+      })
+    },
+    getGift (id) {
+      globalBus.$emit('commonEvent', () => {
+        getDayGift(id).then(res => {
           if (res.data.response_status.code == 0) {
-            this.showLuckGiftPup = true
-            this.prize = res.data.response_data.prize
-            const ret = res.data.response_data.ret
-            this.vxc('addLuckSeed', ret)
-            this.vxc('reduxChance', val * 20)
+            this.toast(`領取成功！`)
+            this.vxc('setGiftStatus', id)
+            this.act_index = id
+            this.showGiftPup = true
           } else {
             this.toast(res.data.response_status.error)
           }
         })
-      }
-
-    },
-    getGift (id) {
-      getDayGift(id).then(res => {
-        if (res.data.response_status.code == 0) {
-          this.toast(`領取成功！`)
-          this.vxc('setGiftStatus', id)
-          this.showGiftPup = true
-        } else {
-          this.toast(res.data.response_status.error)
-        }
       })
     },
     closeLuckPup () {
       this.$parent.showLuck = false
-    }
+    },
+    async aniGo () {
+      let fileData1 = await downloader.get('http://fstatic.cat1314.com/uc/svga/129c2cf7440a6381cfd18c7df211b95c_1615341506.svga')
+      let svgaData1 = await parser.do(fileData1)
+      let canvas = document.getElementById('creatAni')
+      console.log()
+      this.player = new Player(canvas)
+      await this.player.mount(svgaData1)
+      this.player.start()
+    },
   }
 }
 </script>
 
 <style lang="scss">
+#creatAni {
+  display: block;
+  width: 2.92rem;
+  height: 3.25rem;
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
+}
 .luck {
   width: 6.4rem;
   height: 10.4rem;

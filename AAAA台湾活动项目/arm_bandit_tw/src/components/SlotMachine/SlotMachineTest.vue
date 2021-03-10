@@ -19,10 +19,10 @@ import APP from "../../utils/openApp.js"
 import { globalBus } from '../../utils/eventBus.js'
 import { mapState } from "vuex"
 export default {
-  data() {
+  data () {
     return {
       list: [
-        { id: 1, src: require("../../assets/img/ward1.png") },
+        // { id: 1, src: require("../../assets/img/ward1.png") },
         { id: 2, src: require("../../assets/img/ward2.png") },
         { id: 3, src: require("../../assets/img/ward3.png") },
         { id: 4, src: require("../../assets/img/ward4.png") },
@@ -68,21 +68,21 @@ export default {
   computed: {
     ...mapState(["drawCions", "actState", "coins", "isShare"])
   },
-  created() {
+  created () {
     this.total();
   },
   methods: {
-    getRand(start, end) {
+    getRand (start, end) {
       const len = end - start;
       return start + Math.round(Math.random() * len);
     },
-    total() {
+    total () {
       var that = this
       globalBus.$on('countNumber', () => {
         that.startGame()
       });
     },
-    startGame() {
+    startGame () {
       var that = this
       if (that.isShare) { //分享模式下打开APP
         APP()
@@ -123,7 +123,7 @@ export default {
         that.showT = true
       }
     },
-    onEnd(result) { //动画结束时重置开关
+    onEnd (result) { //动画结束时重置开关
       this.$store.commit('changlotterylist', result) //提交抽奖结果，后弹窗
       //判断有无抽中老虎币，有的话更新当前用户老虎币数量
       var getCoins = 0
@@ -141,10 +141,10 @@ export default {
       this.drawSwitch = true //请求开启开关
       this.showMinToast = true
     },
-    hideToast() {
+    hideToast () {
       this.showMinToast = false
     },
-    closeToast() {
+    closeToast () {
       this.showT = false
     }
   },
