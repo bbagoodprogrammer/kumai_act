@@ -460,7 +460,7 @@ export default {
     height: 0.8rem;
     background: url(../assets/img/box/okBtn.png);
     background-size: 100% 100%;
-    font-size: 0.32rem;
+    font-size: 0.28rem;
     color: rgba(133, 88, 14, 1);
     font-weight: 600;
     margin: 0.2rem auto 0;
