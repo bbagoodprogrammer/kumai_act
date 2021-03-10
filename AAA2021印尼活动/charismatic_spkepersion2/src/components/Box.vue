@@ -21,7 +21,8 @@
       <transition name="slide">
         <div class="luckPup" v-if="shouLuckPup">
           <i class="close" @click="shouLuckPup = false"></i>
-          <p class="lvTips">Nilai bintang hari ini mencapai {{cilckItem.limit}} bisa undian <em>（Meningkatkan ke Lv.{{cilckItem.level}}）</em></p>
+          <!-- <em>（Meningkatkan ke Lv.{{cilckItem.level}}）</em> -->
+          <p class="lvTips">Nilai bintang hari ini mencapai {{cilckItem.limit}} bisa undian </p>
           <slot-machine-test ref="luck" :cilckItem="cilckItem" @setPacketStatus="setPacketStatus"></slot-machine-test>
           <div class="luckGo" :class="{can:cilckItem.can && !cilckItem.get,ed:cilckItem.get}" @click="goLuck()"></div>
         </div>
@@ -509,9 +510,9 @@ export default {
 }
 .giftTips {
   margin-top: 1rem;
-  padding: 0 0.5rem;
+  padding: 0 0.35rem;
   text-align: center;
-  font-size: 0.28rem;
+  font-size: 0.24rem;
 }
 .giftShow {
   width: 7.18rem;

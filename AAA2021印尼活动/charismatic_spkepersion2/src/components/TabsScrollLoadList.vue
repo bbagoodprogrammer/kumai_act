@@ -596,7 +596,9 @@ export default {
             text-overflow: ellipsis;
           }
           .add {
-            width: 1.07rem;
+            display: inline-block;
+            // width: 1.07rem;
+            padding: 0 0.06rem;
             height: 0.33rem;
             background: linear-gradient(90deg, #ffd6ba 0%, #fdf2d5 100%);
             border: 0.02rem solid #ffef9d;

@@ -4,7 +4,7 @@
     <div class="trunMsg">
       <p class="msgItem" v-for="(item,index) in notice" :key="index" v-if="index == msgIndex">
         <!-- <img :src="gifts[item.gid].img" alt=""> -->
-        UID:{{item.uid}} <em class="nick"> {{item.nick}}</em>mengundian <em>{{gifts[item.gid].name}}</em>
+        UID:{{item.uid}} <em class="nick"> {{item.nick}} </em> mengundian <em>{{gifts[item.gid].name}}</em>
 
       </p>
     </div>
