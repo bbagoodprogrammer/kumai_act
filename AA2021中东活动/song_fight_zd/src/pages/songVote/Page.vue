@@ -2,7 +2,7 @@
   <div class="songVote" @click="closeMusic()">
     <div class="title"></div>
     <div class="songCon">
-      <div class="pkTitle">打擂台</div>
+      <div class="pkTitle">مسرح PK</div>
       <div class="errorTips" v-if="errorTips != ''" v-html="errorTips"></div>
       <div class="con" v-else>
         <div class="sName">《{{sounds[0]?sounds[0].name:''}}》</div>
@@ -39,8 +39,8 @@
         </div>
         <div class="chioneBtn">
           <div class="chioneItem" v-if="!chioneState">
-            <span @click="chione(0)">選他贏</span>
-            <span @click="chione(1)">選他贏</span>
+            <span @click="chione(0)">اختره للفوز</span>
+            <span @click="chione(1)">اختره للفوز</span>
           </div>
           <div class="chioneUserBtn" v-else>
             <i class="comments" @click="comments(chioneUserMsg.sid)"></i>
@@ -53,9 +53,10 @@
     <div class="chioneChange">
       <div class="next" @click="clearHowl()" v-if="chioneState">下一組></div>
       <p class="chioneTips">
-        1、點擊播放按鈕收聽參賽歌曲，每首收聽10S後選擇其中一位勝出<br />
-        2、評委每天評分前30組歌每組歌曲將獲得5金豆<br />
-        3、當期每連投8組投中（所投的歌曲在PK中獲得更多票數），可隨機獲得一個皇冠車背包禮物（600金豆）/船錨背包禮物（1金幣）/2天VIP/法拉利座駕（2天）
+        "1. انقر فوق زر التشغيل للاستماع إلى الأغاني المشاركة في المسابقة. وبعد الاستماع إلى كل أغنية لمدة 10 ثوانٍ ، اختر أحد الفائزين<br />
+        2. سيحرز الحكام أول 30 مجموعة من الأغاني كل يوم وستحصل كل مجموعة من الأغاني على 5 فول ذهبي<br />
+        3. ستتلقى كل 8 أصوات متتالية التي تفوز بلتصويت المسابقة الحالية هدايا عشوائية: (عملتان)Flowers*10\Drinks*1（100 فول ذهبي）\VIP(يومين)\سيارة طائر اللهب(يومين)"
+
       </p>
     </div>
     <loading />
@@ -69,7 +70,7 @@ import getString from "../../utils/getString"
 Howler.autoUnlock = false;
 export default {
   components: { loading },
-  data() {
+  data () {
     return {
       // "mp3/0.mp3", "mp3/1.mp3"
       sounds: [],
@@ -103,12 +104,12 @@ export default {
     // nowHowl() {
     //   return this.howl[this.nowIndex].howl
     // },
-    maxTime() {
+    maxTime () {
       if (this.nowHowl) {
         return this.formatDate(this.nowHowl.duration())
       }
     },
-    playing() {
+    playing () {
       if (this.nowHowl) {
         return this.nowHowl.playing()
       }
@@ -121,13 +122,13 @@ export default {
     //   this.musicGo()
     // }
   },
-  created() {
-    document.title = '打擂台'
+  created () {
+    document.title = 'مسرح PK'
     sessionStorage.setItem("need-refresh", true);
     this.setData()
   },
   methods: {
-    init(next) {
+    init (next) {
       this.setAv()
       var that = this
       // if (next) {
@@ -215,7 +216,7 @@ export default {
       this.musicGo()
       // this.ready = true
     },
-    setAv() {
+    setAv () {
       this.randAv1 = Math.floor(Math.random() * (4)) + 1;
       this.randAv2 = Math.floor(Math.random() * (4)) + 1;
       if (this.randAv2 === this.randAv1) {
@@ -226,7 +227,7 @@ export default {
         }
       }
     },
-    setData(val) {
+    setData (val) {
       api.getWork().then(res => {
         // console.log(res.data.response_status.code)
         if (res.data.response_status.code == 0) {
@@ -239,7 +240,7 @@ export default {
         }
       })
     },
-    musicGo() {
+    musicGo () {
       clearInterval(this.timer)
       this.timer = setInterval(() => {
         // console.log(this.sound.seek(), this.sound, this.sound.duration())
@@ -262,7 +263,7 @@ export default {
         }
       }, 1000)
     },
-    change() {
+    change () {
       // this.sound.pause()
       clearInterval(this.timer)
       let t = (this.now / 100) * this.nowHowl.duration()
@@ -270,7 +271,7 @@ export default {
       //this.sound.play();
       this.musicGo()  //這裡會重複播放
     },
-    go(index) {
+    go (index) {
       // alert(index)
       // alert(index, this.nowIndex)
       // if (this.ready != 2) {
@@ -299,14 +300,14 @@ export default {
 
       }
     },
-    chione(val) {
+    chione (val) {
       console.log(this.listenTime1, this.listenTime2)
       if (this.listenTime1 < 10 && this.listenTime2 < 10) {
-        this.toast(`每位選手聽夠10S 才能投票，2位選手都還未聽夠10S喔`)
+        this.toast(`يمكن لكل لاعب التصويت فقط بعد سماع عدد كافٍ من 10S ، ولم يسمع اللاعب الموجود على اليسار ما يكفي من 10S حتى الآن.`)
       } else if (this.listenTime1 < 10) {
-        this.toast(`每位選手聽夠10S 才能投票，左邊的選手還未聽夠10S喔 `)
+        this.toast(`يمكن لكل لاعب التصويت فقط بعد سماع عدد كافٍ من 10S ، ولم يسمع اللاعب الموجود على اليمين ما يكفي من 10S حتى الآن.`)
       } else if (this.listenTime2 < 10) {
-        this.toast(`每位選手聽夠10S 才能投票，右邊的選手還未聽夠10S喔 `)
+        this.toast(`يمكن لكل لاعب التصويت فقط بعد سماع عدد كافٍ من 10S ، ولم يسمع اللاعبان ما يكفي من 10S حتى الآن. `)
       } else {
         api.selectWork(this.pk, this.sounds[val].id).then(res => {
           if (res.data.response_status.code == 0) {
@@ -331,7 +332,7 @@ export default {
         })
       }
     },
-    sconedTime() {
+    sconedTime () {
       clearInterval(this.giftTimer)
       let lastSeek = 0
       let sing = null
@@ -349,7 +350,7 @@ export default {
         }
       }, 200)
     },
-    clearHowl() {  //請求下一對,重置狀態
+    clearHowl () {  //請求下一對,重置狀態
       this.nowHowl.stop()
       for (let i in this.howl) {
         this.howl[i].howl.unload()
@@ -367,7 +368,7 @@ export default {
       this.ready = 0
       this.setData('next')
     },
-    formatDate(second) {
+    formatDate (second) {
       second = Math.round(second)
       var minute = parseInt(second / 60 % 60, 10) < 10 ? '0' + parseInt(second / 60 % 60, 10) : parseInt(second / 60 % 60, 10)
       var second = parseInt(second % 60, 10) < 10 ? '0' + parseInt(second % 60, 10) : parseInt(second % 60, 10)
@@ -376,10 +377,10 @@ export default {
       }
       return `00:00`
     },
-    comments(sid) {
+    comments (sid) {
       location.href = 'songid:{"songlist":[' + sid + ' ],"index":0}';
     },
-    attention(uid, type) {
+    attention (uid, type) {
       if (type) { return }
       api.appAttemsion(uid).then(res => {
         if (res.data.response_data) {
@@ -389,7 +390,7 @@ export default {
         }
       })
     },
-    share() {
+    share () {
       var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       let uid = getString('uid')
       // console.log(this.chioneUserMsg)
@@ -397,21 +398,21 @@ export default {
         "share_title": this.chioneUserMsg.song.name,
         "share_content": this.chioneUserMsg.song.desc,
         "share_image": this.chioneUserMsg.userinfo.avatar,
-        "link": `http://17sing.tw/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge`,
+        "link": `http://act.supervoice-app.com/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge`,
         "image": this.chioneUserMsg.userinfo.avatar,
-        "share_url": `http://17sing.tw/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge`
+        "share_url": `http://act.supervoice-app.com/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge`
       }
       if (ios) {
         if (window.share != undefined) {
           share(JSON.stringify(data))
         } else {
-          location.href = `shareUserInfo://17sing.tw/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge&shareText=${this.chioneUserMsg.desc}&userImg=${this.chioneUserMsg.userinfo.avatar}&title=${this.chioneUserMsg.song.name}`;
+          location.href = `shareUserInfo://act.supervoice-app.com/share_song_new/index.php?sid=${this.chioneUserMsg.sid}&selfUid=${uid}&app=Gaoge&shareText=${this.chioneUserMsg.desc}&userImg=${this.chioneUserMsg.userinfo.avatar}&title=${this.chioneUserMsg.song.name}`;
         }
       } else {
         javascript: JSInterface.share(JSON.stringify(data));
       }
     },
-    closeMusic() {
+    closeMusic () {
       var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       //停止原生APP歌曲播放
       if (ios) {
@@ -627,10 +628,10 @@ body {
           align-items: center;
           justify-content: space-between;
           i {
-            width: 0.66rem;
-            height: 0.74rem;
+            width: 1.46rem;
+            height: 0.76rem;
             text-align: center;
-            line-height: 0.74rem;
+            line-height: 0.76rem;
             font-size: 0.24rem;
             &.comments {
               margin-left: 0.24rem;

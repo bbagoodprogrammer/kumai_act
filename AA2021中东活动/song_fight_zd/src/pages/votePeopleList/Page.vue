@@ -1,6 +1,6 @@
 <template>
   <div class="votePeople">
-    <div class="title">評委列表</div>
+    <div class="title">قائمة الحكّم</div>
     <ul class="list">
       <li v-for="(item,index) in list " :key="index" :class="'rank'+(index+1)">
         <div class="rank">{{index+1}}</div>
@@ -12,7 +12,7 @@
           <!-- <strong class="songNum">打擂歌曲數：{{item.nums}}</strong> -->
         </div>
         <div class="score">
-          <strong v-if="item.title!=0">投票時為{{err[item.title]}}評委</strong>
+          <strong v-if="item.title!=0">{{Err [item.title]}} يحكم عند التصويت</strong>
           <em>+{{item.nums}}</em>
         </div>
       </li>
@@ -26,12 +26,12 @@ import api from "../../api/apiConfig"
 import getString from "../../utils/getString"
 export default {
   components: { loading },
-  data() {
+  data () {
     return {
       list: [],
       ismore: true,
       loaded: false,
-      err: ['', '鐵耳朵', '銅耳朵', '銀耳朵', '金耳朵', '白金耳朵']
+      err: ['', 'آذان حديدية', 'آذان نحاسية', 'الأذن الفضية', 'آذان ذهبية', 'آذان بلاتينية']
     }
   },
   // mounted() {
@@ -40,8 +40,8 @@ export default {
   // destroyed() {
   //   window.removeEventListener('scroll', this.onScroll)
   // },
-  created() {
-    document.title = '評委列表'
+  created () {
+    document.title = 'قائمة الحكّم'
     let rid = getString('rid')
     api.getWorkComList(rid).then(res => {
       console.log(res)
@@ -49,7 +49,7 @@ export default {
     })
   },
   methods: {
-    goUser(uid) {
+    goUser (uid) {
       location.href = `uid:${uid}`
     }
     // onScroll() { //滾動加載

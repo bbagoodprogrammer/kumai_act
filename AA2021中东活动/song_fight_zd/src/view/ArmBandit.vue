@@ -4,7 +4,7 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <span class="ruleTips" :class="{top:isShare}" @click="goRule()">獎勵規則</span>
+      <span class="ruleTips" :class="{top:isShare}" @click="goRule()">الجوائز</span>
     </div>
     <FightTabTime />
     <!-- <div class="pSong"> -->
@@ -31,7 +31,7 @@ import FightSong from "../components/FightSong"
 import HotSong from "../components/HotSong"
 export default {
   components: { MsgToast, ActFooter, FightTabTime, FightSong, HotSong },
-  data() {
+  data () {
     return {
       isShare: false, //是否分享
       isMore: true,   //加载更多
@@ -50,7 +50,7 @@ export default {
       is_push: null
     }
   },
-  created() {
+  created () {
     window.addEventListener("pageshow", function () {
       if (sessionStorage.getItem("need-refresh")) {
         location.reload();
@@ -60,7 +60,7 @@ export default {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
-  mounted() {
+  mounted () {
     var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
     //停止原生APP歌曲播放
     if (ios) {
@@ -78,11 +78,11 @@ export default {
     }
   },
   methods: {
-    judgeShare() {//判断是否为分享环境,请求相应的接口 
+    judgeShare () {//判断是否为分享环境,请求相应的接口 
       this.isShare = getString('token') ? false : true
       this.vxc('setShareState', this.isShare) //分享状态
     },
-    getDefaultData(val) { //初始化
+    getDefaultData (val) { //初始化
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
@@ -120,18 +120,18 @@ export default {
         }
       })
     },
-    addSong(item) {
+    addSong (item) {
       console.log(item, this.list)
       this.list.push(item)
     },
-    downApp() {
+    downApp () {
       APP()
     },
-    goRule() {
+    goRule () {
       let regstr = getString('token')
       location.href = `./rule.html?token=${regstr}`
     },
-    refrsh() { //刷新
+    refrsh () { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       // window.removeEventListener("scroll", this.onScroll)
       this.getDefaultData()

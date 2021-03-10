@@ -2,9 +2,9 @@
   <div class="fightTabTime">
     <div class="actTime">
       <div class="timeTips">
-        <p v-if="actStatus == 0">本期打擂日榜開始倒計時</p>
+        <p v-if="actStatus == 0">هذا العدد التنازلي لانتهاء قائمة PK اليوم</p>
         <p v-else-if="actStatus == 1">هذا العدد التنازلي لانتهاء قائمة PK اليوم</p>
-        <p v-else>本期打擂已結束</p>
+        <p v-else>انتهت PK من المنافسة</p>
       </div>
       <div class="timeDown" v-if="surplusTime.day">
         <div class="day">

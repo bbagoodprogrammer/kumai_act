@@ -21,7 +21,7 @@ export default {
     ...mapState(['toastObj'])
   },
   methods: {
-    close() {
+    close () {
       this.vxc('closeToast')
     }
   }
@@ -62,6 +62,7 @@ export default {
     font-size: 0.24rem;
     color: RGBA(255, 239, 255, 1);
     margin-top: 0.34rem;
+    padding: 0 0.3rem;
   }
   .ok {
     width: 2.24rem;

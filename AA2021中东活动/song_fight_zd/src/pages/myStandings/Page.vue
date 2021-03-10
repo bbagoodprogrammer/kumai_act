@@ -6,17 +6,18 @@
       <div class="msg">
         <div class="nick"><strong>{{userinfo.nick}}</strong> <em>درجة موسم السباق:</em> <i>Lv.{{star}}</i> </div>
         <div class="tips">
-          <span>本賽季打擂歌曲數：<em>{{nums}}首</em> </span>
+          <span> عدد أغاني PK هذا الموسم: {{nums}}</span>
           <!-- <span>支持率：<em>{{pop/10}}%</em></span> -->
         </div>
       </div>
     </div>
     <div class="preSong" v-for="(item,index) in newData" :key="index">
       <div class="preMsg">
-        <span class="pre">第{{item.key}}期
+        <span class="pre">العدد {{item.key}}
+
           <strong class="time">{{getDate(item.stime)}}-{{getDate(item.etime) }}</strong>
         </span>
-        <span class="score" v-if="item.key != id || status!=1">當期得分 <em>{{item.score>0?`+${item.score}`:item.score}}</em> </span>
+        <span class="score" v-if="item.key != id || status!=1">النتيجة الحالية <em>{{item.score>0?`+${item.score}`:item.score}}</em> </span>
       </div>
       <FightSong :list="item.hList" :set="item.key == id && status==1"></FightSong>
     </div>
@@ -24,14 +25,16 @@
       <transition name="slide">
         <div class="lvTips" v-show="showTips">
           <i class="close" @click="tipsClick()"></i>
-          <h3>等級說明</h3>
+          <h3>نظام الدرجات</h3>
           <div class="tipsItem">
-            <p>1、本季歌王榜根據等級，即所有期數獲得的分數總和排名；如果等級相同，獲得更多票數的排名在前面</p>
-            <p>2、每個賽季開始，選手默認的等級為Lv.0，每期擂台賽每獲得1分升一級，每減1分降一級，等級可能為負數</p>
+            <p>1. يتم قائمة ملك الأغاني لهذا الموسم وفقًا للترتيب ، أي الترتيب الإجمالي للنتائج التي تم الحصول عليها في جميع مراحل المسابقة ؛ إذا كان الترتيب نفسه ، فسيكون الترتيب الذي يحصل على عدد
+              أكبر من الأصوات في المقدمة.</p>
+            <p>2. في بداية كل موسم ، المستوى الافتراضي للاعب هو Lv.0. في كل مرة تحصل فيها المنافسة على نقطة واحدة ، ستزداد بمقدار مستوى واحد ، وسيتم تخفيض كل نقطة بمستوى واحد ، وقد يكون المستوى
+              سالبًا.</p>
           </div>
-          <p>賽季結束時，前100名選手將獲得有效期為1個月的徽章獎勵：</p>
+          <p>في نهاية موسم السباق ، سيحصل أفضل 50 لاعبًا على جائزة شارة لمدة 30 يومًا:</p>
           <img src="../../assets/img/lvTab.png" alt="" class="lvTab">
-          <span class="ok" @click="tipsClick()">我知道啦</span>
+          <span class="ok" @click="tipsClick()">أعرف</span>
         </div>
       </transition>
     </div>
@@ -103,7 +106,7 @@ export default {
     this.status = sessionStorage.getItem('status')
     this.id = sessionStorage.getItem('id')
     console.log(this.id, this.status)
-    document.title = '我的戰績'
+    document.title = 'نجاحاتي'
     api.myPushWorkHistory(0).then(res => {
       const { list, nums, pop, star, userinfo } = res.data.response_data
       this.userinfo = userinfo
@@ -169,12 +172,13 @@ body {
     .userMsg {
       display: flex;
       align-items: center;
-      padding-left: 0.5rem;
+      padding-right: 0.5rem;
       margin-top: 0.41rem;
       img {
         width: 1rem;
         height: rem;
         border-radius: 50%;
+        margin-left: 0.2rem;
       }
       .msg {
         margin-left: 0.13rem;

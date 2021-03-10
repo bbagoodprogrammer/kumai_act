@@ -30,7 +30,7 @@
       <div class="stored">
         <div class="title">儲值獎勵</div>
         <div class="storedTips">
-          <span>每儲值50金幣，可領取白色種子<img src="../img/crazy.png" alt=""> x1</span>
+          <span>每儲值50金幣，可領取白色種子<img src="../img/getSeed2.png" alt=""> x1</span>
           <span>每儲值100金幣 x1,附贈花神祝福 <img src="../img/accIcon.png" alt="">x1</span>
         </div>
         <div class="coinsTips">今日您已儲值：{{charge}}金幣<br /> （每日00:00重置）</div>
@@ -43,7 +43,7 @@
     <div class="rankList" v-show="type == 2">
       <p v-if="step==0">活動開始倒計時</p>
       <p v-else-if="step == 1">活動結束倒計時</p>
-      <div class="timeDown" v-if="surplusTime&& !surplusTime.end">
+      <div class="timeDown" v-if="surplusTime&& !surplusTime.end && step!=2">
         <strong>{{surplusTime.day}}</strong>
         <em>天</em>
         <strong>{{surplusTime.hour}}</strong>
@@ -53,7 +53,7 @@
         <strong>{{surplusTime.second}}</strong>
         <em>秒</em>
       </div>
-      <p class="rankTips">根據活動期間，用戶累計成功收穫星願花總數進行排名（含已消耗花數），活動結束時，排名前10用戶 可獲得豐厚獎勵</p>
+      <p class="rankTips">根據活動期間，用戶累計成功收穫星願花總數進行排名（含已消耗花數），活動結束時，排名前10用戶可獲得豐厚獎勵</p>
       <div class="noData" v-if="!list.length">暫無數據</div>
       <ul>
         <li v-for="(item,index) in list" :key="index" :class="'rank' + item.rank">
@@ -86,7 +86,7 @@
           <div class="giftImg">
             <div class="item" v-if="giftData[1]">
               <div class="imgBox">
-                <img src="../img/getSeed1.png" alt="">
+                <img src="../img/getSeed2.png" alt="">
                 <div class="imgbg"></div>
               </div>
               <strong>白色種子x{{giftData[1]}}</strong>
@@ -227,6 +227,7 @@ export default {
         this.loaded = false
         allList(0).then(res => {
           this.list = res.data.response_data.list
+          this.vxc('setUserRank', res.data.response_data.myrank)
         })
       }
     },

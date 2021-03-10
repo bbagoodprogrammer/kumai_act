@@ -48,6 +48,9 @@ export default new vuex.Store({
         extension: 0
     },
     mutations: {
+        reduxExNums(state) {
+            state.extension += 1;
+        },
         setextension(state, val) {
             state.extension = val;
         },

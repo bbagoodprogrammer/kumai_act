@@ -44,7 +44,7 @@ export default {
     goSongVote () {
       globalBus.$emit('commonEvent', () => {
         if (!this.device) {
-          this.toast(`不可以註冊多個帳號評分哦！`)
+          this.toast(`لا يمكن تسجيل عدة حسابات للتقييم`)
           return
         }
         let regstr = getString('token')

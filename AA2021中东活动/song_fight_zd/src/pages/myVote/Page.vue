@@ -1,21 +1,27 @@
 <template>
   <div class="myVote">
-    <div class="title">我的投票 <i class="questIcon" @click="tipsClick()"></i></div>
+    <div class="title">تصويتي <i class="questIcon" @click="tipsClick()"></i>
+    </div>
     <div class="userMsg">
       <img v-lazy="userinfo.avatar" alt="">
       <div class="msg">
         <!-- <em>Lv.{{star}}</em> -->
         <div class="nick"><strong>{{userinfo.nick}}</strong> </div>
         <div class="tips">
-          <span>累計投選<em> {{dat.all}} </em>組</span>
-          <span>總投中率：<em>{{dat.right}}%</em></span>
+          <span>التصويت التراكمي لمجموعة <em> {{dat.all}} </em></span>
+          <span>إجمالي معدل الفوز في التصويت: <em> {{dat.right}}٪ </em></span>
         </div>
       </div>
     </div>
     <div class="preResTime" v-for="(item,index) in list " :key="index">
       <div class="timeTips">
-        <p class="noRes" v-if="item.result == 0">{{getDate(item.etime,2)}}公佈投票結果</p>
-        <p v-else><span class="time">{{getDate(item.stime,1)}}-{{getDate(item.etime,1)}}</span>投選{{item.counts}}組，投中率{{item.right}}%<span v-if="item.title!=0">，獲得{{err[item.title]}}稱號</span> <br /> <strong v-if="item.eight > 0">{{item.eight}}次連投8組投中</strong> </p>
+        <p class="noRes" v-if="item.result == 0">{{getDate(item.etime,2)}} إعلان نتائج التصويت</p>
+        <p v-else>
+          <span class="time">{{getDate(item.stime,1)}}-{{getDate(item.etime,1)}}</span>
+          التصويت لمجموعة {{item.counts}} ، معدل فوز التصويت {{item.right}}٪
+          <span v-if="item.title != 0"> ، احصل على {{err [item.title]}} اللقب </span>
+          <strong v-if="item.eight > 0">{{item.eight}} 8 صوتان متتاليان من التصويت يفوز</strong>
+        </p>
       </div>
       <VoteSongList :list="item.list" :index="index" v-if="item.list" />
     </div>
@@ -23,12 +29,19 @@
       <transition name="slide">
         <div class="lvTips" v-show="showTips">
           <i class="close" @click="tipsClick()"></i>
-          <h3>評委稱號及特權</h3>
+          <h3>امتياز التصويت</h3>
           <img src="../../assets/img/chTab.png" alt="" class="chTab">
-          <p>PS.</p>
+          <!-- <p>PS.</p>
           <p>1、稱號展示在下一期的活動中</p>
           <p>2、如本期獲得金耳朵稱號，下期每投一票相當於普通用戶投2票</p>
-          <p>3、本期獲得的評委稱號及投票特權僅在下一期活動中生效</p>
+          <p>3、本期獲得的評委稱號及投票特權僅在下一期活動中生效</p> -->
+          <p>
+            "الوصف الآخر:<br />
+            1. سيتم عرض القب في المنافسة التالي<br />
+            2. إذا حصلت على لقب الأذن البلاتينية في هذا المنافسة ، فإن كل تصويت في المنافسة التالي يعادل صوتين للمستخدمين العاديين<br />
+            3. لقب الحكّم وامتيازات التصويت التي تم الحصول عليها في هذه المنافسة لن تدخل حيز التنفيذ إلا في فترة المنافسة التالية"
+
+          </p>
         </div>
       </transition>
     </div>
@@ -42,18 +55,18 @@ import api from "../../api/apiConfig"
 import getDate from "../../utils/getDate"
 export default {
   components: { VoteSongList, loading },
-  data() {
+  data () {
     return {
       list: [],
       showTips: false,
       userinfo: {},
       star: 0,
       dat: {},
-      err: ['', '鐵耳朵', '銅耳朵', '銀耳朵', '金耳朵', '白金耳朵']
+      err: ['', 'آذان حديدية', 'الأذن الفضية', 'آذان بلاتينية', 'آذان ذهبية', , 'آذان نحاسية']
     }
   },
-  created() {
-    document.title = '我的投票'
+  created () {
+    document.title = 'تصويتي'
     api.myJun().then(res => {
       const { data, star, userinfo, dat } = res.data.response_data
       this.userinfo = userinfo
@@ -63,10 +76,10 @@ export default {
     })
   },
   methods: {
-    tipsClick() {
+    tipsClick () {
       this.showTips = !this.showTips
     },
-    getDate(val, type) {
+    getDate (val, type) {
       return getDate(new Date(val * 1000), type)
     }
   }
@@ -102,6 +115,7 @@ body {
         width: 1rem;
         height: rem;
         border-radius: 50%;
+        margin-left: 0.2rem;
       }
       .msg {
         margin-left: 0.13rem;

@@ -37,7 +37,7 @@
       </li>
     </ul>
     <div class="listBtn" v-if="list.length>1"></div>
-    <span @click="setDownStatus()" class="setBtn" v-if="list.length>1">{{isDown?'收起':'展開'}} <i :class="{upper:isDown}"></i></span>
+    <span @click="setDownStatus()" class="setBtn" v-if="list.length>1">{{isDown?'جمع':'توسيع '}} <i :class="{upper:isDown}"></i></span>
   </div>
 </template>
 <script>

@@ -19,7 +19,7 @@ export default {
   computed: {
     ...mapState(['actStatus', 'isShare'])
   },
-  data() {
+  data () {
     return {
       tastMsg: '',
       showT: false
@@ -29,18 +29,18 @@ export default {
       // ]
     }
   },
-  created() {
+  created () {
     globalBus.$on('commonEvent', (callback) => {
       if (this.isShare) {
         APP()
         return
       } else if (this.actStatus === 0) {
         this.vxc('setToast', {
-          msg: this.lang.noAct
+          msg: this.lang.ActNot
         })
       } else if (this.actStatus === 2) {
         this.vxc('setToast', {
-          msg: this.lang.actEd
+          msg: this.lang.ActEnd
         })
       } else {
         callback()
@@ -48,14 +48,14 @@ export default {
     })
 
   },
-  mounted() {
+  mounted () {
     // for(var i=0;i<this.imgArr.length;i++){
     //   var Img = new Image()
     //   Img.src = this.imgArr[i]
     // }
   },
   methods: {
-    closeToast() {
+    closeToast () {
       this.showT = false
     }
   }
@@ -71,6 +71,6 @@ body {
   overflow-x: hidden;
   margin: auto;
 }
-@import "./assets/scss/common.scss";
+@import './assets/scss/common.scss';
 </style>
 
