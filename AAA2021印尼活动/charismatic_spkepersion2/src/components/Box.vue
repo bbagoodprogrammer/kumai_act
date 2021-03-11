@@ -35,10 +35,10 @@
           <i class="close" @click="showNotSingup = false"></i>
           <div class="title"></div>
           <p>
-            Thăng cấp đến Lv.{{cilckItem.level}}, và điểm sao đạt đến {{cilckItem.limit}} mới có thể rút thưởng!
+            Perlu meningkatkan ke Lv.{{cilckItem.level}}, dan nilai bintang mencapai {{cilckItem.limit}} akan bisa mengundian!
           </p>
           <div class="okBtn" @click="showNotSingup = false">
-            Tôi biết rồi!
+            Ya
           </div>
         </div>
       </transition>
@@ -88,23 +88,23 @@ export default {
       giftList: [
         {
           imgIcon: require('../assets/img/gifts/gift16.png'),
-          name: '元宵魅力代言人徽章'
+          name: 'Lencana juru bicara pesona '
         },
         {
           imgIcon: require('../assets/img/gifts/gift10.png'),
-          name: '雙魚座頭飾'
+          name: 'Bingkai avatar bunga semi'
+        },
+        {
+          imgIcon: require('../assets/img/gifts/coins.png'),
+          name: 'Koin emas besar-besaran'
         },
         {
           imgIcon: require('../assets/img/gifts/gift17.png'),
-          name: '金幣背包禮物'
+          name: 'Hadiah ransel kejutan'
         },
         {
           imgIcon: require('../assets/img/gifts/vip.png'),
           name: 'VIP'
-        },
-        {
-          imgIcon: require('../assets/img/gifts/gift3.png'),
-          name: '白玉仙舟座駕'
         },
 
       ],
@@ -479,13 +479,13 @@ export default {
     top: 0.2rem;
   }
   .title {
-    width: 3.7rem;
+    width: 5.84rem;
     height: 1.26rem;
     background: url(../assets/img/pup/luck_not.png);
     background-size: 100% 100%;
     position: absolute;
-    top: -0.6rem;
-    left: 1.7rem;
+    top: -0.7rem;
+    left: 0.6rem;
   }
   p {
     text-align: center;
@@ -516,7 +516,7 @@ export default {
 }
 .giftShow {
   width: 7.18rem;
-  height: 4.74rem;
+  height: 5rem;
   position: relative;
   background: url(../assets/img/pup/pup_bg.png);
   background-size: 100% 100%;
@@ -530,12 +530,12 @@ export default {
     background-size: 100% 100%;
   }
   h5 {
-    width: 3.7rem;
+    width: 5.5rem;
     height: 1.26rem;
     background: url(../assets/img/giftTipsTitle.png);
     background-size: 100% 100%;
     position: absolute;
-    left: 1.88rem;
+    left: 0.98rem;
     top: -0.51rem;
   }
   .giftList {
@@ -548,7 +548,7 @@ export default {
       width: 1.2rem;
     }
     .imgBg {
-      background: #ef5a48;
+      background: #8741e3;
       border-radius: 0.1rem;
       img {
         width: 1.2rem;

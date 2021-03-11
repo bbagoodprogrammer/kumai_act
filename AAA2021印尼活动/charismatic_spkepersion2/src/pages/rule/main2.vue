@@ -14,23 +14,25 @@
       <p>2.Undian ke-7 kali untuk Lv.4 pasti dptkan hadiah lencana</p>
       <h5>Hadiah Kemenangan Top Harian Pesona</h5>
       <img src="../../assets/img/rule/gifts3.png" alt="" class="img3">
-      <p>Tips : Secara acak 10 org dari Top 100 Daftar Harian Pesona akan bisa mendapatkan 50 koin emas. Daftar pemenang akan diundian pada pukul 12 setiap malam, hari terakhir acara akan diundian pd
+      <p>Tips : Secara acak 10 org dari Top 100 Daftar Harian Pesona akan bisa mendapatkan hadiah Lollipop. Daftar pemenang akan diundian pada pukul 12 setiap malam, hari terakhir acara akan diundian
+        pd
         akhir acara, dan hadiah ransel pemenang akan secara otomatis dikirim ke akun</p>
       <h5>Hadiah utk sponsor</h5>
       <p>Selama acara, Top 1 yg mensponsori jumlah kali angpau yg paling banyak akan dptkan hadiah penamaan dgn “Tepuk tangan utkmu” selama 30 hari. Jika jumlahnya sama, yang siapa pertama mencapai
         jumlahnya ,maka peringkat siapa akan di depan.</p>
       <h5>Hadiah Top 10 utk Daftar Total Pesona</h5>
-      <p>Top 1:<br />Sertifikasi juru bicara pesona Mar(30 hari) + Paket hadiah besar juru bicara pesona(1 lagu dgn label juru bicara pesona direkomendasikan di beranda+2000 koin emas) +Lencana juru
-        bicara pesona Mar(30 hari) + Bingkai avatar bunga semi (30 hari)+ Mount karpet merah(30 hari)+ VIP (30 hari)+Hadiah ransel glamor (109 koin emas) * 3+ 2500 koin emas+ 7000 kacang emas</p>
-      <p>Top 2:<br />Lencana juru bicara pesona Mar(30 hari) + Bingkai avatar bunga semi (30 hari)+ Mount Karpet merah (30 hari)+ VIP (30 hari)+Hadiah ransel glamor (109 koin emas) * 2+ 2000 koin
-        emas+ 5000 kacang emas</p>
-      <p>Top 3:<br />Lencana juru bicara pesona Mar(30 hari) + Bingkai avatar bunga semi (30 hari)+ Mount Karpet merah (30 hari)+ VIP (30 hari)+Hadiah ransel glamor (109 koin emas) * 2+1500 koin emas+
-        4000 kacang emas</p>
-      <p>Top 4-5:<br />Lencana juru bicara pesona Mar(30 hari)+ Mount Karpet merah (30 hari)+ VIP (30 hari)+Hadiah ransel glamor (109 koin emas) * 1+1000 koin emas+ 3000 kacang emas</p>
-      <p>Top 6-10:<br />Mount Karpet merah (30 hari)+ VIP (30 hari)+Hadiah ransel glamor (109 koin emas) * 1+800 koin emas+ 2000 kacang emas</p>
+      <p>Top 1:<br />Sertifikasi juru bicara pesona Mar(30 hari) + Paket hadiah besar juru bicara pesona(1 lagu dgn label juru bicara pesona direkomendasikan di beranda+100 koin emas) +Lencana juru
+        bicara pesona Mar(30 hari) + Bingkai avatar scorpio (30 hari)+ Mount Kapal Terbang(30 hari)+ VIP (30 hari)+Hadiah ransel glamor (109 koin emas) * 1+ 1800 koin emas+ 5000 kacang emas</p>
+      <p>Top 2:<br />Lencana juru bicara pesona Mar(30 hari) + Bingkai avatar scorpio (30 hari)+ Mount Kapal Terbang (30 hari)+ VIP (30 hari)+Hadiah ransel glamor (109 koin emas) * 1+ 1200 koin emas+
+        3000 kacang emas</p>
+      <p>Top 3:<br />Lencana juru bicara pesona Mar(30 hari) + Bingkai avatar scorpio (30 hari)+ Mount Kapal Terbang (30 hari)+ VIP (30 hari)+Hadiah ransel glamor (109 koin emas) * 1+1000 koin emas+
+        2000 kacang emas
+      </p>
+      <p>Top 4-5:<br />Lencana juru bicara pesona Mar(30 hari)+ Mount Kapal Terbang (30 hari)+ VIP (30 hari)+Hadiah ransel glamor (109 koin emas) * 1+800 koin emas+ 1500 kacang emas</p>
+      <p>Top 6-10:<br />Mount Kapal Terbang (30 hari)+ VIP (30 hari)+600 koin emas+ 1000 kacang emas</p>
       <!-- <p>第十一-二十名：<br />元宵節快樂背包禮物（129金幣）*1+600金幣+600金豆</p> -->
       <h5>Aturan penggunaan hadiah</h5>
-      <p>1. Hadiah ransel yang didapatkan oleh acara ini berlaku selama 14 hari, mohon digunakannya dalam periode yang berlaku.</p>
+      <p>1. Hadiah ransel yang didapatkan oleh acara ini berlaku selama 7 hari, mohon digunakannya dalam periode yang berlaku.</p>
       <p>2.Kupon bonus sawer secara otomatis dikirim ke ransel. Kupon ini berlaku selama 24 jam setelah dapatkannya.Bonus koin emas akan segera kirim ke akunmu.</p>
     </div>
     <div class="giftItem" v-else>
@@ -53,23 +55,23 @@
       </p>
       <h6>Top Harian Pesona</h6>
       <p>
-        1. Peringkat Daftar Harian Pesona menurut nilai bintang dari Daftar Haria <br />
+        1. Peringkat Daftar Harian Pesona menurut nilai bintang dari Daftar Harian <br />
         2.Jika nilai bintang harian yang didapatkan adalah sama, maka siapa yang pertama mencapai nilai bintang harian itu,peringkat siapa akan di depan.Top 100 nilai bintang harian bisa masuk Daftar
         Harian Pesona .<br />
-        3.Secara acak 10 org dari Top 100 Daftar Harian Pesona akan bisa mendapatkan 50 koin emas<br />
+        3.Secara acak 10 org dari Top 100 Daftar Harian Pesona akan bisa mendapatkan hadiah Lollipop<br />
         4. Probabilitas menang = nilai bintang daftar harian pengguna/ Top 100 total nilai bintang dari Daftar Harian pd hari ini
       </p>
       <h6>Cara pengundian level:</h6>
       <p>
-        1. Total 5 peti harta,nilai bintang mencapai 100,1000,5000,10000,30000 akan bisa menerima hadiah peti harta yg sesuai,tiap kali undian akan dptkan 3 hadiah, hadiah akan dikirm ke akunmu
-        setelah menerima,tiap org hanya bisa ambil 1 kali hadiah dlm peti harta yg sama, silakan menerima hadiah pd waktu tepat~<br />
+        1. Total 4 peti harta,nilai bintang mencapai 100,1500,5000,9000 akan bisa menerima hadiah peti harta yg sesuai,tiap kali undian akan dptkan 3 hadiah, hadiah akan dikirm ke akunmu setelah
+        menerima,tiap org hanya bisa ambil 1 kali hadiah dlm peti harta yg sama tiap hari, silakan menerima hadiah pd waktu tepat~<br />
         2.Waktu berlalu utk menerima hadiah peti harta sebelum acara berakhir,silakan undian dan menerima hadiah pd waktu tepat~<br />
-        <!-- 3、所有老虎機抽獎有效期為活動結束前，請及時抽獎唷~ -->
+        3.Undian ke-7 kali untuk Lv.4 pasti dptkan hadiah lencana
       </p>
       <h6>Aturan ambil angpau:</h6>
       <p>
-        Selama acara berlangsung, untuk setiap 1000 hadiah "Tepuk tangan utkmu" (10 koin emas) yang diterima dengan label "Kontes Juru Bicara Pesona",angpau keberuntungan dengan total 666 koin emas
-        akan didistribusikan, dan jumlahnya angpau akan didistribusikan 200 pada setiap kali, Siapapun yang datang lebih awal akan mendapatkan<br />
+        1. Selama acara,nyanyian dgn label “Kontes Juru Bicarai Pesona” tiap kali menerima 180 hadiah"Tepuk tangan utkmu”(20 koin emas), 99 koin emas angpau dgn keberuntungan akan bisa dibuka,setiap
+        kali 50 org bisa ambil angpau,siapa cepat akan bisa ambil.<br />
         2.Setelah klik”Reservasi ambil angpau”,ketika akan buka angpau , kamu bisa menerima pengingat sistem,kalo klik “ Batalkan Reservasi’, pengingat sistem utk ambil angpau akan gak bisa diterima.
       </p>
       <h5>Lainnya</h5>
@@ -97,7 +99,7 @@ export default {
     }
   },
   created () {
-    document.title = '規則&獎勵'
+    document.title = 'Hadiag&Aturan'
   },
   methods: {
     tabClick (val) {
@@ -109,7 +111,7 @@ export default {
 
 <style lang="scss">
 body {
-  background-color: RGBA(255, 126, 108, 1);
+  background: RGBA(162, 119, 243, 1);
   .red {
     color: rgba(252, 245, 193, 1);
   }

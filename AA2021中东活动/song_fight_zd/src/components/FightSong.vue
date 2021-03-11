@@ -9,7 +9,7 @@
             <img v-lazy="item.userinfo.avatar" alt="" @click="gouser(item.userinfo.uid)">
             <div class="userNick">
               <div class="nick nick1">{{item.userinfo.nick}}</div>
-              <span class="resCode1" :class="{black:item.star<0}" v-if="item.result!=0">{{item.star>0?`+${item.star}`:item.star}}</span>
+              <span class="resCode1 dl" :class="{black:item.star<0}" v-if="item.result!=0">{{item.star>0?`+${item.star}`:item.star}}</span>
             </div>
           </div>
           <div class="score">
@@ -21,7 +21,7 @@
             <span class="results results2" :class="{victory:item.pk_data.result==1}" v-if="item.result != 0"></span>
             <img v-lazy="item.pk_data?item.pk_data.userinfo.avatar:''" alt="" @click="gouser(item.pk_data?item.pk_data.uid:false)">
             <div class="userNick">
-              <span class="resCode2" :class="{black:item.pk_data.star<0}" v-if="item.result!=0">{{item.pk_data.star>0?`+${item.pk_data.star}`:item.pk_data.star}}</span>
+              <span class="resCode2 dl" :class="{black:item.pk_data.star<0}" v-if="item.result!=0">{{item.pk_data.star>0?`+${item.pk_data.star}`:item.pk_data.star}}</span>
               <div class="nick nick2">{{item.pk_data?item.pk_data.userinfo.nick:'???'}}</div>
             </div>
           </div>
@@ -230,7 +230,7 @@ export default {
           width: 0.5rem;
           height: 0.5rem;
           border-radius: 50%;
-          margin-right: 0.08rem;
+          margin-left: 0.08rem;
         }
         u {
           color: rgba(255, 221, 95, 1);

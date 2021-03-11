@@ -15,7 +15,7 @@
     </div>
     <LandsBox />
     <UserSeedNums />
-    <Rank />
+    <Rank ref='rank' />
     <ActFooter />
     <div class="mask" v-show="showLuck">
       <transition name="slide">

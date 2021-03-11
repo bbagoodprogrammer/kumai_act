@@ -9,7 +9,7 @@
         <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">ملك الأغاني لهذا الموسم</a>
         <a @click.prevent="mainTabClick(2)" :class="{current:mainTab==2}" href="">ملك أغاني الموسم الماضي</a>
       </div>
-      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh">刷新</a>
+      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
 
     <ul class="list day">
@@ -23,11 +23,11 @@
         </div>
         <div class="nick">
           <strong class="userNick">{{item.userinfo.nick}}</strong>
-          <strong class="songNum" v-if="mainTab==0">عدد أغاني PK :{{item.songs}}</strong>
+          <strong class="songNum " v-if="mainTab==0"> عدد أغنية مسابقة : {{item.songs}}</strong>
           <strong class="songNum" v-if="mainTab==0">عدد الأغاني المحذوفة:{{item.del}}</strong>
         </div>
         <div class="score">
-          <em v-if="mainTab==0">النتيجة لهذه المسابقة:{{item.star}}</em>
+          <span v-if="mainTab==0"> <em>النتيجة لهذه المسابقة:</em><em class="dl nums">{{item.star}}</em></span>
           <em v-else>درجة موسم السباق:<i class="dl">Lv.{{item.star}}</i></em>
           <!-- <em>平均支持率：<i>{{item.pp}}%</i> </em> -->
         </div>
@@ -421,7 +421,12 @@ export default {
       .score {
         flex: 1;
         margin-left: 0.15rem;
+        .nums {
+          display: block;
+          direction: ltr;
+        }
         em {
+          display: block;
           font-size: 0.24rem;
           color: rgba(94, 255, 230, 1);
           white-space: nowrap;

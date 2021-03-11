@@ -5,7 +5,8 @@
       <input type="text" placeholder="اسم المغني\اغاني مسابقة" v-on:input="inputChange()" v-model="searchMsg">
       <span class="search" @click="search()"></span>
     </div>
-    <p class="tips">قائمة الأغاني التالية <span class="dl">{{stime}}-{{etime}}</span> <br />لا يمكن تسجيل الأغاني التدريبية التي لم يتم إصدارها خلال المسابقة التالية في المسابقة</p>
+    <p class="tips">قائمة الأغاني التالية <span class="dl">{{stime}}-{{etime}}</span> <br /></p>
+    <p>لا يمكن تسجيل الأغاني التدريبية التي لم يتم إصدارها خلال المسابقة التالية في المسابقة</p>
     <div class="noSongTips">
       <h3 v-if="noData">لا توجد مثل هذه الأغنية في معاينة قائمة الأغاني </h3>
     </div>
@@ -184,6 +185,12 @@ body {
       color: RGBA(255, 240, 255, 1);
       text-align: center;
       line-height: 0.4rem;
+      display: flex;
+      justify-content: center;
+      span {
+        display: block;
+        margin-right: 0.2rem;
+      }
     }
     .noSongTips {
       text-align: center;

@@ -8,13 +8,13 @@
     <ul>
       <li v-for="(item,index) in shouList" :key="index">
         <i class="mounthIcon" v-if="mark[index+1]">{{mark[index+1]}}</i>
-        <i class="mounthIcon" v-else>Tháng{{index +1}}</i>
+        <i class="mounthIcon" v-else>{{yueArr[index +1]}} {{index +1}}</i>
         <img :src="item.avatar" alt="" @click="goUser(item.uid)">
         <strong>{{item.nick}}</strong>
       </li>
     </ul>
     <h5>Paket hadiah besar juru bicara pesona:</h5>
-    <p>Anda akan didapatkan 1 paket hadiah besar jika setiap kali menjadi juru bicara pesona Wekara : 1 lagu yg direkomendasikan dengan tag lagu juru bicara pesona di beranda+2000 koin emas, yang akan
+    <p>Anda akan dapatkan 1 paket hadiah besar jika setiap kali menjadi juru bicara pesona Wekara : 1 lagu dgn tag lagu juru bicara pesona yg direkomendasikan di beranda+100 koin emas, yang akan
       dikirimkan dalam 7 hari setelah acara berakhir.</p>
   </div>
 </template>
@@ -30,7 +30,21 @@ export default {
       },
       list: [],
       title: '',
-      mark: {}
+      mark: {},
+      yueArr: {
+        1: 'Jan',
+        2: 'Feb',
+        3: 'Mar',
+        4: 'Apr',
+        5: 'May',
+        6: 'Jun',
+        7: 'Jul',
+        8: 'Aug',
+        9: 'Sep',
+        10: 'Oct',
+        11: 'Nov',
+        12: 'Dec',
+      }
     }
   },
   computed: {
@@ -66,7 +80,7 @@ export default {
 </script>
 <style lang="scss">
 body {
-  background: RGBA(255, 126, 108, 1);
+  background: RGBA(162, 119, 243, 1);
   .lastRank {
     .title {
       width: 5.21rem;

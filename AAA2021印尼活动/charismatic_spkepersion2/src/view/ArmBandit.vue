@@ -178,7 +178,7 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: RGBA(255, 126, 108, 1)
+  background: RGBA(162, 119, 243, 1)
     url(../assets/img/banner.png) center 0
     no-repeat;
   background-size: 100% auto;
@@ -221,16 +221,18 @@ body::-webkit-scrollbar {
       align-items: flex-end;
       .ruleTips {
         display: block;
-        width: 1.81rem;
+        width: 2.22rem;
         height: 0.61rem;
         background: url(../assets/img/ruleTips1.png);
         background-size: 100% 100%;
         margin-bottom: 0.15rem;
         &.ruleTips2 {
+          width: 2.99rem;
           background: url(../assets/img/ruleTips2.png);
           background-size: 100% 100%;
         }
         &.ruleTips3 {
+          width: 2.15rem;
           background: url(../assets/img/ruleTips3.png);
           background-size: 100% 100%;
         }
@@ -262,13 +264,13 @@ body::-webkit-scrollbar {
     top: 0.3rem;
   }
   .title {
-    width: 3.7rem;
+    width: 4.6rem;
     height: 1.26rem;
     background: url(../assets/img/history_title.png);
     background-size: 100% 100%;
     position: absolute;
-    top: -0.6rem;
-    left: 1.7rem;
+    top: -0.7rem;
+    left: 1.3rem;
   }
   .history_con {
     padding: 0 0.4rem;
@@ -312,7 +314,7 @@ body::-webkit-scrollbar {
           .imgBg {
             width: 1rem;
             height: 1rem;
-            background: #ef5a48;
+            background: rgba(135, 65, 227, 1);
             border-radius: 0.12rem;
             img {
               width: 100%;

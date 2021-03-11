@@ -14,10 +14,9 @@
     <div class="preSong" v-for="(item,index) in newData" :key="index">
       <div class="preMsg">
         <span class="pre">العدد {{item.key}}
-
-          <strong class="time">{{getDate(item.stime)}}-{{getDate(item.etime) }}</strong>
+          <strong class="time dl">{{getDate(item.stime)}}-{{getDate(item.etime) }}</strong>
         </span>
-        <span class="score" v-if="item.key != id || status!=1">النتيجة الحالية <em>{{item.score>0?`+${item.score}`:item.score}}</em> </span>
+        <span class="score" v-if="item.key != id || status!=1">النتيجة الحالية :<em class="dl">{{item.score>0?`+${item.score}`:item.score}}</em> </span>
       </div>
       <FightSong :list="item.hList" :set="item.key == id && status==1"></FightSong>
     </div>
@@ -25,15 +24,17 @@
       <transition name="slide">
         <div class="lvTips" v-show="showTips">
           <i class="close" @click="tipsClick()"></i>
-          <h3>نظام الدرجات</h3>
-          <div class="tipsItem">
-            <p>1. يتم قائمة ملك الأغاني لهذا الموسم وفقًا للترتيب ، أي الترتيب الإجمالي للنتائج التي تم الحصول عليها في جميع مراحل المسابقة ؛ إذا كان الترتيب نفسه ، فسيكون الترتيب الذي يحصل على عدد
-              أكبر من الأصوات في المقدمة.</p>
-            <p>2. في بداية كل موسم ، المستوى الافتراضي للاعب هو Lv.0. في كل مرة تحصل فيها المنافسة على نقطة واحدة ، ستزداد بمقدار مستوى واحد ، وسيتم تخفيض كل نقطة بمستوى واحد ، وقد يكون المستوى
-              سالبًا.</p>
+          <div class="con mh">
+            <h3>نظام الدرجات</h3>
+            <div class="tipsItem">
+              <p>1. يتم قائمة ملك الأغاني لهذا الموسم وفقًا للترتيب ، أي الترتيب الإجمالي للنتائج التي تم الحصول عليها في جميع مراحل المسابقة ؛ إذا كان الترتيب نفسه ، فسيكون الترتيب الذي يحصل على عدد
+                أكبر من الأصوات في المقدمة.</p>
+              <p>2. في بداية كل موسم ، المستوى الافتراضي للاعب هو Lv.0. في كل مرة تحصل فيها المنافسة على نقطة واحدة ، ستزداد بمقدار مستوى واحد ، وسيتم تخفيض كل نقطة بمستوى واحد ، وقد يكون المستوى
+                سالبًا.</p>
+            </div>
+            <p>في نهاية موسم السباق ، سيحصل أفضل 50 لاعبًا على جائزة شارة لمدة 30 يومًا:</p>
+            <img src="../../assets/img/lvTab.png" alt="" class="lvTab">
           </div>
-          <p>في نهاية موسم السباق ، سيحصل أفضل 50 لاعبًا على جائزة شارة لمدة 30 يومًا:</p>
-          <img src="../../assets/img/lvTab.png" alt="" class="lvTab">
           <span class="ok" @click="tipsClick()">أعرف</span>
         </div>
       </transition>
@@ -148,6 +149,10 @@ export default {
 }
 </script>
 <style lang="scss">
+.mh {
+  height: 5.6rem;
+  overflow-y: scroll;
+}
 body {
   background: rgba(117, 67, 240, 1) url(../../assets/img/htmlBg.png) no-repeat;
   background-size: 100% auto;
@@ -186,10 +191,11 @@ body {
           display: flex;
           align-items: center;
           strong {
-            width: 2.5rem;
+            max-width: 2.5rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            margin-left: 0.4rem;
           }
           em {
             margin-left: 0.2rem;
@@ -231,11 +237,19 @@ body {
         justify-content: space-between;
         font-size: 0.26rem;
         margin-bottom: 0.12rem;
+        .pre {
+          display: flex;
+        }
         .time {
+          display: block;
           font-size: 0.26rem;
+          margin-right: 0.15rem;
         }
         .score {
+          display: flex;
+          align-items: center;
           em {
+            display: block;
             color: rgba(255, 197, 25, 1);
             font-weight: bold;
           }

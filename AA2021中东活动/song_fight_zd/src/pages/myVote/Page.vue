@@ -20,7 +20,7 @@
           <span class="time">{{getDate(item.stime,1)}}-{{getDate(item.etime,1)}}</span>
           التصويت لمجموعة {{item.counts}} ، معدل فوز التصويت {{item.right}}٪
           <span v-if="item.title != 0"> ، احصل على {{err [item.title]}} اللقب </span>
-          <strong v-if="item.eight > 0">{{item.eight}} 8 صوتان متتاليان من التصويت يفوز</strong>
+          <strong v-if="item.eight > 0"> صوت 8 أصوات متتالية ل{{item.eight}} مرات وفز في التصويت</strong>
         </p>
       </div>
       <VoteSongList :list="item.list" :index="index" v-if="item.list" />
@@ -29,19 +29,22 @@
       <transition name="slide">
         <div class="lvTips" v-show="showTips">
           <i class="close" @click="tipsClick()"></i>
-          <h3>امتياز التصويت</h3>
-          <img src="../../assets/img/chTab.png" alt="" class="chTab">
-          <!-- <p>PS.</p>
+          <div class="con mh">
+            <h3>امتياز التصويت</h3>
+            <img src="../../assets/img/chTab.png" alt="" class="chTab">
+            <!-- <p>PS.</p>
           <p>1、稱號展示在下一期的活動中</p>
           <p>2、如本期獲得金耳朵稱號，下期每投一票相當於普通用戶投2票</p>
           <p>3、本期獲得的評委稱號及投票特權僅在下一期活動中生效</p> -->
-          <p>
-            "الوصف الآخر:<br />
-            1. سيتم عرض القب في المنافسة التالي<br />
-            2. إذا حصلت على لقب الأذن البلاتينية في هذا المنافسة ، فإن كل تصويت في المنافسة التالي يعادل صوتين للمستخدمين العاديين<br />
-            3. لقب الحكّم وامتيازات التصويت التي تم الحصول عليها في هذه المنافسة لن تدخل حيز التنفيذ إلا في فترة المنافسة التالية"
+            <p>
+              الوصف الآخر:<br />
+              1. سيتم عرض القب في المنافسة التالي<br />
+              2. إذا حصلت على لقب الأذن البلاتينية في هذا المنافسة ، فإن كل تصويت في المنافسة التالي يعادل صوتين للمستخدمين العاديين<br />
+              3. لقب الحكّم وامتيازات التصويت التي تم الحصول عليها في هذه المنافسة لن تدخل حيز التنفيذ إلا في فترة المنافسة التالية
 
-          </p>
+            </p>
+          </div>
+
         </div>
       </transition>
     </div>
@@ -62,7 +65,7 @@ export default {
       userinfo: {},
       star: 0,
       dat: {},
-      err: ['', 'آذان حديدية', 'الأذن الفضية', 'آذان بلاتينية', 'آذان ذهبية', , 'آذان نحاسية']
+      err: ['', 'آذان حديدية', 'آذان نحاسية', 'الأذن الفضية', 'آذان بلاتينية', 'آذان ذهبية']
     }
   },
   created () {
@@ -86,6 +89,10 @@ export default {
 }
 </script>
 <style lang="scss">
+.mh {
+  height: 6.7rem;
+  overflow-y: scroll;
+}
 body {
   background: rgba(117, 67, 240, 1) url(../../assets/img/htmlBg.png) no-repeat;
   background-size: 100% auto;
@@ -166,6 +173,9 @@ body {
       .timeTips {
         text-align: center;
         color: rgba(110, 255, 216, 1);
+        span {
+          display: block;
+        }
         .noRes {
           font-weight: bold;
         }
