@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="redTips">
-      帶“魅力代言人大賽”標籤作品每收到{{redPacket.step}}個 <img :src="redPacket.img" /> 禮物<br /> 全體用戶可開啟紅包
+      Nyanyian dgn label “ Kontes Juru Bicara Pesona” tiap kali menerima {{redPacket.step}} hadiah <img :src="redPacket.img"  />,<br  /> semua pengguna bisa buka angpau
     </div>
     <div class="subscribe" @click="subscribe()">
       {{redPacket.subscribe?'Batalkan reservasi':'Reservasi ambil angpau'}}
@@ -38,7 +38,7 @@
         <div class="liner">
           <div class="actLiner" :class="{max:rate.rate*10 >= 100}" :style="{width:rate.rate*10 +'%'}"></div>
           <span v-for="(item,index) in 5" :key="index"> <em>{{item*2}}%</em></span>
-          <i class="add">Tăng thêm:</i>
+          <i class="add">Ditambah:</i>
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@
         <div class="downTimePacket" v-if="redPacket_downTime" :class="{open:packetType == 2}">
           <i class="close" @click="redPacket_downTime = false"></i>
           <h5 v-if="packetType == 1">Hitung mundur buka angpau</h5>
-          <div class="timeDown" v-if="packetType == 1">Angpaumu akan dibuka setelah <em>{{downTime}}</em> detik!</div>
+          <div class="timeDown" v-if="packetType == 1">Angpau akan dibuka setelah <em>{{downTime}}</em> detik!</div>
           <span class="rotate" v-if="packetType == 2" @click="openRedPacket()"></span>
           <vue-seamless-scroll :class-option="optionHover" :data="redPacket.record" class="seamless-warp">
             <ul class="item">
@@ -90,10 +90,10 @@
           <i class="close" @click="closePacketPup()"></i>
           <!-- <p class="red">{{dtime}}</p> -->
           <div class="resHeader">
-            <div class="tips" v-if="recoreData.time">{{recoreData.users}}個紅包,{{recoreData.time}}秒被搶完</div>
+            <div class="tips" v-if="recoreData.time">{{recoreData.users}} angpau habis dlm {{recoreData.time}} detik</div>
             <div class="tips" v-else>
-              <span>Đã nhận <em>{{recoreData.gotUsers}}/{{recoreData.users}}</em> </span>
-              <span>tổng cộng <em>{{recoreData.gotCoins}}/{{recoreData.coins}}</em>xu </span>
+              <span>Telah menerima <em>{{recoreData.gotUsers}}/{{recoreData.users}}</em> </span>
+              <span>total <em>{{recoreData.gotCoins}}/{{recoreData.coins}}</em>koin emas </span>
             </div>
           </div>
           <ul class="recoreList">
@@ -104,7 +104,7 @@
                 <div class="tm">{{getDate(item.time)}}</div>
               </div>
               <div class="gift">
-                <div class="nums">{{item.coin}} xu</div>
+                <div class="nums">{{item.coin}} koin emas</div>
                 <div class="luck" v-if="item.lucky"><i></i> Hoki</div>
               </div>
             </li>
@@ -122,7 +122,7 @@
             Gak dapat ambil angpau kalo belum mendaftar acara , cepat klik “ segera mendaftar” utk ikut~
           </p>
           <div class="okBtn" @click="showNotSingup = false">
-            Tôi biết rồi!
+            Ya
           </div>
         </div>
       </transition>
@@ -507,7 +507,7 @@ export default {
       .liner {
         width: 6.8rem;
         height: 0.24rem;
-        background: rgba(229, 77, 57, 1);
+        background: #9c50ff;
         box-sizing: border-box;
         border: 0.03rem solid RGBA(254, 228, 199, 1);
         border-radius: 0.12rem;
@@ -909,13 +909,13 @@ export default {
     top: 0.2rem;
   }
   .title {
-    width: 3.7rem;
+    width: 5.02rem;
     height: 1.26rem;
     background: url(../assets/img/pup/suc_not.png);
     background-size: 100% 100%;
     position: absolute;
-    top: -0.6rem;
-    left: 1.7rem;
+    top: -0.7rem;
+    left: 1.14rem;
   }
   p {
     text-align: center;

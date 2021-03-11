@@ -3,7 +3,7 @@
     <div class="acrStatus" :class="{noStart:astState == 0,actEd:astState == 2,singUp:astState == 1}" @click="singUp()">
       <div class="actIng" v-if="astState === 3">
         <div class="total" :class="'rank' + nowMsg.rank">
-          <div class="rank">{{nowMsg.rank == 0?'未上榜':nowMsg.rank}}</div>
+          <div class="rank">{{nowMsg.rank == 0?'Blm masuk':nowMsg.rank}}</div>
           <div class="imgBox" @click="goUser(nowMsg.uid)">
             <img v-if="nowMsg.avatar_frame &&nowMsg.avatar_frame != ''" :src="nowMsg.avatar_frame" class="frame" alt="">
             <img v-else-if="nowMsg.nob > 0" :src="require(`../assets/img/nob/${nowMsg.nob}.png`)" class="nob" alt="">
@@ -115,7 +115,7 @@ export default {
     width: 100%;
     height: 100%;
     border-top: 0.04rem solid RGBA(255, 246, 219, 1);
-    background: linear-gradient(-60deg, #fc6553, #fc6552);
+    background: linear-gradient(-60deg, #9b69f8, #9953ff);
     .total {
       width: 100%;
       height: 100%;
@@ -126,12 +126,17 @@ export default {
         width: 1.3rem;
         text-align: center;
         white-space: nowrap;
+        &.noRank {
+          font-size: 0.21rem;
+          margin-left: 0.15rem;
+          white-space: pre-wrap;
+        }
       }
       .imgBox {
         width: 1.1rem;
         height: 1.1rem;
         position: relative;
-        margin-left: 0.1rem;
+        margin: 0 0.1rem;
         .nob {
           width: 1.1rem;
           height: 1.1rem;
@@ -163,12 +168,14 @@ export default {
         }
       }
       .songMsg {
+        width: 2.5rem;
         font-size: 0.26rem;
         .topNum {
           margin-top: 0.1rem;
         }
         .add {
-          width: 1.07rem;
+          display: inline-block;
+          padding: 0 0.05rem;
           height: 0.33rem;
           background: linear-gradient(90deg, #ffd6ba 0%, #fdf2d5 100%);
           border: 0.02rem solid #ffef9d;
@@ -186,7 +193,7 @@ export default {
         .rank {
           width: 0.75rem;
           height: 0.65rem;
-          margin-left: 0.5rem;
+          margin-left: 0.3rem;
           text-indent: -999rem;
           background: url(../assets/img/rank/top1.png);
           background-size: 100% 100%;
@@ -196,7 +203,7 @@ export default {
         .rank {
           width: 0.75rem;
           height: 0.65rem;
-          margin-left: 0.5rem;
+          margin-left: 0.3rem;
           text-indent: -999rem;
           background: url(../assets/img/rank/top2.png);
           background-size: 100% 100%;
@@ -206,7 +213,7 @@ export default {
         .rank {
           width: 0.75rem;
           height: 0.65rem;
-          margin-left: 0.5rem;
+          margin-left: 0.3rem;
           text-indent: -999rem;
           background: url(../assets/img/rank/top3.png);
           background-size: 100% 100%;
@@ -222,7 +229,7 @@ export default {
       font-size: 0.24rem;
       color: rgba(126, 26, 6, 1);
       line-height: 0.65rem;
-      margin-left: 0.4rem;
+      margin-left: 0.1rem;
     }
   }
 }

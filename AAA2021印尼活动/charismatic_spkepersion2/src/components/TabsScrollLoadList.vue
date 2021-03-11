@@ -6,7 +6,7 @@
         <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">Top harian pesona </a>
         <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">Top total pesona</a>
       </div>
-      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh" v-if="actStatus == 1">刷新</a>
+      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh" v-if="actStatus == 1"></a>
     </div>
     <div class="rankTips">
       <div class="giftTips">
@@ -68,7 +68,7 @@
             <div class="iconScore">
               <!-- is_prize -->
               <span v-if="item.is_prize" class="luck_ed">Menang</span>
-              <span v-if="item.pro">Probabilitas menang :{{item.pro}}%</span>
+              <span v-if="item.pro">Rate menang:{{item.pro}}%</span>
 
             </div>
           </div>

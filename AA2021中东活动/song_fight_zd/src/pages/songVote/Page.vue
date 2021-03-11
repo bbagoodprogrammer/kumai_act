@@ -11,7 +11,7 @@
             <img :src="require(`../../assets/img/songAv/${randAv1}.png`)" alt="" v-if="!chioneState">
             <div class="imgBox" v-else>
               <span class="ligt"></span>
-              <img v-lazy="chioneUserMsg.userinfo.avatar" alt="">
+              <img v-lazy="chioneUserMsg.userinfo.avatar" alt="" @click="comments(chioneUserMsg.sid)">
               <div class="nick"> <strong>{{chioneUserMsg.userinfo.nick}}</strong> <em>Lv.{{chioneUserMsg.userinfo.star}}</em> </div>
             </div>
             <i class="playIcon" :class="{stop:nowIndex == 0 && isPlay}" @click="go(0)"></i>
@@ -22,7 +22,7 @@
             <img :src="require(`../../assets/img/songAv/${randAv2}.png`)" alt="" v-if="!chioneState">
             <div class="imgBox" v-else>
               <span class="ligt"></span>
-              <img v-lazy="chioneUserMsg.userinfo.avatar" alt="">
+              <img v-lazy="chioneUserMsg.userinfo.avatar" alt="" @click="comments(chioneUserMsg.sid)">
               <div class="nick"> <strong>{{chioneUserMsg.userinfo.nick}}</strong> <em>Lv.{{chioneUserMsg.userinfo.star}}</em> </div>
             </div>
             <i class="playIcon" :class="{stop:nowIndex == 1 && isPlay}" @click="go(1)"></i>
@@ -44,14 +44,14 @@
           </div>
           <div class="chioneUserBtn" v-else>
             <i class="comments" @click="comments(chioneUserMsg.sid)"></i>
-            <span @click="attention(chioneUserMsg.uid,chioneUserMsg.attension)"> {{chioneUserMsg.attension?'已關注':'+關注'}}</span>
+            <span @click="attention(chioneUserMsg.uid,chioneUserMsg.attension)"> {{chioneUserMsg.attension?'تمت المتابعة':'تابع'}}</span>
             <i class="share" @click="share()"></i>
           </div>
         </div>
       </div>
     </div>
     <div class="chioneChange">
-      <div class="next" @click="clearHowl()" v-if="chioneState">下一組></div>
+      <div class="next" @click="clearHowl()" v-if="chioneState">المجموعة التالية></div>
       <p class="chioneTips">
         "1. انقر فوق زر التشغيل للاستماع إلى الأغاني المشاركة في المسابقة. وبعد الاستماع إلى كل أغنية لمدة 10 ثوانٍ ، اختر أحد الفائزين<br />
         2. سيحرز الحكام أول 30 مجموعة من الأغاني كل يوم وستحصل كل مجموعة من الأغاني على 5 فول ذهبي<br />
@@ -303,11 +303,12 @@ export default {
     chione (val) {
       console.log(this.listenTime1, this.listenTime2)
       if (this.listenTime1 < 10 && this.listenTime2 < 10) {
-        this.toast(`يمكن لكل لاعب التصويت فقط بعد سماع عدد كافٍ من 10S ، ولم يسمع اللاعب الموجود على اليسار ما يكفي من 10S حتى الآن.`)
+        this.toast(`يمكن لكل لاعب التصويت فقط بعد سماع عدد كافٍ من 10S ، ولم يسمع اللاعبان ما يكفي من 10S حتى الآن.`)
       } else if (this.listenTime1 < 10) {
         this.toast(`يمكن لكل لاعب التصويت فقط بعد سماع عدد كافٍ من 10S ، ولم يسمع اللاعب الموجود على اليمين ما يكفي من 10S حتى الآن.`)
       } else if (this.listenTime2 < 10) {
-        this.toast(`يمكن لكل لاعب التصويت فقط بعد سماع عدد كافٍ من 10S ، ولم يسمع اللاعبان ما يكفي من 10S حتى الآن. `)
+        this.toast(`يمكن لكل لاعب التصويت فقط بعد سماع عدد كافٍ من 10S ، ولم يسمع اللاعب الموجود على اليسار ما يكفي من 10S حتى الآن.`)
+
       } else {
         api.selectWork(this.pk, this.sounds[val].id).then(res => {
           if (res.data.response_status.code == 0) {
@@ -383,7 +384,7 @@ export default {
     attention (uid, type) {
       if (type) { return }
       api.appAttemsion(uid).then(res => {
-        if (res.data.response_data) {
+        if (res.response_data) {
           this.chioneUserMsg.attension = true
         } else {
           this.toast(res.data.response_status.error)

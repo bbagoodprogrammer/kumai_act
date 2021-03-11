@@ -1,6 +1,6 @@
 <template>
   <div class="voteSongList">
-    <span class="preSongTips" @click="listShowClcik()"><strong> التصويت للمجموعة {{list.length}}</strong> <i :class="{rotate:show}"></i> </span>
+    <span class="preSongTips" @click="listShowClcik()"><strong> صوًت {{list.length}}</strong> <i :class="{rotate:show}"></i> </span>
     <ul :class="{hide:!show}" v-if="index<=1">
       <li v-for="(item,index) in list " :key="index">
         <span class="tips">تصويت</span>
@@ -88,7 +88,7 @@ export default {
       display: flex;
       align-items: center;
       .tips {
-        width: 0.45rem;
+        width: 0.6rem;
         text-align: center;
         color: rgba(201, 165, 255, 1);
         font-weight: bold;
@@ -97,7 +97,7 @@ export default {
         width: 1rem;
         height: 1rem;
         border-radius: 50%;
-        margin-left: 0.2rem;
+        margin: 0 0.15rem;
       }
       .preUserMsg {
         width: 2.7rem;
@@ -123,7 +123,7 @@ export default {
           background-size: 100% 100%;
           position: absolute;
           z-index: 10;
-          right: 0;
+          left: -0.2rem;
           bottom: -0.32rem;
         }
       }

@@ -1,7 +1,7 @@
 <template>
   <div class="song">
     <div class="noSong" v-if="!isLength">
-      <h5>你還沒有符合參賽要求的參賽作品喔</h5>
+      <h5>Kamu belum ada nyanyian yg cocok utk ikut acara</h5>
       <div class="sing" @click="goSing()">Coba nyanyi</div>
     </div>
     <div class="haSong" v-else>
@@ -138,7 +138,7 @@ export default {
 </script>
 <style lang="scss">
 body {
-  background: RGBA(255, 126, 108, 1);
+  background: RGBA(162, 119, 243, 1);
 }
 
 .song {

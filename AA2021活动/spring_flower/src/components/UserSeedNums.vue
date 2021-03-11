@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     scorllTo () {
+      this.$parent.$refs.rank.tabClick(1)
       //   document.getElementsByClassName('tabs')[0].scrollIntoView();
       let a = document.getElementsByClassName('tabs')[0].getBoundingClientRect().top
       let c = document.documentElement.scrollTop || document.body.scrollTop
@@ -60,6 +61,7 @@ export default {
         let c = document.documentElement.scrollTop || document.body.scrollTop
         let t = (e - c) / 10
         window.scrollTo(0, c + t)
+        console.log(t)
         if (t < 8) {
           clearInterval(this.timer)
         }

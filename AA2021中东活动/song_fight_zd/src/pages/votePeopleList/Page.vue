@@ -12,8 +12,8 @@
           <!-- <strong class="songNum">打擂歌曲數：{{item.nums}}</strong> -->
         </div>
         <div class="score">
-          <strong v-if="item.title!=0">{{Err [item.title]}} يحكم عند التصويت</strong>
-          <em>+{{item.nums}}</em>
+          <strong v-if="item.title!=0">{{err[item.title]}} يحكم عند التصويت</strong>
+          <em class="dl">+{{item.nums}}</em>
         </div>
       </li>
     </ul>
@@ -31,7 +31,7 @@ export default {
       list: [],
       ismore: true,
       loaded: false,
-      err: ['', 'آذان حديدية', 'آذان نحاسية', 'الأذن الفضية', 'آذان ذهبية', 'آذان بلاتينية']
+      err: ['', 'آذان حديدية', 'آذان نحاسية', 'الأذن الفضية', 'آذان بلاتينية', 'آذان ذهبية']
     }
   },
   // mounted() {
@@ -145,6 +145,7 @@ body {
           }
           em {
             display: block;
+            text-align: center;
           }
         }
         // &.rank1 {
