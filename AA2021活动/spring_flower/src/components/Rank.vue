@@ -2,23 +2,23 @@
   <div class="rank">
     <div class="tabs">
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
-      <span :class="{act:type == 1}" @click="tabClick(1)">園丁打卡</span>
-      <span :class="{act:type == 2}" @click="tabClick(2)">最佳園丁榜</span>
+      <span :class="{act:type == 1}" @click="tabClick(1)">{{lang.tab1}}</span>
+      <span :class="{act:type == 2}" @click="tabClick(2)">{{lang.tab2}}</span>
     </div>
     <div class="task" v-show="type == 1">
       <div class="taskList">
         <div class="taskTitle">
-          <span class="name">今日任務</span>
-          <span class="num"> 獎勵種子</span>
-          <span class="bar">進度</span>
+          <span class="name">{{lang.day_task}}</span>
+          <span class="num"> {{lang.gift_seed}}</span>
+          <span class="bar">{{lang.gift_bar}}</span>
         </div>
         <ul>
           <li v-for="(item,index) in schuleList" :key="index">
             <span class="name">{{item.desc}}</span>
             <span class="num"><img src="../img/taskIcon.png" alt="">x {{item.chance}}</span>
             <span class="bar">
-              <em class="ed" v-if="item.status">已領取</em>
-              <em v-else-if=" item.schule >= item.limit" class="getSeed" @click="getSeed(index)">領取種子</em>
+              <em class="ed" v-if="item.status">{{lang.luck_geted}}</em>
+              <em v-else-if=" item.schule >= item.limit" class="getSeed" @click="getSeed(index)">{{lang.get_seed}}</em>
               <em v-else class="barNums">
                 <strong>{{item.schule}}/{{item.limit}}</strong>
                 <i class="actBar" :style="{width:item.schule/item.limit * 100 +'%'}"></i>
@@ -28,33 +28,33 @@
         </ul>
       </div>
       <div class="stored">
-        <div class="title">儲值獎勵</div>
+        <div class="title">{{lang.store_gift}}</div>
         <div class="storedTips">
-          <span>每儲值50金幣，可領取白色種子<img src="../img/getSeed2.png" alt=""> x1</span>
-          <span>每儲值100金幣 x1,附贈花神祝福 <img src="../img/accIcon.png" alt="">x1</span>
+          <span>{{lang.store_tips1}}<img src="../img/getSeed2.png" alt=""> x1</span>
+          <span>{{lang.store_tips2}}<img src="../img/accIcon.png" alt="">x1</span>
         </div>
-        <div class="coinsTips">今日您已儲值：{{charge}}金幣<br /> （每日00:00重置）</div>
+        <div class="coinsTips">{{lang.store_dayCoins.replace('$',charge)}}</div>
         <div class="btn">
-          <div class="get" @click="getGift()" :class="{black:!charge_get}">領取獎勵</div>
-          <div class="goStore" @click="goStore()">前往儲值</div>
+          <div class="get" @click="getGift()" :class="{black:!charge_get}">{{lang.store_getGift}}</div>
+          <div class="goStore" @click="goStore()">{{lang.store_got}}</div>
         </div>
       </div>
     </div>
     <div class="rankList" v-show="type == 2">
-      <p v-if="step==0">活動開始倒計時</p>
-      <p v-else-if="step == 1">活動結束倒計時</p>
+      <p v-if="step==0">{{lang.rank_timeTips}}</p>
+      <p v-else-if="step == 1">{{lang.rank_timeTips2}}</p>
       <div class="timeDown" v-if="surplusTime&& !surplusTime.end && step!=2">
         <strong>{{surplusTime.day}}</strong>
-        <em>天</em>
+        <em>{{lang.rank_day}}</em>
         <strong>{{surplusTime.hour}}</strong>
-        <em>時</em>
+        <em>{{lang.rank_hour}}</em>
         <strong>{{surplusTime.minute}}</strong>
-        <em>分</em>
+        <em>{{lang.rank_min}}</em>
         <strong>{{surplusTime.second}}</strong>
-        <em>秒</em>
+        <em>{{lang.rank_second}}</em>
       </div>
-      <p class="rankTips">根據活動期間，用戶累計成功收穫星願花總數進行排名（含已消耗花數），活動結束時，排名前10用戶可獲得豐厚獎勵</p>
-      <div class="noData" v-if="!list.length">暫無數據</div>
+      <p class="rankTips">{{lang.rank_tips3}}</p>
+      <div class="noData" v-if="!list.length">{{lang.noData}}</div>
       <ul>
         <li v-for="(item,index) in list" :key="index" :class="'rank' + item.rank">
           <div class="listRank">{{item.rank}}</div>
@@ -79,9 +79,9 @@
       <transition name="slide">
         <div class="giftPup" v-if="showGiftPup">
           <i class="close" @click="showGiftPup = false"></i>
-          <div class="title">領取成功</div>
+          <div class="title">{{lang.rank_getSuc}}</div>
           <div class="giftTips">
-            恭喜獲得 <em v-if="giftData[1]">【白色種子x{{giftData[1]}}】</em><em v-if="giftData[2]">【花神祝福x{{giftData[2]}}】</em>， 快去種植吧！
+            {{lang.luck_title}} <em v-if="giftData[1]"> {{lang.rank_getSeed.replace('$',giftData[1])}}</em><em v-if="giftData[2]"> {{lang.rank_getAcc.replace('$',giftData[2])}}</em>
           </div>
           <div class="giftImg">
             <div class="item" v-if="giftData[1]">
@@ -89,17 +89,17 @@
                 <img src="../img/getSeed2.png" alt="">
                 <div class="imgbg"></div>
               </div>
-              <strong>白色種子x{{giftData[1]}}</strong>
+              <strong>{{lang.rank_getSeed.replace('$',giftData[1])}}</strong>
             </div>
             <div class="item" v-if="giftData[2]">
               <div class="imgBox">
                 <img src="../img/accIcon.png" alt="">
                 <div class="imgbg"></div>
               </div>
-              <strong>花神祝福x{{giftData[2]}}</strong>
+              <strong>{{lang.rank_getAcc.replace('$',giftData[2])}}</strong>
             </div>
           </div>
-          <div class="ok" @click="showGiftPup = false">確認</div>
+          <div class="ok" @click="showGiftPup = false">{{lang.ok}}</div>
         </div>
 
       </transition>
@@ -179,7 +179,7 @@ export default {
             type: 1,
             nums: this.schuleList[key].chance
           })
-          this.toast(`領取成功！`)
+          this.toast(this.lang.luck_getSuc)
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -231,6 +231,9 @@ export default {
         })
       }
     },
+    goUser (uid) {
+      location.href = `uid:${uid}`
+    }
   }
 }
 </script>
@@ -271,6 +274,10 @@ export default {
       text-align: center;
       color: rgba(165, 147, 255, 1);
       font-size: 0.42rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0.35rem;
       &.act {
         color: #fff;
         background: url(../img/tabs_act.png);
@@ -529,6 +536,8 @@ export default {
         }
       }
       strong {
+        width: 1.58rem;
+        height: 0.55rem;
         display: block;
         text-align: center;
         font-size: 0.24rem;
@@ -543,7 +552,7 @@ export default {
       font-weight: 500;
       background: url(../img/ok.png);
       background-size: 100% 100%;
-      margin: 0.25rem auto;
+      margin: 0.15rem auto;
       color: rgba(101, 72, 209, 1);
       font-weight: 500;
     }

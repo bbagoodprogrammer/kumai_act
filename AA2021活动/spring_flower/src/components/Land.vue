@@ -137,12 +137,12 @@ export default {
       this.$store.commit('resetLandSteps', this.info.land_id);
       this.updateEmptyStep(2);
     },
-    getSeed () {
-      alert('去領種子');
-    },
-    buySeed () {
-      alert('購賣瘋狂種子');
-    },
+    // getSeed () {
+    //   alert('去領種子');
+    // },
+    // buySeed () {
+    //   alert('購賣瘋狂種子');
+    // },
     async getCarrot () {
       //   globalBus.$emit('commonEvent', () => {
       this.showAccIcon = false
@@ -351,12 +351,16 @@ export default {
         &.normal {
           line-height: 0.7rem;
           background-image: url('../img/normal.png');
-          animation: handAni 0.3s ease forwards;
+          //   animation: handAni 0.3s ease forwards;
+          left: 18%;
+          top: -5%;
         }
         &.crazy {
           line-height: 0.78rem;
           background-image: url('../img/crazy.png');
-          animation: handAniR 0.3s ease forwards;
+          left: 60%;
+          top: -5%;
+          //   animation: handAniR 0.3s ease forwards;
         }
       }
     }

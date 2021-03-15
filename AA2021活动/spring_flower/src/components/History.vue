@@ -3,8 +3,8 @@
     <i class="close" @click="closeHistory()"></i>
     <div class="hasData">
       <div class="listHeader">
-        <span class="time">日期</span>
-        <span class="gift">獲得獎勵</span>
+        <span class="time">{{lang.date}}</span>
+        <span class="gift">{{lang.get_gift}}</span>
       </div>
       <ul class='scrollable'>
         <li v-for="(item,index) in hList" :key="index">
@@ -14,7 +14,7 @@
       </ul>
     </div>
     <div class="noData" v-if="hList.length == 0">
-      暫無數據
+      {{lang.noData}}
     </div>
   </div>
 </template>
