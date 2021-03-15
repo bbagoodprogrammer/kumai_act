@@ -26,7 +26,7 @@ export default {
       } else if (this.step === 2) {
         this.toast(this.lang.actEd)
       } else if (!this.reg) {
-        this.toast(`您暫未報名活動，不能進行操作哦!`)
+        this.toast(this.lang.not_singUps)
       } else {
         callback()
       }

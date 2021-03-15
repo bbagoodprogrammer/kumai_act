@@ -1,30 +1,30 @@
 <template>
   <div class="strategy">
     <i class="close" @click="closeStrate()"></i>
-    <div class="title">種植攻略</div>
+    <div class="title">{{lang.strategy_title}}</div>
     <div class="scorll">
       <div class="tipsItem">
-        <h5>1、種子圖鑒</h5>
-        <p>（1）普通種子：</p>
-        <p>每顆收成5朵星願花，生長時間10分鐘，通過園丁打卡任務獲得。</p>
-        <p>（2）白色種子：</p>
-        <p>每顆收成15朵星願花，成長時間10分鐘，每塊花圃可一次種植最多5顆種子，通過儲值金幣獲得。</p>
-        <p>*儲值金幣僅計算當日額度，每日00:00重置</p>
+        <h5>{{lang.strategy_h51}}</h5>
+        <p>{{lang.strategy_p1}}</p>
+        <p>{{lang.strategy_p2}}</p>
+        <p>{{lang.strategy_p3}}</p>
+        <p>{{lang.strategy_p4}}</p>
+        <p>{{lang.strategy_p5}}</p>
       </div>
       <div class="tipsItem">
-        <h5>2、種植步驟</h5>
+        <h5>{{lang.strategy_h52}}</h5>
         <p>
-          1）點擊空白花圃，選擇【普通種子】或【白色種子】種植<br />
-          2）種植成功後，種子進入成長倒計時；種植多顆【白色種子】時，成長時間為10分鐘*種植數量<br />
-          3）種子成長倒計時結束，則星願花成熟，點擊成熟星願花即可成功收穫。<br />
-          *活動結束後，種植、加速、摘取皆不可操作
+          {{lang.strategy_p6}}<br />
+          {{lang.strategy_p7}}<br />
+          {{lang.strategy_p8}}<br />
+          {{lang.strategy_p9}}
         </p>
       </div>
       <div class="tipsItem">
-        <h5>3、加速說明</h5>
+        <h5> {{lang.strategy_p10}}</h5>
         <p>
-          （1）消耗一次【花神祝福 】，即可減少目標花圃中星願花10分鐘生長時間；剩餘成長時間未滿10分鐘時，則目標花圃中星願花立刻成熟。<br />
-          （2）【花神祝福】次數通過儲值金幣獲得。
+          {{lang.strategy_p11}}<br />
+          {{lang.strategy_p12}}
         </p>
       </div>
     </div>

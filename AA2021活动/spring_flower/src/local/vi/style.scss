@@ -1,4 +1,9 @@
 html.vi {
+    letter-spacing: -0.015rem;
+    .pageIndex {
+        background: rgba(101, 98, 229, 1) url(./img/banner.png) no-repeat;
+        background-size: 100% auto;
+    }
     .shareBar {
         position: fixed;
         z-index: 1000;
@@ -14,4 +19,52 @@ html.vi {
           background-size: 100% 100%;
         }
       }
+      .seed{
+          height: 4.4rem;
+          .top{
+            strong{
+                font-size:.28rem!important ;
+              }
+          }
+          .buttom{
+              font-size: .2rem!important;
+              padding: 0 .1rem!important;
+          }
+      }
+      .rank{
+          .tabs{
+              span{
+                  font-size: .32rem!important;
+              }
+          }
+          .rankTips{
+            margin: .25rem 0;
+          }
+      }
+      .taskTitle{
+          span{
+              font-size: .24rem!important;
+          }
+      }
+      .history{
+          white-space: nowrap!important;
+      }
+      .nums{
+          span{
+              line-height: .4rem!important;
+          }
+      }
+      .giftTips{
+          .title{
+              font-size: .32rem!important;
+          }
+      }
+      .extension{
+        display: block;
+        width: 1.09rem;
+        height: 1.26rem;
+        background: url(./img/extension.png);
+        background-size: 100% 100%;
+        margin: 0.3rem auto;
+    }
 }

@@ -1,11 +1,11 @@
 <template>
   <div class="footer" v-if="astState">
     <div class="acrStatus">
-      <div class="act_not" v-if="astState == 0">活動未開始</div>
-      <div class="act_not" v-else-if="astState == 2">活動已結束</div>
-      <div class="singUp" @click="singUp()" v-else-if="astState == 1">立即報名</div>
+      <div class="act_not" v-if="astState == 0">{{lang.noAct}}</div>
+      <div class="act_not" v-else-if="astState == 2">{{lang.actEd}}</div>
+      <div class="singUp" @click="singUp()" v-else-if="astState == 1">{{lang.singUpTips}}</div>
       <div class="rankMsg" v-else-if="astState == 3" :class="'rank' + userRank.rank">
-        <div class="listRank" :class="{noRank:!userRank.rank}">{{userRank.rank?userRank.rank:'未上榜'}}</div>
+        <div class="listRank" :class="{noRank:!userRank.rank}">{{userRank.rank?userRank.rank:lang.noRank}}</div>
         <div class="uerImg" @click="goUser(userRank.info.uid)">
           <img v-if="userRank.info.avatar_frame &&userRank.info.avatar_frame != ''" :src="userRank.info.avatar_frame" class="frame" alt="">
           <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
@@ -14,7 +14,7 @@
         </div>
         <div class="msg">
           <div class="nick">{{userRank.info.nick}}</div>
-          <div class="uid">距離上一名還差{{userRank.gap}}朵</div>
+          <div class="uid">{{lang.lastRankTips.replace('$',userRank.gap)}}</div>
         </div>
         <div class="score">
           <i></i>
@@ -51,7 +51,7 @@ export default {
 
       singUp().then(res => {
         if (res.data.response_status.code == 0) {
-          this.toast('報名成功！')
+          this.toast(this.lang.singUpSuc)
           this.$parent.init()
         } else {
           this.toast(res.data.response_status.error)

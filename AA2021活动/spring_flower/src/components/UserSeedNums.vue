@@ -1,7 +1,7 @@
 <template>
   <div class="seedNums">
     <div class="get" @click="scorllTo()">
-      獲取種子
+      {{lang.userSeedNums_get}}
     </div>
     <div class="seed">
       <div class="seed1">
@@ -10,10 +10,10 @@
             <img src="../img/getSeed1.png" alt="">
             <div class="value"><i class="x"></i> <img v-for="(item,index) in String(seed).split('')" :key="index" :src="require(`../img/numbers/${item}.png`)" alt=""></div>
           </div>
-          <strong>普通種子</strong>
+          <strong>{{lang.userSeedNums_seed1}}</strong>
         </div>
         <div class="buttom">
-          生長時間10分鐘，收成5朵星願花,每個種植位可種植1顆種子
+          {{lang.userSeedNums_seed1_tips}}
         </div>
       </div>
       <div class="seed1">
@@ -22,10 +22,10 @@
             <img src="../img/getSeed2.png" alt="">
             <div class="value"><i class="x"></i> <img v-for="(item,index) in String(seed1).split('')" :key="index" :src="require(`../img/numbers/${item}.png`)" alt=""></div>
           </div>
-          <strong>白色種子</strong>
+          <strong>{{lang.userSeedNums_seed2}}</strong>
         </div>
         <div class="buttom">
-          生長時間10分鐘，收成15朵星願花,每個種植位可種植5顆種子
+          {{lang.userSeedNums_seed2_tips}}
         </div>
       </div>
       <div class="seed1">
@@ -34,10 +34,10 @@
             <img src="../img/accIcon.png" alt="">
             <div class="value"><i class="x"></i> <img v-for="(item,index) in String(hoping).split('')" :key="index" :src="require(`../img/numbers/${item}.png`)" alt=""></div>
           </div>
-          <strong>花神祝福</strong>
+          <strong>{{lang.userSeedNums_seed3}}</strong>
         </div>
         <div class="buttom">
-          消耗一次花神祝福，即可減少目標花圃中花朵10分鐘成長時間
+          {{lang.userSeedNums_seed3_tips}}
         </div>
       </div>
     </div>

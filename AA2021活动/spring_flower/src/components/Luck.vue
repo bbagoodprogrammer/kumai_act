@@ -3,27 +3,28 @@
     <canvas id="creatAni"></canvas>
     <i class="close" @click="closeLuckPup()"></i>
     <div class="luckTips">
-      <span>搖一搖星願瓶掉落豐富獎勵！消耗20朵星願花搖一次哦！</span>
+      <span>{{lang.luckTips}}</span>
     </div>
     <div class="luckBox">
       <div class="falowNums">{{chance}}</div>
-      <div class="history" @click="showHistory = true">獎勵記錄</div>
+      <div class="history" @click="showHistory = true">{{lang.history_title}}</div>
       <div class="go one" @click="luck(1)">
-        <span class="goTips">搖一次</span>
+        <span class="goTips">{{lang.luck_one}}</span>
         <span class="goNums"><i></i>20</span>
       </div>
       <div class="go ten" @click="luck(10)">
-        <span class="goTips">搖十次</span>
+        <span class="goTips">{{lang.luck_ten}}</span>
         <span class="goNums"><i></i>200</span>
       </div>
     </div>
     <div class="giftTips">
-      <div class="title">成就獎勵</div>
+      <div class="title">{{lang.luck_giftTips}}</div>
       <div class="tipsStr">
-        每天成功收穫60朵星願花,累計5天、10天、15天完成任務，即可領取對應獎勵（每人限領一次）
+        {{lang.luck_giftTips2}}
       </div>
       <div class="dayNums">
-        今日已收穫花數<span>{{day_flower}}朵</span>
+        <!-- 今日已收穫花數<span>{{}}朵</span> -->
+        {{lang.luck_giftTips3.replace('$',day_flower)}}
       </div>
       <div class="giftItem">
         <div class="item" v-for="(item,index) in task_day_gift" :key="index">
@@ -31,8 +32,8 @@
             <img :src="require(`../img/gift/gift${index}.png`)" alt="">
           </div>
           <span class="bar">
-            <em class="ed" v-if="item.get">已領取</em>
-            <em v-else-if=" task_day >= item.limit" class="getSeed" @click="getGift(index)">領取</em>
+            <em class="ed" v-if="item.get">{{lang.luck_geted}}</em>
+            <em v-else-if=" task_day >= item.limit" class="getSeed" @click="getGift(index)">{{lang.luck_get}}</em>
             <em v-else class="barNums">
               <strong>{{task_day}}/{{item.limit}}</strong>
               <i class="actBar" :style="{width:task_day/item.limit * 100 +'%'}"></i>
@@ -46,8 +47,9 @@
       <transition name="slide">
         <div class="ordinaryPup noSeed" v-show="noFalowPup">
           <i class="close" @click="noFalowPup = false"></i>
-          <p class="ordinaryTips">星願花數量不足<span>快去種植更多星願花吧！</span></p>
-          <div class="ok" @click="noFalowPup = false">確認</div>
+          <!-- 星願花數量不足<span>快去種植更多星願花吧！</span> -->
+          <p class="ordinaryTips" v-html="lang.luck_noSeed"></p>
+          <div class="ok" @click="noFalowPup = false">{{lang.ok}}</div>
         </div>
       </transition>
     </div>
@@ -56,7 +58,7 @@
       <transition name="slide">
         <div class="giftPup" v-if="showLuckGiftPup" :class="{ten:prize.length > 1}">
           <i class=" close" @click="showLuckGiftPup = false"></i>
-          <div class="title">恭喜獲得</div>
+          <div class="title">{{lang.luck_title}}</div>
           <div class="giftImg">
             <div class="item" v-for="(item,index) in prize" :key="index">
               <div class="imgBox">
@@ -66,8 +68,8 @@
               <strong>{{item.name}}</strong>
             </div>
           </div>
-          <p class="luckTips2">獎勵已派發您的賬號上,請注意查收哦！</p>
-          <div class="ok" @click="showLuckGiftPup = false">確認</div>
+          <p class="luckTips2">{{lang.luck_getTips}}</p>
+          <div class="ok" @click="showLuckGiftPup = false">{{lang.ok}}</div>
         </div>
       </transition>
     </div>
@@ -76,7 +78,7 @@
       <transition name="slide">
         <div class="giftPup" v-if="showGiftPup">
           <i class=" close" @click="showGiftPup = false"></i>
-          <div class="title">恭喜獲得</div>
+          <div class="title">{{lang.luck_title}}</div>
           <div class="giftImg">
             <div class="item" v-for="(item,index) in giftConfig[act_index]" :key="index">
               <div class="imgBox">
@@ -86,7 +88,7 @@
               <strong>{{item.name}}</strong>
             </div>
           </div>
-          <div class="ok" @click="showGiftPup = false">確認</div>
+          <div class="ok" @click="showGiftPup = false">{{lang.ok}}</div>
         </div>
       </transition>
     </div>
@@ -118,43 +120,46 @@ export default {
       showHistory: false,
       showLuckGiftPup: false,
       prize: [],
-      giftConfig: {
-        1: [
-          {
-            img: require('../img/gift/gift4.png'),
-            name: '花神祝福*10'
-          },
-          {
-            img: require('../img/gift/gift1.png'),
-            name: '5%單次儲值券'
-          }
-        ],
-        2: [
-          {
-            img: require('../img/gift/gift4.png'),
-            name: '花神祝福*20'
-          },
-          {
-            img: require('../img/gift/gift2.png'),
-            name: '馴鹿座駕（7天）'
-          }
-        ],
-        3: [
-          {
-            img: require('../img/gift/gift4.png'),
-            name: '花神祝福*30'
-          },
-          {
-            img: require('../img/gift/gift3.png'),
-            name: '小花壺（10金幣）'
-          }
-        ]
-      },
+      //   giftConfig: {
+      //     1: [
+      //       {
+      //         img: require('../img/gift/gift4.png'),
+      //         name: '花神祝福*10'
+      //       },
+      //       {
+      //         img: require('../img/gift/gift1.png'),
+      //         name: '5%單次儲值券'
+      //       }
+      //     ],
+      //     2: [
+      //       {
+      //         img: require('../img/gift/gift4.png'),
+      //         name: '花神祝福*20'
+      //       },
+      //       {
+      //         img: require('../img/gift/gift2.png'),
+      //         name: '馴鹿座駕（7天）'
+      //       }
+      //     ],
+      //     3: [
+      //       {
+      //         img: require('../img/gift/gift4.png'),
+      //         name: '花神祝福*30'
+      //       },
+      //       {
+      //         img: require('../img/gift/gift3.png'),
+      //         name: '小花壺（10金幣）'
+      //       }
+      //     ]
+      //   },
       noFalowPup: false
     }
   },
   computed: {
-    ...mapState(['task_day_gift', 'day_flower', 'task_day', 'chance'])
+    ...mapState(['task_day_gift', 'day_flower', 'task_day', 'chance']),
+    giftConfig () {
+      return this.lang.giftConfig
+    }
   },
   mounted () {
     this.aniGo()
@@ -184,7 +189,7 @@ export default {
       globalBus.$emit('commonEvent', () => {
         getDayGift(id).then(res => {
           if (res.data.response_status.code == 0) {
-            this.toast(`領取成功！`)
+            this.toast(this.lang.luck_getSuc)
             this.vxc('setGiftStatus', id)
             this.act_index = id
             this.showGiftPup = true
@@ -485,7 +490,7 @@ export default {
   margin: -1rem 0 0 0.3rem;
   &.ten {
     width: 6.6rem;
-    height: 8.07rem;
+    height: 8.47rem;
     padding: 1.07rem 0.46rem 0 0;
     background: url(../img/pup/whiteBg.png);
     background-size: 100% 100%;
@@ -517,7 +522,7 @@ export default {
     text-align: center;
     font-size: 0.24rem;
     color: rgba(240, 179, 255, 1);
-    margin: 0.15rem 0;
+    margin: 0.1rem 0;
   }
   .giftImg {
     display: flex;
@@ -547,6 +552,8 @@ export default {
       }
     }
     strong {
+      width: 1.58rem;
+      height: 0.5rem;
       display: block;
       text-align: center;
       font-size: 0.24rem;
@@ -561,7 +568,7 @@ export default {
     font-weight: 500;
     background: url(../img/ok.png);
     background-size: 100% 100%;
-    margin: 0.25rem auto;
+    margin: 0.15rem auto;
     color: rgba(101, 72, 209, 1);
     font-weight: 500;
   }

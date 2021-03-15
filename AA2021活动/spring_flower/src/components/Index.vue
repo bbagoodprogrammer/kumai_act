@@ -6,11 +6,11 @@
     </div>
     <div class="header">
       <div class="nums">
-        <div @click="showLuck = true" :class="{carrotValueAnim2:chance >= 20}"><span>點擊抽獎 </span>
+        <div @click="showLuck = true" :class="{carrotValueAnim2:chance >= 20}"><span>{{lang.luck}} </span>
           <div class="value"><i class="x"></i> <img v-for="(item,index) in String(chance).split('')" :key="index" :src="require(`../img/numbers/${item}.png`)" alt=""></div>
         </div>
-        <div @click="showStrategy = true"><span>種植攻略</span></div>
-        <div @click="$router.push('rule')"><span>獎勵規則</span></div>
+        <div @click="showStrategy = true"><span>{{lang.Strategy}}</span></div>
+        <div @click="$router.push('rule')"><span>{{lang.rule}}</span></div>
       </div>
     </div>
     <LandsBox />
@@ -125,7 +125,13 @@ export default {
     },
     async bannerGo () {
       let canvas = document.getElementById('bannerBg')
-      const fileData = await downloader.get(`	http://fstatic.cat1314.com/uc/svga/8f6a7b9695945d9de2515f0d45ff6ac3_1615357987.svga`);
+      let addres = ''
+      if (_app == 'hsing') {
+        addres = `http://fstatic.cat1314.com/uc/svga/8f6a7b9695945d9de2515f0d45ff6ac3_1615357987.svga`
+      } else if (_app == 'singnow') {
+        addres = `http://fstatic.cat1314.com/uc/svga/ec12435be441b98da96ac0ae3a75edbf_1615792726.svga`
+      }
+      const fileData = await downloader.get(addres);
       const data = await parser.do(fileData);
       let player = new Player(canvas)
       await player.mount(data)
@@ -150,8 +156,8 @@ export default {
 }
 
 .pageIndex {
-  background: rgba(101, 98, 229, 1) url(../img/banner.png) no-repeat;
-  background-size: 100% auto;
+  //   background: rgba(101, 98, 229, 1) url(../img/banner.png) no-repeat;
+  //   background-size: 100% auto;
   //   padding-bottom: 2rem;
   &.bg {
     // background: url(../assets/img/banner1.jpg) center 0 no-repeat;

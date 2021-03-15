@@ -30,8 +30,8 @@
       <transition name="slide">
         <div class="ordinaryPup" v-show="showOrdinary">
           <i class="close" @click="showOrdinary = false"></i>
-          <p class="ordinaryTips">確定消耗一顆普通種子<img src="../img/normal.png" alt="">,種植5朵星願花嗎</p>
-          <div class="ok" @click="plantSeed(false)">確認</div>
+          <p class="ordinaryTips">{{lang.plantTips}}<img src="../img/normal.png" alt="">,{{lang.plantTips_query}}</p>
+          <div class="ok" @click="plantSeed(false)">{{lang.ok}}</div>
         </div>
       </transition>
     </div>
@@ -42,10 +42,10 @@
         <div class="whiteSeed" v-if="showWhitePup">
           <i class="close" @click="closeWhitePup()"></i>
           <div class="seedTitle">
-            請選擇種植白色種子數量
+            {{lang.whide_seed_tip1}}
           </div>
           <div class="overSeed">
-            現有<img src="../img/crazy.png" alt=""> {{seed1}}
+            {{lang.now_has}}<img src="../img/crazy.png" alt=""> {{seed1}}
           </div>
           <div class="selectNums">
             <span v-for="(item,index) in 5 " :key="index" :class="[{act:nums == item,black:seed1< item},'num' + item]" @click="nums = item">
@@ -53,9 +53,9 @@
             </span>
           </div>
           <div class="fallowNums">
-            預計產出<em>{{nums * 15}}</em><img src="../img/flower.png" alt="">
+            {{lang.whide_seed_tip2}}<em>{{nums * 15}}</em><img src="../img/flower.png" alt="">
           </div>
-          <div class="ok" @click="plantSeed(true)">確認</div>
+          <div class="ok" @click="plantSeed(true)">{{lang.ok}}</div>
         </div>
       </transition>
     </div>
@@ -66,10 +66,10 @@
         <div class="whiteSeed" v-if="acceleratorPup">
           <i class="close" @click="closeAcceleratorPup()"></i>
           <div class="seedTitle">
-            請選擇使用花神祝福數量
+            {{lang.whide_seed_tip3}}
           </div>
           <div class="overSeed">
-            現有<img src="../img/accIcon.png" alt=""> {{hoping}}
+            {{lang.now_has}}<img src="../img/accIcon.png" alt=""> {{hoping}}
           </div>
           <div class="selectNums">
             <span v-for="(item,index) in 5 " :key="index" :class="[{act:acceleratorNums == item,black:item > couldNums},'num' + item]" @click="useAcc(item)">
@@ -77,9 +77,9 @@
             </span>
           </div>
           <div class="fallowNums">
-            減少成長時間<em>{{acceleratorNums * 10}}</em>分鐘
+            {{lang.whide_seed_tip4}}<em>{{acceleratorNums * 10}}</em>{{lang.tm_min}}
           </div>
-          <div class="ok" @click="useAccelerator(1)">確認</div>
+          <div class="ok" @click="useAccelerator(1)">{{lang.ok}}</div>
         </div>
       </transition>
     </div>
@@ -89,19 +89,19 @@
       <transition name="slide">
         <div class="ordinaryPup" v-show="acceleratorPup2">
           <i class="close" @click="acceleratorPup2 = false"></i>
-          <p class="ordinaryTips">確定消耗一次花神祝福<img src="../img/accIcon.png" alt=""> 使當前種子立刻成熟？</p>
-          <div class="ok" @click="useAccelerator(0)">確認</div>
+          <p class="ordinaryTips">{{lang.whide_seed_tip5}}<img src="../img/accIcon.png" alt=""> {{lang.whide_seed_tip9}}</p>
+          <div class="ok" @click="useAccelerator(0)">{{lang.ok}}</div>
         </div>
       </transition>
     </div>
 
-    <!-- 擴建確認 -->
+    <!-- 擴建{{lang.ok}} -->
     <div class="mask" v-show="extensionPup">
       <transition name="slide">
         <div class="ordinaryPup" v-show="extensionPup">
           <i class="close" @click="extensionPup = false"></i>
-          <p class="ordinaryTips">確定使用【{{priceArr[extension]}}金幣】購買【花圃格數x1】？</p>
-          <div class="ok" @click="extensionClick()">確認</div>
+          <p class="ordinaryTips">{{lang.whide_seed_tip6.replace('$',priceArr[extension])}}</p>
+          <div class="ok" @click="extensionClick()">{{lang.ok}}</div>
         </div>
       </transition>
     </div>
@@ -110,9 +110,11 @@
       <transition name="slide">
         <div class="ordinaryPup noSeed" v-show="noSeedPup">
           <i class="close" @click="closeSeedPup()"></i>
-          <p class="ordinaryTips" v-if="userNotType == 1">種子不足<span>趕快完成任務<br />獲取更多種子吧！</span></p>
-          <p class="ordinaryTips" v-if="userNotType == 2">花神祝福次數不足<span>儲值金幣可獲取【花神祝福】 減少花朵10分鐘成長時間！</span></p>
-          <div class="ok" @click="closeSeedPup()">確認</div>
+          <!-- 種子不足<span>趕快完成任務<br />獲取更多種子吧！</span> -->
+          <p class="ordinaryTips" v-if="userNotType == 1" v-html="lang.whide_seed_tip7"></p>
+          <!-- 花神祝福次數不足<span>儲值金幣可獲取【花神祝福】 減少花朵10分鐘成長時間！</span> -->
+          <p class="ordinaryTips" v-if="userNotType == 2" v-html="lang.whide_seed_tip8"></p>
+          <div class="ok" @click="closeSeedPup()">{{lang.ok}}</div>
         </div>
       </transition>
     </div>
@@ -293,22 +295,22 @@ export default {
     onAvatarError (event) {
       event.target.src = require('../img/default.png');
     },
-    getRoleGif (lv) {
-      return [
-        '',
-        require('../img/1.gif'),
-        require('../img/2.gif'),
-        require('../img/3.gif'),
-        require('../img/4.gif'),
-        require('../img/5.gif'),
-      ][lv];
-    },
-    getSeed () {
-      alert('領種子');
-    },
-    getHelp () {
-      alert('種植攻略');
-    },
+    // getRoleGif (lv) {
+    //   return [
+    //     '',
+    //     require('../img/1.gif'),
+    //     require('../img/2.gif'),
+    //     require('../img/3.gif'),
+    //     require('../img/4.gif'),
+    //     require('../img/5.gif'),
+    //   ][lv];
+    // },
+    // getSeed () {
+    //   alert('領種子');
+    // },
+    // getHelp () {
+    //   alert('種植攻略');
+    // },
     closeSeedPup () {
       this.noSeedPup = false
       this.showOrdinary = false
@@ -412,27 +414,27 @@ export default {
     }
   }
 
-  .btns {
-    position: absolute;
-    left: 0.3rem;
-    top: 0.7rem;
-    a {
-      display: inline-block;
-      background-size: 100% 100%;
-      vertical-align: top;
-      &.get {
-        width: 1.08rem;
-        height: 1.32rem;
-        background-image: url('../img/get_seed.png');
-        animation: getSeed 0.5s linear infinite alternate;
-      }
-      &.help {
-        width: 1.66rem;
-        height: 0.67rem;
-        background-image: url('../img/plant_strategy.png');
-      }
-    }
-  }
+  //   .btns {
+  //     position: absolute;
+  //     left: 0.3rem;
+  //     top: 0.7rem;
+  //     a {
+  //       display: inline-block;
+  //       background-size: 100% 100%;
+  //       vertical-align: top;
+  //       &.get {
+  //         width: 1.08rem;
+  //         height: 1.32rem;
+  //         background-image: url('../img/get_seed.png');
+  //         animation: getSeed 0.5s linear infinite alternate;
+  //       }
+  //       &.help {
+  //         width: 1.66rem;
+  //         height: 0.67rem;
+  //         background-image: url('../img/plant_strategy.png');
+  //       }
+  //     }
+  //   }
 
   .role {
     width: 1.8rem;
@@ -501,9 +503,9 @@ export default {
       }
       &:first-child {
         width: 41%;
-        background: #1e8c66 url('../img/icon_common_seed.png') 0.1rem center
-          no-repeat;
-        background-size: 0.5rem 0.6rem;
+        // background: #1e8c66 url('../img/icon_common_seed.png') 0.1rem center
+        //   no-repeat;
+        // background-size: 0.5rem 0.6rem;
         margin-right: 1%;
         i {
           background: #aa755e;
@@ -515,9 +517,9 @@ export default {
       }
       &:last-child {
         width: 58%;
-        background: #1f8081 url('../img/icon_crazy_seed.png') 0.1rem center
-          no-repeat;
-        background-size: 0.5rem 0.6rem;
+        // background: #1f8081 url('../img/icon_crazy_seed.png') 0.1rem center
+        //   no-repeat;
+        // background-size: 0.5rem 0.6rem;
         i {
           background: #a05a8e;
           border-color: #df9bc1;

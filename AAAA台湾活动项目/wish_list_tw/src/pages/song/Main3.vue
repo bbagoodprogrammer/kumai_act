@@ -31,7 +31,7 @@
       <msg-toast :msg="tastMsg" :tostTitle="tostTitle" :back="back" @closeToast="closeToast()" v-show="showT"></msg-toast>
     </transition>
     <div class="bMsg">
-      <p>心願歌曲需為5月4日18:00:00后發佈的任意公開作品(清唱5分鐘除外)</p>
+      <p>心願歌曲需為本期活動開始後發佈的任意公開作品（清唱5分鐘除外）</p>
     </div>
     <Loading></Loading>
   </div>
@@ -43,7 +43,7 @@ import msgToast from "../../components/commonToast"
 import getString from "../../utils/getString"
 export default {
   components: { Loading, msgToast },
-  data() {
+  data () {
     return {
       songList: [],
       showPup: false,
@@ -56,11 +56,11 @@ export default {
     }
   },
   computed: {
-    isLength() {
+    isLength () {
       return this.songList.length > 0
     }
   },
-  created() {
+  created () {
     api.getSongList().then((res) => { //请求歌曲列表
       if (res.data.response_status && res.data.response_status.code === 0) {
         this.songList = res.data.response_data.list
@@ -69,15 +69,15 @@ export default {
     sessionStorage.setItem("need-refresh", true);
   },
   methods: {
-    goSing() {
+    goSing () {
       location.href = "goto:songLibrary"
     },
-    choiceSong(itemId, index) { //选择歌曲
+    choiceSong (itemId, index) { //选择歌曲
       this.songid = itemId  //當前歌曲ID
       this.showPup = true
       this.songIndex = index //當前歌曲索引
     },
-    changed() {
+    changed () {
       api.selectSong(this.songid).then((res) => {
         if (res.data.response_status.code === 0) { //提交成功顯示OK提示
           this.showPup = false
@@ -100,10 +100,10 @@ export default {
         }
       })
     },
-    hdPup() {
+    hdPup () {
       this.showPup = false
     },
-    closeToast() {
+    closeToast () {
       this.showT = false
     }
   }
@@ -223,5 +223,5 @@ body {
     }
   }
 }
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 </style>
