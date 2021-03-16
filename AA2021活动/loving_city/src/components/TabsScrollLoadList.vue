@@ -2,99 +2,37 @@
   <div class="rankGroups">
     <!-- 三個類別 -->
     <div class="typeMainTabs">
-      <span @click="setShowType(1)" :class="{act:showType == 1}">創作者榜</span>
-      <span @click="setShowType(2)" :class="{act:showType == 2}">房主榜</span>
+      <span @click="setShowType(1)" :class="{act:showType == 1}">{{lang.type_tab1}}</span>
+      <span @click="setShowType(2)" :class="{act:showType == 2}">{{lang.type_tab2}}</span>
       <!-- <span @click="setShowType(3)" :class="{act:showType == 3}">用戶榜</span> -->
     </div>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
-        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">日榜</a>
-        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">總榜</a>
+        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{lang.tab1}}</a>
+        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">{{lang.tab2}}</a>
       </div>
     </div>
-    <div class="downTimebox">
-      <div v-if="mainTab == 0" class="timeTips">
-        <p v-if=" step == 1">- 距離今日榜單活動結束還有 -</p>
-        <p v-else-if=" step == 0 ">- 距離今日榜單活動開始還有 -</p>
-        <p class="noTime" v-else>- 本日榜已結束 -</p>
-      </div>
-      <div class="timeTips" v-else>
-        <p v-if="step == 0">- 距離活動開始還有 -</p>
-        <p v-else-if="step == 1">- 距離活動結束還有 - </p>
-        <p v-else>- 活動已結束 - </p>
-      </div>
-      <!-- -->
-      <div class="timeDown" v-if="(surplusTime.day) || mainTab == 1">
-        <div class="day">
-          <strong>{{surplusTime.day}}</strong>
-          <em>天</em>
-        </div>
-        <div class="hours">
-          <strong>{{surplusTime.hour}}</strong>
-          <em>時</em>
-        </div>
-        <div class="min">
-          <strong>{{surplusTime.minute}}</strong>
-          <em>分</em>
-        </div>
-        <div class="second">
-          <strong>{{surplusTime.second}}</strong>
-          <em>秒</em>
-        </div>
-      </div>
-      <p class="rankTips" v-if="showType==1">按照簽約創作者收到的作品和K房特定禮物金幣數排名 <span v-if="mainTab == 0">日榜前3獎勵分別獎勵榜單金幣3%/2.5%/2%現金分成</span> </p>
-      <p class="rankTips" v-if="showType==2">按照簽約房主的房間收到的K房特定禮物金幣數排名 <span v-if="mainTab == 0"> 日榜前3名分別獎勵榜單金幣2%/1.5%/1%現金分成</span> </p>
-      <p class="rankTips" v-if="showType==3">按照用戶報名後收到的作品和K房特定活動禮物金幣數排名<span v-if="mainTab == 0">日榜前3名分別獎勵榜單金幣8%/5%/3%金幣分成</span></p>
-    </div>
-    <ul v-if="mainTab==0" class="list day">
+    <ul class="list day">
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.rid)">
+        <div class="showUserIcon" @click.stop="$router.push({name:'UserList',params:{uid:item.uid}})" v-if="showType == 2 && mainTab == 0">{{lang.rank_Tips}}<i></i></div>
         <div class="rank">{{item.rank}}</div>
-        <div class="uerImg">
-          <span class="imgBg"></span>
-          <img v-lazy="item.avatar" alt="" class="imgItem">
+        <div class="uerImg" @click="goUser(item.uid,item.live)">
+          <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
+          <img v-lazy="item.avatar" alt="" class="av">
         </div>
         <div class="userMsg">
-          <div class="rName" v-if="item.rname">{{item.rname}}</div>
-          <div class="name" :class="{rNick:showType == 2}">{{item.nick}}</div>
-          <div class="score"><i></i> {{item.score}}</div>
+          <div class="nick">{{item.nick}} <i v-if="item.live && showType == 1 && mainTab == 0"> </i></div>
+          <div class="uid">UID {{item.uid}}</div>
         </div>
-        <div class="userGift">
-          <span v-for="(item2,index2) in item.gift" :key="index2">
-            <img :src="item2.img" alt="">
-            <em>{{item2.muns}}</em>
-          </span>
-        </div>
-      </li>
-    </ul>
-    <!-- 总榜 -->
-    <ul v-else-if="mainTab==1" class="list total">
-      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.rid)">
-        <div class="rank">{{item.rank}}</div>
-        <div class="uerImg">
-          <span class="imgBg"></span>
-          <img v-lazy="item.avatar" alt="" class="imgItem">
-        </div>
-        <div class="userMsg">
-          <div class="rName" v-if="item.rname">{{item.rname}}</div>
-          <div class="name" :class="{rNick:showType == 2}">{{item.nick}}</div>
-          <div class="score"><i></i> {{item.score}}</div>
-        </div>
-        <div class="userGift">
-          <span v-for="(item2,index2) in item.gift" :key="index2">
-            <img :src="item2.img" alt="">
-            <em>{{item2.muns}}</em>
-          </span>
-        </div>
+        <div class="score"><i :class="{type2:showType == 1 && mainTab == 1}"></i><em>{{item.score}}</em></div>
       </li>
     </ul>
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-    <div v-if="rank.loading" class="scrollLoading">加載中...</div>
-    <div v-if="rank.none && (rank.list.length == 0 && ( tab ==='total'))" class="scrollNone">
-      目前暫無歌友上榜</br>
-      虛位以待，等你來哦！
+    <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
+    <div v-if="rank.none " class="scrollNone">
+      {{lang.noPeople}}
     </div>
-    <div v-if="mainTab==0" class="dengdai">敬請期待！</div>
   </div>
 </template>
 
@@ -139,24 +77,29 @@ export default {
       peopleArr: []
     }
   },
+  watch: {
+    firstInit (val) {
+      this.onScroll();
+    }
+  },
   computed: {
-    ...mapState(['rankGroups', "inited", "isShare", "step", "showType", "timeObj"]),
+    ...mapState(['rankGroups', "firstInit", "isShare", "step", "showType", "timeObj", "curent_data"]),
     rankKey () {
       // return ['one', 'two', 'three'][this.tab];
-      return this.mainTab == 1 ? 'total' : this.tab;
+      return this.mainTab == 1 ? 'total' : this.mainTab;
     },
     rankApi () {
       if (this.isShare) {
-        var dayApi = `/gift_contest/list.php?type={type}&day={day}&from={from}`;
-        var totalApi = `/gift_contest/list.php?type={type}&day=0&from={from}`;
-        var api = this.rankKey == 'total' ? totalApi : dayApi;
-        return api.replace('{type}', this.showType);
+        var dayApi = `/loving_city/allList.php?type={type}&tm=${this.curent_data}&from={from}`;
+        var totalApi = `/loving_city/allList.php?type={type}&tm=0&from={from}`;
+        var api = this.showType == 2 ? totalApi : dayApi;
+        return api.replace('{type}', this.mainTab == 0 ? 1 : 0);
       } else {
-        var dayApi = `/gift_contest/list.php?token={token}&type={type}&day={day}&from={from}`;
-        var totalApi = `/gift_contest/list.php?token={token}&type={type}&day=0&from={from}`;
-        var api = this.rankKey == 'total' ? totalApi : dayApi;
+        var dayApi = `/loving_city/allList.php?token={token}&type={type}&tm=${this.curent_data}&from={from}`;
+        var totalApi = `/loving_city/allList.php?token={token}&type={type}&tm=0&from={from}`;
+        var api = this.showType == 2 ? totalApi : dayApi;
         const token = getUrlString('token') || '';
-        return api.replace('{type}', this.showType).replace('{token}', token)
+        return api.replace('{type}', this.mainTab == 0 ? 1 : 0).replace('{token}', token)
       }
     },
     rankSize () {
@@ -176,7 +119,7 @@ export default {
     }
   },
   mounted () {
-    this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
+    //this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
@@ -186,8 +129,9 @@ export default {
   methods: {
     setShowType (val) {
       if (val !== this.showType) {
-        this.vxc('setShowType', val)
         this.mainTab = 0
+        this.vxc('setShowType', val)
+        this.vxc("changTab", this.rankKey)
         this.$nextTick(() => {
           if (!this.rank.loadCount) {
             this.onScroll();
@@ -204,24 +148,11 @@ export default {
         }
       });
     },
-    tabClick (tab) { //日榜切换
-      this.tab = tab;
-      this.vxc("changTab", this.rankKey)
-      this.$nextTick(() => {
-        if (!this.rank.loadCount) {
-          this.onScroll();
-        }
-      });
-    },
     onScroll () {
-      // if (this.tab > this.nowDay) return (this.tab > this.nowDay && this.rankKey !== 'total') || 
-      if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
-        return
-      }
-      if (!this.rank.loading && !this.rank.loadEnd) {
+      if (!this.rank.loading && !this.rank.loadEnd && !this.firstInit) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
-        if (scrollToBottom || notFull) {
+        if (scrollToBottom || notFull || !this.rank.loadCount) {
           const key = this.rankKey;
 
           const set = (k, v) => {
@@ -242,15 +173,15 @@ export default {
               set('loadEnd', true);
               return;
             }
-
+            this.$parent.downTimeGo('time', response_data.second)
             const arr = response_data.list;
             //跟随榜单变换个人信息
-            if (response_data.myrank && response_data.myrank.info) {
+            if (response_data.myRank && response_data.myRank.uid) {
               let userObj = {
                 type: this.showType,
                 data: { //当前日榜信息
                   key: this.rankKey,
-                  msg: response_data.myrank ? response_data.myrank : {}
+                  msg: response_data.myRank
                 }
               }
               this.vxc('updateGroupsUserMsg', userObj)
@@ -270,6 +201,7 @@ export default {
                 set('loadEnd', true);
               }
               this.$nextTick(() => {
+                console.log(this.rank.loadCount, this.rank.list.length)
                 if (this.rank.loadCount > 0 && this.rank.list.length === 0) {
                   set('none', true);
                 }
@@ -319,9 +251,9 @@ export default {
     getDate (time) {
       return getDate(new Date(time * 1000), '2')
     },
-    goUser (uid, rid) { //跳转
-      if (rid) {
-        location.href = `rid:${rid}`
+    goUser (uid, live) { //跳转
+      if (live) {
+        location.href = `rid:${uid}`
       } else {
         location.href = `uid:${uid}`
       }
@@ -339,28 +271,31 @@ export default {
 
 <style lang="scss">
 .rankGroups {
+  width: 7.02rem;
   margin-top: 0.16rem;
+  background: #fff url(../img/rankBg.png) no-repeat;
+  background-size: 7.02rem 0.63rem;
   padding-bottom: 2rem;
+  margin: 0.4rem auto;
   .typeMainTabs {
+    padding: 0 0.2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 6.98rem;
+    width: 6.58rem;
     height: 0.98rem;
-    // background: url(../assets/img/tasBg.png);
-    // background-size: 100% 100%;
     margin: 0 auto;
     > span {
-      width: 2.5rem;
-      height: 0.9rem;
+      width: 3.27rem;
+      height: 0.8rem;
       text-align: center;
-      color: #fff8c9;
       font-weight: 500;
-      line-height: 0.89rem;
+      line-height: 0.8rem;
+      background: url(../img/typeTab.png);
+      background-size: 100% 100%;
       &.act {
-        color: #fff;
-        // background: url(../assets/img/actTab.png);
-        // background-size: 100% 100%;
+        background: url(../img/typeTab_act.png);
+        background-size: 100% 100%;
       }
     }
   }
@@ -374,29 +309,47 @@ export default {
     margin: 0 auto;
     display: flex;
     .tabs {
-      width: 5.36rem;
+      width: 5.2rem;
       height: 0.72rem;
-      // background: url(../assets/img/tabs.png);
-      // background-size: 100% 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin: 0.13rem auto 0;
       > a {
         display: block;
-        width: 2.57rem;
+        width: 2.6rem;
         height: 0.72rem;
         text-align: center;
         line-height: 0.72rem;
-        // background: url(../assets/img/dayTitle.png);
-        // background-size: 100% 100%;
-        color: #fff8c9;
         font-weight: 500;
+        position: relative;
+        font-size: 0.24rem;
+        color: rgba(168, 168, 176, 1);
         &.current {
-          color: #fff;
-          //   background: url(../assets/img/actDayTitle.png);
-          //   background-size: 100% 100%;
+          color: rgba(197, 183, 248, 1);
         }
+        &.current::before {
+          content: '';
+          display: block;
+          width: 2.6rem;
+          height: 0.11rem;
+          background: url(../img/tab_linerAct.png);
+          background-size: 100% 100%;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+      }
+      a::before {
+        content: '';
+        display: block;
+        width: 2.6rem;
+        height: 0.11rem;
+        background: url(../img/tab_liner.png);
+        background-size: 100% 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
       }
     }
   }
@@ -413,207 +366,150 @@ export default {
       font-size: 80%;
     }
   }
-  .downTimebox {
-    margin: 0 auto;
-    width: 6.98rem;
-    text-align: center;
-    // background: url(../assets/img/timeBg.png);
-    // background-size: 100% 100%;
-    position: relative;
-    .timeDown {
-      width: 4.64rem;
-      height: 0.76rem;
-      padding: 0 0.25rem;
-      margin: 0.12rem auto 0;
-      //   background: url(../assets/img/timeBg.png);
-      //   background-size: 100% 100%;
-      display: flex;
-      justify-content: space-between;
-      > div {
-        height: 100%;
-        line-height: 0.76rem;
-        display: inline-block;
-        strong {
-          font-size: 0.48rem;
-          font-weight: bold;
-        }
-        em {
-          font-size: 0.22;
-          color: rgba(255, 178, 214, 1);
-        }
-      }
-    }
-    .noTime {
-      line-height: 0.6rem;
-    }
-    .rankTips {
-      margin-top: 0.12rem;
-      font-size: 0.22rem;
-      color: #9afeff;
-      span {
-        display: block;
-      }
-    }
-  }
   .list {
     margin: 0.19rem auto;
-    width: 7.1rem;
+    width: 7.02rem;
     li {
       height: 1.27rem;
       margin-top: 0.05rem;
-      //   background: url(../assets/img/topItemBg.png);
-      //   background-size: 100% 100%;
       display: flex;
       align-items: center;
-      .rank {
-        width: 0.84rem;
-        height: 0.72rem;
-        font-size: 0.46rem;
-        color: rgba(254, 175, 255, 1);
+      position: relative;
+      .showUserIcon {
+        width: 3.5rem;
+        height: 0.32rem;
+        background: url(../img/userListIcon.png);
+        background-size: 100% 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 0.2rem;
         text-align: center;
-        line-height: 0.72rem;
-        margin-left: 0.13rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        text-indent: 0.15rem;
+        i {
+          width: 0.12rem;
+          height: 0.21rem;
+          background: url(../img/arr_left.png);
+          background-size: 100% 100%;
+          margin-left: 0.1rem;
+        }
+      }
+      .rank {
+        width: 0.87rem;
+        height: 0.7rem;
+        line-height: 0.7rem;
+        text-align: center;
+        color: rgba(171, 171, 182, 1);
       }
       .uerImg {
-        width: 1.21rem;
-        height: 1.01rem;
+        width: 1.1rem;
+        height: 1.1rem;
         position: relative;
-        margin-left: 0.21rem;
-        .imgBg {
-          width: 1rem;
-          height: 1.01rem;
-          //   background: url(../assets/img/av4.png);
-          //   background-size: 100% 100%;
+        .nob {
+          width: 1.1rem;
+          height: 1.1rem;
           position: absolute;
+          top: 0rem;
+          left: 0rem;
           z-index: 10;
         }
-        .imgItem {
+        .frame {
+          width: 1.5rem;
+          height: 1.5rem;
+          position: absolute;
+          top: -0.21rem;
+          left: -0.2rem;
+          z-index: 10;
+        }
+        .room_frame {
           width: 0.94rem;
           height: 0.94rem;
           position: absolute;
-          top: 0.035rem;
-          left: 0.03rem;
+          top: 0.055rem;
+          left: 0.065rem;
+          z-index: 10;
+        }
+        .av {
+          width: 0.88rem;
+          height: 0.88rem;
+          position: absolute;
+          top: 0.1rem;
+          left: 0.11rem;
           border-radius: 50%;
+          //   border: 0.02rem solid rgba(131, 9, 67, 1);
+          &.room {
+            border-radius: 0.14rem;
+            &.noBor {
+              border: none;
+            }
+          }
         }
       }
       .userMsg {
-        width: 2.4rem;
+        width: 2.8rem;
         margin-right: 0.1rem;
-        .name,
-        .rName {
-          height: 0.4rem;
-          max-width: 2.4rem;
-          overflow: hidden;
+        .nick {
+          font-size: 0.32rem;
+          color: rgba(168, 168, 176, 1);
           white-space: nowrap;
+          overflow: hidden;
           text-overflow: ellipsis;
+          i {
+            display: inline-block;
+            width: 0.28rem;
+            height: 0.22rem;
+            background: url(../img/ktving.gif);
+            background-size: 100% 100%;
+            margin-left: 0.1rem;
+          }
+        }
+        .uid {
+          color: rgba(171, 171, 182, 0.7);
           font-size: 0.26rem;
         }
-        .rNick {
-          color: #ff8cfe;
-          margin-top: -0.05rem;
-        }
-        .score {
-          display: flex;
-          align-items: center;
-          color: #ffed82;
-          font-size: 0.22rem;
-          font-weight: 500;
-          i {
-            display: block;
-            margin-right: 0.1rem;
-            width: 0.22rem;
-            height: 0.25rem;
-            // background: url(../assets/img/coins.png);
-            // background-size: 100% 100%;
+      }
+      .score {
+        display: flex;
+        align-items: center;
+        color: rgba(255, 191, 208, 1);
+        margin-left: 0.15rem;
+        i {
+          width: 0.32rem;
+          height: 0.26rem;
+          background: url(../img/scoreIcon1.png);
+          background-size: 100% 100%;
+          margin-right: 0.1rem;
+          &.type2 {
+            background: url(../img/scoreIcon2.png);
+            background-size: 100% 100%;
           }
         }
       }
-      .userGift {
-        width: 2rem;
-        height: 0.8rem;
-        span {
-          float: left;
-          display: inline-block;
-          width: 48%;
-          height: 50%;
-          color: RGBA(255, 192, 136, 1);
-          display: flex;
-          align-items: center;
-          em {
-            font-size: 0.22rem;
-            font-weight: 500;
-          }
-          img {
-            display: block;
-            width: 0.35rem;
-            height: 0.35rem;
-            margin-right: 0.05rem;
-          }
+      &.rank1 {
+        .rank {
+          text-indent: -999rem;
+          background: url(../img/top1.png) center center no-repeat;
+          background-size: 0.44rem 0.55rem;
         }
       }
-      //   &.rank1 {
-      //     background: url(../assets/img/topBg.png);
-      //     background-size: 100% 100%;
-      //     .imgBg {
-      //       width: 1.11rem;
-      //       height: 1.25rem;
-      //       background: url(../assets/img/av1.png);
-      //       background-size: 100% 100%;
-      //       top: -0.22rem;
-      //       left: -0.05rem;
-      //     }
-      //     .imgItem {
-      //       width: 1rem;
-      //       height: 1rem;
-      //     }
-      //     .rank {
-      //       text-indent: -999rem;
-      //       background: url(../assets/img/top1.png);
-      //       background-size: 100% 100%;
-      //     }
-      //   }
-      //   &.rank2 {
-      //     background: url(../assets/img/topBg.png);
-      //     background-size: 100% 100%;
-      //     .imgBg {
-      //       width: 1.11rem;
-      //       height: 1.25rem;
-      //       background: url(../assets/img/av2.png);
-      //       background-size: 100% 100%;
-      //       top: -0.22rem;
-      //       left: -0.05rem;
-      //     }
-      //     .imgItem {
-      //       width: 1rem;
-      //       height: 1rem;
-      //     }
-      //     .rank {
-      //       text-indent: -999rem;
-      //       background: url(../assets/img/top2.png);
-      //       background-size: 100% 100%;
-      //     }
-      //   }
-      //   &.rank3 {
-      //     background: url(../assets/img/topBg.png);
-      //     background-size: 100% 100%;
-      //     .imgBg {
-      //       width: 1.11rem;
-      //       height: 1.25rem;
-      //       background: url(../assets/img/av3.png);
-      //       background-size: 100% 100%;
-      //       top: -0.22rem;
-      //       left: -0.05rem;
-      //     }
-      //     .imgItem {
-      //       width: 1rem;
-      //       height: 1rem;
-      //     }
-      //     .rank {
-      //       text-indent: -999rem;
-      //       background: url(../assets/img/top3.png);
-      //       background-size: 100% 100%;
-      //     }
-      //   }
+      &.rank2 {
+        .rank {
+          text-indent: -999rem;
+          background: url(../img/top2.png) center center no-repeat;
+          background-size: 0.44rem 0.55rem;
+        }
+      }
+      &.rank3 {
+        .rank {
+          text-indent: -999rem;
+          background: url(../img/top3.png) center center no-repeat;
+          background-size: 0.44rem 0.55rem;
+        }
+      }
     }
   }
 }
@@ -623,12 +519,12 @@ export default {
 }
 .scrollLoading {
   text-align: center;
-  color: #ffefd7;
+  color: rgba(168, 168, 176, 1);
   font-size: 80%;
 }
 .scrollNone {
   text-align: center;
-  color: #ffefd7;
+  color: rgba(168, 168, 176, 1);
   font-size: 80%;
 }
 #refresh {

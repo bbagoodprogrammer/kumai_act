@@ -1,7 +1,33 @@
 html.vi {
+    .shareBar {
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        .bar {
+          width: 7.5rem;
+          height: 1.2rem;
+          margin: auto;
+          background: url(./img/share_bar.png) no-repeat;
+          background-size: 100% 100%;
+        }
+      }
+    
     .pageIndex {
           background: RGBA(239, 229, 255, 1) url(./img/banner.png) no-repeat;
           background-size: 100% auto;
           padding-bottom: 2rem;
+    }
+    .singUp{
+        width: 7.5rem;
+        height: .92rem;
+        background: url(./img/singUp.png);
+        background-size: 100% 100%;
+    }
+    .ruleTips{
+        background: url(./img/ruleTips.png);
+        background-size: 100% 100%;
     }
 }

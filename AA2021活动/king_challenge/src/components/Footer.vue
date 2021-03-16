@@ -72,7 +72,7 @@
 import { mapState } from 'vuex'
 import { signUp, getGift } from "../apis"
 export default {
-  data() {
+  data () {
     return {
       showGiftPup: false,
       giftArr: [
@@ -89,7 +89,7 @@ export default {
   },
   computed: {
     ...mapState(['step', 'tab', 'groupsUserMsg', 'reg', 'level', 'Lv']),
-    astState() {
+    astState () {
       console.log(this.tab)
       if (this.step === 0) { //活动未开始
         return 1
@@ -104,10 +104,10 @@ export default {
         return 5
       }
     },
-    nowUserMsg() {
+    nowUserMsg () {
       return this.groupsUserMsg[this.tab] ? this.groupsUserMsg[this.tab].msg : { info: {} }
     },
-    linerWidth() {
+    linerWidth () {
       if (this.Lv) {
 
         let levelArr = Object.keys(this.level)
@@ -133,7 +133,7 @@ export default {
     }
   },
   methods: {
-    signUpClick() {
+    signUpClick () {
       signUp().then(res => {
         if (res.data.response_status.code == 0) {
           this.toast(this.lang.singUp_suc)
@@ -143,7 +143,7 @@ export default {
         }
       })
     },
-    openBox(index) {
+    openBox (index) {
       if (this.level[index].can && !this.level[index].get) {
         getGift(index).then(res => {
           if (res.data.response_status.code == 0) {
@@ -156,10 +156,10 @@ export default {
         })
       }
     },
-    goKroom(rid) {
+    goKroom (rid) {
       location.href = `rid:${rid}`
     },
-    goUser(uid, kmic) { //跳转
+    goUser (uid, kmic) { //跳转
       if (kmic) {
         this.goKroom(kmic)
         return
@@ -454,22 +454,22 @@ export default {
     &.rank1 {
       .rank {
         text-indent: -999rem;
-        background: url(../img/top1.png);
-        background-size: 100% 100%;
+        background: url(../img/top1.png) center  center no-repeat;
+        background-size: 0.44rem 0.55rem;
       }
     }
     &.rank2 {
       .rank {
         text-indent: -999rem;
-        background: url(../img/top2.png);
-        background-size: 100% 100%;
+        background: url(../img/top2.png) center  center no-repeat;
+        background-size: 0.44rem 0.55rem;
       }
     }
     &.rank3 {
       .rank {
         text-indent: -999rem;
-        background: url(../img/top3.png);
-        background-size: 100% 100%;
+        background: url(../img/top3.png)  center center no-repeat;
+        background-size: 0.44rem 0.55rem;
       }
     }
   }

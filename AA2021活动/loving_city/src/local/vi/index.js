@@ -11,9 +11,11 @@ import "./style.scss";
 import lang from "./lang";
 import images from "./images";
 
+import Agreement from "./Agreement";
+
 window._lang = lang;
 window._images = images;
-
+window._agreement = Agreement;
 if (lang.title) {
     document.title = lang.title;
 }

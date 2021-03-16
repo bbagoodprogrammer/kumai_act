@@ -17,7 +17,8 @@ export default {
     viewHeight: () => window.innerHeight,
   },
   mounted () {
-    // this.$store.dispatch('getInitInfo');
+    this.$store.dispatch('getInitInfo');
+
   },
   created () {
     globalBus.$on('commonEvent', (callback) => {
