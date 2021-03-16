@@ -113,7 +113,14 @@ function loadData(apiFunc, commitName) {
 
 function getInitInfo() {
     // return testGet('getInitInfo');
-    return get("/index.php?action=kolExt.getInitInfo&uid={uid}&token={token}");
+    return get("/loving_city/init.php?uid={uid}&token={token}");
 }
 
-export { get, post, loadData, getInitInfo };
+function singUp() {
+    return get("/loving_city/register.php?token={token}");
+}
+
+function guard(id) {
+    return get(`/loving_city/guard.php?token={token}&guard=${id}`);
+}
+export { get, post, loadData, getInitInfo, singUp, guard };

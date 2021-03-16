@@ -1,8 +1,13 @@
 <template>
   <div class="page pageIndex">
-    <div class="header"></div>
+    <div class="shareBar" v-if="isShare">
+      <div class="bar" @click="downApp()"></div>
+    </div>
+    <div class="header">
+      <div class="ruleTips" @click="$router.push('rule')"></div>
+    </div>
     <div class="wards">
-      <div class="title">Quà đua top</div>
+      <div class="title">{{lang.wardsTitle}}</div>
       <div class="giftList">
         <div class="giftItem" v-for="(item,index) in giftList" :key="index">
           <div class="imgBox">
@@ -29,7 +34,8 @@
         <em>{{lang.rank_second}}</em>
       </div>
     </div>
-    <TabsScrollLoadList />
+    <TabsScrollLoadList ref="rank" />
+    <Footer />
   </div>
 </template>
 
@@ -38,37 +44,56 @@
 import downTime from '../utils/downTime.js'
 import { mapState } from "vuex"
 import TabsScrollLoadList from "./TabsScrollLoadList"
+import Footer from "./Footer"
+import { getUrlString } from '../utils'
+import APP from "../utils/openApp"
 export default {
-  components: { TabsScrollLoadList },
+  components: { TabsScrollLoadList, Footer },
   data () {
     return {
-      giftList: [
-        {
-          name: '浪漫情書',
-          img: require('../img/gifts/gift1.png'),
-          price: '20'
-        },
-        {
-          name: '小鹿亂撞',
-          img: require('../img/gifts/gift2.png'),
-          price: '52'
-        },
-        {
-          name: '談情說愛',
-          img: require('../img/gifts/gift3.png'),
-          price: '99'
-        }
-      ],
+      //   giftList: [
+      //     {
+      //       name: '浪漫情書',
+      //       img: require('../img/gifts/gift1.png'),
+      //       price: '20'
+      //     },
+      //     {
+      //       name: '小鹿亂撞',
+      //       img: require('../img/gifts/gift2.png'),
+      //       price: '52'
+      //     },
+      //     {
+      //       name: '談情說愛',
+      //       img: require('../img/gifts/gift3.png'),
+      //       price: '99'
+      //     }
+      //   ],
       surplusTime: {},
+      isShare: true
     }
   },
   computed: {
-    ...mapState(['step',])
+    ...mapState(['step', 'is_kol']),
+    giftList () {
+      return this.lang.giftList
+    }
+  },
+  watch: {
+    is_kol (val) {
+      if (!val) {
+        this.$refs.rank.mainTabClick(1)
+      }
+    }
   },
   mounted () {
-    this.downTimeGo('time', 99999)
+    // this.downTimeGo('time', 99999)
+    this.judgeShare()
   },
   methods: {
+    judgeShare () {//判断是否为分享环境,请求相应的接口 
+      this.isShare = getUrlString('token') ? false : true
+      this.vxc('setShareState', this.isShare) //分享状态
+    },
     downTimeGo (timeName, val) {
       clearInterval(this.timer)
       if (!downTime(timeName)) {
@@ -83,6 +108,9 @@ export default {
         }
       }, 1000)
     },
+    downApp () {
+      APP()
+    },
   }
 }
 </script>
@@ -91,6 +119,15 @@ export default {
 .pageIndex {
   .header {
     height: 10.26rem;
+    position: relative;
+    .ruleTips {
+      display: block;
+      position: absolute;
+      width: 1.72rem;
+      height: 0.52rem;
+      right: 0;
+      top: 1.5rem;
+    }
   }
   .wards {
     width: 7.5rem;

@@ -10,20 +10,27 @@ export default new vuex.Store({
         step: 1,
         rankGroups: {
             1: {},
-            2: {},
-            3: {}
+            2: {}
         },
         groupsUserMsg: {
             1: {},
-            2: {},
-            3: {}
+            2: {}
         }, //儲存各種天數的個人信息
         showType: 1,
-        tab: 1
+        tab: 0,
+        firstInit: true,
+        reg: false,
+        isShare: true
     },
     mutations: {
         updateLoading(state, value) {
             state.loading = value;
+        },
+        setShareState(state, val) {
+            state.isShare = val;
+        },
+        setFirstInit(state, val) {
+            state.firstInit = val;
         },
         setShowType(state, val) {
             state.showType = val;
@@ -33,6 +40,7 @@ export default new vuex.Store({
         },
         setInitInfo(state, data) {
             Object.assign(state, data);
+            state.reg = data.myrank.registered;
         },
         updateGroupsUserMsg(state, obj) {
             if (obj && typeof obj.data.key != "undefined") {
@@ -71,9 +79,10 @@ export default new vuex.Store({
         }
     },
     actions: {
-        async getInitInfo() {
+        async getInitInfo(state) {
             try {
                 await loadData(getInitInfo, "setInitInfo");
+                state.commit("setFirstInit", false);
             } catch (e) {
                 console.log("getInitInfo", e);
             }
