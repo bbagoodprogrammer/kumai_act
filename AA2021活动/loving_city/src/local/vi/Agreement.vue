@@ -23,11 +23,13 @@
       </p>
       <p>
         6.Cách tính điểm rung động:<br />
-        Điểm rung động tương ứng 1:1 với số xu idol nhận được trong thời gian sự kiện, tức là tổng số xu quà đua top nhận được là n, thì điểm rung động là n, điểm rung động trong sự kiện dùng biểu thị
+        Điểm rung động tương ứng 1:1 với số xu idol nhận được trong thời gian sự kiện, tức là tổng số xu quà đua top nhận được là n, thì điểm rung động là n, điểm rung động trong sự kiện dùng <img
+          src="../../img/scoreIcon1.png" alt="" class="headerIcon"> biểu thị
       </p>
       <p>
         7.Cách tính điểm tình ý:<br />
-        Điểm tình ý tương ứng 1:1 với số xu người dùng tặng quà trong thời gian sự kiện, tức là tổng số xu quà đua top tặng là n, thì điểm tình ý là n, điểm tình ý trong sự kiện dùng biểu thị
+        Điểm tình ý tương ứng 1:1 với số xu người dùng tặng quà trong thời gian sự kiện, tức là tổng số xu quà đua top tặng là n, thì điểm tình ý là n, điểm tình ý trong sự kiện dùng <img
+          src="../../img/scoreIcon2.png" alt="" class="headerIcon"> biểu thị
       </p>
       <p>8.Nhấn nút làm mới các bảng và xếp hạng của tôi để xem xếp hạng thực tại</p>
       <p>9.Nếu số điểm bằng nhau, điểm tình ý/rung động đạt được trước sẽ xếp hạng trước</p>
@@ -60,6 +62,10 @@ export default {
 </script>
 
 <style lang="scss">
+.headerIcon {
+  width: 0.32rem;
+  height: 0.26rem;
+}
 .rule {
   padding-top: 0.38rem;
   background: url(../../img/ruleBg.png);

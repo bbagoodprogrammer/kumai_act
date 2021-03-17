@@ -4,28 +4,31 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Thể lệ</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Thưởng</a>
     </div>
-    <h6 class="time">Thời gian: 12h 20/2 ~ 24:00 28/2</h6>
+    <h6 class="time">Thời gian: 12h 19/3 ~ 24:00 27/3</h6>
     <div class="ruleTips" v-show="tab == 0">
       <h6>Thể lệ:</h6>
       <p>1. Toàn bộ người dùng đều có thể báo danh tham gia.</p>
-      <p>2. Sau khi báo danh, thí sinh tặng quà xu cho bài hát, tại phòng Kara, đều nhận được điểm Bất Ngờ, khi điểm đạt cấp yêu cầu sẽ có thể mở hộp quà nhưng mỗi người mỗi ngày chỉ được mở 1 lần, quà từ hộp quà sẽ được gửi tự động vào tài khoản của thí sinh.</p>
+      <p>2. Sau khi báo danh, thí sinh tặng quà xu cho bài hát, tại phòng Kara, đều nhận được điểm Bất Ngờ, khi điểm đạt cấp yêu cầu sẽ có thể mở hộp quà nhưng mỗi người mỗi ngày chỉ được mở 1 lần,
+        quà từ hộp quà sẽ được gửi tự động vào tài khoản của thí sinh.</p>
       <p>
         3. Quy tắc xếp hạng
-        <strong>BXH ngày: điểm Bất Ngờ= tổng mị lực quà xu tặng cho bài hát, tại phòng Kara, điểm càng nhiều xếp hạng càng cao, BXH ngày xoá hết vào 0h ngày hôm sau, BXH Ngày chỉ hiện top 100 thí sinh.</strong>
+        <strong>BXH ngày: điểm Bất Ngờ= tổng mị lực quà xu tặng cho bài hát, tại phòng Kara, điểm càng nhiều xếp hạng càng cao, BXH ngày xoá hết vào 0h ngày hôm sau, BXH Ngày chỉ hiện top 100 thí
+          sinh.</strong>
         <strong>BXH Tổng: xếp hạng theo tổng điểm Bất Ngờ trong thời gian sự kiện từ cao đến thấp, BXH Tổng chỉ hiện top 100 thí sinh.</strong>
         <strong>Trong tình hình thí sinh cùng điểm thì thí sinh đạt trước sẽ được xếp hạng trước.</strong>
       </p>
       <h6>Thời gian BXH Ngày:</h6>
       <p class="dayTime">
-        Ngày1：12:00 20/2 - 00:00 21/2<br />
-        Ngày2：00:00 21/2 - 00:00 22/2<br />
-        Ngày3：00:00 22/2 - 00:00 23/2<br />
-        Ngày4：00:00 23/2 - 00:00 24/2<br />
-        Ngày5：00:00 24/2 - 00:00 25/2<br />
-        Ngày6：00:00 25/2 - 00:00 26/2<br />
-        Ngày7：00:00 26/2 - 00:00 27/2<br />
-        Ngày8：00:00 27/2 - 00:00 28/2<br />
-        Ngày9：00:00 28/2 - 24:00 28/2
+        Ngày1：12:00 19/3 - 00:00 20/3<br />
+        Ngày2：00:00 20/3 - 00:00 21/3<br />
+        Ngày3：00:00 21/3 - 00:00 22/3<br />
+        Ngày4：00:00 22/3 - 00:00 23/3<br />
+        Ngày5：00:00 23/3 - 00:00 24/3<br />
+        Ngày6：00:00 24/3 - 00:00 25/3<br />
+        Ngày7：00:00 25/3 - 00:00 26/3<br />
+        Ngày8：00:00 26/3 - 00:00 27/3<br />
+        Ngày9：00:00 27/3 - 24:00 27/3
+
       </p>
       <h6>Cấp may mắn:</h6>
       <p class="dayTime">
@@ -52,11 +55,11 @@
         </span>
         <span>
           <img src="../../assets/img/ruleGift/2.png" alt="">
-          <strong>Điểm Phú Hộ</strong>
+          <strong>Mộng Đêm Hè</strong>
         </span>
         <span>
           <img src="../../assets/img/ruleGift/4.png" alt="">
-          <strong>Kỳ Lân Năm Mới</strong>
+          <strong>BMW</strong>
         </span>
         <span>
           <img src="../../assets/img/ruleGift/8.png" alt="">
@@ -65,14 +68,15 @@
 
       </div>
       <h6>Thưởng cấp</h6>
-      <p>Điểm Bất Ngờ mỗi ngày đạt cấp yêu cầu sẽ có thể mở hộp quà, mỗi người mỗi ngày được mở tối đa 1 hộp quà, khi đạt đến cấp độ có thể mở nhiều hộp quà sẽ mặc định mở hộp quà cấp cao nhất. Quà từ hộp quà sẽ được gửi tự động vào tài khoản, có thể vào Khoảnh Khắc để xem lịch sử nhận quà.</p>
+      <p>Điểm Bất Ngờ mỗi ngày đạt cấp yêu cầu sẽ có thể mở hộp quà, mỗi người mỗi ngày được mở tối đa 1 hộp quà, khi đạt đến cấp độ có thể mở nhiều hộp quà sẽ mặc định mở hộp quà cấp cao nhất. Quà từ
+        hộp quà sẽ được gửi tự động vào tài khoản, có thể vào Khoảnh Khắc để xem lịch sử nhận quà.</p>
       <h6>Thưởng BXH Ngày</h6>
       <p>Top 1-3 lần lượt nhận phiếu quà nạp 15%, 12%, 10%. 0h hôm sau hệ thống tự động gửi, ngày cuối sẽ gửi ngay khi kết thúc sự kiện.</p>
       <h6>Thưởng BXH Tổng:</h6>
-      <p>Hạng 1: Huy chương Hộp Quà(31 ngày)+Sao Ước Nguyện(1880 xu)+ Kỳ Lân Năm Mới(31 ngày) +Trang sức May Mắn(31 ngày)+ 3000 xu + 5000 đậu</p>
-      <p>Hạng 2: Huy chương Hộp Quà(31 ngày)+Sao Ước Nguyện(1880 xu)+ Kỳ Lân Năm Mới(31 ngày) + Trang sức May Mắn(31 ngày)+2000 xu +3000 đậu</p>
-      <p>Hạng 3: Huy chương Hộp Quà(31 ngày)+Sao Ước Nguyện(1880 xu)+ Kỳ Lân Năm Mới(31 ngày) + Trang sức May Mắn(31 ngày)+1000 xu + 2000 đậu</p>
-      <p>Hạng 4-10: Huy chương Hộp Quà(31 ngày)+Kỳ Lân Năm Mới(31 ngày)+ Trang sức May Mắn(31 ngày)+500 xu + 1000 đậu</p>
+      <p>Hạng 1: Huy chương Hộp Quà(31 ngày)+Sao Ước Nguyện(1880 xu)+ BMW(31 ngày) +Trang sức Mộng Đêm Hè (31 ngày)+ 3000 xu + 5000 đậu</p>
+      <p>Hạng 2: Huy chương Hộp Quà(31 ngày)+Sao Ước Nguyện(1880 xu)+ BMW(31 ngày) + Trang sức Mộng Đêm Hè(31 ngày)+2000 xu +3000 đậu</p>
+      <p>Hạng 3: Huy chương Hộp Quà(31 ngày)+Sao Ước Nguyện(1880 xu)+ BMW(31 ngày) + Trang sức Mộng Đêm Hè(31 ngày)+1000 xu + 2000 đậu</p>
+      <p>Hạng 4-10: Huy chương Hộp Quà(31 ngày)+BMW(31 ngày)+ Trang sức Mộng Đêm Hè(31 ngày)+500 xu + 1000 đậu</p>
       <h6>Chú ý:</h6>
       <p>1. Phiếu quà nạp nhận từ sự kiện có thời hạn 1 ngày kể từ khi nhận, mời sử dụng kịp thời.</p>
       <p>2. Toàn bộ Túi quà từ sự kiện có hạn sử dụng 14 ngày.</p>
@@ -84,13 +88,13 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       tab: 0
     }
   },
   methods: {
-    tabClick(val) {
+    tabClick (val) {
       this.tab = val
     }
   }
@@ -195,5 +199,5 @@ body {
     }
   }
 }
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 </style>
