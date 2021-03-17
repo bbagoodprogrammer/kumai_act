@@ -90,13 +90,13 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       tab: 0
     }
   },
   methods: {
-    tabClick(val) {
+    tabClick (val) {
       this.tab = val
     }
   }
@@ -200,5 +200,5 @@ body {
     }
   }
 }
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 </style>

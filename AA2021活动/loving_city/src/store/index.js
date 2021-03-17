@@ -20,7 +20,8 @@ export default new vuex.Store({
         tab: 0,
         firstInit: true,
         reg: false,
-        isShare: true
+        isShare: true,
+        is_kol:-1
     },
     mutations: {
         updateLoading(state, value) {

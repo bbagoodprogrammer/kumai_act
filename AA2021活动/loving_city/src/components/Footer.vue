@@ -5,8 +5,9 @@
       <div class="act_not" v-else-if="astState == 2">{{lang.actEd}}</div>
       <div class="singUp" @click="singUp()" v-else-if="astState == 3"></div>
       <div class="rankMsg" v-else-if="astState == 4" :class="'rank' + nowUsrMsg.rank">
-        <i class="dayIcon" v-if="tab == 0">{{lang.dayIcon}}</i>
-        <div class="totalIcon" v-if="tab == 'total'">
+        <i class="dayIcon" v-if="showType == 1">{{lang.dayIcon}}</i>
+        <i class="dayIcon" v-else-if="showType == 2 && tab == 0">{{lang.scoreIcon}}</i>
+        <div class="totalIcon" v-else-if="tab == 'total' && showType == 2">
           <span class="scoreIcon">{{lang.scoreIcon}}</span>
           <span class="peopleList" @click="$router.push('PeopleList')">{{lang.peopleList_tips}}<i></i></span>
         </div>
