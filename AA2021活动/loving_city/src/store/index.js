@@ -21,7 +21,11 @@ export default new vuex.Store({
         firstInit: true,
         reg: false,
         isShare: true,
-        is_kol:-1
+        is_kol: -1,
+        top: [],
+        stime: 0,
+        etime: 0,
+        ctime: 0
     },
     mutations: {
         updateLoading(state, value) {
@@ -42,6 +46,7 @@ export default new vuex.Store({
         setInitInfo(state, data) {
             Object.assign(state, data);
             state.reg = data.myrank.registered;
+            console.log(state);
         },
         updateGroupsUserMsg(state, obj) {
             if (obj && typeof obj.data.key != "undefined") {

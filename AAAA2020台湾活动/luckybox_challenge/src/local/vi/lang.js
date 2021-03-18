@@ -20,7 +20,7 @@ export default {
     giftList: [
         {
             imgIcon: require("../../img/gift/05.png"),
-            name: "Trang Sức Cung Bảo Bình"
+            name: "Trang Sức Bạch Dương"
         },
         {
             imgIcon: require("./img/02.png"),

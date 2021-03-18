@@ -73,7 +73,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['step', 'is_kol']),
+    ...mapState(['step', 'is_kol', "stime", "etime", "ctime"]),
     giftList () {
       return this.lang.giftList
     }
@@ -82,6 +82,14 @@ export default {
     is_kol (val) {
       if (!val) {
         this.$refs.rank.mainTabClick(1)
+      }
+    },
+    stime (val) {
+      console.log(this.step)
+      if (this.step == 0) {
+        this.downTimeGo('time', (this.stime - this.ctime))
+      } else if (this.step == 1) {
+        this.downTimeGo('time', (this.etime - this.stime))
       }
     }
   },

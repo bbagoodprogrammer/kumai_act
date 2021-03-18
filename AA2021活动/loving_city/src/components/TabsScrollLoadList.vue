@@ -22,7 +22,7 @@
           <img v-lazy="item.avatar" alt="" class="av">
         </div>
         <div class="userMsg">
-          <div class="nick">{{item.nick}} <i v-if="item.live && showType == 1 && mainTab == 0"> </i></div>
+          <div class="nick">{{item.nick}} <i v-if="item.live && showType == 2 && mainTab == 0"> </i></div>
           <div class="uid">UID {{item.uid}}</div>
         </div>
         <div class="score"><i :class="{type2:showType == 1 && mainTab == 1}"></i><em>{{item.score}}</em></div>
@@ -81,6 +81,7 @@ export default {
     firstInit (val) {
       this.onScroll();
     }
+
   },
   computed: {
     ...mapState(['rankGroups', "firstInit", "isShare", "step", "showType", "timeObj", "curent_data"]),
@@ -109,9 +110,9 @@ export default {
     rank () {
       const rankConf = this.rankGroups[this.showType][this.rankKey] || {};
       rankConf.list = rankConf.list || [];
-      if (rankConf.second && rankConf.second > 0) {
-        this.downTimeGo('time' + this.rankKey, rankConf.second)
-      }
+      //   if (rankConf.second && rankConf.second > 0) {
+      //     this.downTimeGo('time' + this.rankKey, rankConf.second)
+      //   }
       return rankConf;
     },
     actTime () {
@@ -173,7 +174,6 @@ export default {
               set('loadEnd', true);
               return;
             }
-            this.$parent.downTimeGo('time', response_data.second)
             const arr = response_data.list;
             //跟随榜单变换个人信息
             if (response_data.myRank && response_data.myRank.uid) {
@@ -235,12 +235,14 @@ export default {
       this.$nextTick(this.onScroll);
     },
     downTimeGo (timeName, val) {
+      console.log(val)
       clearInterval(this.timer)
       if (!downTime(timeName)) {
         downTime(timeName, val);
       }
       this.surplusTime = downTime(timeName);
       this.timer = setInterval(() => {
+        console.log('time', downTime(timeName))
         this.surplusTime = downTime(timeName);
         if (this.surplusTime.end) {
           clearInterval(this.timer)
@@ -288,11 +290,15 @@ export default {
     > span {
       width: 3.27rem;
       height: 0.8rem;
+      font-size: 0.26rem;
       text-align: center;
       font-weight: 500;
-      line-height: 0.8rem;
+      line-height: 0.3rem;
       background: url(../img/typeTab.png);
       background-size: 100% 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &.act {
         background: url(../img/typeTab_act.png);
         background-size: 100% 100%;

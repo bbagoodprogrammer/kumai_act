@@ -32,10 +32,15 @@
             <strong v-if="singUpType == 1">{{lang.singUpSuc_tips1}}</strong>
             <strong v-else>{{lang.singUpSuc_tips2}}</strong>
           </div>
-          <div class="share">
+          <div class="share" @click="showTop = true" v-if="!is_kol">
             {{lang.share}}
           </div>
         </div>
+      </transition>
+    </div>
+    <div class="mask" v-show="showTop">
+      <transition name="slide">
+        <Top v-show="showTop" />
       </transition>
     </div>
   </div>
@@ -46,11 +51,15 @@
 import { mapState } from 'vuex'
 import { globalBus } from '../utils/eventBus'
 import { singUp } from "../apis"
+import Top from "../components/Top"
+
 export default {
+  components: { Top },
   data () {
     return {
       singUpType: 1,
-      showSingUpPup: false
+      showSingUpPup: false,
+      showTop: false
     }
   },
   computed: {
@@ -62,7 +71,7 @@ export default {
         return 2
       } else if ((!this.reg && this.is_kol && this.tab == 0 && this.showType == 1) || (!this.reg && !this.is_kol && this.tab == 'total' && this.showType == 1) || this.isShare) { //活动开始未报名，或者分享
         return 3
-      } else if (this.reg) {
+      } else if ((this.reg && this.is_kol && this.tab == 0) || (this.reg && !this.is_kol && this.tab == 'total')) {
         return 4
       }
     },

@@ -30,8 +30,8 @@ export default {
             name: "王者挑戰頭飾"
         },
         {
-            img: require("../../img/giftList/gift3.png"),
-            name: "白玉輕舟座駕"
+            img: require("../../img/giftList/gift9.png"),
+            name: "布加迪威龍"
         },
         {
             img: require("../../img/giftList/gift4.png"),
