@@ -22,7 +22,7 @@
           <div class="songNick"><em>{{item.artist}}</em><strong> / {{item.join}} شخص في PK</strong></div>
         </div>
         <div class="songStatusBtn" :class="{black:!can||item.deleted}">
-          <em v-if="item.deleted">انسحب من المسابقة</em>
+          <em v-if="item.deleted">انسحب</em>
           <em v-else-if="item.current ==1" @click="goSong(item.accid)">ممارسة</em>
           <em v-else-if="item.status == 0" @click="goSong(item.accid)">PK</em>
           <em v-else-if="item.status == 1" @click="commitSong(item.accid,index)">تقدّم الأغنية</em>

@@ -26,7 +26,7 @@
           <div class="sing_not" v-else-if="!item.finish && index < nowDay_index">{{lang.singIn_not}}</div>
           <div class="taskMsg" v-else>
             <div class="dayNums">{{lang.singIn_dayNums.replace('$',item.task_id)}}</div>
-            <span class="giftTips" v-if="item.num">{{item.type == 0?`x${item.num}`:`${item.num}${lang.rank_day}`}}</span>
+            <span class="giftTips" v-if="item.num">{{item.type == 0?`x${item.num}`:`${item.num} ${lang.rank_day}`}}</span>
             <div class="imgBox nums">
               <img :src="item.img" alt="" class="giftImg">
 
@@ -63,7 +63,7 @@ import HistoryTabsScrollLoadList from "./HistoryTabsScrollLoadList"
 
 export default {
   components: { HistoryTabsScrollLoadList },
-  data() {
+  data () {
     return {
       showHistory: false,
       boxGiftArr: {
@@ -84,21 +84,21 @@ export default {
   },
   computed: {
     ...mapState(['task', 'user_info', 'level', 'Lv', 'mark', 'continuity', 'continuity_gift']),
-    nowDayTask() {
+    nowDayTask () {
       for (let i in this.task) {
         if (this.task[i].today) {
           return this.task[i]
         }
       }
     },
-    nowDay_index() {
+    nowDay_index () {
       for (let i in this.task) {
         if (this.task[i].today) {
           return i
         }
       }
     },
-    max_continuity() {
+    max_continuity () {
       return Math.max(...this.continuity_gift)
     }
   }

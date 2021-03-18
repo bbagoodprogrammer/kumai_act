@@ -1,16 +1,17 @@
 <template>
   <div class="userList">
-    <div class="title">{{lang.p_title}}</div>
-    <div class="listTips" v-html="lang.p_tips">
+    <div class="title">{{lang.u_title}}</div>
+    <div class="listTips" v-html="lang.u_tips">
     </div>
     <ul>
       <li v-for="(item,index) in list" :key="index" :class="'rank' + item.rank">
-        <div class="rankTitle" v-if="item.rank == 1">{{lang.peopleList_rankTips}}</div>
+        <div class="rankTitle" v-if="item.rank == 1">{{lang.userList_rankTips}}</div>
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg" @click="goUser(item.uid)">
-          <img v-if="user_info.avatar_frame &&user_info.avatar_frame != ''" :src="user_info.avatar_frame" class="frame" alt="">
-          <img v-lazy="user_info.avatar" alt="" class="av">
+          <img v-if="item.info.avatar_frame &&item.info.avatar_frame != ''" :src="item.info.avatar_frame" class="frame" alt="">
+          <img v-lazy="item.info.avatar" alt="" class="av">
         </div>
+
         <div class="userMsg">
           <div class="nick">{{item.info.nick}}</div>
           <div class="linerBox">
@@ -22,8 +23,8 @@
           </div>
         </div>
         <div class="uerImg" @click="goUser(item.uid)">
-          <img v-if="item.info.avatar_frame &&item.info.avatar_frame != ''" :src="item.info.avatar_frame" class="frame" alt="">
-          <img v-lazy="item.info.avatar" alt="" class="av">
+          <img v-if="user_info.avatar_frame &&user_info.avatar_frame != ''" :src="user_info.avatar_frame" class="frame" alt="">
+          <img v-lazy="user_info.avatar" alt="" class="av">
         </div>
       </li>
     </ul>

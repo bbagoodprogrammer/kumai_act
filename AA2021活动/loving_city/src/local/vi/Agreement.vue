@@ -76,12 +76,12 @@ export default {
   color: rgba(150, 138, 197, 1);
   .ruleTable {
     width: 6.64rem;
-    height: 16.8rem;
+    height: 17.36rem;
     margin: 0.15rem 0 0.65rem;
   }
   .dayTable {
     width: 6.64rem;
-    height: 4.67rem;
+    height: 5.23rem;
     margin: 0.15rem 0 0.65rem;
   }
   .mg {

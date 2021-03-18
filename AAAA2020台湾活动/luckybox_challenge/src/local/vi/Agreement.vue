@@ -21,28 +21,28 @@
       <p>
         Hộp May Mắn cấp càng cao, quà càng nhiều, lần thứ 5 nhận được Hộp quà siêu sẽ trúng Huy Chương May Mắn Ⅱ
       </p>
-      <h5>Quà top 10 BXH May Mắn</h5>
+      <h5>Phần thưởng top 10 Bảng may mắn</h5>
       <h6>Hạng 1:</h6>
-      <p>Huy Chương May Mắn Ⅱ (30 ngày)+Trang Sức Cung Bảo Bình (30 ngày)+ Xe Bạch Ngọc (30 ngày)+Hội Viên VIP (30 ngày)+1000 xu+1000 đậu</p>
+      <p>Huy Chương May Mắn III (30 ngày)+ Trang Sức Bạch Dương (30 ngày) +Xe GTR (30 ngày)+ VIP (30 ngày)+ 1000 xu+ 1000 đậu</p>
       <h6>Hạng 2:</h6>
-      <p>Huy Chương May Mắn Ⅱ (20 ngày)+Trang Sức Cung Bảo Bình (20 ngày)+ Xe Bạch Ngọc (20 ngày)+Hội Viên VIP (30 ngày)+800 xu+800 đậu</p>
+      <p>Huy Chương May Mắn III (20 ngày)+ Trang Sức Bạch Dương (20 ngày) +Xe GTR (20 ngày)+ VIP (30 ngày)+ 800 xu+ 800 đậu</p>
       <h6>Hạng 3:</h6>
-      <p>Huy Chương May Mắn Ⅱ (15 ngày)+Trang Sức Cung Bảo Bình (15 ngày)+ Xe Bạch Ngọc (15 ngày)+Hội Viên VIP (30 ngày)+500 xu+500 đậu </p>
+      <p>Huy Chương May Mắn III (15 ngày)+ Trang Sức Bạch Dương (15 ngày) +Xe GTR (15 ngày)+ VIP (30 ngày)+ 500 xu+ 500 đậu </p>
       <h6>Hạng 4-5:</h6>
-      <p>Huy Chương May Mắn Ⅱ (15 ngày)+ Xe Bạch Ngọc (15 ngày)+Hội Viên VIP (30 ngày)+300 xu+300 đậu</p>
+      <p>Huy Chương May Mắn III (15 ngày)+Xe GTR (15 ngày)+ VIP (30 ngày)+ 300 xu+ 300 đậu</p>
       <h6>Hạng 6-10:</h6>
-      <p>Xe Bạch Ngọc (15 ngày)+Hội Viên VIP (30 ngày)+200 xu+200 đậu</p>
-      <h5>Quà top 10 BXH Tiếp Ứng</h5>
+      <p>Xe GTR (15 ngày)+ VIP (30 ngày)+ 200 xu+ 200 đậu</p>
+      <h5>Phần thưởng top 10 Bảng tiếp ứng</h5>
       <h6>Hạng 1:</h6>
-      <p>Huy Chương Tiếp Ứng (30 ngày), Trang Sức Cung Bảo Bình (30 ngày)+Xe Bạch Ngọc (30 ngày)+Hội Viên VIP (30 ngày)+1000 xu+1000 đậu</p>
+      <p>Huy Chương Tiếp Ứng (30 ngày) )+ Trang Sức Bạch Dương (30 ngày)+Xe GTR (30 ngày)+ VIP (30 ngày)+ 1000 xu+ 1000 đậu</p>
       <h6>Hạng 2:</h6>
-      <p>Huy Chương Tiếp Ứng (20 ngày), Trang Sức Cung Bảo Bình (20 ngày)+Xe Bạch Ngọc (20 ngày)+Hội Viên VIP (30 ngày)+800 xu+800 đậu</p>
+      <p>Huy Chương Tiếp Ứng (20 ngày) )+ Trang Sức Bạch Dương (20 ngày)+Xe GTR (20 ngày)+ VIP (30 ngày)+ 800 xu+ 800 đậu</p>
       <h6>Hạng 3:</h6>
-      <p>Huy Chương Tiếp Ứng (15 ngày), Trang Sức Cung Bảo Bình (15 ngày)+Xe Bạch Ngọc (15 ngày)+Hội Viên VIP (30 ngày)+500 xu+500 đậu</p>
+      <p>Huy Chương Tiếp Ứng (15 ngày)+ Trang Sức Bạch Dương (15 ngày) +Xe GTR (15 ngày)+ VIP (30 ngày)+ 500 xu+ 500 đậu</p>
       <h6>Hạng 4-5:</h6>
-      <p>Huy Chương Tiếp Ứng (15 ngày), Trang Sức Cung Bảo Bình (15 ngày)+Hội Viên VIP (30 ngày)+300 xu+300 đậu</p>
+      <p>Huy Chương Tiếp Ứng (15 ngày)+Xe GTR (15 ngày)+ VIP (30 ngày)+ 300 xu+ 300 đậu</p>
       <h6>Hạng 6-10:</h6>
-      <p>Xe Bạch Ngọc (15 ngày)+Hội Viên VIP (30 ngày)+200 xu+200 đậu</p>
+      <p>Xe GTR (15 ngày)+ VIP (30 ngày)+ 200 xu+ 200 đậu</p>
     </div>
     <div class="ruleItem" v-else>
       <h5>Thời gian</h5>
@@ -61,7 +61,7 @@
       <h5>Quy tắc Quà Hàng Ngày</h5>
       <p>
         1.Mỗi ngày nhận được Hộp quà, Hộp quà cao, Hộp quà siêu, có thể nhận quà tương ứng<br />
-        2.Hộp May Mắn cấp càng cao, nhận được quà càng giá trị, lần thứ 5 nhận Hộp quà siêu sẽ trúng Huy Chương May Mắn Ⅱ <br />
+        2. Cấp độ của Hộp May Mắn càng cao, nhận được quà càng giá trị, lần thứ 5 nhận Hộp quà siêu nhất định trúng Huy Chương May Mắn III<br />
         3.Phần thưởng mỗi loại Hộp May Mắn mỗi ngày chỉ có thể nhận 1 lần, có hiệu lực trong ngày
       </p>
     </div>
@@ -76,20 +76,20 @@ import getDate from "../../utils/getDate"
 import { mapState } from "vuex"
 
 export default {
-  data() {
+  data () {
     return {
       type: 1
     }
   },
   computed: {
     ...mapState(['stime', 'etime']),
-    actTime() {
+    actTime () {
       console.log(this.stime)
       return getDate(new Date(this.stime * 1000), 4) + '-' + getDate(new Date(this.etime * 1000), 4)
     }
   },
   methods: {
-    tabClick(val) {
+    tabClick (val) {
       this.type = val
     }
   }

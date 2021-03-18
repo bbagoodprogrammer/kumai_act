@@ -1,6 +1,6 @@
 export default {
     //html/index.html
-    title: "Ký hợp đồng",
+    title: "Toàn Thành Cuồng Nhiệt",
     noAct: "Sự kiện chưa bắt đầu",
     actEd: "Sự kiện đã kết thúc",
     singUpTips: "Báo danh",
@@ -59,7 +59,8 @@ export default {
     share: " Xem live đặc sắc", //觀看精彩直播
 
     //UserList
-    p_title: "Người yêu ngọt ngào của bạn ấy", //ta的甜蜜恋人
-    p_tips: "Đây là 10 người yêu quý bạn nhất<br/> Nhanh đến xem có ai!", //这里是10位对ta爱意值最高的人哦<br />快来看看都有谁！
-    peopleList_rankTips: "Điểm yêu đương cao nhất, là cảm giác rung động!" //恋爱值最高，是心动的感觉！
+    u_title: "Người yêu ngọt ngào của bạn ấy", //ta的甜蜜恋人
+    u_tips: "Đây là 10 người yêu quý bạn nhất<br/> Nhanh đến xem có ai!", //这里是10位对ta爱意值最高的人哦<br />快来看看都有谁！
+    userList_rankTips: "Điểm yêu đương cao nhất, là cảm giác rung động!", //恋爱值最高，是心动的感觉！
+    people: "người"
 };
