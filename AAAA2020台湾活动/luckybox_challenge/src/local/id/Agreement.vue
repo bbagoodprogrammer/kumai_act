@@ -23,26 +23,26 @@
       </p>
       <h5>Hadiah Top 10 Peringkat Lucky</h5>
       <h6>Top 1</h6>
-      <p>Lencana Lucky(30 hari)+Bingkai Pises(30 hari)+Mount Kapal Terbang(30 hari)+VIP(30 hari)+15% koin emas dari Kotak Lucky yg diterima+15% kacang emas dari Kotak Lucky yg diterima</p>
+      <p>Lencana Lucky(30 hari)+Bingkai Pises(30 hari)+Mount Kapal Terbang(30 hari)+VIP(30 hari)+10% koin emas dari Kotak Lucky yg diterima+10% kacang emas dari Kotak Lucky yg diterima</p>
       <h6>Top 2</h6>
-      <p>Lencana Lucky(20 hari)+Bingkai Pises(20 hari)+Mount Kapal Terbang(20 hari)+VIP(30 hari)+10% koin emas dari Kotak Lucky yg diterima+10% kacang emas dari Kotak Lucky yg diterima</p>
+      <p>Lencana Lucky(20 hari)+Bingkai Pises(20 hari)+Mount Kapal Terbang(20 hari)+VIP(30 hari)+8% koin emas dari Kotak Lucky yg diterima+8% kacang emas dari Kotak Lucky yg diterima</p>
       <h6>Top 3</h6>
-      <p>Lencana Lucky(15 hari)+Bingkai Pises(15 hari)+Mount Kapal Terbang(15 hari)+VIP(30 hari)+8% koin emas dari Kotak Lucky yg diterima+8% kacang emas dari Kotak Lucky yg diterima</p>
+      <p>Lencana Lucky(15 hari)+Bingkai Pises(15 hari)+Mount Kapal Terbang(15 hari)+VIP(30 hari)+5% koin emas dari Kotak Lucky yg diterima+5% kacang emas dari Kotak Lucky yg diterima</p>
       <h6>Top 4-5</h6>
-      <p>Lencana Lucky(15 hari)+Mount Kapal Terbang(15 hari)+VIP(30 hari)+5% koin emas dari Kotak Lucky yg diterima+5% kacang emas dari Kotak Lucky yg diterima</p>
+      <p>Lencana Lucky(15 hari)+Mount Kapal Terbang(15 hari)+VIP(30 hari)+3% koin emas dari Kotak Lucky yg diterima+3% kacang emas dari Kotak Lucky yg diterima</p>
       <h6>Top 6-10</h6>
-      <p>Mount Kapal Terbang(15 hari)+VIP(30 hari)+3% koin emas dari Kotak Lucky yg diterima+3% kacang emas dari Kotak Lucky yg diterima</p>
+      <p>Mount Kapal Terbang(15 hari)+VIP(30 hari)+1% koin emas dari Kotak Lucky yg diterima+1% kacang emas dari Kotak Lucky yg diterima</p>
       <h5>Hadiah Top 10 Peringkat Dukung</h5>
       <h6>Top 1</h6>
-      <p>Lencana Dukung(30 hari)+Bingkai Pises(30 hari)+Mount Kapal Terbang(30 hari)+VIP(30 hari)+15% koin emas dari Kotak Lucky yg dikirim+15% kacang emas dari Kotak Lucky yg dikirim</p>
+      <p>Lencana Dukung(30 hari)+Bingkai Pises(30 hari)+Mount Kapal Terbang(30 hari)+VIP(30 hari)+10% koin emas dari Kotak Lucky yg dikirim+10% kacang emas dari Kotak Lucky yg dikirim</p>
       <h6>Top 2</h6>
-      <p>Lencana Dukung(20 hari)+Bingkai Pises(20 hari)+Mount Kapal Terbang(20 hari)+VIP(30 hari)+10% koin emas dari Kotak Lucky yg dikirim+10% kacang emas dari Kotak Lucky yg dikirim</p>
+      <p>Lencana Dukung(20 hari)+Bingkai Pises(20 hari)+Mount Kapal Terbang(20 hari)+VIP(30 hari)+8% koin emas dari Kotak Lucky yg dikirim+8% kacang emas dari Kotak Lucky yg dikirim</p>
       <h6>Top 3</h6>
-      <p>Lencana Dukung(15 hari)+Bingkai Pises(15 hari)+Mount Kapal Terbang(15 hari)+VIP(30 hari)+8% koin emas dari Kotak Lucky yg dikirim+8% kacang emas dari Kotak Lucky yg dikirim</p>
+      <p>Lencana Dukung(15 hari)+Bingkai Pises(15 hari)+Mount Kapal Terbang(15 hari)+VIP(30 hari)+5% koin emas dari Kotak Lucky yg dikirim+5% kacang emas dari Kotak Lucky yg dikirim</p>
       <h6>Top 4-5</h6>
-      <p>Lencana Dukung(15 hari)+Mount Kapal Terbang(15 hari)+VIP(30 hari)+5% koin emas dari Kotak Lucky yg dikirim+5% kacang emas dari Kotak Lucky yg dikirim </p>
+      <p>Lencana Dukung(15 hari)+Mount Kapal Terbang(15 hari)+VIP(30 hari)+3% koin emas dari Kotak Lucky yg dikirim+3% kacang emas dari Kotak Lucky yg dikirim</p>
       <h6>Top 6-10</h6>
-      <p>Mount Kapal Terbang(15 hari)+VIP(30 hari)+3% koin emas dari Kotak Lucky yg dikirim+3% kacang emas dari Kotak Lucky yg dikirim</p>
+      <p>Mount Kapal Terbang(15 hari)+VIP(30 hari)+1% koin emas dari Kotak Lucky yg dikirim+1% kacang emas dari Kotak Lucky yg dikirim</p>
     </div>
     <div class="ruleItem" v-else>
       <h5>Waktu Aktivitas:</h5>
@@ -63,7 +63,8 @@
         1. Setiap hari Anda menerima kotak hadiah lucky, kotak premium, dan kotak super nyanyian, Anda dapat menerima hadiah yang sesuai<br />
       </p>
       <p>
-        2. Semakin tinggi level Kotak Hadiah Lucky, semakin bagus hadiahnya; Untuk ke-5 kalinya menerima hadiah kotak super, kamu pasti memenangkan bingkai Pises; Setiap hadiah dapat diterima sekali sehari, hanya pada hari yang sama
+        2. Semakin tinggi level Kotak Hadiah Lucky, semakin bagus hadiahnya; Untuk ke-5 kalinya menerima hadiah kotak super, kamu pasti memenangkan bingkai Pises; Setiap hadiah dapat diterima sekali
+        sehari, hanya pada hari yang sama
       </p>
     </div>
     <p class="lastTips">Hak interpretasi acara dipegang oleh penyelenggara acara</p>
@@ -75,20 +76,20 @@
 import getDate from "../../utils/getDate"
 import { mapState } from "vuex"
 export default {
-  data() {
+  data () {
     return {
       type: 1,
     }
   },
   computed: {
     ...mapState(['stime', 'etime']),
-    actTime() {
+    actTime () {
       console.log(this.stime)
       return getDate(new Date(this.stime * 1000), 5) + '-' + getDate(new Date(this.etime * 1000), 5)
     }
   },
   methods: {
-    tabClick(val) {
+    tabClick (val) {
       this.type = val
     }
   }

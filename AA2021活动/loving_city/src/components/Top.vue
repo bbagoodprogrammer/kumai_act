@@ -2,7 +2,7 @@
   <div class="top">
     <i class="close" @click="$parent.showTop = false"></i>
     <ul>
-      <li v-for="(item,index) in top" :key="index">
+      <li v-for="(item,index) in top" :key="index" @click="goRoom(item.uid)">
         <i class="pNums">{{item.score}} {{lang.people}}</i>
         <img :src="item.info.cover" alt="">
         <div class="rname">{{item.info.title}}</div>
@@ -16,6 +16,11 @@ import { mapState } from "vuex"
 export default {
   computed: {
     ...mapState(['top'])
+  },
+  methods: {
+    goRoom (uid) {
+      location.href = `lid:${uid}`
+    }
   }
 }
 </script>

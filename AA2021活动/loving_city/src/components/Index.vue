@@ -85,7 +85,6 @@ export default {
       }
     },
     stime (val) {
-      console.log(this.step)
       if (this.step == 0) {
         this.downTimeGo('time', (this.stime - this.ctime))
       } else if (this.step == 1) {

@@ -6,6 +6,7 @@
       <span @click="setShowType(2)" :class="{act:showType == 2}">{{lang.type_tab2}}</span>
       <!-- <span @click="setShowType(3)" :class="{act:showType == 3}">用戶榜</span> -->
     </div>
+    <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <div class="tabs">
@@ -14,23 +15,23 @@
       </div>
     </div>
     <ul class="list day">
-      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.rid)">
-        <div class="showUserIcon" @click.stop="$router.push({name:'UserList',params:{uid:item.uid}})" v-if="showType == 2 && mainTab == 0">{{lang.rank_Tips}}<i></i></div>
+      <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank">
+        <div class="showUserIcon" @click.stop="pushUser(item)" v-if="showType == 2 && mainTab == 0">{{lang.rank_Tips}}<i></i></div>
         <div class="rank">{{item.rank}}</div>
         <div class="uerImg" @click="goUser(item.uid,item.live)">
           <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
           <img v-lazy="item.avatar" alt="" class="av">
         </div>
         <div class="userMsg">
-          <div class="nick">{{item.nick}} <i v-if="item.live && showType == 2 && mainTab == 0"> </i></div>
+          <div class="nick">{{item.nick}} <i v-if="item.live  && mainTab == 0"> </i></div>
           <div class="uid">UID {{item.uid}}</div>
         </div>
-        <div class="score"><i :class="{type2:showType == 1 && mainTab == 1}"></i><em>{{item.score}}</em></div>
+        <div class="score"><i :class="{type2:mainTab == 1 }"></i><em>{{item.score}}</em></div>
       </li>
     </ul>
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
     <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
-    <div v-if="rank.none " class="scrollNone">
+    <div v-if="rank.none" class="scrollNone">
       {{lang.noPeople}}
     </div>
   </div>
@@ -130,9 +131,9 @@ export default {
   methods: {
     setShowType (val) {
       if (val !== this.showType) {
-        this.mainTab = 0
+        // this.mainTab = 0
         this.vxc('setShowType', val)
-        this.vxc("changTab", this.rankKey)
+        // this.vxc("changTab", this.rankKey)
         this.$nextTick(() => {
           if (!this.rank.loadCount) {
             this.onScroll();
@@ -150,22 +151,25 @@ export default {
       });
     },
     onScroll () {
-      if (!this.rank.loading && !this.rank.loadEnd && !this.firstInit) {
+      const rank = this.rank
+      if (!rank.loading && !rank.loadEnd && !this.firstInit) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
-        if (scrollToBottom || notFull || !this.rank.loadCount) {
+        if (scrollToBottom || notFull || !rank.loadCount) {
+          const key_type = this.showType
           const key = this.rankKey;
 
+          console.log(key_type, key, '1')
           const set = (k, v) => {
             let obj = {
-              type: this.showType,
+              type: key_type,
               data: { key, [k]: v }
             }
             this.$store.commit('updateRankGroups', obj);
           };
 
           set('loading', true);
-          axios.get(this.rankApi.replace('{from}', this.rank.list.length)).then(res => {
+          axios.get(this.rankApi.replace('{from}', rank.list.length)).then(res => {
             set('loading', false);
 
             const { response_status, response_data } = res.data;
@@ -178,21 +182,24 @@ export default {
             //跟随榜单变换个人信息
             if (response_data.myRank && response_data.myRank.uid) {
               let userObj = {
-                type: this.showType,
+                type: key_type,
                 data: { //当前日榜信息
-                  key: this.rankKey,
+                  key,
                   msg: response_data.myRank
                 }
               }
               this.vxc('updateGroupsUserMsg', userObj)
             }
+
+            console.log(key_type, key, '2')
+
             if (arr.slice) {
-              const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
+              const loadCount = typeof rank.loadCount == 'undefined' ? 0 : rank.loadCount;
               set('loadCount', loadCount + 1);
               if (arr.length) {
-                set('list', this.rank.list.concat(arr));
+                set('list', rank.list.concat(arr));
                 const noMore = !isNaN(this.rankSize) && arr.length < parseInt(this.rankSize);
-                if (this.rank.loadOnce || noMore) {
+                if (rank.loadOnce || noMore) {
                   set('loadEnd', true);
                 } else {
                   this.$nextTick(this.onScroll);
@@ -201,13 +208,13 @@ export default {
                 set('loadEnd', true);
               }
               this.$nextTick(() => {
-                console.log(this.rank.loadCount, this.rank.list.length)
-                if (this.rank.loadCount > 0 && this.rank.list.length === 0) {
+                if (rank.loadCount > 0 && rank.list.length === 0) {
                   set('none', true);
                 }
               });
             } else {
               set('loadEnd', true);
+              set('none', true);
             }
           }).catch(err => {
             set('loading', false);
@@ -235,14 +242,12 @@ export default {
       this.$nextTick(this.onScroll);
     },
     downTimeGo (timeName, val) {
-      console.log(val)
       clearInterval(this.timer)
       if (!downTime(timeName)) {
         downTime(timeName, val);
       }
       this.surplusTime = downTime(timeName);
       this.timer = setInterval(() => {
-        console.log('time', downTime(timeName))
         this.surplusTime = downTime(timeName);
         if (this.surplusTime.end) {
           clearInterval(this.timer)
@@ -255,7 +260,7 @@ export default {
     },
     goUser (uid, live) { //跳转
       if (live) {
-        location.href = `rid:${uid}`
+        location.href = `lid:${uid}`
       } else {
         location.href = `uid:${uid}`
       }
@@ -264,8 +269,8 @@ export default {
       this.actIndex = 0
       this.showPeopleList = false
     },
-    goPeople (uid) {
-      location.href = `uid:${uid}`
+    pushUser (item) {
+      this.$router.push({ name: 'UserList', params: { userItem: item } })
     }
   },
 }
@@ -539,9 +544,9 @@ export default {
   height: 1rem;
   position: fixed;
   right: 0.08rem;
-  bottom: 1.35rem;
-  // background: url(../assets/img/refresh.png) no-repeat;
-  // background-size: contain;
+  bottom: 2rem;
+  background: url(../img/refresh.png) no-repeat;
+  background-size: contain;
   transition: all 1s;
   text-indent: -999rem;
   z-index: 100;
