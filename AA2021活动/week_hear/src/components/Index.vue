@@ -278,7 +278,7 @@ export default {
         return
       }
       let arr = []
-      let song_indexArr = []
+      //   let song_indexArr = []
       for (let i = 0; i < this.list.length; i++) {
         if (this.list[i].act && !this.list[i].collect) {
           //   song_indexArr.push(i)
