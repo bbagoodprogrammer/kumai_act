@@ -46,7 +46,6 @@ export default new vuex.Store({
         setInitInfo(state, data) {
             Object.assign(state, data);
             state.reg = data.myrank.registered;
-            console.log(state);
         },
         updateGroupsUserMsg(state, obj) {
             if (obj && typeof obj.data.key != "undefined") {
@@ -64,7 +63,6 @@ export default new vuex.Store({
                     }
                 );
             }
-            console.log(state.groupsUserMsg);
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.data.key != "undefined") {
@@ -82,6 +80,7 @@ export default new vuex.Store({
                     }
                 );
             }
+            console.log(state.rankGroups, obj);
         }
     },
     actions: {

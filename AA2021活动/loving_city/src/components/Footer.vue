@@ -20,7 +20,7 @@
           <div class="nick">{{nowUsrMsg.nick}}</div>
           <div class="uid">UID {{nowUsrMsg.uid}}</div>
         </div>
-        <div class="score"><i :class="{type2:showType == 1 && tab == 'total'}"></i><em>{{nowUsrMsg.score}}</em></div>
+        <div class="score"><i :class="{type2: tab == 'total'}"></i><em>{{nowUsrMsg.score}}</em></div>
       </div>
     </div>
     <div class="mask" v-show="showSingUpPup">
@@ -76,7 +76,6 @@ export default {
       }
     },
     nowUsrMsg () {
-      console.log(this.groupsUserMsg, this.showType, this.tab)
       let nowList = this.groupsUserMsg[this.showType][this.tab] || {}
       return nowList.msg || { info: {} }
     },

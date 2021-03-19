@@ -41,13 +41,17 @@ export default {
   },
   created () {
     guard(0).then(res => {
-      console.log(res)
       this.list = res.data.response_data.list
       this.totalScore = res.data.response_data.amount
     })
   },
   computed: {
     ...mapState(['user_info'])
+  },
+  methods: {
+    goUser (uid) {
+      location.href = `uid:${uid}`
+    }
   }
 }
 </script>
@@ -55,7 +59,7 @@ export default {
 <style lang="scss" >
 .peopleRank {
   background: url(../img/peopleListBg.png);
-  background-size: 100% auto;
+  background-size: 100% 100%;
   padding-top: 0.33rem;
   .title {
     width: 5.09rem;
@@ -136,6 +140,7 @@ export default {
           margin-left: 0.25rem;
           height: 0.08rem;
           .actLiner {
+            min-width: 100%;
             height: 100%;
             background: linear-gradient(90deg, #FF97C4, #FFC2C3);
             border-radius: 0.04rem;

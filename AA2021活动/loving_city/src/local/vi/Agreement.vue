@@ -5,21 +5,22 @@
       <a @click.prevent="mainTab=1" :class="{current:mainTab==1}" class="tab2">Phần thưởng</a>
     </div>
     <p class="mt">Thời gian</p>
-    <p class="mg">18:00 24/3/2021 -24:00 6/4/2021</p>
+    <p class="mg">18:00 23/3/2021 -24:00 2/4/2021</p>
     <div class="ruleItem" v-if="mainTab == 0">
       <p>1.Thời gian sự kiện cần báo danh tham gia, sau khi nhấn vào nút báo danh, hiển thị báo danh thành công thì có thể tham gia.</p>
-      <p>2.Điểm rung động và điểm tình ý chỉ được tính qua 3 quà đua top:Thư Tình, Hươu Hiếu Động và Lời Yêu, quà khác vô hiệu.</p>
+      <p>2.Điểm rung động và điểm chân ái chỉ tính giới hạn trong 3 quà sau: Thư Tình, Bắn Tim, Lời Yêu</p>
       <p>
-        3.3 quà tặng là quà giới hạn trong phòng live:<br />
+        3. quà tặng là quà giới hạn trong phòng live:<br />
         Chỉ tính vào bảng khi tặng trong thời gian idol live, trường hợp khác vô hiệu. (Cần live trong chức năng live mới)
       </p>
       <p>
-        4.Bảng rung động: Chỉ giới hạn idol tham gia, idol phải live bằng chức năng live mới, live trong phòng Kara không được tính vào bảng<br />
-        Bảng tình ý: Ngoại trừ idol, tất cả người dùng đều có thể tham gia.
+
+        4.Bảng tâm động: Chỉ giới hạn idol báo danh tham gia, người tặng quà cần không phải là idol, mới được vào bảng<br />
+        Bảng tâm ý: Giới hạn người tham gia không phải idol, người nhận quà phải là idol đã báo danh (Idol chưa báo danh vô hiệu)
       </p>
       <p>
-        5.Ngoại trừ ngày đầu sự kiện, thời gian thống kê bảng ngày là 0:01-23:59 trong ngày<br />
-        Ngày đầu sự kiện thời gian thống kê bảng ngày là 18:00-23:59 24/3
+        5.Ngoại trừ ngày đầu sự kiện, thời gian thống kê bảng ngày là 0:01-23:59 trong ngày <br />
+        Ngày đầu sự kiện thời gian thống kê bảng ngày là 18:00-23:59 23/3
       </p>
       <p>
         6.Cách tính điểm rung động:<br />
@@ -35,9 +36,9 @@
       <p>9.Nếu số điểm bằng nhau, điểm tình ý/rung động đạt được trước sẽ xếp hạng trước</p>
     </div>
     <div class="giftItem" v-else>
-      <h5>Phần thưởng bảng tổng</h5>
+      <!-- <h5>Phần thưởng bảng tổng</h5> -->
       <img src="./img/ruleTable.png" alt="" class="ruleTable">
-      <p>Phần thưởng bảng ngày</p>
+      <!-- <p>Phần thưởng bảng ngày</p> -->
       <img src="./img/dayTable.png" alt="" class="dayTable">
       <p class="mg">Ghi chú:</p>
       <p class="mg">1.Phần thưởng sự kiện chia thành phần thưởng bảng ngày và bảng tổng</p>
@@ -113,10 +114,11 @@ export default {
     }
   }
   h5 {
-    font-size: 0.32rem;
+    font-size: 0.28rem;
   }
   p {
     margin: 0.4rem auto;
+    font-size: 0.24rem;
   }
 
   .lastTips {

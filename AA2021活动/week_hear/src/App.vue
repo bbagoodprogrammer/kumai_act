@@ -10,6 +10,7 @@ import { mapState } from 'vuex';
 import { globalBus } from './utils/eventBus'
 import Loading from './components/common/Loading';
 import APP from './utils/openApp'
+import { getUrlString } from "./utils"
 
 export default {
   computed: {
@@ -17,7 +18,11 @@ export default {
     viewHeight: () => window.innerHeight,
   },
   mounted () {
-    // this.$store.dispatch('getInitInfo');
+    if (!getUrlString('qid')) {
+      this.toast(`參數錯誤！`)
+      return
+    }
+    this.$store.dispatch('getInitInfo');
   },
   created () {
     globalBus.$on('commonEvent', (callback) => {

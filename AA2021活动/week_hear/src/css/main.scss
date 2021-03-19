@@ -63,6 +63,16 @@ a:hover {
     // transform:none!important;
 }
 
+.mask2{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    background: rgba(0,0,0,.8);
+}
+
 .slide-enter-active {
     animation-name: slideInUp;
     animation-duration: 0.2s;

@@ -17,14 +17,14 @@
           <div class="linerBox">
             <i></i>
             <div class="liner">
-              <div class="actLiner" :style="{width:item.score /totalScore * 100 +'%'}"></div>
+              <div class="actLiner" :style="{width:item.score /totalScore/1500 * 100 +'%'}"></div>
             </div>
             <div class="score">{{item.score}}</div>
           </div>
         </div>
-        <div class="uerImg" @click="goUser(item.uid)">
-          <img v-if="user_info.avatar_frame &&user_info.avatar_frame != ''" :src="user_info.avatar_frame" class="frame" alt="">
-          <img v-lazy="user_info.avatar" alt="" class="av">
+        <div class="uerImg" @click="goUser(user_msg.uid)">
+          <img v-if="user_msg.avatar_frame && user_msg.avatar_frame != ''" :src="user_msg.avatar_frame" class="frame" alt="">
+          <img v-lazy="user_msg.avatar" alt="" class="av">
         </div>
       </li>
     </ul>
@@ -42,27 +42,31 @@ export default {
     }
   },
   computed: {
-    uid () {
-      return this.$route.params.uid
+    user_msg () {
+      return this.$route.params.userItem || {}
     }
   },
-  created () {
-    guard(this.uid).then(res => {
-      console.log(res)
+  mounted () {
+    guard(this.$route.params.userItem.uid).then(res => {
       this.list = res.data.response_data.list
       this.totalScore = res.data.response_data.amount
     })
   },
-  computed: {
-    ...mapState(['user_info'])
+  methods: {
+    goUser (uid) {
+      location.href = `uid:${uid}`
+    }
   }
+  //   computed: {
+  //     ...mapState(['user_info'])
+  //   }
 }
 </script>
 
 <style lang="scss">
 .userList {
-  background: url(../img/peopleListBg.png);
-  background-size: 100% auto;
+  background: url(../img/peopleListBg.png) no-repeat;
+  background-size: 100% 100%;
   padding-top: 0.33rem;
   .title {
     width: 5.09rem;
@@ -132,6 +136,7 @@ export default {
           margin-left: 0.1rem;
           height: 0.08rem;
           .actLiner {
+            max-width: 100%;
             height: 100%;
             background: linear-gradient(90deg, #D7C4FF, #FFC2C3);
             border-radius: 0.04rem;
