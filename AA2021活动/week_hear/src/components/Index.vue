@@ -261,6 +261,9 @@ export default {
       }
     },
     selectSong (index) {
+      if (this.list[index].collect) {
+        return
+      }
       if (this.list[index].act) {
         this.$set(this.list[index], 'act', false)
       } else {
