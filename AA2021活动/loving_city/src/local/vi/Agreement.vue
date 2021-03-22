@@ -37,16 +37,17 @@
     </div>
     <div class="giftItem" v-else>
       <!-- <h5>Phần thưởng bảng tổng</h5> -->
+      <img src="./img/gift1.png" alt="" class="gift1">
+      <img src="./img/gift2.png" alt="" class="gift2">
       <img src="./img/ruleTable.png" alt="" class="ruleTable">
       <!-- <p>Phần thưởng bảng ngày</p> -->
       <img src="./img/dayTable.png" alt="" class="dayTable">
       <p class="mg">Ghi chú:</p>
       <p class="mg">1.Phần thưởng sự kiện chia thành phần thưởng bảng ngày và bảng tổng</p>
-      <p>2.Phần thưởng bảng ngày: Sau 24h mỗi ngày, hệ thống tự động gửi phần thưởng của ngày hôm trước, sẽ thông báo qua tin nhắn trong app. Thời gian hiệu lực của trang sức có thể cộng dồn, thời
-        gian hiệu lực cộng dồn cao nhất là 30 ngày. </p>
+      <p>2.Phần thưởng bảng ngày: Sau 24h mỗi ngày, hệ thống tự động gửi phần thưởng của ngày hôm trước, sẽ thông báo qua tin nhắn trong app. Thời gian hiệu lực của trang sức có thể cộng dồn. </p>
       <p>3.Phần thưởng bảng tổng ngoại trừ xu ra sẽ được hệ thống phát tự động trong vòng 7 ngày làm việc sau khi sự kiện kết thúc, sẽ thông báo qua tin nhắn trong app, phần thưởng xu sẽ gửi cùng với
         lương idol. </p>
-      <p>TIPS nhận trang sức trong Cửa hàng trang sức, xem huy chương trong Huy chương</p>
+      <p>TIPS nhận trang sức trong Cửa hàng trang sức.</p>
     </div>
     <div class="lastTips">Quyền giải thích cuối cùng của sự kiện này thuộc về ban tổ chức</div>
   </div>
@@ -75,6 +76,12 @@ export default {
   padding: 0 0.44rem;
   font-size: 0.28rem;
   color: rgba(150, 138, 197, 1);
+  .gift1,
+  .gift2 {
+    width: 7.31rem;
+    height: 6.42rem;
+    margin: 0.15rem 0 0.15rem -0.4rem;
+  }
   .ruleTable {
     width: 6.64rem;
     height: 17.36rem;

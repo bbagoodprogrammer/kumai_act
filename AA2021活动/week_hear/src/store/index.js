@@ -7,7 +7,9 @@ Vue.use(vuex);
 export default new vuex.Store({
     state: {
         loading: false,
-        list: []
+        list: [],
+        act: {},
+        qid: 1
     },
     mutations: {
         updateLoading(state, value) {
@@ -16,12 +18,16 @@ export default new vuex.Store({
 
         setInitInfo(state, data) {
             Object.assign(state, data);
+        },
+        setList(state, val) {
+            state.list = val;
         }
     },
     actions: {
         async getInitInfo() {
             try {
                 await loadData(getInitInfo, "setInitInfo");
+                console.log("nextLoad");
             } catch (e) {
                 console.log("getInitInfo", e);
             }

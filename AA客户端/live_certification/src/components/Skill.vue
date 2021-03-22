@@ -43,20 +43,23 @@
 <script>
 export default {
   computed: {
-    group1() {
+    group1 () {
       return this.lang.group1
     },
-    group2() {
+    group2 () {
       return this.lang.group2
     },
-    group3() {
+    group3 () {
       return this.lang.group3
     },
-    group4() {
+    group4 () {
       return this.lang.group4
     }
   }
 }
 </script>
 <style lang="scss">
+.skill_con {
+  height: 34.5rem;
+}
 </style>

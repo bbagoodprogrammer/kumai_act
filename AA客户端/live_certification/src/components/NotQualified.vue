@@ -7,7 +7,7 @@
     <div class="tipList">
       <h3>{{lang.notQualified_tip2}}</h3>
       <p>{{lang.notQualified_tip3}}</p>
-      <p>{{lang.notQualified_tip3}}</p>
+      <p>{{lang.notQualified_tip4}}</p>
       <p>{{lang.notQualified_tip5}}</p>
     </div>
   </div>

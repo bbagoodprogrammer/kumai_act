@@ -1,5 +1,6 @@
 <template>
-  <div class="page pageIndex">
+  <div class="page pageIndex" :class="{bg:!showBannerBg}">
+    <canvas id="bannerBg" v-show="!showBannerBg"></canvas>
     <div class="shareBar" v-if="isShare">
       <div class="bar" @click="downApp()"></div>
     </div>
@@ -47,6 +48,12 @@ import TabsScrollLoadList from "./TabsScrollLoadList"
 import Footer from "./Footer"
 import { getUrlString } from '../utils'
 import APP from "../utils/openApp"
+
+import { Downloader, Parser, Player } from 'svga.lite'
+
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
+
 export default {
   components: { TabsScrollLoadList, Footer },
   data () {
@@ -69,7 +76,8 @@ export default {
       //     }
       //   ],
       surplusTime: {},
-      isShare: true
+      isShare: true,
+      showBannerBg: true,
     }
   },
   computed: {
@@ -95,6 +103,7 @@ export default {
   mounted () {
     // this.downTimeGo('time', 99999)
     this.judgeShare()
+    this.bannerGo()
   },
   methods: {
     judgeShare () {//判断是否为分享环境,请求相应的接口 
@@ -118,12 +127,38 @@ export default {
     downApp () {
       APP()
     },
+    async bannerGo () {
+      let canvas = document.getElementById('bannerBg')
+      let addres = ''
+      if (_app == 'hsing') {
+        addres = `http://fstatic.cat1314.com/uc/svga/7ee9ed39dc372ec43b5a8849823ba870_1616383211.svga`
+      } else if (_app == 'singnow') {
+        addres = `http://fstatic.cat1314.com/uc/svga/7ee9ed39dc372ec43b5a8849823ba870_1616383211.svga`
+      }
+      const fileData = await downloader.get(addres);
+      const data = await parser.do(fileData);
+      let player = new Player(canvas)
+      await player.mount(data)
+      this.showBannerBg = false
+      player.start()
+    }
   }
 }
 </script>
 
 <style lang="scss">
+#bannerBg {
+  width: 7.5rem;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
 .pageIndex {
+  &.bg {
+    background: RGBA(239, 229, 255, 1) !important;
+  }
   .header {
     height: 10.26rem;
     position: relative;
@@ -141,6 +176,8 @@ export default {
     height: 4.64rem;
     background: url(../img/wards.png);
     background-size: 100% 100%;
+    position: relative;
+    z-index: 2;
     .title {
       height: 0.73rem;
       text-align: center;

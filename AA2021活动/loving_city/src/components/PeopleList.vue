@@ -4,7 +4,7 @@
     <div class="listTips" v-html="lang.p_tips">
     </div>
     <div class="userMsg">
-      <img :src="user_info.avatar" alt="">
+      <img v-lazy="user_info.avatar" alt="">
       <div class="nick">{{user_info.nick}}</div>
     </div>
     <ul>
@@ -140,7 +140,7 @@ export default {
           margin-left: 0.25rem;
           height: 0.08rem;
           .actLiner {
-            min-width: 100%;
+            max-width: 100%;
             height: 100%;
             background: linear-gradient(90deg, #FF97C4, #FFC2C3);
             border-radius: 0.04rem;

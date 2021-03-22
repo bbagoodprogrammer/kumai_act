@@ -4,7 +4,7 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Aturan acara</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Hadiah acara</a>
     </div>
-    <div class="actTime">Waktu acara: Jam 18:00 tgl 10 Jan.~ Jam 21:00 tgl 17 Jan.</div>
+    <div class="actTime">Waktu acara: Jam 18:00 tgl 24 Mar.~ Jam 21:00 tgl 31 Mar.</div>
     <div class="ruleTips" v-show="tab == 0">
       <h5>Aturan acara:</h5>
       <p>1.Acara ini perlu didaftar utk ikut, stlh daftar baru hitung nilai</p>
@@ -44,13 +44,13 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       tab: 0
     }
   },
   methods: {
-    tabClick(val) {
+    tabClick (val) {
       this.tab = val
     }
   }
@@ -140,5 +140,5 @@ body {
     margin-top: 1.5rem;
   }
 }
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 </style>
