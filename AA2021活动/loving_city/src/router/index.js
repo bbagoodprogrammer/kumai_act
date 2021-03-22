@@ -14,7 +14,8 @@ export default new Router({
             name: "index",
             component: Index,
             meta: {
-                title: _lang.title
+                title: _lang.title,
+                keep_alive: true
             }
         },
         {
@@ -22,7 +23,8 @@ export default new Router({
             name: "PeopleList",
             component: PeopleList,
             meta: {
-                title: _lang.title
+                title: _lang.title,
+                keep_alive: false
             }
         },
         {
@@ -30,7 +32,8 @@ export default new Router({
             name: "UserList",
             component: UserList,
             meta: {
-                title: _lang.title
+                title: _lang.title,
+                keep_alive: false
             }
         },
         {
@@ -38,7 +41,8 @@ export default new Router({
             name: "rule",
             component: _agreement,
             meta: {
-                title: _lang.title
+                title: _lang.title,
+                keep_alive: true
             }
         }
     ]

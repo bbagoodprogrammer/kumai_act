@@ -81,7 +81,7 @@ import { getUrlString } from "../utils"
 import { getUploadImg } from "../utils/getUploadImg"
 import store from "../store"
 export default {
-  data() {
+  data () {
     return {
       stage: 1,
       commitStatus: 0, //0  已拒绝 1 已提交
@@ -97,14 +97,14 @@ export default {
     }
   },
   computed: {
-    processTitle() {
+    processTitle () {
       return this.lang.processTitle
     },
-    commitMsg() {
+    commitMsg () {
       return this.lang.commitMsg
     }
   },
-  created() {
+  created () {
     getApplyStatus().then(res => {
       //status 6已申请过（审核中），7已申请过（已拒绝），8未申请认证
       //reject_reason 此字段仅当 status = 7 时有效，拒绝原因：0无原因，1证件照不符合要求，2封面图不符合要求，3账号存在异常
@@ -125,14 +125,14 @@ export default {
     })
   },
   methods: {
-    idCardNext() {
+    idCardNext () {
       if (!this.idcard_img) {
         this.toast(this.lang.page_commit_tip1)
       } else {
         this.stage = 2
       }
     },
-    uploadImg() {
+    uploadImg () {
       if (!this.liveImg) {
         this.toast(this.lang.page_commit_tip2)
       } else {
@@ -149,13 +149,13 @@ export default {
       }
 
     },
-    goSkill() {
+    goSkill () {
       this.$router.push({ path: 'Skill' })
     },
-    goStandard() {
+    goStandard () {
       this.$router.push({ path: 'standard' })
     },
-    async callApp(type) {
+    async callApp (type) {
       var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
       let uid = getUrlString('uid')
       let token = getUrlString('token')
@@ -273,7 +273,7 @@ export default {
           justify-content: center;
         }
         &.act::before {
-          content: "";
+          content: '';
           display: block;
           width: 0.1rem;
           height: 0.1rem;

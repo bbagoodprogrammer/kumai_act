@@ -19,7 +19,7 @@
       <h5>Quà Túi giá trị Đậu Mỗi Ngày</h5>
       <img src="./img/ruleImg2.png" alt="" class="ruleImg2">
       <p>
-        Hộp May Mắn cấp càng cao, quà càng nhiều, lần thứ 5 nhận được Hộp quà siêu sẽ trúng Huy Chương May Mắn Ⅱ
+        Hộp May Mắn cấp càng cao, quà càng nhiều, lần thứ 5 nhận được Hộp quà siêu sẽ trúng Huy Chương May Mắn III
       </p>
       <h5>Phần thưởng top 10 Bảng may mắn</h5>
       <h6>Hạng 1:</h6>

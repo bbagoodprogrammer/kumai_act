@@ -12,7 +12,7 @@ export default {
         "Mỗi ngày nhận 3 loại Hộp May Mắn quà bài hát, có thể nhận quà tương ứng, mỗi ngày mỗi cấp có thể nhận 1 lần, chỉ nhận trong ngày",
     giftTitle: "Quà có thể nhận:",
     giftTips1: "Hộp May Mắn cấp càng cao, quà càng nhiều;",
-    giftTips2: "Lần thứ 5 nhận Hộp quà siêu sẽ trúng Huy Chương May Mắn",
+    giftTips2: "Lần thứ 5 nhận Hộp quà siêu sẽ trúng Huy Chương May Mắn III",
     giftTipsSuc:
         "Chúc mừng đã rút được $, đã gửi đến tài khoản, vui lòng kiểm tra!",
     ok: "Đã biết",

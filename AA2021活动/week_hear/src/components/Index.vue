@@ -1,6 +1,15 @@
 <template>
   <div class="page pageIndex">
-    <div class="header"></div>
+    <div class="header">
+      <div class="weekTips">每週三更新</div>
+      <div class="actTitle">
+        <img src="../img/title.png" alt="">
+        <strong>Vol.{{qid}}</strong>
+      </div>
+      <div class="actTime">
+        {{act_time}}
+      </div>
+    </div>
     <div class="con" :style="{minHeight:viewHeight+'px'}">
       <div class="play_all">
         <div class="play_con" @click="playAll()">
@@ -17,14 +26,14 @@
           <div class="songMsg">
             <div class="songCover">
               <i class="mv">{{songType[item.sinfo.type]}}</i>
-              <i class="song_play" @click="playSong(item.sinfo.path,item.sid,index,'not_all')" :class="{stop:playIng && songIndex == index}"></i>
+              <i class="song_play " @click="playSong(item.sinfo.path,item.sid,index,'not_all')" :class="{stop:playIng && songIndex == index,songLoad:songLoading && songIndex == index}"></i>
               <span class="songNums"><i></i><em>{{item.sinfo.listen}}</em></span>
               <img :src="item.sinfo.cover" alt="" class="cover">
             </div>
             <div class="songName">曲目《{{item.sinfo.name}}》 <img src="../img/ktving.gif" alt="" class="ktving" v-if="playIng && songIndex == index"></div>
           </div>
           <div class="songReason">
-            <div class="title">推荐理由</div>
+            <div class="title">推薦理由</div>
             <div class="msg">
               {{item.mark}}
             </div>
@@ -95,8 +104,10 @@
 <script>
 
 import { mapState } from "vuex"
-import { linsten, hearBottle, appAttemsion, collectSong, } from "../apis"
+import { linsten, hearBottle, appAttemsion, collectSong, getInitInfo } from "../apis"
 import store from "../store"
+import getDate from "../utils/getDate"
+
 export default {
   data () {
     return {
@@ -110,19 +121,26 @@ export default {
       isAllPlay: false,
       showAccSuc: false,
       songType: {
-        1: '獨唱',
-        2: '獨唱',
+        0: '獨唱',
+        1: '合唱',
         3: 'mv',
         4: 'mv'
       },
-      sucType: true
+      sucType: true,
+      songLoading: false
     }
   },
   mounted () {
     this.sconedTime()
   },
   computed: {
-    ...mapState(['list']),
+    ...mapState(['list', 'qid', 'act']),
+    act_time () {
+      if (this.act.stime) {
+        return getDate(new Date(this.act.stime * 1000), 1) + '-' + getDate(new Date(this.act.etime * 1000), 1)
+      }
+
+    },
     viewHeight: () => window.innerHeight,
     audio () {
       return this.$refs.audio
@@ -191,10 +209,15 @@ export default {
         lastSeek = seek
         seek = this.audio.currentTime
         if (this.playIng && lastSeek != seek) {
-          this.listenSecond += 0.2
-          console.log(this.listenSecond)
+          this.listenSecond += 0.1
+          //   console.log(this.listenSecond)
+          this.songLoading = false
+        } else if (this.playIng && lastSeek == seek) {
+          this.songLoading = true
+        } else if (!this.playIng) {
+          this.songLoading = false
         }
-      }, 200)
+      }, 100)
     },
     play () {
       var audio = document.querySelector('#audio');
@@ -214,19 +237,27 @@ export default {
     },
     startListen (sid) {
       linsten(sid).then(res => {
-        this.song_key = res.data.response_data.key
+        if (res.data.response_status.code == 0) {
+          this.song_key = res.data.response_data.key
+        }
       })
     },
     endListen (sid, s_key) {
       hearBottle(sid, s_key)
     },
     playAll () {
-      this.isAllPlay = true
+      this.isAllPlay = false
       this.clearSongStatus()
-      this.$store.dispatch('getInitInfo');
-      this.songIndex = 0
-      const path = this.list[0]
-      this.playSong(this.now_song.path, this.now_song.id, 0)
+      //   this.$store.dispatch('getInitInfo');
+      getInitInfo().then(res => {
+        // this.vxc('setList', res.data.response_data.list)
+        store.commit("setList", res.data.response_data.list);
+        this.isAllPlay = true
+        this.songIndex = 0
+        const path = this.list[0]
+        this.playSong(this.now_song.path, this.now_song.id, 0)
+      })
+      //   console.log('changeSong')
     },
     stopMus () {
       if (this.isAllPlay) {
@@ -234,6 +265,8 @@ export default {
         if (this.songIndex <= this.list.length - 1) {
           this.playSong(this.now_song.path, this.now_song.id, this.songIndex)
         }
+      } else {
+        this.playIng = false
       }
     },
     clearSongStatus () {
@@ -318,6 +351,51 @@ export default {
   background-size: 100% auto;
   .header {
     height: 3.48rem;
+    position: relative;
+    .weekTips {
+      white-space: nowrap;
+      font-size: 0.24rem;
+      color: #8AF5FF;
+      position: absolute;
+      top: 0.24rem;
+      right: 0.28rem;
+    }
+    .actTitle {
+      height: 0.73rem;
+      position: absolute;
+      top: 1.12rem;
+      left: 0.5rem;
+      display: flex;
+      align-items: flex-end;
+      img {
+        width: 2.73rem;
+        height: 0.73rem;
+      }
+      strong {
+        font-size: 0.36rem;
+        font-weight: bold;
+        color: #fff;
+      }
+    }
+    .actTime {
+      height: 0.5rem;
+      line-height: 0.5rem;
+      position: absolute;
+      top: 1.9rem;
+      left: 0.5rem;
+      font-size: 0.26rem;
+      color: #fff;
+    }
+    .actTime::before {
+      content: '';
+      display: block;
+      width: 0.26rem;
+      height: 0.06rem;
+      background: #8AF5FF;
+      opacity: 0.8;
+      position: absolute;
+      bottom: -0.1rem;
+    }
   }
   .con {
     width: 100%;
@@ -366,7 +444,8 @@ export default {
     }
     ul {
       width: 7.02rem;
-      margin: 0.24rem auto;
+      margin: 0.24rem auto 0;
+      padding-bottom: 0.4rem;
       li {
         min-height: 3.52rem;
         background: #FFFFFF;
@@ -413,6 +492,11 @@ export default {
                 background: url(../img/stop.png);
                 background-size: 100% 100%;
               }
+              &.songLoad {
+                animation: rotate 1.5s linear infinite;
+                background: url(../img/songLoad.png);
+                background-size: 100% 100%;
+              }
             }
             .songNums {
               //   height: 0.3rem;
@@ -449,7 +533,7 @@ export default {
         }
         .songReason {
           width: 6.54rem;
-          height: 0.72rem;
+          min-height: 0.72rem;
           background: #F5F5F5;
           border-radius: 0.12rem;
           display: flex;
@@ -522,6 +606,9 @@ export default {
             }
           }
         }
+      }
+      li:last-child {
+        margin-bottom: 0;
       }
     }
   }
@@ -658,6 +745,15 @@ export default {
   }
   .moveR-leave-to {
     transform: translateY(50%);
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }
 </style>

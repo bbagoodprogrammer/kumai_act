@@ -17,7 +17,7 @@
           <div class="linerBox">
             <i></i>
             <div class="liner">
-              <div class="actLiner" :style="{width:item.score /totalScore/1500 * 100 +'%'}"></div>
+              <div class="actLiner" :style="{width:item.score /1500 * 100 +'%'}"></div>
             </div>
             <div class="score">{{item.score}}</div>
           </div>
