@@ -117,18 +117,22 @@ function loadData(apiFunc, commitName) {
 }
 
 function getInitInfo() {
-    return get(`/week_hear/init.php?qid={qid}&token={token}`);
+    if (token) {
+        return get(`/week_hear/init.php?qid={qid}&token={token}`);
+    } else {
+        return get(`/week_hear/init.php?qid={qid}`);
+    }
 }
 
 function linsten(sid) {
     return axios.get(
-        `/week_hear/clickBottle.php?token={{token}}&sid=${sid}&qid={qid}`
+        `/week_hear/clickBottle.php?token={token}&sid=${sid}&qid={qid}`
     );
 }
 
 function hearBottle(sid, s_key) {
     return axios.get(
-        `/week_hear/hearBottle.php?token={{token}}&sid=${sid}&s_key=${s_key}&qid={qid}`
+        `/week_hear/hearBottle.php?token={token}&sid=${sid}&s_key=${s_key}&qid={qid}`
     );
 }
 

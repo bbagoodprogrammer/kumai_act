@@ -1,5 +1,8 @@
 <template>
   <div class="page pageIndex">
+    <div class="shareBar" v-if="isShare">
+      <div class="bar" @click="downApp()"></div>
+    </div>
     <div class="header">
       <div class="weekTips">每週三更新</div>
       <div class="actTitle">
@@ -28,7 +31,7 @@
               <i class="mv">{{songType[item.sinfo.type]}}</i>
               <i class="song_play " @click="playSong(item.sinfo.path,item.sid,index,'not_all')" :class="{stop:playIng && songIndex == index,songLoad:songLoading && songIndex == index}"></i>
               <span class="songNums"><i></i><em>{{item.sinfo.listen}}</em></span>
-              <img :src="item.sinfo.cover" alt="" class="cover">
+              <img :src="item.sinfo.cover" alt="" class="cover" @click="goSong(item.sinfo.id)">
             </div>
             <div class="songName">曲目《{{item.sinfo.name}}》 <img src="../img/ktving.gif" alt="" class="ktving" v-if="playIng && songIndex == index"></div>
           </div>
@@ -89,7 +92,7 @@
           <div class="title"> {{sucType?'添加成功':'添加失敗'}}</div>
           <div class="msg" v-if="sucType">
             所選曲目已成功添加到我的收藏，<br />
-            可在我的——收藏中查看
+            重啟APP後可在我的——收藏中查看
           </div>
           <div class="msg" v-else>
             還沒有選擇歌曲,無法添加
@@ -107,6 +110,9 @@ import { mapState } from "vuex"
 import { linsten, hearBottle, appAttemsion, collectSong, getInitInfo } from "../apis"
 import store from "../store"
 import getDate from "../utils/getDate"
+import { getUrlString } from '../utils'
+import APP from "../utils/openApp"
+
 
 export default {
   data () {
@@ -127,11 +133,13 @@ export default {
         4: 'mv'
       },
       sucType: true,
-      songLoading: false
+      songLoading: false,
+      isShare: true,
     }
   },
   mounted () {
     this.sconedTime()
+    this.judgeShare()
   },
   computed: {
     ...mapState(['list', 'qid', 'act']),
@@ -177,6 +185,9 @@ export default {
     }
   },
   methods: {
+    judgeShare () {//判断是否为分享环境,请求相应的接口 
+      this.isShare = getUrlString('token') ? false : true
+    },
     playSong (path, songId, index, not_all) {
       this.songIndex = index
       if (this.auidoSong_id == '' && !this.playIng) { //第一次播放
@@ -191,7 +202,7 @@ export default {
         this.stop()
       } else if (this.auidoSong_id !== songId) { //点击其他首歌曲
         this.isAllPlay = false
-        this.endListen(this.auidoSong_id, this.song_key)
+        this.endListen(this.auidoSong_id, this.song_key, songId)
         this.currentSong = path
         this.auidoSong_id = songId
         this.listenSecond = 0
@@ -242,8 +253,10 @@ export default {
         }
       })
     },
-    endListen (sid, s_key) {
-      hearBottle(sid, s_key)
+    endListen (sid, s_key, songId) {
+      hearBottle(sid, s_key).then(res => {
+        this.startListen(songId)
+      })
     },
     playAll () {
       this.isAllPlay = false
@@ -340,7 +353,13 @@ export default {
     },
     goUser (uid) {
       location.href = `uid:${uid}`
-    }
+    },
+    goSong (sid) {
+      location.href = 'songid:{"songlist":[' + sid + ' ],"index":0}';
+    },
+    downApp () {
+      APP()
+    },
   }
 }
 </script>
