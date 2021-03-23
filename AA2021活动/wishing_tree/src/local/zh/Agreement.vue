@@ -5,7 +5,7 @@
       <a class="tab2" @click.prevent="mainTab=1" :class="{current:mainTab==1}" href="">活動獎勵</a>
     </div>
     <div class="actTime">
-      活動時間：2月7日12:00-2月18日24:00
+      活動時間：3月26日12:00-4月5日24:00
     </div>
     <div class="rule" v-if="mainTab == 0">
       <h5>許願樹許願</h5>
@@ -15,7 +15,7 @@
       <img src="./img/table.png" alt="" class="table">
       <p>4、活動期間全服許願值貢獻到一定值，許願樹便會顯靈隨機向參與用戶派發獎勵，貢獻的許願值越多獲得稀有獎勵的機率越大</p>
       <h5>許願榜單</h5>
-      <p>1、許願日榜：根據活動期間每日用戶貢獻的許願值進行排名，每日許願值超過888積分的用戶將可獲得“幸運櫻花*1（66金幣）”</p>
+      <p>1、許願日榜：根據活動期間每日用戶貢獻的許願值進行排名，每日許願值超過888積分的用戶將可獲得幸運櫻花*1（66金幣/個）</p>
       <p>2、許願總榜：根據活動期間用戶貢獻的許願值進行排名，活動結束時排行前十的用戶獲得豐厚獎勵</p>
       <h5>備註：</h5>
       <p>1、活動期間如有任何刷分行為，將取消參賽資格和獎勵，嚴重者封號處理</p>
@@ -44,19 +44,19 @@
       </div>
       <p>
         第1名<br />
-        單筆10%儲值返利券+新年許願徽章30天+新年許願頭飾30天+K房禮物夜之戀曲*1（2880金幣/個）+年獸座駕30天+3000金幣+8000金豆
+        單筆15%儲值返利券+幸運許願徽章30天+牡羊座頭飾30天+K房禮物夜之戀曲*1（2880金幣/個）+豪華遊艇座駕30天+3000金幣+8000金豆
       </p>
       <p>
         第2名<br />
-        單筆8%儲值返利券+新年許願徽章30天+新年許願頭飾30天+K房禮物夜之戀曲*1（2880金幣/個）+年獸座駕30天+2000金幣+5000金豆
+        單筆12%儲值返利券+幸運許願徽章30天+牡羊座頭飾30天+K房禮物夜之戀曲*1（2880金幣/個）+豪華遊艇座駕30天+2000金幣+5000金豆
       </p>
       <p>
         第3名<br />
-        單筆5%儲值返利券+新年許願徽章30天+新年許願頭飾30天+K房禮物夜之戀曲*1（2880金幣/個）+年獸座駕30天+1000金幣+3000金豆
+        單筆10%儲值返利券+幸運許願徽章30天+牡羊座頭飾30天+K房禮物夜之戀曲*1（2880金幣/個）+豪華遊艇座駕30天+1000金幣+3000金豆
       </p>
       <p>
         第4-10名<br />
-        單筆3%儲值返利券+新年許願徽章30天+新年許願頭飾30天+作品禮物浪漫摩天輪*1（388金幣/個）+年獸座駕30天+500金幣+1000金豆
+        單筆8%儲值返利券+幸運許願徽章30天+牡羊座頭飾30天+作品禮物浪漫摩天輪*1（388金幣/個）+豪華遊艇座駕30天+500金幣+1000金豆
       </p>
       <h5>備註：</h5>
       <p>1、所有背包禮物有效期為7天</p>
@@ -67,43 +67,43 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       mainTab: 0,
       giftArr1: [
         {
-          img: require("../../img/gift_icon/gift1.png"),
-          name: '巨星登場（168金幣）'
+          img: require("./img/ruleImg/gift1.png"),
+          name: '真愛玫瑰（266金幣）'
         },
         {
-          img: require("../../img/gift_icon/gift2.png"),
-          name: '玫瑰花束（168金幣）'
+          img: require("./img/ruleImg/gift2.png"),
+          name: 'Love U（266金幣）'
         },
         {
-          img: require("../../img/gift_icon/gift3.png"),
+          img: require("./img/ruleImg/gift3.png"),
           name: '儲值返利券'
         },
         {
-          img: require("../../img/gift_icon/gift4.png"),
-          name: '海量金幣'
+          img: require("./img/ruleImg/gift4.png"),
+          name: '極速快艇座駕'
         }
       ],
       giftArr2: [
         {
-          img: require("../../img/gift_icon/gift5.png"),
-          name: '新年許願徽章'
+          img: require("./img/ruleImg/gift5.png"),
+          name: '幸運許願樹徽章'
         },
         {
-          img: require("../../img/gift_icon/gift6.png"),
-          name: '新年許願頭飾'
+          img: require("./img/ruleImg/gift6.png"),
+          name: '牡羊座頭飾'
         },
         {
-          img: require("../../img/gift_icon/gift7.png"),
+          img: require("./img/ruleImg/gift7.png"),
           name: '夜之戀曲（2880金幣）'
         },
         {
-          img: require("../../img/gift_icon/gift8.png"),
-          name: '年獸座駕'
+          img: require("./img/ruleImg/gift8.png"),
+          name: '豪華遊艇座駕15天'
         }
       ],
 

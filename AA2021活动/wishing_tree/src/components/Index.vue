@@ -71,7 +71,7 @@ const parser = new Parser({ disableWorker: true })
 
 export default {
   components: { TabsScrollLoadList, Tree, Integral, Footer, historyTabsScrollLoadList, TrunMsg },
-  data() {
+  data () {
     return {
       isShare: false,
       showHistory: false,
@@ -81,7 +81,7 @@ export default {
       show0: false,
       show1: false,
       svgaAdress: {
-        banner_title: 'http://fstatic.cat1314.com/uc/svga/5a09e6224a7de17d52f7ec5f9d40b3e0_1612174940.svga',
+        banner_title: 'http://fstatic.cat1314.com/uc/svga/9bd349ed50b1852848e591f5ae1c3ee1_1616495987.svga',
         banner_tree: 'http://fstatic.cat1314.com/uc/svga/e777f1868ecaad7da75e1dc4af72d52f_1612175000.svga'
       },
       singNowSvga: {
@@ -92,7 +92,7 @@ export default {
   },
   computed: {
     ...mapState(['myScore', 'all_score']),
-    svga() {
+    svga () {
       if (APP_NAME == 'singnow') {
         return this.singNowSvga
       } else {
@@ -100,17 +100,17 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.judgeShare()
     this.init()
   },
-  mounted() {
+  mounted () {
     for (let key in this.svga) {
       this.svgaGo(key, this.svga[key])
     }
   },
   methods: {
-    init(val) {
+    init (val) {
       init().then(res => {
         const { c_day, days, step, stime, etime, schule, score, all_score, my_score, now, user_info, myrank, notice, show0, show1 } = res.data.response_data
         this.vxc('setSchule', schule)
@@ -139,21 +139,21 @@ export default {
         }
       })
     },
-    judgeShare() {//判断是否为分享环境,请求相应的接口 
+    judgeShare () {//判断是否为分享环境,请求相应的接口 
       this.isShare = getUrlString('token') ? false : true
       this.vxc('setShareState', this.isShare) //分享状态
     },
-    downApp() {
+    downApp () {
       APP()
     },
-    getDateArr(stime, etime) {
+    getDateArr (stime, etime) {
       let arr = []
       for (let i = stime * 1; i <= etime * 1; i += 86400) {
         arr.push(i)
       }
       return arr
     },
-    down_second(step, stime, etime, now) {
+    down_second (step, stime, etime, now) {
       if (step == 0) {
         return stime - now
       } else if (step == 1) {
@@ -162,7 +162,7 @@ export default {
         return 0
       }
     },
-    async svgaGo(el, adress) {
+    async svgaGo (el, adress) {
       let canvas = document.getElementById(el)
       const fileData = await downloader.get(adress);
       const data = await parser.do(fileData);

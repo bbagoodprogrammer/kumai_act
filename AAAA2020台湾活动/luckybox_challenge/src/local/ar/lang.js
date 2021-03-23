@@ -24,8 +24,8 @@ export default {
     ],
     giftList: [
         {
-            imgIcon: require("../../img/gift/01.png"),
-            name: "المصلقة النادرة            "
+            imgIcon: require("../../img/gift/06.png"),
+            name: "هدية يونيكورن"
         },
         {
             imgIcon: require("./img/02.png"),
