@@ -13,8 +13,8 @@
     <!-- 倒计时 -->
     <div class="downTimebox" v-if="mainTab != 2">
       <!-- <div class="timeTips"> -->
-      <p v-if="step==0">{{lang.rank_timeDown1}}</p>
-      <p v-else-if="step == 1">{{lang.rank_timeDown2}}</p>
+      <p v-if="step==0">{{lang.rank_timeDown2}}</p>
+      <p v-else-if="step == 1">{{lang.rank_timeDown1}}</p>
       <!-- </div> -->
       <div class="timeDown" v-if="surplusTime&& !surplusTime.end">
         <strong>{{surplusTime.day}}</strong>

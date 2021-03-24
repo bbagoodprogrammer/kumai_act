@@ -7,11 +7,13 @@
         <div class="tipsBox">
           <h3 class="tipsTitle">قواعد اليانصيب</h3>
           <p class="tips" v-if="luckType">
-            أنت تبدأ في يانصيب وتدفع مبلغًا معينًا من العملات الذهبية لشراء هدية عضو أو غرفة غناء كجائزة يانصيب. خلال وقت العد التنازلي ، سيمنحك المستخدم في الغرفة هدية تأهيل السحب التي تحددها للحصول على فرصة للفوز باليانصيب. سيبدأ السحب فورًا في نهاية العد التنازلي ، وسيتم سحب أحد المشاركين للفائزين ، احصل على الجوائز الخاصة بك. إذا لم يشارك أحد ، فإن الجائزة تعود إلى البادئ.
+            أنت تبدأ في يانصيب وتدفع مبلغًا معينًا من العملات الذهبية لشراء هدية عضو أو غرفة غناء كجائزة يانصيب. خلال وقت العد التنازلي ، سيمنحك المستخدم في الغرفة هدية تأهيل السحب التي تحددها للحصول
+            على فرصة للفوز باليانصيب. سيبدأ السحب فورًا في نهاية العد التنازلي ، وسيتم سحب أحد المشاركين للفائزين ، احصل على الجوائز الخاصة بك. إذا لم يشارك أحد ، فإن الجائزة تعود إلى البادئ.
           </p>
           <p class="tips" v-else>
             1. يمكنك اختيار جوائز اليانصيب التالية ودفع العملات الذهبية المقابلة لبدء اليانصيب<br />
-            2. خلال وقت العد التنازلي ، يمكن للمستخدمين في الغرفة الحصول على فرصة للفوز بسحب الحظ عن طريق إرسال هدية تذكرة اليانصيب المحددة بواسطة طريقة المشاركة. سيبدأ السحب فور انتهاء العد التنازلي ، وسيتم سحب أحد المشاركين كفائز ويحصل على جائزتك.<br />
+            2. خلال وقت العد التنازلي ، يمكن للمستخدمين في الغرفة الحصول على فرصة للفوز بسحب الحظ عن طريق إرسال هدية تذكرة اليانصيب المحددة بواسطة طريقة المشاركة. سيبدأ السحب فور انتهاء العد التنازلي
+            ، وسيتم سحب أحد المشاركين كفائز ويحصل على جائزتك.<br />
             3. في حالة عدم مشاركة أحد ، تعود الجائزة إلى البادئ.
           </p>
         </div>
@@ -36,7 +38,8 @@
             <span> اختيار الجائزة</span>
             <!-- <div class="itemCon"> -->
             <div class="itemCon" @click="setSgift(1)">
-              <span v-if="sActGift.id" class="actGift1"><img :src="sActGift.pic" alt="" v-if="sActGift.prise_type !=1"> <strong :class="{textIndex:sActGift.prise_type ==1}">{{sActGift.name}}</strong> </span>
+              <span v-if="sActGift.id" class="actGift1"><img :src="sActGift.pic" alt="" v-if="sActGift.prise_type !=1"> <strong :class="{textIndex:sActGift.prise_type ==1}">{{sActGift.name}}</strong>
+              </span>
               <span v-else class="noSet">غير مضبوط</span>
               <i class="arr"></i>
             </div>
@@ -200,7 +203,7 @@ import { toast, getUrlString } from "./utils"
 import store from "./store"
 export default {
   components: { Loading },
-  data() {
+  data () {
     return {
       luckType: 0, //當前用戶身份  1房主管理員主持人 0 普通用戶
       giftList: [],
@@ -236,23 +239,23 @@ export default {
   computed: {
     ...mapState(['loading']),
     viewHeight: () => window.innerHeight,
-    pageGiftList() {
+    pageGiftList () {
       return this.formackArr(this.giftList)
     },
-    nowTabGift() {
+    nowTabGift () {
       if (this.tabGift[this.tabIndex]) {
         return this.formackArr(this.tabGift[this.tabIndex].prise_list)
       }
       return []
     },
-    isCommit() {
+    isCommit () {
       let s = true
       if (!this.sActGift.id || !this.sActGift.id || this.timeIndex == null || !this.peopleType) {
         s = false
       }
       return s
     },
-    price() {
+    price () {
       if (this.luckType) {
         return `${this.sActGift.price}${this.giftType[this.sActGift.currency]}`
       } else {
@@ -266,7 +269,7 @@ export default {
     //   this.nowTabGift = this.formackArr(val[this.tabIndex])
     // }
   },
-  created() {
+  created () {
     let host = getUrlString('host')
     let role = getUrlString('role')
     if (host == 1 || role == 400 || role == 500) {
@@ -280,13 +283,13 @@ export default {
     }
   },
   methods: {
-    setactGift(item) {  //當前item
+    setactGift (item) {  //當前item
       this.actGiftT = item
     },
-    setSactGift(item) {
+    setSactGift (item) {
       this.sActGiftT = item
     },
-    changGift() {
+    changGift () {
       if (!this.giftList.length) {
         // this.tabLoading = true
         getRoomDraw().then(res => {
@@ -296,7 +299,7 @@ export default {
       }
       this.show = true
     },
-    queryGift() {
+    queryGift () {
       if (this.actGiftT.id) {
         this.show = !this.show
         this.actGift = Object.assign({}, this.actGiftT)
@@ -304,7 +307,7 @@ export default {
         toast(`الرجاء تحديد مؤهل السحب!`)
       }
     },
-    querySgift() {
+    querySgift () {
       if (this.sActGiftT.id) {
         this.showSgiftPup = !this.showSgiftPup
         this.sActGift = Object.assign({}, this.sActGiftT)
@@ -312,14 +315,14 @@ export default {
         toast(` الرجاء اختيار جائزة!`)
       }
     },
-    setTime() {
+    setTime () {
       this.showTimePup = true
     },
-    timeQuery(index) {
+    timeQuery (index) {
       this.timeIndex = index
       this.showTimePup = false
     },
-    setSgift(index) {
+    setSgift (index) {
       if (this.tabGift[index] && this.tabGift[index].loaded) {
         this.showSgiftPup = true
       } else {
@@ -340,26 +343,26 @@ export default {
         })
       }
     },
-    setTabGift() {
+    setTabGift () {
 
     },
-    setFixedGift(item, index) {
+    setFixedGift (item, index) {
       this.fixeActDraw = item
       this.fixeActIndex = index
     },
-    tabClick(index) {
+    tabClick (index) {
       this.tabIndex = index
       this.setSgift(index)
     },
-    vipClick(index, item) {
+    vipClick (index, item) {
       this.vipType = index
       this.sActGiftT = item
     },
-    cardsClick(index, item) {
+    cardsClick (index, item) {
       this.cardType = index
       this.sActGiftT = item
     },
-    formackArr(arr) {
+    formackArr (arr) {
       let pageList = []
       let j = -1
       arr.forEach((e, i) => {
@@ -372,10 +375,10 @@ export default {
       });
       return pageList
     },
-    setPeopleType(num) {
+    setPeopleType (num) {
       this.peopleType = num
     },
-    commitLuck() {
+    commitLuck () {
       if (this.luckType && this.isCommit) {
         store.commit('updateLoading', true);
         createCustomDraw(this.actGift.id, this.sActGift.id, this.peopleType, this.timeArr[this.timeIndex]).then(res => {
@@ -405,15 +408,15 @@ export default {
         })
       }
     },
-    showPricePup() {
+    showPricePup () {
       if ((this.luckType && this.isCommit) || (!this.luckType && this.peopleType)) {
         this.showCommitPup = true
       }
     },
-    closeCommitPup() {
+    closeCommitPup () {
       this.showCommitPup = false
     },
-    closeWeb() {
+    closeWeb () {
       var u = navigator.userAgent;
       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
@@ -423,7 +426,7 @@ export default {
         closeWeb();
       }
     },
-    goStored() {
+    goStored () {
       location.href = "walletConfig://"
     }
   }
@@ -613,7 +616,7 @@ body {
           color: rgba(255, 255, 255, 1);
         }
         &.act::before {
-          content: "";
+          content: '';
           display: block;
           width: 0.24rem;
           height: 0.06rem;

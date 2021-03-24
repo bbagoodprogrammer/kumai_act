@@ -1,3 +1,17 @@
 html.hi {
-    
+    .pageIndex{
+        background:RGBA(251, 77, 94, 1) url(./img/banner_open.png) no-repeat;
+        background-size: 100% auto;
+        &.open_ed{
+            background:RGBA(251, 77, 94, 1) url(./img/banner_openEd.png) no-repeat;
+            background-size: 100% auto;
+        }
+    }
+    .openIcon {
+        width: 3.58rem;
+        height: 3.59rem;
+        background: url(./img/openIcon.png);
+        background-size: 100% 100%;
+        margin: 0 auto;
+      }
 }

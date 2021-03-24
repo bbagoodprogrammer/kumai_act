@@ -14,14 +14,15 @@
       </li>
     </ul>
     <h5>Phần thưởng Túi quà Người Đại Diện:</h5>
-    <p>Mỗi lần trở thành Người Đại Diện, thưởng 1 phần quà Người Đại Diện: 1 bài hát được đề xuất trên trang chủ với nhãn bài hát Người Đại Diện + 2000 xu, phát thưởng sau khi sự kiện kết thúc 7 ngày.</p>
+    <p>Mỗi lần trở thành Người Đại Diện, thưởng 1 phần quà Người Đại Diện: 1 bài hát được đề xuất trên trang chủ với nhãn bài hát Người Đại Diện + 2000 xu, phát thưởng sau khi sự kiện kết thúc 7 ngày.
+    </p>
   </div>
 </template>
 <script>
 
 import api from "../../api/apiConfig"
 export default {
-  data() {
+  data () {
     return {
       default: {
         nick: 'Để trống',
@@ -33,13 +34,13 @@ export default {
     }
   },
   computed: {
-    top1() {
+    top1 () {
       if (this.list.length) {
         return this.list[this.list.length - 1]
       }
       return this.default
     },
-    shouList() {
+    shouList () {
       let arr = JSON.parse(JSON.stringify(this.list))
       for (let i = 0; i < 12 - this.list.length; i++) {
         arr.push(this.default)
@@ -47,7 +48,7 @@ export default {
       return arr
     }
   },
-  created() {
+  created () {
     document.title = 'Người Đại Diện Các Kỳ'
     api.mounth().then(res => {
       this.list = res.data.response_data.list
@@ -56,7 +57,7 @@ export default {
     })
   },
   methods: {
-    goUser(uid) {
+    goUser (uid) {
       location.href = `uid:${uid}`
     }
   }
@@ -64,7 +65,7 @@ export default {
 </script>
 <style lang="scss">
 body {
-  background: RGBA(255, 126, 108, 1);
+  background: RGBA(151, 176, 250, 1);
   .lastRank {
     .title {
       width: 6rem;
@@ -74,9 +75,10 @@ body {
       margin: 0.4rem auto 0;
       text-align: center;
       line-height: 1.02rem;
-      font-size: 0.36rem;
+      font-size: 0.26rem;
       font-weight: bold;
       color: #fff9eb;
+      white-space: nowrap;
     }
     .top1 {
       width: 7.25rem;
@@ -153,5 +155,5 @@ body {
     }
   }
 }
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 </style>

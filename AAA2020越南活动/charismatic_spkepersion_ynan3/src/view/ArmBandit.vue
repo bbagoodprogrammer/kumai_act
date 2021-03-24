@@ -72,7 +72,7 @@ const parser = new Parser({ disableWorker: true })
 
 export default {
   components: { MsgToast, ActFooter, TrunMsg, Box, RedPackets, TabsScrollLoadList },
-  data() {
+  data () {
     return {
       isShare: false, //是否分享
       isMore: true,   //加载更多
@@ -90,21 +90,21 @@ export default {
       score: 0
     }
   },
-  created() {
+  created () {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
   computed: {
-    giftArr() {
+    giftArr () {
       return giftArr
     }
   },
   methods: {
-    judgeShare() {//判断是否为分享环境,请求相应的接口 
+    judgeShare () {//判断是否为分享环境,请求相应的接口 
       this.isShare = getString('token') ? false : true
       this.vxc('setShareState', this.isShare) //分享状态
     },
-    getDefaultData(val) { //初始化
+    getDefaultData (val) { //初始化
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
@@ -132,35 +132,35 @@ export default {
         }
       })
     },
-    downApp() {
+    downApp () {
       APP()
     },
-    goRule() {
+    goRule () {
       let regstr = getString('token')
       location.href = `./index2.html?token=${regstr}`
     },
-    goMain() {
+    goMain () {
       let regstr = getString('token')
       let uid = getString('uid')
       let aid = getString('aid')
       location.href = `./index4.html?token=${regstr}`
     },
-    refrsh() { //刷新
+    refrsh () { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       window.removeEventListener("scroll", this.onScroll)
       this.getDefaultData('ref')
     },
-    getDateArr(stime, etime) {
+    getDateArr (stime, etime) {
       let arr = []
       for (let i = stime * 1; i <= etime * 1; i += 86400) {
         arr.push(i)
       }
       return arr
     },
-    getDate(tm) {
+    getDate (tm) {
       return getDate(new Date(tm * 1000), 5)
     },
-    showHistory() {
+    showHistory () {
       api.openPacketList().then(res => {
         console.log(res)
         this.historyList = res.data.response_data.list
@@ -179,7 +179,8 @@ body::-webkit-scrollbar {
   overflow-x: hidden;
   position: relative;
   margin: auto;
-  background: RGBA(255, 126, 108, 1) url(../assets/img/banner.png) center 0
+  background: RGBA(151, 176, 250, 1)
+    url(../assets/img/banner.png) center 0
     no-repeat;
   background-size: 100% auto;
   padding-bottom: 2rem;
@@ -329,7 +330,7 @@ body::-webkit-scrollbar {
         }
       }
       li::before {
-        content: "";
+        content: '';
         display: block;
         width: 7.1rem;
         height: 0.02rem;

@@ -96,7 +96,7 @@ export default {
       if (this.step == 0) {
         this.downTimeGo('time', (this.stime - this.ctime))
       } else if (this.step == 1) {
-        this.downTimeGo('time', (this.etime - this.stime))
+        this.downTimeGo('time', (this.etime - this.ctime))
       }
     }
   },

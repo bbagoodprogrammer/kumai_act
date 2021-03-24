@@ -2,7 +2,7 @@
   <div id="app">
     <div class="petsNum">
       <div class="time">
-        距結束:{{surplusTime.hour}}:{{surplusTime.minute}}:{{surplusTime.second}}
+        距結束:{{surplusTime.day}}:{{surplusTime.hour}}:{{surplusTime.minute}}:{{surplusTime.second}}
       </div>
       <div class="user1" v-if="!user1.util">
         <span v-if="!mic_uid">暫無人上麥<br />快去排麥演唱吧</span>
@@ -42,7 +42,7 @@ import store from "./store"
 import { pageInited } from "./utils"
 import downTime from './utils/downTime.js'
 export default {
-  data() {
+  data () {
     return {
       pets: {},
       myRank: {},
@@ -65,16 +65,16 @@ export default {
     };
   },
   watch: {
-    mic_uid(newVal) {
+    mic_uid (newVal) {
       this.changeUser(newVal)
     },
   },
   computed: {
-    mic_uid() {
+    mic_uid () {
       return this.appData.mic_uid || 0;
     },
   },
-  mounted() {
+  mounted () {
     window.onAppData = res => {
       const data = JSON.parse(res || '{}');
       this.appData = data;
@@ -83,7 +83,7 @@ export default {
     this.changeUser(0)
   },
   methods: {
-    changeUser(val) {
+    changeUser (val) {
       getDefaultData(val).then(res => {
         console.log(res)
         this.user1 = res.data.response_data.uid
@@ -93,7 +93,7 @@ export default {
         this.downTimeGo('time', res.data.response_data.time)
       })
     },
-    downTimeGo(timeName, val) {
+    downTimeGo (timeName, val) {
       console.log(val)
       clearInterval(this.timer)
       if (!downTime(timeName)) {
@@ -180,7 +180,7 @@ export default {
     }
   }
   .user1::before {
-    content: "";
+    content: '';
     display: block;
     width: 1.26rem;
     height: 0.02rem;

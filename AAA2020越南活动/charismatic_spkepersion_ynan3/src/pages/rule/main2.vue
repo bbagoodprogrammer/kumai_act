@@ -10,11 +10,12 @@
       <img src="../../assets/img/rule/gifts.png" alt="" class="gift">
       <h5>Phần thưởng rút thưởng các level <br />Mỗi lần tối đa có thể trúng 3 cái</h5>
       <img src="../../assets/img/rule/gifts2.png" alt="" class="img1">
-      <p class="mb">1.Mỗi ngày đạt đến cấp tương ứng sẽ có thể nhận quà tương ứng, mỗi ngày mỗi cấp có thể nhận 1 lần, chỉ nhận trong ngày.</p>
+      <p class="mb mt">1.Mỗi ngày đạt đến cấp tương ứng sẽ có thể nhận quà tương ứng, mỗi ngày mỗi cấp có thể nhận 1 lần, chỉ nhận trong ngày.</p>
       <p>2. Lần thứ 7 rút thưởng Lv.4 sẽ trúng huy chương.</p>
       <h5>Phần thưởng trúng thưởng bảng mị lực ngày</h5>
       <img src="../../assets/img/rule/gifts3.png" alt="" class="img3">
-      <p>Chú ý: 20 người ngẫu nhiên trong top 100 bảng ngày có thể nhận 2 Chè Trôi Nước (20 xu). Danh sách trúng thưởng sẽ rút vào 12h tối mỗi ngày, ngày cuối cùng sẽ rút khi sự kiện kết thúc, túi quà
+      <p class="mt">Chú ý: 20 người ngẫu nhiên trong top 100 bảng ngày có thể nhận 2 Chè Trôi Nước (20 xu). Danh sách trúng thưởng sẽ rút vào 12h tối mỗi ngày, ngày cuối cùng sẽ rút khi sự kiện kết
+        thúc, túi quà
         sẽ tự động gửi vào tài khoản.</p>
       <h5>Phần thưởng quán quân quà tặng</h5>
       <p>Trong thời gian sự kiện, người dùng quán quân tài trợ lì xì, có thể nhận phần thưởng quán quân “Sách Đồng Thoại” 30 ngày, , nếu số lần bằng nhau, đạt được trước sẽ xếp trước</p>
@@ -31,7 +32,7 @@
       <p>Hạng 6-10:<br />Huy Chương Người Đại Diện Đồng Thoại (15 ngày)+ Xe Tuần Lộc Noel (30 ngày)+ VIP (30 ngày)+ 1 Kho Báu Dưới Biển (129 xu) + 1000 xu + 2000 đậu</p>
       <!-- <p>Hạng 11-20:<br />1 Túi quà Tết Nguyên Tiêu (129 xu) + 500 xu + 500 đậu</p> -->
       <h5>Thể lệ phần thưởng</h5>
-      <p>Trong sự kiện người dùng tích lũy đạt 90000 tích điểm, có thể nhận “Huy Chương Người Đại Diện Đồng Thoại (7 ngày)”+ 2 Kho Báu Dưới Biển (129 xu)+ 500 đậu</p>
+      <p>Trong sự kiện người dùng tích lũy đạt 90000 tích điểm, có thể nhận Huy Chương Người Đại Diện Đồng Thoại (7 ngày) + 2 Kho Báu Dưới Biển (129 xu)+ 500 đậu</p>
       <!-- <p>2、Phiếu quà tặng sẽ được gửi vào túi, có hiệu lực trong 24h sau khi nhận, hãy sử dụng kịp thời.</p> -->
     </div>
     <div class="giftItem" v-else>
@@ -109,9 +110,12 @@ export default {
 
 <style lang="scss">
 body {
-  background-color: rgba(255, 126, 108, 1);
+  background-color: RGBA(151, 176, 250, 1);
   .red {
     color: rgba(252, 245, 193, 1);
+  }
+  .mt {
+    margin-top: 0.24rem !important;
   }
   .mg {
     margin: 0 !important;
@@ -143,16 +147,18 @@ body {
       padding-left: 0.5rem;
       margin-bottom: 0.4rem;
       em {
-        font-size: 0.28rem;
+        font-size: 0.26rem;
         font-weight: 500;
       }
     }
     .gift {
+      display: block;
       width: 7.08rem;
       height: 5.16rem;
       margin: 0.27rem auto 0;
     }
     .img1 {
+      display: block;
       width: 7.02rem;
       height: 2.26rem;
       margin: 0 auto;
@@ -163,6 +169,7 @@ body {
       margin: 0 auto 0.34rem;
     }
     .img3 {
+      display: block;
       width: 7.18rem;
       height: 2.13rem;
       margin: 0 auto;

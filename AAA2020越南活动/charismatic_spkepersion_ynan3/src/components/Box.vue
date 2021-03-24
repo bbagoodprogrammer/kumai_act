@@ -193,13 +193,17 @@ export default {
   .liner {
     width: 5.61rem;
     height: 0.08rem;
-    background: RGBA(253, 163, 152, 1);
+    background: RGBA(182, 193, 251, 1);
     position: relative;
     margin: 1.2rem auto 0;
     .actLiner {
       max-width: 100%;
       height: 0.08rem;
-      background: RGBA(255, 224, 176, 1);
+      background: linear-gradient(
+        0deg,
+        rgba(255, 213, 185, 1),
+        rgba(255, 226, 175, 1)
+      );
       position: absolute;
       left: 0;
       top: 0;
