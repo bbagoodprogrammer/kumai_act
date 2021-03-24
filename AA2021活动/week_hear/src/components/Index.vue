@@ -29,7 +29,7 @@
           <div class="songMsg">
             <div class="songCover">
               <i class="mv">{{songType[item.sinfo.type]}}</i>
-              <i class="song_play " @click="playSong(item.sinfo.path,item.sid,index,'not_all')" :class="{stop:playIng && songIndex == index,songLoad:songLoading && songIndex == index}"></i>
+              <i class="song_play " @click="playSong(item.sinfo.path,item.sid,index)" :class="{stop:playIng && songIndex == index,songLoad:songLoading && songIndex == index}"></i>
               <span class="songNums"><i></i><em>{{item.sinfo.listen}}</em></span>
               <img :src="item.sinfo.cover" alt="" class="cover" @click="goSong(item.sinfo.id)">
             </div>
@@ -140,6 +140,8 @@ export default {
   mounted () {
     this.sconedTime()
     this.judgeShare()
+
+
   },
   computed: {
     ...mapState(['list', 'qid', 'act']),
@@ -185,23 +187,43 @@ export default {
     }
   },
   methods: {
+    closeAppMuc () {
+      console.log('xxxxx')
+      try {
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+          closeMusic();
+        } else {
+          javascript: JSInterface.closeMusic();
+        }
+      } catch (e) {
+
+      }
+    },
     judgeShare () {//判断是否为分享环境,请求相应的接口 
       this.isShare = getUrlString('token') ? false : true
     },
-    playSong (path, songId, index, not_all) {
+    playSong (path, songId, index, noFirst, nextSong) {
+      this.closeAppMuc()
+      console.log(noFirst)
       this.songIndex = index
       if (this.auidoSong_id == '' && !this.playIng) { //第一次播放
         this.currentSong = path
         this.auidoSong_id = songId
-        this.startListen(songId)
+        if (!noFirst) {
+          this.startListen(songId)
+          // this.isAllPlay = false
+        }
         this.play()
-        this.isAllPlay = false
+
       } else if (this.auidoSong_id == songId && !this.playIng) { //继续播放
         this.play()
       } else if (this.auidoSong_id == songId && this.playIng) { //暂停
         this.stop()
       } else if (this.auidoSong_id !== songId) { //点击其他首歌曲
-        this.isAllPlay = false
+        if (!nextSong) {
+          this.isAllPlay = false
+        }
+
         this.endListen(this.auidoSong_id, this.song_key, songId)
         this.currentSong = path
         this.auidoSong_id = songId
@@ -232,7 +254,7 @@ export default {
     },
     play () {
       var audio = document.querySelector('#audio');
-      console.log(audio)
+      // console.log(audio)
       if (!this.playIng) {
         audio.play();
         this.playIng = true;
@@ -260,23 +282,30 @@ export default {
     },
     playAll () {
       this.isAllPlay = false
+      if (this.song_key) {
+        console.log()
+        this.endListen(this.auidoSong_id, this.song_key, this.now_song.id)
+      }
       this.clearSongStatus()
       //   this.$store.dispatch('getInitInfo');
       getInitInfo().then(res => {
         // this.vxc('setList', res.data.response_data.list)
-        store.commit("setList", res.data.response_data.list);
-        this.isAllPlay = true
         this.songIndex = 0
+        store.commit("setList", res.data.response_data.list);
+
+        this.isAllPlay = true
         const path = this.list[0]
-        this.playSong(this.now_song.path, this.now_song.id, 0)
+        this.playSong(this.now_song.path, this.now_song.id, 0, this.song_key ? 1 : 0)
       })
       //   console.log('changeSong')
     },
     stopMus () {
+      console.log(this.isAllPlay)
       if (this.isAllPlay) {
         this.songIndex += 1
         if (this.songIndex <= this.list.length - 1) {
-          this.playSong(this.now_song.path, this.now_song.id, this.songIndex)
+          this.playSong(this.now_song.path, this.now_song.id, this.songIndex, 0, true)
+
         }
       } else {
         this.playIng = false
@@ -355,6 +384,7 @@ export default {
       location.href = `uid:${uid}`
     },
     goSong (sid) {
+      this.stop()
       location.href = 'songid:{"songlist":[' + sid + ' ],"index":0}';
     },
     downApp () {

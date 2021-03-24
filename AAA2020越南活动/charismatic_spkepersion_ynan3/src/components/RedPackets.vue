@@ -19,7 +19,8 @@
     </div>
     <!-- -->
     <div class="lastOpenPacketPeople">
-      <div class="title"> <span v-if="naming.uid" @click="peopleType = 1" :class="{act:peopleType == 2}">Quán quân tài trợ lì xì vòng trước</span> <span @click="peopleType = 2" :class="{act:peopleType == 1}">Tài trợ của tôi</span></div>
+      <div class="title"> <span v-if="naming.uid" @click="peopleType = 1" :class="{act:peopleType == 2}">Quán quân tài trợ lì xì vòng trước</span> <span @click="peopleType = 2"
+          :class="{act:peopleType == 1}">Tài trợ của tôi</span></div>
       <div class="people" v-if="naming.uid && peopleType == 1">
         <div class="imgBox" @click="goSong(naming.sid)">
           <img v-lazy="naming.avatar" alt="" class="av">
@@ -137,7 +138,7 @@ import store from "../store/stores"
 
 export default {
   props: ['rate'],
-  data() {
+  data () {
     return {
       redPacket_downTime: false,  //倒计时红包
       packetRes: false,  //开红包后的结果
@@ -157,7 +158,7 @@ export default {
   },
   computed: {
     ...mapState(['redPacket', 'naming', 'reg']),
-    optionHover() {
+    optionHover () {
       return {
         limitMoveNum: 4,
         hoverStop: false,
@@ -167,7 +168,7 @@ export default {
     }
   },
   watch: {
-    redPacket(val) {
+    redPacket (val) {
       this.dtime = val.dtime
       if (typeof (val.dtime) != 'undefined' && this.timer2 == null) {
         this.nextRedPacket(val.dtime * 1000)
@@ -187,14 +188,14 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     // this.scrollable = this.$el.querySelector('.recoreList');
     // if (this.scrollable) {
     //   this.scrollable.addEventListener('scroll', this.onScroll);
     // }
   },
   methods: {
-    subscribe() {
+    subscribe () {
       if (!this.reg) {
         this.showNotSingup = true
         return
@@ -207,7 +208,7 @@ export default {
         }
       })
     },
-    downTimeGo() {
+    downTimeGo () {
       clearInterval(this.timer)
       this.timer = setInterval(() => {
         this.downTime--
@@ -217,7 +218,7 @@ export default {
         }
       }, 1000)
     },
-    openRedPacket() {
+    openRedPacket () {
       api.openRedPacket().then(res => {
         if (res.data.response_status.code == 0) {
           this.packetRes = true
@@ -234,7 +235,7 @@ export default {
         }
       })
     },
-    redPacketHistory() {
+    redPacketHistory () {
       api.redPacketHistory(0).then(res => {
         this.packetRecore = true
         // res.data.response_data
@@ -301,7 +302,7 @@ export default {
         // }
       })
     },
-    getDate(tm) {
+    getDate (tm) {
       return getDate(new Date(tm * 1000), 1)
     },
     // onScroll() {
@@ -320,18 +321,18 @@ export default {
     //     }
     //   }
     // },
-    closePacketPup() {
+    closePacketPup () {
       this.packetRes = false
       this.packetRecore = false
       // api.hideRedPacket()
     },
-    goUser(uid) { //跳转
+    goUser (uid) { //跳转
       location.href = `uid:${uid}`
     },
-    goSong(sid) {
+    goSong (sid) {
       location.href = 'songid:{"songlist":[' + sid + '],"index":0}';
     },
-    shareAct() {
+    shareAct () {
       api.report('packet')
       var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       let uid = getString('uid')
@@ -354,7 +355,7 @@ export default {
         javascript: JSInterface.share(JSON.stringify(data));
       }
     },
-    nextRedPacket(dtime) {
+    nextRedPacket (dtime) {
       clearTimeout(this.timer2)
       this.timer2 = setTimeout(() => {
         // clearTimeout(this.timer2)
@@ -478,7 +479,7 @@ export default {
           color: rgba(252, 255, 255, 0.6);
         }
         &.act::before {
-          content: "";
+          content: '';
           width: 100%;
           height: 1px;
           position: absolute;
@@ -505,7 +506,7 @@ export default {
       .liner {
         width: 6.8rem;
         height: 0.24rem;
-        background: rgba(229, 77, 57, 1);
+        background: RGBA(182, 193, 251, 1);
         box-sizing: border-box;
         border: 0.03rem solid RGBA(254, 228, 199, 1);
         border-radius: 0.12rem;
@@ -516,7 +517,11 @@ export default {
           // max-width: 98%;
           // width: 50%;
           height: 100%;
-          background: linear-gradient(0deg, #ffd7bb, #fdf1d4);
+          background: linear-gradient(
+            0deg,
+            rgba(255, 213, 185, 1),
+            rgba(255, 226, 175, 1)
+          );
           position: absolute;
           left: 0rem;
           top: 0;
@@ -846,7 +851,7 @@ export default {
         }
       }
       li:before {
-        content: "";
+        content: '';
         display: block;
         width: 3.55rem;
         height: 1px;

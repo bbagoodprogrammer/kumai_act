@@ -1,10 +1,9 @@
 <template>
   <div class="trunbg" v-show="top.length">
-    <i class="horn"></i>
     <div class="trunMsg">
       <p class="msgItem" v-for="(item,index) in top" :key="index" v-if="index == msgIndex">
         <!-- <img :src="gifts[item.gid].img" alt=""> -->
-        <em class="nick"> {{item.nick}}</em>(uid:{{item.uid}}) {{lang.group}} {{item.name}}({{item.price}}{{lang.list1_icon}}) {{lang.people_suc}}
+        <em class="nick"> 【{{item.nick}}】</em>"यूजर उपनाम" को {{item.money}} रुपए का इनाम मिला
 
       </p>
     </div>
@@ -58,39 +57,38 @@ export default {
 </script>
 <style lang="scss">
 .trunbg {
-  width: 7.12rem;
-  height: 0.6rem;
+  width: 7.5rem;
+  height: 0.45rem;
   margin: 0 auto;
-  background: #fff;
+  background: RGBA(231, 171, 174, 1);
   // opacity: 0.8;
   display: flex;
   align-items: center;
   position: relative;
-  border-radius: 0.3rem;
   .horn {
     display: block;
     width: 0.22rem;
     height: 0.24rem;
     margin: 0 0.15rem 0 0.5rem;
-    background: url(../img/la.png);
-    background-size: 100% 100%;
+    // background: url(../img/la.png);
+    // background-size: 100% 100%;
   }
   .trunMsg {
-    width: 6.2rem;
+    width: 7.5rem;
     height: 0.6rem;
     position: relative;
     overflow: hidden;
     .msgItem {
       // width: 5.3rem;
       height: 100%;
-      font-size: 0.24rem;
+      font-size: 0.26rem;
       display: flex;
       align-items: center;
       position: absolute;
       left: 100%;
       white-space: nowrap;
       animation: trun linear 6s;
-      color: rgba(133, 90, 55, 1);
+      color: rgba(177, 0, 0, 1);
       .nick {
         max-width: 1.5rem;
         overflow: hidden;

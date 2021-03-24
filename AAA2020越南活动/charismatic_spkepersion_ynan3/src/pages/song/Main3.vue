@@ -139,7 +139,7 @@ export default {
 </script>
 <style lang="scss">
 body {
-  background: rgba(255, 126, 108, 1);
+  background: RGBA(151, 176, 250, 1);
 }
 
 .song {

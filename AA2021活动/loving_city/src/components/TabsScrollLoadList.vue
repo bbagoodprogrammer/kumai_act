@@ -23,7 +23,7 @@
           <img v-lazy="item.avatar" alt="" class="av">
         </div>
         <div class="userMsg">
-          <div class="nick">{{item.nick}} <i v-if="item.live  && mainTab == 0"> </i></div>
+          <div class="nick"><strong>{{item.nick}}</strong> <i v-if="item.live  && mainTab == 0"> </i></div>
           <div class="uid">UID {{item.uid}}</div>
         </div>
         <div class="score"><i :class="{type2:mainTab == 1 }"></i><em>{{item.score}}</em></div>
@@ -466,9 +466,14 @@ export default {
         .nick {
           font-size: 0.32rem;
           color: rgba(168, 168, 176, 1);
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          display: flex;
+          align-items: center;
+          strong {
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
           i {
             display: inline-block;
             width: 0.28rem;
