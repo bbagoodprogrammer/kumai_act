@@ -68,63 +68,105 @@ export default {
         "3.Host harus mematuhi kode etik platform saat siaran, apabila melanggar akan diberi hukuman sesuai dengan kebijakan siaran langsung untuk Host.", //開播需遵守平台主播行為規範，違者將按主播開播政策處罰。
 
     //skill
-    group1: {
-        1: {
-            title: "Bagian wajah jelas, gambar akan lebih indah", //五官清晰，圖片唯美
-            img: [1, 2, 3]
-        },
-        2: {
-            title: "Soroti karakteristik pribadi", //突出個人特點
-            img: [4, 5, 6]
-        },
-        3: {
-            title: "Panduan konten yang jelas", //明確的內容引導
-            img: [7, 8, 9]
-        }
-    },
-    group2: {
-        1: {
-            title:
-                "Gambarnya buram dan bagian wajah tidak terlihat dengan jelas", //畫面模糊，看不清五官
-            img: [10, 11, 12]
-        },
-        2: {
-            title: "Potret terpotong dan tidak di tengah", //人像被切割未居中
-            img: [13, 14, 15]
-        }
-    },
-    group3: {
-        title: [
-            "Tata letak bersih dan jelas, tetap dijaga", //版面乾淨清晰，保持矜持
-            "Gambar tubuh bagian atas yang indah adalah yang terbaik, yang bisa menunjukkan fitur wajah yang indah", //美美的上半身照最佳，秀出精緻五官
-            "Dilarang tidak menggunakan pakaian, hitam putih, hanya teks, logo lain, bukan orang yang sama" //拒絕裸露，、黑邊白邊、純文字、其他logo、非本人
-        ],
-        img: [16, 17, 18, 19, 20, 21]
-    },
-    group4: [
-        {
-            img: 22,
-            name: "Aku sedang siaran langsung makan" //我在吃播
-        },
-        {
-            img: 23,
-            name: "Aku memiliki keterampilan memasak" //我有廚藝
-        },
-        {
-            img: 24,
-            name: "Aku sedang Cosplay" //我在Cosplay
-        },
-        {
-            img: 25,
-            name: "Aku sedang menggoda dedek cantik" //我在撩妹
-        },
-        {
-            img: 26,
-            name: "Aku sedang berolahraga" //我在健身
-        },
-        {
-            img: 27,
-            name: "Aku sedang menari" //我在跳舞
-        }
-    ]
+    //skill
+    people_img1: require(`./img/groupImg/a1.png`),
+    people_img2: require(`./img/groupImg/a2.png`),
+    people_img3: require(`./img/a13.png`),
+    people_img4: require(`./img/a14.png`),
+    group1_img: [
+        require(`./img/tips1_group/a3.png`),
+        require(`./img/tips1_group/a4.png`),
+        require(`./img/tips1_group/a5.png`)
+    ],
+    group2_img: [
+        require(`./img/tips1_group/a6.png`),
+        require(`./img/tips1_group/a7.png`),
+        require(`./img/tips1_group/a8.png`)
+    ],
+    group3_img: [
+        require(`./img/tips1_group/a9.png`),
+        require(`./img/tips1_group/a10.png`)
+    ],
+    group4_img: [
+        require(`./img/tips1_group/a11.png`),
+        require(`./img/tips1_group/a12.png`)
+    ],
+    groupLive_p1: "Apakah sampul siaran langsung kamu seperti ini? ", //你的直播封面是不是这样的？
+    groupLive_p2:
+        "Kualitas gambar tidak jelas, tidak dapat melihat fitur wajah", //画质不清，看不清五官
+    groupLive_p3:
+        "Gambarnya tidak menarik, backgroundnya berantakan, dan ekspresinya kurang bagus", //图片毫无吸引力，背景杂乱，表情不佳
+    groupLive_p4: "Potretnya terlalu kecil, bukan resousi yang besar", //人像太小，并非高清人脸大图
+    groupLive_p5: "Kenapa tidak ada penggemar yang datang untuk melihat kamu", //Tại sao không có fan đến xem bạn
+    groupLive_p6: "Ini Alasannya", //这就是原因！
+    groupLive_p7:
+        "Pilih sampul yang bagus terlebih dahulu untuk menjadi Host yang besar dan luar biasa!", //先选一个好的封面，才能成为优秀的大主播！
+    groupLive_p8: " Gambar wajah resolusi tinggi dengan fitur wajah yang jelas", //高清人脸大图，五官清晰
+    groupLive_p9: "Gambar menarik, pria tampan dan wanita cantik", //图片有吸引力，男帅女美
+    groupLive_p10: "Pemandangan mewah dan indah, citra pribadi yang luar biasa", //背景高级美观，个人形象突出
+    groupLive_p11: "Gaya pribadi yang jelas: manis, cerah, gadis ...", //明确的个人风格：甜美，阳光，御姐...
+    groupLive_p12:
+        "Sampul ruang siaran langsung harus memiliki gambar yang sama dengan avatar aplikasi, sehingga pengguna dapat menemukan Anda dengan lebih cepat", //直播间封面与app头像最好是同一张图，用户更快能找得到你
+    groupLive_p13: "Perhatian:", //注意事项：
+    groupLive_p14:
+        "Konten yang tidak sesuai seperti tato, merokok, telanjangan, pakaian terbuka, dll. Dilarang dalam konten siaran langsung.Apabila ditemukan, akan dihukum berat secara resmi! " //直播内容禁止出现纹身，吸烟，裸体，暴露服装等不合规内容，一经发现，官方严惩！
+    // group1: {
+    //     1: {
+    //         title: "Bagian wajah jelas, gambar akan lebih indah", //五官清晰，圖片唯美
+    //         img: [1, 2, 3]
+    //     },
+    //     2: {
+    //         title: "Soroti karakteristik pribadi", //突出個人特點
+    //         img: [4, 5, 6]
+    //     },
+    //     3: {
+    //         title: "Panduan konten yang jelas", //明確的內容引導
+    //         img: [7, 8, 9]
+    //     }
+    // },
+    // group2: {
+    //     1: {
+    //         title:
+    //             "Gambarnya buram dan bagian wajah tidak terlihat dengan jelas", //畫面模糊，看不清五官
+    //         img: [10, 11, 12]
+    //     },
+    //     2: {
+    //         title: "Potret terpotong dan tidak di tengah", //人像被切割未居中
+    //         img: [13, 14, 15]
+    //     }
+    // },
+    // group3: {
+    //     title: [
+    //         "Tata letak bersih dan jelas, tetap dijaga", //版面乾淨清晰，保持矜持
+    //         "Gambar tubuh bagian atas yang indah adalah yang terbaik, yang bisa menunjukkan fitur wajah yang indah", //美美的上半身照最佳，秀出精緻五官
+    //         "Dilarang tidak menggunakan pakaian, hitam putih, hanya teks, logo lain, bukan orang yang sama" //拒絕裸露，、黑邊白邊、純文字、其他logo、非本人
+    //     ],
+    //     img: [16, 17, 18, 19, 20, 21]
+    // },
+    // group4: [
+    //     {
+    //         img: 22,
+    //         name: "Aku sedang siaran langsung makan" //我在吃播
+    //     },
+    //     {
+    //         img: 23,
+    //         name: "Aku memiliki keterampilan memasak" //我有廚藝
+    //     },
+    //     {
+    //         img: 24,
+    //         name: "Aku sedang Cosplay" //我在Cosplay
+    //     },
+    //     {
+    //         img: 25,
+    //         name: "Aku sedang menggoda dedek cantik" //我在撩妹
+    //     },
+    //     {
+    //         img: 26,
+    //         name: "Aku sedang berolahraga" //我在健身
+    //     },
+    //     {
+    //         img: 27,
+    //         name: "Aku sedang menari" //我在跳舞
+    //     }
+    // ]
 };

@@ -25,4 +25,126 @@ html.ar {
         background: rgba(0, 0, 0, .4) url("./img/loading_zd.gif") center center no-repeat;
         background-size: .7rem .38rem;
     }
+    .uploadImg{
+        background: url(./img/uploadImgBg.png)!important;
+        background-size: 100% 100%!important;
+        .imgBg {
+            &.card {
+                background: url(./img/card.png)!important;
+                background-size: 100% 100%!important;
+              }
+        }
+    }
+    .skill_con{
+        background:RGBA(114, 0, 201, 1) url(./img/skillBanner.png) no-repeat;
+        background-size: 100% auto;
+        .skill_header{
+            height: 6.97rem;
+        }
+        .title{
+            margin: 0 auto;
+        }
+        .title1{
+            width: 6.71rem;
+            height: 1.12rem;
+            background: url(./img/title/title1.png) no-repeat;
+            background-size: 100% auto;
+        }
+        .title2{
+            width: 6.49rem;
+            height: 1.12rem;
+            margin-top: .2rem;
+            background: url(./img/title/title2.png) no-repeat;
+            background-size: 100% auto;
+        }
+        .title3{
+            width: 5.27rem;
+            height: 1.12rem;
+            margin-top: .2rem;
+            background: url(./img/title/title3.png) no-repeat;
+            background-size: 100% auto;
+        }
+        .title4{
+            width: 5.21rem;
+            height: 1.12rem;
+            background: url(./img/title/title4.png) no-repeat;
+            background-size: 100% auto;
+        }
+        .group1List,.group2List,.group3List{
+            margin-top: -.2rem;
+        }
+        .group3List{
+            h5{
+                margin: .12rem 0;
+            }
+            .people{
+                margin-bottom: .16rem;
+            }
+        }
+        >h5{
+            text-align: center;
+            color:rgba(255, 255, 255, 1);
+            font-size: .22rem;
+            position: relative;
+            margin: .18rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            span{
+                max-width: 6rem;
+            }
+            i{
+                display: block;
+                width: 0.05rem;
+                height: 0.05rem;
+                background: #7AF8FF;
+                opacity: 0.5;
+                border-radius: 50%;
+                margin-right: .1rem;
+            }
+            i:last-child{
+                margin-left: .1rem;
+            }
+        }
+        .imgGroup,.grpup4{
+            padding: 0 .95rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .imgGroup4{
+            width: 1.6rem;
+            span{
+                display: block;
+            }
+            strong{
+                height: .75rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color:rgba(255, 255, 255, 1);
+                font-size: .22rem;
+            }
+        }
+        .lastBottm{
+            width: 7.35rem;
+            height: .53rem;
+            background: url(./img/bor.png) no-repeat;
+            background-size: 100% auto;
+            margin: .41rem auto 0;
+            .lastTips{
+                width: 7.2rem;
+                height: .69rem;
+                background: url(./img/title/lastTips.png) no-repeat;
+                background-size: 100% auto;
+                margin: 0 auto;
+            }
+        }
+        .people{
+            width:1.76rem ;
+            height: 1.76rem;
+           
+        }
+    }
 }
