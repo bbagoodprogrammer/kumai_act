@@ -6,7 +6,7 @@
     </div>
     <div class="ruleTips" v-if="tab == 1">
       <h5>Thời gian</h5>
-      <p class="tm">18:00 ngày 23/2 - 21:00 ngày 4/3</p>
+      <p class="tm"> 18h 26/3 - 21h 4/4</p>
       <img src="../../assets/img/rule/gifts.png" alt="" class="gift">
       <h5>Phần thưởng rút thưởng các level <br />Mỗi lần tối đa có thể trúng 3 cái</h5>
       <img src="../../assets/img/rule/gifts2.png" alt="" class="img1">
@@ -14,7 +14,7 @@
       <p>2. Lần thứ 7 rút thưởng Lv.4 sẽ trúng huy chương.</p>
       <h5>Phần thưởng trúng thưởng bảng mị lực ngày</h5>
       <img src="../../assets/img/rule/gifts3.png" alt="" class="img3">
-      <p class="mt">Chú ý: 20 người ngẫu nhiên trong top 100 bảng ngày có thể nhận 2 Chè Trôi Nước (20 xu). Danh sách trúng thưởng sẽ rút vào 12h tối mỗi ngày, ngày cuối cùng sẽ rút khi sự kiện kết
+      <p class="mt">Chú ý: 20 người ngẫu nhiên trong top 100 bảng ngày có thể nhận 2 Sách Đồng Thoại (20 xu). Danh sách trúng thưởng sẽ rút vào 12h tối mỗi ngày, ngày cuối cùng sẽ rút khi sự kiện kết
         thúc, túi quà
         sẽ tự động gửi vào tài khoản.</p>
       <h5>Phần thưởng quán quân quà tặng</h5>
@@ -22,14 +22,14 @@
       <h5>Phần thưởng top 10 bảng tổng</h5>
       <p>Hạng 1: <br />
         Chứng Nhận Người Đại Diện Đồng Thoại (30 ngày)+ ID đẹp 4 số (Cần liên hệ ID 10)+ Phần thưởng túi quà người đại diện điểm mị (Ghim 1 bài hát nhãn ca khúc Người Đại Diện+ 2000 xu)+ Huy Chương
-        Người Đại Diện Đồng Thoại (30 ngày)+ Trang Sức Bạch Dương (30 ngày)+ Xe Tuần Lộc Noel (30 ngày)+ VIP (30 ngày)+ 3 Kho Báu Dưới Biển (129 xu) + 3500 xu + 7000 đậu</p>
+        Người Đại Diện Đồng Thoại (30 ngày)+ Trang Sức Bạch Dương (30 ngày)+ Tuần Lộc (30 ngày)+ VIP (30 ngày)+ 3 Kho Báu Dưới Biển (129 xu) + 3500 xu + 7000 đậu</p>
       <p>Hạng 2:<br />
-        Huy Chương Người Đại Diện Đồng Thoại (30 ngày)+ Trang Sức Bạch Dương (30 ngày)+ Xe Tuần Lộc Noel (30 ngày)+ VIP (30 ngày)+ 2 Kho Báu Dưới Biển (129 xu) + 2500 xu + 5000 đậu
+        Huy Chương Người Đại Diện Đồng Thoại (30 ngày)+ Trang Sức Bạch Dương (30 ngày)+ Tuần Lộc (30 ngày)+ VIP (30 ngày)+ 2 Kho Báu Dưới Biển (129 xu) + 2500 xu + 5000 đậu
       </p>
-      <p>Hạng 3:<br />Huy Chương Người Đại Diện Đồng Thoại (30 ngày)+ Trang Sức Bạch Dương (30 ngày)+ Xe Tuần Lộc Noel (30 ngày)+ VIP (30 ngày)+ 2 Kho Báu Dưới Biển (129 xu) + 2000 xu + 4000 đậu
+      <p>Hạng 3:<br />Huy Chương Người Đại Diện Đồng Thoại (30 ngày)+ Trang Sức Bạch Dương (30 ngày)+ Tuần Lộc (30 ngày)+ VIP (30 ngày)+ 2 Kho Báu Dưới Biển (129 xu) + 2000 xu + 4000 đậu
       </p>
-      <p>Hạng 4-5<br />Huy Chương Người Đại Diện Đồng Thoại (30 ngày)+ Xe Tuần Lộc Noel (30 ngày)+ VIP (30 ngày)+ 1 Kho Báu Dưới Biển (129 xu) + 1500 xu + 3000 đậu</p>
-      <p>Hạng 6-10:<br />Huy Chương Người Đại Diện Đồng Thoại (15 ngày)+ Xe Tuần Lộc Noel (30 ngày)+ VIP (30 ngày)+ 1 Kho Báu Dưới Biển (129 xu) + 1000 xu + 2000 đậu</p>
+      <p>Hạng 4-5<br />Huy Chương Người Đại Diện Đồng Thoại (30 ngày)+ Tuần Lộc (30 ngày)+ VIP (30 ngày)+ 1 Kho Báu Dưới Biển (129 xu) + 1500 xu + 3000 đậu</p>
+      <p>Hạng 6-10:<br />Huy Chương Người Đại Diện Đồng Thoại (15 ngày)+ Tuần Lộc (30 ngày)+ VIP (30 ngày)+ 1 Kho Báu Dưới Biển (129 xu) + 1000 xu + 2000 đậu</p>
       <!-- <p>Hạng 11-20:<br />1 Túi quà Tết Nguyên Tiêu (129 xu) + 500 xu + 500 đậu</p> -->
       <h5>Thể lệ phần thưởng</h5>
       <p>Trong sự kiện người dùng tích lũy đạt 90000 tích điểm, có thể nhận Huy Chương Người Đại Diện Đồng Thoại (7 ngày) + 2 Kho Báu Dưới Biển (129 xu)+ 500 đậu</p>
@@ -37,7 +37,7 @@
     </div>
     <div class="giftItem" v-else>
       <h5 class="mb">Thời gian</h5>
-      <p>18:00 ngày 23/2 - 21:00 ngày 4/3</p>
+      <p> 18h 26/3 - 21h 4/4</p>
       <h4>Thể lệ</h4>
       <h6>Báo danh:</h6>
       <p>1、Sau khi nhấn [Báo danh] trên trang sự kiện, nhấn tải lên tác phẩm công khai bất kỳ (ngoại trừ hát chay 5 phút), có thể gửi nhiều tác phẩm dự thi , sau khi báo danh mới bắt đầu tính dữ liệu

@@ -131,7 +131,7 @@ function exchange(type, money) {
 }
 //公告
 function notice() {
-    return get(`/invite/notice.php?token={token}`);
+    return axios.get(`/invite/notice.php?token={token}`);
 }
 //上报
 function report(from) {

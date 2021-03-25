@@ -103,7 +103,7 @@ export default {
         },
         {
           img: require("./img/ruleImg/gift8.png"),
-          name: '豪華遊艇座駕15天'
+          name: '豪華遊艇座駕'
         }
       ],
 

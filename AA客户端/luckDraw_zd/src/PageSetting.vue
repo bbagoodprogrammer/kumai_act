@@ -218,7 +218,7 @@ export default {
       showSgiftPup: false,
       tabIndex: 1,
       //  null, "بطاقة", "موضوع"
-      tabArr: ["VIP", "هدية", "سيارة", "أغطية الرأس"],
+      tabArr: ["VIP", "هدية", "سيارة", "أغطية الرأس", null, "بطاقة", "موضوع"],
       tabGift: {},   //tab對應的禮物
       balance: {},
       tabLoading: false,

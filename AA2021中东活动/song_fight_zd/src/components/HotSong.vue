@@ -375,7 +375,7 @@ export default {
     .choiceSongList {
       margin-top: 0.37rem;
       height: 3.8rem;
-      overflow-x: hidden;
+      //   overflow-x: hidden;
       overflow-y: scroll;
       -webkit-overflow-scrolling: touch;
       -webkit-overflow-scrolling: auto;
@@ -387,6 +387,7 @@ export default {
         border-radius: 0.01rem;
         padding-left: 0.3rem;
         .songMsg {
+          padding-right: 0.1rem;
           .sName {
             font-weight: normal;
             display: flex;

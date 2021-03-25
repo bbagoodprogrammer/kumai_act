@@ -285,6 +285,7 @@ body {
     p {
       color: #e5deff;
       font-size: 0.24rem;
+      padding-right: 0.1rem;
     }
     .lvTab {
       width: 4.67rem;

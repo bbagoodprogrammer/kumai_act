@@ -208,7 +208,7 @@ body {
     .songList {
       margin-top: 0.25rem;
       height: 9.6rem;
-      overflow-x: hidden;
+      //   overflow-x: hidden;
       overflow-y: scroll;
       -webkit-overflow-scrolling: touch;
       -webkit-overflow-scrolling: auto;
@@ -221,6 +221,7 @@ body {
         border-radius: 0.01rem;
         padding-left: 0.15rem;
         .songMsg {
+          padding-right: 0.1rem;
           .sName {
             font-weight: normal;
             display: flex;
