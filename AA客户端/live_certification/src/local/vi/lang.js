@@ -26,7 +26,7 @@ export default {
     commitMsg: {
         0: "Xét duyệt bị từ chối <br/>Nguyên nhân：$",
         1: "Đã xét duyệt thành công<br/>Vui lòng đợi, chúng tôi sẽ nhanh chóng xét duyệt",
-        2: "Giấy CMND đã gửi<br/> Không cần gửi lại, hãy chuyển sang bước tiếp theo",
+        2: "Giấy CMND đã gửi<br/> Không cần gửi lại, hãy chuyển sang bước tiếp theo"
     },
     // commitMsg: {
     //   0: '你的申請被拒絕 <br/>原因：B',
@@ -61,62 +61,44 @@ export default {
         "3.Idol cần phải tuân thủ quy tắc, người vi phạm sẽ bị trừng phạt theo quy tắc.", //開播需遵守平台主播行為規範，違者將按主播開播政策處罰。
 
     //skill
-    group1: {
-        1: {
-            title: "Nét mặt rõ ràng, hình ảnh đẹp", //五官清晰，圖片唯美
-            img: [1, 2, 3],
-        },
-        2: {
-            title: "Làm nổi bật đặc điểm cá nhân", //突出個人特點
-            img: [4, 5, 6],
-        },
-        3: {
-            title: "Nội dung rõ ràng", //明確的內容引導
-            img: [7, 8, 9],
-        },
-    },
-    group2: {
-        1: {
-            title: "Hình ảnh mờ, không thấy rõ nét mặt", //畫面模糊，看不清五官
-            img: [10, 11, 12],
-        },
-        2: {
-            title: "Khuôn mặt bị cắt, không ngay giữa", //人像被切割未居中
-            img: [13, 14, 15],
-        },
-    },
-    group3: {
-        title: [
-            "Hình ảnh sạch sẽ, rõ ràng, kín đáo", //版面乾淨清晰，保持矜持
-            "Ảnh nửa người đẹp nhất, khoe ra đường nét thanh tú", //美美的上半身照最佳，秀出精緻五官
-            "Không được ảnh khoả thân, viền đen viền trắng, văn bản, logo khác, không phải hình người", //拒絕裸露，、黑邊白邊、純文字、其他logo、非本人
-        ],
-        img: [16, 17, 18, 19, 20, 21],
-    },
-    group4: [
-        {
-            img: 22,
-            name: "Tôi đang live ẩm thực", //我在吃播
-        },
-        {
-            img: 23,
-            name: "Tôi biết nấu ăn", //我有廚藝
-        },
-        {
-            img: 24,
-            name: "Tôi đang Cosplay", //我在Cosplay
-        },
-        {
-            img: 25,
-            name: "Tôi đang tán gái", //我在撩妹
-        },
-        {
-            img: 26,
-            name: "Tôi đang tập thể dục", //我在健身
-        },
-        {
-            img: 27,
-            name: "Tôi đang nhảy múa", //我在跳舞
-        },
+    people_img1: require(`./img/groupImg/a1.png`),
+    people_img2: require(`./img/groupImg/a2.png`),
+    people_img3: require(`./img/a13.png`),
+    people_img4: require(`./img/a14.png`),
+    group1_img: [
+        require(`./img/tips1_group/a3.png`),
+        require(`./img/tips1_group/a4.png`),
+        require(`./img/tips1_group/a5.png`)
     ],
+    group2_img: [
+        require(`./img/tips1_group/a6.png`),
+        require(`./img/tips1_group/a7.png`),
+        require(`./img/tips1_group/a8.png`)
+    ],
+    group3_img: [
+        require(`./img/tips1_group/a9.png`),
+        require(`./img/tips1_group/a10.png`)
+    ],
+    group4_img: [
+        require(`./img/tips1_group/a11.png`),
+        require(`./img/tips1_group/a12.png`)
+    ],
+    groupLive_p1: "Ảnh bìa của bạn có phải như thế này không? ", //你的直播封面是不是这样的？
+    groupLive_p2: "Hình ảnh không rõ, không nhìn rõ nét mặt", //画质不清，看不清五官
+    groupLive_p3: "Hình ảnh không có sức hút, bối cảnh rối loạn, biểu cảm kém", //图片毫无吸引力，背景杂乱，表情不佳
+    groupLive_p4:
+        "Chân dung quá nhỏ, không phải ảnh khuôn mặt có độ phân giải cao", //人像太小，并非高清人脸大图
+    groupLive_p5: "Tại sao không có fan đến xem bạn", //Tại sao không có fan đến xem bạn
+    groupLive_p6: "Đây chính là nguyên nhân", //这就是原因！
+    groupLive_p7:
+        "Trước tiên chọn 1 ảnh bìa đẹp, mới có thể trở thành idol ưu tú", //先选一个好的封面，才能成为优秀的大主播！
+    groupLive_p8: " Ảnh chân dung rõ nét, nét mặt rõ ràng", //高清人脸大图，五官清晰
+    groupLive_p9: "Hình ảnh có sức hút, đẹp trai, xinh gái", //图片有吸引力，男帅女美
+    groupLive_p10: "Bối cảnh đẹp, hình tượng cá nhân nổi bật", //背景高级美观，个人形象突出
+    groupLive_p11: "Phong cách cá nhân rõ ràng: Ngọt ngào, xán lạn, ngự tỷ…", //明确的个人风格：甜美，阳光，御姐...
+    groupLive_p12:
+        "Ảnh bìa live và avatar tốt nhất là cùng 1 ảnh, người dùng càng có thể tìm thấy bạn nhanh hơn", //直播间封面与app头像最好是同一张图，用户更快能找得到你
+    groupLive_p13: "Chú ý:", //注意事项：
+    groupLive_p14:
+        "Khi live cấm xuất hiện các nội dung không hợp quy tắc như hình xăm, hút thuốc, khỏa thân, trang phục hở hang, một khi phát hiện sẽ xử phạt nghiêm khắc! " //直播内容禁止出现纹身，吸烟，裸体，暴露服装等不合规内容，一经发现，官方严惩！
 };

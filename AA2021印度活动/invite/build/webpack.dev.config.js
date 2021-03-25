@@ -23,6 +23,7 @@ module.exports = {
     entry: {
         local: "./src/local.js",
         app: "./src/main.js",
+        share: "./src/share.js",
         ...files
     },
     output: {
@@ -145,7 +146,7 @@ module.exports = {
         new HtmlPlugin({
             filename: "share.html",
             template: "src/html/index.html",
-            chunks: ["vendor", "local", "app"]
+            chunks: ["vendor", "local", "share"]
         }),
         new VueLoaderPlugin(),
         new webpack.HotModuleReplacementPlugin(),

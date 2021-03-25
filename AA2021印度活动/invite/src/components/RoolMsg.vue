@@ -6,7 +6,7 @@
         <ul class="lb" :class="{marquee_top:animate}">
           <!-- <em class="nick">{{item.nick}}</em> -->
           <li v-for="(item, index) in list" :key="index">
-            <em class="nick"> 【{{item.nick}}】</em>"यूजर उपनाम" को {{item.money}} रुपए का इनाम मिला
+            {{item.nick}} {{lang.rool_get}} {{item.money}} {{lang.rool_gift}}
           </li>
         </ul>
       </div>
@@ -114,7 +114,7 @@ export default {
             text-overflow: ellipsis;
           }
           em {
-            margin: 0 0.1rem;
+            margin: 0 0.05rem;
             font-size: 0.24rem;
           }
         }

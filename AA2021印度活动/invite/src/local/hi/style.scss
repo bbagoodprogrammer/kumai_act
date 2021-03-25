@@ -14,4 +14,21 @@ html.hi {
         background-size: 100% 100%;
         margin: 0 auto;
       }
+      .shareHtml{
+        background: url(./img/share.png);
+        background-size: 100% 100%; 
+      }
+      .shareBar{
+        background: url(./img/share_bar.png);
+        background-size: 100% 100%; 
+      }
+      .exMoney{
+          height: 6rem !important;
+      }
+      .rule{
+          height: 8.2rem;
+          p{
+              line-height: .3rem;
+          }
+      }
 }

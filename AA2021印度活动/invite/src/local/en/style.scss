@@ -1,3 +1,39 @@
 html.en {
-    
+    .pageIndex{
+        background:RGBA(251, 77, 94, 1) url(./img/banner_open.png) no-repeat;
+        background-size: 100% auto;
+        &.open_ed{
+            background:RGBA(251, 77, 94, 1) url(./img/banner_openEd.png) no-repeat;
+            background-size: 100% auto;
+        }
+    }
+    .openIcon {
+        width: 3.58rem;
+        height: 3.59rem;
+        background: url(./img/openIcon.png);
+        background-size: 100% 100%;
+        margin: 0 auto;
+      }
+      .shareHtml{
+        background: url(./img/share.png);
+        background-size: 100% 100%; 
+      }
+      .shareBar{
+        background: url(./img/share_bar.png);
+        background-size: 100% 100%; 
+
+    }
+    .tipsItem{
+        span{
+            width: 1.28rem!important;
+            background: url(../../img/ruleTips2.png);
+            background-size: 100% 100%; 
+        }
+       
+    }
+    .exllBtn{
+        span{
+            font-size: .16rem;
+        }
+    }
 }

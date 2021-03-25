@@ -2,62 +2,62 @@
   <div class="page pageIndex" :class="{open_ed:myCode}">
     <RoolMsg />
     <div class="tipsItem">
-      <span>नियम व इनाम</span>
-      <span v-if="newUser && !inputCode" @click="showCodePup = true">इनविटेशन कोड</span>
+      <span @click="showRule = true">{{lang.rule_tips}}</span>
+      <span v-if="newUser && !inputCode" @click="showCodePup = true">{{lang.inviteCodeTips}}</span>
     </div>
     <div class="openType" v-if="!myCode">
-      <div class="open">कैश पैक </div>
-      <div class="openIcon"></div>
-      <div class="openTips">इवेंट शुरू नहीं</div>
+      <div class="open">{{lang.open_type1_title}} </div>
+      <div class="openIcon" @click="userSingUp()"></div>
+      <div class="openTips" v-if="step == 0">{{lang.no_start}}</div>
     </div>
     <div class="openEdType" v-else>
       <div class="exllBtn">
-        <span @click="exchange()" :class="{ex:ifExchange}">निकासी></span>
-        <span @click="exchangeMoney()" :class="{ex:ifExchangeMoney}">विनिमय></span>
+        <span @click="exchangeMoney()" :class="{ex:ifExchangeMoney}">{{lang.exllBtn1}}</span>
+        <span @click="exchange()" :class="{ex:ifExchange}">{{lang.exllBtn2}}</span>
       </div>
       <div class="title">
         <i class="left"></i>
-        <span>मेरे पैसे</span>
+        <span>{{lang.my_money}}</span>
         <i class="right"></i>
       </div>
       <div class="myMoney">
         <span>{{money}}</span>
-        <em>रुपए</em>
+        <em>{{lang.money}}</em>
       </div>
       <div class="liner">
         <div class="actLiner" :style="{width: money/exchangeMoneyNeed * 100+'%'}"></div>
         <!-- <i class="coinsIcon" :class="{act:money >= exchangeCoinNeed}"></i> -->
       </div>
       <div class="moneyTips">
-        <span v-if="money < exchangeCoinNeed">कॉइन का विनिमय करने के लिए <em>8</em> रुपए की ज़रूरत</span>
-        <span v-if="money < exchangeMoneyNeed">निकासी के लिए <em>8</em> रुपए की ज़रूरत</span>
+        <span v-if="money < exchangeCoinNeed" v-html="lang.exCoinsNeed.replace('$',exchangeCoinNeed-money)"> </span>
+        <span v-if="money < exchangeMoneyNeed" v-html="lang.exMoneyNeed.replace('$',exchangeMoneyNeed-money)"></span>
       </div>
       <div class="share" @click="shareApp()">
-        दोस्तों को आमंत्रित कर कैश कमाए
+        {{lang.share}}
       </div>
       <div class="shareCode">
-        इनविटेशन कोड दर्ज करें: : <em>{{myCode}}</em>
+        {{lang.myCode}} <em>{{myCode}}</em>
       </div>
       <div class="lastTips">
-        कॉपी के लिए लॉन्ग प्रेस
+        {{lang.code_tips}}
       </div>
     </div>
     <!-- 邀请码弹窗 -->
     <div class="mask" v-show="showCodePup">
       <transition name="slide">
         <div class="fillShareCode" v-show="showCodePup">
-          <i class="close"></i>
+          <i class="close" @click="showCodePup = false"></i>
           <div class="title">
             <i class="left"></i>
-            <span>सिंगस्टार में आने का स्वागत है</span>
+            <span>{{lang.share_title}}</span>
             <i class="right"></i>
           </div>
           <div class="fillTips">
-            दोस्त का इनविटेशन कोड दर्ज करेंताकि दोस्त को कैश इनाम मिल सकेगा
+            {{lang.share_tips}}
           </div>
-          <input class="fillInput" placeholder="दोस्त का इनविटेशन कोड दर्ज करें" v-model="code" />
+          <input class="fillInput" :placeholder="lang.shareCode_pvalue" v-model="code" />
           <div class="querybtn" @click="comCode()">
-            ठीक है
+            {{lang.ok}}
           </div>
         </div>
       </transition>
@@ -69,26 +69,26 @@
           <i class="close" @click="showExCoinsPup = false"></i>
           <div class="title">
             <i class="left"></i>
-            <span>बधाई हो! अभी विनिमय कर सके</span>
+            <span>{{lang.exCoins_title}}</span>
             <i class="right"></i>
           </div>
           <div class="exTips">
-            प्राप्ति रुपए: <em>{{money}}</em><br />
-            1 रुपए 10 कॉइन का विनिमय कर सके
+            {{lang.exCoins_tips1}} <em>{{money}}</em><br />
+            {{lang.exCoins_tips2}}
           </div>
           <div class="inputBox">
             <div class="inputItem">
-              <input type="number" placeholder="जितने रुपए आप विनिमय करना चाहते हैं, उतने दर्ज़ करें" v-model="exCoinsNums" @input="setExCoins()">
-              <label>रुपए</label>
+              <input type="number" :placeholder="lang.exCoins_tips3" v-model="exCoinsNums" @input="setExCoins()">
+              <label>{{lang.lubi}}</label>
             </div>
             <span class="arr"></span>
             <div class="inputItem">
               <input type="number" :value="exCoinsNums * 10" class="tc" disabled>
-              <label>कॉइन</label>
+              <label>{{lang.coins}}</label>
             </div>
           </div>
           <div class="okEx" @click="exCoinsApi(1)">
-            ठीक है
+            {{lang.ok}}
           </div>
         </div>
       </transition>
@@ -98,14 +98,14 @@
       <transition name="slide">
         <div class="exchangeCoins" v-show="showNotExCoins">
           <i class="close" @click="showNotExCoins = false"></i>
-          <p class="exTips" v-if="noCoinsType == 1">
-            कॉइन का विनिमय करने के लिए <em>{{exchangeCoinNeed - money}}</em> रुपए की ज़रूरत है
+          <p class="exTips" v-if="noCoinsType == 1" v-html="lang.exCoinsNeed.replace('$',exchangeCoinNeed - money)">
+            <!-- कॉइन का विनिमय करने के लिए <em>{{}}</em> रुपए की ज़रूरत है -->
           </p>
-          <p class="exTips" v-if="noCoinsType == 2">
-            निकासी के लिए <em>{{exchangeMoneyNeed - money}}</em> रुपए की ज़रूरत है
+          <p class="exTips" v-if="noCoinsType == 2" v-html="lang.exMoneyNeed.replace('$',exchangeMoneyNeed - money)">
+            <!-- निकासी के लिए <em>{{exchangeMoneyNeed - money}}</em> रुपए की ज़रूरत है -->
           </p>
           <div class="share" @click="shareApp()">
-            दोस्तों को आमंत्रित कर कैश कमाए
+            {{lang.share}}
           </div>
         </div>
       </transition>
@@ -116,9 +116,9 @@
         <div class="canEx" v-show="showCanExPup">
           <i class="close" @click="showCanExPup = false"></i>
           <p class="canTips">
-            बधाई हो! आप नकद निकासी कर सके
+            {{lang.exMoney_tips1}}
           </p>
-          <div class="querybtn" @click="exMoneySet()">अगला</div>
+          <div class="querybtn" @click="exMoneySet()">{{lang.exMoney_next}}</div>
         </div>
       </transition>
     </div>
@@ -129,24 +129,24 @@
           <i class='close' @click="queryMoneyPup = false"></i>
           <div class="title">
             <i class="left"></i>
-            <span>निकासी के लिए जानकारी पूरा करें</span>
+            <span>{{lang.exMoney_tips2}}</span>
             <i class="right"></i>
           </div>
           <div class="inputItem">
-            <label>निकासी राशि:</label>
+            <label>{{lang.exMoney_tips3}}</label>
             <input type="number" v-model="exMoneyNums" @input="setExMoney()">
             <div class="hasBean">
-              (प्राप्ति रुपए: <em>{{money}}</em> )
+              ({{lang.exMoney_tips4}} <em>{{money}}</em> )
             </div>
           </div>
           <div class="exMoneyTips">
-            <p>निकासी राशि दर्ज़ करने के बाद, आधिकारिक कर्मचारी uid 10 आपसे संपर्क कर बैंक खाते की </p>
-            <p><span>सूचना:</span> बैंक ट्रांसफर का प्रोसेस जटिल है; नकद निकासी के लिए सिंगस्टार सेवा शुल्क नहीं चार्ज करता है। इसलिए कृपया ऐसे झूठ की चेतावनी दीजिए जो सेवा शुल्क की मांग करने वाला।
+            <p> {{lang.exMoney_tips5}}</p>
+            <p><span>{{lang.exMoney_tips6}}</span> {{lang.exMoney_tips7}}
             </p>
           </div>
           <div class="queryBtn">
-            <u @click="queryMoneyPup = false">वापस करें</u>
-            <div class="ok" @click="exCoinsApi(2)">सबमिट करें</div>
+            <u @click="queryMoneyPup = false">{{lang.exMoney_cancel}}</u>
+            <div class="ok" @click="exCoinsApi(2)">{{lang.exMoney_qurey}}</div>
           </div>
         </div>
       </transition>
@@ -157,9 +157,15 @@
         <div class="canEx" v-show="id10Pup">
           <i class="close" @click="id10Pup = false"></i>
           <p class="canTips id">
-            सबमिट किया गया, कृपया आधिकारिक कर्मचारी uid 10 के मैसेज पर धयान दीजिए~
+            {{lang.id10Tips}}
           </p>
         </div>
+      </transition>
+    </div>
+    <!-- 规则 -->
+    <div class="mask" v-show="showRule">
+      <transition name="slide">
+        <Rule v-if="showRule" />
       </transition>
     </div>
   </div>
@@ -170,9 +176,9 @@ import { mapState } from "vuex"
 import { singUp, inviteCode, exchange, notice } from "../apis"
 import { getUrlString } from "../utils"
 import RoolMsg from "../components/RoolMsg"
-
+import Rule from "../components/rule"
 export default {
-  components: { RoolMsg },
+  components: { RoolMsg, Rule },
   data () {
     return {
       showCodePup: false,
@@ -184,7 +190,8 @@ export default {
       noCoinsType: 1,
       showCanExPup: false,
       queryMoneyPup: false,
-      id10Pup: false
+      id10Pup: false,
+      showRule: false
     }
   },
   mounted () {
@@ -193,7 +200,7 @@ export default {
     })
   },
   computed: {
-    ...mapState(['myCode', 'money', 'exchangeCoinNeed', 'exchangeMoneyNeed', 'newUser', 'inputCode', 'firstTips']),
+    ...mapState(['myCode', 'money', 'step', 'exchangeCoinNeed', 'exchangeMoneyNeed', 'newUser', 'inputCode', 'firstTips']),
     ifExchange () {
       return this.money >= this.exchangeCoinNeed
     },
@@ -207,6 +214,11 @@ export default {
         this.showCodePup = true
       }
     },
+    step (val) {
+      if (val == 0) {
+        this.toast(this.lang.no_start)
+      }
+    }
   },
   methods: {
     exMoneySet () {
@@ -251,7 +263,7 @@ export default {
       }
     },
     exchangeMoney () {
-      if (this.ifExchange) {
+      if (this.ifExchangeMoney) {
         this.showCanExPup = true
       } else {
         this.noCoinsType = 2
@@ -259,6 +271,10 @@ export default {
       }
     },
     userSingUp () {
+      if (this.step == 0) {
+        this.toast(this.lang.no_start)
+        return
+      }
       singUp().then(res => {
         if (res.data.response_status.code == 0) {
           this.$store.dispatch('getInitInfo');
@@ -271,7 +287,7 @@ export default {
       if (this.code) {
         inviteCode(this.code).then(res => {
           if (res.data.response_status.code == 0) {
-            this.toast(`दर्ज किया गया, दोस्त का कैश इनाम बढ़ाया`)
+            this.toast(this.lang.code_suc_tips)
             this.vxc("setInputCode", true)
           } else {
             this.toast(res.data.response_status.error)
@@ -285,19 +301,24 @@ export default {
       let lang = getUrlString("lang")
       let aid = getUrlString("aid")
       let shareImg = ''
+      if (lang == 'hi') {
+        shareImg = require(`../local/hi/img/share.jpg`)
+      } else if (lang == 'en') {
+        shareImg = require(`../local/en/img/share.jpg`)
+      }
       var data = {
-        "share_title": `SingStar खेलो और पैसे कमाओ !`,
-        "share_content": `इंडियन ऑनलाइन फ्री Karaoke सोशल एप्प ! मज़े के साथ कैश भी कमा सकते हो ! मेरी इनविटेशन कोड टाइप करो：${this.myCode}`,
-        "share_image": shareImg,
+        "share_title": this.lang.shareHtml_title,
+        "share_content": `${this.lang.shareHtml_con}${this.myCode}`,
+        "share_image": `http://activity.singstarapp.com/invite/${shareImg}`,
         "link": `http://activity.singstarapp.com/invite/share.php?code=${this.myCode}&lang=${lang}`,
-        "image": shareImg,
+        "image": `http://activity.singstarapp.com/invite/${shareImg}`,
         "share_url": `http://activity.singstarapp.com/invite/share.php?code=${this.myCode}&lang=${lang}`
       }
       if (ios) {
         if (window.shareOutside != undefined) {
           shareOutside(JSON.stringify(data))
         } else {
-          location.href = `shareUserInfo://activity.singstarapp.com/invite/share.php?code=${this.myCode}&lang=${lang}&shareText=इंडियन ऑनलाइन फ्री Karaoke सोशल एप्प ! मज़े के साथ कैश भी कमा सकते हो ! मेरी इनविटेशन कोड टाइप करो：${this.myCode}&userImg=${shareImg}&title=SingStar खेलो और पैसे कमाओ !`;
+          location.href = `shareUserInfo://activity.singstarapp.com/invite/share.php?code=${this.myCode}&lang=${lang}&shareText=${this.lang.shareHtml_con}${this.myCode}&userImg=${shareImg}&title=${this.lang.shareHtml_title}`;
         }
       } else {
         javascript: JSInterface.shareOutside(JSON.stringify(data));
@@ -365,6 +386,7 @@ export default {
       display: block;
       text-align: center;
       font-size: 0.2rem;
+      line-height: 0.32rem;
       color: rgba(255, 180, 100, 1);
       background: url(../img/exllBtn.png);
       background-size: 100% 100%;
@@ -444,8 +466,8 @@ export default {
     }
     .moneyTips {
       height: 0.96rem;
-      font-size: 0.28rem;
-      padding: 0 0.3rem;
+      font-size: 0.26rem;
+      padding: 0 0.2rem;
       color: rgba(221, 142, 80, 1);
       text-align: center;
       margin-top: 0.2rem;
@@ -700,8 +722,8 @@ export default {
     }
   }
   .exMoneyTips {
-    padding: 0 0.15rem;
-    text-align: center;
+    padding: 0 0.2rem;
+    // text-align: center;
     margin-top: 0.6rem;
     color: rgba(211, 111, 32, 1);
     p {

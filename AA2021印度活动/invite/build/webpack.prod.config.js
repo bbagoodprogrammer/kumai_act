@@ -28,6 +28,7 @@ module.exports = {
     entry: {
         local: "./src/local.js",
         app: "./src/main.js",
+        share: "./src/share.js",
         ...files
     },
     output: {
@@ -162,7 +163,7 @@ module.exports = {
             filename: "share.html",
             template: "src/html/app.html",
             // template: 'src/html/app_share.ejs',
-            chunks: ["runtime", "local", "app"],
+            chunks: ["runtime", "local", "share"],
             templateParameters: {
                 lang: langs[0],
                 app: process.env.APP,

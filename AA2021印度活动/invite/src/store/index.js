@@ -14,7 +14,8 @@ export default new vuex.Store({
         firstTips: -1,
         exchangeCoinNeed: 0,
         exchangeMoneyNeed: 0,
-        top: []
+        top: [],
+        step: -1
     },
     mutations: {
         updateLoading(state, value) {

@@ -318,15 +318,16 @@ export default {
       this.currentSong = 0
     },
     attem (uid, index) {
-      store.commit("updateLoading", true);
-      appAttemsion(uid).then(res => {
-        store.commit("updateLoading", false);
-        if (res.response_data) {
-          this.$set(this.list[index], 'attension', true)
-        } else {
-          this.toast(res.response_status.error)
-        }
-      })
+      location.href = `uid:${uid}`
+      //   store.commit("updateLoading", true);
+      //   appAttemsion(uid).then(res => {
+      //     store.commit("updateLoading", false);
+      //     if (res.response_data) {
+      //       this.$set(this.list[index], 'attension', true)
+      //     } else {
+      //       this.toast(res.response_status.error)
+      //     }
+      //   })
     },
     selectSongAll () {
       for (let i = 0; i < this.list.length; i++) {

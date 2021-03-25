@@ -8,4 +8,21 @@ html.ar {
             margin:0 0 0 .04rem ;
         }
     }
+    .process{
+        .liner{
+            .store {
+                background: #0dc!important;
+            }
+        }
+        
+    }
+    .nextBtn {
+        &.act {
+            background: #0dc!important;
+          }
+    }
+    .loading{
+        background: rgba(0, 0, 0, .4) url("./img/loading_zd.gif") center center no-repeat;
+        background-size: .7rem .38rem;
+    }
 }
