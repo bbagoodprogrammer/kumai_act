@@ -88,7 +88,8 @@ export default {
     groupLive_p3: "Hình ảnh không có sức hút, bối cảnh rối loạn, biểu cảm kém", //图片毫无吸引力，背景杂乱，表情不佳
     groupLive_p4:
         "Chân dung quá nhỏ, không phải ảnh khuôn mặt có độ phân giải cao", //人像太小，并非高清人脸大图
-    groupLive_p5: "Tại sao không có fan đến xem bạn", //Tại sao không có fan đến xem bạn
+    groupLive_p5: "Tại sao không có fan đến xem bạn", //为什么没有粉丝来看你？
+
     groupLive_p6: "Đây chính là nguyên nhân", //这就是原因！
     groupLive_p7:
         "Trước tiên chọn 1 ảnh bìa đẹp, mới có thể trở thành idol ưu tú", //先选一个好的封面，才能成为优秀的大主播！

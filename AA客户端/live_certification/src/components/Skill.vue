@@ -4,39 +4,39 @@
     <div class="title title1"></div>
     <img :src="lang.people_img1" alt="" class="pimg1">
     <img :src="lang.people_img2" alt="" class="pimg2">
-    <h5 class="mt1"><i></i>{{lang.groupLive_p1}} <i></i></h5>
-    <h5><i></i>{{lang.groupLive_p2}} <i></i></h5>
+    <h5 class="mt1"><i></i><strong>{{lang.groupLive_p1}}</strong> <i></i></h5>
+    <h5><i></i> <strong>{{lang.groupLive_p2}} </strong><i></i></h5>
     <div class="imgGroup">
       <span class="people" :class="'people' +item" v-for="(item,index) in lang.group1_img" :key="index">
         <img :src="item" alt="">
       </span>
     </div>
-    <h5 class="mt2"><i></i> {{lang.groupLive_p3}} <i></i></h5>
-    <h5><i></i>{{lang.groupLive_p4}} <i></i></h5>
+    <h5 class="mt2"><i></i><strong>{{lang.groupLive_p3}}</strong> <i></i></h5>
+    <h5><i></i> <strong>{{lang.groupLive_p4}}</strong> <i></i></h5>
     <div class="imgGroup">
       <span class="people" :class="'people' +item" v-for="(item,index) in lang.group2_img" :key="index">
         <img :src="item" alt="">
       </span>
     </div>
-    <h5 class="mt3"><i></i>{{lang.groupLive_p5}} <i></i></h5>
-    <h5><i></i>{{lang.groupLive_p6}} <i></i></h5>
-    <h5><i></i>{{lang.groupLive_p7}} <i></i></h5>
+    <h5 class="mt3"><i></i><strong>{{lang.groupLive_p5}}</strong> <i></i></h5>
+    <!-- <h5><i></i><strong>{{lang.groupLive_p6}}</strong> <i></i></h5> -->
+    <h5><i></i><strong>{{lang.groupLive_p7}}</strong> <i></i></h5>
     <div class="title title2 mt4"></div>
-    <h5><i></i>{{lang.groupLive_p8}} <i></i></h5>
-    <h5><i></i>{{lang.groupLive_p9}} <i></i></h5>
+    <h5><i></i><strong>{{lang.groupLive_p8}}</strong> <i></i></h5>
+    <h5><i></i><strong>{{lang.groupLive_p9}} </strong><i></i></h5>
     <div class="imgGroup pd">
       <span class="people" :class="'people' +item" v-for="(item,index) in lang.group3_img" :key="index">
         <img :src="item" alt="">
       </span>
     </div>
-    <h5 class="mt5"><i></i> {{lang.groupLive_p10}} <i></i></h5>
-    <h5><i></i>{{lang.groupLive_p11}} <i></i></h5>
+    <h5 class="mt5"><i></i> <strong>{{lang.groupLive_p10}}</strong> <i></i></h5>
+    <h5><i></i><strong>{{lang.groupLive_p11}}</strong> <i></i></h5>
     <div class="imgGroup pd">
       <span class="people" :class="'people' +item" v-for="(item,index) in lang.group4_img" :key="index">
         <img :src="item" alt="">
       </span>
     </div>
-    <h5 class="pd mt2"><i></i>{{lang.groupLive_p12}} <i></i></h5>
+    <h5 class="pd mt2"><i></i><strong>{{lang.groupLive_p12}}</strong> <i></i></h5>
     <img :src="lang.people_img3" alt="" class="pimg3">
     <img :src="lang.people_img4" alt="" class="pimg4">
     <div class="border_tips">
@@ -70,12 +70,12 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 body {
   background: RGBA(114, 0, 201, 1);
 }
 .skill_con {
-  height: 34.5rem;
+  //   height: 34.5rem;
 
   img {
     display: block;

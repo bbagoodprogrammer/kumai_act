@@ -23,7 +23,7 @@
       <div class="uploadPhoto noBg">
         <div class="uploadTips">
           <h3>{{lang.page_examples}}</h3>
-          <div class="msg">{{lang.page_examples_tip1}}</div>
+          <div class="msg" v-html="lang.page_examples_tip1"></div>
         </div>
         <div class="uploadImg">
           <div class="imgBg card">

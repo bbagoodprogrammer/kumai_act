@@ -68,8 +68,13 @@ justify-content: center;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 0 1rem;
             span{
                 max-width: 6rem;
+            }
+            strong{
+               max-width: 5.1rem;
+                font-size: .26rem;
             }
             i{
                 display: block;
@@ -238,5 +243,13 @@ justify-content: center;
             height: 1.76rem;
            
         }
+    }
+}
+.uploadImg{
+    .imgBg {
+        &.card {
+            background: url(./img/card.png)!important;
+            background-size: 100% 100%!important;
+          }
     }
 }

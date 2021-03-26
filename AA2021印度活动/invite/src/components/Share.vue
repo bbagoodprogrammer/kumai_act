@@ -26,7 +26,7 @@ export default {
     }
   },
   created () {
-    this.code = getUrlString('code') || ''
+    this.code = getUrlString('code') || 'xxxx'
   },
   methods: {
     openApp () {

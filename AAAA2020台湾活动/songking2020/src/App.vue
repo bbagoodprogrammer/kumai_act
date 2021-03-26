@@ -19,7 +19,7 @@ export default {
   computed: {
     ...mapState(['actStatus', 'isShare'])
   },
-  data() {
+  data () {
     return {
       tastMsg: '',
       showT: false
@@ -29,7 +29,7 @@ export default {
       // ]
     }
   },
-  created() {
+  created () {
     globalBus.$on('commonEvent', (callback) => {
       if (this.isShare) {
         APP()
@@ -47,14 +47,14 @@ export default {
       }
     })
   },
-  mounted() {
+  mounted () {
     // for(var i=0;i<this.imgArr.length;i++){
     //   var Img = new Image()
     //   Img.src = this.imgArr[i]
     // }
   },
   methods: {
-    closeToast() {
+    closeToast () {
       this.showT = false
     }
   }
@@ -70,6 +70,6 @@ body {
   overflow-x: hidden;
   margin: auto;
 }
-@import "./assets/scss/common.scss";
+@import './assets/scss/common.scss';
 </style>
 

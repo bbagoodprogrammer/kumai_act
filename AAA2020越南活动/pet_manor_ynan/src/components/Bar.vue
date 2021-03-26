@@ -7,7 +7,7 @@
           {{index}}
           <em class="gift">
             <img :src="require(`../assets/img/giftIcon/${item.gift.type}.png`)" alt="">
-            <strong>{{item.gift.num?`x${item.gift.num}`:`${item.gift.day}ngày`}}</strong>
+            <strong>{{item.gift.num?`x${item.gift.num}`:`${item.gift.day} ngày`}}</strong>
           </em>
         </span>
         <div class="actLiner" :style="{width: (schule -1)/ 5 *100+'%'}"></div>
@@ -18,7 +18,7 @@
 <script>
 import { mapState } from "vuex"
 export default {
-  data() {
+  data () {
     return {
       petObj: {
         1: {
@@ -47,7 +47,7 @@ export default {
         },
         5: {
           gift: {
-            type: 'vip',
+            type: 'gift3',
             day: 7
           }
         },
@@ -64,7 +64,7 @@ export default {
     ...mapState(['schule'])
   },
   methods: {
-    getLeft(index) {
+    getLeft (index) {
       if (index == 1) {
         return '0%'
       } else if (index == 6) {
