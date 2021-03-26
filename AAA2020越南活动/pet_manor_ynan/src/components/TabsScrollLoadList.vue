@@ -44,7 +44,8 @@
         </div>
         <div class="nick"><strong>{{item.nick}}</strong> <i v-if="item.live">Live</i> </div>
         <div class="score">
-          <img :src="require(`../assets/img/pets/pet${tab}.png`)" alt="">
+          <!-- <img :src="require(`../assets/img/pets/pet${tab}.png`)" alt=""> -->
+          <img :src="pets[tab].img" alt="">
           <em>{{item.score}}</em>
         </div>
       </li>
@@ -86,7 +87,7 @@ import getDate from "../utils/getDate"
 
 export default {
   components: {},
-  data() {
+  data () {
     return {
       mainTab: 0,
       tab: 1,
@@ -99,7 +100,7 @@ export default {
     }
   },
   watch: {
-    nowDay(val) {
+    nowDay (val) {
       this.tab = val
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
@@ -110,10 +111,10 @@ export default {
   },
   computed: {
     ...mapState(['rankGroups', "first", "pets", "nowDay", "setInited", "isShare", "activeityState", "daily_tasks", "dateArr"]),
-    rankKey() {
+    rankKey () {
       return this.mainTab == 0 ? 'total' : this.tab;
     },
-    rankApi() {
+    rankApi () {
       if (this.isShare) {
         var dayApi = `/pet_manor/allList.php?pet={pet}&from={from}`;
         var totalApi = `/pet_manor/allList.php?pet=0&from={from}`;
@@ -129,26 +130,26 @@ export default {
         return api.replace('{pet}', id).replace('{token}', token);
       }
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       return rankConf;
     },
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
-    mainTabClick(tab) { //总榜切换
+    mainTabClick (tab) { //总榜切换
       this.mainTab = tab;
       this.vxc('changTab', this.rankKey)
       this.$nextTick(() => {
@@ -157,7 +158,7 @@ export default {
         }
       });
     },
-    tabClick(tab) { //日榜切换
+    tabClick (tab) { //日榜切换
       this.tab = tab;
       this.vxc('changTab', this.rankKey)
       this.$nextTick(() => {
@@ -166,7 +167,7 @@ export default {
         }
       });
     },
-    onScroll() {
+    onScroll () {
       if (this.first) {
         this.vxc('setFirst', false)
         return
@@ -229,7 +230,7 @@ export default {
         }
       }
     },
-    onRefresh() {
+    onRefresh () {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
       this.$emit('getDefaultData')
@@ -245,17 +246,17 @@ export default {
         this.$nextTick(this.onScroll);
       }
     },
-    getDate(time) {
+    getDate (time) {
       return getDate(new Date(time * 1000), '3')
     },
-    goUser(uid, live) { //跳转
+    goUser (uid, live) { //跳转
       if (live) {
         location.href = `rid:${live}`
         return
       }
       location.href = `uid:${uid}`
     },
-    beforeDestroy() {
+    beforeDestroy () {
       window.removeEventListener('scroll', this.onScroll);
     },
   },

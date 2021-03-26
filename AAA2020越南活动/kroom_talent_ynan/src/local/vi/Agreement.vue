@@ -6,12 +6,12 @@
     </div>
     <div class="ruleItem" v-if="mainTab == 0">
       <h5>Thời gian</h5>
-      <p>18:00 3/3 - 22:00 12/3</p>
+      <p>18:00 29/3 - 22:00 7/4</p>
       <h5>Thể lệ</h5>
       <p>1）Bắt đầu tính dữ liệu sau khi báo danh sự kiện. </p>
-      <p>2）Bảng Thần Tượng Phòng Kara và Bảng Phòng Kara Sôi Nổi</p>
-      <p>Bảng Thần Tượng: Xếp hạng theo số xu thí sinh tiêu bằng nổ Lì Xì/ tặng Hộp Quà May Mắn/ chơi Đập Trứng.(Đập trứng cần hoàn thành quá trình đập trứng mới được tính điểm, chỉ mua búa không được
-        tính điểm.)</p>
+      <p>2）Bảng Thần Tượng và Bảng Phòng Kara Sôi Nổi</p>
+      <p>Bảng Thần Tượng: BXH sẽ được xếp hạng theo tổng xu mà người dùng đã chi tại lì xì/hộp quà may mắn/đập trứng trong phòng kara hoặc phòng live trong vòng thời hạn sự kiện.(Đập trứng cần hoàn
+        thành quá trình đập trứng mới được tính điểm, chỉ mua búa không được tính điểm.)</p>
       <p>Bảng Phòng Kara: Xếp hạng theo điểm mị từ nổ Lì Xì /tặng Hộp Quà May Mắn trong phòng, (Ví dụ nổ lì xì 38 xu, sẽ tính 380 điểm mị, tặng hộp quà may mắn 10 xu, sẽ tính 100 điểm mị), trong phòng
         mỗi lần nổ tên lửa sẽ tăng 10000 điểm.</p>
       <h5>Ghi chú:</h5>
@@ -21,12 +21,12 @@
     </div>
     <div class="gift" v-else>
       <h5>Thời gian</h5>
-      <p>18:00 3/3 - 22:00 12/3</p>
+      <p>18:00 29/3 - 22:00 7/4</p>
       <h5>Phần thưởng</h5>
       <p>Bảng Thần Tượng</p>
-      <p>Hạng 1: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Dạ Khúc (2880 xu) + 2000 xu</p>
-      <p>Hạng 2: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Sao Ước Nguyện (1880 xu) + 1500 xu</p>
-      <p>Hạng 3: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Mưa Sao Băng (1280 xu) + 1000 xu</p>
+      <p>Hạng 1: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Dạ Khúc (2880 xu) + 2000 xu + Được hưởng Chia 5% tổng tiêu thụ trong phòng live</p>
+      <p>Hạng 2: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Sao Ước Nguyện (1880 xu) + 1500 xu + Được hưởng Chia 3% tổng tiêu thụ trong phòng live</p>
+      <p>Hạng 3: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Mưa Sao Băng (1280 xu) + 1000 xu + Được hưởng Chia 2% tổng tiêu thụ trong phòng live</p>
       <p>Hạng 4-10: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Mưa Bong Bóng (820 xu) + 500 xu</p>
       <p class="mt">Bảng Phòng Kara (thưởng cho chủ phòng và quản lý)</p>
       <p>Hạng 1: 200 Xu + 2000 Đậu + Chủ Đề Phòng Sôi Nổi (30 ngày)</p>

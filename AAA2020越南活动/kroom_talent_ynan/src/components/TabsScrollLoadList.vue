@@ -31,7 +31,7 @@
     </div>
     <div class="list day" v-if="mainTab==0 && rank.list.length">
       <ul>
-        <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.kmic)">
+        <li v-for="(item,index) in rank.list" :key="index" :class="'rank'+item.rank" @click="goUser(item.uid,item.kmic,item.type)">
           <div class="rank">{{item.rank}}</div>
           <div class="uerImg">
             <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
@@ -102,7 +102,7 @@ import downTime from '../utils/downTime.js'
 // }
 
 export default {
-  data() {
+  data () {
     return {
       mainTab: 0,
       tab: 1,
@@ -116,17 +116,17 @@ export default {
     }
   },
   watch: {
-    load(val) {
+    load (val) {
       this.downTimeGo('time', val)
     },
   },
   computed: {
     ...mapState(['rankGroups', 'isShare', 'load', 'step']),
-    rankKey() {
+    rankKey () {
       // return ['one', 'two', 'three'][this.tab];
       return this.mainTab == 1 ? 'total' : this.mainTab;
     },
-    rankApi() {
+    rankApi () {
       if (this.isShare) {
         var dayApi = `/kroom_talent/allList.php?from={from}&type=0`;
         var totalApi = `/kroom_talent/allList.php?from={from}&type=1`;
@@ -140,11 +140,11 @@ export default {
         return api.replace('{token}', token);
       }
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       // if (rankConf.second && rankConf.second > 0) {
@@ -153,16 +153,16 @@ export default {
       return rankConf;
     },
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
-    mainTabClick(tab) { //总榜切换
+    mainTabClick (tab) { //总榜切换
       this.mainTab = tab;
       this.$store.commit("changTab", this.rankKey)
       this.$nextTick(() => {
@@ -171,7 +171,7 @@ export default {
         }
       })
     },
-    onScroll(isRefresh) {
+    onScroll (isRefresh) {
       // console.log('xxx')
       // if (this.tab > this.nowDay) return (this.tab > this.nowDay && this.rankKey !== 'total') || 
       // if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
@@ -237,7 +237,7 @@ export default {
         }
       }
     },
-    onRefresh() {
+    onRefresh () {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,
@@ -253,17 +253,17 @@ export default {
       });
     },
 
-    goUser(uid, kmic) { //跳转
-      if (kmic) {
+    goUser (uid, kmic, type) { //跳转
+      if (kmic && type == 2) {
         this.goKroom(kmic)
         return
       }
-      location.href = `uid:${uid}`
+      location.href = `lid:${uid}`
     },
-    goKroom(rid) {
+    goKroom (rid) {
       location.href = `rid:${rid}`
     },
-    downTimeGo(timeName, val) {
+    downTimeGo (timeName, val) {
       clearInterval(this.timer)
       if (!downTime(timeName)) {
         downTime(timeName, val);
@@ -534,7 +534,7 @@ export default {
       }
     }
     li::before {
-      content: "";
+      content: '';
       display: block;
       width: 6.42rem;
       height: 1px;

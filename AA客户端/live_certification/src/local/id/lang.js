@@ -30,9 +30,9 @@ export default {
         "Kirim untuk ditinjau "
     ], //['證件照', '直播封面圖', '提交審核'],
     commitMsg: {
-        0: "Xét duyệt bị từ chối <br/>Nguyên nhân：$",
-        1: "Đã xét duyệt thành công<br/>Vui lòng đợi, chúng tôi sẽ nhanh chóng xét duyệt",
-        2: "Giấy CMND đã gửi<br/> Không cần gửi lại, hãy chuyển sang bước tiếp theo"
+        0: "Permohonan Anda ditolak <br/>alasan：$",
+        1: "Permohonan telah berhasil dikirim<br/>Harap bersabar, kami akan meninjaunya untuk Anda sesegera mungkin",
+        2: "Verifikasi identitas sudah dikirimkan <br/> Tidak perlu dikirim ulang, silakan langsung ke langkah berikutnya"
     },
     // commitMsg: {
     //   0: 'Permohonan Anda ditolak <br/>alasan：B',
@@ -97,7 +97,7 @@ export default {
     groupLive_p3:
         "Gambarnya tidak menarik, backgroundnya berantakan, dan ekspresinya kurang bagus", //图片毫无吸引力，背景杂乱，表情不佳
     groupLive_p4: "Potretnya terlalu kecil, bukan resousi yang besar", //人像太小，并非高清人脸大图
-    groupLive_p5: "Kenapa tidak ada penggemar yang datang untuk melihat kamu", //Tại sao không có fan đến xem bạn
+    groupLive_p5: "Kenapa tidak ada penggemar yang datang untuk melihat kamu", //为什么没有粉丝来看你？
     groupLive_p6: "Ini Alasannya", //这就是原因！
     groupLive_p7:
         "Pilih sampul yang bagus terlebih dahulu untuk menjadi Host yang besar dan luar biasa!", //先选一个好的封面，才能成为优秀的大主播！

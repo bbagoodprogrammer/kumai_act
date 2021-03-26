@@ -58,7 +58,7 @@ export default {
 
     //rule
     rule_title: "Rules & Prizes",
-    rule_tm: "Time: March 26, 18:00 - April 26, 20:00",
+    rule_tm: "Time: March 26 16:00 - April 26 20:00",
     rule_tab1: "Prizes",
     rule_tab2: "Rules",
     rule_tips_h5: "Prizes",

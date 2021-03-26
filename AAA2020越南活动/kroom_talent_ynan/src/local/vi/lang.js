@@ -16,28 +16,28 @@ export default {
     giftList: [
         {
             img: require("../../img/giftList/gift1.png"),
-            name: "Huy Chương Thần Tượng Phòng Kara",
+            name: "Huy Chương Thần Tượng"
         },
         {
             img: require("../../img/giftList/gift2.png"),
-            name: "Chủ Đề Phòng Sôi Nổi",
+            name: "Chủ Đề Phòng Sôi Nổi"
         },
         {
             img: require("../../img/giftList/gift8.png"),
-            name: "Xe Bão Tố",
+            name: "Xe Bão Tố"
         },
         {
             img: require("../../img/giftList/gift9.png"),
-            name: "Quà hiếm có",
+            name: "Quà hiếm có"
         },
         {
             img: require("../../img/giftList/gift5.png"),
-            name: "Vô số xu",
+            name: "Vô số xu"
         },
         {
             img: require("../../img/giftList/gift6.png"),
-            name: "Vô số đậu",
-        },
+            name: "Vô số đậu"
+        }
     ],
     //Integral
     integral_lv: "Cấp thần tượng", //我的達人等級
@@ -53,34 +53,34 @@ export default {
             img: require("../../img/get_gift/giftItem_1.png"),
             name: "30 xu",
             act_width: "13%",
-            gname: "50 đậu",
+            gname: "50 đậu"
         },
         2: {
             gift_tips: "7 ngày",
             img: require("../../img/get_gift/giftItem_9.png"),
             name: "100 xu",
             act_width: "30%",
-            gname: "Thầm Nhớ 7 ngày",
+            gname: "Thầm Nhớ 7 ngày"
         },
         3: {
             img: require("../../img/get_gift/giftItem_10.png"),
             name: "300 xu",
             act_width: "50%",
-            gname: "2021 ",
+            gname: "2021 "
         },
         4: {
             gift_tips: "7 ngày",
             img: require("../../img/get_gift/giftItem_11.png"),
             name: "500 xu",
             act_width: "70%",
-            gname: "Siêu Động Cơ 7 ngày",
+            gname: "Siêu Động Cơ 7 ngày"
         },
         5: {
             img: require("../../img/get_gift/giftItem_12.png"),
             name: "1000 xu",
             act_width: "100%",
-            gname: "Mojito",
-        },
+            gname: "Mojito"
+        }
     },
 
     //rank
@@ -97,5 +97,5 @@ export default {
     rank_tips2:
         "  Xếp hạng theo điểm mị từ nổ Lì Xì /tặng Hộp Quà May Mắn.<br />Trong phòng mỗi lần nổ tên lửa sẽ tăng 10000 điểm.", //根據房間中禮物紅包/福運禮盒產生的魅力值進行排名房間內每開啟一次火箭活動分數增加10000
     loading: "Đang tải...", //加載中...
-    noData: " Chưa có số liệu", //暫無數據
+    noData: " Chưa có số liệu" //暫無數據
 };

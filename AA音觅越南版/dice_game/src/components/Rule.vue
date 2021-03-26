@@ -2,7 +2,7 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">Thời gian: 20:00 ngày 21/1 - 23:59 ngày 27/1</div>
+    <div class="actTime">Thời gian: 18:00 ngày 28/3 - 23:59:59 ngày 5/4</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">Thể lệ</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">Thưởng</span>
@@ -40,7 +40,7 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       type: 1,
       gift1: [
@@ -74,10 +74,10 @@ export default {
     }
   },
   methods: {
-    tabClick(val) {
+    tabClick (val) {
       this.type = val
     },
-    closeRule() {
+    closeRule () {
       this.$parent.showRule = false
     }
   }

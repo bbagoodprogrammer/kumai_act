@@ -164,9 +164,10 @@
             </van-swipe-item>
           </van-swipe>
           <div class="balance">
+            <i class="back" @click="goStored()"></i>
             <span class="coin"><i></i><strong>{{balance.coin}}</strong></span>
             <span class="bean"><i></i><strong>{{balance.bean}}</strong></span>
-            <i class="back" @click="goStored()"></i>
+
           </div>
           <div class="queryBtn" @click="querySgift()">تحديد</div>
         </div>
@@ -694,7 +695,7 @@ body {
                 height: 0.27rem;
                 background: url(./img/coins2.png);
                 background-size: 100% 100%;
-                margin-left: 0.06rem;
+                margin-right: 0.06rem;
               }
             }
           }
@@ -826,7 +827,7 @@ body {
               height: 0.17rem;
               background: url(./img/bead.png);
               background-size: 100% 100%;
-              margin-left: 0.1rem;
+              margin-right: 0.1rem;
               &.coins {
                 background: url(./img/coins.png);
                 background-size: 100% 100%;
@@ -870,7 +871,7 @@ body {
       // height: 0.64rem;
       color: rgba(255, 255, 255, 1);
       position: absolute;
-      left: 0.3rem;
+      right: 0.3rem;
       bottom: 0.35rem;
       display: flex;
       align-items: center;
@@ -907,21 +908,22 @@ body {
         height: 0.16rem;
         background: url(./img/back.png);
         background-size: 100% 100%;
-        margin-right: 0.07rem;
-        transform: rotate(180deg);
+        margin-left: 0.15rem;
+        transform: rotate(0deg);
       }
     }
     .queryBtn {
       width: 1.6rem;
       height: 0.64rem;
       border: 1px solid rgba(0, 0, 0, 0);
-      background: linear-gradient(
-        313deg,
-        rgba(252, 2, 116, 1) 0%,
-        rgba(252, 82, 40, 1) 100%
-      );
+      //   background: linear-gradient(
+      //     313deg,
+      //     rgba(252, 2, 116, 1) 0%,
+      //     rgba(252, 82, 40, 1) 100%
+      //   );
+      background: #0dc;
       position: absolute;
-      right: 0.3rem;
+      left: 0.3rem;
       bottom: 0.17rem;
       border-radius: 0.6rem;
       font-size: 0.28rem;
