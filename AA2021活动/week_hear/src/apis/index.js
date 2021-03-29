@@ -6,6 +6,14 @@ import jsonp from "jsonp";
 
 const uid = getUrlString("uid") || "";
 const token = getUrlString("token") || "";
+
+let APP_api = "";
+if (_app == "hsing") {
+    APP_api = "http://act.17sing.tw";
+} else if (_app == "singnow") {
+    APP_api = "http://act.singnowapp.com";
+}
+
 axios.interceptors.request.use(
     async config => {
         // console.log('axios.interceptors', config);
@@ -140,7 +148,7 @@ function hearBottle(sid, s_key) {
 function appAttemsion(touid) {
     return new Promise((resolve, reject) => {
         jsonp(
-            `http://act.17sing.tw/index.php?&uid=${uid}&action=FocusExt&singerUid=${touid}&token=${token}`,
+            `${APP_api}/index.php?&uid=${uid}&action=FocusExt&singerUid=${touid}&token=${token}`,
             null,
             (err, res) => {
                 err ? reject(err) : resolve(res);
@@ -153,8 +161,8 @@ function appAttemsion(touid) {
 function collectSong(sid) {
     return new Promise((resolve, reject) => {
         jsonp(
-            //  `http://act.17sing.tw/index.php?&uid={uid}&action=AddCollect&token={token}&sid=${sid}`,
-            `http://act.17sing.tw/index.php?&uid=${uid}&action=AddCollect&token=${token}&sid=${sid}`,
+            //  `${APP_api}/index.php?&uid={uid}&action=AddCollect&token={token}&sid=${sid}`,
+            `${APP_api}/index.php?&uid=${uid}&action=AddCollect&token=${token}&sid=${sid}`,
             null,
             (err, res) => {
                 err ? reject(err) : resolve(res);

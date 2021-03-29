@@ -53,9 +53,10 @@
         <li v-for="(item,index) in rank.list" :key="index" :class="'rank' +item.rank">
           <div class="rank">{{item.rank}}</div>
           <div class="imgBox" @click="goUser(item.uid)">
-            <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame" class="frame" alt="">
+            <img v-if="item.avatar_frame &&item.avatar_frame != ''" :src="item.avatar_frame.replace('uc/avatar_frame/resource_url_1615861904.png','uc/avatar_frame/resource_url_1616987781.png')"
+              class="frame" alt="">
             <!-- <img src="../assets/img/testFrame.png" class="frame" alt=""> -->
-            <img v-else-if="item.noble > 0" :src="require(`../assets/img/nob/${item.noble}.png`)" class="nob" alt="">
+            <img v-else-if="item.nob > 0" :src="require(`../assets/img/nob/${item.nob}.png`)" class="nob" alt="">
             <img v-lazy="item.avatar" alt="" class="av">
           </div>
           <div class="msg">
@@ -114,7 +115,7 @@ import downTime from '../utils/downTime.js'
 
 export default {
   components: { DayTabs },
-  data() {
+  data () {
     return {
       mainTab: 0,
       tab: 1,
@@ -127,7 +128,7 @@ export default {
     }
   },
   watch: {
-    c_day(val) {
+    c_day (val) {
       this.tab = val
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
@@ -138,10 +139,10 @@ export default {
   },
   computed: {
     ...mapState(['rankGroups', "setInited", "isShare", "actStatus", "c_day", "inited", "dateArr"]),
-    rankKey() {
+    rankKey () {
       return this.mainTab == 1 ? 'total' : this.tab;
     },
-    rankApi() {
+    rankApi () {
       if (this.isShare) {
         var dayApi = `/charismatic_spkepersion/rank.php?tm={day}&from={from}`;
         var totalApi = `/charismatic_spkepersion/rank.php?from={from}`;
@@ -156,11 +157,11 @@ export default {
         return api.replace('{day}', getDate(new Date(this.dateArr[this.tab - 1] * 1000), 4)).replace('{token}', token)
       }
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       // if (rankConf.second && rankConf.second > 0) {
@@ -169,16 +170,16 @@ export default {
       return rankConf;
     },
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
-    mainTabClick(tab) { //总榜切换
+    mainTabClick (tab) { //总榜切换
       this.mainTab = tab;
       this.vxc('changTab', this.rankKey)
       this.$nextTick(() => {
@@ -187,7 +188,7 @@ export default {
         }
       });
     },
-    tabClick(tab) { //日榜切换
+    tabClick (tab) { //日榜切换
       this.tab = tab;
       // var nowTab = this.rankKey >= this.c_day ? this.c_day : this.rankKey //存当天选择的tab索引用于底部个人信息查找
       this.vxc("changTab", this.rankKey)
@@ -197,7 +198,7 @@ export default {
         }
       });
     },
-    onScroll() {
+    onScroll () {
       if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
         return
       }
@@ -262,7 +263,7 @@ export default {
         }
       }
     },
-    onRefresh() {
+    onRefresh () {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
       this.$parent.getDefaultData('ref')
@@ -276,22 +277,22 @@ export default {
       });
       this.$nextTick(this.onScroll);
     },
-    getDate(time, type) {
+    getDate (time, type) {
       if (type == 1) {
         return getDate(new Date(time * 1000), type)
       }
       return this.secondToTimeStr(time)
     },
-    goUser(uid) { //跳转
+    goUser (uid) { //跳转
       location.href = `uid:${uid}`
     },
-    goSong(sid) {
+    goSong (sid) {
       location.href = 'songid:{"songlist":[' + sid + '],"index":0}';
     },
-    beforeDestroy() {
+    beforeDestroy () {
       window.removeEventListener('scroll', this.onScroll);
     },
-    secondToTimeStr(t) {
+    secondToTimeStr (t) {
       if (!t) return;
       if (t < 60) return ((i = t) < 10 ? "0" + i : i) + 's';
       if (t < 3600) return "" + ((a = parseInt(t / 60)) < 10 ? "0" + a : a) + "min" + ((i = t % 60) < 10 ? "0" + i : i) + 's';
@@ -300,7 +301,7 @@ export default {
         return (e < 10 ? "0" + e : e) + "h" + ((a = parseInt(t % 3600 / 60)) < 10 ? "0" + a : a) + "min";
       }
     },
-    downTimeGo(timeName, val) {
+    downTimeGo (timeName, val) {
       clearInterval(this.timer)
       if (!downTime(timeName)) {
         downTime(timeName, val);
@@ -652,8 +653,8 @@ export default {
               // width: 0.64rem;
               padding: 0 0.1rem;
               height: 0.32rem;
-             
-background: linear-gradient(90deg, #FF9544 0%, #FFB43E 100%);
+
+              background: linear-gradient(90deg, #FF9544 0%, #FFB43E 100%);
               border-radius: 0.16rem;
               font-size: 0.21rem;
               margin-left: 0.1rem;
@@ -694,7 +695,7 @@ background: linear-gradient(90deg, #FF9544 0%, #FFB43E 100%);
         display: none;
       }
       li:before {
-        content: "";
+        content: '';
         display: block;
         width: 6.56rem;
         height: 0.02rem;

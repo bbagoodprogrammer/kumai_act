@@ -65,7 +65,7 @@ import getDate from "../utils/getDate"
 
 export default {
   components: {},
-  data() {
+  data () {
     return {
       mainTab: 0,
       // channel1: {
@@ -81,20 +81,20 @@ export default {
   },
   computed: {
     ...mapState(['rankGroups_history']),
-    rankKey() {
+    rankKey () {
       return this.mainTab == 1 ? 'total' : this.mainTab;
     },
-    rankApi() {
+    rankApi () {
       var dayApi = `/wishing_tree/giftRecord.php?token={token}&from={from}&type={type}`;
       const token = getUrlString('token') || '';
       return dayApi.replace('{token}', token).replace('{type}', this.mainTab)
 
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups_history[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       return rankConf;
@@ -102,7 +102,7 @@ export default {
     channel1: () => _lang.channel1,
     channel2: () => _lang.channel2,
   },
-  mounted() {
+  mounted () {
     this.scrollable = this.$el.querySelector('.rankList_history');
     if (this.scrollable) {
       this.scrollable.addEventListener('scroll', this.onScroll);
@@ -111,7 +111,7 @@ export default {
   },
   methods: {
 
-    mainTabClick(tab) { //总榜切换
+    mainTabClick (tab) { //总榜切换
       this.mainTab = tab;
       // this.vxc('changTab', this.rankKey)
       this.$nextTick(() => {
@@ -120,7 +120,7 @@ export default {
         }
       });
     },
-    onScroll() {
+    onScroll () {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if ((scrollToBottom || !this.rank.loadCount) && !this.rank.loading && !this.rank.loadEnd) { //滾動加載，沒有加載完成
         const mainTab = this.mainTab
@@ -169,13 +169,17 @@ export default {
 
       }
     },
-    getDate(tm) {
-      return getDate(new Date(tm * 1000), 7)
+    getDate (tm) {
+      if (_app == 'singnow') {
+        return getDate(new Date(tm * 1000), 7)
+      } else if (_app == 'hsing') {
+        return getDate(new Date(tm * 1000), 1)
+      }
     },
-    goUser(uid) { //跳转
+    goUser (uid) { //跳转
       location.href = `uid:${uid}`
     },
-    closeHistory() {
+    closeHistory () {
       this.$parent.showHistory = false
     }
   },
