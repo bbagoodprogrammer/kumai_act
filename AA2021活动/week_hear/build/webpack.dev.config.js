@@ -142,7 +142,11 @@ module.exports = {
             template: "src/html/index.html",
             chunks: ["vendor", "local", "app"]
         }),
-
+        new HtmlPlugin({
+            filename: "index_vi.html",
+            template: "src/html/index.html",
+            chunks: ["vendor", "local", "app"]
+        }),
         new VueLoaderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         // new CopyWebpackPlugin([

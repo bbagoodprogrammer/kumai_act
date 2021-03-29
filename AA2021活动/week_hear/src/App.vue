@@ -19,7 +19,7 @@ export default {
   },
   mounted () {
     if (!getUrlString('qid')) {
-      this.toast(`參數錯誤！`)
+      this.toast(`Tham số lỗi!`)
       return
     }
     this.$store.dispatch('getInitInfo');

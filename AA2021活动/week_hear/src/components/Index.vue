@@ -4,9 +4,10 @@
       <div class="bar" @click="downApp()"></div>
     </div>
     <div class="header">
-      <div class="weekTips">每週三更新</div>
+      <div class="weekTips">{{lang.week_tips}}</div>
       <div class="actTitle">
-        <img src="../img/title.png" alt="">
+        <!-- <img src="../img/title.png" alt=""> -->
+        <span class="title_img"> </span>
         <strong>Vol.{{qid}}</strong>
       </div>
       <div class="actTime">
@@ -18,7 +19,7 @@
         <div class="play_con" @click="playAll()">
           <i class="playIcon"></i>
           <div class="songNums">
-            <span>播放全部</span>
+            <span>{{lang.play_all}}</span>
             <strong>({{list.length}})</strong>
           </div>
         </div>
@@ -33,10 +34,10 @@
               <span class="songNums"><i></i><em>{{item.sinfo.listen}}</em></span>
               <img :src="item.sinfo.cover" alt="" class="cover" @click="goSong(item.sinfo.id)">
             </div>
-            <div class="songName">曲目《{{item.sinfo.name}}》 <img src="../img/ktving.gif" alt="" class="ktving" v-if="playIng && songIndex == index"></div>
+            <div class="songName">{{lang.song_list_title.replace('$',item.sinfo.name)}} <img src="../img/ktving.gif" alt="" class="ktving" v-if="playIng && songIndex == index"></div>
           </div>
           <div class="songReason">
-            <div class="title">推薦理由</div>
+            <div class="title">{{lang.song_reason}}</div>
             <div class="msg">
               {{item.mark}}
             </div>
@@ -48,8 +49,8 @@
             </div>
             <strong class="nick">{{item.uinfo.nick}}</strong>
             <span class="collection2">
-              <em v-if="!item.attension" @click="attem(item.uinfo.uid,index)">+關注</em>
-              <em v-else>已關注</em>
+              <em v-if="!item.attension" @click="attem(item.uinfo.uid,index)">{{lang.add_attension}}</em>
+              <em v-else>{{lang.attensioned}}</em>
             </span>
           </div>
         </li>
@@ -64,40 +65,41 @@
         <div class="selectAll">
           <div class="selectBtn" @click="selectSongAll()">
             <i class="set_icon" :class="{act:allStatus}"></i>
-            <em>全選</em>
+            <em>{{lang.set_all}}</em>
           </div>
-          <div class="cancel" @click="showHotSong = false">取消</div>
+          <div class="cancel" @click="showHotSong = false">{{lang.set_cancel}}</div>
         </div>
         <ul class="hotSong">
           <li v-for="(item,index) in list " :key="index" @click="selectSong(index)">
             <i class="set_icon" :class="{act:item.collect || item.act}"></i>
             <div class="songMsg">
-              <div class="songName">曲目:《{{item.sinfo.name}}》</div>
+              <!-- {{lang.song_title}}:《{{item.sinfo.name}}》  -->
+              <div class="songName">{{lang.song_list_title.replace('$',item.sinfo.name)}}</div>
               <div class="songUser">
                 <div class="nick">{{item.uinfo.nick}}</div>
-                <div class="uid">UID{{item.uinfo.uid}}</div>
+                <div class="uid">UID {{item.uinfo.uid}}</div>
               </div>
             </div>
           </li>
         </ul>
         <div class="act_btm" @click="addCollect()">
           <i></i>
-          <em>添加歌曲到我的收藏</em>
+          <em>{{lang.collect_add}}</em>
         </div>
       </div>
     </transition>
     <div class="mask" v-show="showAccSuc">
       <transition name="slide">
         <div class="accSuc" v-show="showAccSuc">
-          <div class="title"> {{sucType?'添加成功':'添加失敗'}}</div>
-          <div class="msg" v-if="sucType">
-            所選曲目已成功添加到我的收藏，<br />
-            重啟APP後可在我的——收藏中查看
+          <div class="title"> {{sucType?lang.add_suc:lang.add_fail}}</div>
+          <div class="msg" v-if="sucType" v-html="lang.acc_tips1">
+            <!-- 所選曲目已成功添加到我的收藏，<br />
+            重啟APP後可在我的——收藏中查看 -->
           </div>
           <div class="msg" v-else>
-            還沒有選擇歌曲,無法添加
+            {{lang.acc_tips2}}
           </div>
-          <div class="ok" @click="showAccSuc = false">我知道啦</div>
+          <div class="ok" @click="showAccSuc = false">{{lang.ok}}</div>
         </div>
       </transition>
     </div>
@@ -126,12 +128,12 @@ export default {
       song_key: '',
       isAllPlay: false,
       showAccSuc: false,
-      songType: {
-        0: '獨唱',
-        1: '合唱',
-        3: 'mv',
-        4: 'mv'
-      },
+      //   songType: {
+      //     0: '獨唱',
+      //     1: '合唱',
+      //     3: 'mv',
+      //     4: 'mv'
+      //   },
       sucType: true,
       songLoading: false,
       isShare: true,
@@ -145,11 +147,15 @@ export default {
   },
   computed: {
     ...mapState(['list', 'qid', 'act']),
+    songType () {
+      return this.lang.songType
+    },
     act_time () {
-      if (this.act.stime) {
+      if (_app == "hsing" && this.act.stime) {
         return getDate(new Date(this.act.stime * 1000), 1) + '-' + getDate(new Date(this.act.etime * 1000), 1)
+      } else if (_app == "singnow" && this.act.stime) {
+        return getDate(new Date(this.act.stime * 1000), 2) + '-' + getDate(new Date(this.act.etime * 1000), 2)
       }
-
     },
     viewHeight: () => window.innerHeight,
     audio () {
@@ -348,7 +354,7 @@ export default {
     },
     addCollect () {
       if (this.allSet) {
-        this.toast(`本期歌單已全部收藏！`)
+        this.toast(this.lang.add_collect_tips)
         return
       }
       if (!this.allItmeSet) {
@@ -417,10 +423,13 @@ export default {
       left: 0.5rem;
       display: flex;
       align-items: flex-end;
-      img {
+      .title_img {
         width: 2.73rem;
         height: 0.73rem;
+        background: url(../img/title.png);
+        background-size: 100% 100%;
       }
+
       strong {
         font-size: 0.36rem;
         font-weight: bold;
@@ -521,7 +530,8 @@ export default {
               position: absolute;
             }
             .mv {
-              width: 0.54rem;
+              //   width: 0.54rem;
+              padding: 0 0.1rem;
               height: 0.3rem;
               background: #FFEEA1;
               border-radius: 0.06rem;
@@ -530,6 +540,7 @@ export default {
               font-size: 0.22rem;
               text-align: center;
               line-height: 0.3rem;
+              white-space: nowrap;
             }
             .song_play {
               width: 0.28rem;
@@ -578,6 +589,7 @@ export default {
             .ktving {
               width: 0.28rem;
               height: 0.22rem;
+              margin-left: 0.15rem;
             }
           }
         }
@@ -772,6 +784,7 @@ export default {
     .msg {
       font-size: 0.26rem;
       text-align: center;
+      padding: 0 0.2rem;
     }
     .ok {
       width: 4rem;

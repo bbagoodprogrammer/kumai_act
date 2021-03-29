@@ -33,7 +33,7 @@ import getDate from "../utils/getDate"
 export default {
   computed: {
     ...mapState(['step', 'reg', 'tab', 'groupsUserMsg', "isShare", "dateArr", "c_day"]),
-    astState() {
+    astState () {
       if (this.step === 0) { //活动未开始
         return 0
       } else if (this.step === 2) { //活动已结束
@@ -44,15 +44,19 @@ export default {
         return 3
       }
     },
-    nowMsg() {
+    nowMsg () {
       return this.groupsUserMsg[this.tab] ? this.groupsUserMsg[this.tab].msg : { userinfo: {} }
     },
-    act_day() {
-      return getDate(new Date(this.dateArr[this.tab - 1] * 1000), 6)
+    act_day () {
+      if (_app == 'singnow') {
+        return getDate(new Date(this.dateArr[this.tab - 1] * 1000), 6)
+      } else if (_app == 'hsing') {
+        return getDate(new Date(this.dateArr[this.tab - 1] * 1000), 3)
+      }
     }
   },
   methods: {
-    singUp() {
+    singUp () {
       globalBus.$emit('commonEvent', () => {
         singUp().then(res => {
           if (res.data.response_status.code == 0) {
@@ -65,13 +69,13 @@ export default {
 
       })
     },
-    commitSong() {
+    commitSong () {
       globalBus.$emit('commonEvent', () => {
         // let token = getString('token')
         location.href = `./index3.html?token=${token}`
       })
     },
-    goUser(uid) { //跳转
+    goUser (uid) { //跳转
       location.href = `uid:${uid}`
     }
   }

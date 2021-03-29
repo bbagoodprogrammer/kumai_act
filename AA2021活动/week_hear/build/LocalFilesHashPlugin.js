@@ -1,9 +1,9 @@
-const fs = require('fs');
+const fs = require("fs");
 
 // https://github.com/xsbear/hash-assets-webpack-plugin/blob/master/index.js
 class LocalFilesHashPlugin {
     apply(compiler) {
-        compiler.hooks.afterEmit.tap('LocalFilesHashPlugin', compilation => {
+        compiler.hooks.afterEmit.tap("LocalFilesHashPlugin", compilation => {
             const stats = compilation.getStats().toJson({
                 hash: false,
                 publicPath: false,
@@ -19,16 +19,24 @@ class LocalFilesHashPlugin {
             stats.chunks.forEach(chunk => {
                 chunk.files.forEach(file => {
                     if (!/runtime|local|app/.test(file)) {
-                        const path = file.split('/');
+                        const path = file.split("/");
                         const name = path[path.length - 1];
-                        const arr = name.replace('.', '').split('?');
+                        const arr = name.replace(".", "").split("?");
                         obj[arr[0]] = arr[1];
                     }
                 });
             });
 
-            const html = fs.readFileSync('./dist/index.html');
-            fs.writeFileSync('./dist/index.html', html.toString().replace('$hash$', JSON.stringify(obj)));
+            const html = fs.readFileSync("./dist/index.html");
+            const index_vi = fs.readFileSync("./dist/index_vi.html");
+            fs.writeFileSync(
+                "./dist/index.html",
+                html.toString().replace("$hash$", JSON.stringify(obj))
+            );
+            fs.writeFileSync(
+                "./dist/index_vi.html",
+                index_vi.toString().replace("$hash$", JSON.stringify(obj))
+            );
         });
     }
 }
