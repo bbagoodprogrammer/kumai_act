@@ -23,5 +23,6 @@ export default {
         3: "mv",
         4: "mv"
     },
-    add_collect_tips: "本期歌單已全部收藏！"
+    add_collect_tips: "本期歌單已全部收藏！",
+    dataErr: "參數錯誤！"
 };

@@ -6,8 +6,8 @@ export default {
     song_title: "",
     song_list_title: "$",
     song_reason: "Lý do đề xuất: ",
-    add_attension: "Theo dõi",
-    attensioned: "Đã theo dõi",
+    add_attension: "Quan tâm",
+    attensioned: "Đã quan tâm",
     set_all: "Chọn hết",
     set_cancel: "Hủy",
     collect_add: "Thêm ca khúc vào sưu tập",
@@ -23,5 +23,6 @@ export default {
         3: "mv",
         4: "mv"
     },
-    add_collect_tips: "Danh sách ca khúc kỳ này đã sưu tập hết!"
+    add_collect_tips: "Danh sách ca khúc kỳ này đã sưu tập hết!",
+    dataErr: `Tham số lỗi!`
 };

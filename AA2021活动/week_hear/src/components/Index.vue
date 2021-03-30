@@ -34,7 +34,10 @@
               <span class="songNums"><i></i><em>{{item.sinfo.listen}}</em></span>
               <img :src="item.sinfo.cover" alt="" class="cover" @click="goSong(item.sinfo.id)">
             </div>
-            <div class="songName">{{lang.song_list_title.replace('$',item.sinfo.name)}} <img src="../img/ktving.gif" alt="" class="ktving" v-if="playIng && songIndex == index"></div>
+            <div class="songName">
+              <span>{{lang.song_list_title.replace('$',item.sinfo.name)}}</span>
+              <img src="../img/ktving.gif" alt="" class="ktving" v-if="playIng && songIndex == index">
+            </div>
           </div>
           <div class="songReason">
             <div class="title">{{lang.song_reason}}</div>
@@ -579,13 +582,17 @@ export default {
             }
           }
           .songName {
-            height: 0.5rem;
+            flex: 1;
+            height: 2.5rem;
             font-size: 0.26rem;
             color: rgba(116, 158, 220, 1);
             font-size: 0.26rem;
             margin-left: 0.19rem;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            span {
+              flex: 1;
+            }
             .ktving {
               width: 0.28rem;
               height: 0.22rem;
