@@ -19,9 +19,9 @@ export default {
     page_upCover: "Klik untuk mengupload foto sampul", //點擊上傳封面圖
     page_upCover_tip1:
         "Foto sampul akan ditinjau secara manual. Harap unggah foto dengan wajah jernih. Jangan unggah foto yang terpapar / vulgar / berisi garis batas dan watermark kamera. Cobalah mengunggah foto diri yang nyata dan alami agar lebih mudah melewati tinjauan. Klik untuk melihat", // 封面圖爲人工審核，請上傳本人面部清晰的照片請勿上傳暴露/低俗/包含邊框、相機水印的圖片儘量上傳真實，自然的自拍圖，更容易審核通過。 點擊查看
-    page_upCover_tip2: "《Teknik Sampul Siaran Langsung HuanGe》", //《歡歌直播封面技巧》
-    page_upCover_tip3: "Nhấn gửi, và biểu thị đồng ý", //點擊提交，即表示同意
-    page_upCover_tip4: "《Protokol Siaran Langsung HuanGe dan Kode Etik》", //《歡歌直播協議與行為規範》
+    page_upCover_tip2: "《Teknik Sampul Siaran Langsung Wekara》", //《歡歌直播封面技巧》
+    page_upCover_tip3: "Klik kirim, berarti setuju", //點擊提交，即表示同意
+    page_upCover_tip4: "《Protokol Siaran Langsung Wekara dan Kode Etik》", //《歡歌直播協議與行為規範》
     page_upCover_commit: "Kirim", //提交
     page_upCover_tip6: "Melakukan permohonan lagi", //重新申請
     processTitle: [
@@ -61,7 +61,7 @@ export default {
     notQualified_tip2:
         "Bagaimana cara mendapatkan kualifikasi untuk melamar menjadi Host:", //如何獲得主播申請資格：
     notQualified_tip3:
-        "1.Untuk pertanyaan tentang kualifikasi melamar menjadi Host, silakan hubungi akun resmi ID 1000. Akun resmi akan melakukan penilaian berdasarkan pada citra pribadi pengguna, penampilan menyanyi, perilaku aktif, dan aspek lain di platform. Lebih mudah untuk mendapatkan kualifikasi aplikasi Host dengan memposting lebih banyak karya dan berpartisipasi dalam kegiatan resmi.", //主播申請資格咨詢可聯繫官方號ID1000，官方會根據用戶在平台內的個人形象，唱功表現，活躍行為等多方面進行綜合考慮，多發作品，多參與官方活動更容易獲得主播申請資格喔。
+        "1.Untuk pertanyaan tentang kualifikasi melamar menjadi Host, silakan hubungi akun resmi ID 6717310. Akun resmi akan melakukan penilaian berdasarkan pada citra pribadi pengguna, penampilan menyanyi, perilaku aktif, dan aspek lain di platform. Lebih mudah untuk mendapatkan kualifikasi aplikasi Host dengan memposting lebih banyak karya dan berpartisipasi dalam kegiatan resmi.", //主播申請資格咨詢可聯繫官方號ID1000，官方會根據用戶在平台內的個人形象，唱功表現，活躍行為等多方面進行綜合考慮，多發作品，多參與官方活動更容易獲得主播申請資格喔。
     notQualified_tip4:
         "2.Pengguna yang telah memperoleh kualifikasi untuk melamar menjadi Host juga harus mengikat nomor ponsel mereka dan menyerahkan otentikasi identitas. Hanya setelah lulus tinjauan, siaran tersebut dapat diluncurkan..", //獲得主播申請資格的用戶，還需綁定手機號碼，並提交身份認證，審核通過後才可開播。
     notQualified_tip5:
