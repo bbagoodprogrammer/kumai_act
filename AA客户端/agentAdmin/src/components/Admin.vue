@@ -30,7 +30,8 @@
         </div>
       </el-header>
       <el-main class="main">
-        <el-table :data="tableData" border style="width: 100%" stripe :header-cell-style="{color:'#121212',fontFamily:'MicrosoftYaHeiUI',fontSize:'14px',fontWeight:900, textAlign: 'center'}">
+        <el-table :data="tableData.slice((curPage -1)*pagesize,curPage*pagesize)" border style="width: 100%" stripe
+          :header-cell-style="{color:'#121212',fontFamily:'MicrosoftYaHeiUI',fontSize:'14px',fontWeight:900, textAlign: 'center'}">
           <el-table-column fixed prop="date" label="UID" width="110">
           </el-table-column>
           <el-table-column fixed prop="name" label="Nickname" width="132">
@@ -57,7 +58,8 @@
             <img src="../img/icon_empty.png" />
           </div>
         </el-table>
-        <el-pagination background layout="prev, pager, next" :total="tableData.length" prev-text="Previous" next-text="Next">
+        <el-pagination background layout="prev, pager, next" :total="tableData.length" :current-page.sync="curPage" :page-size="pagesize" prev-text="Previous" next-text="Next"
+          @size-change="handleSizeChange" @current-change="handleCureentChange">
         </el-pagination>
 
       </el-main>
@@ -71,7 +73,162 @@ export default {
     return {
       time1: '',
       time2: '',
-      tableData: []
+      pagesize: 10, //每页显示个数     默认
+      curPage: 1,   //当前页数         默认
+      tableData: [{
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      },
+      {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      },
+      {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      },
+      {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      },
+      {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      },
+      {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      },
+      {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      },
+      {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      },
+      {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      },
+      {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-055555',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }]
     }
   },
   computed: {
@@ -80,6 +237,17 @@ export default {
   methods: {
     handleClick (row) {
       console.log(row);
+    },
+    pagChange (val) {
+      console.log(val)
+    },
+    //显示数量
+    handleCureentChange (val) {
+      this.curPage = val;
+    },
+    //每页显示条数                 
+    handleSizeChange (val) {
+      this.pagesize = val;
     }
   },
 }

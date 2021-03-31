@@ -750,7 +750,7 @@ body {
             display: block;
             width: 0.31rem;
             height: 0.32rem;
-            background: url(./img/select.png);
+            background: url(./img/select2.png);
             background-size: 100% 100%;
             position: absolute;
             top: 0.16rem;
