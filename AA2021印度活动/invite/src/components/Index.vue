@@ -381,12 +381,12 @@ export default {
     right: 0;
     top: 0;
     span {
-      width: 0.84rem;
-      height: 0.32rem;
+      width: 1.14rem;
+      height: 0.48rem;
       display: block;
       text-align: center;
-      font-size: 0.2rem;
-      line-height: 0.32rem;
+      font-size: 0.3rem;
+      line-height: 0.48rem;
       color: rgba(255, 180, 100, 1);
       background: url(../img/exllBtn.png);
       background-size: 100% 100%;
@@ -757,13 +757,13 @@ export default {
 }
 .close {
   display: block;
-  width: 0.29rem;
-  height: 0.29rem;
+  width: 0.58rem;
+  height: 0.58rem;
   background: url(../img/close.png);
   background-size: 100% 100%;
   position: absolute;
-  top: 0.16rem;
-  right: 0.12rem;
+  top: -0.2rem;
+  right: -0.2rem;
 }
 input {
   padding-left: 0.17rem;

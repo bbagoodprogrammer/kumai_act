@@ -11,7 +11,7 @@
       <h6>1. Đổ xúc xắc làm phú ông:</h6>
       <p>Mua xúc xắc quay thưởng, trúng nhiều phần thưởng hấp dẫn. </p>
       <P>Top 10 đổ xúc xắc đi được nhiều bước nhất sẽ nhận thưởng. </P>
-      <P>Sau khi sự kiện kết thúc, nếu xúc xắc còn không đổ hết sẽ được trả lại xu vớ mức tính 50 xu 1 xúc xắc.</P>
+      <P>Sau khi sự kiện kết thúc, nếu xúc xắc còn không đổ hết sẽ được trả lại xu vớ mức tính 20 xu 1 xúc xắc.</P>
       <h6>2. Tỉ lệ trúng thưởng </h6>
       <img src="../assets/img/rule/table.png" alt="" class="gl_img">
       <h6>3. Chú ý: </h6>
