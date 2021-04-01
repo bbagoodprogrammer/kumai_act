@@ -1,5 +1,5 @@
 <template>
-  <div class="page pageIndex">
+  <div class="page pageIndex login_html" v-loading.fullscreen.lock="fullscreenLoading">
     <!-- <i class="logo"></i> -->
     <img src="../img/logo.png" alt="" class="logo">
     <div class="loginCon">
@@ -10,25 +10,66 @@
         </div>
         <input type="text" v-model="userAccount" placeholder="Account/Uid" class="userAccount">
         <input type="password" v-model="userPassword" placeholder="Password" class="userPassword">
-        <div class="login_btn">LOGIN</div>
+        <div class="login_btn" @click="login()">LOGIN</div>
+        <div class="errTips">{{errStr}}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { login } from "../apis"
+
 export default {
   data () {
     return {
       userAccount: '',
-      userPassword: ''
+      userPassword: '',
+      errStr: '',
+      fullscreenLoading: false
     }
+  },
+  created () {
+    this.keyupSubmit();
+  },
+  methods: {
+    login () {
+      this.errStr = ''
+      if (!this.userAccount) {
+        this.errStr = `account is empty`
+        return
+      } else if (!this.userPassword) {
+        this.errStr = `password is empty`
+        return
+      }
+      this.fullscreenLoading = true
+      login(this.userAccount, this.userPassword).then(res => {
+        this.fullscreenLoading = false
+        if (res.data.response_status.code == 0) {
+          const token = res.data.response_data.token
+          const aid = res.data.response_data.aid
+          //   this.$router.push({ path: '/admin', query: { token, aid } })
+          location.href = `./index.html?token=${token}&aid=${aid}#/admin`
+        } else {
+          this.errStr = res.data.response_status.error
+        }
+      })
+    },
+    keyupSubmit () {
+      document.onkeydown = (e) => {
+        let _key = window.event.keyCode;
+        //!this.clickState是防止用户重复点击回车
+        if (_key === 13 && !this.clickState) {
+          this.login();
+        }
+      };
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
-body {
+.login_html {
   background: rgba(63, 18, 87, 1);
 }
 .logo {
@@ -64,7 +105,7 @@ body {
       }
       .userAccount,
       .userPassword {
-        width: 240px;
+        width: 215px;
         height: 40px;
         background: #FFFFFF;
         border: 1px solid #DDDDDD;
@@ -98,6 +139,12 @@ body {
       }
       .login_btn:hover {
         background: #8D4DFF;
+      }
+      .errTips {
+        font-size: 14px;
+        text-align: center;
+        color: #F65939;
+        margin-top: 10px;
       }
     }
   }

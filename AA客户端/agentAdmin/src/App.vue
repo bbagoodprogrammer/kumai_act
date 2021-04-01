@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view class="appView" :style="{minHeight:viewHeight+'px'}"></router-view>
-    <Loading v-show="loading" />
+    <!-- <Loading v-show="loading" /> -->
   </div>
 </template>
 

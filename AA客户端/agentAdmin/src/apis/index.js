@@ -2,10 +2,10 @@ import axios from "axios";
 import store from "../store";
 import { getUrlString, toast } from "../utils";
 import { testGet } from "./test";
+import sha1 from "sha1";
 
-const aid = getUrlString("aid") || false;
-const token = getUrlString("token") || false;
-
+const aid = getUrlString("aid") || "";
+const token = getUrlString("token") || "";
 function appendParam(url, key, value) {
     if (!new RegExp("(\\?|&)" + key + "=").test(url)) {
         url = url.replace(/(\?|&)+$/, "");
@@ -35,20 +35,21 @@ axios.interceptors.request.use(
         let { method, url, data } = config;
 
         // 测试请求URL差异处理
-        // if (_test) {
-        //     url = '/action' + url;
-        // }
+
+        if (!_test) {
+            url = "//t.act." + _host + url;
+        }
 
         // 替换URL占位符
-        if (url) {
-            const rid = getUrlString("rid") || getUrlString("room_id") || "";
-            const uid = getUrlString("uid") || "";
-            const token = getUrlString("token") || "";
-            url = url
-                .replace("{rid}", rid)
-                .replace("{uid}", uid)
-                .replace("{token}", token);
-        }
+        // if (url) {
+        //     const rid = getUrlString("rid") || getUrlString("room_id") || "";
+        //     const uid = getUrlString("uid") || "";
+        //     const token = getUrlString("token") || "";
+        //     url = url
+        //         .replace("{rid}", rid)
+        //         .replace("{uid}", uid)
+        //         .replace("{token}", token);
+        // }
 
         // 自动增加语言参数
         url = appendParam(url, "lang", __lang);
@@ -143,15 +144,29 @@ function loadData(apiFunc, commitName) {
 
 function login(account, password) {
     // return testGet('login');
+    console.log(sha1(password));
     return get(
-        `/index.php?action=Agent.login&account=${account}&password=${password}`
+        `/index.php?action=Agent.login&account=${account}&password=${sha1(
+            password
+        )}`
     );
 }
 
 function list(page, start_date, end_date, uid) {
-    return get(
-        `/index.php?action=Agent.signedAnchorIncomelist&aid=${aid}&token=${token}&page=${page}&limit=20&start_date=${start_date}&end_date=${end_date}&uid=${uid}`
-    );
+    let apiStr = `/index.php?action=Agent.signedAnchorIncomelist&aid=${aid}&token=${token}&page=${page}&limit=20`;
+    if (start_date) {
+        apiStr += `&start_date=${start_date}`;
+    }
+    if (end_date) {
+        apiStr += `&end_date=${end_date}`;
+    }
+    if (uid) {
+        apiStr += `&uid=${uid * 1}`;
+    }
+    return get(apiStr);
+    // return get(
+    //     `/index.php?action=Agent.signedAnchorIncomelist&aid=${aid}&token=${token}&page=${page}&limit=20&start_date=${start_date}&end_date=${end_date}&uid=${uid}`
+    // );
 }
 
 export { get, post, login, list };
