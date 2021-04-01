@@ -115,7 +115,6 @@ function openApp(schemaUrl, androidDownUrl, iosDownUrl, iosSchemaUrl) {
 			link.dispatchEvent(event)
 		}, 0)
 	} else {
-		//低版本Android和iOS其它所有版本采用iframe
 		var iframeId = '_downloadAppIframe_'
 		var iframe = document.getElementById(iframeId)
 		if (!iframe) {

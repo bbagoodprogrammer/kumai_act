@@ -1,5 +1,5 @@
 <template>
-  <div class="page pageIndex">
+  <div class="page pageIndex" v-loading.fullscreen.lock="fullscreenLoading">
     <el-container>
       <el-header class="header">
         <div class="logo">
@@ -11,18 +11,18 @@
         </p>
         <div class="setTime">
           <div class="tm">
-            <el-date-picker v-model="time1" type="date" placeholder="选择日期">
+            <el-date-picker v-model="time1" type="date" placeholder="Select a date">
             </el-date-picker>
             <i></i>
-            <el-date-picker v-model="time2" type="date" placeholder="选择日期">
+            <el-date-picker v-model="time2" type="date" placeholder="Select a date">
             </el-date-picker>
           </div>
           <div class="userId">
             <div class="selectUid" :class="{focus:true}">
               <!-- <label for="userUid">Uid</label> -->
-              <input type="number" placeholder="Uid" class="selectUid">
+              <input type="number" placeholder="Uid" class="selectUid" v-model="uid">
             </div>
-            <div class="check">
+            <div class="check" @click="check()">
               Check
             </div>
           </div>
@@ -32,27 +32,38 @@
       <el-main class="main">
         <el-table :data="tableData.slice((curPage -1)*pagesize,curPage*pagesize)" border style="width: 100%" stripe
           :header-cell-style="{color:'#121212',fontFamily:'MicrosoftYaHeiUI',fontSize:'14px',fontWeight:900, textAlign: 'center'}">
-          <el-table-column fixed prop="date" label="UID" width="110">
+          <el-table-column fixed prop="uid" label="UID" width="110">
           </el-table-column>
-          <el-table-column fixed prop="name" label="Nickname" width="132">
+          <el-table-column fixed prop="nick" label="Nickname" width="132">
           </el-table-column>
-          <el-table-column prop="province" label="Photo" width="110">
+          <el-table-column prop="" label="Photo" width="110">
+            <template slot-scope="scope">
+              <img :src="scope.row.avatar" alt="" />
+            </template>
           </el-table-column>
-          <el-table-column prop="city" label="Match Duration " width="164">
+          <el-table-column prop="matchVideoDuration" label="Match Duration " width="164">
           </el-table-column>
-          <el-table-column prop="address" label="Diamonds from Match" width="164">
+          <el-table-column prop="matchVideoDiamond" label="Diamonds from Match" width="164">
           </el-table-column>
-          <el-table-column prop="zip" label="Call Duration" width="143">
+          <el-table-column prop="callVideoDuration" label="Call Duration" width="143">
           </el-table-column>
-          <el-table-column prop="zip" label="Diamonds from Call" width="164">
+          <el-table-column prop="callVideoDiamond" label="Diamonds from Call" width="164">
           </el-table-column>
-          <el-table-column prop="zip" label="Total Diamonds" width="162">
+          <el-table-column prop="giftDiamond" label="Gift giving" width="162">
           </el-table-column>
-          <el-table-column prop="zip" label="Active Call Times" width="164">
+          <el-table-column prop="totalDiamond" label="Total Diamonds" width="164">
           </el-table-column>
-          <el-table-column prop="zip" label="Passive Call Times" width="164">
+          <el-table-column prop="callNum" label="Active Call Times" width="164">
           </el-table-column>
-          <el-table-column prop="zip" label="Answering Rate" width="162">
+          <el-table-column prop="beCalledNum" label="Passive Call Times" width="162">
+          </el-table-column>
+          <el-table-column prop="callCompletingRate" label="Answering Rate" width="162">
+          </el-table-column>
+          <el-table-column prop="onlineCallCompletingRate" label="Online Answering Rate" width="162">
+          </el-table-column>
+          <el-table-column prop="withdrawCash" label="Withdraw" width="162">
+          </el-table-column>
+          <el-table-column prop="income" label="Agent  Fee" width="162">
           </el-table-column>
           <div slot="empty" class="empty">
             <img src="../img/icon_empty.png" />
@@ -64,177 +75,80 @@
 
       </el-main>
     </el-container>
+    <el-dialog title="Tips" :visible.sync="dialogVisible" width="30%">
+      <span>{{errStr}}</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">cancel</el-button>
+        <el-button type="primary" @click="ok()">determine</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+
+import { get, list } from "../apis"
+import getDate from "../utils/getDate"
+
 export default {
   data () {
     return {
       time1: '',
       time2: '',
-      pagesize: 10, //每页显示个数     默认
+      start_date: '',
+      end_date: '',
+      uid: '',
+      uid_2: '',
+      pagesize: 20, //每页显示个数     默认
       curPage: 1,   //当前页数         默认
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      },
-      {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      },
-      {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      },
-      {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      },
-      {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      },
-      {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      },
-      {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      },
-      {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      },
-      {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      },
-      {
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-055555',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }]
+      tableData: [],
+      dialogVisible: false,
+      errStr: '',
+      createdFirst: true,
+      fullscreenLoading: false,
     }
   },
-  computed: {
-
+  created () {
+    this.getList('creat', 1)
   },
   methods: {
+    getList (creat, page, start_date, end_date, uid) {
+      this.fullscreenLoading = true
+      list(page, start_date, end_date, uid).then(res => {
+        this.fullscreenLoading = false
+        if (res.data.response_status.code == 0) {
+          if (creat) {  //初始化成功修改状态用于弹窗按钮点击逻辑
+            this.createdFirst = false
+          }
+          this.tableData = res.data.response_data.list
+        } else {
+          this.dialogVisible = true
+          this.errStr = res.data.response_status.error
+        }
+      })
+    },
+    check () {
+      if (this.time1 && this.time2) {
+        if (this.time1.getTime() > this.time2.getTime()) {
+          this.dialogVisible = true
+          this.errStr = ` Incorrect time period selection`
+          return
+        }
+      }
+      const time1 = this.time1 ? getDate(new Date(this.time1), 1) : ''
+      const time2 = this.time2 ? getDate(new Date(this.time2), 1) : ''
+      this.start_date = time1
+      this.end_date = time2
+      this.uid_2 = this.uid
+      this.getList(0, 1, this.start_date, this.end_date, this.uid_2)
+    },
+    ok () {
+      if (this.createdFirst) {
+        this.$router.push({ name: 'login' })
+      } else {
+        this.dialogVisible = false
+      }
+    },
     handleClick (row) {
       console.log(row);
     },
@@ -243,10 +157,13 @@ export default {
     },
     //显示数量
     handleCureentChange (val) {
+      console.log(val)
       this.curPage = val;
+      this.getList(0, val, this.start_date, this.end_date, this.uid_2)
     },
     //每页显示条数                 
     handleSizeChange (val) {
+      console.log(val)
       this.pagesize = val;
     }
   },
@@ -394,6 +311,17 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
+      .empty {
+        margin-left: -700px;
+      }
+    }
+    .el-table__row {
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: none !important;
+      }
     }
   }
 }
@@ -403,7 +331,7 @@ export default {
   }
   .el-table__empty-block {
     .empty {
-      margin-left: -500px;
+      margin-left: -1100px !important;
     }
   }
 }
@@ -436,7 +364,7 @@ export default {
   }
   .el-table__empty-block {
     .empty {
-      margin-left: -800px;
+      margin-left: -1450px !important;
     }
   }
 }

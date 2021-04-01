@@ -1,161 +1,135 @@
 <template>
-    <div class="page pageAgreement">
-        <h5>Thoả thuận người dùng KaraokeNow</h5>
-        <p>&quot;Thoả thuận người dùng Karaoke Now&quot; (sau đây gọi tắt là &quot;Thỏa thuận này&quot;) được ký kết giữa người dùng (nghĩa là người sáng tạo hoặc chủ phòng trên nền tảng này, sau đây gọi tắt là &quot;người dùng&quot;) và chủ sở hữu của nền tảng này (sau đây gọi là &quot;nền tảng / nền tảng này&quot;). Thỏa thuận này có hiệu lực như hợp đồng. Người dùng phải đọc kỹ và hiểu đầy đủ các điều khoản và điều kiện, đặc biệt là các điều khoản miễn trừ hoặc giới hạn trách nhiệm pháp lý và các thỏa thuận riêng để mở hoặc sử dụng dịch vụ và chọn chấp nhận hoặc không chấp nhận. Các hạn chế và điều khoản miễn trừ có thể được in đậm để nhắc nhở người dùng chú ý. Nếu người dùng là trẻ vị thành niên, vui lòng đọc kỹ và hiểu đầy đủ thỏa thuận này với người giám hộ hợp pháp và chỉ sử dụng các dịch vụ được cung cấp bởi nền tảng này sau khi có được sự đồng ý của người giám hộ hợp pháp. Nếu người dùng là người giám hộ hợp pháp của trẻ vị thành niên, hy vọng sẽ thiết lập thời gian giải trí một cách hợp lý và bồi dưỡng thói quen giải trí lành mạnh cho trẻ em.</p>
-        <p>Trừ khi người dùng đã đọc và chấp nhận hoàn toàn tất cả các điều khoản của thỏa thuận này, nếu không người dùng không được sử dụng các dịch vụ được cung cấp bởi nền tảng này dưới bất kỳ hình thức nào. Nếu người dùng nhấn chấp nhận, đồng ý, tiếp theo, hoặc người dùng đăng ký và sử dụng các dịch vụ của nền tảng, có nghĩa là người dùng đã hiểu đầy đủ và chấp nhận bị ràng buộc bởi bên còn lại trong thỏa thuận này.</p>
-        <p>Nếu người dùng có ý kiến , đề xuất về thỏa thuận này hoặc các dịch vụ được cung cấp bởi nền tảng này, có thể liên hệ với bộ phận chăm sóc khách hàng của nền tảng này và chúng tôi sẽ cung cấp cho người dùng sự trợ giúp cần thiết.</p>
-        <h6>I. Quy định về tài khoản của nền tảng</h6>
-        <p>1. Đăng ký tài khoản</p>
-        <p>1.1 Người dùng đăng ký tài khoản của nền tảng với thông tin thật và hợp lệ, bao gồm cập nhật liên tục thông tin tài khoản theo trạng thái thay đổi thông tin cá nhân, nếu người dùng cung cấp bất kỳ thông tin sai, không đúng, lỗi thời, không đầy đủ hoặc khi nền tảng có lý do hợp lý để nghi ngờ những thông tin đã nêu trên sai, không đúng sự thật, lỗi thời hoặc không đầy đủ, nền tảng có quyền đình chỉ một phần hoặc chấm dứt dịch vụ tài khoản của người dùng.</p>
-        <p>1.2 Khi người dùng truy cập, duyệt và sử dụng các dịch vụ được cung cấp bởi tài khoản nền tảng, có nghĩa họ đã chấp nhận các điều khoản của thỏa thuận dịch vụ này và đồng ý bị ràng buộc bởi thỏa thuận dịch vụ này, nếu người dùng không đồng ý với các điều khoản của thỏa thuận này, vui lòng dừng đăng ký và ngừng sử dụng nền tảng.</p>
-        <p>1.3 Người dùng hiểu và chấp nhận tài khoản cùn thông tin đã đăng ký do người dùng đặt, không vi phạm luật pháp và quy định cũng như các quy tắc có liên quan của nền tảng như tên tài khoản, hình đại diện và hồ sơ của người dùng không được xuất hiện thông tin bất hợp pháp (bao gồm nhưng không giới hạn trong việc mạo danh họ tên, biệt danh của người khác, phông chữ, hình đại diện, vv đủ để gây nhầm lẫn). Người dùng phải tuân thủ luật pháp và quy định có liên quan trong quá trình đăng ký, sử dụng, đồng thời không được thực hiện bất kỳ hành vi nào xâm phạm lợi ích của đất nước, làm tổn hại đến quyền và lợi ích hợp pháp của người khác và gây nguy hại cho đạo đức xã hội.</p>
-        <p>2. Sử dụng và lưu trữ tài khoản</p>
-        <p>2.1 Nền tảng có quyền xem xét tính xác thực, hợp lệ và hợp pháp của thông tin cá nhân do người dùng đăng ký cung cấp và thực hiện các biện pháp hợp lý để bảo vệ tính bảo mật của tài khoản người dùng, người dùng phải lưu giữ và sử dụng tài khoản và mật khẩu của mình một cách an toàn, bao gồm việc sau mỗi lần sử dụng, bạn nên kết thúc đăng nhập tài khoản và không được tiết lộ, v.v., nếu không, tài khoản nền tảng của người dùng có thể không được bảo vệ an toàn, nếu người dùng thấy rằng tài khoản hoặc mật khẩu của mình đã bị người khác sử dụng bất hợp pháp hoặc có bất thường, người dùng có quyền thông báo cho nền tảng để nền tảng thực hiện các biện pháp bảo vệ.</p>
-        <p>2.2 Người dùng có quyền và trách nhiệm đối với hành vi của tài khoản được lưu giữ sau khi đăng nhập theo luật, vì vậy nền tảng này không chịu bất kỳ trách nhiệm nào đối với bất kỳ tổn thất hoặc thiệt hại nào xảy ra từ hành vi này.</p>
-        <p>2.3 Nền tảng cấm người dùng giao dịch tài khoản của nền tảng. Nếu tình huống như vậy xảy ra, nền tảng có quyền thu hồi tài khoản nền tảng của giao dịch bởi người dùng. Nếu khi tài khoản bị thu hồi vẫn còn số dư nạp tiền hoặc các vật phẩm ảo khác, chúng sẽ bị xóa ngay lập tức và sẽ không được quy đổi trong hoặc ngoài nền tảng. Nếu có bất kỳ tranh chấp nào gây ra bởi giao dịch tài khoản nền tảng của người dùng, nền tảng này không chịu bất kỳ trách nhiệm nào.</p>
-        <h6>II. Bảo vệ quyền riêng tư và thông tin</h6>
-        <p>1. Quyền riêng tư và bảo vệ thông tin người dùng</p>
-        <p>1.1 Nền tảng yêu cầu người dùng cung cấp thông tin liên quan đến danh tính cá nhân của mình và sẽ thực hiện các biện pháp cần thiết để bảo vệ tính bảo mật thông tin cá nhân của người dùng.</p>
-        <p>1.2 Trên cơ sở tuân thủ các yêu cầu của thỏa thuận này, nền tảng này sẽ bảo vệ hoàn toàn quyền riêng tư cá nhân của người dùng. Ngoại trừ các lý do sau, nếu không có sự cho phép, nền tảng này sẽ không cung cấp hoặc tiết lộ thông tin cá nhân cá nhân cho bất kỳ bên thứ ba nào:</p>
-        <p class="list">
-            a) Người dùng hoặc người giám hộ của người dùng ủy quyền hoặc cho phép tiết lộ thông tin của mình;
-            <br />b) Theo yêu cầu của pháp luật và các quy định có liên quan;
-            <br />c) Vì mục đích đảm bảo an toàn hoặc lợi ích của cá nhân và xã hội;
-            <br />d) Duy trì các quyền và lợi ích hợp pháp của nền tảng này;
-            <br />e) Các yêu cầu hợp pháp khác có liên quan.
-        </p>
-        <p>2. Nền tảng có thể thu thập thông tin cá nhân của người dùng khi cung cấp dịch vụ. Để cung cấp dịch vụ tốt hơn, nền tảng cũng có thể thu thập và phân tích thông tin kỹ thuật và trạng thái sử dụng của người dùng. Người dùng ủy quyền cho nền tảng lấy và sử dụng hợp lý các thông tin trên. Nền tảng hứa tuân thủ các yêu cầu pháp lý, ngoại trừ việc tiết lộ theo yêu cầu của pháp luật hoặc không thể khôi phục dữ liệu gốc của cá nhân (như dữ liệu thống kê dựa trên &quot;dữ liệu lớn&quot;).</p>
-        <p>3. Nền tảng không chịu trách nhiệm về việc xóa hoặc lưu trữ thất bại thông tin do người dùng đăng khi sử dụng bất kỳ dịch vụ nào của nền tảng. Nền tảng có quyền đánh giá liệu hành vi của người dùng có tuân thủ các quy định trong điều khoản dịch vụ tài khoản nền tảng hay không. Nếu nền tảng tin rằng người dùng vi phạm thỏa thuận này, nền tảng có quyền xóa thông tin được đăng hoặc gửi bởi người dùng cho đến khi dịch vụ bị gián đoạn hoặc chấm dứt.</p>
-        <h6>III. Mô tả dịch vụ</h6>
-        <p>1. Nền tảng có quyền thay đổi, sửa đổi, thêm hoặc xóa các điều khoản của thỏa thuận dịch vụ này trong tương lai theo quyết định riêng của mình. Tất cả các nội dung sửa đổi đều là một phần của thỏa thuận dịch vụ này. Khi người dùng sử dụng dịch vụ của nền tảng, có nghĩa là người dùng đã chấp nhận việc sửa đổi các điều khoản dịch vụ. Nếu người dùng không đồng ý với việc sửa đổi các điều khoản dịch vụ, có thể chủ động hủy các dịch vụ đã dùng.</p>
-        <p>2. Thỏa thuận này và các điều khoản dịch vụ khác của nền tảng tạo thành một thỏa thuận hoàn chỉnh.</p>
-        <p>3. Bất kỳ chức năng, dịch vụ và sản phẩm mới được nền tảng thêm vào nhằm mục đích hoàn thiện hoặc tối ưu dịch vụ hiện tại đều được áp dụng các điều khoản thoả thuận này một cách vô điều kiện.</p>
-        <p>4. Nếu tài khoản nền tảng không thể lưu trữ hoặc xóa nội dung và thông tin khác của dịch vụ, nền tảng này không chịu bất kỳ trách nhiệm nào. Nền tảng có quyền xóa các tài khoản không được sử dụng trong 3 tháng.</p>
-        <p>5. Nếu người dùng lợi dụng dịch vụ để hiển thị hoặc đăng tải nội dung vi phạm pháp luật hoặc xâm phạm bất cứ quyền lợi nào của người khác, dẫn đến việc tố tụng của bên thứ ba hoặc khiến nền tảng bị xử phạt hoặc xét xử, người dùng chấp nhận xoá bỏ ảnh hưởng bất lợi cho nền tảng, bồi thường thiệt hại cho nền tảng và công ty khác, chi nhánh, đại lý, hoặc đối tác và nhân viên bằng hình thức thích hợp, đồng thời giúp họ không chịu tổn thất.</p>
-        <p>6. Chấm dứt dịch vụ các trường hợp sau</p>
-        <p>6.1 Người dùng đăng thông tin bất hợp pháp, vi phạm nghiêm trọng đạo đức xã hội và các vi phạm khác về các quy định cấm của pháp luật;</p>
-        <p>6.2 Khi người dùng sử dụng dịch vụ của nền tảng, nhưng thực hiện không đúng hoặc có hành vi bị cấm theo nội dung thỏa thuận hoặc thông báo của nền tảng;</p>
-        <p>6.3 Người dùng cung cấp thông tin đăng ký sai hoặc vi phạm thỏa thuận này, nền tảng có quyền đình chỉ việc cung cấp tất cả hoặc một phần dịch vụ cho người dùng;</p>
-        <h6>IV. Điều khoản sử dụng cho trẻ vị thành niên</h6>
-        <p>1. Nền tảng này rất coi trọng việc bảo vệ thông tin cá nhân của trẻ vị thành niên. Nếu người dùng là trẻ vị thành niên dưới 18 tuổi, trước khi sử dụng các dịch vụ của nền tảng này, bao gồm điền thông tin cá nhân, vui lòng tăng cường nhận thức bảo vệ cá nhân và hãy thận trọng. Đọc và đồng ý với thỏa thuận này dưới sự giám sát và hướng dẫn của cha mẹ hoặc người giám hộ.</p>
-        <p>2. Người dùng vị thành niên hiểu rằng nếu người dùng vi phạm luật pháp và các quy định và nội dung của thỏa thuận này, người dùng và người giám hộ của người dùng sẽ phải chịu mọi hậu quả phát sinh theo quy định của pháp luật.</p>
-        <p>3. Lời khuyên đặc biệt cho người dùng vị thành niên</p>
-        <p>3.1 Người vị thành niên sử dụng dịch vụ này dưới sự giám sát và hướng dẫn của người giám hộ, học cách sử dụng Internet thích hợp trong thời gian hợp lý, tránh gây nghiện. Người giám hộ và những người khác cung cấp công cụ thanh toán cá nhân cho người dùng vị thành niên phải quản lý chặt chẽ mật khẩu thanh toán của các ngân hàng và các công cụ thanh toán trực tuyến khác. Nếu xảy ra tổn thất do sơ suất, nền tảng không chịu bất kỳ trách nhiệm nào.</p>
-        <p>3.2 Người dùng vị thành niên hiểu và đồng ý rằng để bảo vệ trẻ vị thành niên tốt hơn, nền tảng này sẽ áp đặt một số hạn chế nhất định đối với việc chấp nhận và sử dụng dịch vụ của người dùng vị thành niên.</p>
-        <p>3.3 Để bảo vệ tốt hơn quyền riêng tư của trẻ vị thành niên, nền tảng nhắc nhở người dùng đăng tải nội dung liên quan đến trẻ em một cách cẩn thận.</p>
-        <h6>V. Mô tả phí</h6>
-        <p>1. Một số dịch vụ hoặc ứng dụng do nền tảng cung cấp có thể phát sinh chi phí và thanh toán. Việc người dùng sử dụng dịch vụ ứng dụng của nền tảng, nhập số tài khoản và mật khẩu được coi như đã chấp nhận thanh toán. Khi bạn chấp nhận dịch vụ, bạn cần tuân theo điều này. Các tiêu chuẩn trao đổi và thanh toán được nền tảng triển khai trong thời gian thực bao gồm chuyển đổi và thanh toán vật phẩm ảo, mã thông báo và tiền thật. Để nâng cao chất lượng dịch vụ của nền tảng, nền tảng có quyền điều chỉnh và cải thiện các tiêu chuẩn trao đổi và thanh toán. Nếu các tiêu chuẩn trao đổi hoặc thanh toán thay đổi, người dùng nên kiểm tra cẩn thận các dịch vụ. Nếu người dùng tiếp tục sử dụng dịch vụ xem như đã chấp nhận các tiêu chuẩn trao đổi hoặc thanh toán mới.</p>
-        <p>2. Dịch vụ thanh toán có thể cần được thực hiện với một quá trình hoàn chỉnh. Nếu dịch vụ bị hủy giữa chừng, nền tảng có quyền không hoàn trả hoặc giải quyết thanh toán.</p>
-        <p>3. Các dịch vụ thanh toán mà người dùng được hưởng cũng có thể cần phải thực hiện định kỳ và nhiều lần. Trước khi hết hạn từng dịch vụ, nếu cần hủy dịch vụ, người dùng nên thông báo tới nền tảng. Nếu không dịch vụ sẽ được tự động gia hạn.</p>
-        <h6>VI. Quy tắc sử dụng và cấm</h6>
-        <p>1. Người dùng nên hiểu bản chất không biên giới của Internet và đặc biệt chú ý tuân thủ tất cả các luật và quy định liên quan của địa phương.</p>
-        <p>2. Hành vi bị nghiêm cấm:</p>
-        <p>2.1 Hiển thị hoặc đăng tải bất kỳ thông tin không thích hợp gồm vi phạm pháp luật, khiêu dâm, thô tục, đe dọa, quấy rối, vu khống hoặc xúc phạm, phỉ báng, xâm phạm quyền riêng tư của người khác hoặc huỷ hoại danh dự, thiện chí của người khác, vi phạm luật pháp quốc gia, đạo đức xã hội và các quy định khác.</p>
-        <p>2.2 Mọi hành vi xâm hại trẻ vị thành niên.</p>
-        <p>2.3 Giả vờ hoặc giả mạo bản thân để mọi người lầm tưởng liên quan đến bất kỳ ai hoặc bất kỳ tổ chức nào.</p>
-        <p>2.4 Bất cứ mọi hình thức giả mạo nội dung khiến mọi người lầm tưởng được gửi bởi nền tảng.</p>
-        <p>2.5 Hiển thị và đăng tải nội dung không được cấp phép.</p>
-        <p>2.6 Nội dung xâm phạm bằng sáng chế, nhãn hiệu, bản quyền, bí mật thương mại hoặc các quyền dân sự khác của bất kỳ ai.</p>
-        <p>2.7 Gửi thư quảng cáo, tài liệu quảng cáo, thư rác hoặc thông tin sai lệch, v.v.</p>
-        <p>2.8 Can thiệp hoặc làm gián đoạn dịch vụ hoặc các máy chủ và mạng được kết nối với dịch vụ, hoặc không tuân thủ các quy định của thỏa thuận này.</p>
-        <p>2.9 Vi phạm bất kỳ luật, quy định, quy tắc, quy định liên quan và các quy định ràng buộc pháp lý khác.</p>
-        <p>2.10 Đánh cắp mật khẩu, số tài khoản và thông tin kỹ thuật số hoặc tài sản khác.</p>
-        <p>2.11 Sử dụng tên của các tổ chức quốc gia hoặc các tổ chức khác.</p>
-        <p>2.12 Tuyên truyền phản động, mê tín dị đoan, tục tĩu, khiêu dâm, cờ bạc, bạo lực, giết người, khủng bố, cổ xuý phạm tội, v.v. không tuân thủ các quy định của luật pháp quốc gia và bất kỳ nội dung nào liên quan đến phân biệt chủng tộc, vùng miền, giới tính, phân biệt tôn giáo và tục tĩu.</p>
-        <p>2.13 Liên kết đến các trang web khác ngoài nền tảng.</p>
-        <p>2.14 Sử dụng các dịch vụ của tài khoản nền tảng hoặc tham gia vào các hoạt động của tài khoản nền tảng thông qua các phương tiện không phù hợp hoặc các phương tiện không công bằng khác. Không can thiệp vào việc cung cấp sản phẩm và dịch vụ thông thường của nền tảng, bao gồm nhưng không giới hạn ở: tấn công, xâm chiếm hoặc làm quá tải máy chủ của nền tảng; tạo, xuất bản, phổ biến, sử dụng bất kỳ hình thức công cụ phụ trợ hoặc chương trình nào ảnh hưởng sự công bằng (Plug-in); sử dụng các lỗ hổng và lỗi chương trình (Bug) để cản trở việc vận hành bình thường của nền tảng hoặc lan truyền các lỗ hổng hoặc lỗi (Bug); can thiệp một cách vô lý hoặc cản trở người khác sử dụng các sản phẩm và dịch vụ do nền tảng cung cấp.</p>
-        <p>2.15 Các hành vi khác được cho là không phù hợp bởi nền tảng này.</p>
-        <p>2.16 Nền tảng có quyền xem xét nội dung được mô tả, đăng ký sử dụng, đăng và gửi bởi người dùng. Nếu có bất kỳ nội dung nào vi phạm luật pháp và quy định hoặc các quy định có liên quan của thỏa thuận này, nền tảng có quyền xóa hoặc ẩn ngay lập tức mà không cần phải thông báo cho người dùng. Nền tảng sẽ không dung thứ cho nội dung gây khó chịu hoặc hành vi xấu lạm dụng người dùng. Việc nền tảng áp dụng các biện pháp cấm không có nghĩa là từ bỏ quyền truy tố của mình.</p>
-        <p>2.17 Các dịch vụ được cung cấp bởi nền tảng này sẽ được cung cấp theo nguyên trạng. Người dùng phải hiểu rõ rằng có thể xuất hiện các lỗ hổng và lỗi (Bug) đã biết và chưa biết trong dịch vụ hoặc do hành vi bị cấm của người dùng khác, và không yêu cầu bất kỳ khoản bồi thường nào từ nền tảng cũng như các chi nhánh.</p>
-        <h6>VII. Tiết lộ thông tin và xử lý</h6>
-        <p>1. Người dùng chịu trách nhiệm hoàn toàn về nội dung được tải lên, hiển thị hoặc đăng tải trên nền tảng. Trong mọi trường hợp, nền tảng sẽ không chịu trách nhiệm về nội dung được cung cấp bởi bất kỳ người dùng nào, bao gồm nhưng không giới hạn bất kỳ lỗi hoặc thiếu sót nào trong bất kỳ nội dung và bất kỳ dẫn xuất nào. Đối với mất mát hoặc thiệt hại, người dùng có trách nhiệm xử lý và khắc phục tất cả các tranh chấp liên quan đến nội dung họ cung cấp. Nền tảng có quyền từ chối hoặc xóa bất kỳ nội dung nào được cung cấp thông qua dịch vụ này theo luật pháp và quy định cũng như yêu cầu của cơ quan hành chính và tư pháp. Người dùng sử dụng các nội dung trên phải tự chịu rủi ro của mình.</p>
-        <p>2. Nền tảng có quyền lưu hoặc tiết lộ nội dung trong các trường hợp sau:</p>
-        <p class="list">
-            a) Theo yêu cầu của thủ tục pháp lý;
-            <br />b) Các điều khoản dịch vụ;
-            <br />c) Bên thứ ba bị xâm phạm đưa ra yêu cầu bồi thường;
-            <br />d) Để bảo vệ tài khoản nền tảng, quyền của người dùng và an toàn chung, tài sản hoặc an toàn cá nhân;
-            <br />e) Các trường hợp khác mà nền tảng thấy cần thiết.
-        </p>
-        <p>3. Khi người dùng tải lên hoặc hiển thị nội dung hoặc hoạt động trên nền tảng này, được xem như cấp quyền miễn phí và không độc quyền, cho phép sử dụng bản quyền của nội dung trên nền tảng này. Nền tảng này có quyền hiển thị, phổ biến và quảng bá, sao chép, sửa đổi và hiển thị nội dung nêu trên. Bất kỳ tổn thất hoặc lợi nhuận nào từ các hoạt động đăng tải, phổ biến và quảng bá mang lại sẽ do nền tảng thụ hưởng. Nền tảng này có quyền quyết định khen thưởng hoặc khích lệ hay không.</p>
-        <p>4. Nếu không có sự cho phép trước của nền tảng hoặc chủ sở hữu, người dùng không được sao chép, bán hoặc sử dụng nội dung được tải lên hoặc hiển thị bởi người khác với mục đích thương mại.</p>
-        <p>5. Quy tắc xử lý tài khoản nền tảng</p>
-        <p>5.1 Họ tên, tài khoản, biệt danh có từ ngữ vi phạm pháp luật, không văn minh, không tuân thủ các quy định quốc gia.Tùy thuộc vào mức độ nghiêm trọng của các trường hợp, nền tảng sẽ đưa ra hình phạt khoá tài khoản trong thời gian nhất định; nếu tình tiết nghiêm trọng, sẽ bị phạt khoá vĩnh viễn.</p>
-        <p>5.2 Liên quan đến xâm nhập, đánh chặn, phá hủy, sao chép, sửa đổi chương trình và quảng cáo, bán và sử dụng các chương trình phụ trợ khác nhau hoặc các chương trình bất hợp pháp độc hại, nghĩa là sử dụng trình cấm hoặc quảng cáo trình cấm trong dịch vụ. Tùy thuộc vào mức độ nghiêm trọng của các trường hợp, nền tảng sẽ đưa ra hình phạt khoá tài khoản trong thời gian nhất định; nếu tình tiết nghiêm trọng, sẽ bị phạt khoá vĩnh viễn.</p>
-        <p>5.3 Lừa đảo hoặc lừa dối người dùng khác dưới bất kỳ hình thức giả mạo nào, chẳng hạn như đăng tải trang web giả hoặc virus, tin nhắn giả mạo, quảng cáo bất hợp pháp, mã độc, trojan, plugin, virus, thông tin khiêu dâm, quảng cáo spam và thông tin khác. Tùy thuộc vào mức độ nghiêm trọng của các trường hợp, nền tảng sẽ đưa ra hình phạt khoá tài khoản trong thời gian nhất định; nếu tình tiết nghiêm trọng, sẽ bị phạt khoá vĩnh viễn.</p>
-        <p>5.4 Đăng tải trang web bất hợp pháp thông qua tài khoản nền tảng để quảng cáo hoặc sử dụng mã độc, trojan, plugin, vi rút, thông tin khiêu dâm, quảng cáo spam, quảng cáo bất hợp pháp và thông tin khác. Tùy thuộc vào mức độ nghiêm trọng của các trường hợp, nền tảng sẽ đưa ra hình phạt khoá tài khoản trong thời gian nhất định; nếu tình tiết nghiêm trọng, sẽ bị phạt khoá vĩnh viễn.</p>
-        <p>5.5 Đăng tải từ ngữ vi phạm luật pháp và quy định của chính phủ như kích động bạo lực, phản động, tục tĩu, bạo lực, phân biệt chủng tộc, phân biệt tôn giáo, phân biệt vùng miền v.v. thông qua tài khoản nền tảng, bao gồm cả việc viết ngược hoặc mã hoá các từ liên quan đó. Tùy thuộc vào mức độ nghiêm trọng của hành vi, sẽ bị phạt khoá tài khoản trong một khoảng thời gian giới hạn; nếu tình tiết nghiêm trọng, sẽ bị phạt khoá vĩnh viễn và báo cáo cho các cơ quan có thẩm quyền để truy tố trước pháp luật.</p>
-        <p>5.6 Gây ra hoặc bán lỗi hệ thống, tấn công hoạt động của máy chủ, chiếm đoạt lợi ích cá nhân, gây ảnh hưởng đến sự công bằng và hoạt động bình thường của người chơi khác. Sau khi kiểm tra và xác minh, tài khoản sẽ bị khoá và tất cả các nội dung bất hợp pháp sẽ bị xóa. Tùy thuộc vào mức độ nghiêm trọng của hành vi, sẽ bị phạt khoá tài khoản trong một khoảng thời gian giới hạn; nếu tình tiết nghiêm trọng, sẽ bị phạt khoá vĩnh viễn.</p>
-        <p>5.7 Ăn cắp hoặc tham gia đánh cắp tài khoản của người khác, gây thiệt hại nghiêm trọng cho người bị đánh cắp. Sau khi kiểm tra và xác minh, tùy thuộc vào mức độ nghiêm trọng của hành vi, sẽ bị phạt khoá tài khoản trong một khoảng thời gian giới hạn; nếu tình tiết nghiêm trọng, sẽ bị phạt khoá vĩnh viễn và báo cáo cho các cơ quan có thẩm quyền để truy tố trước pháp luật.</p>
-        <p>5.8 Xúc phạm, vu khống, tục tĩu, đe dọa, lăng mạ người dùng khác, xuyên tạc sự thật, lan truyền tin đồn sai lệch, ảnh hưởng xấu đến môi trường dịch vụ, v.v. Tùy thuộc vào mức độ nghiêm trọng của các trường hợp, nền tảng sẽ đưa ra hình phạt khoá tài khoản trong thời gian nhất định; nếu tình tiết nghiêm trọng, sẽ bị phạt khoá vĩnh viễn.</p>
-        <h6>VIII. Về quyền và miễn trừ trách nhiệm của nền tảng</h6>
-        <p>1. Ngoài các điều khoản dịch vụ / thỏa thuận hiện có, nền tảng được hưởng các quyền sở hữu trí tuệ sau:</p>
-        <p>1.1 Nền tảng có quyền tương ứng với dịch vụ, phần mềm, chương trình và dữ liệu được bảo vệ bởi luật sở hữu trí tuệ hoặc luật khác được sử dụng trong dịch vụ này.</p>
-        <p>1.2 Nội dung được truyền tải qua dịch vụ được bảo vệ bởi luật bản quyền, luật thương hiệu, luật sáng chế hoặc luật khác, nếu không có sự cho phép rõ ràng của nền tảng, người dùng sẽ không được sửa đổi, thuê, phân phối hoặc tạo ra các tác phẩm khác. Ngoại trừ nội dung được đăng trên nền tảng.</p>
-        <p>1.3 Người dùng có quyền sử dụng không độc quyền phần mềm được dùng trong dịch vụ này, nhưng không được phép hoặc cho phép bất kỳ bên thứ ba nào sao chép, sửa đổi, bán hoặc lấy sản phẩm.</p>
-        <p>1.4 Tài khoản, hình ảnh, tên sản phẩm và dịch vụ đều được sở hữu bởi nền tảng và các chi nhánh. Không ai có thể sử dụng, sao chép hoặc dùng cho các mục đích khác mà không có sự cho phép trước bằng văn bản của nền tảng.</p>
-        <p>2. Nền tảng không đảm bảo tính chính xác hoặc độ tin cậy của bất kỳ nội dung, thông tin hoặc quảng cáo nào được người dùng đăng tải từ bất kỳ kênh nào liên quan đến dịch vụ. Nền tảng không chịu trách nhiệm đối với bất kỳ quảng cáo, sản phẩm, thông tin hoặc tư liệu do người dùng đăng tải. Người dùng phải chú ý phòng ngừa và tự chịu rủi ro.</p>
-        <p>3. Nền tảng có quyền cải thiện hoặc sửa chữa bất kỳ thiếu sót hoặc lỗi nào trong bất kỳ phần nào của dịch vụ.</p>
-        <p>4. Nền tảng không đảm bảo các vấn đề sau (bao gồm nhưng không giới hạn):</p>
-        <p class="list">
-            a) Dịch vụ này phù hợp với yêu cầu sử dụng của tất cả người dùng;
-            <br />b) Dịch vụ này không bị xáo trộn, kịp thời, an toàn, đáng tin cậy hoặc không có lỗi;
-            <br />c) Bất kỳ sản phẩm, dịch vụ hoặc tài liệu nào khác mà người dùng nhận được từ nền tảng đều đáp ứng mong đợi của người dùng;
-        </p>
-        <p>5. Người dùng tự chịu trách nhiệm về bất kỳ thông tin nào được tải xuống hoặc có được thông qua dịch vụ này, người dùng phải chịu trách nhiệm hoàn toàn về thiệt hại của điện thoại di động hoặc hệ thống thiết bị khác hoặc mất dữ liệu do sử dụng;</p>
-        <p>6. Nền tảng không chịu bất kỳ khoản bồi thường trực tiếp, gián tiếp, ngẫu nhiên phát sinh hoặc xử phạt nào nếu xảy ra mất thông tin hoặc tổn thất hữu hình, vô hình đối với lợi nhuận, uy tín vì những lý do sau:</p>
-        <p class="list">
-            a) Dịch vụ sử dụng được hoặc không được;
-            <br />b) Bất kỳ sản phẩm, tài liệu hoặc dịch vụ được mua hoặc nhận được thông qua dịch vụ này;
-            <br />c) Sử dụng trái phép hoặc sửa đổi thông tin người dùng;
-            <br />d) Thông tin người dùng bị mất hoặc bị xóa;
-            <br />e) Các vấn đề khác liên quan đến dịch vụ này.
-        </p>
-        <p>7. Khi duyệt Internet, người dùng có thể xác định thư mục tìm kiếm bằng tài khoản nền tảng. Thư mục truy xuất có thể dẫn người dùng đến các trang web bị xem là tấn công hoặc không phù hợp. Nền tảng không thể xem nội dung của các trang web được liệt kê trong thư mục truy xuất. Do đó, nền tảng không chịu trách nhiệm về tính chính xác, hợp pháp và chính đáng của nó.</p>
-        <p>8. Nền tảng này được bảo vệ và ràng buộc bởi các luật và quy định có liên quan về quyền sở hữu trí tuệ và các quy định bảo vệ. Nội dung được truyền tải, đăng tải và hiển thị trên nền tảng này thuộc về tác giả / chủ sở hữu ban đầu. Nếu không có sự đồng ý của tác giả / chủ sở hữu ban đầu, người dùng sẽ không được sao chép, sửa đổi, điều chỉnh, dịch, biên dịch, tải lên và đăng tải hoặc dùng với mục đích thương mại toàn bộ hoặc một phần nội dung. Nếu tác giả / chủ sở hữu nội dung không muốn đăng tải nội dung trên nền tảng, vui lòng thông báo cho nền tảng này để xóa hoặc hạn chế đăng tải kịp thời.</p>
-        <p>9. Dựa trên sự tuân thủ nghiêm ngặt của người dùng với tuyên bố từ chối trách nhiệm này, nền tảng cung cấp cho người dùng các dịch vụ như tải lên, kênh đăng tải và lưu trữ thông tin. Nền tảng không thực hiện bất kỳ sửa đổi hoặc chỉnh sửa nào đối với nội dung được đăng bởi người dùng. Người dùng phải thận trọng và chịu trách nhiệm về nội dung đã đăng tải. Nền tảng không đảm bảo tính an toàn của nội dung được đăng bởi người dùng, người dùng nên tự giữ bản gốc. Nền tảng sẽ không chịu trách nhiệm nếu bất kỳ nội dung tải lên nào bị mất vì bất cứ lý do gì.</p>
-        <p>10. Nội dung của nền tảng không đại diện cho quan điểm của nền tảng, nó chỉ mang tính tham khảo cho sự giao tiếp giữa người dùng và không có nghĩa là nền tảng đưa ra bất kỳ hướng dẫn và đề xuất nào cho người dùng đối với mọi hành vi. Vì vậy, bất kỳ tranh cãi nào cũng không liên quan gì đến nền tảng. Các liên kết hoặc nội dung định hướng khác không được đăng bởi nền tảng tức không phải là tài nguyên do nền tảng kiểm soát. Nền tảng không đảm bảo tính xác thực, tính hợp pháp, tính toàn vẹn và bảo mật của nó. Nền tảng không chịu bất kỳ trách nhiệm nào đối với các tổn thất do nội dung gây ra.</p>
-        <p>11. Nội dung được đăng tải trên nền tảng này là để hiển thị và giao tiếp với người dùng khác. Lưu trữ trái phép, in lại hoặc sử dụng với mục đích thương mại có thể vi phạm các quyền hợp pháp của người khác.</p>
-        <p>12. Nền tảng có thể phải chịu các trục trặc bất khả kháng như gián đoạn tạm thời, chậm trễ, thiếu sót, v.v. do các cuộc tấn công của hacker, virus máy tính, quy định của chính phủ, lỗi phần mềm và thiết bị phần cứng, lỗi Internet trong lĩnh vực viễn thông hoặc các trang web khác được liên kết với nền tảng này. Nền tảng không chịu bất kỳ trách nhiệm nào về việc rò rỉ, mất mát, chiếm dụng hoặc giả mạo dữ liệu.</p>
-        <p>13. Nền tảng có quyền sử dụng nội dung được tải lên bởi người dùng hoặc người dùng khác cho mục đích quảng bá nền tảng mà không phải trả bất kỳ khoản phí nào hoặc chịu bất kỳ trách nhiệm nào đối với người dùng. Nền tảng có quyền đánh dấu logo của nền tảng khi quảng bá nội dung được đăng bởi người dùng.</p>
-        <p>14. Người dùng phải bảo quản thông tin cá nhân liên quan đến việc sử dụng nền tảng này. Nếu người dùng cung cấp thông tin cho người khác sử dụng, v.v., dẫn đến thông tin bị tiết lộ, người dùng phải chịu trách nhiệm.</p>
-        <h6>IX. Thông báo và quyền tài phán</h6>
-        <p>1. Các thông báo do nền tảng gửi cho người dùng có thể ở dạng email, thông báo trang, thư thông thường, cuộc gọi điện thoại hoặc những gì nền tảng cho là phù hợp. Khi các điều khoản dịch vụ được sửa đổi hoặc các vấn đề khác được thay đổi, nền tảng sẽ được thông báo theo hình thức nêu trên.</p>
-        <p>2. Hiệu lực, hiệu suất, giải thích và giải quyết tranh chấp của các Điều khoản dịch vụ này đều được áp dụng theo luật của nhà nước Cộng hòa Xã hội chủ nghĩa Việt Nam. Nếu người dùng có tranh chấp với nền tảng khởi nguồn từ việc sử dụng nền tảng hoặc do việc thực thi thỏa thuận này, hãy đưa tranh chấp ra toà án để phán xử.</p>
-        <p>3. Nếu một điều khoản trong thỏa thuận dịch vụ này không hợp lệ do mâu thuẫn với luật pháp hiện hành của nhà nước Cộng hòa Xã hội chủ nghĩa Việt Nam, những nội dung khác của thoả thuận đều không bị ảnh hưởng.</p>
-        <h6>10. Thông tin liên lạc</h6>
-        <p>Nếu tác giả phát hiện nội dung được đăng hoặc hiển thị bởi người dùng vi phạm quyền và lợi ích hợp pháp của người dùng khác hoặc chủ sở hữu, vui lòng gửi ngay thông báo vi phạm bản quyền tới nền tảng và gửi chứng nhận quyền sở hữu, liên kết cụ thể và bằng chứng vi phạm chi tiết tới [business@17sing.tw] , chúng tôi sẽ hết lòng phối hợp giải quyết.</p>
-    </div>
+  <div class="page pageAgreement">
+    <h5>平臺直播協議與行爲規範</h5>
+    <h6>一、概述</h6>
+    <p>1.1為加強本平臺直播內容的管理，促進本平臺音視頻服務健康有序發展，營造良好的網路直播生態，給用戶提供一個健康和諧的才藝展示與欣賞平臺，根據相關法律法規與平臺內的其他條款而修訂《平臺直播協議與行爲規範》（以下簡稱為“《本協議》”）。</p>
+    <p>1.2《本協議》適用於所有通過使用本平臺直播服務產生直播內容的個人或機構組織（以下統稱為“平臺主播”），《本協議》所指的直播內容是指通過使用本平臺直播服務提供的音視頻資訊製作、發佈、傳播服務產生的內容。
+      但是，平臺如針對特定類別的直播內容單獨制訂了違規管理辦法，其具體規則與本協議衝突的，在該等單獨的違規管理辦法適用範圍內，應以該等單獨的違規管理辦法為准；該等單獨的違規管理辦法未作規定的部分，平臺仍可以決定適用本協議。</p>
+    <p>1.3本協議規則規範提及示例並不代表列舉所有情況，僅代表幫助您理解並避免違規。請不要試圖尋找規則規範中的漏洞加以實施，請理解這些規範規則制定的初衷，並不要發佈您認為可能處於違反規則規範範圍的內容。</p>
+    <h6>二、規則規範</h6>
+    <p>2.1平臺主播必須遵守以下規則規範，否則將受到對應處罰。違規的情節嚴重程度是平臺官方依據違規意圖、違規時間、違規主體、違規影響等客觀因素進行綜合判定。</p>
+    <p>2.2平臺主播有義務保證直播環境健康有序，主播需對使用直播服務所產生的所有內容負責，包含但不限於直播封面、直播標題、連麥用戶、麥序資訊、頻道資訊、公屏言論等；若直播中發生違規行為，平臺官方將依據違規事實及其影響程度，保留處罰違規者同時連帶處罰主播的權利。</p>
+    <p>2.3嚴禁製作、複製、發佈、傳播含以下違法違規的資訊：</p>
+    <p>（1）反對憲法所確定的基本原則的；</p>
+    <p>（2）危害國家安全，洩露國家秘密，顛覆國家政權，破壞國家統一的；</p>
+    <p>（3）損害國家榮譽和利益的；</p>
+    <p>（4）歪曲、醜化、褻瀆、否定英雄烈士事蹟和精神，以侮辱、誹謗或者其他方式侵害英雄烈士的姓名、肖像、名譽、榮譽的；</p>
+    <p>（5）宣揚恐怖主義、極端主義或者煽動實施恐怖活動、極端主義活動的；</p>
+    <p>（6）煽動民族仇恨、民族歧視，破壞民族團結的；</p>
+    <p>（7）破壞國家宗教政策，宣揚邪教和封建迷信的；</p>
+    <p>（8）散佈謠言，擾亂經濟秩序和社會秩序的；</p>
+    <p>（9）散佈淫穢、色情、賭博、暴力、兇殺、恐怖或者教唆犯罪的；</p>
+    <p>（10）侮辱或者誹謗他人，侵害他人名譽、隱私和其他合法權益的；</p>
+    <p>（11）其他可能引起或已經引起不良影響的政治話題。</p>
+    <p>2.4嚴禁直播違反法律法規內容，例如：</p>
+    <p>（1）展示傳播淫穢色情行為或內容的；</p>
+    <p>（2）展示、參與、舉辦大金額錢財、高價值物品賭博行為或內容的；</p>
+    <p>（3）展示毒品樣品、吸食或注射方式、講解製作、教唆嘗試等所有與毒品相關內容的；</p>
+    <p>（4）組織、宣傳、誘導用戶加入傳銷或有傳銷嫌疑的不知名機構的；</p>
+    <p>（5）展示或銷售大殺傷武器、非法藥品或設備工具的行為或內容的；</p>
+    <p>（6）傳播引導自殺遊戲的；</p>
+    <p>（7）故意傷害、危及他人生命安全的；</p>
+    <p>（8）食用、捕殺、採集、販賣野生或珍稀保護動植物、虐待動物的；</p>
+    <p>（9）利用黨旗、黨徽、國旗、國徽、國歌等代表黨和國家形象的標識及內容，或者借國家重大活動、重大紀念日和國家機關及其工作人員名義等開展直播活動的；</p>
+    <p>（10）已在網路禁播黑名單的；</p>
+    <p>（11）法律、行政法規禁止的其他內容。</p>
+    <p>2.5嚴禁使用誇張標題，內容與標題嚴重不符的；</p>
+    <p>（1）封面、標題內容存在誤導性、欺騙性、嚴重反差誇大等吸引用戶點擊的；</p>
+    <p>（2）封面、標題內容存在性暗示、性挑逗、宣揚美化性交易、性騷擾等內容的；</p>
+    <p>（3）其他含違規資訊、無營養、無意義的封面、標題內容；</p>
+    <p>2.6嚴禁侵犯他人合法權益，例如：</p>
+    <p>（1）過度炒作明星緋聞、娛樂八卦的；</p>
+    <p>（2）宣揚炫富拜金、奢靡腐化等生活方式的；</p>
+    <p>（3）抹黑、詆毀攻擊他人（包含用戶、主播、公會、官方平臺），如：以暗喻（物品、代號花名等）、辱罵、諷刺、造謠、曝光隱私等方式的；</p>
+    <p>（4）慫恿鼓動粉絲、遊客對他人進行騷擾攻擊行為或內容的，如：煽動人員去其他直播間搗亂、對其他直播間進行惡意舉報；</p>
+    <p>2.7嚴禁直播進行不當評述自然災害、重大事故等災難的行為或內容，例如：</p>
+    <p>（1）編造或傳播虛假或未經權威證實的險情、疫情、災情、警情、時事熱點等內容的；</p>
+    <p>（2）發佈調侃或娛樂天災人禍、歷史事件等不當言論的；</p>
+    <p>（3）發佈負能量言論，對他人造成恐慌不安情緒的；</p>
+    <p>2.8嚴禁發佈帶有性暗示、性挑逗等易使人產生性聯想的行為或內容，例如：</p>
+    <p>（1）以胸部、大腿內側、臀部、性器官輪廓等涉及敏感部位進行直播表演；</p>
+    <p>（2）以動作、姿勢暗喻達到性暗示目的，如：撫摸身體、拉扯衣物、舔咬青瓜、吮吸香蕉、擊打臀部、模仿自慰手勢等；</p>
+    <p>（3）展示性相關用品或其他物件明示暗喻達到性聯想目的，包括但不限於安全套、內衣褲、絲襪、充氣娃娃等；</p>
+    <p>（4）展示低俗文字、鏈接、圖片、音樂等資訊內容的；</p>
+    <p>（5）展示以特殊角度刻意拍攝，如：刻意聚焦敏感部位、從下往上拍攝、跟蹤追拍他人等；</p>
+    <p>（6）直接或隱晦描述裸體及性器官等敏感部位、性行為、性過程、性姿勢等容易使人產生性聯想的兩性言論話題的；</p>
+    <p>（7）宣揚或美化性犯罪、性暴力、性交易、性騷擾、性侮辱等不良言論話題的，如：約炮撿屍教程、一夜情攻略、SM玩法等；</p>
+    <p>（8）詳細描述境內外性交易場所、性工作者體驗或性交易教程等言論話題的，如：某地區紅燈區人員價格等；</p>
+    <p>（9）以帶有性挑逗、性暗示的行為或內容進行互動遊戲，如：猜內褲顏色、打巴掌、打屁股等；</p>
+    <p>（10）展示隱私場所、成人場所或成人娛樂場景的，如：夜店酒吧、桑拿洗浴中心、KTV、成人用品展、衛生間、更衣室等；</p>
+    <p>（11）因床、蓋被子為主體的躺床、坐床、蓋被等使人產生性聯想或性幻想的直播行為或內容的；</p>
+    <p>（12）其他具有性暗示、性挑逗的行為或內容；</p>
+    <p>2.9嚴禁展現血腥、驚悚、殘忍等致人身心不適的行為或內容，例如：</p>
+    <p>（1）展示宰殺動物過程引起他人不適的行為或內容；</p>
+    <p>（2）展示自殘自虐、血腥暴力、噁心惡俗等易令人不適的行為或內容，如：刀片割傷、生吃活物等；</p>
+    <p>（3）影視、遊戲畫面出現過於血腥暴力內容的；</p>
+    <p>2.9嚴禁展現血腥、驚悚、殘忍等致人身心不適的行為或內容，例如：</p>
+    <p>（1）展示宰殺動物過程引起他人不適的行為或內容；</p>
+    <p>（2）展示自殘自虐、血腥暴力、噁心惡俗等易令人不適的行為或內容，如：刀片割傷、生吃活物等；</p>
+    <p>（3）影視、遊戲畫面出現過於血腥暴力內容的；</p>
+    <p>3.0嚴禁進行煽動人群歧視、地域歧視等的行為或內容，例如：</p>
+    <p>（1）進行惡搞、嘲諷、侮辱、謾罵女性、殘障人群、少數民族、某一患病群體等特定人群行為或內容的；</p>
+    <p>（2）參與或製造以上話題，帶動鼓動粉絲、遊客、用戶參與相關話題，如：殘疾人上車還要讓座，讓個屁、愛滋病人都該去死等；</p>
+    <p>（3）製作或轉播展示關於歧視的素材題材、圖片文字的；</p>
+    <p>3.1嚴禁宣揚低俗、庸俗、媚俗內容的，例如：</p>
+    <p>（1）宣揚美化不倫關係、獵奇癖好、名人性生活等不良價值觀的行為或內容，如：婚內出軌、一夫多妻、“幹爹”關係、戀童戀腳癖等；</p>
+    <p>（2）宣揚美化不正當婚戀觀、消費觀、價值觀，違背道德底線、公德良序的內容；</p>
+    <p>（3）展示抽煙、酗酒等不良生活作風的；</p>
+    <p>（4）展示墓地殯葬、不良婚鬧、醫鬧等不宜或不適宜的場所進行直播的內容；</p>
+    <p>3.2可能引發未成年人模仿不安全行為和違反社會公德行為、誘導未成年人不良嗜好等的行為或內容，例如：</p>
+    <p>（1）涉及在無監護人在旁同意情況下，未成年人出鏡或作為主體進行直播的；</p>
+    <p>（2）通過各種途徑誘導或教唆未成年人進行充值打賞、私下交易的；</p>
+    <p>（3）無任何保障措施及提醒提示展示具有一定危險性的行為或內容的，如：使用明火、燃放煙花炮竹、簡易食物製作過程、高空跑酷、河邊下水等；</p>
+    <p>（4）其他可能引起未成年人模仿的不良行為或內容的；</p>
+    <p>3.3【直播內容、行為規範】</p>
+    <p>3.3.1禁止直播時政、社會新聞類的內容；</p>
+    <p>3.3.2禁止直播電影、電視、競技比賽等涉及版權的內容，以及播放未經授權的作品、主播本人不擁有版權的內容；</p>
+    <p>3.3.3禁止直播反科學、封建迷信的內容，如：算卦、佛牌、看風水、碟仙、筆仙、筷仙等；</p>
+    <p>3.3.4禁止以個人形式直播任何薦股行為，包括且不限於引導用戶簽訂指導炒股協議、投資諮詢合同、收取諮詢費或指導費等。利用直播非法經營證券業務或者為非法活動提供便利的行為。</p>
+    <p>3.3.5 禁止直播禁播名單內的遊戲或影視節目；</p>
+    <p>3.3.6禁止任何可能涉及侵犯、曝光公民個人隱私的內容；</p>
+    <p>3.3.7禁止機動車駕駛員在行車途中直播，副駕人員不得在駕駛過程中對駕駛員產生任何干擾的行為，不得出現酒駕、闖紅燈、超速行駛等違反交通規則的行為；</p>
+    <p>3.3.8禁止直播出現擾亂正常公共秩序的行為，如：製造噪音、破壞公共設施、進入禁止拍攝場所進行活動拍攝等；</p>
+    <p>3.3.9禁止展示管制刀具、器械；</p>
+    <p>3.4.0禁止直播可能會造成人身安全的自然災害與社會突發事件，如：颱風、地震、洪水、火災、車禍等；</p>
+    <p>3.4.1禁止直播以騷擾、戲弄為目的的網路電話；</p>
+    <p>3.4.2主播如進行採訪、拍攝活動，應告知參與者相關直播事實並征得其同意，若被拍攝者明示拒絕，應立即停止拍攝行為並不得再次進行調戲、聚焦、挑逗、偷拍等行為的；</p>
+    <p>3.4.3禁止低質量、無營養的內容，如：黑屏、直播睡覺、長時間定格畫面等；</p>
+    <p>3.5【直播著裝妝容規範】</p>
+    <p>3.5.1禁止男性赤裸上身，女性刻意露出乳溝的；</p>
+    <p>3.5.2禁止男性下裝僅穿著三角或四角等疑似內褲、緊身褲，且褲腰不得低於胯骨的；</p>
+    <p>3.5.3禁止女性下裝低於骨盆、高於臀線的；</p>
+    <p>3.5.4禁止穿著情趣制服、內衣、透視裝、緊身衣、內衣外穿、吊帶裝、一字領、深V領、超短裙、露臍裝等的；</p>
+    <p>3.5.5禁止著裝過於暴露，使用浴巾、布料、被單等包裹身體，或者雖穿著衣物但給人以未著裝視覺感受的；</p>
+    <p>3.5.6禁止誇張反串服裝、對身體臉部亂塗亂畫、誇張惡俗妝容的；</p>
+    <p>3.5.7禁止內衣、內褲等敏感部位塞物，惡意搞怪的；</p>
+    <p>3.5.8禁止穿著服裝帶其他違規圖案、文字資訊的；</p>
+    <p>3.5.9禁止在各種身體部位大範圍展示刺青、紋身的；</p>
+    <p>3.5.10禁止穿著國家機關人員、軍隊的制服便服進行娛樂性質直播，如：員警制服、軍裝迷彩服、城管保安服等；</p>
+    <p>3.6【直播動作規範】</p>
+    <p>3.6.1禁止模仿各種低俗、色情動作、聲音或帶有誘惑性、挑逗性的表演行為，如：脫衣舞、濕身舞、臀部上下畫圈等；</p>
+    <p>3.6.2禁止進行帶有性暗示的撫摸、拉扯、舔咬、拍打等有暗示動作，或使用道具引起觀眾對敏感部位的注意，也不能利用身體上的敏感部位進行遊戲；</p>
+    <p>3.6.3禁止刻意將鏡頭聚焦於敏感部位；</p>
+    <p>3.6.4避免做出有走光風險的動作，主播應當預先規避此類動作造成走光風險，如：彎腰、高抬腿、雙腿分開、劈叉、下腰、倒立、頻繁切換坐姿等；</p>
+    <p>3.6.5禁止展示侮辱性手勢、姿勢；</p>
+    <p>3.7【直播言論規範】</p>
+    <p>3.7.1禁止討論政治敏感話題，禁止播放或演唱國歌；</p>
+    <p>3.7.2禁止發佈低俗言論，引導直播間內低俗互動；</p>
+    <p>3.7.3禁止宣傳色情低俗內容，帶動用戶低俗氛圍，如：連麥誘導主播擦邊，談論性話題；</p>
+    <p>3.7.4禁止直播過程中不斷使用粗口、髒話、口頭禪謾罵等粗言穢語，主播應當主動規避自己言論中習慣性不良用語，避免對整體表演造成不良、低俗的影響；</p>
+    <p>3.7.5其他可能造成或已經造成不良影響的話題言論；</p>
+    <p>3.8【平臺使用規範】</p>
+    <p>3.8.1禁止通過任何方式發佈售賣法律命令禁止銷售商品、宣傳虛假廣告，如：醫療器械類、藥品藥草類、賭博博彩類、成人用品類、槍支彈藥類、管制刀具類、成人影視類、雲盤類廣告、性用品用具、保健類、煙草類、非法性藥品廣告和性病治療廣告等相關內容的；</p>
+    <p>3.8.2禁止未經報備在直播畫面、麥序、公屏等直播間自定義資訊區域主動或唆使、允許管理放置、宣傳任何廣告資訊；</p>
+    <p>3.8.3禁止未經平臺允許，擅自使用平臺名義展開商業活動，或冒充媒體、電視臺、記者等名義進行直播活動；</p>
+    <p>3.8.4禁止未經授權盜播、轉播他人擁有知識產權的內容，如：其他主播的直播內容、他人製作的小視頻、未經授權的影視作品等；</p>
+    <p>3.8.5禁止以任何方式攻擊官方人員、官方平臺，對平臺造成不良影響的；</p>
+    <p>3.9其他對平臺生態造成不良影響的直播內容。</p>
+    <h6>三、處理機制</h6>
+    <p>4.0若直播中出現如【二、規則規範】所示違規行為或內容，官方將依據本協議第2.1條進行音頻視頻服務禁用警告、踢出直播間警告、中斷或限制直播功能、刪除相關違規資訊、限制相關資源、扣除或凍結直播收益、封禁或永久凍結相關帳號及直播間、限制或永久限制相關身份資訊開播等處置手段對違規進行處理。</p>
+    <p>4.1除以上處置手段，平臺官方將根據違規嚴重影響程度，保留將其主動上報網路黑名單及依法移送司法機關的權利。</p>
+    <h6>四、附則</h6>
+    <p>1.本協議由平臺官方頒佈，最終解釋權歸平臺官方所有，平台官方有權對本協議進行修改並經公示生效。</p>
+    <p>2.本協議自發布之日起生效。</p>
+  </div>
 </template>
-
-<style lang="scss">
-.pageAgreement {
-    color: #666;
-    background: #fff;
-    padding: $page-padding;
-    line-height: 1.4em;
-    h5,
-    h6 {
-        color: $text-black;
-        font-weight: bold;
-    }
-    h5 {
-        text-align: center;
-        font-size: 110%;
-        padding: 0.1rem 0 0.2rem 0;
-    }
-    h6 {
-        font-size: 90%;
-        padding: 0.1rem 0;
-    }
-    p {
-        font-size: 90%;
-        padding: 0.1rem 0;
-        text-indent: 2em;
-        &.list {
-            text-indent: 0;
-            padding-left: 2em;
-        }
-    }
-}
-</style>
