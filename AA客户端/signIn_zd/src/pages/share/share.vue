@@ -49,7 +49,7 @@ import api from "../../api/apiConfig"
 import { mapState } from "vuex"
 export default {
   components: { SharePeople, Loading },
-  data() {
+  data () {
     return {
       type: null,
       inviteCode: null,
@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     ...mapState(['isOver']),
-    iponeX() {
+    iponeX () {
       // var u = navigator.userAgent;
       // var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
       // if (isIOS) {
@@ -77,7 +77,7 @@ export default {
       return false
     }
   },
-  created() {
+  created () {
     document.title = 'ادعو أصدقاء'
     this.type = getString('type')
     let shareInviteCode = getString('inviteCode')
@@ -117,7 +117,7 @@ export default {
     }
   },
   methods: {
-    share() {
+    share () {
       if (this.type == 2) {
         // let app = getString('app')
         APP(`hsing://cat2345.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `SuperVoice://inviteCode=${this.inviteCode}`)
@@ -130,9 +130,9 @@ export default {
           "share_title": `لقد قمت بتسجيل الوصول لمدة ${this.days} أيام متتالية`,
           "share_content": `لقد سجلت الدخول لمدة ${this.days} أيام متتالية. فزت بجائزة عند التقليب. أحتاج إلى مساعدتك. تعال`,
           "share_image": this.master.headImg,
-          "link": `http://cat2345.com/singIn_zd_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
+          "link": `http://supervoice-app.com/singIn_zd_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`,
           "image": this.master.headImg,
-          "share_url": `http://cat2345.com/singIn_zd_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
+          "share_url": `http://supervoice-app.com/singIn_zd_new/html/index3.php?inviteCode=${this.inviteCode}&type=2`
         }
         if (ios) {
           if (window.shareOutside != undefined) {
@@ -145,7 +145,7 @@ export default {
         }
       }
     },
-    closeWeb() {
+    closeWeb () {
       var u = navigator.userAgent;
       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
@@ -164,7 +164,7 @@ export default {
 </script>
 <style lang="scss">
 body {
-  background: #f2f2f2 url("../../assets/img/shareBg.png") no-repeat;
+  background: #f2f2f2 url('../../assets/img/shareBg.png') no-repeat;
   background-size: 100% auto;
   .share {
     direction: rtl;
@@ -267,5 +267,5 @@ body {
     }
   }
 }
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 </style>
