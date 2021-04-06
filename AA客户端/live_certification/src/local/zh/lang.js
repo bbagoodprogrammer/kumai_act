@@ -4,7 +4,7 @@ export default {
     page_skill_title: "封面技巧", //封面技巧
     page_notQualified_title: "權限說明", //權限說明
     page_LiveCover_title: "直播封面", // 直播封面
-    page_standard_title: "平台直播協議與行為規範", //平台直播協議與行為規範
+    page_standard_title: "平臺直播協議與行為規範", //平台直播協議與行為規範
     // router/index
     page_cardTips: "請上傳認證照片 ", //請上傳認證照片
     page_cardTips2: "上傳成功後，我們會加快審核", //上傳成功後，我們會加快審核

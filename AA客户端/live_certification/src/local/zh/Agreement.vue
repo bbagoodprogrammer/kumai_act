@@ -1,5 +1,5 @@
 <template>
-  <div class="page pageAgreement">
+  <div class="page pageAgreement standard">
     <h5>平臺直播協議與行爲規範</h5>
     <h6>一、概述</h6>
     <p>1.1為加強本平臺直播內容的管理，促進本平臺音視頻服務健康有序發展，營造良好的網路直播生態，給用戶提供一個健康和諧的才藝展示與欣賞平臺，根據相關法律法規與平臺內的其他條款而修訂《平臺直播協議與行爲規範》（以下簡稱為“《本協議》”）。</p>
@@ -133,3 +133,26 @@
     <p>2.本協議自發布之日起生效。</p>
   </div>
 </template>
+
+<style lang="scss" scoped >
+.standard {
+  padding: 0 0.3rem 0.21rem;
+  .mt {
+    margin-top: 0.6rem;
+  }
+  h5 {
+    font-size: 0.32rem;
+    color: rgba(17, 17, 17, 1);
+    margin: 0.3rem auto 0.16rem;
+  }
+  p {
+    color: rgba(153, 153, 153, 1);
+    font-size: 0.26rem;
+    margin-bottom: 0.2rem;
+  }
+  .lastTm {
+    text-align: right;
+    margin-top: 0.5rem;
+  }
+}
+</style>

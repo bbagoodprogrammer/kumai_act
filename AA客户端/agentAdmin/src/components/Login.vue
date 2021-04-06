@@ -1,12 +1,12 @@
 <template>
-  <div class="page pageIndex login_html" v-loading.fullscreen.lock="fullscreenLoading">
+  <div class="page pageIndex login_html" onselectstart="return false;" v-loading.fullscreen.lock="fullscreenLoading">
     <!-- <i class="logo"></i> -->
     <img src="../img/logo.png" alt="" class="logo">
     <div class="loginCon">
       <img src="../img/login_bg.png" alt="" class="login_bg">
       <div class="login_input">
         <div class="login_title">
-          Agent login
+          AGENT LOGIN
         </div>
         <input type="text" v-model="userAccount" placeholder="Account/Uid" class="userAccount">
         <input type="password" v-model="userPassword" placeholder="Password" class="userPassword">
@@ -31,6 +31,7 @@ export default {
   },
   created () {
     this.keyupSubmit();
+    window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
   },
   methods: {
     login () {
@@ -48,8 +49,9 @@ export default {
         if (res.data.response_status.code == 0) {
           const token = res.data.response_data.token
           const aid = res.data.response_data.aid
+          const nick = res.data.response_data.nick
           //   this.$router.push({ path: '/admin', query: { token, aid } })
-          location.href = `./index.html?token=${token}&aid=${aid}#/admin`
+          location.href = `./index.html?token=${token}&aid=${aid}&nick=${nick}#/admin`
         } else {
           this.errStr = res.data.response_status.error
         }
@@ -69,6 +71,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+body {
+  background: rgba(63, 18, 87, 1);
+}
 .login_html {
   background: rgba(63, 18, 87, 1);
 }
@@ -128,6 +133,8 @@ export default {
         color: rgba(18, 18, 18, 1);
       }
       .login_btn {
+        cursor: default;
+        user-select: none;
         width: 240px;
         height: 40px;
         background: #7E36FF;
@@ -136,9 +143,13 @@ export default {
         text-align: center;
         line-height: 40px;
         color: #fff;
+        font-size: 14px;
       }
       .login_btn:hover {
         background: #8D4DFF;
+      }
+      .login_btn:active {
+        background: #7E36FF;
       }
       .errTips {
         font-size: 14px;
@@ -147,6 +158,11 @@ export default {
         margin-top: 10px;
       }
     }
+  }
+}
+@media screen and (max-width: 750px) {
+  .logo {
+    display: none;
   }
 }
 </style>

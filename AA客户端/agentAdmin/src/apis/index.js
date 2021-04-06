@@ -153,7 +153,7 @@ function login(account, password) {
 }
 
 function list(page, start_date, end_date, uid) {
-    let apiStr = `/index.php?action=Agent.signedAnchorIncomelist&aid=${aid}&token=${token}&page=${page}&limit=20`;
+    let apiStr = `/index.php?action=Agent.signedAnchorIncomelist&aid=${aid}&token=${token}&page=${page}&limit=9`;
     if (start_date) {
         apiStr += `&start_date=${start_date}`;
     }
