@@ -5,7 +5,7 @@
       <a class="tab2" @click.prevent="mainTab=1" :class="{current:mainTab==1}" href="">Phần thưởng</a>
     </div>
     <div class="actTime">
-      Thời gian: 12:00 8/2- 24:00 19/02
+      Thời gian: 12:00 6/4- 24:00 16/4
     </div>
     <div class="rule" v-if="mainTab == 0">
       <h5>Hướng dẫn tích điểm cầu nguyện:</h5>
@@ -44,19 +44,19 @@
       </div>
       <p>
         Hạng 1:<br />
-        Phiếu quà nạp 10% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang sức Cây Cầu Nguyện (30 ngày) + Quà đặc hiệu Dạ Khúc (2880 xu) + Kỳ Lân Năm Mới (30 ngày) + 3000 xu + 8000 đậu
+        Phiếu quà nạp 15% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang Sức Bạch Dươngện (30 ngày) + Quà đặc hiệu Dạ Khúc (2880 xu) + Du Thuyền (30 ngày) + 3000 xu + 8000 đậu
       </p>
       <p>
         Hạng 2:<br />
-        Phiếu quà nạp 8% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang sức Cây Cầu Nguyện (30 ngày) + Quà đặc hiệu Dạ Khúc (2880 xu) + Kỳ Lân Năm Mới (30 ngày) + 2000 xu + 5000 đậu
+        Phiếu quà nạp 12% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang Sức Bạch Dươngện (30 ngày) + Quà đặc hiệu Dạ Khúc (2880 xu) + Du Thuyền (30 ngày) + 2000 xu + 5000 đậu
       </p>
       <p>
         Hạng 3:<br />
-        Phiếu quà nạp 5% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang sức Cây Cầu Nguyện (30 ngày) + Quà đặc hiệu Dạ Khúc (2880 xu) + Kỳ Lân Năm Mới (30 ngày) + 1000 xu + 3000 đậu
+        Phiếu quà nạp 10% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang Sức Bạch Dươngện (30 ngày) + Quà đặc hiệu Dạ Khúc (2880 xu) + Du Thuyền (30 ngày) + 1000 xu + 3000 đậu
       </p>
       <p>
         Hạng 4-10: <br />
-        Phiếu quà nạp 3% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang sức Cây Cầu Nguyện (30 ngày) + Quà đặc hiệu Đu Quay (388 xu) + Kỳ Lân Năm Mới (30 ngày) + 5000 xu + 1000 đậu
+        Phiếu quà nạp 8% (1 lần) + Huy chương Cây Cầu Nguyện (30 ngày) + Trang Sức Bạch Dươngện (30 ngày) + Quà đặc hiệu Đu Quay (388 xu) + Du Thuyền (30 ngày) + 500 xu + 1000 đậu
       </p>
       <h5>Chú thích: </h5>
       <p>1. Tất cả túi quà có thời hạn 7 ngày.</p>
@@ -67,25 +67,25 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       mainTab: 0,
       giftArr1: [
         {
-          img: require("../../img/gift_icon/gift1.png"),
-          name: 'Siêu Sao<br />（118 xu）'
+          img: require("./img/gift1.png"),
+          name: 'Chân Ái(266 xu)'
         },
         {
-          img: require("../../img/gift_icon/gift2.png"),
-          name: 'Hoa Hồng<br />（118 xu）'
+          img: require("./img/gift2.png"),
+          name: 'Love U(266 xu)'
         },
         {
           img: require("../../img/gift_icon/gift3.png"),
           name: 'Phiếu quà nạp'
         },
         {
-          img: require("../../img/gift_icon/gift4.png"),
-          name: 'Vô số xu'
+          img: require("./img/gift3.png"),
+          name: 'Thuyền Máy'
         }
       ],
       giftArr2: [
@@ -94,16 +94,16 @@ export default {
           name: 'Huy chương Cây Cầu Nguyện'
         },
         {
-          img: require("../../img/gift_icon/gift6.png"),
-          name: 'Trang sức Cây Cầu Nguyện'
+          img: require("./img/gift4.png"),
+          name: 'Trang Sức Bạch Dương'
         },
         {
           img: require("../../img/gift_icon/gift7.png"),
           name: 'Dạ Khúc<br />	（2880 xu）'
         },
         {
-          img: require("../../img/gift_icon/gift8.png"),
-          name: 'Kỳ Lân Năm Mới'
+          img: require("./img/gift5.png"),
+          name: 'Du Thuyền'
         }
       ],
 
