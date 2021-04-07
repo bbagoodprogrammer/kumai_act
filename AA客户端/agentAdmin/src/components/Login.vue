@@ -160,6 +160,13 @@ body {
     }
   }
 }
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input:focus {
+  border: 1px solid rgba(126, 54, 255, 1) !important;
+  border-radius: 0.04rem !important;
+}
 @media screen and (max-width: 750px) {
   .logo {
     display: none;

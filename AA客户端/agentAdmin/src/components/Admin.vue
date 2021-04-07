@@ -3,7 +3,6 @@
     <i class="liner"></i>
     <el-container>
       <el-header class="header">
-
         <div class="logo">
           <img src="../img/logo.png" alt="">
           <div class="userNick">
@@ -37,13 +36,13 @@
       <el-main class="main">
         <!-- .slice((curPage -1)*pagesize,curPage*pagesize -->
         <el-table :data="tableData" :border='false' style="width: 100%" stripe :header-cell-style="{color:'#121212',fontFamily:'MicrosoftYaHeiUI',fontSize:'14px',fontWeight:900, textAlign: 'center'}">
-          <el-table-column fixed prop="uid" label="UID" width="110" max-width="132" min-width="110" :max-height="81">
-          </el-table-column>
           <el-table-column fixed prop="nick" label="Nickname" width="132" :max-height="81">
+          </el-table-column>
+          <el-table-column prop="uid" label="UID" width="110" max-width="132" min-width="110" :max-height="81">
           </el-table-column>
           <el-table-column prop="" label="Photo" width="110" :max-height="81">
             <template slot-scope="scope">
-              <img :src="scope.row.avatar" alt="" />
+              <img :src="scope.row.avatar" alt="" class="userImg" />
             </template>
           </el-table-column>
           <el-table-column prop="matchVideoDuration" label="Match Duration " width="164" :max-height="81">
@@ -190,6 +189,12 @@ export default {
 <style lang="scss">
 .pageIndex {
   padding-bottom: 44px;
+  .userImg {
+    object-fit: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
+  }
   .liner {
     display: block;
     width: 100%;
@@ -304,6 +309,12 @@ export default {
     // margin-left: 138px;
     margin: 0 auto;
     padding: 0;
+    .el-table_1_column_2 {
+      .cell {
+        display: block !important;
+        text-align: left !important;
+      }
+    }
     tr {
       max-height: 70px;
     }

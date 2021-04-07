@@ -118,4 +118,41 @@ function getInitInfo() {
     );
 }
 
-export { get, post, loadData, getInitInfo };
+function luck(count) {
+    return get(
+        `/index.php?signture=innerserver&action=constellationsCollect.light&token={token}&uid={uid}&count=${count}`
+    );
+}
+
+function turntableLuck() {
+    return get(
+        `/index.php?signture=innerserver&action=constellationsCollect.luckDraw&token={token}&uid={uid}`
+    );
+}
+
+function getHistoryList(from, more) {
+    if (more) {
+        return axios.get(
+            `/index.php?signture=innerserver&action=constellationsCollect.history&token={token}&uid={uid}&from=${from}`
+        );
+    }
+    return get(
+        `/index.php?signture=innerserver&action=constellationsCollect.history&token={token}&uid={uid}&from=${from}`
+    );
+}
+
+function roolMsg() {
+    return axios.get(
+        `/index.php?signture=innerserver&action=constellationsCollect.notice`
+    );
+}
+export {
+    get,
+    luck,
+    post,
+    loadData,
+    getInitInfo,
+    turntableLuck,
+    getHistoryList,
+    roolMsg
+};
