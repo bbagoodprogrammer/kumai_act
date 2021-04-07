@@ -1,3 +1,5 @@
+import store from "../store";
+
 function getUrlString(key) {
     const vars = {};
     window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, k, v) => {

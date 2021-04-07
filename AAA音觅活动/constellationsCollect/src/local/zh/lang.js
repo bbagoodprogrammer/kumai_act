@@ -1,4 +1,4 @@
 export default {
     //html/index.html
-    title: '簽約',
-}
+    title: "點亮星座"
+};
