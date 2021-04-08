@@ -47,7 +47,7 @@ import api from "../apis"
 import { mapState } from "vuex"
 export default {
   components: { SharePeople },
-  data() {
+  data () {
     return {
       type: null,
       inviteCode: null,
@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     ...mapState(['isOver']),
-    iponeX() {
+    iponeX () {
       // var u = navigator.userAgent;
       // var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
       // if (isIOS) {
@@ -75,7 +75,7 @@ export default {
       return false
     }
   },
-  created() {
+  created () {
     document.title = this.lang.share_title
     this.type = getUrlString('type')
     let shareInviteCode = getUrlString('inviteCode')
@@ -115,9 +115,9 @@ export default {
     }
   },
   methods: {
-    share() {
+    share () {
       if (this.type == 2) {
-        APP(`india://singstarapp.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `Gaoge://inviteCode=${this.inviteCode}`)
+        APP(`india://singstarapp.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `india://inviteCode=${this.inviteCode}`)
       } else {
         var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
         var ua = navigator.userAgent;
@@ -143,7 +143,7 @@ export default {
         }
       }
     },
-    closeWeb() {
+    closeWeb () {
       var u = navigator.userAgent;
       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
@@ -162,7 +162,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 body {
-  background: #f2f2f2 url("../img/shareBg.png") no-repeat;
+  background: #f2f2f2 url('../img/shareBg.png') no-repeat;
   background-size: 100% auto;
   .share {
     .header {

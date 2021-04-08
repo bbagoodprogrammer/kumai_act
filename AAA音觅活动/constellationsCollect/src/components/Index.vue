@@ -62,6 +62,7 @@ export default {
 
 <style lang="scss">
 .pageIndex {
+  overflow-x: hidden;
   .tipsBox {
     position: absolute;
     top: 4.5rem;

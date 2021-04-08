@@ -20,62 +20,14 @@ function toast(message, time) {
     }, cssTime + time);
 }
 function getConfig() {
-    var tw = {
-        name: '17sing',
-        androidSchema: 'hsing://17sing.tw',
-        androidDown: 'http://17sing.tw/goto_googleplay',
-        iosSchema: 'Gaoge://',
-        iosDown: 'http://17sing.tw/goto_appstore',
-        tips: '請點按右上角...</br>選擇系統默認瀏覽器打開'
-    };
-
-    var conf = {
-        localhost: tw,
-
-        '17sing': tw,
-        oksing: {
-            name: 'oksing',
-            androidSchema: 'oksing://oksing.tw/goto_googleplay',
-            androidDown: tw.androidDown,
-            iosSchema: 'oksing://',
-            iosDown: tw.iosDown,
-            tips: '請點按右上角...</br>選擇系統默認瀏覽器打開'
-        },
-
-        singnowapp: {
-            name: 'singnowapp',
-            androidSchema: 'singnowapp://',
-            androidDown: 'http://singnowapp.com/goto_googleplay',
-            iosSchema: 'singnowapp://',
-            iosDown: 'http://singnowapp.com/goto_appstore',
-            tips: 'Hãy nhấn ... ở phía trên bên phải</br>Dùng lịch trình hệ thống mặc định để mở'
-        },
-        wekarapp: {
-            name: 'wekarapp',
-            androidSchema: 'wekara://',
-            androidDown: 'https://wekarapp.com',
-            iosSchema: 'wekara://',
-            iosDown: 'https://wekarapp.com/goto_appstore',
-            tips: 'silakan kilk pojok kanan atas...</br>pilih beowser default utk bukanya'
-        },
-        gosingapp: {
-            name: 'gosingapp',
-            androidSchema: 'gosingapp://gosingapp.com',
-            androidDown: 'http://gosingapp.com/goto_googleplay',
-            iosSchema: 'supervoice://',
-            iosDown: 'http://gosingapp.com/goto_appstore',
-            tips: 'يرجى النقر في الزاوية العلوية اليمنية... </ b> تختار متصفح النظام لفتح هذا الربط'
-        },
-    };
-
-    var host = location.host;
-    for (var key in conf) {
-        if (new RegExp(key, 'i').test(host)) {
-            return conf[key];
-        }
-    }
-
-    return tw;
+    return   {
+        name: 'wekarapp',
+        androidSchema: 'wekara://',
+        androidDown: 'https://wekarapp.com',
+        iosSchema: 'wekara://',
+        iosDown: 'https://wekarapp.com/goto_appstore',
+        tips: 'silakan kilk pojok kanan atas...</br>pilih beowser default utk bukanya'
+    },
 }
 
 var Navigator = navigator.userAgent;

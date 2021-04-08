@@ -120,7 +120,7 @@ export default {
     share () {
       if (this.type == 2) {
         // let app = getString('app')
-        APP(`hsing://cat2345.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `SuperVoice://inviteCode=${this.inviteCode}`)
+        APP(`gosingapp://gosingapp.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `KaraYo://inviteCode=${this.inviteCode}`)
       } else {
         var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
         var ua = navigator.userAgent;
@@ -138,7 +138,7 @@ export default {
           if (window.shareOutside != undefined) {
             shareOutside(JSON.stringify(data))
           } else {
-            location.href = `shareUserInfo://cat2345.com/singIn_zd_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=لقد سجلت الدخول لمدة ${this.days} أيام متتالية. فزت بجائزة عند التقليب. أحتاج إلى مساعدتك. تعال&userImg=${this.master.headImg}&title=لقد قمت بتسجيل الوصول لمدة ${this.days} أيام متتالية`;
+            location.href = `shareUserInfo://supervoice-app.com/singIn_zd_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=لقد سجلت الدخول لمدة ${this.days} أيام متتالية. فزت بجائزة عند التقليب. أحتاج إلى مساعدتك. تعال&userImg=${this.master.headImg}&title=لقد قمت بتسجيل الوصول لمدة ${this.days} أيام متتالية`;
           }
         } else {
           javascript: JSInterface.shareOutside(JSON.stringify(data));

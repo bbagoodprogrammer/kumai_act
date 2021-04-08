@@ -3,7 +3,7 @@
 
 $inviteCode= $_REQUEST['inviteCode'];
 $ch = curl_init();
-$url= "http://test.17sing.tw/action/index.php?action=signInTask.getInvitedFriends&inviteCode=$inviteCode";
+$url= "http://act.supervoice-app.com/action/index.php?action=signInTask.getInvitedFriends&inviteCode=$inviteCode";
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
 curl_setopt($ch, CURLOPT_TIMEOUT, 5);
@@ -140,9 +140,9 @@ if($response_info && isset($response_info['response_data'])){
             methods: {
                 share: function () {
                     if (this.second <= 0) return
-                    openApp("hsing://cat2345.com/" + "\{\"inviteCode\":\"" + inviteCode + "\"\}",
+                    openApp("gosingapp://gosingapp.com/" + "\{\"inviteCode\":\"" + inviteCode + "\"\}",
                         null, null,
-                        "SuperVoice://inviteCode=" + inviteCode)
+                        "KaraYo://inviteCode=" + inviteCode)
                 },
                 downTimeGo: function () {
                     var hour = 0

@@ -60,7 +60,7 @@
             恭喜你點亮了【{{empty_star[0].name}}】,並獲得【{{prizes.gift[0].name}}*1】;
           </div>
           <div class="next_btn" v-if="luckDrawCount > 0">
-            <div class="turnLuck"></div>
+            <div class="turnLuck" @click="scorllTo()"> </div>
           </div>
           <div class="next_btn " v-else>
             <div class="cancel" v-if="empty_star" @click="showLuckPup  = false"></div>
@@ -144,8 +144,10 @@ export default {
         this.firstPup = true
       } else {
         this.nums = val
+
         luck(val).then(res => {
           if (res.data.response_status.code == 0) {
+            this.firstPup = false
             this.vxc('setFirst')
             this.luckDrawCount = res.data.response_data.luckDrawCount
             this.vxc('addUserStar', res.data.response_data.prizes.constellation)
@@ -159,15 +161,18 @@ export default {
       }
     },
     scorllTo () {
-      let a = document.getElementsByClassName('turntable')[0].getBoundingClientRect().top
+      this.showLuckPup = false
+      this.firstPup = false
+      let a = document.getElementsByClassName('table')[0].getBoundingClientRect().top
       let c = document.documentElement.scrollTop || document.body.scrollTop
       let e = a + c - 10
       this.timer = setInterval(() => {
+        let scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 10;
         let c = document.documentElement.scrollTop || document.body.scrollTop
         let t = (e - c) / 10
         window.scrollTo(0, c + t)
         console.log(t)
-        if (t < 8) {
+        if (t < 15 || scrollToBottom) {
           clearInterval(this.timer)
         }
       }, 10)
