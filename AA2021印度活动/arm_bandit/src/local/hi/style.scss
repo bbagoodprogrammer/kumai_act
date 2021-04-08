@@ -1,0 +1,38 @@
+html.hi {
+    .bandit {
+        background: url(./img/banner.png) center 0 no-repeat;
+        background-size: 100% auto;
+    }
+    .buttomBox{
+        .coins1 {
+            width: 1.59rem;
+            height: 1.13rem;
+            background: url(./img/50.png);
+            background-size: 100% 100%;
+          }
+          .coins2 {
+            width: 1.59rem;
+            height: 1.13rem;
+            background: url(./img/200.png);
+            background-size: 100% 100%;
+          }
+          .coins3 {
+            width: 1.59rem;
+            height: 1.13rem;
+            background: url(./img/500.png);
+            background-size: 100% 100%;
+          }
+    }
+    .footer{
+       .napngay{
+        background: url(./img/nap.png);
+        background-size: 100% 100%;
+       } 
+    }
+    .bandit{
+        .share{
+            background: url(./img/share_bar.png);
+            background-size: 100% 100%;
+        }
+    }
+}

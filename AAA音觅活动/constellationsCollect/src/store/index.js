@@ -9,7 +9,7 @@ export default new vuex.Store({
         loading: false,
         constellation: {},
         firstLight: false,
-        luckDrawCount: 0,
+        luckDrawCount: -1,
         turntable: []
     },
     mutations: {
@@ -21,7 +21,6 @@ export default new vuex.Store({
         },
         setInitInfo(state, data) {
             Object.assign(state, data);
-            console.log(state);
         },
         setFirst(state, val) {
             state.firstLight = false;
@@ -40,6 +39,16 @@ export default new vuex.Store({
                 }
             }
             console.log(state.constellation);
+        },
+        setGiftHave(state, val) {
+            for (let i = 0; i < state.turntable.length; i++) {
+                if (state.turntable[i].pid == val) {
+                    Vue.set(state.turntable[i], "have", true);
+                }
+            }
+        },
+        reduxNums(state) {
+            state.luckDrawCount -= 1;
         }
     },
     actions: {

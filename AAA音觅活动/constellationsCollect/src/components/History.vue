@@ -56,7 +56,7 @@ export default {
         if (item.count == 10) {
           return this.tipes.light_tm
         } else {
-          return this.tipes[light].replace('$', item.prizes[0].name)
+          return this.tipes.light.replace('$', item.prizes[0].name)
         }
 
       } else {

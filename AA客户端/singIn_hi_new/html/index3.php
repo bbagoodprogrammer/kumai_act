@@ -193,7 +193,7 @@ if($response_info && isset($response_info['response_data'])){
                     if (this.second <= 0) return
                     openApp("india://singstarapp.com/" + "\{\"inviteCode\":\"" + inviteCode + "\"\}",
                         null, null,
-                        "Gaoge://inviteCode=" + inviteCode)
+                        "india://inviteCode=" + inviteCode)
                 },
                 downTimeGo: function () {
                     var hour = 0

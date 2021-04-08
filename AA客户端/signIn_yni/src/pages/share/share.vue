@@ -119,7 +119,7 @@ export default {
   methods: {
     share () {
       if (this.type == 2) {
-        APP(`wekara://wekarapp.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `Gaoge://inviteCode=${this.inviteCode}`)
+        APP(`wekara://wekarapp.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `wekara://inviteCode=${this.inviteCode}`)
       } else {
         var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
         var ua = navigator.userAgent;
@@ -137,7 +137,7 @@ export default {
           if (window.shareOutside != undefined) {
             shareOutside(JSON.stringify(data))
           } else {
-            location.href = `shareUserInfo://wekarapp.com/singIn_tw_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=Saya sudah sign-in ${this.days} hari dengan terus-menurus di Wekara,buka kartu akan bisa dapatkan hadiah.Saya perlu bantuanmu,cepat datang&userImg=${this.master.headImg}&title=Sy sudah sign-in ${this.days} hari dengan terus-menurus`;
+            location.href = `shareUserInfo://wekarapp.com/singIn_yni_new/html/index3.php?inviteCode=${this.inviteCode}&type=2&shareText=Saya sudah sign-in ${this.days} hari dengan terus-menurus di Wekara,buka kartu akan bisa dapatkan hadiah.Saya perlu bantuanmu,cepat datang&userImg=${this.master.headImg}&title=Sy sudah sign-in ${this.days} hari dengan terus-menurus`;
           }
         } else {
           javascript: JSInterface.shareOutside(JSON.stringify(data));

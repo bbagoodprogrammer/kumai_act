@@ -1,25 +1,30 @@
 <template>
   <div class="table">
     <div class="zi"></div>
+    <canvas id="turn_bg" class="turn_bg"></canvas>
+    <canvas id="turn_openDefaule" class="goIcon" v-show="luckDrawCount<=0"></canvas>
+    <canvas id="turn_openAct" class="goIcon" @click="luckIng()" v-show="luckDrawCount>0"></canvas>
     <div class="turnTable" :style="{transform:'rotate('+nowAngle+'deg)'}">
-      <div class="goIcon" @click="luckIng()"></div>
+      <canvas id="turn_All" class="turn_All" v-if="is_all"></canvas>
       <span v-for=" (item,index) in turntable" :key="index" :class="'ward'+index">
         <img :src="item.image" alt="">
         <em>{{item.name}}</em>
+        <span class="black_bg" v-if="!item.have"></span>
       </span>
+      <canvas id="turn_linght" :class="'ward' + (giftIndex -1)" v-show="lingHt"></canvas>
     </div>
-    <div class="mask">
+    <div class="mask" v-show="giftPup">
       <transition name="slide">
-        <div class="luckPup">
+        <div class="luckPup" v-if="giftPup">
           <div class="title">恭喜獲得</div>
           <div class="luckItem">
             <div class="imgBox">
-              <img src="" alt="">
+              <img :src="gift.image" alt="">
             </div>
-            <strong></strong>
+            <strong>{{gift.name}}</strong>
           </div>
-          <div class="tips">恭喜你獲得【獎勵名稱名稱】</div>
-          <div class="ok"></div>
+          <div class="tips">恭喜你獲得【{{gift.name}}】</div>
+          <div class="ok" @click="giftPup = false"></div>
         </div>
       </transition>
     </div>
@@ -30,6 +35,12 @@
 
 import { mapState } from "vuex"
 import { turntableLuck } from "../apis"
+
+
+import { Downloader, Parser, Player } from 'svga.lite'
+
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
 
 export default {
   data () {
@@ -44,23 +55,91 @@ export default {
         6: 60,
       },
       giftIndex: 1,
+      gift: {},
+      giftPup: false,
+      linghtStar: false,
+      svgaDdress: [
+        {
+          key: 'turn_bg',
+          addres: 'http://fstatic.cat1314.com/uc/svga/8ad3baf1bfd111468c55fbb0cd748089_1617848559.svga'
+        },
+        {
+          key: 'turn_openDefaule',
+          addres: 'http://fstatic.cat1314.com/uc/svga/6a20293d9d1fd3e05808a01bbae3c884_1617848504.svga'
+        },
+        {
+          key: 'turn_openAct',
+          addres: 'http://fstatic.cat1314.com/uc/svga/88fae19807a1e0154fa1279bb681391c_1617848752.svga'
+        },
+        {
+          key: 'turn_linght',
+          addres: 'http://fstatic.cat1314.com/uc/svga/244a0fbe436cdcf1b7c0ae5282cc275b_1617848574.svga'
+        },
+        {
+          key: 'turn_All',
+          addres: 'http://fstatic.cat1314.com/uc/svga/0b2c0cab8643886816e05a273f06dea4_1617865747.svga'
+        }
+      ],
+      dataArr: {},
+      plarerArr: {},
+      lingHt: false
     }
   },
   computed: {
-    ...mapState(['turntable'])
+    ...mapState(['turntable', 'luckDrawCount']),
+    is_all () {
+      let nums = 0
+      this.turntable.forEach(element => {
+        if (element.have) {
+          nums++
+        }
+      });
+      console.log(nums >= this.turntable.length)
+      return nums
+    }
+  },
+  mounted () {
+    this.downloaderData(this.svgaDdress)
+  },
+  watch: {
+    luckDrawCount (val) {
+      if (this.plarerArr['turn_openAct']) {
+        this.plarerArr['turn_openAct'].player.clear()
+      }
+      if (this.plarerArr['turn_openDefaule']) {
+        this.plarerArr['turn_openDefaule'].player.clear()
+      }
+      if (val > 0) {
+        this.svgaStart('turn_openAct', 1, true, this.svgaDdress[2].data)
+      } else {
+        this.svgaStart('turn_openDefaule', 1, true, this.svgaDdress[1].data)
+      }
+    },
+    is_all (val) {
+      if (val == this.turntable.length) {
+        console.log(val)
+        this.svgaStart('turn_All', 1, true, this.svgaDdress[4].data)
+      }
+    }
   },
   methods: {
     luckIng () {
       turntableLuck().then(res => {
         if (res.data.response_status.code == 0) {
-          const id = res.data.response_data.prize.pid
+          this.vxc('reduxNums')
+          this.gift = res.data.response_data.prize
+          const id = this.gift.pid
           for (let i = 0; i < this.turntable.length; i++) {
             if (this.turntable[i].pid == id) {
-              console.log(this.turntable[i].pid)
               this.giftIndex = this.turntable[i].pid
               this.turnAngle()
-              setTimeout(() => {
-
+              setTimeout(() => { //svga光效闪动
+                this.lingHt = true
+                setTimeout(() => {
+                  this.lingHt = false
+                  this.giftPup = true
+                  this.vxc('setGiftHave', id)
+                }, 2000)
               }, 5000)
             }
           }
@@ -78,17 +157,69 @@ export default {
         this.nowAngle += 1800
       }
     },
+    downloaderData (arr) {
+      return new Promise((res, rej) => {
+        let PromiseArr = []
+        for (let i = 0; i < arr.length; i++) {
+          PromiseArr.push(this.loadSvgaData(arr[i]))
+        }
+        Promise.all(PromiseArr).then((values) => {
+          res(values)
+          this.svgaGo()
+        })
+      })
+    },
+    loadSvgaData (fileItem) {
+      return new Promise((resolve, reject) => {
+        ; (async () => {
+          const fileData = await downloader.get(fileItem.addres);
+          const data = await parser.do(fileData);
+          fileItem.data = data
+          resolve(data);
+        })()
+      });
+    },
+    svgaGo () {
+      this.svgaStart('turn_bg', 1, true, this.svgaDdress[0].data)  //节点类名,開始幀數,是否开始动画,加载的对应Data
+      this.svgaStart('turn_linght', 1, true, this.svgaDdress[3].data)
+
+    },
+    async svgaStart (className, start, isGo, data) {//节点类名,開始幀數,是否开始动画,加载的对应Data
+      let canvas = document.getElementById(className)
+      let player = new Player(canvas)
+      player.set({ startFrame: start })
+      if (!isGo && start == 1) {
+        player.set({ startFrame: start }) //loop: 1, 
+      } else {
+        player.set({ startFrame: start })
+      }
+      await player.mount(data)
+      player.start()
+      if (!isGo && start == 1) {
+        player.stop()
+      }
+      this.plarerArr[className] = {
+        player,
+      }
+      console.log(this.plarerArr)
+    },
   }
 }
 </script>
 
 <style lang="scss">
 .table {
-  width: 7.51rem;
+  width: 7.5rem;
   height: 7.66rem;
   background: url(../img/turnTable2.png);
   background-size: 100% 100%;
   position: relative;
+  .turn_bg {
+    width: 7.5rem;
+    height: 7.66rem;
+    position: absolute;
+  }
+
   .zi {
     width: 0.38rem;
     height: 0.59rem;
@@ -99,6 +230,16 @@ export default {
     left: 3.65rem;
     z-index: 10;
   }
+  .goIcon {
+    width: 2.11rem;
+    height: 2.11rem;
+    //   background: url(../img/turn_default.png);
+    //   background-size: 100% 100%;
+    position: absolute;
+    top: 2.82rem;
+    left: 2.8rem;
+    z-index: 100;
+  }
   .turnTable {
     width: 5.6rem;
     height: 5.6rem;
@@ -108,21 +249,29 @@ export default {
     top: 1.05rem;
     left: 1.04rem;
     transition: transform 5s ease;
-    .goIcon {
-      width: 2.11rem;
-      height: 2.11rem;
-      background: url(../img/turn_default.png);
-      background-size: 100% 100%;
+    #turn_All {
+      width: 5.6rem;
+      height: 5.6rem;
       position: absolute;
-      top: 1.77rem;
-      left: 1.77rem;
+      left: 0;
+      top: 0;
+      z-index: 50;
     }
+
     span {
       display: block;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      position: relative;
+      .black_bg {
+        width: 2.89rem;
+        height: 2.07rem;
+        background: url(../img/black_bg.png);
+        background-size: 100% 100%;
+        position: absolute;
+      }
       img {
         width: 1.2rem;
         height: 1.2rem;
@@ -144,38 +293,93 @@ export default {
       }
       &.ward1 {
         position: absolute;
-        top: 1.1rem;
-        left: 4rem;
-        transform: rotate(60deg);
+        top: 1.12rem;
+        left: 3.75rem;
+        // transform: rotate(60deg);
         z-index: 10;
+        .black_bg {
+          transform: rotate(60deg);
+        }
       }
       &.ward2 {
         position: absolute;
-        top: 3.1rem;
-        left: 4rem;
-        transform: rotate(120deg);
+        top: 2.93rem;
+        left: 3.75rem;
+        // transform: rotate(120deg);
         z-index: 10;
+        .black_bg {
+          transform: rotate(120deg);
+        }
       }
       &.ward3 {
         position: absolute;
-        top: 4rem;
+        top: 3.86rem;
         left: 2.2rem;
-        transform: rotate(-180deg);
+        // transform: rotate(-180deg);
         z-index: 10;
+        .black_bg {
+          transform: rotate(-180deg);
+        }
       }
       &.ward4 {
         position: absolute;
-        top: 3.1rem;
-        left: 0.5rem;
-        transform: rotate(-120deg);
+        top: 2.98rem;
+        left: 0.6rem;
+        // transform: rotate(-120deg);
         z-index: 10;
+        .black_bg {
+          transform: rotate(-120deg);
+        }
       }
       &.ward5 {
         position: absolute;
-        top: 1.1rem;
-        left: 0.5rem;
-        transform: rotate(-60deg);
+        top: 1.12rem;
+        left: 0.6rem;
+        // transform: rotate(-60deg);
         z-index: 10;
+        .black_bg {
+          transform: rotate(-60deg);
+        }
+      }
+    }
+    #turn_linght {
+      width: 3.4rem;
+      height: 2.48rem;
+      position: absolute;
+      &.ward0 {
+        top: -0.23rem;
+        left: 1.12rem;
+        z-index: 10;
+      }
+      &.ward1 {
+        top: 0.67rem;
+        left: 2.65rem;
+        z-index: 10;
+        transform: rotate(61deg);
+      }
+      &.ward2 {
+        top: 2.45rem;
+        left: 2.63rem;
+        z-index: 10;
+        transform: rotate(120deg);
+      }
+      &.ward3 {
+        top: 3.35rem;
+        left: 1.05rem;
+        z-index: 10;
+        transform: rotate(-180deg);
+      }
+      &.ward4 {
+        top: 2.44rem;
+        left: -0.42rem;
+        z-index: 10;
+        transform: rotate(-120deg);
+      }
+      &.ward5 {
+        top: 0.67rem;
+        left: -0.42rem;
+        z-index: 10;
+        transform: rotate(-60deg);
       }
     }
   }
@@ -190,6 +394,42 @@ export default {
       line-height: 0.8rem;
       font-size: 0.32rem;
       color: #fff;
+    }
+    .luckItem {
+      width: 1.37rem;
+      margin: 0.3rem auto;
+      .imgBox {
+        width: 1.37rem;
+        padding-top: 0.24rem;
+        height: 1.2rem;
+        background: url(../img/luckItemBg.png);
+        background-size: 100% 100%;
+        position: relative;
+        img {
+          width: 0.9rem;
+          height: 0.9rem;
+          display: block;
+          margin: 0 auto;
+        }
+        .gNums {
+          width: 0.27rem;
+          height: 0.31rem;
+          position: absolute;
+          right: 0.15rem;
+          bottom: 0.15rem;
+        }
+      }
+      strong {
+        display: block;
+        text-align: center;
+        font-size: 0.24rem;
+        color: rgba(90, 224, 248, 1);
+      }
+    }
+    .tips {
+      text-align: center;
+      color: rgba(246, 223, 254, 1);
+      font-size: 0.28rem;
     }
   }
 }

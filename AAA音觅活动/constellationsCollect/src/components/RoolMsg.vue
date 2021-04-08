@@ -62,7 +62,7 @@ export default {
   height: 0.44rem;
   display: flex;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.47);
+  background: #000000;
   .popup {
     border-radius: 0.2rem;
     width: 100%;
