@@ -283,6 +283,7 @@ export default {
         height: 50%;
         text-align: center;
         color: rgba(101, 72, 209, 1);
+        padding: 0 0.15rem;
       }
       .goNums {
         display: flex;
@@ -339,6 +340,7 @@ export default {
       text-align: center;
       font-size: 0.24rem;
       margin: 0.2rem auto 0;
+      padding: 0 0.15rem;
       span {
         font-size: 0.38rem;
         color: rgba(255, 250, 151, 1);
@@ -370,6 +372,7 @@ export default {
         height: 0.3rem;
         text-align: center;
         margin-top: 0.15rem;
+        padding: 0 0.15rem;
         .ed {
           background: rgba(131, 198, 255, 0.4);
           color: rgba(84, 71, 190, 1);
@@ -435,6 +438,7 @@ export default {
     &.noSeed {
       .ordinaryTips {
         margin-top: 1.7rem;
+        padding: 0 0.15rem;
         span {
           display: block;
           color: rgba(240, 179, 255, 1);
@@ -455,7 +459,7 @@ export default {
       text-align: center;
       font-size: 0.32rem;
       font-weight: 500;
-
+      padding: 0 0.15rem;
       img {
         width: 0.5rem;
         height: 0.5rem;

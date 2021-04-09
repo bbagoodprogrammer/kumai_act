@@ -130,6 +130,8 @@ export default {
         addres = `http://fstatic.cat1314.com/uc/svga/8f6a7b9695945d9de2515f0d45ff6ac3_1615357987.svga`
       } else if (_app == 'singnow') {
         addres = `http://fstatic.cat1314.com/uc/svga/ec12435be441b98da96ac0ae3a75edbf_1615792726.svga`
+      } else if (_app == 'wekara') {
+        addres = `http://fstatic.cat1314.com/uc/svga/8e328d7e0cbcf5a5868504b654660ce2_1617954923.svga`
       }
       const fileData = await downloader.get(addres);
       const data = await parser.do(fileData);
@@ -233,7 +235,7 @@ export default {
       display: block;
       width: 0.28rem;
       height: 0.3rem;
-      background: url(../img/numbers/x.png);
+      background: url(../img/numbers/C.png);
       background-size: 100% 100%;
     }
   }

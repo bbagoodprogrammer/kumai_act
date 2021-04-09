@@ -1,12 +1,11 @@
 <template>
   <div class="rule">
     <h5>Rules</h5>
-    <p class="ruleTitle">Time：</p>
-    <p>{{timer}}</p>
+    <p class="ruleTitle">Time：{{timer}}</p>
     <ol>
-      <li>1. You can get 1 slot token for every coin recharged. You can get better prizes by drawing with more tokens.</li>
-      <li>2. You can get three prizes in one draw. Prizes will be sent automatically. If you receive a double card, you can get two of the rest prizes in this draw.</li>
-      <li>3. Gifts value will be calculated after you receive the payback coupon. You will get coins payback once reaching the condition.</li>
+      <li>1. You can get 1 slot token for every coin recharged. You would have higher chance of getting rare items if you drew with more tokens.</li>
+      <li>2. You can get three prizes in one draw. Prizes will be sent automatically. If you receive a double card, you can get the rest prizes of this draw in duplicate.</li>
+      <li>3. The value of gifts will be calculated after you receive the coin rebate coupon. You will get coins rebate once reaching the condition.</li>
       <li>4. You must get a special uid if you draw with 4,000 tokens 20 times. After the event, Official Service UID 10 will contact you in 7 days about the special uid.</li>
       <li>5. GIfts will be saved in your "Pack". You can send them to other users.</li>
       <li>6. Each user can only get one special uid for drawing with 4,000 tokens 20 times.</li>
@@ -16,9 +15,9 @@
       <ul>
         <li>
           <span>
-            <img :src="require('./img/wards/ward19.png')" alt="">
+            <img :src="require('./img/wards/ward22.png')" alt="">
           </span>
-          <p>Vip</p>
+          <p>VIP</p>
         </li>
         <li>
           <span>
@@ -34,15 +33,15 @@
         </li>
         <li>
           <span>
-            <img :src="require('./img/wards/ward7.png')" alt="">
+            <img :src="require('./img/wards/ward4.png')" alt="">
           </span>
           <p>Recharge bonus coupon </p>
         </li>
         <li>
           <span>
-            <img :src="require('./img/wards/ward4.png')" alt="">
+            <img :src="require('./img/wards/ward7.png')" alt="">
           </span>
-          <p>Payback coupon</p>
+          <p>Coin rebate coupon</p>
         </li>
         <li>
           <span>

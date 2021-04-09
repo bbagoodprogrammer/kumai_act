@@ -66,7 +66,7 @@ export default {
       that.$store.commit('changactState', that.activeMsg.status)  //当前活动状态
       that.activeMsg.lotterylist.forEach(function (item) {
         // that.textArr.push(`恭喜 ${item.uid}   獲得   ${wards[item.prizeid]} × ${item.num}`
-        that.lang.luck_tips.replace('$', item.uid).replace('#', that.wards[item.prizeid]).replace('%', item.num)
+        that.textArr.push(that.lang.luck_tips.replace('$', item.uid).replace('#', that.wards[item.prizeid]).replace('@', item.num))
       })
       sessionStorage.setItem('stime', that.activeMsg.stime)
       sessionStorage.setItem('etime', that.activeMsg.etime)

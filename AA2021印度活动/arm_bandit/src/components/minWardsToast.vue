@@ -21,7 +21,7 @@
       <div class="msgBox" :class="{top:!showdouble}">
         <!--  -->
         <p class="double" v-show="showdouble">{{lang.double}}</p>
-        <p class="toastMsg">{{lang.luck_tips}}</p>
+        <p class="toastMsg">{{lang.luck_tipsMsg}}</p>
       </div>
       <a href="" @click.prevent="closeToast()" class="close"></a>
     </div>
@@ -122,12 +122,17 @@ export default {
   z-index: 10000;
   background: rgba(#000, 0.8);
   .title {
+    display: block;
+    width: 3rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
     position: absolute;
-    top: 3.3rem;
-    left: 3.2rem;
+    top: 3.2rem;
+    left: 2.25rem;
     z-index: 100;
     color: #fdfdac;
     font-weight: bold;
+    text-align: center;
   }
   .wardlist {
     margin: 0 auto;

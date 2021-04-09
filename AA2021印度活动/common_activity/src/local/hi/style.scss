@@ -1,0 +1,16 @@
+html.hi {
+    .shareBar {
+      
+        .bar {
+          background: url(./img/share_bar.png) no-repeat;
+          background-size: 100% 100%;
+        }
+       
+      }
+      .stamp {
+        &:after {
+            background: url(./img/ed.png);
+            background-size: 100% 100%;
+        }
+    }
+}

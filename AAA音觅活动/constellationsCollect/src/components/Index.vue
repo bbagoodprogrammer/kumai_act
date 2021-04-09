@@ -2,8 +2,8 @@
   <div class="page pageIndex">
     <RoolMsg :roolMsgs="roolMsgs" />
     <div class="tipsBox">
-      <span @click="showHistory = true">中獎紀錄</span>
       <span @click="showRule = true">規則&獎勵</span>
+      <span @click="showHistory = true">中獎紀錄</span>
     </div>
     <div class="header">
 
@@ -65,9 +65,9 @@ export default {
   overflow-x: hidden;
   .tipsBox {
     position: absolute;
-    top: 4.5rem;
+    top: 4.4rem;
     right: 0;
-    z-index: 10;
+    z-index: 5;
     span {
       display: block;
       width: 1.49rem;

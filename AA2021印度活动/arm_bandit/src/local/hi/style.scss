@@ -1,7 +1,11 @@
 html.hi {
     .bandit {
-        background: url(./img/banner.png) center 0 no-repeat;
+        background: RGBA(6, 7, 143, 1) url(./img/banner.png) center 0 no-repeat;
         background-size: 100% auto;
+        >a{
+            font-size: .2rem;
+            letter-spacing: -.015rem;
+        }
     }
     .buttomBox{
         .coins1 {
@@ -34,5 +38,8 @@ html.hi {
             background: url(./img/share_bar.png);
             background-size: 100% 100%;
         }
+    }
+    .toastMsg{
+        margin-top: -.2rem;
     }
 }

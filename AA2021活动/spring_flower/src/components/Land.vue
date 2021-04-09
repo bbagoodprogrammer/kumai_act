@@ -436,7 +436,7 @@ export default {
         .x {
           width: 0.28rem;
           height: 0.3rem;
-          background: url(../img/numbers/x.png);
+          background: url(../img/numbers/C.png);
           background-size: 100% 100%;
         }
       }
@@ -494,7 +494,7 @@ export default {
         .x {
           width: 0.28rem;
           height: 0.3rem;
-          background: url(../img/numbers/x.png);
+          background: url(../img/numbers/C.png);
           background-size: 100% 100%;
         }
       }

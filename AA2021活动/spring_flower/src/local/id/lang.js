@@ -1,70 +1,163 @@
 export default {
-    //html/index.html
-    title: 'Menandatangani kontrak',
+    ok: "Ya",
+    now_has: "Sekarang ada",
+    tm_min: "menit",
+    not_singUps:
+        "Anda belum mendaftar ke acara tersebut, jadi Anda tidak dapat melakukannya ~    ",
+    //footer
+    title: "Bunga & Keinginan",
+    noAct: "Acara belum dimulai    ",
+    actEd: "Acara sudah selesai    ",
+    singUpTips: "Daftar Segera    ",
+    noRank: "Tiada dlm daftar",
+    lastRankTips: "Kurang $    ",
+    singUpSuc: "Berhasil mendaftar!    ",
 
-    // router/index
-    page_data: 'Datanya memenuhi target',
-    page_bind: 'Tautkan nomor HP',
-    page_apply: 'Minta terkontrak',
-    page_agreement: 'Perjanjian lisensi Wekara',
+    //hsitory
+    date: "Tanggal    ",
+    get_gift: "Dapatkan penghargaan    ",
+    noData: " Tiada data",
 
-    // Index
-    sign: 'Masuk utk menandatangani kontrak',
-    signed: 'Sudah ter kontrak',
-    sign_rule: 'Keterangan terkontrak：',
-    sign_rule_1: '1、Pengguna yg tidak terkontrak tidak bisa tarik tunai, hanya bisa menukar jadi koin emas, dan harus tukarkan minimum 20000 berlian Wekara tiap kali, yg tidak cukup 20000 berlian Wekara tidak ditukarkan；',
-    sign_rule_2: '2、Menjadi pengguna yg terkontrak akan bisa tarik pendapatannya, dan Level yg terkontrak makin tinggi, proporsi pertakuran koin makin tinggi, dan bisa tukarkan minimum 100 berlian Wekara tiap kali。',
+    //index
+    luck: "Undian",
+    rule: "Aturan",
+    Strategy: "Strategi tanam",
 
-    // Task
-    data_name: 'Datanya memenuhi target, menjadi pengguna yg terkontrak',
-    data_desc: 'Setelah datanya memenuhi target, baru bisa minta terkontrak',
-    bind_name: 'Tautkan nomor HP',
-    bind_desc: 'Tolong tautkan nomor HP dulu',
-    sign_name: 'Segera menandatangani',
-    sign_desc: 'Nikmati manfaat hak istimewa yg eksklusif  dari pengguna yg terkontrak',
-    do: 'Masuk',
-    done: 'Sudah',
-    sign_tips: 'Kalo dua langkah pertama belum selesai\n Tidak bisa minta terkontrak',
-    ok: 'Ya',
+    //lands
+    plantTips:
+        "Apakah Anda yakin untuk mengkonsumsi satu biji dan tanam 5 bunga keinginan?    ",
+    plantTips_query: "",
 
-    // Bind
-    bind_succ: 'Akun Anda sudah berhasil diikat\n nomor HP: %s',
+    //landsBox
+    whide_seed_tip1: "Pilih jumlah biji putih yang akan ditanam    ",
+    whide_seed_tip2: "Output yang diharapkan     ",
+    whide_seed_tip3: "Silakan pilih jumlahnya utk pakai berkah dewa bunga    ",
+    whide_seed_tip4: "Kurangi waktu pertumbuhan    ",
+    whide_seed_tip5:
+        "Apakah Anda yakin untuk mengonsumsi bunga berkah dewa sekali untuk membuat biji yang sekarang segera matang?    ",
+    whide_seed_tip9: "",
+    whide_seed_tip6:
+        "Apakah Anda yakin menggunakan [$ koin emas] untuk membeli [jumlah taman bunga x1]?    ",
+    whide_seed_tip7:
+        "Biji tidak cukup,Buruan selesaikan misi dan dapatkan lebih banyak biji!    ",
+    whide_seed_tip8:
+        "Kali berkah dewa bunga tidak mencukupi,Top-up bisa mendapatkan [Berkah Dewa Bunga], mengurangi waktu pertumbuhan bunga sebanyak 10 menit!        ",
 
-    // Data
-    count_title: 'Pengguna yg akan mencapai persyaratnya',
-    count_income: 'Pendapatan berlian Wekara',
-    count_numbers: '（{0}/{1}）',
-    count_time: 'Periode statistik ini adalah tgl {1} bulan {0} ~ tgl {3} bulan {2}\nMasih ada {4} hari berakhir akan masuk ke periode statistik berikutnya, semangat ya',
-    done_tips: 'Anda sudah mencapai persyaratan pengguna yg terkontrak\nCepatlah minta untuk menjadi pengguna yg terkontrak',
-    undone_tips: 'Anda belum mencapai persyaratan pengguna yg terkontrak\nTidak bisa minta untuk menjadi pengguna yg terkontrak',
-    done_give: 'Setelah berhasih terkontrak, akan mendapatkan：',
-    done_give_1: '1、Bisa tarik pendapatannya, dan level yg terkontrak makin tinggi,proporsi tarik makin tinggi；',
-    done_give_2: '2、Bisa dapatkan proporsi pertukaran koin lebih tinggi, dan bisa tukarkan minimum 100 berlian Wekara tiap kali',
+    //luck
+    luckTips:
+        "Menggoyang botol keinginan untuk menjatuhkan hadiah yang kaya! Konsumsi 20 bunga keinginan untuk digoyang sekali!    ",
+    history_title: "Catatan",
+    luck_one: "Goyang 1 kali",
+    luck_ten: "Goyang 10 kali",
+    luck_giftTips: "Penghargaan prestasi    ",
+    luck_giftTips2:
+        "Berhasil memanen 60 bunga keinginan setiap hari, dan selesaikan tugas dalam 5, 10, dan 15 hari untuk menerima hadiah yang sesuai! (Dibatasi sekali per orang)        ",
+    luck_giftTips3: "Jumlah bunga yang dipanen hari ini: $    ",
+    luck_get: "Terima biji    ",
+    luck_geted: "Diterima    ",
+    luck_noSeed:
+        "Jumlah bunga keinginan tidak cukup,Pergi dan tanam lebih banyak bunga keinginan!        ",
+    luck_title: "Selamat sudah mendapatkan    ",
+    luck_getTips:
+        "Hadiah telah didistribusikan ke akun Anda, silakan perhatikan untuk memeriksanya!    ",
+    giftConfig: {
+        1: [
+            {
+                img: require("../../img/gift/gift4.png"),
+                name: "Berkah Dewa Bunga * 10"
+            },
+            {
+                img: require("../../img/gift/gift1.png"),
+                name: "5% kupon top-up"
+            }
+        ],
+        2: [
+            {
+                img: require("../../img/gift/gift4.png"),
+                name: "Berkah Dewa Bunga * 20"
+            },
+            {
+                img: require("../../img/gift/gift2.png"),
+                name: "Rusa Kutub (7 hari)"
+            }
+        ],
+        3: [
+            {
+                img: require("../../img/gift/gift4.png"),
+                name: "Berkah Dewa Bunga * 30"
+            },
+            {
+                img: require("../../img/gift/gift3.png"),
+                name: "Hadiah Ransel Pot Bunga (10 koin emas)"
+            }
+        ]
+    },
+    luck_getSuc: "Berhasil diterima!    ",
 
-    // Apply
-    apply_title: 'Langkah terakhir minta terkontrak：',
-    apply_desc: 'Menandatangani kontrak perlu menyerahkan KTP untuk ditinjau, dan berhasil ditinjau menunjukkan berhasil minta ',
-    card_title: 'Pegang bagian depan KTP dan ambil foto sesuai contoh gambar',
-    card_desc: 'Untuk memastikan keaslian identitas Anda, Anda perlu memverifikasi identitas Anda,\n Silakan kirimkan foto sesuai dengan contoh gambar,jika KTP ditemukan palsu, akun akan diblokir secara permanen',
-    re_upload: 'Unggah ulang',
-    upload_title: 'Tolong upload foto verifikasi',
-    upload_desc: 'Setalah berhasil upload, kami akan meninjaukan secepatnya',
-    agree_agreement: 'Permohonan kontrak berarti setuju',
-    apply_agreement: '《Perjanjian lisensi Wekara》',
-    submit_apply: 'Kirim dan permohonan kontrak',
-    card_submited: 'Verifikasi identitas sudah kirim\n Tidak perlu kirim ulang\nbisa langsung minta kontrak',
+    //rank
+    tab1: "Masuk Tukang Kebun    ",
+    tab2: "Daftar Tukang Kebun Terbaik    ",
+    day_task: "Tugas hari ini    ",
+    gift_seed: "Hadiah benih    ",
+    gift_bar: "Susunan    ",
+    get_seed: "Terima biji    ",
+    store_gift: "Penghargaan Top-up    ",
+    store_tips1:
+        "Untuk setiap 50 koin emas yang ditop-up, Anda dapat menerima biji putih x1,",
+    store_tips2:
+        "dan untuk setiap 100 koin emas yang Anda top-up, Anda akan menerima bonus [berkah dewa bunga] x1!",
+    store_dayCoins:
+        "Hari ini Anda telah top-up: $ koin emas (reset pada 00:00 setiap hari)    ",
+    store_getGift: "Terima penghargaan    ",
+    store_got: "Pergi utk top up    ",
+    rank_timeTips: "Hitung Mundur",
+    rank_timeTips2: "Hitung mundur    ",
+    rank_day: "hari",
+    rank_hour: "jam",
+    rank_min: "menit",
+    rank_second: "detik",
+    rank_tips3:
+        "Selama acara, pengguna akan diberi peringkat sesuai dengan jumlah total bunga keinginan yang berhasil dipanen (termasuk jumlah bunga yang dihabiskan). Di akhir acara, 10 pengguna teratas akan menerima hadiah yang kaya        ",
+    rank_getSuc: "Berhasil diterima    ",
+    rank_getSeed: "Biji putih x$",
+    rank_getAcc: "Berkah Bunga Dewa x$",
+    rank_goPlant: "tanamlah!",
 
-    // Result
-    re_submit: 'Permintaan ulang',
-    result_checking: 'Permintaan telah berhasil dikirim \ nKami akan meninjau untuk Anda secepatnya',
-    result_success: 'Selamat Anda sudah menjadi pengguna yg terkontrak di Wekara',
-    result_fail: 'Permohonan Anda ditolak',
-    result_fail_reason: 'Alasan：%s',
-    result_fail_contact: 'Tentang detailnya, silakan hubungi Wekara resmi ID %s',
-    result_reject: 'Permintaan Anda tidak disetujui,kami akan melakukan proses penandatanganan untuk anchor secepatnya, mohon nantikan。',
-    sign_give: 'Setelah berhasih terkontrak, akan bisa mendapatkan：',
-    sign_give_1: '1、Nyanyian yg diterbitkan atau kamar karaoke sendiri memiliki bobot yang lebih tinggi dan mendapatkan lebih banyak rekomendasi；',
-    sign_give_2: '2、Lebih banyak eksposur dan lebih banyak perhatian penggemar；',
-    sign_give_3: '3、Bisa tarik pendapatannya, dan level yg terkontrak makin tinggi, proporsi tarik makin tinggi；',
-    sign_give_4: '4、Bisa dapatkan proporsi pertukaran koin lebih tinggi, dan bisa tukarkan minimum 100 berlian Wekara tiap kali',
-}
+    //Strategy
+    strategy_title: "Strategi penanaman    ",
+    strategy_h51: "1. Buku Biji    ",
+    strategy_p1: "(1) Biji biasa:    ",
+    strategy_p2:
+        "Setiap biji biasa setelah panen akan dapatkan 5 bunga keinginan dengan waktu pertumbuhan 10 menit, diperoleh melalui tugas check-in tukang kebun.    ",
+    strategy_p3: "(2) Biji putih:    ",
+    strategy_p4:
+        "Setiap biji putih setelah panen akan dapatkan 15 bunga keinginan dengan waktu pertumbuhan 10 menit. Setiap taman bunga dapat menanam hingga 5 biji sekaligus,  diperoleh dengan top-up.        ",
+    strategy_p5:
+        "* Koin emas yg top-up hanya dihitung untuk hari itu dan disetel ulang pada pukul 00:00 setiap hari    ",
+    strategy_h52: "2. Instruksi penanaman    ",
+    strategy_p6:
+        "1) Klik pada taman bunga kosong dan pilih [Biji biasa] atau [Biji putih] untuk ditanam    ",
+    strategy_p7:
+        "2) Setelah penanaman berhasil, benih akan memasuki hitungan mundur pertumbuhan; bila banyak [biji putih] ditanam, waktu tumbuhnya menjadi 10 menit * jumlah tanam        ",
+    strategy_p8:
+        " 3) Ketika hitungan mundur untuk pertumbuhan benih berakhir, bunga keinginan sudah matang, klik bunga keinginan yang matang untuk berhasil panen. Untuk setiap 20 bunga keinginan yang terkumpul, Anda dapat menarik 1 kali:        ",
+    strategy_p9:
+        " * Setelah acara selesai, penanaman, percepatan, dan pemetikan tidak boleh dilakukan    ",
+    strategy_p10: "3. Instruksi percepatan    ",
+    strategy_p11:
+        "(1) Mengkonsumsi [Berkah Dewa Bunga] sekali untuk mengurangi 10 menit waktu tumbuh dari taman bunga target; bila waktu pertumbuhan yang tersisa kurang dari 10 menit, bunga keinginan taman bunga akan segera matang.        ",
+    strategy_p12:
+        "(2) Kesempatan [Berkah Dewa Bunga] diperoleh dengan top-up.    ",
+
+    //UserSeedNums
+    userSeedNums_get: "Dapatkan benih    ",
+    userSeedNums_seed1: "Biji biasa    ",
+    userSeedNums_seed1_tips:
+        "Waktu tumbuhnya 10 menit, tiap menghasilkan 5 bunga, 1 biji 1 taman bunga ",
+    userSeedNums_seed2: "Biji putih    ",
+    userSeedNums_seed2_tips:
+        "Waktu tumbuhnya 10 menit, tiap menghasilkan 15 bunga, 5 biji 1 taman bunga",
+    userSeedNums_seed3: "Berkah Dewa Bunga    ",
+    userSeedNums_seed3_tips:
+        "Mengkonsumsi sekali untuk mengurangi 10 menit waktu tumbuh"
+};

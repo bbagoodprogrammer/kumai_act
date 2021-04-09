@@ -14,14 +14,14 @@
 <script>
 export default {
   props: ['lists'], // 父组件传过来的数组
-  data() {
+  data () {
     return {
       timer: null,
       text: ''
     }
   },
   watch: {
-    lists() {
+    lists () {
       var that = this
       setTimeout(function () {
         that.move()
@@ -29,9 +29,11 @@ export default {
     }
   },
   methods: {
-    move() {
+    move () {
+      console.log(this.lists)
       for (let item of this.lists) {
-        item = item.replace('</br>', '').replace(/\s*/g, "")
+        //   .replace(/\s*/g, "")
+        item = item.replace('</br>', '')
         this.text += item + '\xa0\xa0\xa0\xa0\xa0\xa0'
       }
       let maxWidth = document.querySelector('.marquee-wrap').clientWidth
@@ -54,7 +56,7 @@ export default {
       }, 30)
     }
   },
-  beforeDestroy() {
+  beforeDestroy () {
     // 清除计时器
     clearInterval(this.timer)
   }

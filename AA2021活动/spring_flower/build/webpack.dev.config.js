@@ -43,7 +43,7 @@ module.exports = {
         //disableHostCheck: true,
         proxy: {
             "/": {
-                target: "http://activity.singnowapp.com/",
+                target: "http://activity.wekarapp.com",
                 changeOrigin: true
             }
         }
@@ -149,7 +149,8 @@ module.exports = {
         // ]),
         new webpack.DefinePlugin({
             LANGS: JSON.stringify(langs),
-            APP_NAME: JSON.stringify(process.env.APP)
+            APP_NAME: JSON.stringify(process.env.APP),
+            APP: JSON.stringify(process.env.APP)
         })
     ],
     optimization: {
