@@ -30,8 +30,8 @@
       <div class="stored">
         <div class="title">{{lang.store_gift}}</div>
         <div class="storedTips">
-          <span>{{lang.store_tips1}}<img src="../img/getSeed2.png" alt=""> x1</span>
-          <span>{{lang.store_tips2}}<img src="../img/accIcon.png" alt="">x1</span>
+          <span><strong>{{lang.store_tips1}}</strong> <img src="../img/getSeed2.png" alt=""> x1</span>
+          <span><strong>{{lang.store_tips2}}</strong> <img src="../img/accIcon.png" alt="">x1</span>
         </div>
         <div class="coinsTips">{{lang.store_dayCoins.replace('$',charge)}}</div>
         <div class="btn">
@@ -446,7 +446,10 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.26rem;
+        strong {
+          width: 5rem;
+          font-size: 0.26rem;
+        }
         img {
           width: 0.5rem;
           height: 0.5rem;
@@ -605,9 +608,11 @@ export default {
       font-size: 0.22rem;
     }
     .rankTips {
+      padding: 0 0.1rem;
       margin-top: 0.25rem;
       font-size: 0.24rem;
       color: rgba(142, 105, 63, 1);
+      height: auto;
       span {
         display: block;
       }
@@ -745,6 +750,7 @@ export default {
     text-align: center;
     font-size: 0.28rem;
     color: rgba(133, 90, 55, 1);
+    margin-top: 0.3rem;
   }
 }
 </style>

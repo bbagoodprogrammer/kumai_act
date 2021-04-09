@@ -7,7 +7,7 @@
         <span :class="{act:type==1}" @click="tabClick(1)">活動規則</span>
         <span :class="{act:type==2}" @click="tabClick(2)">活動獎勵</span>
       </div>
-      <p class="actTime">1月25日19：00-2月8日24：00</p>
+      <p class="actTime">2021/4/10 18：00-4/18 23：59：59</p>
       <div class="tipsCon">
         <div class="tips1" v-if="type==1">
           <h6>如何玩轉甜品屋？</h6>
@@ -38,16 +38,16 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       type: 1
     }
   },
   methods: {
-    tabClick(val) {
+    tabClick (val) {
       this.type = val
     },
-    closeRules() {
+    closeRules () {
       this.$parent.showRules = false
     }
   }

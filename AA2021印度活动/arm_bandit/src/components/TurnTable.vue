@@ -72,16 +72,16 @@ export default {
     align-items: center;
   }
   .coinsbox {
+    height: 0.4rem;
     text-align: center;
-    margin-top: 0.1rem;
     position: absolute;
-    top: 7.08rem;
-    left: 2.3rem;
+    top: 7.14rem;
+    left: 2rem;
     font-size: 90%;
     display: flex;
     align-items: center;
     .coins {
-      font-size: 120%;
+      font-size: 0.3rem;
       color: #fffc00;
       margin-left: 0.05rem;
     }

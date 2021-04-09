@@ -1,3 +1,14 @@
-html.ar {
-    direction: rtl;
+html.zh {
+    .pageIndex {
+        background: rgba(101, 98, 229, 1) url(./img/banner.png) no-repeat;
+        background-size: 100% auto;
+    }
+    .extension{
+        display: block;
+        width: 1.09rem;
+        height: 1.26rem;
+        background: url(./img/extension.png);
+        background-size: 100% 100%;
+        margin: 0.3rem auto;
+    }
 }

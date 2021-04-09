@@ -37,35 +37,43 @@
         <div class="luckGiftList" v-if="showLuckPup" :class="{ten:nums > 1}">
           <i class="close" @click="showLuckPup  = false"></i>
           <div class="title">恭喜獲得</div>
-          <div class="giftList">
-            <div class="luckItem" v-for="(item,index) in prizes.constellation" :key="index">
-              <div class="imgBox">
-                <img :src="iconList[item.pid -1].act_icon" alt="">
-                <img :src="numberArr[item.count]" alt="" class="gNums" v-if="nums > 1">
+          <div class="luck_pup_bg">
+            <div class="pup_con">
+              <div class="giftList">
+                <div class="luckItem" v-for="(item,index) in prizes.constellation" :key="index">
+                  <div class="imgBox">
+                    <img :src="iconList[item.pid -1].act_icon" alt="">
+                    <img :src="numberArr[item.count]" alt="" class="gNums" v-if="nums > 1">
+                  </div>
+                  <strong>{{item.name}}</strong>
+                </div>
               </div>
-              <strong>{{item.name}}</strong>
-            </div>
-            <div class="luckItem" v-for="(item2,index2) in prizes.gift" :key="index2+'luck'">
-              <div class="imgBox">
-                <img :src="item2.image" alt="">
-                <img :src="numberArr[item2.count]" alt="" class="gNums" v-if="nums > 1">
+              <div class="giftList">
+                <div class="luckItem" v-for="(item2,index2) in prizes.gift" :key="index2+'luck'">
+                  <div class="imgBox">
+                    <img :src="item2.image" alt="">
+                    <img :src="numberArr[item2.count]" alt="" class="gNums" v-if="nums > 1">
+                  </div>
+                  <strong>{{item2.name}}</strong>
+                </div>
               </div>
-              <strong>{{item2.name}}</strong>
+            </div>
+            <div class="luckTips" v-if="luckDrawCount > 0">
+              首次點亮{{act_nums}}個星座，獲得轉盤抽獎{{luckDrawCount}}次
+            </div>
+            <div class="luckTips" v-else-if="empty_star.length">
+              恭喜你點亮了【{{empty_star[0].name}}】,並獲得【{{prizes.gift[0].name}}*1】;
+            </div>
+            <div class="next_btn" v-if="luckDrawCount > 0">
+              <div class="turnLuck" @click="scorllTo()"> </div>
+            </div>
+            <div class="next_btn " v-else>
+              <div class="cancel" v-if="empty_star" @click="showLuckPup  = false"></div>
+              <div class="nextOpen" @click="luckStar(nums)"></div>
             </div>
           </div>
-          <div class="luckTips" v-if="luckDrawCount > 0">
-            首次點亮{{act_nums}}個星座，獲得轉盤抽獎{{luckDrawCount}}次
-          </div>
-          <div class="luckTips" v-else-if="empty_star.length">
-            恭喜你點亮了【{{empty_star[0].name}}】,並獲得【{{prizes.gift[0].name}}*1】;
-          </div>
-          <div class="next_btn" v-if="luckDrawCount > 0">
-            <div class="turnLuck" @click="scorllTo()"> </div>
-          </div>
-          <div class="next_btn " v-else>
-            <div class="cancel" v-if="empty_star" @click="showLuckPup  = false"></div>
-            <div class="nextOpen" @click="luckStar(nums)"></div>
-          </div>
+
+          <div class="buttom_icon"></div>
         </div>
       </transition>
     </div>
@@ -167,7 +175,7 @@ export default {
       let c = document.documentElement.scrollTop || document.body.scrollTop
       let e = a + c - 10
       this.timer = setInterval(() => {
-        let scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 10;
+        let scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 0;
         let c = document.documentElement.scrollTop || document.body.scrollTop
         let t = (e - c) / 10
         window.scrollTo(0, c + t)
@@ -273,14 +281,17 @@ export default {
   }
   .luckGiftList {
     width: 7.07rem;
-    height: 4.88rem;
-    background: url(../img/luckGiftPup.png);
-    background-size: 100% 100%;
+    // height: 4.88rem;
+    // background: url(../img/luckGiftPup.png);
+    // background-size: 100% 100%;
     position: relative;
     &.ten {
-      height: 11.46rem;
-      background: url(../img/tenLuck.png);
-      background-size: 100% 100%;
+      //   height: 11.46rem;
+      //   background: url(../img/tenLuck.png);
+      //   background-size: 100% 100%;
+      .pup_con {
+        display: block !important;
+      }
       .giftList {
         padding: 0 0.1rem 0 0.27rem;
         justify-content: start;
@@ -297,7 +308,7 @@ export default {
         }
       }
       .next_btn {
-        margin-top: 0.8rem;
+        margin-top: 0.1rem;
       }
     }
     .close {
@@ -310,13 +321,30 @@ export default {
       line-height: 0.8rem;
       font-size: 0.32rem;
       color: #fff;
+      background: url(../img/pup_top.png);
+      background-size: 100% 100%;
+    }
+    .luck_pup_bg {
+      padding: 0.24rem 0;
+      background: url(../img/pup_con.png);
+      background-size: 100% 100%;
+    }
+    .pup_con {
+      display: flex;
+      justify-content: center;
+    }
+    .buttom_icon {
+      height: 0.65rem;
+      background: url(../img/pup_button.png);
+      background-size: 100% 100%;
     }
     .giftList {
-      padding: 0 1.7rem;
+      //   padding: 0 1.7rem;
+      padding: 0 0.4rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin-top: 0.2rem;
+      margin-bottom: 0.2rem;
       .luckItem {
         width: 1.37rem;
         .imgBox {
@@ -358,7 +386,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 0.2rem;
+      margin-top: 0.1rem;
       .cancel {
         margin-right: 0.25rem;
       }

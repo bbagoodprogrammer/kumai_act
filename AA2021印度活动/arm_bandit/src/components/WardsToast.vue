@@ -62,9 +62,14 @@ export default {
   background: rgba(#000, 0.8);
   z-index: 999;
   .title {
+    display: block;
+    width: 3rem;
+    height: 0.5rem;
+    line-height: 0.5rem;
+    text-align: center;
     position: absolute;
     top: 1.93rem;
-    left: 3.2rem;
+    left: 2.2rem;
     z-index: 999;
     color: #fdfdac;
   }

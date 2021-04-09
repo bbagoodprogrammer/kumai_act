@@ -28,14 +28,14 @@ var getKey = function (arr, time) {
   return -1;
 };
 export default {
-  data() {
+  data () {
     return {
       list: [],
       loaded: false,
       more: true,
       loading: false,
       taskName: {
-        mic: '在房間上麥15min（私密房不算）',
+        mic: '在房間上麥25min（私密房不算）',
         coin: '在房間送出500金幣',
         share: '分享活動到line或fb',
         create: '創建/接唱/和聲作品',
@@ -49,7 +49,7 @@ export default {
       },
     }
   },
-  created() {
+  created () {
     this.loading = true
     api.getHistroy(0).then(res => {
       this.loading = false
@@ -57,14 +57,14 @@ export default {
     })
   },
   computed: {
-    listLength() {
+    listLength () {
       let num = 0
       this.list.forEach(element => {
         num += element.records.length
       });
       return num
     },
-    makeData() {
+    makeData () {
       var arr = [];
       for (let i = 0; i < this.list.length; i++) {
         var times = this.list[i].date;
@@ -79,14 +79,14 @@ export default {
       return arr;
     }
   },
-  mounted() {
+  mounted () {
     this.scrollable = this.$el.querySelector('.scrollable');
     if (this.scrollable) {
       this.scrollable.addEventListener('scroll', this.onScroll);
     }
   },
   methods: {
-    onScroll() {
+    onScroll () {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
         if (this.loaded) return
@@ -103,10 +103,10 @@ export default {
         }
       }
     },
-    getTime(tm, type) {
+    getTime (tm, type) {
       return getDate(new Date(tm * 1000), type)
     },
-    closeHistory() {
+    closeHistory () {
       this.$emit('closeHistory')
     }
   }

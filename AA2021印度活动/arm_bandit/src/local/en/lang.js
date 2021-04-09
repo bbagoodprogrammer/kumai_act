@@ -5,29 +5,30 @@ const vietnamLang = {
     my_knapsack: "My Pack", //我的背包
     act_tips:
         //活動期間儲值1金幣即獲得1個老虎幣 ,老虎幣可用於兌換抽獎，花費老虎幣越多的抽獎模式,獲得的獎品越豐富，得到珍貴獎品的概率越大
-        "You can get 1 slot token for every coin recharged. You can get better prizes by drawing with more tokens.",
-    luck_tips: "Congrats! $ got # x %", //恭喜$获得#
+        "You can get 1 slot token for every coin recharged. You would have higher chance of getting rare items if you drew with more tokens.",
+    luck_tips: "Congrats! $ got # * @", //恭喜$获得#
     no_coins: "Not enough tokens!",
-    act_noStar: "Event not started!",
+    act_noStar: "Coming soon",
     act_end: "Ended",
     ok: "Confirm",
     luck_title: "Congratulations",
-    double: "With double card, you got two of the other two gifts!   ",
-    luck_tips: "Above prizes were sent to you. Please check!",
+    double:
+        "With double card, you got the prizes of this draw in duplicate.   ",
+    luck_tipsMsg: "Above prizes were sent. Please check!",
     userCoins: "Remaining tokens:",
     history_title: "Records",
     history_conis: " tokens",
     noHistory_data: "No records yet!",
     wards: {
-        1: "candy ", //作品金豆背包
-        2: "light stick", //作品揹包禮物
-        3: "strawberry sherbet", //Ｋ房揹包禮物
+        1: "Candies ", //作品金豆背包
+        2: "Light stick", //作品揹包禮物
+        3: "Strawberry sherbet", //Ｋ房揹包禮物
         4: "3% recharge bonus  coupon", //3%储值返利券
         5: "4% recharge bonus  coupon", //5%储值返利券
         6: "5% recharge bonus  coupon", //10%储值返利券
-        7: " 120 payback coupon", //150返30送礼返利券
-        8: " 480 payback coupon", //500返120送礼返利券
-        9: " 1200 payback coupon", //1000返300送礼返利券
+        7: " 120 coins rebate  coupon", //150返30送礼返利券
+        8: " 480 coins rebate  coupon", //500返120送礼返利券
+        9: " 1200 coins rebate  coupon", //1000返300送礼返利券
         10: "400 tokens  ", //50老虎币
         11: "800 tokens  ", //100老虎币
         12: "1200 tokens  ", //150老虎币
@@ -45,7 +46,7 @@ const vietnamLang = {
         // 24: "Quý tộc Kỵ Sĩ", //骑士贵族
         // 25: "Quý tộc Tử Tước", //子爵贵族
         // 26: "Quý tộc Bá Tước", //伯爵贵族
-        27: " VIP 3days", //会员3天
+        27: " VIP 3 days", //会员3天
         28: "Special UID", //8位靓号
         29: "Double card" //double卡
         // 30: "幸運兌換券"
