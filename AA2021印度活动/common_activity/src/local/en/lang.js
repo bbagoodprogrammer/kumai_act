@@ -4,13 +4,13 @@ export default {
     rule: "Rules",
     history: "Records",
     rule1:
-        "1. Tasks for each day will open on that day. You cannot view the tasks in advance.",
+        "Tasks of each day will open on that day. You cannot view the tasks in advance.",
     rule2:
-        "2. Login gifts and task rewards should be received within the day. It will be invalid when expires.",
+        "Login gifts and task rewards should be received within the day. They will be invalid on the next day.",
     rule3:
-        "3. Please exchange prizes before the event is over. Data will be cleared after the event.",
+        "Please exchange prizes before the event is over. Data will be cleared after the event.",
     rule4:
-        "4. Event time: $. Data will be calculated after you join the event.",
+        "Event time: $. Data will be calculated after you join the event.",
     task: "Tasks",
     convertibility: "Exchange",
     loading: "Loading...",

@@ -61,3 +61,37 @@ a:hover {
     justify-content: center;
     // transform:none!important;
 }
+
+
+.slide-enter-active {
+    animation-name: slideInUp;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+  .slide-leave-active {
+    animation-name: slideOutDown;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+  @keyframes slideInUp {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  @keyframes slideOutDown {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    to {
+      transform: scale(0);
+    }
+  }

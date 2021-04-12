@@ -48,6 +48,8 @@ import MsgToast from "./commonToast"
 import { globalBus } from '../utils/eventBus'
 import GiftCon from "./GiftCon"
 import getDate from "../utils/getDate"
+import { mapState } from 'vuex'
+
 export default {
   components: { Loading, MsgToast, ActFooter, GiftCon },
   data () {
@@ -70,8 +72,23 @@ export default {
   created () {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
+    globalBus.$on('commonEvent', (callback) => {
+      if (this.isShare) {
+        APP()
+        return
+      } else if (this.actStatus === 0) {
+        this.tastMsg = this.lang.noAct
+        this.showT = true
+      } else if (this.actStatus === 2) {
+        this.tastMsg = this.lang.actEd
+        this.showT = true
+      } else {
+        callback()
+      }
+    })
   },
   computed: {
+    ...mapState(['actStatus', 'user_info']),
     actTime () {
       return getDate(new Date(this.stime * 1000), 3) + '-' + getDate(new Date(this.etime * 1000), 3)
     },
@@ -194,7 +211,7 @@ body::-webkit-scrollbar {
       white-space: nowrap;
       text-align: center;
       position: absolute;
-      top: 1rem;
+      top: 0.9rem;
       font-size: 0.26rem;
       font-weight: 600;
       -webkit-background-clip: text;

@@ -200,7 +200,10 @@ export default {
         align-items: center;
         justify-content: center;
         .noConver {
+          width: 2.22rem;
           .noConverTips {
+            display: block;
+            text-align: center;
             font-size: 0.28rem;
             color: #603939;
             font-weight: 500;

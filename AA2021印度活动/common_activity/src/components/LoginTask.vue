@@ -44,29 +44,30 @@ export default {
     position: absolute;
     left: 0;
     top: 0;
-    &:after {
-      content: ''; //Draft
-      opacity: 0;
-      position: absolute;
-      width: 1.81rem;
-      height: 1.22rem;
-      //   background: url(../img/ed.png);
-      //   background-size: 100% 100%;
-      margin: 0 auto;
-      bottom: -0.1rem;
-      right: -0.2rem;
-      text-transform: uppercase;
-      opacity: 0;
-      transform-origin: 50% 50%;
-      transform: rotate(-15deg) scale(5);
-      transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
-    }
+    // &:after {
+    //   content: ''; //Draft
+    //   opacity: 0;
+    //   position: absolute;
+    //   width: 1.81rem;
+    //   height: 1.22rem;
+    //   //   background: url(../img/ed.png);
+    //   //   background-size: 100% 100%;
+    //   margin: 0 auto;
+    //   bottom: -0.1rem;
+    //   right: -0.2rem;
+    //   text-transform: uppercase;
+    //   opacity: 0;
+    //   transform-origin: 50% 50%;
+    //   transform: rotate(-15deg) scale(5);
+    //   transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    // }
   }
   h3 {
     font-weight: 600;
     text-align: center;
     line-height: 0.7rem;
     height: 0.6rem;
+    font-size: 0.25rem;
   }
   .loginGift {
     height: 1.55rem;
@@ -102,9 +103,10 @@ export default {
         line-height: 0.25rem;
         overflow: hidden;
         text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
+        white-space: nowrap;
+        // display: -webkit-box;
+        // -webkit-box-orient: vertical;
+        // -webkit-line-clamp: 2;
       }
     }
   }
@@ -120,6 +122,7 @@ export default {
     font-weight: 800;
     position: relative;
     z-index: 20;
+    font-size: 0.26rem;
   }
   .noSuc {
     background: url(../img/receiveBg.png);

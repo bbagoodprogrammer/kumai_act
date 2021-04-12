@@ -7,6 +7,7 @@ import { getUrlString } from "../utils";
 //const defaultToken = '9g0rbTx1xZzvvx12zI7Ox1MIfqxuOLUD2pH4sMdS2Wp68UipYzi5jvF17OISrR6eBwePmxxrKkymtpnTMtkSq0bZ1QJoNkFWE0v1srRMiilfWp-ycMfLe8fTgIMTzLRN';
 let token = getUrlString("token");
 let act_id = getUrlString("act_id") ? getUrlString("act_id") : 1;
+let lang = getUrlString("lang");
 // let uid = getUrlString("uid")
 
 // var num = 0
@@ -70,37 +71,44 @@ function get(url, config) {
 //获取活动基础信息
 function getDefault() {
     if (token) {
-        return get(`/common_activity/init.php?act_id=${act_id}&token=${token}`);
+        return get(
+            `/common_activity/init.php?act_id=${act_id}&token=${token}&lang=${lang}`
+        );
     } else {
-        return get(`/common_activity/init.php?act_id=${act_id}`);
+        return get(`/common_activity/init.php?act_id=${act_id}&lang=${lang}`);
     }
 }
 //报名
 function singUp(coins) {
-    return get(`/common_activity/register.php?act_id=${act_id}&token=${token}`);
+    console.log("cons");
+    return get(
+        `/common_activity/register.php?act_id=${act_id}&token=${token}&lang=${lang}`
+    );
 }
 //兑换页信息
 function revGiftMsg() {
     if (token) {
         return get(
-            `/common_activity/toExchange.php?act_id=${act_id}&token=${token}`
+            `/common_activity/toExchange.php?act_id=${act_id}&token=${token}&lang=${lang}`
         );
     } else {
-        return get(`/common_activity/toExchange.php?act_id=${act_id}`);
+        return get(
+            `/common_activity/toExchange.php?act_id=${act_id}&lang=${lang}`
+        );
     }
 }
 
 //领取任务奖励
 function getTaskGift(mission_id) {
     return get(
-        `/common_activity/reward.php?act_id=${act_id}&mission_id=${mission_id}&token=${token}`
+        `/common_activity/reward.php?act_id=${act_id}&mission_id=${mission_id}&token=${token}&lang=${lang}`
     );
 }
 
 //兑换奖品
 function getRevGift(id, qty) {
     return get(
-        `/common_activity/exchange.php?act_id=${act_id}&id=${id}&qty=${qty}&token=${token}`
+        `/common_activity/exchange.php?act_id=${act_id}&id=${id}&qty=${qty}&token=${token}&lang=${lang}`
     );
 }
 
@@ -108,11 +116,11 @@ function getRevGift(id, qty) {
 function giftHistory(from, more) {
     if (more) {
         return axios.get(
-            `/common_activity/exchangeHistory.php?act_id=${act_id}&from=${from}&token=${token}`
+            `/common_activity/exchangeHistory.php?act_id=${act_id}&from=${from}&token=${token}&lang=${lang}`
         );
     } else {
         return get(
-            `/common_activity/exchangeHistory.php?act_id=${act_id}&from=${from}&token=${token}`
+            `/common_activity/exchangeHistory.php?act_id=${act_id}&from=${from}&token=${token}&lang=${lang}`
         );
     }
 }
@@ -121,11 +129,11 @@ function giftHistory(from, more) {
 function getDaysTask(date) {
     if (token) {
         return axios.get(
-            `/common_activity/missions.php?act_id=${act_id}&date=${date}&token=${token}`
+            `/common_activity/missions.php?act_id=${act_id}&date=${date}&token=${token}&lang=${lang}`
         );
     } else {
         return axios.get(
-            `/common_activity/missions.php?act_id=${act_id}&date=${date}`
+            `/common_activity/missions.php?act_id=${act_id}&date=${date}&lang=${lang}`
         );
     }
 }

@@ -8,9 +8,29 @@ html.hi {
        
       }
       .stamp {
+        // width: 5.72rem;
+        // height: 3.01rem;
+        // z-index: 10;
+        // position: absolute;
+        // left: 0;
+        // top: 0;
         &:after {
+          content: ''; //Draft
+          opacity: 0;
+          position: absolute;
+          width: 1.81rem;
+          height: 1.22rem;
             background: url(./img/ed.png);
             background-size: 100% 100%;
+          margin: 0 auto;
+          bottom: -0.1rem;
+          right: -0.2rem;
+          text-transform: uppercase;
+          opacity: 0;
+          transform-origin: 50% 50%;
+          transform: rotate(-15deg) scale(5);
+          transition: all 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
         }
-    }
+      }
+    
 }

@@ -41,6 +41,7 @@ export default {
   },
   methods: {
     singUp () {
+      console.log('xxx')
       globalBus.$emit('commonEvent', () => {
         api.singUp().then(res => {
           if (res.data.response_status.code == 0) {
