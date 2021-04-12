@@ -8,11 +8,27 @@
 <script>
 import { mapState } from 'vuex';
 import Loading from './components/common/Loading';
-
+import { globalBus } from './utils/eventBus'
 export default {
   computed: {
     ...mapState(['loading']),
     viewHeight: () => window.innerHeight,
+  },
+  created () {
+    // globalBus.$on('commonEvent', (callback) => {
+    //   if (this.isShare) {
+    //     APP()
+    //     return
+    //   } else if (this.actStatus === 0) {
+    //     this.tastMsg = this.lang.noAct
+    //     this.showT = true
+    //   } else if (this.actStatus === 2) {
+    //     this.tastMsg = this.lang.actEd
+    //     this.showT = true
+    //   } else {
+    //     callback()
+    //   }
+    // })
   },
   mounted () {
     // this.$store.dispatch('getInitInfo');

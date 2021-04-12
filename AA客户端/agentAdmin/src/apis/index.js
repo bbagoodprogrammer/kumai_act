@@ -37,7 +37,7 @@ axios.interceptors.request.use(
         // 测试请求URL差异处理
 
         if (!_test) {
-            url = "//t.act." + _host + url;
+            url = "//act." + _host + url;
         }
 
         // 替换URL占位符
