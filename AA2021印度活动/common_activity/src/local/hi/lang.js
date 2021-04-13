@@ -22,7 +22,7 @@ export default {
     converGiftTitle: "इनाम",
     converNum: "दिन में अधिकतम: X",
     converNum2: "दिन में अधिकतम: X",
-    dayEd: "आज विनिमय किया है",
+    dayEd: "विनिमय किया",
     singUp: "भाग लें",
     ok: "ठीक है",
     // noSingUp: 'Mời báo danh trước~',

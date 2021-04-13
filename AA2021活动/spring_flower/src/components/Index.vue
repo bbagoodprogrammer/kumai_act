@@ -131,7 +131,7 @@ export default {
       } else if (_app == 'singnow') {
         addres = `http://fstatic.cat1314.com/uc/svga/ec12435be441b98da96ac0ae3a75edbf_1615792726.svga`
       } else if (_app == 'wekara') {
-        addres = `http://fstatic.cat1314.com/uc/svga/8e328d7e0cbcf5a5868504b654660ce2_1617954923.svga`
+        addres = `https://fstatic.cat1314.com/uc/svga/8e328d7e0cbcf5a5868504b654660ce2_1617954923.svga`
       }
       const fileData = await downloader.get(addres);
       const data = await parser.do(fileData);

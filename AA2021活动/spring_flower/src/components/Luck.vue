@@ -203,7 +203,7 @@ export default {
       this.$parent.showLuck = false
     },
     async aniGo () {
-      let fileData1 = await downloader.get('http://fstatic.cat1314.com/uc/svga/129c2cf7440a6381cfd18c7df211b95c_1615341506.svga')
+      let fileData1 = await downloader.get('https://fstatic.cat1314.com/uc/svga/129c2cf7440a6381cfd18c7df211b95c_1615341506.svga')
       let svgaData1 = await parser.do(fileData1)
       let canvas = document.getElementById('creatAni')
       console.log()
@@ -494,8 +494,8 @@ export default {
   margin: -1rem 0 0 0.3rem;
   &.ten {
     width: 6.6rem;
-    height: 8.47rem;
-    padding: 1.07rem 0.46rem 0 0;
+    height: 8.67rem;
+    padding: 0.87rem 0.46rem 0 0;
     background: url(../img/pup/whiteBg.png);
     background-size: 100% 100%;
     .title {
@@ -557,7 +557,6 @@ export default {
     }
     strong {
       width: 1.58rem;
-      height: 0.5rem;
       display: block;
       text-align: center;
       font-size: 0.24rem;

@@ -34,14 +34,14 @@ export default {
     whide_seed_tip3: "Silakan pilih jumlahnya utk pakai berkah dewa bunga    ",
     whide_seed_tip4: "Kurangi waktu pertumbuhan    ",
     whide_seed_tip5:
-        "Apakah Anda yakin untuk mengonsumsi bunga berkah dewa sekali untuk membuat biji yang sekarang segera matang?    ",
+        "Apakah Anda yakin mengonsumsi bunga berkah dewa utk membuat biji segera matang?    ",
     whide_seed_tip9: "",
     whide_seed_tip6:
-        "Apakah Anda yakin menggunakan [$ koin emas] untuk membeli [jumlah taman bunga x1]?    ",
+        "Apakah Anda yakin pake [$ koin emas] utk membeli [taman bunga x1]?    ",
     whide_seed_tip7:
         "Biji tidak cukup,Buruan selesaikan misi dan dapatkan lebih banyak biji!    ",
     whide_seed_tip8:
-        "Kali berkah dewa bunga tidak mencukupi,Top-up bisa mendapatkan [Berkah Dewa Bunga], mengurangi waktu pertumbuhan bunga sebanyak 10 menit!        ",
+        "[Berkah dewa bunga] Anda tidak cukup, pergi top-up utk mendapatkannya, kurangi waktu pertumbuhan 10 menit!        ",
 
     //luck
     luckTips:
@@ -53,13 +53,13 @@ export default {
     luck_giftTips2:
         "Berhasil memanen 60 bunga keinginan setiap hari, dan selesaikan tugas dalam 5, 10, dan 15 hari untuk menerima hadiah yang sesuai! (Dibatasi sekali per orang)        ",
     luck_giftTips3: "Jumlah bunga yang dipanen hari ini: $    ",
-    luck_get: "Terima biji    ",
+    luck_get: "Terima    ",
     luck_geted: "Diterima    ",
     luck_noSeed:
-        "Jumlah bunga keinginan tidak cukup,Pergi dan tanam lebih banyak bunga keinginan!        ",
+        "Jumlah bunga keinginan tidak cukup, pergi dan tanam lebih banyak!        ",
     luck_title: "Selamat sudah mendapatkan    ",
     luck_getTips:
-        "Hadiah telah didistribusikan ke akun Anda, silakan perhatikan untuk memeriksanya!    ",
+        "Hadiah telah didistribusikan ke akun Anda, silakan perhatikan!    ",
     giftConfig: {
         1: [
             {
@@ -88,7 +88,7 @@ export default {
             },
             {
                 img: require("../../img/gift/gift3.png"),
-                name: "Hadiah Ransel Pot Bunga (10 koin emas)"
+                name: "Hadiah Ransel Pot Bunga"
             }
         ]
     },
@@ -105,10 +105,10 @@ export default {
     store_tips1:
         "Untuk setiap 50 koin emas yang ditop-up, Anda dapat menerima biji putih x1,",
     store_tips2:
-        "dan untuk setiap 100 koin emas yang Anda top-up, Anda akan menerima bonus [berkah dewa bunga] x1!",
+        "dan untuk setiap 100 koin emas yang Anda top-up, Anda akan menerima bonus [Berkah Dewa Bunga] x1!",
     store_dayCoins:
         "Hari ini Anda telah top-up: $ koin emas (reset pada 00:00 setiap hari)    ",
-    store_getGift: "Terima penghargaan    ",
+    store_getGift: "Terima hadiah   ",
     store_got: "Pergi utk top up    ",
     rank_timeTips: "Hitung Mundur",
     rank_timeTips2: "Hitung mundur    ",

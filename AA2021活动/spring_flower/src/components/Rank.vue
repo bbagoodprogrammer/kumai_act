@@ -430,7 +430,7 @@ export default {
       height: 5.08rem;
       background: linear-gradient(0deg, #594FC7 0%, #5447BE 100%);
       border-radius: 0.4rem;
-      margin: 0.2rem auto;
+      margin: 0.2rem auto 0;
     }
   }
   .stored {
@@ -471,10 +471,13 @@ export default {
         width: 2.54rem;
         height: 0.74rem;
         text-align: center;
-        line-height: 0.74rem;
+        line-height: 0.26rem;
         color: rgba(101, 72, 209, 1);
         font-weight: 600;
-        margin: 0.4rem auto;
+        margin: 0.4rem auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         &.get {
           background: url(../img/storeBtn.png);
           background-size: 100% 100%;
