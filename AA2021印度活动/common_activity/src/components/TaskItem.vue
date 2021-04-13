@@ -169,8 +169,8 @@ export default {
           color: #fffddb;
           font-size: 0.24rem;
           line-height: 0.25rem;
-          overflow: hidden;
-          text-overflow: ellipsis;
+          //   overflow: hidden;
+          //   text-overflow: ellipsis;
           //   display: -webkit-box;
           //   -webkit-box-orient: vertical;
           //   -webkit-line-clamp: 2;
