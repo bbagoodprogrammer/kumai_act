@@ -91,7 +91,8 @@ export default {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   -webkit-overflow-scrolling: auto;
-  height: 10.5rem;
+  max-height: 10.5rem;
+  padding-bottom: 1rem;
   flex: 1;
   .loginTask,
   .dayTaskItem {

@@ -14,13 +14,12 @@ function getDate(datem, type) {
             datem.getSeconds() < 10
                 ? "0" + datem.getSeconds()
                 : datem.getSeconds();
+
+    console.log(minute);
     if (type == "~") {
         return `${date}/${month}`;
     }
     if (type == "pai") {
-        if (minute < 10) {
-            minute = "0" + minute;
-        }
         return `${year}/${month}/${date}  ${hours}:${minute}`;
     }
     if (type == 2) {
