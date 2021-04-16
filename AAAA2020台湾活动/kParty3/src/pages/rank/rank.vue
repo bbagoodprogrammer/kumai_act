@@ -3,17 +3,19 @@
     <a @click.prevent="onRefresh" href="" class="refresh" :style="{transform:'rotate('+rotatePx+'deg)'}"></a>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
-      <a @click.prevent="changPre(0)" :class="{current:month==0}" href="">狂歡周榜</a>
-      <a @click.prevent="changPre(1)" :class="{current:month ==1}" href="">狂歡月榜</a>
+      <a @click.prevent="changPre(0)" :class="{current:month==0}" href="">{{lang.tab1}}</a>
+      <a @click.prevent="changPre(1)" :class="{current:month ==1}" href="">{{lang.tab2}}</a>
     </div>
     <div class="lastTabs">
-      <span v-if="month== 0 && mainTab==2" @click="mainTabClick(0)">本週排行>></span>
-      <span v-if="month== 0 && mainTab==0" @click="mainTabClick(2)">上週排行>></span>
-      <span v-if="month== 1 && mainTab==3" @click="mainTabClick(1)">本月排行>></span>
-      <span v-if="month== 1 && mainTab==1" @click="mainTabClick(3)">上月排行>></span>
+      <span v-if="month== 0 && mainTab==2" @click="mainTabClick(0)">{{lang.last_tab1}}</span>
+      <span v-if="month== 0 && mainTab==0" @click="mainTabClick(2)">{{lang.last_tab2}}</span>
+      <span v-if="month== 1 && mainTab==3" @click="mainTabClick(1)">{{lang.last_tab3}}</span>
+      <span v-if="month== 1 && mainTab==1" @click="mainTabClick(3)">{{lang.last_tab4}}</span>
     </div>
-    <p v-if="mainTab==0 || mainTab==2" class="rankTips">依據各K房{{mainTab==0?'本':'上'}}週積分排名<br />達到3000分和前十名獲得獎勵</p>
-    <p v-else class="rankTips">依據各K房{{mainTab==1?'本':'上'}}月積分排名<br />達到10000分和前十名獲得獎勵</p>
+    <!-- 依據各K房{{mainTab==0?'本':'上'}}週積分排名<br />達到3000分和前十名獲得獎勵 -->
+    <p v-if="mainTab==0 || mainTab==2" class="rankTips" v-html="lang.rank_tips.replace('$',mainTab==0?lang.now:lang.pre)"></p>
+    <!-- 依據各K房{{mainTab==1?'本':'上'}}月積分排名<br />達到10000分和前十名獲得獎勵 -->
+    <p v-else class="rankTips" v-html="lang.rank_tips.replace('$',mainTab==0?lang.now:lang.pre)"></p>
     <ul class="list day" :class="{nodata: rank.list.length == 0}">
       <li v-for="(item,index) in rank.list" :key="index" @click="goUser(item.rid)">
         <div class="rank">{{item.rank}}</div>
@@ -22,8 +24,8 @@
           <div class="name">{{item.name}}</div>
           <div class="rid">{{item.rid}}</div>
         </div>
-        <div class="score" v-if="mainTab==0 || mainTab==2">本週積分 {{item.score}}</div>
-        <div class="score" v-else>本月積分 {{item.score}}</div>
+        <div class="score" v-if="mainTab==0 || mainTab==2">{{lang.nowWeekScore}} {{item.score}}</div>
+        <div class="score" v-else>{{lang.nowMonthScore}} {{item.score}}</div>
       </li>
     </ul>
     <!-- 总榜 -->
@@ -31,8 +33,8 @@
       <li v-for="(item,index) in rank.list" :key="index" @click="goUser(item.uid)">总榜{{JSON.stringify(item)}}</li>
     </ul> -->
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-    <div v-if="rank.loading" class="scrollLoading">加載中...</div>
-    <div v-if="rank.none" class="scrollNone">列表為空！</div>
+    <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
+    <div v-if="rank.none" class="scrollNone">{{lang.noList}}</div>
     <div class="footer" v-if="msg.rank != 0 && msg.rid">
       <div class="rank">{{msg.rank}}</div>
       <img v-lazy="msg.img" alt="">
@@ -40,8 +42,8 @@
         <div class="name">{{msg.name}}</div>
         <div class="rid">{{msg.rid}}</div>
       </div>
-      <div class="score" v-if="mainTab==0 || mainTab==2">本週積分 {{msg.score}}</div>
-      <div class="score" v-else>本月積分 {{msg.score}}</div>
+      <div class="score" v-if="mainTab==0 || mainTab==2">{{lang.nowWeekScore}} {{msg.score}}</div>
+      <div class="score" v-else>{{lang.nowMonthScore}} {{msg.score}}</div>
     </div>
   </div>
 </template>
@@ -69,7 +71,7 @@ import getUrlString from '../../utils/getString.js';
 // }
 
 export default {
-  data() {
+  data () {
     return {
       month: 0,
       mainTab: 0,
@@ -80,11 +82,11 @@ export default {
   },
   computed: {
     ...mapState(['rankGroups', 'groupsUserMsg']),
-    rankKey() {
+    rankKey () {
       // return ['one', 'two', 'three'][this.tab];
       return this.mainTab;
     },
-    rankApi() {
+    rankApi () {
       const dayApi = '/kroom_party/rankList.php?pre={pre}&month={month}&from={from}&token={token}';
       let pre = 0
       let month = 0
@@ -99,31 +101,31 @@ export default {
       let token = getUrlString('token')
       return dayApi.replace('{pre}', pre).replace('{month}', month).replace('{token}', token)
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       return rankConf;
     },
-    msg() {
+    msg () {
       let nowMsg = this.groupsUserMsg[this.rankKey] || {}
       console.log(nowMsg.msg ? nowMsg.msg : {})
       return nowMsg.msg ? nowMsg.msg : {}
     }
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
-    changPre(val) {
+    changPre (val) {
       this.month = val
       if (val == 1) {
         this.mainTabClick(1)
@@ -131,7 +133,7 @@ export default {
         this.mainTabClick(0)
       }
     },
-    mainTabClick(tab) {
+    mainTabClick (tab) {
       this.mainTab = tab;
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
@@ -147,7 +149,7 @@ export default {
     //     }
     //   });
     // },
-    onScroll() {
+    onScroll () {
       if (!this.rank.loading && !this.rank.loadEnd) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
@@ -203,7 +205,7 @@ export default {
         }
       }
     },
-    onRefresh() {
+    onRefresh () {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
       this.$parent.getDefaultData()
@@ -217,7 +219,7 @@ export default {
       });
       this.$nextTick(this.onScroll);
     },
-    goUser(rid) {
+    goUser (rid) {
       location.href = `rid:${rid}`
     }
   },
@@ -225,7 +227,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 body {
   background: rgba(65, 23, 122, 1);
 }
@@ -367,7 +369,7 @@ body {
       }
     }
     li:before {
-      content: "";
+      content: '';
       width: 5.73rem;
       height: 0.02rem;
       background: rgba(107, 39, 175, 1);

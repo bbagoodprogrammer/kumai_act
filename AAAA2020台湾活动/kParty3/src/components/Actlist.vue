@@ -21,7 +21,7 @@
               <img v-lazy="item2.avatar" v-for="(item2,index2) in item.user" :key="index2" @click.stop="goUser(item2.uid)" />
             </div>
             <span :class="{ml:item.user.length <=2}" v-if="item.status == 1">{{item.nums}}{{lang.peopleTips}} <i></i></span>
-            <span :class="{ml:item.user.length <=2}" v-else>{{item.nums}}人已關注</span>
+            <span :class="{ml:item.user.length <=2}" v-else>{{item.nums}}{{lang.aPeopleNums}}</span>
           </div>
           <div class="actBtm">
             <span @click.stop="showSingUpPup(item.id)" v-if="item.is_reg == 2"> {{lang.singUp}}</span>
@@ -58,7 +58,7 @@
             <img v-lazy="item2.avatar" v-for="(item2,index2) in getImgArr(item)" :key="index2" @click.stop="goUser(item2.uid)" />
           </div>
           <span :class="{ml:item.user.length <=2}" v-if="item.status == 1">{{item.nums}}{{lang.peopleTips}} <i></i></span>
-          <span :class="{ml:item.user.length <=2}" v-else>{{item.nums}}人已關注</span>
+          <span :class="{ml:item.user.length <=2}" v-else>{{item.nums}}{{lang.aPeopleNums}}</span>
         </div>
         <div class="actBtm">
           <span @click.stop="showSingUpPup(item.id)" v-if="item.is_reg == 2"> {{lang.singUp}}</span>
@@ -118,7 +118,7 @@
               <textarea maxlength="100" v-model="singUpMsg" :placeholder="lang.singUpTips3"></textarea>
               <span><em>{{singUpMsg.length}}</em>/100</span>
             </div>
-            <h5>準備演唱曲目</h5>
+            <h5>{{lang.singSong}}</h5>
             <div class="singUpMsg ">
               <textarea maxlength="30" v-model="singUpMsgSong" class="minHeight"></textarea>
               <span><em>{{singUpMsgSong.length}}</em>/30</span>
@@ -143,13 +143,13 @@ export default {
       singUpMsg: '',
       singUpMsgSong: '',
       showSingUp: false,
-      partyTitle: [
-        '',
-        '狂歡趴踢',
-        '家族聯誼',
-        '生日派對',
-        '巨星演唱會'
-      ],
+      //   partyTitle: [
+      //     '',
+      //     '狂歡趴踢',
+      //     '家族聯誼',
+      //     '生日派對',
+      //     '巨星演唱會'
+      //   ],
       showParty: {},
       showPartyIndex: 0,
       partyId: 0,

@@ -1,11 +1,11 @@
 <template>
   <div class="myParty">
-    <p v-if="actList.length == 0" class="noData">暫無記錄，快去申請開趴吧！</p>
+    <p v-if="actList.length == 0" class="noData">{{lang.historyNodata}}</p>
     <ul>
       <li v-for="(item,index) in actList" :key="index" :class="[{max:item.apply_status != 0,black:item.status == 2},'list'+item.cover]">
         <!-- {{partyTitle[item.cover]}}- -->
         <!-- <span v-if="item.status == 2"> - 活動已結束</span> -->
-        <div class="title">{{item.them}} <span v-if="item.status == 2"> - 已結束</span></div>
+        <div class="title">{{item.them}} <span v-if="item.status == 2"> - {{lang.end}}</span></div>
         <div class="actCon">
           <img v-lazy="item.users.avatar" alt="" class="userAv">
           <div class="userMsg">
@@ -31,7 +31,7 @@
           <span>{{lang.actBarTips5}}{{item.comments}}</span>
           <!-- <span v-else>{{lang.actBarTips5}}</br>{{lang.actBarTips6}}</span> -->
         </div>
-        <div class="actScore" v-if="item.status == 2" @click="showScore(item.id,item.final_score)">積分 {{item.final_score}}</div>
+        <div class="actScore" v-if="item.status == 2" @click="showScore(item.id,item.final_score)">{{lang.score}} {{item.final_score}}</div>
         <div class="setBtn" v-else-if="item.apply_status != 2 && item.fail_nums !=2" @click="changeMsg(item.id)">{{lang.actBarChang}}</div>
         <span class="singMsg" @click="showPeople(item.id)" v-else-if="item.apply_status == 2">{{lang.singUpDetil}}</span>
       </li>
@@ -96,13 +96,13 @@ export default {
   components: { Loading },
   data () {
     return {
-      partyTitle: [
-        '',
-        '狂歡趴踢',
-        '家族聯誼',
-        '生日派對',
-        '巨星演唱會'
-      ],
+      //   partyTitle: [
+      //     '',
+      //     '狂歡趴踢',
+      //     '家族聯誼',
+      //     '生日派對',
+      //     '巨星演唱會'
+      //   ],
       singUpPupMsg: {},
       showPeopleList: false,
       actList: [],
@@ -169,7 +169,7 @@ export default {
     getDate (time) {
       let partyTime = this.getDayName(time * 1000)
       if (partyTime == 0) {
-        return `今天${getDate(new Date(time * 1000), 1)}`
+        return `${this.lang.today}${getDate(new Date(time * 1000), 1)}`
       } else {
         return `${getDate(new Date(time * 1000), 2)}`
       }
@@ -227,7 +227,7 @@ export default {
           this.scoreObj = record
           this.showActScore = true
         } else {
-          this.toast('本場活動暫無積分！')
+          this.toast(this.lang.scoreNodata)
         }
       })
     },
