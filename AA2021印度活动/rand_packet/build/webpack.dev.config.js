@@ -44,7 +44,7 @@ module.exports = {
         //disableHostCheck: true,
         proxy: {
             "/": {
-                target: "http://activity.17sing.tw/",
+                target: "http://activity.singstarapp.com/",
                 changeOrigin: true
             }
         }

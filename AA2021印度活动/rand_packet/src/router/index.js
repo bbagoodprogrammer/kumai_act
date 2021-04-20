@@ -12,7 +12,8 @@ export default new Router({
             name: "Blindbox",
             component: Blindbox,
             meta: {
-                title: _lang.title
+                title: _lang.title,
+                keep_alive: true
             }
         },
         {
@@ -20,7 +21,8 @@ export default new Router({
             name: "History",
             component: History,
             meta: {
-                title: _lang.title
+                title: _lang.title,
+                keep_alive: false
             }
         },
         {
@@ -28,7 +30,8 @@ export default new Router({
             name: "rule",
             component: _rule,
             meta: {
-                title: _lang.title
+                title: _lang.title,
+                keep_alive: false
             }
         }
     ]

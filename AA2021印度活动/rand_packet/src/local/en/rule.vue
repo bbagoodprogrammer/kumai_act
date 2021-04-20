@@ -4,11 +4,12 @@
       <a @click.prevent="tabClick(0)" :class="{current:tab==0}" href="">Rules</a>
       <a @click.prevent="tabClick(1)" :class="{current:tab==1}" href="">Prizes</a>
     </div>
-    <h6 class="time">Time: April 19, 12:00 - April 26, 22:00</h6>
+    <h6 class="time">Time: April 19, 13:00 - April 26, 22:00</h6>
     <div class="ruleTips" v-show="tab == 0">
       <h6>Rules</h6>
       <p>1. After joining the event, you can earn luck value by sending gifts in room or on recordings.</p>
-      <p> Mysterious chest can only be opened once a day. You can open the mysterious chest according to the level you reach. The higher level, the fancier mysterious chest. Prizes will be sent automatically.</p>
+      <p> Mysterious chest can only be opened once a day. You can open the mysterious chest according to the level you reach. The higher level, the fancier mysterious chest. Prizes will be sent
+        automatically.</p>
       <p>
         3. Rules of ranking
         <strong>Daily Chart: Luck value = 10*the coin value of the gifts you send. Daily ranking will be reset at 00:00 everyday. Only Top 100 will be showed.</strong>
@@ -16,7 +17,7 @@
       </p>
       <h6>Daily Ranking period</h6>
       <p class="dayTime">
-        Day 1: April 19, 12:00 - April 20, 00:00<br />
+        Day 1: April 19, 13:00 - April 20, 00:00<br />
         Day 2: April 20, 00:00 - April 21, 00:00<br />
         Day 3: April 21, 00:00 - April 22, 00:00<br />
         Day 4: April 22, 00:00 - April 23, 00:00<br />
@@ -34,7 +35,7 @@
         Lv5: 2 lakh luck value</br>
         Lv6: 3 lakh luck value</br>
         Superior Chest: Totally earn 4 lakh luck value during the event.</br>
-        Note: For mysterious chest, luck vale will be cleared everyday, please open the chest in time. For superior chest, the total value will keep calculating.
+        Note: For mysterious chest, luck value will be set everyday, please open the chest in time. For superior chest, the total value will keep calculating.
       </p>
       <h6>Note</h6>
       <p>1. SingStar would exclude those users who cheated at the event and take their prizes back without prior notice.</p>
@@ -70,7 +71,8 @@
         </span>
       </div>
       <h6>Prizes of each level</h6>
-      <p>Mysterious chest can only be opened once a day. You can open the mysterious chest according to the level you reach. The higher level, the fancier mysterious chest. Prizes will be sent automatically. You can view the record on "Surprise Moment".</p>
+      <p>Mysterious chest can only be opened once a day. You can open the mysterious chest according to the level you reach. The higher level, the fancier mysterious chest. Prizes will be sent
+        automatically. You can view the record on "Surprise Moment".</p>
       <h6>Prizes of daily chart</h6>
       <p>Daily Top 1-3 can get 15%, 12%, 10% recharge bonus coupon respectively. Coupon will be sent once the ranking comes out.</p>
       <h6>Prizes of main chart</h6>

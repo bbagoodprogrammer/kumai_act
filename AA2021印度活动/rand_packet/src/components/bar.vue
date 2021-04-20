@@ -139,14 +139,23 @@ export default {
             }
             em {
               font-size: 0.24rem;
-              background: linear-gradient(
-                0deg,
+              //   background: linear-gradient(
+              //     0deg,
+              //     rgba(254, 220, 69, 1) 0%,
+              //     rgba(251, 112, 153, 1) 100%
+              //   );
+              //   -webkit-background-clip: text;
+              //   -webkit-text-fill-color: transparent;
+              //   text-transform: uppercase;
+
+              cursor: pointer;
+              background-image: -webkit-linear-gradient(
+                90deg,
                 rgba(254, 220, 69, 1) 0%,
                 rgba(251, 112, 153, 1) 100%
               );
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
-              text-transform: uppercase;
             }
           }
         }
@@ -161,7 +170,6 @@ export default {
         .activeLine {
           display: block;
           height: 0.12rem;
-
           background: linear-gradient(
             0deg,
             #ffc485 0%,

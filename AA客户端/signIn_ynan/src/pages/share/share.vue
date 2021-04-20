@@ -50,7 +50,7 @@ import api from "../../api/apiConfig"
 import { mapState } from "vuex"
 export default {
   components: { SharePeople, Loading },
-  data() {
+  data () {
     return {
       type: null,
       inviteCode: null,
@@ -62,7 +62,7 @@ export default {
   },
   computed: {
     ...mapState(['isOver']),
-    iponeX() {
+    iponeX () {
       // var u = navigator.userAgent;
       // var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
       // if (isIOS) {
@@ -78,7 +78,7 @@ export default {
       return false
     }
   },
-  created() {
+  created () {
     document.title = 'Mời bạn bè'
     this.type = getString('type')
     let shareInviteCode = getString('inviteCode')
@@ -118,9 +118,10 @@ export default {
     }
   },
   methods: {
-    share() {
+    share () {
+      const scheme = getString('app') == 'singall' ? 'HatKara' : getString('app')
       if (this.type == 2) {
-        APP(`singnowapp://singnowapp.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `singall://inviteCode=${this.inviteCode}`)
+        APP(`singnowapp://singnowapp.com/{"inviteCode":"${this.inviteCode}"}`, null, null, `${scheme}://inviteCode=${this.inviteCode}`)
       } else {
         var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
         var ua = navigator.userAgent;
@@ -145,7 +146,7 @@ export default {
         }
       }
     },
-    closeWeb() {
+    closeWeb () {
       var u = navigator.userAgent;
       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
@@ -164,7 +165,7 @@ export default {
 </script>
 <style lang="scss">
 body {
-  background: #f2f2f2 url("../../assets/img/shareBg.png") no-repeat;
+  background: #f2f2f2 url('../../assets/img/shareBg.png') no-repeat;
   background-size: 100% auto;
   .share {
     .header {
@@ -266,5 +267,5 @@ body {
     }
   }
 }
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 </style>

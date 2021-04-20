@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view class="appView" :style="{minHeight:viewHeight+'px'}"></router-view>
+    <keep-alive>
+      <router-view class="appView" :style="{minHeight:viewHeight+'px'}" v-if="$route.meta.keep_alive"></router-view>
+    </keep-alive>
+    <router-view class="appView" :style="{minHeight:viewHeight+'px'}" v-if="!$route.meta.keep_alive"></router-view>
     <Loading v-show="loading" />
   </div>
 </template>

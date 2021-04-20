@@ -140,9 +140,10 @@ if($response_info && isset($response_info['response_data'])){
             methods: {
                 share: function () {
                     if (this.second <= 0) return
+                    const scheme = getString('app') == 'singall' ? 'HatKara' : getString('app')
                     openApp("singnowapp://singnowapp.com/" + "\{\"inviteCode\":\"" + inviteCode + "\"\}",
                         null, null,
-                        "singall://inviteCode=" + inviteCode)
+                        `${scheme}://inviteCode=` + inviteCode)
                 },
                 downTimeGo: function () {
                     var hour = 0
