@@ -33,6 +33,7 @@ import TabsScrollLoadList from "./TabsScrollLoadList"
 import { globalBus } from '../utils/eventBus'
 import getDateArr from "../utils/getDateArr"
 import MyMarquee from "./MyMarquee"
+import { mapState } from 'vuex'
 export default {
   components: { Loading, MsgToast, ActFooter, Box, TabsScrollLoadList, MyMarquee },
   data () {
@@ -48,9 +49,26 @@ export default {
       defaultPro: null
     }
   },
+  computed: {
+    ...mapState(['actStatus'])
+  },
   created () {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.defaultPro = this.getDefaultData()
+    globalBus.$on('commonEvent', (callback) => {
+      if (this.isShare) {
+        APP()
+        return
+      } else if (this.actStatus === 0) {
+        this.tastMsg = this.lang.noStart
+        this.showT = true
+      } else if (this.actStatus === 2) {
+        this.tastMsg = this.lang.actEnd
+        this.showT = true
+      } else {
+        callback()
+      }
+    })
   },
   methods: {
     judgeShare () {//判断是否为分享环境,请求相应的接口 

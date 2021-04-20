@@ -10,8 +10,8 @@
       <li v-for="(item,index) in list" :key="index">
         <span class="tm">{{getTime(item.time)}}</span>
         <span class="gift">
-          <strong v-if="item.type == 'coupon'">{{item.num}}{{lang.ticket}}</strong>
-          <strong v-else-if="item.type == 'bean'">{{item.num}}{{lang.bean}}</strong>
+          <strong v-if="item.type == 'coupon'">{{item.num}} <em>{{lang.ticket}}</em></strong>
+          <strong v-else-if="item.type == 'bean'">{{item.num}} <em>{{lang.bean}}</em></strong>
           <strong v-else-if="item.type == 'car' || item.type == 'frame'">{{item.name}}({{item.day}}{{lang.day}})</strong>
           <strong v-else-if="item.type == 'gift'">{{item.name}}*{{item.num}}</strong>
         </span>
@@ -120,6 +120,9 @@ body {
         font-size: 0.24rem;
         font-weight: 600;
         color: #fed463;
+        em {
+          margin-left: 0.05rem;
+        }
       }
     }
   }

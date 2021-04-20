@@ -23,16 +23,16 @@
       </div>
     </div>
     <bar :newPcket="newPcket" />
-    <div class=" scoreBox">
+    <div class="scoreBox">
       <div class="scoreTop">
         <div class="todayScore">
-          <span>{{lang.todayScore}}<em>{{packet.dayScore}}</em></span>
+          <span>{{lang.todayScore}}<em> {{packet.dayScore}}</em></span>
         </div>
         <div class="totalScore">
-          <span>{{lang.totalScore}}<em>{{packet.totalScore}}</em></span>
+          <span>{{lang.totalScore}}<em> {{packet.totalScore}}</em></span>
         </div>
       </div>
-      <p class="totalBoxed" v-if="packet.totalOpened">{{lang.totalOpenEd}}</p>
+      <p class="totalBoxed" v-if="packet.totalOpened"> {{lang.totalOpenEd}}</p>
       <p class="couldOpen" v-else-if="packet.totalScore >= packet.level[packet.level.length-1]"> {{lang.couldOpenTotalBox}}</p>
       <p class="rudexScore" v-else>{{lang.rudexScore}}<em>{{disparityScore}}</em></p>
     </div>
@@ -461,6 +461,7 @@ export default {
           font-size: 0.3rem;
           color: #ffcb9c;
           font-weight: 600;
+          margin-left: 0.05rem;
         }
       }
       .totalScore {
@@ -479,6 +480,7 @@ export default {
         font-size: 0.24rem;
         color: #fff3c4;
         font-weight: 600;
+        margin-left: 0.05rem;
       }
     }
     .totalBoxed,

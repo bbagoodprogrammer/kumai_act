@@ -167,6 +167,7 @@ export default {
   },
   watch: {
     nowDay (val) {
+      console.log(val)
       this.tab = val
       this.$nextTick(() => {
         if (!this.rank.loadCount) {

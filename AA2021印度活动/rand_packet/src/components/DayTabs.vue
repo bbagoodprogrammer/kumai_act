@@ -21,6 +21,7 @@ export default {
   props: ["tab"],
   watch: {
     tab (val) {
+      console.log(val)
       this.day = val
     }
   },
@@ -29,9 +30,10 @@ export default {
       day: null
     }
   },
-  created () {
-    this.day = this.tab
-  },
+  //   created () {
+  //     console.log(this.tab)
+  //     this.day = this.tab
+  //   },
   computed: {
     ...mapState(["totalDay", "dateArr"]),
     days () { //日榜tab计算 11 44 24 34 26 28 
