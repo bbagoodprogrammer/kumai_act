@@ -22,7 +22,7 @@
               <strong v-html="item.msg"></strong>
             </span>
           </div>
-          <p class="lastMsg">獎勵在活動結束後，統一發放到玩家的賬號中</p>
+          <!-- <p class="lastMsg">獎勵在活動結束後，統一發放到玩家的賬號中</p> -->
         </div>
       </transition>
     </div>
@@ -31,7 +31,7 @@
 <script>
 import { mapState } from "vuex"
 export default {
-  data() {
+  data () {
     return {
       showDeerGift: false,
       index: 1,
@@ -51,10 +51,10 @@ export default {
               img: 'deer2',
               msg: '顏值逆天鹿禮物 </br> <i>（2金幣）x5</i>'
             },
-            {
-              img: 'coins1',
-              msg: '30金幣'
-            }
+            // {
+            //   img: 'coins1',
+            //   msg: '30金幣'
+            // }
           ]
         },
         {
@@ -68,10 +68,10 @@ export default {
               img: 'deer3',
               msg: '桃花旺旺鹿禮物 </br> <i>（5金幣）x5</i>'
             },
-            {
-              img: 'coins2',
-              msg: '50金幣'
-            }
+            // {
+            //   img: 'coins2',
+            //   msg: '50金幣'
+            // }
           ]
         },
         {
@@ -85,10 +85,10 @@ export default {
               img: 'deer4',
               msg: '天籟之聲鹿禮物 </br> <i>（20金幣）x3</i>'
             },
-            {
-              img: 'coins3',
-              msg: '80金幣'
-            }
+            // {
+            //   img: 'coins3',
+            //   msg: '80金幣'
+            // }
           ]
         },
         {
@@ -102,10 +102,10 @@ export default {
               img: 'deer5',
               msg: '才華橫溢鹿禮物 </br> <i>（108金幣）x3</i>'
             },
-            {
-              img: 'coins4',
-              msg: '100金幣'
-            }
+            // {
+            //   img: 'coins4',
+            //   msg: '100金幣'
+            // }
           ]
         }
       ]
@@ -113,7 +113,7 @@ export default {
   },
   computed: {
     ...mapState(['lvArr', 'userMsg']),
-    actWidth() {
+    actWidth () {
       for (let i = this.lvArr.length - 1; i >= 0; i--) {
         if (this.userMsg.deer_exp >= this.lvArr[this.lvArr.length - 1]) {
           return '100%'
@@ -127,12 +127,12 @@ export default {
     }
   },
   methods: {
-    showDeerGiftPup(val) {
+    showDeerGiftPup (val) {
       if (val == 0) return
       this.index = val
       this.showDeerGift = true
     },
-    closeHistory() {
+    closeHistory () {
       this.showDeerGift = false
     }
   }

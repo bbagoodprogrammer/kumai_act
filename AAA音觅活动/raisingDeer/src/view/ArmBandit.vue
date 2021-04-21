@@ -43,12 +43,12 @@
       </transition>
     </div>
     <!-- 受邀請頁面 -->
-              <div class="mask" v-show="friendInivaList">
-                  <transition>
-                  <FriendInivat v-if="friendInivaList" :invite_users="invite_users" @closeFriendList="closeFriendList" />
-                      </transition>
-              </div>
-        <act-footer></act-footer>
+    <div class="mask" v-show="friendInivaList">
+      <transition>
+        <FriendInivat v-if="friendInivaList" :invite_users="invite_users" @closeFriendList="closeFriendList" />
+      </transition>
+    </div>
+    <act-footer></act-footer>
     <div href="" class="refresh circle" @click.prevent="refrsh()" :style="{transform:'rotate('+rotatePx+'deg)'}"></div>
   </div>
 </template>
@@ -68,9 +68,12 @@ import Lottie from "../components/Lottie"
 import Rules from "../components/Rules"
 import GiftHistory from "../components/GiftHistory"
 import FriendInivat from "../components/FriendInivat"
+import { mapState } from "vuex"
+
+
 export default {
   components: { MsgToast, ActFooter, LandBox, Bar, Rank, Lottie, Rules, GiftHistory, FriendInivat },
-  data() {
+  data () {
     return {
       isShare: false, //是否分享
       isMore: true,   //加载更多
@@ -105,14 +108,23 @@ export default {
       invite_users: []
     }
   },
-  created() {
+  created () {
     //this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
-  mounted() {
+  computed: {
+    ...mapState(['userMsg', 'lvArr']),
+    userLv () {
+      for (let i = this.lvArr.length; i >= 0; i--) {
+        if (this.userMsg.deer_exp >= this.lvArr[i]) {
+          return i + 1
+        }
+      }
+      return this.userMsg.deer_level
+    }
   },
   methods: {
-    getDefaultData(val) { //初始化
+    getDefaultData (val) { //初始化
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
@@ -122,6 +134,8 @@ export default {
           this.vxc('setLandInfo', land_infos)
           this.vxc('setUserMsg', user_info)
           this.vxc('setRank', rank)
+          console.log(this.userLv)
+          this.vxc('updatAniImg', this.userLv)
           this.invite_users = invite_users
           if (!user_info.registered && invite_users.length) {
             this.invite_users = invite_users
@@ -134,8 +148,8 @@ export default {
         }
       })
     },
-    
-    singUp(uid) {
+
+    singUp (uid) {
       globalBus.$emit('commonEvent', () => {
         api.singUp(uid).then(res => {
           const { response_status, response_data } = res.data
@@ -160,31 +174,31 @@ export default {
         })
       })
     },
-    downApp() {
+    downApp () {
       APP()
     },
-    goRule() {
+    goRule () {
       this.showRules = true
     },
-    showHistoryPup() {
+    showHistoryPup () {
       this.showHistory = true
     },
-    refrsh() { //刷新
+    refrsh () { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       // window.removeEventListener("scroll", this.onScroll)
       this.$refs.rank.loaded = false
       this.getDefaultData('ref')
     },
-    closeRule() {
+    closeRule () {
       this.showRules = false
     },
-    closeHistory() {
+    closeHistory () {
       this.showHistory = false
     },
-    closeGetDeer() {
+    closeGetDeer () {
       this.getDeer = false
     },
-    closeFriendList() {
+    closeFriendList () {
       this.friendInivaList = false
     }
   }

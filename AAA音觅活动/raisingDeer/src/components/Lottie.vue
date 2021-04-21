@@ -1,7 +1,8 @@
 <template>
   <div id="lottie" :class="{mount:mouthAni==2}">
-    <canvas id="canvas" width="510" height="510"></canvas>
-    <canvas id="canvas2" width="510" height="510"></canvas>
+    <!-- <canvas id="canvas" width="510" height="510"></canvas>
+    <canvas id="canvas2" width="510" height="510"></canvas> -->
+    <img :src="imgDerss" alt="" class="deerImg">
   </div>
 </template>
 
@@ -12,15 +13,15 @@ import { setTimeout, setInterval, clearTimeout } from 'timers';
 import { mapState } from "vuex"
 import getString from "../utils/getString"
 export default {
-  data() {
+  data () {
     return {
       // lottieOptions: { animationData: animationData.default },
       ainArr: [
-        'images/deer1/gun.svga',
-        'images/deer2/gun.svga',
-        'images/deer3/gun.svga',
-        'images/deer4/gun.svga',
-        'images/deer5/gun.svga',
+        require('../images/1.gif'),
+        require('../images/2.gif'),
+        require('../images/3.gif'),
+        require('../images/4.gif'),
+        require('../images/5.gif'),
       ],
       index: 0,
       fileArr: [],
@@ -32,25 +33,25 @@ export default {
   },
   computed: {
     ...mapState(['aniImg', 'isShare', 'mouthAni', 'userMsg', 'deerAmi']),
-    imgDerss() {
-      return this.ainArr[this.index]
+    imgDerss () {
+      return this.ainArr[this.deerAmi - 1]
     }
   },
-  mounted() {
+  mounted () {
     // this.loadImg().then(result => {
     //   console.log(result)
     //   this.ainGo()
     // })
   },
   watch: {
-    userMsg() {
-      if (!getString('type') && !this.timer) {
-        this.ainGo()
-      }
-    },
-    deerAmi(val) {
-      this.updaDeer(val)
-    }
+    // userMsg () {
+    //   if (!getString('type') && !this.timer) {
+    //     this.ainGo()
+    //   }
+    // },
+    // deerAmi (val) {
+    //   this.updaDeer(val)
+    // }
   },
   methods: {
     // acnClick() {
@@ -77,16 +78,16 @@ export default {
     //   this.fileArr = list
     //   return Promise.all(list);
     // },
-    loadAllSvgaData(files) {
+    loadAllSvgaData (files) {
       const list = [];
       files.map(file => {
         list.push(this.loadSvgaData(file));
       });
       return Promise.all(list);
     },
-    loadSvgaData(file) {
+    loadSvgaData (file) {
       const downloader = new Downloader();
-      const parser = new Parser();
+      const parser = new Parser({ disableWorker: true });
       return new Promise((resolve, reject) => {
         ; (async () => {
           const fileData = await downloader.get(file);
@@ -99,7 +100,7 @@ export default {
         })();
       });
     },
-    async ainGo() {
+    async ainGo () {
       this.list = await this.loadAllSvgaData(this.ainArr)
       this.player = new Player('#canvas') // #canvas is HTMLCanvasElement
       this.player2 = new Player('#canvas2') // #canvas is HTMLCanvasElement
@@ -121,7 +122,7 @@ export default {
       this.player2.start()
       this.earMove()
     },
-    earMove() {
+    earMove () {
       this.player.start()
       setTimeout(() => {  //先動一次耳朵後隔10s在動一次
         this.player.stop()
@@ -133,7 +134,8 @@ export default {
         }, 5000)
       }, 2000)
     },
-    async updaDeer(val) {
+    async updaDeer (val) {
+      console.log(val)
       clearTimeout(this.timer)
       this.player.clear()
       this.player2.clear()
@@ -171,6 +173,10 @@ export default {
   #canvas2 {
     display: none;
   }
+}
+.deerImg {
+  width: 5.1rem;
+  height: 5.1rem;
 }
 // #canvas {
 //   width: 3.5rem;
