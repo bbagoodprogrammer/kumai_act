@@ -32,18 +32,18 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
       showType: 1
     }
   },
   methods: {
-    tabCLick(type) {
+    tabCLick (type) {
       if (this.showType == type) return
       this.showType = type
       this.$refs.con.scrollTo(0, 0)
     },
-    closeRule() {
+    closeRule () {
       this.$emit('closeRule')
     }
   }
@@ -153,7 +153,7 @@ export default {
     }
     .ruleImg4 {
       width: 6.39rem;
-      height: 5.99rem;
+      height: 3.85rem;
       margin: 0 auto;
     }
     .giftTips {
