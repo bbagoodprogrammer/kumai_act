@@ -86,7 +86,7 @@ window.onShareSuccess = async (from, uid, type, typeName) => {
 
 export default {
   components: { Friendslist },
-  data() {
+  data () {
     return {
       list: [],
       invList: [],
@@ -97,14 +97,14 @@ export default {
       total_invited_users: 0
     }
   },
-  created() {
+  created () {
     api.waterTask().then(res => {
       this.list = res.data.response_data.missions
       this.total_invited_users = res.data.response_data.total_invited_users
     })
   },
   methods: {
-    getWater(item, index) {  //修改禮物
+    getWater (item, index) {  //修改禮物
       globalBus.$emit('commonEvent', () => {
         api.getGifts(item.id).then(res => {
           if (res.data.response_status.code == 0) {
@@ -117,7 +117,7 @@ export default {
         })
       })
     },
-    onScroll() {
+    onScroll () {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
         if (this.loaded) return
@@ -134,7 +134,7 @@ export default {
         }
       }
     },
-    showInv() {
+    showInv () {
       if (this.invList.length == 0) {
         api.sharedPeople(0).then(res => {
           this.invList = res.data.response_data.list
@@ -150,22 +150,22 @@ export default {
         this.invitationedPup = true
       }
     },
-    colseInv() {
+    colseInv () {
       this.invitationedPup = false
     },
-    goShareHtml() {
+    goShareHtml () {
 
     },
-    showFriend() {
+    showFriend () {
       this.showFriendList = true
     },
-    closeFriend() {
+    closeFriend () {
       this.showFriendList = false
     },
-    closeTask() {
+    closeTask () {
       this.$emit('closeTaskList')
     },
-    goHtml(link, rid, id) {//0無鏈接，1進房間，2邂逅頁，3儲值頁，4分享活動，5邀請好友
+    goHtml (link, rid, id) {//0無鏈接，1進房間，2邂逅頁，3儲值頁，4分享活動，5邀請好友
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       if (link == 1) {
         try {
@@ -187,10 +187,15 @@ export default {
         } catch (e) { }
       } else if (link == 2) {
         try {
+          //   if (ios) {
+          //     sendJsData('app://bottlespage');
+          //   } else {
+          //     javascript: JSInterface.sendJsData('app://bottlespage');
+          //   }
           if (ios) {
-            sendJsData('app://bottlespage');
+            sendJsData('app://topicDetails?tpid=135');
           } else {
-            javascript: JSInterface.sendJsData('app://bottlespage');
+            javascript: JSInterface.sendJsData('app://topicDetails?tpid=135');
           }
         } catch (e) { }
       } else if (link == 3) {
@@ -207,10 +212,10 @@ export default {
         try {
           share({
             from: '1_0',
-            url: `http://activity.udateapp.com/static_html/2020/raisingDeer/index.html?type=1`,
+            url: `http://activities.udateapp.com/static_html/2020/deerMan/index.html?type=1`,
             title: '我正在養梅花鹿，很好玩！也送你一隻鹿寶寶',
             desc: '我正在養梅花鹿，很好玩！也送你一隻鹿寶寶',
-            image: 'http://activity.udateapp.com/static_html/2020/raisingDeer/share.jpg'
+            image: 'http://activities.udateapp.com/static_html/2020/deerMan/share.jpg'
           })
         } catch (e) { }
       } else if (link == 5) {

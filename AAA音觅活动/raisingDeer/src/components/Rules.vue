@@ -3,7 +3,7 @@
     <i class="close" @click="closeRule()"></i>
     <div class="title"></div>
     <div class="rulesTips"></div>
-    <div class="ruleTime">活動時間：4月24日-5月24日</div>
+    <div class="ruleTime">活動時間：4月22日 20：00-5月1日 23：59：59</div>
     <div class="tabs " :class="{act:showType == 2}">
       <span @click="tabCLick(1)" class="tab1">經營田地產食物</span>
       <span @click="tabCLick(2)" class="tab2">活動獎勵</span>
@@ -18,13 +18,13 @@
       <div class="giftItem" v-show="showType == 2">
         <h6>1、梅花鹿升級獎勵</h6>
         <img src="../assets/img/rulesImg/ruleImg1.png" alt="" class="ruleImg3">
-        <h6>2、榜單前十獎勵</h6>
+        <h6>2、榜單獎勵</h6>
         <img src="../assets/img/rulesImg/ruleImg2.png" alt="" class="ruleImg4">
         <p class="giftTips">玩家需養成天籟之聲鹿並達到排行榜前三名可獲得對應榜單獎勵</p>
-        <div class="wardTips">
+        <!-- <div class="wardTips">
           <h3>注意事項：</h3>
           <p>音覓背包功能將在1.80版本上線，敬請期待~活動獎勵的禮物將在活動結束後發放到玩家的背包中</p>
-        </div>
+        </div> -->
       </div>
       <div class="lastTips">*活動最終解釋權歸活動主辦方所有</div>
     </div>

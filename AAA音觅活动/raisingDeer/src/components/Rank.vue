@@ -38,7 +38,7 @@
 import { mapState } from "vuex"
 import api from "../api/apiConfig"
 export default {
-  data() {
+  data () {
     return {
       isMore: true,
       loaded: false
@@ -46,24 +46,24 @@ export default {
   },
   computed: {
     ...mapState(['rank']),
-    top1() {
+    top1 () {
       if (this.rank.length) {
         return this.rank[0]
       }
       return {}
     },
-    surplusArr() {
+    surplusArr () {
       if (this.rank.length) {
         return this.rank.slice(1)
       }
       return []
     }
   },
-  mounted() {
+  mounted () {
     window.addEventListener('scroll', this.onScroll)
   },
   methods: {
-    goUser(uid) {
+    goUser (uid) {
       var u = navigator.userAgent;
       var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
       var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
@@ -73,7 +73,7 @@ export default {
         javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
       }
     },
-    onScroll() {
+    onScroll () {
       if (this.isMore) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100
         if (scrollToBottom && !this.loaded) { //加載更多
@@ -149,9 +149,10 @@ export default {
         height: 100%;
         margin-left: 0.15rem;
         img {
-          width: 2.2rem;
-          height: 2.2rem;
-          margin-top: 0.13rem;
+          display: block;
+          width: 2rem;
+          height: 2rem;
+          margin: 0.13rem auto 0;
         }
         strong {
           display: block;
