@@ -43,7 +43,7 @@
 import APP from "../utils/openApp"
 export default {
   props: ['sharePeople', 'type'],
-  data() {
+  data () {
     return {
       giftArr: [
         {
@@ -54,10 +54,10 @@ export default {
           img: require('../assets/img/shareDeer/shareCar.png'),
           name: '跑車特效禮物'
         },
-        {
-          img: require('../assets/img/shareDeer/share3.png'),
-          name: '金幣'
-        }
+        // {
+        //   img: require('../assets/img/shareDeer/share3.png'),
+        //   name: '金幣'
+        // }
       ],
       supriseMsg: [
         '',
@@ -73,12 +73,12 @@ export default {
           gift: [
             {
               img: 'deer2',
-              msg: '顏值逆天鹿禮物 </br> <i>（2金幣）x5</i>'
+              msg: '顏值逆天鹿禮物 </br> <i>x3</i>'
             },
-            {
-              img: 'coins1',
-              msg: '30金幣'
-            }
+            // {
+            //   img: 'coins1',
+            //   msg: '30金幣'
+            // }
           ]
         },
         {
@@ -86,16 +86,16 @@ export default {
           gift: [
             {
               img: 'deer2',
-              msg: '顏值逆天鹿禮物 </br> <i>（2金幣）x5</i>'
+              msg: '顏值逆天鹿禮物 </br> <i>x3</i>'
             },
             {
               img: 'deer3',
-              msg: '桃花旺旺鹿禮物 </br> <i>（5金幣）x5</i>'
+              msg: '桃花旺旺鹿禮物 </br> <i>x3</i>'
             },
-            {
-              img: 'coins2',
-              msg: '50金幣'
-            }
+            // {
+            //   img: 'coins2',
+            //   msg: '50金幣'
+            // }
           ]
         },
         {
@@ -103,16 +103,16 @@ export default {
           gift: [
             {
               img: 'deer3',
-              msg: '桃花旺旺鹿禮物 </br> <i>（5金幣）x5</i>'
+              msg: '桃花旺旺鹿禮物 </br> <i>x3</i>'
             },
             {
               img: 'deer4',
-              msg: '天籟之聲鹿禮物 </br> <i>（20金幣）x3</i>'
+              msg: '天籟之聲鹿禮物 </br> <i>x3</i>'
             },
-            {
-              img: 'coins3',
-              msg: '80金幣'
-            }
+            // {
+            //   img: 'coins3',
+            //   msg: '80金幣'
+            // }
           ]
         },
         {
@@ -120,23 +120,23 @@ export default {
           gift: [
             {
               img: 'deer4',
-              msg: '天籟之聲鹿禮物 </br> <i>（20金幣）x3</i>'
+              msg: '天籟之聲鹿禮物 </br> <i>x3</i>'
             },
             {
               img: 'deer5',
-              msg: '才華橫溢鹿禮物 </br> <i>（108金幣）x3</i>'
+              msg: '才華橫溢鹿禮物 </br> <i>x3</i>'
             },
-            {
-              img: 'coins4',
-              msg: '100金幣'
-            }
+            // {
+            //   img: 'coins4',
+            //   msg: '100金幣'
+            // }
           ]
         }
       ]
     }
   },
   methods: {
-    downApp() {
+    downApp () {
       APP()
     }
   }
@@ -186,7 +186,10 @@ export default {
       .giftItem {
         margin-top: 0.36rem;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        span:last-child {
+          margin-left: 0.5rem;
+        }
         img {
           width: 1.68rem;
           height: 1.68rem;
@@ -246,7 +249,7 @@ export default {
       margin: 0 auto 0;
     }
     .deerTips:before {
-      content: "\0020";
+      content: '\0020';
       width: 0.67rem;
       height: 0.29rem;
       background: url(../assets/img/supriseDeer/deerSho.png);

@@ -43,7 +43,7 @@ import { globalBus } from '../utils/eventBus'
 export default {
   computed: {
     ...mapState(['land_info', 'propMissions']),
-    isHas() {
+    isHas () {
       var quey = this.land_info.filter(item => {
         return item.status == 3
       })
@@ -51,10 +51,10 @@ export default {
     }
   },
   methods: {
-    closeProp() {
+    closeProp () {
       this.$emit('closePropList')
     },
-    getGifts(item, index) {
+    getGifts (item, index) {
       globalBus.$emit('commonEvent', () => {
         api.getGifts(item.id).then(res => {
           if (res.data.response_status.code == 0) {
@@ -71,7 +71,7 @@ export default {
         })
       })
     },
-    useProp(id) {
+    useProp (id) {
       if (this.propMissions.tools[0].tool_count > 0) {
         if (this.isHas.length) {
           api.useFunc(id).then(res => {
@@ -94,7 +94,7 @@ export default {
         })
       }
     },
-    useQuickProp(id) {
+    useQuickProp (id) {
       if (this.propMissions.tools[1].tool_count > 0) {
         if (this.isHas.length) {
           api.useFunc(id).then(res => {
@@ -117,7 +117,7 @@ export default {
         })
       }
     },
-    downAllTime() {
+    downAllTime () {
       for (let i = 0; i < this.land_info.length; i++) {
         var timeKey = 'land' + this.land_info[i].id;
         var timeObj = downTime(timeKey)
@@ -142,7 +142,7 @@ export default {
         time: 2000
       })
     },
-    downQuickTime() {
+    downQuickTime () {
       for (let i = 0; i < this.land_info.length; i++) {
         var timeKey = 'land' + this.land_info[i].id;
         var timeObj = downTime(timeKey)
@@ -162,7 +162,7 @@ export default {
         time: 2000
       })
     },
-    goHtml(link, rid) {//0無鏈接，1進房間，2邂逅頁，3儲值頁，4分享活動，5邀請好友
+    goHtml (link, rid) {//0無鏈接，1進房間，2邂逅頁，3儲值頁，4分享活動，5邀請好友
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       if (link == 1) {
         try {
@@ -194,17 +194,17 @@ export default {
         try {
           share({
             from: '1_0',
-            url: `http://activity.udateapp.com/static_html/2020/raisingDeer/index.html?type=1`,
+            url: `http://activities.udateapp.com/static_html/2020/deerMan/index.html?type=1`,
             title: '我正在養梅花鹿，很好玩！',
             desc: '也送你一隻鹿寶寶',
-            image: 'http://activity.udateapp.com/static_html/2020/raisingDeer/share.jpg'
+            image: 'http://activities.udateapp.com/static_html/2020/deerMan/share.jpg'
           })
         } catch (e) { }
       } else if (link == 5) {
         this.showFriend()
       }
     },
-    reduxProp(type) {
+    reduxProp (type) {
       this.vxc('reduxProp', type)
     }
   }

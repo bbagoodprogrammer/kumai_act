@@ -51,7 +51,7 @@ import share from "../utils/share"
 import { globalBus } from '../utils/eventBus'
 export default {
   components: { Land, DayTasks, PropList },
-  data() {
+  data () {
     return {
       upgrading: false,
       supriseMsg: [
@@ -68,7 +68,7 @@ export default {
   },
   computed: {
     ...mapState(['land_info', 'userMsg', 'lvArr', 'propMissions']),
-    userLv() {
+    userLv () {
       for (let i = this.lvArr.length; i >= 0; i--) {
         if (this.userMsg.deer_exp >= this.lvArr[i]) {
           return i + 1
@@ -78,7 +78,7 @@ export default {
     }
   },
   watch: {
-    userLv(val) {
+    userLv (val) {
       if (this.first) {
         this.first = false
         return
@@ -89,24 +89,24 @@ export default {
       this.vxc('updatAniImg', val)
     }
   },
-  created() {
+  created () {
     globalBus.$on('shareSuc', (callback) => {
       this.closeUpgrading()
     })
   },
   methods: {
-    closeUpgrading() {
+    closeUpgrading () {
       this.upgrading = false
     },
-    showTasks() {
+    showTasks () {
       if (this.userMsg.registered) {
         this.showDayTasks = true
       }
     },
-    closeTaskList() {
+    closeTaskList () {
       this.showDayTasks = false
     },
-    showProp() {
+    showProp () {
       if (this.userMsg.registered) {
         api.propTasks().then(res => {
           this.vxc('setPropMissions', res.data.response_data)
@@ -114,10 +114,10 @@ export default {
         })
       }
     },
-    closePropList() {
+    closePropList () {
       this.showPropList = false
     },
-    share() {
+    share () {
       var obj = {
         name: this.userMsg.nick,
         lv: this.userLv,
@@ -127,10 +127,10 @@ export default {
       //var d = JSON.parse(window.decodeURIComponent(window.atob(encodeData)))
       share({
         from: `2_${this.userLv * 100}`,
-        url: `http://activity.udateapp.com/static_html/2020/raisingDeer/index.html?type=2&t=${t}`,
+        url: `http://activities.udateapp.com/static_html/2020/deerMan/index.html?type=2&t=${t}`,
         title: '我正在養梅花鹿，很好玩！也送你一隻鹿寶寶',
         desc: '我正在養梅花鹿，很好玩！也送你一隻鹿寶寶',
-        image: 'http://activity.udateapp.com/static_html/2020/raisingDeer/share.jpg'
+        image: 'http://activities.udateapp.com/static_html/2020/deerMan/share.jpg'
       })
     }
   }
@@ -276,7 +276,7 @@ export default {
 }
 
 .deerTips:before {
-  content: "\0020";
+  content: '\0020';
   width: 0.67rem;
   height: 0.29rem;
   background: url(../assets/img/supriseDeer/deerSho.png);

@@ -49,7 +49,7 @@ export default {
           gift: [
             {
               img: 'deer2',
-              msg: '顏值逆天鹿禮物 </br> <i>（2金幣）x5</i>'
+              msg: '顏值逆天鹿禮物 </br> <i>x3</i>'
             },
             // {
             //   img: 'coins1',
@@ -62,11 +62,11 @@ export default {
           gift: [
             {
               img: 'deer2',
-              msg: '顏值逆天鹿禮物 </br> <i>（2金幣）x5</i>'
+              msg: '顏值逆天鹿禮物 </br> <i>x3</i>'
             },
             {
               img: 'deer3',
-              msg: '桃花旺旺鹿禮物 </br> <i>（5金幣）x5</i>'
+              msg: '桃花旺旺鹿禮物 </br> <i>x3</i>'
             },
             // {
             //   img: 'coins2',
@@ -79,11 +79,11 @@ export default {
           gift: [
             {
               img: 'deer3',
-              msg: '桃花旺旺鹿禮物 </br> <i>（5金幣）x5</i>'
+              msg: '桃花旺旺鹿禮物 </br> <i>x3</i>'
             },
             {
               img: 'deer4',
-              msg: '天籟之聲鹿禮物 </br> <i>（20金幣）x3</i>'
+              msg: '天籟之聲鹿禮物 </br> <i>x3</i>'
             },
             // {
             //   img: 'coins3',
@@ -96,11 +96,11 @@ export default {
           gift: [
             {
               img: 'deer4',
-              msg: '天籟之聲鹿禮物 </br> <i>（20金幣）x3</i>'
+              msg: '天籟之聲鹿禮物 </br> <i>x3</i>'
             },
             {
               img: 'deer5',
-              msg: '才華橫溢鹿禮物 </br> <i>（108金幣）x3</i>'
+              msg: '才華橫溢鹿禮物 </br> <i>x3</i>'
             },
             // {
             //   img: 'coins4',
@@ -217,13 +217,13 @@ export default {
   }
   .deerMsg {
     width: 6.42rem;
-    height: 9.51rem;
+    height: 6.5rem;
     padding: 0 0.23rem;
-    background: url(../assets/img/derrGift/bg2.png);
+    background: url(../assets/img/derrGift/bg1.png);
     background-size: 100% 100%;
     position: absolute;
     left: 0.31rem;
-    top: 1.35rem;
+    top: 2.8rem;
     &.deer1 {
       width: 6.42rem;
       height: 6.8rem;

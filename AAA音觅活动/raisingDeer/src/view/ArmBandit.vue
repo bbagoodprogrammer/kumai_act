@@ -31,7 +31,7 @@
           <i class="close" @click="closeGetDeer()"></i>
           <img src="../assets/img/firstDeer.png" alt="" class="fidstDeer">
           <div class="title"></div>
-          <p class="firstTips">每天領水瓶種食物，養成梅花鹿， </br>獲得限量勛章、限量禮物、金幣。</p>
+          <p class="firstTips">每天領水瓶種食物，養成梅花鹿， </br>獲得限量勛章、限量禮物。</p>
           <div class="giftBox">
             <span v-for="(item,index) in firstGiftArr" :key="index" class="giftItem">
               <img :src="item.img" alt="">
@@ -97,11 +97,7 @@ export default {
         },
         {
           img: require('../assets/img/firstCar.png'),
-          msg: '跑車<br>(特效禮物)'
-        },
-        {
-          img: require('../assets/img/firstCoins.png'),
-          msg: '金幣'
+          msg: '深林見鹿蹤<br>(特效禮物)'
         }
       ],
       friendInivaList: false,
