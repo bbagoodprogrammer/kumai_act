@@ -1,0 +1,95 @@
+html.vi {
+    .tips_box{
+        ul{
+            li{
+                span:nth-of-type(1){
+                    &.lv1{
+                        background-image: url('./img/lv1.png');
+                    }
+                }
+            }
+        }
+    }
+    .con{
+        .top{
+            .line{
+                width: 7.5rem;
+                height: 1.8rem;
+                padding-top: 3rem;
+                position: relative;
+                .icon_box{
+                    width: 7.5rem;
+                    height: 1.8rem;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    span{
+                        position: absolute;
+                        width: .58rem;
+                        height: .58rem;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                    .first{
+                        top: .47rem;
+                        left: .54rem;
+                    }
+                    .second{
+                        top: .95rem;
+                        left: 1.64rem;
+                    }
+                    .third{
+                        top: .95rem;
+                        right: 1.64rem;
+                    }
+                    .fourth{
+                        top: .47rem;
+                        right: .54rem;
+                    }
+                }
+                >img{
+                    width: 7.5rem;
+                    height: 1.8rem;
+                }
+                .level{
+                    width: 2.3rem;
+                    height: 1.07rem;
+                    background:#3BDCA6;
+                    border-radius: .57rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    position: absolute;
+                    left: 50%;
+                    bottom: -.1rem;
+                    margin-left: -1.15rem;
+                    img{
+                        width: .5rem;
+                        height: .5rem;
+                        &.kong{
+                            margin: 0 auto;
+                        }
+                    }
+                    span{
+                        display: block;
+                        font-size: .26rem;
+                        font-family:PingFang SC;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .info{
+            .dice{
+                width: 5.5rem;
+            }
+        }
+    }
+    .footer{
+        .un_cp{
+            line-height: .44rem;
+        }
+    }
+}

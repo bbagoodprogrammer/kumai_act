@@ -1,0 +1,44 @@
+html.vi {
+  .home__container .tabs .tab {
+    font-size: 0.22rem;
+  }
+
+  .header .btn_right, .header .rule, .header .mail {
+    font-size: 0.22rem;
+  }
+
+  .task .task__box {
+    .task_des {
+      width: 6.5rem;
+    }
+    .task__title {
+      padding-top: 0.1rem;
+    }
+    .task__item {
+      .td1 {
+        width: 2.8rem;
+      }
+      .td_con {
+        font-size: 0.24rem;
+      }
+    }
+  }
+
+  .rule .main .gift__box li {
+    width: 33.3%;
+    margin-left: 0;
+    margin-right: 0;
+    .img__box {
+      margin: 0 auto;
+    }
+  }
+
+  .rule .main .act_award__box li {
+    width: 33.3%;
+  }
+
+  .make__family .list__container .dialog__title .name {
+    width: 2.2rem;
+  }
+
+}

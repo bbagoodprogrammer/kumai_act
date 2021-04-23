@@ -1,0 +1,91 @@
+@import url(reset.css);
+body {
+  color: #fff;
+  background: transparent;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#app {
+  max-width: 750px;
+  margin: auto;
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bounce-enter-active {
+  transition: all .3s ease;
+}
+
+.bounce-enter-active .content {
+  animation: bounce .3s;
+}
+
+.bounce-leave-active {
+  transition: all .3s ease;
+}
+
+.bounce-leave-active .content {
+  animation: bounce .3s reverse;
+}
+
+.popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.popup .content {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.popup-enter-active, .popup-leave-active {
+  transition: all .3s ease;
+}
+
+.popup-enter-active .content, .popup-leave-active .content {
+  transition: all .3s ease;
+}
+
+.popup-enter, .popup-leave-to {
+  opacity: 0;
+}
+
+.popup-enter .content, .popup-leave-to .content {
+  transform: translateY(100%);
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

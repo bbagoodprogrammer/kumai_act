@@ -65,7 +65,7 @@
       <h3>Aturan acara</h3>
       <p>Kontes bintang famili dibagi menjadi 3 periode: "Bintang bersinar"--"Bersaing kemuliaan"--"Kelahiran Bintang",Acara terbatas untuk pengguna famili</p>
       <h3>Bintang bersinar</h3>
-      <p>1.Waktu kontes:<em class="tm">3/29 12:00-4/1 22:00</em> </p>
+      <p>1.Waktu kontes:<em class="tm">04.23 12:00 ~ 04.26 21:00</em> </p>
       <p>2.Pengguna famili klik mendaftar utk ikut acara, Nilai bintang = nilai pesona koin yg teriam di nyanyian/Kroom + nilai tugas bintang, yg masuk top 300 teratas akan bisa promosi dan wakilkan
         famili utk mengikut tantangan bintang famili</p>
       <p>3.Peringkat Harian Starlight didasarkan pada nilai bintang hari itu. 100 teratas dapat berpartisipasi dalam lotere, dan 20 hadiah ransel Bintang bersina(68 koin emas) akan diundi setiap hari.
@@ -74,7 +74,7 @@
         akan dihitung kembali.</p>
       <h3>Bersaing kemulian</h3>
       <p>
-        1.Waktu kontes:<em class="tm">4/1 22:05-4/5 18:00</em><br />
+        1.Waktu kontes:<em class="tm"> 04.26 21:05 ~ 05.01 18:00</em><br />
         2.Dipromosikan dr famili yang sama membentuk tim untuk mengikuti PK atas nama familinya(Pertandingan acak), Pemenang ditentukan berdasarkan total nilai bintang, dan pemenang maju dan
         mendapatkan paket hadiah famili. Nilai bintang = nilai pesona koin yg teriam di nyanyian/Kroom + nilai tugas bintang<br />
         3.Di berakhir kontes,Kedua pemain dengan skor yang sama akan tersingkir pada waktu yang bersamaan. Jika PK gagal, tapi Total nilai bintang yang lebih besar dari atau sama dengan 100.000 juga
@@ -85,7 +85,7 @@
 
       </p>
       <h3>Kelahiran Bintang</h3>
-      <p>1.Waktu kontes:<em class="tm">4/5 18:05-4/7 22:00</em> <br />
+      <p>1.Waktu kontes:<em class="tm">05.01 18:05 ~ 05.02 21:00</em> <br />
         2.Nilai bintang = nilai pesona koin yg teriam di nyanyian/Kroom + nilai tugas bintang, dan dapatkan bonus 10% nilai pd jam 19~21 hari terakhir<br />
         3.Peringkat berdasarkan total nilai bintang,Famili yg masuk top 10 teratas dan Perwakilan famili menjadi bintang famili, bisa dapatkan hadiah besar<br />
         4.Ketika total nilai bintang mencapai nilai yang ditentukan, keluarga akan ditingkatkan, dan sistem akan secara otomatis mengirim paket hadiah pembesar saat meningkatkan, Level Ⅰ, Ⅱ, Ⅲ sesuai

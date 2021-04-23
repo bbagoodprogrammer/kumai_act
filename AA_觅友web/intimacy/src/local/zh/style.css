@@ -1,0 +1,7 @@
+html.zh .tips_box ul li span:nth-of-type(1).lv1 {
+  background-image: url("./img/lv1.png");
+}
+
+html.zh .footer .un_cp {
+  line-height: .88rem;
+}
