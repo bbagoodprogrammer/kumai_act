@@ -1,0 +1,92 @@
+html.vi .tips_box ul li span:nth-of-type(1).lv1 {
+  background-image: url("./img/lv1.png");
+}
+
+html.vi .con .top .line {
+  width: 7.5rem;
+  height: 1.8rem;
+  padding-top: 3rem;
+  position: relative;
+}
+
+html.vi .con .top .line .icon_box {
+  width: 7.5rem;
+  height: 1.8rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+html.vi .con .top .line .icon_box span {
+  position: absolute;
+  width: .58rem;
+  height: .58rem;
+}
+
+html.vi .con .top .line .icon_box span img {
+  width: 100%;
+}
+
+html.vi .con .top .line .icon_box .first {
+  top: .47rem;
+  left: .54rem;
+}
+
+html.vi .con .top .line .icon_box .second {
+  top: .95rem;
+  left: 1.64rem;
+}
+
+html.vi .con .top .line .icon_box .third {
+  top: .95rem;
+  right: 1.64rem;
+}
+
+html.vi .con .top .line .icon_box .fourth {
+  top: .47rem;
+  right: .54rem;
+}
+
+html.vi .con .top .line > img {
+  width: 7.5rem;
+  height: 1.8rem;
+}
+
+html.vi .con .top .line .level {
+  width: 2.3rem;
+  height: 1.07rem;
+  background: #3BDCA6;
+  border-radius: .57rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  bottom: -.1rem;
+  margin-left: -1.15rem;
+}
+
+html.vi .con .top .line .level img {
+  width: .5rem;
+  height: .5rem;
+}
+
+html.vi .con .top .line .level img.kong {
+  margin: 0 auto;
+}
+
+html.vi .con .top .line .level span {
+  display: block;
+  font-size: .26rem;
+  font-family: PingFang SC;
+  color: #fff;
+}
+
+html.vi .con .info .dice {
+  width: 5.5rem;
+}
+
+html.vi .footer .un_cp {
+  line-height: .44rem;
+}
