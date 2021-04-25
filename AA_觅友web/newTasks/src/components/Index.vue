@@ -38,7 +38,8 @@
               <div class="gift"><img :src="item.prizeImage" alt="" v-if="item.prizeImage"> {{item.prizeName}} <i v-if="item.prizeNum">{{item.prizeNum}}</i></div>
             </div>
             <div class="status">
-              <em class="get" v-if="item.status == 1" @click="getGiftItem(false,item,index)">{{lang.get}}</em>
+              <em class="get" v-if="item.id == 'D_2001'  && !new_ver" @click="getGiftItem(false,item,index)">{{lang.singIn}}</em>
+              <em class="get" v-else-if="item.status == 1" @click="getGiftItem(false,item,index)">{{lang.get}}</em>
               <em class="do" v-else-if="item.status == 0" @click="doTask(item)">{{lang.do_task}}</em>
               <em class="ed" v-else-if="item.status == 2">{{lang.get_ed}}</em>
             </div>
@@ -51,7 +52,8 @@
       <transition name="slide">
         <div class="luckGift" v-if="luckGiftPup">
           <div class="title">
-            <strong>{{lang.do_ed}}#{{getGiftObj.name}}#</strong>
+            <!-- {{lang.do_ed}}#{{getGiftObj.name}}# -->
+            <strong>{{getGiftObj.name}}</strong>
           </div>
           <div class="luckGiftlist">
             <div class="giftItem">
@@ -244,10 +246,10 @@ export default {
       .title {
         font-size: 0.32rem;
         color: rgba(44, 43, 54, 1);
-        font-weight: 600;
         position: relative;
         margin-bottom: 0.22rem;
         em {
+          font-weight: 600;
           position: relative;
           z-index: 2;
         }
@@ -327,6 +329,9 @@ export default {
             color: #fff;
             border-radius: 0.3rem;
             font-size: 0.26rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             &.do {
               box-sizing: border-box;
               border: 0.02rem solid #7A68F8;
@@ -345,7 +350,7 @@ export default {
   }
   .luckGift {
     width: 5.96rem;
-    height: 5.52rem;
+    height: 4.92rem;
     padding-top: 1.5rem;
     background: linear-gradient(180deg, #FFFAEB 0%, #FFF2CF 100%);
     border-radius: 0.3rem;

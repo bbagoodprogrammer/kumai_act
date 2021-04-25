@@ -8,12 +8,12 @@
     </div>
     <div class="giftList">
       <!-- <h3>{{lang.gift_title}}</h3> -->
-      <div class="giftItem" v-for="(item,index) in giftList" :key="index">
+      <!-- <div class="giftItem" v-for="(item,index) in giftList" :key="index">
         <div class="imgBg">
           <img :src="item.img" alt="">
         </div>
         <strong>{{item.name}}</strong>
-      </div>
+      </div> -->
     </div>
     <TabsScrollLoadList />
     <Footer />
@@ -31,29 +31,29 @@ import Footer from "./Footer"
 
 export default {
   components: { TabsScrollLoadList, Footer },
-  data() {
+  data () {
     return {
       isShare: false,
     }
   },
-  created() {
+  created () {
     this.judgeShare()
   },
   computed: {
     ...mapState(['tab']),
-    giftList() {
+    giftList () {
       return this.lang.giftList
     }
   },
   methods: {
-    judgeShare() {//判断是否为分享环境,请求相应的接口 
+    judgeShare () {//判断是否为分享环境,请求相应的接口 
       this.isShare = getUrlString('token') ? false : true
       this.vxc('setShareState', this.isShare) //分享状态
     },
-    downApp() {
+    downApp () {
       APP()
     },
-    goRule() {
+    goRule () {
       this.$router.push('Rule')
     }
   },
@@ -69,9 +69,8 @@ export default {
     height: 10.72rem;
   }
   .giftList {
-    width: 6.09rem;
-    height: 5.03rem;
-    padding: 1.01rem 0.37rem 0;
+    width: 7.1rem;
+    height: 6.51rem;
     margin: 0 auto;
     position: relative;
     display: flex;

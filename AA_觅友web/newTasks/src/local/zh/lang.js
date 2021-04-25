@@ -9,5 +9,6 @@ export default {
     day_title: "日常任務",
     do_ed: "完成",
     accept: "收下",
-    get_suc: "領取成功！"
+    get_suc: "領取成功！",
+    singIn: "签到"
 };
