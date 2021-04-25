@@ -302,7 +302,7 @@ export default {
     },
     getNameStr (item) {
       if (item.days) {
-        return `${item.name} *${item.days}`
+        return `${item.name} *${item.days}${this.day}`
       } else if (item.num) {
         return `${item.name}`
       }
@@ -312,18 +312,22 @@ export default {
       const token = getUrlString('token')
       const lang = getUrlString('lang')
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      let test = ''
+      if (_test) {
+        test = 't.'
+      }
       try {
         if (AREA == 'tw') {
           if (ios) {
-            sendJsData(`http://t.act.udateapp.com/html/revenueCenter/history.html?uid=${uid}&token=${token}&lang=${lang}&type=${this.type}`);
+            sendJsData(`http://${test}act.udateapp.com/html/revenueCenter/history.html?uid=${uid}&token=${token}&lang=${lang}&type=${this.type}`);
           } else {
-            javascript: JSInterface.sendJsData(`http://t.act.udateapp.com/html/revenueCenter/history.html?uid=${uid}&token=${token}&lang=${lang}&type=${this.type}`);
+            javascript: JSInterface.sendJsData(`http://${test}act.udateapp.com/html/revenueCenter/history.html?uid=${uid}&token=${token}&lang=${lang}&type=${this.type}`);
           }
         } else if (AREA == 'vn') {
           if (ios) {
-            sendJsData(`http://t.act.alochatapp.com/html/revenueCenter/history.html?uid=${uid}&token=${token}&lang=${lang}&type=${this.type}`);
+            sendJsData(`http://${test}act.alochatapp.com/html/revenueCenter/history.html?uid=${uid}&token=${token}&lang=${lang}&type=${this.type}`);
           } else {
-            javascript: JSInterface.sendJsData(`http://t.act.alochatapp.com/html/revenueCenter/history.html?uid=${uid}&token=${token}&lang=${lang}&type=${this.type}`);
+            javascript: JSInterface.sendJsData(`http://${test}act.alochatapp.com/html/revenueCenter/history.html?uid=${uid}&token=${token}&lang=${lang}&type=${this.type}`);
           }
         }
 
@@ -333,18 +337,22 @@ export default {
     },
     goTips () {
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      let test = ''
+      if (_test) {
+        test = 't.'
+      }
       try {
         if (AREA == 'tw') {
           if (ios) {
-            sendJsData(`http://t.act.udateapp.com/html/revenueCenter/tips.html`);
+            sendJsData(`http://${test}act.udateapp.com/html/revenueCenter/tips.html`);
           } else {
-            javascript: JSInterface.sendJsData(`http://t.act.udateapp.com/html/revenueCenter/tips.html`);
+            javascript: JSInterface.sendJsData(`http://${test}act.udateapp.com/html/revenueCenter/tips.html`);
           }
         } else if (AREA == 'vn') {
           if (ios) {
-            sendJsData(`http://t.act.alochatapp.com/html/revenueCenter/tips.html`);
+            sendJsData(`http://${test}act.alochatapp.com/html/revenueCenter/tips.html`);
           } else {
-            javascript: JSInterface.sendJsData(`http://t.act.alochatapp.com/html/revenueCenter/tips.html`);
+            javascript: JSInterface.sendJsData(`http://${test}act.alochatapp.com/html/revenueCenter/tips.html`);
           }
         }
 
@@ -359,6 +367,7 @@ export default {
 <style lang="scss" scoped>
 .pageIndex {
   overflow-x: hidden;
+  position: relative;
   .app_top {
     width: 100%;
     position: fixed;
@@ -385,10 +394,21 @@ export default {
   .top_bg {
     width: 100%;
     overflow: hidden;
-    height: 3.5rem;
+    height: 4.6rem;
     position: absolute;
     top: 0;
     z-index: -1;
+  }
+  .top_bg::after {
+    content: '';
+    width: 120%;
+    height: 4.6rem;
+    position: absolute;
+    left: -10%;
+    top: 0;
+    z-index: -1;
+    border-radius: 0 0 60% 60%;
+    background: #7A68F8;
   }
   .tab {
     width: 100%;
@@ -436,17 +456,7 @@ export default {
       margin-left: 0.6rem;
     }
   }
-  .top_bg::after {
-    content: '';
-    width: 120%;
-    height: 4.6rem;
-    position: absolute;
-    left: -10%;
-    top: 0;
-    z-index: -1;
-    border-radius: 0 0 60% 60%;
-    background: #7A68F8;
-  }
+
   .pangCon {
     width: 6.9rem;
     height: 20rem;
@@ -622,13 +632,16 @@ export default {
     height: 0.88rem;
     background: #FFFFFF;
     box-sizing: border-box;
-    border: 0.02rem solid #BCBBC7;
+    border: 0.01rem solid #BCBBC7;
     border-radius: 0.44rem;
     margin: 0.16rem auto 0;
     text-align: center;
     line-height: 0.88rem;
     color: rgba(188, 187, 199, 1);
     font-size: 0.32rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

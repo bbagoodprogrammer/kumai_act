@@ -16,12 +16,14 @@ export default {
         8: "Hoàn thành $ nhiệm vụ",
         9: "Event gửi",
         10: "Đổi $",
-        11: "Quà thành viên mới"
+        11: "Quà thành viên mới",
+        12: "Nhận được Quà Cupid $"
     },
     history_title1: "Chi tiết Ngọc",
     history_title2: "Chi tiết Kim cương",
 
     //index
+    day: "ngày",
     tab1: "Thu nhập giao lưu",
     tab2: "Thu nhập Party",
     user_score1: "Số Ngọc",

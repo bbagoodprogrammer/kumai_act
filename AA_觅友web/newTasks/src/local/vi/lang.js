@@ -4,10 +4,11 @@ export default {
     tasks_over: "Đã hoàn thành nhiệm vụ!",
     new_title: "Nhiệm  vụ tân thủ",
     get: "Nhận",
-    do_task: "Tiến hành",
+    do_task: "Đến",
     get_ed: "Đã nhận",
     day_title: "Nhiệm vụ ngày",
     do_ed: "Hoàn thành",
     accept: "Nhận",
-    get_suc: "Nhận thành công"
+    get_suc: "Nhận thành công",
+    singIn: "Điểm danh"
 };
