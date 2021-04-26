@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>Thể lệ</title><script>(function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    docEl.style.fontSize = 100*(Math.min(clientWidth, 750) / 750) + 'px';
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);</script><link href=./static/css/app2.css?35d6355c9f324ebf5d7741b67f88d9fa rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=./static/js/manifest.js?ec075ca31e8af757d7ee></script><script type=text/javascript src=./static/js/vendor.js?50ee13a7f85e497587df></script><script type=text/javascript src=./static/js/app2.js?f1a7cf9ef077f6aea6e4></script></body></html>

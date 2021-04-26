@@ -3,7 +3,7 @@
 
 $inviteCode= $_REQUEST['inviteCode'];
 $ch = curl_init();
-$url= "http://act.supervoice-app.com/action/index.php?action=signInTask.getInvitedFriends&inviteCode=$inviteCode";
+$url= "http://act.supervoice-app.com/index.php?action=signInTask.getInvitedFriends&inviteCode=$inviteCode";
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
 curl_setopt($ch, CURLOPT_TIMEOUT, 5);

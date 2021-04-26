@@ -8,7 +8,7 @@ export default {
         0: 'Nhận quà từ <em class="uid">@</em>$',
         1: 'Chat voice cùng <em class="uid">@</em> % phút',
         2: "Kết toán",
-        3: "Đổi % Xu",
+        3: "Đổi & Xu",
         4: 'Gọi <em class="uid">@</em> % phút',
         5: "Hệ thống gửi",
         6: 'Trả lời <em class="uid">@</em> Say Hi',

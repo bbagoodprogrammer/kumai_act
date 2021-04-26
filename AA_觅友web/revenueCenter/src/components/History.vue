@@ -173,7 +173,7 @@ export default {
       })
     },
     getName (item) {
-      return this.strTips[item.from].replace('@', item.sender).replace('%', Math.floor(item.radio_time / 60)).replace('$', item.name)
+      return this.strTips[item.from].replace('@', item.sender).replace('%', Math.floor(item.radio_time / 60)).replace('$', item.name).replace('&', item.coins)
     },
     addComment (event, item) {
       if (event.target.className === 'uid') {

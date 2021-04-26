@@ -8,7 +8,7 @@ export default {
         0: '收到<em class="uid">@</em>贈送的禮物$',
         1: '與<em class="uid">@</em>語音配對%分鐘',
         2: "提現結算",
-        3: "兌換%金幣",
+        3: "兌換&金幣",
         4: '與<em class="uid">@</em>通話%分鐘',
         5: "系統發放",
         6: '回復<em class="uid">@</em>的搭訕',

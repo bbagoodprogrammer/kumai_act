@@ -3,7 +3,7 @@
 
 $inviteCode= $_REQUEST['inviteCode'];
 $ch = curl_init();
-$url= "http://test.17sing.tw/action/index.php?action=signInTask.getInvitedFriends&inviteCode=$inviteCode";
+$url= "http://act.singnowapp.com/index.php?action=signInTask.getInvitedFriends&inviteCode=$inviteCode";
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 3);
 curl_setopt($ch, CURLOPT_TIMEOUT, 5);
@@ -61,7 +61,7 @@ if($response_info && isset($response_info['response_data'])){
     </script>
     <script src="//fstatic.cat1314.com/js/vue.min.js"></script>
     <script src="//fstatic.cat1314.com/js/vue-lazyload.js"></script>
-    <script src="../utils/openApp.js"></script>
+    <script src="../utils/openApp.js?v=1"></script>
     <link rel="stylesheet" href="../css/app.css">
 
 <body>
