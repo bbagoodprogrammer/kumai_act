@@ -99,8 +99,7 @@ export default {
         return 3
       } else if (this.reg && this.tab == 0) { //活动开始已报名
         return 4
-      }
-      else if (this.reg && this.tab == 'total') { //活动开始已报名
+      } else if (this.reg && this.tab == 'total' && this.nowUserMsg.info.rid) { //活动开始已报名
         return 5
       }
     },

@@ -150,7 +150,7 @@ export default {
         setFullScreen();
         // - document.getElementsByClassName('tab')[0].clientHeight
         this.navigatorHeight = getStatusBarHeight() - document.getElementsByClassName('tab')[0].clientHeight + 'px'; // 88為APPtitle高度
-        this.navigatorHeight2 = getStatusBarHeight() + 20 + 'px';
+        this.navigatorHeight2 = getStatusBarHeight() * 1 + 20 + 'px';
 
       }
       this.init(1)
@@ -302,7 +302,7 @@ export default {
     },
     getNameStr (item) {
       if (item.days) {
-        return `${item.name} *${item.days}${this.day}`
+        return `${item.name} *${item.days}${this.lang.day}`
       } else if (item.num) {
         return `${item.name}`
       }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <title></title>
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    var size = 100 * (Math.min(clientWidth, 750) / 750);
+                    docEl.style.fontSize = size + 'px';
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+    <script src="//fstatic.cat1314.com/js/es6-promise.auto.min.js"></script>
+    <script src="//fstatic.cat1314.com/js/runtime.js"></script>
+    <script src="//fstatic.cat1314.com/js/axios.min.js"></script>
+    <script src="//fstatic.cat1314.com/js/vue.runtime.min.js"></script>
+    <script src="//fstatic.cat1314.com/js/vuex.min.js"></script>
+    <script src="//fstatic.cat1314.com/js/vue-router.min.js"></script>
+    <script src="//fstatic.cat1314.com/js/vue-lazyload.js"></script>
+    <!-- <script src="//fstatic.cat1314.com/js/svga.lite.min.js"></script> -->
+    <script>_hash={"vijs":"5a1ab757","zhcss":"e2089b05","zhjs":"9d54f76b"};</script>
+<link href="css/app.css?276258b8" rel="stylesheet"></head>
+<body>
+    <div id="app"></div>
+<script>/*!
+ * Created by Guohui
+ * User: webflash2007@gmail.com
+ * Version: 1.0.0
+ */!function(e){function r(r){for(var n,l,i=r[0],f=r[1],a=r[2],c=0,s=[];c<i.length;c++)l=i[c],Object.prototype.hasOwnProperty.call(o,l)&&o[l]&&s.push(o[l][0]),o[l]=0;for(n in f)Object.prototype.hasOwnProperty.call(f,n)&&(e[n]=f[n]);for(p&&p(r);s.length;)s.shift()();return u.push.apply(u,a||[]),t()}function t(){for(var e,r=0;r<u.length;r++){for(var t=u[r],n=!0,i=1;i<t.length;i++){var f=t[i];0!==o[f]&&(n=!1)}n&&(u.splice(r--,1),e=l(l.s=t[0]))}return e}var n={},o={runtime:0},u=[];function l(r){if(n[r])return n[r].exports;var t=n[r]={i:r,l:!1,exports:{}};return e[r].call(t.exports,t,t.exports,l),t.l=!0,t.exports}l.m=e,l.c=n,l.d=function(e,r,t){l.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},l.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},l.t=function(e,r){if(1&r&&(e=l(e)),8&r)return e;if(4&r&&"object"==typeof e&&e&&e.__esModule)return e;var t=Object.create(null);if(l.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:e}),2&r&&"string"!=typeof e)for(var n in e)l.d(t,n,function(r){return e[r]}.bind(null,n));return t},l.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return l.d(r,"a",r),r},l.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},l.p="";var i=window.webpackJsonp=window.webpackJsonp||[],f=i.push.bind(i);i.push=r,i=i.slice();for(var a=0;a<i.length;a++)r(i[a]);var p=f;t()}([]);</script><script>/*!
+ * Created by Guohui
+ * User: webflash2007@gmail.com
+ * Version: 1.0.0
+ */
+(window.webpackJsonp=window.webpackJsonp||[]).push([["local"],{KrUS:function(e,a){var n=Object.assign||function(e){for(var a=1;a<arguments.length;a++){var n=arguments[a];for(var t in n)Object.prototype.hasOwnProperty.call(n,t)&&(e[t]=n[t])}return e},t=location.host;window.__area={TW:"tw",VI:"vi",VN:"vn",ID:"id",AR:"ar",IN:"in"};var o=/localhost/i.test(t)||/\d+\.\d+\.\d+\.\d+/.test(t),s=/^t(est)?\./i.test(t);window._test=o||s,window._app="miyou",window._area="tw";var i=["zh","vi"],r=function(){var e=t.split("."),a=e.length;return a>=2&&!/:\d+$/.test(t)?(e[a-2]+"."+e[a-1]).toLowerCase():t}();if("undefined"!=typeof hosts){var d=hosts[r]||hosts[btoa(r)]||"";if(d){var c=d.split(",");3==c.length&&-1!=i.indexOf(c[2])&&(_app=c[0],_area=c[1],i=[c[2]].concat(i))}}void 0!==window._env&&(_env=n({},_env),_env.app&&(_app=_env.app),_env.area&&(_area=_env.area),_env.lang&&-1!=i.indexOf(_env.lang)&&(i=[_env.lang].concat(i)),void 0!==_env.test&&(_test=_env.test));var v,l,p=i[0],w=(v="lang",l={},window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi,(function(e,a,n){l[a]=n})),(v&&void 0!==l[v]?decodeURIComponent(l[v]):null)||navigator.language||""),_=w.toLowerCase(),h=_.split("-"),f=-1!=i.indexOf(_),u=-1!=i.indexOf(h[0]);(f||u)&&(p=w),window.__lang=p;var g=f?_:u?h[0]:i[0];window._local=g,window._host=r;var m="",y="";if("undefined"!=typeof _hash){var O=g+"css";void 0!==_hash[O]&&(m="?"+_hash[O]),y="?"+_hash[g+"js"]}var j=document.documentElement;if(j.className=j.className?j.className+" "+g:g,m){var N=document.createElement("link");N.href="css/"+g+".css"+m,N.rel="stylesheet",document.getElementsByTagName("head")[0].appendChild(N)}document.write('<script type="text/javascript" src="js/'+g+".js"+y+'"><\/script>')}},[["KrUS","runtime"]]]);</script><script type="text/javascript" src="js/app.js?f9cd1fe8"></script></body>
+</html>

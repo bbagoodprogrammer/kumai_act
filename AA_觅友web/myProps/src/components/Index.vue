@@ -2,8 +2,8 @@
   <div class="page pageIndex">
     <div class="app_top" :style="{background:'#7A68F8',height:navigatorHeight}"></div>
     <div class="top_bg"></div>
-    <div class="tab" :style="{top:navigatorHeight}"></div>
-    <div class="propsList">
+    <!-- <div class="tab" :style="{top:navigatorHeight}"></div> -->
+    <div class="propsList" :style="{paddingTop:navigatorHeight2}">
       <div class="noData" v-if="!list.length">
         <img src="../img/noData.png" alt="">
         <p>{{lang.no_props}}</p>
@@ -66,8 +66,9 @@ export default {
       const ver = getAppVer();
       if ((pt == 'ios' && ver >= 165) || pt == 'android') {
         setFullScreen(true);
-        this.navigatorHeight = getStatusBarHeight() - document.getElementsByClassName('tab')[0].clientHeight + 'px';
-        this.navigatorHeight2 = getStatusBarHeight() + 20 + 'px';
+        //  - document.getElementsByClassName('tab')[0].clientHeight
+        this.navigatorHeight = getStatusBarHeight() + 'px';
+        this.navigatorHeight2 = getStatusBarHeight() * 1 + 14 + 'px';
       }
     }, 200)
   },
@@ -107,6 +108,8 @@ export default {
 .pageIndex {
   .app_top {
     width: 100%;
+    position: fixed;
+    z-index: 5;
     &.app_top_fit {
       position: fixed;
       background-color: #10093C;
@@ -241,14 +244,16 @@ export default {
 }
 .top_bg {
   width: 100%;
-  height: 3.5rem;
-  position: fixed;
+  overflow: hidden;
+  height: 4.4rem;
+  position: absolute;
+  top: 0;
   z-index: -1;
 }
 .top_bg::after {
   content: '';
   width: 120%;
-  height: 3rem;
+  height: 4.4rem;
   position: absolute;
   left: -10%;
   top: 0;

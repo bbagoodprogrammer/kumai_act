@@ -439,11 +439,11 @@ export default {
           z-index: 10;
         }
         .room_frame {
-          width: 0.94rem;
-          height: 0.94rem;
+          width: 1rem;
+          height: 1rem;
           position: absolute;
-          top: 0.055rem;
-          left: 0.065rem;
+          top: 0.05rem;
+          left: 0.051rem;
           z-index: 10;
         }
         .av {

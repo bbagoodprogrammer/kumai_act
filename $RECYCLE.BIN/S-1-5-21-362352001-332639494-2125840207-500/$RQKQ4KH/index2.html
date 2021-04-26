@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><meta http-equiv=pragma content=no-cache><meta http-equiv=cache-control content=no-cache><meta http-equiv=expires content=0><title></title><script>(function (doc, win) {
+      var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+          var clientWidth = docEl.clientWidth;
+          if (!clientWidth) return;
+          docEl.style.fontSize = 100 * (Math.min(clientWidth, 750) / 750) + 'px';
+        };
+      if (!doc.addEventListener) return;
+      win.addEventListener(resizeEvt, recalc, false);
+      doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);</script><link href=./static/css/app2.css?5d2e6c9c077683b644dfa54cafb6e424 rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=./static/js/manifest.js?af61c4a4a55027043e96></script><script type=text/javascript src=./static/js/vendor.js?239a2aa919fa6f63dd57></script><script type=text/javascript src=./static/js/app2.js?d564a3fe64f1656fcbf1></script></body></html>

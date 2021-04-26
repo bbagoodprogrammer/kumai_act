@@ -4,7 +4,6 @@
     <div class="top_bg"></div>
     <!-- <div class="tab" :style="{top:navigatorHeight}">
     </div> -->
-    <p v-if="!newUser.length &&　!daily.length" class="noTasks">{{lang.tasks_over}}</p>
     <div class="tasksList" :style="{paddingTop:navigatorHeight2}">
       <div class="newUserTask" v-if="newUser.length">
         <div class="title"><em>{{lang.new_title}}</em> <i></i></div>
@@ -35,7 +34,7 @@
             </div>
             <div class="taskMsg">
               <div class="name">{{item.name}}</div>
-              <div class="gift"><img :src="item.prizeImage" alt="" v-if="item.prizeImage"> {{item.prizeName}} <i v-if="item.prizeNum">{{item.prizeNum}}</i></div>
+              <div class="gift"><img :src="item.prizeImage" alt="" v-if="item.prizeImage"> {{item.prizeName}} x <i v-if="item.prizeNum">{{item.prizeNum}}</i></div>
             </div>
             <div class="status">
               <em class="get" v-if="item.id == 'D_2001'  && !new_ver" @click="getGiftItem(false,item,index)">{{lang.singIn}}</em>
@@ -47,6 +46,7 @@
         </ul>
       </div>
     </div>
+    <p v-if="!newUser.length &&　!daily.length" class="noTasks">{{lang.tasks_over}}</p>
     <!-- 完成任务奖励弹窗 -->
     <div class="mask" v-show="luckGiftPup">
       <transition name="slide">
@@ -156,7 +156,7 @@ export default {
     if ((pt == 'ios' && ver >= 165) || pt == 'android') {
       setFullScreen(true);
       this.navigatorHeight = getStatusBarHeight() + 'px';
-      this.navigatorHeight2 = getStatusBarHeight() + 20 + 'px';
+      this.navigatorHeight2 = getStatusBarHeight() * 1 + 14 + 'px';
     }
   },
   methods: {
@@ -446,7 +446,7 @@ export default {
 .top_bg {
   width: 100%;
   overflow: hidden;
-  height: 3.5rem;
+  height: 4.6rem;
   position: absolute;
   top: 0;
   z-index: -1;
@@ -454,7 +454,7 @@ export default {
 .top_bg::after {
   content: '';
   width: 120%;
-  height: 3rem;
+  height: 4.6rem;
   position: absolute;
   left: -10%;
   top: 0;
