@@ -6,7 +6,7 @@
     <p>{{lang.p_1}}</p>
     <h3 class="mt">02</h3>
     <h6>{{lang.h6_2}}</h6>
-    <p>{{lang.p_1}}</p>
+    <!-- <p>{{lang.p_1}}</p> -->
     <p class="mt2">{{lang.p_2}}</p>
     <p>{{lang.p_3}}</p>
     <p class="mt2">{{lang.p_4}}</p>

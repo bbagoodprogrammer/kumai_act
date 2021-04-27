@@ -3,7 +3,7 @@
     <i class="close" @click="closeRule()"></i>
     <div class="title"></div>
     <div class="rulesTips"></div>
-    <div class="ruleTime">Thời gian: 2020/04/20-05/31</div>
+    <div class="ruleTime">Thời gian: 27/04 19:00:00 - 6/5 23:59:59</div>
     <div class="tabs " :class="{act:showType == 2}">
       <span @click="tabCLick(1)" class="tab1">Đất trồng thức ăn</span>
       <span @click="tabCLick(2)" class="tab2">Quà sự kiện</span>
@@ -18,7 +18,7 @@
       <div class="giftItem" v-show="showType == 2">
         <h6>1. Quà tăng cấp hưu sao</h6>
         <img src="../assets/img/rulesImg/ruleImg1.png" alt="" class="ruleImg3">
-        <h6>2、Quà XH</h6>
+        <h6>2. Quà BXH</h6>
         <img src="../assets/img/rulesImg/ruleImg2.png" alt="" class="ruleImg4">
         <p class="giftTips">Người chơi nuôi được Hưu hoang dã và xếp hạng top3 có thể nhận quà xếp hạng tương ứng</p>
         <!-- <div class="wardTips">
@@ -51,9 +51,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .rules {
-  width: 6.34rem;
+  width: 6.4rem;
   height: 9.5rem;
-  padding: 0 0.23rem;
+  padding: 0 0.2rem;
   background: rgba(226, 255, 194, 1);
   border: 0.04rem solid rgba(202, 255, 148, 1);
   // box-shadow: -0.01rem 0.1rem 0.31rem 0.1rem rgba(255, 255, 255, 0.75);

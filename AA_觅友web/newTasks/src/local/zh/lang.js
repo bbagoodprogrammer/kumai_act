@@ -10,5 +10,6 @@ export default {
     do_ed: "完成",
     accept: "收下",
     get_suc: "領取成功！",
-    singIn: "签到"
+    singIn: "签到",
+    newVer_tips: "請升級到最新版本完成此任務"
 };
