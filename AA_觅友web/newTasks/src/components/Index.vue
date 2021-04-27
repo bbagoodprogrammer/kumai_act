@@ -193,6 +193,10 @@ export default {
       })
     },
     doTask (item) {
+      if (!this.new_ver && (item.id == 'D_4010' || item.id == 'D_4011')) {  //舊版本不支持這兩個任務
+        this.toast(this.lang.newVer_tips)
+        return
+      }
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       try {
         if (ios) {

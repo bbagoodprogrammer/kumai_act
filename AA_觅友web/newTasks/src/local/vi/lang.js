@@ -10,5 +10,6 @@ export default {
     do_ed: "Hoàn thành",
     accept: "Nhận",
     get_suc: "Nhận thành công",
-    singIn: "Điểm danh"
+    singIn: "Điểm danh",
+    newVer_tips: "Vui lòng nâng cấp phiên bản mới nhất"
 };

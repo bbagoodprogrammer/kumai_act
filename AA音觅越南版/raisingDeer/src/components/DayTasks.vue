@@ -65,23 +65,23 @@ import store from "../store/stores"
 import common from "../utils/common"
 window.onShareSuccess = async (from, uid, type, typeName) => {
   // alert(`shareSuc${type}`)
-  if (type == 2 || type == 3) {
-    let shareType = from.split('_')[0]
-    let num = from.split('_')[1]
-    let level = num / 100
-    api.shareback(shareType, level).then(res => {
-      if (res.data.response_status.code == 0) {
-        globalBus.$emit('shareSuc')
-        store.commit('addScore', num * 1)
-        store.commit('setToast', {
-          msg: `Chia sẻ thanh công! Hưu sao được ${num} điểm trưởng thành`,
-          time: 2000
-        })
-      } else {
-        // this.toast(res.data.response_status.error)
-      }
-    })
-  }
+  //   if (type == 2 || type == 3) {
+  let shareType = from.split('_')[0]
+  let num = from.split('_')[1]
+  let level = num / 100
+  api.shareback(shareType, level).then(res => {
+    if (res.data.response_status.code == 0) {
+      globalBus.$emit('shareSuc')
+      store.commit('addScore', num * 1)
+      store.commit('setToast', {
+        msg: `Chia sẻ thanh công! Hưu sao được ${num} điểm trưởng thành`,
+        time: 2000
+      })
+    } else {
+      // this.toast(res.data.response_status.error)
+    }
+  })
+  //}
 }
 
 export default {
@@ -193,9 +193,9 @@ export default {
           //     javascript: JSInterface.sendJsData('app://bottlespage');
           //   }
           if (ios) {
-            sendJsData('app://topicDetails?tpid=135');
+            sendJsData('app://topicDetails?tpid=117');
           } else {
-            javascript: JSInterface.sendJsData('app://topicDetails?tpid=135');
+            javascript: JSInterface.sendJsData('app://topicDetails?tpid=117');
           }
         } catch (e) { }
       } else if (link == 3) {

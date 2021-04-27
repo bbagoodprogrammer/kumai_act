@@ -237,8 +237,8 @@ export default {
       border-radius: 0.1rem;
       margin-bottom: 0.18rem;
       img {
-        width: 0.98rem;
-        height: 0.98rem;
+        width: 0.91rem;
+        height: 1.12rem;
       }
       .taskMsg {
         margin-left: 0.16rem;
@@ -334,10 +334,10 @@ export default {
         height: 0.52rem;
         background: url(../assets/img/prop/use.png);
         background-size: 100% 100%;
-        &.black {
-          background: url(../assets/img/prop/blackUse.png);
-          background-size: 100% 100%;
-        }
+        // &.black {
+        //   background: url(../assets/img/prop/blackUse.png);
+        //   background-size: 100% 100%;
+        // }
       }
     }
     .fastTime {
