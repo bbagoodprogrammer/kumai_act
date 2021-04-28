@@ -69,6 +69,7 @@
           <span v-if="!item.attension" @click.stop="attention(item.id,index)">{{lang.attention}}</span>
           <span v-else @click.stop="attention(item.id,index)">{{lang.attention2}}</span>
         </div>
+        <!-- 直播封面 -->
         <div class="coverImg" v-if="item.cover == 5">
           <img :src="item.avatar" alt="" v-if="item.cover">
           <span class="live">LIVE <img src="../assets/img/live.gif" alt=""></span>

@@ -3,14 +3,8 @@
     <div class="app_top" :style="{height:navigatorHeight}"></div>
     <h3>01</h3>
     <h6>{{lang.h6_1}}</h6>
+    <p>{{lang.p_15}}</p>
     <p>{{lang.p_1}}</p>
-    <h3 class="mt">02</h3>
-    <h6>{{lang.h6_2}}</h6>
-    <!-- <p>{{lang.p_1}}</p> -->
-    <p class="mt2">{{lang.p_2}}</p>
-    <p>{{lang.p_3}}</p>
-    <p class="mt2">{{lang.p_4}}</p>
-    <p>{{lang.p_5}}</p>
     <p class="mt2">{{lang.p_6}}</p>
     <p>{{lang.p_7}}</p>
     <p class="mt2">{{lang.p_8}}</p>
@@ -19,6 +13,14 @@
     <p>{{lang.p_11}}</p>
     <p class="mt2">{{lang.p_12}}</p>
     <p>{{lang.p_13}}</p>
+    <h3 class="mt">02</h3>
+    <h6>{{lang.h6_2}}</h6>
+    <!-- <p>{{lang.p_1}}</p> -->
+    <p class="mt2">{{lang.p_2}}</p>
+    <p>{{lang.p_3}}</p>
+    <p class="mt2">{{lang.p_4}}</p>
+    <p>{{lang.p_5}}</p>
+
     <h3 class="mt">03</h3>
     <h6>{{lang.h6_3}}</h6>
     <p>{{lang.p_14}}</p>

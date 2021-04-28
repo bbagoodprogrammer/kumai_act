@@ -90,7 +90,7 @@ import getDate from "../utils/getDate"
 import api from "../api/apiConfig"
 import { globalBus } from '../utils/eventBus'
 export default {
-  data() {
+  data () {
     return {
       showActMsg: false,
       singUpMsg: '',
@@ -112,11 +112,11 @@ export default {
   computed: {
     ...mapState(['list'])
   },
-  mounted() {
+  mounted () {
     window.addEventListener('scroll', this.mainOnScroll)
   },
   methods: {
-    mainOnScroll() {
+    mainOnScroll () {
       const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100
       if (scrollToBottom) { //加載
         if (this.mainLoaded) return
@@ -133,20 +133,20 @@ export default {
         }
       }
     },
-    gokRoom(rid) {
+    gokRoom (rid) {
       location.href = `rid:${rid}`
     },
-    goUser(uid) {
+    goUser (uid) {
       location.href = `uid:${uid}`
     },
-    showSingUpPup(id) {
+    showSingUpPup (id) {
       this.partyId = id
       this.showSingUp = true
     },
-    closeSingUpPup() {
+    closeSingUpPup () {
       this.showSingUp = false
     },
-    showActMsgPup(id, index) {
+    showActMsgPup (id, index) {
       api.getActData(id).then(res => {
         if (res.data.response_status.code == 0) {
           this.showParty = res.data.response_data.data
@@ -160,7 +160,7 @@ export default {
         }
       })
     },
-    commitSingUp() {
+    commitSingUp () {
       globalBus.$emit('commonEvent', () => {
         if (this.singUpMsg == '') {
           this.vxc('setToast', {
@@ -179,11 +179,11 @@ export default {
         }
       })
     },
-    closeActMsgPup() {
+    closeActMsgPup () {
       this.showActMsg = false
       this.ModalHelper.beforeClose()
     },
-    attention(id, index) {
+    attention (id, index) {
       globalBus.$emit('commonEvent', () => {
         api.attention(id).then(res => {
           if (res.data.response_status.code == 0) {
@@ -199,7 +199,7 @@ export default {
         })
       })
     },
-    getDate(time) {
+    getDate (time) {
       let partyTime = this.getDayName(time * 1000)
       if (partyTime == 0) {
         return `${getDate(new Date(time * 1000), 1)} hôm nay`
@@ -209,7 +209,7 @@ export default {
         return `${getDate(new Date(time * 1000), 2)}`
       }
     },
-    getDayName(d) {
+    getDayName (d) {
       var td = new Date();
       td = new Date(td.getFullYear(), td.getMonth(), td.getDate());
       var od = new Date(d);

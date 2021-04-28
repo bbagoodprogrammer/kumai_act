@@ -365,6 +365,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+body {
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
 .pageIndex {
   overflow-x: hidden;
   position: relative;
@@ -459,7 +463,7 @@ export default {
 
   .pangCon {
     width: 6.9rem;
-    height: 20rem;
+    // height: 20rem;
     // position: absolute;
     // top: 1.29rem;
     // left: 0.3rem;

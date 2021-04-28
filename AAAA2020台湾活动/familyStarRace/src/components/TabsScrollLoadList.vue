@@ -72,7 +72,7 @@
       <p class="rankTips" v-if="showType==3">
         星光值=作品/K房收禮金幣魅力值+名星任務值<br />
         晉級家族依據總星光值排名，最後一天20-22點獲得10%加成<br />
-      家族升級發放禮包，Ⅰ、Ⅱ、Ⅲ級對應星光值10萬、30萬、100萬
+        家族升級發放禮包，Ⅰ、Ⅱ、Ⅲ級對應星光值10萬、30萬、100萬
       </p>
     </div>
     <!-- 日榜 -->
@@ -90,7 +90,7 @@
         </div>
         <div class="userMsg">
           <div class="name"><strong>{{item.nick}} </strong> <i class="live" v-if="item.live"></i> </div>
-          <div class="score">{{item.fname}}</div>
+          <div class="score">{{item.fname}} <i class="redIcon" v-if="item.red"></i></div>
         </div>
         <div class="score">
           <div class="star"><i></i> {{item.score}}</div>
@@ -108,14 +108,14 @@
             <img v-lazy="item.pk_data.left.avatar" class="fImg" alt="" @click.stop="showFamily(item.pk_data.left.fid)">
             <div class="msg">
               <div class="nick">{{item.pk_data.left.name}}</div>
-              <div class="star"><i></i><strong>{{item.pk_data.left.score}}</strong></div>
+              <div class="star"><i></i><strong>{{item.pk_data.left.score}}</strong> <i class="redIcon" v-if="item.pk_data.left.red"></i> </div>
             </div>
           </div>
           <div class="family2 family">
             <p class="noOpponents" v-if="item.empty">幸運輪空，直接晉級</p>
             <div class="msg" v-else>
               <div class="nick">{{item.pk_data.right.name}}</div>
-              <div class="star"><i></i><strong>{{item.pk_data.right.score}}</strong></div>
+              <div class="star"><i class="redIcon" v-if="item.pk_data.right.red"></i><i></i><strong>{{item.pk_data.right.score}}</strong></div>
             </div>
             <img v-lazy="item.pk_data.right.avatar" class="fImg2" alt="" v-if="!item.empty" @click.stop="showFamily(item.pk_data.right.fid)">
           </div>
@@ -168,7 +168,7 @@
         </div>
         <div class="userMsg">
           <div class="name" :class="'lv'+item.level"><strong>{{item.name}} </strong> </div>
-          <div class="score"><i></i> <strong>{{item.score}}</strong> </div>
+          <div class="score"><i></i> <strong>{{item.score}}</strong> <i class="redIcon" v-if="item.red"></i></div>
         </div>
         <div class="userList">
           <div class="userItem" v-for="(item2,index2) in item.users" :key="index2">
@@ -251,7 +251,7 @@ import getDate from "../utils/getDate"
 export default {
   components: { DayTabs },
   props: ['stime1', 'stime2', 'stime3', 'etime1', 'etime2', 'etime3'],
-  data() {
+  data () {
     return {
       mainTab: 0,
       tab: 0,
@@ -270,7 +270,7 @@ export default {
     }
   },
   watch: {
-    nowDay(val) {
+    nowDay (val) {
       this.tab = val
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
@@ -281,14 +281,14 @@ export default {
   },
   computed: {
     ...mapState(['rankGroups', "nowShowType", "nowDay", "oneNowDay", "dateArr", "inited", "isShare", "actStatus", "showType", "timeObj"]),
-    rankKey() {
+    rankKey () {
       // return ['one', 'two', 'three'][this.tab];
       if (this.showType == 2 || this.showType == 3) {
         return 'total'
       }
       return this.mainTab == 1 ? 'total' : this.tab;
     },
-    rankApi() {
+    rankApi () {
       if (this.isShare) {
         var dayApi = ''
         if (this.showType == 1) {
@@ -321,11 +321,11 @@ export default {
         return dayApi.replace('{token}', token).replace('{tm}', this.getNowDate())
       }
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups[this.showType][this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       // && rankConf.second > 0
@@ -334,20 +334,20 @@ export default {
       }
       return rankConf;
     },
-    actTime() {
+    actTime () {
       return getDate(new Date(this.timeObj.stime * 1000), '2') + ' ~ ' + getDate(new Date(this.timeObj.etime * 1000), '2')
     }
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
-    setShowType(val) {
+    setShowType (val) {
       if (val !== this.showType) {
         this.vxc('setShowType', val)
         if (val == 1) {
@@ -364,7 +364,7 @@ export default {
         });
       }
     },
-    mainTabClick(tab) { //总榜切换
+    mainTabClick (tab) { //总榜切换
       this.mainTab = tab;
       this.vxc("changTab", this.rankKey)
       this.$nextTick(() => {
@@ -373,7 +373,7 @@ export default {
         }
       });
     },
-    tabClick(tab) { //日榜切换
+    tabClick (tab) { //日榜切换
       this.tab = tab;
       var nowTab = this.rankKey >= this.oneNowDay ? this.oneNowDay : this.rankKey //存当天选择的tab索引用于底部个人信息查找
       this.vxc("changTab", nowTab)
@@ -383,7 +383,7 @@ export default {
         }
       });
     },
-    onScroll() {
+    onScroll () {
       // if (this.tab > this.nowDay) return (this.tab > this.nowDay && this.rankKey !== 'total') || 
       if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
         return
@@ -461,7 +461,7 @@ export default {
         }
       }
     },
-    onRefresh() {
+    onRefresh () {
       if (this.rank.loading) return
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       let obj = {
@@ -479,7 +479,7 @@ export default {
       this.vxc('updateRankGroups', obj)
       this.$nextTick(this.onScroll);
     },
-    downTimeGo(timeName, val) {
+    downTimeGo (timeName, val) {
       clearInterval(this.timer)
       if (!downTime(timeName)) {
         downTime(timeName, val);
@@ -493,17 +493,17 @@ export default {
         }
       }, 1000)
     },
-    getWidth(score1, score2) {
+    getWidth (score1, score2) {
       return score1 / (score1 + score2) * 100 + '%'
     },
-    getDate(time, type) {
+    getDate (time, type) {
       return getDate(new Date(time * 1000), type)
     },
-    closePeople() {
+    closePeople () {
       this.actIndex = 0
       this.showPeopleList = false
     },
-    goPeople(uid, live) {
+    goPeople (uid, live) {
       if (live) {
         location.href = `rid:${live}`
         return
@@ -511,7 +511,7 @@ export default {
       console.log(live)
       location.href = `uid:${uid}`
     },
-    showFamily(fid) {
+    showFamily (fid) {
       let type = this.showType == 2 ? 0 : 1
       api.fCards(type, fid).then(res => {
         console.log(res)
@@ -519,13 +519,13 @@ export default {
         this.showFcards = true
       })
     },
-    getNowDate() {
+    getNowDate () {
       return getDate(new Date(this.dateArr[this.tab - 1] * 1000), 4)
     },
-    closeCards() {
+    closeCards () {
       this.showFcards = false
     },
-    goFroom() {
+    goFroom () {
       location.href = `fid:${this.cardsMsg.family.fid}`
     }
   },
@@ -848,6 +848,7 @@ export default {
           margin-top: -0.05rem;
         }
         .score {
+          height: 0.45rem;
           display: flex;
           align-items: center;
           color: rgba(255, 231, 184, 1);
@@ -856,9 +857,16 @@ export default {
           i {
             display: block;
             margin-right: 0.1rem;
-            width: 0.22rem;
-            height: 0.25rem;
-            background: url(../assets/img/coins.png);
+            width: 0.4rem;
+            height: 0.4rem;
+            background: url(../assets/img/redIcon.png);
+            background-size: 100% 100%;
+          }
+          .redIcon {
+            margin-left: 0.1rem;
+            width: 0.4rem;
+            height: 0.4rem;
+            background: url(../assets/img/redIcon.png);
             background-size: 100% 100%;
           }
         }
@@ -1052,6 +1060,13 @@ export default {
                 background-size: 100% 100%;
                 margin-right: 0.06rem;
               }
+              .redIcon {
+                margin-left: 0.1rem;
+                width: 0.4rem;
+                height: 0.4rem;
+                background: url(../assets/img/redIcon.png);
+                background-size: 100% 100%;
+              }
             }
           }
         }
@@ -1097,6 +1112,9 @@ export default {
       .family2 {
         .msg {
           margin-right: 0.14rem;
+          .nick {
+            text-align: right;
+          }
         }
         .noOpponents {
           font-size: 0.24rem;

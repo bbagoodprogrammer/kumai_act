@@ -2,7 +2,7 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">Thời gian: 18:00 ngày 28/3 - 23:59:59 ngày 5/4</div>
+    <div class="actTime">Thời gian: 19:00 ngày 28/4 - 23:59:59 ngày 5/5</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">Thể lệ</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">Thưởng</span>
@@ -34,6 +34,7 @@
         </span>
       </div>
       <h6>3. Top 1 BXH ngày nhận 5 xúc xắc được phát vào 0h ngày kế tiếp </h6>
+      <h6>*Ngày 5/5 là ngày kết thúc event, quà BHX ngày 5/5 sẽ không gửi.</h6>
     </div>
     <p class="lastTips">*Quyết định cuối cùng thuộc về alochat</p>
   </div>
@@ -54,13 +55,13 @@ export default {
         },
         {
           img: require('../assets/img/rule/car1.png'),
-          name: 'Xe Ferrari đỏ 10 ngày'
+          name: 'xe Chiến trận 7 ngày'
         }
       ],
       gift2: [
         {
           img: require('../assets/img/rule/Certification_01.png'),
-          name: 'Danh hiệu Đại Phú ông 7 ngày'
+          name: 'Tiểu Thiên Sứ 7 ngày'
         },
         {
           img: require('../assets/img/rule/badge.png'),
@@ -68,7 +69,7 @@ export default {
         },
         {
           img: require('../assets/img/rule/BMW.png'),
-          name: 'Xe BMW 10 ngày'
+          name: 'Xe BMW 7 ngày'
         }
       ]
     }
@@ -88,8 +89,8 @@ export default {
   color: #ffe747 !important;
 }
 .gl_img {
-  width: 5.88rem;
-  height: 2.83rem;
+  width: 5.9rem;
+  height: 2.85rem;
   margin: 0.15rem auto;
 }
 

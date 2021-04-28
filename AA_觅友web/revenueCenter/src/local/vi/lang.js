@@ -63,5 +63,6 @@ export default {
     p_13:
         "Nhận được quà xu ở Trạng Thái của bạn, sẽ quy đổi thành Ngọc theo tỉ lệ nhất định",
     p_14:
-        "Bạn có thể dùng Ngọc hoặc Kim cương để đổi đạo cụ hoặc vật phẩm nào đó tại giao diện thu nhập."
+        "Bạn có thể dùng Ngọc hoặc Kim cương để đổi đạo cụ hoặc vật phẩm nào đó tại giao diện thu nhập.",
+    p_15: " A.Quà phòng"
 };

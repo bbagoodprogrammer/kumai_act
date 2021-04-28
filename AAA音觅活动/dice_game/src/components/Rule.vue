@@ -2,7 +2,7 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">活動時間:2021/3/28 18：00-4/5 23：59：59</div>
+    <div class="actTime">活動時間:4月28日19：00-5月5日 23：59：59</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">活動規則</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">活動獎勵</span>
@@ -13,7 +13,7 @@
       <p>活動結束後，若有骰子未使用，則按照50金幣/顆回退相應金幣到賬號中</p>
       <h6>2、獎勵概率</h6>
       <img src="../assets/img/rule/table1.png" alt="" class="table">
-      <p class="red">若前300次沒有中銀河星空特效禮物，第301次必中銀河星空-特效禮物</p>
+      <p class="red">若前300次沒有中櫻花飄落特效禮物，第301次必中櫻花飄落-特效禮物</p>
       <p>儲值返利券使用說明：獲獎當天儲值任意金幣，在次日可獲得對應的金幣返利（不可疊加返利比例）。若一天同時獲得多張儲值返利券，按照所獲得的儲值返利券的最高比例來返利。返利券僅獲得當天有效</p>
       <p>靜態背包禮物有效期為7天，特效背包禮物有效期為10天，請盡快送出哦~</p>
       <h6>3.注意事項</h6>
@@ -37,7 +37,7 @@
         </span>
       </div>
       <h6>3.日榜第一名將獲得骰子五枚，在次日0點發放</h6>
-      <h6>4.4月3日的為活動的最後一天，4月3日的日榜獎勵將不發放</h6>
+      <h6>4.5月5日的為活動的最後一天，5月5日的日榜獎勵將不發放</h6>
     </div>
     <p class="lastTips">*活動最終解釋權歸活動主辦方所有</p>
   </div>
@@ -58,7 +58,7 @@ export default {
         },
         {
           img: require('../assets/img/rule/car1.png'),
-          name: '紅色法拉利座駕10天'
+          name: '紅色魅影座駕7天'
         }
       ],
       gift2: [
@@ -72,7 +72,7 @@ export default {
         },
         {
           img: require('../assets/img/rule/BMW.png'),
-          name: 'BMW座駕10天'
+          name: 'BMW座駕7天'
         }
       ]
     }
