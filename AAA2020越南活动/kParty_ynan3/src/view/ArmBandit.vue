@@ -9,7 +9,7 @@
         <span class="ruleTips" @click="goBar()" v-if="is_admin">{{lang.myAct}}</span>
         <span class="ruleTips" @click="goRank()">Xếp Hạng</span>
       </div>
-      <div class="actTitle"></div>
+      <div class="actTitle" v-if="list1.length"></div>
       <div class="giftTips" :class="{act:giftStates != 2}" @click="getGift()"></div>
     </div>
     <Actlist />
@@ -89,7 +89,8 @@ export default {
       showRule: false,
       is_admin: null,
       day_gift: {},
-      showGiftPup: false
+      showGiftPup: false,
+      list1: []
     }
   },
   computed: {
@@ -116,12 +117,14 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { is_admin, list, day_gift } = response_data
+          const { is_admin, list, list1, day_gift } = response_data
           this.is_admin = is_admin
           this.day_gift = day_gift
           this.vxc('setActStatus', 1)
           this.vxc('setIs_admin', is_admin)
           this.vxc('setList', list)
+          this.list1 = list1
+          this.vxc('setList1', list1)
         } else {
           this.toast(response_status.error)
         }
@@ -242,6 +245,13 @@ body::-webkit-scrollbar {
       position: absolute;
       bottom: 0.16rem;
       left: 2.23rem;
+    }
+    .noData {
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0rem;
     }
     .giftTips {
       width: 1.36rem;

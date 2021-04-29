@@ -276,7 +276,7 @@ export default {
         }
       }
       li {
-        width: 6.54rem;
+        // width: 6.54rem;
         height: 1.48rem;
         background: #FFFFFF;
         border-radius: 0.2rem;
@@ -306,6 +306,7 @@ export default {
             font-weight: 600;
           }
           .gift {
+            height: 0.5rem;
             display: flex;
             align-items: center;
             font-size: 0.28rem;

@@ -3,20 +3,24 @@
     <div class="totalTips" v-if="is_admin">
       <h6>Cách mở tiệc:</h6>
       <div class="tipsBox">
-        <p>1. Chủ phòng hoặc quản lý phòng Kara có thể đăng ký mở tiệc, nhấn [Đăng ký] và điền thông tin yêu cầu, nhấn gửi để đăng ký mở tiệc, cần đăng ký trước khi mở tiệc từ 5 – 30 ngày, mỗi bữa tiệc kéo dài từ 1 – 3 giờ, mỗi phòng 1 tháng được tổ chức tối đa 4 lần.</p>
+        <p>1. Idol, quản trị viên và chủ phòng của phòng kara có quyền đăng ký xin phép mở Đại Tiệc, nhấn [Đăng ký] và điền thông tin yêu cầu, nhấn gửi để đăng ký mở tiệc, cần đăng ký trước khi mở
+          tiệc từ 5 – 30 ngày, mỗi bữa tiệc kéo dài từ 1 – 3 giờ, mỗi phòng 1 tháng được tổ chức tối đa 4 lần.</p>
         <p>2. Nếu muốn người tham dự phải báo danh trước hãy chọn [Cần báo danh], danh sách xem tại [Tiệc của tôi]</p>
         <p>3. Sau khi gửi thông tin đăng ký vui lòng đợi kết quả từ ban điều hành, chi tiết xem tại [Tiệc của tôi]</p>
         <p>4. Nhấn chỉnh sửa tại [Tiệc của tôi] để điều chỉnh thông tin tiệc nếu vẫn chưa được duyệt, tiệc đã được duyệt sẽ không thể chỉnh sửa.</p>
         <p>5. Tiệc chưa được duyệt có thể chỉnh sửa 1 lần, sau khi sửa và gửi lại nếu vẫn không được duyệt sẽ không được chỉnh sửa nữa.</p>
-        <p>6. Tiệc đang diễn ra sẽ hiện trên đầu danh sách, ảnh bìa phòng Kara tự thêm danh hiệu sự kiện.</p>
-        <p>7. Nếu phòng Kara sau khi đăng ký tiệc không nghiêm túc tổ chức hoặc không tổ chức tiệc (bao gồm đặt mật khẩu phòng trong thời gian tiệc) đủ 4 lần sẽ không thể tiếp tục đăng ký tiệc.</p>
+        <p>6. Sự kiện đang diễn ra sẽ được dính trên top danh sách Đại Tiệc. Bìa phòng sẽ được dính tự động danh hiệu tên sự kiện.</p>
+        <p>7. Nếu phòng Kara/Idol sau khi đăng ký tiệc không nghiêm túc tổ chức hoặc không tổ chức tiệc (bao gồm đặt mật khẩu phòng trong thời gian tiệc) đủ 4 lần sẽ không thể tiếp tục đăng ký tiệc.
+        </p>
         <p>8. Mỗi bữa tiệc sẽ nhận được điểm tương ứng như sau:</p>
         <img src="../../assets/img/ruleImg1.png" alt="" class="ruleImg1">
-        <p class="ps">Ghi chú: Điểm kế hoạch do ban điều hành chấm khi duyệt kế hoạch tổ chức tiệc, kế hoạch càng hoàn chỉnh, cách chơi càng mới lạ, điểm số càng cao, có thể tham khảo những sự kiện do app tổ chức.</p>
+        <p class="ps">Ghi chú: Điểm kế hoạch do ban điều hành chấm khi duyệt kế hoạch tổ chức tiệc, kế hoạch càng hoàn chỉnh, cách chơi càng mới lạ, điểm số càng cao, có thể tham khảo những sự kiện do
+          app tổ chức.</p>
         <p>9.Mỗi tuần/tháng đạt điểm số yêu cầu (5000/15000) hoặc vào top 10 bảng xếp hạng sẽ nhận phần thưởng, phòng Kara của app không được xếp hạng.</p>
         <img src="../../assets/img/ruleImg2.png" alt="" class="ruleImg2">
         <img src="../../assets/img/ruleImg3.png" alt="" class="ruleImg3">
-        <p class="ps">Ghi chú: Mỗi đầu tuần/tháng sẽ tính thưởng tuần/tháng, nhân viên app sẽ liên hệ chủ phòng trong vòng 3 ngày làm việc để phát thưởng, nếu quá hạn không cung cấp thông tin nhận thưởng xem như từ bỏ phần thưởng (thưởng BXH Tuần sẽ tính từ khi sự kiện ra mắt, thưởng BXH Tháng tính từ ngày 1/8)</p>
+        <p class="ps">Ghi chú: Mỗi đầu tuần/tháng sẽ tính thưởng tuần/tháng, nhân viên app sẽ liên hệ chủ phòng trong vòng 3 ngày làm việc để phát thưởng, nếu quá hạn không cung cấp thông tin nhận
+          thưởng xem như từ bỏ phần thưởng (thưởng BXH Tuần sẽ tính từ khi sự kiện ra mắt, thưởng BXH Tháng tính từ ngày 1/8)</p>
       </div>
       <h6>Hướng dẫn dự tiệc:</h6>
       <div class="tipsBox">
@@ -47,19 +51,19 @@
 <script>
 import getString from "../../utils/getString"
 export default {
-  data() {
+  data () {
     return {
       is_admin: false
     }
 
   },
-  created() {
+  created () {
     this.is_admin = getString('is_admin')
   }
 }
 </script>
 <style lang="scss">
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 body {
   background: rgba(65, 23, 122, 1);
   .actRules {

@@ -1,17 +1,17 @@
 <template>
   <div class="actList">
-    <div class="swiper">
+    <div class="swiper" v-show="list1.length">
       <!-- <div class="act_title"></div> -->
-      <van-swipe class="my-swipe-sGift" :loop="true" :touchable="true" :show-indicators="false" ref="swiper">
-        <van-swipe-item v-for="(item,index) in list" :key="index" class="tList" :class="'list'+item.cover">
+      <van-swipe class="my-swipe-sGift" :loop="true" :autoplay="4000" :touchable="true" :show-indicators="false" ref="swiper">
+        <van-swipe-item v-for="(item,index) in list1" :key="index" class="tList" :class="'list'+item.cover" @click="gokRoom(item)">
           <!-- {{partyTitle[item.cover]}}- {{partyTitle[item.cover]}} -->
           <div class="title" v-if="item.is_official == 0"> <strong> {{item.them}}</strong> <i v-if="item.status == 1"></i> </div>
           <div class="title" v-else> <strong> {{item.them}}</strong><span class="titieTips"></span><i v-if="item.status == 1"></i> </div>
           <div class="actCon">
             <img v-lazy="item.avatar" alt="" class="userAv" @click.stop="goUser(item.uid)">
             <div class="userMsg">
-              <div class="name">{{lang.firePeople}}<strong> {{item.nick}}</strong> </div>
-              <div class="roomMsg">{{lang.kRoom}} <em> {{item.rid}} </em></div>
+              <div class="name">{{item.cover == 5?'':lang.firePeople}}<strong :class="{ml:item.cover}"> {{item.nick}}</strong> </div>
+              <div class="roomMsg"> {{item.cover == 5?'Phòng live:':lang.kRoom}} <em> {{item.rid}} </em></div>
               <!-- {{lang.date}} -->
               <div class="time">{{getDate(item.stime)}}</div>
             </div>
@@ -29,26 +29,26 @@
             <span @click.stop="showActMsgPup(item.id,index)">{{lang.actDetil}}</span>
           </div>
           <div class="followBtn">
-            <span v-if="!item.attension" @click.stop="attention(item.id,index)">{{lang.attention}}</span>
-            <span v-else @click.stop="attention(item.id,index)">{{lang.attention2}}</span>
+            <span v-if="!item.attension" @click.stop="attention(item.id,index,'list1')">{{lang.attention}}</span>
+            <span v-else @click.stop="attention(item.id,index,'list1')">{{lang.attention2}}</span>
           </div>
         </van-swipe-item>
       </van-swipe>
       <span class="pre" @click="pre()"></span>
       <span class="next" @click="next()"></span>
     </div>
-    <!-- <p class="noData" v-if="list.length == 0">{{lang.noActData}}</p> -->
     <div class="actTitle"></div>
+    <p class="noData" v-if="list.length == 0">{{lang.noActData}}</p>
     <ul>
-      <li @click="gokRoom(item.rid)" v-for="(item,index) in list" :key="index" :class="'list'+item.cover">
+      <li @click="gokRoom(item)" v-for="(item,index) in list" :key="index" :class="'list'+item.cover">
         <!-- {{partyTitle[item.cover]}}- {{partyTitle[item.cover]}} -->
-        <div class="title" v-if="item.is_official == 0">{{item.them}} <i v-if="item.status == 1"></i> </div>
-        <div class="title" v-else>{{item.them}}<span class="titieTips"></span><i v-if="item.status == 1"></i> </div>
+        <div class="title" v-if="item.is_official == 0"><strong>{{item.them}} </strong><i v-if="item.status == 1"></i> </div>
+        <div class="title" v-else><strong> {{item.them}}</strong><span class="titieTips"></span><i v-if="item.status == 1"></i> </div>
         <div class="actCon">
           <img v-lazy="item.avatar" alt="" class="userAv" @click.stop="goUser(item.uid)">
           <div class="userMsg">
-            <div class="name">{{lang.firePeople}}<strong> {{item.nick}}</strong> </div>
-            <div class="roomMsg">{{lang.kRoom}} <em> {{item.rid}} </em></div>
+            <div class="name">{{item.cover == 5?'':lang.firePeople}}<strong :class="{ml:item.cover}"> {{item.nick}}</strong> </div>
+            <div class="roomMsg"> {{item.cover == 5?'Phòng live:':lang.kRoom}} <em> {{item.rid}} </em></div>
             <!-- {{lang.date}} -->
             <div class="time">{{getDate(item.stime)}}</div>
           </div>
@@ -70,9 +70,9 @@
           <span v-else @click.stop="attention(item.id,index)">{{lang.attention2}}</span>
         </div>
         <!-- 直播封面 -->
-        <div class="coverImg" v-if="item.cover == 5">
-          <img :src="item.avatar" alt="" v-if="item.cover">
-          <span class="live">LIVE <img src="../assets/img/live.gif" alt=""></span>
+        <div class="coverImg" v-if="item.cover == 5" @click.stop="goLir(item.uid)">
+          <img :src="item.img" alt="" v-if="item.cover">
+          <span class="live" v-if="item.live">LIVE <img src="../assets/img/live.gif" alt=""></span>
         </div>
       </li>
     </ul>
@@ -104,7 +104,7 @@
           <div class="btmBox">
             <span v-if="!showParty.attension" @click.stop="attention(showParty.id,showPartyIndex)">{{lang.attention}}</span>
             <span v-else @click.stop="attention(showParty.id,showPartyIndex)">{{lang.attention2}}</span>
-            <span @click="gokRoom(showParty.rid)">{{lang.goRoom}}</span>
+            <span @click="gokRoom(showParty)">{{lang.goRoom}}</span>
           </div>
         </div>
       </transition>
@@ -161,7 +161,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['list'])
+    ...mapState(['list', 'list1'])
   },
   mounted () {
     window.addEventListener('scroll', this.mainOnScroll)
@@ -185,11 +185,19 @@ export default {
         }
       }
     },
-    gokRoom (rid) {
-      location.href = `rid:${rid}`
+    gokRoom (item) {
+      if (item.live) {
+        location.href = `lid:${item.uid}`
+      } else {
+        location.href = `rid:${item.rid}`
+      }
+
     },
     goUser (uid) {
       location.href = `uid:${uid}`
+    },
+    goLir (uid) {
+      location.href = `lid:${uid}`
     },
     showSingUpPup (id) {
       this.partyId = id
@@ -219,7 +227,7 @@ export default {
             msg: `Hãy nhập thông tin báo danh!`
           })
         } else {
-          api.singUp(this.partyId, this.singUpMsg).then(res => {
+          api.singUp(this.partyId, this.singUpMsg, this.singUpMsgSong).then(res => {
             if (res.data.response_status.code == 0) {
               this.showSingUp = false
             } else {
@@ -235,11 +243,14 @@ export default {
       this.showActMsg = false
       this.ModalHelper.beforeClose()
     },
-    attention (id, index) {
+    attention (id, index, type) {
       globalBus.$emit('commonEvent', () => {
         api.attention(id).then(res => {
           if (res.data.response_status.code == 0) {
-            this.vxc('setListAttention', index)
+            this.vxc('setListAttention', {
+              index,
+              type
+            })
             if (this.showParty.id) {
               this.showParty.attension = !this.showParty.attension
             }
@@ -326,6 +337,14 @@ export default {
       font-weight: 600;
       display: flex;
       align-items: center;
+      strong {
+        max-width: 4.84rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 0.36rem;
+        font-weight: bold;
+      }
       i {
         display: block;
         width: 1.29rem;
@@ -335,8 +354,8 @@ export default {
         background-size: 100% 100%;
       }
       .titieTips {
-        width: 1.1rem;
-        height: 0.43rem;
+        width: 1.06rem;
+        height: 0.37rem;
         display: inline-block;
         margin-left: 0.12rem;
         background: url(../assets/img/offict.png);
@@ -372,6 +391,9 @@ export default {
             text-overflow: ellipsis;
             margin-left: 0.15rem;
             font-weight: 600;
+            &.ml {
+              margin-left: 0;
+            }
           }
         }
         .roomMsg {
