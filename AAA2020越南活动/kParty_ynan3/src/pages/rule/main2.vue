@@ -7,8 +7,8 @@
         <strong>{{item.name}}</strong>
       </span>
     </div>
-    <h3>ID Phòng tổ chức tiệc<span>*Bắt buộc</span> </h3>
-    <div class="inputBox">
+    <h3 v-if="actType != 5">ID Phòng tổ chức tiệc<span>*Bắt buộc</span> </h3>
+    <div class="inputBox" v-if="actType != 5">
       <!-- <label for="rid">Nhập ID phòng chính xác</label> -->
       <input type="number" name="" id="rid" placeholder="Nhập ID phòng chính xác" v-model="actRid" @input="roomChange()">
     </div>
@@ -18,8 +18,8 @@
       <input type="text" id="actTitle" placeholder="Nhập chủ đề tiệc" v-model="actTitle" maxlength="30">
       <span class="strNum">{{actTitle.length}}/30</span>
     </div>
-    <h3> ID của Người hướng dẫn chương trình</h3>
-    <div class="inputBox">
+    <h3 v-if="actType != 5"> ID của Người hướng dẫn chương trình</h3>
+    <div class="inputBox" v-if="actType != 5">
       <!-- <label for="actUid"></label> -->
       <input type="number" id="actUid" placeholder="Nhập ID" v-model="actUid" maxlength="8">
     </div>
@@ -52,15 +52,14 @@
       <textarea :placeholder="placeholder2" v-model="actGifts" maxlength="300"></textarea>
       <span class="tipsNum">{{actGifts.length}}/300</span>
     </div>
-    <h3>Có cần báo danh tham dự không<span>*Bắt buộc</span></h3>
-    <div class="cSingUp">
+    <h3 v-if="actType != 5">Có cần báo danh tham dự không<span>*Bắt buộc</span></h3>
+    <div class="cSingUp" v-if="actType != 5">
       <strong>Nếu muốn người tham dự phải báo danh trước hãy chọn cần báo danh, danh sách xem tại [Tiệc của tôi]</strong>
       <span :class="{act:needSingUp==2}" @click="setNeed(2)">Cần</span>
       <span class="noNeed" :class="{act:needSingUp==1}" @click="setNeed(1)">Không cần</span>
     </div>
     <div class="commitBtn" @click="commitAct()">Gửi yêu cầu</div>
     <Popup v-model="show" position="bottom" round :style="{ height: '40%' }">
-
       <van-datetime-picker v-model="currentDate" @cancel="show = false" cancel-button-text="Huỷ" confirm-button-text="Xác nhận" type="datetime" title="" :min-date="minDate" :max-date="maxDate"
         @confirm="confirmTime()" />
     </Popup>
@@ -181,7 +180,8 @@ Hạng ba: 30 xu + 500 đậu
       this.comRid = null
       setTimeout(() => {
         if (r == this.actRid) {
-          api.adminOrOwner(this.actRid).then(res => {
+          let type = this.actType == 5 ? 5 : false
+          api.adminOrOwner(this.actRid, type).then(res => {
             if (res.data.response_status.code == 0) {
               this.comRid = this.actRid
             } else {
@@ -194,7 +194,20 @@ Hạng ba: 30 xu + 500 đậu
       }, 1000)
     },
     setActType (type) {
-      this.actType = type
+      if (type == 5) {
+        api.adminOrOwner(this.actRid, type).then(res => {
+          if (res.data.response_status.code == 0) {
+            this.actType = type
+          } else {
+            this.vxc('setToast', {
+              msg: res.data.response_status.error
+            })
+          }
+        })
+      } else {
+        this.actType = type
+      }
+
     },
     getDate (time) {
       var year = time.getFullYear(),
@@ -224,9 +237,11 @@ Hạng ba: 30 xu + 500 đậu
         let currenStamp = this.currentDate.getTime()
         if (currenStamp < this.startTimeStamp) {
           this.toast('Thời gian kết thúc không thể sớm hơn thời gian mở')
-        } else if (currenStamp - this.startTimeStamp < 1000 * 60 * 60 || currenStamp - this.startTimeStamp > 1000 * 60 * 60 * 3) {
-          this.toast('Mỗi bữa tiệc phải hơn 1 giờ và dưới 3 giờ, mời điều chỉnh lại thời gian')
-        } else {
+        }
+        // else if (currenStamp - this.startTimeStamp < 1000 * 60 * 60 || currenStamp - this.startTimeStamp > 1000 * 60 * 60 * 3) {
+        //   this.toast('Mỗi bữa tiệc phải hơn 1 giờ và dưới 3 giờ, mời điều chỉnh lại thời gian')
+        // } 
+        else {
           this.isChang2 = true
           this.endTime = this.getDate(this.currentDate)
           this.endTimeStamp = this.currentDate.getTime()
@@ -237,8 +252,8 @@ Hạng ba: 30 xu + 500 đậu
     setNeed (val) {
       this.needSingUp = val
     },
-    commitAct () {
-      if (!this.comRid) {
+    commitAct () {  //this.actType != 5  主播模式不展示这几个
+      if (!this.comRid && this.actType != 5) {
         this.vxc('setToast', {
           msg: 'Hãy nhập ID phòng chính xác!'
         })
@@ -262,7 +277,7 @@ Hạng ba: 30 xu + 500 đậu
         this.vxc('setToast', {
           msg: 'Hãy nhập thông tin sự kiện!'
         })
-      } else if (this.needSingUp == -1) {
+      } else if (this.needSingUp == -1 && this.actType != 5) {
         this.vxc('setToast', {
           msg: 'Hãy xác nhận hoạt động cần báo danh hay không!'
         })
