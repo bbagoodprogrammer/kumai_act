@@ -15,7 +15,7 @@
     <p v-if="mainTab==0 || mainTab==2" class="rankTips">Xếp hạng theo điểm phòng kara tuần {{mainTab==0?'này':'trước'}}, đạt 5000 điểm trở lên và trước hạng 10 nhận thưởng</p>
     <p v-else class="rankTips">Xếp hạng theo điểm phòng kara tháng {{mainTab==1?'này':'trước'}}, đạt 15000 điểm trở lên và trước hạng 10 nhận thưởng</p>
     <ul class="list day" :class="{nodata: rank.list.length == 0}">
-      <li v-for="(item,index) in rank.list" :key="index" @click="goUser(item.rid)">
+      <li v-for="(item,index) in rank.list" :key="index" @click="goUser(item)">
         <div class="rank">{{item.rank}}</div>
         <img v-lazy="item.img" alt="">
         <div class="userMsg">
@@ -69,7 +69,7 @@ import getUrlString from '../../utils/getString.js';
 // }
 
 export default {
-  data() {
+  data () {
     return {
       month: 0,
       mainTab: 0,
@@ -80,11 +80,11 @@ export default {
   },
   computed: {
     ...mapState(['rankGroups', 'groupsUserMsg']),
-    rankKey() {
+    rankKey () {
       // return ['one', 'two', 'three'][this.tab];
       return this.mainTab;
     },
-    rankApi() {
+    rankApi () {
       const dayApi = '/kroom_party/rankList.php?pre={pre}&month={month}&from={from}&token={token}';
       let pre = 0
       let month = 0
@@ -99,31 +99,31 @@ export default {
       let token = getUrlString('token')
       return dayApi.replace('{pre}', pre).replace('{month}', month).replace('{token}', token)
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       return rankConf;
     },
-    msg() {
+    msg () {
       let nowMsg = this.groupsUserMsg[this.rankKey] || {}
       console.log(nowMsg.msg ? nowMsg.msg : {})
       return nowMsg.msg ? nowMsg.msg : {}
     }
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
-    changPre(val) {
+    changPre (val) {
       this.month = val
       if (val == 1) {
         this.mainTabClick(1)
@@ -131,7 +131,7 @@ export default {
         this.mainTabClick(0)
       }
     },
-    mainTabClick(tab) {
+    mainTabClick (tab) {
       this.mainTab = tab;
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
@@ -147,7 +147,7 @@ export default {
     //     }
     //   });
     // },
-    onScroll() {
+    onScroll () {
       if (!this.rank.loading && !this.rank.loadEnd) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
@@ -203,7 +203,7 @@ export default {
         }
       }
     },
-    onRefresh() {
+    onRefresh () {
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       if (this.rank.loading) return
       this.$parent.getDefaultData()
@@ -217,15 +217,20 @@ export default {
       });
       this.$nextTick(this.onScroll);
     },
-    goUser(rid) {
-      location.href = `rid:${rid}`
+    goUser (item) {
+      if (item.live) {
+        location.href = `lid:${item.uid}`
+      } else {
+        location.href = `rid:${item.rid}`
+      }
+
     }
   },
 }
 </script>
 
 <style lang="scss">
-@import "../../assets/scss/common.scss";
+@import '../../assets/scss/common.scss';
 body {
   background: rgba(65, 23, 122, 1);
 }
@@ -367,7 +372,7 @@ body {
       }
     }
     li:before {
-      content: "";
+      content: '';
       width: 5.73rem;
       height: 0.02rem;
       background: rgba(107, 39, 175, 1);
