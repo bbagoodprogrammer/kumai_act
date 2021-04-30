@@ -40,36 +40,28 @@ export default {
 
     //tips
     tips_title: "Giới thiệu",
-
-    //01
     h6_1: "Cách nhận Kim cương?",
-    p_15: " A.Quà phòng",
+    h6_2: "Cách nhận Ngọc?",
+    h6_3: "Cách dùng Kim cương và Ngọc?",
     p_1:
         "Nhận quà xu trong phòng party, sẽ quy đổi thành Kim cương theo tỉ lệ nhất định；",
-
-    p_6: "C. Gọi điện",
-    p_7:
-        "Khi đối phương gọi cho bạn, nhận cuộc gọi sẽ được thưởng Kim cương theo phút",
-    p_8: "D. Chat voice",
-    p_9:
-        "Nhận chat voice khi hệ thống ghép ngẫu nhiên, mỗi phút sẽ được thưởng Kim cương",
-    p_10: "E. Quà Chat",
-    p_11:
-        "Nhận quà xu khi chat với đối phương, sẽ quy đổi thành Kim cương theo tỉ lệ nhất định",
-    p_12: "F. Quà Trạng Thái",
-    p_13:
-        "Nhận được quà xu ở Trạng Thái của bạn, sẽ quy đổi thành Kim cương theo tỉ lệ nhất định",
-
-    //02
-    h6_2: "Cách nhận Ngọc?",
     p_2: "A. Chat trả phí",
     p_3:
         "Người chủ động gửi tin nhắn cần dùng Xu hoặc đạo cụ, trả lời trong vòng 12h sẽ nhận được Ngọc",
     p_4: "B. Say Hi",
     p_5: "Khi đối phương Say Hi, trả lời trong vòng 12h sẽ nhận được quà Ngọc",
-
-    //03
-    h6_3: "Cách dùng Kim cương và Ngọc?",
+    p_6: "C. Gọi điện",
+    p_7:
+        "Khi đối phương gọi cho bạn, nhận cuộc gọi sẽ được thưởng Ngọc theo phút",
+    p_8: "D. Chat voice",
+    p_9:
+        "Nhận chat voice khi hệ thống ghép ngẫu nhiên, mỗi phút sẽ được thưởng Ngọc",
+    p_10: "E. Quà Chat",
+    p_11:
+        "Nhận quà xu khi chat với đối phương, sẽ quy đổi thành Ngọc theo tỉ lệ nhất định",
+    p_12: "F. Quà Trạng Thái",
+    p_13:
+        "Nhận được quà xu ở Trạng Thái của bạn, sẽ quy đổi thành Ngọc theo tỉ lệ nhất định",
     p_14:
         "Bạn có thể dùng Ngọc hoặc Kim cương để đổi đạo cụ hoặc vật phẩm nào đó tại giao diện thu nhập."
 };
