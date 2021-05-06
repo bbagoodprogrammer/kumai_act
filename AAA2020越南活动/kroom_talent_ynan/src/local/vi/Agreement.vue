@@ -6,7 +6,7 @@
     </div>
     <div class="ruleItem" v-if="mainTab == 0">
       <h5>Thời gian</h5>
-      <p>18:00 29/3 - 22:00 7/4</p>
+      <p>18:00 6/5 - 22:00 15/5</p>
       <h5>Thể lệ</h5>
       <p>1）Bắt đầu tính dữ liệu sau khi báo danh sự kiện. </p>
       <p>2）Bảng Thần Tượng và Bảng Phòng Kara Sôi Nổi</p>
@@ -21,7 +21,7 @@
     </div>
     <div class="gift" v-else>
       <h5>Thời gian</h5>
-      <p>18:00 29/3 - 22:00 7/4</p>
+      <p>18:00 6/5 - 22:00 15/5</p>
       <h5>Phần thưởng</h5>
       <p>Bảng Thần Tượng</p>
       <p>Hạng 1: Huy Chương Thần Tượng Phòng Kara (30 ngày) + Xe Grand Debut (30 ngày) + Dạ Khúc (2880 xu) + 2000 xu + Được hưởng Chia 5% tổng tiêu thụ trong phòng live</p>

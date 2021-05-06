@@ -49,37 +49,37 @@ export default {
     integral_ok: "Xác nhận", //確定
     giftArr: {
         1: {
-            gift_tips: "x50",
-            img: require("../../img/get_gift/giftItem_1.png"),
+            gift_tips: "x100",
+            img: require("./img/gift1.png"),
             name: "30 xu",
             act_width: "13%",
-            gname: "50 đậu"
+            gname: "100 đậu"
         },
         2: {
             gift_tips: "7 ngày",
-            img: require("../../img/get_gift/giftItem_9.png"),
+            img: require("./img/gift2.png"),
             name: "100 xu",
             act_width: "30%",
-            gname: "Thầm Nhớ 7 ngày"
+            gname: "Ánh Dương 7 ngày"
         },
         3: {
-            img: require("../../img/get_gift/giftItem_10.png"),
+            img: require("./img/gift3.png"),
             name: "300 xu",
             act_width: "50%",
-            gname: "2021 "
+            gname: "Tỏ Tình "
         },
         4: {
             gift_tips: "7 ngày",
-            img: require("../../img/get_gift/giftItem_11.png"),
+            img: require("./img/gift4.png"),
             name: "500 xu",
             act_width: "70%",
-            gname: "Siêu Động Cơ 7 ngày"
+            gname: "Phượng Hoàng 7 ngày"
         },
         5: {
-            img: require("../../img/get_gift/giftItem_12.png"),
+            img: require("./img/gift5.png"),
             name: "1000 xu",
             act_width: "100%",
-            gname: "Mojito"
+            gname: "Đảo Cầu Vồng"
         }
     },
 
