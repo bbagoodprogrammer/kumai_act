@@ -1,10 +1,10 @@
 <template>
   <div class="rank">
     <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
-    <p v-if="step==0">- 活動開始倒計時 -</p>
-    <p v-else-if="step == 1">- 活動結束倒計時 -</p>
-    <p v-else-if="step ==2">- 活動已結束 -</p>
-    <div class="timeDown" v-if="surplusTime&& !surplusTime.end && step!=2">
+    <p v-if="activity_status==0">- 活動開始倒計時 -</p>
+    <p v-else-if="activity_status == 1">- 活動結束倒計時 -</p>
+    <p v-else-if="activity_status ==2">- 活動已結束 -</p>
+    <div class="timeDown" v-if="surplusTime&& !surplusTime.end && activity_status!=2">
       <strong>{{surplusTime.day}}</strong>
       <em>{{lang.rank_day}}</em>
       <strong>{{surplusTime.hour}}</strong>
@@ -14,16 +14,17 @@
       <strong>{{surplusTime.second}}</strong>
       <em>{{lang.rank_second}}</em>
     </div>
+    <p v-if="!list.length">暫無數據</p>
     <ul>
-      <li v-for="(item,index) in list" :key="index" :class="['rank' + item.rank]">
+      <li v-for="(item,index) in list" :key="index" :class="['rank' + item.rank]" @click="goUser(item)">
         <div class="userRank">{{item.rank}}</div>
         <img v-lazy="item.avatar" alt="" class="avatar">
         <div class="msg">
           <div class="nick">{{item.nick}}</div>
-          <span class="live"></span>
+          <span class="live" v-if="item.live_room"></span>
         </div>
         <div class="score">
-          <i :class="['lv' + item.lv]"></i>
+          <i :class="['lv' + item.level]"></i>
           {{item.score}}
         </div>
       </li>
@@ -35,58 +36,26 @@
 
 import downTime from '../utils/downTime.js'
 import { mapState } from "vuex"
+import { allList } from "../apis"
+import { chang_floor } from "../apis"
 export default {
   data () {
     return {
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
       surplusTime: {},
-      list: [
-        {
-          rank: '1',
-          nick: '刀刀刀刀刀',
-          lv: '4',
-          score: '1111',
-          live: false
-        },
-        {
-          rank: '2',
-          nick: '刀刀刀刀刀',
-          lv: '4',
-          score: '1111',
-          live: false
-        },
-        {
-          rank: '3',
-          nick: '刀刀刀刀刀',
-          lv: '4',
-          score: '1111',
-          live: false
-        },
-        {
-          rank: '4',
-          nick: '刀刀刀刀刀',
-          lv: '4',
-          score: '1111',
-          live: false
-        },
-        {
-          rank: '5',
-          nick: '刀刀刀刀刀',
-          lv: '4',
-          score: '1111',
-          live: false
-        }
-      ],
+      list: [],
       loaded: false,
       more: true
     }
   },
   computed: {
-    ...mapState(['step'])
+    ...mapState(['activity_status', 'is_anchor', 'second'])
   },
-  created () {
-    this.downTimeGo('time', 999)
+  watch: {
+    second (val) {
+      this.downTimeGo('time', val)
+    }
   },
   mounted () {
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
@@ -101,7 +70,6 @@ export default {
   },
   methods: {
     onScroll () {
-      console.log('xxx')
       const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
       const notFull = document.body.scrollHeight < window.innerHeigh;
       if (this.loaded) return
@@ -111,10 +79,10 @@ export default {
         allList(this.list.length, 'more').then(res => {
           //   this.vxc('setUser', res.data.response_data.rank)
           this.more = true
-          if (res.data.response_data.list.length == 0) {
+          if (res.data.response_data.rank.length == 0) {
             this.loaded = true
           } else {
-            this.list = this.list.concat(res.data.response_data.list)
+            this.list = this.list.concat(res.data.response_data.rank)
           }
         })
       }
@@ -137,12 +105,20 @@ export default {
       if (!this.more) {
         return
       }
+      if (this.is_anchor) {
+        this.vxc('reSetChange_floor')
+      }
+
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       this.loaded = false
       this.$store.dispatch('getInitInfo');
       this.onScroll()
-
     },
+    goUser (item) {
+      chang_floor(item.uid).then(res => {
+        this.vxc('setChangeFloor', res.data.response_data.owner)
+      })
+    }
   }
 }
 </script>
@@ -247,19 +223,19 @@ export default {
           position: absolute;
           top: -0.56rem;
           left: -0.47rem;
-          &.lv1 {
+          &.lv0 {
             background: url(../img/rank_floor/lv1.png);
             background-size: 100% 100%;
           }
-          &.lv2 {
+          &.lv1 {
             background: url(../img/rank_floor/lv2.png);
             background-size: 100% 100%;
           }
-          &.lv3 {
+          &.lv2 {
             background: url(../img/rank_floor/lv3.png);
             background-size: 100% 100%;
           }
-          &.lv4 {
+          &.lv3 {
             background: url(../img/rank_floor/lv4.png);
             background-size: 100% 100%;
           }

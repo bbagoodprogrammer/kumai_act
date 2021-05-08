@@ -4,7 +4,8 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-            xxx建成XXX
+            <span v-if="item.level">{{item.nick}}建成{{floorConfig[item.level].name}}</span>
+            <span v-else>{{item.nick}}收到{{item.send_nick}}的{{item.gid_name}},+{{item.score}}高度</span>
           </li>
         </ul>
       </div>
@@ -16,6 +17,7 @@
 import { clearInterval } from 'timers';
 import { mapState } from "vuex"
 export default {
+  props: ['floorConfig'],
   data () {
     return {
       animate: false,
@@ -24,10 +26,11 @@ export default {
     };
   },
   computed: {
-    ...mapState(['roolMsg'])
+    ...mapState(['record'])
   },
   watch: {
-    roolMsg (val) {
+    record (val) {
+      console.log(val)
       this.list = JSON.parse(JSON.stringify(val))
       this.rool()
     }

@@ -7,12 +7,6 @@ import App from "./App";
 import store from "./store";
 import router from "./router";
 import { replaceLang, vuexCommit, toast } from "./utils";
-import VueLazyLoad from "vue-lazyload";
-
-Vue.use(VueLazyLoad, {
-    error: require("./img/default.png"),
-    loading: require("./img/default.png")
-});
 
 Vue.prototype.toast = toast;
 Vue.prototype.vxc = vuexCommit;

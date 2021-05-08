@@ -1,19 +1,18 @@
 <template>
-  <div class="footerBar">
+  <div class="footerBar" v-if="astState">
     <div class="acrStatus" :class="{bg:astState!=1}">
       <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
-      <span class="goAct" v-if="astState === 1" @click="singUp()"></span>
-      <div class="actIng" v-if="astState === 3" :class="['rank' + user.rank]">
-        <div class="userRank">{{user.rank}}</div>
-        <img v-lazy="user.avatar" alt="" class="avatar">
+      <div class="actIng" v-if="astState === 3" :class="['rank' + owner.rank]" @click="resetUserMsg()">
+        <div class="userRank">{{owner.rank}}</div>
+        <img v-lazy="owner.avatar" alt="" class="avatar">
         <div class="msg">
-          <div class="nick">{{user.nick}}</div>
-          <span class="live"></span>
+          <div class="nick">{{owner.nick}}</div>
+          <!-- <span class="live" v-if=""></span> -->
         </div>
         <div class="score">
-          <i :class="['lv' + user.lv]"></i>
-          {{user.score}}
+          <i :class="['lv' + owner.level]"></i>
+          {{owner.score}}
         </div>
       </div>
     </div>
@@ -24,49 +23,23 @@ import { mapState } from 'vuex'
 // import api from "../api/apiConfig"
 // import { globalBus } from '../utils/eventBus'
 export default {
-  data () {
-    return {
-      user: {
-        rank: '1',
-        nick: '刀刀刀刀刀',
-        lv: '4',
-        score: '1111',
-        live: false
-      },
-    }
-  },
   computed: {
-    ...mapState(['actStatus', 'owner', 'isShare', 'reg']),
+    ...mapState(['activity_status', 'owner', 'is_anchor']),
     astState () {
-      return 3
-      if (this.actStatus === 0) { //活动未开始
+      if (this.activity_status === 0) { //活动未开始
         return 0
-      } else if (this.actStatus === 2) { //活动已结束
+      } else if (this.activity_status === 2) { //活动已结束
         return 2
-      } else if (!this.reg || this.isShare) { //活动开始未报名，或者分享
-        return 1
-      } else if (this.reg) { //活动开始已报名
+      } else if (this.is_anchor) { //活动开始已报名
         return 3
       }
     },
-    nowUser () {
-      return this.tab == "total" ? this.total : this.day
-    }
   },
   methods: {
-    singUp (fuid) {
-      //   globalBus.$emit('commonEvent', () => {
-      api.singUp(fuid).then(res => {
-        if (res.data.response_status.code == 0) {
-          this.vxc('setReg', true)
-          this.$parent.getDefaultData()
-          this.$parent.invitation = false
-          //弹起任务弹窗
-        } else {
-          this.toast(res.data.response_status.error)
-        }
-      })
-      // })
+    resetUserMsg () {
+      if (this.is_anchor) {
+        this.vxc('reSetChange_floor')
+      }
     }
   }
 }
@@ -159,19 +132,19 @@ export default {
           position: absolute;
           top: -0.56rem;
           left: -0.47rem;
-          &.lv1 {
+          &.lv0 {
             background: url(../img/rank_floor/lv1.png);
             background-size: 100% 100%;
           }
-          &.lv2 {
+          &.lv1 {
             background: url(../img/rank_floor/lv2.png);
             background-size: 100% 100%;
           }
-          &.lv3 {
+          &.lv2 {
             background: url(../img/rank_floor/lv3.png);
             background-size: 100% 100%;
           }
-          &.lv4 {
+          &.lv3 {
             background: url(../img/rank_floor/lv4.png);
             background-size: 100% 100%;
           }

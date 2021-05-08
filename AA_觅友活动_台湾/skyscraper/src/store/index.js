@@ -6,23 +6,17 @@ Vue.use(vuex);
 
 export default new vuex.Store({
     state: {
+        is_anchor: null,
+        anchor_uid: null,
+        owner: {}, //當前个人数据
+        owner_change: {}, //展示的用戶數據（點擊榜單切換用）
+        task: null, //本人的任务
         loading: false,
-        step: 1,
+        activity_status: 1,
         roolMsg: [],
-        floorConfig: {
-            0: {
-                name: "空地"
-            },
-            2: {
-                name: "豪華酒店"
-            },
-            3: {
-                name: "大笨鐘"
-            },
-            4: {
-                name: "帝國大廈"
-            }
-        }
+        tips: null,
+        record: [],
+        second: 0
     },
     mutations: {
         updateLoading(state, value) {
@@ -30,9 +24,16 @@ export default new vuex.Store({
         },
         setInitInfo(state, data) {
             Object.assign(state, data);
+            state.owner_change = state.owner;
         },
         setRoolMsg(state, val) {
             state.roolMsg = val;
+        },
+        setChangeFloor(state, val) {
+            state.owner_change = val;
+        },
+        reSetChange_floor(state, val) {
+            state.owner_change = state.owner;
         }
     },
     actions: {
