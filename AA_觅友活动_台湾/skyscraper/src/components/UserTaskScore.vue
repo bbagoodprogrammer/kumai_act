@@ -1,91 +1,114 @@
 <template>
-  <div class="user_actMsg">
-    <div class="linerBox">
-      <span class="tips">建設進度：</span>
-      <div class="liner">
-        <i class="actLiner" :style="{width:(userLv -1) * 33 +'%'}"></i>
-        <span v-for="(item,index) in 4" :key="index" :class="'floor' + item" @click="showFcard(item)">
-          <img :src="require(`../img/bar_floor/lv${item}.png`)" alt="">
-        </span>
-      </div>
-    </div>
-    <div class="tasks">
-      <div class="taskHeader">
-        <span class="name">任務</span>
-        <span class="score">對應積分</span>
-        <span class="limt">積分上限</span>
-        <span class="bar">進度</span>
-      </div>
-      <ul>
-        <li v-for="(item,index) in task" :key="index">
-          <span class="name">{{item.desc}}</span>
-          <span class="score">{{item.score}}</span>
-          <span class="limt">{{item.limet}}</span>
-          <span class="bar">{{item.bar}}</span>
-        </li>
-      </ul>
-    </div>
-    <div class="user_score">
-      <div class="dayScore">
-        <div class="score"> 今日高度: <em>99999</em> </div>
-        <div class="lastDay">較昨日 <span :class="{add:true}"><i></i>12%</span> </div>
-      </div>
-      <!-- 是主播展示  开播收礼 -->
-      <div class="help">
-        幫主播建樓
-      </div>
-    </div>
-    <!-- 高楼介绍 -->
-    <div class="mask" v-show="showFloorPup">
-      <transition name="slide">
-        <div class="floorCard" v-show="showFloorPup">
-          <div class="title">xx酒店</div>
-          <div class="needScore">
-            所需高度：999999
-          </div>
-          <img :src="require('../img/default_floor/floor_2.png')" alt="">
-          <div class="floor_tips">
-            建筑介绍
-          </div>
-          <div class="giftList">
-            <span v-for="(item,index) in 3 " :key="index">
-              <div class="imgBg">
-                <img src="" alt="">
-              </div>
-              <strong>xxxxx</strong>
-            </span>
-          </div>
+  <div class="is_anchor">
+    <div class="user_actMsg" v-if="is_anchor">
+      <div class="linerBox">
+        <span class="tips">建設進度：</span>
+        <div class="liner">
+          <i class="actLiner" :style="{width:(owner.level) * 33 +'%'}"></i>
+          <span v-for="(item,index) in 4" :key="index" :class="'floor' + item" @click="showFcard(item)">
+            <img :src="require(`../img/bar_floor/lv${item}.png`)" alt="">
+          </span>
         </div>
-      </transition>
+      </div>
+      <div class="tasks">
+        <div class="taskHeader">
+          <span class="name">任務</span>
+          <span class="score">對應積分</span>
+          <span class="limt">積分上限</span>
+          <span class="bar">進度</span>
+        </div>
+        <ul>
+          <li v-for="(item,index) in task" :key="index">
+            <span class="name">{{taskName[index].desc}}</span>
+            <span class="score">{{taskName[index].score}}</span>
+            <span class="limt">{{item.max?item.max:'不限'}}</span>
+            <span class="bar">{{!item.max?item.score:item.score>=item.max?'已達成':`${item.score}/${item.max}`}}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="user_score">
+        <div class="dayScore">
+          <div class="score"> 今日高度: <em>{{owner.score}}</em> </div>
+          <div class="lastDay">較昨日 <span :class="{add:owner.diff && owner.diff.indexOf('+') >= 1}"><i></i>{{owner.diff}}</span> </div>
+        </div>
+        <!-- 是主播展示  开播收礼 -->
+        <div class="help" @click="goKroom()">
+          开播收礼
+        </div>
+      </div>
+      <!-- 高楼介绍 -->
+      <div class="mask" v-show="showFloorPup">
+        <transition name="slide">
+          <div class="floorCard" v-show="showFloorPup">
+            <i class="close" @click="showFloorPup = false"></i>
+            <div class="title">{{floorConfig[floor_pupItem].name}}</div>
+            <div class="needScore">
+              所需高度：{{floorConfig[floor_pupItem].score}}
+            </div>
+            <img :src="require(`../img/default_floor/floor_${floor_pupItem + 1}.png`)" alt="">
+            <div class="floor_tips">
+              {{floorConfig[floor_pupItem].tips}}
+            </div>
+            <div class="giftList">
+              <span v-for="(item,index) in floorConfig[floor_pupItem].gift " :key="index">
+                <div class="imgBg">
+                  <img :src="item.img" alt="">
+                </div>
+                <strong>{{item.name}}</strong>
+              </span>
+            </div>
+          </div>
+        </transition>
+      </div>
+    </div>
+    <div class="help not" v-else @click="goKroom('other')">
+      幫主播建樓
     </div>
   </div>
+
 </template>
 
 <script>
+
+import { mapState } from "vuex"
 export default {
+  props: ['floorConfig'],
   data () {
     return {
-      userLv: 2,
       showFloorPup: false,
-      task: {
-        nums: {
+      floor_pupItem: 0,
+      taskName: [
+        {
           desc: '進房人數',
           score: '1人=1分',
-          limet: '200',
-          bar: '20/3'
         },
-        gifts: {
-          desc: '進房人數',
-          score: '1人=1分',
-          limet: '200',
-          bar: '20/3'
+        {
+          desc: '收到指定禮物',
+          score: '10金幣=1分',
         }
-      }
+      ]
     }
+  },
+  computed: {
+    ...mapState(['is_anchor', 'task', 'owner', 'owner_change'])
   },
   methods: {
     showFcard (item) {
+      if (item == 1) {
+        return
+      }
+      this.floor_pupItem = item - 1
       this.showFloorPup = true
+    },
+    goKroom (other) {
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      let rid = other ? this.owner_change.rid : this.owner.rid
+      console.log(rid)
+      if (isiOS) {
+        sendJsData('app://room?rid=' + rid);
+      } else {
+        javascript: JSInterface.sendJsData('app://room?rid=' + rid);
+      }
     }
   }
 }
@@ -177,7 +200,7 @@ export default {
       text-align: left;
     }
     .score {
-      flex: 1;
+      flex: 1.5;
     }
     .limt {
       flex: 1;
@@ -226,17 +249,20 @@ export default {
         }
       }
     }
-    .help {
-      width: 2.68rem;
-      height: 0.98rem;
-      text-align: center;
-      line-height: 0.98rem;
-      background: url(../img/help.png);
-      background-size: 100% 100%;
-      font-size: 0.32rem;
-      color: rgba(39, 26, 118, 1);
-      font-weight: 500;
-    }
+  }
+}
+.help {
+  width: 2.68rem;
+  height: 0.98rem;
+  text-align: center;
+  line-height: 0.98rem;
+  background: url(../img/help.png);
+  background-size: 100% 100%;
+  font-size: 0.32rem;
+  color: rgba(39, 26, 118, 1);
+  font-weight: 500;
+  &.not {
+    margin: 0.2rem auto;
   }
 }
 .floorCard {
@@ -246,6 +272,7 @@ export default {
   background-size: 100% 100%;
   text-align: center;
   padding-bottom: 0.15rem;
+  position: relative;
   .title {
     height: 0.63rem;
     line-height: 0.63rem;
@@ -261,13 +288,17 @@ export default {
     margin: 0.1rem auto 0;
   }
   .floor_tips {
+    font-size: 0.27rem;
     min-height: 1.47rem;
+    padding: 0 0.25rem;
+    display: flex;
+    align-items: center;
   }
   .giftList {
     padding: 0 0.56rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     span {
       width: 1.05rem;
       .imgBg {
@@ -279,10 +310,18 @@ export default {
           width: 100%;
           height: 100%;
         }
-        strong {
-          display: block;
-        }
       }
+      strong {
+        width: 120%;
+        margin-left: -0.125rem;
+        height: 0.8rem;
+        font-size: 0.22rem;
+        display: block;
+      }
+    }
+    span:nth-child(2),
+    span:nth-child(3) {
+      margin-left: 0.15rem;
     }
   }
 }
