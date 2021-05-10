@@ -4,8 +4,9 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-            <span v-if="item.level">{{item.nick}}建成{{floorConfig[item.level].name}}</span>
-            <span v-else>{{item.nick}}收到{{item.send_nick}}的{{item.gid_name}},+{{item.score}}高度</span>
+            <span v-if="item.level">{{item.nick}}{{lang.get}}{{floorConfig[item.level].name}}</span>
+            <!-- <span v-else>{{item.nick}}收到{{item.send_nick}}的{{item.gid_name}},+{{item.score}}高度</span> -->
+            <span v-else>{{lang.rool_msg.replace('@',item.nick).replace('#',item.send_nick).replace('$',item.gid_name).replace('%',item.score)}}</span>
           </li>
         </ul>
       </div>

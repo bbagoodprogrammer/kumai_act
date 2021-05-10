@@ -1,7 +1,7 @@
 <template>
   <div class="page pageIndex">
     <div class="header">
-      <span class="ruleTips" @click="showRule = true">規則獎勵</span>
+      <span class="ruleTips" @click="showRule = true">{{lang.rule_tips}}</span>
       <RoolMsg :floorConfig="floorConfig" />
       <div class="cloud"></div>
       <div class="floor" :class="['level_' + show_floorMsg.level]"></div>
@@ -9,7 +9,7 @@
         <img v-lazy="show_floorMsg.avatar" alt="" class="av" @click="goRoom()">
         <div class="msg">
           <div class="nick">{{show_floorMsg.nick}}</div>
-          <div class="floorName">的{{floorConfig[show_floorMsg.level || 0].name}}</div>
+          <div class="floorName">{{lang.de}}{{floorConfig[show_floorMsg.level || 0].name}}</div>
         </div>
       </div>
       <div class="fans_list" @click="fans_list()" v-if="show_floorMsg.user_rank && show_floorMsg.user_rank.length">
@@ -25,12 +25,12 @@
       <transition name="slide">
         <div class="lvUp" v-show="showLvUp">
           <i class="close" @click="showLvUp = false"></i>
-          <div class="title">你的大樓升級啦！</div>
+          <div class="title">{{lang.lv_up}}</div>
           <img :src="require(`../img/leUp_floor/floor_${max_lv + 1}.png`)" alt="">
-          <p class="tips">恭喜你的大樓已經升級到【{{floorConfig[max_lv].name}}】<br />獎勵<i v-for="(item,index) in floorConfig[max_lv].gift"
+          <p class="tips">{{lang.lv_up_tips}}【{{floorConfig[max_lv].name}}】<br />{{lang.gift}}<i v-for="(item,index) in floorConfig[max_lv].gift"
               :key="index">{{item.name}}{{index == floorConfig[max_lv].gift.length -1?'':'、'}}</i></p>
           <div class="ok" @click="showLvUp = false">
-            開心收下
+            {{lang.ok}}
           </div>
         </div>
       </transition>
@@ -41,12 +41,12 @@
       <transition name="slide">
         <div class="fansRank" v-show="showFasRank">
           <i class="close" @click="showFasRank = false"></i>
-          <div class="title">【 <strong>{{owner_change.nick}}</strong> 】的粉絲榜</div>
+          <div class="title">【 <strong>{{owner_change.nick}}</strong> 】{{lang.fans_rank_title}}</div>
           <div class="f_list">
             <div class="listHeader">
-              <span class="f_rank">排名</span>
-              <span class="user">用戶</span>
-              <span class="score">高度</span>
+              <span class="f_rank">{{lang.rank}}</span>
+              <span class="user">{{lang.user}}</span>
+              <span class="score">{{lang.total_height}}</span>
             </div>
             <ul>
               <li v-for="(item,index) in list" :key="index" :class="{act:index%2 == 0}">
@@ -57,10 +57,9 @@
             </ul>
           </div>
           <div class="fans_tips">
-            *總高度為粉絲對同一名主播所貢獻的高度綜合，榜
-            單顯示前20名粉絲
+            {{lang.fans_tips}}
           </div>
-          <div class="goRoom" @click="goRoom()">進入主播房間</div>
+          <div class="goRoom" @click="goRoom()">{{lang.goKroom}}</div>
         </div>
       </transition>
     </div>
@@ -90,60 +89,64 @@ export default {
       showFasRank: false,
       showRule: false,
       list: [],
-      floorConfig: {
-        0: {
-          name: "空地",
-          score: '',
-          tips: '',
-          gift: []
-        },
-        1: {
-          name: "豪華酒店",
-          score: '5000',
-          tips: '酒店將古典和現代設施完美融合，極具特色，擁有100間客房',
-          gift: [
-            {
-              img: '',
-              name: '豪華酒店-背包禮物*1'
-            }
+      //   floorConfig: {
+      //     0: {
+      //       name: "空地",
+      //       score: '',
+      //       tips: '',
+      //       gift: []
+      //     },
+      //     1: {
+      //       name: "豪華酒店",
+      //       score: '5000',
+      //       tips: '酒店將古典和現代設施完美融合，極具特色，擁有100間客房',
+      //       gift: [
+      //         {
+      //           img: require('../img/floor_giftList/gift_1.png'),
+      //           name: '豪華酒店-背包禮物*1'
+      //         }
 
-          ]
-        },
-        2: {
-          name: "大笨鐘",
-          score: '30000',
-          tips: '聳立於最精華地段，遊客可享盡英倫美景，營造浪漫風情',
-          gift: [
-            {
-              img: '',
-              name: '大笨鐘-背包禮物*1'
-            },
-            {
-              img: '',
-              name: '1000金豆'
-            }
-          ]
-        },
-        3: {
-          name: "帝國大廈",
-          score: '60000',
-          tips: '頂樓的風很大，吹亂了我的頭髮，但整座不夜城的風景都能盡收眼底',
-          gift: [
-            {
-              img: '',
-              name: '帝國大廈-背包禮物*1'
-            },
-            {
-              img: '',
-              name: '2000金豆'
-            },
-            {
-              img: '',
-              name: '房產大亨-頭像框*7天'
-            },
-          ]
-        }
-      },
+      //       ]
+      //     },
+      //     2: {
+      //       name: "大笨鐘",
+      //       score: '30000',
+      //       tips: '聳立於最精華地段，遊客可享盡英倫美景，營造浪漫風情',
+      //       gift: [
+      //         {
+      //           img: require('../img/floor_giftList/gift_2.png'),
+      //           name: '大笨鐘-背包禮物*1'
+      //         },
+      //         {
+      //           img: require('../img/floor_giftList/gift_6.png'),
+      //           name: '1000金豆'
+      //         },
+      //         {
+      //           img: require('../img/floor_giftList/gift_4.png'),
+      //           name: '小摩托-背包禮物*1'
+      //         },
+      //       ]
+      //     },
+      //     3: {
+      //       name: "帝國大廈",
+      //       score: '60000',
+      //       tips: '頂樓的風很大，吹亂了我的頭髮，但整座不夜城的風景都能盡收眼底',
+      //       gift: [
+      //         {
+      //           img: require('../img/floor_giftList/gift_3.png'),
+      //           name: '帝國大廈-背包禮物*1'
+      //         },
+      //         {
+      //           img: require('../img/floor_giftList/gift_6.png'),
+      //           name: '2000金豆'
+      //         },
+      //         {
+      //           img: require('../img/floor_giftList/gift_5.png'),
+      //           name: '彩虹小島-背包禮物*1'
+      //         },
+      //       ]
+      //     }
+      //   },
 
     }
   },
@@ -169,6 +172,9 @@ export default {
       } else {
         return this.owner
       }
+    },
+    floorConfig () {
+      return this.lang.floorConfig
     }
   },
   methods: {
@@ -339,7 +345,8 @@ export default {
       color: rgba(11, 66, 117, 1);
       font-weight: 600;
       strong {
-        height: 0.3rem;
+        height: 0.6rem;
+        line-height: 0.6rem;
         display: block;
         max-width: 1.5rem;
         overflow: hidden;

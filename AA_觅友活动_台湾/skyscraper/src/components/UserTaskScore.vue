@@ -1,10 +1,10 @@
 <template>
   <div class="is_anchor">
-    <div class="user_actMsg" v-if="is_anchor">
+    <div class="user_actMsg">
       <div class="linerBox">
-        <span class="tips">建設進度：</span>
+        <span class="tips">{{lang.task_title}}</span>
         <div class="liner">
-          <i class="actLiner" :style="{width:(owner.level) * 33 +'%'}"></i>
+          <i class="actLiner" :style="{width:(show_floorMsg.level) * 33 +'%'}"></i>
           <span v-for="(item,index) in 4" :key="index" :class="'floor' + item" @click="showFcard(item)">
             <img :src="require(`../img/bar_floor/lv${item}.png`)" alt="">
           </span>
@@ -12,28 +12,29 @@
       </div>
       <div class="tasks">
         <div class="taskHeader">
-          <span class="name">任務</span>
-          <span class="score">對應積分</span>
-          <span class="limt">積分上限</span>
-          <span class="bar">進度</span>
+          <span class="name">{{lang.task_name}}</span>
+          <span class="score">{{lang.task_score}}</span>
+          <span class="limt">{{lang.task_limt}}</span>
+          <span class="bar" v-if="(is_anchor&& !owner_change.uid) || (owner_change.uid == owner.uid && is_anchor)">{{lang.bar}}</span>
         </div>
         <ul>
           <li v-for="(item,index) in task" :key="index">
             <span class="name">{{taskName[index].desc}}</span>
             <span class="score">{{taskName[index].score}}</span>
-            <span class="limt">{{item.max?item.max:'不限'}}</span>
-            <span class="bar">{{!item.max?item.score:item.score>=item.max?'已達成':`${item.score}/${item.max}`}}</span>
+            <span class="limt">{{item.max?item.max:lang.noSet}}</span>
+            <span class="bar"
+              v-if="(is_anchor&& !owner_change.uid) || (owner_change.uid == owner.uid && is_anchor)">{{!item.max?item.score:item.score>=item.max?lang.task_doed:`${item.score}/${item.max}`}}</span>
           </li>
         </ul>
       </div>
       <div class="user_score">
         <div class="dayScore">
-          <div class="score"> 今日高度: <em>{{owner.score}}</em> </div>
-          <div class="lastDay">較昨日 <span :class="{add:owner.diff && owner.diff.indexOf('+') >= 1}"><i></i>{{owner.diff}}</span> </div>
+          <div class="score"> {{lang.dayScore}} <em>{{show_floorMsg.today_score}}</em> </div>
+          <div class="lastDay">{{lang.last_nums}} <span :class="{add:show_floorMsg.diff && show_floorMsg.diff.indexOf('+') > -1}"><i></i>{{show_floorMsg.diff}}</span> </div>
         </div>
         <!-- 是主播展示  开播收礼 -->
         <div class="help" @click="goKroom()">
-          开播收礼
+          {{(is_anchor&& !owner_change.uid) || (owner_change.uid == owner.uid && is_anchor) ?lang.help_msg1:lang.help_msg2}}
         </div>
       </div>
       <!-- 高楼介绍 -->
@@ -43,7 +44,7 @@
             <i class="close" @click="showFloorPup = false"></i>
             <div class="title">{{floorConfig[floor_pupItem].name}}</div>
             <div class="needScore">
-              所需高度：{{floorConfig[floor_pupItem].score}}
+              {{lang.need_height}} {{floorConfig[floor_pupItem].score}}
             </div>
             <img :src="require(`../img/default_floor/floor_${floor_pupItem + 1}.png`)" alt="">
             <div class="floor_tips">
@@ -61,9 +62,9 @@
         </transition>
       </div>
     </div>
-    <div class="help not" v-else @click="goKroom('other')">
+    <!-- <div class="help not" v-else @click="goKroom('other')">
       幫主播建樓
-    </div>
+    </div> -->
   </div>
 
 </template>
@@ -77,20 +78,30 @@ export default {
     return {
       showFloorPup: false,
       floor_pupItem: 0,
-      taskName: [
-        {
-          desc: '進房人數',
-          score: '1人=1分',
-        },
-        {
-          desc: '收到指定禮物',
-          score: '10金幣=1分',
-        }
-      ]
+      //   taskName: [
+      //     {
+      //       desc: '進房人數',
+      //       score: '1人=1分',
+      //     },
+      //     {
+      //       desc: '收到指定禮物',
+      //       score: '1金幣=1分',
+      //     }
+      //   ]
     }
   },
   computed: {
-    ...mapState(['is_anchor', 'task', 'owner', 'owner_change'])
+    ...mapState(['is_anchor', 'task', 'owner', 'owner_change']),
+    show_floorMsg () {
+      if (this.owner_change.uid) {
+        return this.owner_change
+      } else {
+        return this.owner
+      }
+    },
+    taskName () {
+      return this.lang.taskName
+    }
   },
   methods: {
     showFcard (item) {
@@ -102,7 +113,7 @@ export default {
     },
     goKroom (other) {
       var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
-      let rid = other ? this.owner_change.rid : this.owner.rid
+      let rid = this.show_floorMsg.rid
       console.log(rid)
       if (isiOS) {
         sendJsData('app://room?rid=' + rid);
