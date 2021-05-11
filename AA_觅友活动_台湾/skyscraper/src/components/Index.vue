@@ -9,7 +9,7 @@
         <img v-lazy="show_floorMsg.avatar" alt="" class="av" @click="goRoom()">
         <div class="msg">
           <div class="nick">{{show_floorMsg.nick}}</div>
-          <div class="floorName">{{lang.de}}{{floorConfig[show_floorMsg.level || 0].name}}</div>
+          <div class="floorName">{{floorConfig[show_floorMsg.level || 0].name}}</div>
         </div>
       </div>
       <div class="fans_list" @click="fans_list()" v-if="show_floorMsg.user_rank && show_floorMsg.user_rank.length">
@@ -256,7 +256,7 @@ export default {
       }
       .msg {
         height: 100%;
-        margin-left: 0.2rem;
+        margin-left: 0.1rem;
         > div {
           height: 50%;
         }

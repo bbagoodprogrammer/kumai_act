@@ -263,7 +263,8 @@ export default {
   }
 }
 .help {
-  width: 2.68rem;
+  width: 2.28rem;
+  padding: 0 0.2rem;
   height: 0.98rem;
   text-align: center;
   line-height: 0.98rem;
@@ -272,6 +273,10 @@ export default {
   font-size: 0.32rem;
   color: rgba(39, 26, 118, 1);
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0.28rem;
   &.not {
     margin: 0.2rem auto;
   }
