@@ -182,7 +182,13 @@ export default {
     }
   }
   .tasks {
+    width: 7.09rem;
+    height: 1.98rem;
+    background: url(../img/task_bg.png);
+    background-size: 100% 100%;
     .taskHeader {
+      height: 0.5rem;
+      white-space: nowrap;
       display: flex;
       align-items: center;
       text-align: center;
@@ -193,14 +199,13 @@ export default {
       }
     }
     ul {
-      margin-top: 0.1rem;
       padding: 0 0.35rem;
       li {
+        height: 0.7rem;
         display: flex;
         align-items: center;
         font-size: 0.26rem;
         color: rgba(4, 71, 144, 1);
-        margin-bottom: 0.2rem;
         span {
           text-align: center;
         }

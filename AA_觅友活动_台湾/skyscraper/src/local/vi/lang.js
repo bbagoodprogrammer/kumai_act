@@ -150,10 +150,10 @@ export default {
     share_desc: "",
     //rule
     rule_tite: "Quy tắc & Quà    ",
-    rule_tm: "Thời gian sự kiện: 20/01-12/01    ",
+    rule_tm: "Thời gian sự kiện: 12/5 19：00- 18/5 23：59：59  ",
     rule_p_1: "1. Đối Tượng Tham Gia    ",
     rule_p_2:
-        "Tất cả Idol đều có thể tham gia , trong thời gian diễn ra sự kiện Idol alochat sẽ được tham gia, nếu thích thú bạn có thể  liên hệ admin (UID:1888)        ",
+        "Tất cả Idol đều có thể tham gia , trong thời gian diễn ra sự kiện Idol alochat sẽ được tham gia",
     rule_p_3: "2. Cách Xây Dựng Cao Ốc    ",
     rule_p_4:
         "Idol sẽ nhận được 1 mảnh đất trống, thông qua nhiệm vụ xây dựng để tích lũy độ cao nhà lầu,  độ cao tương ứng phần thưởng nhận được.        ",
@@ -161,25 +161,28 @@ export default {
     rule_p_6:
         "Idol có thể thông qua 2 nhiệm vụ dưới đây để tích lũy độ cao:     ",
     rule_p_7:
-        "Số người vào phòng: trong ngày 1 người chơi lần đầu tham gia vào phòng idol bất kỳ xem như hoàn thành 1 lần nhiệm vụ, 1 người=1 độ cao,  mỗi ngày tối đa 200        ",
+        "Số người vào phòng: trong ngày 1 người chơi lần đầu tham gia vào phòng idol bất kỳ xem như hoàn thành 1 lần nhiệm vụ, 1 người=1 độ cao,  mỗi ngày tối đa 100        ",
     rule_p_8:
-        "Nhận quà chỉ định: Idol nhận quà chỉ định, 10 Xu =1 độ cao, cứ thế tích lũy độ cao và không có giới hạn        ",
+        "Nhận quà chỉ định: Idol nhận quà chỉ định, 1 Xu =1 độ cao, cứ thế tích lũy độ cao và không có giới hạn        ",
     rule_p_9: " 4, Quà xây dựng    ",
     rule_p_10: "5, Quà xếp hạng    ",
     rule_p_11:
-        "Hạng 1: Khung ảnh phồn thịnh lấp lánh*7 ngày+ Xe Lôi Đình Chiến Xa*7 ngày+ Huy hiệu Bất động sản*10 ngày+ Trả lễ Xu 6%        ",
+        "Hạng 1: Khung ảnh phồn thịnh lấp lánh*7 ngày+ Xe Lôi Đình Chiến Xa*7 ngày+ Huy hiệu Bất động sản*10 ngày+ Trả lễ Xu 7%        ",
     rule_p_12:
-        "Hạng 2: Khung ảnh phồn thịnh Tím*7 ngày+ Xe Lôi Đình Chiến Xa*7 ngày+ Huy hiệu Bất động sản*10 ngày+ Trả lễ Xu 4%        ",
+        "Hạng 2: Khung ảnh phồn thịnh Tím*7 ngày+ Xe Lôi Đình Chiến Xa*7 ngày+ Huy hiệu Bất động sản*10 ngày+ Trả lễ Xu 5%        ",
     rule_p_13:
         "Hạng 3: Khung ảnh phồn thịnh Xanh*7 ngày+ Xe Lôi Đình Chiến Xa*7 ngày+ Huy hiệu Bất động sản*10 ngày+ Trả lễ Xu 3%        ",
     rule_p_14:
-        "*Trả lễ Xu idol: Idol/Phòng trong thời gian sự kiện, nhận  xu phòng theo quà chỉ định, sẽ thưởng xu theo tỉ lệ        ",
+        "*Trả lễ Xu idol: Idol trong thời gian sự kiện, nhận  xu phòng theo quà chỉ định, sẽ thưởng xu theo tỉ lệ        ",
     rule_p_15: "6, Quà XH Fan Cống Hiến    ",
-    rule_p_16: "Hạng 1: Fan dẫn đầu-Khung ảnh*7 ngày+ Trả lễ Xu 6%    ",
-    rule_p_17: "Hạng 2: Fan dẫn đầu-Khung ảnh*7 ngày+ Trả lễ Xu 4%    ",
-    rule_p_18: "Hạng 3: Fan dẫn đầu-Khung ảnh*7 ngày+ Trả lễ Xu 3%    ",
+    rule_p_16:
+        "Fan dẫn đầu của idol hạng 1: Fan dẫn đầu-Khung ảnh*7 ngày+ Trả lễ Xu 5%    ",
+    rule_p_17:
+        "Fan dẫn đầu của idol hạng 2: Fan dẫn đầu-Khung ảnh*7 ngày+ Trả lễ Xu 4%    ",
+    rule_p_18:
+        "Fan dẫn đầu của idol hạng 3: Fan dẫn đầu-Khung ảnh*7 ngày+ Trả lễ Xu 3%    ",
     rule_p_19:
-        "*Trả lễ Xu Fan: Trong thời gian sự kiện, người chơi được thưởng tặng quà xu chỉ định, sẽ trả lễ xu theo tỉ lệ        ",
+        "*Trả lễ Xu Fan: Trong thời gian sự kiện,  Fan dẫn đầu được thưởng   tặng quà xu chỉ định, sẽ trả lễ xu theo tỉ lệ        ",
     rule_p_20: "(Quà nhận từ event có thời hạn 7 ngày, nhớ tặng sớm nhé!)",
     rule_p_21: "7, Khác    ",
     rule_p_22:
