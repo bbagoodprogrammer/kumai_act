@@ -1,7 +1,8 @@
 import axios from "axios";
 import store from "../store";
 import getSign from "../utils/getSign";
-import { getUrlString, toast } from "../utils";
+import { getUrlString, toast, replaceUrl } from "../utils";
+import api from "./api";
 import { testGet } from "./test";
 
 function appendParam(url, key, value) {
@@ -34,7 +35,7 @@ function getQueryParams(url) {
     return obj;
 }
 axios.interceptors.request.use(
-    async (config) => {
+    async config => {
         const a2b = atob;
         const euc = encodeURIComponent;
         // console.log('axios.interceptors', config);
@@ -107,7 +108,7 @@ axios.interceptors.request.use(
             config.headers = {
                 sign,
                 timestamp,
-                ...config.headers,
+                ...config.headers
             };
             // iOS旧版签名忽略空值参数兼容错误提示
             const arr = [];
@@ -122,7 +123,7 @@ axios.interceptors.request.use(
         }
         return config;
     },
-    (err) => {
+    err => {
         return Promise.reject(err);
     }
 );
@@ -132,11 +133,11 @@ function get(url, config) {
         store.commit("updateLoading", true);
         axios
             .get(url, config)
-            .then((response) => {
+            .then(response => {
                 store.commit("updateLoading", false);
                 resolve(response);
             })
-            .catch((error) => {
+            .catch(error => {
                 store.commit("updateLoading", false);
                 reject(error);
             });
@@ -148,11 +149,11 @@ function post(url, data, config) {
         store.commit("updateLoading", true);
         axios
             .post(url, data, config)
-            .then((response) => {
+            .then(response => {
                 store.commit("updateLoading", false);
                 resolve(response);
             })
-            .catch((error) => {
+            .catch(error => {
                 store.commit("updateLoading", false);
                 reject(error);
             });
@@ -204,10 +205,115 @@ function loadData(apiFunc, commitName, loadOnce = false) {
     });
 }
 
+// 初始化
 function getInitInfo() {
     // return testGet('getInitInfo');
     // return testGet(arguments.callee.name);
-    return get("/index.php?action=kolExt.getInitInfo&uid={uid}&token={token}");
+    return get(
+        `/index.php?action=trueLove.init&signture=innerserver&uid={uid}&token={token}`
+    );
+}
+//进入页面获取邀请我的列表
+function creatInivitFriend() {
+    return get(
+        `/index.php?action=trueLove.acceptableInvita&signture=innerserver&uid={uid}&token={token}`
+    );
+}
+//好友列表
+function friendList(from) {
+    return get(
+        `/index.php?action=trueLove.friends&signture=innerserver&uid={uid}&token={token}&from=${from}`
+    );
 }
 
-export { get, post, loadData, getInitInfo };
+//接受邀請  mail_id 列表的郵件ID
+function acceptFriend(mail_id) {
+    return get(
+        `/index.php?action=trueLove.accept&signture=innerserver&uid={uid}&token={token}&mail_id=${mail_id}`
+    );
+}
+
+//拒絕邀請  mail_id 列表的郵件ID
+function rejectFriend() {
+    return get(
+        `/index.php?action=trueLove.reject&signture=innerserver&uid={uid}&token={token}&mail_id=${mail_id}`
+    );
+}
+
+//拒絕解除關係
+function rejectRelieve_cj(mail_id) {
+    return get(
+        `/index.php?action=trueLove.rejectRelieve&signture=innerserver&uid={uid}&token={token}&mail_id=${mail_id}`
+    );
+}
+
+//同意解除關係
+function getAcceptableInvita(mail_id) {
+    return get(
+        `/index.php?action=trueLove.getAcceptableInvita&signture=innerserver&uid={uid}&token={token}&mail_id=${mail_id}`
+    );
+}
+
+//邀請好友
+function inivitFriend(to_uid) {
+    return get(
+        `/index.php?action=trueLove.invite&signture=innerserver&uid={uid}&token={token}&to_uid=${to_uid}`
+    );
+}
+
+//申请解除关系
+function relieve() {
+    return get(
+        `/index.php?action=trueLove.relieve&signture=innerserver&uid={uid}&token={token}`
+    );
+}
+
+//轉盤列表
+function giftList() {
+    return get(
+        `/index.php?action=trueLove.giftList&signture=innerserver&uid={uid}&token={token}`
+    );
+}
+
+//抽獎 is_batch  1: 10抽  0:單抽
+function luck_go(is_batch) {
+    return get(
+        `/index.php?action=trueLove.go&signture=innerserver&uid={uid}&token={token}&is_batch=${is_batch}`
+    );
+}
+//信箱（威威代碼部分）
+function invite(data) {
+    return get(replaceUrl(api.invite, data));
+}
+
+function reject(data) {
+    return get(replaceUrl(api.reject, data));
+}
+
+function rejectRelieve(data) {
+    return get(replaceUrl(api.rejectRelieve, data));
+}
+
+function acceptRelieve(data) {
+    return get(replaceUrl(api.acceptRelieve, data));
+}
+export {
+    get,
+    post,
+    loadData,
+    getInitInfo,
+    friendList,
+    inivitFriend,
+    creatInivitFriend,
+    rejectFriend,
+    acceptFriend,
+    rejectRelieve_cj,
+    getAcceptableInvita,
+    relieve,
+    invite,
+    reject,
+    rejectRelieve,
+    acceptRelieve,
+    giftList,
+    luck_go
+};

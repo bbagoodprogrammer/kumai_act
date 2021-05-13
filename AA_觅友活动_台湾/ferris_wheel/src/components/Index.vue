@@ -3,27 +3,23 @@
     <canvas id="bg"></canvas>
     <div class="header"></div>
     <div class="ruleTips" :class="{ty2:type == 2}">
-      <span>兌換紀錄</span>
-      <span @click="shouRulePup = true">規則獎勵</span>
-      <span @click="showMailbox = true">信箱</span>
+      <span v-if="type == 2">兌換紀錄</span>
+      <span @click="$router.push({name:'rule'})">規則獎勵</span>
+      <span @click="showMail = true">信箱</span>
     </div>
     <div class="tab">
-      <span class="tab1" :class="{act:type == 1}" @click="type =1">摩天輪</span>
-      <span class="tab2" :class="{act:type == 2}" @click="type =2">召喚愛神</span>
+      <span class="tab1" :class="{act:type == 1}" @click="tabClick(1)">摩天輪</span>
+      <span class="tab2" :class="{act:type == 2}" @click="tabClick(2)">召喚愛神</span>
     </div>
     <keep-alive>
       <component :is="type==1?'wheel':'turn'"></component>
     </keep-alive>
     <TabsScrollLoadList />
     <Footer />
-    <div class="mask" v-show="shouRulePup">
+    <!-- 郵箱 -->
+    <div class="mask" v-show="showMail">
       <transition name="slide">
-        <Rule v-show="shouRulePup" />
-      </transition>
-    </div>
-    <div class="mask" v-show="showMailbox">
-      <transition name="slide">
-        <Mailbox v-show="showMailbox" />
+        <MailDialog :visible.sync="showMail" v-if="showMail" />
       </transition>
     </div>
     <!-- 报名弹窗 -->
@@ -37,7 +33,7 @@
             幸福，每轉一圈，地球上幸福的cp又多
             了一隊
           </div>
-          <div class="singUpBtn">
+          <div class="singUpBtn" @click="singUpPup = false">
             進入摩天輪
           </div>
         </div>
@@ -51,12 +47,12 @@
           <p class="inivitTips">歡迎來到真愛摩天輪，與心動對象一起收集真愛值, 有機會乘坐摩天輪並獲得限量獎勵、指定戒指喔！</p>
           <p class="inivitTips2">以下是對妳心動的玩家，可從中選擇一個心動對象，一起參與～</p>
           <ul>
-            <li v-for="(item,index) in 3" :key="index">
+            <li v-for="(item,index) in inivitList" :key="index">
               <div class="li_mask" v-if="inivit_index != index" @click="inivit_index = index"></div>
-              <img src="../img/singUpImg.png" alt="">
+              <img v-lazy="item.avatar" alt="">
               <div class="userMsg">
-                <div class="nick">xxxxxxxx</div>
-                <div class="score"><i></i><strong>9999</strong></div>
+                <div class="nick">{{item.nick}}</div>
+                <div class="score"><i></i><strong>{{item.intimacy}}</strong></div>
               </div>
               <div class="status">
                 <i v-if="inivit_index == index"></i>
@@ -65,8 +61,25 @@
           </ul>
           <p class="inivitTips3">*請謹慎選擇自己的心動對象</p>
           <div class="set">
-            <div class="ok">確定心動對象</div>
-            <u class="chang">沒有心動對象</u>
+            <div class="ok" @click="setCp()">確定心動對象</div>
+            <u class="chang" @click="inivit_pup = false">沒有心動對象</u>
+          </div>
+        </div>
+      </transition>
+    </div>
+    <!-- 解除CP -->
+    <div class="mask" v-show="showRelieve">
+      <transition name="slide">
+        <div class="queryPup" v-if="showRelieve">
+          <div class="title">很遺憾告訴你...</div>
+          <div class="tips" v-html="tipsArr[relieveType].replace('&',owner.cp_nick)">
+          </div>
+          <div class="btns" v-if="relieveType == 1">
+            <span class="st1" @click="reject()">不同意</span>
+            <span class="st2" @click="accept()">同意</span>
+          </div>
+          <div class="btns" v-else>
+            <span class="st1" @click="showRelieve = false">我知道了</span>
           </div>
         </div>
       </transition>
@@ -80,26 +93,103 @@ import wheel from "./wheel"
 import turn from "./turn"
 import TabsScrollLoadList from "./TabsScrollLoadList"
 import Footer from "./Footer"
-import Rule from "./Rule"
-import Mailbox from "./Mailbox"
-
-
+import { mapState } from "vuex"
+import { creatInivitFriend, acceptFriend, getAcceptableInvita, rejectRelieve_cj, giftList } from "../apis"
+import MailDialog from "./MailDialog"
 export default {
-  components: { wheel, turn, TabsScrollLoadList, Footer, Rule, Mailbox },
+  components: { wheel, turn, TabsScrollLoadList, Footer, MailDialog },
   data () {
     return {
       type: 1,
       singUpPup: false,
       inivit_pup: false,
-      shouRulePup: false,
-      showMailbox: false,
-      inivit_index: 0
+      showMail: false,
+      inivit_index: 0,
+      inivitList: [],
+      showRelieve: false,
+      relieveType: 1,
+      tipsArr: {
+        1: '玩家【&】請求解除心動關係，解除<br/>後，相關的真愛值會被清零',
+        2: '若玩家再活動的心動對象和app的cp不是同一<br/>名玩家，系統將強制解除活動中的心動關係'
+      }
+    }
+  },
+  computed: {
+    ...mapState(['owner', 'popup', 'gift_list'])
+  },
+  watch: {
+    owner (val) {
+      if (!val.is_reg && this.popup.type == 'firstVisit') {
+        this.singUpPup = true
+      }
+    },
+    popup (val) {
+      if (val == 'cancelCouple') {  //解除CP申请
+        this.relieveType = 1
+        this.showRelieve = true
+      } else if (val == 'dissolvedCp') {  //被解除CP
+        this.relieveType = 2
+        this.showRelieve = true
+      } else if (val == 'invited') {  //成为CP邀请
+        this.showInivitMeList()
+      }
+    }
+  },
+  methods: {
+    tabClick (val) {
+      if (val == 2 && !this.gift_list.length) {
+        giftList().then(res => {
+          this.type = val
+          this.vxc('setGift_list', res.data.response_data.list)
+          this.vxc('setUser_coins', res.data.response_data.coins)
+          this.vxc('setGo_count', res.data.response_data.go_count)
+        })
+      } else {
+        this.type = val
+      }
+
+    },
+    setCp () {
+      acceptFriend(this.inivitList[this.inivit_index].id).then(res => {
+        if (res.data.response_status.code == 0) {
+          this.toast(`配對成功！`)
+          this.inivit_pup = false
+          this.$store.dispatch('getInitInfo');
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+    },
+    showInivitMeList () {
+      creatInivitFriend().then(res => {
+        this.inivit_pup = true
+        this.inivitList = res.data.response_data.list
+      })
+    },
+    reject () { // 不同意
+      rejectRelieve_cj(this.popup.mail_id).then(res => {
+        if (res.data.response_status.code == 0) {
+          this.toast(`已拒绝`)
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+    },
+    accept () { //同意
+      getAcceptableInvita(this.popup.mail_id).then(res => {
+        if (res.data.response_status.code == 0) {
+          this.toast(`已解除成功！`)
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
     }
   }
+
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .pageIndex {
   background: rgba(255, 156, 226, 1);
   #bg {
@@ -308,6 +398,51 @@ export default {
         position: absolute;
         bottom: 0.1rem;
         right: 0.7rem;
+      }
+    }
+  }
+  .queryPup {
+    width: 6.77rem;
+    height: 4.34rem;
+    padding-top: 0.28rem;
+    background: url(../img/friend_set.png);
+    background-size: 100% 100%;
+    .title {
+      height: 1.1rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.34rem;
+      color: rgba(188, 37, 104, 1);
+    }
+    .tips {
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.6rem;
+      font-size: 0.26rem;
+      color: rgba(176, 97, 101, 1);
+    }
+    .btns {
+      padding: 0 0.97rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      span {
+        width: 2.19rem;
+        height: 0.74rem;
+        text-align: center;
+        line-height: 0.74rem;
+        &.st1 {
+          background: url(../img/st1.png);
+          background-size: 100% 100%;
+        }
+        &.st2 {
+          background: url(../img/st12.png);
+          background-size: 100% 100%;
+        }
       }
     }
   }

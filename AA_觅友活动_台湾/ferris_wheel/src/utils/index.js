@@ -80,7 +80,7 @@ function callApp(name, ...args) {
         const isIOS = getPlatform() == "ios";
         try {
             args = args.length ? args : isIOS ? [""] : [];
-            args = args.map((v) => {
+            args = args.map(v => {
                 if (typeof v == "object" && v !== null) {
                     return JSON.stringify(JSON.stringify(v));
                 }
@@ -129,6 +129,50 @@ function vuexCommit(name, val) {
     store.commit(name, val);
 }
 
+function dateFormat(fmt, date) {
+    date = new Date(date);
+    let ret;
+    const opt = {
+        "Y+": date.getFullYear().toString(), // 年
+        "m+": (date.getMonth() + 1).toString(), // 月
+        "d+": date.getDate().toString(), // 日
+        "H+": date.getHours().toString(), // 时
+        "M+": date.getMinutes().toString(), // 分
+        "S+": date.getSeconds().toString() // 秒
+        // 有其他格式化字符需求可以继续添加，必须转化成字符串
+    };
+    for (let k in opt) {
+        ret = new RegExp("(" + k + ")").exec(fmt);
+        if (ret) {
+            fmt = fmt.replace(
+                ret[1],
+                ret[1].length == 1
+                    ? opt[k]
+                    : opt[k].padStart(ret[1].length, "0")
+            );
+        }
+    }
+    return fmt;
+}
+
+function replaceUrl(url, data = {}, post = false) {
+    const rid = getUrlString("rid") || "";
+    const uid = getUrlString("uid") || "";
+    const token = getUrlString("token") || "";
+    data = data ? Object.assign({}, data, { uid, token }) : {};
+
+    if (post === true) {
+        data.t = Date.now();
+        data.room_id = rid;
+        return data;
+    }
+
+    for (let key in data) {
+        url = url.replace("{" + key + "}", encodeURIComponent(data[key]));
+    }
+    return url + "&t=" + Date.now();
+}
+
 export {
     getUrlString,
     replaceLang,
@@ -138,4 +182,6 @@ export {
     callApp,
     toast,
     vuexCommit,
+    dateFormat,
+    replaceUrl
 };

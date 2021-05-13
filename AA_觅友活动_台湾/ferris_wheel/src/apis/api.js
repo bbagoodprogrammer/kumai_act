@@ -1,0 +1,63 @@
+/**
+ * api接口集合
+ */
+const API = {
+    //初始化
+    init:
+        "/index.php?signture=innerserver&action=trueLove.init&token={token}&uid={uid}",
+    //进入活动
+    subscribe:
+        "/index.php?signture=innerserver&action=trueLove.subscribe&token={token}&uid={uid}",
+    //弹出窗口的邀请列表
+    acceptableInvita:
+        "/index.php?signture=innerserver&action=trueLove.acceptableInvita&token={token}&uid={uid}",
+    //好友列表
+    friends:
+        "/index.php?signture=innerserver&action=trueLove.friends&token={token}&uid={uid}",
+    //灵魂默契点击
+    cooperateClick:
+        "/index.php?signture=innerserver&action=trueLove.cooperateClick&token={token}&uid={uid}",
+    //打招呼
+    sayHello:
+        "/index.php?signture=innerserver&action=trueLove.sayHello&token={token}&uid={uid}",
+    //榜单
+    rank:
+        "/index.php?signture=innerserver&action=trueLove.rank&token={token}&uid={uid}&from={from}",
+    //邀请好友
+    invite:
+        "/index.php?signture=innerserver&action=trueLove.invite&token={token}&uid={uid}&to_uid={to_uid}",
+    //拒绝邀请
+    reject:
+        "/index.php?signture=innerserver&action=trueLove.reject&token={token}&uid={uid}&mail_id={mail_id}",
+    //接受邀请
+    accept:
+        "/index.php?signture=innerserver&action=trueLove.accept&token={token}&uid={uid}&mail_id={mail_id}",
+    //解除关系
+    relieve:
+        "/index.php?signture=innerserver&action=trueLove.relieve&token={token}&uid={uid}",
+    //拒绝解除关系
+    rejectRelieve:
+        "/index.php?signture=innerserver&action=trueLove.rejectRelieve&token={token}&uid={uid}&mail_id={mail_id}",
+    //接受解除关系
+    acceptRelieve:
+        "/index.php?signture=innerserver&action=trueLove.acceptRelieve&token={token}&uid={uid}&mail_id={mail_id}",
+    //日常动态
+    history:
+        "/index.php?signture=innerserver&action=trueLove.history&token={token}&uid={uid}&from={from}",
+    //制作成功广播
+    notice: "/index.php?signture=innerserver&action=trueLove.notice",
+    //邀请信箱
+    invitedMail:
+        "/index.php?signture=innerserver&action=trueLove.invitedMail&token={token}&uid={uid}&from={from}",
+    //其他信箱
+    otherMail:
+        "/index.php?signture=innerserver&action=trueLove.otherMail&token={token}&uid={uid}&from={from}",
+    //领取完成任務
+    finishTheTask:
+        "/index.php?signture=innerserver&action=trueLove.finishTheTask&token={token}&uid={uid}&task_name={task_name}",
+    //点击制作
+    makingRings:
+        "/index.php?signture=innerserver&action=trueLove.makingRings&token={token}&uid={uid}&rid={rid}"
+};
+
+export default API;

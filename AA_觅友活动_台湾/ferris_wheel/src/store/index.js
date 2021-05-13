@@ -8,15 +8,37 @@ export default new vuex.Store({
     state: {
         loading: false,
         rankGroups: {}, //储存當天的信息
-        rankGroups_history: {}
+        rankGroups_history: {},
+        groupsUserMsg: {}, //儲存各種天數的個人信息
+        activity_status: 0,
+        popup: {},
+        owner: {},
+        record: [],
+        daily_top: [],
+        tab: 0,
+        gift_list: [],
+        user_coins: 0,
+        go_count: 0
     },
     mutations: {
         updateLoading(state, value) {
             state.loading = value;
         },
-
+        setGo_count(state, val) {
+            state.go_count = val;
+        },
+        changTab(state, val) {
+            state.tab = val;
+        },
+        setGift_list(state, val) {
+            state.gift_list = val;
+        },
+        setUser_coins(state, val) {
+            state.user_coins = val;
+        },
         setInitInfo(state, data) {
             Object.assign(state, data);
+            console.log(state);
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.key != "undefined") {
@@ -26,7 +48,16 @@ export default new vuex.Store({
                     [key]: Object.assign({}, state.rankGroups[key], obj)
                 });
             }
-            console.log(state.rankGroups);
+        },
+        changGroupsUserMsg(state, obj) {
+            if (obj && typeof obj.key != "undefined") {
+                const key = obj.key;
+                delete obj["key"];
+                state.groupsUserMsg = Object.assign({}, state.groupsUserMsg, {
+                    [key]: Object.assign({}, state.groupsUserMsg[key], obj)
+                });
+            }
+            console.log(state.groupsUserMsg);
         },
         updateRankGroups_history(state, obj) {
             if (obj && typeof obj.key != "undefined") {
@@ -44,7 +75,6 @@ export default new vuex.Store({
                     }
                 );
             }
-            console.log(state.rankGroups_history);
         }
     },
     actions: {

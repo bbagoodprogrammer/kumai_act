@@ -20,7 +20,7 @@ export default {
 	current_store: 'Nạp ：{0} xu',
 
 	//dialog
-	rule_des1: '1、Thời gian: 18:00 ngày 25/4- 23:59:59 ngày 1/5；',
+	rule_des1: '1、Thời gian: Thời gian 12:00 13/5- 23:59:59 19/5',
 	rule_des2:
 		'2、Trong thời gian sự kiện diễn ra, Nạp %s xu sẽ nhận được 1 lần thưởng tương ứng, thưởng chỉ được nhận trong thời gian sự kiện diễn ra, sau khi sự kiện kết thúc sẽ vô hiệu',
 	rule_explain: 'Quyết định cuối cùng thuộc vể Alochat',

@@ -32,16 +32,16 @@
             <div class="user_rank"></div>
             <div class="userAv">
               <div class="user_l">
-                <img v-lazy="" alt="">
-                <strong>xxxxx</strong>
+                <img v-lazy="item.avatar_1" alt="">
+                <strong>{{item.nick_1}}</strong>
               </div>
               <i class="hear"></i>
               <div class="user_r">
-                <img v-lazy="" alt="">
-                <strong>xxxxx</strong>
+                <img v-lazy="item.avatar_2" alt="">
+                <strong>{{item.nick_2}}</strong>
               </div>
             </div>
-            <div class="score">99999</div>
+            <div class="score">{{item.score}}</div>
           </li>
         </ul>
       </div>
@@ -50,14 +50,14 @@
           <li v-for="(item,index) in otherRank" :key="index">
             <div class="userRank">{{item.rank}}</div>
             <div class="userAv">
-              <img v-lazy="" alt="" class="man">
-              <img v-lazy="" alt="" class="woman">
+              <img v-lazy="item.avatar_1" alt="" class="man">
+              <img v-lazy="item.avatar_2" alt="" class="woman">
             </div>
             <div class="userNick">
-              <div class="man">嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎灌灌灌灌灌</div>
-              <div class="woman">剛剛嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎灌灌灌灌灌</div>
+              <div class="man">{{item.nick_1}}</div>
+              <div class="woman">{{item.nick_2}}</div>
             </div>
-            <div class="score">99999</div>
+            <div class="score">{{item.score}}</div>
           </li>
         </ul>
       </div>
@@ -114,9 +114,6 @@ export default {
     //     }
     //   })
     // },
-    // second(val) {
-    //   this.downTimeGo('time' + this.rankKey, val)
-    // }
   },
   computed: {
     ...mapState(['rankGroups', "isShare", "actStatus", "inited", "second", "total", "day"]),
@@ -126,13 +123,13 @@ export default {
     },
     rankApi () {
       if (this.isShare) {
-        var dayApi = `/index.php?action=skyScraper.houseRankData&type={type}&signture=innerserver&from={from}`;
-        return dayApi.replace('{type}', this.rankKey == 'total' ? 2 : 1)
+        var dayApi = `/index.php?action=trueLove.rank&date={date}&signture=innerserver&from={from}`;
+        return dayApi.replace('{date}', this.rankKey == 'total' ? 0 : 1)
       } else {
-        var dayApi = `/index.php?action=skyScraper.houseRankData&type={type}&signture=innerserver&uid={uid}&token={token}&from={from}`;
+        var dayApi = `/index.php?action=trueLove.rank&date={date}&signture=innerserver&uid={uid}&token={token}&from={from}`;
         const token = getUrlString('token') || '';
         const uid = getUrlString('uid') || '';
-        return dayApi.replace('{type}', this.rankKey == 'total' ? 2 : 1).replace('{uid}', uid).replace('{token}', token);
+        return dayApi.replace('{date}', this.rankKey == 'total' ? 0 : 1).replace('{uid}', uid).replace('{token}', token);
       }
     },
     rankSize () {
@@ -142,11 +139,13 @@ export default {
     rank () {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
+      if (rankConf.second && rankConf.second > 0) {
+        this.downTimeGo('time' + this.rankKey, rankConf.second)
+      }
       return rankConf;
     },
     top3 () {
       if (this.rank) {
-        console.log(this.rank)
         return this.rank.list.slice(0, 3)
       }
       return []
@@ -159,7 +158,6 @@ export default {
     }
   },
   mounted () {
-    this.downTimeGo('time' + this.rankKey, 9999)
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
@@ -202,20 +200,21 @@ export default {
           axios.get(this.rankApi.replace('{from}', this.rank.list.length)).then(res => {
 
             const { response_status, response_data } = res.data;
-            console.log(res)
+
             if (response_status.code != 0) {
               set('loadEnd', true);
               return;
             }
             const arr = response_data.rank;
             //跟随榜单变换个人信息
-            // if (response_data.owner_msg && response_data.owner_msg.uid) {
-            //   this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
-            //     key: this.rankKey,
-            //     msg: response_data.owner_msg
-            //   })
-            // }
-            console.log(arr)
+            if (response_data.owner && response_data.owner.uid) {
+              this.$store.commit("changGroupsUserMsg", {//初始当前日榜个人信息
+                key: this.rankKey,
+                msg: response_data.owner
+              })
+            }
+            //倒计时
+            set('second', response_data.second)
             if (arr.slice) {
               const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
               set('loadCount', loadCount + 1);
@@ -279,7 +278,6 @@ export default {
       return getDate(new Date(time * 1000), '2')
     },
     goUser (uid) { //跳转
-      console.log(uid)
       var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       if (isiOS) {
         sendJsData('app://userInfo?uid=' + uid);

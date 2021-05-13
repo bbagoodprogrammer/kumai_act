@@ -27,7 +27,7 @@ export default {
         },
         1: {
             name: "Hotel Xa Hoa",
-            score: "5000",
+            score: "3000",
             tips:
                 "Khách sạn với sự kết hợp cổ điển và hiện đại, có 100 phòng            ",
             gift: [
@@ -39,7 +39,7 @@ export default {
         },
         2: {
             name: "Tháp Đồng Hồ",
-            score: "30000",
+            score: "20000",
             tips:
                 "Tinh hoa kiến trúc, du khách có thể ngắm nhìn phong cảnh đẹp mắt, trải qua phút giây lãng mạn            ",
             gift: [
@@ -73,7 +73,7 @@ export default {
                 },
                 {
                     img: require("../../img/floor_giftList/gift_5.png"),
-                    name: "Đảo cầu vòng-Quà túi*1"
+                    name: "Hồn đảo cầu vàng-quà túi 7 ngày*1"
                 }
             ]
         }

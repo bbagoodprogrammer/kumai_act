@@ -4,40 +4,42 @@
       <span class="noAct" v-if="astState === 1">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
       <!-- 單身 -->
-      <div class="noFriehd" v-if="astState === 4" @click="showSetFriend = true">
+      <div class="noFriehd" v-if="astState === 4" @click="showFriendList()">
         選擇心動對象
       </div>
-      <div class="actIng" v-if="astState === 3" :class="['rank' + 1]" @click="resetUserMsg()">
-        <div class="userRank">99</div>
+      <div class="actIng" v-if="astState === 3" :class="['rank' + now_owner.rank]">
+        <div class="userRank">{{now_owner.rank}}</div>
         <div class="userAv">
-          <img v-lazy="" alt="" class="man">
-          <img v-lazy="" alt="" class="woman">
+          <img v-lazy="now_owner.avatar" alt="" class="man">
+          <img v-lazy="now_owner.cp_avatar" alt="" class="woman">
         </div>
         <div class="userNick">
-          <div class="man">嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎灌灌灌灌灌</div>
-          <div class="woman">剛剛嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎嘎灌灌灌灌灌</div>
+          <div class="man">{{now_owner.nick}}</div>
+          <div class="woman">{{now_owner.cp_nick}}</div>
         </div>
-        <div class="score">99999</div>
+        <div class="score">{{now_owner.score}}</div>
       </div>
       <!-- noFriend -->
       <div class="mask" v-show="showSetFriend">
         <transition name="slide">
           <div class="noFriend" v-show="showSetFriend">
+            <i class="close" @click="showSetFriend = false"></i>
             <div class="title">選擇心動對象</div>
+            <p class="noDate" v-if="!list.length">暫無可選擇的好友</p>
             <ul>
-              <li v-for="(item,index) in 10" :key="index">
+              <li v-for="(item,index) in list" :key="index">
                 <div class="li_mask" v-if="inivit_index != index" @click="inivit_index = index"></div>
-                <img src="../img/singUpImg.png" alt="">
+                <img v-lazy="item.avatar" alt="">
                 <div class="userMsg">
-                  <div class="nick">xxxxxxxx</div>
-                  <div class="score"><i></i><strong>9999</strong></div>
+                  <div class="nick">{{item.nick}}</div>
+                  <div class="score"><i></i><strong>{{item.intimacy}}</strong></div>
                 </div>
                 <div class="status">
                   <i v-if="inivit_index == index"></i>
                 </div>
               </li>
             </ul>
-            <div class="set" :class="{act:inivit_index != -1}">確定心動對象</div>
+            <div class="set" :class="{act:inivit_index != -1}" @click="inivit()">確定心動對象</div>
           </div>
         </transition>
       </div>
@@ -46,33 +48,54 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-// import api from "../api/apiConfig"
-// import { globalBus } from '../utils/eventBus'
+import { friendList, inivitFriend } from "../apis"
+
+
+
 export default {
   data () {
     return {
       inivit_index: -1,
-      showSetFriend: false
+      showSetFriend: false,
+      list: []
     }
   },
   computed: {
-    ...mapState(['activity_status', 'owner', 'is_anchor']),
+    ...mapState(['activity_status', 'owner', 'tab', 'groupsUserMsg']),
     astState () {
-      return 4
       if (this.activity_status === 0) { //活动未开始
         return 1
       } else if (this.activity_status === 2) { //活动已结束
         return 2
-      } else if (this.is_anchor) { //活动开始已报名
+      } else if (this.owner.is_reg) { //报名不单身
         return 3
+      } else if (this.owner.is_reg) { //单身
+        return 4
       }
     },
+    now_owner () {
+      return this.groupsUserMsg[this.tab] ? this.groupsUserMsg[this.tab].msg : {}
+    }
   },
   methods: {
-    resetUserMsg () {
-      if (this.is_anchor) {
-        this.vxc('reSetChange_floor')
+    showFriendList () {
+      friendList(0).then(res => {
+        this.list = res.data.response_data.list
+        this.showSetFriend = true
+      })
+    },
+    inivit () {
+      if (this.inivit_index != -1) {
+        inivitFriend(this.list[this.inivit_index].uid).then(res => {
+          if (res.data.response_status.code == 0) {
+            this.showSetFriend = false
+            this.toast(`對方正在接受你的魔法邀請,請耐心等候`)
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
       }
+
     }
   }
 }
@@ -100,6 +123,15 @@ export default {
       font-size: 0.36rem;
       font-weight: 600;
       margin-top: 0.2rem;
+    }
+    .noFriehd {
+      width: 3.49rem;
+      height: 0.68rem;
+      background: url(../img/setFriend.png);
+      background-size: 100% 100%;
+      text-align: center;
+      line-height: 0.68rem;
+      font-size: 0.34rem;
     }
     .goAct {
       display: block;
@@ -167,6 +199,22 @@ export default {
     padding-top: 0.28rem;
     background: url(../img/inivitBg.png);
     background-size: 100% 100%;
+    position: relative;
+    .close {
+      display: block;
+      width: 0.62rem;
+      height: 0.62rem;
+      background: url(../img/close.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: -0.8rem;
+      right: 0.5rem;
+    }
+    .noDate {
+      text-align: center;
+      font-size: 0.26rem;
+      color: #bc2568;
+    }
     .title {
       height: 1.1rem;
       text-align: center;
