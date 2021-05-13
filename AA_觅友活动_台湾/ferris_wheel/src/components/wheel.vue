@@ -11,6 +11,8 @@
 </template>
 
 <script>
+
+import { mapState } from "vuex"
 import { Downloader, Parser, Player } from 'svga.lite'
 
 const downloader = new Downloader()
@@ -30,9 +32,30 @@ export default {
         },
         {
           key: 'deng',
-          addres: 'http://fstatic.cat1314.com/uc/svga/b7894ea3832f294ecc35a18be1ac2350_1620787177.svga'
+          addres: 'http://fstatic.cat1314.com/uc/svga/3d2f11690dc740385693d7627a48c300_1620873838.svga'
         },
-      ]
+      ],
+      plarerArr: {}
+    }
+  },
+  watch: {
+    // owner (val) {
+    //   this.svgaStart('deng', 1, true, this.svgaDdress[2].data)
+    // }
+  },
+  computed: {
+    ...mapState(['daily_top', 'owner']),
+    daily_top_avList () {
+      var tmList = []
+      for (let i = 0; i < this.daily_top.length; i++) {
+        if (this.daily_top[i].uid_1) {
+          tmList.push(this.daily_top[i].avatar_1)
+        }
+        if (this.daily_top[i].uid_2) {
+          tmList.push(this.daily_top[i].avatar_2)
+        }
+      }
+      return tmList
     }
   },
   mounted () {
@@ -67,6 +90,10 @@ export default {
       this.svgaStart('deng', 1, true, this.svgaDdress[2].data)
     },
     async svgaStart (className, start, isGo, data) {//节点类名,開始幀數,是否开始动画,加载的对应Data
+      if (this.plarerArr[className]) {
+        this.plarerArr[className].player.clear()
+      }
+      console.log(this.daily_top_avList)
       let canvas = document.getElementById(className)
       let player = new Player(canvas)
       player.set({ startFrame: start })
@@ -75,22 +102,22 @@ export default {
       } else {
         player.set({ startFrame: start })
       }
-      //   if (className == 'deng') {
-      //     for (let i = 0; i < 14; i++) {
-      //       const image = new Image()
-      //       image.src = 'http://udatefile.cat1314.com/uc/img/head_1139051_1617266825.png'
-      //       data.images[`user${i}`] = image
-      //     }
-      //   }
+      if (className == 'deng' && this.daily_top_avList.length) {
+        for (let i = 0; i < this.daily_top_avList.length; i++) {
+          const image = new Image()
+          image.src = this.daily_top_avList[i]
+          data.images[`user${i}`] = image
+        }
+      }
       await player.mount(data)
       player.start()
       if (!isGo && start == 1) {
         player.stop()
       }
-      //   this.plarerArr[className] = {
-      //     player,
-      //   }
-      //   console.log(this.plarerArr)
+      this.plarerArr[className] = {
+        player,
+      }
+      console.log(this.plarerArr)
     },
   }
 }
