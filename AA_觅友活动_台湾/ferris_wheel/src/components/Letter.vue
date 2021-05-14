@@ -196,8 +196,8 @@ export default {
 
 <style lang="scss">
 .letter {
-  padding-left: 0.39rem;
-  padding-right: 0.39rem;
+  // padding-left: 0.39rem;
+  // padding-right: 0.39rem;
   .title {
     line-height: 0.25rem;
     height: 0.25rem;

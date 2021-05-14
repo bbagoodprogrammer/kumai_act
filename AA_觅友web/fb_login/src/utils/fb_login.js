@@ -1,3 +1,5 @@
+const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+
 function statusChangeCallback(response) {
     // Called with the results from FB.getLoginStatus().
     console.log("statusChangeCallback");
@@ -22,7 +24,7 @@ function checkLoginState() {
 console.log("getStates");
 window.fbAsyncInit = function() {
     FB.init({
-        appId: "402501240591895",
+        appId: ios ? "402501240591895" : "532601534077009",
         cookie: true, // Enable cookies to allow the server to access the session.
         xfbml: true, // Parse social plugins on this webpage.
         version: "v10.0" // Use this Graph API version for this call.

@@ -5,7 +5,7 @@
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
       <!-- 單身 -->
       <div class="noFriehd" v-if="astState === 4" @click="showFriendList()">
-        選擇心動對象
+        {{lang.setCp}}
       </div>
       <div class="actIng" v-if="astState === 3" :class="['rank' + now_owner.rank]">
         <div class="userRank">{{now_owner.rank}}</div>
@@ -24,10 +24,10 @@
         <transition name="slide">
           <div class="noFriend" v-show="showSetFriend">
             <i class="close" @click="showSetFriend = false"></i>
-            <div class="title">選擇心動對象</div>
-            <p class="noDate" v-if="!list.length">暫無可選擇的好友</p>
+            <div class="title"> {{lang.setCp}}</div>
+            <p class="noDate" v-if="!list.length"> {{lang.noFriend}}</p>
             <ul>
-              <li v-for="(item,index) in list" :key="index">
+              <li v-for="(item,index) in list" :key="index" :class="{act:inivit_index == index}">
                 <div class="li_mask" v-if="inivit_index != index" @click="inivit_index = index"></div>
                 <img v-lazy="item.avatar" alt="">
                 <div class="userMsg">
@@ -39,7 +39,7 @@
                 </div>
               </li>
             </ul>
-            <div class="set" :class="{act:inivit_index != -1}" @click="inivit()">確定心動對象</div>
+            <div class="set" :class="{act:inivit_index != -1}" @click="inivit()">{{lang.queryFriend}}</div>
           </div>
         </transition>
       </div>
@@ -69,11 +69,12 @@ export default {
         return 2
       } else if (this.owner.is_reg) { //报名不单身
         return 3
-      } else if (this.owner.is_reg) { //单身
+      } else if (!this.owner.is_reg) { //单身
         return 4
       }
     },
     now_owner () {
+      console.log(this.groupsUserMsg, this.tab, this.groupsUserMsg[this.tab] ? this.groupsUserMsg[this.tab].msg : {})
       return this.groupsUserMsg[this.tab] ? this.groupsUserMsg[this.tab].msg : {}
     }
   },
@@ -89,7 +90,7 @@ export default {
         inivitFriend(this.list[this.inivit_index].uid).then(res => {
           if (res.data.response_status.code == 0) {
             this.showSetFriend = false
-            this.toast(`對方正在接受你的魔法邀請,請耐心等候`)
+            this.toast(this.lang.setFriend_tips)
           } else {
             this.toast(res.data.response_status.error)
           }
@@ -235,6 +236,10 @@ export default {
         align-items: center;
         margin-bottom: 0.09rem;
         position: relative;
+        &.act {
+          background: url(../img/pList.png);
+          background-size: 100% 100%;
+        }
         .li_mask {
           width: 100%;
           height: 100%;

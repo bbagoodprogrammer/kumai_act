@@ -3,9 +3,9 @@
     <canvas id="lun"></canvas>
     <canvas id="deng"></canvas>
     <div class="wheelTips">
-      xx月xx日-xx月xx日期間每天日榜的第一名cp
-      可乘坐摩天輪，並獲得當天真愛值的10%加成
-      和xxx獎勵*2（一人一個）
+      {{date_str}}期間每天日榜的第一名cp
+      可乘坐摩天輪，並獲得當天真愛值的5%加成
+      和真愛水晶球-背包禮物*2（一人一個）
     </div>
   </div>
 </template>
@@ -24,15 +24,15 @@ export default {
       svgaDdress: [
         {
           key: 'bg',
-          addres: 'http://fstatic.cat1314.com/uc/svga/40d0317043a7b137bde5ff5b6d20c988_1620787147.svga'
+          addres: 'http://fstatic.cat1314.com/uc/svga/8612f7235962f4ab2bbdd4cf051f2965_1620996861.svga'
         },
         {
           key: 'lun',
-          addres: 'http://fstatic.cat1314.com/uc/svga/7f64bee2fa7ceb89fb8fecc9abe44846_1620787163.svga'
+          addres: 'http://fstatic.cat1314.com/uc/svga/03e9613dd345be69939ffecb6ac97607_1620996902.svga'
         },
         {
           key: 'deng',
-          addres: 'http://fstatic.cat1314.com/uc/svga/3d2f11690dc740385693d7627a48c300_1620873838.svga'
+          addres: 'http://fstatic.cat1314.com/uc/svga/41da74755a41ea9c6978c6f434ef9f50_1620998128.svga'
         },
       ],
       plarerArr: {}
@@ -44,7 +44,7 @@ export default {
     // }
   },
   computed: {
-    ...mapState(['daily_top', 'owner']),
+    ...mapState(['daily_top', 'owner', 'date_str']),
     daily_top_avList () {
       var tmList = []
       for (let i = 0; i < this.daily_top.length; i++) {
@@ -87,13 +87,15 @@ export default {
     svgaGo () {
       this.svgaStart('bg', 1, true, this.svgaDdress[0].data)  //节点类名,開始幀數,是否开始动画,加载的对应Data
       this.svgaStart('lun', 1, true, this.svgaDdress[1].data)
-      this.svgaStart('deng', 1, true, this.svgaDdress[2].data)
+      setTimeout(() => {
+        this.svgaStart('deng', 1, true, this.svgaDdress[2].data)
+      }, 100)
+
     },
     async svgaStart (className, start, isGo, data) {//节点类名,開始幀數,是否开始动画,加载的对应Data
       if (this.plarerArr[className]) {
         this.plarerArr[className].player.clear()
       }
-      console.log(this.daily_top_avList)
       let canvas = document.getElementById(className)
       let player = new Player(canvas)
       player.set({ startFrame: start })
@@ -106,7 +108,7 @@ export default {
         for (let i = 0; i < this.daily_top_avList.length; i++) {
           const image = new Image()
           image.src = this.daily_top_avList[i]
-          data.images[`user${i}`] = image
+          data.images[`user${i + 1}`] = image
         }
       }
       await player.mount(data)
@@ -117,7 +119,6 @@ export default {
       this.plarerArr[className] = {
         player,
       }
-      console.log(this.plarerArr)
     },
   }
 }
@@ -125,9 +126,9 @@ export default {
 
 <style lang="scss">
 .wheel {
-  width: 7.5rem;
+  padding-top: 0.5rem;
   position: relative;
-  height: 10.5rem;
+  height: 10rem;
   overflow: hidden;
   .wheelTips {
     width: 5.17rem;
@@ -155,7 +156,7 @@ export default {
     width: 8.55rem;
     height: 7.74rem;
     position: absolute;
-    top: 0rem;
+    top: -0.15rem;
     left: -0.5rem;
   }
 }

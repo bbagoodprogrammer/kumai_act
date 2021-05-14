@@ -18,13 +18,16 @@ export default new vuex.Store({
         tab: 0,
         gift_list: [],
         user_coins: 0,
-        go_count: 0
+        go_count: 0,
+        record: [],
+        date_str: ""
     },
     mutations: {
         updateLoading(state, value) {
             state.loading = value;
         },
         setGo_count(state, val) {
+            console.log(val);
             state.go_count = val;
         },
         changTab(state, val) {
@@ -38,7 +41,6 @@ export default new vuex.Store({
         },
         setInitInfo(state, data) {
             Object.assign(state, data);
-            console.log(state);
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.key != "undefined") {

@@ -281,6 +281,21 @@ function luck_go(is_batch) {
         `/index.php?action=trueLove.go&signture=innerserver&uid={uid}&token={token}&is_batch=${is_batch}`
     );
 }
+
+//抽獎歷史記錄
+function lotteryRecord(from) {
+    return get(
+        `/index.php?action=trueLove.giftRecord&signture=innerserver&uid={uid}&token={token}&from=${from}`
+    );
+}
+
+//初始调用
+function joinAct(from) {
+    return get(
+        `/index.php?action=trueLove.subscribe&signture=innerserver&uid={uid}&token={token}&from=${from}`
+    );
+}
+
 //信箱（威威代碼部分）
 function invite(data) {
     return get(replaceUrl(api.invite, data));
@@ -297,6 +312,14 @@ function rejectRelieve(data) {
 function acceptRelieve(data) {
     return get(replaceUrl(api.acceptRelieve, data));
 }
+
+// function reject(data) {
+//     return get(replaceUrl(api.rejectRelieve, data));
+// }
+
+function accept(data) {
+    return get(replaceUrl(api.accept, data));
+}
 export {
     get,
     post,
@@ -312,8 +335,11 @@ export {
     relieve,
     invite,
     reject,
+    accept,
     rejectRelieve,
     acceptRelieve,
     giftList,
-    luck_go
+    luck_go,
+    lotteryRecord,
+    joinAct
 };
