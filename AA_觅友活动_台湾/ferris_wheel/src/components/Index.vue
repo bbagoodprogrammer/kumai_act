@@ -1,21 +1,29 @@
 <template>
   <div class="page pageIndex">
+    <RoolMsg />
     <canvas id="bg"></canvas>
     <div class="header"></div>
     <div class="ruleTips" :class="{ty2:type == 2}">
-      <span v-if="type == 2">兌換紀錄</span>
-      <span @click="$router.push({name:'rule'})">規則獎勵</span>
-      <span @click="showMail = true">信箱</span>
+      <span v-if="type == 2" @click="showHistory = true">{{lang.index_ruleTips1}}</span>
+      <span @click="$router.push({name:'rule'})">{{lang.index_ruleTips2}}</span>
+      <span @click="showMail = true"> <i class="mail_nums" v-if="mailNew"></i> {{lang.index_ruleTips3}}</span>
     </div>
     <div class="tab">
-      <span class="tab1" :class="{act:type == 1}" @click="tabClick(1)">摩天輪</span>
-      <span class="tab2" :class="{act:type == 2}" @click="tabClick(2)">召喚愛神</span>
+      <span class="tab1" :class="{act:type == 1}" @click="tabClick(1)">{{lang.index_tab1}}</span>
+      <span class="tab2" :class="{act:type == 2}" @click="tabClick(2)">{{lang.index_tab2}}</span>
     </div>
     <keep-alive>
       <component :is="type==1?'wheel':'turn'"></component>
     </keep-alive>
-    <TabsScrollLoadList />
+    <TabsScrollLoadList ref="rank" />
     <Footer />
+    <!-- 抽獎記錄 -->
+    <div class="mask" v-show="showHistory">
+      <transition name="slide">
+        <History v-if="showHistory" />
+      </transition>
+    </div>
+
     <!-- 郵箱 -->
     <div class="mask" v-show="showMail">
       <transition name="slide">
@@ -26,15 +34,13 @@
     <div class="mask" v-show="singUpPup">
       <transition name="slide">
         <div class="singUp" v-if="singUpPup">
-          <div class="title">歡迎來到真愛摩天輪</div>
+          <div class="title">{{lang.index_singUpTitle}}</div>
           <img src="../img/singUpImg.png" alt="">
           <div class="singUp_tips">
-            傳說中，摩天輪的每一個盒子都裝滿了
-            幸福，每轉一圈，地球上幸福的cp又多
-            了一隊
+            {{lang.index_singUpTips}}
           </div>
-          <div class="singUpBtn" @click="singUpPup = false">
-            進入摩天輪
+          <div class="singUpBtn" @click="joinAct()">
+            {{lang.index_join}}
           </div>
         </div>
       </transition>
@@ -43,11 +49,11 @@
     <div class="mask" v-show="inivit_pup">
       <transition name="slide">
         <div class="inivit" v-if="inivit_pup">
-          <div class="title">他想和你一起乘坐摩天輪</div>
-          <p class="inivitTips">歡迎來到真愛摩天輪，與心動對象一起收集真愛值, 有機會乘坐摩天輪並獲得限量獎勵、指定戒指喔！</p>
-          <p class="inivitTips2">以下是對妳心動的玩家，可從中選擇一個心動對象，一起參與～</p>
+          <div class="title">{{lang.index_inivitTitle}}</div>
+          <p class="inivitTips">{{lang.index_inivitTips1}}</p>
+          <p class="inivitTips2">{{lang.index_inivitTips2}}</p>
           <ul>
-            <li v-for="(item,index) in inivitList" :key="index">
+            <li v-for="(item,index) in inivitList" :key="index" :class="{act:inivit_index == index}">
               <div class="li_mask" v-if="inivit_index != index" @click="inivit_index = index"></div>
               <img v-lazy="item.avatar" alt="">
               <div class="userMsg">
@@ -59,10 +65,10 @@
               </div>
             </li>
           </ul>
-          <p class="inivitTips3">*請謹慎選擇自己的心動對象</p>
+          <p class="inivitTips3">{{lang.index_setFriend}}</p>
           <div class="set">
-            <div class="ok" @click="setCp()">確定心動對象</div>
-            <u class="chang" @click="inivit_pup = false">沒有心動對象</u>
+            <div class="ok" @click="setCp()">{{lang.index_ok}}</div>
+            <u class="chang" @click="inivit_pup = false">{{lang.index_no}}</u>
           </div>
         </div>
       </transition>
@@ -71,15 +77,15 @@
     <div class="mask" v-show="showRelieve">
       <transition name="slide">
         <div class="queryPup" v-if="showRelieve">
-          <div class="title">很遺憾告訴你...</div>
+          <div class="title">{{lang.index_relieveTitle}}</div>
           <div class="tips" v-html="tipsArr[relieveType].replace('&',owner.cp_nick)">
           </div>
           <div class="btns" v-if="relieveType == 1">
-            <span class="st1" @click="reject()">不同意</span>
-            <span class="st2" @click="accept()">同意</span>
+            <span class="st1" @click="reject()">{{lang.index_reject}}</span>
+            <span class="st2" @click="accept()">{{lang.index_accept}}</span>
           </div>
-          <div class="btns" v-else>
-            <span class="st1" @click="showRelieve = false">我知道了</span>
+          <div class="btns center" v-else>
+            <span class="st1" @click="showRelieve = false">{{lang.ok}}</span>
           </div>
         </div>
       </transition>
@@ -94,45 +100,54 @@ import turn from "./turn"
 import TabsScrollLoadList from "./TabsScrollLoadList"
 import Footer from "./Footer"
 import { mapState } from "vuex"
-import { creatInivitFriend, acceptFriend, getAcceptableInvita, rejectRelieve_cj, giftList } from "../apis"
+import { creatInivitFriend, acceptFriend, getAcceptableInvita, rejectRelieve_cj, giftList, joinAct } from "../apis"
 import MailDialog from "./MailDialog"
+import History from "./History"
+import RoolMsg from "./RoolMsg"
 export default {
-  components: { wheel, turn, TabsScrollLoadList, Footer, MailDialog },
+  components: { History, RoolMsg, wheel, turn, TabsScrollLoadList, Footer, MailDialog },
   data () {
     return {
       type: 1,
       singUpPup: false,
       inivit_pup: false,
       showMail: false,
+      showHistory: false,
       inivit_index: 0,
       inivitList: [],
       showRelieve: false,
       relieveType: 1,
-      tipsArr: {
-        1: '玩家【&】請求解除心動關係，解除<br/>後，相關的真愛值會被清零',
-        2: '若玩家再活動的心動對象和app的cp不是同一<br/>名玩家，系統將強制解除活動中的心動關係'
-      }
+      //   tipsArr: {
+      //     1: '玩家【&】請求解除心動關係，解除<br/>後，相關的真愛值會被清零',
+      //     2: '若玩家在活動的心動對象和app的cp不是同一<br/>名玩家，系統將強制解除活動中的心動關係'
+      //   }
     }
   },
   computed: {
-    ...mapState(['owner', 'popup', 'gift_list'])
+    ...mapState(['owner', 'popup', 'gift_list', 'mailNew']),
+    tipsArr () {
+      return this.lang.tipsArr
+    }
   },
   watch: {
     owner (val) {
-      if (!val.is_reg && this.popup.type == 'firstVisit') {
+      if (!val.is_reg && this.popup && this.popup.type == 'firstVisit') {
         this.singUpPup = true
       }
     },
     popup (val) {
-      if (val == 'cancelCouple') {  //解除CP申请
-        this.relieveType = 1
-        this.showRelieve = true
-      } else if (val == 'dissolvedCp') {  //被解除CP
-        this.relieveType = 2
-        this.showRelieve = true
-      } else if (val == 'invited') {  //成为CP邀请
-        this.showInivitMeList()
+      if (val) {
+        if (val.type == 'cancelCouple') {  //解除CP申请
+          this.relieveType = 1
+          this.showRelieve = true
+        } else if (val.type == 'dissolvedCp') {  //被解除CP
+          this.relieveType = 2
+          this.showRelieve = true
+        } else if (val.type == 'invited') {  //成为CP邀请
+          this.showInivitMeList()
+        }
       }
+
     }
   },
   methods: {
@@ -152,8 +167,9 @@ export default {
     setCp () {
       acceptFriend(this.inivitList[this.inivit_index].id).then(res => {
         if (res.data.response_status.code == 0) {
-          this.toast(`配對成功！`)
+          this.toast(this.lang.index_acceptSuc)
           this.inivit_pup = false
+          this.$refs.rank.onRefresh('init')
           this.$store.dispatch('getInitInfo');
         } else {
           this.toast(res.data.response_status.error)
@@ -167,21 +183,27 @@ export default {
       })
     },
     reject () { // 不同意
-      rejectRelieve_cj(this.popup.mail_id).then(res => {
+      rejectRelieve_cj(this.popup.data.mail_id).then(res => {
         if (res.data.response_status.code == 0) {
-          this.toast(`已拒绝`)
+          this.toast(this.lang.rejectEd)
         } else {
           this.toast(res.data.response_status.error)
         }
       })
     },
     accept () { //同意
-      getAcceptableInvita(this.popup.mail_id).then(res => {
+      getAcceptableInvita(this.popup.data.mail_id).then(res => {
         if (res.data.response_status.code == 0) {
-          this.toast(`已解除成功！`)
+          this.toast(this.lang.index_relieveEd)
+          this.$store.dispatch('getInitInfo');
         } else {
           this.toast(res.data.response_status.error)
         }
+      })
+    },
+    joinAct () {
+      joinAct().then(res => {
+        this.singUpPup = false
       })
     }
   }
@@ -200,7 +222,7 @@ export default {
     left: 0;
   }
   .header {
-    height: 3.44rem;
+    height: 3.2rem;
   }
   .ruleTips {
     position: absolute;
@@ -221,6 +243,15 @@ export default {
       text-align: center;
       line-height: 0.53rem;
       margin-bottom: 0.08rem;
+      position: relative;
+    }
+    .mail_nums {
+      display: block;
+      width: 0.24rem;
+      height: 0.24rem;
+      background: url(../img/mail_nums.png);
+      background-size: 100% 100%;
+      position: absolute;
     }
   }
   .tab {
@@ -325,6 +356,10 @@ export default {
         align-items: center;
         margin-bottom: 0.09rem;
         position: relative;
+        &.act {
+          background: url(../img/pList.png);
+          background-size: 100% 100%;
+        }
         .li_mask {
           width: 100%;
           height: 100%;
@@ -430,6 +465,9 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      &.center {
+        justify-content: center;
+      }
       span {
         width: 2.19rem;
         height: 0.74rem;

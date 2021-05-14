@@ -5,8 +5,9 @@
         <ul>
           <li class="item__box" v-for="(item, index) in list" :key="index">
             <div class="info">
-              <div class="title" v-html="item.itemTitle"></div>
               <div class="time">{{ item.time }}</div>
+              <div class="title" v-html="item.itemTitle"></div>
+
             </div>
             <div class="num">
               <span v-if="item.type == 4"></span>
@@ -62,36 +63,37 @@ export default {
           .replace("{2}", "HH")
           .replace("{3}", "MM");
         list.forEach((item, index) => {
-          if (item.type == 1) {
-            //完成任务
-            item.itemTitle = this.lang.daily_title_1
-              .replace("{0}", item.nick)
-              .replace("{1}", item.taskTitle);
-          }
-          if (item.type == 2) {
-            //收到指定礼物
-            if (item.eachOther == 0) {
-              item.itemTitle = this.lang.daily_title_2
-                .replace("{0}", item.nick)
-                .replace("{1}", item.gname)
-                .replace("{2}", item.num);
-            } else {
-              item.itemTitle = this.lang.daily_title_3
-                .replace("{0}", item.sendGift_nick)
-                .replace("{1}", item.nick)
-                .replace("{2}", item.gname)
-                .replace("{3}", item.num);
-            }
-          }
-          if (item.type == 3) {
-            item.itemTitle = this.lang.daily_title_5;
-          }
-          if (item.type == 4) {
-            item.itemTitle = this.lang.daily_title_4
-              .replace("{0}", item.nick)
-              .replace("{1}", `<br/><img src="${images[`dialog_ring_${item.index}`]}" />`);
-          }
-          item.time = dateFormat(time, item.time * 1000);
+          item.itemTitle = `${item.nick}${this.lang.received}${item.name} *${item.num}`
+          //   if (item.type == 1) {
+          //     //完成任务
+          //     item.itemTitle = this.lang.daily_title_1
+          //       .replace("{0}", item.nick)
+          //       .replace("{1}", item.taskTitle);
+          //   }
+          //   if (item.type == 2) {
+          //     //收到指定礼物
+          //     if (item.eachOther == 0) {
+          //       item.itemTitle = this.lang.daily_title_2
+          //         .replace("{0}", item.nick)
+          //         .replace("{1}", item.gname)
+          //         .replace("{2}", item.num);
+          //     } else {
+          //       item.itemTitle = this.lang.daily_title_3
+          //         .replace("{0}", item.sendGift_nick)
+          //         .replace("{1}", item.nick)
+          //         .replace("{2}", item.gname)
+          //         .replace("{3}", item.num);
+          //     }
+          //   }
+          //   if (item.type == 3) {
+          //     item.itemTitle = this.lang.daily_title_5;
+          //   }
+          //   if (item.type == 4) {
+          //     item.itemTitle = this.lang.daily_title_4
+          //       .replace("{0}", item.nick)
+          //       .replace("{1}", `<br/><img src="${images[`dialog_ring_${item.index}`]}" />`);
+          //   }
+          item.time = dateFormat(time, item.tm * 1000);
         });
         return list;
       } else {
@@ -156,7 +158,7 @@ export default {
       .title {
         font-size: 0.22rem;
         font-weight: 300;
-        color: #ffffff;
+        color: rgba(176, 97, 101, 1);
         line-height: 0.3rem;
         img {
           width: 1rem;
@@ -166,7 +168,7 @@ export default {
       .time {
         font-size: 0.22rem;
         font-weight: 300;
-        color: #b296ff;
+        color: rgba(176, 97, 101, 1);
         padding-top: 0.1rem;
       }
     }
@@ -175,7 +177,7 @@ export default {
       text-align: center;
       font-size: 0.26rem;
       font-weight: 300;
-      color: #fffebc;
+      color: rgba(176, 97, 101, 1);
     }
   }
 }

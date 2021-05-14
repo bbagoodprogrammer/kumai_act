@@ -1,29 +1,29 @@
 <template>
-  <div class="rankGroups">
+  <div class="rankGroups" :class="{ty_1:$parent.type == 1}">
     <div class="rankTitle"></div>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
-      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tabL">真愛日榜</a>
-      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">真愛總榜</a>
-      <!-- <a @click.prevent="onRefresh" href="" v-if="!isShare && actStatus===1" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a> -->
+      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tabL">{{lang.rank_tab1}}</a>
+      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">{{lang.rank_tab2}}</a>
+      <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
     <div class="timeBox">
       <div class="actTime">
         <span>{{surplusTime.day}}</span>
-        <em>天</em>
+        <em>{{lang.day}}</em>
         <span>{{surplusTime.hour}}</span>
-        <em>時</em>
+        <em>{{lang.houer}}</em>
         <span>{{surplusTime.minute}}</span>
-        <em>分</em>
+        <em>{{lang.min}}</em>
         <span>{{surplusTime.second}}</span>
-        <em>秒</em>
+        <em>{{lang.second}}</em>
       </div>
     </div>
     <!-- 日榜 -->
     <div class="listHeader">
-      <span>名次</span>
-      <span>真愛情侶</span>
-      <span>真愛值</span>
+      <span>{{lang.rank_listHeader1}}</span>
+      <span>{{lang.rank_listHeader2}}</span>
+      <span>{{lang.rank_listHeader3}}</span>
     </div>
     <div class="list day">
       <div class="top3">
@@ -31,12 +31,12 @@
           <li v-for="(item,index) in top3" :key="index" :class="'rank' + item.rank">
             <div class="user_rank"></div>
             <div class="userAv">
-              <div class="user_l">
+              <div class="user_l" @click="goUser(item.uid_1)">
                 <img v-lazy="item.avatar_1" alt="">
                 <strong>{{item.nick_1}}</strong>
               </div>
               <i class="hear"></i>
-              <div class="user_r">
+              <div class="user_r" @click="goUser(item.uid_2)">
                 <img v-lazy="item.avatar_2" alt="">
                 <strong>{{item.nick_2}}</strong>
               </div>
@@ -50,8 +50,8 @@
           <li v-for="(item,index) in otherRank" :key="index">
             <div class="userRank">{{item.rank}}</div>
             <div class="userAv">
-              <img v-lazy="item.avatar_1" alt="" class="man">
-              <img v-lazy="item.avatar_2" alt="" class="woman">
+              <img v-lazy="item.avatar_1" alt="" class="man" @click="goUser(item.uid_1)">
+              <img v-lazy="item.avatar_2" alt="" class="woman" @click="goUser(item.uid_2)">
             </div>
             <div class="userNick">
               <div class="man">{{item.nick_1}}</div>
@@ -65,9 +65,9 @@
     <!-- 任務列表 -->
     <!-- <taskList v-else></taskList> -->
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-    <div v-if="rank.loading" class="scrollLoading">加載中...</div>
+    <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
     <div v-if="rank.none" class="scrollNone">
-      暫無歌友上榜
+      {{lang.rank_noData}}
     </div>
   </div>
 </template>
@@ -190,7 +190,7 @@ export default {
       if (!this.rank.loading && !this.rank.loadEnd) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
-        if (scrollToBottom || notFull) {
+        if (scrollToBottom || notFull || !this.rank.loadCount) {
           const key = this.rankKey;
 
           const set = (k, v) => {
@@ -246,10 +246,13 @@ export default {
         }
       }
     },
-    onRefresh () {
+    onRefresh (val) {
+      console.log(val)
       if (this.rank.loading) return
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
-      this.$parent.getDefaultData()
+      if (val != 'init') {
+        this.$store.dispatch('getInitInfo');
+      }
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,
         loadCount: 0,
@@ -302,8 +305,11 @@ export default {
   position: relative;
   // background: #f8ffe6 url(../assets/img/listBg.png) no-repeat;
   background-size: 100% auto;
-  margin: 0.37rem auto 0;
+  margin: 2rem auto 0;
   padding-bottom: 2rem;
+  &.ty_1 {
+    margin: 0.4rem auto 0;
+  }
   .rankTitle {
     width: 6.5rem;
     height: 0.95rem;
@@ -403,6 +409,7 @@ export default {
           }
           .user_l,
           .user_r {
+            width: 1.17rem;
             img {
               width: 1.17rem;
               height: 1.17rem;
@@ -522,12 +529,12 @@ export default {
 }
 #refresh {
   display: block;
-  width: 0.94rem;
+  width: 1rem;
   height: 1rem;
   position: fixed;
   right: 0.08rem;
   bottom: 1.35rem;
-  // background: url(../assets/img/refresh.png) no-repeat;
+  background: url(../img/refresh.png) no-repeat;
   background-size: contain;
   transition: all 1s;
   text-indent: -999rem;

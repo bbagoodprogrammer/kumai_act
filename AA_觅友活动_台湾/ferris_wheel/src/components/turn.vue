@@ -5,32 +5,32 @@
       <span class="nums">{{user_coins}}</span>
       <i class="add" @click="goWall()"></i>
     </div>
-    <span class="go_1" @click="luck(0)">抽一次</span>
-    <span class="go_10" @click="luck(1)">抽十次</span>
+    <span class="go_1" @click="luck(0)">{{lang.turn_one}}</span>
+    <span class="go_10" @click="luck(1)">{{lang.turn_ten}}</span>
     <div class="gift" v-for="(item,index) in gift_list" :key="index" :class="[{act:index%2 ==0},'gift' + index]"></div>
     <!-- 禮物彈窗 -->
     <div class="mask" v-show="luckPup">
       <transition name="slide">
         <div class="luck_gift" v-if="luckPup" :class="{ten:giftList.length > 1}">
           <i class="close" @click="luckPup = false"></i>
-          <div class="title">愛神祝福</div>
+          <div class="title">{{lang.turn_luckTitle}}</div>
           <div class="giftList">
             <ul>
               <li v-for="(item,index) in luckGiftNums" :key="index">
                 <div class="imgBox">
                   <img :src="luckImg[index]" alt="">
-                  <i class="nusm">{{item}}</i>
+                  <i class="nusm" v-if="item>1">{{item}}</i>
                 </div>
                 <strong>{{gift_list[index].name}}</strong>
               </li>
             </ul>
           </div>
           <div class="luckTips">
-            {{luckTips[1]}}
+            {{luckTips[tipsType].replace('$',gift_list[giftList[0]].name)}}
           </div>
           <div class="btns">
-            <span class="st1" @click="luck(type)">再次召喚</span>
-            <span class="st2" @click="luckPup = false">幸福收下</span>
+            <span class="st2" @click="luckPup = false">{{lang.turn_luckOk}}</span>
+            <span class="st1" @click="luck(type,'again')">{{lang.turn_again}}</span>
           </div>
         </div>
       </transition>
@@ -39,11 +39,11 @@
     <div class="mask" v-show="qureyLuckPup">
       <transition name="slide">
         <div class="queryLuck" v-show="qureyLuckPup">
-          <div class="title">確認</div>
-          <p class="coinsTips">召喚{{type?1:10}}次，需要花費{{type?50:500}}金幣</p>
+          <div class="title">{{lang.ok2}}</div>
+          <p class="coinsTips"> {{lang.turn_luckTips.replace('$',type?10:1).replace('%',type?500:50)}}</p>
           <div class="btns">
-            <span class="st1" @click="luck(type,'again')">確定召喚</span>
-            <span class="st2" @click="qureyLuckPup = false">我再想想</span>
+            <span class="st2" @click="qureyLuckPup = false">{{lang.turn_luckOk2}}</span>
+            <span class="st1" @click="luck(type,'again')">{{lang.turn_qureyLuck}}</span>
           </div>
         </div>
       </transition>
@@ -61,18 +61,21 @@ export default {
     return {
       luckPup: false,
       giftList: [],
-      luckTips: {
-        1: '恭喜獲得愛神送出的祝福—獎品名稱1,已經發放到你帳號啦，要幸福喲',
-        2: '愛神降臨拉~丘比特手捧真愛飛入你心，恭喜獲得丘比特戒指！！',
-        3: '恭喜獲得愛神送出的祝福，獎勵已發放到你的賬號了，要幸福喲',
-        4: '愛神降臨啦～丘比特手捧真愛飛入你心，恭喜獲得丘比特戒指！！'
-      },
+      //   luckTips: {
+      //     1: '恭喜獲得愛神送出的祝福—$,已經發放到你帳號啦，要幸福喲',
+      //     2: '愛神降臨拉~丘比特手捧真愛飛入你心，恭喜獲得丘比特戒指！！',
+      //     3: '恭喜獲得愛神送出的祝福，獎勵已發放到你的賬號了，要幸福喲',
+      //     4: '愛神降臨啦～丘比特手捧真愛飛入你心，恭喜獲得丘比特戒指！！'
+      //   },
       type: 0,
       qureyLuckPup: false
     }
   },
   computed: {
     ...mapState(['gift_list', 'user_coins', 'go_count']),
+    luckTips () {
+      return this.lang.luckTips
+    },
     luckImg () {
       return this.lang.luckImg
     },
@@ -84,6 +87,18 @@ export default {
       }
       console.log(obj)
       return obj;
+    },
+    tipsType () {
+      let type = 1
+      if (this.gift_list.length > 1) {  //10抽
+        type == 3
+      }
+      for (let i = 0; i < this.gift_list.length; i++) {  //抽到戒指
+        if (this.gift_list[i] === 0) {
+          type == 2
+        }
+      }
+      return type
     }
   },
   methods: {
@@ -91,25 +106,30 @@ export default {
       if (again) {
         this.qureyLuckPup = false
       }
+      console.log(this.go_count)
       if (this.go_count || again) {
         this.type = val
         if (this.user_coins >= val ? 50 : 500) {
           luck_go(val).then(res => {
             if (res.data.response_status.code == 0) {
               let nums = this.go_count
-              this.vxc('setGo_count', nums++)
+              if (res.data.response_data.is_ok == 60001) {
+                this.toast(this.lang.turn_noCoins)
+              } else {
+                this.vxc('setGo_count', ++nums)
+                this.giftList = res.data.response_data.gift_ids
+                this.luckPup = true
+              }
               this.vxc('setUser_coins', res.data.response_data.coins)
-              this.giftList = res.data.response_data.gift_ids
-              this.luckPup = true
             } else {
               this.toast(res.data.response_status.error)
-              if (res.data.response_status.code == 60001) {
-                this.vxc('setUser_coins', res.data.response_data.coins)
-              }
+              //   if (res.data.response_status.code == 60001) {
+              //     this.vxc('setUser_coins', res.data.response_data.coins)
+              //   }
             }
           })
         } else {
-          this.toast(`你的金幣不足哦~`)
+          this.toast(this.lang.turn_noCoins)
         }
       } else {
         this.type = val
