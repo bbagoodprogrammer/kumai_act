@@ -134,11 +134,13 @@ export default {
       margin: 0.4rem auto 0.2rem auto;
       .tab {
         width: 50%;
+        height: 0.74rem;
         color: rgba($color: #ffff, $alpha: 0.6);
         text-align: center;
-        line-height: 0.73rem;
+        line-height: 0.84rem;
         font-size: 0.24rem;
         font-weight: 500;
+        margin-top: -0.05rem;
       }
       .tab_select {
         background: url('../img/mail_tab_select.png') 0/100% 100% no-repeat;

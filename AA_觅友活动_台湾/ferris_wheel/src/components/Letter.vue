@@ -24,9 +24,9 @@
                   <div class="agree_btn" @click="agreeInvite(item)">
                     {{ lang.agree }}
                   </div>
-                  <div class="reject_btn" @click="rejectInvite(item)">
+                  <u class="reject_btn" @click="rejectInvite(item)">
                     {{ lang.reject_btn }}
-                  </div>
+                  </u>
                 </template>
                 <div v-else class="btn">
                   <span v-if="item.status == -1">{{ lang.rejected }}</span>
@@ -60,15 +60,9 @@
             <li class="invite_mail" v-for="(item, index) in list" :key="index">
               <img @click="goProfile(item.uid)" class="avatar" v-lazy="item.avatar" />
               <div class="info_middle">
-                <span v-if="item.type == 2" class="orther_title">{{
-                  lang.orther_letter_title_1.replace("%s", item.nick)
-                }}</span>
-                <span v-if="item.type == 6" class="orther_title">{{
-                  lang.orther_letter_title_2.replace("%s", item.nick)
-                }}</span>
-                <span v-if="item.type == 3" class="orther_title">{{
-                  lang.orther_letter_title_3.replace("%s", item.nick)
-                }}</span>
+                <span v-if="item.type == 2" class="orther_title" v-html="lang.orther_letter_title_1.replace('%s', item.nick)"></span>
+                <span v-if="item.type == 6" class="orther_title" v-html="lang.orther_letter_title_2.replace('%s', item.nick)"></span>
+                <span v-if="item.type == 3" class="orther_title" v-html="lang.orther_letter_title_3.replace('%s', item.nick)"></span>
               </div>
               <div class="btn__box">
                 <template v-if="item.type == 2">
@@ -76,9 +70,9 @@
                     <div class="agree_btn" @click="acceptRelieve(item)">
                       {{ lang.agree }}
                     </div>
-                    <div class="reject_btn" @click="rejectRelieve(item)">
+                    <u class="reject_btn" @click="rejectRelieve(item)">
                       {{ lang.reject_btn }}
-                    </div>
+                    </u>
                   </template>
                   <span class="btn" v-if="item.status == -1">{{ lang.rejected }}</span>
                   <span class="btn" v-if="item.status == 1">{{ lang.agreed }}</span>
@@ -238,14 +232,18 @@ export default {
   }
 
   .scroll {
+    border-radius: 0.1rem;
+    overflow: hidden;
     max-height: 5.8rem;
     overflow: auto;
   }
 
   .invite_mail {
-    width: 5.6rem;
+    width: 5.96rem;
     height: 1.23rem;
-    background: url('../img/li_item_bg.png') 0/100% 100% no-repeat;
+    // background: url('../img/li_item_bg.png') 0/100% 100% no-repeat;
+    background: rgba(222, 167, 184, 0.39);
+
     margin: 0 auto 0.15rem auto;
     display: flex;
     align-items: center;
@@ -280,10 +278,14 @@ export default {
       }
       .orther_title {
         display: inline-block;
-        color: #ffffff;
+        color: rgba(255, 240, 159, 1);
         line-height: 0.28rem;
-        font-size: 0.22rem;
+        font-size: 0.26rem;
         font-weight: 300;
+        em {
+          font-size: 0.26rem;
+          color: #fff;
+        }
       }
     }
     .btn__box {
@@ -294,34 +296,34 @@ export default {
       align-items: center;
       justify-content: center;
       .agree_btn {
-        width: 0.98rem;
+        // width: 0.98rem;
+        padding: 0 0.1rem;
         height: 0.56rem;
-        background: url('../img/mail_agree_btn.png') 0/100% 100% no-repeat;
-        font-size: 0.22rem;
-        font-weight: 500;
+        background: rgba(226, 82, 227, 1);
+        // background: url('../img/mail_agree_btn.png') 0/100% 100% no-repeat;
+        font-size: 0.26rem;
         color: #ffffff;
         line-height: 0.56rem;
         text-align: center;
+        border-radius: 0.09rem;
       }
       .reject_btn {
         width: 0.98rem;
         height: 0.56rem;
-        background: url('../img/mail_reject_btn.png') 0/100% 100% no-repeat;
-        font-size: 0.22rem;
-        font-weight: 500;
-        color: #ffffff;
+        // background: url('../img/mail_reject_btn.png') 0/100% 100% no-repeat;
+        font-size: 0.26rem;
+        color: rgba(216, 125, 158, 1);
         line-height: 0.56rem;
         text-align: center;
       }
       .btn {
         width: 1.6rem;
         height: 0.48rem;
-        background: url('../img/mail_grey_btn.png') 0/100% 100% no-repeat;
+        // background: url('../img/mail_grey_btn.png') 0/100% 100% no-repeat;
         line-height: 0.48rem;
         text-align: center;
-        font-size: 0.22rem;
-        font-weight: 500;
-        color: #ffffff;
+        font-size: 0.26rem;
+        color: rgba(216, 125, 158, 1);
       }
     }
   }

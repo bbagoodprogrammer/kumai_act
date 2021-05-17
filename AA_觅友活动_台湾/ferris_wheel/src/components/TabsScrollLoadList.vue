@@ -139,9 +139,9 @@ export default {
     rank () {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
-      if (rankConf.second && rankConf.second > 0) {
-        this.downTimeGo('time' + this.rankKey, rankConf.second)
-      }
+      // if (rankConf.second && rankConf.second > 0) {
+      this.downTimeGo('time' + this.rankKey, rankConf.second)
+      // }
       return rankConf;
     },
     top3 () {
@@ -313,8 +313,8 @@ export default {
   .rankTitle {
     width: 6.5rem;
     height: 0.95rem;
-    background: url(../img/rankTitle.png);
-    background-size: 100% 100%;
+    // background: url(../img/rankTitle.png);
+    // background-size: 100% 100%;
     margin: 0 auto;
   }
   .mainTabs {
@@ -416,6 +416,7 @@ export default {
               border-radius: 50%;
             }
             strong {
+              height: 0.4rem;
               font-size: 0.26rem;
               display: block;
               white-space: nowrap;

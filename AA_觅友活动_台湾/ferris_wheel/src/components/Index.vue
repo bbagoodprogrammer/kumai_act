@@ -260,13 +260,15 @@ export default {
     justify-content: space-between;
     position: relative;
     span {
-      width: 3rem;
+      width: 2.5rem;
       height: 0.63rem;
+      padding: 0 0.25rem;
+      text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
       line-height: 0.28rem;
-      font-size: 0.34rem;
+      font-size: 0.28rem;
       background: url(../img/tab2.png);
       background-size: 100% 100%;
       &.act {
