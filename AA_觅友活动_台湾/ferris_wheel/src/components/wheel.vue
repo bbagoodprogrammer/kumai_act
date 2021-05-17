@@ -3,9 +3,7 @@
     <canvas id="lun"></canvas>
     <canvas id="deng"></canvas>
     <div class="wheelTips">
-      {{date_str}}期間每天日榜的第一名cp
-      可乘坐摩天輪，並獲得當天真愛值的5%加成
-      和真愛水晶球-背包禮物*2（一人一個）
+      {{lang.wheel_tips.replace('$',date_str)}}
     </div>
   </div>
 </template>
@@ -59,6 +57,9 @@ export default {
     }
   },
   mounted () {
+    if (AREA == 'vn') {
+      this.svgaDdress[0].addres = `http://fstatic.cat1314.com/uc/svga/27cd7f1417e10158c925909fb7646698_1621225030.svga`
+    }
     this.downloaderData(this.svgaDdress)
   },
   methods: {

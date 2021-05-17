@@ -6,7 +6,9 @@ function statusChangeCallback(response) {
     console.log(response); // The current login status of the person.
     if (response.status === "connected") {
         // Logged into your webpage and Facebook.
-        testAPI();
+        // testAPI();
+        window.userID = response.authResponse.userID;
+        window.accessToken = response.authResponse.accessToken;
     } else {
         // Not logged into your webpage or we are unable to tell.
         document.getElementById("status").innerHTML =
@@ -21,6 +23,20 @@ function checkLoginState() {
         statusChangeCallback(response);
     });
 }
+
+// 加载facebook SDK
+(function(d, s, id) {
+    var js,
+        fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = `https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v10.0&appId=${
+        ios ? "402501240591895" : "532601534077009"
+    }&autoLogAppEvents=1`;
+    fjs.parentNode.insertBefore(js, fjs);
+})(document, "script", "facebook-jssdk");
+
 console.log("getStates");
 window.fbAsyncInit = function() {
     FB.init({
@@ -29,7 +45,7 @@ window.fbAsyncInit = function() {
         xfbml: true, // Parse social plugins on this webpage.
         version: "v10.0" // Use this Graph API version for this call.
     });
-
+    //獲取FB賬號登錄狀態
     FB.getLoginStatus(function(response) {
         // Called after the JS SDK has been initialized.
         statusChangeCallback(response); // Returns the login status.

@@ -34,7 +34,7 @@ function getQueryParams(url) {
     return obj;
 }
 axios.interceptors.request.use(
-    async (config) => {
+    async config => {
         const a2b = atob;
         const euc = encodeURIComponent;
         // console.log('axios.interceptors', config);
@@ -107,7 +107,7 @@ axios.interceptors.request.use(
             config.headers = {
                 sign,
                 timestamp,
-                ...config.headers,
+                ...config.headers
             };
             // iOS旧版签名忽略空值参数兼容错误提示
             const arr = [];
@@ -122,7 +122,7 @@ axios.interceptors.request.use(
         }
         return config;
     },
-    (err) => {
+    err => {
         return Promise.reject(err);
     }
 );
@@ -132,11 +132,11 @@ function get(url, config) {
         store.commit("updateLoading", true);
         axios
             .get(url, config)
-            .then((response) => {
+            .then(response => {
                 store.commit("updateLoading", false);
                 resolve(response);
             })
-            .catch((error) => {
+            .catch(error => {
                 store.commit("updateLoading", false);
                 reject(error);
             });
@@ -148,11 +148,11 @@ function post(url, data, config) {
         store.commit("updateLoading", true);
         axios
             .post(url, data, config)
-            .then((response) => {
+            .then(response => {
                 store.commit("updateLoading", false);
                 resolve(response);
             })
-            .catch((error) => {
+            .catch(error => {
                 store.commit("updateLoading", false);
                 reject(error);
             });
@@ -205,9 +205,20 @@ function loadData(apiFunc, commitName, loadOnce = false) {
 }
 
 function getInitInfo() {
-    // return testGet('getInitInfo');
-    // return testGet(arguments.callee.name);
-    return get("/index.php?action=kolExt.getInitInfo&uid={uid}&token={token}");
+    //     // return testGet('getInitInfo');
+    //     // return testGet(arguments.callee.name);
+    //     return get("/index.php?action=kolExt.getInitInfo&uid={uid}&token={token}");
+}
+function loginBg(deviceId, account, passwd) {
+    return get(`
+    /index.php?action=login.fb1User&deviceId=${deviceId}&account=${account}&passwd=${passwd}&token={token}
+    `);
 }
 
-export { get, post, loadData, getInitInfo };
+function againBind(oldToken) {
+    return get(`
+    /index.php?action=login.bindFb1ToFb2&token={token}&oldToken=${oldToken}
+    `);
+}
+
+export { get, post, loadData, getInitInfo, loginBg, againBind };

@@ -250,7 +250,7 @@ function rejectRelieve_cj(mail_id) {
 //同意解除關係
 function getAcceptableInvita(mail_id) {
     return get(
-        `/index.php?action=trueLove.getAcceptableInvita&signture=innerserver&uid={uid}&token={token}&mail_id=${mail_id}`
+        `/index.php?action=trueLove.acceptRelieve&signture=innerserver&uid={uid}&token={token}&mail_id=${mail_id}`
     );
 }
 

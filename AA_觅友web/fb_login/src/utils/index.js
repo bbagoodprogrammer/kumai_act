@@ -1,4 +1,7 @@
 import store from "../store";
+var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+import { callAppNew } from "./navigation";
+
 function getUrlString(key) {
     const vars = {};
     window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, k, v) => {
@@ -129,6 +132,15 @@ function vuexCommit(name, val) {
     store.commit(name, val);
 }
 
+function getDeviceId() {
+    if (!ios) {
+        return callApp("getDeviceId");
+    } else {
+        return callAppNew("getDeviceId", false, true);
+    }
+}
+
+
 export {
     getUrlString,
     replaceLang,
@@ -138,4 +150,5 @@ export {
     callApp,
     toast,
     vuexCommit,
+    getDeviceId
 };
