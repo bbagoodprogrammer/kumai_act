@@ -38,7 +38,7 @@ export default {
     index_ruleTips3: "Hộp thư", //召喚紀錄
     index_tab1: "Đu quay", //摩天輪
     index_tab2: "Kêu gọi Thần tình yêu", //召喚愛神
-    index_singUpTitle: "Chào mừng đến với Đu quay yêu chân thành", //歡迎來到真愛摩天輪
+    index_singUpTitle: "Chào mừng đến với Đu quay tình yêu", //歡迎來到真愛摩天輪
     index_singUpTips:
         "Theo truyền thuyết, mỗi hộp của đu quay đều chứa đầy hạnh phúc, và mỗi khi nó quay, lại thêm một cặp CP hạnh phúc trên trái đất.", // 傳說中，摩天輪的每一個盒子都裝滿了幸福，每轉一圈，地球上幸福的cp又多了一隊
     index_join: "Vào Đu quay", //進入摩天輪
@@ -118,9 +118,9 @@ export default {
     femail_has_cp: "Bạn ấy đã có đối tượng",
     not_mail: "Tạm thời không có thư",
     orther_letter: "Thư khác ",
-    orther_letter_title_1: "<em>%s</em> mời bạn Hủy quan hệ với bạn",
-    orther_letter_title_2: "<em>%s</em> đã đồng ý cùng bạn Hủy quan hệ với bạn",
-    orther_letter_title_3: "<em>%s</em> không đồng ý Hủy quan hệ với bạn",
+    orther_letter_title_1: "<em>%s</em> mời bạn Hủy quan hệ ",
+    orther_letter_title_2: "<em>%s</em> đã đồng ý cùng bạn Hủy quan hệ ",
+    orther_letter_title_3: "<em>%s</em> không đồng ý Hủy quan hệ ",
     reject_btn: "Từ chối",
     not_daily_news: "Chưa có trạng thái mới",
     loading: "Đang tải...",
