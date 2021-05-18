@@ -209,91 +209,83 @@ function loadData(apiFunc, commitName, loadOnce = false) {
 function getInitInfo() {
     // return testGet('getInitInfo');
     // return testGet(arguments.callee.name);
-    return get(
-        `/index.php?action=trueLove.init&signture=innerserver&uid={uid}&token={token}`
-    );
+    return get(`/index.php?action=trueLove.init&uid={uid}&token={token}`);
 }
 //进入页面获取邀请我的列表
 function creatInivitFriend() {
     return get(
-        `/index.php?action=trueLove.acceptableInvita&signture=innerserver&uid={uid}&token={token}`
+        `/index.php?action=trueLove.acceptableInvita&uid={uid}&token={token}`
     );
 }
 //好友列表
 function friendList(from) {
     return get(
-        `/index.php?action=trueLove.friends&signture=innerserver&uid={uid}&token={token}&from=${from}`
+        `/index.php?action=trueLove.friends&uid={uid}&token={token}&from=${from}`
     );
 }
 
 //接受邀請  mail_id 列表的郵件ID
 function acceptFriend(mail_id) {
     return get(
-        `/index.php?action=trueLove.accept&signture=innerserver&uid={uid}&token={token}&mail_id=${mail_id}`
+        `/index.php?action=trueLove.accept&uid={uid}&token={token}&mail_id=${mail_id}`
     );
 }
 
 //拒絕邀請  mail_id 列表的郵件ID
 function rejectFriend() {
     return get(
-        `/index.php?action=trueLove.reject&signture=innerserver&uid={uid}&token={token}&mail_id=${mail_id}`
+        `/index.php?action=trueLove.reject&uid={uid}&token={token}&mail_id=${mail_id}`
     );
 }
 
 //拒絕解除關係
 function rejectRelieve_cj(mail_id) {
     return get(
-        `/index.php?action=trueLove.rejectRelieve&signture=innerserver&uid={uid}&token={token}&mail_id=${mail_id}`
+        `/index.php?action=trueLove.rejectRelieve&uid={uid}&token={token}&mail_id=${mail_id}`
     );
 }
 
 //同意解除關係
 function getAcceptableInvita(mail_id) {
     return get(
-        `/index.php?action=trueLove.acceptRelieve&signture=innerserver&uid={uid}&token={token}&mail_id=${mail_id}`
+        `/index.php?action=trueLove.acceptRelieve&uid={uid}&token={token}&mail_id=${mail_id}`
     );
 }
 
 //邀請好友
 function inivitFriend(to_uid) {
     return get(
-        `/index.php?action=trueLove.invite&signture=innerserver&uid={uid}&token={token}&to_uid=${to_uid}`
+        `/index.php?action=trueLove.invite&uid={uid}&token={token}&to_uid=${to_uid}`
     );
 }
 
 //申请解除关系
 function relieve() {
-    return get(
-        `/index.php?action=trueLove.relieve&signture=innerserver&uid={uid}&token={token}`
-    );
+    return get(`/index.php?action=trueLove.relieve&uid={uid}&token={token}`);
 }
 
 //轉盤列表
 function giftList() {
-    return get(
-        `/index.php?action=trueLove.giftList&signture=innerserver&uid={uid}&token={token}`
-    );
+    return get(`/index.php?action=trueLove.giftList&uid={uid}&token={token}`);
 }
 
 //抽獎 is_batch  1: 10抽  0:單抽
 function luck_go(is_batch) {
     return get(
-        `/index.php?action=trueLove.go&signture=innerserver&uid={uid}&token={token}&is_batch=${is_batch}`
+        `/index.php?action=trueLove.go&uid={uid}&token={token}&is_batch=${is_batch}`
     );
 }
 
 //抽獎歷史記錄
 function lotteryRecord(from) {
     return get(
-        `/index.php?action=trueLove.giftRecord&signture=innerserver&uid={uid}&token={token}&from=${from}`
+        `/index.php?action=trueLove.giftRecord&uid={uid}&token={token}&from=${from}`
     );
 }
 
 //初始调用
-function joinAct(from) {
-    return get(
-        `/index.php?action=trueLove.subscribe&signture=innerserver&uid={uid}&token={token}&from=${from}`
-    );
+function joinAct() {
+    return get(`/index.php?action=trueLove.subscribe&uid={uid}&token={token}`);
 }
 
 //信箱（威威代碼部分）

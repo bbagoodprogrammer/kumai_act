@@ -6,7 +6,7 @@
       <span :class="{act:type == 2}" @click="tabClick(2)">Giải thưởng</span>
     </div>
     <div class="rule_tips" v-if="type == 1">
-      <p class="tm">Thời gian sự kiện: 10/5-20/5</p>
+      <p class="tm">Thời gian sự kiện: 12:00 18/05/2021- 23:59:59 24/05/2021</p>
       <h5>1.Cách tham gia Đu qua Yêu chân thành</h5>
       <p>
         Hủy quan hệ:<br />
@@ -30,7 +30,7 @@
         <div class="gift_item" v-for="(item,index) in giftArr" :key="index" :class="'gift' + index">
           <div class="imgBox">
             <img :src="item.img" alt="">
-            <i class="gType" v-if="item.tips">Hiệu quà đặc biệt</i>
+            <i class="gType" v-if="item.tips">Quà hiệu ứng</i>
           </div>
           <strong v-html="item.name"></strong>
         </div>
@@ -51,13 +51,13 @@
       <p>a)Trong thời gian sự kiện có tình dùng lời lẽ thô tục, ảnh hưởng tới mọi người</p>
     </div>
     <div class="gift_tips" v-else>
-      <p class="tm">Thời gian sự kiện: 10/5-20/5</p>
+      <p class="tm">Thời gian sự kiện: 12:00 18/05/2021- 23:59:59 24/05/2021</p>
       <h5>1. Giải thưởng đi đu quay</h5>
       <div class="giftList list2">
         <div class="gift_item" v-for="(item,index) in giftArr2" :key="index" :class="'gift' + index">
           <div class="imgBox">
             <img :src="item.img" alt="">
-            <i class="gType" v-if="item.tips">Hiệu quà đặc biệt</i>
+            <i class="gType" v-if="item.tips">Quà hiệu ứng</i>
           </div>
           <strong v-html="item.name"></strong>
         </div>
@@ -71,7 +71,7 @@
         <div class="gift_item" v-for="(item,index) in giftArr3" :key="index" :class="'gift' + index">
           <div class="imgBox">
             <img :src="item.img" alt="">
-            <i class="gType" v-if="item.tips">Hiệu quà đặc biệt</i>
+            <i class="gType" v-if="item.tips">Quà hiệu ứng</i>
           </div>
           <strong v-html="item.name"></strong>
         </div>
@@ -119,12 +119,12 @@ export default {
         {
           img: require('./img/rule_gift/gift_4.png'),
           name: 'Mê bạn<br/>+10000 Điểm True Love',
-          tips: 'Hiệu quà đặc biệt'
+          tips: 'Quà hiệu ứng'
         },
         {
           img: require('./img/rule_gift/gift_5.png'),
           name: 'Pháo hoa tỏ tình<br/>+80000 Điểm True Love',
-          tips: 'Hiệu quà đặc biệt'
+          tips: 'Quà hiệu ứng'
         },
         {
           img: require('./img/rule_gift/gift_6.png'),
@@ -141,7 +141,7 @@ export default {
         {
           img: require('./img/rule_gift/gift_3.png'),
           name: 'Dây chuyền chân châu<br/>+20000 Điểm True Love',
-          tips: 'Hiệu quà đặc biệt'
+          tips: 'Quà hiệu ứng'
         },
 
 

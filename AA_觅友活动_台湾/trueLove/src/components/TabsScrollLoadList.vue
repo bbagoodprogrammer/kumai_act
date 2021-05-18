@@ -123,10 +123,10 @@ export default {
     },
     rankApi () {
       if (this.isShare) {
-        var dayApi = `/index.php?action=trueLove.rank&date={date}&signture=innerserver&from={from}`;
+        var dayApi = `/index.php?action=trueLove.rank&date={date}&from={from}`;
         return dayApi.replace('{date}', this.rankKey == 'total' ? 0 : 1)
       } else {
-        var dayApi = `/index.php?action=trueLove.rank&date={date}&signture=innerserver&uid={uid}&token={token}&from={from}`;
+        var dayApi = `/index.php?action=trueLove.rank&date={date}&uid={uid}&token={token}&from={from}`;
         const token = getUrlString('token') || '';
         const uid = getUrlString('uid') || '';
         return dayApi.replace('{date}', this.rankKey == 'total' ? 0 : 1).replace('{uid}', uid).replace('{token}', token);

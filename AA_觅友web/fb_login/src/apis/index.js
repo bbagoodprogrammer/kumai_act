@@ -210,14 +210,14 @@ function getInitInfo() {
     //     return get("/index.php?action=kolExt.getInitInfo&uid={uid}&token={token}");
 }
 function loginBg(deviceId, account, passwd) {
-    return get(`
-    /index.php?action=login.fb1User&deviceId=${deviceId}&account=${account}&passwd=${passwd}&token={token}
-    `);
+    return get(
+        `/index.php?action=login.fb1User&deviceId=${deviceId}&account=${account}&passwd=${passwd}&token={token}`
+    );
 }
 
 function againBind(oldToken) {
     return get(`
-    /index.php?action=login.bindFb1ToFb2&token={token}&oldToken=${oldToken}
+        /index.php?action=login.bindFb1ToFb2&token={token}&oldToken=${oldToken}
     `);
 }
 

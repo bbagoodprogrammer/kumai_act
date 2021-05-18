@@ -78,14 +78,26 @@ export default {
       return window.userID || ''
     }
   },
+  created () {
+    let state = getUrlString("state") || "";
+    if (state) {
+      let userMsg = JSON.parse(atob(state))
+      location.href = `https://act.udateapp.com/html/fb_login/index.html?uid=${userMsg.uid}&token=${userMsg.token}&lang=${userMsg.lang}`
+    }
+  },
   methods: {
     login () {
       if (!this.accessToken) {
         const uid = getUrlString("uid") || "";
         const token = getUrlString("token") || "";
+        const lang = getUrlString("lang") || "";
         let client_id = isIOS ? "402501240591895" : "532601534077009"
-        let redirect_uri = `https://act.udateapp.com/html/fb_login/index.html?uid=${uid}&token=${token}`;//获取Facebook用户信息后回调地址,客户服务器的链接（此处为示例）
-        let state = `${uid}_login`
+        let redirect_uri = `https://act.udateapp.com/html/fb_login/index.html`;//获取Facebook用户信息后回调地址,客户服务器的链接（此处为示例）
+        let state = btoa(JSON.stringify({
+          uid, token, lang
+        }))
+        // console.log(`https://www.facebook.com/v10.0/dialog/oauth?client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}&state=${state}`)
+        // debugger
         location.href = `https://www.facebook.com/v10.0/dialog/oauth?client_id=${client_id}&redirect_uri=${encodeURIComponent(redirect_uri)}&state=${state}`
       } else {
         this.loginBg()
