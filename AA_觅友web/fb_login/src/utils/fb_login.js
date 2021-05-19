@@ -24,7 +24,7 @@ function checkLoginState() {
     });
 }
 
-// 加载facebook SDK
+//加载facebook SDK
 // (function(d, s, id) {
 //     var js,
 //         fjs = d.getElementsByTagName(s)[0];
@@ -32,15 +32,15 @@ function checkLoginState() {
 //     js = d.createElement(s);
 //     js.id = id;
 //     js.src = `https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v10.0&appId=${
-//         ios ? "402501240591895" : "532601534077009"
+//         ios ? "532601534077009" : "402501240591895"
 //     }&autoLogAppEvents=1`;
 //     fjs.parentNode.insertBefore(js, fjs);
 // })(document, "script", "facebook-jssdk");
 
-console.log("getStates");
+console.log("getStates", AREA);
 window.fbAsyncInit = function() {
     FB.init({
-        appId: ios ? "402501240591895" : "532601534077009",
+        appId: AREA == "vn" ? "1418697961633279" : "402501240591895",
         cookie: true, // Enable cookies to allow the server to access the session.
         xfbml: true, // Parse social plugins on this webpage.
         version: "v10.0" // Use this Graph API version for this call.
