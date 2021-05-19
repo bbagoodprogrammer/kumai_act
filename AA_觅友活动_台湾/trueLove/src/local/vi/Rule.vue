@@ -79,7 +79,8 @@
       <p>Hạng 1: Khung ảnh Quán quân CP (10 ngày)+Huy chương Đu quay Yêu chân thành (10 ngày)+Bơi moto lãng mạn (10 ngày)+chứng nhận CP (10 ngày)+Thiên sứ True Love-quà hiệu ứng (mỗi người một quà)
       </p>
       <p>Hạng 2: Khung ảnh Á quân CP (7 ngày)+Huy chương Đu quay Yêu chân thành (7 ngày)+Bơi moto lãng mạn (7 ngày)+chứng nhận CP (7 ngày)+Bong bóng lãng mạn-quà hiệu ứng (mỗi người một quà)</p>
-      <p>Hạng 3: Khung ảnh Quý quân CP (7 ngày)+Huy chương Đu quay Yêu chân thành (7 ngày)+Bơi moto lãng mạn (7 ngày)+chứng nhận CP (7 ngày)+Bong bóng lãng mạn-quà hiệu ứng (mỗi người một quà)</p>
+      <p>Hạng 3: Khung ảnh Quý quân CP (7 ngày)+Huy chương Đu quay Yêu chân thành (7 ngày)+Bơi moto lãng mạn (7 ngày)+chứng nhận CP (7 ngày)+ Bóng thủy tinh yêu chân thành- quà hiệu ứng (mỗi người một
+        quà)</p>
     </div>
     <p class="lastTips">Sự kiện không liên quan đến công ty Apple</p>
     <p class="lastTips2">*Quyết định cuối cùng thuộc về Alochat</p>

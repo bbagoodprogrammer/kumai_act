@@ -215,10 +215,16 @@ function loginBg(deviceId, account, passwd) {
     );
 }
 
-function againBind(oldToken) {
+function againBind(oldToken, token2) {
     return get(`
-        /index.php?action=login.bindFb1ToFb2&token={token}&oldToken=${oldToken}
+        /index.php?action=login.bindFb1ToFb2&token=${token2}&oldToken=${oldToken}
     `);
 }
 
-export { get, post, loadData, getInitInfo, loginBg, againBind };
+function getFbInfo(fb1uid) {
+    return get(`
+    /index.php?action=login.getFb1LoginInfo&fb1uid=${fb1uid}
+   `);
+}
+
+export { get, post, loadData, getInitInfo, loginBg, againBind, getFbInfo };
