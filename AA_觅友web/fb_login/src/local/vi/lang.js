@@ -3,7 +3,7 @@ export default {
     title: "\u200E",
     fb_rebinding: "Liên kết FB",
     fb_rebinding_tip1:
-        "Vì điều khoản FB thay đổi, một số tài khoản FB đã liên kết UID, khi dùng FB đăng nhập sẽ tạo UID mới.",
+        "Vì điều khỏan FB thay đổi, một số tài khỏan FB đã hủy liên kết UID, khi dùng FB đăng nhập sẽ tạo UID mới.",
     fb_rebinding_tip2:
         "Tài khoản FB đăng nhập UID mới, có thể tìm lại UID cũ thông qua trang này và liên kết tài khỏan",
     retrieve_uid: "Tìm lại UID",
