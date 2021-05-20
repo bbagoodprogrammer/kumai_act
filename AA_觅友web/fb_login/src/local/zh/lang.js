@@ -26,5 +26,6 @@ export default {
     },
     login_fail: "登錄失敗",
     bind_fail: "綁定失敗，請稍後再試！",
-    err_tips: "參數錯誤！"
+    err_tips: "參數錯誤！",
+    grant_failed: "授權失敗，請重進再試！"
 };

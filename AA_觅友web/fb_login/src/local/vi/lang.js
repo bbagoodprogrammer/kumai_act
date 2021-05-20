@@ -30,5 +30,6 @@ export default {
     },
     login_fail: "Đăng nhập thất bại",
     bind_fail: "Liên kết thất bại, mời thử lại sau！",
-    err_tips: "Lỗi tham số"
+    err_tips: "Lỗi tham số",
+    grant_failed: "Cấp quyền thất bại, mời thử lại!"
 };
