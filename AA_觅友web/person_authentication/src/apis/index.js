@@ -34,7 +34,7 @@ function getQueryParams(url) {
     return obj;
 }
 axios.interceptors.request.use(
-    async config => {
+    async (config) => {
         const a2b = atob;
         const euc = encodeURIComponent;
         // console.log('axios.interceptors', config);
@@ -104,12 +104,10 @@ axios.interceptors.request.use(
             );
             const signObj = await getSign(dataAll, callbackId);
             const { sign, timestamp } = signObj;
-            //alert(JSON.stringify(dataAll));
-            //alert(JSON.stringify(signObj));
             config.headers = {
                 sign,
                 timestamp,
-                ...config.headers
+                ...config.headers,
             };
             // iOS旧版签名忽略空值参数兼容错误提示
             const arr = [];
@@ -124,7 +122,7 @@ axios.interceptors.request.use(
         }
         return config;
     },
-    err => {
+    (err) => {
         return Promise.reject(err);
     }
 );
@@ -134,11 +132,11 @@ function get(url, config) {
         store.commit("updateLoading", true);
         axios
             .get(url, config)
-            .then(response => {
+            .then((response) => {
                 store.commit("updateLoading", false);
                 resolve(response);
             })
-            .catch(error => {
+            .catch((error) => {
                 store.commit("updateLoading", false);
                 reject(error);
             });
@@ -150,11 +148,11 @@ function post(url, data, config) {
         store.commit("updateLoading", true);
         axios
             .post(url, data, config)
-            .then(response => {
+            .then((response) => {
                 store.commit("updateLoading", false);
                 resolve(response);
             })
-            .catch(error => {
+            .catch((error) => {
                 store.commit("updateLoading", false);
                 reject(error);
             });
@@ -207,25 +205,9 @@ function loadData(apiFunc, commitName, loadOnce = false) {
 }
 
 function getInitInfo() {
-    //     // return testGet('getInitInfo');
-    //     // return testGet(arguments.callee.name);
-    //     return get("/index.php?action=kolExt.getInitInfo&uid={uid}&token={token}");
-}
-function loginBg(deviceId, account, passwd) {
-    return get(
-        `/index.php?action=login.fb1User&deviceId=${deviceId}&account=${account}&passwd=${passwd}&token={token}`
-    );
+    // return testGet('getInitInfo');
+    // return testGet(arguments.callee.name);
+    return get("/index.php?action=kolExt.getInitInfo&uid={uid}&token={token}");
 }
 
-function againBind(oldToken, token2) {
-    return get(
-        `/index.php?action=login.bindFb1ToFb2&token=${token2}&oldToken=${oldToken}`
-    );
-}
-
-function getFbInfo(fb1uid) {
-    // alert(fb1uid);
-    return get(`/index.php?action=login.getFb1LoginInfo&fb1uid=${fb1uid}`);
-}
-
-export { get, post, loadData, getInitInfo, loginBg, againBind, getFbInfo };
+export { get, post, loadData, getInitInfo };

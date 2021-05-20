@@ -30,7 +30,7 @@
           重試或聯繫<em @click="goUser()">uid10</em> -->
         </div>
       </div>
-      <div class="again" @click="type = 1">
+      <div class="again" @click="logout()">
         {{lang.binded_tips3}}
       </div>
     </div>
@@ -45,13 +45,14 @@
 
 <script>
 import { getFbInfo, againBind } from "../apis"
-import { getDeviceId, getUrlString } from "../utils"
+import { getDeviceId, getUrlString, clearCache } from "../utils"
+import { handleSessionResponse } from "../utils/fb_login"
 import axios from "axios";
 const isIOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
 export default {
   data () {
     return {
-      type: 5,  // 1 初始FB登錄頁面 2登錄后找到賬號未綁定 3FB登陸後找到賬號已綁定 4找不到賬號 5綁定成功提示
+      type: 1,  // 1 初始FB登錄頁面 2登錄后找到賬號未綁定 3FB登陸後找到賬號已綁定 4找不到賬號 5綁定成功提示
       //   type_title: {
       //     1: '\u200E',
       //     2: '已找到原來綁定的uid',
@@ -86,26 +87,39 @@ export default {
     let fb1uid = getUrlString("fb1uid") || "";
     if (fb1uid) {
       if (fb1uid > 0) {
-        getFbInfo(fb1uid).then(res => {
-          if (res.data.response_data) {
-            const { oldToken, token, avatar, nick, uid, fb2status } = res.data.response_data
-            this.oldToken = oldToken
-            this.token = token
-            this.avatar = avatar
-            this.nick = nick
-            this.uid = fb1uid
-            if (fb2status) {
-              this.type = 3
-            } else {
-              this.type = 2
-            }
-          }
-          //   else {
-          //     this.toast(res.data.response_status.error)
-          //   }
-        })
+        this.oldToken = getUrlString("oldToken") || "";
+        this.token = getUrlString("token") || "";
+        this.avatar = decodeURIComponent(getUrlString("avatar")) || "";
+        this.nick = getUrlString("nick") || "";
+        this.uid = getUrlString("fb1uid") || "";
+        let fb2status = getUrlString("fb2status") || "";
+        if (fb2status == 1) {
+          this.type = 3
+        } else {
+          this.type = 2
+        }
+        // getFbInfo(fb1uid).then(res => {
+        //   if (res.data.response_data) {
+        //     const { oldToken, token, avatar, nick, uid, fb2status } = res.data.response_data
+        //     this.oldToken = oldToken
+        //     this.token = token
+        //     this.avatar = avatar
+        //     this.nick = nick
+        //     this.uid = fb1uid
+        //     if (fb2status) {
+        //       this.type = 3
+        //     } else {
+        //       this.type = 2
+        //     }
+        //   }
+        //   //   else {
+        //   //     this.toast(res.data.response_status.error)
+        //   //   }
+        // })
       } else if (fb1uid == -3) {
         this.type = 4
+      } else if (fb1uid == 0) {
+        this.toast(this.lang.grant_failed)
       } else {
         this.toast(this.lang.err_tips)
       }
@@ -213,6 +227,23 @@ export default {
         javascript: JSInterface.sendJsData('app://userInfo?uid=' + 10);
       }
     },
+    logout () {
+      this.type = 1
+      try {
+        if (isIOS) {
+          clearCache()
+        } else {
+          javascript: JSInterface.clearCache()
+        }
+      } catch (e) {
+
+      }
+
+      //   handleSessionResponse()
+      //   FB.logout(function (response) {
+      //     // Person is now logged out
+      //   });
+    }
   }
 }
 </script>

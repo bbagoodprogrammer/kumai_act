@@ -20,7 +20,8 @@ export default new vuex.Store({
         user_coins: 0,
         go_count: 0,
         record: [],
-        date_str: ""
+        date_str: "",
+        init: -1
     },
     mutations: {
         updateLoading(state, value) {
@@ -41,6 +42,7 @@ export default new vuex.Store({
         },
         setInitInfo(state, data) {
             Object.assign(state, data);
+            state.init = 1;
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.key != "undefined") {

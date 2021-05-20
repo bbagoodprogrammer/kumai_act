@@ -37,12 +37,14 @@ export default {
     }
   },
   watch: {
-    // owner (val) {
-    //   this.svgaStart('deng', 1, true, this.svgaDdress[2].data)
-    // }
+    init (val) {
+      setTimeout(() => {
+        this.svgaStart('deng', 1, true, this.svgaDdress[2].data)
+      }, 100)
+    }
   },
   computed: {
-    ...mapState(['daily_top', 'owner', 'date_str']),
+    ...mapState(['daily_top', 'owner', 'date_str', 'init']),
     daily_top_avList () {
       var tmList = []
       for (let i = 0; i < this.daily_top.length; i++) {
@@ -88,9 +90,6 @@ export default {
     svgaGo () {
       this.svgaStart('bg', 1, true, this.svgaDdress[0].data)  //节点类名,開始幀數,是否开始动画,加载的对应Data
       this.svgaStart('lun', 1, true, this.svgaDdress[1].data)
-      setTimeout(() => {
-        this.svgaStart('deng', 1, true, this.svgaDdress[2].data)
-      }, 100)
 
     },
     async svgaStart (className, start, isGo, data) {//节点类名,開始幀數,是否开始动画,加载的对应Data

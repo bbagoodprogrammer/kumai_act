@@ -52,6 +52,19 @@ window.fbAsyncInit = function() {
     });
 };
 
+//handle a session response from any of the auth related calls
+function handleSessionResponse(response) {
+    //if we dont have a session (which means the user has been logged out, redirect the user)
+    if (!response.session) {
+        //window.location = "/mysite/Login.aspx";
+        return;
+    }
+
+    //if we do have a non-null response.session, call FB.logout(),
+    //the JS method will log the user out of Facebook and remove any authorization cookies
+    FB.logout(handleSessionResponse);
+}
+
 function testAPI() {
     // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
     console.log("Welcome!  Fetching your information.... ");
@@ -61,3 +74,4 @@ function testAPI() {
             "Thanks for logging in, " + response.name + "!";
     });
 }
+export { handleSessionResponse };

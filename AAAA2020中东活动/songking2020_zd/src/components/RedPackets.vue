@@ -112,7 +112,7 @@ import getString from "../utils/getString"
 import store from "../store/stores"
 
 export default {
-  data() {
+  data () {
     return {
       redPacket_downTime: false,  //倒计时红包
       packetRes: false,  //开红包后的结果
@@ -130,7 +130,7 @@ export default {
   },
   computed: {
     ...mapState(['redPacket', 'naming', 'reg']),
-    optionHover() {
+    optionHover () {
       return {
         limitMoveNum: 4,
         hoverStop: false,
@@ -140,7 +140,7 @@ export default {
     }
   },
   watch: {
-    redPacket(val) {
+    redPacket (val) {
       this.dtime = val.dtime
       if (typeof (val.dtime) != 'undefined' && this.timer2 == null) {
         this.nextRedPacket(val.dtime * 1000)
@@ -160,14 +160,14 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.scrollable = this.$el.querySelector('.recoreList');
     if (this.scrollable) {
       this.scrollable.addEventListener('scroll', this.onScroll);
     }
   },
   methods: {
-    subscribe() {
+    subscribe () {
       if (!this.reg) {
         this.vxc('setToast', {
           title: 'فشل في ضرب الموعد',
@@ -183,7 +183,7 @@ export default {
         }
       })
     },
-    downTimeGo() {
+    downTimeGo () {
       clearInterval(this.timer)
       this.timer = setInterval(() => {
         this.downTime--
@@ -193,7 +193,7 @@ export default {
         }
       }, 1000)
     },
-    openRedPacket() {
+    openRedPacket () {
       api.openRedPacket().then(res => {
         if (res.data.response_status.code == 0) {
           this.packetRes = true
@@ -210,7 +210,7 @@ export default {
         }
       })
     },
-    redPacketHistory() {
+    redPacketHistory () {
       api.redPacketHistory(0).then(res => {
         this.packetRecore = true
         // res.data.response_data
@@ -277,10 +277,10 @@ export default {
         // }
       })
     },
-    getDate(tm) {
+    getDate (tm) {
       return getDate(new Date(tm * 1000), 1)
     },
-    onScroll() {
+    onScroll () {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
         if (this.loaded) return
@@ -296,23 +296,23 @@ export default {
         }
       }
     },
-    closePacketPup() {
+    closePacketPup () {
       this.packetRes = false
       this.packetRecore = false
       // api.hideRedPacket()
     },
-    goUser(uid) { //跳转
+    goUser (uid) { //跳转
       location.href = `uid:${uid}`
     },
-    goSong(sid) {
+    goSong (sid) {
       location.href = 'songid:{"songlist":[' + sid + '],"index":0}';
     },
-    shareAct() {
+    shareAct () {
       api.report('packet')
-      var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      let ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       let uid = getString('uid')
       // console.log(this.chioneUserMsg)
-      var data = {
+      let data = {
         "share_title": `تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!`,
         "share_content": "انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>",
         "share_image": `http://activity.supervoice-app.com/static_html/2020/songking2020/share.png?v=2`,
@@ -324,7 +324,7 @@ export default {
         if (window.share != undefined) {
           share(JSON.stringify(data))
         } else {
-          location.href = `shareUserInfo://activity.17sing.tw/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#&shareText=انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>&userImg=http://activity.supervoice-app.com/static_html/2020/songking2020/share.png?v=2&title=تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!`;
+          location.href = `shareUserInfo://activity.supervoice-app.com/static_html/2020/songking2020/index.html?uid=#ID#&token=#TOKEN#&shareText=انقر لضرب الموعد للمغلف، يمكن أن تتلقى رسالة التنبيه من النظام>>&userImg=http://activity.supervoice-app.com/static_html/2020/songking2020/share.png?v=2&title=تعال! سيبدأ انفجار المغلفين الحمراء لمسابقة المطربين السحريين!`;
         }
       } else {
         try {
@@ -336,7 +336,7 @@ export default {
 
       }
     },
-    nextRedPacket(dtime) {
+    nextRedPacket (dtime) {
       clearTimeout(this.timer2)
       this.timer2 = setTimeout(() => {
         // clearTimeout(this.timer2)
@@ -763,7 +763,7 @@ export default {
   .packetRes::before,
   .downTimePacket::before,
   .packetRecord::before {
-    content: "";
+    content: '';
     display: block;
     width: 7.5rem;
     height: 7.05rem;

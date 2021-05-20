@@ -1,0 +1,12 @@
+html.zh {
+    .sex_default_img{
+        width:7.5rem ;
+        height: 5.56rem;
+        background: url(./img/man_default.png);
+        background-size: 100% 100%;
+        &.woman{
+            background: url(./img/woman_default.png);
+            background-size: 100% 100%;
+        }
+    }
+}
