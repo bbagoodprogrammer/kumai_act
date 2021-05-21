@@ -224,7 +224,6 @@ function againBind(oldToken, token2) {
 }
 
 function getFbInfo(fb1uid) {
-    // alert(fb1uid);
     return get(`/index.php?action=login.getFb1LoginInfo&fb1uid=${fb1uid}`);
 }
 

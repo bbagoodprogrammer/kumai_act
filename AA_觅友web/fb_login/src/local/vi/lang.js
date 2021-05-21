@@ -11,7 +11,7 @@ export default {
         "*Sau khi tìm tài khoản cũ thành công, <br />tài khoản mới sẽ bị hủy",
     last_tips1:
         "Vì lý do bảo mật tài khoản, vui lòng không chia sẻ link này với bất kỳ ai",
-    re_bind: "Liên kết tài khoản",
+    re_bind: "Liên kết và đăng nhập lại",
     re_bind_tips:
         "*Sau khi liên kết tài khoản, FB có thể đăng nhập UID cũ <br />UID mới tạo sẽ bị hủy, xin lưu ý!",
     binded_tips1: "Tài khoản này đã liên kết,<br /> Mời liên hệ<em>uid10</em>",

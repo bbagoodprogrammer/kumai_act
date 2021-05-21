@@ -9,7 +9,7 @@ export default {
     retrieve_uid: "找回uid",
     suc_tips1: "*在成功找回舊賬號後，<br />當前登錄的新賬號將會被註銷",
     last_tips1: "為了你的賬戶安全，本鏈接請勿分享予他人",
-    re_bind: "重新綁定",
+    re_bind: "確認綁定並重新登錄",
     re_bind_tips:
         "*重新綁定後，FB可登入舊有uid<br />已創建的新uid將註銷。請謹慎操作",
     binded_tips1: "該賬戶已被綁定，<br />請聯繫<em>uid10</em>",

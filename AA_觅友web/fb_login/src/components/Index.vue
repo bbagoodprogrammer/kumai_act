@@ -204,7 +204,7 @@ export default {
     bind () {
       againBind(this.oldToken, this.token).then(res => {
         if (res.data.response_data) {
-          this.type = 5
+          //   this.type = 5
           if (isIOS) {
             sendJsData('app://logout');
           } else {
@@ -350,7 +350,7 @@ export default {
         text-align: center;
       }
       .go {
-        width: 3.3rem;
+        width: 3.6rem;
         height: 0.88rem;
         background: linear-gradient(90deg, #7A68F8 0%, #9585FF 100%);
         border-radius: 0.44rem;
