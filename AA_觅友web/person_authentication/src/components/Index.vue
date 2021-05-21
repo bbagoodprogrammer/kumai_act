@@ -30,6 +30,13 @@
       </div>
       <div class="commit">提交</div>
     </div>
+    <div class="suc_tips" v-else-if="type == 3">
+      <img src="../img/suc_icon.png" alt="" class="suc_icon">
+      <div class="suc_title">
+        已通过真人認證
+      </div>
+      <div class="suc_tips">更換頭像將重新核對真人認證，請使用真實信息</div>
+    </div>
   </div>
 </template>
 
@@ -38,7 +45,7 @@ export default {
   data () {
     return {
       sex: 0,
-      type: 2,
+      type: 3,
       img_tipsArr: [
         '請模仿示意圖拍攝認證照片；',
         '真人認證照片需和頭像保持一致，否則無效；',
@@ -156,6 +163,27 @@ export default {
       line-height: 0.88rem;
       font-size: 0.32rem;
       margin: 2.9rem auto 0;
+    }
+  }
+  .suc_tips {
+    .suc_icon {
+      width: 2rem;
+      height: 2rem;
+      margin: 2.38rem auto 0;
+    }
+    .suc_title {
+      font-size: 0.36rem;
+      color: #2C2B36;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 2.38rem;
+    }
+    .suc_tips {
+      font-size: 0.26rem;
+      color: #BCBBC7;
+      text-align: center;
+      margin-top: 0.3rem;
+      line-height: 0.46rem;
     }
   }
   img {
