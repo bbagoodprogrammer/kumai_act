@@ -1,7 +1,7 @@
 <template>
   <div class="ball">
     <div class="universe">
-      <div class="ballItem" v-for="(item,index) in stars" :key="index" :class="[{no_people:!item.user},'star' + index ]">
+      <div class="ballItem" v-for="(item,index) in stars" :key="index" :class="[{no_people:!item.landing_num},'star' + index ]">
         <i class="addres">{{item.name}}</i>
         <div class="ball_icon"></div>
         <div class="user">
@@ -19,23 +19,41 @@
         </div>
       </div>
     </div>
-    <div class="luck">
+    <div class="luck" :class="{black:!owner.landing_num}" @click="luck()">
       <div class="tip">著陸到星球</div>
-      <div class="user_nums">（著陸次數：10）</div>
+      <div class="user_nums">（著陸次數：{{owner.landing_num}}）</div>
     </div>
     <div class="ball_bar">
       <div class="liner">
         <div class="default_bar"></div>
         <div class="act_liner">
-          <span class="act"></span>
+          <span class="act" :style="{width:mysterious.progress +'%'}"></span>
         </div>
         <span class="title">神秘星球</span>
-        <span class="barNums">30%</span>
+        <span class="barNums">{{mysterious.progress}}%</span>
       </div>
       <div class="bar_tips">
         每收到1223金幣指定禮物，進度條+1<br />
         當進度條達到100%，全站出現神秘星球概率翻倍1小時並重置儘速條
       </div>
+    </div>
+    <div class="mask" v-show="showLuckPup">
+      <transition name="slide">
+        <div class="boll_luck_pup" v-show="showLuckPup">
+          <i class="close" @click="showLuckPup = false"></i>
+          <p class="luck_tips">歷經萬里星河,看遍星際美景此旅無悔</p>
+          <div class="luckGift">
+            <div class="giftItem" v-for="(item,index) in luckGift" :key="index">
+              <div class="imgBox">
+                <img :src="item.img" alt="">
+              </div>
+              <strong>{{item.name}}</strong>
+            </div>
+          </div>
+          <p class="luck_tips2">這是送給你的旅行補給哦,<br />好好休整后再次出發吧！</p>
+          <div class="luck_get" @click="showLuckPup = false">開心收下</div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -43,16 +61,43 @@
 <script>
 
 import { mapState } from "vuex"
+import { starLuck } from "../apis"
 export default {
+  data () {
+    return {
+      showLuckPup: false,
+      luckGift: []
+    }
+  },
   computed: {
-    ...mapState(['stars', 'rank_space_station']),
+    ...mapState(['stars', 'rank_space_station', 'owner', 'mysterious']),
     top0 () {
       if (this.rank_space_station.length) {
         return this.rank_space_station[0]
       }
       return {}
     }
+  },
+  methods: {
+    luck () {
+      if (this.owner.landing_num) {
+        starLuck().then(res => {
+          if (res.data.response_status.code == 0) {
+            const { gifts } = res.data.response_data
+            if (gifts) {
+              this.luckGift = res.data.response_data.gifts
+              this.showLuckPup = true
+            }
+            this.$store.dispatch('getInitInfo');
+
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      }
+    }
   }
+
 }
 </script>
 
@@ -268,6 +313,15 @@ export default {
     background: url(../img/ball_luck.png);
     background-size: 100% 100%;
     margin: 0.94rem auto 0;
+    &.black {
+      width: 3.29rem;
+      height: 0.85rem;
+      background: url(../img/ball_star_black.png);
+      background-size: 100% 100%;
+      > div {
+        color: rgba(128, 124, 124, 1);
+      }
+    }
     .tip {
       text-align: center;
       font-size: 0.36rem;
@@ -315,7 +369,7 @@ export default {
         top: 0.045rem;
         .act {
           display: block;
-          width: 30%;
+          max-width: 100%;
           height: 100%;
           background: linear-gradient(0deg, #6422DF 12%, #C556EE 100%);
           border-radius: 0.08rem;
@@ -343,6 +397,69 @@ export default {
       font-size: 0.22rem;
       color: rgba(90, 172, 247, 1);
       margin-top: 0.25rem;
+    }
+  }
+  .boll_luck_pup {
+    position: relative;
+    .close {
+      display: block;
+      width: 0.75rem;
+      height: 0.75rem;
+      background: url(../img/close.png);
+      background-size: 100% auto;
+      position: absolute;
+      bottom: -1rem;
+      left: 2.64rem;
+    }
+    .luck_tips {
+      text-align: center;
+      color: RGBA(55, 43, 148, 1);
+      font-size: 0.26rem;
+    }
+    .luckGift {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.32rem;
+      margin-top: 0.4rem;
+      .giftItem {
+        width: 1.7rem;
+        .imgBox {
+          width: 1.7rem;
+          height: 1.7rem;
+          background: url(../img/luckGift_bg.png);
+          background-size: 100% 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            width: 1.34rem;
+            height: 1.34rem;
+          }
+        }
+        strong {
+          width: 100%;
+          height: 0.7rem;
+          display: block;
+          text-align: center;
+          font-size: 0.26rem;
+        }
+      }
+    }
+    .luck_tips2 {
+      font-size: 0.28rem;
+      color: RGBA(114, 234, 255, 1);
+      text-align: center;
+      margin-top: 0.22rem;
+    }
+    .luck_get {
+      width: 2.45rem;
+      height: 0.74rem;
+      background: url(../img/go.png);
+      background-size: 100% 100%;
+      text-align: center;
+      line-height: 0.74rem;
+      margin: 0.3rem auto 0;
     }
   }
 }

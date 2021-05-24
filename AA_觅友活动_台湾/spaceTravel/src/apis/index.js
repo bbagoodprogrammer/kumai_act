@@ -209,10 +209,24 @@ function getInitInfo() {
     // return testGet(arguments.callee.name);
     return get("/index.php?action=spaceTravel.init&uid={uid}&token={token}");
 }
-
+//碎片配置
 function getSliceInfo() {
     return get(
         `/index.php?action=spaceTravel.fragments&uid={uid}&token={token}`
     );
 }
-export { get, post, loadData, getInitInfo, getSliceInfo };
+
+//星球抽奖
+function starLuck() {
+    return get(
+        `/index.php?action=spaceTravel.starLanding&uid={uid}&token={token}`
+    );
+}
+
+//星球抽奖
+function ufoLuck() {
+    return get(
+        `/index.php?action=spaceTravel.fragmentsExchange&uid={uid}&token={token}`
+    );
+}
+export { get, post, loadData, getInitInfo, getSliceInfo, starLuck, ufoLuck };

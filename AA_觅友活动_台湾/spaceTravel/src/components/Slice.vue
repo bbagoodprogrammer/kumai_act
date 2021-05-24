@@ -7,27 +7,116 @@
     <div class="slice_con">
       <div class="slice_card">
         <div class="card">
-
+          <span class="arr" v-for="(item,index) in 3" :key="'arr'+index" :class="'arr'+item"></span>
+          <div class="fragmentItem" v-for="(item,index) in fragments" :key="index" :class="[{no_bg:item.num},'fragment'+item.id]">
+            <i class="nums">{{item.id}}</i>
+          </div>
         </div>
       </div>
+      <div class="giftList">
+        <div class="giftItem" v-for="(item,index) in giftList" :key="index + item">
+          <img :src="item.img" alt="">
+          <strong v-html="item.name"></strong>
+        </div>
+      </div>
+    </div>
+    <div class="ufoLuck" @click="ufoluck()">
+      抽UFO碎片
+    </div>
+    <div class="user_tickNums">
+      <em class="name">太空券</em>
+      <em>已使用: {{owner.coupons_used}} 张</em>
+      <em>剩下: {{owner.coupons}} 张</em>
+    </div>
+    <div class="mask" v-show="ufoGift">
+      <transition name="slide">
+        <div class="ufoLuckPup" v-if="ufoGift">
+          <i class="close" @click="ufoGift = false"></i>
+          <div class="ufo_luckList">
+            <div class="ufoGiftItem" v-for="(item,index) in ufoLuckGigft" :key="index">
+              <div class="imgBox">
+                <img :src="item.image" alt="">
+              </div>
+              <strong>{{item.name}}</strong>
+            </div>
+          </div>
+
+          <div class="get" @click="ufoGift = false">
+            開心收下
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
 
-
+import { getSliceInfo, ufoLuck } from "../apis"
+import { mapState } from "vuex"
 export default {
-
+  data () {
+    return {
+      ufoGift: false,
+      ufoLuckGigft: [],// 集齊的情況下會返回獎勵列表,
+      giftList: [
+        {
+          img: require(`../img/gift_1.png`),
+          name: '1000金豆'
+        },
+        {
+          img: require(`../img/gift_2.png`),
+          name: '1000金幣'
+        },
+        {
+          img: require(`../img/gift_3.png`),
+          name: '太空喵<br/>特效禮物*1'
+        }
+      ],
+      fragments: {}
+    }
+  },
+  computed: {
+    ...mapState(['owner'])
+  },
+  created () {
+    getSliceInfo().then(res => {
+      console.log(res)
+      this.fragments = res.data.response_data.fragments
+    })
+  },
+  methods: {
+    ufoluck () {
+      ufoLuck().then(res => {
+        if (res.data.response_status.code == 0) {
+          const { fragment, gifts } = res.data.response_data
+          const id = fragment.id
+          if (gifts) {
+            this.ufoLuckGigft = gifts
+            this.ufoGift = true
+          } else {
+            this.toast(`獲得${fragment.name} * 1`)
+          }
+          let newNum = this.fragments[id].num + 1
+          this.vxc('reduxCoupons')
+          this.$set(this.fragments[id], 'num', newNum)
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+    }
+  }
 }
 </script>
 
 <style lang="scss">
 .slice {
+  //   padding-bottom: 0.57rem;
   .slice_tips {
     color: rgba(90, 172, 247, 1);
     padding: 0 0.4rem 0 0.27rem;
     margin-top: 0.4rem;
+    line-height: 0.28rem;
     i {
       display: inline-block;
       width: 0.22rem;
@@ -41,6 +130,7 @@ export default {
   }
   .slice_con {
     margin-top: 0.3rem;
+    display: flex;
     .slice_card {
       width: 5.41rem;
       height: 5.42rem;
@@ -56,7 +146,253 @@ export default {
         height: 5.21rem;
         background: url(../img/slice_card.png);
         background-size: 100% 100%;
+        position: relative;
+        .arr {
+          display: block;
+          width: 0.52rem;
+          height: 0.67rem;
+          background: url(../img/arr.png);
+          background-size: 100% 100%;
+          position: absolute;
+          z-index: 2;
+          &.arr1 {
+            top: 0.51rem;
+            right: -0.4rem;
+          }
+          &.arr2 {
+            top: 2.3rem;
+            right: -0.4rem;
+          }
+          &.arr3 {
+            top: 3.9rem;
+            right: -0.4rem;
+          }
+        }
+        .fragmentItem {
+          position: absolute;
+
+          .nums {
+            display: block;
+            width: 0.34rem;
+            height: 0.34rem;
+            background: url(../img/frame_nums.png);
+            background-size: 100% 100%;
+            text-align: center;
+            line-height: 0.34rem;
+            color: rgba(147, 224, 253, 1);
+            font-size: 0.26rem;
+            position: absolute;
+          }
+          &.no_bg {
+            background: none !important;
+          }
+          &.fragment1 {
+            width: 1.73rem;
+            height: 1.73rem;
+            background: url(../img/frame/frame_1.png);
+            background-size: 100% 100%;
+            top: 0.05rem;
+            left: 0.05rem;
+            .nums {
+              top: 0.14rem;
+              left: 0.14rem;
+            }
+          }
+          &.fragment2 {
+            width: 2.15rem;
+            height: 1.98rem;
+            background: url(../img/frame/frame_2.png);
+            background-size: 100% 100%;
+            top: 0rem;
+            left: 1.53rem;
+            .nums {
+              top: 0.14rem;
+              left: 0.32rem;
+            }
+          }
+          &.fragment3 {
+            width: 1.73rem;
+            height: 1.95rem;
+            background: url(../img/frame/frame_3.png);
+            background-size: 100% 100%;
+            top: 0rem;
+            right: 0rem;
+            .nums {
+              top: 0.14rem;
+              left: 0.11rem;
+            }
+          }
+          &.fragment4 {
+            width: 1.73rem;
+            height: 2.14rem;
+            background: url(../img/frame/frame_4.png);
+            background-size: 100% 100%;
+            top: 1.52rem;
+            left: 0.05rem;
+            .nums {
+              top: 0.33rem;
+              left: 0.14rem;
+            }
+          }
+          &.fragment5 {
+            width: 2.16rem;
+            height: 1.73rem;
+            background: url(../img/frame/frame_5.png);
+            background-size: 100% 100%;
+            top: 1.72rem;
+            left: 1.52rem;
+            .nums {
+              top: 0.13rem;
+              left: 0.33rem;
+            }
+          }
+          &.fragment6 {
+            width: 1.73rem;
+            height: 1.92rem;
+            background: url(../img/frame/frame_6.png);
+            background-size: 100% 100%;
+            top: 1.72rem;
+            right: 0rem;
+            .nums {
+              top: 0.13rem;
+              left: 0.11rem;
+            }
+          }
+          &.fragment7 {
+            width: 1.73rem;
+            height: 1.73rem;
+            background: url(../img/frame/frame_7.png);
+            background-size: 100% 100%;
+            bottom: 0.05rem;
+            left: 0.05rem;
+            .nums {
+              top: 0.13rem;
+              left: 0.14rem;
+            }
+          }
+          &.fragment8 {
+            width: 2.15rem;
+            height: 1.98rem;
+            background: url(../img/frame/frame_8.png);
+            background-size: 100% 100%;
+            bottom: 0.05rem;
+            left: 1.53rem;
+            .nums {
+              top: 0.37rem;
+              left: 0.31rem;
+            }
+          }
+          &.fragment9 {
+            width: 1.73rem;
+            height: 1.74rem;
+            background: url(../img/frame/frame_9.png);
+            background-size: 100% 100%;
+            bottom: 0.05rem;
+            right: 0rem;
+            .nums {
+              top: 0.14rem;
+              left: 0.11rem;
+            }
+          }
+        }
       }
+    }
+    .giftList {
+      flex: 1;
+      margin-left: 0.17rem;
+      .giftItem {
+        width: 1.48rem;
+        margin: 0 auto;
+        img {
+          width: 1.48rem;
+          height: 1.48rem;
+        }
+        strong {
+          display: block;
+          text-align: center;
+          font-size: 0.22rem;
+          color: rgba(147, 249, 253, 1);
+          margin-top: -0.1rem;
+        }
+      }
+    }
+  }
+  .ufoLuck {
+    width: 3.29rem;
+    height: 0.85rem;
+    background: url(../img/ball_luck.png);
+    background-size: 100% 100%;
+    margin: 0.54rem auto 0;
+    text-align: center;
+    line-height: 0.85rem;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 0.4rem;
+  }
+  .user_tickNums {
+    text-align: center;
+    margin-top: 0.23rem;
+    em {
+      color: rgba(147, 224, 253, 1);
+      font-size: 0.26rem;
+    }
+    .name {
+      color: rgba(229, 89, 236, 1);
+    }
+  }
+  .ufoLuckPup {
+    position: relative;
+    .close {
+      display: block;
+      width: 0.75rem;
+      height: 0.75rem;
+      background: url(../img/close.png);
+      background-size: 100% auto;
+      position: absolute;
+      bottom: -1rem;
+      left: 2.07rem;
+    }
+    .ufo_luckList {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      .ufoGiftItem {
+        .imgBox {
+          width: 1.7rem;
+          height: 1.7rem;
+          background: url(../img/luckGift_bg.png);
+          background-size: 100% 100%;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            width: 1.34rem;
+            height: 1.34rem;
+          }
+        }
+        strong {
+          width: 1.7rem;
+          height: 0.7rem;
+          display: block;
+          text-align: center;
+          font-size: 0.26rem;
+          margin: 0 auto;
+        }
+      }
+      .ufoGiftItem:nth-child(2) {
+        margin-left: 0.21rem;
+      }
+    }
+
+    .get {
+      width: 2.45rem;
+      height: 0.74rem;
+      background: url(../img/go.png);
+      background-size: 100% 100%;
+      text-align: center;
+      line-height: 0.74rem;
+      margin: 0.48rem auto 0;
     }
   }
 }
