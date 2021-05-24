@@ -3,4 +3,41 @@ html.zh {
         background:RGBA(4, 7, 19, 1) url(./img/banner.png) no-repeat;
         background-size: 100% auto;
     }
+    .first_pup{
+        width:5rem ;
+        height: 5.6rem;
+        background: url(./img/first_pup.png);
+        background-size: 100% 100%;
+        padding-top: 1.43rem;
+    }
+    .boll_luck_pup{
+        width:5.99rem ;
+        height: 5.55rem;
+        background: url(./img/ball_luck_bg.png);
+        background-size: 100% 100%;
+        padding-top: 1.3rem;
+    }
+    .ufoLuckPup{
+        width:5rem ;
+        height: 4.24rem;
+        background: url(./img/ufoLuck.png);
+        background-size: 100% 100%;
+        padding-top: 1.47rem;
+    }
+    .rank_list{
+        background: url(./img/rank_bg.png);
+        background-size: 100% 100%;
+    }
+    .rankGroups{
+        width: 6.64rem;
+        height: 6.45rem;
+        background: url(./img/history_bg.png);
+        background-size: 100% 100%;
+    }
+    .rule{
+        width: 7.31rem;
+        height: 7.24rem;
+        background: url(./img/rule.png);
+        background-size: 100% 100%;
+    }
 }
