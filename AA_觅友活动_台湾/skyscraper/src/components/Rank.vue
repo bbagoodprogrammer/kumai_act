@@ -114,9 +114,12 @@ export default {
       this.onScroll('refresh')
     },
     goUser (item) {
-      chang_floor(item.uid).then(res => {
-        this.vxc('setChangeFloor', res.data.response_data.owner)
-      })
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + item.uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + item.uid);
+      }
     }
   }
 }

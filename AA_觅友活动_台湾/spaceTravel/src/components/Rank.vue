@@ -20,11 +20,11 @@
         <div class="userRank">{{item.rank}}</div>
         <div class="imgBox">
           <img v-lazy="item.avatar" alt="" class="avatar">
-          <span class="live">Live</span>
+          <span class="live" v-if="item.live_room">Live</span>
         </div>
         <div class="nick">{{item.nick}}</div>
         <div class="score">
-          <span class="tips">著陸次數</span>
+          <span class="tips">{{lang.landing_nums2}}</span>
           <span class="nums">{{item.score}}</span>
         </div>
       </li>
@@ -86,9 +86,7 @@ export default {
       this.onScroll('refresh')
     },
     goUser (item) {
-      chang_floor(item.uid).then(res => {
-        this.vxc('setChangeFloor', res.data.response_data.owner)
-      })
+
     }
   }
 }
@@ -99,11 +97,10 @@ export default {
   width: 7.2rem;
   min-height: 3rem;
   margin: 0.54rem auto 0;
-  padding: 1.17rem 0 2rem 0;
+  padding: 1.5rem 0 2rem 0;
   > p {
     text-align: center;
     font-size: 0.24rem;
-    color: rgba(10, 86, 177, 1);
   }
   .timeDown {
     padding: 0 1.8rem;

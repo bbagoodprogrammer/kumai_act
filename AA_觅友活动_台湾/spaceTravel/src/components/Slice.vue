@@ -2,7 +2,7 @@
   <div class="slice">
     <div class="slice_tips">
       <i></i>
-      <strong> 每送出1234金幣指定禮物，可獲得一張太空券，消耗太空券可抽UFO碎片，當集齊橫向、縱向以及所有UFO碎片後，都能獲得響應的太空獎勵</strong>
+      <strong> {{lang.slice_tips1}}</strong>
     </div>
     <div class="slice_con">
       <div class="slice_card">
@@ -15,18 +15,19 @@
       </div>
       <div class="giftList">
         <div class="giftItem" v-for="(item,index) in giftList" :key="index + item">
-          <img :src="item.img" alt="">
-          <strong v-html="item.name"></strong>
+          <img :src="item.img" alt="" v-if="light_up[gift_key[index]]">
+          <img src="../img/gift_noOpen.png" alt="" v-else class="noOpen">
+          <strong v-html="light_up[gift_key[index]]?item.name:'????'"></strong>
         </div>
       </div>
     </div>
     <div class="ufoLuck" @click="ufoluck()">
-      抽UFO碎片
+      {{lang.ufoLuck}}
     </div>
     <div class="user_tickNums">
-      <em class="name">太空券</em>
-      <em>已使用: {{owner.coupons_used}} 张</em>
-      <em>剩下: {{owner.coupons}} 张</em>
+      <em class="name">{{lang.ticket}}</em>
+      <em>{{lang.ticket_used.replace(`$`,owner.coupons_used)}}</em>
+      <em>{{lang.ticket_userNums.replace(`$`,owner.coupons)}}</em>
     </div>
     <div class="mask" v-show="ufoGift">
       <transition name="slide">
@@ -35,14 +36,16 @@
           <div class="ufo_luckList">
             <div class="ufoGiftItem" v-for="(item,index) in ufoLuckGigft" :key="index">
               <div class="imgBox">
-                <img :src="item.image" alt="">
+                <img src="../img/gift_1.png" alt="" v-if="item.type == 'bean'">
+                <img src="../img/gift_2.png" alt="" v-else-if="item.type == 'coin'">
+                <img :src=" item.image" alt="" v-else>
               </div>
               <strong>{{item.name}}</strong>
             </div>
           </div>
 
           <div class="get" @click="ufoGift = false">
-            開心收下
+            {{lang.star_get}}
           </div>
         </div>
       </transition>
@@ -59,30 +62,40 @@ export default {
     return {
       ufoGift: false,
       ufoLuckGigft: [],// 集齊的情況下會返回獎勵列表,
-      giftList: [
-        {
-          img: require(`../img/gift_1.png`),
-          name: '1000金豆'
-        },
-        {
-          img: require(`../img/gift_2.png`),
-          name: '1000金幣'
-        },
-        {
-          img: require(`../img/gift_3.png`),
-          name: '太空喵<br/>特效禮物*1'
-        }
+      gift_key: [
+        '1_2_3',
+        '4_5_6',
+        '7_8_9'
       ],
-      fragments: {}
+      //   giftList: [
+      //     {
+      //       img: require(`../img/gift_1.png`),
+      //       name: '1000金豆'
+      //     },
+      //     {
+      //       img: require(`../img/gift_2.png`),
+      //       name: '1000金幣'
+      //     },
+      //     {
+      //       img: require(`../img/gift_3.png`),
+      //       name: '太空喵<br/>特效禮物*1'
+      //     }
+      //   ],
+      fragments: {},
+      light_up: []
     }
   },
   computed: {
-    ...mapState(['owner'])
+    ...mapState(['owner']),
+    giftList () {
+      return this.lang.giftList
+    }
   },
   created () {
     getSliceInfo().then(res => {
       console.log(res)
       this.fragments = res.data.response_data.fragments
+      this.light_up = res.data.response_data.light_up
     })
   },
   methods: {
@@ -95,7 +108,7 @@ export default {
             this.ufoLuckGigft = gifts
             this.ufoGift = true
           } else {
-            this.toast(`獲得${fragment.name} * 1`)
+            this.toast(`${this.lang.frame_get} ${fragment.name} * 1`)
           }
           let newNum = this.fragments[id].num + 1
           this.vxc('reduxCoupons')
@@ -109,7 +122,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .slice {
   //   padding-bottom: 0.57rem;
   .slice_tips {
@@ -191,8 +204,8 @@ export default {
             height: 1.73rem;
             background: url(../img/frame/frame_1.png);
             background-size: 100% 100%;
-            top: 0.05rem;
-            left: 0.05rem;
+            top: 0.03rem;
+            left: 0.03rem;
             .nums {
               top: 0.14rem;
               left: 0.14rem;
@@ -203,7 +216,7 @@ export default {
             height: 1.98rem;
             background: url(../img/frame/frame_2.png);
             background-size: 100% 100%;
-            top: 0rem;
+            top: 0.03rem;
             left: 1.53rem;
             .nums {
               top: 0.14rem;
@@ -215,7 +228,7 @@ export default {
             height: 1.95rem;
             background: url(../img/frame/frame_3.png);
             background-size: 100% 100%;
-            top: 0rem;
+            top: 0.03rem;
             right: 0rem;
             .nums {
               top: 0.14rem;
@@ -228,7 +241,7 @@ export default {
             background: url(../img/frame/frame_4.png);
             background-size: 100% 100%;
             top: 1.52rem;
-            left: 0.05rem;
+            left: 0.03rem;
             .nums {
               top: 0.33rem;
               left: 0.14rem;
@@ -239,7 +252,7 @@ export default {
             height: 1.73rem;
             background: url(../img/frame/frame_5.png);
             background-size: 100% 100%;
-            top: 1.72rem;
+            top: 1.73rem;
             left: 1.52rem;
             .nums {
               top: 0.13rem;
@@ -251,8 +264,8 @@ export default {
             height: 1.92rem;
             background: url(../img/frame/frame_6.png);
             background-size: 100% 100%;
-            top: 1.72rem;
-            right: 0rem;
+            top: 1.73rem;
+            right: 0.03rem;
             .nums {
               top: 0.13rem;
               left: 0.11rem;
@@ -263,8 +276,8 @@ export default {
             height: 1.73rem;
             background: url(../img/frame/frame_7.png);
             background-size: 100% 100%;
-            bottom: 0.05rem;
-            left: 0.05rem;
+            bottom: 0.03rem;
+            left: 0.03rem;
             .nums {
               top: 0.13rem;
               left: 0.14rem;
@@ -275,7 +288,7 @@ export default {
             height: 1.98rem;
             background: url(../img/frame/frame_8.png);
             background-size: 100% 100%;
-            bottom: 0.05rem;
+            bottom: 0.02rem;
             left: 1.53rem;
             .nums {
               top: 0.37rem;
@@ -287,8 +300,8 @@ export default {
             height: 1.74rem;
             background: url(../img/frame/frame_9.png);
             background-size: 100% 100%;
-            bottom: 0.05rem;
-            right: 0rem;
+            bottom: 0.03rem;
+            right: 0.03rem;
             .nums {
               top: 0.14rem;
               left: 0.11rem;
@@ -313,6 +326,9 @@ export default {
           font-size: 0.22rem;
           color: rgba(147, 249, 253, 1);
           margin-top: -0.1rem;
+        }
+        .noOpen {
+          margin-bottom: 0.15rem;
         }
       }
     }
@@ -349,8 +365,8 @@ export default {
       background: url(../img/close.png);
       background-size: 100% auto;
       position: absolute;
-      bottom: -1rem;
-      left: 2.07rem;
+      top: -1rem;
+      right: 0rem;
     }
     .ufo_luckList {
       display: flex;

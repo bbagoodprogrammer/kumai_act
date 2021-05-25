@@ -1,17 +1,17 @@
 <template>
   <div class="rankGroups">
     <!-- 日榜、总榜切换主Tabs -->
-    <i class="close" @click="$parent.showHistory = false"></i>
+    <i class="close" @click="closeHistory()"></i>
     <div class="mainTabs">
       <div class="tabs">
-        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">著陸記錄</a>
-        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">碎片記錄</a>
+        <a class="tab1" @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{lang.history_tab1}}</a>
+        <a class="tab2" @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">{{lang.history_tab2}}</a>
       </div>
     </div>
     <!-- 总榜 -->
-    <div class="rankList_history scrollable">
-      <p class="noData" v-if="!rank.list.length">暫無數據</p>
-      <ul class="list day">
+    <div class="rankList_history ">
+      <!-- <p class="noData" v-if="!rank.list.length">{{lang.noData}}</p> -->
+      <ul class="list day scrollable">
         <li v-for="(item,index) in makeData" :key="index">
           <div class="time">{{item.key}}</div>
           <div class="taskItem" v-for="(item2,index2) in item.list" :key="index2">
@@ -77,7 +77,7 @@ export default {
       return this.mainTab == 1 ? 'total' : this.mainTab;
     },
     rankApi () {
-      var dayApi = `/index.php?action=spaceTravel.records&uid={uid}&token={token}&type={type}`;
+      var dayApi = `/index.php?action=spaceTravel.records&uid={uid}&token={token}&type={type}&from={from}`;
       const token = getUrlString('token') || '';
       const uid = getUrlString('uid') || '';
       return dayApi.replace('{token}', token).replace('{uid}', uid).replace('{type}', this.mainTab == 0 ? 'landing' : 'fragments')
@@ -108,6 +108,7 @@ export default {
     }
   },
   mounted () {
+    console.log('ounno')
     this.scrollable = this.$el.querySelector('.scrollable');
     if (this.scrollable) {
       this.scrollable.addEventListener('scroll', this.onScroll);
@@ -130,7 +131,8 @@ export default {
     onScroll () {
       console.log('xxxxx')
       if (!this.rank.loading && !this.rank.loadEnd) {
-        const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
+        const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 30;
+        console.log(scrollToBottom)
         if (scrollToBottom || !this.rank.loadCount) {
 
           const mainTab = this.mainTab
@@ -186,6 +188,7 @@ export default {
       location.href = `uid:${uid}`
     },
     closeHistory () {
+      this.vxc('clearList')
       this.$parent.showHistory = false
     },
     showFriendsPup (id) {
@@ -197,6 +200,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.listTipsBox {
+  text-align: center;
+  margin-top: 0.3rem;
+}
 .noData {
   text-align: center;
   font-size: 0.28rem;
@@ -242,7 +249,7 @@ export default {
     overflow-x: hidden;
     overflow-y: scroll;
     .list {
-      height: 4.8rem;
+      max-height: 4.8rem;
       overflow-y: scroll;
       padding: 0 0.28rem;
       margin: 0 auto;
@@ -274,7 +281,7 @@ export default {
   background: url(../img/close.png);
   background-size: 100% 100%;
   position: absolute;
-  bottom: -0.9rem;
-  left: 2.95rem;
+  top: -1rem;
+  right: 0rem;
 }
 </style>

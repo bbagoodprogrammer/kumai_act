@@ -7,21 +7,21 @@
         <div class="user">
           <img :src="item.user.avatar" alt="" v-if="item.user" class="user_av">
           <img src="../img/usre_default.png" alt="" v-else class="user_av">
-          <strong>{{item.user?item.user.nick:'虛位以待'}}</strong>
+          <strong>{{item.user?item.user.nick:lang.not_people}}</strong>
         </div>
       </div>
       <div class="top0">
-        <i class="addres">空間站</i>
+        <i class="addres">{{lang.space_station}}</i>
         <div class="top0_msg">
           <img :src="top0.avatar" alt="" v-if="top0.uid" class="user_av">
-          <img src="../img/usre_default.png" alt="" v-else class="user_av">
-          <strong>{{top0?top0.nick:'虛位以待'}}</strong>
+          <img src="../img/top0_defauultAv.png" alt="" v-else class="user_av">
+          <strong>{{top0.nick?top0.nick:lang.not_people}}</strong>
         </div>
       </div>
     </div>
     <div class="luck" :class="{black:!owner.landing_num}" @click="luck()">
-      <div class="tip">著陸到星球</div>
-      <div class="user_nums">（著陸次數：{{owner.landing_num}}）</div>
+      <div class="tip">{{lang.landing_star}}</div>
+      <div class="user_nums">（{{lang.landing_nums}}{{owner.landing_num}}）</div>
     </div>
     <div class="ball_bar">
       <div class="liner">
@@ -29,29 +29,29 @@
         <div class="act_liner">
           <span class="act" :style="{width:mysterious.progress +'%'}"></span>
         </div>
-        <span class="title">神秘星球</span>
+        <span class="title">{{lang.mysterious_star}}</span>
         <span class="barNums">{{mysterious.progress}}%</span>
       </div>
-      <div class="bar_tips">
-        每收到1223金幣指定禮物，進度條+1<br />
-        當進度條達到100%，全站出現神秘星球概率翻倍1小時並重置儘速條
+      <div class="bar_tips" v-html="lang.starTips">
       </div>
     </div>
     <div class="mask" v-show="showLuckPup">
       <transition name="slide">
-        <div class="boll_luck_pup" v-show="showLuckPup">
+        <div class="boll_luck_pup" v-if="showLuckPup">
           <i class="close" @click="showLuckPup = false"></i>
-          <p class="luck_tips">歷經萬里星河,看遍星際美景此旅無悔</p>
+          <p class="luck_tips">{{lang.starTips2}}</p>
           <div class="luckGift">
             <div class="giftItem" v-for="(item,index) in luckGift" :key="index">
               <div class="imgBox">
-                <img :src="item.img" alt="">
+                <img src="../img/gift_1.png" alt="" v-if="item.type == 'bean'">
+                <img src="../img/gift_2.png" alt="" v-else-if="item.type == 'coin'">
+                <img :src=" item.image" alt="" v-else>
               </div>
               <strong>{{item.name}}</strong>
             </div>
           </div>
-          <p class="luck_tips2">這是送給你的旅行補給哦,<br />好好休整后再次出發吧！</p>
-          <div class="luck_get" @click="showLuckPup = false">開心收下</div>
+          <p class="luck_tips2">{{lang.starTips3.replace(`$`,luckGift[0].name).replace(`%`,luckGift[1]?luckGift[1].name:'')}}</p>
+          <div class="luck_get" @click="showLuckPup = false">{{lang.star_get}}</div>
         </div>
       </transition>
     </div>
@@ -83,10 +83,17 @@ export default {
       if (this.owner.landing_num) {
         starLuck().then(res => {
           if (res.data.response_status.code == 0) {
-            const { gifts } = res.data.response_data
+            const { gifts, star } = res.data.response_data
+            if (star != 7) {
+              this.toast(`${this.lang.landing_addres}${star.name}`)
+            } else {
+              this.toast(this.lang.landing_addres_tips)
+            }
             if (gifts) {
-              this.luckGift = res.data.response_data.gifts
-              this.showLuckPup = true
+              setTimeout(() => {
+                this.luckGift = res.data.response_data.gifts
+                this.showLuckPup = true
+              }, 1100)
             }
             this.$store.dispatch('getInitInfo');
 
@@ -102,6 +109,14 @@ export default {
 </script>
 
 <style lang="scss">
+@keyframes translateY {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-6px);
+  }
+}
 .ball {
   padding-top: 0.71rem;
   .universe {
@@ -117,6 +132,7 @@ export default {
       background-size: 100% 100%;
       position: absolute;
       z-index: 2;
+      animation: translateY 3s linear infinite alternate;
       .addres {
         display: block;
         width: 100%;
@@ -294,6 +310,8 @@ export default {
           height: 1.03rem;
           border-radius: 50%;
           margin: 0 auto;
+          box-sizing: border-box;
+          border: 0.02rem solid #71F9F6;
         }
         strong {
           font-size: 0.28rem;
@@ -408,8 +426,8 @@ export default {
       background: url(../img/close.png);
       background-size: 100% auto;
       position: absolute;
-      bottom: -1rem;
-      left: 2.64rem;
+      top: -1rem;
+      right: 0rem;
     }
     .luck_tips {
       text-align: center;

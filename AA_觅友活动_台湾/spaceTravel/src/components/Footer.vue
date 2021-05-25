@@ -7,11 +7,11 @@
         <div class="userRank">{{owner.rank}}</div>
         <div class="imgBox">
           <img v-lazy="owner.avatar" alt="" class="avatar">
-          <span class="live">Live</span>
+          <span class="live" v-if="owner.live_room">Live</span>
         </div>
         <div class="nick">{{owner.nick}}</div>
         <div class="score">
-          <span class="tips">著陸次數</span>
+          <span class="tips">{{lang.landing_nums2}}</span>
           <span class="nums">{{owner.landing_num_total}}</span>
         </div>
       </div>
