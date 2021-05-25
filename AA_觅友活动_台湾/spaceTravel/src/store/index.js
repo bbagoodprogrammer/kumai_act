@@ -20,7 +20,9 @@ export default new vuex.Store({
         updateLoading(state, value) {
             state.loading = value;
         },
-
+        clearList(state, val) {
+            state.rankGroups_history = {};
+        },
         setInitInfo(state, data) {
             Object.assign(state, data);
         },

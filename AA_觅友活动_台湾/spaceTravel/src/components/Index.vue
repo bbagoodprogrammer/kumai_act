@@ -2,15 +2,15 @@
   <div class="page pageIndex">
     <div class="header">
       <div class="tipsArr">
-        <span @click="showRule = true">獎勵規則</span>
-        <span @click="showHistory = true">旅行記錄</span>
+        <span @click="showRule = true">{{lang.index_ruleTips1}}</span>
+        <span @click="showHistory = true">{{lang.index_ruleTips2}}</span>
       </div>
       <RoolMsg />
     </div>
     <div class="con">
       <div class="tab">
-        <span class="tab1" :class="{act:type == 1}" @click="type = 1">遨遊太空</span>
-        <span class="tab2" :class="{act:type == 2}" @click="type = 2">星際漫步</span>
+        <span class="tab1" :class="{act:type == 1}" @click="type = 1">{{lang.index_tab1}}</span>
+        <span class="tab2" :class="{act:type == 2}" @click="type = 2">{{lang.index_tab2}}</span>
       </div>
       <keep-alive>
         <component :is="type == 1?'Ball':'Slice'"></component>
@@ -23,12 +23,10 @@
         <div class="first_pup" v-show="first_enter">
           <i class="close" @click="first_enter = false"></i>
           <img src="../img/plane.png" alt="" class="plane">
-          <p class="palne_tips">
-            來一場說走就走的太空旅行<br />
-            一起探索浩瀚的宇宙星河
+          <p class="palne_tips" v-html="lang.index_firstTips">
           </p>
           <div class="go" @click="first_enter = false">
-            起飛
+            {{lang.fly}}
           </div>
         </div>
       </transition>
@@ -141,8 +139,8 @@ export default {
       background: url(../img/close.png);
       background-size: 100% auto;
       position: absolute;
-      bottom: -1rem;
-      left: 2.07rem;
+      top: -1rem;
+      right: 0rem;
     }
     .plane {
       width: 4.35rem;
