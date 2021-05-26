@@ -13,7 +13,7 @@
         <span class="tab2" :class="{act:type == 2}" @click="type = 2">{{lang.index_tab2}}</span>
       </div>
       <keep-alive>
-        <component :is="type == 1?'Ball':'Slice'"></component>
+        <component :is="type == 1?'Ball':'Slice'" ref="showCom"></component>
       </keep-alive>
       <Rank />
       <Footer :type="type" />

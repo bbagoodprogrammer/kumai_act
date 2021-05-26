@@ -17,6 +17,9 @@ export default {
     starTips2: "Du hành tinh hà, khám phá vũ trụ",
     starTips3: "Bạn đã hạ cánh tất cá hành tinh, chúc mừng bạn nhận【$、%】",
     star_get: "Nhận",
+    landing_addres: "Hạ cánh",
+    landing_addres_tips: "Du hành vụ trũ, bạn đã đến hành tinh Bí Mật",
+    landing_downTime: "Tỉ lệ sao bí mật đang nhân đôi, còn $ phút % giây",
 
     //history
     history_tab1: "Lịch sử hạ cánh",
@@ -62,6 +65,7 @@ export default {
     rank_min: "phút    ",
     rank_second: "giây    ",
     noData: "Không có dữ liệu",
+
     //rule
     rule_tab1: "Quy tắc",
     rule_tab2: "Thưởng",

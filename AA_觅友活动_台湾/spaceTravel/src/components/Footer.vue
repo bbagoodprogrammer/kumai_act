@@ -12,7 +12,7 @@
         <div class="nick">{{owner.nick}}</div>
         <div class="score">
           <span class="tips">{{lang.landing_nums2}}</span>
-          <span class="nums">{{owner.landing_num_total}}</span>
+          <span class="nums">{{owner.landing_num_used}}</span>
         </div>
       </div>
     </div>
@@ -132,7 +132,7 @@ export default {
         padding-right: 0.63rem;
         span {
           display: block;
-          text-align: right;
+          text-align: center;
           &.tips {
             font-size: 0.24rem;
             color: rgba(82, 237, 255, 1);

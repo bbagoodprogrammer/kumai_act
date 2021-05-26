@@ -92,13 +92,16 @@ export default {
     }
   },
   created () {
-    getSliceInfo().then(res => {
-      console.log(res)
-      this.fragments = res.data.response_data.fragments
-      this.light_up = res.data.response_data.light_up
-    })
+    this.init()
   },
   methods: {
+    init () {
+      getSliceInfo().then(res => {
+        console.log(res)
+        this.fragments = res.data.response_data.fragments
+        this.light_up = res.data.response_data.light_up
+      })
+    },
     ufoluck () {
       ufoLuck().then(res => {
         if (res.data.response_status.code == 0) {
