@@ -38,6 +38,7 @@
           {{lang.gift_p1}}
         </p>
         <h5>{{lang.gift_title2}}</h5>
+        <div class="ruleTable"></div>
         <p>{{lang.gift_p2}}</p>
         <h5>{{lang.gift_title3}}</h5>
         <div class="giftList">
@@ -86,8 +87,8 @@ export default {
   background: url(../img/close.png);
   background-size: 100% 100%;
   position: absolute;
-  bottom: -0.9rem;
-  left: 3.2rem;
+  top: -1rem;
+  right: 0.2rem;
 }
 .rule {
   padding-top: 1.22rem;

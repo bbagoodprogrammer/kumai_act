@@ -3,7 +3,7 @@ import store from "../store";
 import getSign from "../utils/getSign";
 import { getUrlString, toast } from "../utils";
 import { testGet } from "./test";
-
+import qs from "qs";
 function appendParam(url, key, value) {
     if (!new RegExp("(\\?|&)" + key + "=").test(url)) {
         url = url.replace(/(\?|&)+$/, "");
@@ -34,7 +34,7 @@ function getQueryParams(url) {
     return obj;
 }
 axios.interceptors.request.use(
-    async (config) => {
+    async config => {
         const a2b = atob;
         const euc = encodeURIComponent;
         // console.log('axios.interceptors', config);
@@ -107,7 +107,7 @@ axios.interceptors.request.use(
             config.headers = {
                 sign,
                 timestamp,
-                ...config.headers,
+                ...config.headers
             };
             // iOS旧版签名忽略空值参数兼容错误提示
             const arr = [];
@@ -122,7 +122,7 @@ axios.interceptors.request.use(
         }
         return config;
     },
-    (err) => {
+    err => {
         return Promise.reject(err);
     }
 );
@@ -132,11 +132,11 @@ function get(url, config) {
         store.commit("updateLoading", true);
         axios
             .get(url, config)
-            .then((response) => {
+            .then(response => {
                 store.commit("updateLoading", false);
                 resolve(response);
             })
-            .catch((error) => {
+            .catch(error => {
                 store.commit("updateLoading", false);
                 reject(error);
             });
@@ -148,11 +148,11 @@ function post(url, data, config) {
         store.commit("updateLoading", true);
         axios
             .post(url, data, config)
-            .then((response) => {
+            .then(response => {
                 store.commit("updateLoading", false);
                 resolve(response);
             })
-            .catch((error) => {
+            .catch(error => {
                 store.commit("updateLoading", false);
                 reject(error);
             });
@@ -207,7 +207,30 @@ function loadData(apiFunc, commitName, loadOnce = false) {
 function getInitInfo() {
     // return testGet('getInitInfo');
     // return testGet(arguments.callee.name);
-    return get("/index.php?action=kolExt.getInitInfo&uid={uid}&token={token}");
+    return get("/index.php?action=user.getUserinfo&uid={uid}&token={token}");
 }
 
-export { get, post, loadData, getInitInfo };
+function commitImg(file) {
+    console.log(file);
+    let formData = new FormData();
+    formData.append("img", file);
+    // this.$axios({
+    //     method: "POST",
+    //     url: "路径",
+    //     headers: {
+    //         "Content-Type": "multipart/form-data" //设置请求头请求格式为JSON
+    //     },
+    //     data: formData
+    // }).then(response => {
+    //     console.log("response", response);
+    // });
+    return axios({
+        url: `/index.php?action=user.gestureCheck&uid={uid}&token={token}`,
+        method: "post",
+        data: formData,
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    });
+}
+export { get, post, loadData, getInitInfo, commitImg };

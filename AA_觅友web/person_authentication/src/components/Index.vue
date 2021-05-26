@@ -9,26 +9,26 @@
           <span>{{item}}</span>
         </div>
       </div>
-      <div class="photograph">
+      <div class="photograph" @click="playPhoto()">
         拍照認證
       </div>
     </div>
     <div class="has_img" v-else-if="type == 2">
       <div class="img_change">
         <div class="nowImg">
-          <img src="" alt="">
+          <img :src="avatar" alt="">
           <span class="img_tips">當前頭像 <i></i></span>
         </div>
         <div class="changImg">
-          <img src="" alt="">
-          <span class="img_tips">認證照片<i></i></span>
+          <img :src="new_avatar" alt="">
+          <span class="img_tips" @click="playPhoto()">認證照片<i></i></span>
         </div>
       </div>
       <div class="chang_title">
         請確認當前頭像與認證照片是你本人，否
         則將無法通過認證
       </div>
-      <div class="commit">提交</div>
+      <div class="commit" @click="upload()">提交</div>
     </div>
     <div class="suc_tips" v-else-if="type == 3">
       <img src="../img/suc_icon.png" alt="" class="suc_icon">
@@ -37,27 +37,96 @@
       </div>
       <div class="suc_tips">更換頭像將重新核對真人認證，請使用真實信息</div>
     </div>
+    <input type="file" name="" id="" class="file_img" ref="file_img" accept="image/*" @change="photo($event)">
   </div>
 </template>
 
 <script>
+
+import { getInitInfo, commitImg } from "../apis"
+import store from "../store"
 export default {
   data () {
     return {
       sex: 0,
-      type: 3,
+      type: 1, //1初始狀態, 2已提交照片  3已通過
       img_tipsArr: [
         '請模仿示意圖拍攝認證照片；',
         '真人認證照片需和頭像保持一致，否則無效；',
         '通過認證後，聊天粉鑽收益翻倍；',
         '拍攝照片僅作認證審核作用，官方將嚴格保密；'
-      ]
+      ],
+      avatar: '',
+      new_avatar: '',
+      blob: '',
+      errorTips: {
+        10001: '图片不能超过2M',
+        10002: '图片手势认证失败',
+        10003: '图片不符合（最小 300*300 像素，最大 4096*4096 像素。图片短边不得低于 300 像素。最大2MB）要求',
+        10004: '图片上传失败',
+        10005: '请求频繁'
+      }
+    }
+  },
+  created () {
+    getInitInfo().then(res => {
+      console.log(res)
+      this.avatar = res.data.response_data.avatar
+      this.sex = res.data.response_data.sex
+    })
+  },
+  methods: {
+    photo (el) {
+      const file = el.target.files[0]
+      var type = file.type.split('/')[0];
+      if (type === 'image') {
+        //将图片img转化为base64
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          let dataURL = reader.result;
+          this.new_avatar = dataURL
+          this.blob = this.dataURItoBlob(dataURL);
+          this.type = 2
+        };
+      } else {
+        alert('上傳了非圖片');
+      }
+    },
+    playPhoto () {
+      this.$refs.file_img.click()
+    },
+    dataURItoBlob (dataURI) {
+      // base64 解码
+      let byteString = window.atob(dataURI.split(',')[1]);
+      let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+      let T = mimeString.split('/')[1];
+      let ab = new ArrayBuffer(byteString.length);
+      let ia = new Uint8Array(ab);
+      for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      }
+      return new Blob([ab], { type: mimeString });
+    },
+    upload () {
+      store.commit("updateLoading", true);
+      commitImg(this.blob).then(res => {
+        store.commit("updateLoading", false);
+        if (res.data.response_data) {
+          this.type = 3
+        } else {
+          this.toast(this.errorTips[res.data.response_status.code])
+        }
+      })
     }
   }
 }
 </script>
 
 <style lang="scss">
+.file_img {
+  display: none;
+}
 .pageIndex {
   .default_type {
     padding-top: 0.6rem;

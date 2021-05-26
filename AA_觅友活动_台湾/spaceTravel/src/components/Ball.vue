@@ -29,7 +29,8 @@
         <div class="act_liner">
           <span class="act" :style="{width:mysterious.progress +'%'}"></span>
         </div>
-        <span class="title">{{lang.mysterious_star}}</span>
+        <span class="title">{{lang.mysterious_star}} <em v-if="mysterious.countdown && !surplusTime.end">{{lang.landing_downTime.replace('$',surplusTime.minute).replace('%',surplusTime.second)}}</em>
+        </span>
         <span class="barNums">{{mysterious.progress}}%</span>
       </div>
       <div class="bar_tips" v-html="lang.starTips">
@@ -62,13 +63,25 @@
 
 import { mapState } from "vuex"
 import { starLuck } from "../apis"
+import downTime from '../utils/downTime.js'
 export default {
   data () {
     return {
       showLuckPup: false,
-      luckGift: []
+      luckGift: [],
+      surplusTime: {}
     }
   },
+  watch: {
+    mysterious (val) {
+      if (val.countdown) {
+        this.downTimeGo('time_fire', val.countdown)
+      }
+    }
+  },
+  //   created () {
+  //     this.downTimeGo('time_fire', 99)
+  //   },
   computed: {
     ...mapState(['stars', 'rank_space_station', 'owner', 'mysterious']),
     top0 () {
@@ -102,7 +115,21 @@ export default {
           }
         })
       }
-    }
+    },
+    downTimeGo (timeName, val) {
+      clearInterval(this.timer)
+      if (!downTime(timeName)) {
+        downTime(timeName, val);
+      }
+      this.surplusTime = downTime(timeName);
+      this.timer = setInterval(() => {
+        this.surplusTime = downTime(timeName);
+        if (this.surplusTime && this.surplusTime.end) {
+          clearInterval(this.timer)
+          // this.$store.commit("changday_down_time", 0)  //當天剩餘時間
+        }
+      }, 1000)
+    },
   }
 
 }
@@ -331,6 +358,10 @@ export default {
     background: url(../img/ball_luck.png);
     background-size: 100% 100%;
     margin: 0.94rem auto 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     &.black {
       width: 3.29rem;
       height: 0.85rem;
@@ -400,6 +431,9 @@ export default {
         position: absolute;
         left: 0;
         top: -0.4rem;
+        em {
+          font-size: 0.24rem;
+        }
       }
       .barNums {
         position: absolute;
@@ -437,7 +471,7 @@ export default {
     .luckGift {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       padding: 0 0.32rem;
       margin-top: 0.4rem;
       .giftItem {
@@ -462,6 +496,9 @@ export default {
           text-align: center;
           font-size: 0.26rem;
         }
+      }
+      .giftItem:nth-child(2) {
+        margin-left: 0.2rem;
       }
     }
     .luck_tips2 {

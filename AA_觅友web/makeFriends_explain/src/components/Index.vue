@@ -14,9 +14,9 @@
       </span>
     </p>
     <div class="ring">
-      <div class="title">心動值達到30萬</div>
-      <div class="ring_tips">xxx戒指</div>
-      <img src="../img/ring.png" alt="" class="ringImg">
+      <div class="title">心動值達到{{Math.floor(heartbeatValueReward / 10000) }}萬</div>
+      <div class="ring_tips">{{ringName}}</div>
+      <img :src="ringImage" alt="" class="ringImg">
     </div>
     <div class="title1">
       牽手場景
@@ -27,7 +27,7 @@
     <div class="imgList">
       <div class="imgItem" v-for="(item,index) in imgList" :key="index">
         <img :src="item.img" alt="">
-        <div class="nums"><i></i> {{item.nums}}</div>
+        <div class="nums"><i></i> {{svgaLevel[index]}}</div>
       </div>
     </div>
   </div>
@@ -37,16 +37,31 @@
 
 import { getAppVer, getPlatform } from "../utils";
 import { setFullScreen, getStatusBarHeight } from '../utils/navigation';
+import { getInitInfo } from "../apis"
 export default {
   data () {
     return {
       navigatorHeight: 0,
+      heartbeatValueReward: '',
+      ringImage: '',
+      ringName: '',
+      svgaLevel: ''
     }
   },
   computed: {
     imgList () {
       return this.lang.imgList
     }
+  },
+  created () {
+    getInitInfo().then(res => {
+      console.log(res)
+      const { heartbeatValueReward, ringImage, ringName, svgaLevel } = res.data.response_data
+      this.heartbeatValueReward = heartbeatValueReward
+      this.ringImage = ringImage
+      this.ringName = ringName
+      this.svgaLevel = svgaLevel
+    })
   },
   mounted () {
     const pt = getPlatform();

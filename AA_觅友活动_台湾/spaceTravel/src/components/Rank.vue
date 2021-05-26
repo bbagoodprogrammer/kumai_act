@@ -76,14 +76,12 @@ export default {
       if (!this.more) {
         return
       }
-      if (this.is_anchor) {
-        this.vxc('reSetChange_floor')
+      if (this.$parent.type == 2) {
+        this.$parent.$refs.showCom.init()
       }
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       this.loaded = false
       this.$store.dispatch('getInitInfo');
-      this.list = []
-      this.onScroll('refresh')
     },
     goUser (item) {
 
@@ -192,7 +190,7 @@ export default {
         padding-right: 0.43rem;
         span {
           display: block;
-          text-align: right;
+          text-align: center;
           &.tips {
             font-size: 0.24rem;
             color: rgba(82, 237, 255, 1);
