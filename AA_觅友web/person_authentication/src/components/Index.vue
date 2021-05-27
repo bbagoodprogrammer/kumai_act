@@ -82,15 +82,22 @@ export default {
       if (type === 'image') {
         //将图片img转化为base64
         var reader = new FileReader();
+        alert(reader)
         reader.readAsDataURL(file);
         reader.onloadend = () => {
           let dataURL = reader.result;
+          alert(dataURL)
           this.new_avatar = dataURL
           this.blob = this.dataURItoBlob(dataURL);
-          this.type = 2
+          alert(this.blob.size)
+          if (this.blob.size > 2000000) {
+            this.toast('上傳圖片不得大於2M,請重新上傳！');
+          } else {
+            this.type = 2
+          }
         };
       } else {
-        alert('上傳了非圖片');
+        this.toast('上傳了非圖片');
       }
     },
     playPhoto () {

@@ -8,6 +8,11 @@ html.vi {
             }
         }
     }
+    .ball_bar{
+        .title{
+            font-size: .26rem;
+        }
+    }
     .tipsArr{
         span{
             display: flex!important;
@@ -60,5 +65,12 @@ html.vi {
         height: 7.24rem;
         background: url(./img/rule.png);
         background-size: 100% 100%;
+    }
+    .ruleTable{
+        width: 6.26rem;
+        height: 2.26rem;
+        background: url(./img/ruleTable.png);
+        background-size: 100% 100%;
+        margin-bottom: .3rem;
     }
 }

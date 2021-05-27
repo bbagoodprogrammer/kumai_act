@@ -6,27 +6,71 @@
       <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">粉磚結算</a>
     </div>
     <!-- 日榜 -->
-    <div class="list day">
-      <ul>
-        <li v-for="(item,index) in rank.list" :key="index">
-
-        </li>
-      </ul>
+    <div class="list_con">
+      <div class="list day" v-if="mainTab == 0">
+        <div class="listHeader">
+          <span>主播</span>
+          <span>粉磚餘額</span>
+        </div>
+        <ul>
+          <li v-for="(item,index) in rank.list" :key="index">
+            <img v-lazy="item.avatar" alt="">
+            <div class="userMsg">
+              <div class="nick">{{item.nick}}</div>
+              <div class="uid">ID {{item.uid}}</div>
+            </div>
+            <div class="score">{{item.pinkJewel}}</div>
+          </li>
+        </ul>
+      </div>
+      <div class="data" v-if="mainTab==1">
+        <div class="top">
+          <div>
+            <span>{{getDayShowTime()}}</span>
+            <span @click="choose()"></span>
+          </div>
+          <div class="help" @click="openRule()"></div>
+        </div>
+        <div class="pro_top">
+          <div class="inner">
+            <p class="total">
+              <span>結算粉磚匯總:</span><img src="../img/coin30.png" alt="">
+              <span>9999</span>
+            </p>
+            <div class="scroll_title">
+              <span>主播</span>
+              <span>結算粉磚</span>
+              <span>結算時間</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
+      <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
+      <div v-if="rank.none" class="scrollNone">
+        {{lang.no_data}}
+      </div>
     </div>
-    <!-- 任務列表 -->
-    <!-- <taskList v-else></taskList> -->
-    <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-    <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
-    <div v-if="rank.none" class="scrollNone">
-      {{lang.rank_noData}}
-    </div>
+    <!-- 時間選擇器 -->
+    <van-popup v-model="show" position="bottom" round :style="{ height: '40%' }">
+      <van-datetime-picker v-model="currentDateDay" type="date" title="" :min-date="minDate" :max-date="maxDate" :confirm-button-text=lang.confirm :cancel-button-text=lang.cancel
+        @confirm="confirmTime(0)" @cancel="cancelTime()" :swipe-duration="50" />
+    </van-popup>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { mapState } from 'vuex';
-import { getUrlString } from '../utils';
+import { getUrlString, getTimeObj } from '../utils';
+const uid = getUrlString("uid");
+const token = getUrlString("token");
+const lang = getUrlString("lang");
+const rid = getUrlString("rid");
+//可设置初始化日子
+const mTime = new Date(2021, 2, 1);
+const htmlFont = parseInt(getComputedStyle(window.document.documentElement)['font-size']);
+
 // 为了清晰显示各字段以及提供更灵活的配置，不采用mixin实现
 // store.js 每项包含以下字段（需要修改的字段只有loadOnce，其它为当前榜单加载状态）：loadCount loading loadEnd none list <loadOnce>
 // 如果不需要设置loadOnce，直接设置空对象即可rankGroups:{}
@@ -54,6 +98,17 @@ export default {
       timer2: null,
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
+      minDate: mTime,
+      maxDate: new Date(),
+      currentDate: new Date(),
+      currentDateDay: new Date(),
+      show: false,
+
+      shijiancuo: new Date() / 1000,
+      shijiancuo_month: new Date() / 1000,
+
+      confirm_day_time: '',
+      confirm_month_time: String(this.format(new Date().getTime() / 1000)),
     }
   },
   watch: {
@@ -72,15 +127,11 @@ export default {
       return this.mainTab == 1 ? 'total' : this.mainTab;
     },
     rankApi () {
-      if (this.isShare) {
-        var dayApi = `/index.php?action=trueLove.rank&date={date}&from={from}`;
-        return dayApi.replace('{date}', this.rankKey == 'total' ? 0 : 1)
-      } else {
-        var dayApi = `/index.php?action=trueLove.rank&date={date}&uid={uid}&token={token}&from={from}`;
-        const token = getUrlString('token') || '';
-        const uid = getUrlString('uid') || '';
-        return dayApi.replace('{date}', this.rankKey == 'total' ? 0 : 1).replace('{uid}', uid).replace('{token}', token);
-      }
+      var anchor_api = `/index.php?action=Action/Anchor.getAnchorPinkJewel&token={token}&uid={uid}&page={page}`;
+      var masonry_api = `/index.php?action=Action/Anchor.getAnchorPinkJewelSettlement&token={token}&uid={uid}&page={page}&ym=2020-10`;
+      const token = getUrlString('token') || '';
+      const uid = getUrlString('uid') || '';
+      return this.mainTab ? masonry_api : anchor_api
     },
     rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
@@ -103,7 +154,6 @@ export default {
   methods: {
     mainTabClick (tab) { //总榜切换
       this.mainTab = tab;
-      this.$store.commit("changTab", this.rankKey)
       this.$nextTick(() => {
         if (!this.rank.loadCount) {
           this.onScroll();
@@ -122,17 +172,31 @@ export default {
             this.$store.commit('updateRankGroups', { key, [k]: v });
           };
           set('loading', true);
-          axios.get(this.rankApi.replace('{from}', this.rank.list.length)).then(res => {
+          axios.get(this.rankApi.replace('{page}', this.rank.loadCount ? this.rank.loadCount : 0)).then(res => {
 
             const { response_status, response_data } = res.data;
 
-            if (response_status.code != 0) {
+            if (!response_data) {
               set('loadEnd', true);
               return;
             }
-            const arr = response_data.rank;
-            //倒计时
-            set('second', response_data.second)
+
+            // const arr = response_data.list;
+            const arr = [//详细主播的粉钻余额
+              {
+                "uid": 1234,//主播uid
+                "nick": "昵称",//主播昵称
+                "avatar": "http://XXX",//主播头像
+                "pinkJewel": 1000//粉钻余额
+              },
+              {
+                "uid": 1234,//主播uid
+                "nick": "昵称",//主播昵称
+                "avatar": "http://XXX",//主播头像
+                "pinkJewel": 1000//粉钻余额
+              }
+            ]
+
             if (arr.slice) {
               const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
               set('loadCount', loadCount + 1);
@@ -164,23 +228,6 @@ export default {
         }
       }
     },
-    onRefresh (val) {
-      console.log(val)
-      if (this.rank.loading) return
-      this.rotatePx = 540 * ++this.rotatec  //旋转动画
-      if (val != 'init') {
-        this.$store.dispatch('getInitInfo');
-      }
-      this.$store.commit('updateRankGroups', {
-        key: this.rankKey,
-        loadCount: 0,
-        loadEnd: false,
-        loading: false,
-        none: false,
-        list: [],
-      });
-      this.$nextTick(this.onScroll);
-    },
     getDate (time) {
       return getDate(new Date(time * 1000), '2')
     },
@@ -191,6 +238,101 @@ export default {
       } else {
         javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
       }
+    },
+    getDayShowTime () {
+      return this.lang.day_time.replace('{0}', getTimeObj(this.shijiancuo).year).replace('{1}', getTimeObj(this.shijiancuo).month).replace('{2}', getTimeObj(this.shijiancuo).day);
+    },
+
+    choose () {
+      if (!this.show) {
+        this.show = true;
+      } else {
+        this.show = false;
+      }
+    },
+    async confirmTime (type) {//0日，1月
+      if (type == 0) {
+        // console.log('日');
+        var send_time = String(this.formatDay(this.currentDateDay.getTime() / 1000));
+        this.shijiancuo = this.currentDateDay.getTime() / 1000;
+        this.show = false;
+        this.reset = !this.reset;
+        this.confirm_day_time = send_time;
+        this.live_url = '/index.php?signture=innerserver&action=Action/Anchor.getDayAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ymd=' + send_time + '&lang=' + lang;
+      } else {
+        // console.log('月');
+        // console.log(this.format(this.currentDate.getTime()/1000));
+        var send_month_time = String(this.format(this.currentDate.getTime() / 1000));
+        // console.log(send_month_time);
+        // return;
+        this.confirm_month_time = send_month_time;
+        this.shijiancuo_month = this.currentDate.getTime() / 1000;
+        this.show = false;
+        this.reset = !this.reset;
+        this.month_url = '/index.php?signture=innerserver&action=Action/Anchor.getMonthAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ym=' + send_month_time + '&lang=' + lang;
+        return;
+        var send_month_time = String(this.format(this.currentDate.getTime() / 1000));
+        this.shijiancuo_month = this.currentDate.getTime() / 1000;
+        const info = await getMonthInfo(send_month_time);
+        if (info.data) {
+          const { response_status, response_data } = info.data;
+          if (response_status.error == '') {
+            console.log(this.month_data);
+            if (response_data && response_data.length == 0) {
+              this.$alert(this.lang.no_data);
+              return;
+            }
+            this.show = false;
+            this.month_data = {};
+            this.month_data = response_data;
+          } else {
+            this.$alert(response_status.error.replace(/\[\d+\]/, ''));
+          }
+        }
+      }
+    },
+    cancelTime () {
+      this.show = false;
+    },
+    formatDay (nows) {
+      var now = new Date(nows * 1000);
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1 >= 10 ? now.getMonth() + 1 : '0' + (now.getMonth() + 1);
+      var date = now.getDate() >= 10 ? now.getDate() : '0' + now.getDate();
+      var hour = now.getHours() >= 10 ? now.getHours() : '0' + now.getHours();
+      var minute = now.getMinutes() >= 10 ? now.getMinutes() : '0' + now.getMinutes();
+      var second = now.getSeconds() > 10 ? now.getSeconds() : '0' + now.getSeconds();
+      return year + "-" + month + "-" + date;
+    },
+    showformat (nows) {
+      var now = new Date(nows * 1000);
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1 >= 10 ? now.getMonth() + 1 : '0' + (now.getMonth() + 1);
+      var date = now.getDate() >= 10 ? now.getDate() : '0' + now.getDate();
+      var hour = now.getHours() >= 10 ? now.getHours() : '0' + now.getHours();
+      var minute = now.getMinutes() >= 10 ? now.getMinutes() : '0' + now.getMinutes();
+      var second = now.getSeconds() > 10 ? now.getSeconds() : '0' + now.getSeconds();
+      return year + "." + month;
+    },
+    format (nows) {
+      var now = new Date(nows * 1000);
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1 >= 10 ? now.getMonth() + 1 : '0' + (now.getMonth() + 1);
+      var date = now.getDate() >= 10 ? now.getDate() : '0' + now.getDate();
+      var hour = now.getHours() >= 10 ? now.getHours() : '0' + now.getHours();
+      var minute = now.getMinutes() >= 10 ? now.getMinutes() : '0' + now.getMinutes();
+      var second = now.getSeconds() > 10 ? now.getSeconds() : '0' + now.getSeconds();
+      return year + "-" + month;
+    },
+    showformatDay (nows) {
+      var now = new Date(nows * 1000);
+      var year = now.getFullYear();
+      var month = now.getMonth() + 1 >= 10 ? now.getMonth() + 1 : '0' + (now.getMonth() + 1);
+      var date = now.getDate() >= 10 ? now.getDate() : '0' + now.getDate();
+      var hour = now.getHours() >= 10 ? now.getHours() : '0' + now.getHours();
+      var minute = now.getMinutes() >= 10 ? now.getMinutes() : '0' + now.getMinutes();
+      var second = now.getSeconds() > 10 ? now.getSeconds() : '0' + now.getSeconds();
+      return month + "." + date;
     },
   },
 }
@@ -214,6 +356,7 @@ export default {
     a {
       width: 2.4rem;
       height: 0.6rem;
+      line-height: 0.6rem;
       border-radius: 0.3rem;
       &.current {
         color: rgba(255, 248, 251, 1);
@@ -222,28 +365,62 @@ export default {
       }
     }
   }
-  .timeBox {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .actTime {
-      height: 1rem;
+  .list_con {
+    margin: 0.34rem auto 0;
+    width: 6.9rem;
+    border-radius: 0.2rem;
+    padding-bottom: 0.35rem;
+    background: linear-gradient(
+      135deg,
+      rgba(246, 90, 110, 0.1) 0%,
+      rgba(182, 118, 240, 0.1) 64%,
+      rgba(125, 125, 246, 0.1) 100%
+    );
+  }
+  .list {
+    .listHeader {
+      height: 0.88rem;
       display: flex;
       align-items: center;
       span {
-        width: 0.72rem;
-        height: 0.72rem;
+        flex: 1;
+        height: 100%;
         text-align: center;
-        line-height: 0.72rem;
-        font-size: 0.48rem;
-        font-weight: 600;
-        border-radius: 0.1rem;
+        line-height: 0.88rem;
       }
-      em {
-        font-size: 0.22rem;
-        margin: 0.1rem 0.15rem 0 0.15rem;
-        color: rgba(252, 252, 180, 1);
+    }
+    ul {
+      li {
+        height: 1.36rem;
+        display: flex;
+        align-items: center;
+        img {
+          width: 0.88rem;
+          height: 0.88rem;
+          border-radius: 50%;
+          margin: 0 0.1rem 0 0.3rem;
+        }
+        .userMsg {
+          width: 2.18rem;
+          .nick {
+            font-size: 0.28rem;
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+          .uid {
+            margin-top: 0.05rem;
+            font-size: 0.24rem;
+            color: rgba(153, 153, 153, 1);
+          }
+        }
+        .score {
+          font-size: 0.24rem;
+          color: rgba(153, 153, 153, 1);
+          flex: 1;
+          text-align: center;
+        }
       }
     }
   }
@@ -253,12 +430,12 @@ export default {
 }
 .scrollLoading {
   text-align: center;
-  color: #056005;
   font-size: 80%;
+  margin-top: 0.25rem;
 }
 .scrollNone {
   text-align: center;
-  color: #056005;
   font-size: 80%;
+  margin-top: 0.25rem;
 }
 </style>

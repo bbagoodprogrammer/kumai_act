@@ -6,6 +6,7 @@
       <a class="tab2" @click.prevent="mainTab=1" :class="{current:mainTab==1}" href="">{{lang.rule_tab2}}</a>
     </div>
     <div class="rule_con">
+      <p class="tm">{{lang.act_tm}}</p>
       <div class="ruleTips" v-if="!mainTab">
         <div v-for="(item,index) in rule_tips" :key="index">
           <h5>{{item.h5}}</h5>
@@ -126,6 +127,10 @@ export default {
     height: 6rem;
     overflow-y: scroll;
     padding: 0 0.28rem;
+    .tm {
+      font-size: 0.26rem;
+      margin: 0.1rem auto;
+    }
     h5 {
       font-size: 0.28rem;
       color: rgba(196, 232, 255, 1);

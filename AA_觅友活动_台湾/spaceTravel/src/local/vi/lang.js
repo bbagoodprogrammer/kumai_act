@@ -3,15 +3,14 @@ export default {
     title: "Du Hành Vũ Trụ",
     noAct: "Event chưa mở",
     actEd: "Event đã kết thúc",
-
     not_people: "Đang đợi",
-
+    act_tm: "hời gian: 28/05 12:00 - 03/06 23:59:59",
     //ball
     space_station: "Trạm không Gian",
     landing_star: "Hạ cánh hành tinh",
     landing_nums: "Số lần hạ cánh:",
     landing_nums2: "Số lần hạ cánh",
-    mysterious_star: "Hành Tinh Bí Mật",
+    mysterious_star: "Mysteriousness",
     starTips:
         "Mỗi khi nhận 80 Xu quà chỉ định, tiến độ +1%, khi tiến độ đạt 100%, tỉ lệ xuất hiện Hành Tinh Bí Mật tăng gấp đôi, 30 phút reset tiến độ",
     starTips2: "Du hành tinh hà, khám phá vũ trụ",
@@ -19,7 +18,7 @@ export default {
     star_get: "Nhận",
     landing_addres: "Hạ cánh",
     landing_addres_tips: "Du hành vụ trũ, bạn đã đến hành tinh Bí Mật",
-    landing_downTime: "Tỉ lệ sao bí mật đang nhân đôi, còn $ phút % giây",
+    landing_downTime: "Tỉ lệ đang gấp đôi, còn $ phút % giây",
 
     //history
     history_tab1: "Lịch sử hạ cánh",
@@ -101,7 +100,7 @@ export default {
         {
             h5: "3. Hành Tinh Bí Mật",
             p:
-                "Khi hành tinh bí mật xuất hiện, tất cả phi hành gia khi nhận được quà tặng chỉ định mỗi 80 vàng, tiến độ hành tinh bí mật+1%, khi tiến độ đạt 100%, tỷ lệ xuất hiện của hành tinh bí mật tăng gấp đôi duy trì 30 phút, và tiến độ sẽ reset."
+                "Khi hành tinh bí mật xuất hiện, tất cả phi hành gia khi nhận được quà tặng chỉ định mỗi 80 Xu, tiến độ hành tinh bí mật+1%, khi tiến độ đạt 100%, tỷ lệ xuất hiện của hành tinh bí mật tăng gấp đôi duy trì 30 phút, và tiến độ sẽ reset."
         },
         {
             h5: "4.Trạm Không Gian",
@@ -184,7 +183,7 @@ export default {
                 },
                 {
                     img: require(`../../img/ruleGift/9.png`),
-                    name: "Phi Hành Gia - Huy chương (1 5ngày)"
+                    name: "Phi Hành Gia - Huy chương (15ngày)"
                 }
             ]
         }
