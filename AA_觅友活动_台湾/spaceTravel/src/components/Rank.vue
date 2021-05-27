@@ -18,7 +18,7 @@
     <ul>
       <li v-for="(item,index) in rank" :key="index" :class="['rank' + item.rank]" @click="goUser(item)">
         <div class="userRank">{{item.rank}}</div>
-        <div class="imgBox">
+        <div class="imgBox" @click="goUser(item.uid)">
           <img v-lazy="item.avatar" alt="" class="avatar">
           <span class="live" v-if="item.live_room">Live</span>
         </div>
@@ -83,8 +83,13 @@ export default {
       this.loaded = false
       this.$store.dispatch('getInitInfo');
     },
-    goUser (item) {
-
+    goUser (uid) {
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
+      }
     }
   }
 }

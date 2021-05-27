@@ -1,46 +1,24 @@
 <template>
-  <div class="rankGroups">
+  <div class="rankGroupsFriend">
     <!-- <div :style="{background:'#7a68f8',height:navigatorHeight}"></div> -->
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
-      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{lang.day_data}}</a>
-      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">{{lang.month_data}}</a>
-      <div class="risk-active-line" :class="[mainTab == 1?'risk-active-line-f':'risk-active-line-r']"></div>
+      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">主播信息</a>
+      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">粉磚結算</a>
+      <!-- <div class="risk-active-line" :class="[mainTab == 1?'risk-active-line-f':'risk-active-line-r']"></div> -->
     </div>
 
-    <div class="myInfo">
-      <div>
-        <span>{{my_info.name}}</span>
-        <span></span>
-        <span>ID {{my_info.gid}}</span>
-      </div>
-      <div>{{lang.anchor_num}}{{my_info.anchorCnt}}</div>
-    </div>
-
-    <div class="data" v-if="mainTab==0">
-      <div class="top">
-        <div>
-          <span>{{getDayShowTime()}}</span>
-          <span @click="choose()"></span>
-        </div>
-        <div class="help" @click="openRule()"></div>
-      </div>
+    <div class="data no_spacing" v-if="mainTab==0">
       <div class="pro_top" v-if="live_flag">
         <div class="inner">
-          <p class="total">
-            <span>{{lang.total_score}}</span><img src="../img/coin30.png" alt="">
-            <span>{{dayTotalCoins}}</span>
-          </p>
           <div class="scroll_title">
             <span>{{lang.title_type1}}</span>
-            <span>{{lang.title_type2}}</span>
-            <span>{{lang.title_type3}}</span>
-            <span>{{lang.title_type4}}</span>
+            <span>粉磚餘額</span>
           </div>
           <div class="rank_list scrollable" :style="{height:(viewHeight-topHeight-navigatorHeight)+'px',}">
             <inner-scroll-load-list :url="live_url" :parse="dayDataParse" :reset='reset'>
               <div slot-scope="{list, loading, none, end}">
-                <live-item v-for="(item,index) in list" :info="item" :key="index" />
+                <liveItemFriend v-for="(item,index) in list" :info="item" :key="index" />
                 <div v-show="loading" class="sloading_inner">{{lang.loading}}</div>
                 <div v-show="none" class="snone_inner">{{lang.no_data}}</div>
                 <div v-show="end" class="send_inner"></div>
@@ -51,7 +29,7 @@
       </div>
     </div>
 
-    <div class="data" v-if="mainTab==1&&is_done">
+    <div class="data brick" v-if="mainTab==1&&is_done">
       <div class="top">
         <div>
           <span>{{getMonthShowTime()}}</span>
@@ -62,19 +40,18 @@
       <div class="pro_top" v-if="month_flag">
         <div class="inner">
           <p class="total">
-            <span>{{lang.total_score}}</span><img src="../img/coin30.png" alt="">
+            <span>結算粉磚匯總</span><img src="../img/mey_icon.png" alt="">
             <span>{{monthTotalCoins}}</span>
           </p>
           <div class="scroll_title">
             <span>{{lang.title_type1}}</span>
-            <span>{{lang.title_type2}}</span>
-            <span>{{lang.title_type3}}</span>
-            <span>{{lang.title_type4}}</span>
+            <span>結算粉磚</span>
+            <span>結算時間</span>
           </div>
           <div class="rank_list scrollable" :style="{height:(viewHeight-topHeight-navigatorHeight)+'px',}">
             <inner-scroll-load-list :url="month_url" :parse="monthDataParse" :reset='reset'>
               <div slot-scope="{list, loading, none, end}">
-                <live-item v-for="(item,index) in list" :info="item" :key="index" />
+                <liveItemBrick v-for="(item,index) in list" :info="item" :key="index" />
                 <div v-show="loading" class="sloading_inner">{{lang.loading}}</div>
                 <div v-show="none" class="snone_inner">{{lang.no_data}}</div>
                 <div v-show="end" class="send_inner"></div>
@@ -86,20 +63,18 @@
     </div>
 
     <van-popup v-model="show" position="bottom" round :style="{ height: '40%' }">
-      <van-datetime-picker v-if="mainTab==0" v-model="currentDateDay" type="date" title="" :min-date="minDate" :max-date="maxDate" :confirm-button-text=lang.confirm :cancel-button-text=lang.cancel
+      <van-datetime-picker v-model="currentDateDay" type="date" title="" :min-date="minDate" :max-date="maxDate" :confirm-button-text=lang.confirm :cancel-button-text=lang.cancel
         @confirm="confirmTime(0)" @cancel="cancelTime()" :swipe-duration="50" />
-      <van-datetime-picker v-if="mainTab==1" v-model="currentDate" type="year-month" title="" :min-date="minDate" :max-date="maxDate" :confirm-button-text=lang.confirm :cancel-button-text=lang.cancel
-        @confirm="confirmTime(1)" @cancel="cancelTime()" :swipe-duration="50" />
     </van-popup>
 
     <van-popup v-model="rule_show" position="bottom" round :style="{ height: '70%',}">
       <div class="rule_box">
-        <p>{{lang.rule_title}}</p>
-        <p class="rule_tips">{{lang.rule_tips}}</p>
+        <p>{{lang.rule_pickTitle}}</p>
+        <!-- <p class="rule_tips">{{lang.rule_tips}}</p> -->
         <ol>
-          <li v-for="i in lang.rule_li.length" :key="i">
+          <li v-for="i in lang.rule_pickLi.length" :key="i">
             <i>{{i}}</i>
-            <strong v-html="lang.rule_li[i-1]"></strong>
+            <strong v-html="lang.rule_pickLi[i-1]"></strong>
           </li>
         </ol>
       </div>
@@ -117,8 +92,8 @@ import { getUrlString, getTimeObj, getAppVer, getPlatform } from '../utils';
 import { setFullScreen, setStatusBarStyle, getStatusBarHeight, callAppNew } from '../utils/navigation';
 import { getDayInfo, getMonthInfo } from '../apis';
 import InnerScrollLoadList from '../components/InnerScrollLoadList';
-import liveItem from '../components/liveItem';
-import roomItem from '../components/roomItem';
+import liveItemFriend from "../components/liveItem_friend"
+import liveItemBrick from "../components/liveItem_brick"
 const uid = getUrlString("uid");
 const token = getUrlString("token");
 const lang = getUrlString("lang");
@@ -193,7 +168,7 @@ export default {
     var now = Date.parse(new Date());
     this.live_flag = true;
     this.confirm_day_time = String(this.formatDay(this.shijiancuo));
-    this.live_url = '/index.php?action=Action/Anchor.getDayAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ymd=' + this.confirm_day_time + '&lang=' + lang;
+    this.live_url = '/index.php?action=Action/Anchor.getAnchorPinkJewel&uid={uid}&token={token}&page={page}' + '&lang=' + lang;
   },
   watch: {
     confirm_day_time () {
@@ -234,7 +209,8 @@ export default {
         var today = String(this.format(nowmonth / 1000));
         // this.shijiancuo_month = new Date().getTime()/1000;
         this.is_done = true;
-        this.month_url = '/index.php?action=Action/Anchor.getMonthAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ym=' + this.confirm_month_time + '&lang=' + lang;
+        this.month_url = '/index.php?action=Action/Anchor.getAnchorPinkJewelSettlement&uid={uid}&token={token}&page={page}&ym=' + this.confirm_month_time + '&lang=' + lang;
+
         // const info = await getMonthInfo(today);
         // if (info.data) {
         //     const {response_status, response_data} = info.data;
@@ -267,7 +243,8 @@ export default {
         this.show = false;
         this.reset = !this.reset;
         this.confirm_day_time = send_time;
-        this.live_url = '/index.php?action=Action/Anchor.getDayAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ymd=' + send_time + '&lang=' + lang;
+        this.live_url = '/index.php?action=Action/Anchor.getAnchorPinkJewel&uid={uid}&token={token}&page={page}' + '&lang=' + lang;
+
       } else {
         // console.log('月');
         // console.log(this.format(this.currentDate.getTime()/1000));
@@ -278,7 +255,7 @@ export default {
         this.shijiancuo_month = this.currentDate.getTime() / 1000;
         this.show = false;
         this.reset = !this.reset;
-        this.month_url = '/index.php?action=Action/Anchor.getMonthAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ym=' + send_month_time + '&lang=' + lang;
+        this.month_url = '/index.php?action=Action/Anchor.getAnchorPinkJewelSettlement&uid={uid}&token={token}&page={page}&ym=' + send_month_time + '&lang=' + lang;
         return;
         var send_month_time = String(this.format(this.currentDate.getTime() / 1000));
         this.shijiancuo_month = this.currentDate.getTime() / 1000;
@@ -311,6 +288,7 @@ export default {
       this.topHeight = parseInt(5.62) * htmlFont
       if (!data.response_status.code) {
         return data.response_data.list || [];
+
       } else {
         return [];
       }
@@ -327,9 +305,18 @@ export default {
     },
 
     monthDataParse (data) {
-      this.monthTotalCoins = data.response_data.coins;
+      this.monthTotalCoins = data.response_data.pinkJewelCnt;
       if (!data.response_status.code) {
         return data.response_data.list || [];
+        // return [//详细主播的粉钻余额
+        //   {
+        //     "uid": 1234,//主播uid
+        //     "nick": "昵称",//主播昵称
+        //     "avatar": "http://XXX",//主播头像
+        //     "pinkJewel": -1000,//结算粉钻
+        //     "opTime": "2021-05-25 09:00:00"//结算时间，格式yyyy-MM-dd HH:mm:ss
+        //   }
+        // ]
       } else {
         return [];
       }
@@ -380,8 +367,8 @@ export default {
   },
   components: {
     InnerScrollLoadList,
-    liveItem,
-    roomItem
+    liveItemFriend,
+    liveItemBrick
   }
 }
 </script>
@@ -396,47 +383,33 @@ body {
 .van-picker__confirm {
   color: #7A68F8;
 }
-.rankGroups {
+.rankGroupsFriend {
   position: relative;
   .mainTabs {
-    height: 0.88rem;
-    line-height: 0.88rem;
-    margin: auto;
-    text-align: center;
+    width: 5rem;
+    height: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.41rem;
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 0;
-    box-sizing: border-box;
-    position: relative;
+    align-items: center;
+    margin: 0 auto;
     a {
-      display: inline-block;
-      width: 50%;
-      font-size: 0.32rem;
-      color: #BCBBC7;
-      position: relative;
+      width: 2.4rem;
+      height: 0.6rem;
+      line-height: 0.6rem;
+      border-radius: 0.3rem;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.28rem;
       &.current {
-        color: #fff;
+        background: rgba(255, 255, 255, 1);
+        color: rgba(16, 9, 60, 1);
+        // background: url(../img/rank_tab_act.png);
+        // background-size: 100% 100%;
       }
     }
-    .risk-active-line {
-      width: 0.28rem;
-      height: 0.08rem;
-      background: #7A68F8;
-      border-radius: 0.06rem;
-      position: absolute;
-      bottom: 0.08rem;
-      left: 5.5rem;
-      transition: all 0.3s ease;
-    }
-    .risk-active-line-f {
-      transform: translate3d(0, 0, 0);
-    }
-    .risk-active-line-r {
-      transform: translate3d(-3.78rem, 0, 0);
-    }
   }
-
   .myInfo {
     margin-top: 0.3rem;
     padding: 0 0.3rem;
@@ -518,6 +491,28 @@ body {
         height: 0.42rem;
         background: url('../img/help.png');
         background-size: 100% 100%;
+      }
+    }
+    &.no_spacing {
+      padding: 0 0 0.3rem;
+      .pro_top {
+        padding-top: 0;
+      }
+      .scroll_title {
+        display: flex;
+        align-items: center;
+        span {
+          flex: 1;
+        }
+      }
+    }
+    &.brick {
+      .scroll_title {
+        display: flex;
+        align-items: center;
+        span {
+          flex: 1;
+        }
       }
     }
   }
