@@ -1,8 +1,9 @@
 html.zh {
-    .singIn{
-        .title{
-           background: url(./img/singInTitle.png);
-           background-size: 100% 100%;
-        }
+    .person_authentication{
+        width: 6.9rem;
+        height: 1.24rem;
+        background: url(./img/person_authentication.png);
+        background-size: 100% 100%;
+        margin: .3rem auto;
     }
 }

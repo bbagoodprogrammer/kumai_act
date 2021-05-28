@@ -210,27 +210,25 @@ function getInitInfo() {
     return get("/index.php?action=user.getUserinfo&uid={uid}&token={token}");
 }
 
-function commitImg(file) {
-    console.log(file);
-    let formData = new FormData();
-    formData.append("img", file);
-    // this.$axios({
-    //     method: "POST",
-    //     url: "路径",
-    //     headers: {
-    //         "Content-Type": "multipart/form-data" //设置请求头请求格式为JSON
-    //     },
-    //     data: formData
-    // }).then(response => {
-    //     console.log("response", response);
+function commitImg(base64_img) {
+    // let formData = new FormData();
+    // formData.append("img", file);
+    // return axios({
+    //     url: `/index.php?action=user.gestureCheck&uid={uid}&token={token}`,
+    //     method: "post",
+    //     data: base64_img
+    //     // headers: {
+    //     //     "Content-Type": "application/x-www-form-urlencoded"
+    //     // }
     // });
-    return axios({
-        url: `/index.php?action=user.gestureCheck&uid={uid}&token={token}`,
-        method: "post",
-        data: formData,
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
+    return axios.post(
+        `/index.php?action=user.gestureCheck&uid={uid}&token={token}`,
+        {
+            img: base64_img
+                .replace("data:image/png;base64,", "")
+                .replace("data:image/jpeg;base64,", "")
+                .replace("data:image/jpg;base64,", "")
         }
-    });
+    );
 }
 export { get, post, loadData, getInitInfo, commitImg };

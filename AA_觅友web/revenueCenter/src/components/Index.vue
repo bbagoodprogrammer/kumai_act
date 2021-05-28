@@ -26,6 +26,9 @@
           </div>
         </div>
       </div>
+      <div class="person_authentication" v-if="!real_flag" @click="goPersonHtml()">
+
+      </div>
       <ul class="getGiftList">
         <li v-for="(item,index) in nowData.goods_list" :key="index">
           <i class="look" v-if="item.url_resource && (item.type == 0 || item.type == 1)" @click="svgaLook(item)">{{lang.lookIng}}</i>
@@ -158,6 +161,9 @@ export default {
 
   },
   computed: {
+    real_flag () {
+      return Number(this.data1.real_flag)
+    },
     nowData () {
       if (this.type == 1) {
         return this.data1
@@ -353,6 +359,34 @@ export default {
             sendJsData(`http://${test}act.alochatapp.com/html/revenueCenter/tips.html`);
           } else {
             javascript: JSInterface.sendJsData(`http://${test}act.alochatapp.com/html/revenueCenter/tips.html`);
+          }
+        }
+
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    goPersonHtml () {
+      const uid = getUrlString('uid')
+      const token = getUrlString('token')
+      const lang = getUrlString('lang')
+      const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      let test = ''
+      if (_test) {
+        test = 't.'
+      }
+      try {
+        if (AREA == 'tw') {
+          if (ios) {
+            sendJsData(`http://${test}act.udateapp.com/html/person_authentication/index.html?uid=${uid}&token=${token}&lang=${lang}`);
+          } else {
+            javascript: JSInterface.sendJsData(`http://${test}act.udateapp.com/html/person_authentication/index.html?uid=${uid}&token=${token}&lang=${lang}`);
+          }
+        } else if (AREA == 'vn') {
+          if (ios) {
+            sendJsData(`http://${test}act.alochatapp.com/html/person_authentication/index.html?uid=${uid}&token=${token}&lang=${lang}`);
+          } else {
+            javascript: JSInterface.sendJsData(`http://${test}act.alochatapp.com/html/person_authentication/index.html?uid=${uid}&token=${token}&lang=${lang}`);
           }
         }
 

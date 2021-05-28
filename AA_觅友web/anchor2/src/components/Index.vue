@@ -4,7 +4,7 @@
     <div class="tab" :style="{top:navigatorHeight}">
       <span class="tab1" :class="{act:type == 1}" @click="tabClick(1)">派對數據</span>
       <span class="tab2" :class="{act:type == 2}" @click="tabClick(2)">交友數據</span>
-      <i class="question" @click="goTips()"></i>
+      <!-- <i class="question" @click="goTips()"></i> -->
     </div>
     <div class="pangCon" :style="{paddingTop:navigatorHeight2}">
       <component :is="type == 1?'RankGroups':'ccj_makeFriend'"></component>
@@ -29,7 +29,7 @@ export default {
     return {
       type: 1,
       navigatorHeight: 0,
-      navigatorHeight2: '44px',
+      navigatorHeight2: 0,
       is_fix: false,
     };
   },
@@ -37,13 +37,7 @@ export default {
     ...mapState(["loading"])
   },
   created () {
-    const pt = getPlatform();
-    const ver = getAppVer();
-    if ((pt == 'ios' && ver >= 165) || pt == 'android') {
-      setFullScreen();
-      this.navigatorHeight = getStatusBarHeight() + 'px';
-      this.navigatorHeight2 = getStatusBarHeight() * 1 + 20 + 'px';
-    }
+
   },
   mounted () {
     // window.addEventListener('scroll', () => {
@@ -55,6 +49,17 @@ export default {
     //       this.is_fix = false;
     //     }
     // })
+    setTimeout(() => {
+      const pt = getPlatform();
+      const ver = getAppVer();
+      if ((pt == 'ios' && ver >= 165) || pt == 'android') {
+        setFullScreen();
+        //   this.navigatorHeight = getStatusBarHeight() + 'px';
+        //   this.navigatorHeight2 = getStatusBarHeight() * 1 + 20 + 'px';
+        this.navigatorHeight = getStatusBarHeight() - document.getElementsByClassName('tab')[0].clientHeight + 'px'; // 88為APPtitle高度
+        this.navigatorHeight2 = getStatusBarHeight() * 1 + 20 + 'px';
+      }
+    }, 0)
   },
   methods: {
     tabClick (val) {
@@ -68,47 +73,51 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.app_top {
-  width: 100%;
-  position: fixed;
-  z-index: 5;
-  &.app_top_fit {
+<style lang="scss" scoped>
+.pageIndex {
+  overflow-x: hidden;
+  position: relative;
+  .app_top {
+    width: 100%;
     position: fixed;
-    background-color: #10093C;
-  }
-}
-.tab {
-  width: 100%;
-  height: 0.88rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  z-index: 5;
-  background: #10093C;
-  span {
-    font-size: 0.34rem;
-    position: relative;
-    color: rgba(255, 255, 255, 0.6);
-    &.act {
-      font-weight: bold;
-      color: #fff;
-    }
-    &.act::after {
-      content: '';
-      display: block;
-      width: 0.28rem;
-      height: 0.08rem;
-      background: #FFFFFF;
-      border-radius: 0.06rem;
-      position: absolute;
-      left: 40%;
-      bottom: -0.17rem;
+    z-index: 5;
+    &.app_top_fit {
+      position: fixed;
+      background-color: #10093C;
     }
   }
-  .tab2 {
-    margin-left: 0.6rem;
+  .tab {
+    width: 100%;
+    height: 0.88rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 5;
+    background: #10093C;
+    span {
+      font-size: 0.34rem;
+      position: relative;
+      color: rgba(255, 255, 255, 0.6);
+      &.act {
+        font-weight: bold;
+        color: #fff;
+      }
+      &.act::after {
+        content: '';
+        display: block;
+        width: 0.28rem;
+        height: 0.08rem;
+        background: #FFFFFF;
+        border-radius: 0.06rem;
+        position: absolute;
+        left: 40%;
+        bottom: -0.17rem;
+      }
+    }
+    .tab2 {
+      margin-left: 0.6rem;
+    }
   }
 }
 </style>

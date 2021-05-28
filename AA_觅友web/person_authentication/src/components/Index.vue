@@ -37,13 +37,14 @@
       </div>
       <div class="suc_tips">更換頭像將重新核對真人認證，請使用真實信息</div>
     </div>
-    <input type="file" name="" id="" class="file_img" ref="file_img" accept="image/*" @change="photo($event)">
+    <input type="file" name="" id="" capture="camera" class="file_img" ref="file_img" accept="image/*" @change="photo($event)">
   </div>
 </template>
 
 <script>
 
 import { getInitInfo, commitImg } from "../apis"
+import { uploadPhoto } from "../utils/uploadPhotoMiyou"
 import store from "../store"
 export default {
   data () {
@@ -59,70 +60,72 @@ export default {
       avatar: '',
       new_avatar: '',
       blob: '',
-      errorTips: {
-        10001: '图片不能超过2M',
-        10002: '图片手势认证失败',
-        10003: '图片不符合（最小 300*300 像素，最大 4096*4096 像素。图片短边不得低于 300 像素。最大2MB）要求',
-        10004: '图片上传失败',
-        10005: '请求频繁'
-      }
+      //   errorTips: {
+      //     10001: '图片不能超过2M',
+      //     10002: '图片手势认证失败',
+      //     10003: '图片不符合（最小 300*300 像素，最大 4096*4096 像素。图片短边不得低于 300 像素。最大2MB）要求',
+      //     10004: '图片上传失败',
+      //     10005: '请求频繁'
+      //   }
     }
   },
   created () {
     getInitInfo().then(res => {
-      console.log(res)
       this.avatar = res.data.response_data.avatar
       this.sex = res.data.response_data.sex
     })
   },
   methods: {
-    photo (el) {
-      const file = el.target.files[0]
-      var type = file.type.split('/')[0];
-      if (type === 'image') {
-        //将图片img转化为base64
-        var reader = new FileReader();
-        alert(reader)
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-          let dataURL = reader.result;
-          alert(dataURL)
-          this.new_avatar = dataURL
-          this.blob = this.dataURItoBlob(dataURL);
-          alert(this.blob.size)
-          if (this.blob.size > 2000000) {
-            this.toast('上傳圖片不得大於2M,請重新上傳！');
-          } else {
-            this.type = 2
-          }
-        };
-      } else {
-        this.toast('上傳了非圖片');
-      }
+    async photo (el) {
+      uploadPhoto().then(res => {
+        this.new_avatar = res.base64
+      })
+      //   const file = el.target.files[0]
+      //   var type = file.type.split('/')[0];
+      //   var filesize = file.size;
+      //   //   alert(filesize)
+      //   if (type === 'image') {
+      //     //将图片img转化为base64
+      //     var reader = new FileReader();
+      //     reader.readAsDataURL(file);
+      //     reader.onloadend = () => {
+      //       let dataURL = reader.result;
+      //       this.new_avatar = dataURL
+      //       //   this.blob = this.dataURItoBlob(dataURL);
+      //       if (filesize > 2101440) {
+      //         this.toast('上傳圖片不得大於2M,請重新上傳！');
+      //       } else {
+      //         this.type = 2
+      //       }
+      //     };
+      //   } else {
+      //     this.toast('上傳了非圖片');
+      //   }
     },
     playPhoto () {
       this.$refs.file_img.click()
     },
-    dataURItoBlob (dataURI) {
-      // base64 解码
-      let byteString = window.atob(dataURI.split(',')[1]);
-      let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-      let T = mimeString.split('/')[1];
-      let ab = new ArrayBuffer(byteString.length);
-      let ia = new Uint8Array(ab);
-      for (let i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-      }
-      return new Blob([ab], { type: mimeString });
-    },
+    // dataURItoBlob (dataURI) {
+    //   // base64 解码
+    //   let byteString = window.atob(dataURI.split(',')[1]);
+    //   let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    //   let T = mimeString.split('/')[1];
+    //   let ab = new ArrayBuffer(byteString.length);
+    //   let ia = new Uint8Array(ab);
+    //   for (let i = 0; i < byteString.length; i++) {
+    //     ia[i] = byteString.charCodeAt(i);
+    //   }
+    //   return new Blob([ab], { type: mimeString });
+    // },
     upload () {
       store.commit("updateLoading", true);
-      commitImg(this.blob).then(res => {
+      commitImg(this.new_avatar).then(res => {
         store.commit("updateLoading", false);
         if (res.data.response_data) {
           this.type = 3
         } else {
-          this.toast(this.errorTips[res.data.response_status.code])
+          //   this.toast(this.errorTips[res.data.response_status.code])
+          this.toast(res.data.response_status.error)
         }
       })
     }
