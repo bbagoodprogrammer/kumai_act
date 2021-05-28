@@ -4,7 +4,7 @@ export default {
     noAct: "Event chưa mở",
     actEd: "Event đã kết thúc",
     not_people: "Đang đợi",
-    act_tm: "hời gian: 28/05 12:00 - 03/06 23:59:59",
+    act_tm: "Thời gian: 28/05 17:00 - 03/06 23:59:59 ",
     //ball
     space_station: "Trạm không Gian",
     landing_star: "Hạ cánh hành tinh",

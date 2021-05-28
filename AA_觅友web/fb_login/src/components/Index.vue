@@ -350,7 +350,7 @@ export default {
         text-align: center;
       }
       .go {
-        width: 3.6rem;
+        width: 5rem;
         height: 0.88rem;
         background: linear-gradient(90deg, #7A68F8 0%, #9585FF 100%);
         border-radius: 0.44rem;

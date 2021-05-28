@@ -1,5 +1,5 @@
 export default {
-    title: "公會中心",
+    title: "\u200E",
     ok: "確定", //確定
     loading: "加載中...",
     no_data: "暫無更多數據~",
