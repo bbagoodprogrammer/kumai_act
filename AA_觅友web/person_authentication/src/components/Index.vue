@@ -9,7 +9,7 @@
           <span>{{item}}</span>
         </div>
       </div>
-      <div class="photograph" @click="playPhoto()">
+      <div class="photograph" @click="playPhoto('user_cover')">
         拍照認證
       </div>
     </div>
@@ -17,11 +17,11 @@
       <div class="img_change">
         <div class="nowImg">
           <img :src="avatar" alt="">
-          <span class="img_tips">當前頭像 <i></i></span>
+          <span class="img_tips" @click="eidpersonalDetails()">當前頭像 <i></i></span>
         </div>
         <div class="changImg">
           <img :src="new_avatar" alt="">
-          <span class="img_tips" @click="playPhoto()">認證照片<i></i></span>
+          <span class="img_tips" @click="playPhoto('user_cover')">認證照片<i></i></span>
         </div>
       </div>
       <div class="chang_title">
@@ -37,7 +37,7 @@
       </div>
       <div class="suc_tips">更換頭像將重新核對真人認證，請使用真實信息</div>
     </div>
-    <input type="file" name="" id="" capture="camera" class="file_img" ref="file_img" accept="image/*" @change="photo($event)">
+    <!-- <input type="file" name="" id="" capture="camera" class="file_img" ref="file_img" accept="image/*" @change="photo($event)"> -->
   </div>
 </template>
 
@@ -76,9 +76,19 @@ export default {
     })
   },
   methods: {
-    async photo (el) {
-      uploadPhoto().then(res => {
-        this.new_avatar = res.base64
+    async playPhoto (key) {
+      let obj = {
+        callback: key
+      }
+      uploadPhoto(obj).then(res => {
+        if (res.base64) {
+          this.type = 2
+          if (res.callback == 'user_avatar') {
+            this.avatar = res.base64
+          } else if (res.callback == 'user_cover') {
+            this.new_avatar = res.base64
+          }
+        }
       })
       //   const file = el.target.files[0]
       //   var type = file.type.split('/')[0];
@@ -102,9 +112,10 @@ export default {
       //     this.toast('上傳了非圖片');
       //   }
     },
-    playPhoto () {
-      this.$refs.file_img.click()
-    },
+    // playPhoto () {
+    //   //   this.$refs.file_img.click()
+    //   this.photo()
+    // },
     // dataURItoBlob (dataURI) {
     //   // base64 解码
     //   let byteString = window.atob(dataURI.split(',')[1]);
@@ -128,6 +139,15 @@ export default {
           this.toast(res.data.response_status.error)
         }
       })
+    },
+    eidpersonalDetails () {
+      const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (ios) {
+        sendJsData('app://eidpersonalDetails');
+      } else {
+        javascript: JSInterface.sendJsData('app://eidpersonalDetails');
+        // javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.UserInfoActivity","datas":[]}');
+      }
     }
   }
 }
