@@ -1,14 +1,10 @@
 <template>
   <div class="friend_collection">
     <div class="box">
-      <ul class="series__main">
-        <li
-          v-for="item in initData.series"
-          :key="item.key"
-          class="series__box"
-          :class="{ current_series: currentSeries == item.key }"
-          @click="selectSeries(item.key)"
-        >
+      <i class="arr left" @click="arrClick(0)"></i>
+      <i class="arr right" @click="arrClick(1)"></i>
+      <ul class="series__main_friend">
+        <li v-for="item in initData.series" :key="item.key" class="series__box_friend" :class="{ current_series: currentSeries == item.key }" @click="selectSeries(item.key)">
           {{ item.name }}
         </li>
       </ul>
@@ -19,40 +15,24 @@
       </div>
 
       <ul class="collection__main">
-        <li
-          v-for="(item, index) in collects"
-          :key="index"
-          :class="{ no_coll: item.count == 0 }"
-        >
+        <li v-for="(item, index) in collects" :key="index" :class="{ no_coll: item.count == 0 }">
           <img class="label" v-if="item.level == 'rare'" :src="images.rare" />
           <img class="label" v-if="item.level == 'hide'" :src="images.hidden" />
           <img class="label" v-if="item.level == 'dyn'" :src="images.dyn" />
-          <img
-            v-if="isHidn(item)"
-            class="coll__img"
-            src="../img/hidn_icon.png"
-            alt=""
-          />
+          <img v-if="isHidn(item)" class="coll__img" src="../img/hidn_icon.png" alt="" />
           <img v-else class="coll__img" :src="item.image" alt="" />
-          <span v-if="!isHidn(item)" class="name" >{{ item.name }}</span>
+          <span v-if="!isHidn(item)" class="name">{{ item.name }}</span>
           <span v-else class="name">{{lang.hidn_gift}}</span>
         </li>
       </ul>
 
       <div class="btn__box">
         <img class="btn1" :src="images.go_my_coll" @click="goMyColl" />
-        <img
-          class="btn1"
-          :src="images.next_friend_coll"
-          @click="showFriendCollDialog = true"
-        />
+        <img class="btn1" :src="images.next_friend_coll" @click="showFriendCollDialog = true" />
       </div>
     </div>
 
-    <FriendCollDialog
-      :visible.sync="showFriendCollDialog"
-      v-if="showFriendCollDialog"
-    />
+    <FriendCollDialog :visible.sync="showFriendCollDialog" v-if="showFriendCollDialog" />
   </div>
 </template>
 
@@ -65,7 +45,7 @@ import { mapState, mapGetters } from "vuex";
 export default {
   name: "FriendCollection",
 
-  data() {
+  data () {
     return {
       collects: [],
       currentUid: "",
@@ -78,7 +58,7 @@ export default {
 
   computed: {
     ...mapState(["initData", "friendInfo", "friendList"]),
-    getTitle() {
+    getTitle () {
       return this.lang.friend_coll_title.replace(
         "%s",
         `<span class="nick">${this.currentNick}</span>`
@@ -87,7 +67,7 @@ export default {
   },
 
   watch: {
-    showFriendCollDialog(val) {
+    showFriendCollDialog (val) {
       if (!val) {
         this.$nextTick(() => {
           this.currentUid = this.friendInfo.uid;
@@ -98,7 +78,7 @@ export default {
       }
     },
     "initData.currentSeries": {
-      handler(val) {
+      handler (val) {
         this.currentSeries = val;
       },
       immediate: true,
@@ -110,14 +90,14 @@ export default {
     FriendCollDialog,
   },
 
-  created() {
+  created () {
     this.currentUid = this.friendInfo.uid;
     this.currentNick = this.friendInfo.nick;
     this.fetchData();
   },
 
   methods: {
-    async fetchData() {
+    async fetchData () {
       let res = await seeCollect({
         fuid: this.currentUid,
         series: this.currentSeries,
@@ -141,25 +121,35 @@ export default {
       }
     },
 
-    selectSeries(key) {
+    selectSeries (key) {
       this.currentSeries = key;
       this.fetchData();
     },
 
-    isHidn(item) {
+    isHidn (item) {
       return (item.level == 'hide' || item.level == 'dyn') && item.count == 0
     },
 
-    goMyColl() {
+    goMyColl () {
       this.$store.commit("changeActionTab", 1);
     },
 
-    getBrHtml(text) {
+    getBrHtml (text) {
       if (!text) {
         return;
       }
       return text.replace(/\n/g, "<br>");
     },
+    arrClick (type) {
+      let el = document.getElementsByClassName('series__main_friend')[0]
+      let scrollLeft = el.scrollLeft
+      let itemWidth = document.getElementsByClassName('series__box_friend')[0].clientWidth
+      if (type) {
+        el.scrollLeft += itemWidth
+      } else {
+        el.scrollLeft -= itemWidth
+      }
+    }
   },
 };
 </script>
@@ -168,23 +158,41 @@ export default {
 .friend_collection {
   width: 7.29rem;
   height: 14.18rem;
-  background: url("../img/friend_coll.png") 0/100% 100% no-repeat;
+  background: url('../img/friend_coll.png') 0/100% 100% no-repeat;
   margin: -2.09rem auto 0 auto;
   .box {
     width: 7.29rem;
     height: 14.18rem;
     position: relative;
-
-    .series__main {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .arr {
+      display: block;
+      width: 0.28rem;
+      height: 0.4rem;
+      background: url(../img/left.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: 0.95rem;
+      left: 0.17rem;
+      &.right {
+        background: url(../img/right.png);
+        background-size: 100% 100%;
+        left: 6.9rem;
+      }
+    }
+    .series__main_friend {
+      //   display: flex;
+      //   align-items: center;
+      //   justify-content: center;
       padding-top: 0.9rem;
       margin-bottom: 0.15rem;
-      .series__box {
+      width: 6.1rem;
+      overflow-x: scroll;
+      white-space: nowrap;
+      margin: 0 auto;
+      .series__box_friend {
         width: 1.98rem;
         height: 0.52rem;
-        background: url("../img/series_box_gray.png") 0/100% 100% no-repeat;
+        background: url('../img/series_box_gray.png') 0/100% 100% no-repeat;
         line-height: 0.52rem;
         text-align: center;
         font-size: 0.24rem;
@@ -192,16 +200,19 @@ export default {
         color: #ffffff;
         margin-left: 0.02rem;
         margin-right: 0.02rem;
+        display: inline-block;
       }
       .current_series {
-        background: url("../img/series_box.png") 0/100% 100% no-repeat;
+        background: url('../img/series_box.png') 0/100% 100% no-repeat;
       }
     }
-
+    .series__main_friend::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
     .frame_right {
       width: 6.38rem;
       height: 1.45rem;
-      background: url("../img/friend_coll_des_box.png") 0/100% 100% no-repeat;
+      background: url('../img/friend_coll_des_box.png') 0/100% 100% no-repeat;
       position: relative;
       top: 0.2rem;
       left: 50%;
@@ -246,12 +257,12 @@ export default {
       }
       li:nth-child(2) {
         margin-right: 1.41rem;
-        background: url("../img/rare_gift_box.png") 0/100% 100% no-repeat;
+        background: url('../img/rare_gift_box.png') 0/100% 100% no-repeat;
       }
       li {
         width: 2.03rem;
         height: 2.86rem;
-        background: url("../img/gift_box.png") 0/100% 100% no-repeat;
+        background: url('../img/gift_box.png') 0/100% 100% no-repeat;
         margin-left: 0.13rem;
         margin-right: 0.13rem;
         margin-top: 0.31rem;

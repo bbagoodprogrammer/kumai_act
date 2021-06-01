@@ -3,8 +3,8 @@
     <!-- <div :style="{background:'#7a68f8',height:navigatorHeight}"></div> -->
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
-      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">主播信息</a>
-      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">粉磚結算</a>
+      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{lang.friend_tab1}}</a>
+      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" href="">{{lang.friend_tab2}}</a>
       <!-- <div class="risk-active-line" :class="[mainTab == 1?'risk-active-line-f':'risk-active-line-r']"></div> -->
     </div>
 
@@ -13,7 +13,7 @@
         <div class="inner">
           <div class="scroll_title">
             <span>{{lang.title_type1}}</span>
-            <span>粉磚餘額</span>
+            <span>{{lang.pro_top}}</span>
           </div>
           <div class="rank_list scrollable" :style="{height:(viewHeight-topHeight-navigatorHeight)+'px',}">
             <inner-scroll-load-list :url="live_url" :parse="dayDataParse" :reset='reset'>
@@ -40,13 +40,13 @@
       <div class="pro_top" v-if="month_flag">
         <div class="inner">
           <p class="total">
-            <span>結算粉磚匯總</span><img src="../img/mey_icon.png" alt="">
+            <span>{{lang.settlement_title}}</span><img src="../img/mey_icon.png" alt="">
             <span>{{monthTotalCoins}}</span>
           </p>
           <div class="scroll_title">
             <span>{{lang.title_type1}}</span>
-            <span>結算粉磚</span>
-            <span>結算時間</span>
+            <span>{{lang.settlement_coins}}</span>
+            <span>{{lang.settlement_tm}}</span>
           </div>
           <div class="rank_list scrollable" :style="{height:(viewHeight-topHeight-navigatorHeight)+'px',}">
             <inner-scroll-load-list :url="month_url" :parse="monthDataParse" :reset='reset'>

@@ -2,7 +2,7 @@
   <div class="page pageIndex">
     <div class="default_type" v-if="type==1">
       <div class="sex_default_img" :class="{woman:sex == 1}"></div>
-      <h3 class="tips_title">通過真人認證，更受歡迎</h3>
+      <h3 class="tips_title">{{lang.tips_title}}</h3>
       <div class="tips">
         <div class="tips_item" v-for="(item,index) in img_tipsArr" :key="index">
           <i>{{index+1}}</i>
@@ -10,32 +10,38 @@
         </div>
       </div>
       <div class="photograph" @click="playPhoto('user_cover')">
-        拍照認證
+        {{lang.photograph}}
       </div>
     </div>
     <div class="has_img" v-else-if="type == 2">
       <div class="img_change">
         <div class="nowImg">
           <img :src="avatar" alt="">
-          <span class="img_tips" @click="eidpersonalDetails()">當前頭像 <i></i></span>
+          <span class="img_tips" @click="eidpersonalDetails()"> {{lang.nowImg}} <i></i></span>
         </div>
         <div class="changImg">
           <img :src="new_avatar" alt="">
-          <span class="img_tips" @click="playPhoto('user_cover')">認證照片<i></i></span>
+          <span class="img_tips" @click="playPhoto('user_cover')">{{lang.changImg}}<i></i></span>
         </div>
       </div>
       <div class="chang_title">
-        請確認當前頭像與認證照片是你本人，否
-        則將無法通過認證
+        {{lang.chang_title}}
       </div>
-      <div class="commit" @click="upload()">提交</div>
+      <div class="commit" @click="upload()">{{lang.commit}}</div>
     </div>
     <div class="suc_tips" v-else-if="type == 3">
       <img src="../img/suc_icon.png" alt="" class="suc_icon">
       <div class="suc_title">
-        已通过真人認證
+        {{lang.suc_title}}
       </div>
-      <div class="suc_tips">更換頭像將重新核對真人認證，請使用真實信息</div>
+      <div class="suc_tips"> {{lang.suc_tips}}</div>
+    </div>
+    <div class="suc_tips" v-else-if="type == 4">
+      <img src="../img/examine.png" alt="" class="examine">
+      <div class="suc_title">
+        {{lang.examineIng}}
+      </div>
+      <div class="suc_tips"> {{lang.examine_tips}}</div>
     </div>
     <!-- <input type="file" name="" id="" capture="camera" class="file_img" ref="file_img" accept="image/*" @change="photo($event)"> -->
   </div>
@@ -43,7 +49,7 @@
 
 <script>
 
-import { getInitInfo, commitImg } from "../apis"
+import { getInitInfo, commitImg, auditRealStatus } from "../apis"
 import { uploadPhoto } from "../utils/uploadPhotoMiyou"
 import store from "../store"
 export default {
@@ -51,12 +57,12 @@ export default {
     return {
       sex: 0,
       type: 1, //1初始狀態, 2已提交照片  3已通過
-      img_tipsArr: [
-        '請模仿示意圖拍攝認證照片；',
-        '真人認證照片需和頭像保持一致，否則無效；',
-        '通過認證後，聊天粉鑽收益翻倍；',
-        '拍攝照片僅作認證審核作用，官方將嚴格保密；'
-      ],
+      //   img_tipsArr: [
+      //     '請模仿示意圖拍攝認證照片；',
+      //     '真人認證照片需和頭像保持一致，否則無效；',
+      //     '通過認證後，聊天粉鑽收益翻倍；',
+      //     '拍攝照片僅作認證審核作用，官方將嚴格保密；'
+      //   ],
       avatar: '',
       new_avatar: '',
       blob: '',
@@ -69,10 +75,26 @@ export default {
       //   }
     }
   },
+  computed: {
+    img_tipsArr () {
+      return this.lang.img_tipsArr
+    }
+  },
   created () {
     getInitInfo().then(res => {
       this.avatar = res.data.response_data.avatar
       this.sex = res.data.response_data.sex
+    })
+    //审核状态
+    auditRealStatus().then(res => {
+      if (res.data.response_data) {
+        let status = res.data.response_data.status //0不通过，1审核中,2通过 3手势错误
+        if (status == 2) {
+          this.type = 3
+        } else if (status == 1) {
+          this.type = 4
+        }
+      }
     })
   },
   methods: {
@@ -132,8 +154,8 @@ export default {
       store.commit("updateLoading", true);
       commitImg(this.new_avatar).then(res => {
         store.commit("updateLoading", false);
-        if (res.data.response_data) {
-          this.type = 3
+        if (res.data.response_data === 0) {
+          this.type = 4
         } else {
           //   this.toast(this.errorTips[res.data.response_status.code])
           this.toast(res.data.response_status.error)
@@ -283,6 +305,11 @@ export default {
       text-align: center;
       margin-top: 0.3rem;
       line-height: 0.46rem;
+    }
+    .examine {
+      width: 5rem;
+      height: 3.8rem;
+      margin: 1.51rem auto 0;
     }
   }
   img {

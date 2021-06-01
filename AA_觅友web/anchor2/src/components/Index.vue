@@ -2,8 +2,8 @@
   <div class="page pageIndex">
     <div class="app_top" :style="{background:'#10093C',height:navigatorHeight}"></div>
     <div class="tab" :style="{top:navigatorHeight}">
-      <span class="tab1" :class="{act:type == 1}" @click="tabClick(1)">派對數據</span>
-      <span class="tab2" :class="{act:type == 2}" @click="tabClick(2)">交友數據</span>
+      <span class="tab1" :class="{act:type == 1}" @click="tabClick(1)">{{lang.index_tab1}}</span>
+      <span class="tab2" :class="{act:type == 2}" @click="tabClick(2)">{{lang.index_tab2}}</span>
       <!-- <i class="question" @click="goTips()"></i> -->
     </div>
     <div class="pangCon" :style="{paddingTop:navigatorHeight2}">

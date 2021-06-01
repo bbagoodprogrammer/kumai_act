@@ -4,9 +4,8 @@ export default {
     act_rule: "Quy tắc",
     record: "Lịch sử",
     total_collection: "Xem thu thập của thôi",
-    get_frame:
-        "Khi sưu tầm đủ 7 loaij,\n có thể nhận khung Chúc ngủ ngon 7 ngày",
-    collection_num: "Đã sưu tầm được %s quà anh đào ",
+    get_frame: "Khi sưu tầm đủ 7 loaij,\n có thể nhận khung Xe ngựa 7 ngày",
+    collection_num: "Đã sưu tầm được %s quà giới hạn",
     series: "Các loại anh đào",
     select: "Chọn",
     friend_des: "Cùng nhau cố gắng mới là bạn tốt",

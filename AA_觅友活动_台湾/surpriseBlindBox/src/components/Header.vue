@@ -13,17 +13,10 @@
       <div class="series__box">{{ getSeriesTitle }}</div>
       <ul class="box__main">
         <li v-for="(item, index) in list" :key="index" @click="handleSelect(index)">
-          <div
-            class="select__btn"
-            :class="{ selected: item.state }"
-          >
+          <div class="select__btn" :class="{ selected: item.state }">
             {{ lang.select }}
           </div>
-          <img
-            v-if="item.state"
-            class="select__bg"
-            src="../img/select_bg.png"
-          />
+          <img v-if="item.state" class="select__bg" src="../img/select_bg.png" />
         </li>
       </ul>
       <div class="hidn__box">
@@ -34,18 +27,8 @@
             .replace("{1}", rareGiftSurplusData[0].surplus)
         }}</span>
       </div>
-      <img
-        v-if="!isAllSelect"
-        class="all_select__img"
-        @click="handleAllSelect(true)"
-        :src="images.all_select"
-      />
-      <img
-        v-else
-        class="all_select__img"
-        @click="handleAllSelect(false)"
-        :src="images.cancel_all_select"
-      />
+      <img v-if="!isAllSelect" class="all_select__img" @click="handleAllSelect(true)" :src="images.all_select" />
+      <img v-else class="all_select__img" @click="handleAllSelect(false)" :src="images.cancel_all_select" />
     </div>
 
     <div class="surprise__box_bottom">
@@ -59,48 +42,19 @@
       </div>
     </div>
 
-    <FriendDialog
-      :visible.sync="showFriendDialog"
-      v-if="showFriendDialog"
-      :type="sendType"
-      :count="sendCount"
-      :id="boxIndex"
-    />
+    <FriendDialog :visible.sync="showFriendDialog" v-if="showFriendDialog" :type="sendType" :count="sendCount" :id="boxIndex" />
 
     <ScrollNotice />
 
-    <ComfirmDialog
-      :visible.sync="showComfirmDialog"
-      v-if="showComfirmDialog"
-      :type="sendType"
-      :count="sendCount"
-      @handlePurchase="handlePurchase"
-    />
+    <ComfirmDialog :visible.sync="showComfirmDialog" v-if="showComfirmDialog" :type="sendType" :count="sendCount" @handlePurchase="handlePurchase" />
 
-    <GetDialog
-      :visible.sync="showGetDialog"
-      v-if="showGetDialog"
-      :prizes="prizes"
-    />
+    <GetDialog :visible.sync="showGetDialog" v-if="showGetDialog" :prizes="prizes" />
 
-    <SvgaDialog
-      :visible.sync="showSvgaDialog"
-      v-if="showSvgaDialog"
-      :index="boxIndex"
-      @end="showGetDialog = true"
-    />
+    <SvgaDialog :visible.sync="showSvgaDialog" v-if="showSvgaDialog" :index="boxIndex" @end="showGetDialog = true" />
 
-    <RecordDialog
-      @startSvga="startSvga"
-      :visible.sync="showRecordDialog"
-      v-if="showRecordDialog"
-      ref="record"
-    />
+    <RecordDialog @startSvga="startSvga" :visible.sync="showRecordDialog" v-if="showRecordDialog" ref="record" />
 
-    <RuleDialog
-      :visible.sync="showRuleDialog"
-      v-if="showRuleDialog"
-    />
+    <RuleDialog :visible.sync="showRuleDialog" v-if="showRuleDialog" />
 
     <div class="give_succ" v-if="showSuccDialog">
       <div class="screen" @click="showSuccDialog = false"></div>
@@ -137,7 +91,7 @@ export default {
     ScrollNotice
   },
 
-  data() {
+  data () {
     return {
       showRecordDialog: false,
       showRuleDialog: false,
@@ -166,7 +120,7 @@ export default {
   },
 
   watch: {
-    showSuccDialog(val) {
+    showSuccDialog (val) {
       if (val) {
         setTimeout(() => {
           this.showSuccDialog = false;
@@ -179,7 +133,7 @@ export default {
   computed: {
     ...mapState(["initData"]),
     ...mapGetters(["rareGiftSurplusData"]),
-    getSeriesTitle() {
+    getSeriesTitle () {
       if (this.initData.currentSeries) {
         let seriesItem = this.initData.series.find(item => item.key == this.initData.currentSeries)
         return seriesItem && seriesItem.name
@@ -189,11 +143,11 @@ export default {
   },
 
   methods: {
-    goWallet() {
+    goWallet () {
       callApp.wallet();
     },
 
-    handleSelect(i) {
+    handleSelect (i) {
       if (this.isAllSelect) {
         return;
       }
@@ -204,7 +158,7 @@ export default {
       this.boxIndex = i;
     },
 
-    handleAllSelect(is_all) {
+    handleAllSelect (is_all) {
       if (is_all) {
         this.list.forEach((item) => {
           item.state = true;
@@ -218,7 +172,7 @@ export default {
       this.isAllSelect = is_all;
     },
 
-    handleSendMe() {
+    handleSendMe () {
       if (this.initData.step == 2) {
         toast(this.lang.act_ended)
         return
@@ -246,7 +200,7 @@ export default {
       }
     },
 
-    handleSendFriend() {
+    handleSendFriend () {
       if (this.initData.step == 2) {
         toast(this.lang.act_ended)
         return
@@ -269,7 +223,7 @@ export default {
       this.showFriendDialog = true;
     },
 
-    async handlePurchase() {
+    async handlePurchase () {
       let data = {
         count: this.isAllSelect ? 9 : 1,
         id: this.isAllSelect ? 0 : this.boxIndex + 1,
@@ -287,20 +241,20 @@ export default {
       }
     },
 
-    startSvga(prizes) {
+    startSvga (prizes) {
       console.log('p', prizes)
       this.prizes = prizes;
       this.showSvgaDialog = true;
     },
 
-    goNotOpenDialog() {
+    goNotOpenDialog () {
       this.showRecordDialog = true
       this.$nextTick(() => {
         this.$refs.record.tab = 2
       })
     },
 
-    getBrHtml(text) {
+    getBrHtml (text) {
       if (!text) {
         return;
       }
@@ -317,7 +271,7 @@ export default {
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
-  background: url("../img/header.png") 0/100% 100% no-repeat;
+  background: url('../img/header.png') 0/100% 100% no-repeat;
   .header_title {
     width: 5.13rem;
     height: 1.74rem;
@@ -344,12 +298,12 @@ export default {
   .rule {
     @extend .btn_right;
     top: 2.54rem;
-    background: url("../img/rule_btn.png") 0/100% 100% no-repeat;
+    background: url('../img/rule_btn.png') 0/100% 100% no-repeat;
   }
   .record_btn {
     @extend .btn_right;
     top: 3.13rem;
-    background: url("../img/record_btn.png") 0/100% 100% no-repeat;
+    background: url('../img/record_btn.png') 0/100% 100% no-repeat;
     .dot {
       display: block;
       width: 0.15rem;
@@ -365,7 +319,7 @@ export default {
   .surprise__box {
     width: 7.17rem;
     height: 8.84rem;
-    background: url("../img/header_surprise_box.png") 0/100% 100% no-repeat;
+    background: url('../img/header_surprise_box.png') 0/100% 100% no-repeat;
     position: absolute;
     top: 1.92rem;
     left: 50%;
@@ -373,7 +327,7 @@ export default {
     .series__box {
       width: 1.98rem;
       height: 0.52rem;
-      background: url("../img/series_box.png") 0/100% 100% no-repeat;
+      background: url('../img/series_box.png') 0/100% 100% no-repeat;
       position: absolute;
       top: 0.4rem;
       left: 50%;
@@ -394,17 +348,17 @@ export default {
       li:nth-child(1),
       li:nth-child(5),
       li:nth-child(7) {
-        background: url("../img/sur_box_2.png") 0/100% 100% no-repeat;
+        background: url('../img/sur_box_2.png') 0/100% 100% no-repeat;
       }
       li:nth-child(2),
       li:nth-child(6),
       li:nth-child(8) {
-        background: url("../img/sur_box_3.png") 0/100% 100% no-repeat;
+        background: url('../img/sur_box_3.png') 0/100% 100% no-repeat;
       }
       li {
         width: 1.03rem;
         height: 1.56rem;
-        background: url("../img/sur_box_1.png") 0/100% 100% no-repeat;
+        background: url('../img/sur_box_1.png') 0/100% 100% no-repeat;
         margin-left: 0.3rem;
         margin-right: 0.3rem;
         margin-top: 0.65rem;
@@ -412,7 +366,7 @@ export default {
         .select__btn {
           width: 1.16rem;
           height: 0.36rem;
-          background: url("../img/select.png") 0/100% 100% no-repeat;
+          background: url('../img/select.png') 0/100% 100% no-repeat;
           position: absolute;
           bottom: -0.42rem;
           left: 50%;
@@ -425,7 +379,7 @@ export default {
           z-index: 20;
         }
         .selected {
-          background: url("../img/selected.png") 0/100% 100% no-repeat;
+          background: url('../img/selected.png') 0/100% 100% no-repeat;
         }
         .select__bg {
           width: 2.08rem;
@@ -440,7 +394,7 @@ export default {
     .hidn__box {
       width: 5.52rem;
       height: 0.42rem;
-      background: url("../img/rate_num_box.png") 0/100% 100% no-repeat;
+      background: url('../img/rate_num_box.png') 0/100% 100% no-repeat;
       position: absolute;
       bottom: 0.17rem;
       left: 50%;
@@ -475,7 +429,7 @@ export default {
   .surprise__box_bottom {
     width: 7.3rem;
     height: 1.75rem;
-    background: url("../img/surprise_box_bottom.png") 0/100% 100% no-repeat;
+    background: url('../img/surprise_box_bottom.png') 0/100% 100% no-repeat;
     position: absolute;
     top: 10.74rem;
     left: 0.08rem;
@@ -492,7 +446,7 @@ export default {
     .coin__box {
       width: 2.32rem;
       height: 0.49rem;
-      background: url("../img/coin_box.png") 0/100% 100% no-repeat;
+      background: url('../img/coin_box.png') 0/100% 100% no-repeat;
       position: absolute;
       bottom: -0.05rem;
       left: 50%;
@@ -533,7 +487,7 @@ export default {
     .main {
       width: 5.41rem;
       height: 2.54rem;
-      background: url("../img/give_succ_box.png") 0/100% 100% no-repeat;
+      background: url('../img/give_succ_box.png') 0/100% 100% no-repeat;
       position: fixed;
       top: 0;
       left: 50%;

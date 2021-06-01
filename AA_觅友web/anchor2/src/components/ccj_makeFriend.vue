@@ -8,17 +8,15 @@
       </div>
       <div>{{lang.anchor_num}}{{my_info.anchorCnt}}</div>
     </div>
-    <!-- <TabsScrollLoadList /> -->
     <RankGroupsFriend />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex"
-import TabsScrollLoadList from "./TabsScrollLoadList"
 import RankGroupsFriend from "./RankGroupsFriend"
 export default {
-  components: { TabsScrollLoadList, RankGroupsFriend },
+  components: { RankGroupsFriend },
   computed: {
     ...mapState(['my_info'])
   }
