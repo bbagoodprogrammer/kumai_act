@@ -2,27 +2,28 @@
   <div class="page pageIndex">
     <div class="app_top" :style="{background:'#F984BE',height:navigatorHeight}"></div>
     <p class="explain_tips1">
-      心動交友共三個階段，男女嘉賓上麥各自介紹自己，根據主持人的指引，只有本輪在“心動選擇”階段有互選成功的用戶才會進入“告白祝福”階段
+      {{lang.explain_tips1}}
     </p>
     <div class="title1">
-      CP戒指
+      {{lang.title1}}
     </div>
     <p class="explain_tips2">
-      告白祝福階段中，心動值達到30萬時，將獎勵xxx戒指，並自動結成為CP關係，如雙方已是CP關係則新增對應戒指，
+      <!-- 告白祝福階段中，心動值達到{{Math.floor(heartbeatValueReward / 10000) }}萬時，將獎勵{{ringName}}戒指，並自動結成為CP關係，如雙方已是CP關係則新增對應戒指， -->
+      {{lang.explain_tips2.replace('$',Math.floor(heartbeatValueReward / 10000)).replace('%',ringName)}}
       <span>
-        如仍一方已有CP則該獎勵無效
+        {{lang.explain_tips3}}
       </span>
     </p>
     <div class="ring">
-      <div class="title">心動值達到{{Math.floor(heartbeatValueReward / 10000) }}萬</div>
+      <div class="title">{{lang.ring_title.replace('$',Math.floor(heartbeatValueReward / 10000))}}</div>
       <div class="ring_tips">{{ringName}}</div>
       <img :src="ringImage" alt="" class="ringImg">
     </div>
     <div class="title1">
-      牽手場景
+      {{lang.ring_title2}}
     </div>
     <p class="explain_tips2">
-      根據告白祝福階段達到的心動值，完成該階段後，將觸發牽手場景，心動值越高，牽手場景越浪漫
+      {{lang.explain_tips4}}
     </p>
     <div class="imgList">
       <div class="imgItem" v-for="(item,index) in imgList" :key="index">

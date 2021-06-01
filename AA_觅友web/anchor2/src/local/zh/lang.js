@@ -33,5 +33,15 @@ export default {
     rule_pickTitle: "粉鑽收益說明",
     rule_pickLi: [
         "每月1日0點結算上月粉鑽收益，公會旗下主播達到30萬粉鑽起結算，粉鑽結算自動扣除"
-    ]
+    ],
+    //ccj
+    index_tab1: "派對數據",
+    index_tab2: "交友數據",
+    //RankGroupsFriend
+    friend_tab1: "主播信息",
+    friend_tab2: "粉磚結算",
+    pro_top: "粉磚餘額",
+    settlement_title: "結算粉磚匯總",
+    settlement_coins: "結算粉磚",
+    settlement_tm: "結算時間"
 };

@@ -38,7 +38,7 @@ export default {
     RankGroups,
   },
 
-  data() {
+  data () {
     return {
       showGiveDialog: false,
       tab: 0,
@@ -52,7 +52,7 @@ export default {
 
   watch: {
     "initData.notOpenBlindBox": {
-      handler(val) {
+      handler (val) {
         if (val > 0) {
           this.showGiveDialog = true;
         }
@@ -60,17 +60,17 @@ export default {
     },
   },
 
-  created() {
+  created () {
     this.$store.dispatch("initData");
   },
 
-  mounted() {
+  mounted () {
     loadImages();
     //require("../img/synth_dialog_bg.png"),
   },
 
   methods: {
-    goOpenBox() {
+    goOpenBox () {
       this.showGiveDialog = false
       this.$refs.header.goNotOpenDialog()
       //this.$refs.header.showRecordDialog = true
@@ -90,7 +90,7 @@ export default {
   .main__box {
     width: 7.29rem;
     height: 15.56rem;
-    background: url("../img/main_bg.png") 0/100% 100% no-repeat;
+    background: url('../img/main_bg.png') 0/100% 100% no-repeat;
     margin: -2.09rem auto 0 auto;
     .tabs {
       padding-top: 0.79rem;
@@ -130,7 +130,7 @@ export default {
     .main {
       width: 6.35rem;
       height: 5.62rem;
-      background: url("../img/comfirm_dialog.png") 0/100% 100% no-repeat;
+      background: url('../img/comfirm_dialog.png') 0/100% 100% no-repeat;
       position: fixed;
       top: 0;
       left: 50%;

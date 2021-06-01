@@ -181,21 +181,21 @@ export default {
               return;
             }
 
-            // const arr = response_data.list;
-            const arr = [//详细主播的粉钻余额
-              {
-                "uid": 1234,//主播uid
-                "nick": "昵称",//主播昵称
-                "avatar": "http://XXX",//主播头像
-                "pinkJewel": 1000//粉钻余额
-              },
-              {
-                "uid": 1234,//主播uid
-                "nick": "昵称",//主播昵称
-                "avatar": "http://XXX",//主播头像
-                "pinkJewel": 1000//粉钻余额
-              }
-            ]
+            const arr = response_data.list;
+            // const arr = [//详细主播的粉钻余额
+            //   {
+            //     "uid": 1234,//主播uid
+            //     "nick": "昵称",//主播昵称
+            //     "avatar": "http://XXX",//主播头像
+            //     "pinkJewel": 1000//粉钻余额
+            //   },
+            //   {
+            //     "uid": 1234,//主播uid
+            //     "nick": "昵称",//主播昵称
+            //     "avatar": "http://XXX",//主播头像
+            //     "pinkJewel": 1000//粉钻余额
+            //   }
+            // ]
 
             if (arr.slice) {
               const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;

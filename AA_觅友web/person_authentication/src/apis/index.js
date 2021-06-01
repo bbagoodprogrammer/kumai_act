@@ -210,6 +210,13 @@ function getInitInfo() {
     return get("/index.php?action=user.getUserinfo&uid={uid}&token={token}");
 }
 
+//获取审核状态
+function auditRealStatus() {
+    return get(
+        `/index.php?action=user.auditRealStatus&uid={uid}&token={token}`
+    );
+}
+
 function commitImg(base64_img) {
     // let formData = new FormData();
     // formData.append("img", file);
@@ -231,4 +238,4 @@ function commitImg(base64_img) {
         }
     );
 }
-export { get, post, loadData, getInitInfo, commitImg };
+export { get, post, loadData, getInitInfo, commitImg, auditRealStatus };

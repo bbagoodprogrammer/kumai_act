@@ -1,50 +1,30 @@
 <template>
   <div class="my_collection_dialog">
     <div class="dialog_screen" @click="handleCloseDialog"></div>
-    <div
-      class="dialog_container"
-      :style="{
+    <div class="dialog_container" :style="{
         background: `url(${images.my_coll_dialog}) 0/100% 100% no-repeat`,
-      }"
-    >
-      <ul class="series__main">
-        <li
-          v-for="item in initData.series"
-          :key="item.key"
-          class="series__box"
-          :class="{ current_series: currentSeries == item.key }"
-          @click="selectSeries(item.key)"
-        >
+      }">
+      <i class="arr left" @click="arrClick(0)"></i>
+      <i class="arr right" @click="arrClick(1)"></i>
+      <ul class="series__main_my">
+        <li v-for="item in initData.series" :key="item.key" class="series__box_my" :class="{ current_series: currentSeries == item.key }" @click="selectSeries(item.key)">
           {{ item.name }}
         </li>
       </ul>
       <div class="des" v-html="getDes"></div>
       <ul class="collection__main">
-        <li
-          v-for="(item, index) in collects"
-          :key="index"
-          :class="{ no_coll: item.count == 0 }"
-        >
+        <li v-for="(item, index) in collects" :key="index" :class="{ no_coll: item.count == 0 }">
           <img class="label" v-if="item.level == 'rare'" :src="images.rare" />
           <img class="label" v-if="item.level == 'hide'" :src="images.hidden" />
           <img class="label" v-if="item.level == 'dyn'" :src="images.dyn" />
-          <img
-            v-if="isHidn(item)"
-            class="coll__img"
-            src="../img/hidn_icon.png"
-            alt=""
-          />
+          <img v-if="isHidn(item)" class="coll__img" src="../img/hidn_icon.png" alt="" />
           <img v-else class="coll__img" :src="item.image" alt="" />
           <span v-if="!isHidn(item)" class="name">{{ item.name }}</span>
           <span v-else class="name">{{lang.hidn_gift}}</span>
         </li>
       </ul>
 
-      <img
-        class="close__dialog"
-        @click="handleCloseDialog"
-        src="../img/close.png"
-      />
+      <img class="close__dialog" @click="handleCloseDialog" src="../img/close.png" />
     </div>
   </div>
 </template>
@@ -63,7 +43,7 @@ export default {
     },
   },
 
-  data() {
+  data () {
     return {
       collects: [],
       currentSeries: "",
@@ -72,7 +52,7 @@ export default {
 
   watch: {
     "initData.currentSeries": {
-      handler(val) {
+      handler (val) {
         this.currentSeries = val;
       },
       immediate: true,
@@ -82,7 +62,7 @@ export default {
 
   computed: {
     ...mapState(["initData"]),
-    getDes() {
+    getDes () {
       let isFull = this.collects.every((item) => item.count > 0);
       let seriesItem = this.initData.series.find(item => item.key == this.currentSeries)
       let seriesName = seriesItem && seriesItem.name
@@ -109,18 +89,18 @@ export default {
     },
   },
 
-  created() {
+  created () {
     document.body.style.overflow = "hidden";
     this.fetchData();
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     document.body.style.overflow = "";
   },
 
   methods: {
-    async fetchData() {
-      let res = await seeMyCollect({series: this.currentSeries});
+    async fetchData () {
+      let res = await seeMyCollect({ series: this.currentSeries });
       let { response_status, response_data } = res.data;
       if (response_status.code === 0) {
         this.collects = response_data.collects;
@@ -136,25 +116,36 @@ export default {
       }
     },
 
-    selectSeries(key) {
+    selectSeries (key) {
       this.currentSeries = key
       this.fetchData()
     },
 
-    isHidn(item) {
+    isHidn (item) {
       return (item.level == 'hide' || item.level == 'dyn') && item.count == 0
     },
 
-    getBrHtml(text) {
+    getBrHtml (text) {
       if (!text) {
         return;
       }
       return text.replace(/\n/g, "<br>");
     },
 
-    handleCloseDialog() {
+    handleCloseDialog () {
       this.$emit("update:visible", false);
     },
+
+    arrClick (type) {
+      let el = document.getElementsByClassName('series__main_my')[0]
+      let scrollLeft = el.scrollLeft
+      let itemWidth = document.getElementsByClassName('series__box_my')[0].clientWidth
+      if (type) {
+        el.scrollLeft += itemWidth
+      } else {
+        el.scrollLeft -= itemWidth
+      }
+    }
   },
 };
 </script>
@@ -194,29 +185,49 @@ export default {
       color: #ffffff;
       line-height: 0.31rem;
     }
-    .series__main {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 1.19rem;
-      margin-bottom: 0.15rem;
-      .series__box {
+    .arr {
+      display: block;
+      width: 0.28rem;
+      height: 0.4rem;
+      background: url(../img/left.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: 1.2rem;
+      left: 0.37rem;
+      &.right {
+        background: url(../img/right.png);
+        background-size: 100% 100%;
+        left: 5.67rem;
+      }
+    }
+    .series__main_my {
+      width: 4.75rem;
+      overflow-x: scroll;
+      white-space: nowrap;
+      //   display: flex;
+      //   align-items: center;
+      //   justify-content: center;
+      margin: 1.19rem auto 0.15rem;
+      .series__box_my {
         width: 1.56rem;
         height: 0.43rem;
-        background: url("../img/coll_series_gray.png") 0/100% 100% no-repeat;
+        background: url('../img/coll_series_gray.png') 0/100% 100% no-repeat;
         line-height: 0.43rem;
         text-align: center;
         font-size: 0.24rem;
         font-weight: 400;
-         color: #ffffff;
-         margin-left: 0.02rem;
-         margin-right: 0.02rem;
+        color: #ffffff;
+        margin-left: 0.02rem;
+        margin-right: 0.02rem;
+        display: inline-block;
       }
       .current_series {
-        background: url("../img/coll_series.png") 0/100% 100% no-repeat;
+        background: url('../img/coll_series.png') 0/100% 100% no-repeat;
       }
     }
-
+    .series__main_my::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
     .collection__main {
       display: flex;
       flex-wrap: wrap;
@@ -231,12 +242,12 @@ export default {
       }
       li:nth-child(2) {
         margin-right: 1.41rem;
-        background: url("../img/rare_gift_box.png") 0/100% 100% no-repeat;
+        background: url('../img/rare_gift_box.png') 0/100% 100% no-repeat;
       }
       li {
         width: 1.64rem;
         height: 2.24rem;
-        background: url("../img/gift_box.png") 0/100% 100% no-repeat;
+        background: url('../img/gift_box.png') 0/100% 100% no-repeat;
         margin-left: 0.11rem;
         margin-right: 0.11rem;
         margin-top: 0.31rem;
