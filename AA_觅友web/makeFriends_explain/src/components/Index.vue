@@ -1,6 +1,9 @@
 <template>
   <div class="page pageIndex">
-    <div class="app_top" :style="{background:'#F984BE',height:navigatorHeight}"></div>
+    <!-- <div class="app_top" :style="{background:'#F984BE',height:navigatorHeight}"></div> -->
+    <div class="html_title">
+      心動交友說明
+    </div>
     <p class="explain_tips1">
       {{lang.explain_tips1}}
     </p>
@@ -79,6 +82,13 @@ export default {
 .pageIndex {
   padding: 0.12rem 0.2rem 0.48rem;
   background: linear-gradient(59deg, #FD4CAF 0%, #F88BC0 100%);
+  .html_title {
+    font-size: 0.36rem;
+    font-weight: bold;
+    height: 0.88rem;
+    line-height: 0.88rem;
+    text-align: center;
+  }
   .explain_tips1,
   .explain_tips2 {
     font-size: 0.26rem;

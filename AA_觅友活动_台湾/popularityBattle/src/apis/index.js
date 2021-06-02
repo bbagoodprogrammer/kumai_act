@@ -212,4 +212,11 @@ function getInitInfo() {
     );
 }
 
-export { get, post, loadData, getInitInfo };
+function userFriend(anchor_id, type) {
+    //type == promotion，final
+    return get(
+        `/index.php?action=popularityBattle.fans&uid={uid}&token={token}&anchor_id=${anchor_id}&type=${type}`
+    );
+}
+
+export { get, post, loadData, getInitInfo, userFriend };

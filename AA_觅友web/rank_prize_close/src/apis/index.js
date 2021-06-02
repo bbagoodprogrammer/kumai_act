@@ -206,16 +206,9 @@ function loadData(apiFunc, commitName, loadOnce = false, nums) {
     });
 }
 
-function getInitInfo(page, more) {
-    // return testGet('getInitInfo');
-    // return testGet(arguments.callee.name);
-    if (more) {
-        return axios.get(
-            `/index.php?action=Action/Prop.getUserPropInfo&token={token}&uid={uid}&lang={lang}&page=${page}    `
-        );
-    }
+function getInitInfo(page) {
     return get(
-        `/index.php?action=Action/Prop.getUserPropInfo&token={token}&uid={uid}&lang={lang}&page=${page}    `
+        `/index.php?action=Action/IntimacyRank.lastWeekTop3&token={token}&uid={uid}&lang={lang}`
     );
 }
 

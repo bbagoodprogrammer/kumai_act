@@ -1,15 +1,15 @@
 <template>
   <div class="timePeople">
-    <div class="tm">3月10号</div>
+    <div class="tm">{{getDate(nowUser.timestamp)}}</div>
     <div class="pelple">
-      <i class="arr_left"></i>
-      <i class="arr_right"></i>
+      <i class="arr_left" @click="pre()"></i>
+      <i class="arr_right" @click="next()"></i>
       <div class="people_list">
-        <div class="people_item" v-for="(item,index) in list" :key="index">
-          <img v-lazy="item.avatar" alt="" class="av">
-          <div class="hour">22:00</div>
-          <div class="score">9999</div>
-          <div class="scoreTips">人氣值</div>
+        <div class="people_item" v-for="(item,index) in nowUser.hours" :key="index">
+          <img v-lazy="item.user?item.user.avatar:''" alt="" class="av">
+          <div class="hour">{{item.hour}}:00</div>
+          <div class="score" v-if="item.user">{{item.user.score}}</div>
+          <div class="scoreTips" v-if="item.user">人氣值</div>
         </div>
       </div>
     </div>
@@ -25,31 +25,38 @@
 <script>
 
 import { mapState } from "vuex"
+import getDate from "../utils/getDate"
 export default {
   data () {
     return {
-      list: [
-        {
-          avatar: '',
-          score: '',
-        },
-        {
-          avatar: '',
-          score: '',
-        },
-        {
-          avatar: '',
-          score: '',
-        },
-        {
-          avatar: '',
-          score: '',
-        }
-      ]
+      showIndex: 0
+    }
+  },
+  watch: {
+    activity (val) {
+      this.showIndex = val.days
     }
   },
   computed: {
-    ...mapState(['days_rank'])
+    ...mapState(['days_rank', 'activity']),
+    nowUser () {
+      return this.days_rank[this.showIndex] || {}
+    }
+  },
+  methods: {
+    pre () {
+      if (this.showIndex > 0) {
+        this.showIndex--
+      }
+    },
+    next () {
+      if (this.showIndex < this.days_rank.length - 1) {
+        this.showIndex++
+      }
+    },
+    getDate (tm) {
+      return getDate(new Date(tm * 1000), 1)
+    }
   }
 }
 </script>
@@ -76,6 +83,24 @@ export default {
   }
   .pelple {
     margin-top: 0.8rem;
+    position: relative;
+    .arr_left,
+    .arr_right {
+      display: block;
+      width: 0.4rem;
+      height: 0.59rem;
+      background: url(../img/arr.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: 0.4rem;
+    }
+    .arr_left {
+      left: 0.06rem;
+      transform: rotate(180deg);
+    }
+    .arr_right {
+      right: 0.06rem;
+    }
     .people_list {
       padding: 0 0.47rem;
       display: flex;

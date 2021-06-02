@@ -4,71 +4,51 @@
     <!-- <div class="top_bg"></div> -->
     <div class="propsList" :style="{paddingTop:navigatorHeight2}">
       <div class="prizeTips">
-        上期親密週榜前三的用戶，均可在下週日凌晨0點開始獲得對應的榜單獎勵
+        {{lang.prizeTips}}
       </div>
       <div class="title">
         <i class="left"></i>
-        榜单奖励
+        {{lang.tips_title1}}
         <i class="right"></i>
       </div>
       <ul class="rank_prizeList">
-        <li>
+        <li v-for="(item,index) in prize" :key="index">
           <div class="prizeMsg">
-            <div class="title">第一名</div>
-            <div class="prize_name">紀念頭框紀念頭框&紀念座駕*7天</div>
+            <div class="title">{{topNums[index]}}</div>
+            <div class="prize_name">{{`${item.name1}${item.name2?`&${item.name2}`:''}`}}</div>
           </div>
           <div class="prizeImg">
-            <img src="../img/noData.png" alt="">
-            <img src="../img/noData.png" alt="">
-          </div>
-        </li>
-        <li>
-          <div class="prizeMsg">
-            <div class="title">第一名</div>
-            <div class="prize_name">紀念頭框紀念頭框&紀念座駕*7天</div>
-          </div>
-          <div class="prizeImg">
-            <img src="../img/noData.png" alt="">
-            <img src="../img/noData.png" alt="">
-          </div>
-        </li>
-        <li>
-          <div class="prizeMsg">
-            <div class="title">第一名</div>
-            <div class="prize_name">紀念頭框紀念頭框&紀念座駕*7天</div>
-          </div>
-          <div class="prizeImg">
-            <img src="../img/noData.png" alt="">
-            <img src="../img/noData.png" alt="">
+            <img :src="item.url1" alt="">
+            <img :src="item.url2" alt="" v-if="item.url2">
           </div>
         </li>
       </ul>
       <div class="title">
         <i class="left"></i>
-        上期獲得者
+        {{lang.tips_title2}}
         <i class="right"></i>
       </div>
       <div class="rankPeople">
         <ul>
-          <li v-for="(item,index) in list2" :key="index" :class="'rank' + index">
+          <li v-for="(item,index) in ulist" :key="index" :class="'rank' + index">
             <div class="userRank"></div>
             <div class="crown"></div>
             <div class="userLeft">
-              <img src="../img/noData.png" alt="">
+              <img :src="item.user1.avatar" alt="">
               <div class="userMsg">
-                <div class="nick">谷嚕嚕谷嚕嚕</div>
-                <div class="sex"></div>
+                <div class="nick">{{item.user1.nick}}</div>
+                <div class="sex" :class="{woman:item.user1.sex == 1}"></div>
               </div>
             </div>
             <div class="userRight">
-              <img src="../img/noData.png" alt="">
+              <img :src="item.user2.avatar" alt="">
               <div class="userMsg">
-                <div class="nick">谷嚕嚕谷嚕嚕</div>
-                <div class="sex"></div>
+                <div class="nick">{{item.user2.nick}}</div>
+                <div class="sex" :class="{woman:item.user2.sex == 1}"></div>
               </div>
             </div>
             <div class="disparityTips" v-if="index!= 0">
-              距離上一位親密值:2030
+              {{lang.disparityTips}}:{{item.preScore}}
             </div>
           </li>
         </ul>
@@ -88,27 +68,18 @@ export default {
     return {
       navigatorHeight: 0,
       navigatorHeight2: 0,
-      list2: [
-        {
-          avatar: '',
-          nick: '',
-          sex: 0
-        },
-        {
-          avatar: '',
-          nick: '',
-          sex: 0
-        },
-        {
-          avatar: '',
-          nick: '',
-          sex: 0
-        }
-      ]
+      //   topNums: {
+      //     1: '第一名',
+      //     2: '第二名',
+      //     3: '第三名'
+      //   }
     }
   },
   computed: {
-    ...mapState(['list'])
+    ...mapState(['prize', 'ulist']),
+    topNums () {
+      return this.lang.topNums
+    }
   },
   mounted () {
     setTimeout(() => {
@@ -283,6 +254,10 @@ export default {
                 background: url(../img/man.png);
                 background-size: 100% 100%;
                 margin-left: 0.1rem;
+                &.woman {
+                  background: url(../img/woman.png);
+                  background-size: 100% 100%;
+                }
               }
             }
           }
@@ -369,6 +344,10 @@ export default {
               background: url(../img/man.png);
               background-size: 100% 100%;
               margin-left: 0.1rem;
+              &.woman {
+                background: url(../img/woman.png);
+                background-size: 100% 100%;
+              }
             }
           }
           .userLeft {
