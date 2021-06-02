@@ -49,14 +49,21 @@
 
 <script>
 
+
 import { getInitInfo, commitImg, auditRealStatus } from "../apis"
 import { uploadPhoto } from "../utils/uploadPhotoMiyou"
 import store from "../store"
+
+
+window.refreshHomePage = function () {
+  window.location.reload(true)
+}
+
 export default {
   data () {
     return {
       sex: 0,
-      type: 1, //1初始狀態, 2已提交照片  3已通過
+      type: -1, //1初始狀態, 2已提交照片  3已通過
       //   img_tipsArr: [
       //     '請模仿示意圖拍攝認證照片；',
       //     '真人認證照片需和頭像保持一致，否則無效；',
@@ -81,23 +88,28 @@ export default {
     }
   },
   created () {
-    getInitInfo().then(res => {
-      this.avatar = res.data.response_data.avatar
-      this.sex = res.data.response_data.sex
-    })
-    //审核状态
-    auditRealStatus().then(res => {
-      if (res.data.response_data) {
-        let status = res.data.response_data.status //0不通过，1审核中,2通过 3手势错误
-        if (status == 2) {
-          this.type = 3
-        } else if (status == 1) {
-          this.type = 4
-        }
-      }
-    })
+    this.init()
   },
   methods: {
+    init () {
+      getInitInfo().then(res => {
+        this.avatar = res.data.response_data.avatar
+        this.sex = res.data.response_data.sex
+      })
+      //审核状态
+      auditRealStatus().then(res => {
+        if (res.data.response_data) {
+          let status = res.data.response_data.status //0不通过，1审核中,2通过 3手势错误
+          if (status == 2) {
+            this.type = 3
+          } else if (status == 1) {
+            this.type = 4
+          } else {
+            this.type = 1
+          }
+        }
+      })
+    },
     async playPhoto (key) {
       let obj = {
         callback: key

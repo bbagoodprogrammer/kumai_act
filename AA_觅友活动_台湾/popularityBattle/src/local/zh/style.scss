@@ -3,4 +3,76 @@ html.zh {
         background:rgba(25, 4, 62, 1) url(./img/banner.png) 0  .3rem no-repeat;
         background-size: 100% auto;
     }
+    .mainTabs{
+        >span{
+           
+                &.tabL {
+                    i{
+                        width: 1.13rem;
+                        height: .34rem;
+                        background: url(./img/tab_bg_text1.png);
+                        background-size: 100% 100%;
+                    }
+                    &.current{
+                        width: 3.88rem;
+                        background: url(./img/tab_act1.png);
+                        background-size: 100% 100%;
+                        margin-top: .05rem;
+                        i{
+                            display: none;
+                        }
+                    }
+                }
+                &.tabR {
+                    i{
+                        width: .76rem;
+                        height: .34rem;
+                        background: url(./img/tab_bg_text2.png);
+                        background-size: 100% 100%;
+                    }
+                    &.current{
+                        width: 3.88rem;
+                        background: url(./img/tab_act2.png);
+                        background-size: 100% 100%;
+                        margin-top: .05rem;
+                        i{
+                            display: none;
+                        }
+                    }
+                }    
+            
+        }
+    }
+    .list{
+        li{
+            &.danger::before {
+                content: '';
+                display: block;
+                width: 7.08rem;
+                height: .44rem;
+                background: url(./img/danger.png);
+                background-size: 100% 100%;
+                position: absolute;
+                top: -.58rem;
+              }
+              &.danger {
+                position: relative;
+                margin-top: 0.72rem;
+              }
+            &.eliminate::before {
+                content: '';
+                display: block;
+                width: 7.08rem;
+                height: .44rem;
+                background: url(./img/eliminate.png);
+                background-size: 100% 100%;
+                position: absolute;
+                top: -.58rem;
+              }
+              &.eliminate {
+                position: relative;
+                margin-top: 0.72rem;
+              }
+        }
+    }
 }

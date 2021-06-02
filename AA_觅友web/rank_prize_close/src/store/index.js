@@ -7,7 +7,9 @@ Vue.use(vuex);
 export default new vuex.Store({
     state: {
         loading: false,
-        list: []
+        list: [],
+        prize: {},
+        ulist: []
     },
     mutations: {
         updateLoading(state, value) {
