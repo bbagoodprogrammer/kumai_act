@@ -7,7 +7,7 @@ export default {
     explain_tips2:
         "告白祝福階段中，心動值達到$萬時，將獎勵%戒指，並自動結成為CP關係，如雙方已是CP關係則新增對應戒指，",
     explain_tips3: "如仍一方已有CP則該獎勵無效",
-    ring_title: "心動值達到$萬",
+    ring_title: "心動值達到 <i></i> $",
     ring_title2: "牽手場景",
     explain_tips4:
         " 根據告白祝福階段達到的心動值，完成該階段後，將觸發牽手場景，心動值越高，牽手場景越浪漫",

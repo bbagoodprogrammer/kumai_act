@@ -5,7 +5,7 @@ export default {
     //index.vue
     tips_title: "Xác thực danh tính sẽ được yêu thích hơn",
     photograph: "Chụp ảnh",
-    nowImg: "Ảnh đại diện hiện tại",
+    nowImg: "Avatar hiện tại",
     changImg: "Xác thực hình ảnh",
     chang_title:
         "   Vui lòng xác nhận ảnh đại diện và ảnh xác thực đều là bạn, nếu không sẽ không được duyệt",

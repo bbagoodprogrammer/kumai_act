@@ -38,7 +38,7 @@
     </div>
     <div class="suc_tips" v-else-if="type == 4">
       <img src="../img/examine.png" alt="" class="examine">
-      <div class="suc_title">
+      <div class="suc_title mt">
         {{lang.examineIng}}
       </div>
       <div class="suc_tips"> {{lang.examine_tips}}</div>
@@ -244,7 +244,7 @@ export default {
       justify-content: space-between;
       > div {
         width: 3.35rem;
-        height: 4.36rem;
+        height: 3.35rem;
         border-radius: 0.2rem;
         overflow: hidden;
         position: relative;
@@ -310,6 +310,9 @@ export default {
       font-weight: bold;
       text-align: center;
       margin-top: 2.38rem;
+      &.mt {
+        margin-top: 1.5rem;
+      }
     }
     .suc_tips {
       font-size: 0.26rem;

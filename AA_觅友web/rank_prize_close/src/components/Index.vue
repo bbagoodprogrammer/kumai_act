@@ -2,7 +2,8 @@
   <div class="page pageIndex">
     <div class="app_top" :style="{background:'#7A68F8',height:navigatorHeight}"></div>
     <!-- <div class="top_bg"></div> -->
-    <div class="propsList" :style="{paddingTop:navigatorHeight2}">
+    <!-- :style="{paddingTop:navigatorHeight2}" -->
+    <div class="propsList" :style="{paddingTop:navigatorHeight}">
       <div class="prizeTips">
         {{lang.prizeTips}}
       </div>
@@ -106,6 +107,7 @@ export default {
   .app_top {
     width: 100%;
     z-index: 5;
+    position: fixed;
     &.app_top_fit {
       position: fixed;
       background-color: #10093C;

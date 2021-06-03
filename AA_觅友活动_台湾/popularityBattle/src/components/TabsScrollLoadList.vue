@@ -35,8 +35,8 @@
             <li v-for="(item,index) in rank.list" :key="index" :class="[{danger:item.rank == 8 && rank.status == 1,eliminate:item.rank == 11 && rank.status == 2},'rank' + item.rank]">
               <div class="userRank">{{item.rank}}</div>
               <div class="imgBox">
-                <img v-lazy="item.avatar" alt="" class="av1">
-                <img v-lazy="item.fans[0].avatar" alt="" class="av2">
+                <img v-lazy="item.avatar" alt="" class="av1" @click="goUser(item.uid)">
+                <img v-lazy="item.fans[0].avatar" alt="" class="av2" @click="goUser(item.fans[0].uid)">
                 <i class="live" v-if="item.mic_room">LIVE</i>
               </div>
               <div class="nick">{{item.nick}}</div>
@@ -56,7 +56,7 @@
           <ul>
             <li v-for="(item,index) in rank.list" :key="index" :class="[{danger:item.rank == 8 && rank.status == 1,eliminate:item.rank == 11 && rank.status == 2},'rank' + item.rank]">
               <div class="userRank">{{item.rank}}</div>
-              <div class="imgBox">
+              <div class="imgBox" @click="goUser(item.uid)">
                 <img v-lazy="item.avatar" alt="" class="av1">
                 <i class="live" v-if="item.mic_room">LIVE</i>
               </div>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="userPeople">
                   <div class="peopleItem">
-                    <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in item.fans" :key="index2">
+                    <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in item.fans" :key="index2" @click="goUser(item2.uid)">
                   </div>
                   <u @click="shouFriend(item,'final')">粉絲守護團>></u>
                 </div>
@@ -86,6 +86,7 @@
     <div class="mask" v-show="showFriendList">
       <transition name="slide">
         <div class="userPeopleList" v-if="showFriendList">
+          <i class="close" @click="showFriendList = false"></i>
           <div class="list_title">【{{act_item.nick}}】的粉絲守護團</div>
           <div class="list_header">
             <span>排名</span>
@@ -311,9 +312,6 @@ export default {
       console.log(val)
       if (this.rank.loading) return
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
-      if (val != 'init') {
-        this.$store.dispatch('getInitInfo');
-      }
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,
         loadCount: 0,
@@ -342,6 +340,7 @@ export default {
       return getDate(new Date(time * 1000), '2')
     },
     goUser (uid) { //跳转
+      console.log(uid)
       var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       if (isiOS) {
         sendJsData('app://userInfo?uid=' + uid);
@@ -590,7 +589,7 @@ export default {
               img {
                 width: 0.31rem;
                 height: 0.31rem;
-                margin-left: -0.1rem;
+                margin-left: 0.05rem;
                 border-radius: 50%;
               }
             }
@@ -623,6 +622,17 @@ export default {
   height: 10.36rem;
   background: url(../img/people_bg.png);
   background-size: 100% 100%;
+  position: relative;
+  .close {
+    display: block;
+    width: 0.74rem;
+    height: 0.74rem;
+    background: url(../img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0;
+    top: -0.4rem;
+  }
   .list_title {
     height: 1.07rem;
     line-height: 1.07rem;
@@ -701,9 +711,9 @@ export default {
   height: 1rem;
   position: fixed;
   right: 0.08rem;
-  bottom: 1.35rem;
-  //   background: url(../img/refresh.png) no-repeat;
-  //   background-size: contain;
+  bottom: 2.35rem;
+  background: url(../img/refresh.png) no-repeat;
+  background-size: contain;
   transition: all 1s;
   text-indent: -999rem;
   z-index: 100;
