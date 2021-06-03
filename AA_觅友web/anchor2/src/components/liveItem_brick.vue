@@ -62,13 +62,13 @@ export default {
   align-items: center;
   position: relative;
   > div {
-    flex: 1;
+    // flex: 1;
     text-align: center;
     font-size: 0.24rem;
     color: rgba(153, 153, 153, 1);
   }
   .user {
-    width: 2.3rem;
+    width: 2.8rem;
     display: flex;
     align-items: center;
     img {
@@ -97,13 +97,13 @@ export default {
     }
   }
   .score {
+    width: 1.3rem;
     font-size: 0.24rem;
     color: rgba(153, 153, 153, 1);
-    flex: 1;
     text-align: center;
   }
   .time {
-    // padding-right: 0.3rem;
+    flex: 1;
   }
 }
 </style>

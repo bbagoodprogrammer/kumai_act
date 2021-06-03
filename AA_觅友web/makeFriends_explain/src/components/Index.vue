@@ -2,7 +2,7 @@
   <div class="page pageIndex">
     <!-- <div class="app_top" :style="{background:'#F984BE',height:navigatorHeight}"></div> -->
     <div class="html_title">
-      心動交友說明
+      {{lang.title}}
     </div>
     <p class="explain_tips1">
       {{lang.explain_tips1}}
@@ -18,7 +18,7 @@
       </span>
     </p>
     <div class="ring">
-      <div class="title">{{lang.ring_title.replace('$',Math.floor(heartbeatValueReward / 10000))}}</div>
+      <div class="title" v-html="lang.ring_title.replace('$',Math.floor(heartbeatValueReward))"></div>
       <div class="ring_tips">{{ringName}}</div>
       <img :src="ringImage" alt="" class="ringImg">
     </div>
@@ -81,7 +81,11 @@ export default {
 <style lang="scss">
 .pageIndex {
   padding: 0.12rem 0.2rem 0.48rem;
-  background: linear-gradient(59deg, #FD4CAF 0%, #F88BC0 100%);
+  //   background: linear-gradient(59deg, #FD4CAF 0%, #F88BC0 100%);
+  background: #FD4CAF url(../img/bg.png) no-repeat;
+  background-size: 100% auto;
+  border-radius: 0.3rem 0.3rem 0 0;
+  overflow: hidden;
   .html_title {
     font-size: 0.36rem;
     font-weight: bold;
@@ -107,13 +111,22 @@ export default {
   .ring {
     width: 6.5rem;
     height: 1.15rem;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 0.2rem;
     padding: 0.2rem;
     position: relative;
     .title {
       font-size: 0.28rem;
       font-weight: bold;
+      display: flex;
+      align-items: center;
+      i {
+        width: 0.16rem;
+        height: 0.16rem;
+        background: url(../img/hear.png);
+        background-size: 100% 100%;
+        margin: 0 0.08rem;
+      }
     }
     .ring_tips {
       font-size: 0.26rem;
@@ -135,6 +148,7 @@ export default {
     padding: 0.31rem 0 0 0.14rem;
     font-size: 0.32rem;
     font-weight: 600;
+    white-space: nowrap;
   }
   .imgList {
     margin-top: 0.08rem;

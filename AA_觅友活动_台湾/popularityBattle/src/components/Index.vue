@@ -2,11 +2,17 @@
   <div class="page pageIndex">
     <RoolMsg />
     <div class="header">
-      <div class="ruleTips">活動規則</div>
+      <div class="ruleTips" @click="showRule = true">活動規則</div>
     </div>
     <TimePeople />
     <TabsScrollLoadList />
     <Footer />
+    <div class="mask" v-show="showRule">
+      <transition name="slide">
+        <Rule v-if="showRule" />
+      </transition>
+    </div>
+
   </div>
 </template>
 
@@ -15,9 +21,16 @@ import TimePeople from "./TimePeople"
 import TabsScrollLoadList from "./TabsScrollLoadList"
 import Footer from "./Footer"
 import RoolMsg from "./RoolMsg"
+import Rule from "./Rule"
+
 
 export default {
-  components: { TimePeople, TabsScrollLoadList, Footer, RoolMsg }
+  components: { TimePeople, TabsScrollLoadList, Footer, RoolMsg, Rule },
+  data () {
+    return {
+      showRule: false
+    }
+  }
 }
 </script>
 

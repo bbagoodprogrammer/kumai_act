@@ -8,7 +8,7 @@
           <div class="userRank">{{now_owner.rank}}</div>
           <div class="imgBox">
             <img v-lazy="now_owner.avatar" alt="" class="av1">
-            <img v-lazy="now_owner.fans[0].avatar" alt="" class="av2" v-if="now_owner.fans">
+            <img v-lazy="now_owner.fans[0]&&now_owner.fans[0].avatar" alt="" class="av2" v-if="now_owner.fans">
           </div>
           <div class="nick">{{now_owner.nick}}</div>
           <div class="score">
@@ -39,6 +39,7 @@
     <div class="mask" v-show="showFriendList">
       <transition name="slide">
         <div class="userPeopleList" v-if="showFriendList">
+          <i class="close" @click="showFriendList = false"></i>
           <div class="list_title">【{{act_item.nick}}】的粉絲守護團</div>
           <div class="list_header">
             <span>排名</span>
@@ -99,7 +100,16 @@ export default {
         this.friendList = res.data.response_data.fans
         this.showFriendList = true
       })
-    }
+    },
+    goUser (uid) { //跳转
+      console.log(uid)
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
+      }
+    },
   }
 
 }
@@ -236,13 +246,13 @@ export default {
                 img {
                   width: 0.31rem;
                   height: 0.31rem;
-                  margin-left: -0.1rem;
+                  margin-left: 0.05rem;
                   border-radius: 50%;
                 }
               }
               u {
                 font-size: 0.24rem;
-                color: #AB23CD;
+                color: #1AEDE6;
                 margin-left: 0.05rem;
               }
             }
@@ -278,6 +288,17 @@ export default {
   height: 10.36rem;
   background: url(../img/people_bg.png);
   background-size: 100% 100%;
+  position: relative;
+  .close {
+    display: block;
+    width: 0.74rem;
+    height: 0.74rem;
+    background: url(../img/close.png);
+    background-size: 100% 100%;
+    position: absolute;
+    right: 0;
+    top: -0.4rem;
+  }
   .list_title {
     height: 1.07rem;
     line-height: 1.07rem;

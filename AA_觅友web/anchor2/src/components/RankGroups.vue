@@ -37,7 +37,7 @@
             <span>{{lang.title_type3}}</span>
             <span>{{lang.title_type4}}</span>
           </div>
-          <div class="rank_list scrollable" :style="{height:(viewHeight-topHeight-navigatorHeight)+'px',}">
+          <div class="rank_list scrollable" :style="{height:(viewHeight-topHeight-navigatorHeight2)+'px',}">
             <inner-scroll-load-list :url="live_url" :parse="dayDataParse" :reset='reset'>
               <div slot-scope="{list, loading, none, end}">
                 <live-item v-for="(item,index) in list" :info="item" :key="index" />
@@ -71,7 +71,7 @@
             <span>{{lang.title_type3}}</span>
             <span>{{lang.title_type4}}</span>
           </div>
-          <div class="rank_list scrollable" :style="{height:(viewHeight-topHeight-navigatorHeight)+'px',}">
+          <div class="rank_list scrollable" :style="{height:(viewHeight-topHeight-navigatorHeight2)+'px',}">
             <inner-scroll-load-list :url="month_url" :parse="monthDataParse" :reset='reset'>
               <div slot-scope="{list, loading, none, end}">
                 <live-item v-for="(item,index) in list" :info="item" :key="index" />
@@ -133,6 +133,7 @@ export default {
   data () {
     return {
       navigatorHeight: 0,
+      navigatorHeight2: 0,
       topHeight: 0,
       mainTab: 0,
       rule_show: false,
@@ -177,6 +178,7 @@ export default {
     const ver = getAppVer();
     if ((pt == 'ios' && ver >= 165) || pt == 'android') {
       this.navigatorHeight = getStatusBarHeight() + 'px';
+      this.navigatorHeight2 = getStatusBarHeight()
     }
   },
   computed: {
@@ -670,7 +672,7 @@ body {
         }
       }
       .scrollable {
-        height: 8.5rem;
+        // height: 8.5rem;
         overflow: auto;
         margin: 0 auto;
         // padding-bottom: 1.2rem;
