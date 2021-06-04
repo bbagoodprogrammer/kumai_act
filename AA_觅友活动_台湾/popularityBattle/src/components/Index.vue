@@ -2,7 +2,7 @@
   <div class="page pageIndex">
     <RoolMsg />
     <div class="header">
-      <div class="ruleTips" @click="showRule = true">活動規則</div>
+      <div class="ruleTips" @click="showRule = true">{{lang.rule_tips}}</div>
     </div>
     <TimePeople />
     <TabsScrollLoadList />

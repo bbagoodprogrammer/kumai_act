@@ -9,15 +9,12 @@
           <img v-lazy="item.user?item.user.avatar:''" alt="" class="av">
           <div class="hour">{{item.hour}}:00</div>
           <div class="score" v-if="item.user">{{item.user.score}}</div>
-          <div class="scoreTips" v-if="item.user">人氣值</div>
+          <div class="scoreTips" v-if="item.user">{{lang.rank_listHeader4}}</div>
         </div>
       </div>
     </div>
     <div class="people_scoreTips">
-      在6月3日-6月9日期間，每日20：00、21：00、22：00、23：00
-      每小時人氣值第一名榮登人氣席位，並獲得對應小時人氣值
-      10%加成。（席位中展示的人氣值不包含10%加成，加成分
-      數直接增加到晉級賽、決賽）
+      {{lang.people_scoreTips}}
     </div>
   </div>
 </template>
