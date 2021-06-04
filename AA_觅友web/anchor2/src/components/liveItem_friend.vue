@@ -1,7 +1,7 @@
 <template>
   <div class="rankItem_box">
     <div class="rankItem">
-      <img v-lazy="info.avatar" alt="">
+      <img v-lazy="info.avatar" alt="" @click="goUser(info.uid)">
       <div class="userMsg">
         <div class="nick">{{info.nick}}</div>
         <div class="uid">ID {{info.uid}}</div>
@@ -44,6 +44,14 @@ export default {
     getShowTime (ts) {
       return this.lang.live_time.replace('{0}', getTimeObj(ts).month).replace('{1}', getTimeObj(ts).day).replace('{2}', getTimeObj(ts).hour).replace('{3}', getTimeObj(ts).minute);
     },
+    goUser (uid) {
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
+      }
+    }
   },
 }
 </script>
@@ -72,7 +80,7 @@ export default {
       text-overflow: ellipsis;
     }
     .uid {
-      margin-top: 0.05rem;
+      margin-top: 0.08rem;
       font-size: 0.24rem;
       color: rgba(153, 153, 153, 1);
     }

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta name="format-detection" content="telephone=no">
+		<meta http-eouiv="Cache-Control" content="no-cache, must-revalidate">
+		<title>跳转测试</title>
+		<link rel="stylesheet" type="text/css" href="./css/base.css">
+		<link rel="stylesheet" type="text/css" href="./css/index.css?v=1.3">
+		<script type="text/javascript" src="./js/font.js"></script>
+		<script type="text/javascript" src="./js/jquery-2.1.3.min.js"></script>
+		<style type="text/css">
+			li{
+				width: 14rem;
+				padding: 0.4rem 0 0.4rem;
+				background-color: #ccc;
+				margin: 0 auto 0.3rem;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div id="main">
+				<ul>
+					<li class="room">rid=2房间--2</li>
+					<li class="bottlespage">邂逅頁</li>
+					<li class="robMicpage">搶麥tab</li>
+					<li class="voiceChatpage">語聊</li>
+					<li class="makeSoundBottlespage">創建漂流瓶頁面</li>
+					<li class="leadSongpage">領唱頁面</li>
+					<li class="walletpage">錢包頁面</li>
+					<li class="userInfo">指定的用戶資料頁</li>
+					<li class="li1">intent://yinmi/udateapp.com</li>
+					<li class="li2">intent://ti/g/2ak5GPQGj6</li>
+					<li class="li3">yinmi/udateapp.com</li>
+					<li class="li4">goto:{"controller":""}</li>
+					<li class="closeweb">关闭</li>
+
+					<li class="workDetails">1.声音作品详情 ---  app://workDetails=usid</li>
+					<li class="singcnt">2.唱过的人 --  app://singcnt=musicid</li>
+					<li class="searchPublisherLyric">3.搜索推荐 ---   app://searchPublisherLyric</li>
+					<li class="makefriendcardpage">4.创建交友卡 ---  app://makefriendcardpage</li>
+					<li class="headwearShop">5.商城  ---  app://headwearShop</li>
+					<li class="chat">6.私讯 --  app://chat=uid</li>
+					<li class="eidpersonalDetails">7.资料编辑 --  app://eidpersonalDetails</li>
+					<li class="userLabels">8.个性标签页 --  app://userLabels</li>
+					<li class="createroom">9.创建房间  : app://createroom</li>
+
+					<li class="voiceMatch">10语音匹配1 : app://voiceMatch</li>
+					<li class="onlineMatch">11在线匹配:   app://onlineMatch</li>
+					<li class="heartbeatMatch">12心动匹配:  app://heartbeatMatch</li>
+
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		// document.write(navigator.userAgent);
+		const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+		$('.closeweb').on('click',function(){
+			if(ios){
+				sendJsData('app://closeWeb');
+			}else{
+				javascript:JSInterface.closeWeb();
+			}
+		})
+		$('.li1').on('click',function(){
+			location.href='intent://yinmi/udateapp.com';
+		})
+		$('.li2').on('click',function(){
+			location.href='intent://ti/g/2ak5GPQGj6';
+		})
+		$('.li3').on('click',function(){
+			location.href='yinmi/udateapp.com';
+		})
+		$('.li4').on('click',function(){
+			location.href='goto:{"controller":"com.utalk.hsing.activity.CreateRoomEditActivity"}';
+		})
+		
+		$('.room').on('click',function(){
+			if(ios){
+				sendJsData('app://room?rid='+2);
+			}else{
+				javascript:JSInterface.sendJsData('app://room?rid='+2);
+			}
+		})
+		$('.bottlespage').on('click',function(){
+			if(ios){
+				sendJsData('app://bottlespage');
+			}else{
+				javascript:JSInterface.sendJsData('app://bottlespage');
+			}
+		})
+		$('.robMicpage').on('click',function(){
+			if(ios){
+				sendJsData('app://robMicpage');
+			}else{
+				javascript:JSInterface.sendJsData('app://robMicpage');
+			}
+		})
+		$('.voiceChatpage').on('click',function(){
+			if(ios){
+				sendJsData('app://voiceChatpage');
+			}else{
+				javascript:JSInterface.sendJsData('app://voiceChatpage');	
+			}
+		})
+		$('.makeSoundBottlespage').on('click',function(){
+			if(ios){
+				sendJsData('app://makeSoundBottlespage');
+			}else{
+				javascript:JSInterface.sendJsData('app://makeSoundBottlespage');
+			}
+		})
+		$('.leadSongpage').on('click',function(){
+			if(ios){
+				sendJsData('app://leadSongpage');
+			}else{
+				javascript:JSInterface.sendJsData('app://leadSongpage');
+			}
+		})
+		$('.walletpage').on('click',function(){
+			if(ios){
+				sendJsData('app://walletpage');
+			}else{
+				javascript:JSInterface.sendJsData('app://walletpage');
+			}
+		})
+		$('.userInfo').on('click',function(){
+			if(ios){
+				sendJsData('app://userInfo?uid='+10012975);
+			}else{
+				javascript:JSInterface.sendJsData('app://userInfo?uid='+10012975);
+			}
+		})
+
+		$('.workDetails').on('click',function(){
+			if(ios){
+				sendJsData('app://workDetails='+123);
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.sq.song.ui.activity.SongDetialsActivity","datas":[ {"paramType": "int","paramName": "uid","paramValue": 123}, {"paramType": "int","paramName": "usid","paramValue": 123}]}');
+			}
+		})
+
+		$('.singcnt').on('click',function(){
+			if(ios){
+				sendJsData('app://singcnt='+123);
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.SingerListActivity","datas":[ {"paramType": "int","paramName": "extra_id","paramValue": 123},]}');
+			}
+		})
+
+		$('.searchPublisherLyric').on('click',function(){
+			if(ios){
+				sendJsData('app://searchPublisherLyric');
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.SearchRecomActivity","datas":[]}');
+			}
+		})
+
+		$('.makefriendcardpage').on('click',function(){
+			if(ios){
+				sendJsData('app://makefriendcardpage');
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.MyMakeFilterCardActivity","datas":[]}');
+			}
+		})
+
+		$('.headwearShop').on('click',function(){
+			if(ios){
+				sendJsData('app://headwearShop');
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.StoreActivity","datas":[{"paramType": "int","paramName": "index","paramValue": 123}]}');
+			}
+		})
+
+		$('.eidpersonalDetails').on('click',function(){
+			if(ios){
+				sendJsData('app://eidpersonalDetails');
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.UserInfoActivity","datas":[]}');
+			}
+		})
+
+		$('.chat').on('click',function(){
+			if(ios){
+				sendJsData('app://chat=123');
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.PrivateChatActivity","datas":[{"paramType": "int","paramName": "opposite_uid","paramValue": 123}]}');
+			}
+		})
+
+		$('.userLabels').on('click',function(){
+			if(ios){
+				sendJsData('app://userLabels');
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.sq.onlinematch.ui.activity.TagActivity","datas":[]}');
+			}
+		})
+
+		$('.createroom').on('click',function(){
+			if(ios){
+				sendJsData('app://createroom');
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.RoomModeSelectActitiy","datas":[]}');
+			}
+		})
+
+		$('.voiceMatch').on('click',function(){
+			if(ios){
+				sendJsData('app://voiceMatch');
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.sq.call.ui.activity.VoiceMatchActivity","datas":[]}');
+			}
+		})
+
+		$('.onlineMatch').on('click',function(){
+			if(ios){
+				sendJsData('app://onlineMatch');
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.sq.onlinematch.ui.activity.MatchIngActivity","datas":[]}');
+			}
+		})
+
+		$('.heartbeatMatch').on('click',function(){
+			if(ios){
+				sendJsData('app://heartbeatMatch');
+			}else{
+				javascript:JSInterface.sendJsData('app://gotoPage?data={"page":"com.sq.match.ui.activity.HeartBeatMatchReadyActivity","datas":[]}');
+			}
+		})
+
+	</script>
+</html>

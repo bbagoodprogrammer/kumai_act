@@ -10,7 +10,7 @@
       <div class="timeBox">
         <!-- <p v-if="rank.status == 0">當前階段結束倒計時</p>
         <p v-else-if="rank.status == 1">當前階段開始就倒計時</p> -->
-        <p v-if="rank.status == 2">當前階段已結束</p>
+        <p v-if="rank.status == 2">{{lang.rank_over}}</p>
         <div class="actTime" v-if="rank.status != 2">
           <span>{{surplusTime.day}}</span>
           <em>{{lang.day}}</em>
@@ -69,7 +69,7 @@
                   <div class="peopleItem">
                     <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in item.fans" :key="index2" @click="goUser(item2.uid)">
                   </div>
-                  <u @click="shouFriend(item,'final')">粉絲守護團>></u>
+                  <u @click="shouFriend(item,'final')">{{lang.fans_tips}}</u>
                 </div>
               </div>
             </li>
@@ -87,11 +87,11 @@
       <transition name="slide">
         <div class="userPeopleList" v-if="showFriendList">
           <i class="close" @click="showFriendList = false"></i>
-          <div class="list_title">【{{act_item.nick}}】的粉絲守護團</div>
+          <div class="list_title">【{{act_item.nick}}】{{lang.user_fan_group}}</div>
           <div class="list_header">
-            <span>排名</span>
-            <span>用戶</span>
-            <span>貢獻人氣值</span>
+            <span>{{lang.rank_listHeader1}}</span>
+            <span>{{lang.user}}</span>
+            <span>{{lang.user_score}}</span>
           </div>
           <ul>
             <li v-for="(item,index) in friendList" :key="index">
@@ -102,11 +102,10 @@
             </li>
           </ul>
           <div class="fans_tips">
-            *貢獻人氣值為粉絲對同一名主播所貢獻的人氣值總
-            和，榜單顯示前20名
+            {{lang.fans_score_tips}}
           </div>
           <div class="lookmsg" @click="goUser(act_item.uid)">
-            查看他人資料頁
+            {{lang.look_then}}
           </div>
         </div>
       </transition>

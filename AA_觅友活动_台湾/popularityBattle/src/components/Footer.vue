@@ -13,7 +13,7 @@
           <div class="nick">{{now_owner.nick}}</div>
           <div class="score">
             <span>{{now_owner.score}}</span>
-            <u @click="shouFriend(now_owner,'promotion')">粉絲守護團>></u>
+            <u @click="shouFriend(now_owner,'promotion')">{{lang.fans_tips}}</u>
           </div>
         </div>
         <div class="day total" v-else :class="'rank' + now_owner.rank">
@@ -30,7 +30,7 @@
               <div class="peopleItem">
                 <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in now_owner.fans" :key="index2">
               </div>
-              <u @click="shouFriend(now_owner,'final')">粉絲守護團>></u>
+              <u @click="shouFriend(now_owner,'final')">{{lang.fans_tips}}</u>
             </div>
           </div>
         </div>
@@ -40,11 +40,11 @@
       <transition name="slide">
         <div class="userPeopleList" v-if="showFriendList">
           <i class="close" @click="showFriendList = false"></i>
-          <div class="list_title">【{{act_item.nick}}】的粉絲守護團</div>
+          <div class="list_title">【{{act_item.nick}}】{{lang.user_fan_group}}</div>
           <div class="list_header">
-            <span>排名</span>
-            <span>用戶</span>
-            <span>貢獻人氣值</span>
+            <span>{{lang.rank_listHeader1}}</span>
+            <span>{{lang.user}}</span>
+            <span>{{lang.user_score}}</span>
           </div>
           <ul>
             <li v-for="(item,index) in friendList" :key="index">
@@ -55,11 +55,10 @@
             </li>
           </ul>
           <div class="fans_tips">
-            *貢獻人氣值為粉絲對同一名主播所貢獻的人氣值總
-            和，榜單顯示前20名
+            {{lang.fans_score_tips}}
           </div>
           <div class="lookmsg" @click="goUser(act_item.uid)">
-            查看他人資料頁
+            {{lang.look_then}}
           </div>
         </div>
       </transition>

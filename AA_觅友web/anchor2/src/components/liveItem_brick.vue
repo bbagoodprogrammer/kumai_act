@@ -2,7 +2,7 @@
   <div class="rankItem_box">
     <div class="rankItem">
       <div class="user">
-        <img v-lazy="info.avatar" alt="">
+        <img v-lazy="info.avatar" alt="" @click="goUser(info.uid)">
         <div class="userMsg">
           <div class="nick">{{info.nick}}</div>
           <div class="uid">ID {{info.uid}}</div>
@@ -11,8 +11,7 @@
       <div class="score">
         {{info.pinkJewel}}
       </div>
-      <div class="time">
-        {{info.opTime}}
+      <div class="time" v-html="info.opTime.replace(' ','<br/>')">
       </div>
     </div>
   </div>
@@ -49,6 +48,14 @@ export default {
     getShowTime (ts) {
       return this.lang.live_time.replace('{0}', getTimeObj(ts).month).replace('{1}', getTimeObj(ts).day).replace('{2}', getTimeObj(ts).hour).replace('{3}', getTimeObj(ts).minute);
     },
+    goUser (uid) {
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
+      }
+    }
   },
 }
 </script>
@@ -91,7 +98,7 @@ export default {
     }
     .uid {
       text-align: left;
-      margin-top: 0.05rem;
+      margin-top: 0.08rem;
       font-size: 0.24rem;
       color: rgba(153, 153, 153, 1);
     }
@@ -104,6 +111,9 @@ export default {
   }
   .time {
     flex: 1;
+    margin-left: 1rem;
+    text-align: left;
+    line-height: 0.32rem;
   }
 }
 </style>

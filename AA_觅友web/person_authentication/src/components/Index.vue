@@ -208,8 +208,9 @@ export default {
       font-size: 0.26rem;
       .tips_item {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         margin-bottom: 0.1rem;
+        line-height: 0.4rem;
         i {
           width: 0.3rem;
           height: 0.3rem;
@@ -219,7 +220,10 @@ export default {
           text-align: center;
           color: #fff;
           font-size: 0.24rem;
-          margin-right: 0.1rem;
+          margin: 0.1rem 0.1rem 0 0;
+        }
+        span {
+          flex: 1;
         }
       }
     }
@@ -236,7 +240,7 @@ export default {
     }
   }
   .has_img {
-    padding-top: 1.23rem;
+    padding-top: 0.6rem;
     .img_change {
       padding: 0 0.3rem;
       display: flex;
@@ -302,7 +306,7 @@ export default {
     .suc_icon {
       width: 2rem;
       height: 2rem;
-      margin: 2.38rem auto 0;
+      margin: 1.5rem auto 0;
     }
     .suc_title {
       font-size: 0.36rem;
@@ -324,7 +328,7 @@ export default {
     .examine {
       width: 5rem;
       height: 3.8rem;
-      margin: 1.51rem auto 0;
+      margin: 0.6rem auto 0;
     }
   }
   img {

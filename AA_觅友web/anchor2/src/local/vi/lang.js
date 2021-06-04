@@ -37,6 +37,11 @@ export default {
         " Ngày hiệu lực: Mỗi ngày livestream trên 1 giờ được tính là một ngày hiệu lực；",
         "Thời gian hiệu lực:  Idol lên mic trên 1 giờ được coi là có hiệu lực, một ngày tính tối đa 3 giờ ；"
     ],
+    rule_pickTitle: "Doanh thu Ngọc",
+    rule_pickLi: [
+        "Mỗi tháng vào 0h ngày 1 và 16, sẽ tổng kết số Ngọc của idol, idol có số Ngọc trên 500000 sẽ được kết toán và tự động reset"
+    ],
+
     //ccj
     index_tab1: "Số liệu party",
     index_tab2: "Số liệu giao lưu",
