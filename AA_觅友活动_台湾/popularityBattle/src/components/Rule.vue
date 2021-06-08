@@ -6,17 +6,17 @@
       <span :class="{act:type == 1}" @click="type = 1">{{lang.rule_tab1}}</span>
       <span :class="{act:type == 2}" @click="type = 2">{{lang.rule_tab2}}</span>
     </div>
-    <div class="tm">{{lang.tm}}</div>
+    <div class="tm">{{lang.rule_tm}}</div>
     <div class="con">
       <div class="rule_tips" v-if="type == 1">
-        <div v-for="(item,index) in rule_item" :key="index">
+        <div v-for="(item,index) in rule_item" :key="index+'1'">
           <h6>{{item.title}}</h6>
           <p v-if="item.p1">{{item.p1}}</p>
           <p v-if="item.p2">{{item.p2}}</p>
         </div>
 
         <div class="rule_gift">
-          <div class="giftItem" v-for="(item,index) in rule_gift" :key="index">
+          <div class="giftItem" v-for="(item,index) in rule_gift" :key="index+'2'">
             <span>{{item.price}} <i></i> </span>
             <img :src="item.img" alt="">
             <div class="name">{{item.name}}</div>
@@ -24,35 +24,35 @@
           </div>
         </div>
         <h6>{{rule_tipsList.title}}</h6>
-        <p v-for="(item,index) in rule_tipsList.p" :key="index">{{item}}</p>
+        <p v-for="(item,index) in rule_tipsList.p" :key="index+'3'">{{item}}</p>
 
       </div>
       <div class="gift_tips" v-if="type == 2">
         <h6>{{lang.gift_title1}}</h6>
         <div class="rule_gift gift">
-          <div class="giftItem" v-for="(item,index) in luck_gift" :key="index">
+          <div class="giftItem" v-for="(item,index) in luck_gift" :key="index+'1'">
             <img :src="item.img" alt="">
             <div class="name" v-html="item.name"></div>
             <div class="addScoreStr">{{item.addScoreStr}}</div>
           </div>
         </div>
 
-        <div v-for="(item,index) in gift_top3" :key="index" class="giftTipsItem">
+        <div v-for="(item,index) in gift_top3" :key="index+'2'" class="giftTipsItem">
           <h6 class="nomt">{{item.title}}</h6>
           <p>{{item.p}}</p>
-          <h6>第一名的頭號粉絲獎勵</h6>
+          <h6>{{lang.top1_title}}</h6>
           <p>{{item.p2}}</p>
         </div>
 
         <div class="rule_gift gift">
-          <div class="giftItem" v-for="(item,index) in luck_gift2" :key="index">
+          <div class="giftItem" v-for="(item,index) in luck_gift2" :key="index+'3'">
             <img :src="item.img" alt="">
             <div class="name" v-html="item.name"></div>
             <div class="addScoreStr">{{item.addScoreStr}}</div>
           </div>
         </div>
 
-        <div v-for="(item,index) in gift_other" :key="index" class="giftTipsItem">
+        <div v-for="(item,index) in gift_other" :key="index+'4'" class="giftTipsItem">
           <h6 class="nomt">{{item.title}}</h6>
           <p v-for="(item2,index2) in item.p" :key="index2">{{item2}}</p>
         </div>

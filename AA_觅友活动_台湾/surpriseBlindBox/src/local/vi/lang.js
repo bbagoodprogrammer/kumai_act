@@ -1,4 +1,6 @@
 export default {
+    alochat_tips: "Tạm thời không thể tặng hộp quà cho bạn bè nhé",
+
     //html/index.html
     title: "Hộp Quà Kỳ Diệu",
     act_rule: "Quy tắc",

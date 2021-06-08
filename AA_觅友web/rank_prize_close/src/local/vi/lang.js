@@ -12,5 +12,6 @@ export default {
         3: "Hạng 3"
     },
     examineIng: "Đang duyệt",
-    examine_tips: "Vui lòng để ý kết quả thông báo"
+    examine_tips: "Vui lòng để ý kết quả thông báo",
+    days: "ngày"
 };

@@ -50,19 +50,20 @@
 <script>
 
 
-import { getInitInfo, commitImg, auditRealStatus } from "../apis"
+import { commitImg, auditRealStatus } from "../apis"
 import { uploadPhoto } from "../utils/uploadPhotoMiyou"
 import store from "../store"
-
+import { mapState } from "vuex"
 
 window.refreshHomePage = function () {
-  window.location.reload(true)
+  store.dispatch('getInitInfo');
+  //   window.location.reload(true)
 }
 
 export default {
   data () {
     return {
-      sex: 0,
+      //   sex: 0,
       type: -1, //1初始狀態, 2已提交照片  3已通過
       //   img_tipsArr: [
       //     '請模仿示意圖拍攝認證照片；',
@@ -70,7 +71,7 @@ export default {
       //     '通過認證後，聊天粉鑽收益翻倍；',
       //     '拍攝照片僅作認證審核作用，官方將嚴格保密；'
       //   ],
-      avatar: '',
+      //avatar: '',
       new_avatar: '',
       blob: '',
       //   errorTips: {
@@ -83,6 +84,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['avatar', 'sex']),
     img_tipsArr () {
       return this.lang.img_tipsArr
     }
@@ -92,10 +94,10 @@ export default {
   },
   methods: {
     init () {
-      getInitInfo().then(res => {
-        this.avatar = res.data.response_data.avatar
-        this.sex = res.data.response_data.sex
-      })
+      //   getInitInfo().then(res => {
+      //     this.avatar = res.data.response_data.avatar
+      //     this.sex = res.data.response_data.sex
+      //   })
       //审核状态
       auditRealStatus().then(res => {
         if (res.data.response_data) {
@@ -117,9 +119,10 @@ export default {
       uploadPhoto(obj).then(res => {
         if (res.base64) {
           this.type = 2
-          if (res.callback == 'user_avatar') {
-            this.avatar = res.base64
-          } else if (res.callback == 'user_cover') {
+          //   if (res.callback == 'user_avatar') {
+          //     this.avatar = res.base64
+          //   } else
+          if (res.callback == 'user_cover') {
             this.new_avatar = res.base64
           }
         }

@@ -240,7 +240,7 @@ export default {
     text-align: center;
   }
   .tasksList {
-    padding: 0 0.3rem 0.28rem 0.3rem;
+    padding: 0 0.18rem 0.28rem 0.3rem;
     .newUserTask,
     .dayTask {
       background: #fff;

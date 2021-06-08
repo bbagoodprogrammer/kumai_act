@@ -48,9 +48,9 @@
             <h6>3. Thưởng</h6>
             <div class="giftBox">
 
-              <p>Hạng 1: Khung ảnh thằng hề (10 ngày), xe dê non (7 ngày) <br />
-                Hạng 2: Khung ảnh thằng hề (7 ngày),<br />
-                Hạng 3: Khung ảnh thằng hề (5 ngày),
+              <p>Hạng 1: Hạng 1: Bánh dậm-Khung ảnh (10 ngày), Thuyền rồng (7 ngày) <br />
+                Hạng 2: Bánh dậm-Khung ảnh (7 ngày)<br />
+                Hạng 3: Bánh dậm-Khung ảnh (5 ngày)
               </p>
 
             </div>

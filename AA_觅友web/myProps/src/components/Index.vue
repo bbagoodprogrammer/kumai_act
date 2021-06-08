@@ -3,12 +3,12 @@
     <div class="app_top" :style="{background:'#7A68F8',height:navigatorHeight}"></div>
     <div class="top_bg"></div>
     <!-- <div class="tab" :style="{top:navigatorHeight}"></div> -->
-    <div class="propsList" :style="{paddingTop:navigatorHeight2}">
+    <div class="propsList" :style="{height:viewHeight- navigatorHeight2-50 + 'px',paddingTop:navigatorHeight2}">
       <div class="noData" v-if="!list.length">
         <img src="../img/noData.png" alt="">
         <p>{{lang.no_props}}</p>
       </div>
-      <ul :class="{noLength:!list.length}">
+      <ul class="scrollable" :class="{noLength:!list.length}" :style="{height:viewHeight- 50 + 'px'}">
         <li v-for="(item,index) in list" :key="index" @click="giftClick(item)">
           <div class="imgBox">
             <i class="propsDay" v-if="item.expire ">{{item.expire}}{{lang.day_expire}}</i>
@@ -44,24 +44,26 @@ export default {
   data () {
     return {
       navigatorHeight: 0,
+      navigatorHeight2: 0,
       showGift: {},
       showGiftPup: false,
       loaded: false,
       pageNums: 1,
-      more: true
+      more: true,
+      scrollable: null
     }
   },
   computed: {
-    ...mapState(['list'])
+    ...mapState(['list']),
+    viewHeight: () => window.innerHeight,
   },
   //   created () {
 
   //   },
   mounted () {
     setTimeout(() => {
-      this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
       // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
-      window.addEventListener('scroll', this.onScroll);
+      //   window.addEventListener('scroll', this.onScroll);
       const pt = getPlatform();
       const ver = getAppVer();
       if ((pt == 'ios' && ver >= 165) || pt == 'android') {
@@ -69,6 +71,12 @@ export default {
         //  - document.getElementsByClassName('tab')[0].clientHeight
         this.navigatorHeight = getStatusBarHeight() + 'px';
         this.navigatorHeight2 = getStatusBarHeight() * 1 + 14 + 'px';
+      }
+      //局部滚动
+      this.scrollable = document.querySelector('.scrollable');
+      if (this.scrollable) {
+        this.scrollable.addEventListener('scroll', this.onScroll);
+        this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
       }
     }, 200)
   },
@@ -82,7 +90,7 @@ export default {
       this.showGiftPup = true
     },
     onScroll () {
-      const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 20;
+      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 100;
       const notFull = document.body.scrollHeight < window.innerHeigh;
       if ((scrollToBottom && !this.loaded && this.more) || notFull) {
         this.more = false
@@ -125,17 +133,17 @@ export default {
   }
   .propsList {
     width: 6.9rem;
-    min-height: 3rem;
+    // min-height: 3rem;
     position: relative;
     z-index: 2;
     overflow: hidden;
-    padding: 0.12rem 0.3rem 0;
+    padding: 0.3rem;
     .noData {
       width: 6.9rem;
       height: 3.51rem;
       background: #FFFFFF;
       border-radius: 0.3rem;
-      padding-top: 0.3rem;
+      padding-top: 3.94rem;
       img {
         width: 2.8rem;
         height: 2.1rem;
@@ -150,11 +158,14 @@ export default {
       }
     }
     ul {
+      //   height: 11.6rem;
+      overflow-y: scroll;
       background: #fff;
       border-radius: 0.3rem;
       padding: 0.4rem 0.24rem 0.1rem;
       display: flex;
       flex-wrap: wrap;
+      align-content: flex-start;
       &.noLength {
         padding: 0;
       }

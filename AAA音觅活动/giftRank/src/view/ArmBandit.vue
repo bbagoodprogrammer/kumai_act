@@ -8,13 +8,13 @@
       <span class="ruleTips" @click="goRule()"></span>
       <!-- <span class="ruleTips rank" @click="showRank()"></span> -->
     </div>
-    <div class= "giftList">
+    <div class="giftList">
       <div class="giftItem" v-for="(item,index) in giftArr" :key="index">
-    
+
         <div class="imgBox">
           <img :src="item.img" alt="">
         </div>
-          <strong>{{item.gname}}</strong>
+        <strong>{{item.gname}}</strong>
       </div>
     </div>
     <!-- <div class="gifts">
@@ -54,15 +54,15 @@
             <p>{{aTimer}}</p>
             <h6>2 榜單排名</h6>
             <p>禮物幸運榜分為幸運禮盒榜和尋寶奇兵榜，排名前100名玩家從高到低排名</p>
-           <p> 幸運禮盒榜：按照玩家在幸運禮盒中送出的幸運禮物的金幣數進行累計幸運值，1金幣=10幸運值</p>
-           <p>尋寶奇兵榜：按照玩家在尋寶奇兵中獲得的背包禮物或者道具的金幣數進行累計幸運值，1金幣=10幸運值，1貝殼=1000幸運值，1彩鑽=10000幸運值</p>
+            <p> 幸運禮盒榜：按照玩家在幸運禮盒中送出的幸運禮物的金幣數進行累計幸運值，1金幣=10幸運值</p>
+            <p>尋寶奇兵榜：按照玩家在尋寶奇兵中獲得的背包禮物或者道具的金幣數進行累計幸運值，1金幣=10幸運值，1貝殼=1000幸運值，1彩鑽=10000幸運值</p>
             <p>榜單展示指定禮物的實時累計數據</p>
             <h6>3 活動獎勵</h6>
             <div class="giftBox">
               <p>
-                第一名：2021頭像框7天+瑪莎拉蒂座駕7天+2000金豆<br />
-                第二名：2021頭像框5天+1500金豆<br />
-                第三名：2021頭像框3天+1000金豆
+                第一名：粽情端午-頭像框（10天）、龍舟座駕（7天）<br />
+                第二名：粽情端午-頭像框（7天）<br />
+                粽情端午-頭像框（5天）
               </p>
             </div>
             <h6>4 注意事項 </h6>
@@ -90,7 +90,7 @@ import getDate from "../utils/getDate"
 import TabsScrollLoadList from "../components/TabsScrollLoadList"
 export default {
   components: { MsgToast, ActFooter, roolMsg, TabsScrollLoadList },
-  data() {
+  data () {
     return {
       isShare: false, //是否分享
       isMore: true,   //加载更多
@@ -106,37 +106,37 @@ export default {
       stime: 0,
       etime: 0,
       prizes: {},
-      giftArr:[
+      giftArr: [
         {
           img: require('../assets/img/gift/gift1.png'),
-          gname:'頭像框'
+          gname: '頭像框'
         },
-         {
-          img:require('../assets/img/gift/gift2.png'),
-          gname:'座駕'
+        {
+          img: require('../assets/img/gift/gift2.png'),
+          gname: '座駕'
         },
-         {
-          img:require('../assets/img/gift/gift3.png'),
-          gname:'金豆'
+        {
+          img: require('../assets/img/gift/gift3.png'),
+          gname: '金豆'
         }
       ]
     }
   },
-  created() {
+  created () {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
   computed: {
-    aTimer() {
+    aTimer () {
       return getDate(new Date(this.stime), 2) + '-' + getDate(new Date(this.etime), 2)
     }
   },
   methods: {
-    judgeShare() {//判断是否为分享环境,请求相应的接口 
+    judgeShare () {//判断是否为分享环境,请求相应的接口 
       this.isShare = getString('token') ? false : true
       this.vxc('setShareState', this.isShare) //分享状态
     },
-    getDefaultData(val) { //初始化
+    getDefaultData (val) { //初始化
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
@@ -169,7 +169,7 @@ export default {
         // console.log(this.roolMsgs)
       })
     },
-    downTimeGo(timeName, val) {
+    downTimeGo (timeName, val) {
       downTime(timeName, val);
       this.surplusTime = downTime(timeName);
       this.timer = setInterval(() => {
@@ -180,18 +180,18 @@ export default {
         }
       }, 1000)
     },
-    downApp() {
+    downApp () {
       APP()
     },
-    goRule() {
+    goRule () {
       this.showRules = true
     },
-    showRank() {
+    showRank () {
       let token = getString('token')
       let uid = getString('uid')
       location.href = `./index2.html?token=${token}&uid=${uid}`
     },
-    closeRule() {
+    closeRule () {
       this.showRules = false
     }
     // refrsh() { //刷新
@@ -244,7 +244,7 @@ body::-webkit-scrollbar {
       position: absolute;
       right: 0;
       top: 4.8rem;
-    
+
       &.rank {
         background: url(../assets/img/ruleTips2.png);
         background-size: 100% 100%;
@@ -252,36 +252,36 @@ body::-webkit-scrollbar {
       }
     }
   }
-  .giftList{
+  .giftList {
     width: 6.07rem;
     height: 3.74rem;
-      background: url(../assets/img/giftList.png) no-repeat;
-      background-size: 100% 100%;
-      padding: 0 .49rem;
-      margin: 0 auto ;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .giftItem{
-          margin-top: .3rem;
-          strong{
-              display: block;
-              text-align: center;
-              font-size: .24rem;
-              color:#1494E0;
-              margin-top: .15rem;
-          }
-.imgBox{
-  width: 1.7rem;
-  height: 1.7rem;
-     background: url(../assets/img/giftImgBox.png) no-repeat;
-      background-size: 100% 100%;
-      img{
-        width: 1.6rem;
-  height: 1.6rem;
+    background: url(../assets/img/giftList.png) no-repeat;
+    background-size: 100% 100%;
+    padding: 0 0.49rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .giftItem {
+      margin-top: 0.3rem;
+      strong {
+        display: block;
+        text-align: center;
+        font-size: 0.24rem;
+        color: #1494E0;
+        margin-top: 0.15rem;
       }
-}
+      .imgBox {
+        width: 1.7rem;
+        height: 1.7rem;
+        background: url(../assets/img/giftImgBox.png) no-repeat;
+        background-size: 100% 100%;
+        img {
+          width: 1.6rem;
+          height: 1.6rem;
+        }
       }
+    }
   }
   .gifts {
     width: 6.88rem;
@@ -333,7 +333,7 @@ body::-webkit-scrollbar {
       margin-top: 0.24rem;
       text-align: center;
       text-indent: 0;
-      padding: 0 ;
+      padding: 0;
     }
     .giftImg {
       display: block;
@@ -362,8 +362,8 @@ body::-webkit-scrollbar {
       font-size: 0.24rem;
       color: #a2291f;
       font-weight: 500;
-       padding-left: 0.6rem;
-    //   text-indent: 0.5rem;
+      padding-left: 0.6rem;
+      //   text-indent: 0.5rem;
       // margin-top: 0.1rem;
     }
   }
