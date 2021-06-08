@@ -153,7 +153,7 @@ export default {
         setFullScreen();
         // - document.getElementsByClassName('tab')[0].clientHeight
         this.navigatorHeight = getStatusBarHeight() - document.getElementsByClassName('tab')[0].clientHeight + 'px'; // 88為APPtitle高度
-        this.navigatorHeight2 = getStatusBarHeight() * 1 + 20 + 'px';
+        this.navigatorHeight2 = getStatusBarHeight() * 1 + 12 + 'px';
 
       }
       this.init(1)

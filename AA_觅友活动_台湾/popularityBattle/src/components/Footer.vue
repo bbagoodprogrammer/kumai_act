@@ -135,7 +135,7 @@ export default {
     .noAct {
       font-size: 0.36rem;
       font-weight: 600;
-      margin-top: 1.2rem;
+      margin-top: 1.65rem;
     }
     .goAct {
       display: block;
@@ -193,6 +193,9 @@ export default {
           margin-left: 0.25rem;
           text-align: center;
           font-size: 0.26rem;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
         .score {
           flex: 1;

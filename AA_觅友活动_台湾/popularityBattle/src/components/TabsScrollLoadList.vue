@@ -50,11 +50,11 @@
         <div class="listHeader">
           <span class="rank">{{lang.rank_listHeader1}}</span>
           <span class="img">{{lang.rank_listHeader5}}</span>
-          <span class="score">{{lang.rank_listHeader4}}</span>
+          <span class="score total">{{lang.rank_listHeader4}}</span>
         </div>
         <div class="list totle">
           <ul>
-            <li v-for="(item,index) in rank.list" :key="index" :class="[{danger:item.rank == 8 && rank.status == 1,eliminate:item.rank == 11 && rank.status == 2},'rank' + item.rank]">
+            <li v-for="(item,index) in rank.list" :key="index" :class="['rank' + item.rank]">
               <div class="userRank">{{item.rank}}</div>
               <div class="imgBox" @click="goUser(item.uid)">
                 <img v-lazy="item.avatar" alt="" class="av1">
@@ -79,9 +79,10 @@
 
       <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
       <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
-      <div v-if="rank.none" class="scrollNone">
+      <div v-if="rank.none && rank.status !=0" class="scrollNone">
         {{lang.rank_noData}}
       </div>
+      <div class="scrollNone" v-if=" rank.status == 0 && mainTab== 1">{{lang.tab2_notStart}}</div>
     </div>
     <div class="mask" v-show="showFriendList">
       <transition name="slide">
@@ -274,6 +275,7 @@ export default {
               })
             }
             set('status', status)
+            console.log(arr)
             if (arr.slice) {
               const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
               set('loadCount', loadCount + 1);
@@ -297,6 +299,7 @@ export default {
             } else {
               console.log('ggg')
               set('loadEnd', true);
+              set('none', true);
             }
             set('loading', false);
           }).catch(err => {
@@ -515,6 +518,9 @@ export default {
         text-align: center;
         color: #761381;
         font-size: 0.26rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       .score {
         flex: 1;
@@ -570,6 +576,9 @@ export default {
               margin: 0;
               &.nick {
                 text-align: left;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
               }
               &.score {
                 margin-left: 0.6rem;
@@ -610,11 +619,13 @@ export default {
   text-align: center;
   color: #fff;
   font-size: 80%;
+  margin-top: 0.5rem;
 }
 .scrollNone {
   text-align: center;
   color: #fff;
   font-size: 80%;
+  margin-top: 0.5rem;
 }
 .userPeopleList {
   width: 7.24rem;

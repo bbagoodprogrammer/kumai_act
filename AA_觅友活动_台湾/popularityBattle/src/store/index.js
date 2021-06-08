@@ -34,6 +34,7 @@ export default new vuex.Store({
                     [key]: Object.assign({}, state.rankGroups[key], obj)
                 });
             }
+            console.log(state.rankGroups);
         },
         changGroupsUserMsg(state, obj) {
             if (obj && typeof obj.key != "undefined") {
@@ -43,7 +44,6 @@ export default new vuex.Store({
                     [key]: Object.assign({}, state.groupsUserMsg[key], obj)
                 });
             }
-            console.log(state.groupsUserMsg);
         }
     },
     actions: {

@@ -1,10 +1,12 @@
 export default {
     //html/index.html
+    tab2_notStart: "決賽還沒開始",
     title: "人氣大作戰",
     noAct: "活動未開始",
     actEd: "活動已結束",
     rule_tips: "活動規則",
-
+    loading: "加載中...",
+    rank_noData: "暫無歌友上榜",
     //footer
     fans_tips: "粉絲守護團>>",
     user_fan_group: "的粉絲守護團",
@@ -80,6 +82,7 @@ export default {
         ]
     },
     gift_title1: "決賽獎勵",
+    top1_title: "第一名的頭號粉絲獎勵",
     gift_top3: [
         {
             title: "第一名官方主播/官方房主",

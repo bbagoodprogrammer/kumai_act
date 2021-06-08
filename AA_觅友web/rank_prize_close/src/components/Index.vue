@@ -16,7 +16,7 @@
         <li v-for="(item,index) in prize" :key="index">
           <div class="prizeMsg">
             <div class="title">{{topNums[index]}}</div>
-            <div class="prize_name">{{`${item.name1}${item.name2?`&${item.name2}`:''}`}}</div>
+            <div class="prize_name">{{`${item.name1}${item.name2?`&${item.name2}`:''}`}} <i>x{{item.days}} {{lang.days}}</i></div>
           </div>
           <div class="prizeImg">
             <img :src="item.url1" alt="">
@@ -168,6 +168,9 @@ export default {
             font-size: 0.24rem;
             color: #8C8995;
             line-height: 0.33rem;
+            i {
+              font-size: 0.24rem;
+            }
           }
         }
         .prizeImg {
@@ -289,7 +292,7 @@ export default {
         }
         &.rank1,
         &.rank2 {
-          flex: 1;
+          width: 49.8%;
           height: 3.23rem;
           display: flex;
           align-items: center;
@@ -389,7 +392,7 @@ export default {
           }
         }
         &.rank2 {
-          margin-left: 0.25rem;
+          //   margin-left: 0.25rem;
           .userRank {
             background: url(../img/top3.png);
             background-size: 100% 100%;

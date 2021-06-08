@@ -201,6 +201,7 @@ export default {
     },
 
     handleSendFriend () {
+      console.log(_app)
       if (this.initData.step == 2) {
         toast(this.lang.act_ended)
         return
@@ -214,13 +215,18 @@ export default {
         }, 1500);
         return;
       }
-      this.sendType = "friend";
-      if (this.isAllSelect) {
-        this.sendCount = 9;
+      if (_app == 'alochat') {
+        toast(this.lang.alochat_tips);
       } else {
-        this.sendCount = 1;
+        this.sendType = "friend";
+        if (this.isAllSelect) {
+          this.sendCount = 9;
+        } else {
+          this.sendCount = 1;
+        }
+        this.showFriendDialog = true;
       }
-      this.showFriendDialog = true;
+
     },
 
     async handlePurchase () {

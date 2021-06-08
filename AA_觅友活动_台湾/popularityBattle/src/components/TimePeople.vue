@@ -52,7 +52,12 @@ export default {
       }
     },
     getDate (tm) {
-      return getDate(new Date(tm * 1000), 1)
+      if (AREA == 'tw') {
+        return getDate(new Date(tm * 1000), 1)
+      } else {
+        return getDate(new Date(tm * 1000), 2)
+      }
+
     }
   }
 }
@@ -158,7 +163,7 @@ export default {
     }
   }
   .people_scoreTips {
-    padding: 0 0.51rem;
+    padding: 0 0.4rem;
     text-align: center;
     font-size: 0.24rem;
     color: rgba(216, 173, 252, 1);

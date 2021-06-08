@@ -1,3 +1,95 @@
 html.vi {
-    
+    letter-spacing: -.0.02rem;
+    .pageIndex{
+        background:rgba(25, 4, 62, 1) url(./img/banner.png) 0  .3rem no-repeat;
+        background-size: 100% auto;
+    }
+    .ruleTips{
+        width: 1.51rem!important;
+        height: .42rem!important;
+        line-height: .42rem!important;
+        background: url(../../img/ruleTips2.png)!important;
+        background-size: 100% 100%!important;
+        padding: -0 !important;
+        white-space: nowrap;
+        font-size: .2rem!important;
+        
+    }
+    .mainTabs{
+        >span{
+           
+                &.tabL {
+                    i{
+                        width: 2.02rem;
+                        height: .34rem;
+                        background: url(./img/tab_bg_text1.png);
+                        background-size: 100% 100%;
+                    }
+                    &.current{
+                        width: 3.88rem;
+                        background: url(./img/tab_act1.png);
+                        background-size: 100% 100%;
+                        margin-top: .05rem;
+                        i{
+                            display: none;
+                        }
+                    }
+                }
+                &.tabR {
+                    i{
+                        width: 2.51rem;
+                        height: .39rem;
+                        background: url(./img/tab_bg_text2.png);
+                        background-size: 100% 100%;
+                    }
+                    &.current{
+                        width: 3.88rem;
+                        background: url(./img/tab_act2.png);
+                        background-size: 100% 100%;
+                        margin-top: .05rem;
+                        i{
+                            display: none;
+                        }
+                    }
+                }    
+            
+        }
+    }
+    .list{
+        li{
+            &.danger::before {
+                content: '';
+                display: block;
+                width: 7.08rem;
+                height: .44rem;
+                background: url(./img/danger.png);
+                background-size: 100% 100%;
+                position: absolute;
+                top: -.58rem;
+              }
+              &.danger {
+                position: relative;
+                margin-top: 0.72rem;
+              }
+            &.eliminate::before {
+                content: '';
+                display: block;
+                width: 7.08rem;
+                height: .44rem;
+                background: url(./img/eliminate.png);
+                background-size: 100% 100%;
+                position: absolute;
+                top: -.58rem;
+              }
+              &.eliminate {
+                position: relative;
+                margin-top: 0.72rem;
+              }
+        }
+    }
+}
+.listHeader{
+    .total{
+      margin-left: 2rem;
+    }
 }

@@ -9,8 +9,9 @@ export default {
     topNums: {
         1: "第一名",
         2: "第二名",
-        3: "第三名",
+        3: "第三名"
     },
     examineIng: "审核中",
     examine_tips: "請留意系統通知的認知結果",
+    days: "天"
 };

@@ -18,5 +18,5 @@ export default {
         "拍攝照片僅作認證審核作用，官方將嚴格保密；"
     ],
     examineIng: "审核中",
-    examine_tips: "請留意系統通知的認知結果"
+    examine_tips: "請留意系統通知的認證結果"
 };
