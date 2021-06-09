@@ -121,8 +121,8 @@ export default {
       display: flex;
       align-items: center;
       i {
-        width: 0.16rem;
-        height: 0.16rem;
+        width: 0.26rem;
+        height: 0.26rem;
         background: url(../img/hear.png);
         background-size: 100% 100%;
         margin: 0 0.08rem;
@@ -149,6 +149,7 @@ export default {
     font-size: 0.32rem;
     font-weight: 600;
     white-space: nowrap;
+    margin-top: 0.46rem;
   }
   .imgList {
     margin-top: 0.08rem;

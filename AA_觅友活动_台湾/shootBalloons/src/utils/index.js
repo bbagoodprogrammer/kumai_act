@@ -80,7 +80,7 @@ function callApp(name, ...args) {
         const isIOS = getPlatform() == "ios";
         try {
             args = args.length ? args : isIOS ? [""] : [];
-            args = args.map((v) => {
+            args = args.map(v => {
                 if (typeof v == "object" && v !== null) {
                     return JSON.stringify(JSON.stringify(v));
                 }
@@ -110,7 +110,7 @@ function toast(message, time = 1000) {
         "px; transition:opacity " +
         cssTime / 1000 +
         's">' +
-        htmlEncode(message) +
+        message +
         "</span>";
     document.body.appendChild(div);
     const span = div.firstChild;
@@ -137,5 +137,5 @@ export {
     getAppVer,
     callApp,
     toast,
-    vuexCommit,
+    vuexCommit
 };
