@@ -114,7 +114,8 @@ export default {
     },
     async playPhoto (key) {
       let obj = {
-        callback: key
+        callback: key,
+        cameraFacing: 1  //调用前置摄像头
       }
       uploadPhoto(obj).then(res => {
         if (res.base64) {
@@ -239,7 +240,10 @@ export default {
       text-align: center;
       line-height: 0.88rem;
       font-size: 0.32rem;
-      margin: 1.36rem auto 0;
+      //   margin: 1.36rem auto 0;
+      position: fixed;
+      bottom: 0.5rem;
+      left: 1.25rem;
     }
   }
   .has_img {
@@ -302,7 +306,10 @@ export default {
       text-align: center;
       line-height: 0.88rem;
       font-size: 0.32rem;
-      margin: 2.9rem auto 0;
+      //   margin: 2.9rem auto 0;
+      position: fixed;
+      bottom: 0.5rem;
+      left: 1.25rem;
     }
   }
   .suc_tips {
