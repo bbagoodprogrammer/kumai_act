@@ -7,18 +7,18 @@
         <div class="userRank">{{owner.rank}}</div>
         <div class="imgBox">
           <img v-lazy="owner.avatar" alt="" class="avatar">
-          <i class="live">LIVE</i>
+          <i class="live" v-if="owner.live_room">LIVE</i>
         </div>
         <div class="msg">
           <div class="nick">{{owner.nick}}</div>
           <!-- <span class="live" v-if="owner.live_room"></span> -->
         </div>
         <div class="score">
-          <i>命中值</i>
+          <i>{{lang.hitValue}}</i>
           <em>{{owner.score}}</em>
         </div>
       </div>
-      <span class="shoot" @click="scorllTo()" v-if="astState === 4">射氣球</span>
+      <span class="shoot" @click="scorllTo()" v-if="astState === 4">{{lang.shoot}}</span>
     </div>
   </div>
 </template>
@@ -61,7 +61,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 9;
   .acrStatus {
     width: 7.5rem;
     height: 1.58rem;
@@ -159,15 +159,15 @@ export default {
           margin-top: 0.04rem;
         }
       }
-      &.rank1,
-      &.rank2,
-      &.rank3 {
-        background: url(../img/top3_bg.png);
-        background-size: 100% 100%;
-        .userRank {
-          text-indent: -999rem;
-        }
-      }
+      //   &.rank1,
+      //   &.rank2,
+      //   &.rank3 {
+      //     background: url(../img/top3_bg.png);
+      //     background-size: 100% 100%;
+      //     .userRank {
+      //       text-indent: -999rem;
+      //     }
+      //   }
       &.rank1 {
         .userRank {
           background: url(../img/top1.png);

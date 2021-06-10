@@ -3,14 +3,14 @@
     <div class="peopleList">
       <div class="pItem" v-for="(item,index) in comPrizes" :key="index" :class="{noPeople:!item.uid}">
         <img v-lazy="item.avatar" alt="" class="av">
-        <div class="nick">{{item.nick?item.nick:'虛位以待'}}</div>
+        <div class="nick">{{item.nick?item.nick:lang.no_people}}</div>
         <div class="score" v-if="item.uid"><i></i></div>
       </div>
     </div>
     <div class="grandTips">
       <i></i>
-      在射氣球的過程中，有可能射中氣球大獎喔
-      <span>飛鏢砲台射中機率更高</span>
+      {{lang.grandTips}}
+      <span> {{lang.grandTips2}}</span>
     </div>
   </div>
 </template>
@@ -37,6 +37,8 @@ export default {
 
 <style lang="scss">
 .grand {
+  position: relative;
+  //   z-index: 8;
   .peopleList {
     display: flex;
     align-items: center;

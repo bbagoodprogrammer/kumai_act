@@ -1,19 +1,20 @@
 <template>
   <div class="home__container">
     <div class="header">
+      <div class="tm">{{act_tm}}</div>
       <div class="rule" @click="goRule">{{lang.rule}}</div>
       <div class="state" @click="goRecord">{{lang.record}}</div>
     </div>
-    
+
     <img class="store_coin" src="../assets/images/store_coin.png" />
 
     <div class="main">
-      
+
       <div class="award__des">{{lang.award_des}}</div>
       <div class="store__des" v-html="getStoreHtml"></div>
 
       <div class="main__box">
-        
+
         <div class="">
           <div class="item__box" v-for="(item, index) in list" :key="index">
 
@@ -69,7 +70,7 @@
     <RuleDialog v-if="ruleVisible" :visible.sync="ruleVisible">
       <div class="rule__dialog">
         <div class="title">{{lang.rule}}</div>
-        <div class="des">{{lang.rule_des1}}</div>
+        <div class="des">1、{{act_tm}}</div>
         <div class="des">{{lang.rule_des2.replace('%s', ruleCoin)}}</div>
         <span class="explain">{{lang.rule_explain}}</span>
       </div>
@@ -106,6 +107,7 @@ import lang from '@/config/lang';
 import { getUrlString, loadImages, dateFormat, toast } from '@/utils';
 import { InitData, Test, ReceiveRewards, Records } from '../request'
 import callApp from '../utils/callApp'
+import getDate from "../utils/getDate"
 
 export default {
   name: 'Home',
@@ -116,25 +118,27 @@ export default {
     ReceiveDialog
   },
 
-  data() {
+  data () {
     return {
       ruleVisible: false,
       recordVisible: false,
       receiveVisible: false,
       state: 1,
-      list:[],
+      list: [],
       processList: [],
       amount: 0,
       ruleCoin: '',
       recordList: [],
       prizes: '',
-      refreshing: false
+      refreshing: false,
+      stime: '',
+      etime: ''
     }
   },
 
   computed: {
     lang: () => lang,
-    actLinerWidth() {
+    actLinerWidth () {
       if (this.processList.length == 0) {
         return '0%'
       }
@@ -148,31 +152,34 @@ export default {
         } else if (this.amount >= this.processList[i].amount) {
           let c = this.processList[i + 1].amount - this.processList[i].amount
           let t = this.amount - this.processList[i].amount
-          let a = t/c * 4.334
-          return (4.334 * (i) + a )+ 'rem'
+          let a = t / c * 4.334
+          return (4.334 * (i) + a) + 'rem'
         }
       }
     },
     getStoreHtml () {
       return `${this.lang.current_store.replace('{0}', `<span>${this.amount}</span>`)}`
+    },
+    act_tm () {
+      return getDate(new Date(this.stime * 1000), 1) + ' - ' + getDate(new Date(this.etime * 1000), 1)
     }
   },
 
 
-  created() {
+  created () {
     this.initData()
   },
 
-  mounted() {
+  mounted () {
     loadImages(
-        require('../assets/images/receive_dialog_bg.png'),
-        require('../assets/images/dialog_bg.png')
+      require('../assets/images/receive_dialog_bg.png'),
+      require('../assets/images/dialog_bg.png')
     );
   },
 
   methods: {
 
-    handlereFresh() {
+    handlereFresh () {
       this.refreshing = true
       this.clear()
       setTimeout(() => {
@@ -183,11 +190,13 @@ export default {
 
     async initData () {
       let res = await InitData()
-      let {response_status, response_data} = res.data
+      let { response_status, response_data } = res.data
       if (response_status.code === 0) {
         this.handleTasks(response_data.tasks)
         this.amount = response_data.amount
         this.state = response_data.step
+        this.stime = response_data.stime
+        this.etime = response_data.etime
       }
     },
 
@@ -216,7 +225,7 @@ export default {
           }
           if (item.type == 'gift') {
             name = name.replace('{2}', this.lang.gift)
-          } else if(item.type == 'car') {
+          } else if (item.type == 'car') {
             name = name.replace('{2}', this.lang.car)
           } else {
             name = name.replace('{2}', this.lang.frame)
@@ -239,8 +248,8 @@ export default {
     },
 
     async receiveRewards (item, index) {
-      let res = await ReceiveRewards({amount: item.amount})
-      let {response_status, response_data} = res.data
+      let res = await ReceiveRewards({ amount: item.amount })
+      let { response_status, response_data } = res.data
       if (response_status.code === 0) {
         this.prizes = item.prizes
         this.receiveVisible = true
@@ -256,7 +265,7 @@ export default {
 
     async goRecord () {
       let res = await Records()
-      let {response_status, response_data} = res.data
+      let { response_status, response_data } = res.data
       if (response_status.code === 0) {
         let today = dateFormat('m-dd', new Date()) //今天
         let list = []
@@ -265,7 +274,7 @@ export default {
             date: '',
             records: []
           }
-          let date = dateFormat('m-dd', new Date(item.time  * 1000))
+          let date = dateFormat('m-dd', new Date(item.time * 1000))
 
           let arr = date.split('-')
           let langDate = lang.date.replace('{0}', arr[0]).replace('{1}', arr[1])
@@ -292,7 +301,7 @@ export default {
             }
             if (item.type == 'gift') {
               name = name.replace('{2}', this.lang.gift)
-            } else if(item.type == 'car') {
+            } else if (item.type == 'car') {
               name = name.replace('{2}', this.lang.car)
             } else {
               name = name.replace('{2}', this.lang.frame)
@@ -300,7 +309,7 @@ export default {
             prizeArr.push(name)
           })
           item.prize = prizeArr.join('、')
-          item.time = dateFormat('HH:MM', new Date(item.time  * 1000))
+          item.time = dateFormat('HH:MM', new Date(item.time * 1000))
 
           let index = list.findIndex(item => item.date == listItem.date)
           if (index > -1) {
@@ -339,8 +348,12 @@ export default {
     animation: rotate 1s ease;
   }
   @keyframes rotate {
-    from {transform: rotate(0deg);}
-	  to {transform: rotate(1080deg);}
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(1080deg);
+    }
   }
   .header {
     width: 750px;
@@ -348,6 +361,19 @@ export default {
     background-image: url('../assets/images/header_bg.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    position: relative;
+    .tm {
+      width: 6rem;
+      height: 0.5rem;
+      position: absolute;
+      left: 1.8rem;
+      top: 5.55rem;
+      text-align: center;
+      line-height: 0.5rem;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+    }
     .rule {
       width: 147px;
       height: 59px;
@@ -381,15 +407,15 @@ export default {
   }
 
   .store_coin {
-      position: relative;
-      top: 25px;
-      z-index: 0;
-      width: 740px;
-      height: 190px;
-      left: 50%;
-      transform: translateX(-50%);
-      margin-top: -75px;
-    }
+    position: relative;
+    top: 25px;
+    z-index: 0;
+    width: 740px;
+    height: 190px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -75px;
+  }
 
   .main {
     width: 725px;
@@ -423,20 +449,32 @@ export default {
       height: 100%;
       position: relative;
       z-index: 100;
-      
+
       .item__box {
         width: 580px;
         position: relative;
         z-index: 10;
         margin-left: 25px;
-        background: radial-gradient(circle at right top, transparent 20px, #ffffff 0) top right / 51% 51% no-repeat,
-          radial-gradient(circle at left top, transparent 20px, #ffffff 0) top left / 51% 51% no-repeat,
-          radial-gradient(circle at right bottom, transparent 20px, #ffffff 0) bottom right / 51% 51% no-repeat,
-          radial-gradient(circle at left bottom, transparent 20px, #ffffff 0) bottom left / 51% 51% no-repeat;
+        background: radial-gradient(
+              circle at right top,
+              transparent 20px,
+              #ffffff 0
+            )
+            top right / 51% 51% no-repeat,
+          radial-gradient(circle at left top, transparent 20px, #ffffff 0) top
+              left / 51% 51% no-repeat,
+            radial-gradient(circle at right bottom, transparent 20px, #ffffff 0)
+                bottom right / 51% 51% no-repeat,
+              radial-gradient(
+                  circle at left bottom,
+                  transparent 20px,
+                  #ffffff 0
+                )
+                bottom left / 51% 51% no-repeat;
       }
       .item__box::before {
         content: '';
-        width:160px;
+        width: 160px;
         height: 16px;
         background: url('../assets/images/hori_liner.png');
         background-size: 100% 100%;
@@ -457,20 +495,31 @@ export default {
         margin: auto;
       }
       .item__box:last-child {
-        background: radial-gradient(circle at right top, transparent 20px, #ffffff 0) top right / 51% 100% no-repeat,
-          radial-gradient(circle at left top, transparent 20px, #ffffff 0) top left / 51% 100% no-repeat;
+        background: radial-gradient(
+              circle at right top,
+              transparent 20px,
+              #ffffff 0
+            )
+            top right / 51% 100% no-repeat,
+          radial-gradient(circle at left top, transparent 20px, #ffffff 0) top
+            left / 51% 100% no-repeat;
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
       }
       .item__box:first-child {
-        background: 
-          radial-gradient(circle at right bottom, transparent 20px, #ffffff 0) bottom right / 51% 100% no-repeat,
-          radial-gradient(circle at left bottom, transparent 20px, #ffffff 0) bottom left / 51% 100% no-repeat;
+        background: radial-gradient(
+              circle at right bottom,
+              transparent 20px,
+              #ffffff 0
+            )
+            bottom right / 51% 100% no-repeat,
+          radial-gradient(circle at left bottom, transparent 20px, #ffffff 0)
+            bottom left / 51% 100% no-repeat;
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
       }
       .item__box:first-child::before {
-        width:0;
+        width: 0;
         height: 0;
       }
       .item__box:last-child::after {
@@ -505,7 +554,6 @@ export default {
             background-size: 100% 100%;
           }
         }
-        
       }
     }
   }
@@ -555,7 +603,7 @@ export default {
   }
 
   .prize__box {
-    display:flex;
+    display: flex;
     padding: 50px 0px 50px 40px;
     .prize__img__box {
       width: 225px;
@@ -591,7 +639,6 @@ export default {
           margin-top: 15px;
         }
       }
-  
     }
   }
 
@@ -605,19 +652,19 @@ export default {
   }
   .store__btn {
     background: url('../assets/images/go_store_bg.png');
-    background-size:100% 100%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     color: #FFFFFF;
   }
   .receive__btn {
     background: url('../assets/images/receive.png');
-    background-size:100% 100%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     color: #7D2D14;
   }
   .received__btn {
     background: url('../assets/images/received.png');
-    background-size:100% 100%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     color: #FFFFFF;
   }
@@ -708,6 +755,5 @@ export default {
       }
     }
   }
-
 }
 </style>
