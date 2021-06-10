@@ -6,7 +6,7 @@
         <div class="userRank">{{item.rank}}</div>
         <div class="imgBox">
           <img v-lazy="item.avatar" alt="" class="avatar">
-          <i class="live">LIVE</i>
+          <i class="live" v-if="item.live_room">LIVE</i>
         </div>
 
         <div class="msg">
@@ -14,7 +14,7 @@
           <!-- <span class="live" v-if="item.live_room"></span> -->
         </div>
         <div class="score">
-          <i>命中值</i>
+          <i>{{lang.hitValue}}</i>
           <em>{{item.score}}</em>
         </div>
       </li>
@@ -97,6 +97,10 @@ export default {
   min-height: 5.97rem;
   margin: 0.11rem auto 0;
   padding: 1.48rem 0 2rem 0;
+  > p {
+    text-align: center;
+    color: #a3541b;
+  }
   ul {
     width: 6.98rem;
     margin: 0 auto;

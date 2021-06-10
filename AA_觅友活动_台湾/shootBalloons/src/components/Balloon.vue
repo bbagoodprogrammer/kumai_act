@@ -4,16 +4,15 @@
       <div class="userCoins">
         <i class="icon"></i>
         <span>{{owner.balance}}</span>
-        <i class="add"></i>
+        <i class="add" @click="gowalletpage()"></i>
       </div>
       <div class="btn">
-        <div class="one" @click="luck(1)">射一次</div>
-        <div class="ten" @click="luck(10)">射十次</div>
+        <div class="one" @click="luck(1)">{{lang.balloon_one}}</div>
+        <div class="ten" @click="luck(10)">{{lang.balloon_ten}}</div>
       </div>
-      <div class="ballTips">
-        長按砲台可調整角度，鬆手後即射出彈珠/飛鏢，
-        彈珠砲台20金幣/次，飛鏢砲台80金幣/次
-      </div>
+      <!-- <div class="ballTips">
+        {{lang.ballTips}}
+      </div> -->
     </div>
     <!-- 抽獎禮物彈窗 -->
     <div class="mask" v-show="showLuckGift">
@@ -29,7 +28,7 @@
                 <img :src="item.image" alt="" v-else>
                 <div class="nums">
                   <img src="../img/numbers/c.png" alt="">
-                  <img :src="require(`../img/numbers/${item}.png`)" alt="" v-for="(item,index) in String(item.num) " :key="index">
+                  <img :src="require(`../img/numbers/${item}.png`)" alt="" v-for="(item,index) in String(item.count) " :key="index">
                 </div>
               </div>
               <strong>{{item.name}}</strong>
@@ -44,14 +43,15 @@
     <div class="mask" v-show="firstPup">
       <transition name="slide">
         <div class="firstQuery" v-if="firstPup">
-          <div class="title">確認</div>
+          <div class="title">{{lang.ok}}</div>
           <div class="queryTips">
-            使用【炮台名稱】射擊n次氣球，
-            需要消耗123金幣
+            <!-- 使用【{{type==1?'彈珠炮台':'飛鏢炮台'}}】射擊{{count}}次氣球，
+            需要消耗{{type == 1?count*20 :count*80}}金幣 -->
+            {{lang.queryTips.replace('%a',type==1?lang.balloon_tab1:lang.balloon_tab2).replace('%b',count).replace('%c',type == 1?count*20 :count*80)}}
           </div>
           <div class="btnBox">
-            <span class="cancel" @click="firstPup =false">我再想想</span>
-            <span class="determine" @click="luck(count,true)">確定射擊</span>
+            <span class="cancel" @click="firstPup =false">{{lang.cancel}}</span>
+            <span class="determine" @click="luck(count,true)">{{lang.determine}}</span>
           </div>
         </div>
       </transition>
@@ -63,14 +63,14 @@
           <!-- <i class="close" @click="closePup()"></i> -->
           <div class="prizeImg"> </div>
           <div class="prizeTips">
-            {{prize_open?`恭喜擊中${prizes.list[prizes.grand_prize_id].name}`:'神射手降臨！你擊中了大獎勵～'}}
+            {{prize_open?`${lang.prizeTips}${prizes.list[prizes.grand_prize_id].name}`:lang.prizeTips2}}
           </div>
           <div class="coins" v-if="prize_open">
             <i></i>
             <span>{{prizes.list[prizes.grand_prize_id].name}}</span>
           </div>
           <div class="ok" @click="next()">
-            開心收下
+            {{lang.getEd}}
           </div>
         </div>
       </transition>
@@ -105,14 +105,19 @@ export default {
       if (this.luckIng) {
         return
       }
-      if (!this.owner.first_time && !cloud) {
+      let need_coins = this.type == 1 ? count * 20 : count * 80
+      if (need_coins > this.owner.balance) {  //金幣餘額判斷
+        this.toast(this.lang.need_coins)
+        this.gowalletpage()
+        return
+      }
+      if (!this.owner.first_time && !cloud) {  //首次抽獎判斷
         this.count = count
         this.firstPup = true
         return
       }
       this.luckIng = true
       luck(this.type == 1 ? 'marbles' : 'dart', count).then(res => {
-
         if (res.data.response_status.code == 0) {
           //播放動畫
           if (count == 10) {
@@ -130,7 +135,11 @@ export default {
             }
             this.$parent.svgaStart('ball', 1, true, this.svgaAddress[aniKey].data)
           }
-          let tm = count == 10 ? 10300 : 4000
+          let tm = 4000
+          if (!this.owner.first_time) {
+            this.firstPup = false
+            this.vxc('setFirst')
+          }
           //中獎邏輯
           setTimeout(() => {
             this.luckIng = false
@@ -140,10 +149,6 @@ export default {
               this.$parent.svgaStart('ball', 1, true, this.svgaAddress['Darts_default'].data)
             }
             const { coins, prizes } = res.data.response_data
-            if (!this.owner.first_time) {
-              this.firstPup = false
-              this.vxc('setFirst')
-            }
             this.prizes = prizes
             if (prizes.level == 1) {
               let giftStr = ``
@@ -157,10 +162,10 @@ export default {
                 }
               }
               if (coinsNums) {
-                giftStr += `金幣+${coinsNums}<br/>`
+                giftStr += `${this.lang.bean}+${coinsNums}<br/>`
               }
               if (beanNums) {
-                giftStr += `金豆+${beanNums}`
+                giftStr += `${this.lang.coins}+${beanNums}`
               }
               this.toast(giftStr)
             } else if (prizes.level == 2) {
@@ -194,19 +199,30 @@ export default {
       }
 
     },
+    gowalletpage () {
+      const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      try {
+        if (ios) {
+          // goWalletpage()
+          sendJsData('app://walletpage');
+        } else {
+          javascript: JSInterface.sendJsData('app://walletpage');
+        }
+      } catch (e) { }
+    },
   }
 }
 </script>
 
 <style lang="scss">
 .balloon {
-  height: 10.59rem;
+  height: 10.19rem;
   position: relative;
-  z-index: 10;
+  //   z-index: 9;
   .operation {
     width: 100%;
     position: absolute;
-    top: 8.57rem;
+    top: 8.8rem;
     .userCoins {
       min-width: 1.82rem;
       height: 0.36rem;

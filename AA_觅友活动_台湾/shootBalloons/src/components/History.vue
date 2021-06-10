@@ -13,7 +13,7 @@
       </ul>
     </div>
     <div class="noData" v-if="hList.length == 0">
-      {{lang.history_noData}}
+      {{lang.noData}}
     </div>
   </div>
 </template>

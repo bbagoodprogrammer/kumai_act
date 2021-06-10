@@ -2,19 +2,22 @@
   <div class="page pageIndex">
     <RoolMsg />
     <canvas id="ball"></canvas>
-    <div class="ruleTips">
-      <span @click="showRule = true">規則獎勵</span>
-      <span @click="showHistory = true">我的獎品</span>
+    <div class="con">
+      <div class="ruleTips">
+        <span @click="showRule = true">{{lang.rule_tips}}</span>
+        <span @click="showHistory = true">{{lang.rule_tips2}}</span>
+      </div>
+      <div class="actTitle"></div>
+      <div class="tab">
+        <span class="tab1" :class="{act:type == 1}" @click="tabClick(1)">{{lang.balloon_tab1}}</span>
+        <span class="tab2" :class="{act:type == 2}" @click="tabClick(2)">{{lang.balloon_tab2}}</span>
+      </div>
+      <Balloon :type="type" :svgaAddress="svgaAddress" />
+      <Grand />
+      <Rank />
+      <Footer />
     </div>
-    <div class="actTitle"></div>
-    <div class="tab">
-      <span class="tab1" :class="{act:type == 1}" @click="tabClick(1)">彈珠炮台</span>
-      <span class="tab2" :class="{act:type == 2}" @click="tabClick(2)">飛鏢炮台</span>
-    </div>
-    <Balloon :type="type" :svgaAddress="svgaAddress" />
-    <Grand />
-    <Rank />
-    <Footer />
+
     <!-- 歷史 -->
     <div class="mask" v-show="showHistory">
       <transition name="slide">
@@ -34,14 +37,14 @@
           <!-- <i class="close" @click="closePup()"></i> -->
           <div class="prizeImg"> </div>
           <div class="prizeTips">
-            {{prize_open?`恭喜擊中${nowPrize.desc}`:'  神射手降臨！你擊中了大獎勵～'}}
+            {{prize_open?`${lang.prizeTips}${nowPrize.desc}`:lang.prizeTips2}}
           </div>
           <div class="coins" v-if="prize_open">
             <i></i>
             <span>{{nowPrize.name}}</span>
           </div>
           <div class="ok" @click="next()">
-            開心收下
+            {{lang.getEd}}
           </div>
         </div>
       </transition>
@@ -95,7 +98,7 @@ export default {
           addres: 'http://fstatic.cat1314.com/uc/svga/7cc1453a295c650f8cf7e64e5a5261a2_1623233243.svga',
         },
         Marbles_ten: {
-          addres: 'http://fstatic.cat1314.com/uc/svga/c38719734a3ded1b755b82786a35a808_1623233279.svga',
+          addres: 'http://fstatic.cat1314.com/uc/svga/d08c332cadc02dfe4c8ff463bdbeb1b4_1623297600.svga',
         },
         Darts_one_1: {
           addres: 'http://fstatic.cat1314.com/uc/svga/10ba6e9f5835c28035ffcffb4e408635_1623233296.svga',
@@ -107,7 +110,7 @@ export default {
           addres: 'http://fstatic.cat1314.com/uc/svga/d3c0987819a6882de40af4174bbaba67_1623233315.svga',
         },
         Darts_ten: {
-          addres: 'http://fstatic.cat1314.com/uc/svga/bd6c96217694016fd9c3ca6683e140e5_1623233341.svga',
+          addres: 'http://fstatic.cat1314.com/uc/svga/fc0ce5dd095b6940ebf108bea4e1fd35_1623297614.svga',
         }
       },
       plarerArr: {}
@@ -210,20 +213,25 @@ export default {
 <style lang="scss">
 .pageIndex {
   padding-top: 0.48rem;
-  background: RGBA(150, 227, 150, 1) url(../img/banner.png) no-repeat;
+  background: #AAFFBA url(../img/banner.png) no-repeat;
   background-size: 100% auto;
   position: relative;
+  .con {
+    position: relative;
+    z-index: 2;
+  }
   #ball {
     width: 7.5rem;
     position: absolute;
-    top: 0;
+    top: -0.8rem;
     left: 0;
+    z-index: 1;
   }
   .ruleTips {
     position: absolute;
-    top: 10.58rem;
+    top: 10.05rem;
     right: 0;
-    z-index: 5;
+    z-index: 10;
     span {
       display: block;
       width: 1.56rem;

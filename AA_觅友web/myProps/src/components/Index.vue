@@ -8,7 +8,7 @@
         <img src="../img/noData.png" alt="">
         <p>{{lang.no_props}}</p>
       </div>
-      <ul class="scrollable" :class="{noLength:!list.length}" :style="{height:viewHeight- 50 + 'px'}">
+      <ul class="scrollable" :class="{noLength:!list.length}" :style="{height:viewHeight- 50 + 'px'}" v-show="list.length">
         <li v-for="(item,index) in list" :key="index" @click="giftClick(item)">
           <div class="imgBox">
             <i class="propsDay" v-if="item.expire ">{{item.expire}}{{lang.day_expire}}</i>
@@ -132,18 +132,19 @@ export default {
     height: 0.88rem;
   }
   .propsList {
-    width: 6.9rem;
+    width: 6.42rem;
     // min-height: 3rem;
     position: relative;
     z-index: 2;
-    overflow: hidden;
-    padding: 0.3rem;
+    // overflow: hidden;
+    border-radius: 0.3rem;
+    margin: 0 auto;
+    background: #FFFFFF;
+    padding: 0.4rem 0.24rem;
     .noData {
       width: 6.9rem;
       height: 3.51rem;
-      background: #FFFFFF;
-      border-radius: 0.3rem;
-      padding-top: 3.94rem;
+      padding-top: 4.4rem;
       img {
         width: 2.8rem;
         height: 2.1rem;
@@ -162,7 +163,7 @@ export default {
       overflow-y: scroll;
       background: #fff;
       border-radius: 0.3rem;
-      padding: 0.4rem 0.24rem 0.1rem;
+      //   padding: 0.4rem 0.24rem;
       display: flex;
       flex-wrap: wrap;
       align-content: flex-start;
