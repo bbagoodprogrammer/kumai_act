@@ -2,9 +2,9 @@
   <div class="grand">
     <div class="peopleList">
       <div class="pItem" v-for="(item,index) in comPrizes" :key="index" :class="{noPeople:!item.uid}">
-        <img v-lazy="item.avatar" alt="" class="av">
-        <div class="nick">{{item.nick?item.nick:lang.no_people}}</div>
-        <div class="score" v-if="item.uid"><i></i></div>
+        <img v-lazy="item.user&&item.user.avatar" alt="" class="av">
+        <div class="nick">{{item.user?item.user.nick:lang.no_people}}</div>
+        <div class="score" v-if="item.user&&item.user.uid"><i></i>{{item.num}}</div>
       </div>
     </div>
     <div class="grandTips">
@@ -83,7 +83,7 @@ export default {
         text-align: center;
         font-size: 0.27rem;
         color: #FFF8BD;
-        margin-top: 0.15rem;
+        margin-top: 0.1rem;
         display: flex;
         align-items: center;
         justify-content: center;

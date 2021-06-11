@@ -1,0 +1,24 @@
+html.vi {
+  .level {
+    .title_vi{
+      height: 0.7rem;
+      line-height: 0.35rem;
+    }
+  }
+  .explain {
+    .title {
+      display: flex;
+      align-items: center;
+    }
+  }
+  .main .pri__box .privilege .intro__box {
+    height: auto;
+    .name {
+      height: auto;
+      line-height: 0.3rem;
+    }
+    .intro {
+      height: auto;
+    }
+  }
+}

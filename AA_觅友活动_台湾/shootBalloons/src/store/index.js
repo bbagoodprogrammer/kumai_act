@@ -25,8 +25,12 @@ export default new vuex.Store({
         setUserCoins(state, val) {
             state.owner.balance = val;
         },
-        setFirst(state) {
-            state.owner.first_time = 1;
+        setFirst(state, val) {
+            if (val == 1) {
+                state.owner.first_time_marbles = 1;
+            } else {
+                state.owner.first_time_dart = 1;
+            }
         }
     },
     actions: {

@@ -47,7 +47,7 @@
           <div class="queryTips">
             <!-- 使用【{{type==1?'彈珠炮台':'飛鏢炮台'}}】射擊{{count}}次氣球，
             需要消耗{{type == 1?count*20 :count*80}}金幣 -->
-            {{lang.queryTips.replace('%a',type==1?lang.balloon_tab1:lang.balloon_tab2).replace('%b',count).replace('%c',type == 1?count*20 :count*80)}}
+            {{lang.queryTips.replace('%a',type==1?lang.balloon_tab1:lang.balloon_tab2).replace('%b',count).replace('%c',type == 1?count*50 :count*100)}}
           </div>
           <div class="btnBox">
             <span class="cancel" @click="firstPup =false">{{lang.cancel}}</span>
@@ -63,7 +63,7 @@
           <!-- <i class="close" @click="closePup()"></i> -->
           <div class="prizeImg"> </div>
           <div class="prizeTips">
-            {{prize_open?`${lang.prizeTips}${prizes.list[prizes.grand_prize_id].name}`:lang.prizeTips2}}
+            {{prize_open?`${lang.prizeTips}${prizes.list[prizes.grand_prize_id].desc}`:lang.prizeTips2}}
           </div>
           <div class="coins" v-if="prize_open">
             <i></i>
@@ -105,13 +105,16 @@ export default {
       if (this.luckIng) {
         return
       }
-      let need_coins = this.type == 1 ? count * 20 : count * 80
+      let need_coins = this.type == 1 ? count * 50 : count * 100
       if (need_coins > this.owner.balance) {  //金幣餘額判斷
         this.toast(this.lang.need_coins)
-        this.gowalletpage()
+        setTimeout(() => {
+          this.gowalletpage()
+        }, 1000)
         return
       }
-      if (!this.owner.first_time && !cloud) {  //首次抽獎判斷
+      let first_time = this.type == 1 ? this.owner.first_time_marbles : this.owner.first_time_dart
+      if (!first_time && !cloud) {  //首次抽獎判斷
         this.count = count
         this.firstPup = true
         return
@@ -138,7 +141,7 @@ export default {
           let tm = 4000
           if (!this.owner.first_time) {
             this.firstPup = false
-            this.vxc('setFirst')
+            this.vxc('setFirst', this.type)
           }
           //中獎邏輯
           setTimeout(() => {

@@ -1,0 +1,57 @@
+html.vi {
+
+  .explain__container .explain__main .award__box .third__box {
+    min-height: 2rem;
+  }
+  .explain__container .explain__main .table .tr .td:first-child {
+    padding-left: 0.6rem;
+  }
+  .explain__container .explain__main .table .tr:nth-child(2) .td:first-child {
+    padding-left: 0rem;
+    justify-content: center;
+  }
+  .list__container .list__main li .nick span {
+    max-width: 1.7rem;
+  }
+  .list__container .list__main li .model .explore_model__img {
+    width: 1.58rem;
+  }
+  // luck value
+  .draw__box .luck_value__box {
+    .imgs {
+      top: 0.13rem !important;
+    }
+    .value {
+      width: 1.35rem !important;
+      height: 0.53rem !important;
+      line-height: 0.3rem !important;
+      font-size: 0.28rem !important;
+      white-space: normal !important;
+      text-align: center !important;
+      bottom: 0.15rem !important;
+    }
+    .value_tip {
+      white-space: normal !important;
+      width: 5rem !important;
+      height: 0.9rem !important;
+      border-radius: 0.15rem !important;
+      text-align: center !important;
+      bottom: -1.15rem !important;
+    }
+  }
+
+  // process bottom
+  .main .text__box {
+    left: -0.18rem !important;
+    .text {
+      width: 0.8rem !important;
+      height: 0.56rem !important;
+      text-align: left !important;
+      line-height: 0.28rem !important;
+    }
+    .pro_question {
+      left: 0.37rem !important;
+      top: 0.24rem !important;
+    }
+  }
+}

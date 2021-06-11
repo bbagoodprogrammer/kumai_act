@@ -1,5 +1,6 @@
 <template>
   <div class="user_rank">
+    <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     <p v-if="!rank.length">{{lang.noData}}</p>
     <ul>
       <li v-for="(item,index) in rank" :key="index" :class="['rank' + item.rank]" @click="goUser(item)">
@@ -8,7 +9,6 @@
           <img v-lazy="item.avatar" alt="" class="avatar">
           <i class="live" v-if="item.live_room">LIVE</i>
         </div>
-
         <div class="msg">
           <div class="nick">{{item.nick}}</div>
           <!-- <span class="live" v-if="item.live_room"></span> -->
@@ -70,24 +70,24 @@ export default {
   //         })
   //       }
   //     },
-
-  onRefresh () {
-    if (!this.more) {
-      return
-    }
-    this.rotatePx = 540 * ++this.rotatec  //旋转动画
-    this.loaded = false
-    this.$store.dispatch('getInitInfo');
-  },
-  goUser (item) {
-    var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
-    if (isiOS) {
-      sendJsData('app://userInfo?uid=' + item.uid);
-    } else {
-      javascript: JSInterface.sendJsData('app://userInfo?uid=' + item.uid);
+  methods: {
+    onRefresh () {
+      if (!this.more) {
+        return
+      }
+      this.rotatePx = 540 * ++this.rotatec  //旋转动画
+      this.loaded = false
+      this.$store.dispatch('getInitInfo');
+    },
+    goUser (item) {
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + item.uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + item.uid);
+      }
     }
   }
-
 }
 </script>
 
@@ -166,7 +166,7 @@ export default {
           display: block;
           color: #032F6A;
           font-size: 0.24rem;
-          text-align: right;
+          //   text-align: right;
         }
         em {
           display: block;
@@ -217,8 +217,8 @@ export default {
   position: fixed;
   right: 0.08rem;
   bottom: 1.6rem;
-  //   background: url(../img/refresh.png) no-repeat;
-  //   background-size: contain;
+  background: url(../img/refresh.png) no-repeat;
+  background-size: contain;
   transition: transform 1s;
   text-indent: -999rem;
   z-index: 100;
