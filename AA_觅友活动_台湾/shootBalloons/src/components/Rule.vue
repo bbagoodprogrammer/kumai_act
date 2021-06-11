@@ -24,6 +24,7 @@
         </p>
         <img :src="item.img" alt="" v-if="item.img" class="ruleTable">
       </div>
+      <p class="lastTips">{{lang.rule_lastTips}}</p>
     </div>
   </div>
 </template>
@@ -44,6 +45,10 @@ export default {
 </script>
 
 <style lang="scss">
+.lastTips {
+  text-align: center;
+  margin-top: 0.2rem;
+}
 .rule {
   position: relative;
   .tabs {
