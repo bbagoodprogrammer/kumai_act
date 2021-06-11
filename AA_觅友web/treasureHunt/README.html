@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>觅友幸运礼物（支持多语言的国际版本）</title>
+    <style>
+    </style>
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+    <style>
+        .task-list-item {
+            list-style-type: none;
+        }
+
+        .task-list-item-checkbox {
+            margin-left: -20px;
+            vertical-align: middle;
+        }
+    </style>
+
+
+
+</head>
+
+<body class="vscode-light">
+    <h1 id="觅友幸运礼物支持多语言的国际版本">觅友幸运礼物（支持多语言的国际版本）</h1>
+    <h2>CP网页的地址：http://t.act.udateapp.com/html/cpTask/index.html?uid=#ID#&token=#TOKEN#&lang=#lang#</h2>
+    <h2 id="项目地址">项目地址</h2>
+    <ul>
+        <li>测试服：<a href="http://t.act.udateapp.com/luckyGift">http://t.act.udateapp.com/luckyGift</a></li>
+        <li>正式服：<a href="http://act.udateapp.com/luckyGift">http://act.udateapp.com/luckyGift</a></li>
+    </ul>
+    <h2 id="部署目录">部署目录</h2>
+    <p>/home/17sing/web/act.miyou.tw/html/luckyGift</p>
+    <h2 id="蓝湖设计">蓝湖设计</h2>
+    <p><a href="https://lanhuapp.com/web/#/item/project/board?pid=7a25188f-6025-4070-ac52-7f774e2ceb2e">蓝湖UI</a></p>
+    <h2 id="请求接口">请求接口</h2>
+    <p><a
+            href="http://t.act.udateapp.com/index.php?lang=zh-CN&amp;action=gift.rebackGiftRank&amp;touid=106970&amp;token=NLtFEok8cromSPyuXXHMGO0j36nl3n9sf_Dmst6ULhg0mWYBndrKmrPTXxKP2Ta0NsjUkNOKl1v7P024MI9CQjFAuAWRiqCgV92Eg_vfsUiAaqOarh-CX31q97wHHayz">http://t.act.udateapp.com/index.php?lang={lang}&amp;action=gift.rebackGiftRank&amp;touid={touid}&amp;token={token}</a>
+    </p>
+    <hr>
+    <h2 id="webpack多语言打包设计">Webpack多语言打包设计</h2>
+    <ul>
+        <li>语言代码像这样zh-CN，前面部分是语言，后面部分是国家或地区，觅友目前语言唯一性以第一部分作为区分即可（因为不会提供更细的语言包，像zh-CN、zh-HK、zh-TW统一采用繁体）；</li>
+        <li>把每个语言变化的内容单独打包成独立的文件进行加载（不把所有语言配置信息打包一起是考虑按需加载），如语言包文本配置脚本和本地化需要覆盖的样式文件（如果多端只需要修改文案，不需要调整样式，通过配置可以禁用样式打包）；
+        </li>
+        <li>图片等静态资源通过设置hash文件名统一打包到dist/img/；</li>
+        <li>数据请求接口目前采用相对路径，这样打包一次一份代码直接部署多端，其中默认语言也会根据域名和语言的配置自动识别；</li>
+        <li>打包出来的独立语言配置文件，通过编写Webpack插件，实现自动hash版本号，从而支持缓存策略；</li>
+        <li>多页面项目打包参考app入口点增加配置项即可；</li>
+        <li>本地化目录文件说明：
+            <ol>
+                <li>img/为差异化图片文件存放目录，将在images.js导入</li>
+                <li>lang.js文本语言包，里面的title用于页面标题</li>
+                <li>images.js里面通过require载入差异化图片资源</li>
+                <li>style.scss用于编写差异化覆盖样式，顶级选择器这样开始：html.zh {}</li>
+            </ol>
+        </li>
+        <li>多语言打包网站执行后，将在window全局增加三个变量（有更多的配置可以参照以下对象添加方法增加，比如增加_apis）：
+            <ol>
+                <li>_clang 当前语言编码，类似zh-CN，可以说是从URl参数获取的值（当前打包策略还提供了默认语言支持，URL不传或传错语言编码都将自动设置默认语言）</li>
+                <li>_lang 文本语言包对象，在组件内通过计算属性返回后可以在组件里面使用</li>
+                <li>_images 差异化图片资源，通过计算属性返回使用</li>
+            </ol>
+        </li>
+    </ul>
+    <hr>
+    <h2 id="增加新语言支持方法">增加新语言支持方法</h2>
+    <ol>
+        <li>参考local/子目录，拷贝一份，对相关文件进行修改</li>
+        <li>build/webpack.dev.config.js build/webpack.prod.config.js打包入口文件配置增加配置项如下
+            <pre><code class="language-javascript"><div>entry: {
+    <span class="hljs-attr">zh</span>: <span class="hljs-string">'./src/local/zh'</span>,
+},
+</div></code></pre>
+        </li>
+        <li>local.js文件常量hosts增加新的语言编码（域名对应语言编码，域名只保留最后两部分）
+            <pre><code class="language-javascript"><div><span class="hljs-keyword">const</span> hosts = {
+    <span class="hljs-string">'udateapp.com'</span>: <span class="hljs-string">'zh'</span>,
+};
+</div></code></pre>
+        </li>
+        <li>config/urls.js请求接口增加动态lang参数
+            <pre><code class="language-javascript"><div>{
+   <span class="hljs-attr">init</span>: <span class="hljs-string">'/index.php?lang='</span> + _clang,
+},
+</div></code></pre>
+        </li>
+        <li>组件内通过计算属性获取lang images
+            <pre><code class="language-javascript"><div>computed: {
+    <span class="hljs-attr">lang</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> _lang,
+    <span class="hljs-attr">images</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> _images,
+},
+</div></code></pre>
+        </li>
+    </ol>
+    <hr>
+    <h2 id="多语言网站开发技术参考">多语言网站开发技术参考</h2>
+    <ul>
+        <li><a href="https://www.cnblogs.com/rogerwu/p/7744476.html">使用 vue-i18n 切换中英文</a></li>
+        <li><a href="https://zhuanlan.zhihu.com/p/25590588">基于Webpack的多语言解决方案</a></li>
+    </ul>
+
+</body>
+
+</html>

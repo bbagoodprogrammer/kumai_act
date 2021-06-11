@@ -2,7 +2,7 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">Thời gian: 19:00 ngày 28/4 - 23:59:59 ngày 5/5</div>
+    <div class="actTime">Thời gian: 18:00 ngày 11/6 - 23:59:59 ngày 18/6</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">Thể lệ</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">Thưởng</span>
@@ -15,7 +15,9 @@
       <h6>2. Tỉ lệ trúng thưởng </h6>
       <img src="../assets/img/rule/table.png" alt="" class="gl_img">
       <h6>3. Chú ý: </h6>
-      <p>* Trong thời gian sự kiện diễn ra, nếu người dùng có hành vi gian lận tuỳ trường hợp, app sẽ tiến hành cảnh cáo, huỷ tư cách tham gia hoặc xoá tài khoản. </p>
+      <p>Trong sự kiện, khi phát hiện người chơi gian lận, chúng tôi sẽ hủy bỏ tư cách tham gia của người chơi mà không cần thông báo, bao gồm nhưng không giới hạn:<br />
+        a) Dùng các hành vi vi phạm để nhận xu, quà hoặc cố ý hack xu<br />
+        b) Trong quá trình sự kiện nếu có hành động công kích xúc phạm người khác</p>
       <P>* Sự kiện không liên quan đến tập đoàn apple.</P>
     </div>
     <div class="wardsTips" v-if="type== 2">
@@ -34,7 +36,7 @@
         </span>
       </div>
       <h6>3. Top 1 BXH ngày nhận 5 xúc xắc được phát vào 0h ngày kế tiếp </h6>
-      <h6>*Ngày 5/5 là ngày kết thúc event, quà BHX ngày 5/5 sẽ không gửi.</h6>
+      <h6>*Ngày 18/6 là ngày kết thúc event, quà BHX ngày 18/6 sẽ không gửi.</h6>
     </div>
     <p class="lastTips">*Quyết định cuối cùng thuộc về alochat</p>
   </div>
@@ -89,8 +91,8 @@ export default {
   color: #ffe747 !important;
 }
 .gl_img {
-  width: 5.9rem;
-  height: 2.85rem;
+  width: 5.88rem;
+  height: 2.83rem;
   margin: 0.15rem auto;
 }
 

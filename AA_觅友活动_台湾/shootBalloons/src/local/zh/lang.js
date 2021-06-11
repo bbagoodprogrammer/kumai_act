@@ -34,7 +34,7 @@ export default {
     rule_tips: "規則獎勵",
     rule_tips2: "我的獎品",
     //rule
-    rule_tm: "活動時間：10.10-20-19",
+    rule_tm: "活動時間：6月11日 20：00-6月18日23：59：59",
     rule_item: [
         {
             h6: "趣味射氣球",

@@ -27,6 +27,11 @@ import { mapState } from 'vuex'
 // import api from "../api/apiConfig"
 // import { globalBus } from '../utils/eventBus'
 export default {
+  data () {
+    return {
+      timer: null
+    }
+  },
   computed: {
     ...mapState(['activity_status', 'owner']),
     astState () {
@@ -34,7 +39,7 @@ export default {
         return 1
       } else if (this.activity_status === 2) { //活动已结束
         return 2
-      } else if (this.owner.first_time) { //活动开始已报名
+      } else if (this.owner.first_time_marbles || this.owner.first_time_dart) { //活动开始已报名
         return 3
       } else if (!this.owner.first_time) { //活动开始已报名
         return 4
@@ -43,6 +48,7 @@ export default {
   },
   methods: {
     scorllTo () {
+      clearInterval(this.timer)
       this.timer = setInterval(() => {
         let c = document.documentElement.scrollTop || document.body.scrollTop
         let t = (c) / 10
@@ -148,7 +154,7 @@ export default {
           display: block;
           color: #032F6A;
           font-size: 0.24rem;
-          text-align: right;
+          //   text-align: right;
         }
         em {
           display: block;

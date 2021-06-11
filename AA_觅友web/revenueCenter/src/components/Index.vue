@@ -26,9 +26,9 @@
           </div>
         </div>
       </div>
-      <!-- <div class="person_authentication" v-if="!real_flag" @click="goPersonHtml()">
+      <div class="person_authentication" v-if="!real_flag" @click="goPersonHtml()">
 
-      </div> -->
+      </div>
       <ul class="getGiftList">
         <li v-for="(item,index) in nowData.goods_list" :key="index">
           <i class="look" v-if="item.url_resource && (item.type == 0 || item.type == 1)" @click="svgaLook(item)">{{lang.lookIng}}</i>

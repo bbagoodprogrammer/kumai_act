@@ -142,7 +142,7 @@ export default {
     background: #FFFFFF;
     padding: 0.4rem 0.24rem;
     .noData {
-      width: 6.9rem;
+      //   width: 6.9rem;
       height: 3.51rem;
       padding-top: 4.4rem;
       img {
