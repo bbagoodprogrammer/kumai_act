@@ -1,0 +1,103 @@
+export default {
+    title: "Kỳ Duyên Alochat",
+    befall_title: "XH Giáng Lâm",
+    bless_title: "XH Chúc Phúc",
+    rule_title: "Hạng",
+    loading: "Đang tải...",
+    no_data: "Chưa có dữ liệu",
+    record_title: "Lịch sử",
+    rank_title: "XH Kỳ Duyên",
+    openComeList: "Hạng",
+    value: "Kỳ duyên",
+    dist: "Cần thêm",
+    tips: "Tăng doanh thu xu phòng nhận điểm kỳ duyên kích hoạt phần thưởng",
+    sendRoomGift: "Tặng quà tăng điểm kỳ duyên ",
+    tab1: "Tham gia",
+    tab2: "Đại gia",
+    tab3: "Góp chút ít",
+    cell1: {
+        title: "Nhỏ Alo tới",
+        tips: "Danh hiệu phòng 30P "
+    },
+    cell2: {
+        title: "Cầu kỳ duyên",
+        tips: "Quà quẻ bói phòng"
+    },
+    cell3: {
+        title: "Đĩa Bay",
+        tips: "Quà kỳ duyên x5"
+    },
+    cell4: {
+        title: "Kỳ duyên",
+        tips: "Huy hiệu 1 ngày"
+    },
+    h_cell1: {
+        title: "Đề cử",
+        tips: "Thẻ data 60 phút "
+    },
+    h_cell2: {
+        title: "Cầu thủy tinh",
+        tips: "Quà quẻ bói phòng"
+    },
+    h_cell3: {
+        title: "Vì có bạn",
+        tips: "Quà hiếm x1"
+    },
+    h_cell4: {
+        title: "Phi thuyền",
+        tips: "Khung ảnh 1 ngày"
+    },
+    my_room: "Phòng này",
+    come_no_data: "Hiện chưa có dữ liệu xếp hạng",
+    come_list_tips: "Tặng quà xu trong phòng sẽ tăng điểm cống hiến và được xếp hạng, người cống hiến nhiều nhất và người cống hiến cuối cùng nhận quà",
+    span_title: "Quà mỗi tuần",
+    rank_tips: "Vào lúc 0h, mỗi thứ 2, tặng quà theo xếp hạng, phòng mỗi khi tăng 1 xu doanh thu= 1 điểm kỳ duyên, người chơi tặng quà 1 xu = 1 điểm cống hiến;",
+    prize_box1: "XH Kỳ Duyên",
+    prize_box2: "XH Cống Hiến",
+    prize_list1: "Nền bầu trời sao 7 ngày",
+    prize_list2: "Đề cử 30 phút",
+    prize_list3: "Đề cử 15 phút",
+    prize_list4: "Danh hiệu Bạn Phát Sốt 7 ngày",
+    prize_list5: "Hiệu ứng Bạn Phát Sốt 7 ngày",
+    prize_list6: "Hiệu ứng Bạn Phát Sốt 7 ngày",
+    whichWeek0: "Tuần này",
+    whichWeek1: "Tuần trước",
+    whichMainTab0: "XH Kỳ Duyên",
+    whichMainTab1: "XH Cống Hiến",
+    score: "Điểm cống hiến",
+    score1: "Giáng Lâm",
+    rule_tips: "Mỗi phòng đều tư cách tham gia「Alochat Kỳ Duyên」, cách chơi chia làm 2 giai đoạn, thông qua gia tăng doanh thu của phòng để tích lũy điểm kỳ duyên, khi đạt tiến độ sẽ kích hoạt「Nhỏ Alo tới」sẽ nhận được phần thưởng phòng và cả cá nhân, khi tiến vào trong giai đoạn「AloChat Chúc Phúc」 hạn giờ 60 phút, phần thưởng sẽ càng hấp dẫn khi tiếp tục đạt yêu cầu đưa ra",
+    ground1_title: "Nhỏ Alo tới",
+    ground1_tips: "Phòng tăng mỗi xu kỳ duyên tăng một điểm, người chơi cống hiến 1 xu = cống hiến 1 điểm kỳ duyên, <i>tổng đạt 10000 điểm kỳ duyên</i> được nhận [Nhỏ Alo tới], vào giai đoạn [chúc phúc alochat] nhận thưởng như sau: ",
+    ground1_li1_title: "Nhỏ Alo tới",
+    ground1_li1_tips: "Danh hiệu phòng 30 phút ",
+    ground1_li2_title: "Người cống hiến nhiều nhất",
+    ground1_li2_tips: "Đĩa bay-quà kỳ duyên x5<br />Alochat kỳ duyên-huy chương kỳ duyên 1 ngày ",
+    ground1_li3_title: "Người cống hiến cuối cùng",
+    ground1_li3_tips: "Alochat kỳ duyên-huy chương kỳ duyên 1 ngày",
+    ground2_title: "Alochat Chúc Phúc",
+    ground2_tips: " Giai đoạn「Alochat Chúc Phúc」hạn giờ 60 phút, trong thời gian giới hạn, phòng hiện tại mỗi khi tăng 1 xu doanh thu = 1 điểm kỳ duyên, người chơi mỗi cống hiến 1 Xu =1 điểm cống hiến, <i>khi phòng tích lũy đạt 20000 điểm kỳ duyên</i> kích hoạt phần thưởng「alochat chúc phúc」, hoàn thành hoặc vượt quá thời gian sẽ trở về giai đoạn「Nhỏ Alo tới」tích lũy lại từ đầu, phần thưởng như sau:",
+    ground2_li1_title: "Đề cử",
+    ground2_li1_tips: "Thẻ data 60 phút ",
+    ground2_li2_title: "Người cống hiến nhiều nhất",
+    ground2_li2_tips: "Vì có bạn-Quà hiếm x1<br /> Tàu bay- khung ảnh hiếm 1 ngày ",
+    ground2_li3_title: "Người cống hiến cuối cùng",
+    ground2_li3_tips: "Tàu bay-khung ảnh hiếm 1 ngày",
+    ground3_title: "Cầu thủy tinh may mắn",
+    ground3_tips: "Mỗi lần đạt giai đoạn「Nhỏ Alo tới」,「Alochat Chúc Phúc」sẽ kích hoạt「Cầu thủy tinh may mắn」, tất cả người chơi trong phòng sẽ tiến hành bói quẻ nhận thưởng, như sau: ",
+    ground3_gifts1_title: "giai đoạn Nhỏ Alo tới",
+    ground3_gifts2_title: "Giai đoạn Giáng Lâm",
+    ground3_probability: "Tỷ lệ bói quẻ (1/10000)",
+    ground4_title: "BXH Kỳ Duyên",
+    ground4_tips: "Vào lúc 0h, mỗi thứ 2 sẽ tổng kết xếp hạng kỳ duyên của tuần trước, xếp hạng dựa vào điểm tổng kết kỳ duyên tuần trước, xếp hạng cống hiến của người chơi, Top 3 sẽ nhận được phần thưởng, như sau:",
+    ground4_reward1_title: "BHX Kỳ Duyên",
+    ground4_reward1_tips1: "Nền bầu trời sao 7 ngày<br />Thẻ Data 30 phút",
+    ground4_reward1_tips2: "Thẻ Data 15 ",
+    ground4_reward2_title: "BXH Cống Hiến",
+    ground4_reward2_tips1: "Danh hiệu Bạn Phát Sốt 7 ngày<br />Bạn Phát Sốt 7 ngày ",
+    ground4_reward2_tips2: " Bạn Phát Sốt 7 ngày ",
+    rule_other_title: "Hướng dẫn khác",
+    rule_other: ["Phần thưởng nhận từ trò chơi có hiệu lực trong thời gian ngắn, hãy nhanh chóng sử dụng;", "Thẻ data nhận được trong phòng chỉ có giới hạn trong tuần, vui lòng liên hệ BQT để sử dụng;", "Nghiêm cấm sử dụng hành vi gây mất công bằng hoặc lợi dụng BUG gây ảnh hưởng đến trò chơi, khi phát hiện sẽ hủy bỏ phần thưởng và thu hồi đạo cụ đã phát;", "Sự kiện không liên quan đến Apple, quyền quyết định thuộc Alochat."],
+    share_title: "Alochat kỳ duyên",
+    share_desc: ""
+}

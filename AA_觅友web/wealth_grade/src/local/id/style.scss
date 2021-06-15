@@ -1,3 +1,9 @@
-html.id {
-    
+html.zh {
+    .con .privilege .icon_box .list .bottom{
+        height: .93rem;
+    }
+    .con .privilege .icon_box .list p:nth-of-type(1){
+        padding-bottom: .1rem;
+        padding-top: .1rem;
+    }
 }

@@ -48,9 +48,9 @@
             <h6>3. Thưởng</h6>
             <div class="giftBox">
 
-              <p>Hạng 1: Hạng 1: Bánh dậm-Khung ảnh (10 ngày), Thuyền rồng (7 ngày) <br />
-                Hạng 2: Bánh dậm-Khung ảnh (7 ngày)<br />
-                Hạng 3: Bánh dậm-Khung ảnh (5 ngày)
+              <p>Hạng 1: Sân khấu lấp lánh-Khung ảnh (10 ngày), Ong vàng (7 ngày)<br />
+                Hạng 2: Sân khấu lấp lánh-Khung ảnh (7 ngày)<br />
+                Hạng 3: Sân khấu lấp lánh-Khung ảnh (5 ngày)
               </p>
 
             </div>
