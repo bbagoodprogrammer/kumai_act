@@ -1,0 +1,109 @@
+﻿// https://brushes8.com/zhong-wen-jian-ti-fan-ti-zhuan-huan
+export default {
+    title: "印尼尋寶奇兵",
+    super_exchange: "超值兌換",
+    treasure_map: "尋寶圖",
+    get: "獲取",
+    treasure_one: "尋寶一次",
+    treasure_ten: "尋寶十次",
+    adventure_list: "探險榜",
+    luck_value: "幸運值",
+    luck_value_tip: "幸運值達到100後尋寶必得彩磚",
+    sure: "確認",
+    process_bottom_text: "超級尋寶",
+    super_treasure_tip:
+        "根據全服用戶尋寶次數增加進度，達到100%進入1小時的超級尋寶模式，獎勵更豐富！",
+    time_down: "倒計時",
+    time_down_value: "{0}:{1}",
+    hunt_get: "在尋寶中獲得了",
+    total: "共%s個",
+    content_update: "內容更新，請重試",
+    hunt_not_leave: "正在尋寶中，請勿離開",
+
+    how_to_play: "玩法說明",
+    treasure_hunt: "尋寶奇兵",
+    treasure_hunt_1:
+        "尋寶奇兵不定期更新尋寶獎勵，使用1張尋寶圖可參與一次尋寶，並獲得100點探險值，使用10張尋寶圖可參與十次尋寶，並獲得1000點探險值；",
+    treasure_hunt_2:
+        "花費{1}金幣可獲得{2}張尋寶圖，{3}金幣可獲得{4}張尋寶圖，{5}金幣可獲得{6}張尋寶圖。",
+    lucky_moment: "幸運時刻",
+    lucky_moment_1:
+        "每次尋寶增加個人的幸運值，尋寶1次增加1點幸運值，尋寶10次增加10點幸運值；",
+    lucky_moment_2:
+        "達到100點幸運值，則觸發「幸運時刻」，下一次尋寶必得彩鑽，幸運值重置為0。",
+    super_treasure_hunt: "超級尋寶",
+    super_treasure_hunt_1: "全服玩家參與尋寶對應增加尋寶進度，每次尋寶增加%s；",
+    super_treasure_hunt_2:
+        "達到100%進度時，則觸發「超級尋寶」模式，尋寶獎勵更豐富，更容易獲得獎勵，持續1小時；",
+    super_treasure_hunt_3: "進入「超級尋寶」模式時，暫停累計個人的幸運值。",
+    super_value_exchange: "超值兌換",
+    super_value_exchange_1:
+        "使用貝殼、彩鑽可在「超值兌換」中換取對應道具，道具不定期更新；",
+    super_value_exchange_2:
+        "兌換所得的禮物將在禮物背包中展示，所得的頭飾、座駕將在商品背包中展示。",
+    adventure_list_1:
+        "每週統計探險值進行排榜，每週一0點結算上週榜單，前50名玩家可進入探險榜；",
+    adventure_list_2: "前10名玩家可獲得「探險獎勵」",
+    adventure_first: "第1名",
+    adventure_first_des: "超級尋寶套裝(稱號+頭像框+座駕+勳章)7天",
+    adventure_second: "第2~3名",
+    adventure_second_des: "尋寶套裝(頭像框+勳章)7天",
+    adventure_rest: "第4~10名",
+    adventure_rest_des: "尋寶勳章7天",
+    prop_get_rate: "道具獲取概率",
+    general_treasure_hunt: "普通尋寶",
+    item_name: "物品名稱",
+    rate: "概率(萬分制)",
+    gift_1: "大寶劍",
+    gift_2: "黃金鑰匙",
+    gift_3: "貝殼",
+    gift_4: "大秘寶",
+    gift_5: "皇冠",
+    gift_6: "彩磚",
+    gift_7: "遊艇座駕7天",
+    gift_8: "深海魅影",
+    gift_9: "貝殼X2",
+    gift_10: "彩磚X2",
+    gift_11: "海盜船",
+    other_explain: "其他說明",
+    other_explain_1:
+        "通過「尋寶奇兵」、「超值兌換」獲得的道具，具有一定的有效期，請及時使用",
+    other_explain_2:
+        "玩家獲得的道具僅限於平台消費使用，不得產生交易、收購等盈利活動，發現違規者將進行嚴厲懲罰；",
+    other_explain_3:
+        "禁止實施任何影響互動公平性的行為，或利用平台BUG等不正當手法參與玩法，一旦發現，平台有權取消道具發放，追回道具；",
+    other_explain_4: "本活動與蘋果公司無關，最終解釋權歸音覓所有。",
+
+    get_treasure_map: "獲得尋寶圖",
+    map_num: "%s張",
+    get_map: "獲得",
+    get_map_des: "消耗{0}金幣可獲得{1}張尋寶圖",
+    store: "儲值",
+    coins_not_enough: "金幣餘額不足",
+    get_map_succ: "獲得成功",
+    map_not_enough: "尋寶圖不足",
+
+    treasure_record: "尋寶記錄",
+    record_time: "{0}.{1}.{2} {3}:{4}:{5}",
+    use_map: "使用%s張尋寶圖",
+    record_100: "最多展示100條記錄",
+    loading: "加載中...",
+    not_record: "暫無記錄",
+
+    more_select: "最多人選",
+    exchange: "兌換",
+    day: "%s天",
+    exchange_succ: "兌換成功",
+    shell_not_enough: "兌換失敗，貝殼不足",
+    jewel_not_enough: "兌換失敗，彩鑽不足",
+
+    adventure_list: "探險周榜",
+    weekly_award: "每週獎勵",
+    weekly_award_title:
+        "每週一0點結算榜單，根據榜單排名獲得對應獎勵尋寶一次增加100點探險值",
+    this_week: "本週",
+    last_week: "上週",
+    list_adventure_value: "%s探險值",
+    distance_last: "距離上一名%s探險值",
+    not_data: "暫無數據"
+};

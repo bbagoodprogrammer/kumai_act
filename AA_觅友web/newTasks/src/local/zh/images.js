@@ -1,3 +1,3 @@
 export default {
-    banner: require('./img/banner.png'),
-}
+    // banner: require('./img/banner.png'),
+};

@@ -1,0 +1,45 @@
+html.vi {
+    .pageIndex .banner .mid .round .span2 {
+        width: 2rem;
+        height: .26rem;
+        margin-left: -.2rem
+    }
+
+    .pageIndex .banner .mid .round span:first-of-type.done {
+        width: 1.46rem;
+        height: .44rem
+    }
+
+    .rankGroups .mainTabs,
+    .rankGroups .mainTabs2 {
+        width: 6.3rem
+    }
+
+    .rankGroups .mainTabs2 a,
+    .rankGroups .mainTabs2 a.current,
+    .rankGroups .mainTabs a,
+    .rankGroups .mainTabs a.current {
+        width: 3.15rem
+    }
+
+    .rule .rule_con .ground .gifts>p span:first-of-type {
+        width: 50%;
+        font-size: .28rem;
+        color: #fff;
+        font-weight: 700;
+        padding-left: 0;
+        box-sizing: border-box;
+        text-align: center
+    }
+
+    .rule .rule_con .ground .gifts>p span:nth-of-type(2) {
+        width: 50%;
+        font-size: .26rem;
+        color: hsla(0, 0%, 100%, .6);
+        font-weight: 700;
+        padding-left: 0;
+        box-sizing: border-box;
+        text-align: center
+    }
+
+}
