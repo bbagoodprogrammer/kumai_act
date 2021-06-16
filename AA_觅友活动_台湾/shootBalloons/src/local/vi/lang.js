@@ -34,7 +34,8 @@ export default {
     rule_tips: "Quy tắc & Quà",
     rule_tips2: "Quà của tôi",
     //rule
-    rule_tm: "Thời gian: 10.10-20-19",
+    rule_lastTips: "Quyết định cuối cùng thuộc về Alochat",
+    rule_tm: "Thời gian: 18/06/2021 18:00- 24/06/2021 24:00",
     rule_item: [
         {
             h6: "Bắn Bong Bóng",
