@@ -1,0 +1,70 @@
+html.zh {
+    .grandPrix{
+        width: 5.85rem;
+        height: 4.57rem;
+        padding-top: 1.37rem;
+        background: url(./img/grandPrix.png);
+        background-size: 100% 100%;
+    }
+    .actTitle{
+        width: 7.5rem;
+        height:2.21rem ;
+        background: url(./img/actTitle.png);
+        background-size: 100% auto;
+    }
+    .tab{
+        span{
+            &.tab1{
+                &.act{
+                    text-indent: -999rem;
+                    background: url(./img/tab1_act.png);
+                    background-size: 100% 100%;
+                }
+            }
+            &.tab2{
+                &.act{
+                    text-indent: -999rem;
+                    background: url(./img/tab2_act.png);
+                    background-size: 100% 100%;
+                }
+            }
+        }
+    }
+    .grand{
+        width: 7.5rem;
+        height: 3.57rem;
+        padding-top: 1.53rem;
+        background: url(./img/luckPeople.png);
+        background-size: 100% 100%;
+    }
+    .user_rank{
+        background: url(./img/rank_bg.png) no-repeat;
+        background-size: 100% auto;
+    }
+    .luckGiftPup::before {
+        content: '';
+        display: block;
+        width: 5.85rem;
+        height: 1.88rem;
+        background: url(./img/luckGift_title.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: -1.28rem;
+        left: -.26rem;
+      }
+      .historyList{
+        width: 7.02rem;
+        height: 6rem;
+        padding-top: .46rem;
+        background: url(./img/historyList.png);
+        background-size: 100% 100%;
+      }
+      .rule{
+          width:7.49rem ;
+          height: 7.5rem;
+          padding-top: 1.5rem;
+          background: url(./img/rule_bg.png);
+          background-size: 100% 100%;
+          position: relative;
+      }
+}

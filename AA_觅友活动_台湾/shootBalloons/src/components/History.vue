@@ -5,8 +5,8 @@
     <div class="hasData">
       <ul class='scrollable'>
         <li v-for="(item,index) in hList" :key="index">
-          <span class="gift">
-            {{item.title}}
+          <span class="gift" v-html="item.title.replace('【','<br/>【')">
+            <!-- {{item.title}} -->
           </span>
           <span class="time">{{getDateStr(item.tm)}}</span>
         </li>

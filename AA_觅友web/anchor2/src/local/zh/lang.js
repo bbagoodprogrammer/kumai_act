@@ -39,9 +39,9 @@ export default {
     index_tab2: "交友數據",
     //RankGroupsFriend
     friend_tab1: "主播信息",
-    friend_tab2: "粉磚結算",
-    pro_top: "粉磚餘額",
-    settlement_title: "結算粉磚匯總",
-    settlement_coins: "結算粉磚",
+    friend_tab2: "粉鑽結算",
+    pro_top: "粉鑽餘額",
+    settlement_title: "結算粉鑽匯總",
+    settlement_coins: "結算粉鑽",
     settlement_tm: "結算時間"
 };
