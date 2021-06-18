@@ -25,7 +25,7 @@
 import { mapState } from "vuex"
 import api from "../api/apiConfig"
 export default {
-  data() {
+  data () {
     return {
       giftArr: [{
         type: 4,
@@ -45,18 +45,18 @@ export default {
     ...mapState(['showSingUp', 'nick'])
   },
   methods: {
-    singUp() {
+    singUp () {
       api.singUp().then(res => {
         if (res.data.response_status.code == 0) {
           this.vxc('setReg', true)
           this.vxc('setSingUp')
-          this.toast('你的甜品屋開張啦！！<br/>快去製作聖誕甜品吧')
+          this.toast('你的甜品屋開張啦！！<br/>快去製作甜品吧')
         } else {
           this.toast(res.data.response_status.error)
         }
       })
     },
-    closeSingUp() {
+    closeSingUp () {
       this.vxc('setSingUp')
     }
   }
