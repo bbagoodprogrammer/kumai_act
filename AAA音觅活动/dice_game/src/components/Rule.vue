@@ -2,7 +2,7 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">活動時間:4月28日19：00-5月5日 23：59：59</div>
+    <div class="actTime">活動時間:6月19日12：00-6月25日 23：59：59</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">活動規則</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">活動獎勵</span>
@@ -37,7 +37,7 @@
         </span>
       </div>
       <h6>3.日榜第一名將獲得骰子五枚，在次日0點發放</h6>
-      <h6>4.5月5日的為活動的最後一天，5月5日的日榜獎勵將不發放</h6>
+      <h6>4.活動的最後一天的日榜獎勵將不發放</h6>
     </div>
     <p class="lastTips">*活動最終解釋權歸活動主辦方所有</p>
   </div>
