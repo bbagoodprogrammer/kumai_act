@@ -12,7 +12,7 @@
         </div>
         <div class="userMsg">
           <div class="nick"><strong>{{nowUsrMsg.nick}}</strong> <i v-if="nowUsrMsg.live  && mainTab == 0"> </i></div>
-          <div class="uid"><i>{{lang.floowScore}}</i> <em>{{nowUsrMsg.score}}</em> </div>
+          <div class="uid"><i>{{showType==1? lang.floowScore:lang.peopleScore}}</i> <em>{{nowUsrMsg.score}}</em> </div>
         </div>
         <div class="fansList" v-if="nowUsrMsg.fans.length">
           <p @click="showFans(nowUsrMsg)">{{lang.fanList}}</p>

@@ -50,7 +50,7 @@
                 <div class="taskMsg">
                   <div class="name">{{taskName[item.key]}} <i v-if="item.key=='room'" @click="showRoomTips()"></i> </div>
                   <div class="gift">每次獎勵 <i :class="'icon'+showType"></i> x{{item.give_count}},每天{{item.count}}次</div>
-                  <div class="giftBar" v-if="item.key == 'mic' || item.key == 'coin' ||item.key == 'friend'">
+                  <div class="giftBar" v-if="item.key == 'mic'  ||item.key == 'friend'">
                     <i class="store" v-for="(item2,index2) in item.count" :key="index2" :class="'store'+index2"></i>
                     <span class="actLiner" :style="{width:item.current/item.max *100 + '%'}"></span>
                   </div>
@@ -206,32 +206,32 @@ export default {
         {
           type: 1,
           msg: '水果',
-          tips: '水果：可用於製作水果氣泡、貓爪布丁、冰激凌、水果繽紛杯'
+          tips: '水果：可用於製作鱷梨果汁、水果大福、蜜桃莫吉托、冰激凌星空杯'
         },
         {
           type: 2,
           msg: '奶製品',
-          tips: '奶製品：可用於製作貓爪布丁、彩虹點心、冰激凌、水果繽紛杯'
+          tips: '奶製品：可用於製作水果大福、雙層布丁、蜜桃莫吉托、冰激凌星空杯'
         },
         {
           type: 3,
           msg: '繽紛小料',
-          tips: '繽紛小料：可用於製作彩虹點心、冰激凌、水果繽紛杯'
+          tips: '繽紛小料：可用於製作雙層布丁、蜜桃莫吉托、冰激凌星空杯'
         }
       ],
       rooms: {},
       peopleList: [],
       invitedList: [],
       taskName: {
-        mic: '在房間上麥25min（私密房不算）',
-        coin: '在房間送出800金幣',
+        mic: '在房間上麥5min（私密房不算）',
+        coin: '在房間送出100金幣',
         share: '分享活動到line或fb',
         create: '創建/接唱/合聲作品',
-        friend: '交友熱力每提升20',
+        // friend: '交友熱力每提升20',
         invite: '邀請好友開甜品屋',
         charge: '儲值任意金額',
         room: '自己房間的人氣值達到8000',
-        gift: '收到任意甜品禮物30份',
+        gift: '收到任意甜品禮物15份',
         pairing: '瀏覽配對頁，找到3個我感興趣的玩家(對他/她感興趣,一定要右滑哦)'
       },
       creatIndex: 0,

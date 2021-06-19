@@ -1,6 +1,7 @@
 <template>
   <div class="page pageIndex">
     <div class="herder">
+      <RoolMsg />
       <div class="ruleTips" @click="$router.push({name:'rule'})">{{lang.ruleTips}}</div>
       <div class="car_box">
         <div class="carRoad">
@@ -25,8 +26,10 @@
 import TabsScrollLoadList from "./TabsScrollLoadList"
 import Footer from "./Footer"
 import { mapState } from "vuex"
+import RoolMsg from "./RoolMsg"
+
 export default {
-  components: { TabsScrollLoadList, Footer },
+  components: { TabsScrollLoadList, Footer, RoolMsg },
   data () {
     return {
       showIndex: 0,
@@ -49,7 +52,7 @@ export default {
         this.showIndex += 1
       }
 
-    }, 10000)
+    }, 8000)
   },
   computed: {
     ...mapState(['cars']),
@@ -101,6 +104,7 @@ export default {
   }
 }
 .pageIndex {
+  overflow-x: hidden;
   .herder {
     height: 8.29rem;
     padding-top: 2.5rem;
@@ -124,7 +128,7 @@ export default {
         .carItem {
           width: 7.89rem;
           height: 6.78rem;
-          animation: go 10s linear infinite;
+          animation: go 8s linear infinite;
           position: relative;
           .userMsg {
             position: absolute;
