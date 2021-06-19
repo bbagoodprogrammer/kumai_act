@@ -7,6 +7,7 @@ Vue.use(vuex);
 export default new vuex.Store({
     state: {
         loading: false,
+        records: [],
         tab: 0,
         showType: 1,
         tasks: {},
@@ -43,9 +44,9 @@ export default new vuex.Store({
                     //当前日榜信息
                     key: 0,
                     loadCount: 1,
-                    loadEnd: false,
+                    loadEnd: data.rank.length < 20 ? true : false,
                     loading: false,
-                    none: false,
+                    none: data.rank.length ? false : true,
                     list: data.rank
                     // second: response_data.data.current_time
                 }

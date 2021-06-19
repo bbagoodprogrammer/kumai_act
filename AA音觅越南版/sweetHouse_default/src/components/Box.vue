@@ -45,7 +45,7 @@ import share from "../utils/share"
 import api from "../api/apiConfig"
 import { globalBus } from '../utils/eventBus'
 export default {
-  data() {
+  data () {
     return {
       closePup: false,
       gift: {
@@ -62,11 +62,7 @@ export default {
             {
               type: 1,
               name: '600 đậu'
-            },
-            // {
-            //   type: 2,
-            //   name: '500 xu'
-            // },
+            }
           ]
         },
         3: {
@@ -75,10 +71,10 @@ export default {
               type: 1,
               name: '1000 đậu'
             },
-            // {
-            //   type: 2,
-            //   name: '800 xu'
-            // },
+            {
+              type: 7,
+              name: ' khung ảnh 3 ngày'
+            },
           ]
         },
         4: {
@@ -87,17 +83,15 @@ export default {
               type: 1,
               name: '2000 đậu'
             },
-            // {
-            //   type: 2,
-            //   name: '2000 xu'
-            // },
             {
-              type: 4,
-              name: 'khung ảnh 5 ngày'
+              type: 7,
+              name: 'khung ảnh 7 ngày'
             }
           ]
         },
       },
+
+
       showOk: false,
       showIndex: 0
     }
@@ -105,7 +99,7 @@ export default {
   props: ['nick'],
   computed: {
     ...mapState(['packets', 'score', 'uid']),
-    actWidth() {
+    actWidth () {
       for (let i = this.packets.length - 1; i >= 0; i--) {
         if (this.score >= this.packets[this.packets.length - 1].score) {
           return '100%'
@@ -121,16 +115,16 @@ export default {
     }
   },
   methods: {
-    closeGiftPup() {
+    closeGiftPup () {
       this.closePup = false
     },
-    showGiftPup(index) {
+    showGiftPup (index) {
       globalBus.$emit('commonEvent', () => {
         this.showIndex = index
         this.closePup = true
       })
     },
-    openBox(status) {
+    openBox (status) {
       if (!status) {
         if (this.score >= this.packets[this.showIndex].score) {
           api.openBox(this.packets[this.showIndex].score).then(res => {
@@ -144,7 +138,7 @@ export default {
         }
       }
     },
-    share() {
+    share () {
       try {
         share({
           from: this.packets[this.showIndex].score,
@@ -155,7 +149,7 @@ export default {
         })
       } catch (e) { }
     },
-    closeSharePup() {
+    closeSharePup () {
       this.showOk = false
     }
   }

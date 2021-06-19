@@ -50,7 +50,7 @@
                 <div class="taskMsg">
                   <div class="name">{{taskName[item.key]}} <i v-if="item.key=='room'" @click="showRoomTips()"></i> </div>
                   <div class="gift">Thưởng mỗi lần <i :class="'icon'+showType"></i> x{{item.give_count}},mỗi ngày{{item.count}}lần</div>
-                  <div class="giftBar" v-if="item.key == 'mic' || item.key == 'coin' ||item.key == 'friend'">
+                  <div class="giftBar" v-if="item.key == 'mic'  ||item.key == 'friend'">
                     <i class="store" v-for="(item2,index2) in item.count" :key="index2" :class="'store'+index2"></i>
                     <span class="actLiner" :style="{width:item.current/item.max *100 + '%'}"></span>
                   </div>
@@ -205,28 +205,28 @@ export default {
         {
           type: 1,
           msg: 'Trái cây',
-          tips: 'Trái cây: có thể tạo Bong bóng, Pudding, Kem, Cốc hoa quả'
+          tips: 'Trái cây: có thể tạo Sinh tố bơ, Trái cây, Đào Mojito, Kem ly '
         },
         {
           type: 2,
           msg: 'Sữa',
-          tips: 'Sữa: có thể tạo Pudding, Kẹo 7 màu, Kem, Cốc hoa quả'
+          tips: 'Sữa: có thể tạo Trái cây, Pudding kép, Đào Mojito, Kem ly '
         },
         {
           type: 3,
           msg: 'Hạt đa sắc',
-          tips: 'Hạt đa sắc: Có thể tạo Kẹo 7 màu, Kem, Cốc hoa quả'
+          tips: 'Hạt đa sắc: Có thể tạo Pudding kép, Đào Mojito, Kem ly '
         }
       ],
       rooms: {},
       peopleList: [],
       invitedList: [],
       taskName: {
-        mic: ' Lên mic trong phòng 25 phút (phòng khóa không tính) ',
-        coin: 'Phòng tặng đi 800 xu',
+        mic: ' Lên mic trong phòng 5 phút (phòng khóa không tính) ',
+        coin: 'Phòng tặng đi 100 xu',
         share: 'chia sẻ tới bạn bè ngoài app',
         create: 'Tạo tác phẩm mới/đăng tác phẩm hát nối/đăng tác phẩm song ca',
-        friend: 'Tăng điểm kết bạn 20',
+        // friend: 'Tăng điểm kết bạn 20',
         invite: 'Mời bạn bè tham gia mở gian hàng đồ ngọt',
         charge: 'Nạp số xu bất kì',
         room: 'Điểm sôi nổi phòng đạt 8000',

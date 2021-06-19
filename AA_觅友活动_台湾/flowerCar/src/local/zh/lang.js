@@ -2,6 +2,7 @@ export default {
     //html/index.html
     title: "花車巡遊會",
     floowScore: "花神值",
+    peopleScore: "熱度值",
     fanList: "粉絲守護團>",
     ruleTips: "規則獎勵",
     noUser: "虛位以待",
@@ -29,6 +30,7 @@ export default {
     user_rank: "排名",
     user_nick: "用戶",
     user_score: "貢獻花神值",
+    user_score2: "貢獻熱度值",
     userTips:
         "*貢獻花神值為粉絲對同一名主播所貢獻的花神值總和，榜單顯示前20名粉絲",
     user_score_people: "貢獻熱度值",

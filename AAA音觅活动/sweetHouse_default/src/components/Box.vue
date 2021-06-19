@@ -45,7 +45,7 @@ import share from "../utils/share"
 import api from "../api/apiConfig"
 import { globalBus } from '../utils/eventBus'
 export default {
-  data() {
+  data () {
     return {
       closePup: false,
       gift: {
@@ -72,7 +72,7 @@ export default {
               name: '1000金豆'
             },
             {
-              type: 4,
+              type: 7,
               name: '頭像框（3天）'
             },
           ]
@@ -84,7 +84,7 @@ export default {
               name: '2000金豆'
             },
             {
-              type: 4,
+              type: 7,
               name: '頭像框（7天）'
             }
           ]
@@ -97,7 +97,7 @@ export default {
   props: ['nick'],
   computed: {
     ...mapState(['packets', 'score', 'uid']),
-    actWidth() {
+    actWidth () {
       for (let i = this.packets.length - 1; i >= 0; i--) {
         if (this.score >= this.packets[this.packets.length - 1].score) {
           return '100%'
@@ -113,16 +113,16 @@ export default {
     }
   },
   methods: {
-    closeGiftPup() {
+    closeGiftPup () {
       this.closePup = false
     },
-    showGiftPup(index) {
+    showGiftPup (index) {
       globalBus.$emit('commonEvent', () => {
         this.showIndex = index
         this.closePup = true
       })
     },
-    openBox(status) {
+    openBox (status) {
       if (!status) {
         if (this.score >= this.packets[this.showIndex].score) {
           api.openBox(this.packets[this.showIndex].score).then(res => {
@@ -136,7 +136,7 @@ export default {
         }
       }
     },
-    share() {
+    share () {
       try {
         share({
           from: this.packets[this.showIndex].score,
@@ -147,7 +147,7 @@ export default {
         })
       } catch (e) { }
     },
-    closeSharePup() {
+    closeSharePup () {
       this.showOk = false
     }
   }

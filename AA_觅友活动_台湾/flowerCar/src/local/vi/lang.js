@@ -1,8 +1,40 @@
 export default {
     //html/index.html
-    title: 'Ký hợp đồng',
-
-    //html/app_share.ejs
-    share_title: 'Ký hợp đồng',
-    share_desc: '',
-}
+    title: "Hội Xe Hoa Tuần Hành",
+    floowScore: "Điểm hoa thần",
+    peopleScore: "Hot",
+    fanList: "Fan bảo vệ>",
+    ruleTips: "Quy tắc & Quà",
+    noUser: "Đang đợi",
+    type_tab1: "BXH Hoa Thần",
+    type_tab2: "BXH Hot",
+    tab1: "BXH Ngày",
+    tab2: "BXH Tổng",
+    loading: "Đang tải...",
+    noPeople:
+        "Thu thập quà chỉ định được xếp hạng hoa thần, hoàn thành nhiệm vụ Hot được xếp hạng Hot",
+    rank_day: "ngày",
+    rank_hour: "giờ",
+    rank_min: "phút",
+    rank_second: "giây",
+    noAct: "Event chưa mở",
+    actEd: "Event đã kết thúc",
+    taskHeader_tab1: "Nhiệm vụ",
+    taskHeader_tab2: "Hot",
+    taskHeader_tab3: "Giới hạn hot",
+    taskHeader_tab4: "Tiến độ",
+    taskScoreTips: "1 người=%s điểm",
+    noMax: "Chưa max",
+    over: "Đã đạt",
+    todayScore: "Hot hôm nay:",
+    userPup: "Fan bảo vệ",
+    user_rank: "Hạng",
+    user_nick: "Người chơi",
+    user_score: "Cống hiến điểm hoa thần",
+    userTips:
+        "*Điểm cống hiến hoa thần là cống hiến của Fan dành cho 1 idol, BXH chỉ hiện thị top 20",
+    user_score_people: "Cống hiến điểm hot",
+    userTips_people:
+        "*Điểm cống hiến hot là cống hiến của Fan dành cho 1 idol, BXH chỉ hiện thị top 20",
+    goUser: "Xem thông tin cá nhân"
+};

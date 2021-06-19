@@ -7,7 +7,7 @@
         <span :class="{act:type==1}" @click="tabClick(1)">活動規則</span>
         <span :class="{act:type==2}" @click="tabClick(2)">活動獎勵</span>
       </div>
-      <p class="actTime">6月19日 17：00-6月26日 23：59：59</p>
+      <p class="actTime">6月19日 18：00-6月26日 23：59：59</p>
       <div class="tipsCon">
         <div class="tips1" v-if="type==1">
           <h6>如何玩轉甜品屋？</h6>

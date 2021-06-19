@@ -36,7 +36,7 @@
         </ul>
         <div class="todayScore">
           <strong>{{lang.todayScore}}</strong>
-          <em>{{owner.score}}</em>
+          <em>{{nowUsrMsg.score}}</em>
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
           </div>
           <div class="userMsg">
             <div class="nick"><strong>{{item.nick}}</strong> <i v-if="item.live  && mainTab == 0"> </i></div>
-            <div class="uid"><i>{{lang.floowScore}}</i> <em>{{item.score}}</em> </div>
+            <div class="uid"><i>{{showType==1? lang.floowScore:lang.peopleScore}}</i> <em>{{item.score}}</em> </div>
           </div>
           <div class="fansList" v-if="item.fans.length">
             <p @click="showFans(item)">{{lang.fanList}}</p>
@@ -93,7 +93,7 @@
           <div class="listHeader">
             <span class="rank">{{lang.user_rank}}</span>
             <span class="user">{{lang.user_nick}}</span>
-            <span class="score">{{lang.user_score}}</span>
+            <span class="score">{{showType == 1 ?lang.user_score:lang.user_score2}}</span>
           </div>
           <ul>
             <li v-for="(item,index) in fans" :key="index">
@@ -102,7 +102,7 @@
               <span class="score">{{item.score}}</span>
             </li>
           </ul>
-          <p class="fansTips">{{lang.userTips}}</p>
+          <p class="fansTips">{{showType == 1?lang.userTips:lang.userTips_people}}</p>
           <div class="goUser" @click="goUser(userItem.uid)">
             {{lang.goUser}}
           </div>
@@ -142,7 +142,7 @@ export default {
   data () {
     return {
       mainTab: 0,
-      tab: 0,
+      //   tab: 0,
       surplusTime: {},//日榜剩余时间
       timer: null,
       timer2: null,
@@ -163,7 +163,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['rankGroups', "firstInit", "showType", "activity", 'tasks', 'owner']),
+    ...mapState(['rankGroups', "firstInit", "showType", "activity", 'tasks', 'owner', 'groupsUserMsg', 'showType', 'tab']),
     rankKey () {
       // return ['one', 'two', 'three'][this.tab];
       return this.mainTab == 1 ? 'total' : this.mainTab;
@@ -190,7 +190,11 @@ export default {
     },
     actTime () {
       return getDate(new Date(this.activity.stime * 1000), '2') + ' ~ ' + getDate(new Date(this.activity.etime * 1000), '2')
-    }
+    },
+    nowUsrMsg () {
+      let nowList = this.groupsUserMsg[this.showType][this.tab] || {}
+      return nowList.msg || {}
+    },
   },
   //   mounted () {
   //     //this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
@@ -307,20 +311,25 @@ export default {
     onRefresh () {
       if (this.rank.loading) return
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
-      let obj = {
-        type: this.showType,
-        data: { //当前日榜信息
-          key: this.rankKey,
-          loadCount: 0,
-          loadEnd: false,
-          loading: false,
-          none: false,
-          list: []
-          // second: response_data.data.current_time
+      if (this.mainTab == 0 && this.showType == 1) {
+        this.$store.dispatch('getInitInfo');
+      } else {
+        let obj = {
+          type: this.showType,
+          data: { //当前日榜信息
+            key: this.rankKey,
+            loadCount: 0,
+            loadEnd: false,
+            loading: false,
+            none: false,
+            list: []
+            // second: response_data.data.current_time
+          }
         }
+        this.vxc('updateRankGroups', obj)
+        this.$nextTick(this.onScroll);
       }
-      this.vxc('updateRankGroups', obj)
-      this.$nextTick(this.onScroll);
+
     },
     downTimeGo (timeName, val) {
       clearInterval(this.timer)
@@ -623,7 +632,7 @@ export default {
         }
       }
       .userMsg {
-        width: 2.8rem;
+        width: 2.4rem;
         margin-left: 0.15rem;
         .nick {
           color: #711ED8;
@@ -650,11 +659,11 @@ export default {
           margin-top: 0.05rem;
           i {
             color: #C703F1;
-            font-size: 0.22rem;
+            font-size: 0.26rem;
           }
           em {
             color: #711ED8;
-            font-size: 0.28rem;
+            font-size: 0.32rem;
             margin-left: 0.05rem;
           }
         }
@@ -792,13 +801,13 @@ export default {
 }
 #refresh {
   display: block;
-  width: 0.94rem;
+  width: 1rem;
   height: 1rem;
   position: fixed;
   right: 0.08rem;
   bottom: 2rem;
-  //   background: url(../img/refresh.png) no-repeat;
-  //   background-size: contain;
+  background: url(../img/refresh.png) no-repeat;
+  background-size: contain;
   transition: all 1s;
   text-indent: -999rem;
   z-index: 100;

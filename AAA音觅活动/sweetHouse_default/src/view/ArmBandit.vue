@@ -98,7 +98,7 @@ import GiftHistory from "../components/GiftHistory"
 import { mapState } from "vuex"
 export default {
   components: { MsgToast, ActFooter, List, Box, RoolMsg, Rank, Rules, GiftHistory },
-  data() {
+  data () {
     return {
       isShare: false, //是否分享
       isMore: true,   //加载更多
@@ -122,7 +122,7 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
   },
@@ -130,11 +130,11 @@ export default {
     ...mapState(['raws', 'score', 'reg'])
   },
   methods: {
-    judgeShare() {//判断是否为分享环境,请求相应的接口 
+    judgeShare () {//判断是否为分享环境,请求相应的接口 
       this.isShare = getString('token') ? false : true
       this.vxc('setShareState', this.isShare) //分享状态
     },
-    getDefaultData(val) { //初始化
+    getDefaultData (val) { //初始化
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
@@ -166,35 +166,35 @@ export default {
         this.vxc('setRoolMsg', res.data.response_data.list)
       })
     },
-    downApp() {
+    downApp () {
       APP()
     },
-    refrsh() { //刷新
+    refrsh () { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       window.removeEventListener("scroll", this.onScroll)
       this.getDefaultData('ref')
     },
-    rank() {
+    rank () {
       api.getRank(0).then(res => {
         this.vxc('setRank', res.data.response_data.list)
         this.omerMsg = res.data.response_data.owner
         this.showRank = true
       })
     },
-    history() {
+    history () {
       // api.getHistroy(0).then(res => {
       //   this.historyList = res.data.response_data.list
       this.showHistory = true
       // })
     },
-    inviteation(uid, index) {
+    inviteation (uid, index) {
       this.inUid = uid
       this.invitieIndex = index
     },
-    closeInviatPup() {
+    closeInviatPup () {
       this.showInviatPup = false
     },
-    invitSingUp() {
+    invitSingUp () {
       api.singUp(this.inUid).then(res => {
         if (res.data.response_status.code == 0) {
           this.showInviatPup = false
@@ -205,13 +205,13 @@ export default {
         }
       })
     },
-    rule() {
+    rule () {
       this.showRules = true
     },
-    closeHistory() {
+    closeHistory () {
       this.showHistory = false
     },
-    scorllTo() {
+    scorllTo () {
       let a = this.$refs.list.$el.getBoundingClientRect().top
       let c = document.documentElement.scrollTop
       let e = a + c - 10
