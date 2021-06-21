@@ -1,3 +1,59 @@
 html.vi {
-    
+        .pageIndex{
+        .header{
+            height: 7.08rem;
+            background: url(./img/banner.png) no-repeat;
+            background-size: 100% auto;
+        }
+        .openBtn{
+            .one{
+                width:3.27rem ;
+                height: .9rem;
+                background: url(./img/open_one.png);
+                background-size: 100% 100%;
+            }
+            .ten{
+                width:3.27rem ;
+                height: .9rem;
+                background: url(./img/open_ten.png);
+                background-size: 100% 100%;
+            }
+            .cancle{
+                width:2.42rem ;
+                height: .72rem;
+                background: url(./img/cancle.png);
+                background-size: 100% 100%;
+            }
+            .ok{
+                width:2.42rem ;
+                height: .72rem;
+                background: url(./img/ok.png);
+                background-size: 100% 100%;
+            }
+        }
+        }  
+        .next_btn{
+            .cancel {
+                background: url(./img/next_cancel.png);
+                background-size: 100% 100%;
+            }
+            .nextOpen {
+                background: url(./img/next_open.png);
+                background-size: 100% 100%;
+                
+            }
+            .turnLuck {
+                background: url(./img/next_turn.png);
+                background-size: 100% 100%;
+            }
+        }
+        .luckPup{
+            .ok{
+                width:2.42rem ;
+                height: .72rem;
+                background: url(./img/shou.png);
+                background-size: 100% 100%;
+                margin: .24rem auto 0;
+            }
+        }
 }

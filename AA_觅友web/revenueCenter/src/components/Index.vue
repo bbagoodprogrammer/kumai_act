@@ -335,6 +335,12 @@ export default {
           } else {
             javascript: JSInterface.sendJsData(`http://${test}act.alochatapp.com/html/revenueCenter/history.html?uid=${uid}&token=${token}&lang=${lang}&type=${this.type}`);
           }
+        } else if (AREA == 'id') {
+          if (ios) {
+            sendJsData(`http://${test}act.newstarapp.com/html/revenueCenter/history.html?uid=${uid}&token=${token}&lang=${lang}&type=${this.type}`);
+          } else {
+            javascript: JSInterface.sendJsData(`http://${test}act.newstarapp.com/html/revenueCenter/history.html?uid=${uid}&token=${token}&lang=${lang}&type=${this.type}`);
+          }
         }
 
       } catch (e) {
@@ -359,6 +365,12 @@ export default {
             sendJsData(`http://${test}act.alochatapp.com/html/revenueCenter/tips.html`);
           } else {
             javascript: JSInterface.sendJsData(`http://${test}act.alochatapp.com/html/revenueCenter/tips.html`);
+          }
+        } else if (AREA == 'id') {
+          if (ios) {
+            sendJsData(`http://${test}act.newstarapp.com/html/revenueCenter/tips.html`);
+          } else {
+            javascript: JSInterface.sendJsData(`http://${test}act.newstarapp.com/html/revenueCenter/tips.html`);
           }
         }
 

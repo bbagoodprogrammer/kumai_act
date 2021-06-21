@@ -13,16 +13,16 @@
       <div class="ten" @click="luckStar(10)">
       </div>
     </div>
-    <div class="luckTurnTips">
-      點亮 <strong> 2、4、6、8、10、12</strong>個星座 分別可以抽獎一次，100%中獎
+    <div class="luckTurnTips" v-html="lang.star_luckTips">
+      <!-- 點亮 <strong> 2、4、6、8、10、12</strong>個星座 分別可以抽獎一次，100%中獎 -->
     </div>
     <div class="mask" v-show="firstPup">
       <transition name="slide">
         <div class="queryCoins" v-if="firstPup">
           <i class="close" @click="firstPup = false"></i>
-          <div class="title">確定</div>
+          <div class="title">{{lang.ok}}</div>
           <div class="tips">
-            點亮{{nums}}次，需要花費{{coin*nums}}金幣
+            {{lang.star_starTips.replace('%n',nums).replace('%s',coin*nums)}}
           </div>
           <div class="openBtn">
             <div class="cancle" @click="firstPup = false"></div>
@@ -36,7 +36,7 @@
       <transition name="slide">
         <div class="luckGiftList" v-if="showLuckPup" :class="{ten:nums > 1}">
           <i class="close" @click="showLuckPup  = false"></i>
-          <div class="title">恭喜獲得</div>
+          <div class="title">{{lang.star_luckTitle}}</div>
           <div class="luck_pup_bg">
             <div class="pup_con">
               <div class="giftList">
@@ -59,10 +59,10 @@
               </div>
             </div>
             <div class="luckTips" v-if="luckDrawCount > 0">
-              首次點亮{{act_nums}}個星座，獲得轉盤抽獎{{luckDrawCount}}次
+              {{lang.star_linghtTips1.replace('%n',act_nums).replace('%s',luckDrawCount)}}
             </div>
             <div class="luckTips" v-else-if="empty_star.length">
-              恭喜你點亮了【{{empty_star[0].name}}】,並獲得【{{prizes.gift[0].name}}*1】;
+              {{lang.star_linghtTips2.replace('%n',empty_star[0].name).replace('%s',prizes.gift[0].name)}}
             </div>
             <div class="next_btn" v-if="luckDrawCount > 0">
               <div class="turnLuck" @click="scorllTo()"> </div>

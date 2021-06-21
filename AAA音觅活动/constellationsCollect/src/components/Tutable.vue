@@ -16,14 +16,14 @@
     <div class="mask" v-show="giftPup">
       <transition name="slide">
         <div class="luckPup" v-if="giftPup">
-          <div class="title">恭喜獲得</div>
+          <div class="title">{{lang.star_luckTitle}}</div>
           <div class="luckItem">
             <div class="imgBox">
               <img :src="gift.image" alt="">
             </div>
             <strong>{{gift.name}}</strong>
           </div>
-          <div class="tips">恭喜你獲得【{{gift.name}}】</div>
+          <div class="tips">{{lang.star_luckTitle2}}【{{gift.name}}】</div>
           <div class="ok" @click="giftPup = false"></div>
         </div>
       </transition>
@@ -259,7 +259,6 @@ export default {
     }
 
     span {
-      display: block;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -278,7 +277,7 @@ export default {
       }
       em {
         display: block;
-        width: auto;
+        width: 1.2rem;
         height: 0.3rem;
         font-size: 80%;
         color: rgba(255, 254, 135, 1);

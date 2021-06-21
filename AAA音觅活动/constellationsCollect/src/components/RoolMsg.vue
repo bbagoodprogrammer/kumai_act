@@ -4,8 +4,8 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-            <em v-if="item.type == 'getPrize'"> {{item.nick}} 获得奖励【{{item.name}}】</em>
-            <em v-else> {{item.nick}} 獲得所有獎勵</em>
+            <em v-if="item.type == 'getPrize'">{{lang.roolMsg_getGift.replace('%a',item.nick).replace('%s',item.name)}}</em>
+            <em v-else> {{item.nick}} {{lang.roolMsg_getGift_all}}</em>
           </li>
         </ul>
       </div>
