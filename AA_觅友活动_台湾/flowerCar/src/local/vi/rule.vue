@@ -5,9 +5,9 @@
       <a class="tab2" @click.prevent="mainTab=1" :class="{current:mainTab==1}" href="">Thưởng</a>
     </div>
     <div class="ruleItem" v-if="mainTab == 0">
-      <p>1.Thời gian: 19/06-25/06</p>
+      <p>1.Thời gian: 20/6 19：00-26/6 23:59:59</p>
       <p>2.Xe Hoa Du Hành: mỗi ngày Top 1 BXH Hoa Thần và Hot được ngồi xe hoa du hành, đồng thời cộng 5% điểm Hoa Thần/Hot, điểm cộng thêm chỉ tính vào BXH tổng, không cộng vào BXH hôm sau </p>
-      <p>3.BXH Hoa Thần<br />Không cần báo danh, người chơi nhận quà chỉ định nhận điểm Hoa Thần và được xếp hạng, quà chỉ định 1 Xu=1 điểm hoa thần；Xếp hạng theo điểm từ cao đến thấy, chỉ hiện thị
+      <p>3.BXH Hoa Thần<br />Không cần báo danh, idol nhận quà chỉ định nhận điểm Hoa Thần và được xếp hạng, quà chỉ định 1 Xu=1 điểm hoa thần；Xếp hạng theo điểm từ cao đến thấy, chỉ hiện thị
         top 50, điểm bằng nhau người đạt trước sẽ ưu tiên xếp cao hơn. </p>
       <div class="giftList giftList1">
         <div class="giftItem" v-for="(item,index) in giftList1" :key="index">
@@ -17,13 +17,13 @@
           <strong v-html="item.name"></strong>
         </div>
       </div>
-      B1:B19i nhận quà chỉ định nhận điểm Hot và được xếp hạng；Xếp hạng theo điểm từ cao đến thấp, chỉ hiện thị top 50, điểm bằng nhau người đạt trước sẽ ưu tiên xếp cao hơn. </p>
-      <p>5.Nhiệm vụ BXH Hot<br />Số người vào phòng: Tại phòng của người chơi, mỗi khi có người khác vào phòng, Hot+1 (cùng 1 người chơi vào phòng nhiều lần điểm Hot chỉ +1), mỗi ngày giới hạn
-        100<br /> Số fan tăng: mỗi khi người chơi tăng 1 fan (chưa từng theo dõi), điểm hot+2, mỗi ngày giới hạn 200 <br />Số người tặng quà: người chơi ở phòng bất kỳ được tặng quà, điểm hot+2, không
+      4.B1:B19i nhận quà chỉ định nhận điểm Hot và được xếp hạng；Xếp hạng theo điểm từ cao đến thấp, chỉ hiện thị top 50, điểm bằng nhau người đạt trước sẽ ưu tiên xếp cao hơn. </p>
+      <p>5.Nhiệm vụ BXH Hot<br />Số người vào phòng: Tại phòng của idol, mỗi khi có người khác vào phòng, Hot+1 (cùng 1 idol vào phòng nhiều lần điểm Hot chỉ +1), mỗi ngày giới hạn
+        100<br /> Số fan tăng: mỗi khi idol tăng 1 fan (chưa từng theo dõi), điểm hot+2, mỗi ngày giới hạn 200 <br />Số người tặng quà: idol ở phòng bất kỳ được tặng quà, điểm hot+2, không
         giới hạn (gồm quà đậu, quà xu, quà mị lực)<br />*Nhiệm vụ reset vào 0 giờ mỗi ngày</p>
       <p>
         6.Lưu ý:<br />
-        *Trong sự kiện, khi phát hiện người chơi gian lận, chúng tôi sẽ hủy bỏ tư cách tham gia của người chơi mà không cần thông báo, bao gồm nhưng không giới hạn:<br />
+        *Trong sự kiện, khi phát hiện idol gian lận, chúng tôi sẽ hủy bỏ tư cách tham gia của idol mà không cần thông báo, bao gồm nhưng không giới hạn:<br />
         a）Gian lận để nhận được phần thưởng, hack xu<br />
         b）Trong quá trình sự kiện nếu có hành động công kích xúc phạm người khác<br />
         *Quà chỉ có hiệu lực 7 ngày *Sự kiện không liên quan đến công ty Apple.
@@ -69,7 +69,7 @@
       </p>
       <p>
         4.Lưu ý<br />
-        *Trong sự kiện, khi phát hiện người chơi gian lận, chúng tôi sẽ hủy bỏ tư cách tham gia của người chơi mà không cần thông báo, bao gồm nhưng không giới hạn:<br />
+        *Trong sự kiện, khi phát hiện idol gian lận, chúng tôi sẽ hủy bỏ tư cách tham gia của idol mà không cần thông báo, bao gồm nhưng không giới hạn:<br />
         a）Gian lận để nhận được phần thưởng, hack xu<br />
         b）Trong quá trình sự kiện nếu có hành động công kích xúc phạm người khác<br />
         *Quà chỉ có hiệu lực 7 ngày

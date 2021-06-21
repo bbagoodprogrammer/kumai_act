@@ -2,8 +2,8 @@
   <div class="page pageIndex">
     <RoolMsg :roolMsgs="roolMsgs" />
     <div class="tipsBox">
-      <span @click="showRule = true">規則&獎勵</span>
-      <span @click="showHistory = true">中獎紀錄</span>
+      <span @click="showRule = true">{{lang.ruleTips}}</span>
+      <span @click="showHistory = true">{{lang.ruleTips2}}</span>
     </div>
     <div class="header">
 
@@ -14,7 +14,7 @@
     <div class="starCon">
       <star />
       <Tutable />
-      <p class="lastTIips">*活動最終解釋權歸活動主辦方所有</p>
+      <p class="lastTIips">{{lang.lastTips}}</p>
     </div>
     <div class="mask" v-show="showHistory">
       <transition name="slide">

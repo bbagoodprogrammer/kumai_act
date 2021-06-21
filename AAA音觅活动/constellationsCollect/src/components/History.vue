@@ -1,7 +1,7 @@
 <template>
   <div class="history">
     <i class="close" @click="$parent.showHistory = false"></i>
-    <div class="title">中獎記錄</div>
+    <div class="title">{{lang.history_title}}</div>
     <ul class="list scrollable">
       <li v-for="(item,index) in list" :key="index">
         <div class="tips">
@@ -27,15 +27,20 @@ export default {
   data () {
     return {
       list: [],
-      tipes: {
-        turntable: "參與轉盤抽獎,獲得$",
-        luckDraw: "首次點亮%個星座,獲得轉盤抽獎機會一次",
-        light: '點亮一次,獲得$',
-        light_tm: '點亮10次',
-        firstLight: ''
-      },
+      //   tipes: {
+      //     turntable: "參與轉盤抽獎,獲得$",
+      //     luckDraw: "首次點亮%個星座,獲得轉盤抽獎機會一次",
+      //     light: '點亮一次,獲得$',
+      //     light_tm: '點亮10次',
+      //     firstLight: ''
+      //   },
       loaded: false,
       more: true
+    }
+  },
+  computed: {
+    tipes () {
+      return this.lang.tipes
     }
   },
   created () {

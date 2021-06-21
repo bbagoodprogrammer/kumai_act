@@ -29,8 +29,9 @@ export default {
     todayScore: "Hot hôm nay:",
     userPup: "Fan bảo vệ",
     user_rank: "Hạng",
-    user_nick: "Người chơi",
+    user_nick: "Fan",
     user_score: "Cống hiến điểm hoa thần",
+    user_score2: "Hot cống hiến",
     userTips:
         "*Điểm cống hiến hoa thần là cống hiến của Fan dành cho 1 idol, BXH chỉ hiện thị top 20",
     user_score_people: "Cống hiến điểm hot",
