@@ -69,7 +69,7 @@ export default {
         },
         {
           key: 'turn_openAct',
-          addres: 'http://fstatic.cat1314.com/uc/svga/88fae19807a1e0154fa1279bb681391c_1617848752.svga'
+          addres: 'http://fstatic.cat1314.com/uc/svga/b590c455412cf310433cd2fec4616f3d_1624358168.svga'
         },
         {
           key: 'turn_linght',
@@ -82,7 +82,8 @@ export default {
       ],
       dataArr: {},
       plarerArr: {},
-      lingHt: false
+      lingHt: false,
+      svgaLoad: false
     }
   },
   computed: {
@@ -103,16 +104,8 @@ export default {
   },
   watch: {
     luckDrawCount (val) {
-      if (this.plarerArr['turn_openAct']) {
-        this.plarerArr['turn_openAct'].player.clear()
-      }
-      if (this.plarerArr['turn_openDefaule']) {
-        this.plarerArr['turn_openDefaule'].player.clear()
-      }
-      if (val > 0) {
-        this.svgaStart('turn_openAct', 1, true, this.svgaDdress[2].data)
-      } else {
-        this.svgaStart('turn_openDefaule', 1, true, this.svgaDdress[1].data)
+      if (this.svgaLoad) {
+        this.firstLuckAni(val)
       }
     },
     is_all (val) {
@@ -123,6 +116,20 @@ export default {
     }
   },
   methods: {
+    firstLuckAni (val) {
+      if (this.plarerArr['turn_openAct']) {
+        this.plarerArr['turn_openAct'].player.clear()
+      }
+      if (this.plarerArr['turn_openDefaule']) {
+        this.plarerArr['turn_openDefaule'].player.clear()
+      }
+      console.log(val)
+      if (val > 0) {
+        this.svgaStart('turn_openAct', 1, true, this.svgaDdress[2].data)
+      } else {
+        this.svgaStart('turn_openDefaule', 1, true, this.svgaDdress[1].data)
+      }
+    },
     luckIng () {
       turntableLuck().then(res => {
         if (res.data.response_status.code == 0) {
@@ -165,6 +172,8 @@ export default {
         }
         Promise.all(PromiseArr).then((values) => {
           res(values)
+          console.log(this.svgaDdress)
+          this.svgaLoad = true
           this.svgaGo()
         })
       })
@@ -182,9 +191,10 @@ export default {
     svgaGo () {
       this.svgaStart('turn_bg', 1, true, this.svgaDdress[0].data)  //节点类名,開始幀數,是否开始动画,加载的对应Data
       this.svgaStart('turn_linght', 1, true, this.svgaDdress[3].data)
-
+      this.firstLuckAni(this.luckDrawCount)
     },
     async svgaStart (className, start, isGo, data) {//节点类名,開始幀數,是否开始动画,加载的对应Data
+      console.log(className, data)
       let canvas = document.getElementById(className)
       let player = new Player(canvas)
       player.set({ startFrame: start })
@@ -286,59 +296,59 @@ export default {
       }
       &.ward0 {
         position: absolute;
-        top: 0.2rem;
+        top: 0.22rem;
         left: 2.2rem;
         z-index: 10;
       }
       &.ward1 {
         position: absolute;
-        top: 1.12rem;
-        left: 3.75rem;
-        // transform: rotate(60deg);
+        top: 1.13rem;
+        left: 3.76rem;
+        transform: rotate(60deg);
         z-index: 10;
-        .black_bg {
-          transform: rotate(60deg);
-        }
+        // .black_bg {
+        //   transform: rotate(60deg);
+        // }
       }
       &.ward2 {
         position: absolute;
-        top: 2.93rem;
-        left: 3.75rem;
-        // transform: rotate(120deg);
+        top: 2.95rem;
+        left: 3.78rem;
+        transform: rotate(120deg);
         z-index: 10;
-        .black_bg {
-          transform: rotate(120deg);
-        }
+        // .black_bg {
+        //   transform: rotate(120deg);
+        // }
       }
       &.ward3 {
         position: absolute;
         top: 3.86rem;
         left: 2.2rem;
-        // transform: rotate(-180deg);
+        transform: rotate(-180deg);
         z-index: 10;
-        .black_bg {
-          transform: rotate(-180deg);
-        }
+        // .black_bg {
+        //   transform: rotate(-180deg);
+        // }
       }
       &.ward4 {
         position: absolute;
-        top: 2.98rem;
-        left: 0.6rem;
-        // transform: rotate(-120deg);
+        top: 2.96rem;
+        left: 0.62rem;
+        transform: rotate(-120deg);
         z-index: 10;
-        .black_bg {
-          transform: rotate(-120deg);
-        }
+        // .black_bg {
+        //   transform: rotate(-120deg);
+        // }
       }
       &.ward5 {
         position: absolute;
-        top: 1.12rem;
-        left: 0.6rem;
-        // transform: rotate(-60deg);
+        top: 1.14rem;
+        left: 0.62rem;
+        transform: rotate(-60deg);
         z-index: 10;
-        .black_bg {
-          transform: rotate(-60deg);
-        }
+        // .black_bg {
+        //   transform: rotate(-60deg);
+        // }
       }
     }
     #turn_linght {

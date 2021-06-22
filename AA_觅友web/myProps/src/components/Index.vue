@@ -4,20 +4,23 @@
     <div class="top_bg"></div>
     <!-- <div class="tab" :style="{top:navigatorHeight}"></div> -->
     <div class="propsList" :style="{height:viewHeight- navigatorHeight2-50 + 'px',paddingTop:navigatorHeight2}">
-      <div class="noData" v-if="!list.length">
-        <img src="../img/noData.png" alt="">
-        <p>{{lang.no_props}}</p>
+      <div class="bg">
+        <div class="noData" v-if="!list.length">
+          <img src="../img/noData.png" alt="">
+          <p>{{lang.no_props}}</p>
+        </div>
+        <ul class="scrollable" :class="{noLength:!list.length}" :style="{height:viewHeight- 50 + 'px'}" v-show="list.length">
+          <li v-for="(item,index) in list" :key="index" @click="giftClick(item)">
+            <div class="imgBox">
+              <i class="propsDay" v-if="item.expire ">{{item.expire}}{{lang.day_expire}}</i>
+              <i class="propsDay" v-else>{{lang.expire_end}}</i>
+              <img :src="item.image" alt="">
+            </div>
+            <strong>{{item.name}}x{{item.num}}</strong>
+          </li>
+        </ul>
       </div>
-      <ul class="scrollable" :class="{noLength:!list.length}" :style="{height:viewHeight- 50 + 'px'}" v-show="list.length">
-        <li v-for="(item,index) in list" :key="index" @click="giftClick(item)">
-          <div class="imgBox">
-            <i class="propsDay" v-if="item.expire ">{{item.expire}}{{lang.day_expire}}</i>
-            <i class="propsDay" v-else>{{lang.expire_end}}</i>
-            <img :src="item.image" alt="">
-          </div>
-          <strong>{{item.name}}x{{item.num}}</strong>
-        </li>
-      </ul>
+
     </div>
     <div class="mask" v-show="showGiftPup">
       <transition name="slide">
@@ -70,7 +73,7 @@ export default {
         setFullScreen(true);
         //  - document.getElementsByClassName('tab')[0].clientHeight
         this.navigatorHeight = getStatusBarHeight() + 'px';
-        this.navigatorHeight2 = getStatusBarHeight() * 1 + 14 + 'px';
+        this.navigatorHeight2 = getStatusBarHeight() * 1 + 20 + 'px';
       }
       //局部滚动
       this.scrollable = document.querySelector('.scrollable');
@@ -132,15 +135,20 @@ export default {
     height: 0.88rem;
   }
   .propsList {
-    width: 6.42rem;
-    // min-height: 3rem;
+    width: 6.9rem;
     position: relative;
     z-index: 2;
     // overflow: hidden;
-    border-radius: 0.3rem;
+    // border-radius: 0.3rem;
     margin: 0 auto;
-    background: #FFFFFF;
-    padding: 0.4rem 0.24rem;
+    // padding: 0.4rem 0.24rem;
+    .bg {
+      height: 100%;
+      background: #FFFFFF;
+      border-radius: 0.3rem;
+      overflow: hidden;
+      padding-top: 0.4rem;
+    }
     .noData {
       //   width: 6.9rem;
       height: 3.51rem;
@@ -161,9 +169,9 @@ export default {
     ul {
       //   height: 11.6rem;
       overflow-y: scroll;
-      background: #fff;
+      //   background: #fff;
       border-radius: 0.3rem;
-      //   padding: 0.4rem 0.24rem;
+      padding: 0 0.24rem;
       display: flex;
       flex-wrap: wrap;
       align-content: flex-start;

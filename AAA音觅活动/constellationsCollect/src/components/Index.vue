@@ -14,7 +14,7 @@
     <div class="starCon">
       <star />
       <Tutable />
-      <p class="lastTIips">{{lang.lastTips}}</p>
+      <p class="lastTIips"><span>剩餘抽獎次數：{{luckDrawCount}}</span> {{lang.lastTips}}</p>
     </div>
     <div class="mask" v-show="showHistory">
       <transition name="slide">
@@ -37,6 +37,8 @@ import History from "./History"
 import Rule from "./Rule"
 import RoolMsg from "./RoolMsg"
 import { roolMsg } from "../apis"
+import { mapState } from "vuex"
+
 export default {
   data () {
     return {
@@ -49,6 +51,9 @@ export default {
     roolMsg().then(res => {
       this.roolMsgs = res.data.response_data.list
     })
+  },
+  computed: {
+    ...mapState(['luckDrawCount'])
   },
   components: {
     Star,
@@ -65,7 +70,7 @@ export default {
   overflow-x: hidden;
   .tipsBox {
     position: absolute;
-    top: 4.4rem;
+    top: 4.1rem;
     right: 0;
     z-index: 5;
     span {
@@ -89,7 +94,7 @@ export default {
   .con {
     position: absolute;
     width: 7.5rem;
-    height: 20.78rem;
+    height: 18.78rem;
     background: url(../img/starBg.png);
     background-size: 100% 100%;
     top: 5.35rem;
@@ -109,6 +114,10 @@ export default {
     font-size: 0.24rem;
     text-align: center;
     margin-top: 0.55rem;
+    span {
+      display: block;
+      font-size: 0.28rem;
+    }
   }
 }
 </style>
