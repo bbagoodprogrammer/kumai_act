@@ -152,7 +152,6 @@ export default {
         this.firstPup = true
       } else {
         this.nums = val
-
         luck(val).then(res => {
           if (res.data.response_status.code == 0) {
             this.firstPup = false
@@ -164,6 +163,11 @@ export default {
             this.showLuckPup = true
           } else {
             this.toast(res.data.response_status.error)
+            if (res.data.response_status.code == 30001) {
+              setTimeout(() => {
+                this.gowalletpage()
+              }, 1000)
+            }
           }
         })
       }
@@ -184,7 +188,18 @@ export default {
           clearInterval(this.timer)
         }
       }, 10)
-    }
+    },
+    gowalletpage () {
+      const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      try {
+        if (ios) {
+          // goWalletpage()
+          sendJsData('app://walletpage');
+        } else {
+          javascript: JSInterface.sendJsData('app://walletpage');
+        }
+      } catch (e) { }
+    },
   }
 }
 </script>
@@ -193,12 +208,12 @@ export default {
 .star {
   position: relative;
   padding-top: 0.4rem;
+  background: url(../img/star.png);
+  background-size: 100% auto;
   .starBox {
-    width: 5.08rem;
-    height: 8.06rem;
-    padding: 0 0.8rem;
-    background: url(../img/star.png);
-    background-size: 100% 100%;
+    // width: 5.88rem;
+    height: 6.2rem;
+    padding: 0 0.41rem;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -327,7 +342,7 @@ export default {
     .luck_pup_bg {
       padding: 0.24rem 0;
       background: url(../img/pup_con.png);
-      background-size: 100% 100%;
+      background-size: 100% auto;
     }
     .pup_con {
       display: flex;
