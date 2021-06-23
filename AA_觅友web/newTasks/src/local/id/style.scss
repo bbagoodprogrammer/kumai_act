@@ -1,8 +1,9 @@
 html.id {
-    // .singIn{
-    //     .title{
-    //        background: url(./img/singInTitle.png);
-    //        background-size: 100% 100%;
-    //     }
-    // }
+    .newUserTask,.dayTask{
+        li{
+            height: auto!important;
+            min-height: .92rem;
+            padding: .28rem 0;
+        }
+    }
 }

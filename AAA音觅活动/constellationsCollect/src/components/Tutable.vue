@@ -8,7 +8,7 @@
       <canvas id="turn_All" class="turn_All" v-if="is_all"></canvas>
       <span v-for=" (item,index) in turntable" :key="index" :class="'ward'+index">
         <img :src="item.image" alt="">
-        <em>{{item.name}}</em>
+        <em>{{item.short_name?item.short_name:item.name}}</em>
         <span class="black_bg" v-if="!item.have"></span>
       </span>
       <canvas id="turn_linght" :class="'ward' + (giftIndex -1)" v-show="lingHt"></canvas>
@@ -97,6 +97,12 @@ export default {
       });
       console.log(nums >= this.turntable.length)
       return nums
+    }
+  },
+  created () {
+    if (AREA == 'vn') {
+      this.svgaDdress[1].addres = `	http://fstatic.cat1314.com/uc/svga/bd1b199553c10787e076df035bad1cb8_1624437188.svga`
+      this.svgaDdress[2].addres = `http://fstatic.cat1314.com/uc/svga/4302fd8e95b23119063ff9c28c4202e0_1624437210.svga`
     }
   },
   mounted () {

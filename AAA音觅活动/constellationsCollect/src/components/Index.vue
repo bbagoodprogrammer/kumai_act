@@ -14,7 +14,7 @@
     <div class="starCon">
       <star />
       <Tutable />
-      <p class="lastTIips"><span>剩餘抽獎次數：{{luckDrawCount}}</span> {{lang.lastTips}}</p>
+      <p class="lastTIips"><span>{{lang.surplus_nums}} {{luckDrawCount}}</span> {{lang.lastTips}}</p>
     </div>
     <div class="mask" v-show="showHistory">
       <transition name="slide">

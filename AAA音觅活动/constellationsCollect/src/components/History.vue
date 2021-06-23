@@ -69,7 +69,12 @@ export default {
       }
     },
     getTmStr (tm) {
-      return getDate(new Date(tm * 1000), 1)
+      if (AREA == 'tw') {
+        return getDate(new Date(tm * 1000), 1)
+      } else if (AREA == 'vn') {
+        return getDate(new Date(tm * 1000), 2)
+      }
+
     },
     onScroll () {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
