@@ -141,7 +141,8 @@ export default {
       //   },
       luckGiftPup: false,
       new_ver: false,
-      getGiftObj: {}
+      getGiftObj: {},
+      ver_330: false
     }
   },
   computed: {
@@ -150,7 +151,10 @@ export default {
   created () {
     const pt = getPlatform();
     const ver = getAppVer();
-    if ((pt == 'android' && ver >= 967) || (pt == 'ios' && ver >= 179)) {  //新舊版本區分
+    if ((pt == 'android' && ver >= 950) || (pt == 'ios' && ver >= 172)) {  //300新舊版本區分
+      this.ver_330 = true
+    }
+    if ((pt == 'android' && ver >= 967) || (pt == 'ios' && ver >= 179)) {  //320新舊版本區分
       this.new_ver = true
     }
     if ((pt == 'ios' && ver >= 165) || pt == 'android') {
@@ -161,6 +165,10 @@ export default {
   },
   methods: {
     getGiftItem (is_new, item, index) {
+      if (!this.ver_330) { //330前舊版本領取獎勵攔截
+        this.toast(this.lang.newVer_tips)
+        return
+      }
       var ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       const ver = getAppVer();
       const pt = getPlatform();

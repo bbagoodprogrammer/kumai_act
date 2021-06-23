@@ -18,5 +18,8 @@ function getDate(datem, type) {
     if (type == 1) {
         return `${month}月${date}日 ${hours}:${minute}`;
     }
+    if (type == 2) {
+        return `${date}/${month} ${hours}:${minute}`;
+    }
 }
 export default getDate;

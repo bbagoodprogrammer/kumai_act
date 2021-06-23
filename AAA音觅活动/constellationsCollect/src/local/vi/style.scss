@@ -1,4 +1,16 @@
 html.vi {
+    letter-spacing: -0.015rem;
+    .tipsBox{
+        span{
+            white-space: nowrap;
+            font-size: .22rem!important;
+            text-indent: 0.1rem;
+        }
+    }
+    .luckTurnTips{
+        width: 6.5rem;
+        // padding: 0 .3rem;
+    }
         .pageIndex{
         .header{
             height: 7.08rem;

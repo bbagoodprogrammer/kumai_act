@@ -73,7 +73,7 @@ export default {
         setFullScreen(true);
         //  - document.getElementsByClassName('tab')[0].clientHeight
         this.navigatorHeight = getStatusBarHeight() + 'px';
-        this.navigatorHeight2 = getStatusBarHeight() * 1 + 20 + 'px';
+        this.navigatorHeight2 = getStatusBarHeight() * 1 + 10 + 'px';
       }
       //局部滚动
       this.scrollable = document.querySelector('.scrollable');

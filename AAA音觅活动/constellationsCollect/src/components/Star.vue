@@ -342,7 +342,8 @@ export default {
     .luck_pup_bg {
       padding: 0.24rem 0;
       background: url(../img/pup_con.png);
-      background-size: 100% auto;
+      background-size: 100% 100%;
+      margin-top: -0.05rem;
     }
     .pup_con {
       display: flex;
@@ -352,6 +353,7 @@ export default {
       height: 0.65rem;
       background: url(../img/pup_button.png);
       background-size: 100% 100%;
+      margin-top: -0.05rem;
     }
     .giftList {
       //   padding: 0 1.7rem;
