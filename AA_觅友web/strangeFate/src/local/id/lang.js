@@ -9,19 +9,19 @@
     rank_title: "Daftar takdir",
     openComeList: "Peringkat",
     value: "Nilai takdir",
-    dist: "Perlu dicapai",
+    dist: "Akan naik",
     tips:
         "Tambahkan aliran koin emas di kamar untuk dapatkan nilai takdir dan kemajuan akan memicu hadiah",
-    sendRoomGift: "Berikan hadiah utk tambahkan nilai takdir",
+    sendRoomGift: "Beri hadiah utk tambah nilai takdir",
     tab1: "Hadiah kamar",
-    tab2: "Yg berkontribusi paling banyak",
+    tab2: "Kontributor terbanyak ",
     tab3: "Kontributor terakhir",
     cell1: {
         title: "Alochat datang",
         tips: "Gelar kamar 30 menit"
     },
     cell2: {
-        title: "Bola kristal keberuntungan",
+        title: "Lucky crystal ball",
         tips: "Hadiah ramalan kamar"
     },
     cell3: {
@@ -30,14 +30,14 @@
     },
     cell4: {
         title: "Takdir Alochat",
-        tips: "Lencana takdir 1 hari"
+        tips: "Lencana 1 hari"
     },
     h_cell1: {
         title: "Rekomendasi hot",
-        tips: "Eksposur selama 60 menit"
+        tips: "Eksposur 60 menit"
     },
     h_cell2: {
-        title: "Bola kristal keberuntungan",
+        title: "Lucky crystal ball",
         tips: "Hadiah ramalan kamar"
     },
     h_cell3: {
@@ -52,12 +52,12 @@
     come_no_data: "Tiada pemain dlm daftar saat ini",
     come_list_tips:
         "Peningkatan nilai kontribusi melalui beri hadiah koin emas di kamar dan dapat masuk peringkat.Yang berkontribusi paling banyak dan kontributor terakhir akan dapat hadiah",
-    span_title: "Hadiah mingguan",
+    span_title: "Hadiah",
     rank_tips:
         "Daftar dihitung setiap hari Senin pada pukul 00:00, dan dapat hadiah yg sesuai berdasarkan peringkat daftar.tambahan 1 koin emas di kamar = 1 poin nilai takdir，pemain berkontribusihadiah  1 koin emas = 1 poin nilai kontribusi；",
-    prize_box1: "Daftar takdir",
-    prize_box2: "Daftar kontribusi ",
-    prize_list1: "Latar belakang langit bintang 7 hari",
+    prize_box1: "Top Takdir",
+    prize_box2: "Top Kontribusi ",
+    prize_list1: "Background langit bintang 7 hari",
     prize_list2: "Kartu rekomendasi 30 menit",
     prize_list3: "Kartu rekomendasi 15 menit",
     prize_list4: "Gelar fans besi 7 hari",
@@ -65,8 +65,8 @@
     prize_list6: "Approach show fans besi  7 hari",
     whichWeek0: "Minggu ini",
     whichWeek1: "Minggu lalu",
-    whichMainTab0: "Daftar takdir",
-    whichMainTab1: "Dartar kontribusi ",
+    whichMainTab0: "Top Takdir",
+    whichMainTab1: "Top Kontribusi",
     score: "Nilai kontribusi ",
     score1: "Nilai takdir",
     rule_tips:
@@ -91,9 +91,9 @@
         "Robotan-Hadiah langka x1<br />Spaceship-Bingkai avatar langka 1 hari",
     ground2_li3_title: "Kontributor terakhir",
     ground2_li3_tips: "Spaceship-Bingkai avatar langka 1 hari",
-    ground3_title: "Bola kristal keberuntungan",
+    ground3_title: "Lucky crystal ball",
     ground3_tips:
-        "Setiap kali mencapai tahap「Alochat datang」 dan 「Alochat berkah」akan memicu「 Bola kristal keberuntungan」muncul.Semua pemain di dalam kamar dapat melakukan ramalan utk dapatkan hadiah，sebagai berikut：",
+        "Setiap kali mencapai tahap「Alochat datang」 dan 「Alochat berkah」akan memicu「 Lucky crystal ball」muncul.Semua pemain di dalam kamar dapat melakukan ramalan utk dapatkan hadiah，sebagai berikut：",
     ground3_gifts1_title: "Tahap Alochat datang",
     ground3_gifts2_title: "Tahap Alochat berkah",
     ground3_probability: "Probabilitas Ramalan (sistem 10 rb poin)",
@@ -104,7 +104,7 @@
     ground4_reward1_tips1:
         "Latar belakang langit bintang 7 hari<br />Kartu rekomendasi 30 menit",
     ground4_reward1_tips2: "Kartu rekomendasi 15 menit",
-    ground4_reward2_title: "Daftar kontribusi",
+    ground4_reward2_title: "Top Kontribusi",
     ground4_reward2_tips1:
         "Gelar fans besi 7 hari<br />Approach show fans besi 7 hari",
     ground4_reward2_tips2: "Approach show fans besi 7 hari",

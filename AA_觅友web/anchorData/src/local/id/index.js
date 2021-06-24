@@ -10,11 +10,11 @@ Webpack本地化相关资源打包入口，相关资源类型有：
 
 import lang from './lang';
 import images from './images';
-import Agreement from './Agreement';
+// import Agreement from './Agreement';
 
 window._lang = lang;
 window._images = images;
-window._agreement = Agreement;
+// window._agreement = Agreement;
 
 if (lang.title) {
     document.title = lang.title;

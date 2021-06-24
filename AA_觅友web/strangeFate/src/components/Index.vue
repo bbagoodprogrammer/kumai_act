@@ -1,36 +1,17 @@
 <template>
   <div class="page pageIndex appView">
-    <div
-      class="banner"
-      :style="{ 'background-image': 'url(' + images.bg + ')' }"
-    >
+    <div class="banner" :style="{ 'background-image': 'url(' + images.bg + ')' }">
       <div class="open_right">
         <img src="../img/open_rule.png" @click="openRule()" alt="" />
         <img src="../img/open_record.png" @click="openRecord()" alt="" />
       </div>
       <div class="open_left">
-        <span
-          @click="openComeList()"
-          :style="{ 'background-image': 'url(' + images.open_rank + ')' }"
-        ></span>
-        <span
-          @click="openRank()"
-          :style="{ 'background-image': 'url(' + images.open_list + ')' }"
-        ></span>
+        <span @click="openComeList()" :style="{ 'background-image': 'url(' + images.open_rank + ')' }"></span>
+        <span @click="openRank()" :style="{ 'background-image': 'url(' + images.open_list + ')' }"></span>
       </div>
 
-      <div
-        v-if="status == 2"
-        @click="toggle(1)"
-        class="icon"
-        :style="{ 'background-image': 'url(' + images.icon_befall + ')' }"
-      ></div>
-      <div
-        v-if="status == 1"
-        @click="toggle(2)"
-        class="icon"
-        :style="{ 'background-image': 'url(' + images.icon_bless + ')' }"
-      ></div>
+      <div v-if="status == 2" @click="toggle(1)" class="icon" :style="{ 'background-image': 'url(' + images.icon_befall + ')' }"></div>
+      <div v-if="status == 1" @click="toggle(2)" class="icon" :style="{ 'background-image': 'url(' + images.icon_bless + ')' }"></div>
 
       <!-- svga -->
       <div class="svga_hit" v-show="status == 1">
@@ -42,62 +23,38 @@
 
       <div class="mid">
         <div class="round">
-          <span v-if="status == 1 && !befall.isOK"
-            ><img src="../img/one.png" alt=""
-          /></span>
-          <span v-if="status == 1 && befall.isOK"
-            ><img :src="images.done" alt=""
-          /></span>
-          <span v-if="status == 2 && !bless.isOK"
-            ><img :src="images.unopen" alt=""
-          /></span>
+          <span v-if="status == 1 && !befall.isOK"><img src="../img/one.png" alt="" /></span>
+          <span v-if="status == 1 && befall.isOK"><img :src="images.done" alt="" /></span>
+          <span v-if="status == 2 && !bless.isOK"><img :src="images.unopen" alt="" /></span>
           <span v-if="status == 2 && bless.isOK">
             <em>{{ ttminute }}:</em>
             <em>{{ ttsecond }}</em>
           </span>
 
-          <span v-if="status == 1" class="span2"
-            ><img :src="images.fate_befall" alt=""
-          /></span>
-          <span v-if="status == 2" class="span2"
-            ><img :src="images.fate_bless" alt=""
-          /></span>
+          <span v-if="status == 1" class="span2"><img :src="images.fate_befall" alt="" /></span>
+          <span v-if="status == 2" class="span2"><img :src="images.fate_bless" alt="" /></span>
         </div>
         <div class="bg">
-          <span
-            ><strong v-html="status == 1 ? befall.value : bless.value"></strong>
-            <strong>{{ lang.value }}</strong></span
-          >
+          <span><strong v-html="status == 1 ? befall.value : bless.value"></strong>
+            <strong>{{ lang.value }}</strong></span>
           <span>
             <strong v-show="status == 1" :style="{ width: len + 'rem' }">
               <i></i>
             </strong>
-            <strong
-              v-show="status == 2"
-              :style="{ width: len_bless + 'rem' }"
-              class="blessBg"
-            >
+            <strong v-show="status == 2" :style="{ width: len_bless + 'rem' }" class="blessBg">
               <i></i>
             </strong>
           </span>
-          <span
-            ><strong v-html="status == 1 ? befall.limit : bless.limit"></strong>
-            <strong>{{ lang.dist }}</strong></span
-          >
+          <span><strong v-html="status == 1 ? befall.limit : bless.limit"></strong>
+            <strong>{{ lang.dist }}</strong></span>
         </div>
         <p class="tips">{{ lang.tips }}</p>
         <div class="btn" @click="sendRoomGift()">{{ lang.sendRoomGift }}</div>
         <div class="reward">
           <div class="tab">
-            <span @click="mainTabClick(1)" :class="{ cur: cur == 1 }"
-              ><i>{{lang.tab1}}</i> <em v-if="cur == 1"></em
-            ></span>
-            <span @click="mainTabClick(2)" :class="{ cur: cur == 2 }"
-              ><i>{{lang.tab2}}</i> <em v-if="cur == 2"></em
-            ></span>
-            <span @click="mainTabClick(3)" :class="{ cur: cur == 3 }"
-              ><i>{{lang.tab3}}</i> <em v-if="cur == 3"></em
-            ></span>
+            <span @click="mainTabClick(1)" :class="{ cur: cur == 1 }"><i>{{lang.tab1}}</i> <em v-if="cur == 1"></em></span>
+            <span @click="mainTabClick(2)" :class="{ cur: cur == 2 }"><i>{{lang.tab2}}</i> <em v-if="cur == 2"></em></span>
+            <span @click="mainTabClick(3)" :class="{ cur: cur == 3 }"><i>{{lang.tab3}}</i> <em v-if="cur == 3"></em></span>
           </div>
           <div class="list">
             <div class="main" v-if="cur == 1">
@@ -154,16 +111,10 @@
               </div>
               <div class="cell">
                 <div>
-                  <span
-                    ><img v-if="status == 1" :src="images.reward2" alt="" />
-                    <img v-if="status == 2" :src="images.reward6" alt=""
-                  /></span>
-                  <span v-if="status == 1"
-                    ><strong>{{lang.cell4.title}}</strong> <em>{{lang.cell4.tips}}</em></span
-                  >
-                  <span v-if="status == 2"
-                    ><strong>{{lang.h_cell4.title}}</strong> <em>{{lang.h_cell4.tips}}</em></span
-                  >
+                  <span><img v-if="status == 1" :src="images.reward2" alt="" />
+                    <img v-if="status == 2" :src="images.reward6" alt="" /></span>
+                  <span v-if="status == 1"><strong>{{lang.cell4.title}}</strong> <em>{{lang.cell4.tips}}</em></span>
+                  <span v-if="status == 2"><strong>{{lang.h_cell4.title}}</strong> <em>{{lang.h_cell4.tips}}</em></span>
                 </div>
               </div>
             </div>
@@ -198,7 +149,7 @@ import downTime from "../utils/downTime";
 import { pageInited, appClose, callApp, toast } from "../utils";
 const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
 export default {
-  data() {
+  data () {
     return {
       cur: 2,
       status: 0,
@@ -221,7 +172,7 @@ export default {
       ttsecond: "00",
     };
   },
-  mounted() {
+  mounted () {
     this.init();
   },
   computed: {
@@ -229,7 +180,7 @@ export default {
   },
 
   methods: {
-    init() {
+    init () {
       (async () => {
         const res = await init();
         if (res.data) {
@@ -293,31 +244,31 @@ export default {
     appClose,
     sendRoomGift () {
       this.appClose();
-      if(ios){
+      if (ios) {
         sendJsData("app://sendRoomGift")
-      }else{
+      } else {
         JSInterface.sendJsData("app://sendRoomGift");
       }
     },
-    closeWeb() {
+    closeWeb () {
       this.appClose();
     },
-    mainTabClick(t) {
+    mainTabClick (t) {
       this.cur = t;
     },
-    openRule() {
+    openRule () {
       this.$router.push("/rule");
     },
-    openComeList() {
+    openComeList () {
       this.$router.push("/comeList?status=" + this.status);
     },
-    openRecord() {
+    openRecord () {
       this.$router.push("/record");
     },
-    openRank() {
+    openRank () {
       this.$router.push("/rankGroups");
     },
-    toggle(t) {
+    toggle (t) {
       this.status = t;
     },
   },
@@ -410,7 +361,7 @@ canvas {
       .round {
         width: 1.63rem;
         height: 1.2rem;
-        background: url("../img/round.png") no-repeat;
+        background: url('../img/round.png') no-repeat;
         background-size: 100% 100%;
         margin: 0 auto;
         text-align: center;
@@ -468,6 +419,7 @@ canvas {
           vertical-align: middle;
           &:nth-of-type(3) {
             strong {
+              white-space: nowrap;
               &:first-of-type {
                 font-size: 0.2rem;
                 color: hsla(0, 0%, 100%, 0.3);
@@ -497,19 +449,19 @@ canvas {
                 background: #fd62d7;
               }
               &:before {
-                content: "";
+                content: '';
                 width: 100%;
                 height: 0.18rem;
                 position: absolute;
                 left: 0;
                 top: 0;
-                background: url("../img/progress_bg.png") no-repeat;
+                background: url('../img/progress_bg.png') no-repeat;
                 background-size: 4.8rem 0.18rem;
               }
               i {
                 width: 0.9rem;
                 height: 0.74rem;
-                background: url("../img/dot.png") no-repeat;
+                background: url('../img/dot.png') no-repeat;
                 background-size: 100% 100%;
                 position: absolute;
                 top: 50%;
@@ -585,7 +537,7 @@ canvas {
               width: 2.5rem;
               height: 0.32rem;
               line-height: 0.32rem;
-              background-image: url("../img/choose_bg.png");
+              background-image: url('../img/choose_bg.png');
               background-size: 100% 100%;
               text-align: center;
               position: absolute;
@@ -619,7 +571,7 @@ canvas {
                 align-items: center;
                 width: 3.4rem;
                 height: 1.2rem;
-                background: url("../img/reward_bg.png") no-repeat;
+                background: url('../img/reward_bg.png') no-repeat;
                 background-size: 100% 100%;
                 box-sizing: border-box;
                 padding-left: 0.17rem;

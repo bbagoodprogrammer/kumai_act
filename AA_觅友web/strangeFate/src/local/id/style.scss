@@ -10,12 +10,50 @@ html.id {
     .pageIndex {
         .banner {
             .open_left {
+                width: 2.04rem !important;
                 span:first-of-type {
                   width: 1.2rem !important;
                   }
                   span:nth-of-type(2) {
                     width: 2.04rem !important;
                   }
+            }
+        }
+        .round{
+            width: 2rem!important;
+            .span2 {
+                width: 2rem!important;
+              }
+        }
+        
+    }
+    .mid{
+        .btn{
+            width: 6rem!important;
+        }
+        .tab{
+            span{
+                &.cur{
+                    width: 3rem!important;
+                    white-space: nowrap;
+                    text-align: left!important;
+                    i{
+                        text-align: left!important;
+                        width: 3rem!important;
+                        margin: -0.16rem 0 0 -1.55rem!important;
+                    }
+                }
+               
+            }
+        }
+    }
+    .main{
+        .cell{
+            strong{
+                font-size: .24rem!important;
+            }
+            em{
+                font-size: .2rem!important;
             }
         }
     }

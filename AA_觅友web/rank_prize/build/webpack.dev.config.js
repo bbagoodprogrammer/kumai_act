@@ -44,7 +44,7 @@ module.exports = {
         //disableHostCheck: true,
         proxy: {
             "/": {
-                target: "http://act.udateapp.com",
+                target: "http://act.newstarapp.com",
                 changeOrigin: true
             }
         }

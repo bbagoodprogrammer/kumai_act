@@ -21,7 +21,7 @@
             <div class="imgBox">
               <img :src="gift.image" alt="">
             </div>
-            <strong>{{gift.name}}</strong>
+            <!-- <strong>{{gift.name}}</strong> -->
           </div>
           <div class="tips">{{lang.star_luckTitle2}}【{{gift.name}}】</div>
           <div class="ok" @click="giftPup = false"></div>

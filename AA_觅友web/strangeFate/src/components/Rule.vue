@@ -12,30 +12,18 @@
         <p class="tips" v-html="lang.ground1_tips"></p>
         <ul class="ul1">
           <li>
-            <span
-              ><strong v-html="lang.ground1_li1_title"></strong> <strong>{{lang.ground1_li1_tips}}</strong></span
-            >
-            <span
-              ><img
-                :src="images.rule_reward1"
-                alt=""
-            /></span>
+            <span><strong v-html="lang.ground1_li1_title"></strong> <strong>{{lang.ground1_li1_tips}}</strong></span>
+            <span><img :src="images.rule_reward1" alt="" /></span>
           </li>
           <li>
-            <span
-              ><strong>{{lang.ground1_li2_title}}</strong>
-              <strong v-html="lang.ground1_li2_tips"></strong></span
-            >
-            <span
-              ><img :src="images.rule_reward2" alt="" />
-              <img :src="images.reward2" alt=""
-            /></span>
+            <span><strong>{{lang.ground1_li2_title}}</strong>
+              <strong v-html="lang.ground1_li2_tips"></strong></span>
+            <span><img :src="images.rule_reward2" alt="" />
+              <img :src="images.reward2" alt="" /></span>
           </li>
           <li>
-            <span
-              ><strong>{{lang.ground1_li3_title}}</strong>
-              <strong>{{lang.ground1_li3_tips}}</strong></span
-            >
+            <span><strong>{{lang.ground1_li3_title}}</strong>
+              <strong>{{lang.ground1_li3_tips}}</strong></span>
             <span><img :src="images.reward2" alt="" /></span>
           </li>
         </ul>
@@ -46,30 +34,18 @@
         </p>
         <ul class="ul1">
           <li>
-            <span
-              ><strong>{{lang.ground2_li1_title}}</strong> <strong>{{lang.ground2_li1_tips}}</strong></span
-            >
-            <span
-              ><img
-                :src="images.rule_reward3"
-                alt=""
-            /></span>
+            <span><strong>{{lang.ground2_li1_title}}</strong> <strong>{{lang.ground2_li1_tips}}</strong></span>
+            <span><img :src="images.rule_reward3" alt="" /></span>
           </li>
           <li>
-            <span
-              ><strong>{{lang.ground2_li2_title}}</strong>
-              <strong v-html="lang.ground2_li2_tips"></strong></span
-            >
-            <span
-              ><img :src="images.reward5" alt="" />
-              <img :src="images.reward6" alt=""
-            /></span>
+            <span><strong>{{lang.ground2_li2_title}}</strong>
+              <strong v-html="lang.ground2_li2_tips"></strong></span>
+            <span><img :src="images.reward5" alt="" />
+              <img :src="images.reward6" alt="" /></span>
           </li>
           <li>
-            <span
-              ><strong>{{lang.ground2_li3_title}}</strong>
-              <strong>{{lang.ground2_li3_tips}}</strong></span
-            >
+            <span><strong>{{lang.ground2_li3_title}}</strong>
+              <strong>{{lang.ground2_li3_tips}}</strong></span>
             <span><img :src="images.reward6" alt="" /></span>
           </li>
         </ul>
@@ -83,18 +59,11 @@
           <p><span>{{lang.ground3_gifts1_title}}</span> <span>{{lang.ground3_probability}}</span></p>
           <ul class="ul2">
             <li v-for="(item,i) in befall" :key="i">
-              <span
-                ><strong
-                  ><img
-                    :src="item.image"
-                    alt=""
-                  />
+              <span><strong><img :src="item.image" alt="" />
                   <i v-if="item.num>1">
                     <img :src="getNum(item.num)" alt="">
-                  </i></strong
-                >
-                <em>{{item.name}}</em></span
-              >
+                  </i></strong>
+                <em>{{item.name}}</em></span>
               <span>{{item.chance}}</span>
             </li>
           </ul>
@@ -103,18 +72,11 @@
           <p><span>{{lang.ground3_gifts2_title}}</span> <span>{{lang.ground3_probability}}</span></p>
           <ul class="ul2">
             <li v-for="(item,i) in bless" :key="i">
-              <span
-                ><strong
-                  ><img
-                    :src="item.image"
-                    alt=""
-                  />
+              <span><strong><img :src="item.image" alt="" />
                   <i v-if="item.num>1">
                     <img :src="getNum(item.num)" alt="">
-                  </i></strong
-                >
-                <em>{{item.name}}</em></span
-              >
+                  </i></strong>
+                <em>{{item.name}}</em></span>
               <span>{{item.chance}}</span>
             </li>
           </ul>
@@ -129,20 +91,14 @@
           <p>{{lang.ground4_reward1_title}}</p>
           <ul>
             <li>
-              <span
-                ><strong></strong>
-                <strong v-html="lang.ground4_reward1_tips1"></strong></span
-              >
-              <span
-                ><img :src="images.week_reward1" alt="" />
-                <img :src="images.week_reward2" alt=""
-              /></span>
+              <span><strong></strong>
+                <strong v-html="lang.ground4_reward1_tips1"></strong></span>
+              <span><img :src="images.week_reward1" alt="" />
+                <img :src="images.week_reward2" alt="" /></span>
             </li>
             <li>
-              <span
-                ><strong class="second"></strong>
-                <strong v-html="lang.ground4_reward1_tips2"></strong></span
-              >
+              <span><strong class="second"></strong>
+                <strong v-html="lang.ground4_reward1_tips2"></strong></span>
               <span><img :src="images.week_reward3" alt="" /></span>
             </li>
           </ul>
@@ -151,29 +107,15 @@
           <p>{{lang.ground4_reward2_title}}</p>
           <ul>
             <li>
-              <span
-                ><strong></strong>
-                <strong v-html="lang.ground4_reward2_tips1"></strong></span
-              >
-              <span
-                ><img
-                  :src="images.week_reward4"
-                  alt="" />
-                <img
-                  :src="images.week_reward5"
-                  alt=""
-              /></span>
+              <span><strong></strong>
+                <strong v-html="lang.ground4_reward2_tips1"></strong></span>
+              <span><img :src="images.week_reward4" alt="" />
+                <img :src="images.week_reward5" alt="" /></span>
             </li>
             <li>
-              <span
-                ><strong class="second"></strong>
-                <strong v-html="lang.ground4_reward2_tips2"></strong></span
-              >
-              <span
-                ><img
-                  :src="images.week_reward5"
-                  alt=""
-              /></span>
+              <span><strong class="second"></strong>
+                <strong v-html="lang.ground4_reward2_tips2"></strong></span>
+              <span><img :src="images.week_reward5" alt="" /></span>
             </li>
           </ul>
         </div>
@@ -183,9 +125,7 @@
         <ol>
           <li v-for="(item,i) in lang.rule_other" :key="i">
             <i>{{i+1}}</i>
-            <strong :class="{cur:i==1}"
-              >{{item}}</strong
-            >
+            <strong :class="{cur:i==1}">{{item}}</strong>
           </li>
         </ol>
       </div>
@@ -196,16 +136,16 @@
 <script>
 import { mapState } from "vuex";
 import HeaderNav from "./headerNav";
-import { getPrizeList }  from "../apis"
+import { getPrizeList } from "../apis"
 
 export default {
-  data() {
+  data () {
     return {
-      befall:[],
-      bless:[],
+      befall: [],
+      bless: [],
     };
   },
-  mounted() {
+  mounted () {
     (async () => {
       const res = await getPrizeList();
       if (res.data) {
@@ -214,7 +154,7 @@ export default {
           this.befall = response_data.befall;
           this.bless = response_data.bless;
         } else {
-          
+
         }
       }
     })();
@@ -223,11 +163,11 @@ export default {
     ...mapState([]),
   },
   methods: {
-    back() {
+    back () {
       this.$router.go(-1);
     },
-    getNum(i){
-      return require('../img/x'+i+'.png');
+    getNum (i) {
+      return require('../img/x' + i + '.png');
     },
   },
   components: {
@@ -322,9 +262,11 @@ export default {
         background-color: rgba(0, 0, 0, 0.2);
         border-radius: 0.2rem;
         & > p {
-          height: 0.8rem;
-          line-height: 0.8rem;
-          font-size: 0;
+          min-height: 0.8rem;
+          text-align: center;
+          padding-top: 0.15rem;
+          //   line-height: 0.8rem;
+          //   font-size: 0;
           span {
             display: inline-block;
             vertical-align: middle;
