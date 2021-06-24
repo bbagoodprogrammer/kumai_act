@@ -7,11 +7,11 @@
     </div>
     <div class="rule_con">
       <p class="tm">{{lang.act_tm}}</p>
-      <div class="ruleTips" v-if="!mainTab">
+      <div class="ruleTips " v-if="!mainTab">
         <div v-for="(item,index) in rule_tips" :key="index">
           <h5>{{item.h5}}</h5>
           <p v-html="item.p"></p>
-          <div class="giftList" v-if="item.gift">
+          <div class="giftList first" v-if="item.gift">
             <div class="giftItem" v-for="(item,index) in item.gift" :key="index">
               <div class="imgBox">
                 <img :src="item.img" alt="">
@@ -90,6 +90,17 @@ export default {
   position: absolute;
   top: -1rem;
   right: 0.2rem;
+}
+.giftList {
+  &.first {
+    flex-wrap: wrap;
+    .giftItem:nth-child(1) {
+      margin-left: 1rem;
+    }
+    .giftItem:nth-child(2) {
+      margin-right: 1rem;
+    }
+  }
 }
 .rule {
   padding-top: 1.22rem;

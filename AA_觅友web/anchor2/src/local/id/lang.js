@@ -1,70 +1,47 @@
-export default {
-    //html/index.html
-    title: 'Menandatangani kontrak',
+﻿export default {
+    title: "\u200E",
+    ok: "Konfirmasi", //Konfirmasi
+    loading: "Dimuat...",
+    no_data: "Tiada data lagi~",
+    confirm: "Konfirmasi", //Konfirmasi
+    cancel: "Batal", //Batal
 
-    // router/index
-    page_data: 'Datanya memenuhi target',
-    page_bind: 'Tautkan nomor HP',
-    page_apply: 'Minta terkontrak',
-    page_agreement: 'Perjanjian lisensi Wekara',
+    day_time: "{0}thun{1}bulan{2}tanggal",
+    day_time_inner: "{0}thun{1}bulan tanggal",
+    month_time: "{0}thun{1}bulan",
+    live_time: "{0}bulan{1}bulan {2}:{3}",
+    room_time: "{0}bulan{1}bulan {2}:{3}",
+    live_month_time: "{0}bulan{1}tanggal",
+    month_data: "Data bulanan", //Data bulanan
+    day_data: "Data harian", //Data harian
 
-    // Index
-    sign: 'Masuk utk menandatangani kontrak',
-    signed: 'Sudah ter kontrak',
-    sign_rule: 'Keterangan terkontrak：',
-    sign_rule_1: '1、Pengguna yg tidak terkontrak tidak bisa tarik tunai, hanya bisa menukar jadi koin emas, dan harus tukarkan minimum 20000 berlian Wekara tiap kali, yg tidak cukup 20000 berlian Wekara tidak ditukarkan；',
-    sign_rule_2: '2、Menjadi pengguna yg terkontrak akan bisa tarik pendapatannya, dan Level yg terkontrak makin tinggi, proporsi pertakuran koin makin tinggi, dan bisa tukarkan minimum 100 berlian Wekara tiap kali。',
+    anchor_num: "Jumlah host：", //Jumlah host：
+    total_score: "Total aliran：", //Total aliran：
 
-    // Task
-    data_name: 'Datanya memenuhi target, menjadi pengguna yg terkontrak',
-    data_desc: 'Setelah datanya memenuhi target, baru bisa minta terkontrak',
-    bind_name: 'Tautkan nomor HP',
-    bind_desc: 'Tolong tautkan nomor HP dulu',
-    sign_name: 'Segera menandatangani',
-    sign_desc: 'Nikmati manfaat hak istimewa yg eksklusif  dari pengguna yg terkontrak',
-    do: 'Masuk',
-    done: 'Sudah',
-    sign_tips: 'Kalo dua langkah pertama belum selesai\n Tidak bisa minta terkontrak',
-    ok: 'Ya',
+    title_type1: "Host", //Host
+    title_type2: "Aliran kamar", //Aliran kamar
+    title_type3: "Tanggal berlaku", //Tanggal berlaku
+    title_type4: "Waktu yg efektif", //Waktu yg efektif
 
-    // Bind
-    bind_succ: 'Akun Anda sudah berhasil diikat\n nomor HP: %s',
-
-    // Data
-    count_title: 'Pengguna yg akan mencapai persyaratnya',
-    count_income: 'Pendapatan berlian Wekara',
-    count_numbers: '（{0}/{1}）',
-    count_time: 'Periode statistik ini adalah tgl {1} bulan {0} ~ tgl {3} bulan {2}\nMasih ada {4} hari berakhir akan masuk ke periode statistik berikutnya, semangat ya',
-    done_tips: 'Anda sudah mencapai persyaratan pengguna yg terkontrak\nCepatlah minta untuk menjadi pengguna yg terkontrak',
-    undone_tips: 'Anda belum mencapai persyaratan pengguna yg terkontrak\nTidak bisa minta untuk menjadi pengguna yg terkontrak',
-    done_give: 'Setelah berhasih terkontrak, akan mendapatkan：',
-    done_give_1: '1、Bisa tarik pendapatannya, dan level yg terkontrak makin tinggi,proporsi tarik makin tinggi；',
-    done_give_2: '2、Bisa dapatkan proporsi pertukaran koin lebih tinggi, dan bisa tukarkan minimum 100 berlian Wekara tiap kali',
-
-    // Apply
-    apply_title: 'Langkah terakhir minta terkontrak：',
-    apply_desc: 'Menandatangani kontrak perlu menyerahkan KTP untuk ditinjau, dan berhasil ditinjau menunjukkan berhasil minta ',
-    card_title: 'Pegang bagian depan KTP dan ambil foto sesuai contoh gambar',
-    card_desc: 'Untuk memastikan keaslian identitas Anda, Anda perlu memverifikasi identitas Anda,\n Silakan kirimkan foto sesuai dengan contoh gambar,jika KTP ditemukan palsu, akun akan diblokir secara permanen',
-    re_upload: 'Unggah ulang',
-    upload_title: 'Tolong upload foto verifikasi',
-    upload_desc: 'Setalah berhasil upload, kami akan meninjaukan secepatnya',
-    agree_agreement: 'Permohonan kontrak berarti setuju',
-    apply_agreement: '《Perjanjian lisensi Wekara》',
-    submit_apply: 'Kirim dan permohonan kontrak',
-    card_submited: 'Verifikasi identitas sudah kirim\n Tidak perlu kirim ulang\nbisa langsung minta kontrak',
-
-    // Result
-    re_submit: 'Permintaan ulang',
-    result_checking: 'Permintaan telah berhasil dikirim \ nKami akan meninjau untuk Anda secepatnya',
-    result_success: 'Selamat Anda sudah menjadi pengguna yg terkontrak di Wekara',
-    result_fail: 'Permohonan Anda ditolak',
-    result_fail_reason: 'Alasan：%s',
-    result_fail_contact: 'Tentang detailnya, silakan hubungi Wekara resmi ID %s',
-    result_reject: 'Permintaan Anda tidak disetujui,kami akan melakukan proses penandatanganan untuk anchor secepatnya, mohon nantikan。',
-    sign_give: 'Setelah berhasih terkontrak, akan bisa mendapatkan：',
-    sign_give_1: '1、Nyanyian yg diterbitkan atau kamar karaoke sendiri memiliki bobot yang lebih tinggi dan mendapatkan lebih banyak rekomendasi；',
-    sign_give_2: '2、Lebih banyak eksposur dan lebih banyak perhatian penggemar；',
-    sign_give_3: '3、Bisa tarik pendapatannya, dan level yg terkontrak makin tinggi, proporsi tarik makin tinggi；',
-    sign_give_4: '4、Bisa dapatkan proporsi pertukaran koin lebih tinggi, dan bisa tukarkan minimum 100 berlian Wekara tiap kali',
-}
+    rule_title: "Keterangan pusat agensi", //Keterangan data host
+    rule_tips: "Menurut waktu pilihan, tampilkan data host dari agensi：",
+    rule_li: [
+        "Aliran kamar：Total aliran koin emas kamar yang dihasilkan di kamar host,termasuk hadiah ransel、kotak Hadiah Keberuntungan；",
+        "Tanggal berlaku：Waktu kumulatif Host untuk naik Mic lebih dari 1 jam di kamarnya, itulah tanggal berlaku；",
+        "Waktu yg efektif：Waktu kumulatif Host untuk naik Mic lebih dari 1 jam di kamarnya, itulah tanggal berlaku，Batas harian adalah 3 jam；"
+    ],
+    rule_pickTitle: "Keterangan pendatan berlian pink",
+    rule_pickLi: [
+        "Pendapatan berlian pink bulan lalu akan dihitung pada pukul 00:00 pada tanggal 1 setiap bulan.Host dari agensi mencapai 300.000 berlian pink dapat dihitung penghitungan, dan penghitungan berlian pink secara otomatis dikurangi"
+    ],
+    //ccj
+    index_tab1: "Data party",
+    index_tab2: "Data berteman",
+    //RankGroupsFriend
+    friend_tab1: "Info host",
+    friend_tab2: "Penghitungan berlian pink",
+    pro_top: "Saldo berlian pink",
+    settlement_title: "Total penghitungan berlian pink ",
+    settlement_coins: "Penghitungan berlian pink ",
+    settlement_tm: "Waktu penghitungan"
+};

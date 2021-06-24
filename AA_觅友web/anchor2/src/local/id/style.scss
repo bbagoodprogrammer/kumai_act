@@ -1,3 +1,10 @@
 html.id {
-    
+    .mainTabs{
+        a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: .3rem;
+        }
+    }
 }

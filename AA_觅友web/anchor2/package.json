@@ -18,7 +18,9 @@
         "devIndia": "cross-env    NODE_ENV=development APP=miyou  LANG=en,hi webpack-dev-server --mode development --config            build/webpack.dev.config.js",
         "buildIndia": "cross-env  NODE_ENV=production  APP=miyou  LANG=en,hi webpack            --mode production  --progress --config build/webpack.prod.config.js",
         "devMiyou": "cross-env    NODE_ENV=development APP=miyou  LANG=zh,vi webpack-dev-server --mode development --config            build/webpack.dev.config.js",
-        "buildMiyou": "cross-env  NODE_ENV=production  APP=miyou  LANG=zh,vi webpack            --mode production  --progress --config build/webpack.prod.config.js"
+        "buildMiyou": "cross-env  NODE_ENV=production  APP=miyou  LANG=zh,vi webpack            --mode production  --progress --config build/webpack.prod.config.js",
+        "devMiyouId": "cross-env     NODE_ENV=development APP=miyou   AREA=id LANG=id                webpack-dev-server --mode development --config            build/webpack.dev.config.js",
+        "buildMiyouId": "cross-env   NODE_ENV=production  APP=miyou   AREA=id LANG=id                webpack            --mode production  --progress --config build/webpack.prod.config.js"
     },
     "devDependencies": {
         "babel-core": "^6.26.3",

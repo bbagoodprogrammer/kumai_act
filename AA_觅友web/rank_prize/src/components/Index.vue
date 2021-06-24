@@ -1,9 +1,6 @@
 <template>
   <div class="page pageIndex">
-    <div
-      class="app_top"
-      :style="{ background: '#7A68F8', height: navigatorHeight }"
-    ></div>
+    <div class="app_top" :style="{ background: '#7A68F8', height: navigatorHeight }"></div>
     <div class="propsList" :style="{ paddingTop: navigatorHeight }">
       <div class="con" v-if="prize">
         <p class="tips" v-html="lang.tips.replace('%s',type==1?lang.gift_rank:lang.charm_rank)">
@@ -15,10 +12,7 @@
               <h3>{{lang.no1}}</h3>
               <h5><i>{{prize[1][0].name}}</i></h5>
               <div class="reward_img">
-                <img
-                  :src="prize[1][0].url"
-                  alt=""
-                />
+                <img :src="prize[1][0].url" alt="" />
               </div>
             </div>
             <div class="other">
@@ -28,10 +22,7 @@
                   <h5><i>{{prize[2][0].name}}</i></h5>
                 </div>
                 <div class="reward_img">
-                  <img
-                  :src="prize[2][0].url"
-                    alt=""
-                  />
+                  <img :src="prize[2][0].url" alt="" />
                 </div>
               </div>
               <div class="third">
@@ -40,10 +31,7 @@
                   <h5><i>{{prize[3][0].name}}</i></h5>
                 </div>
                 <div class="reward_img">
-                  <img
-                  :src="prize[3][0].url"
-                    alt=""
-                  />
+                  <img :src="prize[3][0].url" alt="" />
                 </div>
               </div>
             </div>
@@ -59,10 +47,7 @@
                 <div class="top_bg">
                   <div class="avatar">
                     <span class="crown"></span> <span class="rank"></span>
-                    <img
-                      :src="item.avatar"
-                      alt=""
-                    />
+                    <img :src="item.avatar" alt="" />
                   </div>
                 </div>
                 <p class="nick">{{item.nick}}</p>
@@ -71,10 +56,7 @@
                 <div class="inner" :class="{third:i==2}">
                   <div class="avatar">
                     <span class="crown"></span> <span class="rank"></span>
-                    <img
-                      :src="item.avatar"
-                      alt=""
-                    />
+                    <img :src="item.avatar" alt="" />
                   </div>
                   <p class="nick">{{item.nick}}</p>
                   <p class="dics">{{type==1?lang.dist_gift:lang.dist_charm}}:{{item.value}}</p>
@@ -107,9 +89,9 @@ import { mapState } from "vuex";
 import { getInitInfo } from "../apis";
 const type = getUrlString('type');
 export default {
-  data() {
+  data () {
     return {
-      type:type,
+      type: type,
       navigatorHeight: 0,
       navigatorHeight2: 0,
       //   topNums: {
@@ -121,11 +103,11 @@ export default {
   },
   computed: {
     ...mapState(["prize", "ulist"]),
-    topNums() {
+    topNums () {
       return this.lang.topNums;
     },
   },
-  mounted() {
+  mounted () {
     setTimeout(() => {
       const pt = getPlatform();
       const ver = getAppVer();
@@ -282,8 +264,7 @@ export default {
             .crown {
               width: 0.72rem;
               height: 0.63rem;
-              background: url('../img/top1_crown.png')
-                no-repeat;
+              background: url('../img/top1_crown.png') no-repeat;
               background-size: 0.72rem 0.63rem;
               position: absolute;
               left: 50%;
@@ -293,8 +274,7 @@ export default {
             .rank {
               width: 0.7rem;
               height: 0.7rem;
-              background: url('../img/top1.png')
-                no-repeat;
+              background: url('../img/top1.png') no-repeat;
               background-size: 100% 100%;
               position: absolute;
               top: -0.45rem;
@@ -345,8 +325,7 @@ export default {
               .crown {
                 width: 0.5rem;
                 height: 0.5rem;
-                background: url('../img/top2_crown.png')
-                  no-repeat;
+                background: url('../img/top2_crown.png') no-repeat;
                 background-size: 100% 100%;
                 position: absolute;
                 right: -0.04rem;
@@ -355,8 +334,7 @@ export default {
               .rank {
                 width: 0.7rem;
                 height: 0.7rem;
-                background: url('../img/top2.png')
-                  no-repeat;
+                background: url('../img/top2.png') no-repeat;
                 background-size: 100% 100%;
                 position: absolute;
                 top: -0.5rem;
@@ -394,8 +372,7 @@ export default {
   .con .title span:nth-of-type(3) {
     width: 0.3rem;
     height: 0.2rem;
-    background: url('../img/titleIcon.png')
-      no-repeat;
+    background: url('../img/titleIcon.png') no-repeat;
     background-size: 100% 100%;
   }
   .con .reward > div > div h5,

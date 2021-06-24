@@ -210,7 +210,7 @@ function loadData(apiFunc, commitName, loadOnce = false, nums) {
 
 function getInitInfo(page) {
     return get(
-        `/index.php?action=room.getRankPrizeData&&token={token}&uid={uid}&lang={lang}&type={type}`
+        `/index.php?action=room.getRankPrizeData&token={token}&uid={uid}&lang={lang}&type={type}`
     );
 }
 
