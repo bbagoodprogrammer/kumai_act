@@ -1,57 +1,63 @@
-export default {
-    title: "印尼財富等級", //財富等級
-    privilege_title: "等級特權", //等級特權
-    require_title: "等級經驗要求", //等級經驗要求
-    wealthExp: "財富值", //財富值
-    disc: "還需要%s升級", //還需要110升級
+﻿export default {
+    title: "Level kekayaan", //Level kekayaan
+    privilege_title: "Hak istimewa level", //Hak istimewa level
+    require_title: "Syarat pengalaman tevel", //Syarat pengalaman tevel
+    wealthExp: "Nilai kekayaan", //Nilai kekayaan
+    disc: "Perlu %s akan ditingkatkan ", //Perlu Lv.110 akan ditingkatkan
     privilege: [
         {
-            title: "等級圖標",
-            unlock: "Lv.1解鎖",
+            title: "Ikon level",
+            unlock: "Lv.1membuka kunci",
             tips:
-                "等級圖標將展示在房間的公屏發言、資料卡片中，達到的等級越高，等級圖標越尊貴。"
+                "Ikon level akan ditampilkan di layar publik dan kartu data kamar.Semakin tinggi level yang dicapai, semakin mulia ikon level tersebut."
         },
         {
-            title: "進場秀",
-            unlock: "Lv.10解鎖",
+            title: "Approach show",
+            unlock: "Lv.10 membuka kunci",
             tips:
-                "進入房間時將展示進場秀，重複進同一個房間10分鐘內僅出現一次，達到的等級越高，進場秀越尊貴。"
+                "Approach show akan ditampilkan saat masuk ke kamar.Berulang kali masuk ke kamar yang sama akan hanya ditampilkan sekali dalam 10 menit. Semakin tinggi level yang dicapai, semakin mulia Approach show tersebut."
         },
         {
-            title: "專屬客服",
-            unlock: "Lv.30解鎖",
-            tips: "尊享專屬客服，24小時貼心服務，解決困擾你的問題。"
+            title: "Layanan pelanggan eksklusif",
+            unlock: "Lv.30 membuka kunci",
+            tips:
+                "Layanan pelanggan eksklusif，24 jam online，Selesaikan masalah yg mengganggu Anda."
         },
         {
-            title: "敬請期待",
+            title: "Tetap disini",
             unlock: ""
         }
     ],
-    proLevel: ["達到Lv.10", "達到Lv.20", "達到Lv.30", "達到Lv.40", "達到Lv.50"],
+    proLevel: [
+        "Mencapai Lv.10",
+        "Mencapai Lv.20",
+        "Mencapai Lv.30",
+        "Mencapai Lv.40",
+        "Mencapai Lv.50"
+    ],
 
     proLevelIcon: [
-        "達到Lv.1~9",
-        "達到Lv.10~19",
-        "達到Lv.20~29",
-        "達到Lv.30~39",
-        "達到Lv.40~49",
-        "達到Lv.50"
+        "Mencapai Lv.1~9",
+        "Mencapai Lv.10~19",
+        "Mencapai Lv.20~29",
+        "Mencapai Lv.30~39",
+        "Mencapai Lv.40~49",
+        " Mencapai Lv.50"
     ],
 
-    level_title: "等級說明", //等級說明
+    level_title: "Keterangan Level", //Keterangan Level
     level_explain_tips:
-        "財富等級共50級，應用內通過贈送金幣禮物（背包禮物除外）、商城購買道具等行為，<i>每消耗1金幣增加1點財富值</i>，累計財富值提升等級，即可解鎖等級特權。",
+        "Total 50 level kekayaan,dalam APP, dengan memberikan hadiah koin emas（Kecuali hadiah ransel）、membeli barang di store,，<i>Setiap koin emas dikonsumsi akan meningkat  1 poin kekayaan</i>，Akumulasi nilai kekayaan dapat ditingkatkan untuk membuka kunci hak istimewa level.",
     level_explain_ul: [
-        "以下規定互動行為增加財富值不同：",
-        "1、贈送“幸運星”禮物時，消耗1金幣增加0.8點財富值；",
-        "2、房間內21點下註時，消耗1金幣=0.2財富值；",
-        "3、Saat ikuti dalam gameplay aktivitas resmi, konsumsi 1 koin emas = 0.1 nilai kekayaan；",
-        "4、開通”查看喜歡我的”的特權，每開通1個月增加2000點財富值。"
+        "Ketentuan berikut bahwa perilaku interaktif meningkatkan nilai kekayaan yang berbeda：",
+        '1、Berikan hadiah "Lucky Star", konsumsi 1 koin emas akan tingkatkan 0.8 poin nilai kekayaan.',
+        "2、Saat memasang taruhan Blackjack di kamar, konsumsi 1 koin emas = 0.2 nilai kekayaan",
+        '3、Buka hak istimewa "Lihat yg sukai aku" ，akan tingkatkan 2,000 poin nilai kekayaan saat buka sebulan.'
     ],
-    type1: "財富等級", //財富等級
-    type2: "財富值", //財富值
-    type3: "升級所需", //財富等級
-    call: "聯繫專屬客服", //聯繫專屬客服
+    type1: "'Level kekayaan'", //'Level kekayaan
+    type2: "Nilai kekayaan", //Nilai kekayaan
+    type3: "Diperlukan untuk peningkatan", //Level kekayaan
+    call: "Hubungi layanan pelanggan eksklusif", //Hubungi layanan pelanggan eksklusif
 
-    svga_tips: "小音 進入房間"
+    svga_tips: " AloChat masuk ke kamar"
 };

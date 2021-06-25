@@ -4,7 +4,7 @@ export default {
     noAct: "Event chưa mở",
     actEd: "Event đã kết thúc",
     not_people: "Đang đợi",
-    act_tm: "Thời gian: 28/05 17:00 - 03/06 23:59:59 ",
+    act_tm: "Thời gian: 25/06 18:00 - 1/07 23:59:59 ",
     //ball
     space_station: "Trạm không Gian",
     landing_star: "Hạ cánh hành tinh",
@@ -35,8 +35,8 @@ export default {
 
     //slice
     slice_tips1:
-        "Mỗi lần tặng 100 Xu quà chỉ định, nhận 1 phiếu du hành, dùng phiếu du hành nhận mảnh UFO, sau khi thu thập đủ sẽ nhận quà vũ trụ tương ứng",
-    ufoLuck: "Rút mảnh UFO",
+        "Mỗi lần tặng 100 Xu quà chỉ định, nhận 1 phiếu du hành, dùng phiếu du hành nhận mảnh Tên lửa cầu vồng, sau khi thu thập đủ sẽ nhận quà vũ trụ tương ứng",
+    ufoLuck: "Rút mảnh",
     ticket: "phiếu du hành",
     ticket_used: "Tôi đã dùng $ phiếu du hành",
     ticket_userNums: "còn $ phiếu",
@@ -83,6 +83,10 @@ export default {
                     name: "Thuốc Điện Năng<br/>1000 Xu"
                 },
                 {
+                    img: require(`../../img/ruleGift/14.png`),
+                    name: "Gươm laser<br/>5000 Xu"
+                },
+                {
                     img: require(`../../img/ruleGift/3.png`),
                     name: "Kính Viễn Vọng<br/>9000 Xu"
                 },
@@ -110,7 +114,7 @@ export default {
         {
             h5: "5. Khám Phá Hành Tinh",
             p:
-                "Khi người chơi mỗi lần tặng quà chỉ định 100 Xu, sẽ nhận được một phiếu du hành, sử dụng 1 phiếu du hành sẽ rút 1 lần mảnh UFO, Khi các mảnh nằm ngang được thu thập đầy đủ, sẽ nhận được phần quà tương ứng; khi thu thập đủ các mảnh sẽ nhận được vật cưỡi UFO (10 ngày)."
+                "Khi người chơi mỗi lần tặng quà chỉ định 100 Xu, sẽ nhận được một phiếu du hành, sử dụng 1 phiếu du hành sẽ rút 1 lần mảnh Tên lửa cầu vồng, Khi các mảnh nằm ngang được thu thập đầy đủ, sẽ nhận được phần quà tương ứng; khi thu thập đủ các mảnh sẽ nhận được vật cưỡi Tên lửa cầu vồng (10 ngày)."
         },
         {
             h5: "6. Khác",
@@ -126,7 +130,7 @@ export default {
         "Quà khám phá hành tinh được gửi tự động, mỗi người chơi được nhận mỗi phần quà 1 lần, tổng có thể nhận 4 quà du hành vũ trụ",
     gift_title3: "3. Quà xếp hạng",
     gift_p3:
-        "Hạng 1: Ảnh nền du hành vũ trụ (10 ngày) + Phi thuyền-Quà hiệu ứng<br />Hạng 2: Ảnh nền du hành vũ trụ (5 ngày) + Khám phá vũ trụ-Quà hiệu ứng<br />Hạng 3: Quả cầu vũ trụ-Quà hiệu ứng",
+        "Hạng 1: Ảnh nền du hành vũ trụ (10 ngày) +Khách vũ trụ -Quà hiệu ứng<br />Hạng 2: Ảnh nền du hành vũ trụ (5 ngày) + Khám phá vũ trụ-Quà hiệu ứng<br />Hạng 3: Quả cầu vũ trụ-Quà hiệu ứng",
     gift_p4: "*Quà event có thời hạn 7 ngày, vui lòng tặng sớm nhé!",
     gift_lastTips: "*Quyền quyết định cuối cùng thuộc về ban tổ chức",
     giftArr2: [
@@ -135,8 +139,8 @@ export default {
             name: "Ảnh nền du hành vũ trụ"
         },
         {
-            img: require(`../../img/ruleGift/11.png`),
-            name: "Phi thuyền-Quà hiệu ứng"
+            img: require(`../../img/ruleGift/15.png`),
+            name: "Khách vũ trụ-Quà hiệu ứng"
         },
         {
             img: require(`../../img/ruleGift/12.png`),

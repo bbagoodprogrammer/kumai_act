@@ -1,62 +1,62 @@
-export default {
-    title: "印尼魔法寶箱",
-    ok: "確定", //確定
-    loading: "加載中...",
-    no_data: "暫無更多數據~",
-    confirm: "確定", //確定
-    cancel: "取消", //取消
-    openTask: "魔法任務", //魔法任務
-    openRule: "規則", //規則
-    done: "已完成", //已完成
-    clickDone: "該任務已完成", //該任務已完成
+﻿export default {
+    title:'Kotak ajaib',
+    ok: 'Konfirmasi',//Konfirmasi
+    loading: 'Dimuat...',
+    no_data: 'Tiada data lagi~',
+    confirm:'Konfirmasi',//Konfirmasi
+    cancel:'Batal',//Batal'
+    openTask:'Tugas ajaib',//Tugas ajaib
+    openRule:'Aturan',//Aturan
+    done:'Telah',//Telah
+    clickDone:'Tugas telah selesai',//Tugas telah selesai
 
-    bubbleTips: {
-        1: "進入房間",
-        2: "在房時長",
-        3: "麥上互動",
-        4: "消費金幣"
+    bubbleTips:{
+        1:'Masuk kamar',
+        2:'Durasi online',
+        3:'Interatif di Micc',
+        4:'Konsumsi koin',
     },
 
     taskListTips: {
-        1: {
-            type: "進入房間",
-            unit: "%s能量/次" //100能量/次
+        1:{
+            type:'Masuk kamar',
+            unit:'%s Energi/kali',//100 Energi/kali
         },
-        2: {
-            type: "房間內活躍",
-            unit: "%s能量/分鐘" //100能量/次
+        2:{
+            type:'Aktif di kamar',
+            unit:'%s Energi/Menit',//100 Energi/kali
         },
-        3: {
-            type: "上麥語音互動",
-            unit: "%s能量/分鐘" //100能量/次
+        3:{
+            type:'Naik Mic utk interaksi suara ',
+            unit:'%s Energi/Menit',//100 Energi/kali
         },
-        4: {
-            type: "房間內消費金幣",
-            unit: "%s能量/金幣" //100能量/次
+        4:{
+            type:'Konsumsi koin emas di kamar',
+            unit:'%s Energi/koin',//100 Energi/koin
         }
     },
-    giftTips: "隨機獲得<span>1</span>個獎勵", //隨機獲得1個獎勵
-    uncommon: "稀有", //稀有
-    energy: "能量", //能量：
-    openEnergyTips: "開啟寶箱領取魔法禮物", //開啟寶箱領取魔法禮物
-    openBox: "開啟寶箱", //開啟寶箱
+    giftTips:'Dapat hadiah <span>1</span> secara acak<span>1</span>',//Dapatkan 1 hadiah secara acak
+    uncommon:'Langka',//Langka
+    energy:'Energi',//Energi：
+    openEnergyTips:'Buka kotak utk terima hadiah ajaib',//Buka kotak utk terima hadiah ajaib
+    openBox:'Buka kotak ',//Buka kotak 
 
-    taskTitle: "魔法任务", //魔法任务
-    taskTips: "每日0點更新", //每日0點更新
-    get: "領取", //領取
+    taskTitle:'Tugas ajaib',//Tugas ajaib
+    taskTips:'Update setiap hari pd 00:00',//Update setiap hari pd 00:00
+    get:'Menerima',//Menerima
 
-    rule: "玩法規則", //玩法規則
-    rule_li: [
-        "完成魔法任務獲得能量可開啟魔法寶箱，獲得魔法禮物，贈送後可向對象施展魔法，出現趣味效果；",
-        "魔法任務每日0點更新，可重複完成，當天未消耗的能量將失效；",
-        "消耗200能量可開啟一次魔法寶箱，有機會獲得一個魔法禮物；<em>當天第5次開啟必定獲得一個稀有魔法禮物；</em>"
+    rule:'Aturan',//Aturan
+    rule_li:[
+        'Selesaikan tugas ajaib utk dapatkan energi utk buka kotak ajaib dan dapatkan hadiah ajaib.Dapat melemparkan ajaib ke objek, dan akan ada efek menarik setelah beri hadiah；',
+        'Tugas ajaib di update setiap hari pd 00:00，bisa diguna ulang，energi yg tak dikonsumsi pd hari itu tak valid；',
+        'Konsumsi 200 energi dapat buka kotak ajaib sekali，berkesempatan utk dapat sebuah hadiah ajaib；<em>Pasti akan dapatkan hadiah ajaib langka jika pembukaan kali ke-5 pd hari itu；</em>',
     ],
-    giftTitle: "魔法禮物", //魔法禮物
-    giftName: "禮物名稱", //禮物名稱
-    giftProbability: "概率(萬分制)", //概率(萬分制)
+    giftTitle:'Hadiah ajaib',//Hadiah ajaib
+    giftName:'Nama hadiah',//Nama hadiah
+    giftProbability:'Probabilitas (sistem 10rb poin)',//Probabilitas (sistem 10rb poin)
 
-    congratulation: "恭喜你獲得", //恭喜你獲得
-    sure: "確認", //確認
-    unEnergy: "能量不足", //能量不足
-    unGet: "做任務，領能量" //做任務，領能量
+    congratulation:'Selamat dapatkan',//Selamat dapatkan
+    sure:'Konfirmasi',//Konfirmasi
+    unEnergy:'Energi tak cukup',//Energi tak cukup
+    unGet:'Kerjakan tugas, terima energi',//Kerjakan tugas, terima energi
 };

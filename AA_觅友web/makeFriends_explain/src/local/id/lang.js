@@ -1,16 +1,16 @@
-export default {
+﻿export default {
     //html/index.html
-    title: "印尼心動交友說明",
+    title: "Keterangan Hati&Beteman",
     explain_tips1:
-        "心動交友共三個階段，男女嘉賓上麥各自介紹自己，根據主持人的指引，只有本輪在“心動選擇”階段有互選成功的用戶才會進入“告白祝福”階段",
-    title1: "CP戒指",
+        'Ada 3 tahap dalam Hati&Beteman, tamu cewek dan cowok naik Mic untuk memperkenalkan diri.Sesuai arahan MC, hanya pengguna yang telah saling pilih berhasil dalam tahap "Pilihan Hati" di babak ini akan masuk ke tahap "Ungkap Cinta"',
+    title1: "Cincin CP",
     explain_tips2:
-        "告白祝福階段中，心動值達到$萬時，將獎勵%戒指，並自動結成為CP關係，如雙方已是CP關係則新增對應戒指，",
-    explain_tips3: "如仍一方已有CP則該獎勵無效",
-    ring_title: "心動值達到 <i></i> $",
-    ring_title2: "牽手場景",
+        'Dalam "Ungkap Cinta", ketika nilai hati mencapai $, akan berikan cincin% ,dan secara otomatis menjadi hubungan CP. Jika kedua pihak sudah dalam hubungan CP, cincin yang sesuai akan didapatkan',
+    explain_tips3: "Jika suatu pihak sudah memiliki CP, hadiahnya tak valid",
+    ring_title: "Nilai hati mencapai<i></i> $",
+    ring_title2: "Adegan pegangan tangan",
     explain_tips4:
-        " 根據告白祝福階段達到的心動值，完成該階段後，將觸發牽手場景，心動值越高，牽手場景越浪漫",
+        ' Menurut nilai hati yang dicapai  selama "Ungkap Cinta",setelah selesaikan tahap ini, adegan pegangan tangan akan dipicu. Semakin tinggi nilai hati, semakin romantis adegan pegangan tangan.',
 
     imgList: [
         {

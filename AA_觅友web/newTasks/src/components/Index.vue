@@ -271,11 +271,11 @@ export default {
           height: 0.1rem;
           background: linear-gradient(
             90deg,
-            #7A68F8 0%,
-            rgba(122, 104, 248, 0.37) 63%,
-            rgba(122, 104, 248, 0.36) 65%,
+            rgba(122, 104, 248, 0.7) 0%,
             rgba(122, 104, 248, 0) 100%
           );
+          //            rgba(122, 104, 248, 0.37) 63%,
+          // rgba(122, 104, 248, 0.36) 65%,
           opacity: 1;
           border-radius: 0.1rem;
           position: absolute;
