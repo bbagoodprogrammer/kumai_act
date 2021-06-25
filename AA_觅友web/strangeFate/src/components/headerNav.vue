@@ -10,7 +10,7 @@
 import { mapState } from "vuex";
 
 export default {
-  data() {
+  data () {
     return {};
   },
   props: {
@@ -18,12 +18,12 @@ export default {
       type: String,
     },
   },
-  mounted() {},
+  mounted () { },
   computed: {
     ...mapState([]),
   },
   methods: {
-    back() {
+    back () {
       this.$router.go(-1);
     },
   },
@@ -41,6 +41,7 @@ export default {
   color: #fff;
   text-align: center;
   position: relative;
+  white-space: nowrap;
   i {
     display: inline-block;
     position: absolute;
@@ -48,7 +49,7 @@ export default {
     left: 0.3rem;
     width: 0.42rem;
     height: 0.42rem;
-    background: url("../img/back.png") 50% no-repeat;
+    background: url('../img/back.png') 50% no-repeat;
     background-size: 100% 100%;
   }
   strong {
@@ -56,7 +57,7 @@ export default {
     width: 2.5rem;
     height: 0.32rem;
     line-height: 0.32rem;
-    background-image: url("../img/choose_bg.png");
+    background-image: url('../img/choose_bg.png');
     background-size: contain;
     text-align: center;
     em {

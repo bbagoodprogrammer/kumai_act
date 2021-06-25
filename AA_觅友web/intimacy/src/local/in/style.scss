@@ -1,4 +1,4 @@
-html.zh {
+html.in {
     .tips_box{
         ul{
             li{
@@ -13,6 +13,18 @@ html.zh {
     .footer{
         .un_cp{
             line-height: .88rem;
+        }
+    }
+    .dice{
+        span{
+            line-height: .25rem!important;
+        }
+    }
+    .get{
+        li{
+            height: auto!important;
+            min-height: 1.1rem;
+            padding:.14rem 0 ;
         }
     }
 }

@@ -13,7 +13,7 @@
             <div v-if="cp_id != 0" class="liner" :style="{width:actLinerWidth}"></div>
           </div>
           <div class="cp__heart__box" :style="{left:heartLeft}">
-            <img v-if="cp_id != 0" class="cp__heart"  src="../img/cp_heart.png" />
+            <img v-if="cp_id != 0" class="cp__heart" src="../img/cp_heart.png" />
             <div v-show="cp_id != 0" class="level__des">
               <span>{{lang.level_des.replace('{0}', sweet_value).replace('{1}', cp_lv_info.next_score)}}</span>
             </div>
@@ -59,7 +59,7 @@
 import { mapState } from "vuex";
 import { Player } from "svga.lite";
 import { urls } from "../config";
-import { toast, profile, getPlatform,  getAppVer} from "../utils";
+import { toast, profile, getPlatform, getAppVer } from "../utils";
 import { init, clockIn } from "../apis";
 import { loadSvgaData } from "../utils/svga";
 import Loading from "../components/common/Loading";
@@ -67,7 +67,7 @@ import ScrollNotice from "../components/common/ScrollNotice";
 import { setFullScreen, getStatusBarHeight, callAppNew } from "../utils/navigation";
 
 export default {
-  data() {
+  data () {
     return {
       cp_privilege: [],
       cp_task: [],
@@ -76,7 +76,7 @@ export default {
       cp_lv_info: {
         next_score: 0,
         score: 0,
-        name:''
+        name: ''
       },
       sweet_value: 0,
       cp_id: 0,
@@ -131,31 +131,31 @@ export default {
     },
   },
   filters: {
-    rank(value) {
+    rank (value) {
       return value < 10 ? "0" + value : value;
     },
   },
-  created() {
-    document.title='\u200E';
+  created () {
+    document.title = '\u200E';
     const pt = getPlatform();
     const ver = getAppVer();
     if ((pt == 'ios' && ver >= 165) || pt == 'android') {
       setFullScreen();
-      this.navigatorHeight = getStatusBarHeight() + 'px';   
+      this.navigatorHeight = getStatusBarHeight() + 'px';
     }
   },
-  mounted() {
+  mounted () {
     this.loadData();
   },
   methods: {
     profile,
-    async loadData() {
+    async loadData () {
       const res = await init();
       if (res.data) {
         const { response_status, response_data } = res.data;
         if (response_status && response_status.error === "") {
           this.cp_task = response_data.cp_task
-          this.cp_task.forEach((item,index) => {
+          this.cp_task.forEach((item, index) => {
             if (index == 0 || index == 1) {
               let timeIndex = item.name.indexOf('（')
               if (timeIndex == -1) {
@@ -166,7 +166,7 @@ export default {
             }
           })
           this.cp_privilege = response_data.cp_privilege
-          this.cp_privilege.push({name: this.lang.coming_soon})
+          this.cp_privilege.push({ name: this.lang.coming_soon })
           this.ownerInfo = response_data.ownerInfo || {}
           this.cpInfo = response_data.cpInfo || {}
           this.sweet_value = response_data.sweet_value
@@ -191,10 +191,10 @@ export default {
         if (response_status && response_status.error === "") {
           try {
             const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
-            if(ios){
+            if (ios) {
               onCoupleClockInTask(JSON.stringify(response_data));
-            }else{
-              javascript:JSInterface.onCoupleClockInTask(JSON.stringify(response_data));
+            } else {
+              javascript: JSInterface.onCoupleClockInTask(JSON.stringify(response_data));
             }
           } catch (error) {
             console.log('try error: ')
@@ -207,8 +207,8 @@ export default {
         }
       }
     },
- 
-    getLevelDesWidth() {
+
+    getLevelDesWidth () {
       this.width = document.getElementsByClassName('level__des')[0].clientWidth
     },
 
@@ -217,7 +217,7 @@ export default {
     },
 
     getTaskDes (index) {
-      return this.lang[`task_des_${index+1}`]
+      return this.lang[`task_des_${index + 1}`]
         .replace(/%s/g, `<img src="${require('../img/heart.png')}" />`)
         .replace(/%0/g, '<span class="color">')
         .replace(/%1/g, '</span>')
@@ -295,7 +295,12 @@ export default {
         z-index: 20;
         .liner {
           height: 0.12rem;
-          background: linear-gradient(90deg, #FFFFFF 0%, #F597E3 30%, #FF6A98 100%);
+          background: linear-gradient(
+            90deg,
+            #FFFFFF 0%,
+            #F597E3 30%,
+            #FF6A98 100%
+          );
           opacity: 1;
           border-radius: 0.06rem;
         }
@@ -336,14 +341,13 @@ export default {
           top: -0.14rem;
           left: 50%;
           transform: translateX(-50%);
-          width:0; 
-          height:0; 
-          border-width:0.07rem; 
-          border-style:solid; 
-          border-color:transparent transparent #957AF3 transparent; 
+          width: 0;
+          height: 0;
+          border-width: 0.07rem;
+          border-style: solid;
+          border-color: transparent transparent #957AF3 transparent;
         }
       }
-      
     }
   }
   .pri__box {
@@ -367,10 +371,10 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        height: 0.73rem;
+        min-height: 0.73rem;
         margin-top: 0.1rem;
         .name {
-          height: 0.4rem;
+          min-height: 0.4rem;
           font-size: 0.28rem;
           font-weight: 400;
           line-height: 0.4rem;
@@ -379,7 +383,8 @@ export default {
           text-align: center;
         }
         .intro {
-          height: 0.33rem;
+          margin-top: 0.06rem;
+          min-height: 0.33rem;
           font-size: 0.24rem;
           font-weight: 400;
           line-height: 0.33rem;
@@ -416,7 +421,9 @@ export default {
   .task__container {
     padding-bottom: 0.1rem;
     padding-top: 0.2rem;
-    .task:nth-child(3),.task:nth-child(4),.task:nth-child(5) {
+    .task:nth-child(3),
+    .task:nth-child(4),
+    .task:nth-child(5) {
       //height: 1.33rem;
     }
     .task {

@@ -7,8 +7,8 @@
     cancel: "Batal", //Batal
 
     day_time: "{0}tahun{1}bulan{2}tanggal",
-    day_time_inner: "{0}}tahun{1}bulan{2}tanggal",
-    month_time: "{0}}tahun{1}bulan",
+    day_time_inner: "{0}tahun{1}bulan{2}tanggal",
+    month_time: "{0}tahun{1}bulan",
     live_time: "{0}bulan{1}tanggal {2}:{3}",
     room_time: "{0}bulan{1}tanggal {2}:{3}",
     live_month_time: "{0}bulan{1}tanggal",

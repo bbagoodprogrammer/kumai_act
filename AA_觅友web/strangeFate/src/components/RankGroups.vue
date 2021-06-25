@@ -45,67 +45,31 @@
       </div>
     </div>
     <div class="mainTabs">
-      <a
-        href=""
-        @click.prevent="mainTabClick(0)"
-        :class="{ current: whichWeek == 0 }"
-        >{{lang.whichWeek0}}</a
-      >
-      <a
-        href=""
-        @click.prevent="mainTabClick(1)"
-        :class="{ current: whichWeek == 1 }"
-        >{{lang.whichWeek1}}</a
-      >
+      <a href="" @click.prevent="mainTabClick(0)" :class="{ current: whichWeek == 0 }">{{lang.whichWeek0}}</a>
+      <a href="" @click.prevent="mainTabClick(1)" :class="{ current: whichWeek == 1 }">{{lang.whichWeek1}}</a>
     </div>
     <div class="mainTabs2">
-      <a href="" :class="{ current: mainTab == 0 }" @click.prevent="tabClick(0)"
-        >{{lang.whichMainTab0}}</a
-      >
-      <a href="" :class="{ current: mainTab == 1 }" @click.prevent="tabClick(1)"
-        >{{lang.whichMainTab1}}</a
-      >
+      <a href="" :class="{ current: mainTab == 0 }" @click.prevent="tabClick(0)">{{lang.whichMainTab0}}</a>
+      <a href="" :class="{ current: mainTab == 1 }" @click.prevent="tabClick(1)">{{lang.whichMainTab1}}</a>
     </div>
 
     <!-- 榜单 -->
     <template>
-      <div
-        class="rankList fateRank"
-        v-if="mainTab == 0 && rank.list.length > 0"
-      >
-        <fate-item
-          v-for="(item, index) in rank.list"
-          :info="item"
-          :key="index"
-          :from="mainTab"
-        />
+      <div class="rankList fateRank" v-if="mainTab == 0 && rank.list.length > 0">
+        <fate-item v-for="(item, index) in rank.list" :info="item" :key="index" :from="mainTab" />
       </div>
-      <div
-        class="rankList charmRank"
-        v-if="mainTab == 1 && rank.list.length > 0"
-      >
-        <charm-item
-          v-for="(item, index) in rank.list"
-          :info="item"
-          :key="index"
-          :from="mainTab"
-        />
+      <div class="rankList charmRank" v-if="mainTab == 1 && rank.list.length > 0">
+        <charm-item v-for="(item, index) in rank.list" :info="item" :key="index" :from="mainTab" />
       </div>
     </template>
 
     <!-- {{owner}} -->
     <div class="owner" v-if="owner">
       <template v-if="mainTab == 0">
-        <owner-fate-item 
-          :info="owner[rankKey]"
-          :from="mainTab"
-        />
+        <owner-fate-item :info="owner[rankKey]" :from="mainTab" />
       </template>
       <template v-if="mainTab == 1">
-        <owner-charm-item
-          :info="owner[rankKey]"
-          :from="mainTab"
-        />
+        <owner-charm-item :info="owner[rankKey]" :from="mainTab" />
       </template>
     </div>
 
@@ -133,7 +97,7 @@ const token = getUrlString("token");
 const rid = getUrlString("rid");
 const lang = getUrlString("lang");
 export default {
-  data() {
+  data () {
     return {
       mainTab: 0,
       whichWeek: 0,
@@ -152,16 +116,16 @@ export default {
       "dayRankOwnerInfos",
       "loading",
     ]),
-    rankKey() {
+    rankKey () {
       return 0 == this.whichWeek
         ? 0 == this.mainTab
           ? "0"
           : "1"
         : 0 == this.mainTab
-        ? "2"
-        : "3";
+          ? "2"
+          : "3";
     },
-    rankApi() {
+    rankApi () {
       let api = {
         0: "/index.php?action=Action/StrangeFate.getStrangeFateList&whichWeek=0&uid={uid}&token={token}&lang={lang}&rid={rid}",
         1: "/index.php?action=Action/StrangeFate.getContributeList&whichWeek=0&uid={uid}&token={token}&lang={lang}&rid={rid}",
@@ -179,7 +143,7 @@ export default {
         .replace("{lang}", lang)
         .replace("{rid}", rid);
     },
-    rankApi111() {
+    rankApi111 () {
       let curApi, lastApi;
       curApi =
         "/index.php?action=weekStar.getCurGiftRanking&gid={gid}&from={from}&uid={uid}&token={token}";
@@ -194,43 +158,43 @@ export default {
         .replace("{token}", token)
         .replace("{uid}", uid);
     },
-    rankSize() {
+    rankSize () {
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       return rankConf;
     },
-    refreshButtonShow() {
+    refreshButtonShow () {
       //只能刷新当天日榜和总榜
       // return this.activity_status == 1 && !this.share && (this.currentDay == this.dates.days || this.mainTab == 1);
     },
   },
-  mounted() {
+  mounted () {
     this.onScroll();
     window.addEventListener("scroll", this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener("scroll", this.onScroll);
     clearInterval(this.timer);
   },
   methods: {
-    tabClick(t) {
+    tabClick (t) {
       var e = this;
       (this.mainTab = t),
         this.$nextTick(() => {
           e.rank.loadCount || e.onScroll();
         });
     },
-    mainTabClick(t) {
+    mainTabClick (t) {
       var e = this;
       (this.whichWeek = t),
         this.$nextTick(() => {
           e.rank.loadCount || e.onScroll();
         });
     },
-    onScroll() {
+    onScroll () {
       //inited用于防止当前用户星座以及当前天确认前，触发不必要的数据加载（星座和当前天都有默认值，服务器初始化数据回来时，要定位用户的星座和当前天）
       // if (!this.inited) {
       // return;
@@ -238,7 +202,7 @@ export default {
       if (!this.rank.loading && !this.rank.loadEnd) {
         const scrollToBottom =
           (document.documentElement.scrollTop || document.body.scrollTop) +
-            window.innerHeight >=
+          window.innerHeight >=
           document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
         if (scrollToBottom || notFull) {
@@ -301,28 +265,28 @@ export default {
     },
 
 
-    openPro() {
+    openPro () {
       this.pro_flag = !this.pro_flag;
     },
 
-    getAvatar(url) {
+    getAvatar (url) {
       return url ? url : require("../img/avatar.png");
     },
-    record() {
+    record () {
       this.record_url = "/kroom_hoster/allList.php?from={from}&token={token}";
       this.record_flag = true;
     },
-    close_record() {
+    close_record () {
       this.record_flag = false;
     },
-    proDataRecord(data) {
+    proDataRecord (data) {
       if (!data.response_status.code) {
         return data.response_data.list || [];
       } else {
         return [];
       }
     },
-    async onRefresh() {
+    async onRefresh () {
       this.$store.dispatch("init");
       this.$store.dispatch("getMine");
     },
@@ -379,7 +343,7 @@ export default {
       overflow: auto;
       &.pro {
         &:after {
-          content: " ";
+          content: ' ';
           position: absolute;
           width: 0;
           height: 0;
@@ -423,13 +387,13 @@ export default {
             &:first-of-type {
               margin-right: 0.2rem;
               ::before {
-                content: "";
+                content: '';
                 width: 0.53rem;
                 height: 0.22rem;
                 position: absolute;
                 left: 0;
                 top: 0;
-                background: url("../img/no1.png");
+                background: url('../img/no1.png');
                 background-size: 100% 100%;
               }
             }
@@ -438,13 +402,13 @@ export default {
             }
             &:nth-of-type(3) {
               :before {
-                content: "";
+                content: '';
                 width: 1rem;
                 height: 0.22rem;
                 position: absolute;
                 left: 0;
                 top: 0;
-                background: url("../img/no2.png");
+                background: url('../img/no2.png');
                 background-size: 100% 100%;
               }
             }
@@ -480,7 +444,7 @@ export default {
         color: #fff;
         font-weight: 700;
         &:before {
-          content: "";
+          content: '';
           width: 0.28rem;
           height: 0.08rem;
           background: #fff;
@@ -509,14 +473,15 @@ export default {
     box-sizing: border-box;
     margin-bottom: 0.11rem;
     a {
-      display: inline-block;
-      width: 2.19rem;
+      //   display: inline-block;
+      //   width: 2.19rem;
+      flex: 1;
       height: 0.65rem;
       line-height: 0.65rem;
       font-size: 0.32rem;
       color: hsla(0, 0%, 100%, 0.6);
       &.current {
-        width: 2.19rem;
+        // width: 2.19rem;
         background: linear-gradient(270deg, #78dff3, #8170fa);
         border-radius: 0.33rem;
         color: #fff;
@@ -539,7 +504,7 @@ export default {
   .scrollNone {
     width: 5rem;
     height: 5rem;
-    background: url("../img/no_data.png") no-repeat;
+    background: url('../img/no_data.png') no-repeat;
     background-size: 100% 100%;
     margin: 0 auto;
     box-sizing: border-box;

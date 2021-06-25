@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>&#x89C5;&#x53CB;&#x77ED;&#x4FE1;&#x9A8C;&#x8BC1;&#x7801;&#x7F51;&#x9875;&#xFF08;&#x591A;&#x7AEF;&#x5408;&#x5E76;&#x4EE3;&#x7801;&#x7248;&#x672C;&#xFF09;</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="觅友短信验证码网页多端合并代码版本">觅友短信验证码网页（多端合并代码版本）</h1>
+<h2 id="项目地址">项目地址</h2>
+<ul>
+<li>台湾测试：<a href="http://t.act.udateapp.com/api/sms_kit/index.php">http://t.act.udateapp.com/api/sms_kit/index.php</a></li>
+<li>台湾正式：<a href="http://act.udateapp.com/api/sms_kit/index.php">http://act.udateapp.com/api/sms_kit/index.php</a></li>
+<li>越南测试：<a href="http://t.act.alochatapp.com/api/sms_kit/index.php">http://t.act.alochatapp.com/api/sms_kit/index.php</a></li>
+<li>越南正式：<a href="http://act.alochatapp.com/api/sms_kit/index.php">http://act.alochatapp.com/api/sms_kit/index.php</a></li>
+<li>国际正式：<a href="http://act.dateume.com/api/sms_kit/index.php">http://act.dateume.com/api/sms_kit/index.php</a></li>
+</ul>
+<h2 id="目录位置">目录位置</h2>
+<ul>
+<li>/home/17sing/php/api/sms_kit</li>
+</ul>
+<h2 id="svn地址">SVN地址</h2>
+<ul>
+<li><a href="https://hsing.wicp.net:20086/svn/kumaiPhp/miyou/trunk/php/api/sms_kit">https://hsing.wicp.net:20086/svn/kumaiPhp/miyou/trunk/php/api/sms_kit</a></li>
+</ul>
+<h2 id="产品文档">产品文档</h2>
+<ul>
+<li><a href="https://www.tapd.cn/54156343/prong/stories/view/1154156343001000192?url_cache_key=0859244ada533acc29e422cd076f906d&amp;action_entry_type=story_tree_list">产品文档</a></li>
+</ul>
+<h2 id="蓝湖设计">蓝湖设计</h2>
+<ul>
+<li><a href="https://lanhuapp.com/url/mUKFh-woyMk">蓝湖设计</a></li>
+<li><a href="https://lanhuapp.com/url/ulKyv-Mwxoq">设计新版</a></li>
+</ul>
+<h2 id="接口文档">接口文档</h2>
+<ul>
+<li><a href="https://docs.qq.com/doc/DRU5kSUNNY0Fyd01D">接口文档</a></li>
+</ul>
+<h2 id="使用方法">使用方法</h2>
+<ol>
+<li>增加样式主题
+<ul>
+<li>增加样式主题文件css/xxx.scss，并修改主题颜色</li>
+<li>组件内样式使用SCSS逻辑语法增加样式@if <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi><mo>=</mo><mo>=</mo><mi>x</mi><mi>x</mi><mi>x</mi><mrow></mrow><mtext>，</mtext></mrow><annotation encoding="application/x-tex">name==xxx {}，</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span><span class="mord mathdefault">a</span><span class="mord mathdefault">m</span><span class="mord mathdefault">e</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mord mathdefault">x</span><span class="mord mathdefault">x</span><span class="mord"></span><span class="mord cjk_fallback">，</span></span></span></span>name为主题名称 $app为应用名称</li>
+<li>通用Loading组件增加新主题gif动画及修改样式</li>
+</ul>
+</li>
+<li>增加新的语言
+<ul>
+<li>参考 <a href="https://github.com/tangguohui/kolSigning">欢歌KOL签约（多语言支持模板）</a></li>
+</ul>
+</li>
+<li>修改package.json打包配置</li>
+<li>html/index.ejs模板加入差异化打包逻辑
+<ul>
+<li>模板可访问2个变量 app prod</li>
+</ul>
+</li>
+</ol>
+<h2 id="注意事项">注意事项</h2>
+<ul>
+<li>此项目从欢歌短信验证码项目精简而来，根据合并代码要求，主要增加了根据域名设置默认语言逻辑（因为页面是PHP文件也可以利用PHP环境变量来设置默认语言）；</li>
+<li>交互埋点上报，通过调app提供的方法进行上报；</li>
+<li>接口请求带APP签名逻辑，外部浏览器访问网页，getSign.js返回空的签名；</li>
+<li>觅友台湾、越南已合并代码，代码提交到SVN后需要用发布系统发布。</li>
+</ul>
+
+    </body>
+    </html>

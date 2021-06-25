@@ -400,6 +400,12 @@ export default {
           } else {
             javascript: JSInterface.sendJsData(`http://${test}act.alochatapp.com/html/person_authentication/index.html?uid=${uid}&token=${token}&lang=${lang}`);
           }
+        } else if (AREA == 'id') {
+          if (ios) {
+            sendJsData(`http://${test}act.newstarapp.com/html/person_authentication/index.html?uid=${uid}&token=${token}&lang=${lang}`);
+          } else {
+            javascript: JSInterface.sendJsData(`http://${test}act.newstarapp.com/html/person_authentication/index.html?uid=${uid}&token=${token}&lang=${lang}`);
+          }
         }
 
       } catch (e) {

@@ -1,22 +1,25 @@
 export default {
     //html/index.html
-    title: "真人認證",
+    title: "Otentikasi orang sungguhan",
 
     //index.vue
-    tips_title: "通過真人認證，更受歡迎",
-    photograph: "拍照認證",
-    nowImg: "當前頭像",
-    changImg: "認證照片",
-    chang_title: "   請確認當前頭像與認證照片是你本人，否則將無法通過認證",
-    commit: "提交",
-    suc_title: "已通过真人認證",
-    suc_tips: "更換頭像將重新核對真人認證，請使用真實信息",
+    tips_title: "Lulus otentikasi orang sungguhan, lebih populer",
+    photograph: "Berfoto",
+    nowImg: "Avatar saat ini",
+    changImg: "Foto bersertifikat",
+    chang_title:
+        " Silakan konfirmasi bahwa avatar dan foto bersertifikat saat ini adalah Anda，kalau tidak,tak akan dapat lulus sertifikasi",
+    commit: "Kirim",
+    suc_title: "Lulus otentikasi orang sungguhan",
+    suc_tips:
+        "Ganti avatar akan periksa ulang otentikasi orang sungguhan, silakan gunakan info yg sebenarnya",
     img_tipsArr: [
-        "請模仿示意圖拍攝認證照片；",
-        "真人認證照片需和頭像保持一致，否則無效；",
-        "非主播身份通過認證後，聊天粉鑽收益翻倍；",
-        "拍攝照片僅作認證審核作用，官方將嚴格保密；"
+        "Silakan berfoto utk bersertifikat sesuai dgn gambar contoh；",
+        "Foto otentikasi org sungguhan harus sama dgn foto avatar, jika tidak, tak valid；",
+        "Jika identitas non-host lulussertifikasi,pendapatan berlian merah muda dr obrolan berlipat ganda；",
+        "Foto2 hanya digunakan utk tujuan sertifikasi dan peninjauan, Alochat resmi akan menjaga kerahasiaannya；"
     ],
-    examineIng: "审核中",
-    examine_tips: "請留意系統通知的認證結果"
+    examineIng: "Sedang ditinjau",
+    examine_tips:
+        "Silakan perhatikan hasil sertifikasi yang diberitahukan oleh sistem"
 };

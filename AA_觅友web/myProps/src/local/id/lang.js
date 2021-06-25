@@ -1,9 +1,9 @@
-export default {
+﻿export default {
     //html/index.html
-    title: "我的道具",
-    no_props: "暫無道具",
-    day_expire: "天后過期",
-    expire_end: "即將過期",
-    props_tips: "道具說明：",
-    ok: "道具說明："
+    title: "Alat peraga saya",
+    no_props: "Tiada alat peraga ",
+    day_expire: "Berlaku XXX hari",
+    expire_end: "Akan segera kedaluwarsa",
+    props_tips: "Keterangan alat peraga ：",
+    ok: "Keterangan alat peraga："
 };

@@ -17,7 +17,8 @@
           <strong v-html="item.name"></strong>
         </div>
       </div>
-      4.B1:B19i nhận quà chỉ định nhận điểm Hot và được xếp hạng；Xếp hạng theo điểm từ cao đến thấp, chỉ hiện thị top 50, điểm bằng nhau người đạt trước sẽ ưu tiên xếp cao hơn. </p>
+      <p>4. BXH Hot <br /> Không cần báo danh, Idol hoàn thành nhiệm vụ chỉ định có thể nhận điểm Hot, xếp hạng theo điểm từ cao đến chỉ hiện thị top 50, điểm bằng nhau người đạt trước sẽ ưu tiên xếp
+        cao hơn. </p>
       <p>5.Nhiệm vụ BXH Hot<br />Số người vào phòng: Tại phòng của idol, mỗi khi có người khác vào phòng, Hot+1 (cùng 1 idol vào phòng nhiều lần điểm Hot chỉ +1), mỗi ngày giới hạn
         100<br /> Số fan tăng: mỗi khi idol tăng 1 fan (chưa từng theo dõi), điểm hot+2, mỗi ngày giới hạn 200 <br />Số người tặng quà: idol ở phòng bất kỳ được tặng quà, điểm hot+2, không
         giới hạn (gồm quà đậu, quà xu, quà mị lực)<br />*Nhiệm vụ reset vào 0 giờ mỗi ngày</p>

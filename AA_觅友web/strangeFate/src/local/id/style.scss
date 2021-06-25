@@ -32,18 +32,25 @@ html.id {
             width: 6rem!important;
         }
         .tab{
+            display: flex;
+            align-items: center;
+            align-items: center;
             span{
+                flex: 1;
+                i{
+                    white-space: nowrap!important;
+                }
                 &.cur{
-                    width: 3rem!important;
-                    white-space: nowrap;
-                    text-align: left!important;
                     i{
-                        text-align: left!important;
-                        width: 3rem!important;
-                        margin: -0.16rem 0 0 -1.55rem!important;
+                        width: 100%!important;
+                       
+                        font-size: .24rem!important;
+                        margin: 0!important;
+                        top: 0!important;
+                        left: 0!important;
                     }
                 }
-               
+                
             }
         }
     }
@@ -54,6 +61,13 @@ html.id {
             }
             em{
                 font-size: .2rem!important;
+            }
+        }
+    }
+    .rewards{
+        ul{
+            li:nth-child(2){
+                padding-top: .3rem;
             }
         }
     }

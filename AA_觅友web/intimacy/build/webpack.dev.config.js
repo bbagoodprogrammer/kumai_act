@@ -20,7 +20,7 @@ module.exports = {
 
         zh: "./src/local/zh",
         vi: "./src/local/vi",
-        id: "./src/local/id"
+        in: "./src/local/in"
     },
     output: {
         path: resolve("../dist"),

@@ -267,15 +267,17 @@ export default {
           padding-top: 0.15rem;
           //   line-height: 0.8rem;
           //   font-size: 0;
+          display: flex;
+          align-items: center;
           span {
-            display: inline-block;
-            vertical-align: middle;
+            // display: inline-block;
+            // vertical-align: middle;
             &:first-of-type {
               width: 4.18rem;
               font-size: 0.28rem;
               color: #fff;
               font-weight: 700;
-              padding-left: 0.89rem;
+              //   padding-left: 0.89rem;
               box-sizing: border-box;
             }
             &:nth-of-type(2) {
@@ -393,6 +395,7 @@ export default {
               }
               &:nth-of-type(2) {
                 padding-top: 0.08rem;
+                display: flex;
                 img {
                   width: 1.2rem;
                   height: 1.2rem;

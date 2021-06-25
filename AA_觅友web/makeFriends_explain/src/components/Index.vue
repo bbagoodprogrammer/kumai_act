@@ -8,7 +8,12 @@
       {{lang.explain_tips1}}
     </p>
     <div class="title1">
-      {{lang.title1}}
+      <span>
+        <i class="header_l"></i>
+        {{lang.title1}}
+        <i class="header_r"></i>
+      </span>
+
     </div>
     <p class="explain_tips2">
       <!-- 告白祝福階段中，心動值達到{{Math.floor(heartbeatValueReward / 10000) }}萬時，將獎勵{{ringName}}戒指，並自動結成為CP關係，如雙方已是CP關係則新增對應戒指， -->
@@ -23,7 +28,11 @@
       <img :src="ringImage" alt="" class="ringImg">
     </div>
     <div class="title1">
-      {{lang.ring_title2}}
+      <span>
+        <i class="header_l"></i>
+        {{lang.ring_title2}}
+        <i class="header_r"></i>
+      </span>
     </div>
     <p class="explain_tips2">
       {{lang.explain_tips4}}
@@ -141,15 +150,41 @@ export default {
     }
   }
   .title1 {
-    width: 1.62rem;
+    // width: 1.62rem;
     height: 0.53rem;
-    background: url(../img/title_icon.png);
-    background-size: 100% 100%;
+    // background: url(../img/title_icon.png);
+    // background-size: 100% 100%;
     padding: 0.31rem 0 0 0.14rem;
     font-size: 0.32rem;
     font-weight: 600;
     white-space: nowrap;
     margin-top: 0.46rem;
+    span {
+      display: inline-block;
+      height: 100%;
+      position: relative;
+    }
+    .header_l {
+      display: block;
+      width: 0.38rem;
+      height: 0.36rem;
+      position: absolute;
+      bottom: 0.05rem;
+      left: -0.1rem;
+      background: url(../img/header_l.png);
+      background-size: 100% 100%;
+    }
+    .header_r {
+      display: block;
+      width: 0.85rem;
+      height: 0.83rem;
+      position: absolute;
+      position: absolute;
+      top: -0.4rem;
+      right: -0.3rem;
+      background: url(../img/header_r.png);
+      background-size: 100% 100%;
+    }
   }
   .imgList {
     margin-top: 0.08rem;

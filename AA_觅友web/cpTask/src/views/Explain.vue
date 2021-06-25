@@ -15,12 +15,12 @@
 export default {
   name: 'Explain',
 
-  data() {
+  data () {
     return {
     };
   },
 
-  created() {
+  created () {
     document.title = this.lang.cp_explain
   },
 
@@ -30,7 +30,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .explain {
   padding-left: 0.3rem;
   padding-right: 0.3rem;

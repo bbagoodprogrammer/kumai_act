@@ -4,7 +4,7 @@ export default {
     noAct: "活動未開始",
     actEd: "活動已結束",
     not_people: "虛位以待",
-    act_tm: "活動時間：6月25日18：00-6月30日23：59：59",
+    act_tm: "活動時間：6月25日18：00-7月1日23：59：59",
     //ball
     space_station: "空間站",
     landing_star: "著陸到星球",
