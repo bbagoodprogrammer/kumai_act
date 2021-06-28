@@ -54,7 +54,7 @@
         "Peningkatan nilai kontribusi melalui beri hadiah koin emas di kamar dan dapat masuk peringkat.Yang berkontribusi paling banyak dan kontributor terakhir akan dapat hadiah",
     span_title: "Hadiah",
     rank_tips:
-        "Daftar dihitung setiap hari Senin pada pukul 00:00, dan dapat hadiah yg sesuai berdasarkan peringkat daftar.tambahan aliran 1 koin emas di kamar = 1 poin nilai takdir，pemain berkontri busihadiah  1 koin emas = 1 poin nilai kontribusi.",
+        "Daftar dihitung setiap hari Senin pada pukul 00:00, dan dapat hadiah yg sesuai berdasarkan peringkat daftar.Tambahan aliran 1 koin emas di kamar = 1 poin nilai takdir，pemain berkontribusi hadiah 1 koin emas = 1 poin nilai kontribusi.",
     prize_box1: "Top Takdir",
     prize_box2: "Top Kontribusi ",
     prize_list1: "Background langit bintang 7 hari",

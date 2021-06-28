@@ -1,26 +1,17 @@
 <template>
   <div class="fate rankItem_box">
-    <div
-      class="rankItem"
-      :class="{
+    <div class="rankItem" :class="{
         top: info.ranking <= 3,
         top1: info.ranking == 1,
         top2: info.ranking == 2,
         top3: info.ranking == 3,
-      }"
-    >
+      }">
       <div class="rank">{{ info.ranking }}</div>
       <div class="right">
         <div class="infos">
-          <span class="avatar avatar_room"
-            ><img :src="info.pic_url" alt=""
-          /></span>
-          <span class="info"
-            ><strong>{{ info.rname }}</strong>
-            <strong class="strong1"
-              ><img :src="info.avatar" alt="" /> <i>{{ info.nick }}</i></strong
-            ></span
-          >
+          <span class="avatar avatar_room"><img :src="info.pic_url" alt="" /></span>
+          <span class="info"><strong>{{ info.rname }}</strong>
+            <strong class="strong1"><img :src="info.avatar" alt="" /> <i>{{ info.nick }}</i></strong></span>
         </div>
         <div class="score">
           <span>{{ lang.score1 }}</span> <span>{{ info.value }}</span>
@@ -39,7 +30,7 @@ export default {
     // Avatar,
   },
   methods: {
-    getAvatar(url) {
+    getAvatar (url) {
       return url ? url : require("../img/avatar.png");
     },
   },
@@ -74,7 +65,7 @@ export default {
         text-indent: -1000rem;
         position: relative;
         &:after {
-          content: "";
+          content: '';
           display: inline-block;
           width: 0.7rem;
           height: 0.4rem;
@@ -89,21 +80,21 @@ export default {
       &.top1 {
         .rank {
           &:after {
-            background-image: url("../img/top1.png");
+            background-image: url('../img/top1.png');
           }
         }
       }
       &.top2 {
         .rank {
           &:after {
-            background-image: url("../img/top2.png");
+            background-image: url('../img/top2.png');
           }
         }
       }
       &.top3 {
         .rank {
           &:after {
-            background-image: url("../img/top3.png");
+            background-image: url('../img/top3.png');
           }
         }
       }

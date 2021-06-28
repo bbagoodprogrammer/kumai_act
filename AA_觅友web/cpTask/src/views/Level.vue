@@ -23,7 +23,7 @@
 export default {
   name: 'Level',
 
-  data() {
+  data () {
     return {
       list: []
     };
@@ -33,7 +33,7 @@ export default {
     lang: () => _lang
   },
 
-  created() {
+  created () {
     document.title = this.lang.cp_level
     this.list = [
       {
@@ -70,7 +70,6 @@ export default {
   padding-left: 0.3rem;
   padding-right: 0.3rem;
   .title {
-    height: 0.45rem;
     font-size: 0.32rem;
     font-weight: bold;
     line-height: 0.45rem;
@@ -92,9 +91,9 @@ export default {
   ul {
     border: 0.01rem solid #F5F5F5;
     border-radius: 0.1rem;
-    margin-top: 0.1rem
+    margin-top: 0.1rem;
   }
-  li{
+  li {
     display: flex;
     height: 0.76rem;
     border-bottom: 0.01rem solid #F5F5F5;
@@ -135,7 +134,7 @@ export default {
       color: #333333;
     }
   }
-  li:last-child{
+  li:last-child {
     border: none;
   }
 }

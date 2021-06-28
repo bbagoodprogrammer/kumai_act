@@ -27,6 +27,7 @@ export default {
             none: false,
             end: false,
 
+            now_page: 1,
 
             list: [],
         };
@@ -64,7 +65,7 @@ export default {
             const token = getUrlString('token') || '';
             const lang = getUrlString('lang') || '';
             const rid = getUrlString('rid') || '';
-            axios.get(this.url.replace('{rid}', rid).replace('{lang}', lang).replace('{uid}', uid).replace('{token}', token).replace('{from}', this.list.length).replace('{page}', (this.list.length/20)+1)).then(res => {
+            axios.get(this.url.replace('{rid}', rid).replace('{lang}', lang).replace('{uid}', uid).replace('{token}', token).replace('{from}', this.list.length).replace('{page}', this.now_page)).then(res => {
                 this.loading = false;
                 let arr = res.data;
                 console.log(arr);
@@ -74,6 +75,7 @@ export default {
 
                 if (arr.slice) {
                     this.loadCount++;
+                    this.now_page++;
                     if (arr.length) {
                         this.list = this.list.concat(arr);
                     } else {

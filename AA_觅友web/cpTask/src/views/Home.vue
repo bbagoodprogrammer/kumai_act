@@ -399,9 +399,9 @@ export default {
     margin-top: 0.66rem;
     margin-left: 0.3rem;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     .title {
-      height: 0.45rem;
+      //   height: 0.45rem;
       font-size: 0.32rem;
       font-weight: bold;
       line-height: 0.45rem;
@@ -409,7 +409,7 @@ export default {
       opacity: 1;
     }
     .daily__refresh {
-      height: 0.37rem;
+      //   height: 0.37rem;
       font-size: 0.26rem;
       font-weight: 400;
       line-height: 0.37rem;

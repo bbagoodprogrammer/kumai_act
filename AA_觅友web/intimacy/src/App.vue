@@ -17,7 +17,7 @@
           <img :src="getLineUrl(nowIndex+1)" alt="">
           <div class="level" :class="{level_long:nowIndex>=10}" :style="{background:level_name_bg[level-1]}">
             <img :src="getImgMid(nowIndex)" alt="" :class="{short:nowIndex>=7&&nowIndex<=9,kong:score<350}">
-            <span v-if="score>=350">{{name}}</span>
+            <span v-if="score>=350 && !isId">{{name}}</span>
           </div>
           <div class="icon_box">
             <span class="first">
@@ -256,6 +256,9 @@ export default {
     lang: () => _lang,
     images: () => _images,
     viewHeight: () => window.innerHeight,
+    isId () {  //是否印尼端
+      return getUrlString('lang').slice(0, 2) == 'in'
+    }
   },
   created () {
     if (this.score < 350) {
@@ -531,7 +534,7 @@ body {
         border-radius: 0.46rem;
         display: flex;
         align-items: center;
-        // justify-content: center;
+        justify-content: center;
         position: absolute;
         left: 50%;
         bottom: -0.1rem;
@@ -543,8 +546,8 @@ body {
         img {
           width: 0.6rem;
           height: 0.6rem;
-          margin-left: 0.2rem;
-          margin-right: 0.1rem;
+          //   margin-left: 0.2rem;
+          //   margin-right: 0.1rem;
           &.short {
             margin-right: 0.23rem;
           }
@@ -556,6 +559,7 @@ body {
           font-size: 0.26rem;
           font-family: PingFang SC;
           color: #fff;
+          margin-left: 0.1rem;
         }
       }
     }
@@ -591,7 +595,8 @@ body {
     }
     .dice {
       width: 3.76rem;
-      height: 0.4rem;
+      padding: 0.15rem 0;
+      //   height: 0.4rem;
       background: rgba(102, 173, 255, 0.2);
       border-radius: 0.21rem;
       margin: 0.18rem auto 0;
@@ -606,10 +611,12 @@ body {
       span:nth-of-type(1) {
         font-size: 0.24rem;
         line-height: 0.49rem;
+        flex: 1;
       }
       span:nth-of-type(2) {
         width: 0.42rem;
         height: 0.42rem;
+        margin-left: 0.15rem;
         img {
           width: 0.42rem;
           height: 0.42rem;
@@ -670,6 +677,7 @@ body {
             color: #7A68F8;
             display: inline-block;
             vertical-align: middle;
+            margin-left: 0.08rem;
           }
           em:nth-of-type(2) {
             display: inline-block;

@@ -92,7 +92,7 @@ export default {
   padding: 0.12rem 0.2rem 0.48rem;
   //   background: linear-gradient(59deg, #FD4CAF 0%, #F88BC0 100%);
   background: #FD4CAF url(../img/bg.png) no-repeat;
-  background-size: 100% auto;
+  background-size: 100% 100%;
   border-radius: 0.3rem 0.3rem 0 0;
   overflow: hidden;
   .html_title {

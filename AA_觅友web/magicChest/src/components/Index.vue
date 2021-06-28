@@ -5,18 +5,9 @@
       <span class="open_task" @click.prevent="openTask()"></span>
       <div class="main">
         <div class="bubble">
-          <div
-            class="list"
-            v-for="(item,index) in taskList"
-            :key="index"
-            :style="{top:topArr[item.type-1]+'rem',left:leftArr[item.type-1]+'rem'}"
-            @click="showCarrotAnim($event,item)"
-          >
+          <div class="list" v-for="(item,index) in taskList" :key="index" :style="{top:topArr[item.type-1]+'rem',left:leftArr[item.type-1]+'rem'}" @click="showCarrotAnim($event,item)">
             <div :class="{unget:item.waitCollect==0}">
-              <span
-                v-if="item.waitCollect>0&&item.collect!=item.limit"
-                :class="{cur:item.waitCollect>0}"
-              >+{{item.waitCollect}}</span>
+              <span v-if="item.waitCollect>0&&item.collect!=item.limit" :class="{cur:item.waitCollect>0}">+{{item.waitCollect}}</span>
               <span v-if="item.waitCollect==0&&item.collect!=item.limit">+{{item.waitCollect}}</span>
               <span v-if="item.waitCollect==0&&item.collect==item.limit" class="done">{{lang.done}}</span>
               <strong>{{lang.bubbleTips[item.type]}}</strong>
@@ -62,11 +53,7 @@
             <span>{{lang.taskTips}}</span>
           </p>
           <ul class="con">
-            <li
-              v-for="(item,index) in taskList"
-              :key="index"
-              :class="{li1:item.type==1,li2:item.type==2,li3:item.type==3,li4:item.type==4,done:item.waitCollect==0&&item.collect==item.limit}"
-            >
+            <li v-for="(item,index) in taskList" :key="index" :class="{li1:item.type==1,li2:item.type==2,li3:item.type==3,li4:item.type==4,done:item.waitCollect==0&&item.collect==item.limit}">
               <span>
                 <strong class="icon4"></strong>
                 <strong>
@@ -108,8 +95,8 @@
                   </strong>
                   <strong>
                     <!-- <em> -->
-                      <i>{{item.name}}</i>
-                      <i v-if="item.isRareGift">{{lang.uncommon}}</i>
+                    <i>{{item.name}}</i>
+                    <i v-if="item.isRareGift">{{lang.uncommon}}</i>
                     <!-- </em> -->
                   </strong>
                 </span>
@@ -143,7 +130,7 @@ import SvgaPreview from "./SvgaPreview";
 const uid = getUrlString("uid");
 const token = getUrlString("token");
 
-function aa(m, n) {
+function aa (m, n) {
   if (m > n) {
     // document.write("你输入的不合理");
   } else {
@@ -167,7 +154,7 @@ function aa(m, n) {
 }
 // aa(4, 10);
 let toparr = [];
-function getCor() {
+function getCor () {
   var arr = [];
   var arr4 = [];
   for (let i = 0; i < 10; i++) {
@@ -192,7 +179,7 @@ for (let i = 0; i < leftarrTemp.length; i++) {
 // console.log(leftarr);
 
 export default {
-  data() {
+  data () {
     return {
       rule_show: false,
       task_show: false,
@@ -216,7 +203,7 @@ export default {
   computed: {
     ...mapState(["loading"])
   },
-  mounted() {
+  mounted () {
     // this.getLocation();
     // this.$store.dispatch("getUserHammerInfo");
     (async () => {
@@ -235,7 +222,7 @@ export default {
   },
   methods: {
     appClose,
-    NumAutoPlusAnimation(targetEle, options) {
+    NumAutoPlusAnimation (targetEle, options) {
       /*可以自己改造下传入的参数，按照自己的需求和喜好封装该函数*/
       //不传配置就把它绑定在相应html元素的data-xxxx属性上吧
       options = options || {};
@@ -248,7 +235,7 @@ export default {
         count = options.past, //计数器
         initial = 0;
 
-      var timer = setInterval(function() {
+      var timer = setInterval(function () {
         count = count + step;
 
         if (count >= finalNum) {
@@ -263,7 +250,7 @@ export default {
         $this.innerHTML = initial;
       }, 30);
     },
-    async openGift() {
+    async openGift () {
       if (this.giftList.length == 0) {
         const res = await getGift();
         if (res.data) {
@@ -287,7 +274,7 @@ export default {
         }, 5000);
       }
     },
-    async openRule() {
+    async openRule () {
       if (this.giftList.length == 0) {
         const res = await getGift();
         if (res.data) {
@@ -303,10 +290,10 @@ export default {
         this.rule_show = !this.rule_show;
       }
     },
-    closeGift() {
+    closeGift () {
       this.reward_flag = false;
     },
-    async openTask() {
+    async openTask () {
       const res = await getTask();
       if (res.data) {
         const { response_status, response_data } = res.data;
@@ -320,7 +307,7 @@ export default {
     },
 
     //任务页收集能量
-    async getTaskEnergy(obj) {
+    async getTaskEnergy (obj) {
       const res = await getEnergy(obj.type);
       if (res.data) {
         const { response_status, response_data } = res.data;
@@ -347,7 +334,7 @@ export default {
     },
 
     //收集能量
-    async showCarrotAnim(e, obj) {
+    async showCarrotAnim (e, obj) {
       // if(!this.isShowCarrotAnim){
       //   return;
       // }
@@ -430,7 +417,7 @@ export default {
         // }
       }
     },
-    async openBox() {
+    async openBox () {
       // this.$refs.child.childMethod();
       // var timer = setTimeout(() => {
       //   this.bigReward = true;
@@ -462,7 +449,7 @@ export default {
         }
       }
     },
-    closeBox() {
+    closeBox () {
       this.bigReward = false;
       this.$refs.child.closeEgg();
     }
@@ -575,7 +562,7 @@ export default {
               height: 1.2rem;
               // line-height: 1.2rem;
               text-align: center;
-              background: url("../img/bubble.png");
+              background: url('../img/bubble.png');
               background-size: 100% 100%;
               font-size: 0.32rem;
               color: #fff;
@@ -583,7 +570,7 @@ export default {
               justify-content: center;
               align-items: center;
               &.cur {
-                background-image: url("../img/bubble_get.png");
+                background-image: url('../img/bubble_get.png');
               }
               &.done {
                 font-size: 0.2rem;
@@ -633,7 +620,7 @@ export default {
           .rewards {
             width: 6.96rem;
             // height: 2.52rem;
-            padding-bottom: .3rem;
+            padding-bottom: 0.3rem;
             background: rgba(0, 0, 0, 0.9);
             position: absolute;
             top: 2rem;
@@ -644,7 +631,7 @@ export default {
             i {
               width: 0.3rem;
               height: 0.3rem;
-              background: url("../img/close.png") center center no-repeat;
+              background: url('../img/close.png') center center no-repeat;
               background-size: 100% 100%;
               position: absolute;
               right: 0.18rem;
@@ -661,7 +648,7 @@ export default {
               }
             }
             &.rewards::after {
-              content: " ";
+              content: ' ';
               position: absolute;
               width: 0;
               height: 0;
@@ -709,7 +696,7 @@ export default {
                   display: inline-block;
                   height: 0.3rem;
                   line-height: 0.3rem;
-                  padding: 0 .1rem;
+                  padding: 0 0.1rem;
                   text-align: center;
                   background: linear-gradient(90deg, #feae30 0%, #ffdd27 100%);
                   opacity: 1;
@@ -741,7 +728,7 @@ export default {
     .open_box {
       width: 5rem;
       height: 0.87rem;
-      background: url("../img/btn.png") center center no-repeat;
+      background: url('../img/btn.png') center center no-repeat;
       background-size: 100% 100%;
       margin: 0.11rem auto 0;
       text-align: center;
@@ -750,7 +737,7 @@ export default {
       left: 50%;
       margin-left: -2.5rem;
       &:active {
-        background: url("../img/btn_ac.png") center center no-repeat;
+        background: url('../img/btn_ac.png') center center no-repeat;
         background-size: 100% 100%;
       }
       p:nth-of-type(1) {
@@ -807,16 +794,16 @@ export default {
           padding: 0 0.3rem 0 0rem;
           margin-bottom: 0.11rem;
           &.li1 {
-            background-image: url("../img/task_bg1.png");
+            background-image: url('../img/task_bg1.png');
           }
           &.li2 {
-            background-image: url("../img/task_bg2.png");
+            background-image: url('../img/task_bg2.png');
           }
           &.li3 {
-            background-image: url("../img/task_bg3.png");
+            background-image: url('../img/task_bg3.png');
           }
           &.li4 {
-            background-image: url("../img/task_bg4.png");
+            background-image: url('../img/task_bg4.png');
           }
           &.done {
             opacity: 0.5;
@@ -915,7 +902,7 @@ export default {
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            background: url("../img/bg_num.png");
+            background: url('../img/bg_num.png');
             background-size: 100% 100%;
             color: #fff;
           }
@@ -946,7 +933,7 @@ export default {
         > p:nth-of-type(2) {
           width: 6.9rem;
           height: 0.88rem;
-          line-height: 0.88rem;
+          //   line-height: 0.88rem;
           background: #282355;
           opacity: 1;
           display: flex;
@@ -1001,17 +988,17 @@ export default {
                 width: 1rem;
                 height: 1rem;
               }
-              strong:nth-of-type(1){
-                margin-right: .06rem;
+              strong:nth-of-type(1) {
+                margin-right: 0.06rem;
               }
-              strong{
+              strong {
                 // height: 1rem;
                 i:nth-of-type(1) {
                   display: block;
                   font-size: 0.26rem;
                   color: #fff;
                   width: 2rem;
-                  line-height: .37rem;
+                  line-height: 0.37rem;
                   max-width: 2rem;
                   white-space: nowrap;
                   text-overflow: ellipsis;
@@ -1020,7 +1007,7 @@ export default {
                 i:nth-of-type(2) {
                   // display: block;
                   // width: 0.61rem;
-                  padding: 0 .1rem;
+                  padding: 0 0.1rem;
                   text-align: center;
                   height: 0.3rem;
                   line-height: 0.3rem;
@@ -1036,7 +1023,7 @@ export default {
               font-size: 0.26rem;
               color: #fff;
               width: 2.51rem;
-              padding-left: .51rem;
+              padding-left: 0.51rem;
             }
           }
         }
@@ -1094,7 +1081,7 @@ export default {
         height: 0.87rem;
         box-sizing: border-box;
         padding-top: 0.23rem;
-        background: url("../img/btn.png") center center no-repeat;
+        background: url('../img/btn.png') center center no-repeat;
         background-size: 100% 100%;
         text-align: center;
         font-size: 0.3rem;
@@ -1115,13 +1102,13 @@ export default {
   .van-popup--bottom.van-popup--round {
     border-radius: 0.2rem 0.2rem 0 0;
     box-sizing: border-box;
-    padding-top: .3rem;
+    padding-top: 0.3rem;
   }
 
   .close {
     width: 0.6rem;
     height: 0.6rem;
-    background: url("../img/btn_close.png") center center no-repeat;
+    background: url('../img/btn_close.png') center center no-repeat;
     background-size: 0.2rem 0.2rem;
     position: absolute;
     right: 0.02rem;

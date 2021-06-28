@@ -7,7 +7,7 @@
       <div class="rank_list scrollable">
         <inner-scroll-load-list :url="url" :parse="proDataParse">
           <div slot-scope="{ list, loading, none, end }">
-            <fate-item
+            <charm-item
               v-for="(item, index) in list"
               :info="item"
               :key="index"
@@ -31,6 +31,7 @@ import HeaderNav from "./headerNav";
 import InnerScrollLoadList from "./InnerScrollLoadList";
 import { getUrlString } from "../utils";
 import FateItem from "./FateItem";
+import CharmItem from "./CharmItem";
 const lang = getUrlString("lang");
 export default {
   data() {
@@ -68,6 +69,7 @@ export default {
     HeaderNav,
     InnerScrollLoadList,
     FateItem,
+    CharmItem,
   },
 };
 </script>
@@ -99,7 +101,7 @@ export default {
     justify-content: space-between;
     padding: 0 0.3rem 0.2rem;
     .right {
-      width: 3.9rem;
+      // width: 3.9rem;
       p {
         &:first-of-type {
           line-height: 0.33rem;

@@ -7,19 +7,19 @@
     privilege: [
         {
             title: "Ikon level",
-            unlock: "Lv.1membuka kunci",
+            unlock: "Lv.1 unlock",
             tips:
                 "Ikon level akan ditampilkan di layar publik dan kartu data kamar.Semakin tinggi level yang dicapai, semakin mulia ikon level tersebut."
         },
         {
             title: "Approach show",
-            unlock: "Lv.10 membuka kunci",
+            unlock: "Lv.10 unlock",
             tips:
                 "Approach show akan ditampilkan saat masuk ke kamar.Berulang kali masuk ke kamar yang sama akan hanya ditampilkan sekali dalam 10 menit. Semakin tinggi level yang dicapai, semakin mulia Approach show tersebut."
         },
         {
-            title: "Layanan pelanggan eksklusif",
-            unlock: "Lv.30 membuka kunci",
+            title: "Layanan pelanggan",
+            unlock: "Lv.30 unlock",
             tips:
                 "Layanan pelanggan eksklusif，24 jam online，Selesaikan masalah yg mengganggu Anda."
         },
@@ -47,17 +47,18 @@
 
     level_title: "Keterangan Level", //Keterangan Level
     level_explain_tips:
-        "Total 50 level kekayaan,dalam APP, dengan memberikan hadiah koin emas（Kecuali hadiah ransel）、membeli barang di store,，<i>Setiap koin emas dikonsumsi akan meningkat  1 poin kekayaan</i>，Akumulasi nilai kekayaan dapat ditingkatkan untuk membuka kunci hak istimewa level.",
+        "Total 50 level kekayaan. Memberikan hadiah koin emas（Kecuali hadiah ransel）、membeli barang di store dalam APP.<i>Setiap koin emas dikonsumsi akan meningkat  1 poin kekayaan</i> Akumulasi nilai kekayaan dapat ditingkatkan untuk membuka kunci hak istimewa level.",
     level_explain_ul: [
         "Ketentuan berikut bahwa perilaku interaktif meningkatkan nilai kekayaan yang berbeda：",
         '1、Berikan hadiah "Lucky Star", konsumsi 1 koin emas akan tingkatkan 0.8 poin nilai kekayaan.',
         "2、Saat memasang taruhan Blackjack di kamar, konsumsi 1 koin emas = 0.2 nilai kekayaan",
-        '3、Buka hak istimewa "Lihat yg sukai aku" ，akan tingkatkan 2,000 poin nilai kekayaan saat buka sebulan.'
+        "3、Saat berpartisipasi dalam gameplay aktivitas resmi, konsumsi 1 koin emas = 0.1 nilai kekayaan",
+        '4、Buka hak istimewa "Lihat yg sukai aku" ，akan tingkatkan 2,000 poin nilai kekayaan saat buka sebulan.'
     ],
-    type1: "'Level kekayaan'", //'Level kekayaan
+    type1: "Level kekayaan", //'Level kekayaan
     type2: "Nilai kekayaan", //Nilai kekayaan
     type3: "Diperlukan untuk peningkatan", //Level kekayaan
-    call: "Hubungi layanan pelanggan eksklusif", //Hubungi layanan pelanggan eksklusif
+    call: " Hubungi", //Hubungi layanan pelanggan eksklusif
 
-    svga_tips: " AloChat masuk ke kamar"
+    svga_tips: "xx masuk ke kamar"
 };

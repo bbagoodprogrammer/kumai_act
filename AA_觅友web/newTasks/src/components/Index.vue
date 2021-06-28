@@ -15,7 +15,7 @@
 
             <div class="taskMsg">
               <div class="name">{{item.name}}</div>
-              <div class="gift"><img :src="item.prizeImage" alt="" v-if="item.prizeImage"> {{item.prizeName}} <i v-if="item.prizeNum">x {{item.prizeNum}}</i></div>
+              <div class="gift"><img :src="item.prizeImage" alt="" v-if="item.prizeImage"> {{item.prizeName}} <i v-if="item.prizeNum"> x{{item.prizeNum}}</i></div>
             </div>
             <div class="status">
               <em class="get" v-if="item.status == 1" @click="getGiftItem('new',item,index)">{{lang.get}}</em>
@@ -34,7 +34,7 @@
             </div>
             <div class="taskMsg">
               <div class="name">{{item.name}}</div>
-              <div class="gift"><img :src="item.prizeImage" alt="" v-if="item.prizeImage"> {{item.prizeName}} <i v-if="item.prizeNum">x {{item.prizeNum}}</i></div>
+              <div class="gift"><img :src="item.prizeImage" alt="" v-if="item.prizeImage"> {{item.prizeName}} <i v-if="item.prizeNum"> x{{item.prizeNum}}</i></div>
             </div>
             <div class="status">
               <em class="get" v-if="item.id == 'D_2001'  && !new_ver" @click="getGiftItem(false,item,index)">{{lang.singIn}}</em>
@@ -327,6 +327,7 @@ export default {
             }
             i {
               font-size: 0.28rem;
+              margin-left: 0.15rem;
             }
           }
         }
