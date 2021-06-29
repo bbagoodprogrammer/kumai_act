@@ -13,7 +13,7 @@
     bubbleTips: {
         1: "Masuk kamar",
         2: "Durasi online",
-        3: "Interatif di Micc",
+        3: "Interaktif di Mic",
         4: "Konsumsi koin"
     },
 
