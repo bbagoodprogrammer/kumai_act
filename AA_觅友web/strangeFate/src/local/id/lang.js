@@ -7,7 +7,7 @@
     no_data: "Tiada data",
     record_title: "Catatan takdir",
     rank_title: "Daftar takdir",
-    openComeList: "Peringkat",
+    openComeList: "Peringkat Datang",
     value: "Nilai takdir",
     dist: "Akan naik",
     tips:

@@ -64,6 +64,6 @@
     p_13:
         "Ketika Anda menerima hadiah koin emas dari orang lain dalam momen, akan dapatkan pendapatan berlian pink sesuai dengan persentase tertentu",
     p_14:
-        "Anda dapat gunakan berlian pink atau berlian biru untuk menukar barang favorit Anda atau hal-hal lain di Modul Pendapatan.",
+        "Anda dapat gunakan berlian pink atau berlian biru untuk menukar alat peraga favorit Anda atau hal-hal lain di Modul Pendapatan.",
     p_15: " A.Dapatkan hadiah dari kamar"
 };

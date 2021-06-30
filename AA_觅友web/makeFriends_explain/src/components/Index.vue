@@ -17,7 +17,7 @@
     </div>
     <p class="explain_tips2">
       <!-- 告白祝福階段中，心動值達到{{Math.floor(heartbeatValueReward / 10000) }}萬時，將獎勵{{ringName}}戒指，並自動結成為CP關係，如雙方已是CP關係則新增對應戒指， -->
-      {{lang.explain_tips2.replace('$',Math.floor(heartbeatValueReward / 10000)).replace('%',ringName)}}
+      {{lang.explain_tips2.replace('$',isId?Math.floor(heartbeatValueReward / 1000): Math.floor(heartbeatValueReward / 10000)).replace('%',ringName)}}
       <span>
         {{lang.explain_tips3}}
       </span>
@@ -64,6 +64,9 @@ export default {
   computed: {
     imgList () {
       return this.lang.imgList
+    },
+    isId () {
+      return AREA == 'id'
     }
   },
   created () {

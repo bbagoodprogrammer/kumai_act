@@ -1,7 +1,7 @@
 ﻿export default {
     title: "Level kekayaan", //Level kekayaan
     privilege_title: "Hak istimewa level", //Hak istimewa level
-    require_title: "Syarat pengalaman tevel", //Syarat pengalaman tevel
+    require_title: "Syarat pengalaman level", //Syarat pengalaman tevel
     wealthExp: "Nilai kekayaan", //Nilai kekayaan
     disc: "Perlu %s akan ditingkatkan ", //Perlu Lv.110 akan ditingkatkan
     privilege: [
@@ -47,9 +47,9 @@
 
     level_title: "Keterangan Level", //Keterangan Level
     level_explain_tips:
-        "Total 50 level kekayaan. Memberikan hadiah koin emas（Kecuali hadiah ransel）、membeli barang di store dalam APP.<i>Setiap koin emas dikonsumsi akan meningkat  1 poin kekayaan</i> Akumulasi nilai kekayaan dapat ditingkatkan untuk membuka kunci hak istimewa level.",
+        "Total 50 level kekayaan. Memberikan hadiah koin emas（Kecuali hadiah ransel）、membeli barang di store dalam APP.<i>Setiap koin emas dikonsumsi akan meningkat  1 poin kekayaan.</i> Akumulasi nilai kekayaan dapat ditingkatkan untuk membuka kunci hak istimewa level.",
     level_explain_ul: [
-        "Ketentuan berikut bahwa perilaku interaktif meningkatkan nilai kekayaan yang berbeda：",
+        "Ketentuan berikut bawah perilaku interaktif meningkatkan nilai kekayaan yang berbeda：",
         '1、Berikan hadiah "Lucky Star", konsumsi 1 koin emas akan tingkatkan 0.8 poin nilai kekayaan.',
         "2、Saat memasang taruhan Blackjack di kamar, konsumsi 1 koin emas = 0.2 nilai kekayaan",
         "3、Saat berpartisipasi dalam gameplay aktivitas resmi, konsumsi 1 koin emas = 0.1 nilai kekayaan",

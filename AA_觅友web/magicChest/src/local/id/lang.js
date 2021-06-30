@@ -1,11 +1,11 @@
 ﻿export default {
-    title: "Kotak ajaib",
+    title: "Kotak sihir",
     ok: "Konfirmasi", //Konfirmasi
     loading: "Dimuat...",
     no_data: "Tiada data lagi~",
     confirm: "Konfirmasi", //Konfirmasi
     cancel: "Batal", //Batal'
-    openTask: "Tugas ajaib", //Tugas ajaib
+    openTask: "Tugas sihir", //Tugas sihir
     openRule: "Aturan", //Aturan
     done: "Telah", //Telah
     clickDone: "Tugas telah selesai", //Tugas telah selesai
@@ -38,20 +38,20 @@
     giftTips: "Dapat hadiah <span>1</span> secara acak<span>1</span>", //Dapatkan 1 hadiah secara acak
     uncommon: "Langka", //Langka
     energy: "Energi", //Energi：
-    openEnergyTips: "Buka kotak utk terima hadiah ajaib", //Buka kotak utk terima hadiah ajaib
+    openEnergyTips: "Buka kotak utk terima hadiah sihir", //Buka kotak utk terima hadiah sihir
     openBox: "Buka kotak ", //Buka kotak
 
-    taskTitle: "Tugas ajaib", //Tugas ajaib
+    taskTitle: "Tugas sihir", //Tugas sihir
     taskTips: "Update setiap hari pd 00:00", //Update setiap hari pd 00:00
     get: "Terima", //Menerima
 
     rule: "Aturan", //Aturan
     rule_li: [
-        "Selesaikan tugas ajaib utk dapatkan energi utk buka kotak ajaib dan dapatkan hadiah ajaib.Dapat melemparkan ajaib ke objek, dan akan ada efek menarik setelah beri hadiah；",
-        "Tugas ajaib di update setiap hari pd 00:00，bisa diguna ulang，energi yg tak dikonsumsi pd hari itu tak valid；",
-        "Konsumsi 200 energi dapat buka kotak ajaib sekali，berkesempatan utk dapat sebuah hadiah ajaib；<em>Pasti akan dapatkan hadiah ajaib langka jika pembukaan kali ke-5 pd hari itu；</em>"
+        "Selesaikan tugas sihir utk dapatkan energi utk buka kotak sihir dan dapatkan hadiah sihir.Dapat melemparkan sihir ke objek, dan akan ada efek menarik setelah beri hadiah；",
+        "Tugas sihir di update setiap hari pd 00:00，bisa diguna ulang，energi yg tak dikonsumsi pd hari itu tak valid；",
+        "Konsumsi 200 energi dapat buka kotak sihir sekali，berkesempatan utk dapat sebuah hadiah sihir；<em>Pasti akan dapatkan hadiah sihir langka jika pembukaan kali ke-5 pd hari itu；</em>"
     ],
-    giftTitle: "Hadiah ajaib", //Hadiah ajaib
+    giftTitle: "Hadiah sihir", //Hadiah sihir
     giftName: "Nama hadiah", //Nama hadiah
     giftProbability: "Probabilitas (sistem 10rb poin)", //Probabilitas (sistem 10rb poin)
 

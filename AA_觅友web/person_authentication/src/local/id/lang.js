@@ -16,7 +16,7 @@ export default {
     img_tipsArr: [
         "Silakan berfoto utk bersertifikat sesuai dgn gambar contoh；",
         "Foto otentikasi org sungguhan harus sama dgn foto avatar, jika tidak, tak valid；",
-        "Jika identitas non-host lulu ssertifikasi,pendapatan berlian pink dr obrolan berlipat ganda；",
+        "Jika identitas non-host lulu sertifikasi,pendapatan berlian pink dr obrolan berlipat ganda；",
         "Foto2 hanya digunakan utk tujuan sertifikasi dan peninjauan, AloChat resmi akan menjaga kerahasiaannya；"
     ],
     examineIng: "Sedang ditinjau",
