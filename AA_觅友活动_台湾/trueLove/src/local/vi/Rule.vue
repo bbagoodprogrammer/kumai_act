@@ -5,6 +5,7 @@
       <span :class="{act:type == 1}" @click="tabClick(1)">Thể lệ</span>
       <span :class="{act:type == 2}" @click="tabClick(2)">Giải thưởng</span>
     </div>
+
     <div class="rule_tips" v-if="type == 1">
       <p class="tm">Thời gian sự kiện: 12:00 18/05/2021- 23:59:59 24/05/2021</p>
       <h5>1.Cách tham gia Đu qua Yêu chân thành</h5>
@@ -39,7 +40,7 @@
       <p>
         Người chơi tích lũy điểm True Love, có thể lên Bảng True Love; Bảng True Love được chia thành BXH ngày và BXH tổng, BXH được xếp hạng theo tổng số điểm True Love từ cao đến thấp, nếu điểm bằng
         nhau sẽ tính theo thời gian trước sau. <br />
-        Ngưởi chơi đứng Top 1 tại BXH hàng ngày sẽ được đi Đu quay Yêu chân thành, và được nhận [Bóng thủy tinh yêu chân thành]*2 (mỗi người một quả), người chơi nhận thưởng có thể nhận thêm 10% điểm
+        Ngưởi chơi đứng Top 1 tại BXH hàng ngày sẽ được đi Đu quay Yêu chân thành, và được nhận [Giọt nước biển]*2 (mỗi người một quả), người chơi nhận thưởng có thể nhận thêm 10% điểm
         True Love của BXH hàng ngày đã tích lũy (Điểm này sẽ được thêm trực tiếp vào BXH tổng, không thêm vào BXH hàng ngày của ngày tiếp theo)
       </p>
       <h5>4.Cách kêu gọi Thần tình yêu</h5>
@@ -63,7 +64,7 @@
         </div>
       </div>
       <p>
-        Ngưởi chơi đứng Top 1 tại BXH hàng ngày sẽ được đi Đu quay Yêu chân thành, và được nhận [Bóng thủy tinh yêu chân thành]*2 (mỗi người một quả), người chơi nhận thưởng có thể nhận thêm 10% điểm
+        Ngưởi chơi đứng Top 1 tại BXH hàng ngày sẽ được đi Đu quay Yêu chân thành, và được nhận [Giọt nước biển]*2 (mỗi người một quả), người chơi nhận thưởng có thể nhận thêm 10% điểm
         True Love của BXH hàng ngày đã tích lũy (Điểm này sẽ được thêm trực tiếp vào BXH tổng, không thêm vào BXH hàng ngày của ngày tiếp theo)
       </p>
       <h5>2. Giải thưởng BXH tổng</h5>
@@ -76,11 +77,10 @@
           <strong v-html="item.name"></strong>
         </div>
       </div>
-      <p>Hạng 1: Khung ảnh Quán quân CP (10 ngày)+Huy chương Đu quay Yêu chân thành (10 ngày)+Bơi moto lãng mạn (10 ngày)+chứng nhận CP (10 ngày)+Thiên sứ True Love-quà hiệu ứng (mỗi người một quà)
+      <p>Hạng 1: Khung ảnh Quán quân CP (10 ngày)+Huy chương Đu quay Yêu chân thành (10 ngày)+Phi thuyền lãng mạn (10 ngày)+chứng nhận CP (10 ngày)+Vũ trên mặt trăng-quà hiệu ứng (mỗi người một quà)
       </p>
-      <p>Hạng 2: Khung ảnh Á quân CP (7 ngày)+Huy chương Đu quay Yêu chân thành (7 ngày)+Bơi moto lãng mạn (7 ngày)+chứng nhận CP (7 ngày)+Bong bóng lãng mạn-quà hiệu ứng (mỗi người một quà)</p>
-      <p>Hạng 3: Khung ảnh Quý quân CP (7 ngày)+Huy chương Đu quay Yêu chân thành (7 ngày)+Bơi moto lãng mạn (7 ngày)+chứng nhận CP (7 ngày)+ Bóng thủy tinh yêu chân thành- quà hiệu ứng (mỗi người một
-        quà)</p>
+      <p>Hạng 2: Khung ảnh Á quân CP (7 ngày)+Huy chương Đu quay Yêu chân thành (7 ngày)+Phi thuyền lãng mạn (7 ngày)+chứng nhận CP (7 ngày)+Pháo bắn tim-quà hiệu ứng (mỗi người một quà)</p>
+      <p>Hạng 3: Khung ảnh Quý quân CP (7 ngày)+Phi thuyền lãng mạn (7 ngày)+Giọt nước biển-quà hiệu ứng (mỗi người một quà)</p>
     </div>
     <p class="lastTips">Sự kiện không liên quan đến công ty Apple</p>
     <p class="lastTips2">*Quyết định cuối cùng thuộc về Alochat</p>
@@ -104,6 +104,7 @@
 
 import { relieve } from "../../apis"
 import { mapState } from "vuex"
+import getDate from "../../utils/getDate"
 export default {
   data () {
     return {
@@ -124,12 +125,12 @@ export default {
         },
         {
           img: require('./img/rule_gift/gift_5.png'),
-          name: 'Pháo hoa tỏ tình<br/>+80000 Điểm True Love',
+          name: 'Thuyền tình yêu<br/>+80000 Điểm True Love',
           tips: 'Quà hiệu ứng'
         },
         {
           img: require('./img/rule_gift/gift_6.png'),
-          name: 'Lọ tỏ tình<br/>+200 Điểm True Love',
+          name: 'Thư tình lãng mạn<br/>+200 Điểm True Love',
         },
         {
           img: require('./img/rule_gift/gift_1.png'),
@@ -137,11 +138,11 @@ export default {
         },
         {
           img: require('./img/rule_gift/gift_2.png'),
-          name: 'Cupid<br/>+5200 Điểm True Love'
+          name: 'Mãi mãi ở bên nhau<br/>+5200 Điểm True Love'
         },
         {
           img: require('./img/rule_gift/gift_3.png'),
-          name: 'Dây chuyền chân châu<br/>+20000 Điểm True Love',
+          name: 'Yêu cả đời<br/>+20000 Điểm True Love',
           tips: 'Quà hiệu ứng'
         },
 
@@ -155,7 +156,7 @@ export default {
         },
         {
           img: require('./img/rule_gift/gift_16.png'),
-          name: 'Bóng thủy tinh Yêu chân thành*2'
+          name: 'Giọt nước biển*2'
         }
       ],
       giftArr3: [
@@ -185,13 +186,16 @@ export default {
         },
         {
           img: require('./img/rule_gift/gift_16.png'),
-          name: 'Bóng thủy tinh Yêu chân thành-Quà hiệu ứng'
+          name: 'Giọt nước biển-Quà hiệu ứng'
         }
       ]
     }
   },
   computed: {
-    ...mapState(['owner'])
+    ...mapState(['owner']),
+    actTime () {
+      return getDate(new Date(this.stime * 1000), 7) + '-' + getDate(new Date(this.etime * 1000), 7)
+    }
   },
   methods: {
     tabClick (val) {

@@ -6,7 +6,7 @@
       <span :class="{act:type == 2}" @click="tabClick(2)">獎勵</span>
     </div>
     <div class="rule_tips" v-if="type == 1">
-      <p class="tm">活動時間：5月15日 12：00-5月21日 23：59：59</p>
+      <p class="tm">活動時間：{{actTime}}</p>
       <h5>1、如何參與真愛摩天輪</h5>
       <p>
         綁定關係：<br />
@@ -50,7 +50,7 @@
       <p>a）活動期間對參賽玩家惡意評論、造謠、影射等</p>
     </div>
     <div class="gift_tips" v-else>
-      <p class="tm">活動時間：5月15日 12：00-5月21日 23：59：59</p>
+      <p class="tm">活動時間：{{actTime}}</p>
       <h5>1、乘坐摩天輪獎勵</h5>
       <div class="giftList list2">
         <div class="gift_item" v-for="(item,index) in giftArr2" :key="index" :class="'gift' + index">
@@ -74,9 +74,9 @@
           <strong v-html="item.name"></strong>
         </div>
       </div>
-      <p>第一名：冠軍CP頭像框（10天）+真愛摩天輪勛章（10天）+浪漫飛艇座駕（10天）+定制CP認證（10天）+真愛天使-特效禮物（一人一個）</p>
-      <p>第二名：亞軍CP頭像框（7天）+真愛摩天輪勛章（7天）+浪漫飛艇座駕（7天）+真愛CP認證（7天）+浪漫氣球-特效禮物（一人一個）</p>
-      <p> 第三名：季軍CP頭像框（7天）+浪漫飛艇座駕（7天）+真 愛水晶球-特效禮物（一人一個）</p>
+      <p>冠軍CP頭像框（10天）+真愛摩天輪勛章（10天）+浪漫飛艇座駕（10天）+定制CP認證（10天）+唯你是星辰-特效禮物（一人一個） </p>
+      <p>亞軍CP頭像框（7天）+真愛摩天輪勛章（7天）+浪漫飛艇座駕（7天）+真愛CP認證（7天）+心花怒放-特效禮物（一人一個） </p>
+      <p>季軍CP頭像框（7天）+浪漫飛艇座駕（7天）+星海之淚-特效禮物（一人一個） </p>
     </div>
     <p class="lastTips">此活動與蘋果公司無關</p>
     <p class="lastTips2">*活動最終解釋權歸活動主辦方所有</p>
@@ -100,6 +100,7 @@
 
 import { relieve } from "../../apis"
 import { mapState } from "vuex"
+import getDate from "../../utils/getDate"
 export default {
   data () {
     return {
@@ -120,12 +121,12 @@ export default {
         },
         {
           img: require('./img/rule_gift/gift_5.png'),
-          name: '告白煙花<br/>+80000真愛值',
+          name: '愛的帆船<br/>+80000真愛值',
           tips: '特效'
         },
         {
           img: require('./img/rule_gift/gift_6.png'),
-          name: '告白瓶<br/>+200真愛值',
+          name: '浪漫情書<br/>+200真愛值',
         },
         {
           img: require('./img/rule_gift/gift_1.png'),
@@ -133,11 +134,11 @@ export default {
         },
         {
           img: require('./img/rule_gift/gift_2.png'),
-          name: '丘比特<br/>+5200真愛值'
+          name: '談情說愛<br/>+5200真愛值'
         },
         {
           img: require('./img/rule_gift/gift_3.png'),
-          name: '珍珠項鍊<br/>+20000真愛值',
+          name: '一生鎖愛<br/>+20000真愛值',
           tips: '特效'
         },
 
@@ -151,7 +152,7 @@ export default {
         },
         {
           img: require('./img/rule_gift/gift_16.png'),
-          name: '真愛水晶球*2'
+          name: '星海之淚*2'
         }
       ],
       giftArr3: [
@@ -181,13 +182,16 @@ export default {
         },
         {
           img: require('./img/rule_gift/gift_16.png'),
-          name: '真愛水晶球<br/>特效禮物'
+          name: '星海之淚<br/>特效禮物'
         }
       ]
     }
   },
   computed: {
-    ...mapState(['owner'])
+    ...mapState(['owner']),
+    actTime () {
+      return getDate(new Date(this.stime * 1000), 6) + '-' + getDate(new Date(this.etime * 1000), 6)
+    }
   },
   methods: {
     tabClick (val) {

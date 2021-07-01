@@ -6,6 +6,8 @@ Vue.use(vuex);
 
 export default new vuex.Store({
     state: {
+        stime: 0,
+        etime: 0,
         loading: false,
         rankGroups: {}, //储存當天的信息
         rankGroups_history: {},
