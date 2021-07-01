@@ -15,6 +15,7 @@ export default {
     viewHeight: () => window.innerHeight,
   },
   mounted () {
+    console.log('test')
     this.$store.dispatch('getInitInfo');
   },
   components: {
