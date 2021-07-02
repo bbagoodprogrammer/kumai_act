@@ -1,0 +1,17 @@
+html.zh {
+    .header{
+        .act_title{
+           width: 7.49rem;
+           height: 4.66rem; 
+           background: url(./img/act_title.png);
+           background-size: 100% 100%;
+        }
+    }
+    .otsugeTitle{
+        width: 7.48rem;
+        height: 1.58rem; 
+        background: url(./img/otsugeTitle.png);
+        background-size: 100% 100%;
+        margin: .24rem auto .23rem;
+    }
+}

@@ -86,14 +86,14 @@ export default {
     turn_qureyLuck: "Xác nhận kêu gọi",
     luckTips: {
         1: "Chúc mừng bạn nhận được lời chúc từThần tình yêu —— $,Đã được gửi vào tài khoản của bạn, chúc bạn hạnh phú nhé",
-        2: "Thần tình yêu đã xuống trần rồi~Thần Cupid nắm giữ True Love bay vào trái tim bạn,Chúc mừng bạn nhận được Nhẫn Cupid Yêu chân thành!!",
+        2: "Thần tình yêu đã xuống trần rồi~Thần Mãi mãi ở bên nhau nắm giữ True Love bay vào trái tim bạn,Chúc mừng bạn nhận được Nhẫn Mãi mãi ở bên nhau Yêu chân thành!!",
         3: "Chúc mừng bạn nhận được lời chúc từThần tình yêu, giải thưởng đã được gửi vào tài khoản của bạn, chúc bạn hạnh phú nhé",
-        4: "Thần tình yêu đã xuống trần rồi~Thần Cupid nắm giữ True Love bay vào trái tim bạn,Chúc mừng bạn nhận được Nhẫn Cupid Yêu chân thành!!"
+        4: "Thần tình yêu đã xuống trần rồi~Thần Mãi mãi ở bên nhau nắm giữ True Love bay vào trái tim bạn,Chúc mừng bạn nhận được Nhẫn Mãi mãi ở bên nhau Yêu chân thành!!"
     },
     turn_noCoins: "Xu không đủ",
     //wheel
     wheel_tips:
-        "Trong khoảng thời gian từ $, CP Top1 trong BXH hàng ngày có thể đi đu quay và nhận được phần thưởng 5% điểm True Love và Bóng thủy tinh Yêu chân thành- quà túi (mỗi người một quà)", //期間每天日榜的第一名cp可乘坐摩天輪，並獲得當天真愛值的5%加成和真愛水晶球-背包禮物*2（一人一個）
+        "Trong khoảng thời gian từ $, CP Top1 trong BXH hàng ngày có thể đi đu quay và nhận được phần thưởng 5% điểm True Love và Giọt nước biển- quà túi (mỗi người một quà)", //期間每天日榜的第一名cp可乘坐摩天輪，並獲得當天真愛值的5%加成和真愛水晶球-背包禮物*2（一人一個）
     //信箱
     // daily_title_1: "【{0}】完成【{1}】產生魔法能量",
     // daily_title_2: "【{0}】收到【{1}】x{2}獲得魔法能量",

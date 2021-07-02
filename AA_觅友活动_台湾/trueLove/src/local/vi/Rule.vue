@@ -7,7 +7,7 @@
     </div>
 
     <div class="rule_tips" v-if="type == 1">
-      <p class="tm">Thời gian sự kiện: 12:00 18/05/2021- 23:59:59 24/05/2021</p>
+      <p class="tm">Thời gian sự kiện: {{actTime}}</p>
       <h5>1.Cách tham gia Đu qua Yêu chân thành</h5>
       <p>
         Hủy quan hệ:<br />
@@ -46,13 +46,15 @@
       <h5>4.Cách kêu gọi Thần tình yêu</h5>
       <p>Đưa 50 xu cho Thần tình yêu, có thể kêu thần một lần. Mỗi khi kêu gọi, bạn sẽ nhận được 100% giải thưởng chúc phúc từ Thần tình yêu.</p>
       <img src="./img/rule_table1.png" alt="" class="rule_table1">
-      <p>Nếu không kêu gọi được Nhẫn thần tình yêu Cupid trong 500 lần đầu tiên, lần thứ 501 chắn chắn có thể nhận Nhẫn thần tình yêu Cupid . Mỗi người chơi chỉ có thể nhận nhẫn một lần.</p>
+      <p>Nếu không kêu gọi được Uyên ương hồ điệp mộng trong 500 lần đầu tiên, lần thứ 501 chắn chắn có thể nhận Uyên ương hồ điệp mộng . Mỗi người chơi chỉ có thể nhận
+        nhẫn một lần.</p>
       <h5>5. Khác</h5>
       <p>Trong thời gian sự kiện diễn ra, phát hiện hành vi vi phạm sẽ tùy trường hợp xử lý cảnh cáo, tước quyền chơi hoặc khóa tài khoản.</p>
       <p>a)Trong thời gian sự kiện có tình dùng lời lẽ thô tục, ảnh hưởng tới mọi người</p>
+      <p>b) Gian lận để nhận được phần thưởng</p>
     </div>
     <div class="gift_tips" v-else>
-      <p class="tm">Thời gian sự kiện: 12:00 18/05/2021- 23:59:59 24/05/2021</p>
+      <p class="tm">Thời gian sự kiện: {{actTime}}</p>
       <h5>1. Giải thưởng đi đu quay</h5>
       <div class="giftList list2">
         <div class="gift_item" v-for="(item,index) in giftArr2" :key="index" :class="'gift' + index">
@@ -79,8 +81,9 @@
       </div>
       <p>Hạng 1: Khung ảnh Quán quân CP (10 ngày)+Huy chương Đu quay Yêu chân thành (10 ngày)+Phi thuyền lãng mạn (10 ngày)+chứng nhận CP (10 ngày)+Vũ trên mặt trăng-quà hiệu ứng (mỗi người một quà)
       </p>
-      <p>Hạng 2: Khung ảnh Á quân CP (7 ngày)+Huy chương Đu quay Yêu chân thành (7 ngày)+Phi thuyền lãng mạn (7 ngày)+chứng nhận CP (7 ngày)+Pháo bắn tim-quà hiệu ứng (mỗi người một quà)</p>
-      <p>Hạng 3: Khung ảnh Quý quân CP (7 ngày)+Phi thuyền lãng mạn (7 ngày)+Giọt nước biển-quà hiệu ứng (mỗi người một quà)</p>
+      <p>Hạng 2: Khung ảnh Á quân CP (7 ngày)+Huy chương Đu quay Yêu chân thành (7 ngày)+Phi thuyền lãng mạn (7 ngày)+chứng nhận CP (7 ngày)+Pháo bắn tim-quà hiệu ứng (mỗi người một quà) </p>
+      <p>Hạng 3: Khung ảnh Quý quân CP (7 ngày)+Phi thuyền lãng mạn (7 ngày)+Giọt nước biển-quà hiệu ứng (mỗi người một quà) </p>
+      <p>*CP có điểm ân ái đạt mức 1520.000 và đứng top 3 trong BXH điểm ân ái mới có thể nhận được thưởng BXH nha.</p>
     </div>
     <p class="lastTips">Sự kiện không liên quan đến công ty Apple</p>
     <p class="lastTips2">*Quyết định cuối cùng thuộc về Alochat</p>
@@ -125,7 +128,7 @@ export default {
         },
         {
           img: require('./img/rule_gift/gift_5.png'),
-          name: 'Thuyền tình yêu<br/>+80000 Điểm True Love',
+          name: 'Thuyền tình yêu<br/>+120000 Điểm True Love',
           tips: 'Quà hiệu ứng'
         },
         {
@@ -177,12 +180,12 @@ export default {
           name: 'Chứng nhận Couple'
         },
         {
-          img: require('./img/rule_gift/gift_14.png'),
-          name: 'Thiên sứ tình yêu<br/>Quà hiệu ứng'
+          img: require('./img/rule_gift/gift_19.png'),
+          name: 'Vũ trên mặt trăng<br/>Quà hiệu ứng'
         },
         {
-          img: require('./img/rule_gift/gift_15.png'),
-          name: 'Bong bóng lãng mạn<br/>Quà hiệu ứng'
+          img: require('./img/rule_gift/gift_20.png'),
+          name: 'Pháo bắn tim<br/>Quà hiệu ứng'
         },
         {
           img: require('./img/rule_gift/gift_16.png'),
@@ -192,7 +195,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['owner']),
+    ...mapState(['owner', 'stime', 'etime']),
     actTime () {
       return getDate(new Date(this.stime * 1000), 7) + '-' + getDate(new Date(this.etime * 1000), 7)
     }
