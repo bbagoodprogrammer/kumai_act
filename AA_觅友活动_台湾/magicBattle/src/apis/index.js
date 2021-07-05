@@ -221,4 +221,22 @@ function outs() {
         `/index.php?action=magicBattle.divination&uid={uid}&token={token}`
     );
 }
-export { get, post, loadData, getInitInfo, synthesis, outs };
+
+function singUp() {
+    return get(
+        `/index.php?action=magicBattle.register&uid={uid}&token={token}`
+    );
+}
+
+function history(from, more) {
+    if (more) {
+        return axios.get(
+            `/index.php?action=magicBattle.history&uid={uid}&token={token}&from=${from}`
+        );
+    }
+    return get(
+        `/index.php?action=magicBattle.history&uid={uid}&token={token}&from=${from}`
+    );
+}
+
+export { get, post, loadData, getInitInfo, synthesis, outs, singUp, history };

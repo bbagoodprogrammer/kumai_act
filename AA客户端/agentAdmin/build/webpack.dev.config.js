@@ -44,7 +44,7 @@ module.exports = {
         //disableHostCheck: true,
         proxy: {
             "/": {
-                target: "http://t.act.vchatzone.com",
+                target: "http://act.vchatzone.com",
                 changeOrigin: true
             }
         }

@@ -8,7 +8,7 @@
           </div>
           <strong>
             <em class="gift_name">{{nowGift.name}}</em>
-            <em class="gift_tips">作用{{nowGift.desc}}，合成後可<br />增加{{nowGift.score}}戰鬥力</em>
+            <em class="gift_tips" v-html="lang.MagicLand_addScore.replace('%n',nowGift.desc).replace('%s',nowGift.score)"></em>
           </strong>
         </div>
         <div class="science" v-for="(item,index) in nowGift.gifts" :key="index" :class="'science' + index">
@@ -16,7 +16,7 @@
             <img :src="synthesis.gifts[item.gid].image" alt="">
             <div class="nums">x{{item.num}}</div>
           </div>
-          <strong>剩餘 <em>{{synthesis.gifts[item.gid].num}}</em></strong>
+          <strong>{{lang.surplus}} <em>{{synthesis.gifts[item.gid].num}}</em></strong>
         </div>
       </div>
       <div class="con">
@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="synthesis" @click="synthesisGift()">
-      合成
+      {{lang.synthesis}}
     </div>
 
     <div class="mask" v-show="showGetGiftPup">
@@ -51,10 +51,10 @@
               <input type="number" :max="nowGift.num" v-model="giftNums" disabled>
             </div>
             <span class="add" @click="giftNums == nowGift.num?nowGift.num:++giftNums"></span>
-            <u class="max">最大</u>
+            <u class="max" @click="giftNums = nowGift.num">{{lang.max}}</u>
           </div>
-          <div class="get" @click="getGift()">合成</div>
-          <div class="getTips">合成後，禮物會發放到背包中</div>
+          <div class="get" @click="getGift()">{{lang.synthesis}}</div>
+          <div class="getTips">{{lang.synthesisTips}}</div>
         </div>
       </transition>
     </div>
@@ -90,7 +90,7 @@ export default {
       synthesis(this.nowGift.id, this.giftNums).then(res => {
         this.showGetGiftPup = false
         if (res.data.response_status.code == 0) {
-          this.toast(`恭喜合成【${this.nowGift.name}*${this.giftNums}】,禮物已發放到您的背包，請查收`)
+          this.toast(this.lang.synthesisSucTips.replace('%n', this.nowGift.name).replace('%s', this.giftNums))
           setTimeout(() => {
             this.$store.dispatch('getInitInfo');
           }, 1000)

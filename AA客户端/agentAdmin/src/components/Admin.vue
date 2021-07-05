@@ -311,8 +311,9 @@ export default {
     padding: 0;
     .el-table_1_column_2 {
       .cell {
-        display: block !important;
-        text-align: left !important;
+        // display: block !important;
+        // text-align: left !important;
+        justify-content: start;
       }
     }
     tr {

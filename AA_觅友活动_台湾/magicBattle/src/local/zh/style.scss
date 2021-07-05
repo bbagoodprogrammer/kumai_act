@@ -14,4 +14,13 @@ html.zh {
         background-size: 100% 100%;
         margin: .24rem auto .23rem;
     }
+    .lead{
+        display: block;
+        width: 1.04rem;
+        height: .65rem;
+        background: url(./img/lead.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: -.2rem;
+    }
 }

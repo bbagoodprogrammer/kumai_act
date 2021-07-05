@@ -13,24 +13,54 @@
     </div>
     <div class="list">
       <div class="listTop1">
-        <div class="top1Item" v-for="(item,index) in list_top1" :key="index" :class="'top1_'+index">
-          <div class="name">{{item.name}} 戰隊</div>
+        <div class="top1Item" v-for="(item,index) in list_top1" :key="index" :class="[{act:type == index},'top1_'+index]" @click="type = index">
+          <i class="lead" v-if="rank[index].rank == 1"></i>
+          <div class="name">{{item.name}} {{lang.rank_group}}</div>
           <div class="imgBox">
             <img v-lazy="item.user.avatar" alt="">
           </div>
-          <div class="medals">
-            <img :src="item.url" alt="" v-for="(item,index) in item.user.medals" :key="index">
+          <div class="nick">{{item.user.nick?item.user.nick:lang.empty}}</div>
+          <div class="medals" v-if="item.user.uid">
+            <img :src="item2.url" alt="" v-for="(item2,index) in item.user.medals" :key="index">
+            <img :src="require(`../img/wealv/pro_level${getLevel(item.user.wealth_lv)}.png`)" alt="" v-if="item.user.wealth_lv" class="warLv">
+          </div>
+          <div class="score" v-if="item.user.uid">{{lang.rank_score}}:{{item.user.score}}</div>
+          <div class="otherPeople">
+            <i></i>
+            <u>{{lang.rank_otherPeople}}</u>
           </div>
         </div>
       </div>
     </div>
+    <p class="noData" v-if="!listItem.length">{{lang.noData}}</p>
+    <div class="listRankItem" :class="'type' + type">
+      <ul class="listrank" v-show="listItem.length">
+        <li v-for="(item,index) in listItem" :key="index" :class="'rank'+item.rank">
+          <div class="userRank">{{item.rank}}</div>
+          <div class="imgBox">
+            <img v-lazy="item.avatar" alt="">
+          </div>
+          <div class="nick">{{item.nick}}</div>
+          <div class="score"><i></i><strong>{{item.score}}</strong></div>
+        </li>
+      </ul>
+    </div>
+    <Footer />
   </div>
 </template>
 
 <script>
 
 import { mapState } from "vuex"
+import Footer from "./Footer"
+
 export default {
+  components: { Footer },
+  data () {
+    return {
+      type: 0
+    }
+  },
   computed: {
     ...mapState(['rank']),
     totalScore () {
@@ -48,9 +78,36 @@ export default {
           user: this.rank[item].list[0] ? this.rank[item].list[0] : {}
         })
       }
+      console.log(list)
       return list
     },
+    listItem () {
+      return this.rank[this.type] ? this.rank[this.type].list.slice(1) : []
+    },
 
+  },
+  methods: {
+    getLevel (_lv) {
+      console.log(_lv)
+      if (_lv > 0 && _lv < 10) {
+        return '1'
+      }
+      if (_lv >= 10 && _lv < 20) {
+        return '2'
+      }
+      if (_lv >= 20 && _lv < 30) {
+        return '3'
+      }
+      if (_lv >= 30 && _lv < 40) {
+        return '4'
+      }
+      if (_lv >= 40 && _lv < 50) {
+        return '5'
+      }
+      if (_lv >= 50) {
+        return '6'
+      }
+    },
   }
 }
 </script>
@@ -116,30 +173,71 @@ export default {
     }
   }
   .list {
+    margin-top: 0.46rem;
     .listTop1 {
-      height: 4.6rem;
+      height: 4.25rem;
       display: flex;
+      .listTop1 {
+        height: 4.5rem;
+      }
       .top1Item {
         width: 2.57rem;
         height: 4.16rem;
-
+        position: relative;
         &.top1_0 {
           background: url(../img/top1.png);
           background-size: 100% 100%;
+          &.act {
+            width: 2.77rem;
+            height: 4.5rem;
+            background: url(../img/top1_act.png);
+            background-size: 100% 100%;
+            position: relative;
+            margin-top: -0.35rem;
+          }
         }
         &.top1_1 {
           background: url(../img/top2.png);
           background-size: 100% 100%;
+          &.act {
+            width: 2.77rem;
+            height: 4.5rem;
+            background: url(../img/top2_act.png);
+            background-size: 100% 100%;
+            margin-top: -0.35rem;
+          }
         }
         &.top1_2 {
           background: url(../img/top3.png);
           background-size: 100% 100%;
+          &.act {
+            width: 2.77rem;
+            height: 4.5rem;
+            background: url(../img/top3_act.png);
+            background-size: 100% 100%;
+            margin-top: -0.35rem;
+          }
+        }
+        &.act {
+          .name {
+            width: 2.22rem;
+            background: url(../img/rankName2.png);
+            background-size: 100% 100%;
+          }
+          .imgBox {
+            width: 1.63rem;
+            height: 1.63rem;
+            img {
+              width: 1.5rem;
+              height: 1.5rem;
+            }
+          }
         }
       }
       .name {
-        width: 2.22rem;
+        width: 2.07rem;
         height: 0.5rem;
-        margin: 0.21rem 0 0 0.18rem;
+        margin: 0.21rem 0 0 0.22rem;
         background: url(../img/rankName.png);
         background-size: 100% 100%;
         text-indent: 0.18rem;
@@ -147,8 +245,8 @@ export default {
         line-height: 0.5rem;
       }
       .imgBox {
-        width: 1.63rem;
-        height: 1.63rem;
+        width: 1.33rem;
+        height: 1.33rem;
         background: url(../img/avBg.png);
         background-size: 100% 100%;
         margin: 0 auto;
@@ -156,20 +254,203 @@ export default {
         align-items: center;
         justify-content: center;
         img {
-          width: 1.5rem;
-          height: 1.5rem;
+          width: 1.2rem;
+          height: 1.2rem;
           border-radius: 50%;
         }
       }
+      .nick {
+        font-size: 0.26rem;
+        text-align: center;
+      }
       .medals {
+        padding: 0 0.4rem;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         img {
           width: 0.45rem;
           height: 0.45rem;
         }
+        .warLv {
+          width: 0.56rem;
+          height: 0.3rem;
+        }
       }
+      .score {
+        font-size: 0.26rem;
+        color: #FFF5CB;
+        text-align: center;
+      }
+      .otherPeople {
+        width: 100%;
+        height: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: absolute;
+        bottom: -0.2rem;
+        color: #AC9A49;
+        font-size: 0.24rem;
+        i {
+          width: 0.36rem;
+          height: 0.26rem;
+          background: url(../img/arr.png);
+          background-size: 100% 100%;
+          margin-right: 0.1rem;
+        }
+      }
+    }
+  }
+  .noData {
+    text-align: center;
+  }
+  .listRankItem {
+    position: relative;
+    &.type0::before {
+      content: '';
+      display: block;
+      width: 0.75rem;
+      height: 0.49rem;
+      background: url(../img/arrTop.png);
+      background-size: 100% 100%;
+      position: absolute;
+      z-index: 10;
+      top: -0.32rem;
+      left: 0.38rem;
+    }
+    &.type1::before {
+      content: '';
+      display: block;
+      width: 0.75rem;
+      height: 0.49rem;
+      background: url(../img/arrTop.png);
+      background-size: 100% 100%;
+      position: absolute;
+      z-index: 10;
+      top: -0.32rem;
+      left: 2.8rem;
+    }
+    &.type2::before {
+      content: '';
+      display: block;
+      width: 0.75rem;
+      height: 0.49rem;
+      background: url(../img/arrTop.png);
+      background-size: 100% 100%;
+      position: absolute;
+      z-index: 10;
+      top: -0.32rem;
+      left: 5.2rem;
+    }
+  }
+  .listRankItem .listrank {
+    width: 6.74rem;
+    height: 7.3rem;
+    background: url(../img/listrank.png);
+    background-size: 100% 100%;
+    margin: 0 auto;
+    padding: 0.2rem 0.2rem 0;
+    overflow-y: scroll;
+    position: relative;
+    li {
+      height: 1.42rem;
+      display: flex;
+      align-items: center;
+      position: relative;
+      margin-bottom: 0.17rem;
+      .userRank {
+        width: 0.58rem;
+        height: 0.61rem;
+        margin-left: 0.25rem;
+        color: #330D0E;
+        text-align: center;
+        line-height: 0.61rem;
+      }
+      .imgBox {
+        width: 1.33rem;
+        height: 1.33rem;
+        background: url(../img/avBg.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 0.16rem;
+        img {
+          width: 1.2rem;
+          height: 1.2rem;
+          border-radius: 50%;
+        }
+      }
+      .nick {
+        width: 2rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 0.32rem;
+        color: #330D0E;
+        margin-left: 0.13rem;
+      }
+      .score {
+        display: flex;
+        align-items: center;
+        margin-left: 0.2rem;
+        i {
+          width: 0.44rem;
+          height: 0.41rem;
+          background: url(../img/scoreIcon.png);
+          background-size: 100% 100%;
+          margin-right: 0.04rem;
+        }
+        strong {
+          font-size: 0.28rem;
+          color: #A36749;
+        }
+      }
+      &.rank2,
+      &.rank3 {
+        .userRank {
+          background: url(../img/userRankBg.png);
+          background-size: 100% 100%;
+          text-indent: -999rem;
+          position: relative;
+        }
+        .userRank::before {
+          content: '';
+          display: block;
+          width: 0.33rem;
+          height: 0.4rem;
+          background: url(../img/2.png);
+          background-size: 100% 100%;
+          position: absolute;
+          top: 0.09rem;
+          left: 0.13rem;
+        }
+      }
+      &.rank3 {
+        .userRank::before {
+          content: '';
+          display: block;
+          width: 0.33rem;
+          height: 0.4rem;
+          background: url(../img/3.png);
+          background-size: 100% 100%;
+          position: absolute;
+          top: 0.09rem;
+          left: 0.13rem;
+        }
+      }
+    }
+    li::before {
+      content: '';
+      width: 6.48rem;
+      height: 0.17rem;
+      background: url(../img/listItemLiner.png) no-repeat;
+      background-size: 100% 100%;
+      position: absolute;
+      bottom: -0.17rem;
+      left: 0.18rem;
     }
   }
 }

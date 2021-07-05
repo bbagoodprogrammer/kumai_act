@@ -6,12 +6,10 @@
         <strong>{{owner.divination?owner.divination.progress:0}}%</strong>
       </div>
       <div class="outsTips">
-        <div class="msg">
-          每天可免費占卜一次，<br />
-          當玩家今天增加{{owner.divination?owner.divination.target_score:0}}戰鬥力即可占卜
+        <div class="msg" v-html="lang.otsuge_tips.replace('%s',owner.divination?owner.divination.target_score:0)">
         </div>
         <div class="outsBtn" @click="outs()">
-          占卜
+          {{lang.outs}}
         </div>
       </div>
     </div>
@@ -22,13 +20,13 @@
           <i class="close" @click="showOutsPup = false"></i>
           <div class="outsTitle">
             <i class="liner_l"></i>
-            <strong>{{outType == 1?'占卜中' :'占卜結果'}}</strong>
+            <strong>{{outType == 1?lang.outsIng :lang.outsEd}}</strong>
             <i class="liner_r"></i>
           </div>
           <div class="pupBall"></div>
           <div class="outsTips" v-if="outType == 2">
-            <strong class="msg">占卜結語：{{msg}}</strong>
-            <strong class="scoreMsg">戰鬥力+{{score}}</strong>
+            <strong class="msg">{{lang.outsDddres}}{{msg}}</strong>
+            <strong class="scoreMsg">{{lang.outsScore}}+{{score}}</strong>
           </div>
         </div>
       </transition>
@@ -56,7 +54,7 @@ export default {
     outs () {
       if (this.owner.divination.today_score >= this.owner.divination.target_score) {
         if (this.owner.divination.time) {
-          this.toast(`今日已經占卜過了哦！`)
+          this.toast(this.lang.outsError)
         } else {
           outs().then(res => {
             if (res.data.response_status.code == 0) {

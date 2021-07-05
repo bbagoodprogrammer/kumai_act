@@ -10,7 +10,8 @@ export default new vuex.Store({
         activity: {},
         owner: {},
         synthesis: {},
-        rank: {}
+        rank: {},
+        notices: []
     },
     mutations: {
         updateLoading(state, value) {

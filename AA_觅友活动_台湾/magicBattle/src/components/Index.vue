@@ -1,11 +1,16 @@
 <template>
   <div class="page pageIndex">
     <div class="header">
+      <RoolMsg />
+      <div class="ruleTips">
+        <span @click="showRule = true">{{lang.index_rultTips1}}</span>
+        <span @click="showHistory = true">{{lang.index_rultTips2}}</span>
+      </div>
       <div class="act_title"></div>
       <div class="timeBox">
         <p class="tmStatus">
           <i class="liner_l"></i>
-          <strong>戰鬥結束倒計時</strong>
+          <strong>{{lang.index_downTm}}</strong>
           <i class="liner_r"></i>
         </p>
         <div class="actTime">
@@ -20,10 +25,37 @@
         </div>
       </div>
     </div>
-
     <MagicLand />
     <Otsuge />
     <Rank />
+    <div class="mask" v-show="showHistory">
+      <transition name="slide">
+        <History v-if="showHistory" />
+      </transition>
+    </div>
+
+    <div class="mask" v-show="showRule">
+      <transition name="slide">
+        <Rule v-if="showRule" />
+      </transition>
+    </div>
+
+    <div class="mask" v-show="first">
+      <transition name="slide">
+        <div class="firstIn" v-show="first">
+          <i class="close" @click="first = false"></i>
+          <div class="firstInTitle">
+            <i class="liner_l"></i>
+            <strong>{{lang.firstTipsTitle}}</strong>
+            <i class="liner_r"></i>
+          </div>
+          <div class="imgBox">
+          </div>
+          <p class="firstTips">{{lang.firstTips}}</p>
+          <div class="join" @click="singUp()">{{lang.join}}</div>
+        </div>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -33,16 +65,23 @@ import MagicLand from "./MagicLand"
 import { mapState } from "vuex"
 import Otsuge from "./Otsuge"
 import Rank from "./Rank"
+import { singUp } from "../apis"
+import History from "./History"
+import Rule from "./Rule"
+import RoolMsg from "./RoolMsg"
 
 export default {
-  components: { MagicLand, Otsuge, Rank },
+  components: { MagicLand, Otsuge, Rank, History, Rule, RoolMsg },
   data () {
     return {
-      surplusTime: {}
+      first: false,
+      surplusTime: {},
+      showHistory: false,
+      showRule: false
     }
   },
   computed: {
-    ...mapState(['activity'])
+    ...mapState(['activity', 'owner'])
   },
   watch: {
     activity (val) {
@@ -64,6 +103,19 @@ export default {
         }
       }, 1000)
     },
+    singUp () {
+      singUp().then(res => {
+        if (res.data.response_status.code == 0) {
+          this.toast(this.lang.singUpSuc)
+          this.first = false
+          setTimeout(() => {
+            this.$store.dispatch('getInitInfo');
+          }, 800)
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+    }
   }
 }
 </script>
@@ -74,6 +126,25 @@ export default {
   background-size: 100% auto;
   .header {
     height: 4.36rem;
+    position: relative;
+    .ruleTips {
+      position: absolute;
+      top: 3.57rem;
+      right: 0;
+      z-index: 5;
+      span {
+        display: block;
+        width: 1.53rem;
+        height: 0.52rem;
+        background: url(../img/ruleTips.png);
+        background-size: 100% 100%;
+        margin-bottom: 0.04rem;
+        text-align: center;
+        line-height: 0.52rem;
+        font-size: 0.24rem;
+        text-indent: 0.2rem;
+      }
+    }
     .timeBox {
       display: flex;
       flex-direction: column;
@@ -125,7 +196,69 @@ export default {
       }
     }
   }
-
+  .firstIn {
+    width: 6rem;
+    height: 7.32rem;
+    padding: 0 0.5rem;
+    background: url(../img/firstIn.png);
+    background-size: 100% 100%;
+    position: relative;
+    .close {
+      display: block;
+      width: 0.79rem;
+      height: 0.78rem;
+      background: url(../img/close.png);
+      background-size: 100% 100%;
+      position: absolute;
+      right: 0.44rem;
+      top: 0;
+    }
+    .firstInTitle {
+      margin-top: 0.79rem;
+      text-align: center;
+      color: #330D0E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .liner_l {
+        width: 1.67rem;
+        height: 0.21rem;
+        background: url(../img/liner_l2.png);
+        background-size: 100% 100%;
+        margin-right: 0.15rem;
+      }
+      strong {
+        flex: 1;
+        font-size: 0.28rem;
+      }
+      .liner_r {
+        width: 1.67rem;
+        height: 0.21rem;
+        background: url(../img/liner_r2.png);
+        background-size: 100% 100%;
+        margin-left: 0.15rem;
+      }
+    }
+    .imgBox {
+      width: 2.79rem;
+      height: 2.64rem;
+      margin: 0.23rem auto 0;
+    }
+    .firstTips {
+      font-size: 0.28rem;
+      color: #96451D;
+      padding: 0 0.5rem;
+    }
+    .join {
+      width: 3.03rem;
+      height: 0.94rem;
+      text-align: center;
+      line-height: 0.94rem;
+      background: url(../img/join.png);
+      background-size: 100% 100%;
+      margin: 0.2rem auto 0;
+    }
+  }
   img {
     display: block;
     width: 100%;

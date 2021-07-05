@@ -32,10 +32,10 @@ export default {
 
     name1: "Keberuntungan",
     name2: "Semanggi",
-    name3: "Semanggi berdaun empat",
+    name3: "Semanggi berdaun 4",
     name4: "Bintang Kecil",
     name5: "Asteroid Kecil",
-    name6: "Bintang Keberuntungan",
+    name6: "Lucky star",
     name7: "Cahaya Pagi",
     name8: "Cahaya Lembut",
     name9: "Cahaya Kuat",
