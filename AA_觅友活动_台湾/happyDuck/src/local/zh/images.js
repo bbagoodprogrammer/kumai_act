@@ -1,0 +1,15 @@
+export default {
+    act_title: require('./img/act_title.png'),
+    award_dialog_title: require('./img/award_dialog_title.png'),
+    duck_send_gift: require('./img/duck_send_gift.png'),
+    first_dialog_bg: require('./img/first_dialog_bg.png'),
+    list_bg: require('./img/list_bg.png'),
+    record_dialog_bg: require('./img/record_dialog_bg.png'),
+    rule_dialog_bg: require('./img/rule_dialog_bg.png'),
+    step_award: require('./img/step_award.png'),
+    feed10: require('./img/feed10.png'),
+    feed1: require('./img/feed1.png'),
+    first_dialog_btn: require('./img/first_dialog_btn.png'),
+    receive_duck: require('./img/receive_duck.png'),
+    feed_again: require('./img/feed_again.png'),
+}

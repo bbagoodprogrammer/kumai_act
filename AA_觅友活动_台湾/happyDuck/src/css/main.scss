@@ -1,0 +1,80 @@
+@import "./reset.css";
+
+body {
+    // color: $text-gray;
+    // background: $bg;
+}
+
+a {
+    color: $skin;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+
+#app {
+    max-width: 750px;
+    margin: auto;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+.bounce-enter-active {
+    transition: opacity .3s;
+    .content {
+        animation: bounce .3s;
+    }
+}
+.bounce-leave-active {
+    transition: opacity .3s;
+    .content {
+        animation: bounce .3s reverse;
+    }
+}
+
+.page {
+    box-sizing: border-box;
+}
+
+// 从协议组件抽取出来避免重复打包
+.pageAgreement {
+    color: #666;
+    background: #fff;
+    padding: $page-padding;
+    line-height: 1.4em;
+    h5,
+    h6 {
+        color: $text-black;
+        font-weight: bold;
+    }
+    h5 {
+        text-align: center;
+        font-size: 110%;
+        padding: 0.1rem 0 0.2rem 0;
+    }
+    h6 {
+        font-size: 90%;
+        padding: 0.1rem 0;
+    }
+    p {
+        font-size: 90%;
+        padding: 0.1rem 0;
+        text-indent: 2em;
+        &.list {
+            text-indent: 0;
+            padding-left: 2em;
+        }
+    }
+}

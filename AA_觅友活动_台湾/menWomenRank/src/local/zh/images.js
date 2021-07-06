@@ -1,0 +1,18 @@
+export default {
+    header_title: require('./img/header_title.png'),
+    last_man_woman: require('./img/last_man_woman.png'),
+    man_tab: require('./img/man_tab.png'),
+    man_tab_select: require('./img/man_tab_select.png'),
+    woman_tab: require('./img/woman_tab.png'),
+    woman_tab_select: require('./img/woman_tab_select.png'),
+    party: require('./img/party.png'),
+    active: require('./img/active.png'),
+    join_party: require('./img/join_party.png'),
+    sign: require('./img/sign.png'),
+    woman_sign: require('./img/woman_sign.png'),
+    rule_dialog_title: require('./img/rule_dialog_title.png'),
+    rule: require('./img/rule.png'),
+    rule_select: require('./img/rule_select.png'),
+    award: require('./img/award.png'),
+    award_select: require('./img/award_select.png'),
+}

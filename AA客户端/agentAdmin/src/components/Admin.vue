@@ -35,8 +35,15 @@
       </el-header>
       <el-main class="main">
         <!-- .slice((curPage -1)*pagesize,curPage*pagesize -->
-        <el-table :data="tableData" :border='false' style="width: 100%" stripe :header-cell-style="{color:'#121212',fontFamily:'MicrosoftYaHeiUI',fontSize:'14px',fontWeight:900, textAlign: 'center'}">
-          <el-table-column fixed prop="nick" label="Nickname" width="132" :max-height="81">
+        <el-table :data="tableData" :border='false' style="width: 100%" ref="Dorefresh" stripe
+          :header-cell-style="{color:'#121212',fontFamily:'MicrosoftYaHeiUI',fontSize:'14px',fontWeight:900, textAlign: 'center'}">
+          <el-table-column :fixed="index == 0" v-for="(item,index) in filterConfig" :key="index" :label="item.colunm_name" :max-height="81" :width="colunmWidth[index]">
+            <template slot-scope="scope">
+              <img :src="scope.row.avatar" alt="" class="userImg" v-if="item.data_name == 'avatar'" />
+              <div v-else>{{scope.row[item.data_name]}}</div>
+            </template>
+          </el-table-column>
+          <!-- <el-table-column fixed prop="nick" label="Nickname" width="132" :max-height="81">
           </el-table-column>
           <el-table-column prop="uid" label="UID" width="110" max-width="132" min-width="110" :max-height="81">
           </el-table-column>
@@ -68,7 +75,7 @@
           <el-table-column prop="withdrawCash" label="Withdraw" width="162" :max-height="81">
           </el-table-column>
           <el-table-column prop="income" label="Agent  Fee" width="162" :max-height="81">
-          </el-table-column>
+          </el-table-column> -->
           <div slot="empty" class="empty">
             <img src="../img/icon_empty.png" />
           </div>
@@ -110,14 +117,29 @@ export default {
       errStr: '',
       createdFirst: true,
       fullscreenLoading: false,
-      totolNums: 0
+      totolNums: 0,
+      config: {},
+      colunmWidth: [132, 110, 110, 164, 164, 143, 164, 162, 164, 164, 162, 162, 162, 162, 162]
     }
   },
   created () {
     this.getList('creat', 1)
     window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
   },
+  mounted () {
+    setTimeout(() => {
+      this.$nextTick(() => {
+        console.log(this.$refs.Dorefresh)
+        this.$refs.Dorefresh.doLayout()
+      })
+    }, 100)
+  },
   computed: {
+    filterConfig () {
+      return this.config.table.filter((a) => {
+        return a.status == 1
+      })
+    },
     aid () {
       return getUrlString('aid') || ''
     },
@@ -137,6 +159,7 @@ export default {
           }
           this.totolNums = res.data.response_data.total
           this.tableData = res.data.response_data.list
+          this.config = res.data.response_data.config
         } else {
           this.dialogVisible = true
           this.errStr = res.data.response_status.error
