@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer" :class="{noData:!listItem.length}">
     <span v-if="actStatus == 1" class="btnBg">{{lang.notStart}}</span>
     <span v-if="actStatus == 2" class="btnBg">{{lang.actEnd}}</span>
     <span v-if="actStatus == 3" class="btnBg singUp" @click="singUp()">{{lang.singUp}}</span>
@@ -25,8 +25,9 @@ import { mapState } from "vuex"
 import { singUp } from "../apis"
 
 export default {
+  props: ['listItem'],
   computed: {
-    ...mapState(['owner', 'activity']),
+    ...mapState(['owner', 'activity', 'rank']),
     actStatus () {
       if (this.activity.activity_status == 0) {
         return 1
@@ -41,22 +42,22 @@ export default {
     getLevel () {
       const _lv = this.owner.wealth_lv;
       if (_lv > 0 && _lv < 10) {
-        return '1'
+        return '0'
       }
       if (_lv >= 10 && _lv < 20) {
-        return '2'
+        return '1'
       }
       if (_lv >= 20 && _lv < 30) {
-        return '3'
+        return '2'
       }
       if (_lv >= 30 && _lv < 40) {
-        return '4'
+        return '3'
       }
       if (_lv >= 40 && _lv < 50) {
-        return '5'
+        return '4'
       }
       if (_lv >= 50) {
-        return '6'
+        return '5'
       }
     },
   },
@@ -64,7 +65,8 @@ export default {
     singUp () {
       singUp().then(res => {
         if (res.data.response_status.code == 0) {
-          this.toast(this.lang.singUpSuc)
+          const team_id = res.data.response_data.team_id
+          this.toast(this.lang.singUpSuc.replace('%n', this.rank[team_id - 1].name).replace('%s', this.rank[team_id - 1].score).replace('%b', this.rank[team_id - 1].rank))
           setTimeout(() => {
             this.$store.dispatch('getInitInfo');
           }, 800)
@@ -84,8 +86,10 @@ export default {
   background: url(../img/footer.png);
   background-size: 100% 100%;
   margin-top: -0.8rem;
-  position: relative;
+  position: fixed;
+  bottom: 0;
   padding-top: 0.7rem;
+  z-index: 111;
   .btnBg {
     display: block;
     width: 2.94rem;
@@ -147,6 +151,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 0.1rem;
         img {
           width: 0.45rem;
           height: 0.45rem;

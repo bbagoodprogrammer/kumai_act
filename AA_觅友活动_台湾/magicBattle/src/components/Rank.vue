@@ -33,8 +33,8 @@
       </div>
     </div>
     <p class="noData" v-if="!listItem.length">{{lang.noData}}</p>
-    <div class="listRankItem" :class="'type' + type">
-      <ul class="listrank" v-show="listItem.length">
+    <div class="listRankItem" :class="'type' + type" v-show="listItem.length">
+      <ul class="listrank">
         <li v-for="(item,index) in listItem" :key="index" :class="'rank'+item.rank">
           <div class="userRank">{{item.rank}}</div>
           <div class="imgBox">
@@ -45,7 +45,7 @@
         </li>
       </ul>
     </div>
-    <Footer />
+    <Footer :listItem="listItem" />
   </div>
 </template>
 
@@ -90,22 +90,22 @@ export default {
     getLevel (_lv) {
       console.log(_lv)
       if (_lv > 0 && _lv < 10) {
-        return '1'
+        return '0'
       }
       if (_lv >= 10 && _lv < 20) {
-        return '2'
+        return '1'
       }
       if (_lv >= 20 && _lv < 30) {
-        return '3'
+        return '2'
       }
       if (_lv >= 30 && _lv < 40) {
-        return '4'
+        return '3'
       }
       if (_lv >= 40 && _lv < 50) {
-        return '5'
+        return '4'
       }
       if (_lv >= 50) {
-        return '6'
+        return '5'
       }
     },
   }
@@ -268,6 +268,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-top: 0.1rem;
         img {
           width: 0.45rem;
           height: 0.45rem;
@@ -305,6 +306,7 @@ export default {
   }
   .noData {
     text-align: center;
+    margin-top: 0.3rem;
   }
   .listRankItem {
     position: relative;

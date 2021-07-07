@@ -53,6 +53,7 @@
           </div>
           <p class="firstTips">{{lang.firstTips}}</p>
           <div class="join" @click="singUp()">{{lang.join}}</div>
+          <p class="singUpTips">{{lang.singUpTips}}</p>
         </div>
       </transition>
     </div>
@@ -70,6 +71,8 @@ import History from "./History"
 import Rule from "./Rule"
 import RoolMsg from "./RoolMsg"
 
+
+
 export default {
   components: { MagicLand, Otsuge, Rank, History, Rule, RoolMsg },
   data () {
@@ -81,11 +84,17 @@ export default {
     }
   },
   computed: {
-    ...mapState(['activity', 'owner'])
+    ...mapState(['activity', 'owner', 'rank']),
   },
   watch: {
     activity (val) {
       this.downTimeGo('time', val.seconds)
+    },
+    owner (val) {
+      console.log(val)
+      if (val.team_id == 0) {
+        this.first = true
+      }
     }
   },
   methods: {
@@ -106,7 +115,8 @@ export default {
     singUp () {
       singUp().then(res => {
         if (res.data.response_status.code == 0) {
-          this.toast(this.lang.singUpSuc)
+          const team_id = res.data.response_data.team_id
+          this.toast(this.lang.singUpSuc.replace('%n', this.rank[team_id - 1].name).replace('%s', this.rank[team_id - 1].score).replace('%b', this.rank[team_id - 1].rank))
           this.first = false
           setTimeout(() => {
             this.$store.dispatch('getInitInfo');
@@ -124,6 +134,7 @@ export default {
 .pageIndex {
   background: RGBA(21, 0, 54, 1) url(../img/bg.png) no-repeat 0 3.08rem;
   background-size: 100% auto;
+  padding-bottom: 2rem;
   .header {
     height: 4.36rem;
     position: relative;
@@ -214,7 +225,7 @@ export default {
       top: 0;
     }
     .firstInTitle {
-      margin-top: 0.79rem;
+      margin-top: 0.5rem;
       text-align: center;
       color: #330D0E;
       display: flex;
@@ -242,12 +253,21 @@ export default {
     .imgBox {
       width: 2.79rem;
       height: 2.64rem;
-      margin: 0.23rem auto 0;
+      margin: 0.13rem auto 0;
+      background: url(../img/first.png);
+      background-size: 100% 100%;
     }
     .firstTips {
       font-size: 0.28rem;
       color: #96451D;
       padding: 0 0.5rem;
+      line-height: 0.34rem;
+      margin-top: 0.06rem;
+    }
+    .singUpTips {
+      text-align: center;
+      color: #561C26;
+      font-size: 0.24rem;
     }
     .join {
       width: 3.03rem;
@@ -256,7 +276,7 @@ export default {
       line-height: 0.94rem;
       background: url(../img/join.png);
       background-size: 100% 100%;
-      margin: 0.2rem auto 0;
+      margin: 0 auto;
     }
   }
   img {

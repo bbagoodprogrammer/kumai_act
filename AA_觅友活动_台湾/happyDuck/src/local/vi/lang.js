@@ -12,7 +12,7 @@ export default {
     award_title_6: "Đăng quang(3 ngày)",
     award_title_7: "Đàn vịt ngang qua(1 ngày)",
     award_title_8: "88 đậu",
-    award_title_9: "30 xu",
+    award_title_9: "25 xu",
     award_des_1: "",
     award_des_2: "Qùa động",
     award_des_3: "Qùa động",

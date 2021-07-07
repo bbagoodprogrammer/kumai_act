@@ -10,8 +10,8 @@ export default {
     notStart: "活動未開始",
     actEnd: "活動已結束",
     singUp: "點擊報名",
-    singUpSuc: "報名成功！",
-
+    singUpSuc: "你已成為%n魔法師！,當前派系戰鬥力為%s,排名第%b",
+    singUpTips: "*參加活動後，魔法師被隨機分到不同派系中",
     //history
     history_title: "戰鬥力紀錄",
     history_type: {
@@ -26,7 +26,7 @@ export default {
     index_downTm: "戰鬥結束倒計時",
     firstTipsTitle: "欢迎来到魔法世界",
     firstTips:
-        "欢迎来到魔法世界欢迎来到魔法世界,欢迎来到魔法世界欢迎来到魔法世界,欢迎来到魔法世界",
+        "魔法世界由派系的魔法師組成——火系、風系、冰系，火系粗獷、風系凌厲、冰系幽寒，各顯神威，相互牽制，但究竟是哪一派最強呢？",
     join: "進入魔法世界",
 
     //MagicLand
@@ -38,7 +38,8 @@ export default {
     synthesisSucTips: "恭喜合成【%n*%s】,禮物已發放到您的背包，請查收",
 
     //Otsuge
-    otsuge_tips: "  每天可免費占卜一次，<br />當玩家今天增加%s戰鬥力即可占卜",
+    otsuge_tips:
+        "每天可免費占卜一次，<br />當玩家今天收到%s金幣指定禮物即可占卜",
     outs: "占卜",
     outsIng: "占卜中",
     outsEd: "占卜結果",

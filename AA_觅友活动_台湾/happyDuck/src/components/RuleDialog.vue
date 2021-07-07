@@ -51,37 +51,37 @@ export default {
 
   computed: {
     ...mapState(["initData"]),
-    getActTime() {
+    getActTime () {
       let sTime = dateFormat(this.lang.s_time, this.initData.sTime * 1000);
       let eTime = dateFormat(this.lang.e_time, this.initData.eTime * 1000);
       return this.lang.act_time.replace('%s', sTime + "-" + eTime)
     },
   },
 
-  data() {
+  data () {
     return {
       ruleGifts: []
     };
   },
 
-  created() {
+  created () {
     this.ruleGifts = window._ruleGifts
     document.body.style.overflow = "hidden";
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     document.body.style.overflow = "";
   },
 
   methods: {
-    getBrHtml(text) {
+    getBrHtml (text) {
       if (!text) {
         return;
       }
       return text.replace(/\n/g, "<br>");
     },
 
-    handleCloseDialog() {
+    handleCloseDialog () {
       this.$emit("update:visible", false);
     },
   },
@@ -203,7 +203,7 @@ export default {
             }
           }
           .award_title {
-            min-height: 0.31rem;
+            min-height: 0.6rem;
             font-size: 0.26rem;
             font-weight: 400;
             color: #653516;

@@ -13,10 +13,10 @@
         </div>
         <div class="science" v-for="(item,index) in nowGift.gifts" :key="index" :class="'science' + index">
           <div class="imgBox">
-            <img :src="synthesis.gifts[item.gid].image" alt="">
+            <img :src="synthesis.gifts[item.id].image" alt="">
             <div class="nums">x{{item.num}}</div>
           </div>
-          <strong>{{lang.surplus}} <em>{{synthesis.gifts[item.gid].num}}</em></strong>
+          <strong>{{lang.surplus}} <em>{{synthesis.gifts[item.id].num}}</em></strong>
         </div>
       </div>
       <div class="con">
@@ -33,7 +33,7 @@
         <strong>{{item.name}}</strong>
       </div>
     </div>
-    <div class="synthesis" @click="synthesisGift()">
+    <div class="synthesis" @click="synthesisGift()" :class="{black:nowGift.num <= 0}">
       {{lang.synthesis}}
     </div>
 
@@ -280,6 +280,10 @@ export default {
     line-height: 0.95rem;
     margin: 0.23rem auto 0;
     font-size: 0.39rem;
+    &.black {
+      background: url(../img/notAct.png);
+      background-size: 100% 100%;
+    }
   }
   .synthesisGift {
     width: 5.53rem;
