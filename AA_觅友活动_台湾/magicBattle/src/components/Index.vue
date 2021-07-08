@@ -1,5 +1,6 @@
 <template>
   <div class="page pageIndex">
+    <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     <div class="header">
       <RoolMsg />
       <div class="ruleTips">
@@ -80,7 +81,9 @@ export default {
       first: false,
       surplusTime: {},
       showHistory: false,
-      showRule: false
+      showRule: false,
+      rotatePx: 0,    //刷新旋转动画
+      rotatec: 0,
     }
   },
   computed: {
@@ -125,7 +128,11 @@ export default {
           this.toast(res.data.response_status.error)
         }
       })
-    }
+    },
+    onRefresh (val) {
+      this.rotatePx = 540 * ++this.rotatec  //旋转动画
+      this.$store.dispatch('getInitInfo');
+    },
   }
 }
 </script>
@@ -283,5 +290,18 @@ export default {
     display: block;
     width: 100%;
   }
+}
+#refresh {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  position: fixed;
+  right: 0.08rem;
+  bottom: 2rem;
+  background: url(../img/refresh.png) no-repeat;
+  background-size: contain;
+  transition: all 1s;
+  text-indent: -999rem;
+  z-index: 100;
 }
 </style>

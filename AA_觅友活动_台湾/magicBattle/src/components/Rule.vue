@@ -12,9 +12,27 @@
           <h6>{{item.h6}}</h6>
           <p v-html="item.p"></p>
           <p v-html="item.p2" v-if="item.p2"></p>
+          <div class="rule_table" v-if="index == 1"></div>
+          <div class="giftArr" v-if="index == 0">
+            <div class="giftItem" v-for="(item,index) in giftArr" :key="index">
+              <div class="imgBox">
+                <img :src="item.img" alt="">
+              </div>
+              <strong v-html="item.name"></strong>
+            </div>
+          </div>
         </div>
       </div>
       <div class="giftItem" v-else>
+        <h6>{{lang.rank_giftTitle}}</h6>
+        <div class="giftArr two">
+          <div class="giftItem" v-for="(item,index) in giftArr2" :key="index">
+            <div class="imgBox">
+              <img :src="item.img" alt="">
+            </div>
+            <strong v-html="item.name"></strong>
+          </div>
+        </div>
         <div v-for="(item,index) in lang.giftItem" :key="index">
           <h6>{{item.h6}}</h6>
           <p v-html="item2" v-for="(item2,index2) in item.p" :key="index2"></p>
@@ -31,15 +49,24 @@ export default {
     return {
       type: 1
     }
+  },
+  computed: {
+    giftArr () {
+      return this.lang.giftArr
+    },
+    giftArr2 () {
+      return this.lang.giftArr2
+    }
   }
+
 }
 </script>
 
 <style lang="scss" scoped>
 .rule {
-  width: 6.16rem;
+  width: 6.36rem;
   height: 7.33rem;
-  padding: 0.69rem 0.5rem 0;
+  padding: 0.69rem 0.45rem 0;
   background: url(../img/ruleBg.png);
   background-size: 100% 100%;
   position: relative;
@@ -47,6 +74,40 @@ export default {
     text-align: center;
     color: #96451D;
     font-size: 0.26rem;
+  }
+  .giftArr {
+    padding: 0 0.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 0.25rem;
+    &.two {
+      .giftItem:nth-child(1) {
+        margin-left: 1rem;
+      }
+      .giftItem:nth-child(2) {
+        margin-right: 1rem;
+      }
+    }
+    .giftItem {
+      width: 1.54rem;
+      .imgBox {
+        width: 1.54rem;
+        height: 1.54rem;
+        background: url(../img/ruleImgBg.png);
+        background-size: 100% 100%;
+        img {
+          width: 1.54rem;
+          height: 1.54rem;
+        }
+      }
+      strong {
+        display: block;
+        color: #613610;
+        font-size: 0.26rem;
+        text-align: center;
+      }
+    }
   }
   .tab {
     height: 0.68rem;

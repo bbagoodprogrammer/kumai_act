@@ -146,7 +146,7 @@ export default {
           font-size: 0.24rem;
           color: rgba(108, 113, 255, 1);
           margin-top: -0.2rem;
-          em {
+          > em {
             display: block;
             font-size: 0.24rem;
             color: rgba(254, 196, 27, 1);
@@ -157,6 +157,10 @@ export default {
             }
             &.gift_tips {
               color: #6C71FF;
+              em {
+                font-size: 0.28rem;
+                color: rgba(254, 196, 27, 1);
+              }
             }
           }
         }

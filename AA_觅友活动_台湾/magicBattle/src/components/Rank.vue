@@ -3,7 +3,7 @@
     <div class="rankLiner">
       <div class="linerBg"></div>
       <div class="liner">
-        <span v-for="(item,index) in rank" :key="index" :class="'line' + index" :style="{width:item.score / totalScore * 100+'%'}"></span>
+        <span v-for="(item,index) in rank" :key="index" :class="'line' + index" :style="{width:totalScore == 0?'33.3%':item.score / totalScore * 100+'%'}"></span>
       </div>
     </div>
     <div class="rankScore">

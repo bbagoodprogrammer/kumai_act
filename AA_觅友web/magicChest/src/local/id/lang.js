@@ -35,7 +35,8 @@
             unit: "%s Energi/koin" //100 Energi/koin
         }
     },
-    giftTips: "Dapat hadiah <span>1</span> secara acak<span>1</span>", //Dapatkan 1 hadiah secara acak
+    // <span>1</span>
+    giftTips: "Dapat <span>1</span> hadiah secara acak", //Dapatkan 1 hadiah secara acak
     uncommon: "Langka", //Langka
     energy: "Energi", //Energi：
     openEnergyTips: "Buka kotak utk terima hadiah sihir", //Buka kotak utk terima hadiah sihir
@@ -47,9 +48,9 @@
 
     rule: "Aturan", //Aturan
     rule_li: [
-        "Selesaikan tugas sihir utk dapatkan energi utk buka kotak sihir dan dapatkan hadiah sihir.Dapat melemparkan sihir ke objek, dan akan ada efek menarik setelah beri hadiah；",
-        "Tugas sihir di update setiap hari pd 00:00，bisa diguna ulang，energi yg tak dikonsumsi pd hari itu tak valid；",
-        "Konsumsi 200 energi dapat buka kotak sihir sekali，berkesempatan utk dapat sebuah hadiah sihir；<em>Pasti akan dapatkan hadiah sihir langka jika pembukaan kali ke-5 pd hari itu；</em>"
+        "Selesaikan tugas sihir utk dapatkan energi utk buka kotak sihir dan dapatkan hadiah sihir.Dapat melemparkan sihir ke pacar, dan akan ada efek menarik setelah beri hadiah；",
+        "Tugas sihir update pd pkl 00:00,bisa selesai ulang,energi yg tak dikonsumsi pd hari itu akan tak valid.",
+        "Konsumsi 200 energi dapat buka kotak sihir sekali，berkesempatan utk dapat sebuah hadiah sihir；<em>Pasti akan dapatkan sebuah hadiah langka jika dibuka untuk kelima kalinya hari itu.</em>"
     ],
     giftTitle: "Hadiah sihir", //Hadiah sihir
     giftName: "Nama hadiah", //Nama hadiah

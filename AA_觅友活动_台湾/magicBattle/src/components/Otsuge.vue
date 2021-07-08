@@ -77,7 +77,7 @@ export default {
                 this.player.stop()
                 this.outType = 2
                 //this.$store.dispatch('getInitInfo');
-              }, 1000)
+              }, 2000)
             } else {
               this.toast(res.data.response_status.error)
             }
@@ -188,6 +188,7 @@ export default {
     strong {
       display: block;
       text-align: center;
+      padding: 0 0.25rem;
       &.scoreMsg {
         font-size: 0.32rem;
         color: #391414;

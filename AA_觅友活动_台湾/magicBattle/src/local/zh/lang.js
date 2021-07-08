@@ -30,7 +30,7 @@ export default {
     join: "進入魔法世界",
 
     //MagicLand
-    MagicLand_addScore: "作用%n，合成後可<br />增加%s戰鬥力",
+    MagicLand_addScore: "%n,+%s戰鬥力",
     surplus: "剩餘",
     synthesis: "合成",
     synthesisTips: "合成後，禮物會發放到背包中",
@@ -61,6 +61,7 @@ export default {
     rule_tm: "活動時間：5月10日-5月20日",
     rule_tab1: "規則",
     rule_tab2: "獎勵",
+    rank_giftTitle: "榜單獎勵",
     ruleItem: [
         {
             h6: "1、如何參與獲得戰鬥力",
@@ -105,6 +106,54 @@ export default {
             p: [
                 "第一名：頭像框（10天）+勛章（10天）+座駕（10天）+特效禮物（一人一個）"
             ]
+        }
+    ],
+    giftArr: [
+        {
+            img: require(`../../img/ruleImg/1.png`),
+            name: "羽毛<br/>+200戰鬥力"
+        },
+        {
+            img: require(`../../img/ruleImg/2.png`),
+            name: "魔法杖<br/>+1500戰鬥力"
+        },
+        {
+            img: require(`../../img/ruleImg/3.png`),
+            name: "隱形斗篷<br/>+2000戰鬥力"
+        },
+        {
+            img: require(`../../img/ruleImg/4.png`),
+            name: "神奇藥水<br/>+3000戰鬥力"
+        },
+        {
+            img: require(`../../img/ruleImg/5.png`),
+            name: "南瓜怪<br/>+8000戰鬥力"
+        },
+        {
+            img: require(`../../img/ruleImg/6.png`),
+            name: "魔法書<br/>+12000戰鬥力"
+        }
+    ],
+    giftArr2: [
+        {
+            img: require(`../../img/ruleImg/7.png`),
+            name: "頭像框<br/>(冠亞季軍有別)"
+        },
+        {
+            img: require(`../../img/ruleImg/8.png`),
+            name: "魔法師<br/>勛章"
+        },
+        {
+            img: require(`../../img/ruleImg/9.png`),
+            name: "魔法守護神<br/>特效禮物"
+        },
+        {
+            img: require(`../../img/ruleImg/10.png`),
+            name: "古代巨龍<br/>特效禮物"
+        },
+        {
+            img: require(`../../img/ruleImg/11.png`),
+            name: "烈焰火球鳥<br/>特效禮物"
         }
     ]
 };

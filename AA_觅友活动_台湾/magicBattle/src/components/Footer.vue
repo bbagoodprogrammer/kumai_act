@@ -3,7 +3,8 @@
     <span v-if="actStatus == 1" class="btnBg">{{lang.notStart}}</span>
     <span v-if="actStatus == 2" class="btnBg">{{lang.actEnd}}</span>
     <span v-if="actStatus == 3" class="btnBg singUp" @click="singUp()">{{lang.singUp}}</span>
-    <div class="userMsg" v-else-if="actStatus == 4">
+    <div class="userMsg" v-if="actStatus == 4">
+      <i class="rankName">{{rank[owner.team_id - 1]?rank[owner.team_id - 1].name:''}}</i>
       <div class="userRank">{{owner.rank}}</div>
       <div class="imgBox">
         <img v-lazy="owner.avatar" alt="">
@@ -112,7 +113,18 @@ export default {
     display: flex;
     align-items: center;
     position: relative;
-    margin-bottom: 0.17rem;
+    margin-top: 0.1rem;
+    .rankName {
+      width: 1.41rem;
+      height: 0.45rem;
+      background: url(../img/rankName3.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #FEC41B;
+      font-size: 0.26rem;
+    }
     .userRank {
       width: 0.58rem;
       height: 0.61rem;
