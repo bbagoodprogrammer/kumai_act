@@ -174,9 +174,12 @@ export default {
           background: url(../img/science_imgBg.png);
           background-size: 100% 100%;
           position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           img {
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            height: 80%;
           }
           .nums {
             font-size: 0.28rem;

@@ -1,3 +1,65 @@
 html.vi {
-    
+    letter-spacing: -0.01rem;
+    .header{
+        .ruleTips{
+            top: 4rem;
+            span{
+                width: 1.9rem;
+                font-size: .2rem;
+                white-space: nowrap;
+            }
+        }
+        .act_title{
+           width: 7.49rem;
+           height: 4.66rem; 
+           background: url(./img/act_title.png);
+           background-size: 100% 100%;
+        }
+    }
+    .tmStatus{
+        .liner_l{
+            margin-right: .3rem!important;
+        }
+        .liner_r{
+            margin-left: .3rem!important;
+        }
+        strong{
+            font-size: .2rem!important;
+        }
+    }
+    .otsugeTitle{
+        width: 7.48rem;
+        height: 1.58rem; 
+        background: url(./img/otsugeTitle.png);
+        background-size: 100% 100%;
+        margin: .24rem auto .23rem;
+    }
+    .lead{
+        display: block;
+        width: 1.65rem;
+        height: .65rem;
+        background: url(./img/lead.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: -.2rem;
+    }
+    .rule_table{
+        width: 6.36rem;
+        height: 2.85rem;
+        background: url(./img/table.png);
+        background-size: 100% 100%;
+        margin: 0.2rem auto;
+    }
+    .giftArr{
+        .giftItem{
+            strong{
+                font-size: .2rem!important;
+                width: 1.94rem;
+                margin-left: -0.2rem; 
+            }
+        }
+    }
+    .otherPeople{
+        margin-left: -.05rem;
+    }
 }

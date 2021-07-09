@@ -124,6 +124,7 @@ export default {
       left: 0;
       color: #FEC41B;
       font-size: 0.26rem;
+      text-align: center;
     }
     .userRank {
       width: 0.58rem;

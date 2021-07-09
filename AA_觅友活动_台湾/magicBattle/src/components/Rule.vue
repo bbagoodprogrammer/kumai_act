@@ -1,7 +1,7 @@
 <template>
   <div class="rule">
     <i class="close" @click="$parent.showRule = false"></i>
-    <p class="actTm">{{lang.rule_tm}}</p>
+    <p class="actTm">{{lang.rule_tm}}{{aTimer}}</p>
     <div class="tab">
       <span :class="{act:type == 1}" @click="type = 1">{{lang.rule_tab1}}</span>
       <span :class="{act:type == 2}" @click="type = 2">{{lang.rule_tab2}}</span>
@@ -38,12 +38,16 @@
           <p v-html="item2" v-for="(item2,index2) in item.p" :key="index2"></p>
         </div>
       </div>
+      <p class="lastTips">{{lang.lastTips}}</p>
     </div>
 
   </div>
 </template>
 
 <script>
+import getDate from "../utils/getDate"
+import { mapState } from "vuex"
+
 export default {
   data () {
     return {
@@ -51,6 +55,15 @@ export default {
     }
   },
   computed: {
+    ...mapState(['activity']),
+    aTimer () {
+      if (AREA == 'tw') {
+        return getDate(new Date(this.activity.stime * 1000), 1) + '-' + getDate(new Date(this.activity.etime * 1000), 1)
+      } else if (AREA == 'vn') {
+        return getDate(new Date(this.activity.stime * 1000), 2) + '-' + getDate(new Date(this.activity.etime * 1000), 2)
+      }
+
+    },
     giftArr () {
       return this.lang.giftArr
     },
@@ -150,5 +163,9 @@ export default {
     right: 0.44rem;
     top: 0;
   }
+}
+.lastTips {
+  text-align: center;
+  margin-top: 0.25rem;
 }
 </style>

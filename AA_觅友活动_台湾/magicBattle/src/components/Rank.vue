@@ -16,7 +16,7 @@
         <div class="top1Item" v-for="(item,index) in list_top1" :key="index" :class="[{act:type == index},'top1_'+index]" @click="type = index">
           <i class="lead" v-if="rank[index].rank == 1"></i>
           <div class="name">{{item.name}} {{lang.rank_group}}</div>
-          <div class="imgBox">
+          <div class="imgBox" @click="goUser(item.user.uid)">
             <img v-lazy="item.user.avatar" alt="">
           </div>
           <div class="nick">{{item.user.nick?item.user.nick:lang.empty}}</div>
@@ -34,16 +34,19 @@
     </div>
     <p class="noData" v-if="!listItem.length">{{lang.noData}}</p>
     <div class="listRankItem" :class="'type' + type" v-show="listItem.length">
-      <ul class="listrank">
-        <li v-for="(item,index) in listItem" :key="index" :class="'rank'+item.rank">
-          <div class="userRank">{{item.rank}}</div>
-          <div class="imgBox">
-            <img v-lazy="item.avatar" alt="">
-          </div>
-          <div class="nick">{{item.nick}}</div>
-          <div class="score"><i></i><strong>{{item.score}}</strong></div>
-        </li>
-      </ul>
+      <div class="listCon">
+        <ul class="listrank">
+          <li v-for="(item,index) in listItem" :key="index" :class="'rank'+item.rank">
+            <div class="userRank">{{item.rank}}</div>
+            <div class="imgBox" @click="goUser(item.uid)">
+              <img v-lazy="item.avatar" alt="">
+            </div>
+            <div class="nick">{{item.nick}}</div>
+            <div class="score"><i></i><strong>{{item.score}}</strong></div>
+          </li>
+        </ul>
+      </div>
+
     </div>
     <Footer :listItem="listItem" />
   </div>
@@ -87,6 +90,14 @@ export default {
 
   },
   methods: {
+    goUser (uid) { //跳转
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
+      }
+    },
     getLevel (_lv) {
       console.log(_lv)
       if (_lv > 0 && _lv < 10) {
@@ -143,11 +154,11 @@ export default {
           background-size: auto 100%;
         }
         &.line1 {
-          background: url(../img/color2.png);
+          background: url(../img/color3.png);
           background-size: auto 100%;
         }
         &.line2 {
-          background: url(../img/color3.png);
+          background: url(../img/color2.png);
           background-size: auto 100%;
         }
       }
@@ -199,6 +210,7 @@ export default {
         &.top1_1 {
           background: url(../img/top2.png);
           background-size: 100% 100%;
+          margin-left: -0.15rem;
           &.act {
             width: 2.77rem;
             height: 4.5rem;
@@ -210,6 +222,7 @@ export default {
         &.top1_2 {
           background: url(../img/top3.png);
           background-size: 100% 100%;
+          margin-left: -0.15rem;
           &.act {
             width: 2.77rem;
             height: 4.5rem;
@@ -347,13 +360,16 @@ export default {
       left: 5.2rem;
     }
   }
-  .listRankItem .listrank {
+  .listCon {
     width: 6.74rem;
     height: 7.3rem;
     background: url(../img/listrank.png);
     background-size: 100% 100%;
     margin: 0 auto;
     padding: 0.2rem 0.2rem 0;
+  }
+  .listRankItem .listrank {
+    height: 6.9rem;
     overflow-y: scroll;
     position: relative;
     li {

@@ -32,7 +32,7 @@ export default {
 
     name1: "Keberuntungan",
     name2: "Semanggi",
-    name3: "Semanggi berdaun 4",
+    name3: "Four leaf clover",
     name4: "Bintang Kecil",
     name5: "Asteroid Kecil",
     name6: "Lucky star",

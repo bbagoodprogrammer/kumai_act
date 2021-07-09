@@ -1,0 +1,53 @@
+html.zh {
+    .slice1::before {
+        content: '';
+        display: block;
+        width: 7.5rem;
+        height: 12.32rem;
+        background: url(./img/sliceImg1.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: 2.31rem;
+      }
+      .slice2::before {
+        content: '';
+        display: block;
+        width: 7.5rem;
+        height: 10.59rem;
+        background: url(./img/sliceImg2.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: 2.92rem;
+      }
+      .slice3::before {
+        content: '';
+        display: block;
+        width: 7.5rem;
+        height: 17.13rem;
+        background: url(./img/sliceImg3.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: 1.23rem;
+      }
+      .slice4::before {
+        content: '';
+        display: block;
+        width:4.62rem;
+        height: 8.95rem;
+        background: url(./img/sliceImg4.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: .4rem;
+      }
+      .slice5::before {
+        content: '';
+        display: block;
+        width:4.58rem;
+        height: 8.54rem;
+        background: url(./img/sliceImg5.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: 3.57rem;
+        left: 1.46rem;
+      }
+}

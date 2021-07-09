@@ -6,6 +6,7 @@
       <strong>{{lang.history_title}}</strong>
       <i class="liner_r"></i>
     </div>
+    <p class="noData">{{lang.history_noData}}</p>
     <ul class='scrollable'>
       <li v-for="(item,index) in list" :key="index">
         <span class="msg">{{type[item.type].replace('%n',item.name).replace('%s',item.num).replace('%b',item.score)}}</span>
@@ -98,6 +99,11 @@ export default {
     position: absolute;
     right: 0.44rem;
     top: 0;
+  }
+  .noData {
+    text-align: center;
+    margin-top: 0.5rem;
+    color: #330D0E;
   }
   .firstInTitle {
     margin-top: 0.79rem;

@@ -17,7 +17,7 @@
 
     <div class="mask" v-show="showOutsPup">
       <transition name="slide">
-        <div class="outsIng" v-show="showOutsPup">
+        <div class="outsIng" :class="{opened:outType == 2}" v-show="showOutsPup">
           <i class="close" @click="closePup()"></i>
           <div class="outsTitle">
             <i class="liner_l"></i>
@@ -25,7 +25,7 @@
             <i class="liner_r"></i>
           </div>
           <!-- <div class="pupBall"></div> -->
-          <canvas id='pupBall'></canvas>
+          <canvas id='pupBall' v-show="outType ==1"></canvas>
           <div class="outsTips" v-if="outType == 2">
             <strong class="msg">{{lang.outsDddres}}{{msg}}</strong>
             <strong class="scoreMsg">{{lang.outsScore}}+{{score}}</strong>
@@ -130,6 +130,12 @@ export default {
     margin-left: -0.4rem;
     color: #6C71FF;
     font-size: 0.24rem;
+    .msg {
+      i {
+        font-size: 0.24rem;
+        color: #FEC41B;
+      }
+    }
     .outsBtn {
       width: 2.56rem;
       height: 0.69rem;
@@ -153,6 +159,10 @@ export default {
   background: url(../img/outsBg.png);
   background-size: 100% 100%;
   position: relative;
+  &.opened {
+    background: url(../img/outsBg2.png);
+    background-size: 100% 100%;
+  }
   .outsTitle {
     margin-top: 0.79rem;
     text-align: center;
@@ -185,6 +195,11 @@ export default {
     margin: 0 auto;
   }
   .outsTips {
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     strong {
       display: block;
       text-align: center;
