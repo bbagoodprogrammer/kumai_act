@@ -1,6 +1,6 @@
 <template>
   <div class="rankGroups">
-    <!-- <div :style="{background:'#7a68f8',height:navigatorHeight}"></div> -->
+    <div :style="{background:'#7a68f8',height:navigatorHeight}"></div>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{lang.day_data}}</a>
@@ -86,10 +86,10 @@
     </div>
 
     <van-popup v-model="show" position="bottom" round :style="{ height: '40%' }">
-      <van-datetime-picker v-if="mainTab==0" v-model="currentDateDay" type="date" title="" :min-date="minDate" :max-date="maxDate" :confirm-button-text=lang.confirm :cancel-button-text=lang.cancel
+      <van-datetime-picker v-if="mainTab==0" v-model="currentDateDay" type="date" title="" :min-date="minDate" :max-date="maxDate" :confirm-button-text="lang.confirm" :cancel-button-text="lang.cancel"
         @confirm="confirmTime(0)" @cancel="cancelTime()" :swipe-duration="50" />
-      <van-datetime-picker v-if="mainTab==1" v-model="currentDate" type="year-month" title="" :min-date="minDate" :max-date="maxDate" :confirm-button-text=lang.confirm :cancel-button-text=lang.cancel
-        @confirm="confirmTime(1)" @cancel="cancelTime()" :swipe-duration="50" />
+      <van-datetime-picker v-if="mainTab==1" v-model="currentDate" type="date" :min-date="minDateMounth" :max-date="maxDateMounth" :confirm-button-text="setType == 1?'下一步':lang.confirm"
+        :cancel-button-text="lang.cancel" @confirm="confirmTime(1)" @cancel="cancelTime()" :swipe-duration="50" :title="setType == 1?'篩選開始時間':'篩選結束時間'" />
     </van-popup>
 
     <van-popup v-model="rule_show" position="bottom" round :style="{ height: '70%',}">
@@ -132,8 +132,8 @@ export default {
   // mixins: [mixin],
   data () {
     return {
-      navigatorHeight: 0,
-      navigatorHeight2: 0,
+      navigatorHeight: '44px',
+      navigatorHeight2: '44px',
       topHeight: 0,
       mainTab: 0,
       rule_show: false,
@@ -145,7 +145,9 @@ export default {
       is_done: false,
       is_done_day: false,
       minDate: mTime,
+      minDateMounth: mTime,
       maxDate: new Date(),
+      maxDateMounth: new Date(),
       currentDate: new Date(),
       currentDateDay: new Date(),
       show: false,
@@ -171,6 +173,11 @@ export default {
       month_flag: false,
       month_url: '',//月地址
       reset: false,
+
+      //ccj
+      monthStart: '',
+      monthEnd: '',
+      setType: 1
     };
   },
   created () {
@@ -213,7 +220,7 @@ export default {
       return this.lang.day_time_inner.replace('{0}', getTimeObj(this.shijiancuo).year).replace('{1}', getTimeObj(this.shijiancuo).month).replace('{2}', getTimeObj(this.shijiancuo).day);
     },
     getMonthShowTime () {
-      return this.lang.month_time.replace('{0}', getTimeObj(this.shijiancuo_month).year).replace('{1}', getTimeObj(this.shijiancuo_month).month);
+      return this.lang.month_time.replace('{0}', getTimeObj(this.monthStart).year).replace('{1}', getTimeObj(this.monthStart).month).replace('{2}', getTimeObj(this.monthStart).day) + '-' + this.lang.month_time.replace('{0}', getTimeObj(this.shijiancuo_month).year).replace('{1}', getTimeObj(this.shijiancuo_month).month).replace('{2}', getTimeObj(this.shijiancuo_month).day);
     },
     openRule () {
       this.rule_show = !this.rule_show;
@@ -234,6 +241,10 @@ export default {
         this.month_flag = true;
         var nowmonth = new Date().getTime();
         var today = String(this.format(nowmonth / 1000));
+
+        //ccj
+        this.monthStart = this.getOneDay()
+
         // this.shijiancuo_month = new Date().getTime()/1000;
         this.is_done = true;
         this.month_url = '/index.php?action=Action/Anchor.getMonthAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ym=' + this.confirm_month_time + '&lang=' + lang;
@@ -271,39 +282,50 @@ export default {
         this.confirm_day_time = send_time;
         this.live_url = '/index.php?action=Action/Anchor.getDayAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ymd=' + send_time + '&lang=' + lang;
       } else {
-        // console.log('月');
-        // console.log(this.format(this.currentDate.getTime()/1000));
-        var send_month_time = String(this.format(this.currentDate.getTime() / 1000));
-        // console.log(send_month_time);
-        // return;
-        this.confirm_month_time = send_month_time;
-        this.shijiancuo_month = this.currentDate.getTime() / 1000;
-        this.show = false;
-        this.reset = !this.reset;
-        this.month_url = '/index.php?action=Action/Anchor.getMonthAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ym=' + send_month_time + '&lang=' + lang;
-        return;
-        var send_month_time = String(this.format(this.currentDate.getTime() / 1000));
-        this.shijiancuo_month = this.currentDate.getTime() / 1000;
-        const info = await getMonthInfo(send_month_time);
-        if (info.data) {
-          const { response_status, response_data } = info.data;
-          if (response_status.error == '') {
-            console.log(this.month_data);
-            if (response_data && response_data.length == 0) {
-              this.$alert(this.lang.no_data);
-              return;
-            }
-            this.show = false;
-            this.month_data = {};
-            this.month_data = response_data;
-          } else {
-            this.$alert(response_status.error.replace(/\[\d+\]/, ''));
-          }
+        //ccj
+        if (this.setType == 1) {
+          console.log(new Date(this.currentDate.getTime() + 86400000 * 31))
+          this.monthStart = this.currentDate.getTime() / 1000
+          this.minDateMounth = new Date(this.currentDate)
+          this.maxDateMounth = new Date(this.currentDate.getTime() + 86400000 * 31)
+          this.setType = 2
+        } else {
+          var send_month_time = String(this.format(this.currentDate.getTime() / 1000));
+          this.confirm_month_time = send_month_time;
+          this.shijiancuo_month = this.currentDate.getTime() / 1000;
+          this.show = false;
+          this.reset = !this.reset;
+          this.month_url = '/index.php?action=Action/Anchor.getMonthAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ym=' + send_month_time + '&lang=' + lang;
         }
+
+        // return;
+        // var send_month_time = String(this.format(this.currentDate.getTime() / 1000));
+        // this.shijiancuo_month = this.currentDate.getTime() / 1000;
+        // const info = await getMonthInfo(send_month_time);
+        // if (info.data) {
+        //   const { response_status, response_data } = info.data;
+        //   if (response_status.error == '') {
+        //     console.log(this.month_data);
+        //     if (response_data && response_data.length == 0) {
+        //       this.$alert(this.lang.no_data);
+        //       return;
+        //     }
+        //     this.show = false;
+        //     this.month_data = {};
+        //     this.month_data = response_data;
+        //   } else {
+        //     this.$alert(response_status.error.replace(/\[\d+\]/, ''));
+        //   }
+        // }
       }
     },
     cancelTime () {
       this.show = false;
+      //ccj
+      this.monthStart = this.getOneDay()
+      this.minDateMounth = mTime
+      this.maxDateMounth = new Date()
+      this.setType = 1
     },
 
     dayDataParse (data) {
@@ -379,6 +401,16 @@ export default {
       var second = now.getSeconds() > 10 ? now.getSeconds() : '0' + now.getSeconds();
       return month + "." + date;
     },
+    //ccj
+    getOneDay () {
+      //获取本月第一天零点零分零秒
+      var data = new Date();
+      data.setDate(1);
+      data.setHours(0);
+      data.setSeconds(0);
+      data.setMinutes(0);
+      return data.getTime() / 1000
+    }
   },
   components: {
     InnerScrollLoadList,

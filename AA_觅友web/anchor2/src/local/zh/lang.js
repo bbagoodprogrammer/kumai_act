@@ -8,7 +8,7 @@ export default {
 
     day_time: "{0}年{1}月{2}日",
     day_time_inner: "{0}年{1}月{2}日",
-    month_time: "{0}年{1}月",
+    month_time: "{0}年{1}月{2}日",
     live_time: "{0}月{1}日 {2}:{3}",
     room_time: "{0}月{1}日 {2}:{3}",
     live_month_time: "{0}月{1}日",
