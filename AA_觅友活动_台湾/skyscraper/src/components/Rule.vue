@@ -1,7 +1,7 @@
 <template>
   <div class="rule">
     <i class="close" @click="$parent.showRule = false"></i>
-    <div class="title">{{lang.rule_tite}}</div>
+    <div class="title">{{lang.rule_tite}}{{aTimer}}</div>
     <div class="con">
       <div class="tm">{{lang.rule_tm}}</div>
       <h5>{{lang.rule_p_1}}</h5>
@@ -51,12 +51,21 @@
 </template>
 
 <script>
+
+import getDate from "../utils/getDate"
 export default {
   data () {
     return {
     }
   },
   computed: {
+    aTimer () {
+      if (AREA == 'tw') {
+        return getDate(new Date(this.activity.stime * 1000), 1) + '-' + getDate(new Date(this.activity.etime * 1000), 1)
+      } else if (AREA == 'vn') {
+        return getDate(new Date(this.activity.stime * 1000), 2) + '-' + getDate(new Date(this.activity.etime * 1000), 2)
+      }
+    },
     rule_gift1 () {
       return this.lang.rule_gift1
     },

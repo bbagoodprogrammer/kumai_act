@@ -32,6 +32,10 @@ export default {
                 {
                     img: require("../../img/floor_giftList/gift_1.png"),
                     name: "豪華酒店-背包禮物*1"
+                },
+                {
+                    img: require("../../img/floor_giftList/gift_7.png"),
+                    name: "魅力四射-背包禮物*1"
                 }
             ]
         },
@@ -49,8 +53,8 @@ export default {
                     name: "1000金豆"
                 },
                 {
-                    img: require("../../img/floor_giftList/gift_4.png"),
-                    name: "小摩托-背包禮物*1"
+                    img: require("../../img/floor_giftList/gift_8.png"),
+                    name: "貓貓星雲-背包禮物*1"
                 }
             ]
         },
@@ -69,8 +73,8 @@ export default {
                     name: "2000金豆"
                 },
                 {
-                    img: require("../../img/floor_giftList/gift_5.png"),
-                    name: "彩虹小島-背包禮物*1"
+                    img: require("../../img/floor_giftList/gift_9.png"),
+                    name: "琴音裊裊-背包禮物*1"
                 }
             ]
         }
@@ -111,7 +115,7 @@ export default {
         },
         {
             img: require("./img/gift5.png"),
-            name: "雷霆戰車座駕"
+            name: "飛翔熱氣球座駕"
         },
         {
             img: require("./img/gift6.png"),
@@ -147,7 +151,7 @@ export default {
     share_desc: "",
     //rule
     rule_tite: "規則&獎勵",
-    rule_tm: "活動時間：2021年5月10日 19：00-5月17日 23：59：59",
+    rule_tm: "活動時間：",
     rule_p_1: "1、參與對象",
     rule_p_2:
         "平台內已經合作的官方主播和官方房主均可以參與，活動期間內成為官方主播和官方房主均可參與，有興趣加入的玩家可聯繫音覓莓莓子（UID:1888）",
@@ -163,11 +167,11 @@ export default {
     rule_p_9: "4、建成獎勵",
     rule_p_10: "5、榜單獎勵",
     rule_p_11:
-        "第一名：璀璨盛放頭像框*7天+雷霆戰車座駕*7天+房產大亨勛章*10天+金幣流水返利7%",
+        "第一名：璀璨盛放頭像框*7天+飛翔熱氣球-座駕*7天+房產大亨勛章*10天+金幣流水返利7%",
     rule_p_12:
-        "第二名：紫光盛放頭像框*7天+雷霆戰車座駕*7天+房產大亨勛章*10天+金幣流水返利5%",
+        "第二名：紫光盛放頭像框*7天+飛翔熱氣球-座駕*5天+房產大亨勛章*10天+金幣流水返利5%",
     rule_p_13:
-        "第三名：藍光盛放頭像框*7天+雷霆戰車座駕*7天+房產大亨勛章*10天+金幣流水返利3%",
+        "第三名：藍光盛放頭像框*7天+飛翔熱氣球-座駕*3天+房產大亨勛章*10天+金幣流水返利3%",
     rule_p_14:
         "*主播金幣流水返利說明：主播/房主在活動期間，個人收到指定禮物的金幣流水，按比例獎勵金幣",
     rule_p_15: "6、粉絲貢獻獎勵",

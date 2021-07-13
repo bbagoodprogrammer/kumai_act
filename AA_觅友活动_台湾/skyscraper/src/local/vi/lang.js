@@ -34,6 +34,11 @@ export default {
                 {
                     img: require("../../img/floor_giftList/gift_1.png"),
                     name: "Khách sạn xa hoa-Quà túi*1                    "
+                },
+
+                {
+                    img: require("../../img/floor_giftList/gift_7.png"),
+                    name: "Vô cùng thu hút-Quà túi*1"
                 }
             ]
         },
@@ -52,8 +57,8 @@ export default {
                     name: "1000 đậu"
                 },
                 {
-                    img: require("../../img/floor_giftList/gift_4.png"),
-                    name: "Moto nhỏ-Quà túi*1"
+                    img: require("../../img/floor_giftList/gift_8.png"),
+                    name: "Mèo tinh vân-Quà túi*1"
                 }
             ]
         },
@@ -72,8 +77,8 @@ export default {
                     name: "2000 đậu"
                 },
                 {
-                    img: require("../../img/floor_giftList/gift_5.png"),
-                    name: "Hồn đảo cầu vàng-quà túi 7 ngày*1"
+                    img: require("../../img/floor_giftList/gift_9.png"),
+                    name: "Đàn du dương-Quà túi*1"
                 }
             ]
         }
@@ -114,7 +119,7 @@ export default {
         },
         {
             img: require("./img/gift5.png"),
-            name: "Lôi Đình Chiến Xa-Xe            "
+            name: "khinh khí cầu bay "
         },
         {
             img: require("./img/gift6.png"),
@@ -150,7 +155,7 @@ export default {
     share_desc: "",
     //rule
     rule_tite: "Quy tắc & Quà    ",
-    rule_tm: "Thời gian sự kiện: 12/5 19：00- 18/5 23：59：59  ",
+    rule_tm: "Thời gian sự kiện:  ",
     rule_p_1: "1. Đối Tượng Tham Gia    ",
     rule_p_2:
         "Tất cả Idol đều có thể tham gia , trong thời gian diễn ra sự kiện Idol alochat sẽ được tham gia",
@@ -167,11 +172,11 @@ export default {
     rule_p_9: " 4, Quà xây dựng    ",
     rule_p_10: "5, Quà xếp hạng    ",
     rule_p_11:
-        "Hạng 1: Khung ảnh phồn thịnh lấp lánh*7 ngày+ Xe Lôi Đình Chiến Xa*7 ngày+ Huy hiệu Bất động sản*10 ngày+ Trả lễ Xu 7%        ",
+        "Hạng 1: Khung ảnh phồn thịnh lấp lánh*7 ngày+ khinh khí cầu bay*7 ngày+ Huy hiệu Bất động sản*10 ngày+ Trả lễ Xu 7%        ",
     rule_p_12:
-        "Hạng 2: Khung ảnh phồn thịnh Tím*7 ngày+ Xe Lôi Đình Chiến Xa*7 ngày+ Huy hiệu Bất động sản*10 ngày+ Trả lễ Xu 5%        ",
+        "Hạng 2: Khung ảnh phồn thịnh Tím*7 ngày+ khinh khí cầu bay*5 ngày+ Huy hiệu Bất động sản*10 ngày+ Trả lễ Xu 5%        ",
     rule_p_13:
-        "Hạng 3: Khung ảnh phồn thịnh Xanh*7 ngày+ Xe Lôi Đình Chiến Xa*7 ngày+ Huy hiệu Bất động sản*10 ngày+ Trả lễ Xu 3%        ",
+        "Hạng 3: Khung ảnh phồn thịnh Xanh*7 ngày+ khinh khí cầu bay*3 ngày+ Huy hiệu Bất động sản*10 ngày+ Trả lễ Xu 3%        ",
     rule_p_14:
         "*Trả lễ Xu idol: Idol trong thời gian sự kiện, nhận  xu phòng theo quà chỉ định, sẽ thưởng xu theo tỉ lệ        ",
     rule_p_15: "6, Quà XH Fan Cống Hiến    ",
