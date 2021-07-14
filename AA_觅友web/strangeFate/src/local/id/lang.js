@@ -54,7 +54,7 @@
         "Peningkatan nilai kontribusi melalui pemberian hadiah koin emas di kamar dan dapat masuk peringkat.Yang berkontribusi paling banyak dan kontributor terakhir akan dapat hadiah",
     span_title: "Hadiah",
     rank_tips:
-        "Daftar dihitung setiap hari Senin pada pukul 00:00,dan dapat hadiah yg sesuai berdasarkan peringkat daftar.Tambahan aliran 1 koin emas di kamar = 1 poin nilai takdir,pemain berkontribusi hadiah 1 koin emas = 1 poin nilai kontribusi.",
+        "Daftar dihitung setiap hari Senin pada pukul 00:00(WIB) ,dan dapat hadiah yg sesuai berdasarkan peringkat daftar.Tambahan aliran 1 koin emas di kamar = 1 poin nilai takdir,pemain berkontribusi hadiah 1 koin emas = 1 poin nilai kontribusi.",
     prize_box1: "Top Takdir",
     prize_box2: "Top Kontribusi ",
     prize_list1: "Background langit bintang 7 hari",
@@ -99,7 +99,7 @@
     ground3_probability: "Probabilitas Ramalan (sistem 10rb poin)",
     ground4_title: "Daftar takdir",
     ground4_tips:
-        "Daftar takdir minggu lalu dihitung pd setiap hari Senin pkl 00:00,peringkat berdasarkan total nilai takdir dr kamar minggu lalu,dan total nilai kontribusi pengguna,3 top akan dapatkan hadiah,sebagai berikut：",
+        "Daftar takdir minggu lalu dihitung pd setiap hari Senin pkl 00:00(WIB) ,peringkat berdasarkan total nilai takdir dr kamar minggu lalu,dan total nilai kontribusi pengguna,3 top akan dapatkan hadiah,sebagai berikut：",
     ground4_reward1_title: "Daftar takdir",
     ground4_reward1_tips1:
         "Latar belakang langit bintang 7 hari<br />Kartu rekomendasi 30 menit",

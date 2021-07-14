@@ -2,7 +2,7 @@ export default {
     //html/index.html
     title: "Hadiah periode sebelumnya",
     tips:
-        "3 pemain teratas %s pada periode sebelumnya dapat menerima hadiah daftar yang sesuai mulai pkl 00:00 Senin depan",
+        "3 pemain teratas %s pada periode sebelumnya dapat menerima hadiah daftar yang sesuai mulai pkl 00:00(WIB)  Senin depan",
     gift_rank: "Top Mingguan Sawer ",
     charm_rank: "Top Mingguan Pesona",
     rank_reward: "Hadiah daftar ",

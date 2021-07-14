@@ -1,9 +1,9 @@
 <template>
   <div class="rule">
     <i class="close" @click="$parent.showRule = false"></i>
-    <div class="title">{{lang.rule_tite}}{{aTimer}}</div>
+    <div class="title">{{lang.rule_tite}}</div>
     <div class="con">
-      <div class="tm">{{lang.rule_tm}}</div>
+      <div class="tm">{{lang.rule_tm}}{{aTimer}}</div>
       <h5>{{lang.rule_p_1}}</h5>
       <p>{{lang.rule_p_2}}</p>
       <h5>{{lang.rule_p_3}}</h5>
@@ -53,17 +53,19 @@
 <script>
 
 import getDate from "../utils/getDate"
+import { mapState } from "vuex"
 export default {
   data () {
     return {
     }
   },
   computed: {
+    ...mapState(['stime', 'etime']),
     aTimer () {
       if (AREA == 'tw') {
-        return getDate(new Date(this.activity.stime * 1000), 1) + '-' + getDate(new Date(this.activity.etime * 1000), 1)
+        return getDate(new Date(this.stime * 1000), 1) + '-' + getDate(new Date(this.etime * 1000), 1)
       } else if (AREA == 'vn') {
-        return getDate(new Date(this.activity.stime * 1000), 2) + '-' + getDate(new Date(this.activity.etime * 1000), 2)
+        return getDate(new Date(this.stime * 1000), 2) + '-' + getDate(new Date(this.etime * 1000), 2)
       }
     },
     rule_gift1 () {
