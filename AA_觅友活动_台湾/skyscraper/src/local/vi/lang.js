@@ -27,7 +27,7 @@ export default {
         },
         1: {
             name: "Hotel Xa Hoa",
-            score: "3000",
+            score: "5000",
             tips:
                 "Khách sạn với sự kết hợp cổ điển và hiện đại, có 100 phòng            ",
             gift: [

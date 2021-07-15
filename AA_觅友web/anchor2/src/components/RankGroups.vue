@@ -1,6 +1,6 @@
 <template>
   <div class="rankGroups">
-    <div :style="{background:'#7a68f8',height:navigatorHeight}"></div>
+    <!-- <div :style="{background:'#7a68f8',height:navigatorHeight}"></div> -->
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" href="">{{lang.day_data}}</a>
@@ -132,8 +132,8 @@ export default {
   // mixins: [mixin],
   data () {
     return {
-      navigatorHeight: '44px',
-      navigatorHeight2: '44px',
+      navigatorHeight: '',
+      navigatorHeight2: '',
       topHeight: 0,
       mainTab: 0,
       rule_show: false,
@@ -145,9 +145,7 @@ export default {
       is_done: false,
       is_done_day: false,
       minDate: mTime,
-      minDateMounth: mTime,
       maxDate: new Date(),
-      maxDateMounth: new Date(),
       currentDate: new Date(),
       currentDateDay: new Date(),
       show: false,
@@ -175,6 +173,8 @@ export default {
       reset: false,
 
       //ccj
+      minDateMounth: mTime,
+      maxDateMounth: new Date(),
       monthStart: '',
       monthEnd: '',
       setType: 1
@@ -191,6 +191,12 @@ export default {
   computed: {
     ...mapState(['loading', 'my_info', 'rankGroups']),
     viewHeight: () => window.innerHeight,
+    mountStarStr () {
+      return `${getTimeObj(this.monthStart).year}-${getTimeObj(this.monthStart).month}-${getTimeObj(this.monthStart).day}`
+    },
+    mountEndStr () {
+      return `${getTimeObj(this.shijiancuo_month).year}-${getTimeObj(this.shijiancuo_month).month}-${getTimeObj(this.shijiancuo_month).day}`
+    }
     // topHeight:()=>{
     //     var htmlFont = parseInt(getComputedStyle(window.document.documentElement)['font-size']);
     //     console.log(htmlFont);
@@ -247,7 +253,7 @@ export default {
 
         // this.shijiancuo_month = new Date().getTime()/1000;
         this.is_done = true;
-        this.month_url = '/index.php?action=Action/Anchor.getMonthAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ym=' + this.confirm_month_time + '&lang=' + lang;
+        this.month_url = '/index.php?action=Action/Anchor.getMonthAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ym=' + this.confirm_month_time + '&lang=' + lang + '&startDate=' + this.mountStarStr + '&endDate=' + this.mountEndStr
         // const info = await getMonthInfo(today);
         // if (info.data) {
         //     const {response_status, response_data} = info.data;
@@ -295,7 +301,7 @@ export default {
           this.shijiancuo_month = this.currentDate.getTime() / 1000;
           this.show = false;
           this.reset = !this.reset;
-          this.month_url = '/index.php?action=Action/Anchor.getMonthAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ym=' + send_month_time + '&lang=' + lang;
+          this.month_url = '/index.php?action=Action/Anchor.getMonthAnchorInfo&uid={uid}&token={token}&from={from}&page={page}&ym=' + send_month_time + '&lang=' + lang + '&startDate=' + this.mountStarStr + '&endDate=' + this.mountEndStr
         }
 
         // return;
