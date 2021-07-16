@@ -4,7 +4,7 @@
     <i class="close" @click="$parent.showRule = false"></i>
     <div class="title">{{lang.rule_title}}</div>
     <div class="ruleCon">
-      <p class="tm">{{lang.rule_tm}}</p>
+      <p class="tm">{{lang.rule_tm}}{{aTimer}}</p>
       <h5>{{lang.rule_p1}}</h5>
       <p>{{lang.rule_p2}}</p>
       <h5>{{lang.rule_p3}}</h5>
@@ -24,8 +24,19 @@
 </template>
 
 <script>
+import getDate from "../utils/getDate"
+import { mapState } from "vuex"
 export default {
-
+  computed: {
+    ...mapState(['sTime', 'eTime']),
+    aTimer () {
+      if (AREA == 'tw') {
+        return getDate(new Date(this.sTime * 1000), 1) + '-' + getDate(new Date(this.eTime * 1000), 1)
+      } else if (AREA == 'vn') {
+        return getDate(new Date(this.sTime * 1000), 2) + '-' + getDate(new Date(this.eTime * 1000), 2)
+      }
+    },
+  }
 }
 </script>
 

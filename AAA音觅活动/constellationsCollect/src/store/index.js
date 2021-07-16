@@ -10,7 +10,9 @@ export default new vuex.Store({
         constellation: {},
         firstLight: false,
         luckDrawCount: -1,
-        turntable: []
+        turntable: [],
+        sTime: "",
+        eTime: ""
     },
     mutations: {
         updateLoading(state, value) {
@@ -21,6 +23,7 @@ export default new vuex.Store({
         },
         setInitInfo(state, data) {
             Object.assign(state, data);
+            console.log(state);
         },
         setFirst(state, val) {
             state.firstLight = false;

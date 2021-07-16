@@ -274,6 +274,9 @@ export default {
           this.maxDateMounth = new Date(this.currentDate.getTime() + 86400000 * 31)
           this.setType = 2
         } else {
+          this.setType = 1
+          this.minDateMounth = mTime
+          this.maxDateMounth = new Date()
           var send_month_time = String(this.format(this.currentDate.getTime() / 1000));
           this.confirm_month_time = send_month_time;
           this.shijiancuo_month = this.currentDate.getTime() / 1000;

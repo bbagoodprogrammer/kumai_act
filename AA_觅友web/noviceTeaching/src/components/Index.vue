@@ -91,7 +91,7 @@ export default {
       }
     }
     .msgCon {
-      width: 3.1rem;
+      width: 3.16rem;
       margin: 0.67rem 0 0 0.48rem;
       p {
         font-size: 0.26rem;
@@ -101,12 +101,12 @@ export default {
     }
   }
   .slice2 {
-    height: 12.98rem;
+    height: 13.78rem;
     padding-top: 0.53rem;
+    text-align: right;
     .title {
       padding-right: 0.43rem;
       position: relative;
-      text-align: right;
       .number {
         content: '';
         display: block;
@@ -120,7 +120,7 @@ export default {
       }
     }
     .msgCon {
-      width: 3.1rem;
+      width: 3.16rem;
       margin: 0.67rem 0 0 3.92rem;
       p {
         font-size: 0.26rem;
@@ -148,7 +148,7 @@ export default {
       }
     }
     .msgCon {
-      width: 3.1rem;
+      width: 3.16rem;
       margin: 0.67rem 0 0 0.48rem;
       p {
         font-size: 0.26rem;
@@ -160,10 +160,10 @@ export default {
   .slice4 {
     height: 4.65rem;
     padding-top: 4.7rem;
+    text-align: right;
     .title {
       padding-right: 0.43rem;
       position: relative;
-      text-align: right;
       .number {
         content: '';
         display: block;
@@ -177,7 +177,7 @@ export default {
       }
     }
     .msgCon {
-      width: 3.1rem;
+      width: 3.16rem;
       margin: 0.67rem 0 0 3.92rem;
       p {
         font-size: 0.26rem;

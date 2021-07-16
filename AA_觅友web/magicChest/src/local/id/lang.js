@@ -49,7 +49,7 @@
     rule: "Aturan", //Aturan
     rule_li: [
         "Selesaikan tugas sihir utk dapatkan energi utk buka kotak sihir dan dapatkan hadiah sihir.Dapat melemparkan sihir ke pacar, dan akan ada efek menarik setelah beri hadiah；",
-        "Tugas sihir update pd pkl 00:00,bisa selesai ulang,energi yg tak dikonsumsi pd hari itu akan tak valid.",
+        "Tugas sihir update pd pkl 00:00(WIB),bisa selesai ulang,energi yg tak dikonsumsi pd hari itu akan tak valid.",
         "Konsumsi 200 energi dapat buka kotak sihir sekali，berkesempatan utk dapat sebuah hadiah sihir；<em>Pasti akan dapatkan sebuah hadiah langka jika dibuka untuk kelima kalinya hari itu.</em>"
     ],
     giftTitle: "Hadiah sihir", //Hadiah sihir

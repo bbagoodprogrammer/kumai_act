@@ -17,8 +17,8 @@
         "buildGosing": "cross-env   NODE_ENV=production  APP=gosing   AREA=ar LANG=ar                webpack            --mode production  --progress --config build/webpack.prod.config.js",
         "devSingstar": "cross-env   NODE_ENV=development APP=singstar AREA=in LANG=en,hi             webpack-dev-server --mode development --config            build/webpack.dev.config.js",
         "buildSingstar": "cross-env NODE_ENV=production  APP=singstar AREA=in LANG=en,hi             webpack            --mode production  --progress --config build/webpack.prod.config.js",
-        "devMiyou": "cross-env   NODE_ENV=development    APP=miyou    AREA=tw LANG=zh,vi             webpack-dev-server --mode development --config            build/webpack.dev.config.js",
-        "buildMiyou": "cross-env NODE_ENV=production     APP=miyou    AREA=tw LANG=zh,vi             webpack            --mode production  --progress --config build/webpack.prod.config.js",
+        "devMiyou": "cross-env   NODE_ENV=development    APP=miyou    AREA=tw LANG=zh             webpack-dev-server --mode development --config            build/webpack.dev.config.js",
+        "buildMiyou": "cross-env NODE_ENV=production     APP=miyou    AREA=tw LANG=zh             webpack            --mode production  --progress --config build/webpack.prod.config.js",
         "devMiyouvn": "cross-env   NODE_ENV=development  APP=miyou    AREA=vn LANG=vi             webpack-dev-server --mode development --config            build/webpack.dev.config.js",
         "buildMiyouvn": "cross-env NODE_ENV=production   APP=miyou    AREA=vn LANG=vi             webpack            --mode production  --progress --config build/webpack.prod.config.js"
     },

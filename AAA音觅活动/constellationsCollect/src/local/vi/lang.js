@@ -34,7 +34,7 @@ export default {
     surplus_nums: "Số lượt quay thưởng còn:",
     //rule
     rule_title: "Quy tắc & Quà",
-    rule_tm: "Thời gian：24/6 18:00-30/6 23:59:59",
+    rule_tm: "Thời gian：",
     rule_p1: "1. Tham gia sự kiện",
     rule_p2:
         "Người chơi lần đầu thắp sáng 2,4,6,8,10,12 chòm sao sẽ nhận 1 lượt quay thưởng, tối đa nhận 6 lượt quay thưởng. Lượt quay thưởng dùng trước khi event kết thúc.",
@@ -42,7 +42,7 @@ export default {
     rule_p4:
         "- Mỗi khi thắp sáng  vị trí chòm sao sẽ nhận được phần thưởng hoặc  khung ảnh  tương ứng (phần thưởng có hiệu lực trong 1 ngày)",
     rule_p5:
-        "-Vòng quay trúng thưởng 100%, phần thưởng vòng quay chòm sao gồm Huy chương - Thủ hộ chòm sao(3 ngày), Mộng sao băng-Khung ảnh (5 ngày), Xe mui trần màu bạc-Xe (7 ngày), Mưa sao băng-Quà túi (5990 Xu), Lọ ước nguyện-Quà túi (12990 Xu), Nữ thần mặt trăng-Quà túi (26990 Xu), hạn sử dụng của quà là 7 ngày, sự kiện sắp tặng quà rồi nhé",
+        "-Vòng quay trúng thưởng 100%, phần thưởng vòng quay chòm sao gồm Huy chương - Sư tử hào phóng-Huy chương(3 ngày)、đầu gấu-Khung ảnh (7 ngày)、Xe mui trần màu bạc-Xe (7ngày)、Kẹo mong-Quà túi (5990 Xu)、Lâu đài tuyệt vời-Quà túi (9990 Xu)、Sợi cưới mặt trăng-Quà túi (26990 Xu), hạn sử dụng của quà là 7 ngày, sự kiện sắp tặng quà rồi nhé",
     rule_p6: "Chú ý",
     rule_p7:
         "1. Trong sự kiện, khi phát hiện người chơi gian lận, chúng tôi sẽ hủy bỏ tư cách tham gia của người chơi mà không cần thông báo, bao gồm nhưng không giới hạn:",
