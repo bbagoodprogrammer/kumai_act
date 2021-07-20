@@ -51,5 +51,8 @@ export default {
     pro_top: "Số dư Ngọc",
     settlement_title: "Tổng Ngọc quy đổi",
     settlement_coins: "Kết toán Ngọc",
-    settlement_tm: "Thời gian kết toán"
+    settlement_tm: "Thời gian kết toán",
+    next: "Bước tiếp theo",
+    setStartTime: "Chọn",
+    setEndTime: " Dừng"
 };

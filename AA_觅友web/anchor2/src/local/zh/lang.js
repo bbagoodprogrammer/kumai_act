@@ -43,5 +43,8 @@ export default {
     pro_top: "粉鑽餘額",
     settlement_title: "結算粉鑽匯總",
     settlement_coins: "結算粉鑽",
-    settlement_tm: "結算時間"
+    settlement_tm: "結算時間",
+    next: "下一步",
+    setStartTime: "篩選開始時間",
+    setEndTime: "篩選結束時間"
 };

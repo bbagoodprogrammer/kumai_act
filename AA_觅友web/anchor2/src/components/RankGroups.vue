@@ -88,8 +88,8 @@
     <van-popup v-model="show" position="bottom" round :style="{ height: '40%' }">
       <van-datetime-picker v-if="mainTab==0" v-model="currentDateDay" type="date" title="" :min-date="minDate" :max-date="maxDate" :confirm-button-text="lang.confirm" :cancel-button-text="lang.cancel"
         @confirm="confirmTime(0)" @cancel="cancelTime()" :swipe-duration="50" />
-      <van-datetime-picker v-if="mainTab==1" v-model="currentDate" type="date" :min-date="minDateMounth" :max-date="maxDateMounth" :confirm-button-text="setType == 1?'下一步':lang.confirm"
-        :cancel-button-text="lang.cancel" @confirm="confirmTime(1)" @cancel="cancelTime()" :swipe-duration="50" :title="setType == 1?'篩選開始時間':'篩選結束時間'" />
+      <van-datetime-picker v-if="mainTab==1" v-model="currentDate" type="date" :min-date="minDateMounth" :max-date="maxDateMounth" :confirm-button-text="setType == 1?lang.next:lang.confirm"
+        :cancel-button-text="lang.cancel" @confirm="confirmTime(1)" @cancel="cancelTime()" :swipe-duration="50" :title="setType == 1?lang.setStartTime:lang.setEndTime" />
     </van-popup>
 
     <van-popup v-model="rule_show" position="bottom" round :style="{ height: '70%',}">

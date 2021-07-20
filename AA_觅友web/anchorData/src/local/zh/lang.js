@@ -38,5 +38,8 @@ export default {
         "忙時直播時長：主播在自己房間的時長，且在當日的“0點至2點”、“18點至24點”時間段內"
     ],
     room_tips_send: "贈送了", //贈送了
-    room_tips_give: "給" //給
+    room_tips_give: "給", //給
+    next: "下一步",
+    setStartTime: "篩選開始時間",
+    setEndTime: "篩選結束時間"
 };

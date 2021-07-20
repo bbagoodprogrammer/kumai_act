@@ -441,7 +441,7 @@ export default {
   .listBog {
     width: 6.99rem;
     min-height: 14rem;
-    background: #1E42E4 url(../assets/img/listBg.png) no-repeat;
+    background: #fff url(../assets/img/listBg.png) no-repeat;
     background-size: 100% auto;
     padding-top: 2.18rem;
     margin: 0 auto;
@@ -935,13 +935,13 @@ export default {
     font-weight: 600;
     font-size: 0.35rem;
     text-align: center;
-    color: #1E42E4;
+    color: #fff;
   }
   h6 {
     height: 0.9rem;
     line-height: 0.9rem;
     padding-left: 0.92rem;
-    color: #1E42E4;
+    color: #fff;
     font-size: 0.32rem;
     font-weight: 600;
   }

@@ -60,12 +60,12 @@ export default {
     .title {
       text-align: center;
       font-size: 0.35rem;
-      color: #1E42E4;
+      color: #fff;
       font-weight: 600;
       margin-bottom: 0.2rem;
     }
     p {
-      // color: #1E42E4;
+      // color: #fff;
       color: #fff;
       font-weight: 600;
       padding: 0 0.4rem;

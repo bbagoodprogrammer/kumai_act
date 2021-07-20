@@ -35,7 +35,7 @@ import TaskAndRank from "../components/TabsScrollLoadList"
 import lang from "../config/lang"
 export default {
   components: { Loading, MsgToast, ActFooter, Plaything, TaskAndRank },
-  data() {
+  data () {
     return {
       isShare: false, //是否分享
       isMore: true,   //加载更多
@@ -48,7 +48,7 @@ export default {
       is_allow: 0
     }
   },
-  created() {
+  created () {
     window.addEventListener("pageshow", function () {
       if (sessionStorage.getItem("need-refresh")) {
         location.reload();
@@ -65,7 +65,7 @@ export default {
 
   },
   methods: {
-    judgeShare() {//判断是否为分享环境,请求相应的接口 
+    judgeShare () {//判断是否为分享环境,请求相应的接口 
       let regstr = getString('token')
       if (regstr) {
         this.isShare = false
@@ -74,7 +74,7 @@ export default {
       }
       this.$store.commit('changShareState', this.isShare) //分享状态
     },
-    getDefaultData() { //初始化
+    getDefaultData () { //初始化
       api.getDefault().then(res => {
         const { response_data, response_status } = res.data
         if (response_status.code == 20000) { //活動未開始
@@ -100,7 +100,7 @@ export default {
         }
       })
     },
-    getDefaultDataTicket() {   //优先展示任务列表任务列表
+    getDefaultDataTicket () {   //优先展示任务列表任务列表
       api.getDefault(1).then(res => {
         const { response_data, response_status } = res.data
         if (response_status.code == 20000) { //活動未開始
@@ -129,17 +129,17 @@ export default {
         }
       })
     },
-    scorllTo() {
+    scorllTo () {
       window.scrollTo(0, 160)
     },
-    onScroll() {
+    onScroll () {
       if (this.isMore) {
         const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100
         if (scrollToBottom) { //加載更多
         }
       }
     },
-    goknapsack() {
+    goknapsack () {
       if (this.isShare) { //分享下打开app
         APP()
         return
@@ -153,24 +153,24 @@ export default {
         location.href = `goto:{"controller":"LTBrisDaumiSubjVC","property": {}}`
       }
     },
-    downApp() {
+    downApp () {
       APP()
     },
-    goMain() {
+    goMain () {
       let regstr = getString('token')
       let uid = getString("uid")
       location.href = `http://activity.17sing.tw/static_html/2019/mainVenue/index.html?uid=${uid}&token=${regstr}`
     },
-    goRule() {
+    goRule () {
       let regstr = getString('token')
       location.href = `./index2.html?token=${regstr}`
     },
-    refrsh() { //刷新
+    refrsh () { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       window.removeEventListener("scroll", this.onScroll)
       this.getDefaultData('ref')
     },
-    closeToast() {
+    closeToast () {
       this.showT = false
     }
   }

@@ -125,6 +125,7 @@ import { mapState } from "vuex"
 import api from "../api/apiConfig"
 import share from "../utils/share"
 import { globalBus } from '../utils/eventBus'
+import getUrlString from '../utils/getString.js';
 
 let that = null
 window.onShareSuccess = async (from, uid, type, typeName) => {
@@ -242,6 +243,10 @@ export default {
       })
     },
     showInivted () {
+      if (!this.userMsg.reg) {
+        this.toast('請先報名活動哦~')
+        return
+      }
       api.invitedList(1, 0).then(res => {
         this.invitedList = res.data.response_data.list
         this.showShare = true
@@ -265,24 +270,13 @@ export default {
     },
     newDoTask (item) {
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
-      let id = item.task_id
-      if (id == 1) {  //跳轉活躍度前十房間
-        try {
-          if (ios) {
-            sendJsData('app://makefriendcardpage');
-          } else {
-            javascript: JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.MyMakeFilterCardActivity","datas":[]}');
-          }
-        } catch (e) { }
-      } else if (id == 2) {
-        try {
-          if (ios) {
-            sendJsData('app://userLabels');
-          } else {
-            javascript: JSInterface.sendJsData('app://gotoPage?data={"page":"com.sq.onlinematch.ui.activity.TagActivity","datas":[]}');
-          }
-        } catch (e) { }
-      } else if (id == 3) {
+      let id = item.id
+      console.log(id)
+      if (id == 2) {
+        const token = getUrlString('token') || '';
+        const uid = getUrlString('uid') || '';
+        location.href = `http://act.udateapp.com/html/person_authentication/index.html?uid=${uid}&token=${token}`
+      } else if (id == 1 || id == 3 || id == 5) {
         try {
           if (ios) {
             sendJsData('app://eidpersonalDetails');
@@ -298,22 +292,12 @@ export default {
             javascript: JSInterface.sendJsData('app://bottlespage');
           }
         } catch (e) { }
-      } else if (id == 5) {
-        if (!this.tasks.version) {
-          this.toast(`點擊派對頁右上角創建房間吧~`)
-          return
-        }
-        if (ios) {
-          sendJsData('app://createroom');
-        } else {
-          javascript: JSInterface.sendJsData('app://gotoPage?data={"page":"com.utalk.hsing.activity.RoomModeSelectActitiy","datas":[]}');
-        }
       } else if (id == 6) {
         try {
           if (ios) {
-            sendJsData('app://room?rid=' + item.rid);
+            sendJsData('app://createroom');
           } else {
-            javascript: JSInterface.sendJsData('app://room?rid=' + item.rid);
+            javascript: JSInterface.sendJsData('app://createroom');
           }
         } catch (e) { }
       }
@@ -354,15 +338,16 @@ export default {
               javascript: JSInterface.sendJsData('app://walletpage');
             }
           } catch (e) { }
-        } else if (key == 'room') {  //跳自己房間
-          try {
-            if (ios) {
-              sendJsData('app://room?rid=' + this.dayTask.tasks.room.rid);
-            } else {
-              javascript: JSInterface.sendJsData('app://room?rid=' + this.dayTask.tasks.room.rid);
-            }
-          } catch (e) { }
         }
+        // else if (key == 'room') {  //跳自己房間
+        //   try {
+        //     if (ios) {
+        //       sendJsData('app://room?rid=' + this.dayTask.tasks.room.rid);
+        //     } else {
+        //       javascript: JSInterface.sendJsData('app://room?rid=' + this.dayTask.tasks.room.rid);
+        //     }
+        //   } catch (e) { }
+        // }
       })
     },
     goRankTab () {
@@ -461,7 +446,7 @@ export default {
         white-space: nowrap;
         display: block;
         text-align: center;
-        color: #1E42E4;
+        color: #fff;
       }
     }
     .msg {
@@ -475,7 +460,7 @@ export default {
         margin-bottom: 0.06rem;
       }
       .tip2 {
-        color: #1E42E4;
+        color: #fff;
         font-size: 0.24rem;
         margin-bottom: 0.25rem;
         font-weight: bold;
@@ -654,13 +639,13 @@ export default {
     > p {
       text-align: center;
       font-size: 0.24rem;
-      color: #1E42E4;
+      color: #fff;
     }
   }
   .lastTips {
     padding: 0 0.3rem;
     font-size: 0.24rem;
-    color: #1E42E4;
+    color: #fff;
     text-align: center;
     margin-top: 0.25rem;
   }
@@ -794,7 +779,7 @@ export default {
     height: 0.8rem;
     line-height: 0.8rem;
     text-align: center;
-    color: #1E42E4;
+    color: #fff;
     font-size: 0.35rem;
     font-weight: 600;
   }

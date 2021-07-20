@@ -126,7 +126,7 @@ export default {
 
 <style lang="scss">
 body {
-  background-color: #1E42E4;
+  background-color: #fff;
 }
 
 .rule {
