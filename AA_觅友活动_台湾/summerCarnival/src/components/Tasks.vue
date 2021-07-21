@@ -49,7 +49,7 @@
             <i class="giftNums">{{item.num}}</i>
             <div class="taskMsg">
               <div class="name">{{item.name}}</div>
-              <div class="linerBar">
+              <div class="linerBar" v-if="item.target != 1">
                 <span class="actLiner" :style="{width:item.process/item.target * 100 +'%'}"></span>
                 <span class="taslkNum">{{item.process}}/{{item.target}}</span>
               </div>
@@ -262,7 +262,11 @@ export default {
     shareAct (item, index) { //邀請
       api.inivtedFriend(item.uid).then(res => {
         if (res.data.response_status.code == 0) {
-          this.peopleList[index].status = 3
+          console.log(index)
+          // this.peopleList[index].status = 3
+          api.invitedList(0, 0).then(res => {
+            this.peopleList = res.data.response_data.list
+          })
         } else {
           this.toast(res.data.response_status.error)
         }

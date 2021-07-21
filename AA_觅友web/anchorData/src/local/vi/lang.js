@@ -10,7 +10,7 @@ export default {
     day_time: "{2}-{1}-{0}",
     day_time_inner: "{2}-{1}-{0}",
     // month_time:'Năm {0} tháng {1}',
-    month_time: "{1}-{0}",
+    month_time: "{2}-{1}-{0}",
     // live_time:'Tháng {0} ngày {1} {2}:{3}',
     live_time: "{1}-{0} {2}:{3}",
     // room_time:'Tháng {0} ngày {1} {2}:{3}',
