@@ -5,7 +5,7 @@
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
             <em>
-              【{{item.sender_nick}}】贈送{{item.num}}個冰可樂給【{{item.nick}}】
+              {{lang.roolMsg.replace('%n',item.sender_nick).replace('%s',item.num).replace('%c',item.nick).replace('%g',item.gift_name)}}
             </em>
           </li>
         </ul>

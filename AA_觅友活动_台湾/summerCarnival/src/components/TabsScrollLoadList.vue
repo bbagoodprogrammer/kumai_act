@@ -1,29 +1,36 @@
 <template>
   <div class="rankGroups">
-    <p class="rankTips">報名活動成為小酷爽>>收到冰可樂和指定禮物>>獲得酷爽值 <i @click="scorePupClick()"></i></p>
-    <img src="../assets/img/giftImg.png" alt="" class="giftImg">
+    <p class="rankTips">{{lang.rankTips}} <i @click="scorePupClick()"></i></p>
+    <!-- <img src="../assets/img/giftImg.png" alt="" class="giftImg"> -->
+    <div class="giftList">
+      <div class="giftItem" v-for="(item,index) in step_prizes" :key="index">
+        <img :src="item.image" alt="">
+        <strong>{{item.name}}{{item.days}}{{lang.day}}</strong>
+        <strong class="score">+{{item.score}}{{lang.scoreName}}</strong>
+      </div>
+    </div>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="listBog">
       <div class="mainTabs">
-        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tabL">日榜</a>
-        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">總榜</a>
+        <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tabL">{{lang.dayRank}}</a>
+        <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">{{lang.totalRank}}</a>
       </div>
       <div class="timeBox">
-        <div class="title">- 結束倒計時 -</div>
+        <div class="title">- {{lang.tm_title}} -</div>
         <div class="actTime">
           <span>{{surplusTime.day}}</span>
-          <em>天</em>
+          <em>{{lang.day}}</em>
           <span>{{surplusTime.hour}}</span>
-          <em>時</em>
+          <em>{{lang.hour}}</em>
           <span>{{surplusTime.minute}}</span>
-          <em>分</em>
+          <em>{{lang.min}}</em>
           <span>{{surplusTime.second}}</span>
-          <em>秒</em>
+          <em>{{lang.second}}</em>
         </div>
       </div>
       <!-- 搜索框 -->
       <div class="shareBtn">
-        <input type="number" v-model="searchUid" placeholder="填寫UID搜索小酷爽" @keyup.13="search()" id="searchInput">
+        <input type="number" v-model="searchUid" :placeholder="lang.searchTips" @keyup.13="search()" id="searchInput">
         <i @click="search()"></i>
       </div>
       <!-- 日榜 -->
@@ -40,23 +47,23 @@
             <strong>{{item.nick}}</strong>
           </div>
           <div class="userScore">
-            <div class="total">總酷爽值 {{item.sugar_score*1 + item.gift_score*1}}</div>
-            <div class="score1">冰可樂酷爽值 {{item.sugar_score}}</div>
-            <div class="score1">派對酷爽值 {{item.gift_score}}</div>
+            <div class="total">{{lang.totalScore}} {{item.sugar_score*1 + item.gift_score*1}}</div>
+            <div class="score1">{{lang.userScore1}} {{item.sugar_score}}</div>
+            <div class="score1">{{lang.userScore2}} {{item.gift_score}}</div>
           </div>
           <div class="peopleList" v-if="item.rank <=3">
             <div class="userList">
-              <span>貢獻榜Top3</span>
+              <span>{{lang.top3}}</span>
               <div class="items">
                 <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in item.guard" :key="index2" @click="goUser(item2.uid)">
               </div>
             </div>
             <u class="pupIcon" @click="showTeamList(item.uid,item.nick)">
-              查看貢獻榜>>
+              {{lang.lookRank}}
             </u>
           </div>
           <u class="listPupIcon" @click="showTeamList(item.uid,item.nick)" v-if="item.rank >3">
-            查看貢獻榜>>
+            {{lang.lookRank}}
           </u>
         </li>
       </div>
@@ -72,26 +79,26 @@
           <strong>{{itemMsg.nick}}</strong>
         </div>
         <div class="userScore">
-          <div class="total">總酷爽值 {{itemMsg.sugar_score*1 + itemMsg.gift_score*1}}</div>
-          <div class="score1">冰可樂酷爽值 {{itemMsg.sugar_score}}</div>
-          <div class="score1">派對酷爽值 {{itemMsg.gift_score}}</div>
+          <div class="total">{{lang.totalScore}} {{itemMsg.sugar_score*1 + itemMsg.gift_score*1}}</div>
+          <div class="score1">{{lang.userScore1}} {{itemMsg.sugar_score}}</div>
+          <div class="score1">{{lang.userScore2}} {{itemMsg.gift_score}}</div>
         </div>
         <div class="peopleList" v-if="itemMsg.rank <=3">
           <div class="userList">
-            <span>貢獻榜Top3</span>
+            <span>{{lang.top3}}</span>
             <div class="items">
               <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in itemMsg.guard" :key="index2" @click="goUser(item2.uid)">
             </div>
           </div>
           <div class="pupIcon" @click="showTeamList(itemMsg.uid,itemMsg.nick)">
-            查看貢獻榜>>
+            {{lang.lookRank}}
           </div>
         </div>
       </div>
       <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-      <div v-if="rank.loading" class="scrollLoading">加載中...</div>
+      <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
       <div v-if="rank.none" class="scrollNone">
-        暫無歌友上榜
+        {{lang.noData}}
       </div>
     </div>
     <!-- 守護榜 -->
@@ -99,14 +106,14 @@
       <transition name="slide">
         <div class="peopleListPup" v-show="showPlist">
           <i class="close" @click="closePlist()"></i>
-          <h5 class="pupTitle"><strong>{{pupNick}}</strong>的貢獻榜</h5>
+          <h5 class="pupTitle"><strong>{{pupNick}}</strong>{{lang.pListTitle}}</h5>
           <div class="peopleItem">
             <div class="listHeader">
-              <span class="rank">排名</span>
-              <span class="user">粉絲</span>
-              <span class="score">總貢獻榜酷爽值</span>
+              <span class="rank">{{lang.listHeader_rank}}</span>
+              <span class="user">{{lang.listHeader_fans}}</span>
+              <span class="score">{{lang.listHeader_score}}</span>
             </div>
-            <p class="noData" v-if="pupMsg.list.length == 0">暫無數據</p>
+            <p class="noData" v-if="pupMsg.list.length == 0">{{lang.noData}}</p>
             <ul class="scrollable">
               <li v-for="(item,index) in pupMsg.list" :key="index" @click="goUser(item.uid)">
                 <div class="rank">{{item.rank}}</div>
@@ -118,9 +125,9 @@
               </li>
             </ul>
             <p class="listRankTips">
-              *總貢獻值包含粉絲對這名玩家送出的夏日酷爽冰可樂、指定禮物、驚喜南瓜桶內任意禮物所轉換的酷爽值；貢獻榜單顯示前20名粉絲
+              {{lang.listRankTips}}
             </p>
-            <div class="goBtn" @click="goUser(pupMsg.info.uid)">查看他的個人資料頁</div>
+            <div class="goBtn" @click="goUser(pupUid)">{{lang.goUser}}</div>
           </div>
         </div>
       </transition>
@@ -129,12 +136,12 @@
     <div class="mask" v-show="scoreTips">
       <transition name="slide">
         <div class="scoreTips" v-show="scoreTips">
-          <div class="title">酷爽值</div>
-          <h6>酷爽值=冰可樂酷爽值+派對酷爽值</h6>
-          <p>冰可樂酷爽值=收到冰可樂數x100<br />
-            派對酷爽值=玩家在房間收到指定禮物的價值x12
+          <div class="title">{{lang.scoreTips1}}</div>
+          <h6>{{lang.scoreTips2}}</h6>
+          <p>{{lang.scoreTips3}}<br />
+            {{lang.scoreTips4}}
           </p>
-          <div class="ok" @click="scorePupClick()">我知道了</div>
+          <div class="ok" @click="scorePupClick()">{{lang.ok}}</div>
         </div>
       </transition>
     </div>
@@ -166,7 +173,7 @@ import downTime from "../utils/downTime"
 // }
 
 export default {
-  props: ['type'],
+  props: ['type', 'step_prizes'],
   data () {
     return {
       mainTab: 0,
@@ -432,6 +439,32 @@ export default {
       margin-left: 0.1rem;
     }
   }
+  .giftList {
+    width: 6.2rem;
+    height: 3.8rem;
+    padding: 1.4rem 0.4rem 0;
+    margin: 0 auto;
+    background: url(../assets/img/giftImg.png);
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .giftItem {
+      width: 1.9rem;
+      img {
+        width: 1.9rem;
+        height: 1.9rem;
+      }
+      strong {
+        display: block;
+        text-align: center;
+        font-size: 0.24rem;
+      }
+      .score {
+        color: #1E42E4;
+      }
+    }
+  }
   .giftImg {
     display: block;
     width: 7.07rem;
@@ -441,7 +474,7 @@ export default {
   .listBog {
     width: 6.99rem;
     min-height: 14rem;
-    background: #fff url(../assets/img/listBg.png) no-repeat;
+    background: #1E42E4 url(../assets/img/listBg.png) no-repeat;
     background-size: 100% auto;
     padding-top: 2.18rem;
     margin: 0 auto;
@@ -814,7 +847,7 @@ export default {
     height: 0.8rem;
     text-align: center;
     line-height: 0.95rem;
-    color: rgba(108, 39, 194, 1);
+    color: #fff;
     font-size: 0.35rem;
     margin: 0 auto;
   }

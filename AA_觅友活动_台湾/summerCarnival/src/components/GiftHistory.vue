@@ -1,6 +1,6 @@
 <template>
   <div class="giftHistory">
-    <h5>動態</h5>
+    <h5>{{lang.history_title}}</h5>
     <i class="close" @click="closeHistory()"></i>
     <ul class="itemList scrollable">
       <li class="item" v-for="(item,index) in makeData" :key="index">
@@ -11,8 +11,8 @@
         </div>
       </li>
     </ul>
-    <div class="dloading" v-if="loading">加載中....</div>
-    <div class="noData" v-if="list.length == 0 && !loading">暫無數據</div>
+    <div class="dloading" v-if="loading">{{lang.loading}}</div>
+    <div class="noData" v-if="list.length == 0 && !loading">{{lang.noData}}</div>
   </div>
 </template>
 <script>
@@ -92,17 +92,18 @@ export default {
     },
     getTips (data) {
       let type = data.type
-      if (type == 1) {
-        return `完成${data.task_name}任務,獲得${data.name}*${data.num}`
-      } else if (type == 2) {
-        return `完成${data.task_name}任務,獲得${data.name}*${data.num}`
-      } else if (type == 3) {
-        return `兌換【${data.name}】 ${data.days}天`
-      } else if (type == 4) {
-        return `送出${data.name}*${data.num}`
-      } else if (type == 5) {
-        return `收到【${data.nick}】贈送的${data.name}*${data.num}`
-      }
+      return this.lang.history_msg[type].replace('%t', data.task_name).replace('%n', data.name).replace('%s', data.num).replace('%d', data.days).replace('%c', data.nick).replace('%a', data.count)
+      //   if (type == 1) {
+      //     return `完成${data.task_name}任務,獲得${data.name}*${data.num}`
+      //   } else if (type == 2) {
+      //     return `完成${data.task_name}任務,獲得${data.name}*${data.num}`
+      //   } else if (type == 3) {
+      //     return `兌換【${data.name}】 ${data.days}天`
+      //   } else if (type == 4) {
+      //     return `送出${data.name}*${data.num}`
+      //   } else if (type == 5) {
+      //     return `收到【${data.nick}】贈送的${data.name}*${data.num}`
+      //   }
     },
     getTime (tm, type) {
       return getDate(new Date(tm * 1000), type)

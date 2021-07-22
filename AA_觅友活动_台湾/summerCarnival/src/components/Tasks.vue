@@ -7,11 +7,11 @@
           <strong>{{tasks.exchange.name}}</strong>
         </div>
         <div class="msg">
-          <div class="tip1">活動期間,每送出{{tasks.exchange.base_num}}瓶冰可樂可兌換</div>
-          <div class="tip2">已累計送出{{tasks.send}}瓶冰可樂</div>
+          <div class="tip1">{{lang.taks_tips1.replace('%s',tasks.exchange.base_num)}}</div>
+          <div class="tip2">{{lang.taks_tips2.replace('%s',tasks.send)}}</div>
           <div class="btnBox">
-            <span @click="goRankTab()">去贈送</span>
-            <span @click="exChange()">兌換 <em>已兌換{{tasks.exchange.ex_days}}天頭像框</em></span>
+            <span @click="goRankTab()">{{lang.taks_tips3}}</span>
+            <span @click="exChange()">{{lang.taks_getGift}} <em>{{lang.taks_getGiftDay.replace('%s',tasks.exchange.ex_days)}}</em></span>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
     <div class="tasksList">
       <i class="topIcon"></i>
       <div class="novice" v-if="new_tasks.length >0">
-        <h5>新手任務</h5>
+        <h5>{{lang.newTaskTitle}}</h5>
         <ul>
           <li v-for="(item,index) in new_tasks" :key="index">
             <i class="giftNums">{{item.num}}</i>
@@ -34,16 +34,16 @@
               </div>
             </div>
             <div class="status" :class="{act:item.finish && !item.get,black:item.get}">
-              <em v-if="item.get">已領取</em>
-              <em v-else-if="item.finish" @click="newGift(item.id,index,item.num)">領取冰可樂</em>
-              <em v-else @click="newDoTask(item)">去完成</em>
+              <em v-if="item.get">{{lang.getEd}}</em>
+              <em v-else-if="item.finish" @click="newGift(item.id,index,item.num)">{{lang.getGift}}</em>
+              <em v-else @click="newDoTask(item)">{{lang.doTask}}</em>
             </div>
           </li>
         </ul>
       </div>
       <div class="dayTasks">
-        <h5>每日任務</h5>
-        <p>（每天0點更新）</p>
+        <h5>{{lang.dayTaskTips1}}</h5>
+        <p>{{lang.dayTaskTips2}}</p>
         <ul>
           <li v-for="(item,index) in tasks.day_tasks" :key="index">
             <i class="giftNums">{{item.num}}</i>
@@ -55,46 +55,44 @@
               </div>
             </div>
             <div class="status" :class="{act:item.finish && !item.get,black:item.get,mt:item.id == 5}">
-              <em v-if="item.get">已領取</em>
-              <em v-else-if="item.finish" @click="dayGift(item.id,index,item.num)">領取冰可樂</em>
-              <em v-else @click="doTask(item)">去完成</em>
-              <u v-if="item.id == 5" class="pNums" @click.stop="showInivted()">已邀請{{item.process}}人</u>
+              <em v-if="item.get">{{lang.getEd}}</em>
+              <em v-else-if="item.finish" @click="dayGift(item.id,index,item.num)">{{lang.getGift}}</em>
+              <em v-else @click="doTask(item)">{{lang.doTask}}</em>
+              <u v-if="item.id == 5" class="pNums" @click.stop="showInivted()">{{lang.inivtedNums.replace('%s',item.process)}}</u>
             </div>
           </li>
         </ul>
       </div>
-      <p class="lastTips">
-        任務所得的冰可樂將發放到背包中，請及時贈送冰可樂小酷爽們<br />
-        1冰可樂=100冰可樂酷爽值
+      <p class="lastTips" v-html="lang.taskScoreTips">
       </p>
     </div>
     <div class="mask" v-show="showShare">
       <transition name="slide">
-        <div class="sharePup" v-show="showShare">
+        <div class="sharePup" v-if="showShare">
           <i class="close" @click="closeSharePup()"></i>
-          <p class="giftTips">邀請活動新玩家，每成功邀請1人獎勵 <i></i> x3</p>
-          <p v-if="invitedList.length == 0" class="noData">暫無數據</p>
+          <p class="giftTips">{{lang.inivitTips}} <i></i> x3</p>
+          <p v-if="invitedList.length == 0" class="noData">{{lang.noData}}</p>
           <ul class="peopleList">
             <li v-for="(item,index) in invitedList" :key="index">
-              <div class="userRank" :class="{noRank:item.rank == 0}">{{item.rank == 0?'未上榜':item.rank}}</div>
+              <div class="userRank" :class="{noRank:item.rank == 0}">{{item.rank == 0?lang.noRank:item.rank}}</div>
               <div class="imgBox">
                 <span class="avBg" v-if="item.rank<=3"></span>
                 <img v-lazy="item.avatar" alt="">
               </div>
               <div class="nick">{{item.nick}}</div>
-              <div class="score"><span>總酷爽值</span> <em>{{item.score}}</em></div>
+              <div class="score"><span>{{lang.totalScore}}</span> <em>{{item.score}}</em></div>
             </li>
           </ul>
-          <div class="inivitBtn" @click="showPelple()">邀請活動新玩家</div>
+          <div class="inivitBtn" @click="showPelple()">{{lang.inivit}}</div>
         </div>
       </transition>
     </div>
     <div class="mask" v-show="showPeople">
       <transition name="slide">
-        <div class="peoplePup" v-show="showPeople">
+        <div class="peoplePup" v-if="showPeople">
           <i class="close" @click="closePeople()"></i>
-          <h5 class="tite">好友列表</h5>
-          <p v-if="peopleListHas.length == 0" class="noData">暫無可邀請好友，快去添加好友吧~</p>
+          <h5 class="tite">{{lang.fanListTitle}}</h5>
+          <p v-if="peopleListHas.length == 0" class="noData">{{lang.noFans}}</p>
           <ul class="pList">
             <li v-for="(item,index) in peopleListHas" :key="index">
               <!-- <div class="userRank">{{item.rank}}</div> -->
@@ -105,11 +103,11 @@
                 </div>
                 <div class="nick">
                   <div class='name'>{{item.nick}}</div>
-                  <div class="tips">還沒參加夏日酷爽狂歡活動</div>
+                  <div class="tips">{{lang.notSingUp}}</div>
                 </div>
                 <div class="shareBtn" :class="{share2:item.status == 3}">
-                  <em v-if="item.status == 3">已邀請</em>
-                  <em v-else @click="shareAct(item,index)">邀請領取</em>
+                  <em v-if="item.status == 3">{{lang.inivitEd}}</em>
+                  <em v-else @click="shareAct(item,index)">{{lang.inivitGet}}</em>
                 </div>
               </div>
             </li>
@@ -126,11 +124,12 @@ import api from "../api/apiConfig"
 import share from "../utils/share"
 import { globalBus } from '../utils/eventBus'
 import getUrlString from '../utils/getString.js';
+import lang from "../config/lang"
 
 let that = null
 window.onShareSuccess = async (from, uid, type, typeName) => {
   api.shareSuc()
-  that.toast(`分享成功！`)
+  that.toast(lang.shareSuc)
 }
 
 export default {
@@ -185,20 +184,20 @@ export default {
     exChange () {
       globalBus.$emit('commonEvent', () => {
         if (!this.userMsg.reg) {
-          this.toast('請先報名活動哦~')
+          this.toast(this.lang.needSingUp)
           return
         }
         api.exChange().then(res => {
           if (res.data.response_status.code == 0) {
             this.vxc('setToast', {
-              title: '兌換成功',
-              msg: `${this.tasks.exchange.name}已經發放到你的帳戶，<br/>有效期3天，請到商城-我的中配戴`,
+              title: this.lang.getSucTips,
+              msg: this.lang.getSucTipsmsg.replace('%s', this.tasks.exchange.name),
               noOk: false
             })
           } else {
             this.vxc('setToast', {
-              title: '兌換失敗...',
-              msg: '你送出的冰可樂不夠哦...<br/>快去做任務獲取冰可樂並送給小酷爽吧',
+              title: this.lang.getFailTips,
+              msg: this.lang.getFailTipsmsg,
               noOk: false
             })
             setTimeout(() => {
@@ -230,12 +229,15 @@ export default {
       globalBus.$emit('commonEvent', () => {
         api.dayGetGift(id).then(res => {
           if (res.data.response_status.code == 0) {
-            let obj = {
-              id,
-              index
-            }
-            this.vxc('setDayTaskStatus', obj)
-            this.vxc('addSugar', nums)
+            api.tasks().then(res => {
+              this.vxc('setTasks', res.data.response_data)
+            })
+            // let obj = {
+            //   id,
+            //   index
+            // }
+            // this.vxc('setDayTaskStatus', obj)
+            // this.vxc('addSugar', nums)
           } else {
             this.toast(res.data.response_status.error)
           }
@@ -244,7 +246,7 @@ export default {
     },
     showInivted () {
       if (!this.userMsg.reg) {
-        this.toast('請先報名活動哦~')
+        this.toast(this.lang.needSingUp)
         return
       }
       api.invitedList(1, 0).then(res => {
@@ -309,7 +311,7 @@ export default {
     doTask (item) {
       globalBus.$emit('commonEvent', () => {
         if (!this.userMsg.reg) {
-          this.toast('請先報名活動哦~')
+          this.toast(this.lang.needSingUp)
           return
         }
         const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
@@ -411,9 +413,11 @@ export default {
     },
     closeSharePup () {
       this.showShare = false
+      this.loaded = false
     },
     closePeople () {
       this.showPeople = false
+      this.loaded2 = false
     }
   }
 }

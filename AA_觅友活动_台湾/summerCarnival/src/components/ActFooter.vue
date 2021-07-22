@@ -3,16 +3,16 @@
     <div class="acrStatus">
       <span class="noAct" v-if="astState === 0">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
-      <span class="goAct" v-if="astState === 1" @click="singUp()">報名夏日酷爽嘉年華</span>
+      <span class="goAct" v-if="astState === 1" @click="singUp()">{{lang.singUp}}</span>
       <div class="actIng" v-if="astState === 3">
         <div class="rank" v-if="nowMsg.rank !=0">{{nowMsg.rank>100?'100+':nowMsg.rank}}</div>
-        <div class="noRank" v-else>未上榜</div>
+        <div class="noRank" v-else>{{lang.noRank}}</div>
         <img v-lazy="userMsg.avatar" alt="">
         <div class="nick">{{userMsg.nick}}</div>
         <div class="userScore">
-          <div class="total">總酷爽值 {{nowMsg.sugar_score*1 + nowMsg.gift_score*1}}</div>
-          <div class="score1">冰可樂酷爽值 {{nowMsg.sugar_score}}</div>
-          <div class="score1">派對酷爽值 {{nowMsg.gift_score}}</div>
+          <div class="total">{{lang.totalScore}} {{nowMsg.sugar_score*1 + nowMsg.gift_score*1}}</div>
+          <div class="score1">{{lang.userScore1}} {{nowMsg.sugar_score}}</div>
+          <div class="score1">{{lang.userScore2}} {{nowMsg.gift_score}}</div>
         </div>
       </div>
     </div>
@@ -45,7 +45,10 @@ export default {
       api.singUp().then(res => {
         if (res.data.response_status.code == 0) {
           this.$parent.getDefaultData()
-          this.toast('歡迎你參加夏日酷爽嘉年華，送你夏日酷爽冰可樂2個（已發到背包）')
+          this.toast(this.lang.singUpSuc)
+          api.tasks().then(res => {
+            this.vxc('setTasks', res.data.response_data)
+          })
         } else {
           this.toast(res.data.response_status.error)
         }

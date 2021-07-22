@@ -6,12 +6,12 @@
     confirm: "Konfirmasi",
     cancel: "Batal", //Batal
 
-    day_time: "{0}tahun{1}bulan{2}tanggal",
-    day_time_inner: "{0}tahun{1}bulan{2}tanggal",
-    month_time: "{0}tahun{1}bulan",
-    live_time: "{0}bulan{1}tanggal {2}:{3}",
-    room_time: "{0}bulan{1}tanggal {2}:{3}",
-    live_month_time: "{0}bulan{1}tanggal",
+    day_time: "{0}/{1}/{2}",
+    day_time_inner: "{0}/{1}/{2}",
+    month_time: "{0}/{1}/{2}",
+    live_time: "{0}/{1} {2}:{3}",
+    room_time: "{0}/{1} {2}:{3}",
+    live_month_time: "{0}/{1}",
     month_data: "Data bulanan", //Data bulanan
     day_data: "Data harian", //Data harian
     room_coins: "Aliran kamar", //Aliran kamar
@@ -38,5 +38,8 @@
         'Durasi live saat sibuk：Durasi yg host berada di kamarnya，Dalam jangka waktu " jam 00:00~jam 2:00" dan "jam 18:00 ~ jam 24:00" hari itu'
     ],
     room_tips_send: "Berikan", //Berikan
-    room_tips_give: "Beri" //Beri
+    room_tips_give: "Beri", //Beri
+    next: "Lanjut",
+    setStartTime: "Pilih waktu mulai",
+    setEndTime: "Pilih waktu akhir "
 };

@@ -6,12 +6,12 @@
     confirm: "Konfirmasi", //Konfirmasi
     cancel: "Batal", //Batal
 
-    day_time: "{0}thun{1}bulan{2}tanggal",
-    day_time_inner: "{0}thun{1}bulan tanggal",
-    month_time: "{0}thun{1}bulan",
-    live_time: "{0}bulan{1}bulan {2}:{3}",
-    room_time: "{0}bulan{1}bulan {2}:{3}",
-    live_month_time: "{0}bulan{1}tanggal",
+    day_time: "{0}/{1}/{2}",
+    day_time_inner: "{0}/{1}/{2}",
+    month_time: "{0}/{1}/{2}",
+    live_time: "{0}/{1} {2}:{3}",
+    room_time: "{0}/{1} {2}:{3}",
+    live_month_time: "{0}/{1}",
     month_data: "Data bulanan", //Data bulanan
     day_data: "Data harian", //Data harian
 
@@ -43,5 +43,8 @@
     pro_top: "Saldo berlian pink",
     settlement_title: "Total penghitungan berlian pink ",
     settlement_coins: "Penghitungan berlian pink ",
-    settlement_tm: "Waktu penghitungan"
+    settlement_tm: "Waktu penghitungan",
+    next: "Lanjut",
+    setStartTime: "Pilih waktu mulai",
+    setEndTime: "Pilih waktu akhir "
 };

@@ -6,16 +6,16 @@
     </div>
     <div class="header">
       <div class="tipsBox" :class="{top:isShare}">
-        <span class="ruleTips" @click="goRule()">規則獎勵</span>
-        <span class="history" @click="goHistory()">冰可樂動態</span>
+        <span class="ruleTips" @click="goRule()">{{lang.index_goRule}}</span>
+        <span class="history" @click="goHistory()">{{lang.index_history}}</span>
       </div>
     </div>
     <div class="mainTabsMtop">
-      <span :class="{act:mainTab=='Tasks'}" @click="tabClick('Tasks')">夏日酷爽冰可樂盒</span>
-      <span :class="{act:mainTab=='TabsScrollLoadList'}" @click="tabClick('TabsScrollLoadList')">討糖不搗蛋</span>
+      <span :class="{act:mainTab=='Tasks'}" @click="tabClick('Tasks')">{{lang.index_tab1}}</span>
+      <span :class="{act:mainTab=='TabsScrollLoadList'}" @click="tabClick('TabsScrollLoadList')">{{lang.index_tab2}}</span>
     </div>
     <!-- <keep-alive> -->
-    <component :is="mainTab" :type="mainTab" ref="ranks"></component>
+    <component :is="mainTab" :type="mainTab" ref="ranks" :step_prizes="step_prizes"></component>
     <!-- </keep-alive> -->
     <!-- <TabsScrollLoadList /> -->
     <act-footer></act-footer>
@@ -24,7 +24,7 @@
       <transition name="slide">
         <div class="invitationPup" v-if="invitation">
           <i class="close" @click="closeInvitation()"></i>
-          <h5>有好友邀請你參加夏日酷爽嘉年華</h5>
+          <h5>{{lang.invitationPup_title}}</h5>
           <ul>
             <li v-for="(item,index) in peopleList" :key="index" @click="setActIndex(index)">
               <img v-lazy="item.avatar" alt="">
@@ -32,8 +32,8 @@
               <span class="gou"> <i v-if="actIndex == index"> </i></span>
             </li>
           </ul>
-          <p class="tips">成功邀請你參加夏日酷爽嘉年華的好友<br />有機會獲得 <i></i></p>
-          <span class="singUpBtn" @click="singUp('select')">接受他的邀請</span>
+          <p class="tips">{{lang.invitationPup_tips}}<i></i></p>
+          <span class="singUpBtn" @click="singUp('select')">{{lang.invitationPup_suc}}</span>
         </div>
       </transition>
     </div>
@@ -42,14 +42,14 @@
         <div class="firstLuck" v-if="firstGift">
           <i class="close" @click="closeFirst()"></i>
           <div class="title">
-            <p v-if="!isRank"> 歡迎來到夏日酷爽嘉年華<br />送你夏日酷爽冰可樂2個</p>
-            <p v-else>你大受歡迎！</p>
+            <p v-if="!isRank" v-html="lang.first_title"></p>
+            <p v-else>{{lang.first_title2}}</p>
           </div>
           <img src="../assets/img/tang.png" alt="" v-if="!isRank">
           <img :src="step_show.image" alt="" v-else>
-          <p v-if="!isRank">可用於贈送給喜歡的小酷爽用戶，<br />增加他的酷爽值</p>
-          <p v-else>酷爽值達到{{step_show.score}}值，獲得{{step_show.name}}獎勵<br />已經發送到你的帳號，請查收 </p>
-          <div class="btn" v-if="!isRank" @click="singUp()">收下</div>
+          <p v-if="!isRank" v-html="lang.first_tips1"></p>
+          <p v-else v-html="lang.first_tips2.replace('%s',step_show.score).replace('%n',step_show.name)"></p>
+          <div class="btn" v-if="!isRank" @click="singUp()">{{lang.get}}</div>
         </div>
       </transition>
     </div>
@@ -82,33 +82,34 @@ export default {
       isMore: true,   //加载更多
       activite: 1,    //活动状态
       showT: false,  //提示弹窗显示
-      tastMsg: "提示信息",  //基础弹窗提示信息
+      tastMsg: "",  //基础弹窗提示信息
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
-      mainTab: 'TabsScrollLoadList',
+      mainTab: 'Tasks',
       invitation: false,
       actIndex: null,
       tasksList: [],
       step_show: 1,
       firstGift: false,
       isRank: false,
-      rankGift: {
-        1: {
-          name: '南瓜燈背包禮物*10',
-          img: require('../assets/img/ruleImg/g2.png')
-        },
-        2: {
-          name: '巫師頭像框-15天',
-          img: require('../assets/img/ruleImg/g3.png')
-        },
-        3: {
-          name: '南瓜車座駕-15天',
-          img: require('../assets/img/ruleImg/g1.png')
-        }
-      },
+      //   rankGift: {
+      //     1: {
+      //       name: '南瓜燈背包禮物*10',
+      //       img: require('../assets/img/ruleImg/g2.png')
+      //     },
+      //     2: {
+      //       name: '巫師頭像框-15天',
+      //       img: require('../assets/img/ruleImg/g3.png')
+      //     },
+      //     3: {
+      //       name: '南瓜車座駕-15天',
+      //       img: require('../assets/img/ruleImg/g1.png')
+      //     }
+      //   },
       showHistory: false,
-      score: 0
+      score: 0,
+      step_prizes: {}
     }
   },
   created () {
@@ -127,7 +128,8 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { owner, step_show, score, today, end_time, invite, notices, activity } = response_data
+          const { owner, step_show, score, today, end_time, invite, notices, activity, step_prizes } = response_data
+          this.step_prizes = step_prizes
           if (invite && invite.length) {
             this.peopleList = invite
             this.invitation = true
@@ -146,6 +148,12 @@ export default {
           this.vxc('updateRankGroups', { key: 'total', second: end_time })
           this.vxc('setRoolMsg', notices)
           this.vxc('setActivity', activity)
+
+          //时间
+          sessionStorage.setItem('tm', JSON.stringify(activity))
+          if (!val) {
+            this.tabClick('Tasks')
+          }
         } else {
           this.toast(response_status.error)
         }
@@ -170,7 +178,7 @@ export default {
     // },
     singUp (select) {
       if (select && this.actIndex == null) {
-        this.toast('請選擇接受的好友~')
+        this.toast(this.lang.setFriend)
         return
       }
       let uid = this.actIndex != null ? this.peopleList[this.actIndex].uid : null
@@ -179,7 +187,11 @@ export default {
           this.getDefaultData()
           this.invitation = false
           this.firstGift = false
-          this.toast('歡迎你參加夏日酷爽嘉年華，送你夏日酷爽冰可樂2個（已發到背包）')
+          this.toast(this.lang.singUpSuc)
+
+          api.tasks().then(res => {
+            this.vxc('setTasks', res.data.response_data)
+          })
         } else {
           this.toast(res.data.response_status.error)
         }
