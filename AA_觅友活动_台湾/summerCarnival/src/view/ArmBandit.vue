@@ -86,7 +86,7 @@ export default {
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,
-      mainTab: 'Tasks',
+      mainTab: 'TabsScrollLoadList',
       invitation: false,
       actIndex: null,
       tasksList: [],

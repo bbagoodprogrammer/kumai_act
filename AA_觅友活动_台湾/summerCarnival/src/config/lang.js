@@ -91,9 +91,10 @@ const lang = {
   first_title: "歡迎來到夏日酷爽嘉年華<br />送你夏日酷爽冰可樂2個",
   first_title2: "你大受歡迎！",
   first_tips1: "可用於贈送給喜歡的玩家，<br />增加他的酷爽值",
-  first_tips2: "酷爽值達到%s值，獲得&n獎勵<br />已經發送到你的帳號，請查收",
+  first_tips2: "酷爽值達到%s值，獲得%n獎勵<br />已經發送到你的帳號，請查收",
   get: "收下",
   setFriend: "請選擇接受的好友~",
-  scoreName: "酷爽值"
+  scoreName: "酷爽值",
+  achieve: "達到"
 };
 export default lang;

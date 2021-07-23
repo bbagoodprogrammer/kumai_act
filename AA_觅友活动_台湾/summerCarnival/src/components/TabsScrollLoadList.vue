@@ -5,8 +5,9 @@
     <div class="giftList">
       <div class="giftItem" v-for="(item,index) in step_prizes" :key="index">
         <img :src="item.image" alt="">
-        <strong>{{item.name}}{{item.days}}{{lang.day}}</strong>
-        <strong class="score">+{{item.score}}{{lang.scoreName}}</strong>
+        <!-- {{item.days}}{{lang.day}} -->
+        <strong class="gName">{{item.name}}</strong>
+        <strong class="score">{{lang.achieve}}{{item.score}}{{lang.scoreName}}</strong>
       </div>
     </div>
     <!-- 日榜、总榜切换主Tabs -->
@@ -441,8 +442,8 @@ export default {
   }
   .giftList {
     width: 6.2rem;
-    height: 3.8rem;
-    padding: 1.4rem 0.4rem 0;
+    height: 3.5rem;
+    padding: 1.7rem 0.4rem 0;
     margin: 0 auto;
     background: url(../assets/img/giftImg.png);
     background-size: 100% 100%;
@@ -459,6 +460,12 @@ export default {
         display: block;
         text-align: center;
         font-size: 0.24rem;
+      }
+      .gName {
+        height: 0.7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .score {
         color: #1E42E4;

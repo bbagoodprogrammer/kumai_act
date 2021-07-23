@@ -6,8 +6,8 @@ export default {
     act_rule: "Quy tắc",
     record: "Lịch sử",
     total_collection: "Xem thu thập của thôi",
-    get_frame: "Khi sưu tầm đủ 7 loaij,\n có thể nhận khung Xe ngựa 7 ngày",
-    collection_num: "Đã sưu tầm được %s quà giới hạn",
+    get_frame: "Khi sưu tầm đủ 7 loaij,\n có thể nhận khung Nấm 7 ngày",
+    collection_num: "Đã sưu tầm được %s quà trong sự kiện hưởng thụ cuộc sống",
     series: "Các loại anh đào",
     select: "Chọn",
     friend_des: "Cùng nhau cố gắng mới là bạn tốt",
@@ -67,5 +67,7 @@ export default {
     rule_title_4: "Lưu ý",
     matter_des:
         "1. Trong sự kiện, khi phát hiện người chơi gian lận, chúng tôi sẽ hủy bỏ tư cách xếp hạng của người vi phạm mà không cần thông báo, đồng thời sẽ khóa tài khoản và thu hồi các phần thưởng của người chơi, bao gồm và không giới hạn: khi tham gia sự kiện có lời lẻ xúc phạm đến người tham gia khác\n2. Quà tặng nhận được trong sự kiện sẽ có thời hạn trong 7 ngày\n3. Người chơi nhận được hộp quà kỳ diệu, khi sự kiện kết thúc nếu không chủ động mở quà, hệ thống sẽ tự động mở ra và chuyển quà đến túi của người chơi\n4. Mỗi người chơi chỉ có thể nhận 1 phần quà khung ảnh của sự kiện\n5. Sự kiện không liên quan đến công ty Apple",
-    explain: "Quyền quyết định cuối cùng thuộc về BQT"
+    explain: "Quyền quyết định cuối cùng thuộc về BQT",
+    rate:
+        "cô bưu tá-Điểm thu thập750-25%<br/>cô trồng lúa-Điểm thu thập750-25%<br/>cô nấu ăn-Điểm thu thập800-19.75%<br/>cô trồng hoa quà-Điểm thu thập870-13%<br/>cô nuôi gia súc-Điểm thu thập920-8%<br/>cô dệt áo-Điểm thu thập920-8%<br/>cô giỏi học-Điểm thu thập990-1%<br/>cô dự đoán-Điểm thu thập1500-0.25%"
 };

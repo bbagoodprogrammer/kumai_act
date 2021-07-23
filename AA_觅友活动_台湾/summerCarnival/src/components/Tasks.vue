@@ -58,7 +58,7 @@
               <em v-if="item.get">{{lang.getEd}}</em>
               <em v-else-if="item.finish" @click="dayGift(item.id,index,item.num)">{{lang.getGift}}</em>
               <em v-else @click="doTask(item)">{{lang.doTask}}</em>
-              <u v-if="item.id == 5" class="pNums" @click.stop="showInivted()">{{lang.inivtedNums.replace('%s',item.process)}}</u>
+              <u v-if="item.id == 5" class="pNums" @click.stop="showInivted()">{{lang.inivtedNums.replace('%s',item.total)}}</u>
             </div>
           </li>
         </ul>
@@ -278,6 +278,10 @@ export default {
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       let id = item.id
       console.log(id)
+      if (!this.userMsg.reg) {
+        this.toast(this.lang.needSingUp)
+        return
+      }
       if (id == 2) {
         const token = getUrlString('token') || '';
         const uid = getUrlString('uid') || '';
@@ -293,9 +297,9 @@ export default {
       } else if (id == 4) {
         try {
           if (ios) {
-            sendJsData('app://bottlespage');
+            sendJsData('app://mainPage?page_index=pair&page_index_child=pair_pair');
           } else {
-            javascript: JSInterface.sendJsData('app://bottlespage');
+            javascript: JSInterface.sendJsData('app://mainPage?page_index=pair&page_index_child=pair_pair');
           }
         } catch (e) { }
       } else if (id == 6) {
@@ -328,9 +332,9 @@ export default {
         } else if (id == 3) {  //跳轉到邂逅頁
           try {
             if (ios) {
-              sendJsData('app://bottlespage');
+              sendJsData('app://mainPage?page_index=pair&page_index_child=pair_pair');
             } else {
-              javascript: JSInterface.sendJsData('app://bottlespage');
+              javascript: JSInterface.sendJsData('app://mainPage?page_index=pair&page_index_child=pair_pair');
             }
           } catch (e) { }
         } else if (id == 5) {  //邀請好友彈窗

@@ -1,12 +1,9 @@
 <template>
   <div class="rule_dialog">
     <div class="dialog_screen" @click="handleCloseDialog"></div>
-    <div
-      class="dialog_container"
-      :style="{
+    <div class="dialog_container" :style="{
         background: `url(${images.rule_dialog}) 0/100% 100% no-repeat`,
-      }"
-    >
+      }">
       <!-- <div class="time">{{ lang.act_time }}</div> -->
       <!-- <div class="tabs">
         <div
@@ -30,7 +27,8 @@
           <div class="title">{{ lang.rule_title_1 }}</div>
           <div class="des" v-html="getBrHtml(lang.purchase_box_des)"></div>
           <div class="title">{{ lang.rule_title_2 }}</div>
-          <img class="rate__img" :src="images.rate" />
+          <!-- <img class="rate__img" :src="images.rate" /> -->
+          <div v-html="lang.rate" class="des"></div>
           <div class="title">{{ lang.rule_title_3 }}</div>
           <div class="des" v-html="getBrHtml(lang.rule_rank_des)"></div>
           <div class="title">{{ lang.rule_title_4 }}</div>
@@ -39,11 +37,7 @@
         </template>
         <template v-if="tab == 1"> </template>
       </div>
-      <img
-        class="close__dialog"
-        @click="handleCloseDialog"
-        src="../img/close.png"
-      />
+      <img class="close__dialog" @click="handleCloseDialog" src="../img/close.png" />
     </div>
   </div>
 </template>
@@ -63,40 +57,40 @@ export default {
 
   computed: {
     ...mapState(["initData"]),
-    getActTime() {
+    getActTime () {
       let sTime = dateFormat(this.lang.s_time, this.initData.sTime * 1000)
       let eTime = dateFormat(this.lang.e_time, this.initData.eTime * 1000)
       return this.lang.act_time.replace('%s', sTime + '-' + eTime)
     }
   },
 
-  data() {
+  data () {
     return {
       tab: 0,
     };
   },
 
-  created() {
+  created () {
     document.body.style.overflow = "hidden";
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     document.body.style.overflow = "";
   },
 
   methods: {
-    handleClick(tab) {
+    handleClick (tab) {
       this.tab = tab;
     },
 
-    getBrHtml(text) {
+    getBrHtml (text) {
       if (!text) {
         return;
       }
       return text.replace(/\n/g, "<br>");
     },
 
-    handleCloseDialog() {
+    handleCloseDialog () {
       this.$emit("update:visible", false);
     },
   },
