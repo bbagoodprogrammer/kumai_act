@@ -212,4 +212,21 @@ function getInitInfo() {
     );
 }
 
-export { get, post, loadData, getInitInfo };
+function totalRank() {
+    return get(
+        "/index.php?action=islandAdventure.rank&uid={uid}&token={token}&type=2"
+    );
+}
+
+function getShovel(type, count) {
+    return get(
+        `/index.php?action=islandAdventure.exchange&uid={uid}&token={token}&type=${type}&count=${count}`
+    );
+}
+
+function luck(type, count) {
+    return get(
+        `/index.php?action=islandAdventure.go&uid={uid}&token={token}&type=${type}&count=${count}`
+    );
+}
+export { get, post, loadData, getInitInfo, totalRank, getShovel, luck };

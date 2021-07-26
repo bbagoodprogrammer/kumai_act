@@ -5,6 +5,8 @@ export default {
     hour: "時",
     minute: "分",
     second: "秒",
+    notStart: "活動未開始",
+    actEnd: "活動已結束",
     //html/app_share.ejs
     share_title: "簽約",
     share_desc:

@@ -7,7 +7,11 @@ Vue.use(vuex);
 export default new vuex.Store({
     state: {
         activity: {},
-        loading: false
+        owner: {},
+        showType: 1,
+        loading: false,
+        totleOwner: {},
+        islands: []
     },
     mutations: {
         updateLoading(state, value) {
@@ -16,6 +20,12 @@ export default new vuex.Store({
 
         setInitInfo(state, data) {
             Object.assign(state, data);
+        },
+        setShowType(state, val) {
+            state.showType = val;
+        },
+        setTotleOwner(state, val) {
+            state.totleOwner = val;
         }
     },
     actions: {

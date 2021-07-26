@@ -1,29 +1,34 @@
 <template>
-  <div class="landTask">
-    <div class="landCon">
-      <div class="landName">{{openLand.name}}</div>
-      <div class="openTm">開放時間:{{openTm}}</div>
-      <ul class="taskList">
-        <li v-for="(item,index) in openLand.tasks" :key="index">
-          <div class="msg">
-            <div class="tName">{{item.title}}</div>
-            <div class="gift">獎勵:{{item.props}}海螺({{item.process}}/{{item.target}})</div>
-          </div>
-          <div class="status" :class="{'act':item.process < item.target}">
-            {{item.process >= item.target?'已完成':'去完成'}}
-          </div>
-        </li>
-      </ul>
-      <p class="taskTips">*完成任務後，道具自動發放<br />*任務每天0點更新</p>
+  <div>
+    <Luck />
+    <div class="landTask">
+      <div class="landCon">
+        <div class="landName">{{openLand.name}}</div>
+        <div class="openTm">開放時間:{{openTm}}</div>
+        <ul class="taskList">
+          <li v-for="(item,index) in openLand.tasks" :key="index">
+            <div class="msg">
+              <div class="tName">{{item.title}}</div>
+              <div class="gift">獎勵:{{item.props}}海螺({{item.process}}/{{item.target}})</div>
+            </div>
+            <div class="status" :class="{'act':item.process < item.target}">
+              {{item.process >= item.target?'已完成':'去完成'}}
+            </div>
+          </li>
+        </ul>
+        <p class="taskTips">*完成任務後，道具自動發放<br />*任務每天0點更新</p>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script>
 import { mapState } from "vuex"
 import getDate from "../utils/getDate"
-
+import Luck from "./Luck"
 export default {
+  components: { Luck },
   computed: {
     ...mapState(['islands', 'activity']),
     openLand () {

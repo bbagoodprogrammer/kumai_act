@@ -1,8 +1,8 @@
 <template>
   <div class="rankList">
     <div class="rankTab">
-      <span class="tab1" :class="{act:type == 1}" @click="type = 1">日榜</span>
-      <span class="tab2" :class="{act:type == 2}" @click="type = 2">總榜</span>
+      <span class="tab1" :class="{act:type == 1}" @click="tabClick(1)">日榜</span>
+      <span class="tab2" :class="{act:type == 2}" @click="tabClick(2)">總榜</span>
     </div>
     <div class="downTime">
       <p>{{openLand.name}} 閉島倒計時</p>
@@ -18,6 +18,7 @@
       </div>
     </div>
     <div class="top3">
+      <p v-if="!top3.length" class="noData">暫無數據</p>
       <div class="topItem" v-for="(item,index) in top3" :key="index" :class="'top3_'+item.rank">
         <div class="imgBox">
           <span class="frame"></span>
@@ -27,17 +28,18 @@
         <div class="score">{{item.score}}</div>
       </div>
     </div>
-    <ul>
+    <ul class="otherList">
       <li v-for="(item,index) in otherRank" :key="index">
         <div class="rank">{{item.rank}}</div>
         <img :src="item.avatar" alt="">
         <div class="nick">{{item.nick}}</div>
         <div class="score">
-          <span>島主積分</span>
-          <span>{{item.score}}</span>
+          <span class="tips">島主積分</span>
+          <span class="nums">{{item.score}}</span>
         </div>
       </li>
     </ul>
+    <Footer />
   </div>
 </template>
 
@@ -45,10 +47,17 @@
 
 import { mapState } from "vuex"
 import downTime from "../utils/downTime"
+import { totalRank } from "../apis"
+import Footer from "./Footer"
 export default {
+  components: { Footer },
   data () {
     return {
       type: 1,
+      totalRank: {
+        load: false,
+        list: []
+      },
       surplusTime: {}
     }
   },
@@ -57,11 +66,14 @@ export default {
     openLand () {
       return this.activity.vol ? this.islands[this.activity.vol - 1] : {}
     },
+    showRank () {
+      return this.type == 1 ? this.rank : this.totalRank.list
+    },
     top3 () {
-      return this.rank.slice(0, 3)
+      return this.showRank.slice(0, 3)
     },
     otherRank () {
-      return this.rank.slice(3)
+      return this.showRank.slice(3)
     }
   },
   created () {
@@ -73,6 +85,19 @@ export default {
     },
   },
   methods: {
+    tabClick (val) {
+      this.vxc('setShowType', val)
+      if (!this.totalRank.load && val == 2) {
+        totalRank().then(res => {
+          this.totalRank.load = true
+          this.totalRank.list = res.data.response_data.rank
+          this.type = val
+          this.vxc('setTotleOwner', res.data.response_data.owner)
+        })
+      } else {
+        this.type = val
+      }
+    },
     downTimeGo (timeName, val) {
       console.log(val)
       clearInterval(this.timer)
@@ -97,7 +122,7 @@ export default {
   width: 7.34rem;
   min-height: 7rem;
   padding-top: 0.42rem;
-  background: url(../img/rankBg.png);
+  background: url(../img/rankBg.png) no-repeat;
   background-size: 100% auto;
   margin: 0.25rem auto 0;
   .rankTab {
@@ -162,6 +187,11 @@ export default {
     padding: 0 0.3rem;
     display: flex;
     justify-content: space-between;
+    .noData {
+      width: 100%;
+      text-align: center;
+      color: #7D3F0A;
+    }
     .topItem {
       width: 2.2rem;
       .imgBox {
@@ -211,6 +241,53 @@ export default {
         margin-top: 1.74rem;
         .frame {
           background: url(../img/top3.png);
+        }
+      }
+    }
+  }
+  .otherList {
+    width: 6.84rem;
+    margin: 0 auto;
+    li {
+      height: 1.48rem;
+      display: flex;
+      align-items: center;
+      background: url(../img/taskItem.png);
+      background-size: 100% 100%;
+      margin-bottom: 0.05rem;
+      .rank {
+        width: 1.07rem;
+        text-align: center;
+        font-size: 0.36rem;
+        color: #652F00;
+      }
+      img {
+        width: 1.07rem;
+        height: 1.07rem;
+        border: 0.02rem solid #7D3F0A;
+        border-radius: 50%;
+      }
+      .nick {
+        width: 2.6rem;
+        color: #652F00;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin-left: 0.14rem;
+      }
+      .score {
+        flex: 1;
+        text-align: center;
+        span {
+          display: block;
+          margin-bottom: 0.06rem;
+          &.tips {
+            font-size: 0.26rem;
+            color: #E98834;
+          }
+          &.nums {
+            color: #652F00;
+          }
         }
       }
     }
