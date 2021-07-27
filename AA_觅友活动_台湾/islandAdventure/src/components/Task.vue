@@ -11,8 +11,9 @@
               <div class="tName">{{item.title}}</div>
               <div class="gift">獎勵:{{item.props}}海螺({{item.process}}/{{item.target}})</div>
             </div>
-            <div class="status" :class="{'act':item.process < item.target}">
-              {{item.process >= item.target?'已完成':'去完成'}}
+            <div class="status">
+              <em v-if="item.id == 4">房間人氣值：{{item.process}}</em>
+              <strong :class="{'act':item.process < item.target}"> {{item.process >= item.target?'已完成':'去完成'}}</strong>
             </div>
           </li>
         </ul>
@@ -97,18 +98,26 @@ export default {
           }
         }
         .status {
-          width: 1.58rem;
-          height: 0.67rem;
           text-align: center;
-          line-height: 0.67rem;
-          background: url(../img/notGet.png);
-          background-size: 100% 100%;
-          font-size: 0.28rem;
           margin-left: 0.3rem;
-          &.act {
-            color: #A4261C;
-            background: url(../img/get.png);
+          em {
+            font-size: 0.24rem;
+            color: #E98834;
+            white-space: nowrap;
+          }
+          strong {
+            display: block;
+            width: 1.58rem;
+            height: 0.67rem;
+            background: url(../img/notGet.png);
             background-size: 100% 100%;
+            font-size: 0.28rem;
+            line-height: 0.67rem;
+            &.act {
+              color: #A4261C;
+              background: url(../img/get.png);
+              background-size: 100% 100%;
+            }
           }
         }
       }

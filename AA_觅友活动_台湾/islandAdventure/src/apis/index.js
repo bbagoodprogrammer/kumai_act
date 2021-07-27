@@ -229,4 +229,19 @@ function luck(type, count) {
         `/index.php?action=islandAdventure.go&uid={uid}&token={token}&type=${type}&count=${count}`
     );
 }
-export { get, post, loadData, getInitInfo, totalRank, getShovel, luck };
+
+function lotteryRecord(from) {
+    return get(
+        `/index.php?action=islandAdventure.history&uid={uid}&token={token}&from=${from}`
+    );
+}
+export {
+    get,
+    post,
+    loadData,
+    getInitInfo,
+    totalRank,
+    getShovel,
+    luck,
+    lotteryRecord
+};

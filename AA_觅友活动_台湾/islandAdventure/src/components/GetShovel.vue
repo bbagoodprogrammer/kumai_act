@@ -2,9 +2,14 @@
   <div class="getShovel">
     <i class="close" @click="$parent.showGetShovel = false"></i>
     <div class="title">兌換</div>
-    <div class="userNums">
-      <span>{{setType == 1?`今日已兌換:${owner.today_iron_exchange}/${owner.iron_exchange_max}`:''}}</span>
+    <div class="userNums" v-if="setType == 1">
+      <span>今日已兌換:{{owner.today_iron_exchange}}/{{owner.iron_exchange_max}}</span>
       <span>我的海螺:{{owner.props}}</span>
+    </div>
+    <div class="userNums2" v-else>
+      <img src="../img/coins.png" alt="">
+      <em>{{owner.coins}}</em>
+      <span class="add" @click="walletpage"></span>
     </div>
     <div class="shovel">
       <div class="shovel1">
@@ -62,12 +67,23 @@ export default {
           }
         })
       }
+    },
+    walletpage () {
+      const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      try {
+        if (ios) {
+          // goWalletpage()
+          sendJsData('app://walletpage');
+        } else {
+          javascript: JSInterface.sendJsData('app://walletpage');
+        }
+      } catch (e) { }
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .close {
   display: block;
   width: 0.5rem;
@@ -99,6 +115,34 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .userNums2 {
+    margin-top: 1rem;
+    width: 2.11rem;
+    height: 0.43rem;
+    background: url(../img/coinsBg.png);
+    background-size: 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    img {
+      width: 0.45rem;
+      height: 0.45rem;
+      margin-top: -0.01rem;
+    }
+    .add {
+      width: 0.31rem;
+      height: 0.31rem;
+      background: url(../img/add2.png);
+      background-size: 100% 100%;
+      margin-right: 0.08rem;
+    }
+    em {
+      flex: 1;
+      text-align: center;
+      font-size: 0.28rem;
+      color: #7D3F0A;
+    }
   }
   .shovel {
     display: flex;

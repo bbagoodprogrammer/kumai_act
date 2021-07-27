@@ -11,13 +11,13 @@ export default new vuex.Store({
         showType: 1,
         loading: false,
         totleOwner: {},
-        islands: []
+        islands: [],
+        notices: []
     },
     mutations: {
         updateLoading(state, value) {
             state.loading = value;
         },
-
         setInitInfo(state, data) {
             Object.assign(state, data);
         },

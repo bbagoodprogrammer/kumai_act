@@ -2,10 +2,12 @@
   <div class="luck">
     <div class="land">
       <div class="landList">
-        <div class="landName">{{islands[nowIndex]?islands[nowIndex].name:''}}</div>
+        <div class="landName" v-if="islands[nowIndex]&&islands[nowIndex].status == 0">未開放</div>
+        <div class="landName" v-else>{{islands[nowIndex]?islands[nowIndex].name:''}}</div>
         <van-swipe class="my-swipe" :loop="false" :show-indicators="false" :initial-swipe="initNum" @change="onChange" ref="swiper">
           <van-swipe-item v-for="(item,index) in islands" :key="index">
-            <img :src="require(`../img/landImg/${index+1}.png`)" alt="" class="landBg">
+            <canvas id="landCanvas" v-if="item.status == 1" />
+            <img :src="require(`../img/landImg/${index+1}.png`)" alt="" class="landBg" v-else>
             <div class="user" v-if="item.uid">
               <img v-lazy="item.avatar" alt="">
               <div class="nick">{{item.nick}}</div>
@@ -27,7 +29,9 @@
         <transition name="slide">
           <div class="luckGiftPup" v-if="showLuckGift">
             <i class="close" @click="showLuckGift =false"></i>
-            <div class="luckTop"></div>
+            <div class="luckTop">
+              <span class="icon">恭喜獲得</span>
+            </div>
             <div class="luckCon" :class="{one:Object.keys(prizes).length == 1}">
               <div class="giftItem" v-for="(item,index) in prizes" :key="index">
                 <div class="imgBox">
@@ -60,13 +64,28 @@
 import { mapState } from "vuex"
 import { luck } from "../apis"
 
+import { Downloader, Parser, Player } from 'svga.lite'
+
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
+
 export default {
   data () {
     return {
       nowIndex: 0,
       prizes: [],
       showLuckGift: false,
-      score: 0
+      score: 0,
+      svgaList: [
+        'http://fstatic.cat1314.com/uc/svga/c492c6ee04fb37f3cc52db56925ead16_1627372734.svga',
+        'http://fstatic.cat1314.com/uc/svga/cdf8916fe16f69e246deeb0fd2dab5ef_1627372749.svga',
+        'http://fstatic.cat1314.com/uc/svga/887f14cfc070ad6458881234cf61b546_1627372759.svga',
+        'http://fstatic.cat1314.com/uc/svga/4c1a88b03aa12daf63c2d49a168d51bc_1627372767.svga',
+        'http://fstatic.cat1314.com/uc/svga/c2923fa6a99d85add23eab3c22eb1791_1627372776.svga',
+        'http://fstatic.cat1314.com/uc/svga/1d5c810a76af7ebbd9f895dcebe590dc_1627372784.svga',
+        'http://fstatic.cat1314.com/uc/svga/0316af4411f1d62f70051062b75cf5eb_1627372792.svga'
+      ],
+      player: null
     }
   },
   computed: {
@@ -92,6 +111,18 @@ export default {
           nums: this.owner.gold_num,
         }
       ]
+    },
+    showSvgaAddres () {
+      return this.svgaList[this.activity.vol - 1]
+    }
+  },
+  watch: {
+    islands (val) {
+      if (val.length) {
+        setTimeout(() => {
+          this.bannerGo()
+        }, 0)
+      }
     }
   },
   methods: {
@@ -125,6 +156,19 @@ export default {
       }
 
     },
+    async bannerGo () {
+      if (this.player) {
+        this.player.clear()
+      }
+
+      let canvas = document.getElementById('landCanvas')
+      const fileData = await downloader.get(this.showSvgaAddres);
+      const data = await parser.do(fileData);
+      console.log(data, canvas)
+      this.player = new Player(canvas)
+      await this.player.mount(data)
+      this.player.start()
+    }
   }
 }
 </script>
@@ -180,7 +224,8 @@ export default {
   .my-swipe .van-swipe-item {
     width: 6.94rem;
     height: 4.86rem;
-    .landBg {
+    .landBg,
+    #landCanvas {
       width: 100%;
       height: 100%;
     }
@@ -292,17 +337,21 @@ export default {
       background: url(../img/luckGift_top.png);
       background-size: 100% 100%;
       position: relative;
-    }
-    .luckTop::before {
-      content: '';
-      display: block;
-      width: 7.24rem;
-      height: 1.61rem;
-      background: url(../img/pupHeader.png);
-      background-size: 100% 100%;
-      position: absolute;
-      top: -0.9rem;
-      left: -0.15rem;
+      text-align: center;
+
+      .icon {
+        display: block;
+        width: 7.24rem;
+        height: 1.61rem;
+        background: url(../img/pupHeader.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: -0.9rem;
+        left: -0.15rem;
+        line-height: 0.8rem;
+        font-size: 0.36rem;
+        font-weight: bold;
+      }
     }
     .luckCon {
       width: 6.42rem;

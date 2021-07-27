@@ -1,9 +1,10 @@
 <template>
   <div class="page pageIndex">
+    <RoolMsg />
     <div class="pupTips">
       <span class="rule">規則&獎勵</span>
       <span class="get" @click="showGetShovel = true">兌換鏟子</span>
-      <span class="history">挖寶紀錄</span>
+      <span class="history" @click="showHistory = true">挖寶紀錄</span>
     </div>
     <div class="header"></div>
     <div class="tab">
@@ -18,20 +19,30 @@
         <GetShovel v-if="showGetShovel" />
       </transition>
     </div>
+    <div class="mask" v-show="showHistory">
+      <transition name="slide">
+        <History v-if="showHistory" />
+      </transition>
+    </div>
   </div>
 </template>
 
 <script>
 
+
 import Task from "./Task"
 import Rank from "./Rank"
 import GetShovel from "./GetShovel"
+import RoolMsg from "./RoolMsg"
+import History from "./History"
+
 export default {
-  components: { Task, Rank, GetShovel },
+  components: { Task, Rank, GetShovel, RoolMsg, History },
   data () {
     return {
       type: 1,
-      showGetShovel: false
+      showGetShovel: false,
+      showHistory: false
     }
   }
 }
@@ -60,10 +71,10 @@ export default {
         top: 2.7rem;
       }
       &.get {
-        top: 5rem;
+        top: 5.6rem;
       }
       &.history {
-        top: 5.8rem;
+        top: 6.3rem;
       }
     }
   }

@@ -1,12 +1,13 @@
 export default {
     //html/index.html
-    title: "簽約",
+    title: "海島探險記",
     day: "天",
     hour: "時",
     minute: "分",
     second: "秒",
     notStart: "活動未開始",
     actEnd: "活動已結束",
+    noData: "暫無數據",
     //html/app_share.ejs
     share_title: "簽約",
     share_desc:
