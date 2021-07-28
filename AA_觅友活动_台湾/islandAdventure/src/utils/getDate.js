@@ -16,16 +16,22 @@ function getDate(datem, type) {
                 ? "0" + datem.getSeconds()
                 : datem.getSeconds();
     if (type == 1) {
-        return `${month}月${date}日 ${hours}:${minute}:${second}`;
+        return `${month}月${date}日 ${hours}:${minute}`;
     }
-    if (type == 3) {
-        return `${month}月${date}日`;
+    if (type == 2) {
+        return `${date}/${month} ${hours}:${minute}`;
     }
     if (type == 4) {
-        return `${date}.${month}`;
+        return `${year}${month}${date}`;
     }
     if (type == 5) {
-        return `${hours}:${minute}`;
+        return `${year} ${month}/${date} ${hours}:${minute}`;
+    }
+    if (type == 6) {
+        return `${month}月${date}日 ${hours}:${minute}:${second}`;
+    }
+    if (type == 7) {
+        return `${date}/${month} ${hours}:${minute}:${second}`;
     }
 }
 export default getDate;

@@ -2,7 +2,7 @@
   <div class="page pageIndex">
     <RoolMsg />
     <div class="pupTips">
-      <span class="rule">規則&獎勵</span>
+      <span class="rule" @click="$router.push({name:'rule'})">規則&獎勵</span>
       <span class="get" @click="showGetShovel = true">兌換鏟子</span>
       <span class="history" @click="showHistory = true">挖寶紀錄</span>
     </div>

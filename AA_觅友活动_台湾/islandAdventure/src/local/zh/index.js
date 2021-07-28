@@ -10,10 +10,11 @@ import "./style.scss";
 
 import lang from "./lang";
 import images from "./images";
+import Rule from "./Rule.vue";
 
 window._lang = lang;
 window._images = images;
-
+window.Rule = Rule;
 if (lang.title) {
     document.title = lang.title;
 }
