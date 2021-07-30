@@ -226,7 +226,7 @@ export default {
         mic: '在房間上麥5min（私密房不算）',
         coin: '在房間送出100金幣',
         share: '分享活動到line或fb',
-        create: '創建/接唱/合聲作品',
+        create: '創建動態',
         // friend: '交友熱力每提升20',
         invite: '邀請好友開甜品屋',
         charge: '儲值任意金額',
