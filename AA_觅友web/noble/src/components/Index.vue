@@ -8,7 +8,7 @@
     <van-swipe class="my-swipe" :loop="false" :show-indicators="false" :initial-swipe="initNum" @change="onChange" ref="swiper">
       <van-swipe-item v-for="(item,index) in nobleConfig" :key="index">
         <div class="canvasShow">
-          <canvas id="iconCanvas"></canvas>
+          <canvas :id="'iconCanvas' + index" class="aniSvga"></canvas>
           <canvas id="silkCanvas"></canvas>
           <div class="btn"></div>
         </div>
@@ -67,6 +67,10 @@
 <script>
 
 import { mapState } from "vuex"
+import { Downloader, Parser, Player } from 'svga.lite'
+const downloader = new Downloader()
+const parser = new Parser({ disableWorker: true })
+
 export default {
   data () {
     return {
@@ -127,6 +131,32 @@ export default {
           name: '防踢'
         }
       ],
+      svgaConfig: {
+        0: {
+          key: '0',
+          addres: 'http://fstatic.cat1314.com/uc/svga/978fc1ab3b80c70da85665715c09875a_1627631713.svga'
+        },
+        1: {
+          key: '1',
+          addres: 'http://fstatic.cat1314.com/uc/svga/7b07303b8461a049783eec6be9c7c076_1627381713.svga'
+        },
+        2: {
+          key: '2',
+          addres: '	http://fstatic.cat1314.com/uc/svga/0316af4411f1d62f70051062b75cf5eb_1627372792.svga'
+        },
+        3: {
+          key: '3',
+          addres: '	http://fstatic.cat1314.com/uc/svga/1d5c810a76af7ebbd9f895dcebe590dc_1627372784.svga'
+        },
+        4: {
+          key: '4',
+          addres: '	http://fstatic.cat1314.com/uc/svga/c2923fa6a99d85add23eab3c22eb1791_1627372776.svga'
+        },
+        5: {
+          key: '5',
+          addres: 'http://fstatic.cat1314.com/uc/svga/4c1a88b03aa12daf63c2d49a168d51bc_1627372767.svga'
+        },
+      },
       showPup: false
     }
   },
@@ -156,6 +186,10 @@ export default {
       return '0%'
     }
   },
+  mounted () {
+    this.svgaPlayer(this.svgaConfig[0], true)
+    this.svgaPlayer(this.svgaConfig[1], false)
+  },
   methods: {
     tabClick (index) {
       this.nowIndex = index
@@ -163,7 +197,31 @@ export default {
     },
     onChange (index) {
       console.log(index)
+      if (this.svgaConfig[index].player) {
+        this.svgaConfig[index].player.stop()
+      }
       this.nowIndex = index
+      this.svgaPlayer(this.svgaConfig[this.nowIndex], true)
+    },
+    async svgaPlayer (item, play) {
+      let data = await this.loadSvgaData(item.addres)
+      let canvas = document.getElementById('iconCanvas' + item.key)
+      let player = new Player(canvas)
+      await player.mount(data)
+      if (play) {
+        player.start()
+      }
+      item.player = player
+    },
+    loadSvgaData (fileItem) {
+      return new Promise((resolve, reject) => {
+        ; (async () => {
+          const fileData = await downloader.get(fileItem);
+          const data = await parser.do(fileData);
+          //   fileItem.data = data
+          resolve(data);
+        })()
+      });
     },
   }
 }
@@ -211,6 +269,12 @@ body {
   .canvasShow {
     height: 5.08rem;
     position: relative;
+    .aniSvga {
+      display: block;
+      width: 4.6rem;
+      height: 4.6rem;
+      margin: 0 auto;
+    }
     .btn {
       width: 7.5rem;
       height: 2.78rem;

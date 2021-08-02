@@ -4,20 +4,20 @@
     <div class="landTask">
       <div class="landCon">
         <div class="landName">{{openLand.name}}</div>
-        <div class="openTm">開放時間:{{openTm}}</div>
+        <div class="openTm">{{lang.taskOpen}}:{{openTm}}</div>
         <ul class="taskList">
           <li v-for="(item,index) in openLand.tasks" :key="index">
             <div class="msg">
               <div class="tName">{{item.title}}</div>
-              <div class="gift">獎勵:{{item.props}}海螺({{item.process}}/{{item.target}})</div>
+              <div class="gift">{{lang.gifts}}:{{item.props}}{{lang.giftsName}}({{item.process}}/{{item.target}})</div>
             </div>
             <div class="status">
-              <em v-if="item.id == 4">房間人氣值：{{item.process}}</em>
-              <strong :class="{'act':item.process < item.target}"> {{item.process >= item.target?'已完成':'去完成'}}</strong>
+              <em v-if="item.id == 4">{{lang.roomPeople}}{{item.process}}</em>
+              <strong :class="{'act':item.process < item.target}"> {{item.process >= item.target?lang.itemStatus1:lang.itemStatus2}}</strong>
             </div>
           </li>
         </ul>
-        <p class="taskTips">*完成任務後，道具自動發放<br />*任務每天0點更新</p>
+        <p class="taskTips" v-html="lang.taskTips"></p>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ export default {
       return this.activity.vol ? this.islands[this.activity.vol - 1] : {}
     },
     openTm () {
-      return getDate(new Date(this.openLand.stime * 1000), 1) + '-' + getDate(new Date(this.openLand.etime * 1000), 1)
+      return getDate(new Date(this.activity.stime * 1000), 1) + '-' + getDate(new Date(this.activity.etime * 1000), 1)
     }
   }
 }

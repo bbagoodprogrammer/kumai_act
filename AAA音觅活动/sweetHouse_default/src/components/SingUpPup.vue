@@ -4,11 +4,11 @@
       <div class="sCon" v-if="showSingUp">
         <i class="close" @click="closeSingUp()"></i>
         <div class="house">
-          <p class="houseName"><em>{{nick}}</em>的甜品屋</p>
+          <p class="houseName"><em>{{nick}}</em>{{lang.shareMsg2}}</p>
         </div>
         <div class="tips">
-          <h3>甜品屋</h3>
-          <p>開一間甜品屋，合成甜品 <em>背包禮物</em>，還能贏 <em>限定頭像框</em>、<em>座駕及金幣</em>獎勵</p>
+          <h3>{{lang.title}}</h3>
+          <p v-html="lang.singUpTips"></p>
         </div>
         <div class="gift">
           <span v-for="(item,index) in giftArr" :key="index">
@@ -25,38 +25,29 @@
 import { mapState } from "vuex"
 import api from "../api/apiConfig"
 export default {
-  data() {
+  data () {
     return {
-      giftArr: [{
-        type: 4,
-        name: '頭像框'
-      },
-      {
-        type: 5,
-        name: '座駕'
-      },
-      {
-        type: 6,
-        name: '金幣'
-      }]
     }
   },
   computed: {
-    ...mapState(['showSingUp', 'nick'])
+    ...mapState(['showSingUp', 'nick']),
+    giftArr () {
+      return this.lang.giftArr
+    }
   },
   methods: {
-    singUp() {
+    singUp () {
       api.singUp().then(res => {
         if (res.data.response_status.code == 0) {
           this.vxc('setReg', true)
           this.vxc('setSingUp')
-          this.toast('你的甜品屋開張啦！！<br/>快去製作甜品吧')
+          this.toast(this.lang.singUpSucTips)
         } else {
           this.toast(res.data.response_status.error)
         }
       })
     },
-    closeSingUp() {
+    closeSingUp () {
       this.vxc('setSingUp')
     }
   }

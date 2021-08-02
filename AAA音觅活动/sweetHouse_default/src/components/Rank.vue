@@ -1,7 +1,7 @@
 <template>
   <div class="rank">
     <i class="close" @click="close()"></i>
-    <p class="noData" v-if="rank.length == 0">暫無數據</p>
+    <p class="noData" v-if="rank.length == 0">{{lang.noData}}</p>
     <ul class="scrollable" :class="{noData:rank.length == 0}">
       <li v-for="(item,index) in rank" :key="index" :class="'list' + item.rank" @click="goUser(item.uid)">
         <div class="userRank" v-if="item.rank>1">{{item.rank}}</div>
@@ -10,7 +10,7 @@
           <img v-lazy="item.avatar" alt="">
         </div>
         <div class="nick">{{item.nick}}</div>
-        <div class="score">歡樂值<em>{{item.score}}</em></div>
+        <div class="score">{{lang.score}}<em>{{item.score}}</em></div>
       </li>
     </ul>
     <div class="userMsg" v-if="reg">
@@ -20,7 +20,7 @@
         <img v-lazy="omerMsg.avatar" alt="">
       </div>
       <div class="nick">{{omerMsg.nick}}</div>
-      <div class="score">歡樂值<em>{{omerMsg.score}}</em></div>
+      <div class="score">{{lang.score}}<em>{{omerMsg.score}}</em></div>
     </div>
   </div>
 </template>
@@ -29,7 +29,7 @@ import { mapState } from "vuex"
 import api from "../api/apiConfig"
 export default {
   props: ['omerMsg'],
-  data() {
+  data () {
     return {
       loaded: false,
       more: true
@@ -38,14 +38,14 @@ export default {
   computed: {
     ...mapState(['rank', 'reg'])
   },
-  mounted() {
+  mounted () {
     this.scrollable = this.$el.querySelector('.scrollable');
     if (this.scrollable) {
       this.scrollable.addEventListener('scroll', this.onScroll);
     }
   },
   methods: {
-    onScroll() {
+    onScroll () {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
         if (this.loaded) return
@@ -62,10 +62,10 @@ export default {
         }
       }
     },
-    close() {
+    close () {
       this.$parent.showRank = false
     },
-    goUser(uid) { //跳转
+    goUser (uid) { //跳转
       var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       if (isiOS) {
         sendJsData('app://userInfo?uid=' + uid);

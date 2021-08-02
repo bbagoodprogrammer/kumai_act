@@ -11,7 +11,7 @@
       <transition name="slide">
         <div class="giftBox" v-if="closePup">
           <i class="close" @click="closeGiftPup()"></i>
-          <div class="title">歡樂值達到{{packets[showIndex].score}}</div>
+          <div class="title">{{lang.boxScore}}{{packets[showIndex].score}}</div>
           <div class="giftItem">
             <span v-for="(item,index) in gift[showIndex+1].gift" :key="index">
               <span class="imgBox">
@@ -28,11 +28,11 @@
       <transition name="slide">
         <div class="getOk" v-show="showOk">
           <i class="close" @click="closeSharePup()"></i>
-          <h3>領取成功</h3>
-          <p>對應獎勵已發放到您的賬戶,<br /> 請注意查收！</p>
+          <h3>{{lang.getSuc}}</h3>
+          <p v-html="lang.sucTips"></p>
           <div class="boxShare" @click="share()">
-            <p class="shareTitle">炫耀一下</p>
-            <p class="msg">（獎勵繽紛小料2份）</p>
+            <p class="shareTitle">{{lang.shareTitle}}</p>
+            <p class="msg">{{lang.shareGift}}</p>
           </div>
         </div>
       </transition>
@@ -48,48 +48,48 @@ export default {
   data () {
     return {
       closePup: false,
-      gift: {
-        1: {
-          gift: [
-            {
-              type: 1,
-              name: '300金豆'
-            },
-          ]
-        },
-        2: {
-          gift: [
-            {
-              type: 1,
-              name: '600金豆'
-            }
-          ]
-        },
-        3: {
-          gift: [
-            {
-              type: 1,
-              name: '1000金豆'
-            },
-            {
-              type: 7,
-              name: '頭像框（3天）'
-            },
-          ]
-        },
-        4: {
-          gift: [
-            {
-              type: 1,
-              name: '2000金豆'
-            },
-            {
-              type: 7,
-              name: '頭像框（7天）'
-            }
-          ]
-        },
-      },
+      //   gift: {
+      //     1: {
+      //       gift: [
+      //         {
+      //           type: 1,
+      //           name: '300金豆'
+      //         },
+      //       ]
+      //     },
+      //     2: {
+      //       gift: [
+      //         {
+      //           type: 1,
+      //           name: '600金豆'
+      //         }
+      //       ]
+      //     },
+      //     3: {
+      //       gift: [
+      //         {
+      //           type: 1,
+      //           name: '1000金豆'
+      //         },
+      //         {
+      //           type: 7,
+      //           name: '頭像框（3天）'
+      //         },
+      //       ]
+      //     },
+      //     4: {
+      //       gift: [
+      //         {
+      //           type: 1,
+      //           name: '2000金豆'
+      //         },
+      //         {
+      //           type: 7,
+      //           name: '頭像框（7天）'
+      //         }
+      //       ]
+      //     },
+      //   },
       showOk: false,
       showIndex: 0
     }
@@ -110,6 +110,9 @@ export default {
           return this.score / this.packets[0].score / 5 * 100 - 3.5 + '%'
         }
       }
+    },
+    gift () {
+      return this.lang.gift
     }
   },
   methods: {
@@ -132,7 +135,7 @@ export default {
             }
           })
         } else {
-          this.toast(`您的積分不足哦~快去賺取積分吧！`)
+          this.toast(this.lang.openErr)
         }
       }
     },
@@ -141,8 +144,8 @@ export default {
         share({
           from: this.packets[this.showIndex].score,
           url: `http://activity.udateapp.com/static_html/2020/sweetHouse/index.html?type=${this.packets[this.showIndex].score}&uid=${this.uid}&score=${this.packets[this.showIndex].score}`,
-          title: `制作了多款甜品，歡樂值达到${this.score}`,
-          desc: `制作了多款甜品，歡樂值达到${this.score}`,
+          title: `${this.lang.shareMsg}${this.score}`,
+          desc: `${this.lang.shareMsg}${this.score}`,
           image: 'http://activity.udateapp.com/static_html/2020/sweetHouse/share.jpg'
         })
       } catch (e) { }

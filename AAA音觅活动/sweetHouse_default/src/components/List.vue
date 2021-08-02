@@ -4,7 +4,7 @@
     <ul class="caiList">
       <li v-for="(item,index) in desserts" :key="index">
         <div class="name">{{item.name}}
-          <span class="score">歡樂值:{{item.score}}</span>
+          <span class="score">{{lang.score}}:{{item.score}}</span>
         </div>
         <div class="msg">
           <img :src="require(`../assets/img/sweets/sweet_${index}.png`)" alt="">
@@ -16,12 +16,12 @@
             </span>
           </div>
           <div class="creatBtn" v-if="isCreat(item.raw)" @click="showTask()">
-            獲取材料
+            {{lang.getScience}}
           </div>
           <div class="creatBtn status2" @click="creatDesserts(index)" v-else>
-            去製作
+            {{lang.creat}}
           </div>
-          <div class="overTips">已合成{{item.count}}份</div>
+          <div class="overTips">{{lang.creatNums.replace('%c',item.count)}}</div>
         </div>
       </li>
     </ul>
@@ -49,7 +49,7 @@
               <li v-for="(item,index) in tasks" :key="index">
                 <div class="taskMsg">
                   <div class="name">{{taskName[item.key]}} <i v-if="item.key=='room'" @click="showRoomTips()"></i> </div>
-                  <div class="gift">每次獎勵 <i :class="'icon'+showType"></i> x{{item.give_count}},每天{{item.count}}次</div>
+                  <div class="gift">{{lang.countGift}} <i :class="'icon'+showType"></i> x{{item.give_count}},{{lang.dayTips.replace('%c',item.count)}} </div>
                   <div class="giftBar" v-if="item.key == 'mic'  ||item.key == 'friend'">
                     <i class="store" v-for="(item2,index2) in item.count" :key="index2" :class="'store'+index2"></i>
                     <span class="actLiner" :style="{width:item.current/item.max *100 + '%'}"></span>
@@ -58,19 +58,19 @@
                 <div class="status">
                   <div class="btn not" v-if="item.got == item.count"></div>
                   <div class="btn get" v-else-if="(item.got<item.nowStore && item.count>1) || (item.count==1 && item.current >= item.max && item.got == 0)" @click="getRaws(item)"></div>
-                  <div class="btn" v-else @click="doTask(item.key,item)">去完成({{item.nowStore}}/{{item.count}})</div>
+                  <div class="btn" v-else @click="doTask(item.key,item)">{{lang.doTask}}({{item.nowStore}}/{{item.count}})</div>
                   <div class="oneLiner" v-if="item.key == 'room' || item.key == 'gift' || item.key == 'coin'|| item.key == 'mic' || item.key == 'friend'">
                     <div class="num">{{item.current}}/{{item.max}}</div>
                     <div class="liner">
                       <span class="numActLiner" :style="{width:item.current/item.max *100 + '%'}"></span>
                     </div>
                   </div>
-                  <span class="invite" @click="showSharePup()" v-if="item.key=='invite'">已邀請{{item.invited}}人>></span>
+                  <span class="invite" @click="showSharePup()" v-if="item.key=='invite'">{{lang.inivitNums.replace('%i',item.invited)}}</span>
                 </div>
               </li>
             </ul>
           </div>
-          <p class="lastTips">完成任務後請盡快領取哦~任務每天0點更新</p>
+          <p class="lastTips">{{lang.taskTips}}</p>
         </div>
       </transition>
     </div>
@@ -78,17 +78,17 @@
       <transition name="slide">
         <div class="sharePup" v-if="showShare">
           <i class="close" @click="closeSharePup()"></i>
-          <p class="giftTips">邀請活動新玩家，每成功邀請1人獎勵 <i></i> x5</p>
-          <p v-if="invitedList.length == 0" class="noData">暫無數據</p>
+          <p class="giftTips">{{lang.inivitTitle}} <i></i> x5</p>
+          <p v-if="invitedList.length == 0" class="noData">{{lang.noData}}</p>
           <ul class="peopleList">
             <li v-for="(item,index) in invitedList" :key="index">
-              <div class="userRank" :class="{noRank:item.rank == 0}">{{item.rank == 0?'未上榜':item.rank}}</div>
+              <div class="userRank" :class="{noRank:item.rank == 0}">{{item.rank == 0?lang.noRank:item.rank}}</div>
               <div class="imgBox">
                 <span class="avBg" v-if="item.rank<=3"></span>
                 <img v-lazy="item.avatar" alt="">
               </div>
               <div class="nick">{{item.nick}}</div>
-              <div class="score">歡樂值<em>{{item.score}}</em></div>
+              <div class="score">{{lang.score}}<em>{{item.score}}</em></div>
             </li>
           </ul>
           <div class="inivitBtn" @click="showPelple()"></div>
@@ -99,7 +99,7 @@
       <transition name="slide">
         <div class="peoplePup" v-if="showPeople">
           <i class="close" @click="closePeople()"></i>
-          <p v-if="peopleListHas.length == 0" class="noData">暫無可邀請好友，快去添加好友吧~</p>
+          <p v-if="peopleListHas.length == 0" class="noData">{{lang.noFriend}}</p>
           <ul class="pList">
             <li v-for="(item,index) in peopleListHas" :key="index">
               <!-- <div class="userRank">{{item.rank}}</div> -->
@@ -110,7 +110,7 @@
                 </div>
                 <div class="nick">
                   <div>{{item.nick}}</div>
-                  <div class="tips">還沒有甜品屋</div>
+                  <div class="tips">{{lang.noSingup}}</div>
                 </div>
                 <div class="shareBtn" :class="{share2:item.status == 1}" @click="shareAct(item,index)"></div>
               </div>
@@ -124,7 +124,7 @@
         <div class="dessertsPup" :class="'creat'+creatType" v-show="showCreatPup">
           <i class="close" @click="closeCreatPup()" v-if="creatType != 2"></i>
           <div class="creatQuyer" v-if="creatType == 1">
-            <div class="title">製作確定</div>
+            <div class="title">{{lang.creatQuery}}</div>
             <div class="con">
               <div class="desserts">
                 <img :src="require(`../assets/img/sweets/sweet_${creatIndex}.png`)" alt="">
@@ -136,25 +136,25 @@
                   <input type="number" v-model="cNum" disabled="disabled" name="" id="">
                   <span class="add" @click="add()"></span>
                 </div>
-                <p class="tips">還可製作總數{{sweetNum.over}}份</p>
+                <p class="tips">{{lang.creatNums_get.replace('%o',sweetNum.over)}}</p>
                 <!-- <p class="overNum" v-if="maxTips">超過可製作數量</p> -->
               </div>
             </div>
             <div class="creatBtn">
-              <span class="cancel" @click="closeCreatPup()">取消</span>
-              <span class="ok" @click="creat()">確定</span>
+              <span class="cancel" @click="closeCreatPup()">{{lang.cancel}}</span>
+              <span class="ok" @click="creat()">{{lang.ok}}</span>
             </div>
           </div>
           <div class="creatIng" v-else-if="creatType == 3">
-            <div class="title">製作成功</div>
+            <div class="title">{{lang.creatSuc}}</div>
             <img :src="require(`../assets/img/sweets/sweet_${creatIndex}.png`)" alt="" class="dessertsImg">
             <p class="creatName">{{desserts[creatIndex].name}}x{{cNum}}</p>
-            <p class="creatScore">增加歡樂值：{{desserts[creatIndex].score * cNum}}</p>
-            <div class="goPack" @click="doTask('mic')">去背包查看</div>
+            <p class="creatScore">{{lang.addScore}}{{desserts[creatIndex].score * cNum}}</p>
+            <div class="goPack" @click="doTask('mic')">{{lang.goBack}}</div>
           </div>
           <div class="creatSuc" v-show="creatType == 2">
             <canvas id="creatAni"></canvas>
-            <p class="doing">甜品製作中......{{rSecond}}s</p>
+            <p class="doing">{{lang.creatIng}}{{rSecond}}s</p>
           </div>
         </div>
       </transition>
@@ -169,6 +169,7 @@ import store from "../store/stores"
 import { globalBus } from '../utils/eventBus'
 import { Downloader, Parser, Player } from 'svga.lite'
 import { setInterval, clearInterval } from 'timers';
+import lang from "../config/lang"
 
 const downloader = new Downloader()
 const parser = new Parser({ disableWorker: true })
@@ -178,12 +179,12 @@ window.onShareSuccess = async (from, uid, type, typeName) => {
   if (type == 2 || type == 3) {
     if (from != 2) {
       api.shareSuc(from)
-      this.toast(`分享成功！`)
+      this.toast(lang.shareSuc)
     } else {
       api.shareCb().then(res => {
         if (res.data.response_status.code == 0) {
           store.commit('setTask', 'share')
-          this.toast(`分享成功！`)
+          this.toast(lang.shareSuc)
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -202,38 +203,38 @@ export default {
       showCreatPup: false,
       creatType: 0,
       cNum: 1,
-      tabArr: [
-        {
-          type: 1,
-          msg: '水果',
-          tips: '水果：可用於製作鱷梨果汁、水果大福、蜜桃莫吉托、冰激凌星空杯'
-        },
-        {
-          type: 2,
-          msg: '奶製品',
-          tips: '奶製品：可用於製作水果大福、雙層布丁、蜜桃莫吉托、冰激凌星空杯'
-        },
-        {
-          type: 3,
-          msg: '繽紛小料',
-          tips: '繽紛小料：可用於製作雙層布丁、蜜桃莫吉托、冰激凌星空杯'
-        }
-      ],
+      //   tabArr: [
+      //     {
+      //       type: 1,
+      //       msg: '水果',
+      //       tips: '水果：可用於製作鱷梨果汁、水果大福、蜜桃莫吉托、冰激凌星空杯'
+      //     },
+      //     {
+      //       type: 2,
+      //       msg: '奶製品',
+      //       tips: '奶製品：可用於製作水果大福、雙層布丁、蜜桃莫吉托、冰激凌星空杯'
+      //     },
+      //     {
+      //       type: 3,
+      //       msg: '繽紛小料',
+      //       tips: '繽紛小料：可用於製作雙層布丁、蜜桃莫吉托、冰激凌星空杯'
+      //     }
+      //   ],
       rooms: {},
       peopleList: [],
       invitedList: [],
-      taskName: {
-        mic: '在房間上麥5min（私密房不算）',
-        coin: '在房間送出100金幣',
-        share: '分享活動到line或fb',
-        create: '創建動態',
-        // friend: '交友熱力每提升20',
-        invite: '邀請好友開甜品屋',
-        charge: '儲值任意金額',
-        room: '自己房間的人氣值達到8000',
-        gift: '收到任意甜品禮物15份',
-        pairing: '瀏覽配對頁，找到3個我感興趣的玩家(對他/她感興趣,一定要右滑哦)'
-      },
+      //   taskName: {
+      //     mic: '在房間上麥5min（私密房不算）',
+      //     coin: '在房間送出100金幣',
+      //     share: '分享活動到line或fb',
+      //     create: '創建動態',
+      //     // friend: '交友熱力每提升20',
+      //     invite: '邀請好友開甜品屋',
+      //     charge: '儲值任意金額',
+      //     room: '自己房間的人氣值達到8000',
+      //     gift: '收到任意甜品禮物15份',
+      //     pairing: '瀏覽配對頁，找到3個我感興趣的玩家(對他/她感興趣,一定要右滑哦)'
+      //   },
       creatIndex: 0,
       maxTips: false,
       player: null,
@@ -273,6 +274,12 @@ export default {
         return item.status != 2
       })
       return isHas
+    },
+    tabArr () {
+      return this.lang.tabArr
+    },
+    taskName () {
+      return this.lang.taskName
     }
   },
   mounted () {
@@ -324,7 +331,7 @@ export default {
             count: item.give_count * (item.nowStore - item.got)
           })
           this.vxc('setTaskGot', item.key)
-          this.toast('領取成功!')
+          this.toast(this.lang.getSuc)
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -376,8 +383,8 @@ export default {
           share({
             from: '2',
             url: `http://activity.udateapp.com/static_html/2020/sweetHouse/index.html?type=2&nick=${this.nick}`,
-            title: `我開了一家甜品屋，製作了很多好吃的甜品，快來一起玩吧`,
-            desc: `我開了一家甜品屋，製作了很多好吃的甜品，快來一起玩吧`,
+            title: this.lang.shareActTitle,
+            desc: this.lang.shareActTitle,
             image: 'http://activity.udateapp.com/static_html/2020/sweetHouse/share.jpg'
           })
         } catch (e) { }
@@ -409,7 +416,7 @@ export default {
           }
         } catch (e) { }
       } else if (key == 'pairing') {
-        this.toast(`點擊app中底部的【配對】按鈕就可以瀏覽配對頁啦~（記得要更新到280版本哦）`)
+        this.toast(this.lang.pairingMsg)
       }
     },
     tabClick (val) {
@@ -456,8 +463,8 @@ export default {
     },
     showRoomTips () {
       this.vxc('setToast', {
-        title: "房間人氣值",
-        msg: '1玩家一分鐘貢獻8人氣值 <br/>1金幣貢獻1人氣值'
+        title: this.lang.roomTitle,
+        msg: this.lang.roomMsg
       })
     },
     closeTask () {

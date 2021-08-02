@@ -6,7 +6,12 @@ Vue.use(vuex);
 
 export default new vuex.Store({
     state: {
-        activity: {},
+        activity: {
+            shovels: {
+                gold: {},
+                iron: {}
+            }
+        },
         owner: {},
         showType: 1,
         loading: false,

@@ -2,7 +2,7 @@
   <div class="luck">
     <div class="land">
       <div class="landList">
-        <div class="landName" v-if="islands[nowIndex]&&islands[nowIndex].status == 0">未開放</div>
+        <div class="landName" v-if="islands[nowIndex]&&islands[nowIndex].status == 0">{{lang.noOpen}}</div>
         <div class="landName" v-else>{{islands[nowIndex]?islands[nowIndex].name:''}}</div>
         <van-swipe class="my-swipe" :loop="false" :show-indicators="false" :initial-swipe="initNum" @change="onChange" ref="swiper">
           <van-swipe-item v-for="(item,index) in islands" :key="index">
@@ -21,7 +21,9 @@
         <div class="shovleItem" v-for="(item,index) in userShovelNums" :key="index">
           <span class="shovleIcon" :class="{gold:item.type == 'gold'}"></span>
           <span class="nums">{{item.nums}}</span>
-          <div class="getBtn" @click="luck(item)" :class="{gold1:item.type == 'gold' && item.sellNums == 1,gold2:item.type == 'gold' && item.sellNums == 10}">{{item.sellNums == 1?'挖一次':'挖十次'}}</div>
+          <div class="getBtn" @click="luck(item)" :class="{gold1:item.type == 'gold' && item.sellNums == 1,gold2:item.type == 'gold' && item.sellNums == 10}">
+            {{item.sellNums == 1?lang.luckOne:lang.luckTen}}
+          </div>
         </div>
       </div>
       <!-- 抽獎禮物彈窗 -->
@@ -30,7 +32,7 @@
           <div class="luckGiftPup" v-if="showLuckGift">
             <i class="close" @click="showLuckGift =false"></i>
             <div class="luckTop">
-              <span class="icon">恭喜獲得</span>
+              <span class="icon">{{lang.luckTitle}}</span>
             </div>
             <div class="luckCon" :class="{one:Object.keys(prizes).length == 1}">
               <div class="giftItem" v-for="(item,index) in prizes" :key="index">
@@ -44,11 +46,11 @@
                 </div>
                 <strong>{{item.name}}</strong>
               </div>
-              <p class="userScoreTips" v-if="prizes.length == 1">恭喜你挖到【{{prizes[0].name}}】並增加{{score}}島主指數，成為島主指日可待！</p>
-              <p class="userScoreTips" v-else>恭喜你挖到以上獎勵並,增加{{score}}島主指數，成為島主指日可待！</p>
+              <p class="userScoreTips" v-if="prizes.length == 1">{{lang.userScoreTips1.replace('%n',prizes[0].name).replace('%n',score)}}</p>
+              <p class="userScoreTips" v-else>{{lang.userScoreTips1.replace('%s',score)}}</p>
               <div class="nextBtn" v-if="prizes.length > 1">
-                <span class="ok" @click="showLuckGift = false">開心收下</span>
-                <span class="next" @click="luck(userShovelNums[2])">繼續挖寶</span>
+                <span class="ok" @click="showLuckGift = false">{{lang.ok}}</span>
+                <span class="next" @click="luck(userShovelNums[2])">{{lang.again}}</span>
               </div>
             </div>
 
@@ -142,6 +144,14 @@ export default {
             this.toast(res.data.response_status.error)
           }
         })
+      } else {
+
+        if (item.type == 'iron') {
+          this.$parent.$parent.showGetShovel = true
+        } else {
+          this.$parent.$parent.showGetShovel = true
+          this.$parent.$parent.$refs.GetShovel.setType = 2
+        }
       }
     },
     gotoswiper (t) {

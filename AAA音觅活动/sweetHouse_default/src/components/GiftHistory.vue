@@ -1,19 +1,19 @@
 <template>
   <div class="giftHistory">
     <i class="close" @click="closeHistory()"></i>
-    <div class="title">動態</div>
+    <div class="title">{{lang.history_title}}</div>
     <ul class="itemList scrollable">
       <li class="item" v-for="(item,index) in makeData" :key="index">
         <div class="time">{{getTime(item.list[0].time,1)}}</div>
         <div class="taskItem" v-for="(item2,index2) in item.list" :key="index2">
-          <span class="name">{{item2.type=='raw'?taskName[item2.key]:`製作${item2.name}*${item2.count}份`}}</span>
-          <span class="wards">{{item2.type=='raw'?`${item2.name}+${item2.count}`:`歡樂值+${item2.score}`}}</span>
+          <span class="name">{{item2.type=='raw'?taskName[item2.key]:lang.history_msg1.replce('%n',item2.name).replce('%c',item2.count)}}</span>
+          <span class="wards">{{item2.type=='raw'?`${item2.name}+${item2.count}`:`${lang.history_msg2}${item2.score}`}}</span>
           <span class="timeItem">{{getTime(item2.time,2)}}</span>
         </div>
       </li>
     </ul>
-    <div class="dloading" v-if="loading">加載中....</div>
-    <div class="noData" v-if="list.length == 0">暫無數據</div>
+    <div class="dloading" v-if="loading">{{lang.loading}}</div>
+    <div class="noData" v-if="list.length == 0">{{lang.noData}}</div>
   </div>
 </template>
 <script>
@@ -34,19 +34,19 @@ export default {
       loaded: false,
       more: true,
       loading: false,
-      taskName: {
-        mic: '在房間上麥25min（私密房不算）',
-        coin: '在房間送出500金幣',
-        share: '分享活動到line或fb',
-        create: '創建/接唱/和聲作品',
-        friend: '交友熱力每提升20',
-        invite: '邀請好友開甜品屋',
-        charge: '儲值任意金額',
-        room: '自己房間的人氣值達到5000',
-        gift: '收到任意甜品禮15份',
-        sharep: '進階分享',
-        pairing: '瀏覽配對頁，找到3個我感興趣的玩家(對他/她感興趣,一定要右滑哦)'
-      },
+      //   taskName: {
+      //     mic: '在房間上麥25min（私密房不算）',
+      //     coin: '在房間送出500金幣',
+      //     share: '分享活動到line或fb',
+      //     create: '創建/接唱/和聲作品',
+      //     friend: '交友熱力每提升20',
+      //     invite: '邀請好友開甜品屋',
+      //     charge: '儲值任意金額',
+      //     room: '自己房間的人氣值達到5000',
+      //     gift: '收到任意甜品禮15份',
+      //     sharep: '進階分享',
+      //     pairing: '瀏覽配對頁，找到3個我感興趣的玩家(對他/她感興趣,一定要右滑哦)'
+      //   },
     }
   },
   created () {
@@ -77,6 +77,9 @@ export default {
       }
       console.log(arr)
       return arr;
+    },
+    taskName () {
+      return this.lang.taskName
     }
   },
   mounted () {

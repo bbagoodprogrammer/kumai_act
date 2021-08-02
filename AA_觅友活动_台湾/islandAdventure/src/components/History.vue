@@ -1,12 +1,15 @@
 <template>
   <div class="historyList">
     <i class="close" @click="closeHistory()"></i>
-    <div class="title">挖寶記錄</div>
+    <div class="title">{{lang.historyTitle}}</div>
     <div class="hasData">
       <ul class='scrollable'>
         <li v-for="(item,index) in hList" :key="index">
-          <span class="gift">
-            使用{{item.type=='gold'?'金鏟子':'鐵鏟子'}},挖到【{{item.prize_name}}】
+          <span class="gift" v-if="item.type=='gold'">
+            {{lang.historyMsg1.replace('%n',item.prize_name)}}
+          </span>
+          <span class="gift" v-else>
+            {{lang.historyMsg2.replace('%n',item.prize_name)}}
           </span>
           <span class="time">{{getDateStr(item.tm)}}</span>
         </li>

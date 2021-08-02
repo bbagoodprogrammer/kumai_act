@@ -6,12 +6,12 @@
           <img v-lazy="info.avatar" alt="">
           <div class="msg">
             <div class="nick">{{info.nick}}</div>
-            <div class="tips">製作了多款甜品</div>
-            <p class="tips">歡樂值達到了<em>{{score}}</em> </p>
+            <div class="tips">{{lang.shareCreat}}</div>
+            <p class="tips">{{lang.shareScore}}<em>{{score}}</em> </p>
           </div>
         </div>
         <img src="../assets/img/share/share1Img.png" alt="" class="share1Img">
-        <h6>收穫限量禮物</h6>
+        <h6>{{lang.shareGiftTitle}}</h6>
         <div class="gift">
           <span v-for="(item,index) in giftArr" :key="index">
             <img :src="require(`../assets/img/gift/${item.type}.png`)" alt="">
@@ -24,12 +24,12 @@
     <div class="share2" v-else>
       <div class="shareCon">
         <div class="tips">
-          <p>我開了一家甜品屋，製作了很多好吃的甜品，快來一起玩吧。</p>
+          <p>{{lang.shareMsg1}}</p>
         </div>
         <div class="house">
-          <p class="houseName"><em>{{nick}}</em> 的甜品屋</p>
+          <p class="houseName"><em>{{nick}}</em> {{lang.shareMsg2}}</p>
         </div>
-        <h6>收穫限量禮物</h6>
+        <h6>{{lang.shareGiftTitle}}</h6>
         <div class="gift">
           <span v-for="(item,index) in giftArr" :key="index">
             <img :src="require(`../assets/img/gift/${item.type}.png`)" alt="">
@@ -46,29 +46,20 @@ import getString from "../utils/getString"
 import api from "../api/apiConfig"
 import APP from "../utils/openApp"
 export default {
-  data() {
+  data () {
     return {
       nick: '',
       score: 0,
       shareType: 1,
       info: {},
-      giftArr: [
-        {
-          type: 4,
-          name: '頭像框'
-        },
-        {
-          type: 5,
-          name: '座駕'
-        },
-        {
-          type: 6,
-          name: '金幣'
-        }
-      ]
     }
   },
-  created() {
+  computed: {
+    giftArr () {
+      return this.lang.giftArr
+    }
+  },
+  created () {
     this.shareType = getString('type')
     if (this.shareType != 2) {
       this.uid = getString('uid')
@@ -81,7 +72,7 @@ export default {
     }
   },
   methods: {
-    downApp() {
+    downApp () {
       APP()
     }
   }

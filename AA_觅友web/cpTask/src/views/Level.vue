@@ -8,7 +8,7 @@
         <div class="item__value">{{lang.love_value}}</div>
       </li>
       <li v-for="(item,index) in 6" :key="index">
-        <div class="item__title">{{lang[`cp_table_title_${item}`]}}</div>
+        <div class="item__title"><i class="icon" :class="'icon' + index"></i> {{lang[`cp_table_title_${item}`]}}</div>
         <div class="item__value">{{lang[`cp_table_value_${item}`]}}</div>
       </li>
     </ul>
@@ -105,6 +105,33 @@ export default {
       line-height: 0.76rem;
       color: #333333;
       opacity: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i {
+        width: 0.48rem;
+        height: 0.48rem;
+        background-size: 100% 100% !important;
+        margin-right: 0.08rem;
+        &.icon0 {
+          background: url(../img/lcIcon/lv1.png);
+        }
+        &.icon1 {
+          background: url(../img/lcIcon/lv2.png);
+        }
+        &.icon2 {
+          background: url(../img/lcIcon/lv3.png);
+        }
+        &.icon3 {
+          background: url(../img/lcIcon/lv4.png);
+        }
+        &.icon4 {
+          background: url(../img/lcIcon/lv5.png);
+        }
+        &.icon5 {
+          background: url(../img/lcIcon/lv6.png);
+        }
+      }
     }
     .item__value {
       width: 50%;

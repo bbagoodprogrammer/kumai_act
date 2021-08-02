@@ -2,9 +2,9 @@
   <div class="page pageIndex">
     <RoolMsg />
     <div class="pupTips">
-      <span class="rule" @click="$router.push({name:'rule'})">規則&獎勵</span>
-      <span class="get" @click="showGetShovel = true">兌換鏟子</span>
-      <span class="history" @click="showHistory = true">挖寶紀錄</span>
+      <span class="rule" @click="$router.push({name:'rule'})">{{lang.ruleTips1}}</span>
+      <span class="get" @click="showGetShovel = true">{{lang.ruleTips2}}</span>
+      <span class="history" @click="showHistory = true">{{lang.ruleTips3}}</span>
     </div>
     <div class="header"></div>
     <div class="tab">
@@ -16,7 +16,7 @@
     </keep-alive>
     <div class="mask" v-show="showGetShovel">
       <transition name="slide">
-        <GetShovel v-if="showGetShovel" />
+        <GetShovel v-show="showGetShovel" ref="GetShovel" />
       </transition>
     </div>
     <div class="mask" v-show="showHistory">

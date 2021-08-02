@@ -1,11 +1,11 @@
 <template>
   <div class="rankList">
     <div class="rankTab">
-      <span class="tab1" :class="{act:type == 1}" @click="tabClick(1)">日榜</span>
-      <span class="tab2" :class="{act:type == 2}" @click="tabClick(2)">總榜</span>
+      <span class="tab1" :class="{act:type == 1}" @click="tabClick(1)">{{lang.rankTab1}}</span>
+      <span class="tab2" :class="{act:type == 2}" @click="tabClick(2)">{{lang.rankTab2}}</span>
     </div>
     <div class="downTime">
-      <p>{{openLand.name}} 閉島倒計時</p>
+      <p>{{openLand.name}} {{lang.rankTm}}</p>
       <div class="actTime">
         <span>{{surplusTime.day}}</span>
         <em>{{lang.day}}</em>
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="top3">
-      <p v-if="!top3.length" class="noData">暫無數據</p>
+      <p v-if="!top3.length" class="noData">{{lang.noData}}</p>
       <div class="topItem" v-for="(item,index) in top3" :key="index" :class="'top3_'+item.rank">
         <div class="imgBox">
           <span class="frame"></span>
@@ -34,7 +34,7 @@
         <img :src="item.avatar" alt="">
         <div class="nick">{{item.nick}}</div>
         <div class="score">
-          <span class="tips">島主積分</span>
+          <span class="tips">{{lang.landScore}}</span>
           <span class="nums">{{item.score}}</span>
         </div>
       </li>

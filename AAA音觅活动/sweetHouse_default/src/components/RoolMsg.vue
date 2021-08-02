@@ -4,7 +4,7 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-            <em>恭喜{{item.nick}}成功製作{{item.dessert}}{{item.count}}份,獲得{{item.score}}歡樂值</em>
+            <em>{{lang.roolMsg.replace('%n',item.nick).replace('%d',item.dessert).replace('%c',item.count).replace('%s',item.score)}}</em>
           </li>
         </ul>
       </div>
@@ -16,7 +16,7 @@
 import { clearInterval } from 'timers';
 import { mapState } from "vuex"
 export default {
-  data() {
+  data () {
     return {
       animate: false,
       list: [],
@@ -27,13 +27,13 @@ export default {
     ...mapState(['roolMsg'])
   },
   watch: {
-    roolMsg(val) {
+    roolMsg (val) {
       this.list = JSON.parse(JSON.stringify(val))
       this.rool()
     }
   },
   methods: {
-    rool() {
+    rool () {
       let that = this;
       if (that.list.length > 1 && that.timer == null) {
         clearInterval(that.timer)

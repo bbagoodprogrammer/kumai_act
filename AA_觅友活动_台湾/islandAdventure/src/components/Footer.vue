@@ -7,7 +7,7 @@
       <img :src="showMsg.avatar" alt="">
       <div class="nick">{{showMsg.nick}}</div>
       <div class="score">
-        <span class="tips">島主積分</span>
+        <span class="tips">{{lang.landScore}}</span>
         <span class="nums">{{showMsg.score}}</span>
       </div>
     </div>

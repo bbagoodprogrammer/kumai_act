@@ -1,10 +1,10 @@
 <template>
   <div class="getShovel">
-    <i class="close" @click="$parent.showGetShovel = false"></i>
-    <div class="title">兌換</div>
+    <i class="close" @click="closePup()"></i>
+    <div class="title">{{lang.get}}</div>
     <div class="userNums" v-if="setType == 1">
-      <span>今日已兌換:{{owner.today_iron_exchange}}/{{owner.iron_exchange_max}}</span>
-      <span>我的海螺:{{owner.props}}</span>
+      <span>{{lang.dayGetNums}}:{{owner.today_iron_exchange}}/{{activity.shovels.iron.daily_max}}</span>
+      <span>{{lang.userGifts}}:{{owner.props}}</span>
     </div>
     <div class="userNums2" v-else>
       <img src="../img/coins.png" alt="">
@@ -14,21 +14,21 @@
     <div class="shovel">
       <div class="shovel1">
         <span class="shoveImg" :class="{act:setType== 1}" @click="tabClick (1)"></span>
-        <strong>鐵鏟子</strong>
+        <strong>{{lang.shovel1}}</strong>
       </div>
       <div class="shovel2">
         <span class="shoveImg" :class="{act:setType== 2}" @click="tabClick (2)"></span>
-        <strong>金鏟子</strong>
+        <strong>{{lang.shovel2}}</strong>
       </div>
     </div>
     <div class="shovelNums">
       <span class="redux" @click="nums>0?nums--:0"></span>
-      <input type="nums" name="" id="" disabled v-model="nums">
+      <input type="text" disabled v-model="nums" class="getNums">
       <span class="add" @click="nums<maxGetNums?nums++:maxGetNums"></span>
-      <u class="max" @click="nums = maxGetNums">最大</u>
+      <u class="max" @click="nums = maxGetNums">{{lang.max}}</u>
     </div>
-    <div class="get" :class="{black:nums == 0}" @click="getShovel()">兌換</div>
-    <p class="getTips">{{setType == 1?'100海螺兌換1個鐵鏟子':'100金幣兌換1個金鏟子'}} </p>
+    <div class="get" :class="{black:nums == 0}" @click="getShovel()">{{lang.get}}</div>
+    <p class="getTips">{{setType == 1?lang.getTip1:lang.getTip2}} </p>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ import { getShovel } from "../apis"
 
 export default {
   computed: {
-    ...mapState(['owner']),
+    ...mapState(['owner', 'activity']),
     maxGetNums () {
       return this.setType == 1 ? this.owner.iron_exchange_max : this.owner.gold_exchange_max
     }
@@ -61,7 +61,7 @@ export default {
           if (res.data.response_status.code == 0) {
             this.$store.dispatch('getInitInfo');
             this.$parent.showGetShovel = false
-            this.toast(`兌換成功！`)
+            this.toast(this.lang.getSuc)
           } else {
             this.toast(res.data.response_status.error)
           }
@@ -78,8 +78,14 @@ export default {
           javascript: JSInterface.sendJsData('app://walletpage');
         }
       } catch (e) { }
+    },
+    closePup () {
+      this.$parent.showGetShovel = false
+      this.setType = 1
+      this.nums = 0
     }
-  }
+  },
+
 }
 </script>
 
@@ -205,7 +211,7 @@ export default {
       position: absolute;
       right: 0.38rem;
     }
-    input {
+    .getNums {
       width: 1.58rem;
       height: 0.67rem;
       background: #D9BE9F;

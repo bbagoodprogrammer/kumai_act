@@ -4,7 +4,7 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-            恭喜玩家【{{item.nick}}】挖到{{item.name}}-{{item.prize_name}}
+            {{lang.roolMsg.replace('%n',item.nick).replace('%a',item.prize_name).replace('%s',item.score)}}
           </li>
         </ul>
       </div>

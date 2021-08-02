@@ -3,8 +3,8 @@
     <div :style="{background: '#7a68f8', height: navigatorHeight}"></div>
     <div class="main">
       <div class="container__top">
-        <div class="envy">{{cp_lv_info.name}}</div>
-        <div class="cur__level">{{lang.current_cp_level}}</div>
+        <div class="envy"><i class="icon" :class="'icon' + cp_lv_info.lv"></i> {{cp_lv_info.name}}</div>
+        <div class=" cur__level">{{lang.current_cp_level}}</div>
         <div class="cp__box">
           <img class="cp__box_bg" src="../img/cp_bg.png" />
           <img class="avatar__left" v-if="ownerInfo.avatar" :src="ownerInfo.avatar" />
@@ -243,8 +243,34 @@ export default {
       font-weight: 400;
       line-height: 0.7rem;
       color: #FFFFFF;
-      opacity: 1;
       padding-top: 0.27rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i {
+        width: 0.72rem;
+        height: 0.72rem;
+        background-size: 100% 100% !important;
+        margin-right: 0.08rem;
+        &.icon0 {
+          background: url(../img/lcIcon/lv1.png);
+        }
+        &.icon1 {
+          background: url(../img/lcIcon/lv2.png);
+        }
+        &.icon2 {
+          background: url(../img/lcIcon/lv3.png);
+        }
+        &.icon3 {
+          background: url(../img/lcIcon/lv4.png);
+        }
+        &.icon4 {
+          background: url(../img/lcIcon/lv5.png);
+        }
+        &.icon5 {
+          background: url(../img/lcIcon/lv6.png);
+        }
+      }
     }
     .cur__level {
       text-align: center;
@@ -398,29 +424,35 @@ export default {
   .cp__task {
     margin-top: 0.66rem;
     margin-left: 0.3rem;
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
     .title {
       //   height: 0.45rem;
       font-size: 0.32rem;
       font-weight: bold;
       line-height: 0.45rem;
       color: #000000;
-      opacity: 1;
     }
     .daily__refresh {
-      //   height: 0.37rem;
+      height: 0.48rem;
       font-size: 0.26rem;
-      font-weight: 400;
-      line-height: 0.37rem;
+      line-height: 0.48rem;
       color: #999999;
-      opacity: 1;
-      margin-left: 0.2rem;
+      background: linear-gradient(
+        81deg,
+        rgba(234, 234, 242, 0) 0%,
+        rgba(234, 234, 242, 0) 0%,
+        #EAEAF2 18%,
+        #EAEAF2 37%,
+        rgba(234, 234, 242, 0) 100%
+      );
+      border-radius: 0.23rem;
+      margin-top: 0.04rem;
     }
   }
   .task__container {
     padding-bottom: 0.1rem;
-    padding-top: 0.2rem;
+    padding-top: 0.48rem;
     .task:nth-child(3),
     .task:nth-child(4),
     .task:nth-child(5) {
@@ -429,7 +461,7 @@ export default {
     .task {
       width: 6.9rem;
       //height: 1.64rem;
-      background: #F5F5F5;
+      background: #EAEAF2;
       opacity: 1;
       border-radius: 0.18rem;
       margin: 0 auto 0.2rem auto;
@@ -498,21 +530,25 @@ export default {
           color: #FFFFFF;
         }
         .clock__lock {
-          background: #BBBBBB;
+          background: none;
+          color: #BCBBC7;
+          border: 0.02rem solid #D1D0DC;
         }
         .score {
-          width: 100%;
-          height: 0.54rem;
-          line-height: 0.54rem;
+          width: 1.12rem;
+          height: 0.48rem;
+          line-height: 0.48rem;
           text-align: center;
           font-size: 0.24rem;
           font-weight: 400;
           color: #7A68F8;
-          opacity: 1;
-          padding-right: 0.44rem;
+          border: 0.02rem solid #7A68F8;
+          border-radius: 0.27rem;
         }
         .score__finish {
-          color: #BBBBBB;
+          background: none;
+          color: #BCBBC7;
+          border: 0.02rem solid #D1D0DC;
         }
       }
     }

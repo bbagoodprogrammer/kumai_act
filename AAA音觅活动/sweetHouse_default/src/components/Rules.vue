@@ -2,34 +2,34 @@
   <div class="rule">
     <i class="close" @click="closeRules()"></i>
     <div class="tips">
-      <p>每天做任務獲得甜品材料，製甜品（背包禮物），獲得歡樂值還能贏限定頭像框、座駕、金幣獎勵</p>
+      <p>{{lang.ruleTips}}</p>
       <div class="tabs">
-        <span :class="{act:type==1}" @click="tabClick(1)">活動規則</span>
-        <span :class="{act:type==2}" @click="tabClick(2)">活動獎勵</span>
+        <span :class="{act:type==1}" @click="tabClick(1)">{{lang.ruleTab1}}</span>
+        <span :class="{act:type==2}" @click="tabClick(2)">{{lang.ruleTab2}}</span>
       </div>
-      <p class="actTime">6月19日 18：00-6月26日 23：59：59</p>
+      <p class="actTime">{{lang.ruleTm}}</p>
       <div class="tipsCon">
         <div class="tips1" v-if="type==1">
-          <h6>如何玩轉甜品屋？</h6>
-          <p>做任務收集甜品材料,製作甜品（背包禮物）獲得歡樂值>>積纍歡樂值完成進階任務領取獎勵</p>
-          <p class="blue">*製作成功的甜品將發放到玩家背包，可在任意房間送給任意其他玩家；活動中所有背包禮物的有效期為7天，不送出去會失效哦~</p>
-          <h6>如何玩轉甜品屋？</h6>
+          <h6>{{lang.ruleListItem1}}</h6>
+          <p>{{lang.ruleListItem2}}</p>
+          <p class="blue">{{lang.ruleListItem3}}</p>
+          <h6>{{lang.ruleListItem1}}</h6>
           <img src="../assets/img/rules/ruleTab1.png" alt="" class="img1">
-          <h6>如何積累歡樂值？</h6>
-          <p>製作完成指定甜品后即可獲得對應歡樂值</p>
+          <h6>{{lang.ruleListItem4}}</h6>
+          <p>{{lang.ruleListItem5}}</p>
           <img src="../assets/img/rules/ruleTab2.png" alt="" class="img2">
-          <p class="blue">*本活動與蘋果公司無關</p>
-          <p class="blue">*活動最終解釋權歸活動主辦方所有</p>
+          <p class="blue">{{lang.ruleListItem11}}</p>
+          <p class="blue">{{lang.ruleListItem6}}</p>
         </div>
         <div class="tips2" v-else>
-          <h6>進階任務及獎勵</h6>
+          <h6>{{lang.ruleListItem7}}</h6>
           <img src="../assets/img/rules/ruleTab3.png" alt="" class="img3">
-          <h6>榜單獎勵</h6>
+          <h6>{{lang.ruleListItem8}}</h6>
           <img src="../assets/img/rules/ruleTab4.png" alt="" class="img4">
-          <h6>注意事項</h6>
-          <p class="blue">榜單獎勵在5個工作日內發放</p>
-          <p class="blue">*本活動與蘋果公司無關</p>
-          <p class="blue">*活動最終解釋權歸活動主辦方所有</p>
+          <h6>{{lang.ruleListItem9}}</h6>
+          <p class="blue">{{lang.ruleListItem10}}</p>
+          <p class="blue">{{lang.ruleListItem11}}</p>
+          <p class="blue">{{lang.ruleListItem6}}</p>
         </div>
       </div>
     </div>
