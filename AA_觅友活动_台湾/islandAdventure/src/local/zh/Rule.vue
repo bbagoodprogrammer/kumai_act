@@ -18,8 +18,9 @@
     <h6>挖寶獎勵</h6>
     <img src="./img/table1.png" alt="" class="table">
     <img src="./img/table2.png" alt="" class="table">
+    <p>*若用金鏟子挖寶600次均沒有挖到最佳現場-背包禮物，在第601次必中</p>
+    <p>*活動中送出背包禮物的有效期均為7天</p>
     <h6>其他 </h6>
-
     <p>-活動中，若發現玩家用不正當手段參與活動，小音有權在不事先通知的情況下按情節嚴重對參與玩家、違規者取消上榜資格、封禁帳號、收回該玩家所有獎勵等處罰，包括但不限於：<br />
       a）活動期間對參與玩家惡意評論、造謠、影射等<br />
       b）非法獲得金幣或指定禮物<br />
@@ -38,16 +39,16 @@ export default {
     return {
       gift: [
         {
-          name: 'xxx',
-          img: ''
+          name: '希望島島主-認證',
+          img: require("../../img/ruleImg/gift1.png")
         },
         {
-          name: 'xxx',
-          img: ''
+          name: '我是島主-頭像框',
+          img: require("../../img/ruleImg/gift2.png")
         },
         {
-          name: 'xxx',
-          img: ''
+          name: '燈塔島-特效禮物',
+          img: require("../../img/ruleImg/gift3.png")
         }
       ]
     }
@@ -83,6 +84,10 @@ body {
       height: 1.88rem;
       background: url(./img/imgBox.png);
       background-size: 100% 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     strong {
       display: block;
@@ -108,7 +113,7 @@ body {
   .table {
     display: block;
     width: 5.85rem;
-    height: 4.32rem;
+    height: 3.98rem;
     margin: 0.29rem auto;
   }
 }

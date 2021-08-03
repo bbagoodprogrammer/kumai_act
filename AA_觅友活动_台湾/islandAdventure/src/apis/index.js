@@ -230,7 +230,12 @@ function luck(type, count) {
     );
 }
 
-function lotteryRecord(from) {
+function lotteryRecord(from, more) {
+    if (more) {
+        return axios.get(
+            `/index.php?action=islandAdventure.history&uid={uid}&token={token}&from=${from}`
+        );
+    }
     return get(
         `/index.php?action=islandAdventure.history&uid={uid}&token={token}&from=${from}`
     );

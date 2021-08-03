@@ -16,7 +16,7 @@
     </keep-alive>
     <div class="mask" v-show="showGetShovel">
       <transition name="slide">
-        <GetShovel v-show="showGetShovel" ref="GetShovel" />
+        <GetShovel v-if="showGetShovel" />
       </transition>
     </div>
     <div class="mask" v-show="showHistory">

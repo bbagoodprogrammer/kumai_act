@@ -28,7 +28,7 @@
       <u class="max" @click="nums = maxGetNums">{{lang.max}}</u>
     </div>
     <div class="get" :class="{black:nums == 0}" @click="getShovel()">{{lang.get}}</div>
-    <p class="getTips">{{setType == 1?lang.getTip1:lang.getTip2}} </p>
+    <p class="getTips">{{setType == 1?lang.getTip1.replace('%s',activity.shovels.iron.props):lang.getTip2.replace('%s',activity.shovels.gold.coins)}} </p>
   </div>
 </template>
 
@@ -39,24 +39,43 @@ import { getShovel } from "../apis"
 
 export default {
   computed: {
-    ...mapState(['owner', 'activity']),
+    ...mapState(['owner', 'activity', 'setType']),
     maxGetNums () {
       return this.setType == 1 ? this.owner.iron_exchange_max : this.owner.gold_exchange_max
     }
   },
+  watch: {
+    maxGetNums (val) {
+      if (val > 0) {
+        this.nums = 1
+      }
+    }
+  },
   data () {
     return {
-      setType: 1,
       nums: 0
+    }
+  },
+  created () {
+    this.vxc('setSetType', 1)
+    if (this.maxGetNums > 0) {
+      this.nums = 1
+    } else {
+      this.nums = 0
     }
   },
   methods: {
     tabClick (val) {
-      this.setType = val
-      this.nums = 0
+      this.vxc('setSetType', val)
+      if (this.maxGetNums > 0) {
+        this.nums = 1
+      } else {
+        this.nums = 0
+      }
     },
     getShovel () {
-      if (this.nums > 0) {
+
+      if ((this.nums <= this.maxGetNums) && this.maxGetNums > 0 && this.nums > 0) {
         getShovel(this.setType == 1 ? 'iron' : 'gold', this.nums).then(res => {
           if (res.data.response_status.code == 0) {
             this.$store.dispatch('getInitInfo');
@@ -66,6 +85,12 @@ export default {
             this.toast(res.data.response_status.error)
           }
         })
+      } else if (this.setType == 2) {
+        this.toast(this.lang.noCoins)
+        setTimeout(() => {
+          this.walletpage()
+        }, 1000)
+
       }
     },
     walletpage () {
@@ -81,11 +106,9 @@ export default {
     },
     closePup () {
       this.$parent.showGetShovel = false
-      this.setType = 1
-      this.nums = 0
+      this.vxc('setSetType', 1)
     }
-  },
-
+  }
 }
 </script>
 

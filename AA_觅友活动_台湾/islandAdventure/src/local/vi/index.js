@@ -6,14 +6,15 @@ Webpack本地化相关资源打包入口，相关资源类型有：
 */
 
 // 如果此语言无覆盖样式，注释样式导入
-// import './style.scss';
+import "./style.scss";
 
-import lang from './lang';
-import images from './images';
+import lang from "./lang";
+import images from "./images";
+import Rule from "./Rule.vue";
 
 window._lang = lang;
 window._images = images;
-
+window.Rule = Rule;
 if (lang.title) {
     document.title = lang.title;
 }

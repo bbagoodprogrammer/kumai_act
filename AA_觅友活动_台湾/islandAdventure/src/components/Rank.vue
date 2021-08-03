@@ -121,7 +121,7 @@ export default {
 .rankList {
   width: 7.34rem;
   min-height: 7rem;
-  padding-top: 0.42rem;
+  padding: 0.42rem 0 2rem;
   background: url(../img/rankBg.png) no-repeat;
   background-size: 100% auto;
   margin: 0.25rem auto 0;
@@ -185,8 +185,9 @@ export default {
   .top3 {
     height: 5.36rem;
     padding: 0 0.3rem;
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // justify-content: space-between;
+    position: relative;
     .noData {
       width: 100%;
       text-align: center;
@@ -194,6 +195,7 @@ export default {
     }
     .topItem {
       width: 2.2rem;
+      position: absolute;
       .imgBox {
         width: 2.2rem;
         height: 2.37rem;
@@ -202,6 +204,7 @@ export default {
           width: 100%;
           height: 100%;
           position: absolute;
+          z-index: 2;
           background-size: 100% 100% !important;
         }
         img {
@@ -227,18 +230,22 @@ export default {
         margin: 0.13rem 0 0.1rem;
       }
       &.top3_1 {
-        margin-top: 1.74rem;
+        top: 0;
+        left: 2.59rem;
         .frame {
           background: url(../img/top1.png);
         }
       }
       &.top3_2 {
+        top: 1.74rem;
+        left: 0.3rem;
         .frame {
           background: url(../img/top2.png);
         }
       }
       &.top3_3 {
-        margin-top: 1.74rem;
+        top: 1.74rem;
+        right: 0.3rem;
         .frame {
           background: url(../img/top3.png);
         }

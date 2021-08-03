@@ -9,7 +9,7 @@
           <li v-for="(item,index) in openLand.tasks" :key="index">
             <div class="msg">
               <div class="tName">{{item.title}}</div>
-              <div class="gift">{{lang.gifts}}:{{item.props}}{{lang.giftsName}}({{item.process}}/{{item.target}})</div>
+              <div class="gift">{{lang.gifts}}:{{item.props}}{{lang.giftsName}}({{item.props_process}}/{{item.props_target}})</div>
             </div>
             <div class="status">
               <em v-if="item.id == 4">{{lang.roomPeople}}{{item.process}}</em>
@@ -89,7 +89,7 @@ export default {
           width: 4.5rem;
           .tName {
             color: #652F00;
-            font-size: 0.28rem;
+            font-size: 0.2rem;
           }
           .gift {
             color: #E98834;

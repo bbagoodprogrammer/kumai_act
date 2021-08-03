@@ -21,7 +21,7 @@
         <div class="shovleItem" v-for="(item,index) in userShovelNums" :key="index">
           <span class="shovleIcon" :class="{gold:item.type == 'gold'}"></span>
           <span class="nums">{{item.nums}}</span>
-          <div class="getBtn" @click="luck(item)" :class="{gold1:item.type == 'gold' && item.sellNums == 1,gold2:item.type == 'gold' && item.sellNums == 10}">
+          <div class="getBtn" @click="luck(index)" :class="{gold1:item.type == 'gold' && item.sellNums == 1,gold2:item.type == 'gold' && item.sellNums == 10}">
             {{item.sellNums == 1?lang.luckOne:lang.luckTen}}
           </div>
         </div>
@@ -46,14 +46,13 @@
                 </div>
                 <strong>{{item.name}}</strong>
               </div>
-              <p class="userScoreTips" v-if="prizes.length == 1">{{lang.userScoreTips1.replace('%n',prizes[0].name).replace('%n',score)}}</p>
-              <p class="userScoreTips" v-else>{{lang.userScoreTips1.replace('%s',score)}}</p>
-              <div class="nextBtn" v-if="prizes.length > 1">
+              <p class="userScoreTips" v-if="prizes.length == 1">{{lang.userScoreTips1.replace('%n',prizes[0].name).replace('%s',score)}}</p>
+              <p class="userScoreTips" v-else>{{lang.userScoreTips2.replace('%s',score)}}</p>
+              <div class="nextBtn">
                 <span class="ok" @click="showLuckGift = false">{{lang.ok}}</span>
-                <span class="next" @click="luck(userShovelNums[2])">{{lang.again}}</span>
+                <span class="next" @click="luck(luckIndex)">{{lang.again}}</span>
               </div>
             </div>
-
             <div class="luckBotton"></div>
           </div>
         </transition>
@@ -87,7 +86,8 @@ export default {
         'http://fstatic.cat1314.com/uc/svga/1d5c810a76af7ebbd9f895dcebe590dc_1627372784.svga',
         'http://fstatic.cat1314.com/uc/svga/0316af4411f1d62f70051062b75cf5eb_1627372792.svga'
       ],
-      player: null
+      player: null,
+      luckIndex: {}
     }
   },
   computed: {
@@ -132,8 +132,10 @@ export default {
       console.log(index)
       this.nowIndex = index
     },
-    luck (item) {
-      if (item.nums > 0) {
+    luck (index) {
+      let item = this.userShovelNums[index]
+      if (item.nums >= item.sellNums) {
+        this.luckIndex = index
         luck(item.type, item.sellNums).then(res => {
           if (res.data.response_status.code == 0) {
             this.prizes = res.data.response_data.prizes
@@ -145,12 +147,13 @@ export default {
           }
         })
       } else {
-
+        this.showLuckGift = false
         if (item.type == 'iron') {
           this.$parent.$parent.showGetShovel = true
         } else {
           this.$parent.$parent.showGetShovel = true
-          this.$parent.$parent.$refs.GetShovel.setType = 2
+          this.vxc('setSetType', 2)
+          //   this.$parent.$parent.$refs.GetShovel.setType = 2
         }
       }
     },
@@ -369,7 +372,7 @@ export default {
       margin-top: -0.02rem;
       min-height: 3rem;
       background: url(../img/luckGift_con.png);
-      background-size: 100% auto;
+      background-size: 100% 100%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -407,7 +410,7 @@ export default {
         }
         strong {
           width: 100%;
-          height: 0.7rem;
+          height: 1rem;
           color: #A9650A;
           font-size: 0.26rem;
           display: block;

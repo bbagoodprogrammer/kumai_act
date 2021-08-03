@@ -17,7 +17,8 @@ export default new vuex.Store({
         loading: false,
         totleOwner: {},
         islands: [],
-        notices: []
+        notices: [],
+        setType: 0
     },
     mutations: {
         updateLoading(state, value) {
@@ -31,6 +32,9 @@ export default new vuex.Store({
         },
         setTotleOwner(state, val) {
             state.totleOwner = val;
+        },
+        setSetType(state, val) {
+            state.setType = val;
         }
     },
     actions: {

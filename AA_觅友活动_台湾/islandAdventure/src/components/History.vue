@@ -106,22 +106,21 @@ export default {
     -webkit-overflow-scrolling: auto;
   }
   li {
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
     font-size: 0.24rem;
-    margin-bottom: 0.15rem;
+    margin-bottom: 0.25rem;
+    span {
+      display: block;
+    }
   }
   .time {
-    flex: 1;
     color: #B88038;
     font-size: 0.24rem;
-    text-align: center;
   }
   .gift {
-    width: 3rem;
     font-size: 0.28rem;
     color: #7D4903;
-    margin-right: 0.15rem;
   }
 }
 .noData {

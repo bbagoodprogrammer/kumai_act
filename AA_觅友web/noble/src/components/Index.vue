@@ -134,27 +134,27 @@ export default {
       svgaConfig: {
         0: {
           key: '0',
-          addres: 'http://fstatic.cat1314.com/uc/svga/978fc1ab3b80c70da85665715c09875a_1627631713.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/978fc1ab3b80c70da85665715c09875a_1627631713.svga'
         },
         1: {
           key: '1',
-          addres: 'http://fstatic.cat1314.com/uc/svga/7b07303b8461a049783eec6be9c7c076_1627381713.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/7b07303b8461a049783eec6be9c7c076_1627381713.svga'
         },
         2: {
           key: '2',
-          addres: '	http://fstatic.cat1314.com/uc/svga/0316af4411f1d62f70051062b75cf5eb_1627372792.svga'
+          addres: '	//fstatic.cat1314.com/uc/svga/0316af4411f1d62f70051062b75cf5eb_1627372792.svga'
         },
         3: {
           key: '3',
-          addres: '	http://fstatic.cat1314.com/uc/svga/1d5c810a76af7ebbd9f895dcebe590dc_1627372784.svga'
+          addres: '	//fstatic.cat1314.com/uc/svga/1d5c810a76af7ebbd9f895dcebe590dc_1627372784.svga'
         },
         4: {
           key: '4',
-          addres: '	http://fstatic.cat1314.com/uc/svga/c2923fa6a99d85add23eab3c22eb1791_1627372776.svga'
+          addres: '	//fstatic.cat1314.com/uc/svga/c2923fa6a99d85add23eab3c22eb1791_1627372776.svga'
         },
         5: {
           key: '5',
-          addres: 'http://fstatic.cat1314.com/uc/svga/4c1a88b03aa12daf63c2d49a168d51bc_1627372767.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/4c1a88b03aa12daf63c2d49a168d51bc_1627372767.svga'
         },
       },
       showPup: false
