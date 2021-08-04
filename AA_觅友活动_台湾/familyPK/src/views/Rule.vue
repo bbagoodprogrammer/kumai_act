@@ -5,18 +5,10 @@
     </div>
     <div class="time" v-html="getActTime"></div>
     <div class="tabs">
-      <div
-        class="tab"
-        :class="{ tab_select: tab == 0 }"
-        @click="handleClick(0)"
-      >
+      <div class="tab" :class="{ tab_select: tab == 0 }" @click="handleClick(0)">
         {{ lang.rule }}
       </div>
-      <div
-        class="tab"
-        :class="{ tab_select: tab == 1 }"
-        @click="handleClick(1)"
-      >
+      <div class="tab" :class="{ tab_select: tab == 1 }" @click="handleClick(1)">
         {{ lang.award }}
       </div>
     </div>
@@ -57,11 +49,7 @@
             <span class="name" v-html="getBrHtml(lang[`award_${item}`])"></span>
           </li>
         </ul>
-        <div
-          class="title"
-          style="margin-top: 0.1rem"
-          v-html="getBrHtml(lang.act_step_1)"
-        ></div>
+        <div class="title" style="margin-top: 0.1rem" v-html="getBrHtml(lang.act_step_1)"></div>
         <div class="des award_des" v-html="getBrHtml(lang.top_1)"></div>
         <div class="des award_des" v-html="getBrHtml(lang.top_1_menber)"></div>
         <div class="des award_des" v-html="getBrHtml(lang.top_2)"></div>
@@ -95,31 +83,31 @@ export default {
   computed: {
     ...mapState(["initData"]),
     ...mapGetters(["familyPK", "familyCompetition"]),
-    getActTime() {
+    getActTime () {
       let sTime = dateFormat(this.lang.s_time, this.initData.sTime * 1000);
       let eTime = dateFormat(this.lang.e_time, this.initData.eTime * 1000);
       return this.lang.act_time.replace("%s", sTime + "-" + eTime);
     },
   },
 
-  data() {
+  data () {
     return {
       tab: 0,
       gifts: [],
     };
   },
 
-  created() {
+  created () {
     this.gifts = window._gifts;
   },
 
   methods: {
-    handleClick(tab) {
+    handleClick (tab) {
       this.tab = tab;
     },
-    getTimeHtml(text) {
-       let time1 = dateFormat(this.lang.act_step_time, this.familyPK.sTime * 1000) + '-' +dateFormat(this.lang.act_step_time, this.familyPK.eTime * 1000)
-      let time2 = dateFormat(this.lang.act_step_time, this.familyCompetition.sTime * 1000) + '-' +dateFormat(this.lang.act_step_time, this.familyCompetition.eTime * 1000)
+    getTimeHtml (text) {
+      let time1 = dateFormat(this.lang.act_step_time, this.familyPK.sTime * 1000) + '-' + dateFormat(this.lang.act_step_time, this.familyPK.eTime * 1000)
+      let time2 = dateFormat(this.lang.act_step_time, this.familyCompetition.sTime * 1000) + '-' + dateFormat(this.lang.act_step_time, this.familyCompetition.eTime * 1000)
       return text.replace('{0}', time1).replace('{1}', time2)
     }
   },
@@ -149,23 +137,23 @@ body,
     margin-bottom: 0.27rem;
   }
   .dialog__title::before {
-    content: "";
+    content: '';
     width: 1.94rem;
     height: 0.16rem;
     position: absolute;
     left: -2.06rem;
-    background-image: url("../img/title_left.png");
+    background-image: url('../img/title_left.png');
     background-size: 100% 100%;
     top: 50%;
     transform: translateY(-50%);
   }
   .dialog__title::after {
-    content: "";
+    content: '';
     width: 1.94rem;
     height: 0.16rem;
     position: absolute;
     right: -2.06rem;
-    background-image: url("../img/title_right.png");
+    background-image: url('../img/title_right.png');
     background-size: 100% 100%;
     top: 50%;
     transform: translateY(-50%);
@@ -188,7 +176,7 @@ body,
     .tab {
       width: 2.3rem;
       height: 0.78rem;
-      background: url("../img/tab_bg.png") 0/100% 100% no-repeat;
+      background: url('../img/tab_bg.png') 0/100% 100% no-repeat;
       margin: 0 0.05rem 0 0.05rem;
       font-size: 0.28rem;
       text-align: center;
@@ -197,7 +185,7 @@ body,
       color: #cbd5f9;
     }
     .tab_select {
-      background: url("../img/current_tab_bg.png") 0/100% 100% no-repeat;
+      background: url('../img/current_tab_bg.png') 0/100% 100% no-repeat;
       color: #2c0204;
     }
   }
@@ -276,9 +264,8 @@ body,
       display: flex;
       justify-content: center;
       margin-top: 0.3rem;
+      justify-content: space-between;
       li {
-        margin-left: 0.15rem;
-        margin-right: 0.15rem;
         text-align: center;
         .img__box {
           width: 1.65rem;
@@ -287,7 +274,7 @@ body,
           .coin__box {
             width: 0.68rem;
             height: 0.25rem;
-            background: url("../img/coin_box.png") 0/100% 100% no-repeat;
+            background: url('../img/coin_box.png') 0/100% 100% no-repeat;
             position: absolute;
             top: 0;
             left: 0;
@@ -320,7 +307,7 @@ body,
       }
     }
     .explain {
-       font-size: 0.22rem;
+      font-size: 0.22rem;
       font-weight: 400;
       color: #b1c4f7;
       line-height: 0.34rem;

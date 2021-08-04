@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="listCon">
-            <div class="iconItem" v-for="(item2,index2) in iconConfig" :key="index2" :class="{act:item.privilege >= index2}">
+            <div class="iconItem" v-for="(item2,index2) in iconConfig" :key="index2" :class="{act:item.privilege >= index2}" @click="showMsg(index)">
               <span class="icon" :class="[{act:item.privilege >= index2},'icon'+ (index2 +1)]"></span>
               <strong>{{item2.name}}</strong>
             </div>
@@ -34,7 +34,7 @@
       <div class="userScore">
         <div class="userMonth">
           <span class="score">本月已累積 <em>{{user.noble_value}}</em> 貴族值</span>
-          <span class="explain">說明</span>
+          <span class="explain" @click="$router.push({name:'explain'})">說明</span>
         </div>
         <div class="lv">
           <div class="lvLiner">
@@ -56,7 +56,7 @@
           <div class="title">貴族稱號</div>
           <img src="" alt="">
           <p class="tips">
-            貴族稱號將展示在房間的公屏發言、資料卡片，貴族等級越高象徵身份越尊貴
+            {{iconConfig[showIndex].tips}}
           </p>
         </div>
       </transition>
@@ -104,60 +104,70 @@ export default {
       ],
       iconConfig: [
         {
-          name: '貴族稱號'
+          name: '貴族稱號',
+          tips: '貴族稱號將展示在房間的公屏發言、資料卡片中，貴族等級越高象徵身份越尊貴。'
         },
         {
-          name: '特權禮物'
+          name: '特權禮物',
+          tips: '貴族身份可在房間中贈送特權禮物，貴族等級越高可贈送的禮物越多，禮物特效越酷炫。'
         },
         {
-          name: '專屬頭像框'
+          name: '專屬頭像框',
+          tips: '騎士貴族擁有專屬頭像框，貴族等級越高效果越酷炫。'
         },
         {
-          name: '尊貴名片'
+          name: '尊貴名片',
+          tips: '子爵貴族擁有尊貴名片，在房間戶信息卡展示效果，貴族等級越高效果越酷炫。'
         },
         {
-          name: '酷炫进场秀'
+          name: '酷炫进场秀',
+          tips: '伯爵貴族擁有酷炫的進場秀效果，進入房間時觸發效果，獲得全場矚目。'
         },
         {
-          name: '聊天氣泡'
+          name: '聊天氣泡',
+          tips: '伯爵貴族擁有聊天氣泡裝飾，在房間、私訊中發言帶有醒目氣泡框。'
         },
         {
-          name: '查看喜歡'
+          name: '查看喜歡',
+          tips: '侯爵貴族在交友配對中享有查看喜歡我的人特權，更容易找到心儀對象。'
         },
         {
-          name: '稀有座駕'
+          name: '稀有座駕',
+          tips: '侯爵貴族擁有稀有座駕，進入房間時觸發效果，霸氣十足，驚豔全場。'
         },
         {
-          name: '防踢'
+          name: '防踢',
+          tips: '公爵貴族擁有發防踢特權，在房間中無法被房主、房管踢出房間。'
         }
       ],
       svgaConfig: {
         0: {
           key: '0',
-          addres: '//fstatic.cat1314.com/uc/svga/978fc1ab3b80c70da85665715c09875a_1627631713.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/48b4c8a95ec34425c29f77e9020dfd0f_1628072688.svga'
         },
         1: {
           key: '1',
-          addres: '//fstatic.cat1314.com/uc/svga/7b07303b8461a049783eec6be9c7c076_1627381713.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/c829a0071081b0c8ab724eb24d58509b_1628072680.svga'
         },
         2: {
           key: '2',
-          addres: '	//fstatic.cat1314.com/uc/svga/0316af4411f1d62f70051062b75cf5eb_1627372792.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/c8af8b330c7e11269a78925706ee047b_1628072667.svga'
         },
         3: {
           key: '3',
-          addres: '	//fstatic.cat1314.com/uc/svga/1d5c810a76af7ebbd9f895dcebe590dc_1627372784.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/d032750c9d209b3f2afcaa410b4fd233_1628072659.svga'
         },
         4: {
           key: '4',
-          addres: '	//fstatic.cat1314.com/uc/svga/c2923fa6a99d85add23eab3c22eb1791_1627372776.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/ef72b32b1e67336abd48febbd12c26b0_1628072650.svga '
         },
         5: {
           key: '5',
-          addres: '//fstatic.cat1314.com/uc/svga/4c1a88b03aa12daf63c2d49a168d51bc_1627372767.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/bd4a6fab31bf864b0c3aeb72593ce84e_1628072641.svga'
         },
       },
-      showPup: false
+      showPup: false,
+      showIndex: 0
     }
   },
   computed: {
@@ -186,9 +196,21 @@ export default {
       return '0%'
     }
   },
-  mounted () {
-    this.svgaPlayer(this.svgaConfig[0], true)
-    this.svgaPlayer(this.svgaConfig[1], false)
+  watch: {
+    user (val) {
+      this.initNum = val.noble_level - 1 < 0 ? 0 : val.noble_level - 1
+      this.nowIndex = val.noble_level - 1 < 0 ? 0 : val.noble_level - 1
+      let listLength = Object.keys(this.level_list).length
+      console.log(this.initNum, this.nowIndex)
+      setTimeout(() => {
+        this.svgaPlayer(this.svgaConfig[this.initNum], true)
+        if (val.noble_level < listLength) {
+          this.svgaPlayer(this.svgaConfig[this.initNum + 1], false)
+        }
+
+      }, 0)
+
+    }
   },
   methods: {
     tabClick (index) {
@@ -207,6 +229,10 @@ export default {
       let data = await this.loadSvgaData(item.addres)
       let canvas = document.getElementById('iconCanvas' + item.key)
       let player = new Player(canvas)
+      console.log(data)
+      if (item.key == 0) {
+        player.set({ startFrame: 2 })
+      }
       await player.mount(data)
       if (play) {
         player.start()
@@ -223,6 +249,10 @@ export default {
         })()
       });
     },
+    showMsg (index) {
+      this.showIndex = index
+      this.showPup = true
+    }
   }
 }
 </script>
@@ -274,6 +304,10 @@ body {
       width: 4.6rem;
       height: 4.6rem;
       margin: 0 auto;
+      position: absolute;
+      left: 1.45rem;
+      top: 0;
+      z-index: 2;
     }
     .btn {
       width: 7.5rem;

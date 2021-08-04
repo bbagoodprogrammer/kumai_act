@@ -87,6 +87,10 @@ body {
       height: 1.88rem;
       background: url(./img/imgBox.png);
       background-size: 100% 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     strong {
       display: block;

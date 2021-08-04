@@ -1,5 +1,5 @@
 html.vi {
-    letter-spacing:-0.05rem;
+    letter-spacing:-0.015rem;
     .pageIndex{
         background:#FFE3A6 url(./img/banner.png) no-repeat;
         background-size: 100% auto;
@@ -27,6 +27,11 @@ html.vi {
             &.act{
                 background: url(./img/tab2_act.png);
             }
+        }
+    }
+    .shovelNums{
+        .max{
+            margin-right: -.45rem;
         }
     }
 }

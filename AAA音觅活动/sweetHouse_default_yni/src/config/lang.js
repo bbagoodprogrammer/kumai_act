@@ -80,7 +80,7 @@
   },
 
   //list
-  score: "Nilai kegembiraan",
+  score: "Nilai bahagia",
   getScience: "Dapatkan bahan",
   creat: "Membuat",
   creatNums: "%c telah disintesis",
@@ -181,6 +181,17 @@
   singUpTips:
     "Buka satu Dessert House dan sintesis dessert House<em>hadiah ransel</em>，juga bisa menangkan<em>bingkai avatar terbatas</em>、<em>mount dan hadiah koin emas</em>",
   singUpSucTips:
-    "Dessert House Anda buka! !<br/>Cepat pergi untuk buat dessert aja"
+    "Dessert House Anda buka! !<br/>Cepat pergi untuk buat dessert aja",
+
+  //index
+  indexNoReg:
+    "Dessert House Anda belum dibuka <strong>Nilai bahagia:????</strong>",
+  indexRoomName: "Dessert House ",
+  indexCuldCreat: "Ada dessert yang bisa dibuat",
+  indexCreat: "Klik untuk membuat",
+  indexCreatStatus: " Masih kurang %c buah %n dapat buat %s",
+  indexLastTips: "Hak interpretasi akhir acara adalah milik penyelenggara",
+  indexInviteTips:
+    "Teman yang berhasil mengundang Anda untuk membuka Dessert House akan berkesempatan untuk dapatkan <i></i> x5 buah"
 };
 export default lang;

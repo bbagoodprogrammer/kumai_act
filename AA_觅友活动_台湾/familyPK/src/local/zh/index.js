@@ -8,12 +8,12 @@ Webpack本地化相关资源打包入口，相关资源类型有：
 // 如果此语言无覆盖样式，注释样式导入
 // import './style.scss';
 
-import lang from './lang';
-import images from './images';
+import lang from "./lang";
+import images from "./images";
 
 window._lang = lang;
 window._images = images;
-window._roomUrl = 'https://activity.udateapp.com/static_html/chat_explain/index.html?aid=42'
+window._roomUrl = "/static_html/chat_explain/index.html";
 window._gifts = [
     {
         coin: 100,
@@ -26,8 +26,12 @@ window._gifts = [
     {
         coin: 1500,
         score: 3000
+    },
+    {
+        coin: 3000,
+        score: 6000
     }
-]
+];
 
 if (lang.title) {
     document.title = lang.title;

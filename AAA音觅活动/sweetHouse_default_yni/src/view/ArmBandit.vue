@@ -7,20 +7,20 @@
     <div class="header">
       <div class="house" :class="{easy: !reg ||  easy.less.length > 1}">
         <div class="userTitle">
-          <p v-if="!reg">你的甜品屋還沒開張 <strong>歡樂值:????</strong> </p>
+          <p v-if="!reg" v-html="lang.indexNoReg"> </p>
           <div class="userHouers" v-else>
-            <p><em>{{nick}}</em>的甜品屋</p>
-            <strong>歡樂值：{{score}}</strong>
+            <p>{{lang.indexRoomName}} <em>{{nick}}</em></p>
+            <strong>{{lang.score}}：{{score}}</strong>
           </div>
         </div>
         <div class="people"></div>
         <div class="sweetsStatus" v-if="reg && easy.less.length == 0">
-          <p class="ok">有可製作的<br />甜品</p>
-          <span class="scorllTop" @click="scorllTo()">點擊製作</span>
+          <p class="ok" v-html="lang.indexCuldCreat"></p>
+          <span class="scorllTop" @click="scorllTo()">{{lang.indexCreat}}</span>
         </div>
         <div class="sweetsStatus" v-else-if="reg && easy.less.length == 1 ">
           <img :src="require(`../assets/img/sweets/creatIcon${easy.id}.png`)" alt="">
-          <p class="less">还差{{easy.less[0].count}}份{{easy.less[0].name}}可制作{{easy.name}}</p>
+          <p class="less">{{lang.indexCreatStatus.replace('%c',easy.less[0].count).replace('%n',easy.less[0].name).replace('%s',easy.name)}}</p>
         </div>
         <Box :nick="nick" />
       </div>
@@ -35,7 +35,7 @@
       </div>
     </div>
     <List :nick="nick" ref="list" />
-    <p class="actTips">活動最終解釋權歸活主辦方所有</p>
+    <p class="actTips">{{lang.indexLastTips}}</p>
     <!-- <act-footer></act-footer> -->
     <div class="mask" v-show="showRank">
       <transition name="slide">
@@ -67,7 +67,7 @@
               </div>
             </li>
           </ul>
-          <p>成功邀請你開張甜品屋的好友，<br />有機會獲得 <i></i> x5份</p>
+          <p v-html="lang.indexInviteTips"></p>
           <div class="singUpBtn" @click="invitSingUp()"></div>
         </div>
       </transition>
@@ -199,7 +199,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.showInviatPup = false
           this.vxc('setReg', true)
-          this.toast('你的甜品屋開張啦！！<br/>快去製作甜品吧')
+          this.toast(this.lang.singUpSucTips)
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -275,7 +275,7 @@ body::-webkit-scrollbar {
         align-items: center;
         justify-content: center;
         position: absolute;
-        top: 1.5rem;
+        top: 1.35rem;
         left: 1.5rem;
         text-align: center;
         text-shadow: RGBA(251, 150, 31, 1) 1px 0 0,

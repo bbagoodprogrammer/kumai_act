@@ -103,17 +103,17 @@ export default {
     .tips {
       h3 {
         text-align: center;
-        font-size: 0.36rem;
+        font-size: 0.32rem;
         font-weight: 800;
         color: rgba(233, 140, 86, 1);
       }
       p {
         padding: 0 0.64rem;
-        font-size: 0.24rem;
+        font-size: 0.2rem;
         text-align: center;
         color: rgba(233, 140, 86, 1);
         em {
-          font-size: 0.24rem;
+          font-size: 0.2rem;
           color: rgba(227, 27, 27, 1);
         }
       }
@@ -122,7 +122,7 @@ export default {
       padding: 0 0.55rem;
       display: flex;
       justify-content: space-between;
-      margin-top: 0.25rem;
+      margin-top: 0.15rem;
       span {
         img {
           width: 1.73rem;
@@ -142,7 +142,7 @@ export default {
       height: 0.86rem;
       background: url(../assets/img/singUp.png);
       background-size: 100% 100%;
-      margin: 0.3rem auto 0;
+      margin: 0.1rem auto 0;
     }
     .close {
       display: block;

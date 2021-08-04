@@ -36,7 +36,12 @@ export default {
       return this.activity.vol ? this.islands[this.activity.vol - 1] : {}
     },
     openTm () {
-      return getDate(new Date(this.activity.stime * 1000), 1) + '-' + getDate(new Date(this.activity.etime * 1000), 1)
+      if (AREA == 'tw') {
+        return getDate(new Date(this.activity.stime * 1000), 1) + '-' + getDate(new Date(this.activity.etime * 1000), 1)
+      } else if (AREA == 'vn') {
+        return getDate(new Date(this.activity.stime * 1000), 2) + '-' + getDate(new Date(this.activity.etime * 1000), 2)
+      }
+
     }
   }
 }
@@ -98,12 +103,13 @@ export default {
           }
         }
         .status {
+          flex: 1;
           text-align: center;
           margin-left: 0.3rem;
           em {
             font-size: 0.24rem;
             color: #E98834;
-            white-space: nowrap;
+            // white-space: nowrap;
           }
           strong {
             display: block;

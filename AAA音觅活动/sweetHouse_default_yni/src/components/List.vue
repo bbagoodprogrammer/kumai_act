@@ -528,7 +528,8 @@ export default {
         color: rgba(212, 62, 25, 1);
         font-weight: 500;
         .score {
-          width: 1.6rem;
+          //   width: 1.6rem;
+          padding: 0 0.15rem;
           height: 0.34rem;
           background: rgba(254, 118, 94, 1);
           border-radius: 0.17rem;
@@ -605,8 +606,10 @@ export default {
           text-align: center;
           font-size: 0.28rem;
           color: rgba(37, 186, 74, 1);
-          line-height: 0.62rem;
           font-weight: 500;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           &.status2 {
             color: rgba(114, 0, 91, 1);
             background: url(../assets/img/creat2.png);

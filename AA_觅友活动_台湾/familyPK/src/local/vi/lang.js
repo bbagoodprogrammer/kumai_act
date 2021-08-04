@@ -161,9 +161,10 @@ export default {
     orther: "IV. Khác",
     orther_des:
         "1、Trong sự kiện, khi phát hiện người chơi gian lận, chúng tôi sẽ hủy bỏ tư cách tham gia của người chơi mà không cần thông báo, vi phạm sẽ không được tham gia xếp hạng, đồng thời bị khóa tài khoản và thu hồi tất cả phần thưởng, bao gồm nhưng không giới hạn:\na) Trong quá trình sự kiện nếu có hành động công kích xúc phạm người khác\nb) gian lận để nhận được phần thưởng, lợi dụng lỗi để gian lận điểm\nc) Vi phạm thông tin gia tộc, bao gồm nhưng không giới hạn: khiêu dâm, bạo lực, ma túy, công kích người chơi…\n2. Sự kiện không liên quan đến công ty Apple.",
-    gift_name_1: "Yêu âm nhạc",
+    gift_name_1: "bóng đá",
     gift_name_2: "Tuyệt vời nhất",
     gift_name_3: "Triệu Like",
+    gift_name_4: "Bắn",
     gift_value: "+%s điểm thủ hộ",
 
     //award
@@ -172,7 +173,7 @@ export default {
     top_1:
         "Gia Tộc Hạng 1\n1. Tất cả thành viên Gia Tộc nhận Huân Chương Gia Tộc-Vàng (30 ngày)\n2. Tất cả thành viên Gia Tộc nhận khung ảnh Gia Tộc (15 ngày, tộc trưởng thành thành viên khác nhau)\n3. Tất cả thành viên Gia Tộc được 1000 đậu\n4. Phòng Tộc Trưởng được đánh dấu (15 ngày)\n5, Gia tộc trưởng nhận ảnh nền phòng gia tộc Quán quân (10 ngày)",
     top_1_menber:
-        "Quà Thành Viên Gia Tộc Cống Hiến\nHạng 1: Quà hiệu ứng Moto rực rỡ*1+Quà gia tộc*1+ 10%Trả lễ nạp+8000 Xu+Huy chương-Ngôi sao gia tộc (10 ngày)\nHạng 2: Quà hiệu ứng Moto tình yêu*1+ 8% Trả lễ nạp\nHạng 3: Quà hiệu ứng Moto nhỏ*1+ 5% Trả lễ nạp",
+        "Quà Thành Viên Gia Tộc Cống Hiến\nHạng 1: Quà hiệu ứng Moto rực rỡ*1+Quà gia tộc*1+ 10%Trả lễ nạp+8000 Xu+Huy chương-Ngôi sao gia tộc (10 ngày)\nHạng 2: Quà hiệu ứng Moto tình yêu*1+5000 Xu+ 8% Trả lễ nạp\nHạng 3: Quà hiệu ứng Moto nhỏ*1+2000 Xu+ 5% Trả lễ nạp",
     top_2:
         "Gia Tộc Hạng 2\n1. Tất cả thành viên Gia Tộc nhận Huân Chương Gia Tộc-Bạc (15 ngày)\n2. Tất cả thành viên Gia Tộc nhận khung ảnh Gia Tộc (10 ngày, tộc trưởng thành thành viên khác nhau)\n3. Tất cả thành viên Gia Tộc được 800 đậu",
     top_2_menber:

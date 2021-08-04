@@ -1,5 +1,5 @@
 html.vi {
-  letter-spacing: -0.05rem;
+  letter-spacing: -0.015rem;
 }
 
 html.vi .pageIndex {
@@ -36,4 +36,8 @@ html.vi .tab .tab2 {
 
 html.vi .tab .tab2.act {
   background: url(./img/tab2_act.png);
+}
+
+html.vi .shovelNums .max {
+  margin-right: -.45rem;
 }
