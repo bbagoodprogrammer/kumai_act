@@ -4,8 +4,8 @@
     <h6>Cách chơi</h6>
     <p>
       1、Mỗi kỳ mở 1 hải đảo, hoàn thành nhiệm vụ nhận ốc biển, ốc có thể đổi xẻng để đào kho báu, mỗi ngày tối đa đổi 10 cái xẻng<br />
-      2、Người chơi có thể dùng Xu đổi xẻng vàng, mỗi ngày không giới hạn đổi xẻng vàng<br />
-      3、Mỗi ngày dùng sẻng đào kho báu tăng tiềm lực chúa đảo, khi đóng hải đảo, BXH chúa đảo, tiểm lực chúa đảo lớn nhất sẽ trở thành chúa đảo (tiềm lực giống nhau sẽ ưu tiên cho người đạt trước),
+      2、Người chơi có thể dùng Xu đổi xẻng vàng, mỗi ngày không giới hạn số lượng đổi xẻng vàng<br />
+      3、Mỗi ngày dùng xẻng đào kho báu tăng tiềm lực chúa đảo, khi đóng hải đảo, BXH chúa đảo, tiểm lực chúa đảo lớn nhất sẽ trở thành chúa đảo (tiềm lực giống nhau sẽ ưu tiên cho người đạt trước),
       nhận quà chúa đảo: Chúa Đảo Hy Vọng (15 ngày), Ta là chúa đảo-Khung ảnh (10 ngày), Fastnet-Quà hiệu ứng*1(7 ngày)
     </p>
     <div class="giftList">
@@ -19,11 +19,11 @@
     <h6>Quà đào kho báu</h6>
     <img src="./img/table1.png" alt="" class="table">
     <img src="./img/table2.png" alt="" class="table">
-    <p>*Nếu dùng xẻng vàng để đào bảo 600 lần mà vẫn chưa chưa tìm ra được nơi tất nhất-quà túi, hiện tại lần 601 chắc chắn tìm được</p>
+    <p>*Nếu dùng xẻng vàng để đào bảo 600 lần mà vẫn chưa tìm ra được Siêu đỉnh-Quà túi, thì lần 601 chắc chắn tìm được</p>
     <p>*Quà túi được tặng từ sự kiện có hiệu quả trong 7 ngày</p>
 
     <h6>khác </h6>
-    <p>-Trong sự kiện, khi phát hiện người chơi gian lận, Tiểu âm sẽ hủy bỏ tư cách xếp hạng của người vi phạm mà không cần thông báo, đồng thời sẽ khóa tài khoản và thu hồi các phần thưởng của người
+    <p>-Trong sự kiện, khi phát hiện người chơi gian lận, Admin sẽ hủy bỏ tư cách xếp hạng của người vi phạm mà không cần thông báo, đồng thời sẽ khóa tài khoản và thu hồi các phần thưởng của người
       chơi, bao gồm và không giới hạn trong: <br />
       a）Trong quá trình sự kiện nếu có hành động công kích xúc phạm người khác<br />
       b）Gian lận để nhận được phần thưởng<br />

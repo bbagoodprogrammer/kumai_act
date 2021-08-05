@@ -119,14 +119,14 @@ export default {
       margin-left: 0.3rem;
     }
     .img3 {
-      width: 5.48rem;
-      height: 2.01rem;
+      width: 6.14rem;
+      height: 2.56rem;
       margin-left: 0.3rem;
     }
     .img4 {
       display: block;
-      width: 6.67rem;
-      height: 4.29rem;
+      width: 6.26rem;
+      height: 4.27rem;
       margin-left: 0.2rem;
       z-index: 10;
     }

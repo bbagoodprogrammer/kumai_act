@@ -148,11 +148,15 @@ export default {
         })
       } else {
         this.showLuckGift = false
+        console.log(item.type)
         if (item.type == 'iron') {
           this.$parent.$parent.showGetShovel = true
         } else {
           this.$parent.$parent.showGetShovel = true
-          this.vxc('setSetType', 2)
+          setTimeout(() => {
+            this.vxc('setSetType', 2)
+          }, 0);
+
           //   this.$parent.$parent.$refs.GetShovel.setType = 2
         }
       }

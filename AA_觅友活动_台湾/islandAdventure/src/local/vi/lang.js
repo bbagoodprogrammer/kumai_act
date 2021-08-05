@@ -50,13 +50,13 @@ export default {
     rankTab2: "Tổng",
     rankTm: "Đóng đảo còn",
 
-    roolMsg: " Chúc mừng 【%n】 đào được %a,+%s chỉ số đảo",
+    roolMsg: " Chúc mừng 【%n】 đào được %a,+%s điểm chúa đảo",
 
     //Task
     taskOpen: "Thời gian mở",
     gifts: "Quà",
     giftsName: "Ốc",
-    roomPeople: "Điểm nổi tiếng phòng：",
+    roomPeople: "Điểm mị lực phòng：",
     itemStatus1: "Đã hoàn thành",
     itemStatus2: "Chưa hoàn thành",
     taskTips:

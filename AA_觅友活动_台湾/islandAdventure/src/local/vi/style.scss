@@ -1,5 +1,5 @@
 html.vi {
-    letter-spacing:-0.015rem;
+    letter-spacing:-0.03rem;
     .pageIndex{
         background:#FFE3A6 url(./img/banner.png) no-repeat;
         background-size: 100% auto;
@@ -32,6 +32,34 @@ html.vi {
     .shovelNums{
         .max{
             margin-right: -.45rem;
+        }
+    }
+    .taskList{
+        .msg{
+            .gift{
+                margin-top: 0rem!important;
+            }
+        }
+        .status{
+            em{
+                display: block;
+                font-size: .2rem;
+                line-height: .28rem!important;
+                margin-bottom: .1rem;
+            }
+            strong{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                line-height: .32rem!important;
+            }
+        }
+    }
+    .pupTips{
+        .rule{
+            font-size: .22rem!important;
+            width: 1.7rem!important;
+            white-space: nowrap;
         }
     }
 }

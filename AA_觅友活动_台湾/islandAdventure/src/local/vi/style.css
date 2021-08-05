@@ -1,5 +1,5 @@
 html.vi {
-  letter-spacing: -0.015rem;
+  letter-spacing: -0.03rem;
 }
 
 html.vi .pageIndex {
@@ -40,4 +40,28 @@ html.vi .tab .tab2.act {
 
 html.vi .shovelNums .max {
   margin-right: -.45rem;
+}
+
+html.vi .taskList .msg .gift {
+  margin-top: 0rem !important;
+}
+
+html.vi .taskList .status em {
+  display: block;
+  font-size: .2rem;
+  line-height: 0.28rem !important;
+  margin-bottom: .1rem;
+}
+
+html.vi .taskList .status strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0.32rem !important;
+}
+
+html.vi .pupTips .rule {
+  font-size: 0.22rem !important;
+  width: 1.7rem !important;
+  white-space: nowrap;
 }

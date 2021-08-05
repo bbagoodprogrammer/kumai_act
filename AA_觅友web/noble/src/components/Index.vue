@@ -180,7 +180,7 @@ export default {
           let c = this.level_list[1].value
           return userScore / c * 100 / 6 / 4.8 + '%'
         } else if (userScore >= this.level_list[listLength].value) {  //满级
-          return '94%'
+          return '96.5%'
         } else {
           console.log(listLength)
           for (var i = listLength - 1; i >= 0; i--) {

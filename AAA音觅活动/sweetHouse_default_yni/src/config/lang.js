@@ -10,10 +10,9 @@
     "Aku membuka Dessert House dan membuat banyak dessert yg lezat, datang dan bermain bersama aja",
 
   //box
-  boxScore: "Nilai kegembiraan mencapai",
+  boxScore: "Nilai bahagia mencapai",
   getSuc: "Diterima dgn sukses",
-  sucTips:
-    "Hadiah yg sesuai telah dikeluarkan ke akun Anda,<br /> silakan cek!",
+  sucTips: "Hadiah yg sesuai telah dikirim ke akun Anda,<br /> silakan cek ya!",
   shareTitle: "Bagikan",
   shareGift: "（Hadiahi dessert mutil-bahan 2 buah）",
   gift: {
@@ -21,7 +20,7 @@
       gift: [
         {
           type: 1,
-          name: "300 Kacang emas"
+          name: "300 kacang emas"
         }
       ]
     },
@@ -29,7 +28,7 @@
       gift: [
         {
           type: 1,
-          name: "600 Kacang emas"
+          name: "600 kacang emas"
         }
       ]
     },
@@ -37,7 +36,7 @@
       gift: [
         {
           type: 1,
-          name: "1000 Kacang emas"
+          name: "1000 kacang emas"
         },
         {
           type: 7,
@@ -49,7 +48,7 @@
       gift: [
         {
           type: 1,
-          name: "2000 Kacang emas"
+          name: "2000 kacang emas"
         },
         {
           type: 7,
@@ -59,21 +58,21 @@
     }
   },
   openErr: "Poin Anda tak cukup~ Pergi dan dapatkan poin aja!",
-  shareMsg: "Membuat berbagai dessert, nilai kegembiraan mencapai",
+  shareMsg: "Membuat berbagai dessert, nilai bahagia mencapai",
 
   //history
   history_title: "Momen",
   history_msg1: "Membuat %n*%c buah",
-  history_msg2: "Nilai kegembiraan+",
+  history_msg2: "Nilai bahagia+",
   taskName: {
     mic: "Naik Mic 5 menit di kamar（Kamar pribadi tak dihitung）",
     coin: "Berikan 100 koin emas di kamar",
-    share: "Bagikan acara ke line atau fb",
-    create: "Buat momen",
+    share: "Bagikan acara ke fb",
+    create: "Bikin momen",
     // friend: ' Persahabatan meningkat setiap 20',
     invite: "Undang teman utk buka Dessert House ",
     charge: "Top up jumlah apapun",
-    room: "8000Nilai popularitas kamar sendiri mencapai 8000",
+    room: "8000 Nilai popularitas kamar sendiri mencapai 8000",
     gift: "Terima 15 buah hadiah dessert apapun",
     pairing:
       "Jelajahi hlm Match dan temukan 3 pemain yg saya minati (Jika Anda tertarik padanya, harus geser ke kanan ya)"
@@ -81,15 +80,15 @@
 
   //list
   score: "Nilai bahagia",
-  getScience: "Dapatkan bahan",
+  getScience: "Dapat bahan",
   creat: "Membuat",
-  creatNums: "%c telah disintesis",
-  countGift: "Setiap kali hadiahi ",
-  dayTips: "Setiap hari %c kali",
+  creatNums: "Telah jadi %c",
+  countGift: "setiap kali hadiahi",
+  dayTips: "setiap hari %c kali",
   doTask: "Pergi",
   inivitNums: "%i orang telah diundang>>",
   taskTips:
-    "Tolong terima secepat mungkin setelah selesaikan tugas~ Tugas update pd pkl 00:00（wib) setiap hari",
+    "Tolong terima secepat mungkin setelah selesaikan tugas~ Tugas update pd pkl 00:00(wib) setiap hari",
   inivitTitle:
     "Undang pemain baru ke acara, undang 1 org yg berhasil akan dihadiahi",
   noFriend: "Tiada teman untuk diundang, cepat tambahkan teman saja~",
@@ -99,65 +98,64 @@
   cancel: "Batal",
   ok: "Konfirmasi",
   creatSuc: "Berhasil diproduksi",
-  addScore: "Tingkatkan nilai kegembiraan：",
+  addScore: "Tingkatkan nilai bahagia：",
   goBack: "Pergi ke ransel utk cek",
-  creatIng: "Dessert membuat...",
+  creatIng: "Dessert dibuat...",
   shareSuc: "Berbagi berhasil!",
   tabArr: [
     {
       type: 1,
       msg: "Buah",
       tips:
-        "Buah：Dapat digunakan utk buat jus alpukat,daifuku, mojito persik, cangkir bintang es krim"
+        "Buah:dapat digunakan utk buat jus alpukat,daifuku, mojito persik, cangkir bintang es krim"
     },
     {
       type: 2,
       msg: "Produk susu",
       tips:
-        "Produk susu：Dapat digunakan utk buat daifuku, puding ganda, mojito persik, cangkir bintang es krim"
+        "Produk susu:dapat digunakan utk buat daifuku, puding ganda, mojito persik, cangkir bintang es krim"
     },
     {
       type: 3,
       msg: "Dessert mutil-bahan",
       tips:
-        "Dessert mutil-bahan：Dapat digunakan utk buat puding ganda, mojito persik, cangkir bintang es krim"
+        "Dessert mutil-bahan:dapat digunakan utk buat puding ganda, mojito persik, cangkir bintang es krim"
     }
   ],
   pairingMsg:
-    "Klik tombol 【[Match】di bagian bawah APP utk menelusuri hlm Match~（Ingatlah untuk update ke versi 280）",
+    "Klik tombol 【[Match】di bagian bawah APP utk menelusuri hlm Match~（Ingatlah utk update ke versi 280）",
   roomTitle: "Nilai popularitas kamar",
   roomMsg:
     "1 pemain berkontribusi 8 popularitas per menit <br/>koin emas berkontribusi 1 nilai popularitas",
 
   //roolMsg
-  roolMsg:
-    "Selamat ~ %n berhasil membuat %d%c buah dan dapatkan %s nilai kegembiraan",
+  roolMsg: "Selamat ~ %n berhasil buat %d%c dan dapat %s nilai bahagia",
 
   //rule
   ruleTab1: "Aturan",
   ruleTab2: "Hadiah",
   ruleTips:
-    "Lakukan tugas setiap hari untuk dapatkan bahan dessert, membuat dessert (hadiah ransel), dapatkan poin kegembiraan dan menangkan bingkai avatar terbatas, mount, dan hadiah koin emas.",
-  ruleTm: " pkl 18:00（wib),19 Juni~pkl 18:00（wib), 26 Juni",
+    "Setiap hari lakukan tugas utk dapat bahan dessert,buat dessert (hadiah ransel),dapatkan nilai bahagia dan menangkan bingkai avatar terbatas,mount,dan hadiah koin emas.",
+  ruleTm: " pkl 18:00(wib),19 Juni~pkl 18:00(wib), 26 Juni",
   ruleListItem1: "Bagaimana cara bermain Dessert House?",
   ruleListItem2:
-    "Lakukan tugas untuk kumpulkan bahan dessert, membuat dessert (hadiah ransel) untuk dapatkan poin kebahagiaan >> mengumpulkan poin kegembiraan untuk selesaikan tugas lanjutan untuk menerima hadiah",
+    "Lakukan tugas utk kumpulkan bahan dessert,buat dessert (hadiah ransel) utk dapatkan nilai bahagia >> kumpulkan nilai bahagia utk selesaikan tugas lanjutan utk terima hadiah",
   ruleListItem3:
-    "*Dessert yg berhasil dibuat akan didistribusikan ke ransel pemain, dapat diberikan kpd pemain lain di kamar manapun; Semua hadiah ransel dalam acara tersebut berlaku selama 7 hari, jika tidak diberikan, hadiah itu tidak valid~",
-  ruleListItem4: "Bagaimana cara kumpulkan poin kegembiraan?",
+    "*Dessert yg berhasil dibuat akan didistribusikan ke ransel pemain, dapat diberikan kpd pemain lain di kamar manapun. Semua hadiah ransel dlm acara tersebut berlaku selama 7 hari, jika tak diberikan, hadiah itu tak valid~",
+  ruleListItem4: "Bagaimana cara kumpulkan nilai bahagia?",
   ruleListItem5:
-    "Setelah Anda selesai buat dessert yg ditentukan, akan dapatkan nilai kegembiraan yg sesuai.",
+    "Stlh Anda selesai buat dessert yg ditentukan, akan dapatkan nilai bahagia yg sesuai.",
   ruleListItem6:
     "*Hak interpretasi akhir acara adalah milik penyelenggara acara",
   ruleListItem7: "Tugas lanjutan dan hadiah",
   ruleListItem8: "Hadiah daftar",
   ruleListItem9: "Tindakan pencegahan",
-  ruleListItem10: "Hadiah daftar akan dikeluarkan dalam 5 hari kerja",
-  ruleListItem11: "*Acara ini tak ada hubungan dengan Apple",
+  ruleListItem10: "Hadiah daftar akan dikirimkan dlm 5 hari kerja",
+  ruleListItem11: "*Acara ini tak berhubungan dengan Apple",
 
   //share
   shareCreat: "Membuat berbagai dessert ",
-  shareScore: "Nilai kegembiraan mencapai ",
+  shareScore: "Nilai bahagia capai ",
   shareGiftTitle: "Dapat hadiah terbatas",
   shareMsg1:
     "Aku membuka satu Dessert House dan buat banyak dessert yg lezat, datang dan bermain bersama aja",
@@ -189,9 +187,10 @@
   indexRoomName: "Dessert House ",
   indexCuldCreat: "Ada dessert yang bisa dibuat",
   indexCreat: "Klik untuk membuat",
-  indexCreatStatus: " Masih kurang %c buah %n dapat buat %s",
-  indexLastTips: "Hak interpretasi akhir acara adalah milik penyelenggara",
+  indexCreatStatus: " Masih kurang %c %n utk buat %s",
+  indexLastTips:
+    "Hak interpretasi akhir acara adalah milik penyelenggara acara",
   indexInviteTips:
-    "Teman yang berhasil mengundang Anda untuk membuka Dessert House akan berkesempatan untuk dapatkan <i></i> x5 buah"
+    "Teman yg berhasil undang Anda utk buka Dessert House akan berkesempatan utk dapatkan <i></i> x5 buah"
 };
 export default lang;

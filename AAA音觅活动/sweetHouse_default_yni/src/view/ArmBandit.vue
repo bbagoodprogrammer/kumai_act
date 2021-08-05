@@ -269,14 +269,14 @@ body::-webkit-scrollbar {
         background-size: 100% auto;
       }
       .userTitle {
-        width: 4.5rem;
+        width: 4.8rem;
         height: 0.9rem;
         display: flex;
         align-items: center;
         justify-content: center;
         position: absolute;
-        top: 1.35rem;
-        left: 1.5rem;
+        top: 1.45rem;
+        left: 1.35rem;
         text-align: center;
         text-shadow: RGBA(251, 150, 31, 1) 1px 0 0,
           RGBA(251, 150, 31, 1) 0 1px 0, RGBA(251, 150, 31, 1) -1px 0 0,
@@ -291,6 +291,7 @@ body::-webkit-scrollbar {
           margin-top: -0.05rem;
         }
         .userHouers {
+          width: 100%;
           p {
             display: flex;
             align-items: center;
@@ -301,6 +302,7 @@ body::-webkit-scrollbar {
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
+              margin-left: 0.1rem;
             }
           }
         }

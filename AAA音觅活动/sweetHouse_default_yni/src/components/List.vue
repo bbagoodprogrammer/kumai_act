@@ -416,7 +416,14 @@ export default {
           }
         } catch (e) { }
       } else if (key == 'pairing') {
-        this.toast(this.lang.pairingMsg)
+        try {
+          if (ios) {
+            sendJsData('app://mainPage?page_index=pair&page_index_child=pair_pair');
+          } else {
+            javascript: JSInterface.sendJsData('app://mainPage?page_index=pair&page_index_child=pair_pair');
+          }
+        } catch (e) { }
+        // this.toast(this.lang.pairingMsg)
       }
     },
     tabClick (val) {
@@ -706,7 +713,7 @@ export default {
       height: 1.53rem;
       background: url(../assets/img/tabs/tabBg.png);
       background-size: 100% 100%;
-      margin: 0.16rem auto 0;
+      margin: 0.08rem auto 0;
       display: flex;
       align-items: center;
       .icon {
@@ -731,10 +738,10 @@ export default {
         margin-top: -0.1rem;
         padding-right: 0.2rem;
         .typeTipsTitle {
-          font-size: 0.28rem;
+          font-size: 0.24rem;
         }
         .tipsMsg {
-          font-size: 0.26rem;
+          font-size: 0.22rem;
           line-height: 0.3rem;
         }
       }
@@ -745,21 +752,22 @@ export default {
       ul {
         li {
           width: 5.94rem;
-          height: 1.17rem;
+          //   min-height: 1.17rem;
           background: url(../assets/img/taskItemBg.png);
           background-size: 100% 100%;
-          padding: 0.1rem 0.15rem 0.25rem;
+          padding: 0.15rem 0.15rem 0.3rem;
           display: flex;
           align-items: center;
+          margin-top: -0.1rem;
           .taskMsg {
             flex: 1;
-            height: 100%;
+            // height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding-left: 0.18rem;
+            padding: 0.15rem 0 0.15rem 0.18rem;
             .name {
-              font-size: 0.24rem;
+              font-size: 0.2rem;
               font-weight: 500;
               i {
                 display: inline-block;
@@ -771,7 +779,7 @@ export default {
               }
             }
             .gift {
-              font-size: 0.26rem;
+              font-size: 0.2rem;
               font-weight: 500;
               i {
                 display: inline-block;
@@ -831,7 +839,7 @@ export default {
           }
           .status {
             width: 1.7rem;
-            height: 100%;
+            // height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -876,9 +884,10 @@ export default {
               }
             }
             .invite {
-              font-size: 0.24rem;
+              font-size: 0.2rem;
               color: rgba(164, 67, 10, 1);
               font-weight: 600;
+              text-align: center;
             }
           }
         }
@@ -888,7 +897,8 @@ export default {
       color: rgba(164, 67, 10, 1);
       text-align: center;
       font-size: 0.24rem;
-      margin-top: 0.7rem;
+      margin-top: 0.1rem;
+      padding: 0 0.2rem;
     }
   }
   .sharePup {
