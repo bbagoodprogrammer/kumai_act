@@ -20,7 +20,7 @@
       gift: [
         {
           type: 1,
-          name: "300 kacang emas"
+          name: "200 kacang emas"
         }
       ]
     },
@@ -28,7 +28,7 @@
       gift: [
         {
           type: 1,
-          name: "600 kacang emas"
+          name: "300 kacang emas"
         }
       ]
     },
@@ -36,7 +36,7 @@
       gift: [
         {
           type: 1,
-          name: "1000 kacang emas"
+          name: "500 kacang emas"
         },
         {
           type: 7,
@@ -48,7 +48,7 @@
       gift: [
         {
           type: 1,
-          name: "2000 kacang emas"
+          name: "1000 kacang emas"
         },
         {
           type: 7,
@@ -61,7 +61,7 @@
   shareMsg: "Membuat berbagai dessert, nilai bahagia mencapai",
 
   //history
-  history_title: "Momen",
+  history_title: "Catatan",
   history_msg1: "Membuat %n*%c buah",
   history_msg2: "Nilai bahagia+",
   taskName: {
@@ -92,7 +92,7 @@
   inivitTitle:
     "Undang pemain baru ke acara, undang 1 org yg berhasil akan dihadiahi",
   noFriend: "Tiada teman untuk diundang, cepat tambahkan teman saja~",
-  noSingup: "Belum ada Dessert House",
+  noSingup: "Blm ada Dessert House",
   creatQuery: "Konfirmasi",
   creatNums_get: "Juga dapat membuat total %o buah lagi",
   cancel: "Batal",
@@ -126,7 +126,7 @@
     "Klik tombol 【[Match】di bagian bawah APP utk menelusuri hlm Match~（Ingatlah utk update ke versi 280）",
   roomTitle: "Nilai popularitas kamar",
   roomMsg:
-    "1 pemain berkontribusi 8 popularitas per menit <br/>koin emas berkontribusi 1 nilai popularitas",
+    "1 pemain berkontribusi 8 nilai popularitas per menit <br/>koin emas berkontribusi 1 nilai popularitas",
 
   //roolMsg
   roolMsg: "Selamat ~ %n berhasil buat %d%c dan dapat %s nilai bahagia",
@@ -152,7 +152,7 @@
   ruleListItem9: "Tindakan pencegahan",
   ruleListItem10: "Hadiah daftar akan dikirimkan dlm 5 hari kerja",
   ruleListItem11: "*Acara ini tak berhubungan dengan Apple",
-
+  ruleListItem12: "Bagaimana cara mensintesis dessert? ",
   //share
   shareCreat: "Membuat berbagai dessert ",
   shareScore: "Nilai bahagia capai ",
@@ -177,7 +177,7 @@
 
   //singUpPup
   singUpTips:
-    "Buka satu Dessert House dan sintesis dessert House<em>hadiah ransel</em>，juga bisa menangkan<em>bingkai avatar terbatas</em>、<em>mount dan hadiah koin emas</em>",
+    "Buka satu Dessert House dan sintesis dessert House<em>hadiah ransel</em>,juga bisa menangkan<em>bingkai avatar terbatas</em>,<em>mount dan hadiah koin emas</em>",
   singUpSucTips:
     "Dessert House Anda buka! !<br/>Cepat pergi untuk buat dessert aja",
 

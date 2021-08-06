@@ -7,13 +7,13 @@
         <span :class="{act:type==1}" @click="tabClick(1)">{{lang.ruleTab1}}</span>
         <span :class="{act:type==2}" @click="tabClick(2)">{{lang.ruleTab2}}</span>
       </div>
-      <p class="actTime">{{lang.ruleTm}}</p>
+      <p class="actTime">{{tm}}</p>
       <div class="tipsCon">
         <div class="tips1" v-if="type==1">
           <h6>{{lang.ruleListItem1}}</h6>
           <p>{{lang.ruleListItem2}}</p>
           <p class="blue">{{lang.ruleListItem3}}</p>
-          <h6>{{lang.ruleListItem1}}</h6>
+          <h6>{{lang.ruleListItem12}}</h6>
           <img src="../assets/img/rules/ruleTab1.png" alt="" class="img1">
           <h6>{{lang.ruleListItem4}}</h6>
           <p>{{lang.ruleListItem5}}</p>
@@ -37,10 +37,19 @@
 </template>
 
 <script>
+
+import getDate from "../utils/getDate"
+import { mapState } from "vuex"
 export default {
   data () {
     return {
       type: 1
+    }
+  },
+  computed: {
+    ...mapState(['stime', 'etime']),
+    tm () {
+      return getDate(new Date(this.stime * 1000), 'rule') + '~' + getDate(new Date(this.etime * 1000), 'rule')
     }
   },
   methods: {

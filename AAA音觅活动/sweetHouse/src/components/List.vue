@@ -193,7 +193,7 @@ window.onShareSuccess = async (from, uid, type, typeName) => {
 }
 export default {
   props: ['nick'],
-  data() {
+  data () {
     return {
       showType: 1,
       showTasks: false,
@@ -241,7 +241,7 @@ export default {
   },
   computed: {
     ...mapState(['desserts', 'raws', 'tasksList']),
-    sweetNum() {
+    sweetNum () {
       let num = 0
       let max = null
       let raw = this.filtrObj(this.desserts[this.creatIndex].raw)
@@ -256,7 +256,7 @@ export default {
         over: max - this.cNum
       }
     },
-    newTasksList() {
+    newTasksList () {
       let dataArr = { 1: [], 2: [], 3: [] };
       for (let i in this.tasksList) {
         this.tasksList[i].key = i
@@ -264,32 +264,38 @@ export default {
       }
       return dataArr
     },
-    tasks() {
+    tasks () {
       return this.newTasksList[this.showType]
     },
-    peopleListHas() {
+    peopleListHas () {
       let isHas = this.peopleList.filter(item => {
         return item.status != 2
       })
       return isHas
     }
   },
-  mounted() {
+  mounted () {
     this.aniGo()
   },
   methods: {
-    shareAct(item, index) {
+    shareAct (item, index) {
       if (!item.invited) {
         api.shareFriend(item.uid).then(res => {
           if (res.data.response_status.code == 0) {
-            this.peopleList[index].status = 1
+            // this.peopleList[index].status = 1
+
+            api.getFriendList(0).then(res => {
+              this.peopleList = res.data.response_data.list
+              // this.showPeople = true
+            })
+
           } else {
             this.toast(res.data.response_status.error)
           }
         })
       }
     },
-    creat() {  //改變類型，播放svga后   this.creatType = 3
+    creat () {  //改變類型，播放svga后   this.creatType = 3
       api.creatSweet(this.creatIndex, this.cNum).then(res => {
         if (res.data.response_status.code == 0) {
           this.vxc('setEasy', res.data.response_data.easy)
@@ -315,7 +321,7 @@ export default {
         }
       })
     },
-    getRaws(item) {
+    getRaws (item) {
       api.getCai(item.key).then(res => {
         if (res.data.response_status.code == 0) {
           this.vxc('addRaws', {
@@ -329,7 +335,7 @@ export default {
         }
       })
     },
-    filtrObj(obj) {
+    filtrObj (obj) {
       const result = {}
       for (let item in obj) {
         if (obj[item] > 0) {
@@ -338,7 +344,7 @@ export default {
       }
       return result
     },
-    isCreat(raws) {
+    isCreat (raws) {
       for (let i in this.raws) {
         if (this.raws[i].count < raws[i]) {
           return true
@@ -346,20 +352,20 @@ export default {
       }
       return false
     },
-    reduc() {
+    reduc () {
       if (this.cNum > 1) {
         this.cNum--
         this.maxTips = false
       }
     },
-    add() {
+    add () {
       if (this.cNum == this.sweetNum.max) {
         this.maxTips = true
       } else if (this.cNum < this.sweetNum.max) {
         this.cNum++
       }
     },
-    doTask(key, item) {
+    doTask (key, item) {
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       if (key == 'mic' || key == 'coin' || key == 'gift') {  //跳轉活躍度前十房間
         try {
@@ -409,35 +415,35 @@ export default {
         } catch (e) { }
       }
     },
-    tabClick(val) {
+    tabClick (val) {
       this.showType = val
     },
-    async aniGo() {
+    async aniGo () {
       let fileData1 = await downloader.get('http://img.17sing.tw/uc/activity/10635b9f2d38e30d672ec3f127d4ec92_1595298372.svga')
       let svgaData1 = await parser.do(fileData1)
       let canvas = document.getElementById('creatAni')
       this.player = new Player(canvas)
       await this.player.mount(svgaData1)
     },
-    showPelple() {
+    showPelple () {
       api.getFriendList(0).then(res => {
         this.peopleList = res.data.response_data.list
         this.showPeople = true
       })
     },
-    closePeople() {
+    closePeople () {
       this.showPeople = false
     },
-    showSharePup() {
+    showSharePup () {
       api.getFriendList(0, 'invited').then(res => {
         this.invitedList = res.data.response_data.list
         this.showShare = true
       })
     },
-    closeSharePup() {
+    closeSharePup () {
       this.showShare = false
     },
-    showTask() {
+    showTask () {
       globalBus.$emit('commonEvent', () => {
         api.tasksList().then(res => {
           let task = res.data.response_data.tasks
@@ -451,23 +457,23 @@ export default {
         })
       })
     },
-    showRoomTips() {
+    showRoomTips () {
       this.vxc('setToast', {
         title: "房間人氣值",
         msg: '1玩家一分鐘貢獻8人氣值 <br/>1金幣貢獻1人氣值'
       })
     },
-    closeTask() {
+    closeTask () {
       this.showTasks = false
       this.creatType = null
     },
-    closeCreatPup() {
+    closeCreatPup () {
       this.showCreatPup = false
       this.creatType = null
       this.cNum = 1
       this.maxTips = false
     },
-    creatDesserts(index) {
+    creatDesserts (index) {
       this.creatType = 1
       this.creatIndex = index
       this.showCreatPup = true
@@ -572,7 +578,7 @@ export default {
             }
           }
           span:before {
-            content: "";
+            content: '';
             display: block;
             width: 0.22rem;
             height: 0.22rem;

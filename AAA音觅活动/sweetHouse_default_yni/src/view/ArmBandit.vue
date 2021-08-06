@@ -138,7 +138,7 @@ export default {
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { step, uid, reg, score, nick, packets, raws, desserts, friends, easy } = response_data
+          const { step, uid, reg, score, nick, packets, raws, desserts, friends, easy, stime, etime } = response_data
           this.vxc('setActStatus', step)
           this.vxc('setReg', reg)
           this.vxc('setUid', uid)
@@ -154,6 +154,8 @@ export default {
           this.vxc('setDesserts', desserts)
           this.vxc('setScore', score)
           this.vxc('setNick', nick)
+          this.vxc('setStime', stime)
+          this.vxc('setEtime', etime)
           this.nick = nick
           if (easy) {
             this.easy = easy

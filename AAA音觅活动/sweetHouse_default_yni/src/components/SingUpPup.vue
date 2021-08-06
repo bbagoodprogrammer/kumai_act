@@ -97,6 +97,7 @@ export default {
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+          margin-right: 0.1rem;
         }
       }
     }

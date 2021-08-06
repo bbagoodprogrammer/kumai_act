@@ -21,10 +21,14 @@
             </div>
           </div>
           <div class="listCon">
-            <div class="iconItem" v-for="(item2,index2) in iconConfig" :key="index2" :class="{act:item.privilege >= index2}" @click="showMsg(index)">
-              <span class="icon" :class="[{act:item.privilege >= index2},'icon'+ (index2 +1)]"></span>
-              <strong>{{item2.name}}</strong>
+            <p class="is" :class="{act:user.noble_level >= nowIndex +1 }">{{user.noble_level >= nowIndex +1 ?'已達到':'尚未達到'}} </p>
+            <div class="iconListMsg">
+              <div class="iconItem" v-for="(item2,index2) in iconConfig" :key="index2" :class="{act:item.privilege >= index2}" @click="showMsg(index,item,index2)">
+                <span class="icon" :class="[{act:item.privilege >= index2},'icon'+ (index2 +1)]"></span>
+                <strong>{{item2.name}}</strong>
+              </div>
             </div>
+
           </div>
         </div>
       </van-swipe-item>
@@ -53,10 +57,10 @@
       <transition name="slide">
         <div class="tipsMsg" v-if="showPup">
           <i class="close" @click="showPup = false"></i>
-          <div class="title">貴族稱號</div>
-          <img src="" alt="">
+          <div class="title"> {{iconConfig[showIndex].name}}</div>
+          <img :src=" getImg()" alt="">
           <p class="tips">
-            {{iconConfig[showIndex].tips}}
+            {{showIndex >1?nobleConfig[nowIndex].name:''}}{{iconConfig[showIndex].tips}}
           </p>
         </div>
       </transition>
@@ -113,31 +117,31 @@ export default {
         },
         {
           name: '專屬頭像框',
-          tips: '騎士貴族擁有專屬頭像框，貴族等級越高效果越酷炫。'
+          tips: '貴族擁有專屬頭像框，貴族等級越高效果越酷炫。'
         },
         {
           name: '尊貴名片',
-          tips: '子爵貴族擁有尊貴名片，在房間戶信息卡展示效果，貴族等級越高效果越酷炫。'
+          tips: '貴族擁有尊貴名片，在房間戶信息卡展示效果，貴族等級越高效果越酷炫。'
         },
         {
           name: '酷炫进场秀',
-          tips: '伯爵貴族擁有酷炫的進場秀效果，進入房間時觸發效果，獲得全場矚目。'
+          tips: '貴族擁有酷炫的進場秀效果，進入房間時觸發效果，獲得全場矚目。'
         },
         {
           name: '聊天氣泡',
-          tips: '伯爵貴族擁有聊天氣泡裝飾，在房間、私訊中發言帶有醒目氣泡框。'
+          tips: '貴族擁有聊天氣泡裝飾，在房間、私訊中發言帶有醒目氣泡框。'
         },
         {
           name: '查看喜歡',
-          tips: '侯爵貴族在交友配對中享有查看喜歡我的人特權，更容易找到心儀對象。'
+          tips: '貴族在交友配對中享有查看喜歡我的人特權，更容易找到心儀對象。'
         },
         {
           name: '稀有座駕',
-          tips: '侯爵貴族擁有稀有座駕，進入房間時觸發效果，霸氣十足，驚豔全場。'
+          tips: '貴族擁有稀有座駕，進入房間時觸發效果，霸氣十足，驚豔全場。'
         },
         {
           name: '防踢',
-          tips: '公爵貴族擁有發防踢特權，在房間中無法被房主、房管踢出房間。'
+          tips: '貴族擁有發防踢特權，在房間中無法被房主、房管踢出房間。'
         }
       ],
       svgaConfig: {
@@ -167,7 +171,8 @@ export default {
         },
       },
       showPup: false,
-      showIndex: 0
+      showIndex: 0,
+      showLv: 0
     }
   },
   computed: {
@@ -180,7 +185,8 @@ export default {
           let c = this.level_list[1].value
           return userScore / c * 100 / 6 / 4.8 + '%'
         } else if (userScore >= this.level_list[listLength].value) {  //满级
-          return '96.5%'
+
+          return '92%'
         } else {
           console.log(listLength)
           for (var i = listLength - 1; i >= 0; i--) {
@@ -249,10 +255,21 @@ export default {
         })()
       });
     },
-    showMsg (index) {
-      this.showIndex = index
-      this.showPup = true
+    showMsg (index, item, index2) { //第几级 第几个icon
+      console.log(index, item.privilege)
+      if (item.privilege >= index2) {
+        this.showLv = index + 1
+        this.showIndex = index2
+        this.showPup = true
+      }
+
+    },
+    getImg () {
+      return _images[`${this.showIndex + 1}_${this.showLv}`]
     }
+  },
+  created () {
+    console.log(_images)
   }
 }
 </script>
@@ -320,7 +337,7 @@ body {
   }
   .iconList {
     width: 6.72rem;
-    height: 7.86rem;
+    height: 8.66rem;
     padding: 0.04rem;
     border-image: -moz-linear-gradient(#222631, #1F232D) 4 4;
     border-image: linear-gradient(#222631, #1F232D) 4 4;
@@ -368,15 +385,29 @@ body {
     }
     .listCon {
       background: #1E212C;
-      width: 5.52rem;
-      height: 7.08rem;
-      padding: 0.78rem 0.6rem 0;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      width: 5.6rem;
+      height: 8.66rem;
+      padding: 0 0.6rem;
+      .is {
+        height: 1.28rem;
+        text-align: center;
+        line-height: 1.4rem;
+        color: rgba(255, 255, 255, 0.2);
+        font-size: 0.26rem;
+        &.act {
+          color: #FFC86D;
+        }
+      }
+      .iconListMsg {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
       .iconItem {
-        width: 33.3%;
+        width: 1.28rem;
         height: 2.4rem;
+        // flex: 33.33%;
         .icon {
           display: block;
           width: 1.28rem;
@@ -460,13 +491,18 @@ body {
           }
         }
       }
+      .iconItem:nth-child(2),
+      .iconItem:nth-child(5),
+      .iconItem:nth-child(8) {
+        margin: 0 0.3rem;
+      }
     }
   }
   .userMsg {
     position: fixed;
     bottom: 0;
     width: 7.5rem;
-    height: 1.9rem;
+    height: 2.2rem;
     background: #262936;
     .liner {
       width: 7.5rem;
@@ -477,7 +513,7 @@ body {
     }
     .userScore {
       .userMonth {
-        height: 0.73rem;
+        height: 0.89rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -518,8 +554,10 @@ body {
           color: rgba(255, 255, 255, 0.4rem);
           font-size: 0.22rem;
           text-align: center;
-          margin-top: 0.25rem;
+          margin-top: 0.34rem;
           .item {
+            width: 0.8rem;
+            text-align: left;
             position: relative;
             &.act {
               color: #FFC86D;
@@ -537,7 +575,10 @@ body {
             opacity: 0.4;
             position: absolute;
             left: 0.2rem;
-            top: -0.17rem;
+            top: -0.19rem;
+          }
+          .lvScore {
+            margin-top: 0.02rem;
           }
         }
       }

@@ -290,7 +290,12 @@ export default {
       if (!item.invited) {
         api.shareFriend(item.uid).then(res => {
           if (res.data.response_status.code == 0) {
-            this.peopleList[index].status = 1
+            //  this.peopleList[index].status = 1
+            api.getFriendList(0).then(res => {
+              this.peopleList = res.data.response_data.list
+              // this.showPeople = true
+            })
+
           } else {
             this.toast(res.data.response_status.error)
           }

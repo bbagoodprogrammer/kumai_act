@@ -259,20 +259,28 @@ export default {
     position: relative;
     .title {
       height: 0.76rem;
-      line-height: 0.76rem;
+      padding: 0 0.35rem;
+      //   line-height: 0.76rem;
       text-align: center;
-      font-size: 0.34rem;
+      font-size: 0.32rem;
       color: rgba(174, 6, 5, 1);
       font-weight: 800;
+      display: flex;
+      align-items: center;
+      line-height: 0.4rem;
+      margin-top: 0.2rem;
     }
     .giftItem {
-      width: 3.65rem;
-      height: 3.82rem;
+      width: 3.9rem;
+      height: 3.32rem;
       margin: 0 auto;
       display: flex;
-      flex-wrap: wrap;
+      //   flex-wrap: wrap;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
+      > span {
+        flex: 1;
+      }
       .imgBox {
         display: block;
         width: 1.52rem;
