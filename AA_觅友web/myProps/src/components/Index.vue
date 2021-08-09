@@ -12,7 +12,7 @@
         <ul class="scrollable" :class="{noLength:!list.length}" :style="{height:viewHeight- 50 + 'px'}" v-show="list.length">
           <li v-for="(item,index) in list" :key="index" @click="giftClick(item)">
             <div class="imgBox">
-              <i class="propsDay" v-if="item.expire ">{{item.expire}}{{lang.day_expire}}</i>
+              <i class="propsDay" v-if="item.expire ">{{lang.day_expire.replace('%s',item.expire)}}</i>
               <i class="propsDay" v-else>{{lang.expire_end}}</i>
               <img :src="item.image" alt="">
             </div>

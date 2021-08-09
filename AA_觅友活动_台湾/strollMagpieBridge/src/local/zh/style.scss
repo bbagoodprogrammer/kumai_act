@@ -1,0 +1,23 @@
+html.zh {
+    .pageIndex{
+        background:#302176 url(./img/banner.png) no-repeat;
+        background-size: 100% auto;
+    }
+    .giftList::after{
+        content: '';
+        display: block;
+        width: 7.5rem;
+        height: 1.09rem;
+        background: url(./img/giftListTitle.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: -.5rem;
+        left: -0.07rem;
+    }
+    .rankTitle{
+        width: 7.5rem;
+        height: 1.09rem;
+        background: url(./img/rankTitle.png);
+        background-size: 100% 100%;
+    }
+}
