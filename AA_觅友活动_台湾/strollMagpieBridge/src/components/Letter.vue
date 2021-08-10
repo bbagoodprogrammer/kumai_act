@@ -242,8 +242,8 @@ export default {
     width: 5.96rem;
     height: 1.23rem;
     // background: url('../img/li_item_bg.png') 0/100% 100% no-repeat;
-    background: rgba(222, 167, 184, 0.39);
-
+    // background: rgba(222, 167, 184, 0.39);
+    background: RGBA(84, 70, 215, 0.7);
     margin: 0 auto 0.15rem auto;
     display: flex;
     align-items: center;
@@ -296,14 +296,14 @@ export default {
       align-items: center;
       justify-content: center;
       .agree_btn {
-        // width: 0.98rem;
+        min-width: 0.71rem;
         padding: 0 0.1rem;
-        height: 0.56rem;
+        height: 0.36rem;
         background: #FFCD7C;
         // background: url('../img/mail_agree_btn.png') 0/100% 100% no-repeat;
         font-size: 0.26rem;
         color: #6254E6;
-        line-height: 0.56rem;
+        line-height: 0.36rem;
         text-align: center;
         border-radius: 0.09rem;
       }

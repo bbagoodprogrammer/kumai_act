@@ -108,6 +108,10 @@ export default {
     }
   },
   watch: {
+    activity (val) {
+      this.downTimeGo('time' + this.rankKey, val.seconds)
+    }
+
     // inited() {
     //   this.$nextTick(() => {
     //     if (!this.rank.loadCount) {
@@ -142,7 +146,6 @@ export default {
       rankConf.list = rankConf.list || [];
       // if (rankConf.second && rankConf.second > 0) {
       //   console.log(rankConf.second)
-      this.downTimeGo('time' + this.rankKey, this.activity.seconds)
       // }
       return rankConf;
     },

@@ -8,8 +8,8 @@ export default new vuex.Store({
     state: {
         loading: false,
         user: {
-            noble_level: 0,
-            noble_value: 0
+            noble_level: 1,
+            noble_value: 20000
         },
         level_list: {
             //等级列表，key是等级，value是贵族值

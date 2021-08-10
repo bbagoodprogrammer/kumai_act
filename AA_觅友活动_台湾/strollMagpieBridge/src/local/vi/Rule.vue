@@ -91,7 +91,7 @@
       <transition name="slide">
         <div class="queryPup" v-if="showQuery">
           <div class="title">Có hủy quan hệ không?</div>
-          <div class="tips" v-html="tipsArr[1].replace('$',owner.days).replace('%',owner.total_score)">
+          <div class="tips" v-html="tipsArr[1].replace('$',owner.days).replace('%',owner.score)">
           </div>
           <div class="btns">
             <span class="st1" @click="showQuery = false">Để tôi suy nghĩ lại</span>

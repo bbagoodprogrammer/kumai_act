@@ -25,10 +25,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(['record'])
+    ...mapState(['notices'])
   },
   watch: {
-    record (val) {
+    notices (val) {
       this.list = JSON.parse(JSON.stringify(val))
       this.rool()
     }

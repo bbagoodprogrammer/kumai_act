@@ -146,7 +146,7 @@ export default {
 .daily_main {
   height: 100%;
   .scroll {
-    height: 100%;
+    height: 90%;
     overflow: auto;
   }
   .item__box {
@@ -158,7 +158,7 @@ export default {
       .title {
         font-size: 0.22rem;
         font-weight: 300;
-        color: rgba(176, 97, 101, 1);
+        color: #fff;
         line-height: 0.3rem;
         img {
           width: 1rem;
@@ -168,7 +168,7 @@ export default {
       .time {
         font-size: 0.22rem;
         font-weight: 300;
-        color: rgba(176, 97, 101, 1);
+        color: #FCE278;
         padding-top: 0.1rem;
       }
     }
@@ -177,7 +177,7 @@ export default {
       text-align: center;
       font-size: 0.26rem;
       font-weight: 300;
-      color: rgba(176, 97, 101, 1);
+      color: FCE278;
     }
   }
 }

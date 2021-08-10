@@ -32,7 +32,7 @@
     ],
     rule_pickTitle: "Keterangan pendatan berlian pink",
     rule_pickLi: [
-        "Pendapatan berlian pink bulan lalu akan dihitung pada pukul 00:00 pada tanggal 1 setiap bulan.Host dari agensi mencapai 300.000 berlian pink dapat dihitung penghitungan, dan penghitungan berlian pink secara otomatis dikurangi"
+        "Pendapatan berlian pink bulan lalu akan dihitung pada pukul 00:00 pada tanggal 1 dan 16 setiap bulannya. Host dari agency harus mencapai 500.000 berlian pink agar dapat memasuki penghitungan, dan saat penghitungan berlian pink otomatis akan dikurangi."
     ],
     //ccj
     index_tab1: "Data party",

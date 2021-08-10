@@ -1,17 +1,17 @@
 <template>
   <div class="explain">
     <div class="explainMsg1">
-      貴族是尊貴身份的彰顯，分為游俠、騎士、子爵、伯爵、侯爵、公爵6個等級，自然月內消費金幣達到條件即獲得貴族，享有眾多專屬特權。
+      {{lang.explainTips}}
     </div>
     <div class="tableTitle">
-      <strong>貴族等級</strong>
+      <strong>{{lang.explainTitle}}</strong>
       <i></i>
     </div>
     <div class="lvList">
       <div class="lvHeader">
-        <span>貴族</span>
-        <span>貴族值要求</span>
-        <span>擁有特權</span>
+        <span>{{lang.explainLvHeader1}}</span>
+        <span>{{lang.explainLvHeader2}}</span>
+        <span>{{lang.explainLvHeader3}}</span>
       </div>
       <ul>
         <li v-for="(item,index) in lvConfig" :key="index" :class="{black:index%2 ==0 }">
@@ -19,65 +19,28 @@
             <div class="icon" :class="'icon' + item.lv"></div>
             <div class="name">{{item.name}}</div>
           </div>
-          <div class="score"><em>{{item.score}} </em>萬</div>
-          <div class="nums"><em>{{item.privilegeNums}}</em>個</div>
+          <div class="score"><em>{{item.score}} </em>{{lang.thousand}}</div>
+          <div class="nums"><em>{{item.privilegeNums}}</em>{{lang.num}}</div>
         </li>
       </ul>
     </div>
     <div class="tableTitle">
-      <strong>貴族升級</strong>
+      <strong>{{lang.explainTipsListTitle}}</strong>
       <i></i>
     </div>
     <div class="upgradeMsg">
-      <p>1、每個自然月1號開始累積貴族值，應用內每消費1金幣增加1點貴族值，贈送背包禮物、特殊活動消費的金幣不算入，贈送幸運星禮物消費1金幣=0.8貴族值，21點下注消費金幣1金幣=0.2貴族值；參與官方活動玩法時，消耗1金幣=0.05～0.1貴族值；</p>
-      <p>2、當月達成貴族即獲得對應的特權，並保留至下個月月底；當月升級貴族則特權獎勵及時生效；當月達成貴族比上月低則月底結算後降級處理；</p>
-      <p>3、獲得的虛擬物品獎勵有效時間與貴族有效時間一致，同類型獎勵升級貴族時將替換升級獎勵。</p>
+      <p>{{lang.explainTipsList1}}</p>
+      <p>{{lang.explainTipsList2}}</p>
+      <p>{{lang.explainTipsList3}}</p>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      lvConfig: [
-        {
-          lv: 6,
-          score: "300",
-          privilegeNums: 9,
-          name: '公爵'
-        },
-        {
-          lv: 5,
-          score: "150",
-          privilegeNums: 8,
-          name: '侯爵'
-        },
-        {
-          lv: 4,
-          score: "80",
-          privilegeNums: 6,
-          name: '伯爵'
-        },
-        {
-          lv: 3,
-          score: "30",
-          privilegeNums: 4,
-          name: '子爵'
-        },
-        {
-          lv: 2,
-          score: "10",
-          privilegeNums: 3,
-          name: '騎士'
-        },
-        {
-          lv: 1,
-          score: "2",
-          privilegeNums: 2,
-          name: '游俠'
-        }
-      ]
+  computed: {
+    lvConfig () {
+      return this.lang.lvConfig
     }
   }
 }

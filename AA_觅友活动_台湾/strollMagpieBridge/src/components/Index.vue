@@ -1,5 +1,6 @@
 <template>
   <div class="page pageIndex">
+    <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     <RoolMsg />
     <!-- <canvas id="bg"></canvas> -->
     <div class="header">
@@ -13,12 +14,13 @@
       </div>
     </div>
     <UserLiner />
-    <div class="giftList">
+    <div class="giftListIndex">
       <div class="titleItem" v-for="(item,index) in gift" :key="index">
         <img :src="item.image" alt="">
         <div class="titleName">
-          <div class="name">{{lang.index_titleName}}<em>【{{item.name}}】</em></div>
-          <div class="score">{{lang.index_titleScore}}{{item.score}}</div>
+          <!-- {{lang.index_titleName}} -->
+          <div class="name"><em>【{{item.name}}】</em></div>
+          <!-- <div class="score">{{lang.index_titleScore}}{{item.score}}</div> -->
         </div>
       </div>
     </div>
@@ -124,7 +126,8 @@ export default {
       inivitList: [],
       showRelieve: false,
       relieveType: 1,
-
+      rotatePx: 0,    //刷新旋转动画
+      rotatec: 0,
     }
   },
   computed: {
@@ -204,6 +207,7 @@ export default {
         if (res.data.response_status.code == 0) {
           this.toast(this.lang.index_relieveEd)
           this.$store.dispatch('getInitInfo');
+          this.showRelieve = false
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -213,7 +217,12 @@ export default {
       joinAct().then(res => {
         this.singUpPup = false
       })
-    }
+    },
+    onRefresh (val) {
+      console.log(val)
+      this.rotatePx = 540 * ++this.rotatec  //旋转动画
+      this.$store.dispatch('getInitInfo');
+    },
   }
 
 }
@@ -221,6 +230,7 @@ export default {
 
 <style lang="scss" scoped>
 .pageIndex {
+  overflow-x: hidden;
   #bg {
     width: 7.5rem;
     height: auto;
@@ -498,7 +508,7 @@ export default {
       }
     }
   }
-  .giftList {
+  .giftListIndex {
     width: 7.37rem;
     height: 4.17rem;
     padding-top: 1.02rem;
@@ -517,17 +527,17 @@ export default {
       margin-bottom: 0.11rem;
       position: relative;
       > img {
-        width: 1.68rem;
-        height: 1.51rem;
-        margin-left: 0.28rem;
+        width: 2.23rem;
+        height: 1.44rem;
+        margin-left: 0.11rem;
       }
       .titleName {
-        margin-left: 0.48rem;
+        margin-left: 0.3rem;
         .name {
           font-size: 0.28rem;
           color: #D721BF;
           em {
-            font-size: 0.28rem;
+            font-size: 0.26rem;
           }
         }
         .score {
@@ -549,6 +559,19 @@ export default {
   img {
     display: block;
     width: 100%;
+  }
+  #refresh {
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    position: fixed;
+    right: 0.08rem;
+    bottom: 1.5rem;
+    background: url(../img/refresh.png) no-repeat;
+    background-size: contain;
+    transition: all 1s;
+    text-indent: -999rem;
+    z-index: 100;
   }
 }
 </style>

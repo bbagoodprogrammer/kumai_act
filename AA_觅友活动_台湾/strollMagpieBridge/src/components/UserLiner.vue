@@ -7,15 +7,17 @@
         <div class="score">{{owner.score >= 1000? `${owner.score / 1000}k` : owner.score }}</div>
       </div>
       <div class="linerItem">
-        <div class="left" :style="{width:linerWidth + '%'}">
-          <div class="imgBox" :class="{max:linerWidth >= 35}">
-            <img v-lazy="owner.avatar" alt="">
-          </div>
+        <div class="imgBox left" :style="{left:leftDistance}">
+          <img v-lazy="owner.avatar" alt="">
         </div>
-        <div class="right" :style="{width:linerWidth + '%'}">
-          <div class="imgBox" :class="{max:linerWidth >= 35}">
-            <img v-lazy="owner.cp_avatar" alt="">
-          </div>
+        <div class="imgBox right" :style="{right:rightDistance}">
+          <img v-lazy="owner.cp_avatar" alt="">
+        </div>
+        <div class="item left" :style="{width:linerWidth + '%'}">
+
+        </div>
+        <div class="item right" :style="{width:linerWidth + '%'}">
+
         </div>
       </div>
     </div>
@@ -61,6 +63,24 @@ export default {
     },
     linerWidth () {
       return this.owner.score / this.target_score / 2 * 100
+    },
+    leftDistance () {
+      if (this.linerWidth >= 35) {
+        return '1.7rem'
+      } else if (this.linerWidth <= 10) {
+        return '0rem'
+      } else {
+        return 6.68 * (this.linerWidth / 100) - 0.55 + 'rem'
+      }
+    },
+    rightDistance () {
+      if (this.linerWidth >= 35) {
+        return '1.7rem'
+      } else if (this.linerWidth <= 10) {
+        return '0rem'
+      } else {
+        return 6.68 * (this.linerWidth / 100) - 0.55 + 'rem'
+      }
     }
   },
   methods: {
@@ -137,43 +157,31 @@ export default {
       align-items: center;
       justify-content: space-between;
       border-radius: 0.15rem;
-      > div {
+      > .item {
         max-width: 50%;
         height: 100%;
         border-radius: 0.15rem;
         position: relative;
-        .imgBox {
-          width: 1.13rem;
-          height: 1.23rem;
-          padding-top: 0.02rem;
-          background: url(../img/avBg.png);
-          background-size: 100% 100%;
-          position: absolute;
-          top: -1.3rem;
-          right: -0.5rem;
-          img {
-            width: 1.1rem;
-            height: 1.1rem;
-            border-radius: 50%;
-            margin-left: 0.01rem;
-          }
-        }
         &.left {
           background-image: linear-gradient(#5199f6, #9fedf2);
-          .imgBox {
-            &.max {
-              right: 0.5rem;
-            }
-          }
         }
         &.right {
           background-image: linear-gradient(#ff88ef, #ff6b7a);
-          .imgBox {
-            left: -0.5rem;
-            &.max {
-              left: 0.5rem;
-            }
-          }
+        }
+      }
+      .imgBox {
+        width: 1.13rem;
+        height: 1.23rem;
+        padding-top: 0.02rem;
+        background: url(../img/avBg.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: -1.3rem;
+        img {
+          width: 1.1rem;
+          height: 1.1rem;
+          border-radius: 50%;
+          margin-left: 0.01rem;
         }
       }
     }
@@ -198,6 +206,7 @@ export default {
       img {
         width: 1.3rem;
         height: 1.3rem;
+        border-radius: 50%;
       }
     }
     .imgBox_l {

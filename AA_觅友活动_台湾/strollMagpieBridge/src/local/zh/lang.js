@@ -1,19 +1,19 @@
 export default {
     //html/index.html
-    title: "真愛摩天輪",
+    title: "漫步喜鵲橋",
     noAct: "活動未開始",
     actEd: "活動已結束",
     ok: "我知道了", //我知道了
     ok2: "確認",
     loading: "加載中...",
-    rank_noData: "暫無歌友上榜",
+    rank_noData: "暫無CP上榜",
     received: "收到", //收到
     scoreName: "浪漫值",
     //footer
     setCp: "選擇心動對象", //選擇心動對象
     noFriend: "暫無可選擇的好友", //暫無可選擇的好友
     queryFriend: "確定心動對象", //確定心動對象
-    setFriend_tips: "對方正在接受你的魔法邀請,請耐心等候", //對方正在接受你的魔法邀請,請耐心等候
+    setFriend_tips: "對方正在接受你的浪漫邀請,請耐心等候", //對方正在接受你的魔法邀請,請耐心等候
 
     //history
     history_title: "我的召喚記錄",
@@ -26,26 +26,24 @@ export default {
     index_titleScore: "獎勵：",
     gift: [
         {
-            image: "xx",
-            name: "gggg",
-            score: "9999"
+            image: require("./img/giftImg1.png"),
+            name:
+                "玩家每次送出一個「天生一對」（價值：19999金幣），全站房間飄出霸屏橫幅（5s）"
         },
         {
-            image: "xx",
-            name: "gggg",
-            score: "9999"
+            image: require("./img/giftImg2.png"),
+            name:
+                "每送出兩個「天生一對」特效禮物，送出的玩家可獲得「浪漫約會」房間背景(7天)"
         }
     ],
     setCp: "添加對象",
     index_ruleTips2: "規則獎勵", //召喚紀錄
     index_ruleTips3: "愛情信箱", //召喚紀錄
     index_singUpTitle: "牛郎織女浪漫相約", //歡迎來到真愛摩天輪
-    index_singUpTips:
-        "傳說中，摩天輪的每一個盒子都裝滿了幸福，每轉一圈，地球上幸福的cp又多了一隊", // 傳說中，摩天輪的每一個盒子都裝滿了幸福，每轉一圈，地球上幸福的cp又多了一隊
+    index_singUpTips: "織女和牛郎一年一相會，兩顆真心比翼飛，浪漫不怕天路遠", // 傳說中，摩天輪的每一個盒子都裝滿了幸福，每轉一圈，地球上幸福的cp又多了一隊
     index_join: "浪漫相約", //進入摩天輪
     index_inivitTitle: "他想和你一起漫步喜鵲橋", //他想和你一起乘坐摩天輪
-    index_inivitTips1:
-        "歡迎來到真愛摩天輪，與心動對象一起收集真愛值, 有機會乘坐摩天輪並獲得限量獎勵、指定戒指喔！", //歡迎來到真愛摩天輪，與心動對象一起收集真愛值, 有機會乘坐摩天輪並獲得限量獎勵、指定戒指喔！
+    index_inivitTips1: "織女和牛郎一年一相會，兩顆真心比翼飛，浪漫不怕天路遠", //歡迎來到真愛摩天輪，與心動對象一起收集真愛值, 有機會乘坐摩天輪並獲得限量獎勵、指定戒指喔！
     index_inivitTips2:
         "以下是對妳心動的玩家，可從中選擇一個心動對象，一起參與～", //以下是對妳心動的玩家，可從中選擇一個心動對象，一起參與～
     index_setFriend: "*請謹慎選擇自己的心動對象", //*請謹慎選擇自己的心動對象
@@ -63,24 +61,17 @@ export default {
     index_relieveEd: "已解除成功！", //已解除成功！
 
     //roolMsg
-    roolMsg: "增加$真愛值", //增加$真愛值
+    roolMsg: "增加$浪漫值", //增加$真愛值
 
     //TabsScrollLoadList
     day: "天",
     houer: "時",
     min: "分",
     second: "秒",
-
-    //信箱
-    // daily_title_1: "【{0}】完成【{1}】產生魔法能量",
-    // daily_title_2: "【{0}】收到【{1}】x{2}獲得魔法能量",
-    // daily_title_3: "【{0}】送【{1}】【{2}】x{3}獲得魔法能量",
-    // daily_title_4: "【{0}】使用魔法能量製作{1}",
-    // daily_title_5: "靈魂默契測試獲得魔法能量",
     daily_time: "{0}月{1}日 {2}:{3}",
-    invite_req_success: "對方正在接收你的魔法邀請，請耐心等候",
+    invite_req_success: "對方正在接收你的浪漫邀請，請耐心等候",
     magic_mail: "愛情信箱",
-    daily_news: "日常動態",
+    daily_news: "浪漫記錄",
     recieve_mail: "我收到的信件",
     receive_invite: "我收到的邀請函",
     user_nick: "用戶暱稱：%s",
@@ -100,9 +91,5 @@ export default {
     orther_letter_title_3: "%s不同意與你解除心動關係",
     reject_btn: "拒絕",
     not_daily_news: "暫無動態",
-    loading: "加載中...",
-    //html/app_share.ejs
-    share_title: "真愛摩天輪",
-    share_desc:
-        "成爲簽約用戶，即可對歡鑽收益進行提款，且簽約等級越高，提款比例越高。"
+    loading: "加載中..."
 };

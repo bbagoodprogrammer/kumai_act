@@ -9,7 +9,7 @@
       <van-swipe-item v-for="(item,index) in nobleConfig" :key="index">
         <div class="canvasShow">
           <canvas :id="'iconCanvas' + index" class="aniSvga"></canvas>
-          <canvas id="silkCanvas"></canvas>
+          <canvas :id="'silkCanvas' + index" class="silkCanvas"></canvas>
           <div class="btn"></div>
         </div>
         <div class="iconList">
@@ -17,11 +17,11 @@
             <i class="liner_l"></i>
             <i class="liner_r"></i>
             <div class="msg">
-              特權信息 {{item.privilege +1}}/{{iconConfig.length}}
+              {{lang.privilege}} {{item.privilege +1}}/{{iconConfig.length}}
             </div>
           </div>
           <div class="listCon">
-            <p class="is" :class="{act:user.noble_level >= nowIndex +1 }">{{user.noble_level >= nowIndex +1 ?'已達到':'尚未達到'}} </p>
+            <p class="is" :class="{act:user.noble_level >= nowIndex +1 }">{{user.noble_level >= nowIndex +1 ?lang.ed:lang.noEd}} </p>
             <div class="iconListMsg">
               <div class="iconItem" v-for="(item2,index2) in iconConfig" :key="index2" :class="{act:item.privilege >= index2}" @click="showMsg(index,item,index2)">
                 <span class="icon" :class="[{act:item.privilege >= index2},'icon'+ (index2 +1)]"></span>
@@ -37,8 +37,8 @@
       <i class="liner"></i>
       <div class="userScore">
         <div class="userMonth">
-          <span class="score">本月已累積 <em>{{user.noble_value}}</em> 貴族值</span>
-          <span class="explain" @click="$router.push({name:'explain'})">說明</span>
+          <span class="score">{{lang.userScore.replace('%s',user.noble_value)}}</span>
+          <span class="explain" @click="$router.push({name:'explain'})">{{lang.explain}}</span>
         </div>
         <div class="lv">
           <div class="lvLiner">
@@ -80,70 +80,6 @@ export default {
     return {
       initNum: 0,
       nowIndex: 0,
-      nobleConfig: [
-        {
-          name: '遊俠',
-          privilege: 1
-        },
-        {
-          name: '騎士',
-          privilege: 2
-        },
-        {
-          name: '子爵',
-          privilege: 3
-        },
-        {
-          name: '伯爵',
-          privilege: 5
-        },
-        {
-          name: '侯爵',
-          privilege: 7
-        },
-        {
-          name: '公爵',
-          privilege: 8
-        },
-      ],
-      iconConfig: [
-        {
-          name: '貴族稱號',
-          tips: '貴族稱號將展示在房間的公屏發言、資料卡片中，貴族等級越高象徵身份越尊貴。'
-        },
-        {
-          name: '特權禮物',
-          tips: '貴族身份可在房間中贈送特權禮物，貴族等級越高可贈送的禮物越多，禮物特效越酷炫。'
-        },
-        {
-          name: '專屬頭像框',
-          tips: '貴族擁有專屬頭像框，貴族等級越高效果越酷炫。'
-        },
-        {
-          name: '尊貴名片',
-          tips: '貴族擁有尊貴名片，在房間戶信息卡展示效果，貴族等級越高效果越酷炫。'
-        },
-        {
-          name: '酷炫进场秀',
-          tips: '貴族擁有酷炫的進場秀效果，進入房間時觸發效果，獲得全場矚目。'
-        },
-        {
-          name: '聊天氣泡',
-          tips: '貴族擁有聊天氣泡裝飾，在房間、私訊中發言帶有醒目氣泡框。'
-        },
-        {
-          name: '查看喜歡',
-          tips: '貴族在交友配對中享有查看喜歡我的人特權，更容易找到心儀對象。'
-        },
-        {
-          name: '稀有座駕',
-          tips: '貴族擁有稀有座駕，進入房間時觸發效果，霸氣十足，驚豔全場。'
-        },
-        {
-          name: '防踢',
-          tips: '貴族擁有發防踢特權，在房間中無法被房主、房管踢出房間。'
-        }
-      ],
       svgaConfig: {
         0: {
           key: '0',
@@ -151,25 +87,29 @@ export default {
         },
         1: {
           key: '1',
-          addres: '//fstatic.cat1314.com/uc/svga/c829a0071081b0c8ab724eb24d58509b_1628072680.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/8bbd48de84685a71563ae135930e1937_1628564883.svga'
         },
         2: {
           key: '2',
-          addres: '//fstatic.cat1314.com/uc/svga/c8af8b330c7e11269a78925706ee047b_1628072667.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/6825b913e7177ad0ac2f334417091e35_1628564899.svga'
         },
         3: {
           key: '3',
-          addres: '//fstatic.cat1314.com/uc/svga/d032750c9d209b3f2afcaa410b4fd233_1628072659.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/88b29096196635aebe34dd5dbdff2a4d_1628564910.svga'
         },
         4: {
           key: '4',
-          addres: '//fstatic.cat1314.com/uc/svga/ef72b32b1e67336abd48febbd12c26b0_1628072650.svga '
+          addres: '//fstatic.cat1314.com/uc/svga/ec6b3c58ac3b73cbb072b33aeb90bd76_1628564922.svga '
         },
         5: {
           key: '5',
-          addres: '//fstatic.cat1314.com/uc/svga/bd4a6fab31bf864b0c3aeb72593ce84e_1628072641.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/fa1c4a34a4bca9ba9e5fccfc12acff3a_1628564933.svga'
         },
       },
+      linerSvga: {
+        addres: '//fstatic.cat1314.com/uc/svga/24a76c118d11d3aacab0c60338be5146_1628072700.svga'
+      },
+      linerPlayer: null,
       showPup: false,
       showIndex: 0,
       showLv: 0
@@ -183,23 +123,27 @@ export default {
       if (listLength) {
         if (userScore < this.level_list[1].value) { //一级不到
           let c = this.level_list[1].value
-          return userScore / c * 100 / 6 / 4.8 + '%'
+          return userScore / c * 100 / 5 / 4.8 + '%'
         } else if (userScore >= this.level_list[listLength].value) {  //满级
-
-          return '92%'
+          return '94.5%'
         } else {
-          console.log(listLength)
           for (var i = listLength - 1; i >= 0; i--) {
             if (userScore >= this.level_list[i].value) {
               let c = this.level_list[i + 1].value - this.level_list[i].value
               let a = userScore - this.level_list[i].value
-              console.log(a, c)
-              return (a / c / 4.8 * 100) + (i - 1) * 19 + '%'
+              console.log(c, a, (a / c / 4.8 * 100) + (i - 1) * 19 + '%')
+              return (a / c * 100) / 5.5 + (i - 1) * 18 + 5.3 + '%'
             }
           }
         }
       }
       return '0%'
+    },
+    nobleConfig () {
+      return this.lang.nobleConfig
+    },
+    iconConfig () {
+      return this.lang.iconConfig
     }
   },
   watch: {
@@ -207,35 +151,38 @@ export default {
       this.initNum = val.noble_level - 1 < 0 ? 0 : val.noble_level - 1
       this.nowIndex = val.noble_level - 1 < 0 ? 0 : val.noble_level - 1
       let listLength = Object.keys(this.level_list).length
-      console.log(this.initNum, this.nowIndex)
       setTimeout(() => {
         this.svgaPlayer(this.svgaConfig[this.initNum], true)
+        this.linerAni(`silkCanvas0`)
         if (val.noble_level < listLength) {
           this.svgaPlayer(this.svgaConfig[this.initNum + 1], false)
         }
-
       }, 0)
-
     }
+  },
+  async created () {
+    this.linerSvga.data = await this.loadSvgaData(this.linerSvga.addres)
   },
   methods: {
     tabClick (index) {
-      this.nowIndex = index
       this.$refs.swiper.swipeTo(index)
     },
     onChange (index) {
-      console.log(index)
-      if (this.svgaConfig[index].player) {
-        this.svgaConfig[index].player.stop()
+      this.linerAni(`silkCanvas${index}`)
+      if (this.svgaConfig[this.nowIndex].player) {
+        this.svgaConfig[this.nowIndex].player.stop()
       }
       this.nowIndex = index
-      this.svgaPlayer(this.svgaConfig[this.nowIndex], true)
+      if (this.svgaConfig[index].player) {
+        this.svgaConfig[index].player.start()
+      } else {
+        this.svgaPlayer(this.svgaConfig[index], true)
+      }
     },
     async svgaPlayer (item, play) {
       let data = await this.loadSvgaData(item.addres)
       let canvas = document.getElementById('iconCanvas' + item.key)
       let player = new Player(canvas)
-      console.log(data)
       if (item.key == 0) {
         player.set({ startFrame: 2 })
       }
@@ -244,6 +191,16 @@ export default {
         player.start()
       }
       item.player = player
+    },
+    async linerAni (className) {
+      if (this.linerPlayer) {
+        this.linerPlayer.clear()
+      }
+      let canvas = document.getElementById(className)
+      let player = new Player(canvas)
+      await player.mount(this.linerSvga.data)
+      player.start()
+      this.linerPlayer = player
     },
     loadSvgaData (fileItem) {
       return new Promise((resolve, reject) => {
@@ -267,9 +224,6 @@ export default {
     getImg () {
       return _images[`${this.showIndex + 1}_${this.showLv}`]
     }
-  },
-  created () {
-    console.log(_images)
   }
 }
 </script>
@@ -314,17 +268,51 @@ body {
     }
   }
   .canvasShow {
-    height: 5.08rem;
+    width: 6.3rem;
+    height: 4.4rem;
     position: relative;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .aniSvga {
       display: block;
-      width: 4.6rem;
-      height: 4.6rem;
-      margin: 0 auto;
-      position: absolute;
-      left: 1.45rem;
-      top: 0;
+      position: relative;
       z-index: 2;
+    }
+    canvas {
+      &#iconCanvas0 {
+        width: 4.6rem;
+        height: 4.6rem;
+      }
+      &#iconCanvas1 {
+        width: 3.4rem;
+        height: 3.2rem;
+      }
+      &#iconCanvas2 {
+        width: 4rem;
+        height: 3.8rem;
+      }
+      &#iconCanvas3 {
+        width: 4rem;
+        height: 4rem;
+      }
+      &#iconCanvas4 {
+        width: 4.4rem;
+        height: 4.2rem;
+      }
+      &#iconCanvas5 {
+        width: 6.3rem;
+        height: 4.4rem;
+      }
+    }
+    .silkCanvas {
+      width: 5.1rem;
+      height: 0.9rem;
+      position: absolute;
+      bottom: 0.4rem;
+      left: 0.62rem;
+      z-index: 5;
     }
     .btn {
       width: 7.5rem;
@@ -352,7 +340,7 @@ body {
       left: 2.32rem;
       top: -0.2rem;
       text-align: center;
-      line-height: 0.56rem;
+      line-height: 0.49rem;
       color: #7F4C1B;
       font-size: 0.26rem;
       font-weight: bold;
@@ -557,7 +545,8 @@ body {
           margin-top: 0.34rem;
           .item {
             width: 0.8rem;
-            text-align: left;
+
+            text-align: center;
             position: relative;
             &.act {
               color: #FFC86D;
@@ -574,7 +563,7 @@ body {
             background: #FFFFFF;
             opacity: 0.4;
             position: absolute;
-            left: 0.2rem;
+            left: 0.39rem;
             top: -0.19rem;
           }
           .lvScore {
