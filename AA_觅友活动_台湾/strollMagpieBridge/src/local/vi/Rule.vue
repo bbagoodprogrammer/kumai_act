@@ -1,101 +1,102 @@
 <template>
   <div class="rule">
-    <div class="title">Thể lệ và giải thưởng</div>
+    <div class="title">Quy tắc & Thưởng</div>
     <div class="tab">
-      <span :class="{act:type == 1}" @click="tabClick(1)">Thể lệ</span>
-      <span :class="{act:type == 2}" @click="tabClick(2)">Giải thưởng</span>
+      <span :class="{act:type == 1}" @click="tabClick(1)">Quy tắc</span>
+      <span :class="{act:type == 2}" @click="tabClick(2)">Thưởng</span>
     </div>
-
     <div class="rule_tips" v-if="type == 1">
-      <p class="tm">Thời gian sự kiện: {{actTime}}</p>
-      <h5>1.Cách tham gia Đu qua Yêu chân thành</h5>
+      <p class="tm">Thời gian sự kiện：{{actTime}}</p>
+      <h5>1.Cách tham gia sự kiện</h5>
       <p>
-        Hủy quan hệ:<br />
-        Người chơi cần ghép đôi tại sự kiện mới được coi là tham gia<br />
-        a)Người chơi đã ghép đôi có một người tham gia sự kiện, người còn lại tự động tham gia<br />
-        b)Người chơi chưa ghép đôi tham gia sự kiện, sau khi ghép đôi tại sự kiện sẽ được coi là ghép đôi thành công tại góc yêu
+        Thiết lập quan hệ：<br />
+        User phải thiết lập quan hệ hẹn hò để tham gia sự kiện này <br />
+        a）Nếu user đã có CP, thì 1 user trong CP đăng ký sự kiện sẽ mặc định cả 2 user đều tham gia luôn <br />
+        b）Nếu user chưa có CP, thì phải tìm 1 đối tác thiết lập quan hệ CP mới được tham gia.
       </p>
       <p>
-        Hủy quan hệ:<br />
-        a)Cặp đôi đã hủy quan hệ ghép đôi tại góc yêu, sẽ được coi là thoát ra sự kiện, điểm True Love sẽ bị xóa.<br />
-        b)Nếu không phải cặp đôi, có thể hủy quan hệ tại sự kiện, điểm True Love sẽ bị xóa. <br />
-        c)Nếu không phải cặp đôi, mà cùng tham gia sự kiện, trên app ghép đôi với một tài khoản khác, hệ thống sẽ tự động hủy quan hệ ghép đôi tại sự kiện của cả hai, điểm True Love sẽ bị xóa. <br />
-        d)Sau khi hủy quan hệ ghép đôi, người chơi có thể mời người khác ghép đôi để tham gia lại, không thể ghép đôi lại với người đã hủy ghép đôi.<br />
+        Hủy quan hệ：<br />
+        a）Nếu user hủy quan hệ CP, sẽ coi như là thoát sự kiện, điểm lãng mạn sẽ bị trừ hết<br />
+        b）Nếu user hủy quan hệ hẹn hò, và điểm lãng mạn sẽ bị trừ hết <br />
+        c）Nếu user đã thiết lập quan hệ hẹn hò, mà lại thiết lập CP với user khác, hệ thống sẽ tự hủy quan hệ hẹn hò và trừ hết điểm lãng mạn <br />
+        d)Sau khi hủy quan hệ hẹn hò, user có thể thiết lập lại với user khác<br />
+        để tham gia sự kiện, nhưng không được chọn lại đối tác cũ.
       </p>
       <div class="rejectBox">
-        <u @click="showQuery = true" class="reject">Hủy quan hệ ghép đôi>></u>
+        <u @click="showQuery = true" class="reject" v-if="owner.is_reg">Hủy quan hệ hẹn hò>></u>
       </div>
-      <h5>2. Cách nhận điểm True Love</h5>
-      <p>Người chơi tham gia sự kiện nhận được quà chỉ định sẽ được tăng điểm True Love</p>
-      <div class="giftList">
+      <h5>2.Cách thu tập điểm lãng mạn</h5>
+      <p>User tham gia sự kiện có thể nhận được điểm lãng mạn qua nhận quà chỉ định</p>
+      <div class="giftList list1">
         <div class="gift_item" v-for="(item,index) in giftArr" :key="index" :class="'gift' + index">
           <div class="imgBox">
             <img :src="item.img" alt="">
-            <i class="gType" v-if="item.tips">Quà hiệu ứng</i>
+            <i class="gType" v-if="item.tips">Hiệu ứng</i>
           </div>
           <strong v-html="item.name"></strong>
         </div>
       </div>
-      <h5>3. Cách đi Đu qua Yêu chân thành</h5>
+      <h5>3.Cách dạo cầu ô thước</h5>
       <p>
-        Người chơi tích lũy điểm True Love, có thể lên Bảng True Love; Bảng True Love được chia thành BXH ngày và BXH tổng, BXH được xếp hạng theo tổng số điểm True Love từ cao đến thấp, nếu điểm bằng
-        nhau sẽ tính theo thời gian trước sau. <br />
-        Ngưởi chơi đứng Top 1 tại BXH hàng ngày sẽ được đi Đu quay Yêu chân thành, và được nhận [Giọt nước biển]*2 (mỗi người một quả), người chơi nhận thưởng có thể nhận thêm 10% điểm
-        True Love của BXH hàng ngày đã tích lũy (Điểm này sẽ được thêm trực tiếp vào BXH tổng, không thêm vào BXH hàng ngày của ngày tiếp theo)
+        -User tích lũy điểm lãng mạn có thể kéo avatar của hai bên gần nhau, cũng như người Ngưu Lang và Chức Nữ. Khi điểm lãng mạn đủ N, hai bên sẽ nhận được danh hiệu (Chưa phải là yêu)*3 ngày; Khi
+        điểm lãng mạn đủ 8000, hai bên sẽ nhận được danh hiệu(Đậu đỏ yêu thương)*7 ngày<br />
+        -BXH điểm lãng mạn sẽ được sắp xếp từ cao xuống thấp, nếu điểm lãng mạn giống nhau thì user đến trước sẽ được ưu tiên
       </p>
-      <h5>4.Cách kêu gọi Thần tình yêu</h5>
-      <p>Đưa 50 xu cho Thần tình yêu, có thể kêu thần một lần. Mỗi khi kêu gọi, bạn sẽ nhận được 100% giải thưởng chúc phúc từ Thần tình yêu.</p>
-      <img src="./img/rule_table1.png" alt="" class="rule_table1">
-      <p>Nếu không kêu gọi được Uyên ương hồ điệp mộng trong 500 lần đầu tiên, lần thứ 501 chắn chắn có thể nhận Uyên ương hồ điệp mộng . Mỗi người chơi chỉ có thể nhận
-        nhẫn một lần.</p>
-      <h5>5. Khác</h5>
-      <p>Trong thời gian sự kiện diễn ra, phát hiện hành vi vi phạm sẽ tùy trường hợp xử lý cảnh cáo, tước quyền chơi hoặc khóa tài khoản.</p>
-      <p>a)Trong thời gian sự kiện có tình dùng lời lẽ thô tục, ảnh hưởng tới mọi người</p>
-      <p>b) Gian lận để nhận được phần thưởng</p>
+      <h5>4.Tổ tình</h5>
+      <p>-Mỗi quà 「Couple」（giá ：19999 xu）được tăng ra，sẽ có thông báo hiện ở tất cả phòng live trên app（5s）</p>
+      <p>-User nào tạng ra quà 「Couple」 2 lần trở lên,sẽ nhận chủ đề phòng 「hẹn hò lãng mạn」*7 ngày</p>
+      <h5>5.Điều khác</h5>
+      <p>Trong sự kiện nếu phát hiện user tham gia qua kênh bất chính đáng, admin có quyền thu hồi quà, khóa acc, hủy bỏ điểm đã có trong sự kiện mà không thông báo trước, các kênh bất chính đáng gồm
+        và không giới hạn：</p>
+      <p>a）Nói xấu, bình luận xấu user khác</p>
+      <p>b) Chơi xu lậu </p>
     </div>
     <div class="gift_tips" v-else>
-      <p class="tm">Thời gian sự kiện: {{actTime}}</p>
-      <h5>1. Giải thưởng đi đu quay</h5>
+      <p class="tm">Thời gian sự kiện：{{actTime}}</p>
+      <h5>1.Qùa dạo cầu</h5>
       <div class="giftList list2">
         <div class="gift_item" v-for="(item,index) in giftArr2" :key="index" :class="'gift' + index">
           <div class="imgBox">
             <img :src="item.img" alt="">
-            <i class="gType" v-if="item.tips">Quà hiệu ứng</i>
+            <i class="gType" v-if="item.tips">Hiệu ứng</i>
           </div>
           <strong v-html="item.name"></strong>
         </div>
       </div>
       <p>
-        Ngưởi chơi đứng Top 1 tại BXH hàng ngày sẽ được đi Đu quay Yêu chân thành, và được nhận [Giọt nước biển]*2 (mỗi người một quả), người chơi nhận thưởng có thể nhận thêm 10% điểm
-        True Love của BXH hàng ngày đã tích lũy (Điểm này sẽ được thêm trực tiếp vào BXH tổng, không thêm vào BXH hàng ngày của ngày tiếp theo)
+        Khi điểm lãng mạn đủ 4000, hai bên sẽ nhận được danh hiệu (Chưa phải là yêu)*3 ngày; Khi điểm lãng mạn đủ 8000, hai bên sẽ nhận được danh hiệu(Đậu đỏ yêu thương)*7 ngày
       </p>
-      <h5>2. Giải thưởng BXH tổng</h5>
-      <div class="giftList">
+      <h5>2.Qùa BXH</h5>
+      <div class="giftList list3">
         <div class="gift_item" v-for="(item,index) in giftArr3" :key="index" :class="'gift' + index">
           <div class="imgBox">
             <img :src="item.img" alt="">
-            <i class="gType" v-if="item.tips">Quà hiệu ứng</i>
+            <i class="gType" v-if="item.tips">Hiệu ứng</i>
           </div>
           <strong v-html="item.name"></strong>
         </div>
       </div>
-      <p>Hạng 1: Khung ảnh Quán quân CP (10 ngày)+Huy chương Đu quay Yêu chân thành (10 ngày)+Phi thuyền lãng mạn (10 ngày)+chứng nhận CP (10 ngày)+Vũ trên mặt trăng-quà hiệu ứng (mỗi người một quà)
+      <p>CP Top1:Khung ảnh CP vô địch（15ngày）+ Huy chương Ngưu lang Chức nữ（30ngày）+Xe Sát cánh cùng bay（10ngày）+Chứng nhận CP đặc biệt（10ngày）+Qùa đặc biệt (đời đời kiếp kiếp)（Mỗi user nhận 1
+        quà，9999
+        xu/quà）+Qùa đặc biệt (hẹn hò cầu ô thước)（Mỗi user nhận 1 quà，13140 xu/quà） </p>
+      <p>CP Top2:Khung ảnh CP về nhì（10ngày）+Huy chương Ngưu lang Chức nữ（15ngày）+Xe Sát cánh cùng bay（7ngày）+Chứng nhận CP tình yêu（7ngày）+Qùa đặc biệt (đời đời kiếp kiếp)（Mỗi user nhận 1 quà，9999
+        xu/quà）
       </p>
-      <p>Hạng 2: Khung ảnh Á quân CP (7 ngày)+Huy chương Đu quay Yêu chân thành (7 ngày)+Phi thuyền lãng mạn (7 ngày)+chứng nhận CP (7 ngày)+Pháo bắn tim-quà hiệu ứng (mỗi người một quà) </p>
-      <p>Hạng 3: Khung ảnh Quý quân CP (7 ngày)+Phi thuyền lãng mạn (7 ngày)+Giọt nước biển-quà hiệu ứng (mỗi người một quà) </p>
-      <p>*CP có điểm ân ái đạt mức 1520.000 và đứng top 3 trong BXH điểm ân ái mới có thể nhận được thưởng BXH nha.</p>
+      <p>CP Top3:Khung ảnh CP cao cấp（7ngày）+Xe Sát cánh cùng bay（10ngày）+Qùa đặc biệt (đời đời kiếp kiếp)（Mỗi user nhận 1 quà，9999 xu/quà） </p>
+
     </div>
-    <p class="lastTips">Sự kiện không liên quan đến công ty Apple</p>
-    <p class="lastTips2">*Quyết định cuối cùng thuộc về Alochat</p>
+    <p class="lastTips">Sự kiện không có liên quan với Công Ty Apple</p>
+    <p class="lastTips2">*Quyền giải thích cuối cùng của sự kiện thuộc về đơn vị tổ chức sự kiện </p>
     <div class="mask" v-show="showQuery">
       <transition name="slide">
         <div class="queryPup" v-if="showQuery">
-          <div class="title">Có hủy quan hệ không?</div>
+          <div class="title">Có xác nhận hủy quan hệ hẹn hò không</div>
           <div class="tips" v-html="tipsArr[1].replace('$',owner.days).replace('%',owner.score)">
           </div>
           <div class="btns">
-            <span class="st1" @click="showQuery = false">Để tôi suy nghĩ lại</span>
-            <span class="st2" @click="relieve()">Xác nhận hủy</span>
+            <u class="st1" @click="relieve()">Xác nhận hủy</u>
+            <span class="st2" @click="showQuery = false">Tôi suy nghĩ lại</span>
+
           </div>
         </div>
       </transition>
@@ -108,96 +109,84 @@
 import { relieve } from "../../apis"
 import { mapState } from "vuex"
 import getDate from "../../utils/getDate"
+
 export default {
   data () {
     return {
       type: 1,
       showQuery: false,
       tipsArr: {
-        1: 'Hai bạn đã cùng tham gia sự kiện $ ngày, tích lũy % điểm True Love, bạn thực sự muốn hủy quan hệ không?<br/>Điểm True Love tích lũy được sẽ bị xóa sau khi hủy.',
+        1: 'Các bạn dùng $ ngày để tích lũy % điểm lãng mạn, có xác nhận hủy bỏ không？<br/>Sau khi hủy，điểm lãng mạn sẽ bị trừ hết',
       },
       giftArr: [
         {
-          img: require('./img/rule_gift/gift_7.png'),
-          name: 'Chìa khóa tình yêu<br/>+1000 Điểm True Love'
-        },
-        {
-          img: require('./img/rule_gift/gift_4.png'),
-          name: 'Mê bạn<br/>+10000 Điểm True Love',
-          tips: 'Quà hiệu ứng'
-        },
-        {
-          img: require('./img/rule_gift/gift_5.png'),
-          name: 'Thuyền tình yêu<br/>+120000 Điểm True Love',
-          tips: 'Quà hiệu ứng'
-        },
-        {
-          img: require('./img/rule_gift/gift_6.png'),
-          name: 'Thư tình lãng mạn<br/>+200 Điểm True Love',
-        },
-        {
           img: require('./img/rule_gift/gift_1.png'),
-          name: 'Tên Thần tình yêu<br/>+500 Điểm True Love'
+          name: 'Thiệp ngọt ngào<br/>+100 điểm lãng mạn'
         },
         {
           img: require('./img/rule_gift/gift_2.png'),
-          name: 'Mãi mãi ở bên nhau<br/>+5200 Điểm True Love'
+          name: 'Hoa tổ tình<br/>+1880 điểm lãng mạn',
+          tips: 'Hiệu ứng'
         },
         {
           img: require('./img/rule_gift/gift_3.png'),
-          name: 'Yêu cả đời<br/>+20000 Điểm True Love',
-          tips: 'Quà hiệu ứng'
+          name: 'Magpies<br/>+3000 điểm lãng mạn',
+          tips: 'Hiệu ứng'
         },
-
-
-
+        {
+          img: require('./img/rule_gift/gift_4.png'),
+          name: 'Album tình yêu<br/>+12000 điểm lãng mạn',
+          tips: 'Hiệu ứng'
+        },
+        {
+          img: require('./img/rule_gift/gift_5.png'),
+          name: 'Couple<br/>+19999 điểm lãng mạn',
+          tips: 'Hiệu ứng'
+        },
       ],
       giftArr2: [
         {
-          img: require('./img/rule_gift/gift_9.png'),
-          name: '5% điểm True Love'
+          img: require('./img/rule_gift/gift_6.png'),
+          name: 'LV.1 Chưa phải là yêu'
         },
         {
-          img: require('./img/rule_gift/gift_16.png'),
-          name: 'Giọt nước biển*2'
+          img: require('./img/rule_gift/gift_7.png'),
+          name: 'LV.2 Đậu đỏ yêu thương'
         }
       ],
       giftArr3: [
         {
           img: require('./img/rule_gift/gift_10.png'),
-          name: 'Khung ảnh Couple (Top1-2-3)'
+          name: 'Khung CP（Sẽ có khác biệt）'
         },
         {
           img: require('./img/rule_gift/gift_11.png'),
-          name: 'Huy hiệu Đu quay Yêu chân thành'
+          name: 'Huy chương Ngưu lang Chức nữ'
         },
         {
           img: require('./img/rule_gift/gift_12.png'),
-          name: 'Bơi moto lãng mạn'
+          name: 'Xe Sát cánh cùng bay'
         },
         {
           img: require('./img/rule_gift/gift_13.png'),
-          name: 'Chứng nhận Couple'
+          name: 'Chứng nhận CP'
         },
         {
           img: require('./img/rule_gift/gift_19.png'),
-          name: 'Vũ trên mặt trăng<br/>Quà hiệu ứng'
+          name: 'hẹn hò cầu ô thước<br/>Qùa đặc biệt'
         },
         {
           img: require('./img/rule_gift/gift_20.png'),
-          name: 'Pháo bắn tim<br/>Quà hiệu ứng'
-        },
-        {
-          img: require('./img/rule_gift/gift_16.png'),
-          name: 'Giọt nước biển-Quà hiệu ứng'
+          name: 'đời đời kiếp kiếp<br/>Qùa đặc biệt'
         }
+
       ]
     }
   },
   computed: {
-    ...mapState(['owner', 'stime', 'etime']),
+    ...mapState(['owner', 'activity']),
     actTime () {
-      return getDate(new Date(this.stime * 1000), 7) + '-' + getDate(new Date(this.etime * 1000), 7)
+      return getDate(new Date(this.activity.stime * 1000), 8) + '-' + getDate(new Date(this.activity.etime * 1000), 8)
     }
   },
   methods: {
@@ -208,7 +197,7 @@ export default {
     relieve () {
       relieve().then(res => {
         if (res.data.response_status.code == 0) {
-          this.toast(`Tin nhắn đang được gửi, vui lòng chờ đợi câu trả lời của bạn ấy`)
+          this.toast(`tỏ tình đã gửi đến, xin vui lòng chờ đời hồi âm từ đối phương`)
           this.showQuery = false
         } else {
           this.toast(res.data.response_status.error)
@@ -221,47 +210,44 @@ export default {
 
 <style lang="scss" scoped>
 .rule {
-  background: rgba(255, 195, 214, 1);
+  background: rgba(59, 28, 171, 1);
   padding: 0.6rem 0.29rem;
   > .title {
     font-size: 0.34rem;
     font-weight: 500;
     text-align: center;
-    color: rgba(188, 37, 104, 1);
   }
   .tab {
     width: 4.98rem;
     height: 0.68rem;
-    background: #EBAACD;
-    border: 0.02rem solid #FCCBDA;
-    border-radius: 0.34rem;
     display: flex;
     align-items: center;
     margin: 0.2rem auto;
+    background: url(../../img/tabs.png);
+    background-size: 100% 100%;
     span {
-      width: 2.59rem;
-      height: 0.74rem;
+      width: 2.56rem;
+      height: 0.68rem;
       text-align: center;
-      line-height: 0.78rem;
-      margin-top: -0.06rem;
+      line-height: 0.68rem;
       &.act {
-        background: url(../../img/singUpBtn.png);
+        color: #3B1CAB;
+        background: url(../../img/tabs_act.png);
         background-size: 100% 100%;
       }
     }
   }
   .tm {
-    font-size: 0.24rem;
-    color: rgba(188, 102, 130, 1);
-    margin: 0.15rem 0;
+    font-size: 0.26rem;
+    color: #FCE278;
+    text-align: center;
   }
   h5 {
+    color: #F3D97C;
     font-size: 0.26rem;
     font-weight: 600;
-    color: rgba(176, 97, 101, 1);
   }
   p {
-    color: rgba(176, 97, 101, 1);
     font-size: 0.24rem;
     margin: 0.2rem auto;
   }
@@ -270,7 +256,7 @@ export default {
     margin: 0.1rem 0 0.2rem;
     .reject {
       font-size: 0.22rem;
-      color: rgba(159, 64, 219, 1);
+      color: #F3D97C;
     }
   }
   .giftList {
@@ -278,6 +264,26 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 0.3rem;
+    &.list1 {
+      .gift_item {
+        &.gift0 {
+          margin-left: 0.6rem;
+        }
+        &.gift2 {
+          margin-right: 0.6rem;
+        }
+        &.gift3 {
+          margin-left: 1.5rem;
+        }
+        &.gift4 {
+          margin-right: 1.5rem;
+        }
+      }
+    }
+    &.list3 {
+      padding: 0 0.8rem;
+      margin-top: 0.3rem;
+    }
     &.list2 {
       padding: 0 1.78rem;
       .gift_item {
@@ -288,6 +294,7 @@ export default {
     }
     .gift_item {
       width: 1.47rem;
+      margin-bottom: 0.2rem;
       .imgBox {
         width: 1.47rem;
         height: 1.47rem;
@@ -300,7 +307,7 @@ export default {
         }
         .gType {
           display: block;
-          padding: 0 0.1rem;
+          width: 0.93rem;
           height: 0.37rem;
           background: url(../../img/te.png);
           background-size: 100% 100%;
@@ -317,68 +324,47 @@ export default {
         margin-left: -0.05rem;
         display: block;
         font-size: 0.24rem;
-        color: rgba(176, 97, 101, 1);
         text-align: center;
-      }
-      &.gift0 {
-        margin-left: 0.6rem;
-      }
-      &.gift2 {
-        margin-right: 0.6rem;
       }
     }
   }
 }
-.rule_table1 {
-  display: block;
-  width: 5.96rem;
-  height: 4.48rem;
-  margin: 0 auto;
-}
-
 .queryPup {
-  width: 6.77rem;
-  height: 4.34rem;
+  width: 6.46rem;
+  height: 4rem;
   padding-top: 0.28rem;
   background: url(../../img/friend_set.png);
   background-size: 100% 100%;
   .title {
-    height: 1.1rem;
+    height: 0.88rem;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 0.34rem;
-    color: rgba(188, 37, 104, 1);
+    color: #FCE278;
   }
   .tips {
-    height: 2rem;
+    height: 1.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 0.6rem;
     font-size: 0.26rem;
-    color: rgba(176, 97, 101, 1);
   }
   .btns {
     padding: 0 0.97rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    u {
+      color: rgba(212, 202, 250, 1);
+    }
     span {
       width: 2.19rem;
       height: 0.74rem;
       text-align: center;
       line-height: 0.74rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 0.25rem;
-      font-size: 0.26rem;
-      &.st1 {
-        background: url(../../img/st1.png);
-        background-size: 100% 100%;
-      }
       &.st2 {
         background: url(../../img/st12.png);
         background-size: 100% 100%;
@@ -389,13 +375,13 @@ export default {
 .lastTips {
   text-align: center;
   font-size: 0.22rem;
-  color: rgba(159, 64, 219, 1) !important;
+  color: #F3D97C !important;
   margin-top: 0.47rem !important;
 }
 .lastTips2 {
   text-align: center;
   font-size: 0.22rem;
-  color: red !important;
+  color: #F3D97C !important;
   margin-top: 0.5rem !important;
 }
 </style>

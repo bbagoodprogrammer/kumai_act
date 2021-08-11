@@ -81,7 +81,7 @@ export default {
   },
   watch: {
     type (val) {
-      this.downTimeGo('time' + val, val == 1 ? this.activity.today_seconds : this.activity.seconds)
+      this.downTimeGo('time' + val, val == 1 ? this.activity.today_seconds : this.activity.seconds > 0 ? this.activity.seconds : 0)
     },
   },
   methods: {

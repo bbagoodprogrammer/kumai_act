@@ -295,6 +295,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
+      white-space: nowrap;
       .agree_btn {
         min-width: 0.71rem;
         padding: 0 0.1rem;

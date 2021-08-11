@@ -37,7 +37,7 @@
       <i class="liner"></i>
       <div class="userScore">
         <div class="userMonth">
-          <span class="score">{{lang.userScore.replace('%s',user.noble_value)}}</span>
+          <span class="score" v-html="lang.userScore.replace('%s',user.noble_value)"></span>
           <span class="explain" @click="$router.push({name:'explain'})">{{lang.explain}}</span>
         </div>
         <div class="lv">

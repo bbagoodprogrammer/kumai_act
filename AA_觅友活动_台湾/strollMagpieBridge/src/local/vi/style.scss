@@ -1,67 +1,24 @@
 html.vi {
     letter-spacing: -0.015rem;
+    .pageIndex{
+        background:#302176 url(./img/banner.png) no-repeat;
+        background-size: 100% auto;
+    }
+    .giftListIndex::after{
+        content: '';
+        display: block;
+        width: 7.5rem;
+        height: 1.09rem;
+        background: url(./img/giftListTitle.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: -.5rem;
+        left: -0.07rem;
+    }
     .rankTitle{
+        width: 7.5rem;
+        height: 1.09rem;
         background: url(./img/rankTitle.png);
         background-size: 100% 100%;
-    }
-    .turn{
-        .gift0{
-            background: url(./img/turn_gift/gift_1.png);
-            background-size: 100% 100%;
-        }
-        .gift1{
-            background: url(./img/turn_gift/gift_2.png);
-            background-size: 100% 100%;
-        }
-        .gift2{
-            background: url(./img/turn_gift/gift_3.png);
-            background-size: 100% 100%;
-        }
-        .gift3{
-            background: url(./img/turn_gift/gift_4.png);
-            background-size: 100% 100%;
-        }
-        .gift4{
-            background: url(./img/turn_gift/gift_5.png);
-            background-size: 100% 100%;
-        } 
-        .gift5{
-            background: url(./img/turn_gift/gift_6.png);
-            background-size: 100% 100%;
-        }
-
-        .gift6{
-            background: url(./img/turn_gift/gift_7.png);
-            background-size: 100% 100%;
-        }
-        .gift7{
-            background: url(./img/turn_gift/gift_8.png);
-            background-size: 100% 100%;
-        }
-    }
-    .wheelTips{
-        width: 5.17rem;
-        height: 1.71rem;
-        padding: 0.25rem 1.1rem 0;
-        font-size: .24rem;
-    }
-    .pageIndex{
-        >.tab{
-            >span{
-                width: 2.2rem!important;
-                height: 0.63rem!important;
-                padding: 0 0.4rem!important;
-                font-size: .24rem!important;
-            }
-        }
-    }
-    .ruleTips{
-        span{
-        text-align: center!important;
-          display: flex !important;
-            align-items: center!important;
-            justify-content: center!important;
-             line-height: .25rem!important;
-        }
     }
 }

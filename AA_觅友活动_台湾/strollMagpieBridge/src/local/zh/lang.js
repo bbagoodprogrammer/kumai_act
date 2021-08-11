@@ -9,6 +9,7 @@ export default {
     rank_noData: "暫無CP上榜",
     received: "收到", //收到
     scoreName: "浪漫值",
+
     //footer
     setCp: "選擇心動對象", //選擇心動對象
     noFriend: "暫無可選擇的好友", //暫無可選擇的好友
@@ -22,7 +23,6 @@ export default {
     history_noData: "暫無數據",
 
     //index
-    index_titleName: "每送出一個",
     index_titleScore: "獎勵：",
     gift: [
         {

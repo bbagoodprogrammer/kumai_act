@@ -1,131 +1,108 @@
 export default {
     //html/index.html
-    title: "Đu quay yêu chân thành",
-    noAct: "Event chưa bắt đầu",
-    actEd: "Event đã kết thúc",
-    ok: "Tôi biết rồi", //我知道了
+    title: "Dạo cầu ô thước",
+    noAct: "Sự kiện chưa bắt đầu",
+    actEd: "Sự kiện đã kết thức",
+    ok: "Tôi đã biết", //Tôi đã biết
     ok2: "Xác nhận",
     loading: "Đang tải...",
-    rank_noData: "Chưa có dữ liệu xếp hạng",
-    //轉盤
-    luckImg: {
-        0: require("./img/turn_gift_pup/gift_1.png"),
-        1: require("./img/turn_gift_pup/gift_2.png"),
-        2: require("./img/turn_gift_pup/gift_3.png"),
-        3: require("./img/turn_gift_pup/gift_4.png"),
-        4: require("./img/turn_gift_pup/gift_5.png"),
-        5: require("./img/turn_gift_pup/gift_6.png"),
-        6: require("./img/turn_gift_pup/gift_7.png"),
-        7: require("./img/turn_gift_pup/gift_8.png")
-    },
-    received: "đã nhận được", //收到
-
+    rank_noData: "Tạm thời không có CP lên BXH",
+    received: "Đã nhận", //Đã nhận
+    scoreName: "Điểm lãng mạn",
     //footer
-    setCp: "Chọn đối tượng", //選擇心動對象
-    noFriend: "Hiện không có bạn bè để chọn", //暫無可選擇的好友
-    queryFriend: "Xác nhận đối tượng", //確定心動對象
-    setFriend_tips: "Đối phương đang nhận lời mời của bạn, vui lòng đợi", //對方正在接受你的邀請,請耐心等候
+    setCp: "Chọn người hẹn hò", //Chọn người hẹn hò
+    noFriend: "Tạm thời không có bạn bè để lừa chọn", //Tạm thời không có bạn bè để lừa chọn
+    queryFriend: "Xác nhận hẹn hò ", //Xác nhận quan hệ hẹn hò
+    setFriend_tips:
+        "Đối phương đang xem xét chấp nhận lời mời của bạn, bạn vui lòng chờ đời", //Đối phương đang xem xét chấp nhận lời mời của bạn, bạn vui lòng chờ đời
 
     //history
-    history_title: "Lịch sử kêu gọi của tôi",
-    history_nums: "Kêu gọi: $ lần",
-    history_get: "Nhận được",
-    history_noData: "Chưa có dữ liệu",
+    history_title: "Kỷ lục kêu gọi",
+    history_nums: "Kêu gọi :$ lần",
+    history_get: "Nhận",
+    history_noData: "Chưa có số liệu",
 
     //index
-    index_ruleTips1: "Lịch sử", //召喚紀錄
-    index_ruleTips2: "Thể lệ và giải thưởng", //召喚紀錄
-    index_ruleTips3: "Hộp thư", //召喚紀錄
-    index_tab1: "Đu quay", //摩天輪
-    index_tab2: "Kêu gọi Thần tình yêu", //召喚愛神
-    index_singUpTitle: "Chào mừng đến với Đu quay tình yêu", //歡迎來到真愛摩天輪
+    index_titleName: "Mỗi 1 quà tặng cho user",
+    index_titleScore: "Thưởng：",
+    gift: [
+        {
+            image: require("./img/giftImg1.png"),
+            name:
+                "Mỗi quà (Couple) (giá: 19999 xu) được tặng ra, sẽ co thông báo hiển ở tất cả phòng live trên app (5s)"
+        },
+        {
+            image: require("./img/giftImg2.png"),
+            name:
+                "User nào tặng quà (Couple) 2 lần sẽ nhận được chủ đề phòng (hẹn hò lãng mạn) * 7ngay"
+        }
+    ],
+    setCp: "Thêm đối tưởng",
+    index_ruleTips2: "Quy tắc thưởng", //Quy tắc thưởng
+    index_ruleTips3: "Inbox tình yêu", //Inbox tình yêu
+    index_singUpTitle: "Hẹn hò lãng mạn", //Chào mừng đến với Đu quay tình yêu
     index_singUpTips:
-        "Theo truyền thuyết, mỗi hộp của đu quay đều chứa đầy hạnh phúc, và mỗi khi nó quay, lại thêm một cặp CP hạnh phúc trên trái đất.", // 傳說中，摩天輪的每一個盒子都裝滿了幸福，每轉一圈，地球上幸福的cp又多了一隊
-    index_join: "Vào Đu quay", //進入摩天輪
-    index_inivitTitle: "Anh ấy muốn đi đu quay với bạn", //他想和你一起乘坐摩天輪
+        "Ngưu Lang và Chức Nữ đã chờ 1 năm để hẹn lại trên cầu Ô Thước", // Trong huyền thoài, mỗi 1 hộp trên đu quay đều chứa đẩy hình phức, mỗi đi 1 vòng sẽ thêm 1 đội CP trên đợi
+    index_join: "hẹn hò lãng mạn", //Vào đu quay
+    index_inivitTitle: "Hãy tìm 1 bạn cùng tham gia", //Đối phương muốn đi dạo cầu ô thước với bạn
     index_inivitTips1:
-        "Chào mừng bạn đến với vòng Đu quay Yêu chân thành, thu thập điểm True Love với người mình yêu, có cơ hội đi vòng đu quay và nhận thưởng hiếm!Dưới đây là những người chơi thích bạn, bạn có thể chọn một đối tượng tại đây, cùng tham gia sự kiện ~", //歡迎來到真愛摩天輪，與心動對象一起收集真愛值, 有機會乘坐摩天輪並獲得限量獎勵、指定戒指喔！
+        "Ngưu Lang và Chức Nữ đã chờ 1 năm để hẹn lại trên cầu Ô Thước", //Chào mừng đến với Đu quay tình yêu, hãy thu tập điểm lãng mạn cùng người hẹn hò, sẽ có cơ hội lên đu quay và nhận được quà hiếm có và nhẫn chỉ định nha!！
     index_inivitTips2:
-        "Đây là những người rung động vì bạn, hãy chọn 1 đối tượng cùng tham gia", //以下是對妳心動的玩家，可從中選擇一個心動對象，一起參與～
-    index_setFriend: "*Vui lòng chọn đối tượng của mình", //*請謹慎選擇自己的心動對象
-    index_ok: "Xác định đối tượng của bạn", //確定心動對象
-    index_no: "Không có đối tượng", //沒有心動對象
-    index_relieveTitle: "Rất tiếc phải nói với bạn rằng...", //很遺憾告訴你...
-    index_reject: "Không đồng ý", //不同意
-    index_accept: "Đồng ý", //同意
+        "Dưới đây là các user muốn hẹn hò với bạn, bạn có thể chọn 1 trong những user đó để tham gia sự kiện", //Dưới đây là các user muốn hẹn hò với bạn, bạn có thể chọn 1 trong những user đó để tham gia sự kiện
+    index_setFriend: "*Vui lòng chọn đối tắc hẹn hò một cách cẩn thận", //*Vui lòng chọn đối tắc hẹn hò một cách cẩn thận
+    index_ok: "Xác nhận hẹn hò ", //Xác nhận đối tắc hẹn hò
+    index_no: " chưa có đối tác", //Chưa có đối tắc hẹn hò
+    index_relieveTitle: "Rất tiếc...", //Rất tiếc...
+    index_reject: "Không đồng ý", //Không đồng ý
+    index_accept: "đồng ý", //đồng ý
     tipsArr: {
-        1: "Người chơi [&] yêu cầu hủy quan hệ. Điểm True Love sẽ bị xóa sau khi hủy.Sau khi hủy quan hệ, bạn có thể ghép đôi lại và tham gia lại sự kiện",
-        2: "Nếu đối tượng ghép đôi trong sự kiện và CP trong ứng dụng không cùng một người chơi, hệ thống sẽ tự động hủy quan hệ ghép đôi trong sự kiện* Định nghĩa của cùng một người chơi là cùng một UID "
+        1: "【&】 xin hủy quan hệ hẹn hò，sau khi<br/>，điểm lãng mạn sẽ bị trừ hết",
+        2: "Nếu đối tượng hẹn hò trong sự kiện không phải là CP của bạn, hệ thống sẽ hủy bỏ quan hệ hẹn hò."
     },
-    index_acceptSuc: "Ghép đôi thành công", //配對成功！
-    rejectEd: "Đã từ chối", //已拒绝
-    index_relieveEd: "Đã hủy thành công", //已解除成功！
+    index_acceptSuc: "Hẹn hò thành công!", //Hẹn hò thành công！
+    rejectEd: "đã từ chối", //đã từ chối
+    index_relieveEd: "Đã hủy quan hệ thành công！", //Đã hủy quan hệ thành công！
 
     //roolMsg
-    roolMsg: "+ $ điểm True Love", //增加$真愛值
+    roolMsg: "Tăng $ điểm lãng mạn", //Tăng $ điểm lãng mạn
 
     //TabsScrollLoadList
-    rank_tab1: "BXH hàng ngày", //真愛日榜
-    rank_tab2: "BXH tổng", //真愛總榜
     day: "Ngày",
-    houer: "Giờ",
-    min: "Phút",
-    second: "Giây",
-    rank_listHeader1: "Hạng", //名次
-    rank_listHeader2: "CP Yêu chân thành", //真愛情侶
-    rank_listHeader3: "Điểm True Love", //真愛值
+    houer: "giờ",
+    min: "phút",
+    second: "giây",
 
-    //turn
-    turn_one: "Kêu gọi 1 lần",
-    turn_ten: "Kêu gọi 10 lần",
-    turn_luckTitle: "Thần tình yêu gửi lời chúc",
-    turn_luckOk: "Vui vẻ nhận thưởng",
-    turn_luckOk2: "Để tôi suy nghĩ lại",
-    turn_again: "Kêu gọi lại",
-    turn_luckTips: "Kêu gọi $ lần, cần trả % xu",
-    turn_qureyLuck: "Xác nhận kêu gọi",
-    luckTips: {
-        1: "Chúc mừng bạn nhận được lời chúc từThần tình yêu —— $,Đã được gửi vào tài khoản của bạn, chúc bạn hạnh phú nhé",
-        2: "Thần tình yêu đã xuống trần rồi~Thần Mãi mãi ở bên nhau nắm giữ True Love bay vào trái tim bạn,Chúc mừng bạn nhận được Nhẫn Mãi mãi ở bên nhau Yêu chân thành!!",
-        3: "Chúc mừng bạn nhận được lời chúc từThần tình yêu, giải thưởng đã được gửi vào tài khoản của bạn, chúc bạn hạnh phú nhé",
-        4: "Thần tình yêu đã xuống trần rồi~Thần Mãi mãi ở bên nhau nắm giữ True Love bay vào trái tim bạn,Chúc mừng bạn nhận được Nhẫn Mãi mãi ở bên nhau Yêu chân thành!!"
-    },
-    turn_noCoins: "Xu không đủ",
-    //wheel
-    wheel_tips:
-        "Trong khoảng thời gian từ $, CP Top1 trong BXH hàng ngày có thể đi đu quay và nhận được phần thưởng 5% điểm True Love và Giọt nước biển- quà túi (mỗi người một quà)", //期間每天日榜的第一名cp可乘坐摩天輪，並獲得當天真愛值的5%加成和真愛水晶球-背包禮物*2（一人一個）
     //信箱
-    // daily_title_1: "【{0}】完成【{1}】產生魔法能量",
-    // daily_title_2: "【{0}】收到【{1}】x{2}獲得魔法能量",
-    // daily_title_3: "【{0}】送【{1}】【{2}】x{3}獲得魔法能量",
-    // daily_title_4: "【{0}】使用魔法能量製作{1}",
-    // daily_title_5: "靈魂默契測試獲得魔法能量",
-    daily_time: "ngày {1} tháng {0}  {2}:{3}",
-    invite_req_success: "Đối phương đang nhận lời mời của bạn, vui lòng đợi",
-    magic_mail: "Hộp thư",
-    daily_news: "Nhật ký hàng ngày",
-    recieve_mail: "Thư tôi đã nhận được",
-    receive_invite: "Thư mời tôi đã nhận được",
-    user_nick: "Tên:%s",
-    intimacy_value: "Thân mật:%s",
-    sure_cp_object: "Xác nhận đối tượng",
-    // friend_empty: "互為好友才有可能成為心動對象哦，\n快去認識新朋友吧",
+    // daily_title_1: "【{0}】Nhận được 【{1}】được năng lượng ma thuật",
+    // daily_title_2: "【{0}】Nhận được【{1}】x{2}được năng lượng ma thuật",
+    // daily_title_3: "【{0}】Tặng 【{1}】【{2}】x{3}được năng lượng ma thuật",
+    // daily_title_4: "【{0}】Dùng ma thuật năng lượng để làm {1}",
+    // daily_title_5: "Nhận năng lượng ma thuật qua kênh test hiểu biết tâm hồn",
+    daily_time: "tháng{0}ngày{1} {2}:{3}",
+    invite_req_success:
+        "Đối phương đang xem xét chấp nhận lời mời của bạn, bạn vui lòng chờ đời",
+    magic_mail: "Inbox tình yêu",
+    daily_news: "Động thái",
+    recieve_mail: "Inbox của mình",
+    receive_invite: "Lời mời đã nhận của mình",
+    user_nick: "Nick：%s",
+    intimacy_value: "Điểm lãng mạn：%s",
+    sure_cp_object: "Xác nhận đối tắc hẹn hò",
+    friend_empty:
+        "Phải trở thành bạn trước mới thiết lập được quan hệ hẹn hò nha，\nHãy đi kết bạn với user khác đi",
     agree: "Đồng ý",
     rejected: "Bạn đã từ chối",
-    agreed: "Bạn đã đồng ý",
-    you_has_cp: "Bạn đã có đối tượng",
-    male_has_cp: "Bạn ấy đã có đối tượng",
-    femail_has_cp: "Bạn ấy đã có đối tượng",
-    not_mail: "Tạm thời không có thư",
-    orther_letter: "Thư khác ",
-    orther_letter_title_1: "<em>%s</em> mời bạn Hủy quan hệ ",
-    orther_letter_title_2: "<em>%s</em> đã đồng ý cùng bạn Hủy quan hệ ",
-    orther_letter_title_3: "<em>%s</em> không đồng ý Hủy quan hệ ",
+    agreed: "Bạn đã đồng ý ",
+    you_has_cp: "Bạn đã có đối tắc",
+    male_has_cp: "Đối phương đã có đối tắc",
+    femail_has_cp: "Đối phương đã có đối tắc",
+    not_mail: "Không có thu",
+    orther_letter: "Thu khác",
+    orther_letter_title_1: "%s Xin hủy quan hệ hẹn hò với bạn",
+    orther_letter_title_2: "%s Đã đồng ý hủy quan hệ hẹn hò với bạn",
+    orther_letter_title_3: "%s Không đồng ý hủy quan hệ hẹn hò với bạn",
     reject_btn: "Từ chối",
-    not_daily_news: "Chưa có trạng thái mới",
-    loading: "Đang tải...",
+    not_daily_news: "Chưa có động thái",
+    loading: "Đang tải..."
     //html/app_share.ejs
-    share_title: "Đu quay yêu chân thành"
-    // share_desc:
-    //     "成爲簽約用戶，即可對歡鑽收益進行提款，且簽約等級越高，提款比例越高。"
 };

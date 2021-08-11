@@ -47,6 +47,12 @@ export default {
   position: fixed;
   bottom: 0;
   z-index: 111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .btnBg {
+    margin-top: 0.2rem;
+  }
   .userMsg {
     height: 1.48rem;
     display: flex;

@@ -208,6 +208,9 @@ export default {
         height: 1.3rem;
         border-radius: 50%;
       }
+      em {
+        text-align: center;
+      }
     }
     .imgBox_l {
       background: url(../img/avBg2.png);

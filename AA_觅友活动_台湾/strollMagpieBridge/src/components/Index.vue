@@ -222,6 +222,7 @@ export default {
       console.log(val)
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       this.$store.dispatch('getInitInfo');
+      this.$refs.rank.onRefresh()
     },
   }
 
@@ -532,6 +533,7 @@ export default {
         margin-left: 0.11rem;
       }
       .titleName {
+        flex: 1;
         margin-left: 0.3rem;
         .name {
           font-size: 0.28rem;

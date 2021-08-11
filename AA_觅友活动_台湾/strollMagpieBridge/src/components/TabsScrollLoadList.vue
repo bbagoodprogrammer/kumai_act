@@ -7,7 +7,7 @@
       <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">{{lang.rank_tab2}}</a>
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div> -->
-    <div class="timeBox">
+    <div class="timeBox" v-if="activity.seconds >0 ">
       <div class="actTime">
         <span>{{surplusTime.day}}</span>
         <em>{{lang.day}}</em>
@@ -253,9 +253,6 @@ export default {
       console.log(val)
       if (this.rank.loading) return
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
-      if (val != 'init') {
-        this.$store.dispatch('getInitInfo');
-      }
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,
         loadCount: 0,
@@ -416,6 +413,7 @@ export default {
             align-items: center;
             justify-content: center;
             .tips {
+              text-align: center;
               font-size: 0.26rem;
               margin-top: -0.04rem;
               text-shadow: #EE57B9 1px 0 0, #EE57B9 0 1px 0, #EE57B9 -1px 0 0,

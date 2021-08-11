@@ -4,7 +4,7 @@
     <el-container>
       <el-header class="header">
         <div class="logo">
-          <img src="../img/logo.png" alt="">
+          <img src="../img/logo2.png" alt="">
           <div class="userNick">
             {{nick}},{{aid}}
           </div>
