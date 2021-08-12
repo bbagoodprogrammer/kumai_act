@@ -19,7 +19,8 @@
             <div class="icon" :class="'icon' + item.lv"></div>
             <div class="name">{{item.name}}</div>
           </div>
-          <div class="score"><em>{{item.score}} </em>{{lang.thousand}}</div>
+          <!-- {{lang.thousand}} -->
+          <div class="score"><em>{{getNumStr(item.score)}} </em></div>
           <div class="nums"><em>{{item.privilegeNums}}</em>{{lang.num}}</div>
         </li>
       </ul>
@@ -41,6 +42,22 @@ export default {
   computed: {
     lvConfig () {
       return this.lang.lvConfig
+    }
+  },
+  methods: {
+    getNumStr (val) {
+      console.log(AREA, val)
+      if (AREA == 'tw') {
+        return `${val / 10000}${this.lang.thousand}`
+      } else if (AREA == 'vn') {
+        return `${val / 1000}${this.lang.k}`
+      } else if (AREA == 'id') {
+        if (val < 1000000) {
+          return `${val / 1000}${this.lang.k}`
+        } else if (val > 1000000) {
+          return `${val / 1000000}${this.lang.million}`
+        }
+      }
     }
   }
 }

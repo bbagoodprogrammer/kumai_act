@@ -59,7 +59,10 @@
           <i class="close" @click="showPup = false"></i>
           <div class="title"> {{iconConfig[showIndex].name}}</div>
           <img :src=" getImg()" alt="">
-          <p class="tips">
+          <p class="tips" v-if="AREA == 'id'">
+            {{ showIndex>1? lang.lvTips:'' }} {{showIndex >1?nobleConfig[nowIndex].name:''}} {{iconConfig[showIndex].tips}}
+          </p>
+          <p class="tips" v-else>
             {{showIndex >1?nobleConfig[nowIndex].name:''}}{{iconConfig[showIndex].tips}}
           </p>
         </div>
@@ -144,6 +147,9 @@ export default {
     },
     iconConfig () {
       return this.lang.iconConfig
+    },
+    AREA () {
+      return AREA
     }
   },
   watch: {
@@ -228,8 +234,14 @@ export default {
       console.log(AREA)
       if (AREA == 'tw') {
         return `${val / 10000}${this.lang.thousand}`
-      } else if (AREA == 'vn' || AREA == 'id') {
+      } else if (AREA == 'vn') {
         return `${val / 1000}${this.lang.k}`
+      } else if (AREA == 'id') {
+        if (val < 1000000) {
+          return `${val / 1000}${this.lang.k}`
+        } else if (val > 1000000) {
+          return `${val / 1000000}${this.lang.million}`
+        }
       }
     }
   }
