@@ -8,6 +8,7 @@ export default {
     explain: "Giới thiệu",
     thousand: "vạn",
     num: "vị",
+    k: "k",
     nobleConfig: [
         {
             name: "Du hiệp",
@@ -18,7 +19,7 @@ export default {
             privilege: 2
         },
         {
-            name: "Tử ước",
+            name: "Tử tước",
             privilege: 3
         },
         {
@@ -56,7 +57,7 @@ export default {
                 "Quý tộc có danh thiếp cao quý, cấp quý tộc càng cao, trang sức càng đẹp."
         },
         {
-            name: "Chào mừng vào phòng siêu cool",
+            name: "Hiệu ứng vào phòng",
             tips: "Quý tộc vào phòng siêu cool, người người ngước nhìn."
         },
         {
@@ -65,12 +66,12 @@ export default {
                 "Quý tộc có khung chat hiếm riêng, nhắn tin thu hút mọi ánh mắt."
         },
         {
-            name: "Kiểm tra người thích tôi",
+            name: "Xem ai thích tôi",
             tips:
                 "Quý tộc có quyền xem người thích tôi, dễ kiểm đươc đối tượng hơn."
         },
         {
-            name: "Xe hiếm có",
+            name: "Xe hiếm",
             tips: "Quý tộc có xe hiếm, thu hút mọi ánh mắt. "
         },
         {

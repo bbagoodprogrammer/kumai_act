@@ -1,3 +1,12 @@
 html.id {
-    
+    .iconList{
+        .title{
+            width: 3.54rem!important;
+            left: 1.66rem!important;
+            .msg{
+                background: url(../../img/icon/iconTitle2.png)!important;
+                background-size: 100% 100%!important;
+            }
+        }
+    }
 }

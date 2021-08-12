@@ -50,25 +50,22 @@
         <div class="rule" v-if="showRules">
           <div class="con">
             <i class="close" @click="closeRule()"></i>
-            <h6>1 活動時間</h6>
+            <h6>{{lang.ruleTips1}}</h6>
             <p>{{aTimer}}</p>
-            <h6>2 榜單排名</h6>
-            <p>禮物幸運榜分為幸運禮盒榜和尋寶奇兵榜，排名前100名玩家從高到低排名</p>
-            <p> 幸運禮盒榜：按照玩家在幸運禮盒中送出的幸運禮物的金幣數進行累計幸運值，1金幣=10幸運值</p>
-            <p>尋寶奇兵榜：按照玩家在尋寶奇兵中獲得的背包禮物或者道具的金幣數進行累計幸運值，1金幣=10幸運值，1貝殼=1000幸運值，1彩鑽=10000幸運值</p>
-            <p>榜單展示指定禮物的實時累計數據</p>
-            <h6>3 活動獎勵</h6>
+            <h6>{{lang.ruleTips2}}</h6>
+            <p>{{lang.ruleTips3}}</p>
+            <p>{{lang.ruleTips4}}</p>
+            <p>{{lang.ruleTips5}}</p>
+            <p>{{lang.ruleTips6}}</p>
+            <h6>{{lang.ruleTips7}}</h6>
             <div class="giftBox">
-              <p>
-                第一名：粽情端午-頭像框（10天）、龍舟座駕（7天）<br />
-                第二名：粽情端午-頭像框（7天）<br />
-                粽情端午-頭像框（5天）
+              <p v-html="lang.lang.ruleTips8">
               </p>
             </div>
-            <h6>4 注意事項 </h6>
-            <p>榜單獎勵在活動結束後五個工作日內發放獎勵</p>
-            <p>本活動與蘋果公司無關</p>
-            <p class="lastTips">本活動最終解釋權歸活動主辦方所有</p>
+            <h6>{{lang.ruleTips9}} </h6>
+            <p>{{lang.ruleTips10}}</p>
+            <p>{{lang.ruleTips11}}</p>
+            <p class="lastTips">{{lang.ruleTips12}}</p>
           </div>
         </div>
       </transition>
@@ -106,20 +103,6 @@ export default {
       stime: 0,
       etime: 0,
       prizes: {},
-      giftArr: [
-        {
-          img: require('../assets/img/gift/gift1.png'),
-          gname: '頭像框'
-        },
-        {
-          img: require('../assets/img/gift/gift2.png'),
-          gname: '座駕'
-        },
-        {
-          img: require('../assets/img/gift/gift3.png'),
-          gname: '金豆'
-        }
-      ]
     }
   },
   created () {
@@ -129,6 +112,9 @@ export default {
   computed: {
     aTimer () {
       return getDate(new Date(this.stime), 2) + '-' + getDate(new Date(this.etime), 2)
+    },
+    giftArr () {
+      return this.lang.giftArr
     }
   },
   methods: {

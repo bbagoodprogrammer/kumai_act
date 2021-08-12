@@ -6,7 +6,7 @@
       <li class="item" v-for="(item,index) in makeData" :key="index">
         <div class="time">{{getTime(item.list[0].time,1)}}</div>
         <div class="taskItem" v-for="(item2,index2) in item.list" :key="index2">
-          <span class="name">{{item2.type=='raw'?taskName[item2.key]:lang.history_msg1.replce('%n',item2.name).replce('%c',item2.count)}}</span>
+          <span class="name">{{item2.type=='raw'?taskName[item2.key]:lang.history_msg1.replace('%n',item2.name).replace('%c',item2.count)}}</span>
           <span class="wards">{{item2.type=='raw'?`${item2.name}+${item2.count}`:`${lang.history_msg2}${item2.score}`}}</span>
           <span class="timeItem">{{getTime(item2.time,2)}}</span>
         </div>

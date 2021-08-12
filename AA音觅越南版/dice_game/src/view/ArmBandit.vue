@@ -59,7 +59,7 @@ import GiftHistory from "../components/GiftHistory"
 import Rule from "../components/Rule"
 export default {
   components: { MsgToast, Rule, ActFooter, RoolMsg, TabsScrollLoadList, Game, GiftHistory },
-  data() {
+  data () {
     return {
       isShare: false, //是否分享
       isMore: true,   //加载更多
@@ -76,23 +76,23 @@ export default {
       showRule: false
     }
   },
-  created() {
+  created () {
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
     this.getRoolMsg()
   },
-  mounted() {
+  mounted () {
   },
   methods: {
-    judgeShare() {//判断是否为分享环境,请求相应的接口 
+    judgeShare () {//判断是否为分享环境,请求相应的接口 
       this.isShare = getString('token') ? false : true
       this.vxc('setShareState', this.isShare) //分享状态
     },
-    getDefaultData(val) { //初始化
+    getDefaultData (val) { //初始化
       api.getDefault().then(res => {
         const { response_status, response_data } = res.data
         if (response_status.code == 0) {
-          const { step, prog, steps, day, total, position, position2, owner, dice, reg, friends } = response_data
+          const { step, prog, steps, day, total, position, position2, owner, dice, reg, friends, stime, etime } = response_data
           this.vxc('setActStatus', step)
           this.vxc('setSteps', steps)
           this.vxc('setSecond', total.dtime)
@@ -103,6 +103,8 @@ export default {
           this.vxc('setTotal', total)
           this.vxc('setReg', reg)
           this.vxc('setProg', prog)
+          this.vxc('setStime', stime)
+          this.vxc('setEtime', etime)
           if (friends && !reg) {
             this.peopleList = friends
             this.invitation = true
@@ -112,39 +114,39 @@ export default {
         }
       })
     },
-    getRoolMsg() {
+    getRoolMsg () {
       api.roolMsg().then(res => {
         this.vxc('setRoolMsg', res.data.response_data.list)
       })
     },
-    history() {
+    history () {
       // api.getHistroy(0).then(res => {
       //   this.historyList = res.data.response_data.list
       this.showHistory = true
       // })
     },
-    downApp() {
+    downApp () {
       APP()
     },
-    goRule() {
+    goRule () {
       this.showRule = true
     },
-    refrsh() { //刷新
+    refrsh () { //刷新
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       window.removeEventListener("scroll", this.onScroll)
       this.getDefaultData('ref')
     },
-    setActIndex(index) {
+    setActIndex (index) {
       this.actIndex = index
     },
-    singUp() {
+    singUp () {
       let fuid = this.peopleList[this.actIndex].uid
       this.$refs.footer.singUp(fuid)
     },
-    closeInvitation() {
+    closeInvitation () {
       this.invitation = false
     },
-    closeHistory() {
+    closeHistory () {
       this.showHistory = false
     },
   }

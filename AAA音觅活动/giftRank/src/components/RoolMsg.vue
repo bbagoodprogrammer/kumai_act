@@ -4,8 +4,9 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-              <span v-if="item.type == 1"> <em> {{item.nick}}</em> 送出 <em>幸運禮盒</em>- 獲得{{item.score}}幸運值</span>
-                <span v-else><em> {{item.nick}}</em>玩尋寶奇兵-抽中 <em>{{item.name}}</em> 獲得{{item.score}}幸運值</span>
+            <span v-if="item.type == 1">{{lang.roolMsg1.replace('%n',item.nick).replace('%s',item.score)}}</span>
+            <span v-else>
+              {{lang.roolMsg2.replace('%n',item.nick).replace('%a',item.name).replace('%s',item.score)}}
           </li>
         </ul>
       </div>
@@ -15,7 +16,7 @@
  
 <script>
 export default {
-  data() {
+  data () {
     return {
       animate: false,
       list: [],
@@ -24,13 +25,13 @@ export default {
   },
   props: ["roolMsgs"],
   watch: {
-    roolMsgs(val) {
+    roolMsgs (val) {
       this.list = JSON.parse(JSON.stringify(val))
       this.rool()
     }
   },
   methods: {
-    rool() {
+    rool () {
       let that = this;
       if (that.list.length > 1 && that.timer == null) {
         clearInterval(that.timer)

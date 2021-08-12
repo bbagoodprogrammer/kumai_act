@@ -2,7 +2,7 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">Thời gian: 18:00 ngày 11/6 - 23:59:59 ngày 18/6</div>
+    <div class="actTime">Thời gian: {{tm}}</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">Thể lệ</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">Thưởng</span>
@@ -36,12 +36,15 @@
         </span>
       </div>
       <h6>3. Top 1 BXH ngày nhận 5 xúc xắc được phát vào 0h ngày kế tiếp </h6>
-      <h6>*Ngày 18/6 là ngày kết thúc event, quà BHX ngày 18/6 sẽ không gửi.</h6>
+      <h6>4. Xin lưu ý, ngày cuối cùng sẽ không tính thưởng bxh ngày</h6>
     </div>
     <p class="lastTips">*Quyết định cuối cùng thuộc về alochat</p>
   </div>
 </template>
 <script>
+
+import getDate from "../utils/getDate"
+import { mapState } from "vuex"
 export default {
   data () {
     return {
@@ -76,6 +79,12 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapState(['stime', 'etime']),
+    tm () {
+      return getDate(new Date(this.stime * 1000), 4) + '~' + getDate(new Date(this.etime * 1000), 4)
+    }
+  },
   methods: {
     tabClick (val) {
       this.type = val
@@ -92,7 +101,7 @@ export default {
 }
 .gl_img {
   width: 5.88rem;
-  height: 2.83rem;
+  height: 2.55rem;
   margin: 0.15rem auto;
 }
 

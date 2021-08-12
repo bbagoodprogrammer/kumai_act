@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="top1Score">
-          <strong>收到禮物個數</strong>
+          <strong>{{lang.scoreNums}}</strong>
           <em>{{top1.score}}</em>
         </div>
       </div>
@@ -35,7 +35,7 @@
             <img v-for="(item2,index2) in item.medals" :src="item2" :key="index2" alt="">
           </div>
           <div class="score">
-            <strong>收到禮物個數</strong>
+            <strong>{{lang.scoreNums}}</strong>
             <em>{{item.score}}</em>
           </div>
         </li>
@@ -44,9 +44,9 @@
     <!-- 任務列表 -->
     <!-- <taskList v-else></taskList> -->
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-    <div v-if="rank.loading" class="scrollLoading">加載中...</div>
+    <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
     <div v-if="rank.none" class="scrollNone">
-      暫無歌友上榜
+      {{lang.noData}}
     </div>
   </div>
 </template>

@@ -47,7 +47,7 @@
           <div class="lvItem">
             <div class="item" v-for="(item,index) in level_list" :key="index" :class="{act:user.noble_level  ==  index,over:user.noble_level  >  index}">
               <div class="name">{{item.name}}</div>
-              <div class="lvScore">{{item.value /10000}}万</div>
+              <div class="lvScore">{{getNumStr(item.value)}}</div>
             </div>
           </div>
         </div>
@@ -223,6 +223,14 @@ export default {
     },
     getImg () {
       return _images[`${this.showIndex + 1}_${this.showLv}`]
+    },
+    getNumStr (val) {
+      console.log(AREA)
+      if (AREA == 'tw') {
+        return `${val / 10000}${this.lang.thousand}`
+      } else if (AREA == 'vn' || AREA == 'id') {
+        return `${val / 1000}${this.lang.k}`
+      }
     }
   }
 }
@@ -233,17 +241,25 @@ body {
   background: #181B23;
 }
 .pageIndex {
-  padding-bottom: 2.5rem;
+  padding: 0.2rem 0 2.5rem;
   .tabs {
+    width: 6.58rem;
     height: 0.86rem;
-    padding: 0 0.46rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    // padding: 0 0.46rem;
+    white-space: nowrap;
+    margin: 0 auto;
+    overflow-x: scroll;
     .tabItem {
+      min-width: 0.796rem;
+      height: 100%;
+      white-space: nowrap;
+      display: inline-block;
+      text-align: center;
       font-size: 0.28rem;
       color: rgba(255, 255, 255, 0.4);
       position: relative;
+      padding: 0 0.15rem;
+      line-height: 0.86rem;
       &.act {
         color: #FFC86D;
       }
@@ -255,11 +271,16 @@ body {
         background: #FFC86D;
         border-radius: 0.03rem;
         position: absolute;
-        left: 0.14rem;
-        bottom: -0.15rem;
+        left: 50%;
+        margin-left: -0.14rem;
+        bottom: 0.08rem;
       }
     }
   }
+  .tabs::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+  }
+
   .my-swipe .van-swipe-item {
     .landBg,
     #landCanvas {
@@ -278,6 +299,7 @@ body {
     .aniSvga {
       display: block;
       position: relative;
+      margin-top: 0.5rem;
       z-index: 2;
     }
     canvas {
@@ -310,7 +332,7 @@ body {
       width: 5.1rem;
       height: 0.9rem;
       position: absolute;
-      bottom: 0.4rem;
+      bottom: -0.15rem;
       left: 0.62rem;
       z-index: 5;
     }
@@ -320,18 +342,16 @@ body {
       background: url(../img/top_bg.png);
       background-size: 100% 100%;
       position: absolute;
-      bottom: -0.73rem;
+      bottom: -1.48rem;
     }
   }
   .iconList {
     width: 6.72rem;
     height: 8.66rem;
     padding: 0.04rem;
-    border-image: -moz-linear-gradient(#222631, #1F232D) 4 4;
-    border-image: linear-gradient(#222631, #1F232D) 4 4;
-    background: -webkit-linear-gradient(0deg, #222631, #1F232D);
+    background: linear-gradient(#222631, #1F232D);
     border-radius: 0.28rem;
-    margin: 0 auto;
+    margin: 0.65rem auto 0;
     position: relative;
     .title {
       width: 2.3rem;
@@ -373,9 +393,9 @@ body {
     }
     .listCon {
       background: #1E212C;
-      width: 5.6rem;
-      height: 8.66rem;
-      padding: 0 0.6rem;
+      width: 100%;
+      height: 100%;
+      border-radius: 0.28rem;
       .is {
         height: 1.28rem;
         text-align: center;
@@ -387,7 +407,8 @@ body {
         }
       }
       .iconListMsg {
-        width: 100%;
+        width: 5.6rem;
+        padding: 0 0.56rem;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
@@ -406,7 +427,7 @@ body {
             background-size: 100% 100%;
           }
           &.icon2 {
-            background: url(../img/icon/icon1.png);
+            background: url(../img/icon/icon2.png);
             background-size: 100% 100%;
           }
           &.icon3 {
@@ -545,7 +566,6 @@ body {
           margin-top: 0.34rem;
           .item {
             width: 0.8rem;
-
             text-align: center;
             position: relative;
             &.act {
@@ -567,7 +587,7 @@ body {
             top: -0.19rem;
           }
           .lvScore {
-            margin-top: 0.02rem;
+            // margin-top: 0.02rem;
           }
         }
       }

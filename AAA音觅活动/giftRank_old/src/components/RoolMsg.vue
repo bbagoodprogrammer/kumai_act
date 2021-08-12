@@ -4,7 +4,7 @@
       <div class="roolBox">
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
-            <em> {{item.nick}}</em> 送了 <em>{{item.tonick}}</em> {{item.gname}} X {{item.count}} <img :src="item.gimage" />
+            <em> {{item.nick}}</em> {{lang.roolMsg}} <em>{{item.tonick}}</em> {{item.gname}} X {{item.count}} <img :src="item.gimage" />
           </li>
         </ul>
       </div>
@@ -14,7 +14,7 @@
  
 <script>
 export default {
-  data() {
+  data () {
     return {
       animate: false,
       list: [],
@@ -23,13 +23,13 @@ export default {
   },
   props: ["roolMsgs"],
   watch: {
-    roolMsgs(val) {
+    roolMsgs (val) {
       this.list = JSON.parse(JSON.stringify(val))
       this.rool()
     }
   },
   methods: {
-    rool() {
+    rool () {
       let that = this;
       if (that.list.length > 1 && that.timer == null) {
         clearInterval(that.timer)

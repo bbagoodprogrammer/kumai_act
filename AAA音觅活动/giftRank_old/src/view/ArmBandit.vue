@@ -41,17 +41,15 @@
         <div class="rule" v-if="showRules">
           <div class="con">
             <i class="close" @click="closeRule()"></i>
-            <h6>1 活動時間</h6>
+            <h6>{{lang.ruleTips1}}</h6>
             <p>{{aTimer}}</p>
-            <h6>2 榜單排名</h6>
-            <p>無需報名，收禮即可上榜，榜單按照活動期間內收到榜單指定禮物數量的前100名玩家從高到低排名</p>
-            <p>榜單展示指定禮物的實時累計數據</p>
-            <h6>3 活動獎勵</h6>
+            <h6>{{lang.ruleTips2}}</h6>
+            <p>{{lang.ruleTips3}}</p>
+            <p>{{lang.ruleTips4}}</p>
+            <h6>{{lang.ruleTips5}}</h6>
             <div class="giftBox">
               <!-- <h5>手持煙花榜：</h5> -->
-              <p>第一名：星光舞台-頭像框（10天）、大黃蜂-座駕（7天）<br />
-                第二名：星光舞台-頭像框（7天）<br />
-                第三名：星光舞台-頭像框（5天）
+              <p v-html="lang.ruleTips6">
               </p>
               <!-- <h5>牛氣沖天榜：</h5>
               <div class="giftBox">
@@ -62,10 +60,10 @@
                 </p>
               </div> -->
             </div>
-            <h6>4 注意事項 </h6>
-            <p>榜單獎勵在活動結束後五個工作日內發放獎勵</p>
-            <p>本活動與蘋果公司無關</p>
-            <p class="lastTips">本活動最終解釋權歸活動主辦方所有</p>
+            <h6>{{lang.lang.ruleTips7}} </h6>
+            <p>{{lang.lang.ruleTips8}}</p>
+            <p>{{lang.lang.ruleTips9}}</p>
+            <p class="lastTips">{{lang.lang.ruleTips10}}</p>
           </div>
         </div>
       </transition>

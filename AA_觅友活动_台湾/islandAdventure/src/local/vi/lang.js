@@ -19,8 +19,8 @@ export default {
     shovel1: "Xẻng",
     shovel2: "Xẻng vàng",
     max: "Lớn nhất",
-    getTip1: "100 ốc đổi 1 xẻng",
-    getTip2: "100 Xu đổi 1 xẻng vàng",
+    getTip1: "%s ốc đổi 1 xẻng",
+    getTip2: "%s Xu đổi 1 xẻng vàng",
     getSuc: "Đổi thành công",
 
     //History

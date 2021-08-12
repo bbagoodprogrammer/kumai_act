@@ -2,7 +2,7 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">活動時間:6月19日12：00-6月25日 23：59：59</div>
+    <div class="actTime">活動時間:{{tm}}</div>
     <div class="tab">
       <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">活動規則</span>
       <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">活動獎勵</span>
@@ -43,6 +43,9 @@
   </div>
 </template>
 <script>
+
+import getDate from "../utils/getDate"
+import { mapState } from "vuex"
 export default {
   data () {
     return {
@@ -77,6 +80,12 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapState(['stime', 'etime']),
+    tm () {
+      return getDate(new Date(this.stime * 1000), 4) + '~' + getDate(new Date(this.etime * 1000), 4)
+    }
+  },
   methods: {
     tabClick (val) {
       this.type = val
@@ -93,7 +102,7 @@ export default {
 }
 .table {
   width: 5.88rem;
-  height: 2.83rem;
+  height: 2.55rem;
   margin: 0 auto 0.1rem;
 }
 .rule {

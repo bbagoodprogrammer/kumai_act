@@ -1130,13 +1130,11 @@ export default {
             }
           }
           .tips {
-            white-space: nowrap;
             font-size: 0.24rem;
             color: rgba(233, 140, 86, 1);
             margin-top: 0.3rem;
           }
           .overNum {
-            white-space: nowrap;
             font-size: 0.24rem;
             color: rgba(174, 6, 5, 1);
           }

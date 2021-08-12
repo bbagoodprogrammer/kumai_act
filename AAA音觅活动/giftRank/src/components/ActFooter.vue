@@ -9,17 +9,17 @@
     <!-- <span class="singUp" @click="goSingUp()" v-if="showState ===2"></span> -->
     <div class="list" v-if="showState ===3 ">
       <div class="rank" v-if="myMsg.rank>0">{{myMsg.rank>100?'100+':myMsg.rank}}</div>
-      <div class="noRank" v-else>未上榜</div>
+      <div class="noRank" v-else>{{lang.noRank}}</div>
       <img v-lazy="owner.avatar" alt="" class="av">
       <div class="nick">{{owner.nick}}</div>
       <div class="medals">
         <img :src="item2" v-for="(item2,index2) in owner.medals" :key="index2" alt="">
       </div>
       <div class="score">
-             <!-- <em>(距上榜差 {{myMsg.uscore}}個)</em> -->
-             <em>{{tab == 0?'禮盒幸運值':'奇兵幸運值'}}</em>
+        <!-- <em>(距上榜差 {{myMsg.uscore}}個)</em> -->
+        <em>{{tab == 0?lang.tabScore1:lang.tabScore2}}</em>
         <strong>{{myMsg.score}}</strong>
-     
+
       </div>
     </div>
   </div>
@@ -30,13 +30,13 @@ import APP from "../utils/openApp"
 import api from "../api/apiConfig"
 import { globalBus } from '../utils/eventBus'
 export default {
-  data() {
+  data () {
     return {
     }
   },
   computed: {
     ...mapState(["groupsUserMsg", "actStatus", "isShare", "tab", "isSingUp", "owner", "gifts"]),
-    showState() {
+    showState () {
       if (this.actStatus == 0) {
         //活動未開始
         return 1
@@ -47,7 +47,7 @@ export default {
         return 3
       }
     },
-    myMsg() {
+    myMsg () {
       if (this.groupsUserMsg[this.tab]) {
         return this.groupsUserMsg[this.tab].msg
       }
@@ -55,14 +55,14 @@ export default {
     }
   },
   methods: {
-    goSingUp() {
+    goSingUp () {
       globalBus.$emit('commonEvent', () => {
         api.singUp().then((res) => {
           const { response_data, response_status } = res.data
           if (response_status.code === 0) {  //报名成功
             this.vxc('setToast', {
-              title: '報名成功',
-              msg: `收到${this.gifts[0].name}</br>或 ${this.gifts[1].name}即可上榜`,
+              title: this.lang.singUpSucTitle,
+              msg: this.lang.singUpSucTips.replace('%n', this.gifts[0].name).replace('%s', this.gifts[1].name),
               cb: this.$parent.getDefaultData
             })
           } else {
@@ -109,14 +109,14 @@ export default {
     .rank {
       width: 1.12rem;
       line-height: 0.94rem;
-    //   color: #014b41;
+      //   color: #014b41;
       text-align: center;
       font-weight: bold;
       font-size: 0.42rem;
     }
     .noRank {
       width: 1.12rem;
-    //   color: #014b41;
+      //   color: #014b41;
       font-size: 0.28rem;
       white-space: nowrap;
       text-align: center;

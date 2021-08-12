@@ -65,7 +65,7 @@
   history_msg1: "Membuat %n*%c buah",
   history_msg2: "Nilai bahagia+",
   taskName: {
-    mic: "Naik Mic 5 menit di kamar（Kamar pribadi tak dihitung）",
+    mic: "Naik Mic 5 menit di kamar(Kamar pribadi tak dihitung)",
     coin: "Berikan 100 koin emas di kamar",
     share: "Bagikan acara ke fb",
     create: "Bikin momen",
@@ -141,7 +141,7 @@
   ruleListItem2:
     "Lakukan tugas utk kumpulkan bahan dessert,buat dessert (hadiah ransel) utk dapatkan nilai bahagia >> kumpulkan nilai bahagia utk selesaikan tugas lanjutan utk terima hadiah",
   ruleListItem3:
-    "*Dessert yg berhasil dibuat akan didistribusikan ke ransel pemain, dapat diberikan kpd pemain lain di kamar manapun. Semua hadiah ransel dlm acara tersebut berlaku selama 7 hari, jika tak diberikan, hadiah itu tak valid~",
+    "*Dessert yg berhasil dibuat akan dikirimkan ke ransel pemain, dapat diberikan kpd pemain lain di kamar manapun. Semua hadiah ransel dlm acara tersebut berlaku selama 7 hari, jika tak diberikan, hadiah itu tak valid~",
   ruleListItem4: "Bagaimana cara kumpulkan nilai bahagia?",
   ruleListItem5:
     "Stlh Anda selesai buat dessert yg ditentukan, akan dapatkan nilai bahagia yg sesuai.",
@@ -186,7 +186,7 @@
     "Dessert House Anda belum dibuka <strong>Nilai bahagia:????</strong>",
   indexRoomName: "Dessert House ",
   indexCuldCreat: "Ada dessert yang bisa dibuat",
-  indexCreat: "Klik untuk membuat",
+  indexCreat: "Klik",
   indexCreatStatus: " Masih kurang %c %n utk buat %s",
   indexLastTips:
     "Hak interpretasi akhir acara adalah milik penyelenggara acara",

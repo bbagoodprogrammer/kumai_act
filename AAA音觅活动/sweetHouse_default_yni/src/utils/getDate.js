@@ -46,4 +46,13 @@ function getDate(datem, type) {
     return `${hours}:${minute}   ${date}/${month}`;
   }
 }
+
+function isToday(str) {
+  var td = new Date();
+  td = new Date(td.getFullYear(), td.getMonth(), td.getDate());
+  var od = new Date(str);
+  od = new Date(od.getFullYear(), od.getMonth(), od.getDate());
+  var xc = (od - td) / 1000 / 60 / 60 / 24;
+  return xc;
+}
 export default getDate;
