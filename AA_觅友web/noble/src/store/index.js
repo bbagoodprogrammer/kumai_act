@@ -15,32 +15,32 @@ export default new vuex.Store({
             //等级列表，key是等级，value是贵族值
             "1": {
                 value: 20000, // 等级列表
-                name: "游侠",
+                name: "",
                 gid: -1
             },
             "2": {
                 value: 100000,
-                name: "骑士",
+                name: "",
                 gid: -1
             },
             "3": {
                 value: 300000,
-                name: "子爵",
+                name: "",
                 gid: -1
             },
             "4": {
                 value: 800000,
-                name: "伯爵",
+                name: "",
                 gid: -1
             },
             "5": {
                 value: 1500000,
-                name: "侯爵",
+                name: "",
                 gid: -1
             },
             "6": {
                 value: 3000000,
-                name: "公爵",
+                name: "",
                 gid: -1
             }
         }

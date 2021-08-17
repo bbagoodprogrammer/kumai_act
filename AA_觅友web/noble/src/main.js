@@ -8,8 +8,12 @@ import store from "./store";
 import router from "./router";
 import { replaceLang, vuexCommit, toast } from "./utils";
 
-import { Swipe, SwipeItem } from "vant";
-import "vant/lib/index.css";
+import Swipe from "vant/lib/Swipe";
+import "vant/lib/Swipe/style";
+import SwipeItem from "vant/lib/swipe-item";
+import "vant/lib/swipe-item/style";
+// import { Swipe, SwipeItem } from "vant";
+// import "vant/lib/index.css";
 Vue.use(Swipe);
 Vue.use(SwipeItem);
 

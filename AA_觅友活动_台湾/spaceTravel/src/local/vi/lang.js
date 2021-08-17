@@ -4,7 +4,7 @@ export default {
     noAct: "Event chưa mở",
     actEd: "Event đã kết thúc",
     not_people: "Đang đợi",
-    act_tm: "Thời gian: 25/06 18:00 - 1/07 23:59:59 ",
+    act_tm: "Thời gian:",
     //ball
     space_station: "Trạm không Gian",
     landing_star: "Hạ cánh hành tinh",
@@ -35,7 +35,7 @@ export default {
 
     //slice
     slice_tips1:
-        "Mỗi lần tặng 100 Xu quà chỉ định, nhận 1 phiếu du hành, dùng phiếu du hành nhận mảnh Tên lửa cầu vồng, sau khi thu thập đủ sẽ nhận quà vũ trụ tương ứng",
+        "Mỗi lần tặng 100 Xu quà chỉ định, nhận 1 phiếu du hành, dùng phiếu du hành nhận mảnh UFO, sau khi thu thập đủ sẽ nhận quà vũ trụ tương ứng",
     ufoLuck: "Rút mảnh",
     ticket: "phiếu du hành",
     ticket_used: "Tôi đã dùng $ phiếu du hành",
@@ -114,7 +114,7 @@ export default {
         {
             h5: "5. Khám Phá Hành Tinh",
             p:
-                "Khi người chơi mỗi lần tặng quà chỉ định 100 Xu, sẽ nhận được một phiếu du hành, sử dụng 1 phiếu du hành sẽ rút 1 lần mảnh Tên lửa cầu vồng, Khi các mảnh nằm ngang được thu thập đầy đủ, sẽ nhận được phần quà tương ứng; khi thu thập đủ các mảnh sẽ nhận được vật cưỡi Tên lửa cầu vồng (10 ngày)."
+                "Khi người chơi mỗi lần tặng quà chỉ định 100 Xu, sẽ nhận được một phiếu du hành, sử dụng 1 phiếu du hành sẽ rút 1 lần mảnh UFO, Khi các mảnh nằm ngang được thu thập đầy đủ, sẽ nhận được phần quà tương ứng; khi thu thập đủ các mảnh sẽ nhận được vật cưỡi UFO (10 ngày)."
         },
         {
             h5: "6. Khác",

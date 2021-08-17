@@ -39,7 +39,7 @@ export default {
         {
             name: "Danh hiệu quý tộc",
             tips:
-                "Danh hiệu quý tộc sẽ được hiển thị trong phòng và trang cá nhân, cấp quý tộc càng cao, địa vị cũng càng cao quý hơn. "
+                "Danh hiệu quý tộc sẽ được hiển thị trong phòng và trang cá nhân, cấp quý tộc càng cao, địa vị cũng càng cao quý hơn. "
         },
         {
             name: "Quà độc quyền",

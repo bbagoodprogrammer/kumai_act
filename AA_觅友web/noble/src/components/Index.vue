@@ -38,7 +38,7 @@
       <div class="userScore">
         <div class="userMonth">
           <span class="score" v-html="lang.userScore.replace('%s',user.noble_value)"></span>
-          <span class="explain" @click="$router.push({name:'explain'})">{{lang.explain}}</span>
+          <span class="explainTips" @click="$router.push({name:'explain'})">{{lang.explain}}</span>
         </div>
         <div class="lv">
           <div class="lvLiner">
@@ -76,7 +76,7 @@
 import { mapState } from "vuex"
 import { Downloader, Parser, Player } from 'svga.lite'
 const downloader = new Downloader()
-const parser = new Parser({ disableWorker: true })
+const parser = new Parser({ disableWorker: true, isDisableImageBitmapShim: true })
 
 export default {
   data () {
@@ -134,7 +134,6 @@ export default {
             if (userScore >= this.level_list[i].value) {
               let c = this.level_list[i + 1].value - this.level_list[i].value
               let a = userScore - this.level_list[i].value
-              console.log(c, a, (a / c / 4.8 * 100) + (i - 1) * 19 + '%')
               return (a / c * 100) / 5.5 + (i - 1) * 18 + 5.3 + '%'
             }
           }
@@ -169,6 +168,17 @@ export default {
   async created () {
     this.linerSvga.data = await this.loadSvgaData(this.linerSvga.addres)
   },
+  activated () {
+    this.initNum = this.nowIndex
+    if (this.svgaConfig[this.nowIndex].player) {
+      this.svgaConfig[this.nowIndex].player.start()
+    }
+  },
+  deactivated () {
+    if (this.svgaConfig[this.nowIndex].player) {
+      this.svgaConfig[this.nowIndex].player.stop()
+    }
+  },
   methods: {
     tabClick (index) {
       this.$refs.swiper.swipeTo(index)
@@ -190,7 +200,7 @@ export default {
       let canvas = document.getElementById('iconCanvas' + item.key)
       let player = new Player(canvas)
       if (item.key == 0) {
-        player.set({ startFrame: 2 })
+        player.set({ startFrame: 2, isCacheFrames: true })
       }
       await player.mount(data)
       if (play) {
@@ -219,19 +229,16 @@ export default {
       });
     },
     showMsg (index, item, index2) { //第几级 第几个icon
-      console.log(index, item.privilege)
       if (item.privilege >= index2) {
         this.showLv = index + 1
         this.showIndex = index2
         this.showPup = true
       }
-
     },
     getImg () {
       return _images[`${this.showIndex + 1}_${this.showLv}`]
     },
     getNumStr (val) {
-      console.log(AREA)
       if (AREA == 'tw') {
         return `${val / 10000}${this.lang.thousand}`
       } else if (AREA == 'vn') {
@@ -255,14 +262,14 @@ body {
 .pageIndex {
   padding: 0.2rem 0 2.5rem;
   .tabs {
-    width: 6.58rem;
+    // width: 6.58rem;
     height: 0.86rem;
     // padding: 0 0.46rem;
     white-space: nowrap;
     margin: 0 auto;
     overflow-x: scroll;
     .tabItem {
-      min-width: 0.796rem;
+      // min-width: 0.796rem;
       height: 100%;
       white-space: nowrap;
       display: inline-block;
@@ -270,7 +277,7 @@ body {
       font-size: 0.28rem;
       color: rgba(255, 255, 255, 0.4);
       position: relative;
-      padding: 0 0.15rem;
+      padding: 0 0.335rem;
       line-height: 0.86rem;
       &.act {
         color: #FFC86D;
@@ -287,6 +294,9 @@ body {
         margin-left: -0.14rem;
         bottom: 0.08rem;
       }
+    }
+    .tabItem:first-child {
+      margin-left: 0.14rem;
     }
   }
   .tabs::-webkit-scrollbar {
@@ -359,7 +369,7 @@ body {
   }
   .iconList {
     width: 6.72rem;
-    height: 8.66rem;
+    min-height: 8.66rem;
     padding: 0.04rem;
     background: linear-gradient(#222631, #1F232D);
     border-radius: 0.28rem;
@@ -428,6 +438,7 @@ body {
       .iconItem {
         width: 1.28rem;
         height: 2.4rem;
+        margin-bottom: 0.33rem;
         // flex: 33.33%;
         .icon {
           display: block;
@@ -640,6 +651,8 @@ body {
       margin: 0.4rem auto 0;
       color: #2C2B36;
       font-size: 0.28rem;
+      text-align: center;
+      line-height: 0.4rem;
     }
   }
   img {

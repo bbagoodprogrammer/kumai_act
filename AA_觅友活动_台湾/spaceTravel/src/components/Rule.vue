@@ -6,7 +6,7 @@
       <a class="tab2" @click.prevent="mainTab=1" :class="{current:mainTab==1}" href="">{{lang.rule_tab2}}</a>
     </div>
     <div class="rule_con">
-      <p class="tm">{{lang.act_tm}}</p>
+      <p class="tm">{{lang.act_tm}}{{aTimer}}</p>
       <div class="ruleTips " v-if="!mainTab">
         <div v-for="(item,index) in rule_tips" :key="index">
           <h5>{{item.h5}}</h5>
@@ -61,6 +61,9 @@
 </template>
 
 <script>
+
+import getDate from "../utils/getDate"
+import { mapState } from "vuex"
 export default {
   data () {
     return {
@@ -68,6 +71,15 @@ export default {
     }
   },
   computed: {
+    ...mapState(['activity']),
+    aTimer () {
+      if (AREA == 'tw') {
+        return getDate(new Date(this.activity.stime * 1000), 1) + '-' + getDate(new Date(this.activity.etime * 1000), 1)
+      } else if (AREA == 'vn') {
+        return getDate(new Date(this.activity.stime * 1000), 2) + '-' + getDate(new Date(this.activity.etime * 1000), 2)
+      }
+
+    },
     rule_tips () {
       return this.lang.rule_tips
     },

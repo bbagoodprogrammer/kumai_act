@@ -20,7 +20,7 @@
             <div class="name">{{item.name}}</div>
           </div>
           <!-- {{lang.thousand}} -->
-          <div class="score"><em>{{getNumStr(item.score)}} </em></div>
+          <div class="score" v-html="getNumStr(item.score)"></div>
           <div class="nums"><em>{{item.privilegeNums}}</em>{{lang.num}}</div>
         </li>
       </ul>
@@ -46,16 +46,15 @@ export default {
   },
   methods: {
     getNumStr (val) {
-      console.log(AREA, val)
       if (AREA == 'tw') {
-        return `${val / 10000}${this.lang.thousand}`
+        return `<em>${val / 10000}</em> ${this.lang.thousand}`
       } else if (AREA == 'vn') {
-        return `${val / 1000}${this.lang.k}`
+        return `<em>${val / 1000}</em> ${this.lang.k}`
       } else if (AREA == 'id') {
         if (val < 1000000) {
-          return `${val / 1000}${this.lang.k}`
+          return `<em>${val / 1000}</em> ${this.lang.k}`
         } else if (val > 1000000) {
-          return `${val / 1000000}${this.lang.million}`
+          return `<em>${val / 1000000}</em> ${this.lang.million}`
         }
       }
     }
@@ -63,7 +62,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .explain {
   padding: 0.3rem 0.3rem 0.84rem;
   .explainMsg1 {
