@@ -9,7 +9,6 @@ export default function tween(
     complete,
     easing
 ) {
-    console.log(fromValue, toValue, duration);
     if (typeof easing != "function") {
         easing = function(t) {
             return t;

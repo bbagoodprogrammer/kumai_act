@@ -94,7 +94,7 @@ export default {
         },
         2: {
           key: '2',
-          addres: '//fstatic.cat1314.com/uc/svga/6825b913e7177ad0ac2f334417091e35_1628564899.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/c211a417f74ed3b0da1c49ec3e56a912_1629254965.svga'
         },
         3: {
           key: '3',
