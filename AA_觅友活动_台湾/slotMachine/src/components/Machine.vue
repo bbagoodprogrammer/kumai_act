@@ -3,9 +3,12 @@
     <div class="userNums">幸運值：{{disNums}}</div>
     <slot-machine-test ref="slot"></slot-machine-test>
     <div class="startStype">
-      <span v-for="(item,index) in luckType" :key="index" :class="'type' + index" @click="startGame(item)">
-
-      </span>
+      <span v-for="(item,index) in luckType" :key="index" :class="'type' + index" @click="startGame(item)"></span>
+    </div>
+    <div class="userCoins">
+      <i class="coinsIcon"></i>
+      <span>{{owner.coins}}</span>
+      <i class="add" @click="gowalletpage()"></i>
     </div>
   </div>
 </template>
@@ -33,17 +36,31 @@ export default {
         this.disNums = parseInt(v)
       })
     },
-    owner (val) {
-      this.nums = val.score
+    userScore (val) {
+      this.nums = val
     }
   },
   computed: {
-    ...mapState(['owner'])
+    ...mapState(['owner']),
+    userScore () {
+      return this.owner.score
+    }
   },
   methods: {
     startGame (val) {
       this.$refs.slot.startGame(val)
-    }
+    },
+    gowalletpage () {
+      const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      try {
+        if (ios) {
+          // goWalletpage()
+          sendJsData('app://walletpage');
+        } else {
+          javascript: JSInterface.sendJsData('app://walletpage');
+        }
+      } catch (e) { }
+    },
   }
 }
 </script>
@@ -70,6 +87,34 @@ export default {
     left: 0.63rem;
     display: flex;
     justify-content: space-between;
+  }
+  .userCoins {
+    width: 2.22rem;
+    height: 0.46rem;
+    background: url(../img/coinsBg.png);
+    background-size: 100% 100%;
+    position: absolute;
+    top: 9.3rem;
+    left: 2.64rem;
+    display: flex;
+    align-items: center;
+    .coinsIcon {
+      width: 0.32rem;
+      height: 0.32rem;
+      background: url(../img/coins.png);
+      background-size: 100% 100%;
+      margin-left: 0.1rem;
+    }
+    span {
+      flex: 1;
+      text-align: center;
+    }
+    .add {
+      width: 0.41rem;
+      height: 0.4rem;
+      background: url(../img/add.png);
+      background-size: 100% 100%;
+    }
   }
 }
 </style>

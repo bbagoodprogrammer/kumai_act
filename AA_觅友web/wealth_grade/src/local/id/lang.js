@@ -52,7 +52,7 @@
         "Ketentuan berikut bawah perilaku interaktif meningkatkan nilai kekayaan yang berbeda：",
         '1、Berikan hadiah "Lucky Star", konsumsi 1 koin emas akan tingkatkan 0.8 poin nilai kekayaan.',
         "2、Saat memasang taruhan Blackjack di kamar, konsumsi 1 koin emas = 0.2 nilai kekayaan",
-        "3、Saat berpartisipasi dalam gameplay aktivitas resmi, konsumsi 1 koin emas = 0.1 nilai kekayaan",
+        "3、Saat berpartisipasi dalam gameplay aktivitas resmi, konsumsi 1 koin emas = 0.05~0.1 nilai kekayaan",
         '4、Buka hak istimewa "Lihat yg sukai aku" ，akan tingkatkan 2,000 poin nilai kekayaan saat buka sebulan.'
     ],
     type1: "Level kekayaan", //'Level kekayaan

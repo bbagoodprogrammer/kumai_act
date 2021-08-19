@@ -45,7 +45,7 @@ export default {
         "Những hành động sau tăng điểm tài phú khác nhau：",
         "1. Tặng quà “Ngôi sao may mắn”, dùng 1 xu tăng 0.8 điểm tài phú；",
         "2. Đặt cược trong phòng Xì Dách, dùng 1 xu tăng 0.2 điểm tài phú；",
-        "3. Tham gia sự kiện tại Alochat, tiêu hao 1xu=0.1điểm tài phú",
+        "3. Tham gia sự kiện tại Alochat, tiêu hao 1xu=0.05~0.1điểm tài phú",
         "4. Khi mở đặt quyền ”Xem người thích tôi”, mỗi tháng đặc quyền sẽ tăng 2000 điểm tài phú；"
     ],
     type1: "Cấp tài phú", //財富等級

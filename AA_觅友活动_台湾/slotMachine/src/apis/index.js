@@ -216,4 +216,14 @@ function luckDraw(coins) {
     );
 }
 
-export { get, post, loadData, getInitInfo, luckDraw };
+function lotteryRecord(from, more) {
+    if (more) {
+        return axios.get(
+            `/index.php?action=slotMachine.history&uid={uid}&token={token}&from=${from}`
+        );
+    }
+    return get(
+        `/index.php?action=slotMachine.history&uid={uid}&token={token}&from=${from}`
+    );
+}
+export { get, post, loadData, getInitInfo, luckDraw, lotteryRecord };

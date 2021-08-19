@@ -4,10 +4,11 @@
       <SlotMachine @end="onEnd" :size="3" :nums="nums" :list="list" :result="result" ref="Slot" />
       <div class="mask" v-show="showMinToast">
         <transition name="slide">
-          <div class="luckPup" v-if="showMinToast">
+          <div class="luckPup" v-if="showMinToast" :class="{bg:prize.type != 'coin' && prize.type != 'bean'}">
             <i class="close" @click="hideToast()"></i>
+            <div class="title">恭喜獲得</div>
             <div class="imgBox">
-              <img :src="prize.image" alt="" v-if="prize.image">
+              <img :src="prize.image" alt="" v-if="prize.type != 'coin' && prize.type != 'bean'">
               <div class="coinsNums" v-else>
                 <img :src="prize.type == 'coin'?require(`../../img/turnImg/99.png`):require(`../../img/turnImg/98.png`)" alt="">
                 <div class="nums">
@@ -16,6 +17,7 @@
               </div>
               <div class="name">{{prize.name}}</div>
             </div>
+            <div class="get" @click="hideToast()">開心收下</div>
           </div>
         </transition>
       </div>
@@ -80,7 +82,7 @@ export default {
     };
   },
   computed: {
-    ...mapState([])
+    ...mapState(['owner'])
   },
 
   methods: {
@@ -89,27 +91,37 @@ export default {
       return start + Math.round(Math.random() * len);
     },
     startGame (val) {
-      if (this.drawSwitch) { //避免重复请求  活动开始转动
+      if (this.owner.coins >= val && this.drawSwitch) { //避免重复请求  活动开始转动
         this.drawSwitch = false  //关闭开关
         this.nums = []
         luckDraw(val).then(res => { // 获取抽奖结果
           if (res.data.response_status.code === 0) {
-            const { icons, nums, prize } = res.data.response_data
+            const { icons, nums, prize, score, coins } = res.data.response_data
             this.result = icons       //开启奖品滚动效果
             this.prize = prize
             this.nums = nums
+            this.vxc('resetLuckState')
+            setTimeout(() => {
+              this.vxc('addScore', score)
+              this.vxc('addCoins', coins)
+            }, 4000)
             this.$emit('setPacketStatus')
           } else {
             this.toast(res.data.response_status.error)
           }
         })
+      } else if (this.owner.coins < val) {
+        this.toast(`金幣不足~`)
+        setTimeout(() => {
+          this.$parent.gowalletpage()
+        }, 1300)
       }
     },
     onEnd (result) { //动画结束时重置开关
       setTimeout(() => {
         this.drawSwitch = true //请求开启开关
         this.showMinToast = true
-      }, 700)
+      }, 1300)
     },
     hideToast () {
       this.showMinToast = false
@@ -173,6 +185,23 @@ button {
   background: url(../../img/giftPup.png);
   background-size: 100% 100%;
   position: relative;
+  &.bg {
+    .imgBox {
+      width: 2.78rem;
+      height: 2.78rem;
+      background: url(../../img/giftBg.png);
+      background-size: 100% 100%;
+    }
+
+    .get {
+      margin: 1rem auto 0;
+    }
+  }
+  .title {
+    text-align: center;
+    height: 1rem;
+    line-height: 1.1rem;
+  }
   .close {
     display: block;
     width: 0.66rem;
@@ -184,19 +213,35 @@ button {
     top: 0.1rem;
   }
   .imgBox {
-    width: 2.78rem;
-    height: 2.78rem;
-    background: url(../../img/giftBg.png);
+    margin: 0.68rem auto 0;
+    > img {
+      width: 2.78rem;
+      height: 2.78rem;
+      margin: 0 auto;
+    }
+  }
+  .get {
+    width: 2.7rem;
+    height: 0.92rem;
+    font-size: 0.36rem;
+    background: url(../../img/get.png);
     background-size: 100% 100%;
-    margin: 1.68rem auto 0;
+    text-align: center;
+    line-height: 0.92rem;
+    margin: 0.5rem auto 0;
+    font-size: 0.26rem;
+    color: #6C0000;
   }
   .coinsNums {
-    width: 100%;
-    height: 100%;
+    width: 2.78rem;
+    height: 2.78rem;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: url(../../img/giftBg.png);
+    background-size: 100% 100%;
+    margin: 0 auto;
     .nums {
       position: absolute;
       bottom: 0.15rem;

@@ -90,23 +90,23 @@ export default {
         },
         1: {
           key: '1',
-          addres: '//fstatic.cat1314.com/uc/svga/8bbd48de84685a71563ae135930e1937_1628564883.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/1045d3b466a740c15615e9e1b9c35514_1629358177.svga'
         },
         2: {
           key: '2',
-          addres: '//fstatic.cat1314.com/uc/svga/c211a417f74ed3b0da1c49ec3e56a912_1629254965.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/9800a3e0f5b00f4286f603f10f68010a_1629358190.svga'
         },
         3: {
           key: '3',
-          addres: '//fstatic.cat1314.com/uc/svga/88b29096196635aebe34dd5dbdff2a4d_1628564910.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/6c1d2a4f943521cf9988ca2fdc748f9c_1629358202.svga'
         },
         4: {
           key: '4',
-          addres: '//fstatic.cat1314.com/uc/svga/ec6b3c58ac3b73cbb072b33aeb90bd76_1628564922.svga '
+          addres: '//fstatic.cat1314.com/uc/svga/98c347f5e013782a9b6453fb673f2224_1629358212.svga'
         },
         5: {
           key: '5',
-          addres: '//fstatic.cat1314.com/uc/svga/fa1c4a34a4bca9ba9e5fccfc12acff3a_1628564933.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/ae66351fd17fd6b65510f242a3f89244_1629358221.svga'
         },
       },
       linerSvga: {

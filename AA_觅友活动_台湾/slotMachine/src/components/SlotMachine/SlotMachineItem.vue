@@ -4,7 +4,7 @@
       <ul :class="{active:active && slotIndex == 0,active2:active&& slotIndex == 1,active3:active&& slotIndex == 2}" :style="{transform:'translateY('+translateY+'px)'}">
         <li v-for="(item,index) in items" :key="index">
           <!-- luckCoins && icons.length &&  -->
-          <div class="coinsNums" v-if="nums.length  && item.id == nowIndex && luckCoins">
+          <div class="coinsNums" v-if="nums.length  && item.id == nowIndex && luckCoins[slotIndex]">
             <img :src="item.defalutSrc" alt="">
             <div class="nums">
               <img :src="require(`../../img/nums/${item2}.png`)" v-for="(item2,index2) in numsStr" :key="index2" alt="">
@@ -18,8 +18,10 @@
 </template>
 
 <script>
+
+import { mapState } from "vuex"
 export default {
-  props: ['list', 'id', 'size', 'slotIndex', 'updateFlag', 'nums', 'icons', 'nowIndex'],
+  props: ['list', 'id', 'size', 'slotIndex', 'updateFlag', 'nums', 'icons', 'nowIndex',],
   data () {
     return {
       oldId: -1,
@@ -32,10 +34,10 @@ export default {
 
       timer1: null,
       timer2: null,
-      luckCoins: false
     };
   },
   computed: {
+    ...mapState(['luckCoins']),
     items () {
       const list = Object.assign([], this.list).sort(() => 0.5 - Math.random());
       return list.concat(list).concat(list).concat(list).concat(list)
@@ -68,7 +70,8 @@ export default {
           this.translateY = this.getEndY(this.id);
           this.timer2 = setTimeout(() => {
             this.active = false;
-            this.luckCoins = true
+            // this.luckCoins = true
+            this.vxc('setLuckState', this.slotIndex)
             if (this.slotIndex == this.size - 1) {
               let liList = document.getElementsByTagName('li')
               this.$emit('end');

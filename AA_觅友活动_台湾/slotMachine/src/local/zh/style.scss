@@ -1,6 +1,6 @@
 html.zh {
     .machine{
-        background: #0D042A url(../../img/banner.png);
+        background:  url(./img/banner.png);
         background-size: 100% 100%;
     }
     .startStype {
@@ -24,5 +24,11 @@ html.zh {
             background-size: 100% 100%;
           }
         }
+      }
+      .user_rank{
+          .title{
+            background: url(./img/tankTitle.png);
+            background-size: 100% 100%;
+          }
       }
 }
