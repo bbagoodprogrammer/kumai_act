@@ -1,6 +1,6 @@
 <template>
   <div class="machine">
-    <div class="userNums">幸運值：{{disNums}}</div>
+    <div class="userNums">{{lang.scoreName}}：{{disNums}}</div>
     <slot-machine-test ref="slot"></slot-machine-test>
     <div class="startStype">
       <span v-for="(item,index) in luckType" :key="index" :class="'type' + index" @click="startGame(item)"></span>

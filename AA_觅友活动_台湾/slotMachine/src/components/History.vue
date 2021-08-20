@@ -4,7 +4,10 @@
     <div class="title">{{lang.history_title}}</div>
     <ul class="stats">
       <li v-for="(item,index) in stats" :key="index">
-        <em>{{item.coins}}金幣</em>檔抽獎次數：{{item.go_count}}
+        <div v-html="lang.historyCoins.replace('%s',item.coins).replace('%n',item.go_count)">
+
+        </div>
+        <!-- <em>{{item.coins}}金幣</em>檔抽獎次數：{{item.go_count}} -->
       </li>
     </ul>
     <div class="hasData">
@@ -12,12 +15,12 @@
         <li v-for="(item,index) in hList" :key="index">
           <div class="msg">
             <span class="gift">
-              恭喜獲得{{item.prize_name}}
+              {{lang.luckTitle}}{{item.prize_name}}
             </span>
             <span class="time">{{getDateStr(item.tm)}}</span>
           </div>
           <div class="score">
-            +{{item.score}}幸運值
+            +{{item.score}}{{lang.scoreName}}
           </div>
         </li>
       </ul>
@@ -84,7 +87,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .historyList {
   position: relative;
   width: 6.51rem;
@@ -114,6 +117,7 @@ export default {
   .stats {
     padding: 0 0.27rem;
     margin: 0.2rem 0;
+    text-align: left;
     li {
       font-size: 0.32rem;
       em {

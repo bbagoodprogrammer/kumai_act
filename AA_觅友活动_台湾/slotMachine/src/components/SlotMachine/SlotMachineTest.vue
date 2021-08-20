@@ -6,7 +6,7 @@
         <transition name="slide">
           <div class="luckPup" v-if="showMinToast" :class="{bg:prize.type != 'coin' && prize.type != 'bean'}">
             <i class="close" @click="hideToast()"></i>
-            <div class="title">恭喜獲得</div>
+            <div class="title">{{lang.luckTitle}}</div>
             <div class="imgBox">
               <img :src="prize.image" alt="" v-if="prize.type != 'coin' && prize.type != 'bean'">
               <div class="coinsNums" v-else>
@@ -17,7 +17,7 @@
               </div>
               <div class="name">{{prize.name}}</div>
             </div>
-            <div class="get" @click="hideToast()">開心收下</div>
+            <div class="get" @click="hideToast()">{{lang.get}}</div>
           </div>
         </transition>
       </div>
@@ -111,7 +111,7 @@ export default {
           }
         })
       } else if (this.owner.coins < val) {
-        this.toast(`金幣不足~`)
+        this.toast(this.lang.noCoins)
         setTimeout(() => {
           this.$parent.gowalletpage()
         }, 1300)

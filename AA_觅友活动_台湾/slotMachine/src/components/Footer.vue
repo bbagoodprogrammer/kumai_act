@@ -3,6 +3,7 @@
     <div class="acrStatus">
       <span class="noAct" v-if="astState === 1">{{lang.noAct}}</span>
       <span class="noAct" v-if="astState === 2">{{lang.actEd}}</span>
+      <span class="noAct" v-if="astState === 4" @click="scorllTo()">{{lang.luck}}</span>
       <div class="actIng" v-if="astState === 3" :class="['rank' + owner.rank]">
         <div class="userRank">{{owner.rank}}</div>
         <div class="imgBox">
@@ -27,7 +28,7 @@
           </div>
         </div>
         <div class="score">
-          <i>幸運值</i>
+          <i>{{lang.scoreName}}</i>
           <em>{{owner.score}}</em>
         </div>
       </div>
@@ -45,12 +46,26 @@ export default {
         return 1
       } else if (this.activity.activity_status === 2) { //活动已结束
         return 2
+      } else if (this.owner && this.owner.score == 0) { //活动开始已报名
+        return 4
       } else if (this.owner) { //活动开始已报名
         return 3
       }
     },
   },
-
+  methods: {
+    scorllTo () {
+      //   let e = document.documentElement.scrollTop || document.body.scrollTop
+      this.timer = setInterval(() => {
+        let c = document.documentElement.scrollTop || document.body.scrollTop
+        let t = (0 - c) / 10
+        window.scrollTo(0, c + t)
+        if (c < 1) {
+          clearInterval(this.timer)
+        }
+      }, 10)
+    }
+  }
 }
 </script>
 <style lang="scss">

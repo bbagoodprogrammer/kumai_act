@@ -12,7 +12,7 @@
       <em>{{lang.rank_second}}</em>
     </div>
     <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
-    <p v-if="!rank.length">{{lang.noData}}</p>
+    <p v-if="!rank.length" class="noData">{{lang.noData}}</p>
     <ul>
       <li v-for="(item,index) in rank" :key="index" :class="['rank' + item.rank]" @click="goUser(item)">
         <div class="userRank">{{item.rank}}</div>
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="score">
-          <i>幸運值</i>
+          <i>{{lang.scoreName}}</i>
           <em>{{item.score}}</em>
         </div>
       </li>
@@ -83,7 +83,6 @@ export default {
       }, 1000)
     },
     onRefresh () {
-      console.log('xxx')
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       this.$store.dispatch('getInitInfo');
     },
@@ -115,6 +114,10 @@ export default {
     position: absolute;
     left: 0.84rem;
     top: -1.23rem;
+  }
+  .noData {
+    text-align: center;
+    margin-top: 0.3rem;
   }
   .timeDown {
     padding: 0 1.1rem;

@@ -31,13 +31,16 @@
     <div class="user noData" v-else>
       暫無數據
     </div>
+    <loading></loading>
   </div>
 </template>
 
 <script>
 import api from "../../api/apiConfig"
 import getDate from "../../utils/getDate"
+import Loading from "../../components/Loading"
 export default {
+  components: { Loading },
   data () {
     return {
       tabs: [],
@@ -83,7 +86,7 @@ export default {
           const gifts = res.data.response_data.gifts
           this.$set(this.rankGrounp, index, users)
           this.$set(this.giftsGrounp, index, gifts)
-          if (users && users.length) {
+          if (users) {
             for (let a in users) {
               this.id = a
               this.vol = index
@@ -136,6 +139,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 0.58rem;
     .tabItem {
       width: 1.18rem;
       //   flex: 1;
@@ -157,6 +161,7 @@ body {
     }
   }
   .gifts {
+    min-height: 1.75rem;
     .title {
       width: 1.31rem;
       height: 0.33rem;

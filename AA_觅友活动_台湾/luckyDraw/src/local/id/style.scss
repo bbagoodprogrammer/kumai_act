@@ -1,0 +1,62 @@
+html.id {
+    #rotary_table{
+        .award{
+            img{
+                height:  .9rem!important;
+            }
+            p{
+               padding-top: 0!important;
+            }
+        }
+    }
+    .leftfree{
+        width: 6rem!important;
+    }
+.main_container{
+    background: url("./img/background.png") no-repeat;
+    background-size: 7.5rem 12.06rem;
+}
+.change{
+    background: url('./img/change.png') no-repeat;
+    background-size: 0.88rem 0.85rem;
+}
+.pro_one,.pro_five{
+.title{
+    background: url(./img/cons.png);
+    background-size: 100% 100%;
+}
+}
+
+.record_box{
+    .title{
+        background: url(./img/details_title.png);
+        background-size: 100% 100%;
+        }
+}
+
+    .five{
+        background: url('./img/five.png') no-repeat;
+        background-size: 100% 100%;
+    }
+    #start-btn {
+        background: url('./img/one.png') no-repeat;
+        background-size: 100% 100%;
+    }
+    .open{
+        span:nth-of-type(1) {
+            background-image: url('./img/open_rule.png');
+          }
+          span:nth-of-type(2) {
+            background-image: url('./img/open_details.png');
+          }
+          span:nth-of-type(3) {
+            background-image: url('./img/open_task.png');
+          } 
+    }
+    .prize_title{
+        background: url(./img/prize_title.png);
+        background-size: 100% 100%;
+    }
+}
+
+

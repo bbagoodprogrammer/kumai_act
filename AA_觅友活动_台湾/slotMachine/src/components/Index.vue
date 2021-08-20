@@ -1,8 +1,9 @@
 <template>
   <div class="page pageIndex">
+    <RoolMsg />
     <div class="ruleTips">
-      <span class="rule">獎勵規則</span>
-      <span class="history" @click="showHistory = true">抽獎記錄</span>
+      <span class="rule" @click="showRule = true">{{lang.indexRuleTips1}}</span>
+      <span class="history" @click="showHistory = true">{{lang.indexRuleTips2}}</span>
     </div>
     <Machine />
     <Rank />
@@ -10,6 +11,11 @@
     <div class="mask" v-show="showHistory">
       <transition name="slide">
         <History v-if="showHistory" />
+      </transition>
+    </div>
+    <div class="mask" v-show="showRule">
+      <transition name="slide">
+        <Rule v-if="showRule" />
       </transition>
     </div>
   </div>
@@ -21,11 +27,15 @@ import Machine from "./Machine"
 import Rank from "./Rank"
 import Footer from "./Footer"
 import History from "./History"
+import Rule from "./Rule"
+import RoolMsg from "./RoolMsg"
+
 export default {
-  components: { Machine, Rank, Footer, History },
+  components: { Machine, Rank, Footer, History, Rule, RoolMsg },
   data () {
     return {
-      showHistory: false
+      showHistory: false,
+      showRule: false
     }
   }
 }

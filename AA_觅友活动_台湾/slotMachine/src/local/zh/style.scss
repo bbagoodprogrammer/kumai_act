@@ -31,4 +31,20 @@ html.zh {
             background-size: 100% 100%;
           }
       }
+      .rule{
+          .table1{
+            width: 6.88rem;
+            height: 5.15rem;
+            background: url(./img/table1.png);
+            background-size: 100% 100%;
+            margin:0  0 .1rem  -.14rem;
+          }
+          .table2{
+            width: 6.88rem;
+            height: 6rem;
+            background: url(./img/table2.png);
+            background-size: 100% 100%;
+            margin-left: -.14rem;
+            }
+        }
 }

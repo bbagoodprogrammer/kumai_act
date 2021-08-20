@@ -1,0 +1,38 @@
+html.ar {
+  direction: rtl;
+}
+
+html.ar .main_container .turntable_box #rotary_table .award .val i {
+  padding-left: .06rem;
+  padding-right: 0rem;
+}
+
+html.ar .upload_img > p span:first-of-type {
+  margin-left: 0.1rem;
+}
+
+html.ar .main_container .pro_gift.pro_gift3 .gift_lists {
+  text-align: right;
+}
+
+html.ar .main_container .pro_gift.pro_gift2 .gift_lists {
+  text-align: right;
+}
+
+html.ar .rankItem .top2 {
+  left: auto;
+  right: .35rem;
+}
+
+html.ar .rankItem .top3 {
+  right: auto;
+  left: .35rem;
+}
+
+html.ar .main_container .pro_gift .gift_lists .list {
+  margin: 0 0rem .1rem 0.1rem;
+}
+
+html.ar .main_container .pro_gift .gift_lists .list:nth-of-type(3n) {
+  margin: 0 0rem .1rem 0rem;
+}

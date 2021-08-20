@@ -7,7 +7,7 @@ export default {
     userScore: "Tháng này đã tích lũy <em>%s</em> điểm quý tộc",
     explain: "Giới thiệu",
     thousand: "vạn",
-    num: "vị",
+    num: "cái",
     k: "k",
     nobleConfig: [
         {
@@ -83,8 +83,8 @@ export default {
         " Quý tộc có địa vị cao quý, được chia thành 6 cấp là du hiệp, kỵ sĩ, tử tước, bá tước, hầu tước, công tước, tiêu xu đạt đến mức trong tháng sẽ đươc trở thành quý tộc, được hưởng nhiều đặc quyền. ",
     explainTitle: "Cấp quý tộc",
     explainLvHeader1: "Quý tộc",
-    explainLvHeader2: "Yêu cầu về điểm quý tộc",
-    explainLvHeader3: "Được hưởng đặc quyền",
+    explainLvHeader2: "Điểm quý tộc",
+    explainLvHeader3: "Đặc quyền",
     explainTipsListTitle: "Nâng cấp quý tộc",
     explainTipsList1:
         "1. Điểm quý tộc được tích lũy theo tháng, tiêu 1xu tại App được tăng 1 điểm quý tộc. Không tính tiêu xu của quà túi và tiêu xu trong những sự kiện đặc biệt. Tặng sao may mắn 1 xu = 0,8 điểm quý tộc; đặt ván tại xì dách 21, tiêu 1xu=0,2 điểm quý tộc; Tham gia các loại sự kiện trên App, tiêu 1xu= 0,05 ~ 0,1 điểm quý tộc; ",

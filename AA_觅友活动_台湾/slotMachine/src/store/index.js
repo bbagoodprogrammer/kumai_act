@@ -7,6 +7,7 @@ Vue.use(vuex);
 export default new vuex.Store({
     state: {
         loading: false,
+        notices: [],
         rank: [],
         owner: {},
         activity: {},

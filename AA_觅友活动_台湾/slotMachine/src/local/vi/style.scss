@@ -1,3 +1,51 @@
 html.vi {
-    
+    letter-spacing: -0.015rem;
+    .machine{
+        background:  url(./img/banner.png);
+        background-size: 100% 100%;
+    }
+    .startStype {
+        span {
+          width: 1.55rem;
+          height: 1.41rem;
+          &.type0 {
+            background: url(./img/50.png);
+            background-size: 100% 100%;
+          }
+          &.type1 {
+            background: url(./img/100.png);
+            background-size: 100% 100%;
+          }
+          &.type2 {
+            background: url(./img/200.png);
+            background-size: 100% 100%;
+          }
+          &.type3 {
+            background: url(./img/500.png);
+            background-size: 100% 100%;
+          }
+        }
+      }
+      .user_rank{
+          .title{
+            background: url(./img/tankTitle.png);
+            background-size: 100% 100%;
+          }
+      }
+      .rule{
+          .table1{
+            width: 6.88rem;
+            height: 5.15rem;
+            background: url(./img/table1.png);
+            background-size: 100% 100%;
+            margin:0  0 .1rem  -.14rem;
+          }
+          .table2{
+            width: 6.88rem;
+            height: 6rem;
+            background: url(./img/table2.png);
+            background-size: 100% 100%;
+            margin-left: -.14rem;
+            }
+        }
 }
