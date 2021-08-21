@@ -15,18 +15,19 @@ export default {
 
     ruleTips1: "1.Cách tham gia sự kiện",
     ruleTips2:
-        "Đầu tư 50、100、200、500 xu để sử dùng máy đánh bạc, 100% nhận được thưởng, thưởng bao gồm đậu, xu, quà , quà hiệu ứng.（tất cả thưởng trong sự kiện đều có hạn 7 ngày ）",
+        "Đầu tư 50、100、200、500 xu để sử dùng máy đánh bạc, 100% nhận được thưởng, thưởng bao gồm xu, quà , quà hiệu ứng.（tất cả thưởng trong sự kiện đều có hạn 7 ngày ）",
     ruleTips3: "2.Quy tắc & thưởng",
     ruleTips4: "3.BXH may mắn",
     ruleTips5:
         "- Mỗi lần đầu tư máy đánh bạc có thể tích lũy điểm may mắn（20-30000），BXH may mắn dựa vào điểm may mắn và sắp xếp từ cao đến thấp. Trong trường hợp điểm may mắn giống nhau thì user đạt trước được ưu tiên ",
     ruleTips6: "- Khi sự kiện kết thức, Top 3 trong BXH sẽ nhận được thưởng",
-    ruleTips7: " Hạng 1: Chứng nhận \"Siêu may mắn\" * 15 ngày, khung ảnh \"Siêu may mắn\" * 15 ngày, Xe Kim Ngưu* 15 ngày <br /> Hạng 2 Chứng nhận \"Siêu may mắn\" * 10 ngày, khung ảnh \"Siêu may mắn\" * 10 ngày, Xe Kim Ngưu* 10 ngày <br /> Hạng 3 Chứng nhận \"Siêu may mắn\" * 7 ngày, khung ảnh \"Siêu may mắn\" * 7 ngày, Xe Kim Ngưu* 7 ngày",
+    ruleTips7:
+        ' Hạng 1: Chứng nhận "Siêu may mắn" * 15 ngày, khung ảnh "Siêu may mắn" * 15 ngày, Xe Kim Ngưu* 15 ngày <br /> Hạng 2 Chứng nhận "Siêu may mắn" * 10 ngày, khung ảnh "Siêu may mắn" * 10 ngày, Xe Kim Ngưu* 10 ngày <br /> Hạng 3 Chứng nhận "Siêu may mắn" * 7 ngày, khung ảnh "Siêu may mắn" * 7 ngày, Xe Kim Ngưu* 7 ngày',
     ruleTips8: "4、Khác",
     ruleTips9:
         "  - Trong sự kiện, khi phát hiện người chơi gian lận, chứng tôi sẽ hủy bỏ tư cách tham gia của người chơi mà không cần thông báo, bao gồm：<br /> a) Trong quá trình sự kiện có hành động công kích xúc phạm người khác <br />b) Chơi xu lậu ",
-    ruleTips10: "-Sự kiện này không có liên quan với công ty Apple","Quyền quyết định cuối cùng thuộc về ban tổ chức",
-
+    ruleTips10: "-Sự kiện này không có liên quan với công ty Apple",
+    //"Quyền quyết định cuối cùng thuộc về ban tổ chức",
     //index
     indexRuleTips1: "Quy tắc & Thưởng",
     indexRuleTips2: "Lịch sự đánh bạc",
@@ -42,7 +43,7 @@ export default {
         },
         {
             img: require(`../../img/ruleImg/gift3.png`),
-            name: "Qùa hiệu ứng - Lọ hoa（6000xu）"
+            name: "Qùa hiệu ứng - Lọ hoa（5000xu）"
         },
         {
             img: require(`../../img/ruleImg/gift4.png`),
@@ -50,7 +51,7 @@ export default {
         },
         {
             img: require(`../../img/ruleImg/gift5.png`),
-            name: "Qùa hiệu ứng - Thiếu nữ mộng mơ（20000xu）"
+            name: "Qùa hiệu ứng - Thiếu nữ mộng mơ（16000xu）"
         },
         {
             img: require(`../../img/ruleImg/gift6.png`),
@@ -71,7 +72,7 @@ export default {
             name: "Xe -Kim Ngưu"
         }
     ],
-    
+
     lastTips: "*Quyền quyết định cuối cùng thuộc về ban tổ chức",
     luck: "Đánh bạc",
     roolmsg: " Chúc mừng【%n】Nhận thưởng %s",

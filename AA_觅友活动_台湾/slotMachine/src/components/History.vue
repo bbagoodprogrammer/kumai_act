@@ -2,14 +2,13 @@
   <div class="historyList" :class="{noData: hList.length== 0}">
     <i class="close" @click="closeHistory()"></i>
     <div class="title">{{lang.history_title}}</div>
-    <ul class="stats">
+    <!-- <ul class="stats">
       <li v-for="(item,index) in stats" :key="index">
         <div v-html="lang.historyCoins.replace('%s',item.coins).replace('%n',item.go_count)">
 
         </div>
-        <!-- <em>{{item.coins}}金幣</em>檔抽獎次數：{{item.go_count}} -->
       </li>
-    </ul>
+    </ul> -->
     <div class="hasData">
       <ul class='scrollable'>
         <li v-for="(item,index) in hList" :key="index">

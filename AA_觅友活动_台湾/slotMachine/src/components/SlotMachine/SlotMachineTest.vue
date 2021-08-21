@@ -51,7 +51,7 @@ export default {
         { id: 12, src: require("../../img/turnImg/12.png") },
         { id: 13, src: require("../../img/turnImg/13.png") },
         { id: 14, src: require("../../img/turnImg/14.png") },
-        { id: 15, src: require("../../img/turnImg/15.png") },
+        // { id: 15, src: require("../../img/turnImg/15.png") },
         { id: 16, src: require("../../img/turnImg/16.png") },
         { id: 17, src: require("../../img/turnImg/17.png") },
         { id: 18, src: require("../../img/turnImg/18.png") },

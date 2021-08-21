@@ -5,11 +5,11 @@
     <div class="startStype">
       <span v-for="(item,index) in luckType" :key="index" :class="'type' + index" @click="startGame(item)"></span>
     </div>
-    <div class="userCoins">
+    <!-- <div class="userCoins">
       <i class="coinsIcon"></i>
       <span>{{owner.coins}}</span>
       <i class="add" @click="gowalletpage()"></i>
-    </div>
+    </div> -->
   </div>
 </template>
 

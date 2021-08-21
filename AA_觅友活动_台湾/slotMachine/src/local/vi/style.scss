@@ -4,6 +4,12 @@ html.vi {
         background:  url(./img/banner.png);
         background-size: 100% 100%;
     }
+    .ruleTips{
+        span{
+            white-space: nowrap;
+            width: 1.63rem!important;
+        }
+    }
     .startStype {
         span {
           width: 1.55rem;
@@ -33,19 +39,12 @@ html.vi {
           }
       }
       .rule{
-          .table1{
-            width: 6.88rem;
-            height: 5.15rem;
+        .table1{
+            width: 6.80rem;
+            height: 9.08rem;
             background: url(./img/table1.png);
             background-size: 100% 100%;
             margin:0  0 .1rem  -.14rem;
           }
-          .table2{
-            width: 6.88rem;
-            height: 6rem;
-            background: url(./img/table2.png);
-            background-size: 100% 100%;
-            margin-left: -.14rem;
-            }
         }
 }

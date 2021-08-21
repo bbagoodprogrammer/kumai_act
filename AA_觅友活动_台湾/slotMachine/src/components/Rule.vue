@@ -16,7 +16,7 @@
       </div>
       <h6>{{lang.ruleTips3}}</h6>
       <div class="table1"></div>
-      <div class="table2"></div>
+      <!-- <div class="table2"></div> -->
       <h6>{{lang.ruleTips4}}</h6>
       <p>{{lang.ruleTips5}}</p>
       <p>{{lang.ruleTips6}}</p>

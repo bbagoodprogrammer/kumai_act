@@ -16,7 +16,7 @@ export default {
     ruleTm: "活動時間:",
     ruleTips1: "1.活動玩法",
     ruleTips2:
-        "投入50、100、200、500金幣可參與老虎機抽獎，獎勵包括金豆、金幣、靜態禮物、動效禮物，100%中獎（活動中送出的所有禮物有效期均為7天）",
+        "投入50、100、200、500金幣可參與老虎機抽獎，獎勵包括金幣、靜態禮物、動效禮物，100%中獎（活動中送出的所有禮物有效期均為7天）",
     ruleTips3: "2.中獎規則及概率",
     ruleTips4: "3.幸運榜",
     ruleTips5:
@@ -44,7 +44,7 @@ export default {
         },
         {
             img: require(`../../img/ruleImg/gift3.png`),
-            name: "精靈花瓶-特效禮物（6000金幣）"
+            name: "精靈花瓶-特效禮物（5000金幣）"
         },
         {
             img: require(`../../img/ruleImg/gift4.png`),
@@ -52,7 +52,7 @@ export default {
         },
         {
             img: require(`../../img/ruleImg/gift5.png`),
-            name: "甜蜜墜落-特效禮物（20000金幣）"
+            name: "甜蜜墜落-特效禮物（16000金幣）"
         },
         {
             img: require(`../../img/ruleImg/gift6.png`),

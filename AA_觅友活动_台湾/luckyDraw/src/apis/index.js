@@ -222,9 +222,9 @@ function notice() {
 //抽奖 this.counts = 1/5,changes 100.300.500
 function open(counts, changes) {
     return get(
-        "/index.php?action=luckyDraw.open&uid={uid}&token={token}&counts=" +
+        "/index.php?action=luckyDraw.open&uid={uid}&token={token}&count=" +
             counts +
-            "&changes=" +
+            "&price=" +
             changes
     );
 }

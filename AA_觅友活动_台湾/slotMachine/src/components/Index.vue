@@ -43,6 +43,7 @@ export default {
 
 <style lang="scss">
 .pageIndex {
+  overflow-x: hidden;
   background: #2B0457FF url(../img/act_bg.png) no-repeat;
   background-size: 100% auto;
   position: relative;
