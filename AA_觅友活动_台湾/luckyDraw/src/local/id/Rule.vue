@@ -6,7 +6,7 @@
         <span class="starttime">{{ stime }}</span> -
         <span class="endtime">{{ etime }}</span>
       </p>
-      <p class="title">Deskripsi acara</p>
+      <p class="title">Keterangan acara</p>
       <ul>
         <li>
           <p>
@@ -15,18 +15,18 @@
         </li>
         <li>
           <p>
-            2. Dapat memilih tingkat undian berhadiah yang berbeda melalui "Ganti". Klik "Go", dapatkan satu kali untuk mengundian. Klik "Undian x5", dapatkan 5 kali berturut-turut untuk mengundian~
+            2. Dapat memilih tingkat undian berhadiah yang berbeda melalui "Ganti". Klik "Go", dapat mengundian satu kali. Klik "Undian x5", dapat  mengundian 5 kali berturut-turut.
           </p>
         </li>
         <li>
           <p>
-            3. Koin emas, kacang emas, hadiah ransel, bingkai avatar, dan hadiah mount akan segera dapatkan setelah ditarik. Hadiah koin emas untuk kupon bonus konsumsi dan kupon bonus top up akan
+            3. Koin emas, kacang emas, hadiah ransel, bingkai avatar, dan hadiah mount akan segera masuk ke akun setelah ditarik undian. Hadiah koin emas dari kupon bonus konsumsi dan kupon bonus top up akan
             masuk ke akun Anda pada keesokan harinya.
           </p>
         </li>
         <li>
           <p>
-            4. Keterangan untuk menggunakan kupon bonus top up: Top up koin emas apa pun pada hari penghargaan, dan dapatkan bonus koin emas yang sesuai pada hari berikutnya (Rasio bonus tidak dapat
+            4. Keterangan penggunaan kupon bonus top up: Top up koin emas apapun pada hari penghargaan, dan dapat bonus koin emas yang sesuai pada hari berikutnya (Rasio bonus tidak dapat
             ditumpangkan). Jika beberapa kupon bonus top up diperoleh pada waktu yang sama dalam sehari, bonus kembali akan didasarkan pada rasio tertinggi kupon bonus top up yang diperoleh. Kupon
             bonus hanya berlaku pada hari diperoleh.
           </p>
@@ -34,15 +34,15 @@
         <li>
           <p>
             5. Keterangan penggunaan kupon bonus konsumsi koin emas: Jika Anda menghabiskan sejumlah koin emas pada hari penghargaan, Anda akan mendapatkan bonus koin emas yang sesuai pada hari
-            berikutnya. Satu kupon hanya dapatakan bonus kembali satu kali saja. Jika beberapa kupon bonus konsumsi koin emas diperoleh pada waktu yang sama dalam sehari, kupon tersebut akan
+            berikutnya. Satu kupon hanya dapat bonus satu kali saja. Jika beberapa kupon bonus konsumsi koin emas diperoleh pada waktu yang sama dalam sehari, kupon tersebut akan
             dikembalikan sesuai dengan denominasi maksimum kupon bonus konsumsi koin emas yang diperoleh. Kupon bonus hanya berlaku pada hari diperoleh.
           </p>
         </li>
         <li>
-          <p>6. Acara ini tidak ada hubungan dengan Apple</p>
+          <p>6. Acara ini tak berhubungan dengan Apple.</p>
         </li>
         <li>
-          <p>7. Semua hadiah ransel yang diberikan oleh acara berlaku selama 7 hari</p>
+          <p>7. Semua hadiah ransel yang diberikan oleh acara berlaku selama 7 hari.</p>
         </li>
       </ul>
       <p class="copy">Hak interpretasi akhir acara adalah milik penyelenggara acara</p>

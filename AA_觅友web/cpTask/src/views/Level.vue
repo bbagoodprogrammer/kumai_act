@@ -1,6 +1,7 @@
 <template>
   <div class="level">
-    <div class="title first">{{lang.cp_level_title_1}}</div>
+    <div :style="{background: '#7a68f8', height: navigatorHeight}" class="headerTab"></div>
+    <div class="title first" :style="{paddingTop:navigatorHeight}">{{lang.cp_level_title_1}}</div>
     <div class="des">{{lang.cp_level_des_1}}</div>
     <ul>
       <li>
@@ -20,12 +21,15 @@
 </template>
 
 <script>
+import { setFullScreen, getStatusBarHeight } from "../utils/navigation";
+import { getPlatform, getAppVer } from "../utils";
 export default {
   name: 'Level',
 
   data () {
     return {
-      list: []
+      list: [],
+      navigatorHeight: '0px'
     };
   },
 
@@ -35,6 +39,12 @@ export default {
 
   created () {
     document.title = this.lang.cp_level
+    const pt = getPlatform();
+    const ver = getAppVer();
+    if ((pt == 'ios' && ver >= 165) || pt == 'android') {
+      setFullScreen();
+      this.navigatorHeight = getStatusBarHeight() + 'px';
+    }
     this.list = [
       {
         title: this.lang.cp_level,
@@ -66,9 +76,14 @@ export default {
 </script>
 
 <style lang="scss">
+.headerTab {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
 .level {
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
+  padding: 0 0.3rem 0.66rem;
   .title {
     font-size: 0.32rem;
     font-weight: bold;
@@ -91,14 +106,15 @@ export default {
   ul {
     border: 0.01rem solid #F5F5F5;
     border-radius: 0.1rem;
-    margin-top: 0.1rem;
+    margin-top: 0.3rem;
   }
   li {
     display: flex;
     height: 0.76rem;
     border-bottom: 0.01rem solid #F5F5F5;
     .item__title {
-      width: 50%;
+      width: 3.33rem;
+      padding-right: 0.1rem;
       text-align: center;
       font-size: 0.26rem;
       font-weight: 400;
@@ -134,7 +150,7 @@ export default {
       }
     }
     .item__value {
-      width: 50%;
+      flex: 1;
       text-align: center;
       font-size: 0.24rem;
       font-weight: 400;
@@ -154,6 +170,8 @@ export default {
       font-size: 0.28rem;
       font-weight: 400;
       color: #333333;
+      width: 3.43rem;
+      padding: 0;
     }
     .item__value {
       font-size: 0.28rem;

@@ -13,7 +13,7 @@
 </template>
  
 <script>
-import { clearInterval } from 'timers';
+
 import { mapState } from "vuex"
 export default {
   data () {

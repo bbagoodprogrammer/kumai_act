@@ -19,7 +19,7 @@
       </div>
       <div class="score">
         <strong>{{myMsg.score}}</strong>
-        <em> {{lang.scoreTips.replace('%s',myMsg.uscore)}}</em>
+        <em v-if="myMsg.uscore > 0"> {{lang.scoreTips.replace('%s',myMsg.uscore)}}</em>
         <!-- <em v-else>(距上榜差 -- 個)</em> -->
       </div>
     </div>
@@ -156,7 +156,7 @@ export default {
       margin-left: 0.1rem;
       strong {
         display: block;
-        font-size: 0.18rem;
+        font-size: 0.24rem;
         font-weight: bold;
         text-align: center;
       }

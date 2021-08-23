@@ -7,10 +7,10 @@ export default {
     status_not_start: "Acara belum dimulai",
     status_end: "Acara telah berakhir",
     no_chance: "Jumlah undian tak cukup~",
-    time: "%y tahun %mo bulan %d tanggal%h:%m:%s",
+    time: "%y/%mo/%d %h:%m:%s",
     leftfree: "Jumlah undian yang tersisa hari ini ",
     times: "/kali",
-    has: "Yang ada",
+    has: "Sisa kacang",
     five_title: "Selamat~Amda telah menangkan hadiah berikut dalam undian x5:",
     five_tips: "Hadiah di atas telah dikirimkan ke akun Anda,silakan cek ya!",
     total_beans: "Kumulatif kacang emas yang ditarik: ",
@@ -27,7 +27,7 @@ export default {
         rebate:
             "Selamat~Anda menangkan kupon bonus koin emas dengan konsumsi %s akan dapatkan kembali %d koin emas.Berikan %s koin emas hari ini,dan Anda akan mendapatkan %d koin emas sebagai bonusnya,keren!",
         coupon:
-            "Top up koin emas apa pun pada hari penghargaan,dan Anda bisa mendapatkan %s% bonus koin emas pada hari berikutnya (rasio bonus tidak dapat ditumpangkan),bagus!",
+            "Top up koin emas apa pun pada hari penghargaan,dan Anda bisa mendapatkan %s% bonus koin emas pada hari berikutnya (Rasio bonus tidak dapat ditumpangkan),bagus!",
         gift: "Selamat~Menangkan hadiah %s kacang emas,keren!",
         car:
             "Selamat~Menangkan mount %s! Masa berlakunya %d hari,silakan pakainya secepat mungkin ya!"

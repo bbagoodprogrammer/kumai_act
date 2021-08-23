@@ -12,7 +12,7 @@
         10次后闪动秒数（1000=1秒)：<input type="tel" v-model="five_blink">
         <span @click="chooseTest()">ok</span>
       </div> -->
-
+      <ScrollNotice />
       <pro :txt="pro_txt" />
 
       <div class="open">
@@ -26,7 +26,7 @@
           <div class="marquee">
             <span class="notice_icon"></span>
             <div class="notice_con">
-              <ScrollNotice />
+              <!-- <ScrollNotice /> -->
             </div>
           </div>
           <div class="leftfree">

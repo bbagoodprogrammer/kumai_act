@@ -268,9 +268,6 @@ export default {
         }
       }, 1000)
     },
-    getDate (time) {
-      return getDate(new Date(time * 1000), '2')
-    },
     goUser (uid) { //跳转
       var u = navigator.userAgent;
       var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i); //ios终端
