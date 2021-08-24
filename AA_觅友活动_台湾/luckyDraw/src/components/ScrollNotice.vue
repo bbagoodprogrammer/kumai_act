@@ -1,5 +1,5 @@
 <template>
-  <div class="scrollNotice" v-if="list.length > 0">
+  <div class="scrollNotice" v-show="list.length > 0">
     <ul :class="{marquee_top:animate}">
       <li v-for="(item, index) in list" :key="index">
         <p v-if="item.prize.type == 'coin'">{{lang.notice_coin.replace('%nick',item.nick).replace('%s',item.prize.count)}} </p>
@@ -16,6 +16,7 @@
 
 <script>
 import { notice } from "../apis";
+import { toast } from "../utils";
 export default {
   name: "ScrollNotice",
   data () {
@@ -68,9 +69,11 @@ export default {
           list = list.concat(list);
         }
         this.list = list;
-        this.rool()
+        setTimeout(() => {
+          this.rool()
+        }, 100)
       } else {
-        //toast(response_status.error);
+        toast(response_status.error);
       }
     },
     rool () {
@@ -105,14 +108,13 @@ export default {
 }
 .scrollNotice {
   position: absolute;
-  top: 0;
   height: 0.5rem;
   overflow: hidden;
   left: 1.6rem;
   top: 2.75rem;
-  z-index: 2;
+  z-index: 20;
   ul {
-    max-width: 4.7rem;
+    width: 4.7rem;
     // &.scrollActive {
     //   transition: all 0.5s;
     //   margin-top: -0.5rem;

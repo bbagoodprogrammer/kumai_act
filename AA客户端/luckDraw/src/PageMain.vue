@@ -55,7 +55,7 @@ import { getDrawDetil } from './apis'
 import { toast, getUrlString, appShowPage, getAppWebUrl, appClose, callApp } from "./utils"
 let game;
 export default {
-  data() {
+  data () {
     return {
       luckMsg: null,
       luckIng: false,
@@ -70,7 +70,7 @@ export default {
     }
   },
   computed: {
-    luckStatus() {
+    luckStatus () {
       if (!this.luckMsg || (this.luckMsg && !this.luckMsg.id)) {
         return 0
       } else if (this.luckMsg && this.luckMsg.status == 2) { //抽獎結束
@@ -81,24 +81,24 @@ export default {
         return 3
       }
     },
-    randAv() {
+    randAv () {
       return Math.floor(Math.random() * 5) + 1
     }
   },
-  mounted() {
+  mounted () {
     setTimeout(this.initGame, 0);
     setInterval(() => {
       this.linghtStatus = !this.linghtStatus
     }, 500)
   },
   methods: {
-    initGame() {
+    initGame () {
       game = new Game(document.getElementById('game'), () => {
         console.log('Game inited');
         this.luckInit()
       });
     },
-    luckInit(open, cb) {
+    luckInit (open, cb) {
       let draw_id = getUrlString('draw_id')
       getDrawDetil(draw_id).then(res => {
         if (res.data.response_data || res.data.response_data == null) {
@@ -162,7 +162,7 @@ export default {
       })
 
     },
-    comptedIcons(arr) {
+    comptedIcons (arr) {
       let s = []
       for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < arr[i].count; j++) {
@@ -171,23 +171,23 @@ export default {
       }
       return s
     },
-    setBalls(balls = []) {
+    setBalls (balls = []) {
       game.setBalls(balls);
     },
     // addBall(ball = null) {
     //   ball = { uid: 4878150, avatar: 'http://img.17sing.tw/uc/img/head_4878150_1597085904.png_small' };
     //   game.addBall(ball);
     // },
-    removeBall(uid = 0) {
+    removeBall (uid = 0) {
       game.removeBall(uid);
     },
-    removeAllBalls() {
+    removeAllBalls () {
       game.removeAllBalls();
     },
-    play() {
+    play () {
       game.play();
     },
-    stop() {
+    stop () {
       game.stop();
     },
     downTimeGo: function (dTime) {
@@ -223,7 +223,7 @@ export default {
         }
       }, 1000)
     },
-    goSetting() {
+    goSetting () {
       console.log(this.luckStatus)
       if (this.luckStatus == 2) {
         callApp("showGiftPanel", this.luckMsg.ticket_gid)
@@ -240,7 +240,7 @@ export default {
         appShowPage({}, link, { fullPage: 1, showTitle: 1 })
       }
     },
-    closeWeb() {
+    closeWeb () {
       console.log('xxxx')
       appClose()
     }

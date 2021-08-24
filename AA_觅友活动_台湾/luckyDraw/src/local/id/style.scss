@@ -57,6 +57,14 @@ html.id {
         background: url(./img/prize_title.png);
         background-size: 100% 100%;
     }
+    .scrollNotice{
+        li{
+            p{
+                font-size: .2rem!important;
+                letter-spacing: -0.015rem;
+            }
+        }
+    }
 }
 
 

@@ -20,7 +20,7 @@
             <div class="name">{{item.name}}</div>
           </div>
           <!-- {{lang.thousand}} -->
-          <div class="score" v-html="getNumStr(item.score)"></div>
+          <div class="score" v-html="getNumStr(level_list[item.lv].value)"></div>
           <div class="nums"><em>{{item.privilegeNums}}</em>{{lang.num}}</div>
         </li>
       </ul>
@@ -38,8 +38,12 @@
 </template>
 
 <script>
+
+import { mapState } from "vuex"
+
 export default {
   computed: {
+    ...mapState(['level_list']),
     lvConfig () {
       return this.lang.lvConfig
     }

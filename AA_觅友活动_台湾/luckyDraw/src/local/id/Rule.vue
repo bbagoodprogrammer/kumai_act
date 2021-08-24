@@ -4,7 +4,7 @@
       <p class="title">Waktu acara</p>
       <p class="tip pb36">
         <span class="starttime">{{ stime }}</span> -
-        <span class="endtime">{{ etime }}</span>
+        <span class="endtime">{{ etime }}(wib)</span>
       </p>
       <p class="title">Keterangan acara</p>
       <ul>
@@ -15,12 +15,13 @@
         </li>
         <li>
           <p>
-            2. Dapat memilih tingkat undian berhadiah yang berbeda melalui "Ganti". Klik "Go", dapat mengundian satu kali. Klik "Undian x5", dapat  mengundian 5 kali berturut-turut.
+            2. Dapat memilih tingkat undian berhadiah yang berbeda melalui "Ganti". Klik "Go", dapat mengundian satu kali. Klik "Undian x5", dapat mengundian 5 kali berturut-turut.
           </p>
         </li>
         <li>
           <p>
-            3. Koin emas, kacang emas, hadiah ransel, bingkai avatar, dan hadiah mount akan segera masuk ke akun setelah ditarik undian. Hadiah koin emas dari kupon bonus konsumsi dan kupon bonus top up akan
+            3. Koin emas, kacang emas, hadiah ransel, bingkai avatar, dan hadiah mount akan segera masuk ke akun setelah ditarik undian. Hadiah koin emas dari kupon bonus konsumsi dan kupon bonus top
+            up akan
             masuk ke akun Anda pada keesokan harinya.
           </p>
         </li>

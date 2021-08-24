@@ -106,6 +106,7 @@ axios.interceptors.request.use(
                     Math.floor(Math.random() * 1000)
             );
             const signObj = await getSign(dataAll, callbackId);
+
             const { sign, timestamp } = signObj;
             config.headers = {
                 sign,
@@ -216,7 +217,7 @@ function getInitInfo() {
 
 //t通知
 function notice() {
-    return get("/index.php?action=luckyDraw.notice&&uid={uid}&token={token}");
+    return get("/index.php?action=luckyDraw.notice&uid={uid}&token={token}");
 }
 
 //抽奖 this.counts = 1/5,changes 100.300.500

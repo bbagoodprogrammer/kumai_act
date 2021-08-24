@@ -1,5 +1,6 @@
 <template>
   <div id="apps appIndexView">
+    <ScrollNotice />
     <div class="main_container">
       <!-- 自定义抽奖时间 -->
       <!-- <div class="choose" @click="test_choose=true">
@@ -12,7 +13,7 @@
         10次后闪动秒数（1000=1秒)：<input type="tel" v-model="five_blink">
         <span @click="chooseTest()">ok</span>
       </div> -->
-      <ScrollNotice />
+
       <pro :txt="pro_txt" />
 
       <div class="open">
@@ -480,6 +481,7 @@ export default {
   background: url('../img/line.png');
   background-repeat: repeat-y;
   background-size: contain;
+  position: relative;
 }
 .open {
   width: 1.3rem;
@@ -735,14 +737,14 @@ export default {
     }
   }
   .award_name {
-    width: 4.02rem;
+    width: 4.52rem;
     height: 0.6rem;
-    line-height: 0.6rem;
-    background: url('../img/award_name.png');
-    background-size: 100% 100%;
+    line-height: 0.4rem;
+    color: #a85e27;
+    // background: url('../img/award_name.png');
+    // background-size: 100% 100%;
     margin: 0.8rem auto 0;
     text-align: center;
-    color: #fff;
     font-size: 0.26rem;
   }
   .txt {
@@ -788,7 +790,7 @@ export default {
     margin-left: -2rem;
   }
   .tips {
-    font-size: 0.4rem;
+    font-size: 0.34rem;
     color: #98500e;
     font-weight: 700;
     text-align: center;
@@ -847,7 +849,7 @@ export default {
     line-height: 0.4rem;
     color: #98500e;
     text-align: center;
-    padding: 0.2rem 0.6rem 0;
+    padding: 0.1rem 0.6rem 0;
   }
 }
 
