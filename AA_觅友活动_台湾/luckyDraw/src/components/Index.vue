@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="leftfree">
-            <span>{{lang.leftfree}} <i>{{ chance }}</i></span>
+            <span v-html="lang.leftfree.replace('%c',chance)"></span>
             <span>（<em>{{ changes[temp % 3] }}</em><img src="../img/icon_bean.png" alt="" />{{lang.times}}）
             </span>
           </div>
@@ -274,7 +274,7 @@ export default {
         this.one_tips = this.lang.pro_tips[item.type].replace(/\%s/g, item.target).replace(/\%d/g, item.back)
         return this.lang.tips_rebate;
       } else if (item.type == "car") {
-        this.one_tips = this.lang.pro_tips[item.type].replace('%s', item.name).replace('%s', item.day)
+        this.one_tips = this.lang.pro_tips[item.type].replace('%s', item.name).replace('%d', item.day)
         return this.lang.tips_car.replace(/\%name/g, item.name).replace(/\%day/g, item.day);
       } else if (item.type == "gift") {
         this.one_tips = this.lang.pro_tips[item.type].replace('%s', item.name)
@@ -637,6 +637,10 @@ export default {
           left: 50%;
           margin-left: -0.9rem;
           top: 3.9rem;
+          p {
+            margin-top: -0.1rem;
+            line-height: 0.27rem;
+          }
         }
         &.award6 {
           left: 0;

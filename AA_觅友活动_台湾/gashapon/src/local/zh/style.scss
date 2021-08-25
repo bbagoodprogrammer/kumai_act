@@ -1,0 +1,36 @@
+html.zh {
+    .bollImg{
+        &.ball0{
+            background: url(./img/gift1.png);
+            background-size: 100% 100%;
+        }
+        &.ball1{
+            background: url(./img/gift2.png);
+            background-size: 100% 100%;
+        }
+        &.ball2{
+            background: url(./img/gift3.png);
+            background-size: 100% 100%;
+        }
+    }
+    .openType{
+        .openBtn{
+            &.type0{
+                background: url(./img/open1.png);
+            background-size: 100% 100%; 
+            }
+            &.type1{
+                background: url(./img/open2.png);
+            background-size: 100% 100%; 
+            }
+            &.type2{
+                background: url(./img/open3.png);
+            background-size: 100% 100%; 
+            }
+        }
+    }
+    .ticketIcon{
+        background: url(./img/icon.png);
+        background-size: 100% 100%; 
+    }
+}

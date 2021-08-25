@@ -31,7 +31,7 @@
       </p>
     </div>
     <div class="giftTips" v-else>
-      <div class="giftList gift2">
+      <div class="giftList gift3">
         <div class="giftItem" v-for="(item,index) in giftList2" :key="index">
           <div class="imgBox">
             <img :src="item.img" alt="">
@@ -41,11 +41,11 @@
       </div>
       <p>
         1.Quà BXH Hoa Thần<br />
-        Hạng 1: Hoa Thần tháng 6-Chứng nhận (15 ngày)+Thuyền Ánh Sao-Xe (15 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1<br />
-        Hạng 2: Kẹo Cute-Xe (10 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1<br />
-        Hạng 3: Pháo Hoa Pha Lê-Xe (7 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1
+        Hạng 1: Hoa Thần tháng 6-Chứng nhận (15 ngày)+Thuyền Ánh Sao-Xe (15 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1+Thính phòng-Quà túi*1（18990xu）<br />
+        Hạng 2: Kẹo Cute-Xe (10 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1+Chuông bạc-Quà túi*1（11990xu）<br />
+        Hạng 3: Pháo Hoa Pha Lê-Xe (7 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1+CNước hoa-Quà túi*1（6990xu）
       </p>
-      <div class="giftList gift2">
+      <div class="giftList gift3">
         <div class="giftItem" v-for="(item,index) in giftList3" :key="index">
           <div class="imgBox">
             <img :src="item.img" alt="">
@@ -55,18 +55,18 @@
       </div>
       <p>
         2.Quà BXH Hot<br />
-        Hạng 1: Hoa Thần Tiềm Lực-Chứng nhận (15 ngày)+Tường Vi Nở Rộ-Khung ảnh (15 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1<br />
-        Hạng 2: Bướm Hoa-Khung ảnh (10 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1<br />
-        Hạng 3: Hoa rơi-Khung ảnh (7 ngày)
+        Hạng 1: Hoa Thần Tiềm Lực-Chứng nhận (15 ngày)+Tường Vi Nở Rộ-Khung ảnh (15 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1<br />
+        Hạng 2: Bướm Hoa-Khung ảnh (10 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1<br />
+        Hạng 3: Hoa rơi-Khung ảnh (10 ngày)
       </p>
       <p>
         3.Quà Fan<br />
-        Fan Top 1 của người Top 1 Hoa Thần:<br />
-        Fan Top Đầu-Khung ảnh (15 ngày)+Fan Top Đầu-Chứng nhận (15 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1<br />
+        Fan Top 1 của người Top 1 Hoa Thần:<br />
+        Fan Top Đầu-Khung ảnh (15 ngày)+Fan Top Đầu-Chứng nhận (15 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1+Chuông bạc-Quà túi*1（11990xu）<br />
         Fan Top 1 của người Top 2 Hoa Thần:<br />
-        Fan Top Đầu-Khung ảnh (10 ngày)+Fan Top Đầu-Chứng nhận (15 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1<br />
+        Fan Top Đầu-Khung ảnh (10 ngày)+Fan Top Đầu-Chứng nhận (15 ngày)+Hoa Hạ Lấp Lánh-Quà túi*1+Chuông bạc-Quà túi*1（11990xu）<br />
         Fan Top 1 của người Top 3 Hoa Thần:<br />
-        Fan Top Đầu-Khung ảnh (5 ngày)+Fan Top Đầu-Chứng nhận (5 ngày)
+        Fan Top Đầu-Khung ảnh (5 ngày)+Fan Top Đầu-Chứng nhận (5 ngày)++CNước hoa-Quà túi*1（6990xu）
       </p>
       <p>
         4.Lưu ý<br />
@@ -82,6 +82,8 @@
 </template>
 
 <script>
+import getDate from "../../utils/getDate"
+import { mapState } from "vuex"
 export default {
   data () {
     return {
@@ -96,6 +98,10 @@ export default {
           name: 'Hoa đá<br/>+1290 Điểm hoa thần'
         },
         {
+          img: require('../../img/rule_gift/gift_14.png'),
+          name: 'Bắn tim<br />+2200 Điểm hoa thần'
+        },
+        {
           img: require('../../img/rule_gift/gift_3.png'),
           name: 'Tiếng Hot Hương Hoa<br/>+10000 Điểm hoa thần'
         }
@@ -103,11 +109,7 @@ export default {
       giftList2: [
         {
           img: require('../../img/rule_gift/gift_4.png'),
-          name: 'Hoa Thần tháng 6'
-        },
-        {
-          img: require('../../img/rule_gift/gift_5.png'),
-          name: 'Hoa Hạ Lấp Lánh-Quà túi'
+          name: 'Hoa Thần tháng 9'
         },
         {
           img: require('../../img/rule_gift/gift_6.png'),
@@ -120,7 +122,24 @@ export default {
         {
           img: require('../../img/rule_gift/gift_8.png'),
           name: 'Pháo Hoa Pha Lê-Xe'
-        }
+        },
+
+        {
+          img: require('../../img/rule_gift/gift_5.png'),
+          name: 'Hoa Hạ Lấp Lánh-Quà túi'
+        },
+        {
+          img: require('../../img/rule_gift/gift_17.png'),
+          name: 'Thính phòng-Quà túi*1（18990xu）'
+        },
+        {
+          img: require('../../img/rule_gift/gift_15.png'),
+          name: 'Chuông bạc-Quà túi*1（11990xu）'
+        },
+        {
+          img: require('../../img/rule_gift/gift_16.png'),
+          name: 'CNước hoa-Quà túi*1（6990xu）'
+        },
       ],
       giftList3: [
         {
@@ -131,6 +150,15 @@ export default {
           img: require('../../img/rule_gift/gift_9.png'),
           name: 'Hoa Hạ Lấp Lánh-Quà túi'
         },
+        {
+          img: require('../../img/rule_gift/gift_15.png'),
+          name: 'Chuông bạc-Quà túi*1（11990xu）'
+        },
+        {
+          img: require('../../img/rule_gift/gift_16.png'),
+          name: 'CNước hoa-Quà túi*1（6990xu）'
+        },
+
         {
           img: require('../../img/rule_gift/gift_10.png'),
           name: 'Tường Vi Nở Rộ-Khung ảnh'
@@ -144,6 +172,16 @@ export default {
           name: 'Hoa rơi-Khung ảnh'
         }
       ]
+    }
+  },
+  computed: {
+    ...mapState(['activity']),
+    aTimer () {
+      if (AREA == 'tw') {
+        return getDate(new Date(this.activity.stime * 1000), 3) + '-' + getDate(new Date(this.activity.etime * 1000), 3)
+      } else if (AREA == 'vn') {
+        return getDate(new Date(this.activity.stime * 1000), 4) + '-' + getDate(new Date(this.activity.etime * 1000), 4)
+      }
     }
   }
 }
@@ -186,22 +224,17 @@ export default {
     margin: 0.32rem auto;
   }
   .giftList {
-    padding: 0 0.38rem;
+    padding: 0 0.1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    &.giftList1 {
-      strong {
-        height: 0.95rem;
-      }
-    }
     .giftItem {
-      width: 1.91rem;
+      width: 1.6rem;
       margin-bottom: 0.25rem;
     }
     .imgBox {
-      width: 1.91rem;
-      height: 1.91rem;
+      width: 1.6rem;
+      height: 1.6rem;
       background: #661FAD;
       border-radius: 0.1rem;
       img {
@@ -214,19 +247,45 @@ export default {
       height: 0.6rem;
       display: block;
       text-align: center;
-      font-size: 0.26rem;
+      font-size: 0.22rem;
       color: rgba(232, 222, 255, 1);
       margin-top: 0.1rem;
     }
     &.gift2 {
       margin-top: 0.3rem;
       flex-wrap: wrap;
+
+      .giftItem {
+        width: 1.91rem;
+      }
+      .imgBox {
+        width: 1.91rem;
+        height: 1.91rem;
+      }
       .giftItem:nth-child(1) {
         margin-left: 1rem;
       }
       .giftItem:nth-child(2) {
         margin-right: 1rem;
       }
+    }
+    &.gift3 {
+      margin-top: 0.3rem;
+      padding: 0 0 0 0.1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      .giftItem {
+        margin-right: 0.1rem;
+        strong {
+          height: 0.9rem;
+        }
+      }
+      //   .giftItem:nth-child(1) {
+      //     margin-left: 1rem;
+      //   }
+      //   .giftItem:nth-child(2) {
+      //     margin-right: 1rem;
+      //   }
     }
   }
 }

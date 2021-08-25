@@ -49,34 +49,32 @@ export default {
         {
             name: "Khung riêng biệt",
             tips:
-                "Quý tộc có khung ảnh hiếm riêng, cấp quý tộc càng cao, khung ảnh càng cool."
+                " có khung ảnh hiếm riêng, cấp quý tộc càng cao, khung ảnh càng cool."
         },
         {
             name: "Danh thiếp cao quý",
             tips:
-                "Quý tộc có danh thiếp cao quý, cấp quý tộc càng cao, trang sức càng đẹp."
+                " có danh thiếp cao quý, cấp quý tộc càng cao, trang sức càng đẹp."
         },
         {
             name: "Hiệu ứng vào phòng",
-            tips: "Quý tộc vào phòng siêu cool, người người ngước nhìn."
+            tips: " vào phòng siêu cool, người người ngước nhìn."
         },
         {
             name: "Khung chat",
-            tips:
-                "Quý tộc có khung chat hiếm riêng, nhắn tin thu hút mọi ánh mắt."
+            tips: " có khung chat hiếm riêng, nhắn tin thu hút mọi ánh mắt."
         },
         {
             name: "Xem ai thích tôi",
-            tips:
-                "Quý tộc có quyền xem người thích tôi, dễ kiểm đươc đối tượng hơn."
+            tips: " có quyền xem người thích tôi, dễ kiểm đươc đối tượng hơn."
         },
         {
             name: "Xe hiếm",
-            tips: "Quý tộc có xe hiếm, thu hút mọi ánh mắt. "
+            tips: " có xe hiếm, thu hút mọi ánh mắt. "
         },
         {
             name: "Ngăn bị đá",
-            tips: "Quý tộc có đặc quyền không thể bị đá ra khỏi phòng"
+            tips: " có đặc quyền không thể bị đá ra khỏi phòng"
         }
     ],
     explainTips:

@@ -8,7 +8,7 @@ export default {
     status_end: "Acara telah berakhir",
     no_chance: "Jumlah undian tak cukup~",
     time: "%y/%mo/%d %h:%m:%s",
-    leftfree: "Jumlah undian yang tersisa hari ini ",
+    leftfree: "Jumlah undian yg tersisa hari ini <i>%c</i>kali",
     times: "/kali",
     has: "Sisa kacang",
     five_title: "Selamat~Amda telah menangkan hadiah berikut dalam undian x5:",
@@ -23,7 +23,7 @@ export default {
         coin:
             "Selamat~Anda telah menarik undian %s koin emas,<br>telah dikirimkan ke akun Anda,silakan cek ya!",
         frame:
-            "Selamat~Anda telah menangkan bingkai avatar %s,<br>telah dikirimkan ke akun Anda,silakan cek ya!",
+            "Selamat~Anda telah menangkan %s,<br>telah dikirimkan ke akun Anda,silakan cek ya!",
         rebate:
             "Selamat~Anda menangkan kupon bonus koin emas dengan konsumsi %s akan dapatkan kembali %d koin emas.Berikan %s koin emas hari ini,dan Anda akan mendapatkan %d koin emas sebagai bonusnya,keren!",
         coupon:
@@ -37,7 +37,7 @@ export default {
     tips_bean: "%s kacang emas",
     tips_coupon: "Kupon top up &s%",
     tips_rebate: "Kupon bonus konsumsi",
-    tips_car: "Bingkai avatar %name %day hari",
+    tips_car: "%name %day hari",
     tips_gift: "%name-(%price kacang emas)",
     tips_frame: "%name %day hari",
 
@@ -47,7 +47,7 @@ export default {
     notice_rebate: "Selamat~%nick menangkan kupon bonus konsumsi koin emas",
     notice_car: "Selamat~%nick menangkan mount %name",
     notice_gift: "Selamat~%nick menangkan hadiah kacang emas %name",
-    notice_frame: "Selamat~%nick menangkan bingkai avatar %name",
+    notice_frame: "Selamat~%nick menangkan %name",
 
     //html/app_share.ejs
     share_title: "Pemberian Keuntungan Seluruh Rakyat",
