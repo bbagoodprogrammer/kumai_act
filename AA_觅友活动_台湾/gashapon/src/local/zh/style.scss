@@ -1,4 +1,8 @@
 html.zh {
+    .pageIndex{
+        background: url(./img/banner.png);
+        background-size: 100% auto;
+    }
     .bollImg{
         &.ball0{
             background: url(./img/gift1.png);
@@ -15,15 +19,15 @@ html.zh {
     }
     .openType{
         .openBtn{
-            &.type0{
+            &.type1{
                 background: url(./img/open1.png);
             background-size: 100% 100%; 
             }
-            &.type1{
+            &.type10{
                 background: url(./img/open2.png);
             background-size: 100% 100%; 
             }
-            &.type2{
+            &.type20{
                 background: url(./img/open3.png);
             background-size: 100% 100%; 
             }
@@ -32,5 +36,12 @@ html.zh {
     .ticketIcon{
         background: url(./img/icon.png);
         background-size: 100% 100%; 
+    }
+    .ruleTable{
+        width: 5.74rem;
+        height: 2.75rem;
+        background: url(./img/ruleTable.png);
+        background-size: 100% 100%; 
+        margin-top: .2rem;
     }
 }

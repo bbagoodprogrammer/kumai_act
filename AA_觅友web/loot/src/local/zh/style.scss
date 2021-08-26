@@ -1,3 +1,11 @@
 html.zh {
-    
+    .logo{
+        width:3.52rem ;
+        height: .77rem;
+        background: url(./img/logo.png);
+        background-size: 100% 100%;
+        position: absolute;
+        right: 0.16rem;
+        top: .16rem;
+    }
 }

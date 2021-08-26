@@ -10,7 +10,8 @@ export default new vuex.Store({
         rare_prizes: [],
         activity: {},
         owner: {},
-        charge: {}
+        charge: {},
+        notices: []
     },
     mutations: {
         updateLoading(state, value) {

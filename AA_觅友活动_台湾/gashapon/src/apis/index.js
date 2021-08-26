@@ -209,5 +209,19 @@ function getInitInfo() {
     // return testGet(arguments.callee.name);
     return get("/index.php?action=gashapon.init&uid={uid}&token={token}");
 }
-
-export { get, post, loadData, getInitInfo };
+function luck(count) {
+    return get(
+        `/index.php?action=gashapon.go&uid={uid}&token={token}&count=${count}`
+    );
+}
+function lotteryRecord(from, more) {
+    if (more) {
+        return axios.get(
+            `/index.php?action=gashapon.history&uid={uid}&token={token}&from =${from}`
+        );
+    }
+    return get(
+        `/index.php?action=gashapon.history&uid={uid}&token={token}&from =${from}`
+    );
+}
+export { get, post, loadData, getInitInfo, luck, lotteryRecord };

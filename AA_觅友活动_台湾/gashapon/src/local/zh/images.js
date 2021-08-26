@@ -1,1 +1,31 @@
-export default {};
+export default {
+    1: require("./img/luckGift/1.png"),
+    2: require("./img/luckGift/2.png"),
+    3: require("./img/luckGift/3.png"),
+    10: require("./img/luckGift/10.png"),
+    11: require("./img/luckGift/10.png"),
+    12: require("./img/luckGift/10.png"),
+    13: require("./img/luckGift/10.png"),
+    14: require("./img/luckGift/10.png"),
+    20: require("./img/luckGift/20.png"),
+    21: require("./img/luckGift/21.png"),
+    22: require("./img/luckGift/22.png"),
+    50: require("./img/luckGift/50.png"),
+    51: require("./img/luckGift/51.png"),
+    52: require("./img/luckGift/52.png"),
+    53: require("./img/luckGift/53.png"),
+    54: require("./img/luckGift/54.png"),
+    55: require("./img/luckGift/55.png"),
+    100: require("./img/luckGift/100.png"),
+    101: require("./img/luckGift/101.png"),
+    102: require("./img/luckGift/102.png"),
+
+    pup_1: require("./img/pupImg/1.png"),
+    pup_2: require("./img/pupImg/2.png"),
+    pup_3: require("./img/pupImg/3.png"),
+    pup_10: require("./img/pupImg/10.png"),
+    pup_11: require("./img/pupImg/10.png"),
+    pup_12: require("./img/pupImg/10.png"),
+    pup_13: require("./img/pupImg/10.png"),
+    pup_14: require("./img/pupImg/10.png")
+};
