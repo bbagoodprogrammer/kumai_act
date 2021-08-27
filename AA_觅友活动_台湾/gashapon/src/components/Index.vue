@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="btns">
-            <span class="ok" @click="showPup = false">收下</span>
+            <span class="ok" @click="closePup()">收下</span>
             <span class="again" @click="luck(luckNums,true)">再扭{{openType[luckNums].str}}</span>
           </div>
         </div>
@@ -159,7 +159,6 @@ export default {
             const { coupons, go_count, prizes, rare_prizes } = res.data.response_data
             this.prizes = prizes
             this.rare_prizes = rare_prizes
-            this.showAni = false
             if (!notAni) {
               this.player.start()
               setTimeout(() => {
@@ -175,16 +174,16 @@ export default {
           }
         })
       } else {
-        this.toast(`扭扭券不足！`)
         setTimeout(() => {
           this.gowalletpage()
         }, 1000)
+        this.toast(`扭扭券不足！`)
       }
 
     },
     async bannerGo () {
       let canvas = document.getElementById('balls')
-      const fileData = await downloader.get(`//fstatic.cat1314.com/uc/svga/c3ee8455efefa099c3a68f65b4f18e52_1629884133.svga`);
+      const fileData = await downloader.get(`//fstatic.cat1314.com/uc/svga/f772a5796b0328782fc7b4a62e8c992e_1630052898.svga`);
       const data = await parser.do(fileData);
       this.player = new Player(canvas)
       await this.player.mount(data)
@@ -192,6 +191,7 @@ export default {
       this.player.stop()
     },
     closePup () {
+      this.showAni = false
       this.showPup = false
       this.$store.dispatch('getInitInfo');
     },
@@ -210,6 +210,7 @@ export default {
       }, 1000)
     },
     gowalletpage () {
+      alert('jump')
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       try {
         if (ios) {
@@ -299,7 +300,7 @@ export default {
     width: 3.3rem;
     height: 1.6rem;
     position: absolute;
-    bottom: 1rem;
+    top: 11.5rem;
     left: 3.4rem;
     text-align: center;
     display: flex;
@@ -356,7 +357,7 @@ export default {
     height: 1.3rem;
     padding-top: 0.1rem;
     position: absolute;
-    bottom: 1.1rem;
+    top: 11.5rem;
     left: 1.7rem;
     overflow: hidden;
     border-radius: 0.7rem 0.7rem 0 0;

@@ -1,25 +1,25 @@
-export default {
+﻿export default {
     //html/index.html
     title: "Otentikasi orang sungguhan",
 
     //index.vue
-    tips_title: "Lulus otentikasi orang sungguhan, lebih populer",
-    photograph: "Berfoto",
+    tips_title: "Lulus otentikasi orang sungguhan, menjadi lebih populer",
+    photograph: "Foto",
     nowImg: "Avatar saat ini",
     changImg: "Foto bersertifikat",
     chang_title:
-        " Silakan konfirmasi bahwa avatar dan foto bersertifikat saat ini adalah Anda，kalau tidak,tak akan dapat lulus sertifikasi",
+        " Silakan konfirmasi bahwa avatar dan foto bersertifikat saat ini adalah Anda. Apabila tidak,tidak akan lulus otentikasi",
     commit: "Kirim",
     suc_title: "Lulus otentikasi orang sungguhan",
     suc_tips:
-        "Ganti avatar akan periksa ulang otentikasi orang sungguhan, silakan gunakan info yg sebenarnya",
+        "Apabila Anda mengganti avatar akan diotentikasi ulang, silakan gunakan informasi yang asli",
     img_tipsArr: [
-        "Silakan berfoto utk bersertifikat sesuai dgn gambar contoh；",
-        "Foto otentikasi org sungguhan harus sama dgn foto avatar, jika tidak, tak valid；",
-        "Jika identitas non-host lulu sertifikasi,pendapatan berlian pink dr obrolan berlipat ganda；",
-        "Foto2 hanya digunakan utk tujuan sertifikasi dan peninjauan, AloChat resmi akan menjaga kerahasiaannya；"
+        "Silakan foto untuk diotentikasi sesuai dengan contoh gambar.",
+        "Foto otentikasi orang sungguhan harus sama dengan foto avatar, Apabila tidak,tidak valid.",
+        "Jika identitas non-host lulus sertifikasi, pendapatan berlian pink dari obrolan akan berlipat ganda.",
+        "Foto hanya digunakan untuk tujuan otentikasi dan peninjauan, AloChat akan menjaga kerahasiaannya."
     ],
     examineIng: "Sedang ditinjau",
     examine_tips:
-        "Silakan perhatikan hasil sertifikasi yang diberitahukan oleh sistem"
+        "Silakan memperhatikan hasil sertifikasi yang diberitahukan oleh sistem"
 };

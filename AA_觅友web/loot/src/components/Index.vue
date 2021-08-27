@@ -1,16 +1,54 @@
 <template>
   <div class="page pageIndex">
     <div class="iconList">
-      <span class="history"></span>
-      <div class="rank"></div>
-      <div class="userTicketNums"><i class="tIcon"></i> <span>284</span> <i class="get">獲取</i></div>
+      <span class="history" @click="showUserHistrry = true"></span>
+      <div class="rank" @click="showRank = true"></div>
+      <div class="userTicketNums"><i class="tIcon"></i> <span>284</span> <i class="get" @click="getTicket()">獲取</i></div>
     </div>
-    <div class="logo"></div>
+    <div class="logo"><i class="qurey" @click="showRule = true"></i></div>
     <div class="tabs">
       <span :class="{act:type == 1}" @click="type = 1">熱門奪寶</span>
       <span :class="{act:type == 2}" @click="type = 2">歷史奪寶</span>
     </div>
-    <component :is="type == 1?'hotList':'historyList'" />
+    <component :is="type == 1?'hotList':'historyList'" ref="showCom" />
+    <div class="mask2" @click="closePup()" v-show="showMask"></div>
+
+    <!-- 獲取券 -->
+    <transition name="move">
+      <div class="getTicket" v-show="showGetTicketPup">
+        <div class="tickMsg">
+          <div class="title"><i></i><strong>獲得幸運券</strong></div>
+          <div class="userTicketNums">幸運券:10</div>
+        </div>
+        <div class="btnList">
+          <div v-for="(item,index) in joinType" :key="index" @click="join(item)">
+            <div class="strTips">{{item}}个</div>
+          </div>
+        </div>
+        <div class="getBtn">獲得</div>
+        <p class="getTips">消耗100金幣可獲得1張尋寶圖</p>
+        <div class="userCoins">
+          <div class="coins">
+            <i></i>
+            <em>888</em>
+          </div>
+          <div class="charge">
+            <em>儲值</em>
+            <i></i>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <transition name="moveR">
+      <Rule v-if="showRule" />
+    </transition>
+    <transition name="moveR">
+      <TabsScrollLoadList v-if="showRank" />
+    </transition>
+    <transition name="moveR">
+      <UserHistoryList v-if="showUserHistrry" />
+    </transition>
   </div>
 </template>
 
@@ -18,12 +56,38 @@
 
 import hotList from "./HotList"
 import historyList from "./HistoryList"
+import { mapState } from "vuex"
+import Rule from "./Rule"
+import TabsScrollLoadList from "./TabsScrollLoadList"
+import UserHistoryList from "./UserHistoryList"
+
 export default {
-  components: { hotList, historyList },
+  components: { hotList, historyList, Rule, TabsScrollLoadList, UserHistoryList },
   data () {
     return {
-      type: 1
+      type: 1,
+      showGetTicketPup: false,
+      showRule: false,
+      showRank: false,
+      showUserHistrry: false,
+      joinType: [
+        1, 10, 100
+      ],
     }
+  },
+  computed: {
+    ...mapState(['showMask'])
+  },
+  methods: {
+    getTicket () {
+      this.vxc('setShowMask')
+      this.showGetTicketPup = true
+    },
+    closePup () {
+      this.vxc('setShowMask')
+      this.$refs.showCom.showSetTypePup = false
+      this.showGetTicketPup = false
+    },
   }
 }
 </script>
@@ -35,6 +99,7 @@ export default {
   background: url(../img/banner.png) no-repeat;
   background-size: 100% auto;
   position: relative;
+  overflow: hidden;
   .iconList {
     display: flex;
     position: absolute;
@@ -84,6 +149,17 @@ export default {
       }
     }
   }
+  .logo {
+    position: relative;
+    .qurey {
+      display: block;
+      width: 0.4rem;
+      height: 0.4rem;
+      position: absolute;
+      top: 0.1rem;
+      right: 0.1rem;
+    }
+  }
   .tabs {
     width: 6.38rem;
     height: 0.8rem;
@@ -108,9 +184,146 @@ export default {
       }
     }
   }
+  .getTicket {
+    width: 7.5rem;
+    height: 4.25rem;
+    padding-top: 0.05rem;
+    background: url(../img/getTicketBg.png);
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 5;
+    .tickMsg {
+      padding: 0 0.33rem;
+      height: 1.14rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i {
+          width: 0.48rem;
+          height: 0.48rem;
+          background: url(../img/tIcon.png);
+          background-size: 100% 100%;
+        }
+        strong {
+          font-size: 0.36rem;
+          margin-left: 0.04rem;
+        }
+      }
+      .userTicketNums {
+        font-size: 0.24rem;
+      }
+    }
+    .btnList {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.38rem;
+      text-align: center;
+      > div {
+        width: 1.82rem;
+        height: 0.7rem;
+        background: url(../img/joinTypeBtn.png);
+        background-size: 100% 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .strTips {
+          font-size: 0.28rem;
+        }
+        .numsTips {
+          font-size: 0.2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          i {
+            width: 0.24rem;
+            height: 0.24rem;
+            background: url(../img/tIcon.png);
+            background-size: 100% 100%;
+          }
+          strong {
+            font-size: 0.2rem;
+          }
+        }
+      }
+    }
+    .getBtn {
+      width: 5.98rem;
+      height: 0.88rem;
+      background: #FFFFFF;
+      border-radius: 0.44rem;
+      margin: 0.48rem auto 0;
+      text-align: center;
+      line-height: 0.88rem;
+      font-size: 0.32rem;
+      color: #FE60CD;
+      font-weight: bold;
+    }
+    .getTips {
+      text-align: center;
+      font-size: 0.24rem;
+      margin-top: 0.05rem;
+    }
+    .userCoins {
+      display: inline-block;
+      float: right;
+      height: 0.36rem;
+      display: flex;
+      align-items: center;
+      margin-right: 0.25rem;
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.coins {
+          em {
+            font-size: 0.24rem;
+          }
+          i {
+            width: 0.36rem;
+            height: 0.36rem;
+            background: url(../img/coinsIcon.png);
+            background-size: 100% 100%;
+            margin-right: 0.08rem;
+          }
+        }
+        &.charge {
+          margin-left: 0.2rem;
+          em {
+            font-size: 0.24rem;
+            color: #FFDD00;
+          }
+          i {
+            width: 0.18rem;
+            height: 0.18rem;
+            background: url(../img/arr.png);
+            background-size: 100% 100%;
+            margin-left: 0.1rem;
+          }
+        }
+      }
+    }
+  }
   img {
     display: block;
     width: 100%;
+  }
+  .mask2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // transform:none!important;
   }
 }
 </style>

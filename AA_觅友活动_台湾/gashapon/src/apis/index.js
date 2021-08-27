@@ -217,11 +217,11 @@ function luck(count) {
 function lotteryRecord(from, more) {
     if (more) {
         return axios.get(
-            `/index.php?action=gashapon.history&uid={uid}&token={token}&from =${from}`
+            `/index.php?action=gashapon.history&uid={uid}&token={token}&from=${from}`
         );
     }
     return get(
-        `/index.php?action=gashapon.history&uid={uid}&token={token}&from =${from}`
+        `/index.php?action=gashapon.history&uid={uid}&token={token}&from=${from}`
     );
 }
 export { get, post, loadData, getInitInfo, luck, lotteryRecord };

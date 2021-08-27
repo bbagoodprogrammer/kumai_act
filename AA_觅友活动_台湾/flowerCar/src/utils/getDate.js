@@ -32,7 +32,7 @@ function getDate(datem, type) {
     if (type == 3) {
         return `${month}月${date}日${hours}:${minute}:${second}`;
     }
-    if (type == 3) {
+    if (type == 4) {
         return `${date}/${month} ${hours}:${minute}:${second}`;
     }
 }

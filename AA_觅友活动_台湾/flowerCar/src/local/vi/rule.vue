@@ -5,7 +5,7 @@
       <a class="tab2" @click.prevent="mainTab=1" :class="{current:mainTab==1}" href="">Thưởng</a>
     </div>
     <div class="ruleItem" v-if="mainTab == 0">
-      <p>1.Thời gian: 20/6 19：00-26/6 23:59:59</p>
+      <p>1.Thời gian: {{aTimer}}</p>
       <p>2.Xe Hoa Du Hành: mỗi ngày Top 1 BXH Hoa Thần và Hot được ngồi xe hoa du hành, đồng thời cộng 5% điểm Hoa Thần/Hot, điểm cộng thêm chỉ tính vào BXH tổng, không cộng vào BXH hôm sau </p>
       <p>3.BXH Hoa Thần<br />Không cần báo danh, idol nhận quà chỉ định nhận điểm Hoa Thần và được xếp hạng, quà chỉ định 1 Xu=1 điểm hoa thần；Xếp hạng theo điểm từ cao đến thấy, chỉ hiện thị
         top 50, điểm bằng nhau người đạt trước sẽ ưu tiên xếp cao hơn. </p>
