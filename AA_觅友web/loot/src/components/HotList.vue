@@ -49,8 +49,12 @@
 
 import downTime from "../utils/downTime"
 import GiftNumbers from "./GiftNumbers"
+import { hotList, join } from "../apis"
+
+const pageSize = 10
 
 export default {
+  props: ['numbersList'],
   components: { GiftNumbers },
   data () {
     return {
@@ -64,93 +68,7 @@ export default {
         '5': '進場秀',
         '6': '氣泡框',
       },
-      list: [
-        {
-          id: 1,//id 寻宝id
-          ing: 1, //1进行中 2正常结束 3、4后台终止 5失敗
-          prize_type: 1, // -1礼物 0头框 1座驾 2钻戒 3主题 4活动称号 5进场秀 6气泡框
-          prize_id: 1, //奖励id
-          prize_days: 1, //奖励天数
-          prize_nums: 1, //奖励数量
-          prize_uid: 1, //获奖uid
-          prize_voucher: 1, //获奖号码
-          used_voucher_cnt: 1,//当前用户使用的幸运劵数 
-          voucher_cnt: 1, // 开奖要求总劵数
-          cur_voucher_cnt: 1,//当前劵数
-          etime: 10000, //截止时间戳
-          prize_name: 'xxxxxxxxxx',//奖品名
-          prize_image: '',//奖品图片
-          prize_price: 1,//奖品价值金币
-        },
-        {
-          id: 2,//id 寻宝id
-          ing: 1, //1进行中 2正常结束 3、4后台终止
-          prize_type: 1, // -1礼物 0头框 1座驾 2钻戒 3主题 4活动称号 5进场秀 6气泡框
-          prize_id: 1, //奖励id
-          prize_days: 1, //奖励天数
-          prize_nums: 1, //奖励数量
-          prize_uid: 1, //获奖uid
-          prize_voucher: 1, //获奖号码
-          used_voucher_cnt: 1,//当前用户使用的幸运劵数 
-          voucher_cnt: 1, // 开奖要求总劵数
-          cur_voucher_cnt: 1,//当前劵数
-          etime: 100000, //截止时间戳
-          prize_name: 'xxxxxxxxxx',//奖品名
-          prize_image: '',//奖品图片
-          prize_price: 1,//奖品价值金币
-        },
-        {
-          id: 3,//id 寻宝id
-          ing: 1, //1进行中 2正常结束 3、4后台终止
-          prize_type: 1, // -1礼物 0头框 1座驾 2钻戒 3主题 4活动称号 5进场秀 6气泡框
-          prize_id: 1, //奖励id
-          prize_days: 1, //奖励天数
-          prize_nums: 1, //奖励数量
-          prize_uid: 1, //获奖uid
-          prize_voucher: 1, //获奖号码
-          used_voucher_cnt: 1,//当前用户使用的幸运劵数 
-          voucher_cnt: 1, // 开奖要求总劵数
-          cur_voucher_cnt: 1,//当前劵数
-          etime: 20000, //截止时间戳
-          prize_name: 'xxxxxxxxxx',//奖品名
-          prize_image: '',//奖品图片
-          prize_price: 1,//奖品价值金币
-        },
-        {
-          id: 4,//id 寻宝id
-          ing: 1, //1进行中 2正常结束 3、4后台终止
-          prize_type: 1, // -1礼物 0头框 1座驾 2钻戒 3主题 4活动称号 5进场秀 6气泡框
-          prize_id: 1, //奖励id
-          prize_days: 1, //奖励天数
-          prize_nums: 1, //奖励数量
-          prize_uid: 1, //获奖uid
-          prize_voucher: 1, //获奖号码
-          used_voucher_cnt: 1,//当前用户使用的幸运劵数 
-          voucher_cnt: 1, // 开奖要求总劵数
-          cur_voucher_cnt: 1,//当前劵数
-          etime: 40000, //截止时间戳
-          prize_name: 'xxxxxxxxxx',//奖品名
-          prize_image: '',//奖品图片
-          prize_price: 1,//奖品价值金币
-        },
-        {
-          id: 5,//id 寻宝id
-          ing: 1, //1进行中 2正常结束 3、4后台终止
-          prize_type: 1, // -1礼物 0头框 1座驾 2钻戒 3主题 4活动称号 5进场秀 6气泡框
-          prize_id: 1, //奖励id
-          prize_days: 1, //奖励天数
-          prize_nums: 1, //奖励数量
-          prize_uid: 1, //获奖uid
-          prize_voucher: 1, //获奖号码
-          used_voucher_cnt: 1,//当前用户使用的幸运劵数 
-          voucher_cnt: 1, // 开奖要求总劵数
-          cur_voucher_cnt: 1,//当前劵数
-          etime: 10000, //截止时间戳
-          prize_name: 'xxxxxxxxxx',//奖品名
-          prize_image: '',//奖品图片
-          prize_price: 1,//奖品价值金币
-        }
-      ],
+      list: [],
       joinType: [
         1, 10, 100
       ],
@@ -160,7 +78,21 @@ export default {
       nowId: null,
       showSetTypePup: false,
       showCodePup: false,
-      codeItem: 0
+      codeItem: {},
+      page: 1
+    }
+  },
+  watch: {
+    list (val) {
+      if (val.length < 10) {
+        this.loaded = true
+      }
+    },
+    numbersList (val) {
+      hotList(this.pagination(this.page, pageSize, val)).then(res => {
+        this.list = res.data.response_data.list
+        this.downTmList()
+      })
     }
   },
   mounted () {
@@ -168,30 +100,32 @@ export default {
     if (this.scrollable) {
       this.scrollable.addEventListener('scroll', this.onScroll);
     }
-    setInterval(() => {
-      for (let i = 0; i < this.list.length; i++) {
-        let timeObj = this.downTimeGo(this.list[i]);
-        if (timeObj.end) {
-          //删除操作
-          this.list.splice(i, 1)
-        } else {
-          if (this.list[i]['surplusTime']) {
-            this.$set(this.list, i, Object.assign(this.list[i], { surplusTime: timeObj }))
-          } else {
-            this.list[i]['surplusTime'] = timeObj
-          }
-        }
-      }
-    }, 1000)
   },
   methods: {
+    join (val) {
+      join(this.nowId, val).then(res => {
+        if (res.data.response_status.core > 0) {
+          let curLog = res.data.response_data.curLog
+          if (curLog.ing == 1) {
+            this.$set(this.list, this.nowId, curLog)
+          } else {
+            this.list.splice(this.nowId, 1)
+            // if(curLog.ing == 2){
+            //     this.toast(`此禮物已開講`)
+            // }
+          }
+
+          this.toast('參與成功！')
+          this.showSetTypePup = false
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+    },
     showSetType (id) {
       this.nowId = id
       this.showSetTypePup = true
       this.vxc('setShowMask')
-    },
-    join (val) {
-      console.log(val)
     },
     showCode (item) {
       this.codeItem = item
@@ -203,7 +137,7 @@ export default {
         if (this.loaded) return
         if (this.more) {
           this.more = false
-          lotteryRecord(this.list.length, 'more').then(res => {
+          hotList(this.pagination(++this.page, pageSize, this.numbersList), 'more').then(res => {
             this.more = true
             if (res.data.response_data.list.length === 0) {
               this.loaded = true
@@ -220,6 +154,29 @@ export default {
         downTime(strId, val.etime);
       }
       return downTime(strId);
+    },
+    downTmList () {
+      setInterval(() => {
+        for (let i = 0; i < this.list.length; i++) {
+          let timeObj = this.downTimeGo(this.list[i]);
+          if (timeObj.end) {
+            //删除操作
+            this.list.splice(i, 1)
+          } else {
+            if (this.list[i]['surplusTime']) {
+              this.$set(this.list, i, Object.assign(this.list[i], { surplusTime: timeObj }))
+            } else {
+              this.list[i]['surplusTime'] = timeObj
+            }
+          }
+        }
+      }, 1000)
+    },
+    pagination (pageNo, pageSize, array) {
+      var offset = (pageNo - 1) * pageSize;
+      let arr = (offset + pageSize >= array.length) ? array.slice(offset, array.length) : array.slice(offset, offset + pageSize);
+      console.log(pageNo, pageSize, array)
+      return arr.join(',')
     }
   }
 }

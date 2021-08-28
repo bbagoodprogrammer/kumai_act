@@ -10,7 +10,7 @@
       <span :class="{act:type == 1}" @click="type = 1">熱門奪寶</span>
       <span :class="{act:type == 2}" @click="type = 2">歷史奪寶</span>
     </div>
-    <component :is="type == 1?'hotList':'historyList'" ref="showCom" />
+    <component :is="type == 1?'hotList':'historyList'" ref="showCom" :numbersList="numbersList" />
     <div class="mask2" @click="closePup()" v-show="showMask"></div>
 
     <!-- 獲取券 -->
@@ -18,11 +18,11 @@
       <div class="getTicket" v-show="showGetTicketPup">
         <div class="tickMsg">
           <div class="title"><i></i><strong>獲得幸運券</strong></div>
-          <div class="userTicketNums">幸運券:10</div>
+          <div class="userTicketNums">幸運券:{{price}}</div>
         </div>
         <div class="btnList">
-          <div v-for="(item,index) in joinType" :key="index" @click="join(item)">
-            <div class="strTips">{{item}}个</div>
+          <div v-for="(item,index) in joinType" :key="index" @click="buy(item)">
+            <div class="strTips">{{item.nums}}个</div>
           </div>
         </div>
         <div class="getBtn">獲得</div>
@@ -60,6 +60,9 @@ import { mapState } from "vuex"
 import Rule from "./Rule"
 import TabsScrollLoadList from "./TabsScrollLoadList"
 import UserHistoryList from "./UserHistoryList"
+import { getSortIngList, buyVouchers } from "../apis"
+
+
 
 export default {
   components: { hotList, historyList, Rule, TabsScrollLoadList, UserHistoryList },
@@ -70,15 +73,38 @@ export default {
       showRule: false,
       showRank: false,
       showUserHistrry: false,
-      joinType: [
-        1, 10, 100
-      ],
+      joinType: [],
+      numbersList: [],
+      price: 0
     }
+  },
+  created () {
+    getSortIngList().then(res => {
+      if (res.data.response_data) {
+        const { list, products, price } = res.data.response_data
+        this.numbersList = list
+        this.joinType = products
+        this.price = price
+      } else {
+        this.toast(res.data.response_status.error)
+      }
+    })
   },
   computed: {
     ...mapState(['showMask'])
   },
   methods: {
+    buy (item) {
+      console.log(item)
+      buyVouchers(item.id).then(res => {
+        if (res.data.response_data == 0) {
+          this.showGetTicketPup = false
+          this.toast(`購買成功！`)
+        } else {
+          this.toast(res.data.response_status.error)
+        }
+      })
+    },
     getTicket () {
       this.vxc('setShowMask')
       this.showGetTicketPup = true

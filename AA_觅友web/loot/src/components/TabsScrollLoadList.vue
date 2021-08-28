@@ -1,6 +1,6 @@
 <template>
   <div class="rankGroups">
-    <div class="title"><i @click="$parent.showRank = false"></i>玩法說明</div>
+    <div class="title"><i @click="$parent.showRank = false"></i>奪寶周榜</div>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
       <span @click.prevent="mainTabClick(0)" :class="{act:mainTab==0}" class="tabL">本週</span>
@@ -22,7 +22,7 @@
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
     <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
     <div v-if="rank.none" class="scrollNone">
-      {{lang.rank_noData}}
+      {{lang.noData}}
     </div>
     <!-- :class="'rank' + userMsg.rank" -->
     <div class="usermsg" v-if="userMsg.uid">
@@ -96,7 +96,10 @@ export default {
   mounted () {
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
-    this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
+    setTimeout(() => {
+      this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
+    }, 0)
+
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
@@ -123,49 +126,12 @@ export default {
           };
           set('loading', true);
           axios.get(this.rankApi.replace('{from}', this.rank.list.length)).then(res => {
-
-            //test
-            // let arr2 = [{
-            //   "rank": 1,//排名
-            //   "score": 15, //劵数
-            //   "avatar": "http://udatefile.cat1314.com/uc/img/head_10012714_1619331028.png", "sex": "0",
-            //   "nick": "10012714",
-            //   "uid": "10012714"
-
-            // }, {
-            //   "rank": 2,//排名
-            //   "score": 15, //劵数
-            //   "avatar": "http://udatefile.cat1314.com/uc/img/head_10012714_1619331028.png", "sex": "0",
-            //   "nick": "10012714",
-            //   "uid": "10012714"
-
-            // }, {
-            //   "rank": 3,//排名
-            //   "score": 15, //劵数
-            //   "avatar": "http://udatefile.cat1314.com/uc/img/head_10012714_1619331028.png", "sex": "0",
-            //   "nick": "10012714",
-            //   "uid": "10012714"
-
-            // },
-            // {
-            //   "rank": 4,//排名
-            //   "score": 15, //劵数
-            //   "avatar": "http://udatefile.cat1314.com/uc/img/head_10012714_1619331028.png", "sex": "0",
-            //   "nick": "10012714",
-            //   "uid": "10012714"
-
-            // },
-            // ]
-
-            // set('list', this.rank.list.concat(arr2));
-            // set('loading', false);
-            // return
             const { response_status, response_data } = res.data;
 
-            if (response_status.code != 0) {
-              set('loadEnd', true);
-              return;
-            }
+            // if (response_status.code != 0) {
+            //   set('loadEnd', true);
+            //   return;
+            // }
             const arr = response_data.ranklist;
 
             set('page', this.rank.page ? this.rank.page + 1 : 1)

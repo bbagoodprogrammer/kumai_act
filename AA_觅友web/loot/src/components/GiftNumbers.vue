@@ -64,302 +64,302 @@ export default {
       return getUrlString("uid") || "";
     }
   },
-  created () {
-    getCode(this.codeItem.id, 1).then(res => {
-      // res.data.response_data.list
-      this.list = [ //幸运劵商品列表
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-        {
-          "id": 1, //id
-          "nums": 1 //幸运劵数
-        },
-
-
-
-      ]
-      this.page++
-    })
-  },
   mounted () {
     this.scrollable = this.$el.querySelector('.numberScrollable');
     if (this.scrollable) {
       this.scrollable.addEventListener('scroll', this.onScroll);
     }
+    setTimeout(() => {
+      getCode(this.codeItem.id, 1).then(res => {
+        // res.data.response_data.list
+        this.list = [ //幸运劵商品列表
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+          {
+            "id": 1, //id
+            "nums": 1 //幸运劵数
+          },
+
+
+
+        ]
+        this.page++
+      })
+    }, 0)
   },
   destroyed () {
     this.scrollable.removeEventListener('scroll');
@@ -371,8 +371,7 @@ export default {
         if (this.loaded) return
         if (this.more) {
           this.more = false
-          getCode(this.codeItem.id, this.page + 1, 'more').then(res => {
-            this.page++
+          getCode(this.codeItem.id, ++this.page, 'more').then(res => {
             this.more = true
             if (res.data.response_data.list.length === 0) {
               this.loaded = true

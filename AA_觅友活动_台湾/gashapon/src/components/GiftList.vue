@@ -2,7 +2,7 @@
   <div class="giftList">
     <div class="liner">
       <div class="giftItem" :class="'gift' + index" v-for="(item,index) in rare_prizes" :key="index">
-        <i class="tips">稀有</i>
+        <i class="tips">{{lang.race}}</i>
         <i class="lock" v-if="item.num <= 0"></i>
         <div class="imgBox">
           <div class="bollImg" :class="[{lockImg:item.num <= 0},'ball' + index]"></div>

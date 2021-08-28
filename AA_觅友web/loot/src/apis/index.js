@@ -203,22 +203,78 @@ function loadData(apiFunc, commitName, loadOnce = false) {
         }
     });
 }
-
-function getInitInfo() {
-    // return testGet('getInitInfo');
-    // return testGet(arguments.callee.name);
-    return get("/index.php?action=kolExt.getInitInfo&uid={uid}&token={token}");
-}
-
-function getCode(id, page, more) {
-    if (more) {
-        return axios.get(
-            `/index.php?action=Action/SnatchTreasure.getMyVouchers&id=${id}&page=${page}`
-        );
-    }
+//全部列表ID
+function getSortIngList() {
     return get(
-        `/index.php?action=Action/SnatchTreasure.getMyVouchers&id=${id}&page=${page}`
+        "/index.php?action=Action/SnatchTreasure.getSortIngList&uid={uid}&token={token}"
     );
 }
 
-export { get, post, loadData, getInitInfo, getCode };
+//热门列表
+function hotList(ids, more) {
+    if (more) {
+        return axios.get(
+            `/index.php?action=Action/SnatchTreasure.batchGetIngListInfo&ids=${ids}&uid={uid}&token={token}`
+        );
+    }
+    return get(
+        `/index.php?action=Action/SnatchTreasure.batchGetIngListInfo&ids=${ids}&uid={uid}&token={token}`
+    );
+}
+//加入奪寶
+function join(id, nums) {
+    return get(
+        `/index.php?action=Action/SnatchTreasure.join&id=${id}&nums=${nums}&uid={uid}&token={token}`
+    );
+}
+
+//购买幸运券
+function buyVouchers(id) {
+    return get(
+        `/index.php?action=Action/SnatchTreasure.buyVouchers&id=${id}&uid={uid}&token={token}`
+    );
+}
+
+//奪寶号码
+function getCode(id, page, more) {
+    if (more) {
+        return axios.get(
+            `/index.php?action=Action/SnatchTreasure.getMyVouchers&id=${id}&page=${page}&uid={uid}&token={token}`
+        );
+    }
+    return get(
+        `/index.php?action=Action/SnatchTreasure.getMyVouchers&id=${id}&page=${page}&uid={uid}&token={token}`
+    );
+}
+
+// 历史记录
+function userHistory(page, more) {
+    if (more) {
+        return axios.get(
+            `/index.php?action=Action/SnatchTreasure.myHistory&page=${page}&uid={uid}&token={token}`
+        );
+    }
+    return get(
+        `/index.php?action=Action/SnatchTreasure.myHistory&page=${page}&uid={uid}&token={token}`
+    );
+}
+
+//历史夺宝
+function historyList(page) {
+    return get(
+        `/index.php?action=Action/SnatchTreasure.myHistory&page=${page}&uid={uid}&token={token}`
+    );
+}
+
+export {
+    get,
+    post,
+    loadData,
+    getSortIngList,
+    getCode,
+    userHistory,
+    historyList,
+    hotList,
+    join,
+    buyVouchers
+};

@@ -1,13 +1,16 @@
 <template>
   <div class="page pageIndex">
     <div class="ruleTips">
-      <span @click="showRule = true">規則獎勵</span>
-      <span @click="showHistory = true">扭蛋記錄</span>
+      <span @click="showRule = true">{{lang.ruleTips1}}</span>
+      <span @click="showHistory = true">{{lang.ruleTips2}}</span>
     </div>
     <RoolMsg />
     <GiftList />
-    <div class="timeDown" v-if="surplusTime&& !surplusTime.end && activity.activity_status!=2">
-      <div class="tmTips"> 結束倒計時:</div>
+    <div class="timeDown tm" v-if="activity.activity_status == 2">
+      {{lang.actEnd}}
+    </div>
+    <div class="timeDown" v-else-if="surplusTime&& !surplusTime.end && activity.activity_status!=2">
+      <div class="tmTips">{{lang.downTime}}</div>
       <strong>{{surplusTime.day}}</strong>
       <em>{{lang.rank_day}}</em>
       <strong>{{surplusTime.hour}}</strong>
@@ -17,14 +20,15 @@
       <strong>{{surplusTime.second}}</strong>
       <em>{{lang.rank_second}}</em>
     </div>
+
     <canvas id="balls" />
     <div class="openType">
       <div class="openBtn" :class="'type' + index" v-for="(item,index) in openType" :key="index" @click="luck(item.num)"> </div>
     </div>
     <div class="userMsg">
-      <div class="userOpenNums">開啟次數:{{owner.go_count}}次</div>
+      <div class="userOpenNums">{{lang.openNums.replace('%c',owner.go_count)}}</div>
       <div class="userTicket"> <i class="ticketIcon"></i> {{owner.coupons}} <i class="add" @click="gowalletpage()"></i></div>
-      <div class="ticketTips">儲值每滿<em>{{charge.step}}</em>送 <i class="ticketIcon"> </i> 一張</div>
+      <div class="ticketTips" v-html="lang.chageTips.replace('%s',charge.step)"></div>
     </div>
     <div class="giftExport">
       <img :src="images[ballGift.id]" alt="" :class="{ani:showAni}" v-if="showAni">
@@ -33,13 +37,13 @@
       <transition name="slide">
         <div class="luckPup" v-if="showPup">
           <i class="close" @click="closePup()"></i>
-          <div class="title" v-if="prizes.length > 1">恭喜獲得以下禮物</div>
-          <div class="title" v-else-if="prizes.length == 1 && rare_prizes.id">恭喜獲得{{rare_prizes.name}}稀有禮物</div>
-          <div class="title" v-else>恭喜獲得{{ballGift.name}}禮物</div>
+          <div class="title" v-if="prizes.length > 1">{{lang.luckPupTitle1}}</div>
+          <div class="title" v-else-if="prizes.length == 1 && rare_prizes.id">{{lang.luckPupTitle2.replace('%n',rare_prizes.name)}}</div>
+          <div class="title" v-else>{{lang.luckPupTitle3.replace('%n',ballGift.name)}}</div>
           <!-- v-if="rare_prizes.id" -->
           <div class="rareGift" v-if="rare_prizes.id">
             <div class="imgBox">
-              <i class="tips">稀有</i>
+              <i class="tips">{{lang.race}}</i>
               <img :src="rare_prizes.image" alt="">
               <span class="nums">x{{rare_prizes.count}}</span>
             </div>
@@ -56,8 +60,8 @@
             </div>
           </div>
           <div class="btns">
-            <span class="ok" @click="closePup()">收下</span>
-            <span class="again" @click="luck(luckNums,true)">再扭{{openType[luckNums].str}}</span>
+            <span class="ok" @click="closePup()">{{lang.get}}</span>
+            <span class="again" @click="luck(luckNums,true)">{{openType[luckNums].str}}</span>
           </div>
         </div>
       </transition>
@@ -66,11 +70,11 @@
       <transition name="slide">
         <div class="getTicket" v-show="showFirstPup">
           <i class="close" @click="showFirstPup =false"></i>
-          <div class="title">獲得扭扭券{{owner.coupons_get}}張</div>
+          <div class="title">{{lang.getTicket.replace('%c',owner.coupons_get)}}</div>
           <div class="tickImg">
             <div class="ticketIcon"></div>
           </div>
-          <p class="tips">快去扭一扭吧</p>
+          <p class="tips">{{lang.ticketTips}}</p>
         </div>
       </transition>
     </div>
@@ -103,20 +107,6 @@ export default {
   data () {
     return {
       surplusTime: {},
-      openType: {
-        1: {
-          num: 1,
-          str: '一次'
-        },
-        10: {
-          num: 10,
-          str: '十次'
-        },
-        20: {
-          num: 20,
-          str: '二十次'
-        },
-      },
       player: null,
       showAni: false,
       showPup: false,
@@ -135,6 +125,9 @@ export default {
     },
     _images () {
       return _images
+    },
+    openType () {
+      return this.lang.openType
     }
   },
   watch: {
@@ -151,7 +144,12 @@ export default {
     this.bannerGo()
   },
   methods: {
+
     luck (val, notAni) {
+      if (this.activity.activity_status != 1) {
+        this.toast(this.lang.actEnd)
+        return
+      }
       if (this.owner.coupons >= val) {
         luck(val).then(res => {
           if (res.data.response_status.code == 0) {
@@ -159,6 +157,7 @@ export default {
             const { coupons, go_count, prizes, rare_prizes } = res.data.response_data
             this.prizes = prizes
             this.rare_prizes = rare_prizes
+            this.$store.dispatch('getInitInfo');
             if (!notAni) {
               this.player.start()
               setTimeout(() => {
@@ -177,9 +176,8 @@ export default {
         setTimeout(() => {
           this.gowalletpage()
         }, 1000)
-        this.toast(`扭扭券不足！`)
+        this.toast(this.lang.noTicket)
       }
-
     },
     async bannerGo () {
       let canvas = document.getElementById('balls')
@@ -193,7 +191,7 @@ export default {
     closePup () {
       this.showAni = false
       this.showPup = false
-      this.$store.dispatch('getInitInfo');
+      //this.$store.dispatch('getInitInfo');
     },
     downTimeGo (timeName, val) {
       clearInterval(this.timer)
@@ -210,7 +208,6 @@ export default {
       }, 1000)
     },
     gowalletpage () {
-      alert('jump')
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       try {
         if (ios) {
@@ -263,6 +260,7 @@ export default {
     }
   }
   .timeDown {
+    text-align: center;
     width: 4rem;
     padding: 0 0.5rem;
     height: 0.4rem;
@@ -275,6 +273,9 @@ export default {
     top: 5.46rem;
     left: 1.25rem;
     font-size: 0.24rem;
+    &.tm {
+      justify-content: center;
+    }
     strong,
     em {
       font-size: 0.24rem;

@@ -2,19 +2,19 @@
   <div class="historyList" :class="{noData: hList.length== 0}">
     <i class="close" @click="closeHistory()"></i>
     <div class="title">{{lang.history_title}}</div>
-    <p>已獲得券數:{{owner.coupons_total}}</p>
+    <p>{{lang.getedNums}}{{owner.coupons_total}}</p>
     <div class="hasData">
       <ul class='scrollable'>
         <li v-for="(item,index) in hList" :key="index">
           <div class="msg">
             <span class="gift" v-if="item.type == 'go' && item.level=='rare'">
-              成功開啟扭蛋，獲得【{{item.name}}】稀有禮物*{{item.count}}
+              {{lang.historyTips1.replace('%n',item.name).replace('%c',item.count)}}
             </span>
             <span class="gift" v-else-if="item.type == 'go'">
-              成功開啟扭蛋，獲得【{{item.name}}】*{{item.count}}
+              {{lang.historyTips2.replace('%n',item.name).replace('%c',item.count)}}
             </span>
             <span class="gift" v-else-if="item.type == 'charge'">
-              獲得扭扭券*{{item.count}}
+              {{lang.historyTips3.replace('%c',item.count)}}
             </span>
             <span class="time">{{getDateStr(item.tm)}}</span>
           </div>
