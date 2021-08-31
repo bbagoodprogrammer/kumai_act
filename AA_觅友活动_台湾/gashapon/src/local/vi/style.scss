@@ -1,3 +1,74 @@
 html.vi {
-    
+    letter-spacing: -0.015rem;
+    .pageIndex{
+        background: url(./img/banner.png) no-repeat;
+        background-size: 100% auto;
+    }
+    .bollImg{
+        &.ball0{
+            background: url(./img/gift1.png);
+            background-size: 100% 100%;
+        }
+        &.ball1{
+            background: url(./img/gift2.png);
+            background-size: 100% 100%;
+        }
+        &.ball2{
+            background: url(./img/gift3.png);
+            background-size: 100% 100%;
+        }
+    }
+    .luckPup{
+        .rareGift{
+            .imgBox{
+                .tips{
+                    width: .88rem!important;
+                }
+            }
+        }
+    }
+    .ruleTips{
+
+        white-space: nowrap;
+        span{
+            width: 1.62rem;
+            text-indent: .05rem;
+        }
+    }
+    .userMsg{
+        width: 3.5rem;
+        left: 3.3rem;
+    }
+    .giftList{
+        .tips{
+            width: .88rem;
+        }
+    }
+    .openType{
+        .openBtn{
+            &.type1{
+                background: url(./img/open1.png);
+            background-size: 100% 100%; 
+            }
+            &.type10{
+                background: url(./img/open2.png);
+            background-size: 100% 100%; 
+            }
+            &.type20{
+                background: url(./img/open3.png);
+            background-size: 100% 100%; 
+            }
+        }
+    }
+    .ticketIcon{
+        background: url(./img/icon.png);
+        background-size: 100% 100%; 
+    }
+    .ruleTable{
+        width: 5.74rem;
+        height:3.3rem;
+        background: url(./img/ruleTable.png);
+        background-size: 100% 100%; 
+        margin-top: .2rem;
+    }
 }

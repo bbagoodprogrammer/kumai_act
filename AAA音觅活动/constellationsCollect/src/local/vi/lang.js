@@ -42,7 +42,7 @@ export default {
     rule_p4:
         "- Mỗi khi thắp sáng  vị trí chòm sao sẽ nhận được phần thưởng hoặc  khung ảnh  tương ứng (phần thưởng có hiệu lực trong 1 ngày)",
     rule_p5:
-        " -Vòng quay trúng thưởng 100%, phần thưởng vòng quay chòm sao gồm Sư tử hào phóng-Huy chương(3 ngày), đầu gấu-Khung ảnh (7 ngày), mui trần màu bạc-Xe (7ngày), Kẹo mong-Quà túi (5990 Xu), Lâu đài tuyệt vời-Quà túi (9990 Xu), Sợi cưới mặt trăng-Quà túi (26990 Xu), qùa túi có hiệu lực trong 7 ngày, vui lòng tặng quà sớm nha",
+        " -Vòng quay trúng thưởng 100%, phần thưởng vòng quay chòm sao gồm Thủ hộ chòm sao-Huy chương(3 ngày)、Mộng sao băng-Khung ảnh (5 ngày)、Xe mui trần màu bạc-Xe (7 ngày)、Sét Ái Tình-Quà túi (6999 Xu)、Lọ ước nguyện-Quà túi (12990 Xu)、Nữ thần mặt trăng-Quà túi (26990 Xu), vui lòng tặng quà sớm nha",
     rule_p6: "Chú ý",
     rule_p7:
         "1. Trong sự kiện, khi phát hiện người chơi gian lận, chúng tôi sẽ hủy bỏ tư cách tham gia của người chơi mà không cần thông báo, bao gồm nhưng không giới hạn:",

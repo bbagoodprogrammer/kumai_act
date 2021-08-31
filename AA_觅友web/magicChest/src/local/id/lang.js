@@ -43,14 +43,14 @@
     openBox: "Buka kotak ", //Buka kotak
 
     taskTitle: "Tugas sihir", //Tugas sihir
-    taskTips: "Update setiap hari pd 00:00", //Update setiap hari pd 00:00
+    taskTips: "Update setiap hari pd 00:00(wib)", //Update setiap hari pd 00:00(wib)
     get: "Terima", //Menerima
 
     rule: "Aturan", //Aturan
     rule_li: [
-        "Selesaikan tugas sihir utk dapatkan energi utk buka kotak sihir dan dapatkan hadiah sihir.Dapat melemparkan sihir ke pacar, dan akan ada efek menarik setelah beri hadiah；",
-        "Tugas sihir update pd pkl 00:00(WIB),bisa selesai ulang,energi yg tak dikonsumsi pd hari itu akan tak valid.",
-        "Konsumsi 200 energi dapat buka kotak sihir sekali，berkesempatan utk dapat sebuah hadiah sihir；<em>Pasti akan dapatkan sebuah hadiah langka jika dibuka untuk kelima kalinya hari itu.</em>"
+        "Selesaikan tugas sihir untuk dapatkan energi agar buka kotak sihir dan dapatkan hadiah sihir. Dapat melemparkan sihir ke user lain, dan akan ada efek menarik setelah beri hadiah.",
+        "Tugas sihir update pada pukul 00:00(wib),bisa selesai ulang, energi yang tidak dikonsumsi pada hari itu akan tidak valid.",
+        "Konsumsi 200 energi dapat buka kotak sihir sekali, berkesempatan untuk dapat satu hadiah sihir.<em>Pasti akan dapatkan satu hadiah langka jika dibuka untuk kelima kalinya hari itu.</em>"
     ],
     giftTitle: "Hadiah sihir", //Hadiah sihir
     giftName: "Nama hadiah", //Nama hadiah

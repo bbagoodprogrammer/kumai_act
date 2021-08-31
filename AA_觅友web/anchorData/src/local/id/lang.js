@@ -14,28 +14,28 @@
     live_month_time: "{0}/{1}",
     month_data: "Data bulanan", //Data bulanan
     day_data: "Data harian", //Data harian
-    room_coins: "Aliran kamar", //Aliran kamar
-    new_fans: "Fans baru ", //Fans tambahan
-    validDay: "Tanggal berlaku", //Tanggal berlaku
-    validMicTime: "Waktu yg efektif", //Waktu yg efektif
-    freeTime: "Durasi live di waktu luang", //Durasi live di waktu luang
-    busyTime: "Durasi live saat sibuk", //Durasi live saat sibuk
-    detail_room: "Detail aliran kamar", //Detail aliran kamar
+    room_coins: "Pendapatan Ruangan", //Pendapatan Ruangan
+    new_fans: "Fans baru", //Fans baru
+    validDay: "Hari Valid", //Hari Valid
+    validMicTime: "Durasi Valid", //Durasi Valid
+    freeTime: "Durasi live waktu luang", //Durasi live waktu luang
+    busyTime: "Durasi live waktu sibuk", //Durasi live waktu sibuk
+    detail_room: "Detail pendapatan ruangan", //Detail pendapatan ruangan
     detail_live: "Detail durasi live", //Detail durasi live
     total: "Total", //Total'
 
-    idle_time: "Waktu senggang：", //Waktu senggang
-    busy_time: "Durasi sibuk：", //Durasi sibuk：
+    idle_time: "Waktu luang：", //Waktu luang
+    busy_time: "Waktu sibuk：", //Waktu sibuk：
     is_br: "",
     online: "Durasi live：", //Durasi live：
     is_busy: "Luang", //Luang
     no_busy: "Sibuk", //'Sibuk',
     rule_title: "Keterangan data host", //Keterangan data host
     rule_li: [
-        "Aliran kamar：Total aliran koin emas kamar yang dihasilkan di kamar host,termasuk hadiah ransel、kotak hadiah keberuntungan；",
-        "Fans baru: jumlah fans yg tambahkan dari  host, follow berulang tak akan dihitung；",
-        'Durasi live di waktu luang：Durasi yg host berada di kamarnya, dan dalam jangka waktu "10:00 sampai 18:00" hari itu',
-        'Durasi live saat sibuk：Durasi yg host berada di kamarnya，Dalam jangka waktu " jam 00:00~jam 2:00" dan "jam 18:00 ~ jam 24:00" hari itu'
+        "Pendapatan Ruangan: Total pendapatan koin emas ruangan yang dihasilkan di ruangan host, termasuk hadiah ransel, kotak hadiah keberuntungan.",
+        "Fans baru: jumlah fans yg tambahkan, follow ulang tidak akan terhitung.",
+        'Durasi live waktu luang: Durasi host berada di ruangannya, di dalam jangka waktu "jam 10:00-18:00" hari itu.',
+        'Durasi live waktu sibuk: Durasi host berada di ruangannya, di dalam jangka waktu "jam 00:00-2:00" dan "jam 18:00-24:00" hari itu.'
     ],
     room_tips_send: "Berikan", //Berikan
     room_tips_give: "Beri", //Beri

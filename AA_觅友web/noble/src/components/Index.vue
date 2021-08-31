@@ -106,7 +106,7 @@ export default {
         },
         5: {
           key: '5',
-          addres: '//fstatic.cat1314.com/uc/svga/ae66351fd17fd6b65510f242a3f89244_1629358221.svga'
+          addres: '//fstatic.cat1314.com/uc/svga/574c98c846dde7aa3f93490abf182317_1630290540.svga'
         },
       },
       linerSvga: {

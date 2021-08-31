@@ -121,7 +121,12 @@ export default {
   computed: {
     ...mapState(['activity', 'owner', 'charge']),
     ballGift () {
-      return this.prizes[0]
+      if (this.prizes[0]) {
+        return this.prizes[0]
+      } else {
+        return this.rare_prizes
+      }
+
     },
     _images () {
       return _images
