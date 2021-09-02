@@ -6,7 +6,8 @@
       1、Mỗi kỳ mở 1 hải đảo, hoàn thành nhiệm vụ nhận ốc biển, ốc có thể đổi xẻng để đào kho báu, mỗi ngày tối đa đổi 10 cái xẻng<br />
       2、Người chơi có thể dùng Xu đổi xẻng vàng, mỗi ngày không giới hạn số lượng đổi xẻng vàng<br />
       3、Mỗi ngày dùng xẻng đào kho báu tăng tiềm lực chúa đảo, khi đóng hải đảo, BXH chúa đảo, tiểm lực chúa đảo lớn nhất sẽ trở thành chúa đảo (tiềm lực giống nhau sẽ ưu tiên cho người đạt trước),
-      nhận quà chúa đảo: Chúa Đảo Hy Vọng (15 ngày), Ta là chúa đảo-Khung ảnh (10 ngày), Fastnet-Quà hiệu ứng*1(7 ngày)
+      nhận quà chúa đảo: Chứng nhận chúa đảo vàng (15 ngày), khung ảnh ta là chúa đảo (10 ngày), hải đăng đảo-quà hiệu ứng đặc biệt * 1 (có hạn 7 ngày), hạng thứ hai và ba: hải đăng-quà tặng hiệu ứng
+      đặc biệt * 1 (có giá trị trong 7 ngày)
     </p>
     <div class="giftList">
       <div class="giftItem" v-for="(item,index) in gift" :key="index">
@@ -42,7 +43,7 @@ export default {
     return {
       gift: [
         {
-          name: 'Chúa đảo hy vọng-chứng nhận',
+          name: ' Chứng nhận chúa đảo vàng ',
           img: require("../../img/ruleImg/gift1.png")
         },
         {
@@ -77,22 +78,27 @@ body {
     padding: 0.48rem 0.29rem;
   }
   .giftList {
-    padding: 0 0.5rem;
+    padding: 0 0.4rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0.2rem 0;
+    .giftItem {
+      width: 2rem;
+    }
     .imgBox {
       width: 1.88rem;
       height: 1.88rem;
       background: url(./img/imgBox.png);
       background-size: 100% 100%;
+      margin: 0 auto;
       img {
         width: 100%;
         height: 100%;
       }
     }
     strong {
+      width: 100%;
       display: block;
       text-align: center;
       font-size: 0.26rem;

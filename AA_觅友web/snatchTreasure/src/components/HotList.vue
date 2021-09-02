@@ -132,6 +132,10 @@ export default {
           this.vxc('setShowMask')
         } else {
           this.toast(res.data.response_status.error)
+          if (res.data.response_status.code == 10007) {
+            this.$parent.init()
+          }
+          this.showSetTypePup = false
           this.vxc('setShowMask')
         }
       })

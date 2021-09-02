@@ -255,7 +255,7 @@ body {
         text-overflow: ellipsis;
       }
       .medals {
-        width: 1rem;
+        max-width: 1rem;
         height: 0.35rem;
         display: flex;
         align-items: center;

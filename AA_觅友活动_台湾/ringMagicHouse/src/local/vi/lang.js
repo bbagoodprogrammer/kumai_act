@@ -78,7 +78,7 @@ export default {
         "b) Dùng hành vi gian lận để nhận điểm, lấy xu và quà chỉ định trong sự kiện",
     rule_orther_des_3: "2, Sự kiện này không liên quan đến tập đoàn Apple",
     note_des:
-        "Mỗi chiếc nhẫn tạo được sẽ cần tiêu hao năng lượng nhất định. Ví dụ: Tạo Tình yêu Tinh Nguyệt tiêu hao 3000 năng lượng, số năng lượng này sẽ không được dùng để tạo Uyên ương hồ điệp mộng.",
+        "Mỗi chiếc nhẫn tạo được sẽ cần tiêu hao năng lượng nhất định. Ví dụ: Tạo Ice cream tiêu hao 3000 năng lượng, số năng lượng này sẽ không được dùng để tạo Yêu nồng nhiệt mộng.",
 
     // award
     award_title: "Thưởng",
@@ -131,7 +131,7 @@ export default {
     task_title_1: "Chào buổi sáng cùng họ vào 7:00-10:00 (chat riêng tư)",
     task_title_2: "Cùng lên mic ở một phòng vào 19:00-23:00",
     task_title_3: "Lên mic 30 phút vào 19:00-23:00",
-    task_title_4: "Ghi nhật ký mỗi ngày tại chủ đề [ Vẫn là một ngày yêu em]",
+    task_title_4: "Ghi nhật ký mỗi ngày tại chủ đề [ Yêu tôi đi]",
     process_time: "%s/30min",
     go_finish: "Hoàn thành",
     go_record: "Nhật ký",
@@ -164,11 +164,11 @@ export default {
     invite_succ_des:
         "Sau khi tạo nhẫn, hiển thị trong góc yêu của các bạn, \nhãy lựa chọn đúng đối tượng nhé.",
     ring_des_1:
-        "Sự yêu thương của couple giống như mặt trăng và hành tinh. Nhận chiếc nhẫn này sẽ tăng 1500 điểm ân ái của hai bên.",
+        "Anh làm sao để quên? Nụ cười của em ngọt như Ice cream, làm ấm cả tấm lòng anh. Nhận chiếc nhẫn này, hai người đều tăng 1500 điểm ngọt ngào. ",
     ring_des_2:
-        "Uyên ương hồ điệp, tình yêu cả cuộc đời.. Nhận chiếc nhẫn này, 2 bên tăng 12500 điểm ân ái.",
+        "Em nhiệt tình như lửa, khiến anh càng lún càng sâu, không có cách nào thoát khỏi. Nhận chiếc nhẫn này, hai người đều tăng 12500 điểm ngọt ngào. ",
     ring_des_3:
-        "Trong cuộc đổi được có duyên mà gặp đối phương, cùng vẽ 1 bức tranh về tình yêu tuyệt vòi. Nhận chiếc nhẫn này sẽ tăng 22500 điểm ân ái của hai bên.",
+        "Em là ngôi sao sáng nhất trên bầu trời, luôn tỏa sáng trong trái tim anh. Nhận chiếc nhẫn này, hai người đều tăng 22500 điểm ngọt ngào.",
     need_magic_engine: "Năng lượng ma thuật:%s",
     get_engine: "Nhận năng lượng",
     ring_maked: "Đã tạo thành công",

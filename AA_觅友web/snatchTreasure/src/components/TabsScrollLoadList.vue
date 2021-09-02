@@ -240,14 +240,16 @@ export default {
     }
   }
   ul {
-    max-height: 7.28rem;
+    max-height: 5.88rem;
     overflow-y: scroll;
     margin-top: 0.15rem;
+    padding-bottom: 1.4rem;
   }
   li,
   .usermsg {
     height: 1.56rem;
     margin-bottom: 0.01rem;
+
     display: flex;
     align-items: center;
     .userRank {

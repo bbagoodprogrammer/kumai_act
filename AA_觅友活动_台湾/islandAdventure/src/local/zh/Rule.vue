@@ -5,7 +5,7 @@
     <p>
       1、每期開放一個海島，玩家完成島上的指定任務可以獲得海螺，海螺可用於兌換鐵鏟子挖寶，每天最多可以兌換10個鐵鏟子<br />
       2、玩家亦可使用金幣兌換金鏟子挖寶，每日金鏟子兌換鏟子次數不限<br />
-      3、每次使用鏟子挖寶都可以增加島主潛力，在海島關閉時，島主總榜中，島主潛力最高的玩家成為本期島主（島主潛力相同時，先達到的玩家優先排序），獲得島主獎勵：希望島島主-認證（15天）、我是島主-頭像框（10天）、燈塔島-特效禮物*1（有效期7天）
+      3、每次使用鏟子挖寶都可以增加島主潛力，在海島關閉時，島主總榜中，島主潛力最高的玩家成為本期島主（島主潛力相同時，先達到的玩家優先排序），獲得島主獎勵：黃金海島島主-認證（15天）、我是島主-頭像框（10天）、燈塔島-特效禮物*1（有效期7天），第二-三名：燈塔島-特效禮物*1（有效期7天）
     </p>
     <div class="giftList">
       <div class="giftItem" v-for="(item,index) in gift" :key="index">
@@ -39,7 +39,7 @@ export default {
     return {
       gift: [
         {
-          name: '希望島島主-認證',
+          name: '黃金海岸島主-認證',
           img: require("../../img/ruleImg/gift1.png")
         },
         {
@@ -74,22 +74,27 @@ body {
     padding: 0.48rem 0.29rem;
   }
   .giftList {
-    padding: 0 0.5rem;
+    padding: 0 0.2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 0.2rem 0;
+    .giftItem {
+      width: 2.2rem;
+    }
     .imgBox {
       width: 1.88rem;
       height: 1.88rem;
       background: url(./img/imgBox.png);
       background-size: 100% 100%;
+      margin: 0 auto;
       img {
         width: 100%;
         height: 100%;
       }
     }
     strong {
+      width: 100%;
       display: block;
       text-align: center;
       font-size: 0.26rem;

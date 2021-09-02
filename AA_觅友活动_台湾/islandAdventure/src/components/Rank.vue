@@ -20,7 +20,7 @@
     <div class="top3">
       <p v-if="!top3.length" class="noData">{{lang.noData}}</p>
       <div class="topItem" v-for="(item,index) in top3" :key="index" :class="'top3_'+item.rank">
-        <div class="imgBox">
+        <div class="imgBox" @click="goUser(item.uid)">
           <span class="frame"></span>
           <img :src="item.avatar" alt="">
         </div>
@@ -31,7 +31,7 @@
     <ul class="otherList">
       <li v-for="(item,index) in otherRank" :key="index">
         <div class="rank">{{item.rank}}</div>
-        <img :src="item.avatar" alt="">
+        <img :src="item.avatar" alt="" @click="goUser(item.uid)">
         <div class="nick">{{item.nick}}</div>
         <div class="score">
           <span class="tips">{{lang.landScore}}</span>
@@ -113,6 +113,14 @@ export default {
         }
       }, 1000)
     },
+    goUser (uid) {
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
+      }
+    }
   }
 }
 </script>

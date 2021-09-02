@@ -38,7 +38,7 @@
       <div class="userScore">
         <div class="userMonth">
           <span class="score" v-html="lang.userScore.replace('%s',user.noble_value)"></span>
-          <span class="explainTips" @click="$router.push({name:'explain'})">{{lang.explain}}</span>
+          <span class="explainTips" @click="$router.push({name:'explain'})">{{lang.explain}} <i></i></span>
         </div>
         <div class="lv">
           <div class="lvLiner">
@@ -556,6 +556,18 @@ body {
           em {
             color: #FFC86D;
             font-size: 0.26rem;
+          }
+        }
+        .explainTips {
+          height: 0.39rem;
+          display: flex;
+          align-items: center;
+          i {
+            width: 0.39rem;
+            height: 0.39rem;
+            background: url(../img/queryIcon.png);
+            background-size: 100% 100%;
+            margin-left: 0.12rem;
           }
         }
       }

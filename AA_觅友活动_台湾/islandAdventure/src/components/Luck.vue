@@ -9,7 +9,7 @@
             <canvas id="landCanvas" v-if="item.status == 1" />
             <img :src="require(`../img/landImg/${index+1}.png`)" alt="" class="landBg" v-else>
             <div class="user" v-if="item.uid">
-              <img v-lazy="item.avatar" alt="">
+              <img v-lazy="item.avatar" alt="" @click="goUser(item.uid)">
               <div class="nick">{{item.nick}}</div>
             </div>
           </van-swipe-item>
@@ -119,6 +119,9 @@ export default {
     }
   },
   watch: {
+    activity (val) {
+      this.nowIndex = val.vol - 1
+    },
     islands (val) {
       if (val.length) {
         setTimeout(() => {
@@ -185,6 +188,15 @@ export default {
       this.player = new Player(canvas)
       await this.player.mount(data)
       this.player.start()
+    },
+    goUser (uid) {
+      console.log(uid)
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
+      }
     }
   }
 }
