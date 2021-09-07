@@ -98,6 +98,8 @@ export default {
       getSortIngList().then(res => {
         if (res.data.response_data) {
           const { list, products, price, balance, vouchers } = res.data.response_data
+          this.$refs.showCom.page = 1
+          this.$refs.showCom.loaded = false
           this.numbersList = list
           this.joinType = products
           this.price = price

@@ -54,7 +54,7 @@ import downTime from "../utils/downTime"
 import GiftNumbers from "./GiftNumbers"
 import { hotList, join } from "../apis"
 
-const pageSize = 10
+const pageSize = 5
 
 export default {
   props: ['numbersList'],
@@ -88,12 +88,13 @@ export default {
   },
   watch: {
     list (val) {
-      if (val.length < 10) {
+      if (val.length < pageSize) {
         this.loaded = true
       }
     },
     numbersList (val) {
       if (val.length) {
+        console.log(val)
         hotList(this.pagination(this.page, pageSize, val)).then(res => {
           this.list = res.data.response_data.list
           this.downTmList()
@@ -125,7 +126,10 @@ export default {
           } else {
             this.toast('參與成功,該獎品已開獎！')
             setTimeout(() => {
+              this.loaded = false
+              this.page = 1
               this.$parent.init()
+
             }, 1000)
           }
           this.showSetTypePup = false
@@ -133,6 +137,8 @@ export default {
         } else {
           this.toast(res.data.response_status.error)
           if (res.data.response_status.code == 10007) {
+            this.loaded = false
+            this.page = 1
             this.$parent.init()
           }
           this.showSetTypePup = false
@@ -153,10 +159,12 @@ export default {
     onScroll () {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
-        if (this.loaded) return
+        const ids = this.pagination(++this.page, pageSize, this.numbersList)
+        console.log(ids, this.loaded)
+        if (this.loaded || !ids) return
         if (this.more) {
           this.more = false
-          hotList(this.pagination(++this.page, pageSize, this.numbersList), 'more').then(res => {
+          hotList(ids, 'more').then(res => {
             this.more = true
             if (res.data.response_data.list.length === 0) {
               this.loaded = true
@@ -198,8 +206,8 @@ export default {
     pagination (pageNo, pageSize, array) {
       var offset = (pageNo - 1) * pageSize;
       let arr = (offset + pageSize >= array.length) ? array.slice(offset, array.length) : array.slice(offset, offset + pageSize);
-      console.log(pageNo, pageSize, array)
-      return arr.join(',')
+      //   console.log(arr)
+      return arr.length ? arr.join(',') : false
     }
   }
 }
@@ -255,13 +263,14 @@ export default {
           font-size: 0.24rem;
           font-weight: bold;
           text-align: center;
-          line-height: 0.26rem;
+          line-height: 0.28rem;
         }
         .price {
-          width: 1.93rem;
+          width: 1.73rem;
           height: 0.36rem;
           background: url(../img/priceBg.png);
           background-size: 100% 100%;
+          padding-right: 0.2rem;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -302,6 +311,10 @@ export default {
           display: flex;
           align-items: center;
           .name {
+            max-width: 2.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             font-size: 0.32rem;
             font-weight: bold;
           }
@@ -309,20 +322,20 @@ export default {
             padding: 0 0.06rem;
             height: 0.26rem;
             line-height: 0.26rem;
-
             background: linear-gradient(90deg, #4D91FF, #55DBFD);
             border-radius: 0.05rem;
             font-size: 0.2rem;
             font-style: italic;
             text-align: center;
             margin: 0.05rem 0 0 0.06rem;
+            font-weight: bold;
             &.gift {
               background: linear-gradient(90deg, #EF52EF, #F87053);
             }
           }
         }
         .getNums {
-          margin-top: 0.22rem;
+          margin-top: 0.2rem;
           > strong {
             font-size: 0.24rem;
             color: rgba(255, 255, 255, 0.6);
@@ -393,7 +406,7 @@ export default {
         color: rgba(255, 255, 255, 0.6);
         position: absolute;
         right: 0.45rem;
-        bottom: 0.32rem;
+        bottom: 0.2rem;
         em {
           font-size: 0.24rem;
         }
@@ -444,6 +457,7 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
+          margin-top: -0.05rem;
           i {
             width: 0.24rem;
             height: 0.24rem;

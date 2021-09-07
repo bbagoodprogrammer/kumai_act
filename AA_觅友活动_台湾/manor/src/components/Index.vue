@@ -12,10 +12,10 @@ export default {
 }
 </script>
 
-
-
 <style lang="scss">
 .pageIndex {
+  background: url(../img/banner.png);
+  background-size: 100% auto;
   img {
     display: block;
     width: 100%;

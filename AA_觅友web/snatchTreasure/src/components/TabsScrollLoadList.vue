@@ -320,6 +320,7 @@ export default {
     width: 100%;
     height: 1.4rem;
     background: linear-gradient(90deg, #FDBA9D 0%, #FD329B 100%);
+    margin-bottom: 0;
     position: absolute;
     bottom: 0;
   }

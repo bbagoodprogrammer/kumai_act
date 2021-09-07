@@ -179,6 +179,10 @@ export default {
           display: flex;
           align-items: center;
           .name {
+            max-width: 1.8rem;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
             font-size: 0.32rem;
             font-weight: bold;
           }

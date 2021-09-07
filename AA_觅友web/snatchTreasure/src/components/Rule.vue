@@ -90,8 +90,8 @@ export default {
         background-size: 100% 100%;
         position: absolute;
         left: 0;
-        top: 0.11rem;
-        font-size: 0.24rem;
+        top: 0.09rem;
+        font-size: 0.22rem;
       }
     }
   }

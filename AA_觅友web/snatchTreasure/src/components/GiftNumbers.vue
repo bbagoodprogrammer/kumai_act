@@ -12,6 +12,7 @@
           <div class="name">{{codeItem.prize_name}}</div>
           <div class="giftType" :class="{gift:codeItem.prize_type == -1}">{{typeTips[codeItem.prize_type]}}</div>
         </div>
+        <div class="cancel" v-if="codeItem.ing == 3 || codeItem.ing == 4">本期奪寶已取消</div>
       </div>
       <div class="luckNumber" v-if="codeItem.ing == 2">中獎號碼:{{codeItem.prize_voucher}}</div>
       <div class="giftDownTm" v-if="codeItem.surplusTime">
@@ -23,6 +24,7 @@
         <em v-else-if="codeItem.prize_uid != uid && codeItem.ing == 2">失敗</em>
         <em v-else>取消</em>
       </div>
+
     </div>
     <div class="numbers">
       <div class="myNumber">
@@ -212,6 +214,10 @@ export default {
         display: flex;
         align-items: center;
         .name {
+          max-width: 2.3rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
           font-size: 0.32rem;
           font-weight: bold;
         }
@@ -230,6 +236,10 @@ export default {
             background: linear-gradient(90deg, #EF52EF, #F87053);
           }
         }
+      }
+      .cancel {
+        margin-top: 0.22rem;
+        font-size: 0.24rem;
       }
     }
     .luckNumber {
@@ -262,12 +272,19 @@ export default {
         margin-right: 0.06rem;
       }
     }
+    .cancel {
+      position: absolute;
+    }
     .status {
       font-size: 0.46rem;
       color: rgba(255, 255, 255, 0.3);
       position: absolute;
       top: 0.41rem;
-      right: 0.66rem;
+      right: 0.32rem;
+      em {
+        font-size: 0.46rem;
+        font-weight: bold;
+      }
     }
   }
   .numbers {
@@ -289,7 +306,7 @@ export default {
       overflow-y: scroll;
       background: #6E1ACC;
       border-radius: 0.16rem;
-      margin-top: 0.1rem;
+      margin-top: 0.2rem;
       span {
         display: inline-block;
         width: 1.14rem;

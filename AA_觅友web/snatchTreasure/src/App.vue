@@ -27,14 +27,14 @@ export default {
     viewHeight: () => window.innerHeight,
   },
   beforeCreate () {
-    let count = 0
-    for (var i = 0; i < this.imgArr.length; i++) {
-      var Img = new Image()
-      Img.src = this.imgArr[i]
-      image.onload = () => {
-        count++;
-      };
-    }
+    // let count = 0
+    // for (var i = 0; i < this.imgArr.length; i++) {
+    //   var Img = new Image()
+    //   Img.src = this.imgArr[i]
+    //   image.onload = () => {
+    //     count++;
+    //   };
+    // }
     //this.$store.dispatch('getInitInfo');
   },
   components: {

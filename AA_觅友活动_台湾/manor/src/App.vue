@@ -1,29 +1,33 @@
 <template>
   <div id="app">
-    <LandsBox />
+    <router-view class="appView" :style="{minHeight:viewHeight+'px'}"></router-view>
+    <Loading v-show="loading" />
   </div>
 </template>
 
 <script>
-import LandsBox from './components/LandsBox';
+import { mapState } from 'vuex';
+import Loading from './components/common/Loading';
 import { isSupportedTouch } from './utils';
-
 export default {
-  mounted() {
+  computed: {
+    ...mapState(['loading']),
+    viewHeight: () => window.innerHeight,
+  },
+  mounted () {
     document.addEventListener(isSupportedTouch ? 'touchend' : 'click', this.resetLandSteps);
-    this.$store.commit('setLandInfo');
+    this.vxc('setLandInfo');
+    //this.$store.dispatch('getInitInfo');
   },
   methods: {
-    resetLandSteps() {
+    resetLandSteps () {
       console.log('ffff')
       this.$store.commit('resetLandSteps');
     },
   },
-  components: {
-    LandsBox,
-  },
-}
-</script>
 
-<style lang="scss">
-</style>
+  components: {
+    Loading,
+  },
+};
+</script>
