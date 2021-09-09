@@ -34,7 +34,7 @@ export default {
     number: "Số",
     join: "chơi",
     setJoinTitle: "tham gia sự kiện",
-    joinNums: "tham gia %s lần",
+    joinNums: "Go %s",
     joinSuc: "tham gia thành công！",
     joinSuc2: "tham gia thành công, thưởng kỳ này đã công bố！",
     //index

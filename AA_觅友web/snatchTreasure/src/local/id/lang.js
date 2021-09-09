@@ -34,15 +34,15 @@
     number: "No.",
     join: "Rebut harta",
     setJoinTitle: "Ikuti",
-    joinNums: "Rebut harta %s kali",
+    joinNums: "Go %s ",
     joinSuc: "Ikuti berhasil",
     joinSuc2: "Ikuti berhasil, hadiah telah dibuka!",
     //index
     hotTab1: "Hot",
     hotTab2: "Riwayat",
     hotGet: "Dapat",
-    getTicket: "Dapatkan kupon keberuntungan",
-    ticket: "Kupon keberuntungan:",
+    getTicket: "Get lucky coupons",
+    ticket: "Lucky coupons:",
     ind: "Buah",
     geted: "Dapat",
     ticketTips: "Membayar %s koin emas untuk dapatkan 1 kupon keberuntungan",
@@ -67,7 +67,7 @@
     rankTitle: "Top Mingguan",
     rankTab1: "Minggu ini",
     rankTab2: "Minggu lalu",
-    noRank: "Belum masuk peringkat",
+    noRank: "Blm naik top",
 
     //histroy
     histroyTitle: "Catatan"

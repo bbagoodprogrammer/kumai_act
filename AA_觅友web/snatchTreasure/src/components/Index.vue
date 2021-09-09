@@ -25,7 +25,7 @@
         </div>
         <div class="btnList">
           <div v-for="(item,index) in joinType" :class="{act:setId == item.id}" :key="index" @click="setType(item.id)">
-            <div class="strTips">{{item.nums}}个</div>
+            <div class="strTips">{{item.nums}} {{lang.ind}}</div>
           </div>
         </div>
         <div class="getBtn" @click="buy()">{{lang.geted}}</div>

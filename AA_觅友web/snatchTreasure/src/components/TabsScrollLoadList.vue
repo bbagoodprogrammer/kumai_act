@@ -26,7 +26,7 @@
     </div>
     <!-- :class="'rank' + userMsg.rank" -->
     <div class="usermsg" v-if="userMsg.uid">
-      <div class="userRank">{{userMsg.rank==0?lang.noRank:userMsg.rank}}</div>
+      <div class="userRank" :class="{noRank:userMsg.rank==0}">{{userMsg.rank==0?lang.noRank:userMsg.rank}}</div>
       <img v-lazy="userMsg.avatar" alt="">
       <div class="nick">{{userMsg.nick}}</div>
       <div class="score">
@@ -249,7 +249,6 @@ export default {
   .usermsg {
     height: 1.56rem;
     margin-bottom: 0.01rem;
-
     display: flex;
     align-items: center;
     .userRank {
@@ -260,6 +259,11 @@ export default {
       font-size: 0.28rem;
       margin: 0 0.15rem 0 0.12rem;
       white-space: nowrap;
+      &.noRank {
+        width: 1.1rem;
+        white-space: normal;
+        margin: -0.4rem 0.15rem 0 0.12rem;
+      }
     }
     > img {
       width: 1.1rem;

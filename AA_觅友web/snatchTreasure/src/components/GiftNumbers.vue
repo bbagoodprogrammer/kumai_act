@@ -159,7 +159,6 @@ export default {
         top: 0.08rem;
         right: 0.01rem;
         font-size: 0.18rem;
-        //   font-weight: bold;
         text-align: center;
         line-height: 0.26rem;
       }
