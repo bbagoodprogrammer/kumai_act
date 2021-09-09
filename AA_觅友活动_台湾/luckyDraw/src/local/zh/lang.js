@@ -1,5 +1,6 @@
 export default {
     //html/index.html
+    ok: "確認",
     title: "全民福利大放送",
     loading: "加載中...",
     no_data: "暫無數據",

@@ -1,12 +1,12 @@
 <template>
   <div @click.stop="" @touchend.stop="" class="land" :class="[{landBg:info.status  == 0 || info.status == 1},'land'+info.id, 'status'+info.status,'good'+info.goods_id]">
     <!-- 罩子 -->
-    <div class="protect"></div>
+    <div class="protect" v-if="protect_seconds && (info.status == 2 || info.status ==3)" :class="{pt:info.status == 3}"><i></i><strong>{{protect_time}}</strong> </div>
     <!-- 解锁 -->
     <div class="lock" :class="{pt:info.id == next_land_id}">
       <i></i>
       <strong>NO.{{info.id}}</strong>
-      <div class="unlock" @click="unLock()" v-if="info.id == next_land_id">點擊解鎖</div>
+      <div class="unlock" @click="unLockConfim()" v-if="info.id == next_land_id">點擊解鎖</div>
     </div>
     <!-- 空地 -->
     <ul @click="emptyClick()" class="choose">
@@ -21,32 +21,19 @@
     <!-- 成熟了 -->
     <!-- :class="'step'+mature" -->
     <div @click="getCarrot()" class="mature">
-      <div class="icon">
+      <!-- 礼盒 -->
+      <div class="prize" v-show="info.prize.id"></div>
+      <!-- 偷摘过 -->
+      <div class="sunGetEd" v-if="info.stolen > 0"></div>
+      <!-- 阳光 -->
+      <div class="icon" v-show="!info.prize.id && info.stolen == 0">
         <canvas :id="'sunGo'+info.id"></canvas>
         <strong>{{info.sun}}</strong>
       </div>
+
       <!-- <div class="text"><span class="value" :class="'value'+info.value">x {{info.value}}</span><span v-if="info.second" class="time">{{time}}</span></div> -->
     </div>
 
-    <!-- 用戶種子列表 -->
-    <div class="mask" v-show="showGoodListPup">
-      <transition name="slide">
-        <div class="userGoodList" v-if="showGoodListPup">
-          <i @click="showGoodListPup = false" class="close"> </i>
-          <div class="noGoods" v-if="!userGoodsList.length">
-            <strong>倉庫里沒有種子哦...</strong>
-            <span class="buy">去商店購買</span>
-          </div>
-          <div class="goodsList" v-else>
-            <div class="goodItem" v-for="(item,index) in userGoodsList" :key="index" @click="plant(item.id)">
-              <img :src="require(`../img/goods/${item.id}.png`)" alt="">
-              <div class="nums">{{item.num}}</div>
-              <div class="name">{{item.name}}</div>
-            </div>
-          </div>
-        </div>
-      </transition>
-    </div>
     <!-- 道具列表 -->
     <div class="mask" v-show="showPropPup">
       <transition name="slide">
@@ -55,10 +42,10 @@
           <div class="desc" v-if="showProDesc">
             <p>{{propsDesc[descId]}}</p>
             <div class="user" @click="useProps()">使用</div>
-            <i class="corner"></i>
+            <i class="corner" :class="{ringht:descIndex == 1}"></i>
           </div>
           <div class="goodsList ">
-            <div class="goodItem" v-for="(item,index) in myUseProps" :key="index" @click="showDesc(item.id)">
+            <div class="goodItem" v-for="(item,index) in  isMain==1? myUseProps:protect_seconds>0?stoneProps:gloveProps" :key="index" @click="showDesc(item.id,index)">
               <img :src="require(`../img/props/${item.id}.png`)" alt="">
               <div class="nums">{{item.num}}</div>
               <div class="name">{{item.name}}</div>
@@ -67,13 +54,14 @@
         </div>
       </transition>
     </div>
+
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import downTime from '../utils/downTime';
-import { feed, goodsList, plant, harvest, addLand, useProps } from '../apis';
+import { feed, plant, harvest, addLand, useProps, goodsList, steal } from '../apis';
 import { getOffset } from '../utils';
 import { debuglog } from 'util';
 
@@ -85,23 +73,32 @@ export default {
     return {
       mature: 1, //成熟阶段交互状态序号 1手指 2铲子 3萝卜。这个状态存在组件中是因为这个状态从一点击开始，后面状态自动走完，中间不能干预。
       time: '00:00',
+      seconds: 0,
+      protect_time: '00:00',
+      protect_seconds: 0,
       timer: null,
-      showGoodListPup: false,
       showPropPup: false,
-      userGoodsList: [],
       userPropsList: [],
       propsDesc: {
         1: '肥料減少植物的成熟時間，每次使用-N秒',
         2: '保護盾可保護土地在N小時內不會被偷摘，但向保護盾投擲石頭會縮短保護時間，N秒',
-        3: '',
-        4: ''
+        3: '對保護盾投擲石頭,可讓保護盾的保護時間減少N秒',
+        4: '使用手套可摘到非好友玩家的陽光'
+      },
+      usePropsDesc: {
+        1: '加速成功，植物成熟時間縮短N秒',
+        2: '使用保護盾成功，N小時內將不被偷摘',
+        3: '投出一個石頭，該保護盾保護時間-N秒',
+        4: '偷取到N個陽光'
       },
       showProDesc: false,
-      descId: 0
+      descId: 0,
+      descIndex: 0,
+
     };
   },
   computed: {
-    ...mapState(['owner_msg']),
+    ...mapState(['owner_msg', 'is_friend', 'otherUser', 'isMain']),
     empty () {
       //空地阶段交互状态序号 1图标 2按钮
       //这个状态存在Store主要考虑点格子外自动状态重置（主要针对空地两种交互状态）
@@ -112,15 +109,24 @@ export default {
         return item.id != 3 && item.id != 4
       })
     },
-    otherProps () {
+    // otherProps () {
+    //   return this.userPropsList.filter(item => {
+    //     return item.id != 1 && item.id != 2
+    //   })
+    // },
+    stoneProps () {
       return this.userPropsList.filter(item => {
-        return item.id != 1 && item.id != 2
+        return item.id != 1 && item.id != 2 && item.id != 4
+      })
+    },
+    gloveProps () {
+      return this.userPropsList.filter(item => {
+        return item.id != 1 && item.id != 2 && item.id != 3
       })
     }
   },
   watch: {
     svgaData (val) {
-      console.log(val)
       this.sunGo()
     }
   },
@@ -132,22 +138,44 @@ export default {
   },
   methods: {
     useProps () {
-      const second = downTime(`protect${this.info.id}`)
-      if (second && this.descId == 2) {
+      //   const second = downTime(`protect${this.info.id}`)
+      if (this.protect_seconds > 0 && this.descId == 2) {
         this.toast(`這塊土地有正在使用的保護盾哦~`)
         return
       }
-      useProps(this.info.plant_id, this.descId).then(res => {
-        if (res.data.response_status.code == 0) {
-          this.showPropPup = false
-          this.showProDesc = false
-          this.$parent.init()
-        } else {
-          this.toast(res.data.response_status.error)
-        }
-      })
+      if (this.descId == 4) { //用手套偷摘
+        steal(this.info.plant_id, 4).then(res => {
+          if (res.data.response_status.code == 0) {
+            this.toast(`已摘到好友的${res.data.response_data.sun}個陽光!`)
+            this.descId = 0
+            this.showPropPup = false
+            this.showProDesc = false
+            this.$parent.init(this.otherUser.uid)
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      } else {
+        useProps(this.info.plant_id, this.descId).then(res => {
+          if (res.data.response_status.code == 0) {
+            this.toast(this.usePropsDesc[this.descId])
+            this.descId = 0
+            this.showPropPup = false
+            this.showProDesc = false
+            if (this.isMain == 1) {
+              this.$parent.init()
+            } else {
+              this.$parent.init(this.otherUser.uid)
+            }
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      }
+
     },
-    showDesc (id) {
+    showDesc (id, index) {
+      this.descIndex = index
       this.descId = id
       this.showProDesc = true
     },
@@ -157,32 +185,15 @@ export default {
         this.userPropsList = res.data.response_data.list
       })
     },
-    unLock () {
-      addLand().then(res => {
-        if (res.data.response_status.code == 0) {
-          this.toast(`解鎖成功！`)
-          this.$parent.init()
-        } else {
-          this.toast(res.data.response_status.error)
-        }
-      })
-    },
-    plant (goodId) {
-      plant(this.info.id, goodId).then(res => {
-        if (res.data.response_status.code == 0) {
-          this.toast(`種植成功！`)
-          this.showGoodListPup = false
-          this.$parent.init()
-        } else {
-          this.toast(res.data.response_status.error)
-        }
-      })
+    unLockConfim () {
+      if (this.isMain == 1) {
+        this.$parent.buyLand(this.info.id)
+      }
     },
     getGoodsList (type) {
-      goodsList(type).then(res => {
-        this.showGoodListPup = true
-        this.userGoodsList = res.data.response_data.list
-      })
+      if (this.isMain == 1) {
+        this.$parent.getGoodsList(type, this.info.id)
+      }
     },
     updateEmptyStep (step) {
       this.$store.commit('updateLandInfo', {
@@ -202,10 +213,17 @@ export default {
     startTimer () {
       const id = this.info.id;
       const timeKey = 'land' + id;
+      const protectKey = 'protect' + id
       this.timer = setInterval(() => {
         const timeObj = downTime(timeKey);
+        const protect_timeObj = downTime(protectKey);
+        if (protect_timeObj) {
+          this.protect_seconds = protect_timeObj.seconds
+          this.protect_time = protect_timeObj.minute + ':' + protect_timeObj.second;
+        }
         if (timeObj) {
           this.time = timeObj.minute + ':' + timeObj.second;
+          this.seconds = timeObj.seconds;
           const status = this.info.status;
           if (status > 1 && timeObj.end) {
             if (status == 2) {
@@ -253,55 +271,41 @@ export default {
       this.updateEmptyStep(2);
     },
     async getCarrot () {
-      const id = this.info.plant_id;
-      harvest(id).then(res => {
-        if (res.data.response_status.code == 0) {
-          this.toast(`收穫成功！`)
-          this.$parent.init()
-          //   this.updateMatureStep(2);
-          //   setTimeout(() => {
-          //     this.updateMatureStep(3);
-          //     // this.showCarrotAnim();
-          //     setTimeout(() => {
-          //       this.updateMatureStep(1);
-          //     //   this.$store.commit('addRadish', this.info.value);
-          //       this.$store.commit('updateLandInfo', {
-          //         id: id,
-          //         status: 1,
-          //         goods_id: 0
-          //       });
-          //     }, 1000);
-          //   }, 2000)
-        } else {
-          this.toast(res.data.response_status.error)
+      if (this.isMain == 1) {
+        const id = this.info.plant_id;
+        harvest(id).then(res => {
+          if (res.data.response_status.code == 0) {
+            if (this.info.prize.id) {
+              this.toast(`勤勞的莊園主,恭喜你種出了【${this.info.prize.name}*${this.info.prize.num}】`)
+            } else {
+              this.toast(`恭喜獲得${res.data.response_data.sun}個陽光`)
+            }
+            this.$parent.init()
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      } else if (this.is_friend) { //好友
+        if (this.info.enable) {
+          if (this.protect_seconds > 0) { //有保护罩判断是否有石头
+            this.useProp('props')
+          } else {
+            steal(this.info.plant_id, 0).then(res => {
+              if (res.data.response_status.code == 0) {
+                this.toast(`已摘到好友的${res.data.response_data.sun}個陽光!`)
+                this.$parent.init(this.otherUser.uid)
+              } else {
+                this.toast(res.data.response_status.error)
+              }
+            })
+          }
         }
-      })
-
+      } else if (!this.is_friend) { //非好友
+        if (this.info.enable) {
+          this.useProp('props')
+        }
+      }
     },
-
-    // showCarrotAnim () {
-    //   const elNums = document.getElementsByClassName('nums')[0];
-    //   const landOffset = getOffset(this.$el);
-    //   const valueOffset = getOffset(elNums);
-    //   const div = document.createElement('div');
-    //   div.className = 'carrotAnim';
-    //   div.style.left = landOffset.left + this.$el.clientWidth / 2 - 20 + 'px';
-    //   div.style.top = landOffset.top + 'px';
-    //   document.body.appendChild(div);
-    //   setTimeout(() => {
-    //     console.log(valueOffset.left, valueOffset.top)
-    //     div.style.left = valueOffset.left + 'px';
-    //     div.style.top = valueOffset.top + 'px';
-    //     div.style.transform = 'scale(.5)';
-    //     setTimeout(() => {
-    //       document.body.removeChild(div);
-    //       elNums.firstChild.className = 'carrotValueAnim';
-    //       setTimeout(() => {
-    //         elNums.firstChild.className = '';
-    //       }, 2000);
-    //     }, 1000);
-    //   }, 50);
-    // },
     async sunGo () {
       let canvas = document.getElementById('sunGo' + this.info.id)
       let player = new Player(canvas)
@@ -345,138 +349,6 @@ export default {
   }
 }
 
-.userGoodList {
-  width: 7rem;
-  height: 2.23rem;
-  padding: 0.18rem 0.17rem 0;
-  background: url(../img/goodlist.png);
-  background-size: 100% 100%;
-  position: relative;
-  &.props {
-    width: 4.14rem;
-    height: 2.22rem;
-    background: url(../img/props.png);
-    background-size: 100% 100%;
-    .goodsList {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      //    overflow-x: ;
-    }
-  }
-  .close {
-    display: block;
-    width: 0.54rem;
-    height: 0.54rem;
-    background: url(../img/close.png);
-    background-size: 100% 100%;
-    position: absolute;
-    right: -0.1rem;
-    top: -0.25rem;
-    z-index: 3;
-  }
-  .noGoods {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    strong {
-      color: #D9B27F;
-    }
-    .buy {
-      width: 2.78rem;
-      height: 0.84rem;
-      background: url(../img/buy.png);
-      background-size: 100% 100%;
-      text-align: center;
-      text-align: center;
-      line-height: 0.84rem;
-      color: #672A0B;
-      margin-top: 0.2rem;
-    }
-  }
-  .desc {
-    width: 5.6rem;
-    height: 1.26rem;
-    padding: 0.2rem;
-    background: #FFF9E8;
-    border: 1px solid #FFFFFF;
-    border-radius: 0.1rem;
-    color: #703500;
-    font-size: 0.26rem;
-    position: absolute;
-    top: -2rem;
-    left: -0.8rem;
-    p {
-      font-size: 0.24rem;
-    }
-    .user {
-      width: 1.88rem;
-      height: 0.59rem;
-      background: url(../img/use.png);
-      background-size: 100% 100%;
-      margin: 0.15rem auto 0;
-      text-align: center;
-      line-height: 0.59rem;
-    }
-    .corner {
-      display: block;
-      width: 0px; /*  宽高设置为0，很重要，否则达不到效果 */
-      height: 0px;
-      border: 0.25rem solid #FFF9E8;
-      border-bottom-color: transparent; /* 设置透明背景色 */
-      border-left-color: transparent;
-      border-right-color: transparent;
-      position: absolute;
-      bottom: -0.52rem;
-      left: 1.8rem;
-    }
-  }
-  .goodsList {
-    width: 100%;
-    height: 2.06rem;
-    overflow-x: scroll;
-    white-space: nowrap;
-    .goodItem {
-      display: inline-block;
-      width: 1.79rem;
-      height: 2.06rem;
-      background: url(../img/goodItem.png);
-      background-size: 100% 100%;
-      margin-right: 0.04rem;
-      position: relative;
-      img {
-        width: 1.09rem;
-        height: 1.16rem;
-        margin: 0.21rem auto 0;
-      }
-      .nums {
-        width: 0.43rem;
-        height: 0.43rem;
-        border: 1px solid #FFFFFF;
-        background: linear-gradient(0deg, #496BFF 0%, #64B5FF 100%);
-        border-radius: 50%;
-        position: absolute;
-        top: 1.06rem;
-        right: 0.19rem;
-        text-align: center;
-        line-height: 0.43rem;
-        font-size: 0.24rem;
-      }
-      .name {
-        text-align: center;
-        font-size: 0.28rem;
-        color: #703500;
-        margin-top: 0.1rem;
-      }
-    }
-  }
-  .goodsList::-webkit-scrollbar {
-    display: none; /* Chrome Safari */
-  }
-}
-
 .land {
   width: 2.4rem;
   height: 1.6rem;
@@ -495,6 +367,25 @@ export default {
     top: -0.5rem;
     left: 0.1rem;
     z-index: 50;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    &.pt {
+      height: 0.64rem;
+      padding-top: 0.8rem;
+    }
+    i {
+      width: 0.21rem;
+      height: 0.27rem;
+      background: url(../img/protectIcon.png);
+      background-size: 100% 100%;
+    }
+    strong {
+      font-size: 0.22rem;
+      font-weight: bold;
+      color: #026D74;
+      text-shadow: #fff 1px 0 0, #fff 0 1px 0, #fff -1px 0 0, #fff 0 -1px 0;
+    }
   }
   .choose,
   .growing,
@@ -586,13 +477,21 @@ export default {
   .mature {
     position: relative;
     z-index: 50;
+    .prize {
+      width: 1.01rem;
+      height: 1.03rem;
+      background: url(../img/giftBox.png);
+      background-size: 100% 100%;
+      animation: translateY 1s linear infinite alternate;
+      position: absolute;
+      top: -0.7rem;
+      left: 0.7rem;
+    }
     .icon {
       width: 1.01rem;
       height: 1.03rem;
-      //   margin: -0.8rem auto 0;
       text-align: center;
-      line-height: 1.03rem;
-      font-size: 0.26rem;
+      line-height: 0.95rem;
       color: #672A0B;
       position: absolute;
       top: -0.7rem;
@@ -604,12 +503,22 @@ export default {
         position: absolute;
       }
       strong {
+        font-size: 0.26rem;
         width: 1.01rem;
         height: 1.03rem;
         position: absolute;
       }
     }
-
+    .sunGetEd {
+      width: 1.01rem;
+      height: 1.03rem;
+      background: url(../img/sunGetEd.png);
+      background-size: 100% 100%;
+      position: absolute;
+      top: -0.7rem;
+      left: 0.63rem;
+      animation: translateY 1s linear infinite alternate;
+    }
     // .icon,
     // .text {
     //   position: absolute;

@@ -3,12 +3,12 @@
     <div class="iconList">
       <span class="history" @click="showUserHistrry = true"></span>
       <div class="rank" @click="showRank = true"></div>
-      <div class="userTicketNums"><i class="tIcon"></i> <span>{{vouchers}}</span> <i class="get" @click="getTicket()">獲取</i></div>
+      <div class="userTicketNums"><i class="tIcon"></i> <span>{{vouchers}}</span> <i class="get" @click="getTicket()">{{lang.hotGet}}</i></div>
     </div>
     <div class="logo"><i class="qurey" @click="showRule = true"></i></div>
     <div class="tabs">
-      <span :class="{act:type == 1}" @click="init('tabClick')">熱門奪寶</span>
-      <span :class="{act:type == 2}" @click="type = 2">歷史奪寶</span>
+      <span :class="{act:type == 1}" @click="init('tabClick')">{{lang.hotTab1}}</span>
+      <span :class="{act:type == 2}" @click="type = 2">{{lang.hotTab2}}</span>
     </div>
     <keep-alive :include="'hotList'">
       <component :is="type == 1?'hotList':'historyList'" ref="showCom" :numbersList="numbersList" />
@@ -20,23 +20,23 @@
     <transition name="move">
       <div class="getTicket" v-show="showGetTicketPup">
         <div class="tickMsg">
-          <div class="title"><i></i><strong>獲得幸運券</strong></div>
-          <div class="userTicketNums">幸運券:{{vouchers}}</div>
+          <div class="title"><i></i><strong>{{lang.getTicket}}</strong></div>
+          <div class="userTicketNums">{{lang.ticket}}{{vouchers}}</div>
         </div>
         <div class="btnList">
           <div v-for="(item,index) in joinType" :class="{act:setId == item.id}" :key="index" @click="setType(item.id)">
             <div class="strTips">{{item.nums}}个</div>
           </div>
         </div>
-        <div class="getBtn" @click="buy()">獲得</div>
-        <p class="getTips">消耗{{price}}金幣可獲得1張幸運券</p>
+        <div class="getBtn" @click="buy()">{{lang.geted}}</div>
+        <p class="getTips">{{lang.ticketTips.replace('%s',price)}}</p>
         <div class="userCoins">
           <div class="coins">
             <i></i>
             <em>{{balance}}</em>
           </div>
           <div class="charge" @click="gowalletpage()">
-            <em>儲值</em>
+            <em>{{lang.charge}}</em>
             <i></i>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default {
           this.vxc('setBalance', balance)
           this.vxc('setVouchers', vouchers)
           this.showGetTicketPup = false
-          this.toast(`購買成功！`)
+          this.toast(this.lang.buySuc)
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -244,7 +244,7 @@ export default {
   }
   .getTicket {
     width: 7.5rem;
-    height: 4.25rem;
+    height: 4.53rem;
     padding-top: 0.05rem;
     background: url(../img/getTicketBg.png);
     background-size: 100% 100%;
@@ -296,6 +296,7 @@ export default {
           background-size: 100% 100%;
         }
         .strTips {
+          padding: 0 0.25rem;
           font-size: 0.28rem;
         }
         .numsTips {
@@ -330,15 +331,15 @@ export default {
     .getTips {
       text-align: center;
       font-size: 0.24rem;
-      margin-top: 0.05rem;
+      margin-top: 0.15rem;
     }
     .userCoins {
       display: inline-block;
-      float: right;
+      float: left;
       height: 0.36rem;
       display: flex;
       align-items: center;
-      margin-right: 0.25rem;
+      margin: 0.4rem 0 0 0.25rem;
       > div {
         display: flex;
         align-items: center;

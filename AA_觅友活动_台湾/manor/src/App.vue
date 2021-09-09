@@ -17,11 +17,11 @@ export default {
   mounted () {
     document.addEventListener(isSupportedTouch ? 'touchend' : 'click', this.resetLandSteps);
     this.vxc('setLandInfo');
-    //this.$store.dispatch('getInitInfo');
+    this.$store.dispatch('getInitInfo');
   },
   methods: {
     resetLandSteps () {
-      console.log('ffff')
+      //   console.log('ffff')
       this.$store.commit('resetLandSteps');
     },
   },

@@ -1,3 +1,26 @@
 html.vi {
-    
+    .logo{
+        width:3.81rem ;
+        height: 1rem;
+        background: url(./img/logo.png);
+        background-size: 100% 100%;
+        position: absolute;
+        right: 0rem;
+        top: -0.04rem;
+        .qurey{
+            top: .3rem;
+            right: 0.05rem;
+        }
+    }
+    .joinbtn {
+        width: 1.18rem;
+        height: 0.54rem;
+        background: url(./img/joinbtn.png);
+        background-size: auto 100%;
+        text-align: center;
+        line-height: 0.54rem;
+        position: absolute;
+        top: 0.32rem;
+        right: 0.29rem;
+      }
 }

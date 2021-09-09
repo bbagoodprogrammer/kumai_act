@@ -17,7 +17,8 @@ export default {
         9: "Event gửi",
         10: "Đổi $",
         11: "Quà thành viên mới",
-        12: "Nhận được Quà Cupid $"
+        12: "Nhận được Quà Cupid $",
+        13: 'Gọi video % phút với <em class="uid">@</em>'
     },
     history_title1: "Chi tiết Ngọc",
     history_title2: "Chi tiết Kim cương",
@@ -50,9 +51,8 @@ export default {
         "Người chủ động gửi tin nhắn cần dùng Xu hoặc đạo cụ, trả lời trong vòng 12h sẽ nhận được Ngọc",
     p_4: "B. Say Hi",
     p_5: "Khi đối phương Say Hi, trả lời trong vòng 12h sẽ nhận được quà Ngọc",
-    p_6: "C. Gọi điện",
-    p_7:
-        "Khi đối phương gọi cho bạn, nhận cuộc gọi sẽ được thưởng Ngọc theo phút",
+    p_6: "C. Gọi voice, gọi video",
+    p_7: "Nhận cuộc gọi voice, video được nhận ngọc theo thời gian gọi",
     p_8: "D. Chat voice",
     p_9:
         "Nhận chat voice khi hệ thống ghép ngẫu nhiên, mỗi phút sẽ được thưởng Ngọc",

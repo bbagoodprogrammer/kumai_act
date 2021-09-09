@@ -589,6 +589,7 @@ export default {
           font-size: 0.2rem;
           color: #855204;
           padding-top: 0.08rem;
+          margin-top: -0.1rem;
         }
         &.active {
           .mask {

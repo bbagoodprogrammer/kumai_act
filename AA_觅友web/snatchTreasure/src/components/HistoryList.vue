@@ -1,26 +1,27 @@
 <template>
   <div class="historyList">
-    <p v-if="!list.length" class="noData">暫無數據</p>
+    <p v-if="!list.length" class="noData">{{lang.noData}}</p>
     <ul class='historyScrollable'>
       <li v-for="(item,index) in list " :key="index">
         <div class="giftImg">
-          <div class="day">{{item.prize_type == -1?`x${item.prize_nums}`:`${item.prize_days}天`}}</div>
+          <div class="day" v-if="item.prize_type == -1 && item.prize_nums!=1">x{{item.prize_nums}}</div>
+          <div class="day" v-else-if="item.prize_type != -1">{{item.prize_days}}{{lang.day}}</div>
           <img :src="item.prize_image" alt="">
           <div class="price"><i></i><em>{{item.prize_price}}</em></div>
         </div>
         <div class="giftMsg">
           <div class="giftName">
-            <div class="name">{{item.prize_name}}</div>
+            <div class="name" style="-webkit-box-orient: vertical;">{{item.prize_name}}</div>
             <div class="giftType" :class="{gift:item.prize_type == -1}">{{typeTips[item.prize_type]}}</div>
           </div>
         </div>
         <div class="userLuck">
           <div class="luckUserMsg">
-            <img v-lazy="item.avatar" class="av" alt="">
-            <div class="nick"><strong>{{item.nick}}</strong>奪寶成功</div>
+            <img v-lazy="item.avatar" class="av" alt="" @click="goUser(item.prize_uid)">
+            <div class="nick"><strong>{{item.nick}}</strong>{{lang.userLuck}}</div>
           </div>
           <div class="luckNumber">
-            中獎號碼 {{item.prize_voucher}}
+            {{lang.luckNumber}}{{item.prize_voucher}}
           </div>
         </div>
         <div class="giftDownTm">
@@ -36,20 +37,15 @@ import { historyList } from "../apis"
 export default {
   data () {
     return {
-      typeTips: {
-        '-1': '禮物',
-        '0': '頭像框',
-        '1': '座駕',
-        '2': '磚戒',
-        '3': '主題',
-        '4': '活動稱號',
-        '5': '進場秀',
-        '6': '氣泡框',
-      },
       list: [],
       loaded: false,
       more: true,
       page: 1
+    }
+  },
+  computed: {
+    typeTips () {
+      return this.lang.typeTips
     }
   },
   mounted () {
@@ -80,11 +76,19 @@ export default {
         }
       }
     },
+    goUser (uid) { //跳转
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
+      }
+    },
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .historyList {
   .noData {
     text-align: center;
@@ -129,13 +133,14 @@ export default {
           position: absolute;
           top: 0.08rem;
           right: 0.01rem;
-          font-size: 0.24rem;
-          font-weight: bold;
+          font-size: 0.18rem;
+          //   font-weight: bold;
           text-align: center;
           line-height: 0.26rem;
         }
         .price {
-          width: 1.93rem;
+          width: 1.73rem;
+          padding-right: 0.2rem;
           height: 0.36rem;
           background: url(../img/priceBg.png);
           background-size: 100% 100%;
@@ -180,11 +185,16 @@ export default {
           align-items: center;
           .name {
             max-width: 1.8rem;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
             font-size: 0.32rem;
             font-weight: bold;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* autoprefixer: off */
+            -webkit-box-orient: vertical;
+            /* autoprefixer: on */
           }
           .giftType {
             padding: 0 0.06rem;
@@ -194,7 +204,6 @@ export default {
             background: linear-gradient(90deg, #4D91FF, #55DBFD);
             border-radius: 0.05rem;
             font-size: 0.2rem;
-            font-style: italic;
             text-align: center;
             margin: 0.05rem 0 0 0.06rem;
             &.gift {
@@ -234,7 +243,7 @@ export default {
             strong {
               display: block;
               font-size: 0.2rem;
-              max-width: 1.5rem;
+              max-width: 1rem;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;

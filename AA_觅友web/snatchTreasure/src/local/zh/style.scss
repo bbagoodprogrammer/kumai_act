@@ -8,4 +8,15 @@ html.zh {
         right: 0.16rem;
         top: .16rem;
     }
+    .joinbtn {
+        width: 1.18rem;
+        height: 0.54rem;
+        background: url(./img/joinbtn.png);
+        background-size: auto 100%;
+        text-align: center;
+        line-height: 0.54rem;
+        position: absolute;
+        top: 0.32rem;
+        right: 0.29rem;
+      }
 }

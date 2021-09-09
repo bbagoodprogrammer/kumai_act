@@ -204,6 +204,11 @@ function loadData(apiFunc, commitName, loadOnce = false) {
     });
 }
 
+//初始化
+function getInitInfo() {
+    return get(`/index.php?action=manor.init&uid={uid}&token={token}`);
+}
+
 //土地狀態
 function getLands(touid) {
     return get(
@@ -211,7 +216,7 @@ function getLands(touid) {
     );
 }
 
-//種子列表
+//用户道具列表
 function goodsList(type) {
     return get(
         `/index.php?action=manor.goodsList&uid={uid}&token={token}&type=${type}`
@@ -243,6 +248,28 @@ function useProps(plant_id, goods_id) {
         `/index.php?action=manor.useProps&uid={uid}&token={token}&plant_id=${plant_id}&goods_id=${goods_id}`
     );
 }
+
+//偷摘阳光
+function steal(plant_id, goods_id) {
+    return get(
+        `/index.php?action=manor.steal&uid={uid}&token={token}&plant_id=${plant_id}&goods_id=${goods_id}`
+    );
+}
+
+//报名
+function reg(touid) {
+    if (touid) {
+        return get(
+            `/index.php?action=manor.reg&uid={uid}&token={token}&touid=${touid}`
+        );
+    }
+    return get(`/index.php?action=manor.reg&uid={uid}&token={token}`);
+}
+
+//商店
+function shop() {
+    return get(`/index.php?action=manor.shop&uid={uid}&token={token}`);
+}
 export {
     get,
     post,
@@ -252,5 +279,9 @@ export {
     goodsList,
     harvest,
     addLand,
-    useProps
+    useProps,
+    getInitInfo,
+    steal,
+    reg,
+    shop
 };

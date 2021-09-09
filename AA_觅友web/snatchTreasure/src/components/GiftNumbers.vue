@@ -1,36 +1,37 @@
 <template>
   <div class="giftNumbers">
-    <div class="title"><i @click="$parent.showCodePup = false"></i>奪寶號碼</div>
+    <div class="title"><i @click="$parent.showCodePup = false"></i>{{lang.giftNumbers}}</div>
     <div class="giftItem">
       <div class="giftImg">
-        <div class="day">{{codeItem.prize_type == -1?`x${codeItem.prize_nums}`:`${codeItem.prize_days}天`}}</div>
+        <div class="day" v-if="codeItem.prize_type == -1 && codeItem.prize_nums!=1">x{{codeItem.prize_nums}}</div>
+        <div class="day" v-else-if="codeItem.prize_type != -1">{{codeItem.prize_days}}{{lang.day}}</div>
         <img :src="codeItem.prize_image" alt="">
         <div class="price"><i></i><em>{{codeItem.prize_price}}</em></div>
       </div>
       <div class="giftMsg">
         <div class="giftName">
-          <div class="name">{{codeItem.prize_name}}</div>
+          <div class="name" style="-webkit-box-orient: vertical;">{{codeItem.prize_name}}</div>
           <div class="giftType" :class="{gift:codeItem.prize_type == -1}">{{typeTips[codeItem.prize_type]}}</div>
         </div>
-        <div class="cancel" v-if="codeItem.ing == 3 || codeItem.ing == 4">本期奪寶已取消</div>
+        <div class="cancel" v-if="codeItem.ing == 3 || codeItem.ing == 4">{{lang.giftCancel}}</div>
       </div>
-      <div class="luckNumber" v-if="codeItem.ing == 2">中獎號碼:{{codeItem.prize_voucher}}</div>
+      <div class="luckNumber" v-if="codeItem.ing == 2">{{lang.luckNumber}}{{codeItem.prize_voucher}}</div>
       <div class="giftDownTm" v-if="codeItem.surplusTime">
         <span>{{codeItem.etime_md}}</span>
       </div>
       <div class="status">
-        <em v-if="codeItem.ing == 1">進行中</em>
-        <em v-else-if="codeItem.prize_uid == uid && codeItem.ing == 2">成功</em>
-        <em v-else-if="codeItem.prize_uid != uid && codeItem.ing == 2">失敗</em>
-        <em v-else>取消</em>
+        <em v-if="codeItem.ing == 1">{{lang.status1}}</em>
+        <em v-else-if="codeItem.prize_uid == uid && codeItem.ing == 2">{{lang.status2}}</em>
+        <em v-else-if="codeItem.prize_uid != uid && codeItem.ing == 2">{{lang.status3}}</em>
+        <em v-else>{{lang.status4}}</em>
       </div>
 
     </div>
     <div class="numbers">
       <div class="myNumber">
-        我的奪寶號碼({{codeItem.used_voucher_cnt}})
+        {{lang.myNumber}}({{codeItem.used_voucher_cnt}})
       </div>
-      <div class="luckTips" v-if="codeItem.prize_uid == uid">恭喜你命中號碼 <em>{{codeItem.prize_voucher}}</em></div>
+      <div class="luckTips" v-if="codeItem.prize_uid == uid"> {{lang.luckTips}} <em>{{codeItem.prize_voucher}}</em></div>
       <div class="numberList numberScrollable" :class="{six:list.length <= 6}">
         <span v-for="(item,index) in list" :key="index" :class="{act:item.voucher == codeItem.prize_voucher}">{{item.voucher}}</span>
       </div>
@@ -46,16 +47,6 @@ export default {
   data () {
     return {
       list: [],
-      typeTips: {
-        '-1': '禮物',
-        '0': '頭像框',
-        '1': '座駕',
-        '2': '磚戒',
-        '3': '主題',
-        '4': '活動稱號',
-        '5': '進場秀',
-        '6': '氣泡框',
-      },
       loaded: false,
       more: true,
       page: 0
@@ -64,6 +55,9 @@ export default {
   computed: {
     uid () {
       return getUrlString("uid") || "";
+    },
+    typeTips () {
+      return this.lang.typeTips
     }
   },
   mounted () {
@@ -104,7 +98,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .giftNumbers {
   width: 7.5rem;
   height: 9.31rem;
@@ -164,13 +158,14 @@ export default {
         position: absolute;
         top: 0.08rem;
         right: 0.01rem;
-        font-size: 0.24rem;
-        font-weight: bold;
+        font-size: 0.18rem;
+        //   font-weight: bold;
         text-align: center;
         line-height: 0.26rem;
       }
       .price {
-        width: 1.93rem;
+        width: 1.73rem;
+        padding-right: 0.2rem;
         height: 0.36rem;
         background: url(../img/priceBg.png);
         background-size: 100% 100%;
@@ -215,21 +210,24 @@ export default {
         align-items: center;
         .name {
           max-width: 2.3rem;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
           font-size: 0.32rem;
           font-weight: bold;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          /* autoprefixer: off */
+          -webkit-box-orient: vertical;
+          /* autoprefixer: on */
         }
         .giftType {
           padding: 0 0.06rem;
           height: 0.26rem;
           line-height: 0.26rem;
-
           background: linear-gradient(90deg, #4D91FF, #55DBFD);
           border-radius: 0.05rem;
           font-size: 0.2rem;
-          font-style: italic;
           text-align: center;
           margin: 0.05rem 0 0 0.06rem;
           &.gift {
@@ -276,13 +274,14 @@ export default {
       position: absolute;
     }
     .status {
-      font-size: 0.46rem;
+      width: 1.6rem;
       color: rgba(255, 255, 255, 0.3);
       position: absolute;
       top: 0.41rem;
       right: 0.32rem;
       em {
-        font-size: 0.46rem;
+        font-size: 0.36rem;
+        line-height: 0.4rem;
         font-weight: bold;
       }
     }
@@ -297,7 +296,7 @@ export default {
     .luckTips {
       font-size: 0.28rem;
       color: #FF60CD;
-      margin: 0 0 0.3rem;
+      margin-top: 0.1rem;
     }
     .numberList {
       display: inline-block;

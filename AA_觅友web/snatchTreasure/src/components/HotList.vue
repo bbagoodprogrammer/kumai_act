@@ -1,40 +1,48 @@
 <template>
   <div class="hotList">
-    <p v-if="!list.length" class="noData">暫無數據</p>
+    <p v-if="!list.length" class="noData">{{lang.noData}}</p>
     <ul class='hotScrollable'>
       <li v-for="(item,index) in list " :key="index">
         <div class="giftImg">
-          <div class="day">{{item.prize_type == -1?`x${item.prize_nums}`:`${item.prize_days}天`}}</div>
+          <div class="day" v-if="item.prize_type == -1 && item.prize_nums!=1">x{{item.prize_nums}}</div>
+          <div class="day" v-else-if="item.prize_type != -1">{{item.prize_days}} {{lang.day}}</div>
           <img :src="item.prize_image" alt="">
           <div class="price"><i></i><em>{{item.prize_price}}</em></div>
         </div>
         <div class="giftMsg">
           <div class="giftName">
-            <div class="name">{{item.prize_name}}</div>
+            <div class="name" style="-webkit-box-orient: vertical;">{{item.prize_name}}</div>
             <div class="giftType" :class="{gift:item.prize_type == -1}">{{typeTips[item.prize_type]}}</div>
           </div>
-          <div class="getNums"><strong>{{item.used_voucher_cnt>0?`已奪寶${item.used_voucher_cnt}次`:'未參與本輪奪寶'}}</strong><span v-if="item.used_voucher_cnt" @click="showCode(item)">號碼</span></div>
-          <div class="giftLiner">
-            <span class="bar">{{item.cur_voucher_cnt}}/{{item.voucher_cnt}}</span>
-            <div class="actLiner" :style="{width:Number(item.cur_voucher_cnt) / Number(item.voucher_cnt)  *100 +'%'}"></div>
+          <div class="getNums">
+            <strong>{{item.used_voucher_cnt>0?`${lang.getSuc.replace('%s',item.used_voucher_cnt)}`:lang.notSing}}</strong>
+            <span v-if="item.used_voucher_cnt" @click="showCode(item)">{{lang.number}}</span>
           </div>
+          <div class="linerBox">
+            <div class="giftLiner">
+              <span class="bar">{{item.cur_voucher_cnt}}/{{item.voucher_cnt}}</span>
+              <div class="actLiner" :style="{width:Number(item.cur_voucher_cnt) / Number(item.voucher_cnt)  *100 +'%'}"></div>
+            </div>
+            <div class="giftDownTm" v-if="item.surplusTime">
+              <i class="clock"></i>
+              <span>
+                <em v-if="item.surplusTime.hour !='00'">{{item.surplusTime.hour}}:</em><em v-if="item.surplusTime.minute !='00'">{{item.surplusTime.minute}}:</em><em>{{item.surplusTime.second}}</em>
+              </span>
+            </div>
+          </div>
+
         </div>
-        <div class="joinbtn" @click="showSetType(item.id,index)">奪寶</div>
-        <div class="giftDownTm" v-if="item.surplusTime">
-          <i class="clock"></i>
-          <span>
-            <em v-if="item.surplusTime.hour !='00'">{{item.surplusTime.hour}}:</em><em v-if="item.surplusTime.minute !='00'">{{item.surplusTime.minute}}:</em><em>{{item.surplusTime.second}}</em>
-          </span>
-        </div>
+        <div class="joinbtn" @click="showSetType(item.id,index)"></div>
+
       </li>
     </ul>
     <!-- 夺宝 -->
     <transition name="move">
       <div class="setJoin" v-show="showSetTypePup">
-        <div class="title">參與奪寶</div>
+        <div class="title">{{lang.setJoinTitle}}</div>
         <div class="btnList">
           <div v-for="(item,index) in joinType" :key="index" @click="join(item)">
-            <div class="strTips">奪寶{{item}}次</div>
+            <div class="strTips">{{lang.joinNums.replace('%s',item)}}</div>
             <div class="numsTips">(<i></i><strong>{{item}}</strong>)</div>
           </div>
         </div>
@@ -61,16 +69,6 @@ export default {
   components: { GiftNumbers },
   data () {
     return {
-      typeTips: {
-        '-1': '禮物',
-        '0': '頭像框',
-        '1': '座駕',
-        '2': '磚戒',
-        '3': '主題',
-        '4': '活動稱號',
-        '5': '進場秀',
-        '6': '氣泡框',
-      },
       list: [],
       joinType: [
         1, 10, 100
@@ -84,6 +82,11 @@ export default {
       codeItem: {},
       page: 1,
       nowIndex: 0
+    }
+  },
+  computed: {
+    typeTips () {
+      return this.lang.typeTips
     }
   },
   watch: {
@@ -122,9 +125,9 @@ export default {
           }
           this.vxc('setVouchers', vouchers)
           if (Number(curLog.cur_voucher_cnt) < Number(curLog.voucher_cnt)) {
-            this.toast('參與成功！')
+            this.toast(this.lang.joinSuc)
           } else {
-            this.toast('參與成功,該獎品已開獎！')
+            this.toast(this.lang.joinSuc2)
             setTimeout(() => {
               this.loaded = false
               this.page = 1
@@ -213,7 +216,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .hotList {
   position: relative;
   overflow: hidden;
@@ -260,8 +263,8 @@ export default {
           position: absolute;
           top: 0.08rem;
           right: 0.01rem;
-          font-size: 0.24rem;
-          font-weight: bold;
+          font-size: 0.18rem;
+          //   font-weight: bold;
           text-align: center;
           line-height: 0.28rem;
         }
@@ -312,20 +315,25 @@ export default {
           align-items: center;
           .name {
             max-width: 2.8rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
             font-size: 0.32rem;
             font-weight: bold;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* autoprefixer: off */
+            -webkit-box-orient: vertical;
+            /* autoprefixer: on */
           }
           .giftType {
             padding: 0 0.06rem;
             height: 0.26rem;
-            line-height: 0.26rem;
+            line-height: 0.28rem;
             background: linear-gradient(90deg, #4D91FF, #55DBFD);
             border-radius: 0.05rem;
             font-size: 0.2rem;
-            font-style: italic;
+            // font-style: italic;
             text-align: center;
             margin: 0.05rem 0 0 0.06rem;
             font-weight: bold;
@@ -335,7 +343,9 @@ export default {
           }
         }
         .getNums {
-          margin-top: 0.2rem;
+          width: 3.17rem;
+          margin-top: 0.06rem;
+          line-height: 0.24rem;
           > strong {
             font-size: 0.24rem;
             color: rgba(255, 255, 255, 0.6);
@@ -351,71 +361,63 @@ export default {
             margin-left: 0.09rem;
           }
         }
-        .giftLiner {
-          width: 3rem;
-          height: 0.28rem;
-          background: rgba(248, 248, 248, 0.3);
-          border-radius: 0.14rem;
-          overflow: hidden;
-          position: relative;
-          text-align: center;
-          line-height: 0.28rem;
-          font-size: 0.2rem;
+        .linerBox {
+          width: 105%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
           margin-top: 0.33rem;
-          .bar {
-            position: relative;
-            z-index: 3;
-          }
-          .actLiner {
-            max-width: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 50%;
-            height: 100%;
+          .giftLiner {
+            width: 3rem;
+            height: 0.28rem;
+            background: rgba(248, 248, 248, 0.3);
             border-radius: 0.14rem;
-            background: linear-gradient(90deg, #FDBE9D 0%, #FF309C 100%);
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            line-height: 0.28rem;
+            font-size: 0.2rem;
+            .bar {
+              position: relative;
+              z-index: 3;
+            }
+            .actLiner {
+              max-width: 100%;
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 50%;
+              height: 100%;
+              border-radius: 0.14rem;
+              background: linear-gradient(90deg, #FDBE9D 0%, #FF309C 100%);
+            }
+            .actLiner::before {
+              content: '';
+              display: block;
+              width: 100%;
+              height: 100%;
+              background: url(../img/linerArr.png);
+              background-size: auto 100%;
+              position: absolute;
+            }
           }
-          .actLiner::before {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 100%;
-            background: url(../img/linerArr.png);
-            background-size: auto 100%;
-            position: absolute;
+          .giftDownTm {
+            display: flex;
+            align-items: center;
+            height: 0.36rem;
+            font-size: 0.24rem;
+            color: rgba(255, 255, 255, 0.6);
+            em {
+              font-size: 0.24rem;
+            }
+            i {
+              width: 0.36rem;
+              height: 0.36rem;
+              background: url(../img/clock.png);
+              background-size: auto 100%;
+              margin-right: 0.06rem;
+            }
           }
-        }
-      }
-      .joinbtn {
-        width: 1.18rem;
-        height: 0.54rem;
-        background: url(../img/joinbtn.png);
-        background-size: auto 100%;
-        text-align: center;
-        line-height: 0.54rem;
-        position: absolute;
-        top: 0.32rem;
-        right: 0.29rem;
-      }
-      .giftDownTm {
-        display: flex;
-        align-items: center;
-        height: 0.36rem;
-        font-size: 0.24rem;
-        color: rgba(255, 255, 255, 0.6);
-        position: absolute;
-        right: 0.45rem;
-        bottom: 0.2rem;
-        em {
-          font-size: 0.24rem;
-        }
-        i {
-          width: 0.36rem;
-          height: 0.36rem;
-          background: url(../img/clock.png);
-          background-size: auto 100%;
-          margin-right: 0.06rem;
         }
       }
     }
@@ -450,6 +452,7 @@ export default {
         justify-content: center;
         flex-direction: column;
         .strTips {
+          padding: 0 0.25rem;
           font-size: 0.28rem;
         }
         .numsTips {

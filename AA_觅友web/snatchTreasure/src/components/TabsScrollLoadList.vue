@@ -1,15 +1,15 @@
 <template>
   <div class="rankGroups">
-    <div class="title"><i @click="closeRank()"></i>奪寶周榜</div>
+    <div class="title"><i @click="closeRank()"></i>{{lang.rankTitle}}</div>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
-      <span @click.prevent="mainTabClick(0)" :class="{act:mainTab==0}" class="tabL">本週</span>
-      <span @click.prevent="mainTabClick(1)" :class="{act:mainTab==1}" class="tabR">上週</span>
+      <span @click.prevent="mainTabClick(0)" :class="{act:mainTab==0}" class="tabL">{{lang.rankTab1}}</span>
+      <span @click.prevent="mainTabClick(1)" :class="{act:mainTab==1}" class="tabR">{{lang.rankTab2}}</span>
     </div>
     <ul class="list">
       <li v-for="(item,index) in rank.list" :key="index" :class="'rank' + item.rank">
         <div class="userRank">{{item.rank}}</div>
-        <img v-lazy="item.avatar" alt="">
+        <img v-lazy="item.avatar" alt="" @click="goUser(item.uid)">
         <div class="nick">{{item.nick}}</div>
         <div class="score">
           <span></span>
@@ -26,7 +26,7 @@
     </div>
     <!-- :class="'rank' + userMsg.rank" -->
     <div class="usermsg" v-if="userMsg.uid">
-      <div class="userRank">{{userMsg.rank==0?'未上榜':userMsg.rank}}</div>
+      <div class="userRank">{{userMsg.rank==0?lang.noRank:userMsg.rank}}</div>
       <img v-lazy="userMsg.avatar" alt="">
       <div class="nick">{{userMsg.nick}}</div>
       <div class="score">

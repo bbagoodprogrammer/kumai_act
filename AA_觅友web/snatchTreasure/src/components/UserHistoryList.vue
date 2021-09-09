@@ -1,34 +1,36 @@
 <template>
   <div class="userHistoryList">
-    <div class="title"><i @click="$parent.showUserHistrry = false"></i>奪寶記錄</div>
-    <p v-if="!list.length" class="noData">暫無數據</p>
+    <div class="title"><i @click="$parent.showUserHistrry = false"></i>{{lang.histroyTitle}}</div>
+    <p v-if="!list.length" class="noData">{{lang.noData}}</p>
     <div class="historyScorll">
-      <div class="giftItem" v-for="(item,index) in list " :key="index">
+      <div class="giftItem" v-for="(item,index) in list " :key="index" @click="showCode(item)">
         <div class="giftImg">
-          <div class="day">{{item.prize_type == -1?`x${item.prize_nums}`:`${item.prize_days}天`}}</div>
+          <div class="day" v-if="item.prize_type == -1 && item.prize_nums!=1">x{{item.prize_nums}}</div>
+          <div class="day" v-else-if="item.prize_type != -1">{{item.prize_days}}{{lang.day}}</div>
           <img :src="item.prize_image" alt="">
           <div class="price"><i></i><em>{{item.prize_price}}</em></div>
         </div>
         <div class="giftMsg">
           <div class="giftName">
-            <div class="name">{{item.prize_name}}</div>
+            <div class="name" style="-webkit-box-orient: vertical;">{{item.prize_name}}</div>
             <div class="giftType" :class="{gift:item.prize_type == -1}">{{typeTips[item.prize_type]}}</div>
           </div>
-          <div class="getNums"><strong>已奪寶{{item.used_voucher_cnt}}次</strong><span v-if="item.used_voucher_cnt" @click="showCode(item)">號碼</span></div>
+          <div class="numsTips">
+            <div class="getNums"><strong>{{lang.getSuc.replace('%s',item.used_voucher_cnt)}} </strong><span v-if="item.used_voucher_cnt">{{lang.number}}</span></div>
+            <div class="giftDownTm">
+              {{item.etime_md}}
+            </div>
+          </div>
         </div>
 
-        <div class="giftDownTm">
-          <span>{{item.etime_md}}</span>
-        </div>
         <div class="status">
-          <em v-if="item.ing == 1">進行中</em>
-          <em v-else-if="item.prize_uid == uid && item.ing == 2">成功</em>
-          <em v-else-if="item.prize_uid != uid && item.ing == 2">失敗</em>
-          <em v-else>取消</em>
+          <em v-if="item.ing == 1">{{lang.status1}}</em>
+          <em v-else-if="item.prize_uid == uid && item.ing == 2">{{lang.status2}}</em>
+          <em v-else-if="item.prize_uid != uid && item.ing == 2">{{lang.status3}}</em>
+          <em v-else>{{lang.status4}}</em>
         </div>
       </div>
     </div>
-
     <transition name="moveR">
       <GiftNumbers v-if="showCodePup" :codeItem="codeItem" />
     </transition>
@@ -45,22 +47,15 @@ export default {
   data () {
     return {
       list: [],
-      typeTips: {
-        '-1': '禮物',
-        '0': '頭像框',
-        '1': '座駕',
-        '2': '磚戒',
-        '3': '主題',
-        '4': '活動稱號',
-        '5': '進場秀',
-        '6': '氣泡框',
-      },
       codeItem: {},
       showCodePup: false,
       page: 0
     }
   },
   computed: {
+    typeTips () {
+      return this.lang.typeTips
+    },
     uid () {
       return getUrlString("uid") || "";
     }
@@ -104,7 +99,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .userHistoryList {
   width: 7.5rem;
   height: 9.31rem;
@@ -173,13 +168,14 @@ export default {
         position: absolute;
         top: 0.08rem;
         right: 0.01rem;
-        font-size: 0.24rem;
-        font-weight: bold;
+        font-size: 0.18rem;
+        //   font-weight: bold;
         text-align: center;
         line-height: 0.26rem;
       }
       .price {
-        width: 1.93rem;
+        width: 1.73rem;
+        padding-right: 0.2rem;
         height: 0.36rem;
         background: url(../img/priceBg.png);
         background-size: 100% 100%;
@@ -223,18 +219,25 @@ export default {
         display: flex;
         align-items: center;
         .name {
+          max-width: 2.3rem;
           font-size: 0.32rem;
           font-weight: bold;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          /* autoprefixer: off */
+          -webkit-box-orient: vertical;
+          /* autoprefixer: on */
         }
         .giftType {
           padding: 0 0.06rem;
           height: 0.26rem;
           line-height: 0.26rem;
-
           background: linear-gradient(90deg, #4D91FF, #55DBFD);
           border-radius: 0.05rem;
           font-size: 0.2rem;
-          font-style: italic;
           text-align: center;
           margin: 0.05rem 0 0 0.06rem;
           &.gift {
@@ -243,46 +246,54 @@ export default {
         }
       }
     }
-    .getNums {
-      margin-top: 0.5rem;
-      > strong {
-        font-size: 0.24rem;
-        color: rgba(255, 255, 255, 0.6);
-      }
-      > span {
-        //   width: 0.56rem;
-        padding: 0 0.06rem;
-        height: 0.28rem;
-        border: 1px solid rgba(255, 184, 30, 0.3);
-        border-radius: 0.14rem;
-        font-size: 0.2rem;
-        color: #FFB81E;
-        margin-left: 0.09rem;
-      }
-    }
-    .giftDownTm {
+    .numsTips {
+      width: 4.5rem;
+      height: 0.36rem;
+      //   margin-top: 0.6rem;
       display: flex;
       align-items: center;
-      height: 0.36rem;
-      font-size: 0.24rem;
-      color: rgba(255, 255, 255, 0.6);
+      justify-content: space-between;
       position: absolute;
-      right: 0.45rem;
-      bottom: 0.32rem;
-      i {
-        width: 0.36rem;
+      bottom: 0.36rem;
+      .getNums {
+        display: flex;
+        align-items: center;
+        > strong {
+          font-size: 0.24rem;
+          color: rgba(255, 255, 255, 0.6);
+        }
+        > span {
+          //   width: 0.56rem;
+          padding: 0 0.06rem;
+          height: 0.28rem;
+          border: 1px solid rgba(255, 184, 30, 0.3);
+          border-radius: 0.14rem;
+          font-size: 0.2rem;
+          color: #FFB81E;
+          margin-left: 0.09rem;
+        }
+      }
+      .giftDownTm {
         height: 0.36rem;
-        background: url(../img/clock.png);
-        background-size: auto 100%;
-        margin-right: 0.06rem;
+        line-height: 0.36rem;
+        font-size: 0.24rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-align: right;
       }
     }
+
     .status {
-      font-size: 0.46rem;
+      width: 1.6rem;
+      text-align: right;
       color: rgba(255, 255, 255, 0.3);
       position: absolute;
       top: 0.41rem;
-      right: 0.66rem;
+      right: 0.32rem;
+      em {
+        font-size: 0.36rem;
+        line-height: 0.4rem;
+        font-weight: bold;
+      }
     }
   }
 }

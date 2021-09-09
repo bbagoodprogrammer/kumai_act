@@ -17,7 +17,8 @@
         9: "Berikan dari aktivitas",
         10: "Tukarkan $",
         11: "Hadiah pendatang baru",
-        12: "Terima hadiah  $ dari Cupid"
+        12: "Terima hadiah  $ dari Cupid",
+        13: 'Panggilan video dengan <em class="uid">@</em> selama % menit'
     },
     history_title1: "Detail  berlian pink",
     history_title2: "Detail berlian biru",
@@ -51,16 +52,16 @@
     p_4: "B.Say hi",
     p_5:
         "Saat membalas say hi yang dikirim oleh pihak lain, akan dandapatkan hadiah berlian pink jika balas dalam waktu 12 jam",
-    p_6: "B.Panggilan suara",
+    p_6: "C. Panggilan suara dan video",
     p_7:
-        "Saat pihak lain melakukan panggilan suara kepada Anda, Anda akan menerima hadiah berlian pink setiap menit jika Anda menjawab",
-    p_8: "C.Berpasangan suara",
+        "Ketika pihak lawan melakukan panggilan suara atau video kepada Anda, Anda dapat menerima hadiah berlian pink setiap menit jika menjawab",
+    p_8: "D.Berpasangan suara",
     p_9:
         "Terima pencocokan suara yang diatur secara acak oleh sistem, dan dapatkan hadiah berlian pink setiap menit",
-    p_10: "D.Dapatkan hadiah dari obrolan pribadi",
+    p_10: "E.Dapatkan hadiah dari obrolan pribadi",
     p_11:
         "Ketika Anda menerima hadiah koin emas dari pihak lain dalam obrolan pribadi, akan dapatkan pendapatan berlian pink sesuai dengan persentase tertentu",
-    p_12: "E.Dapatkan hadiah dari momen",
+    p_12: "F.Dapatkan hadiah dari momen",
     p_13:
         "Ketika Anda menerima hadiah koin emas dari orang lain dalam momen, akan dapatkan pendapatan berlian pink sesuai dengan persentase tertentu",
     p_14:
