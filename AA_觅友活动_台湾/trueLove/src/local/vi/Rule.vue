@@ -31,7 +31,7 @@
         <div class="gift_item" v-for="(item,index) in giftArr" :key="index" :class="'gift' + index">
           <div class="imgBox">
             <img :src="item.img" alt="">
-            <i class="gType" v-if="item.tips">Quà hiệu ứng</i>
+            <i class="gType" v-if="item.tips">{{item.tips}}</i>
           </div>
           <strong v-html="item.name"></strong>
         </div>
@@ -40,13 +40,13 @@
       <p>
         Người chơi tích lũy điểm True Love, có thể lên Bảng True Love; Bảng True Love được chia thành BXH ngày và BXH tổng, BXH được xếp hạng theo tổng số điểm True Love từ cao đến thấp, nếu điểm bằng
         nhau sẽ tính theo thời gian trước sau. <br />
-        Ngưởi chơi đứng Top 1 tại BXH hàng ngày sẽ được đi Đu quay Yêu chân thành, và được nhận [Giọt nước biển]*2 (mỗi người một quả), người chơi nhận thưởng có thể nhận thêm 10% điểm
+        Ngưởi chơi đứng Top 1 tại BXH hàng ngày sẽ được đi Đu quay Yêu chân thành, và được nhận [Bóng thủy tinh Yêu chân thành]*2 (mỗi người một quả), người chơi nhận thưởng có thể nhận thêm 10% điểm
         True Love của BXH hàng ngày đã tích lũy (Điểm này sẽ được thêm trực tiếp vào BXH tổng, không thêm vào BXH hàng ngày của ngày tiếp theo)
       </p>
       <h5>4.Cách kêu gọi Thần tình yêu</h5>
       <p>Đưa 50 xu cho Thần tình yêu, có thể kêu thần một lần. Mỗi khi kêu gọi, bạn sẽ nhận được 100% giải thưởng chúc phúc từ Thần tình yêu.</p>
       <img src="./img/rule_table1.png" alt="" class="rule_table1">
-      <p>Nếu không kêu gọi được Uyên ương hồ điệp mộng trong 500 lần đầu tiên, lần thứ 501 chắn chắn có thể nhận Uyên ương hồ điệp mộng . Mỗi người chơi chỉ có thể nhận
+      <p>Nếu không kêu gọi được Thần tình yêu Cupid trong 500 lần đầu tiên, lần thứ 501 chắn chắn có thể nhận Thần tình yêu Cupid . Mỗi người chơi chỉ có thể nhận
         nhẫn một lần.</p>
       <h5>5. Khác</h5>
       <p>Trong thời gian sự kiện diễn ra, phát hiện hành vi vi phạm sẽ tùy trường hợp xử lý cảnh cáo, tước quyền chơi hoặc khóa tài khoản.</p>
@@ -66,11 +66,11 @@
         </div>
       </div>
       <p>
-        Ngưởi chơi đứng Top 1 tại BXH hàng ngày sẽ được đi Đu quay Yêu chân thành, và được nhận [Giọt nước biển]*2 (mỗi người một quả), người chơi nhận thưởng có thể nhận thêm 10% điểm
+        Ngưởi chơi đứng Top 1 tại BXH hàng ngày sẽ được đi Đu quay Yêu chân thành, và được nhận [Bóng thủy tinh Yêu chân thành]*2 (mỗi người một quả), người chơi nhận thưởng có thể nhận thêm 10% điểm
         True Love của BXH hàng ngày đã tích lũy (Điểm này sẽ được thêm trực tiếp vào BXH tổng, không thêm vào BXH hàng ngày của ngày tiếp theo)
       </p>
       <h5>2. Giải thưởng BXH tổng</h5>
-      <div class="giftList">
+      <div class="giftList list3">
         <div class="gift_item" v-for="(item,index) in giftArr3" :key="index" :class="'gift' + index">
           <div class="imgBox">
             <img :src="item.img" alt="">
@@ -79,10 +79,12 @@
           <strong v-html="item.name"></strong>
         </div>
       </div>
-      <p>Hạng 1: Khung ảnh Quán quân CP (10 ngày)+Huy chương Đu quay Yêu chân thành (10 ngày)+Phi thuyền lãng mạn (10 ngày)+chứng nhận CP (10 ngày)+Vũ trên mặt trăng-quà hiệu ứng (mỗi người một quà)
+      <p>Hạng 1: Khung ảnh Quán quân CP (10 ngày)+Huy chương Đu quay Yêu chân thành (10 ngày)+Phi thuyền lãng mạn (10 ngày)+chứng nhận CP (10 ngày)+Thiên sứ True Love-quà hiệu ứng (mỗi người một
+        quà)+15000xu/Mọi người
       </p>
-      <p>Hạng 2: Khung ảnh Á quân CP (7 ngày)+Huy chương Đu quay Yêu chân thành (7 ngày)+Phi thuyền lãng mạn (7 ngày)+chứng nhận CP (7 ngày)+Pháo bắn tim-quà hiệu ứng (mỗi người một quà) </p>
-      <p>Hạng 3: Khung ảnh Quý quân CP (7 ngày)+Phi thuyền lãng mạn (7 ngày)+Giọt nước biển-quà hiệu ứng (mỗi người một quà) </p>
+      <p>Hạng 2: Khung ảnh Á quân CP (7 ngày)+Huy chương Đu quay Yêu chân thành (7 ngày)+Phi thuyền lãng mạn (7 ngày)+chứng nhận CP (7 ngày)+Bóng hơi lãng mạn-quà hiệu ứng (mỗi người một
+        quà)+10000xu/Mọi người </p>
+      <p>Hạng 3: Khung ảnh Quý quân CP (7 ngày)+Phi thuyền lãng mạn (7 ngày)+Bóng thủy tinh Yêu chân thành-quà hiệu ứng (mỗi người một quà)+8000xu/Mọi người </p>
       <p>*CP có điểm ân ái đạt mức 1520.000 và đứng top 3 trong BXH điểm ân ái mới có thể nhận được thưởng BXH nha.</p>
     </div>
     <p class="lastTips">Sự kiện không liên quan đến công ty Apple</p>
@@ -124,29 +126,34 @@ export default {
         {
           img: require('./img/rule_gift/gift_4.png'),
           name: 'Mê bạn<br/>+10000 Điểm True Love',
-          tips: 'Quà hiệu ứng'
+          tips: 'hiệu ứng'
         },
         {
           img: require('./img/rule_gift/gift_5.png'),
           name: 'Thuyền tình yêu<br/>+120000 Điểm True Love',
-          tips: 'Quà hiệu ứng'
+          tips: 'hiệu ứng'
         },
         {
-          img: require('./img/rule_gift/gift_6.png'),
-          name: 'Thư tình lãng mạn<br/>+200 Điểm True Love',
+          img: require('./img/rule_gift/gift_22.png'),
+          name: 'Tiệc đêm<br/>+269900 Điểm True Love',
+          tips: 'hiệu ứng'
+        },
+        {
+          img: require('./img/rule_gift/gift_06.png'),
+          name: 'Lọ tỏ tình<br/>+200 Điểm True Love',
         },
         {
           img: require('./img/rule_gift/gift_1.png'),
           name: 'Tên Thần tình yêu<br/>+500 Điểm True Love'
         },
         {
-          img: require('./img/rule_gift/gift_2.png'),
-          name: 'Mãi mãi ở bên nhau<br/>+5200 Điểm True Love'
+          img: require('./img/rule_gift/gift_21.png'),
+          name: 'Cupid<br/>+5200 Điểm True Love'
         },
         {
-          img: require('./img/rule_gift/gift_3.png'),
-          name: 'Yêu cả đời<br/>+20000 Điểm True Love',
-          tips: 'Quà hiệu ứng'
+          img: require('./img/rule_gift/gift_31.png'),
+          name: 'Dây chuyền chân châu<br/>+20000 Điểm True Love',
+          tips: 'hiệu ứng'
         },
 
 
@@ -158,8 +165,8 @@ export default {
           name: '5% điểm True Love'
         },
         {
-          img: require('./img/rule_gift/gift_16.png'),
-          name: 'Giọt nước biển*2'
+          img: require('./img/rule_gift/gift_160.png'),
+          name: 'Bóng thủy tinh Yêu chân thành*2'
         }
       ],
       giftArr3: [
@@ -180,16 +187,16 @@ export default {
           name: 'Chứng nhận Couple'
         },
         {
-          img: require('./img/rule_gift/gift_19.png'),
-          name: 'Vũ trên mặt trăng<br/>Quà hiệu ứng'
+          img: require('./img/rule_gift/gift_14.png'),
+          name: 'Thiên sứ True Love<br/>Quà hiệu ứng'
         },
         {
-          img: require('./img/rule_gift/gift_20.png'),
-          name: 'Pháo bắn tim<br/>Quà hiệu ứng'
+          img: require('./img/rule_gift/gift_15.png'),
+          name: 'Bóng hơi lãng mạn<br/>Quà hiệu ứng'
         },
         {
-          img: require('./img/rule_gift/gift_16.png'),
-          name: 'Giọt nước biển-Quà hiệu ứng'
+          img: require('./img/rule_gift/gift_160.png'),
+          name: 'Bóng thủy tinh Yêu chân thành-Quà hiệu ứng'
         }
       ]
     }
@@ -286,6 +293,16 @@ export default {
         }
       }
     }
+    &.list3 {
+      .gift_item {
+        &.gift0 {
+          margin-left: 0.6rem;
+        }
+        &.gift2 {
+          margin-right: 0.6rem;
+        }
+      }
+    }
     .gift_item {
       width: 1.47rem;
       .imgBox {
@@ -307,7 +324,7 @@ export default {
           position: absolute;
           top: 0;
           left: 0;
-          font-size: 0.24rem;
+          font-size: 0.22rem;
           text-align: center;
           line-height: 0.37rem;
         }
@@ -319,12 +336,6 @@ export default {
         font-size: 0.24rem;
         color: rgba(176, 97, 101, 1);
         text-align: center;
-      }
-      &.gift0 {
-        margin-left: 0.6rem;
-      }
-      &.gift2 {
-        margin-right: 0.6rem;
       }
     }
   }

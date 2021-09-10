@@ -1,7 +1,7 @@
 html.id {
     .logo{
-        width:3.81rem ;
-        height: 1rem;
+        width:3.78rem ;
+        height: .97rem;
         background: url(./img/logo.png);
         background-size: 100% 100%;
         position: absolute;
@@ -34,4 +34,12 @@ html.id {
               font-size: .2rem!important;
           }
       }
+      .giftName{
+        .name{
+          font-size: .28rem!important;  
+        }
+    }
+    .getNums{
+        margin-top: .12rem!important;
+    }
 }

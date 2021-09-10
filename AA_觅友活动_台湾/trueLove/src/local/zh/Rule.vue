@@ -39,12 +39,12 @@
       <h5>3、如何乘坐真愛摩天輪</h5>
       <p>
         -玩家累積真愛值，有機會可以登上真愛榜；真愛榜會分為日榜和總榜，按照玩家的真愛值從高到低排序，若真愛值一致時，先達到的玩家優先排序<br />
-        -活動中的日榜榜首的玩家會乘坐上真愛摩天輪，並且獲得【星海之淚】*2（一人一個），獲獎玩家可獲得當天所得的日榜真愛值的5%加成（加成的分數直接加到總榜，不會加到次日的日榜中）
+        -活動中的日榜榜首的玩家會乘坐上真愛摩天輪，並且獲得【真愛水晶球】*2（一人一個），獲獎玩家可獲得當天所得的日榜真愛值的5%加成（加成的分數直接加到總榜，不會加到次日的日榜中）
       </p>
       <h5>4、如何召喚愛神</h5>
       <p>向愛神投入50金幣，可以召喚一次。每次召喚都100%獲得愛神的獎勵祝福</p>
       <img src="./img/rule_table1.png" alt="" class="rule_table1">
-      <p>若前500次沒有召喚到如花幻蝶-戒指，第501次必中如花幻蝶-戒指，每位玩家僅可獲得一次戒指</p>
+      <p>若前500次沒有召喚到愛神丘比特-戒指，第501次必中愛神丘比特-戒指，每位玩家僅可獲得一次戒指</p>
       <h5>5、其他</h5>
       <p>活動中，若發現玩家用不正當手段參與活動，小音有權在不事先通知的情況下按情節嚴重對參與玩家、違規者取消上榜資格、封禁賬號、收回該玩家所有獎勵等處罰，包括但不限於：</p>
       <p>a）活動期間對參賽玩家惡意評論、造謠、影射等</p>
@@ -63,10 +63,10 @@
         </div>
       </div>
       <p>
-        -活動中的日榜榜首的情侶會乘坐上真愛摩天輪，並獲得【星海之淚】*2（一人一個），獲獎情侶可獲得當天所得的日榜真愛值的5%加成（加成的分數直接加到總榜，不會加到次日的日榜中）
+        -活動中的日榜榜首的情侶會乘坐上真愛摩天輪，並獲得【真愛水晶球】*2（一人一個），獲獎情侶可獲得當天所得的日榜真愛值的5%加成（加成的分數直接加到總榜，不會加到次日的日榜中）
       </p>
       <h5>2、總榜獎勵</h5>
-      <div class="giftList">
+      <div class="giftList list3">
         <div class="gift_item" v-for="(item,index) in giftArr3" :key="index" :class="'gift' + index">
           <div class="imgBox">
             <img :src="item.img" alt="">
@@ -75,9 +75,9 @@
           <strong v-html="item.name"></strong>
         </div>
       </div>
-      <p>冠軍CP頭像框（10天）+真愛摩天輪勛章（10天）+浪漫飛艇座駕（10天）+定制CP認證（10天）+唯你是星辰-特效禮物（一人一個） </p>
-      <p>亞軍CP頭像框（7天）+真愛摩天輪勛章（7天）+浪漫飛艇座駕（7天）+真愛CP認證（7天）+心花怒放-特效禮物（一人一個） </p>
-      <p>季軍CP頭像框（7天）+浪漫飛艇座駕（7天）+星海之淚-特效禮物（一人一個） </p>
+      <p>冠軍CP頭像框（10天）+真愛摩天輪勛章（10天）+浪漫飛艇座駕（10天）+定制CP認證（10天）+真愛天使-特效禮物（一人一個）+8000金幣/人 </p>
+      <p>亞軍CP頭像框（7天）+真愛摩天輪勛章（7天）+浪漫飛艇座駕（7天）+真愛CP認證（7天）+浪漫氣球-特效禮物（一人一個）+5000金幣/人 </p>
+      <p>季軍CP頭像框（7天）+浪漫飛艇座駕（7天）+真愛水晶球-特效禮物（一人一個）+2000金幣/人 </p>
       <p>*真愛值達到1314000並且獲得真愛總榜前三的真愛情侶才可獲得總榜獎勵哦</p>
     </div>
     <p class="lastTips">此活動與蘋果公司無關</p>
@@ -128,20 +128,25 @@ export default {
           tips: '特效'
         },
         {
-          img: require('./img/rule_gift/gift_6.png'),
-          name: '浪漫情書<br/>+200真愛值',
+          img: require('./img/rule_gift/gift_22.png'),
+          name: '燭光晚餐<br/>+269900真愛值',
+          tips: '特效'
+        },
+        {
+          img: require('./img/rule_gift/gift_06.png'),
+          name: '告白瓶<br/>+200真愛值',
         },
         {
           img: require('./img/rule_gift/gift_1.png'),
           name: '愛神之箭<br/>+500真愛值'
         },
         {
-          img: require('./img/rule_gift/gift_2.png'),
-          name: '談情說愛<br/>+5200真愛值'
+          img: require('./img/rule_gift/gift_21.png'),
+          name: '愛神<br/>+5200真愛值'
         },
         {
-          img: require('./img/rule_gift/gift_3.png'),
-          name: '一生鎖愛<br/>+20000真愛值',
+          img: require('./img/rule_gift/gift_31.png'),
+          name: '珍珠項鏈<br/>+20000真愛值',
           tips: '特效'
         },
 
@@ -154,8 +159,8 @@ export default {
           name: '真愛值5%加成'
         },
         {
-          img: require('./img/rule_gift/gift_16.png'),
-          name: '星海之淚*2'
+          img: require('./img/rule_gift/gift_160.png'),
+          name: '真愛水晶球*2'
         }
       ],
       giftArr3: [
@@ -176,16 +181,16 @@ export default {
           name: 'CP認證'
         },
         {
-          img: require('./img/rule_gift/gift_19.png'),
-          name: '唯你是星辰<br/>特效禮物'
+          img: require('./img/rule_gift/gift_14.png'),
+          name: '真愛天使<br/>特效禮物'
         },
         {
-          img: require('./img/rule_gift/gift_20.png'),
-          name: '心花怒放<br/>特效禮物'
+          img: require('./img/rule_gift/gift_15.png'),
+          name: '浪漫氣球<br/>特效禮物'
         },
         {
-          img: require('./img/rule_gift/gift_16.png'),
-          name: '星海之淚<br/>特效禮物'
+          img: require('./img/rule_gift/gift_160.png'),
+          name: '真愛水晶球<br/>特效禮物'
         }
       ]
     }
@@ -282,6 +287,17 @@ export default {
         }
       }
     }
+    &.list3 {
+      .gift_item {
+        &.gift0 {
+          margin-left: 0.6rem;
+        }
+        &.gift2 {
+          margin-right: 0.6rem;
+        }
+      }
+    }
+
     .gift_item {
       width: 1.47rem;
       .imgBox {
@@ -315,12 +331,6 @@ export default {
         font-size: 0.24rem;
         color: rgba(176, 97, 101, 1);
         text-align: center;
-      }
-      &.gift0 {
-        margin-left: 0.6rem;
-      }
-      &.gift2 {
-        margin-right: 0.6rem;
       }
     }
   }

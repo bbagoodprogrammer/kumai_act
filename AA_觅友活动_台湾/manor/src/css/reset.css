@@ -56,8 +56,8 @@ button {
 input[disabled],
 input:disabled,
 input.disabled {
-    color: #fff;
-    -webkit-text-fill-color: #fff;
+    /* color: #fff;
+    -webkit-text-fill-color: #fff; */
     -webkit-opacity: 1;
     opacity: 1;
 }

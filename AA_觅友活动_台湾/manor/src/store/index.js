@@ -33,7 +33,8 @@ export default new vuex.Store({
         groupsUserMsg: {},
         otherUser: {},
         is_friend: false,
-        notices: []
+        notices: [],
+        rankGroups_history: {}
     },
     mutations: {
         setIs_friend(state, val) {
@@ -215,6 +216,24 @@ export default new vuex.Store({
                 });
             }
             console.log(state.groupsUserMsg);
+        },
+        updateRankGroups_history(state, obj) {
+            if (obj && typeof obj.key != "undefined") {
+                const key = obj.key;
+                delete obj["key"];
+                state.rankGroups_history = Object.assign(
+                    {},
+                    state.rankGroups_history,
+                    {
+                        [key]: Object.assign(
+                            {},
+                            state.rankGroups_history[key],
+                            obj
+                        )
+                    }
+                );
+            }
+            console.log(state.rankGroups_history);
         }
     },
     actions: {

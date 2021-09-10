@@ -93,7 +93,7 @@ export default {
     turn_noCoins: "Xu không đủ",
     //wheel
     wheel_tips:
-        "Trong khoảng thời gian từ $, CP Top1 trong BXH hàng ngày có thể đi đu quay và nhận được phần thưởng 5% điểm True Love và Giọt nước biển- quà túi (mỗi người một quà)", //期間每天日榜的第一名cp可乘坐摩天輪，並獲得當天真愛值的5%加成和真愛水晶球-背包禮物*2（一人一個）
+        "Trong khoảng thời gian từ $, CP Top1 trong BXH hàng ngày có thể đi đu quay và nhận được phần thưởng 5% điểm True Love và Bóng thủy tinh Yêu chân thành- quà túi (mỗi người một quà)", //期間每天日榜的第一名cp可乘坐摩天輪，並獲得當天真愛值的5%加成和真愛水晶球-背包禮物*2（一人一個）
     //信箱
     // daily_title_1: "【{0}】完成【{1}】產生魔法能量",
     // daily_title_2: "【{0}】收到【{1}】x{2}獲得魔法能量",

@@ -29,7 +29,7 @@ export default {
     userLuck: "",
 
     //HotList
-    getSuc: "Đã chơi %d lần",
+    getSuc: "Đã chơi %s lần",
     notSing: "Chưa tham gia sự kiện kỳ này",
     number: "Số",
     join: "chơi",

@@ -1,7 +1,16 @@
 <template>
   <div class="page pageIndex">
     <RoolMsg />
-    <div class="header"></div>
+    <div class="header">
+      <div class="ruleTipsBox">
+        <div class="ruleIcon">
+          <em>攻略</em>
+        </div>
+        <div class="historyIcon" @click="showHistoryPup = true">
+          <em>動態</em>
+        </div>
+      </div>
+    </div>
     <LandsBox ref="landsBox" />
     <div class="tabsList">
       <div class="tabs">
@@ -10,6 +19,12 @@
         </div>
       </div>
       <component :is="tabs[type].com" />
+    </div>
+    <!-- 動態 -->
+    <div class="mask" v-show="showHistoryPup">
+      <transition name="slide">
+        <HistoryTabsScrollLoadList v-if="showHistoryPup" />
+      </transition>
     </div>
     <!-- 报名弹窗 -->
     <div class="mask" v-show="singUpPup">
@@ -64,14 +79,15 @@ import Task from "./Task"
 import { mapState } from "vuex"
 import { reg } from "../apis"
 import RoolMsg from "./RoolMsg"
-
+import HistoryTabsScrollLoadList from "./HistoryTabsScrollLoadList"
 export default {
-  components: { LandsBox, TabsScrollLoadList, Commodity, Task, RoolMsg },
+  components: { LandsBox, TabsScrollLoadList, Commodity, Task, RoolMsg, HistoryTabsScrollLoadList },
   data () {
     return {
       type: 0,
       singUpPup: false,
       inivit_pup: false,
+      showHistoryPup: false,
       inivit_index: 0,
       tabs: [
         {
@@ -127,6 +143,34 @@ export default {
   background-size: 100% auto;
   .header {
     height: 3.81rem;
+    position: relative;
+    .ruleTipsBox {
+      position: absolute;
+      top: 2.85rem;
+      right: 0.04rem;
+      z-index: 5;
+      .ruleIcon,
+      .historyIcon {
+        width: 1.39rem;
+        height: 1.35rem;
+        background: url(../img/ruleIcon.png);
+        background-size: 100% 100%;
+        position: relative;
+        em {
+          display: block;
+          width: 100%;
+          text-align: center;
+          position: absolute;
+          bottom: 0.1rem;
+          color: #672A0B;
+          font-size: 0.26rem;
+        }
+      }
+      .historyIcon {
+        background: url(../img/historyIcon.png);
+        background-size: 100% 100%;
+      }
+    }
   }
   .tabsList {
     width: 7.35rem;

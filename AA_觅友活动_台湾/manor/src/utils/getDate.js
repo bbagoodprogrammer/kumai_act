@@ -21,8 +21,11 @@ function getDate(datem, type) {
     if (type == 2) {
         return `${date}/${month} ${hours}:${minute}`;
     }
+    if (type == 3) {
+        return `${month}月${date}日`;
+    }
     if (type == 4) {
-        return `${year}${month}${date}`;
+        return `${date}/${month}`;
     }
     if (type == 5) {
         return `${year} ${month}/${date} ${hours}:${minute}`;

@@ -314,7 +314,7 @@ export default {
           display: flex;
           align-items: center;
           .name {
-            max-width: 2.8rem;
+            max-width: 2.6rem;
             font-size: 0.32rem;
             font-weight: bold;
             -webkit-box-orient: vertical;

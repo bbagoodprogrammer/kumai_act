@@ -270,6 +270,62 @@ function reg(touid) {
 function shop() {
     return get(`/index.php?action=manor.shop&uid={uid}&token={token}`);
 }
+
+//购买
+function buy(goods_id, num) {
+    return get(
+        `/index.php?action=manor.buy&uid={uid}&token={token}&goods_id=${goods_id}&num=${num}`
+    );
+}
+
+//兌換
+function exchange(prize_id, num) {
+    return get(
+        `/index.php?action=manor.exchange&uid={uid}&token={token}&prize_id=${prize_id}&num=${num}`
+    );
+}
+
+//任務
+function tasks() {
+    return get(`/index.php?action=manor.tasks&uid={uid}&token={token}`);
+}
+
+//任務领取
+function taskGet(task_id) {
+    return get(
+        `/index.php?action=manor.taskGet&uid={uid}&token={token}&task_id=${task_id}`
+    );
+}
+
+//邀请列表
+function invitedList() {
+    return get(`/index.php?action=manor.subscribeList&uid={uid}&token={token}`);
+}
+
+//已邀请列表
+function invitedUsers() {
+    return get(`/index.php?action=manor.invitedUsers&uid={uid}&token={token}`);
+}
+
+//批量邀請用戶
+function invite(touids) {
+    return get(
+        `/index.php?action=manor.invite&uid={uid}&token={token}&touids=${touids}`
+    );
+}
+
+//当天签到
+function sign() {
+    return get(`/index.php?action=manor.sign&uid={uid}&token={token}`);
+}
+
+//歷史記錄
+function history(type, from) {
+    return get(
+        `/index.php?action=manor.history&uid={uid}&token={token}&type=${type}&from=${from}`
+    );
+}
+
 export {
     get,
     post,
@@ -283,5 +339,14 @@ export {
     getInitInfo,
     steal,
     reg,
-    shop
+    shop,
+    buy,
+    exchange,
+    tasks,
+    taskGet,
+    invitedList,
+    invitedUsers,
+    invite,
+    sign,
+    history
 };

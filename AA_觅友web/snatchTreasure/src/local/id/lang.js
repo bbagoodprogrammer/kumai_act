@@ -9,7 +9,7 @@
     day: "Hari",
     giftCancel: "Harta Warga periode ini telah dibatalkan",
     luckNumber: "Lanjut:",
-    status1: "Berlangsung",
+    status1: "Berjalan",
     status2: "Berhasil",
     status3: "Gagal",
     status4: "Batalkan",
@@ -17,7 +17,7 @@
     luckTips: "Selamat~Anda telah mencapai No. harta",
     typeTips: {
         "-1": "Hadiah",
-        "0": "Bingkai ava",
+        "0": "Bingkai",
         "1": "Mount",
         "2": "Cincin",
         "3": "Tema",
@@ -34,7 +34,7 @@
     number: "No.",
     join: "Rebut harta",
     setJoinTitle: "Ikuti",
-    joinNums: "Go %s ",
+    joinNums: "Go x%s",
     joinSuc: "Ikuti berhasil",
     joinSuc2: "Ikuti berhasil, hadiah telah dibuka!",
     //index
@@ -45,22 +45,22 @@
     ticket: "Lucky coupons:",
     ind: "Buah",
     geted: "Dapat",
-    ticketTips: "Membayar %s koin emas untuk dapatkan 1 kupon keberuntungan",
+    ticketTips: "Membayar %s koin emas untuk dapatkan 1 lucky coupons",
     charge: "Topup",
     buySuc: "Pembelian berhasil!",
 
     //rule
     ruleTitle: "Aturan",
     firstTips:
-        "Gunakan「 Kupon keberuntungan」untuk ikut berburu harta karun. 1 kupon keberuntungan untuk rebut harta karun 1 kali, ketika jumlah kupon keberuntungan untuk hadiah tercapai, satu orang akan dipilih secara acak dari peserta yang berpartisipasi dalam Karun warga untuk menerima hadiah.",
+        "Gunakan「 Lucky Coupons」untuk ikut berburu harta karun. 1 lucky coupons untuk rebut harta karun 1 kali, ketika jumlah lucky coupons untuk hadiah tercapai, satu orang akan dipilih secara acak dari peserta yang berpartisipasi dalam Karun warga untuk menerima hadiah.",
     strList: [
-        "Jika jumlah kupon keberuntungan tidak terpenuhi dalam waktu 12 jam dari hadiah harta karun, kualifikasi untuk Harta Warga putaran ini akan dibatalkan, dan kupon keberuntungan akan dikembalikan ke peserta yang sesuai.",
+        "Jika jumlah lucky coupons tidak terpenuhi dalam waktu 12 jam dari hadiah harta karun, kualifikasi untuk Harta Warga putaran ini akan dibatalkan, dan lucky coupons akan dikembalikan ke peserta yang sesuai.",
         "Hadiah berburu harta karun hanya dimenangkan oleh salah satu peserta yang berpartisipasi dalam berburu harta karun. Semakin banyak berpartisipasi dalam berburu harta karun dalam hadiah yang sama, semakin tinggi kemungkinan memenangkan hadiah.",
         "Peringkat minggu lalu dihitung pada setiap hari Senin pukul 00:00(wib), dan 10 peserta teratas yang terbanyak berpartisipasi dalam Harta Warga akan menerima hadiah lencana.",
         "Hadiah item virtual yang diperoleh dalam acara memiliki masa berlaku tertentu, silakan gunakannya tepat waktu.",
         "Alat peraga yang diperoleh peserta terbatas pada konsumsi di platform ini, dan tidak ada aktivitas menghasilkan keuntungan seperti transaksi dan akuisisi yang diizinkan. Yang melanggar aturan akan dihukum berat jika ditemukan.",
         "Dilarang untuk melakukan perilaku apapun yang memengaruhi keadilan acara, atau menggunakan platform BUG yang tidak pantas lainnya untuk berpartisipasi dalam game ini. Setelah ditemukan, platform berhak untuk membatalkan pemberian alat peraga dan memulihkan alat peraga.",
-        "Acara ini tak berhubungan dengan Apple, dan hak interpretasi akhir adalah milik AloChat"
+        "Acara ini tak berhubungan dengan Apple, dan hak interpretasi akhir adalah milik AloChat."
     ],
 
     //rank
