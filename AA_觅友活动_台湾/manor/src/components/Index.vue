@@ -1,13 +1,17 @@
 <template>
   <div class="page pageIndex">
+    <div class="landIcon"></div>
     <RoolMsg />
     <div class="header">
       <div class="ruleTipsBox">
-        <div class="ruleIcon">
-          <em>攻略</em>
+        <div class="ruleIcon" @click="showRule = true">
+          <em>{{lang.ruleIcon}}</em>
         </div>
         <div class="historyIcon" @click="showHistoryPup = true">
-          <em>動態</em>
+          <em>{{lang.historyIcon}}</em>
+        </div>
+        <div class="homeIcon" @click="goHome()">
+          <em>{{lang.homeIcon}}</em>
         </div>
       </div>
     </div>
@@ -45,7 +49,7 @@
     <div class="mask" v-show="inivit_pup">
       <transition name="slide">
         <div class="inivit" v-if="inivit_pup">
-          <i class="close" @click="inivit_pup =false"></i>
+          <!-- <i class="close" @click="inivit_pup =false"></i> -->
           <div class="title">{{lang.index_join}}</div>
           <p class="inivitTips">{{lang.index_inivitTips1}}</p>
           <ul>
@@ -67,6 +71,12 @@
         </div>
       </transition>
     </div>
+    <!-- 規則 -->
+    <div class="mask" v-show="showRule">
+      <transition name="slide">
+        <Rule v-if="showRule" />
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -80,32 +90,38 @@ import { mapState } from "vuex"
 import { reg } from "../apis"
 import RoolMsg from "./RoolMsg"
 import HistoryTabsScrollLoadList from "./HistoryTabsScrollLoadList"
+import Rule from "./Rule"
+
 export default {
-  components: { LandsBox, TabsScrollLoadList, Commodity, Task, RoolMsg, HistoryTabsScrollLoadList },
+  components: { LandsBox, TabsScrollLoadList, Commodity, Task, RoolMsg, HistoryTabsScrollLoadList, Rule },
   data () {
     return {
       type: 0,
       singUpPup: false,
       inivit_pup: false,
       showHistoryPup: false,
+      showRule: false,
       inivit_index: 0,
-      tabs: [
-        {
-          name: '排行榜',
-          com: 'TabsScrollLoadList'
-        },
-        {
-          name: '商店',
-          com: 'Commodity'
-        }, {
-          name: '任務',
-          com: 'Task'
-        }
-      ]
+      //   tabs: [
+      //     {
+      //       name: '排行榜',
+      //       com: 'TabsScrollLoadList'
+      //     },
+      //     {
+      //       name: '商店',
+      //       com: 'Commodity'
+      //     }, {
+      //       name: '任務',
+      //       com: 'Task'
+      //     }
+      //   ]
     }
   },
   computed: {
-    ...mapState(['owner', 'inviters'])
+    ...mapState(['owner', 'inviters']),
+    tabs () {
+      return this.lang.tabs
+    }
   },
   watch: {
     owner (val) {
@@ -120,12 +136,15 @@ export default {
     }
   },
   methods: {
+    goHome () {
+      this.$refs.landsBox.init()
+    },
     singUp (uid) {
       reg(uid).then(res => {
         if (res.data.response_status.code == 0) {
           this.singUpPup = false
           this.inivit_pup = false
-          this.toast(`成為莊園主！`)
+          this.toast(this.lang.singUpOk)
           this.$store.dispatch('getInitInfo');
           this.$refs.landsBox.init()
         } else {
@@ -141,6 +160,14 @@ export default {
 .pageIndex {
   background: #6CC94F url(../img/banner.png) no-repeat;
   background-size: 100% auto;
+  position: relative;
+  .landIcon {
+    width: 7.5rem;
+    height: 13.76rem;
+    background: url(../img/landIcon.png);
+    background-size: 100% 100%;
+    position: absolute;
+  }
   .header {
     height: 3.81rem;
     position: relative;
@@ -150,7 +177,8 @@ export default {
       right: 0.04rem;
       z-index: 5;
       .ruleIcon,
-      .historyIcon {
+      .historyIcon,
+      .homeIcon {
         width: 1.39rem;
         height: 1.35rem;
         background: url(../img/ruleIcon.png);
@@ -168,6 +196,10 @@ export default {
       }
       .historyIcon {
         background: url(../img/historyIcon.png);
+        background-size: 100% 100%;
+      }
+      .homeIcon {
+        background: url(../img/home.png);
         background-size: 100% 100%;
       }
     }

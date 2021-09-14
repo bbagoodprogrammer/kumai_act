@@ -8,7 +8,7 @@
         <span class="rank">{{nowUser.rank>100?'100+':nowUser.rank}}</span>
         <img v-lazy="owner.avatar" alt="" class="av">
         <div class="nick">{{owner.nick}}</div>
-        <div class="score">{{nowUser.score}}步</div>
+        <div class="score">{{lang.stepNums.replace('%s',nowUser.score)}}</div>
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@ import { globalBus } from '../utils/eventBus'
 export default {
   computed: {
     ...mapState(['actStatus', 'owner', 'isShare', 'reg', 'tab', 'day', 'total']),
-    astState() {
+    astState () {
       if (this.actStatus === 0) { //活动未开始
         return 0
       } else if (this.actStatus === 2) { //活动已结束
@@ -31,12 +31,12 @@ export default {
         return 3
       }
     },
-    nowUser() {
+    nowUser () {
       return this.tab == "total" ? this.total : this.day
     }
   },
   methods: {
-    singUp(fuid) {
+    singUp (fuid) {
       globalBus.$emit('commonEvent', () => {
         api.singUp(fuid).then(res => {
           if (res.data.response_status.code == 0) {

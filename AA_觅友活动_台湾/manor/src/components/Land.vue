@@ -1,20 +1,20 @@
 <template>
-  <div @click.stop="" @touchend.stop="" class="land" :class="[{landBg:info.status  == 0 || info.status == 1},'land'+info.id, 'status'+info.status,'good'+info.goods_id]">
+  <div @click.stop="" @touchend.stop="" class="land" :class="[{landBg:info.status  == 0 || info.status == 1,noGet: info.status == 2},'land'+info.id, 'status'+info.status,'good'+info.goods_id]">
     <!-- 罩子 -->
     <div class="protect" v-if="protect_seconds && (info.status == 2 || info.status ==3)" :class="{pt:info.status == 3}"><i></i><strong>{{protect_time}}</strong> </div>
     <!-- 解锁 -->
     <div class="lock" :class="{pt:info.id == next_land_id}">
       <i></i>
       <strong>NO.{{info.id}}</strong>
-      <div class="unlock" @click="unLockConfim()" v-if="info.id == next_land_id">點擊解鎖</div>
+      <div class="unlock" @click="unLockConfim()" v-if="info.id == next_land_id">{{lang.lanUnlock}}</div>
     </div>
     <!-- 空地 -->
     <ul @click="emptyClick()" class="choose">
-      <span class="plant" @click="getGoodsList('seed')">點擊種植</span>
+      <span class="plant" @click="getGoodsList('seed')">{{lang.choose}}</span>
     </ul>
     <!-- 生长中 -->
     <div class="growing" @click="useProp('props')">
-      <div class="time"><span>{{time}}后成熟</span></div>
+      <div class="time"><span>{{lang.tmTips.replace('%s',time)}}</span></div>
       <div class="text"><span class="value" :class="'value'+info.value">x {{info.value}}</span></div>
     </div>
 
@@ -39,18 +39,25 @@
       <transition name="slide">
         <div class="userGoodList props" v-if="showPropPup">
           <i @click="showPropPup = false" class="close"></i>
-          <div class="desc" v-if="showProDesc">
-            <p>{{propsDesc[descId]}}</p>
-            <div class="user" @click="useProps()">使用</div>
-            <i class="corner" :class="{ringht:descIndex == 1}"></i>
+          <div class="noGoods" v-if="!myUseProps.length && isMain==1">
+            <strong>{{lang.propsNotHas}}</strong>
+            <span class="buy" @click="goShop()">{{lang.buyGoods}}</span>
           </div>
-          <div class="goodsList ">
-            <div class="goodItem" v-for="(item,index) in  isMain==1? myUseProps:protect_seconds>0?stoneProps:gloveProps" :key="index" @click="showDesc(item.id,index)">
-              <img :src="require(`../img/props/${item.id}.png`)" alt="">
-              <div class="nums">{{item.num}}</div>
-              <div class="name">{{item.name}}</div>
+          <div v-else>
+            <div class="desc" v-if="showProDesc">
+              <p>{{propsDesc[descId]}}</p>
+              <div class="user" @click="useProps()">{{lang.use}}</div>
+              <i class="corner" :class="{ringht:descIndex == 1}"></i>
+            </div>
+            <div class="goodsList ">
+              <div class="goodItem" v-for="(item,index) in  isMain==1? myUseProps:protect_seconds>0?stoneProps:gloveProps" :key="index" @click="showDesc(item.id,index)">
+                <img :src="require(`../img/props/${item.id}.png`)" alt="">
+                <div class="nums">{{item.num}}</div>
+                <div class="name">{{item.name}}</div>
+              </div>
             </div>
           </div>
+
         </div>
       </transition>
     </div>
@@ -79,18 +86,6 @@ export default {
       timer: null,
       showPropPup: false,
       userPropsList: [],
-      propsDesc: {
-        1: '肥料減少植物的成熟時間，每次使用-N秒',
-        2: '保護盾可保護土地在N小時內不會被偷摘，但向保護盾投擲石頭會縮短保護時間，N秒',
-        3: '對保護盾投擲石頭,可讓保護盾的保護時間減少N秒',
-        4: '使用手套可摘到非好友玩家的陽光'
-      },
-      usePropsDesc: {
-        1: '加速成功，植物成熟時間縮短N秒',
-        2: '使用保護盾成功，N小時內將不被偷摘',
-        3: '投出一個石頭，該保護盾保護時間-N秒',
-        4: '偷取到N個陽光'
-      },
       showProDesc: false,
       descId: 0,
       descIndex: 0,
@@ -109,11 +104,6 @@ export default {
         return item.id != 3 && item.id != 4
       })
     },
-    // otherProps () {
-    //   return this.userPropsList.filter(item => {
-    //     return item.id != 1 && item.id != 2
-    //   })
-    // },
     stoneProps () {
       return this.userPropsList.filter(item => {
         return item.id != 1 && item.id != 2 && item.id != 4
@@ -123,6 +113,12 @@ export default {
       return this.userPropsList.filter(item => {
         return item.id != 1 && item.id != 2 && item.id != 3
       })
+    },
+    propsDesc () {
+      return this.lang.propsDesc
+    },
+    usePropsDesc () {
+      return this.lang.usePropsDesc
     }
   },
   watch: {
@@ -137,16 +133,20 @@ export default {
     this.stopTimer();
   },
   methods: {
+    goShop () {
+      this.showPropPup = false
+      this.$parent.goShop()
+    },
     useProps () {
       //   const second = downTime(`protect${this.info.id}`)
       if (this.protect_seconds > 0 && this.descId == 2) {
-        this.toast(`這塊土地有正在使用的保護盾哦~`)
+        this.toast(this.lang.usePropsTips1)
         return
       }
       if (this.descId == 4) { //用手套偷摘
         steal(this.info.plant_id, 4).then(res => {
           if (res.data.response_status.code == 0) {
-            this.toast(`已摘到好友的${res.data.response_data.sun}個陽光!`)
+            this.toast(this.usePropsDesc[this.descId].replace('%s', res.data.response_data.sun))
             this.descId = 0
             this.showPropPup = false
             this.showProDesc = false
@@ -180,10 +180,22 @@ export default {
       this.showProDesc = true
     },
     useProp (type) {
-      goodsList(type).then(res => {
-        this.showPropPup = true
-        this.userPropsList = res.data.response_data.list
-      })
+      if (this.info.stolen > 0) {
+        return
+      }
+      if (this.isMain == 1 || (this.isMain == 2 && this.info.status == 3) || (this.isMain == 2 && this.protect_seconds > 0)) {
+        goodsList(type).then(res => {
+          this.userPropsList = res.data.response_data.list
+          if (this.isMain == 2 && !this.is_friend && !this.gloveProps.length) {
+            this.toast(this.lang.noFridenGetSun)
+          } else if (this.isMain == 2 && this.protect_seconds > 0 && !this.stoneProps.length) { //土地被保护没有石头
+            return
+            // this.toast(`偷摘非好友的土地需要使用手套道具哦！收到道具可通過任務或者購買獲得`)
+          } else {
+            this.showPropPup = true
+          }
+        })
+      }
     },
     unLockConfim () {
       if (this.isMain == 1) {
@@ -219,10 +231,10 @@ export default {
         const protect_timeObj = downTime(protectKey);
         if (protect_timeObj) {
           this.protect_seconds = protect_timeObj.seconds
-          this.protect_time = protect_timeObj.minute + ':' + protect_timeObj.second;
+          this.protect_time = protect_timeObj.hour + ':' + protect_timeObj.minute + ':' + protect_timeObj.second;
         }
         if (timeObj) {
-          this.time = timeObj.minute + ':' + timeObj.second;
+          this.time = timeObj.hour + ':' + timeObj.minute + ':' + timeObj.second;
           this.seconds = timeObj.seconds;
           const status = this.info.status;
           if (status > 1 && timeObj.end) {
@@ -276,10 +288,11 @@ export default {
         harvest(id).then(res => {
           if (res.data.response_status.code == 0) {
             if (this.info.prize.id) {
-              this.toast(`勤勞的莊園主,恭喜你種出了【${this.info.prize.name}*${this.info.prize.num}】`)
+              this.toast(this.lang.getCarrotTips1.replace('%n', this.info.prize.name).replace('%s', this.info.prize.num))
             } else {
-              this.toast(`恭喜獲得${res.data.response_data.sun}個陽光`)
+              this.toast(this.lang.getCarrotTips2.replace('%s', res.data.response_data.sun))
             }
+            this.vxc('addSun', res.data.response_data.sun)
             this.$parent.init()
           } else {
             this.toast(res.data.response_status.error)
@@ -292,8 +305,9 @@ export default {
           } else {
             steal(this.info.plant_id, 0).then(res => {
               if (res.data.response_status.code == 0) {
-                this.toast(`已摘到好友的${res.data.response_data.sun}個陽光!`)
+                this.toast(this.lang.getCarrotTips3.replace('%s', res.data.response_data.sun))
                 this.$parent.init(this.otherUser.uid)
+                this.vxc('addSun', res.data.response_data.sun)
               } else {
                 this.toast(res.data.response_status.error)
               }
@@ -349,6 +363,13 @@ export default {
   }
 }
 
+.userGoodList {
+  //   &.props {
+  //     display: flex;
+  //     align-items: center;
+  //     justify-content: center;
+  //   }
+}
 .land {
   width: 2.4rem;
   height: 1.6rem;
@@ -447,8 +468,8 @@ export default {
   }
 
   .growing {
-    background: url('../img/carrot.png') center center no-repeat;
-    background-size: 90%;
+    // background: url('../img/carrot.png') center center no-repeat;
+    // background-size: 90%;
   }
   .growing {
     .time,
@@ -654,6 +675,10 @@ export default {
   }
   &.good200 {
     background: url(../img/landGoods/200.png);
+    background-size: 100% 100%;
+  }
+  &.noGet {
+    background: url(../img/carrot.png);
     background-size: 100% 100%;
   }
 }

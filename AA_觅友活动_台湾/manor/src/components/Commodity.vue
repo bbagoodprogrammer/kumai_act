@@ -1,8 +1,8 @@
 <template>
   <div class="commodity">
     <div class="mainTabs">
-      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tabL">工具&種子</a>
-      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">兌換</a>
+      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tabL">{{lang.commodity_tab1}}</a>
+      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">{{lang.commodity_tab2}}</a>
     </div>
     <ul class="shopList">
       <li v-for="(item,index) in mainTab == 0?shopList:prizes" :key="index">
@@ -11,16 +11,16 @@
           <img :src="require(`../img/goods/${item.id}.png`)" alt="" v-else-if="item.type=='seed'" class="seed">
           <img :src="require(`../img/props/${item.id}.png`)" alt="" v-else class="props">
           <div class="name">{{item.name}}</div>
-          <div class="price"><i :class="{sun:mainTab == 1}"></i><strong>{{mainTab == 0?item.coins:item.sun}}/份</strong></div>
+          <div class="price"><i :class="{sun:mainTab == 1}"></i><strong>{{mainTab == 0?item.coins:item.sun}}{{lang.sun_nums}}</strong></div>
         </div>
-        <div class="getBtn" @click="shopBuy(item)">{{mainTab == 0?'購買':'兌換'}}</div>
+        <div class="getBtn" @click="shopBuy(item)">{{mainTab == 0?lang.buy:lang.exchange}}</div>
       </li>
     </ul>
     <!-- 购买 -->
     <div class="mask" v-show="showBuyPup">
       <transition name="slide">
         <div class="buyNums" v-if="showBuyPup">
-          <div class="title">購買</div>
+          <div class="title">{{lang.buy}}</div>
           <div class="userHas">
             <i></i>
             <em>{{owner.coins}}</em>
@@ -29,19 +29,19 @@
             <img :src="require(`../img/goods/${buyItem.id}.png`)" alt="" v-if="buyItem.type=='seed'" class="seed">
             <img :src="require(`../img/props/${buyItem.id}.png`)" alt="" v-else class="props">
             <div class="name">{{buyItem.name}}</div>
-            <div class="price"><i></i><strong>{{buyItem.coins}}/份</strong></div>
+            <div class="price"><i></i><strong>{{buyItem.coins}}{{lang.sun_nums}}</strong></div>
           </div>
-          <p>這裡是一條奇怪的介紹語啊，這裡是一條奇怪的介紹語啊</p>
+          <p>{{lang.buyTipsList[1]}}</p>
           <div class="shovelNums">
             <span class="redux" @click="nums>0?nums--:0"></span>
             <input type="text" disabled v-model="nums" class="getNums">
             <span class="add" @click="nums<maxGetNums?nums++:maxGetNums"></span>
             <u class="max" @click="nums = maxGetNums">MAX</u>
           </div>
-          <p>購買{{nums}}份【{{buyItem.name}}】，共 {{nums * buyItem.coins}} 金幣</p>
+          <p>{{lang.buyTips.replace('%n',nums).replace('%a',buyItem.name).replace('%s',nums * buyItem.coins)}}</p>
           <div class="btnBox">
-            <u @click="closeBuy()">我再想想</u>
-            <span @click="buy()">確定購買</span>
+            <u @click="closeBuy()">{{lang.cancel}}</u>
+            <span @click="buy()">{{lang.queyBuy}}</span>
           </div>
         </div>
       </transition>
@@ -50,7 +50,7 @@
     <div class="mask" v-show="showExchange">
       <transition name="slide">
         <div class="buyNums" v-if="showExchange">
-          <div class="title">兌換</div>
+          <div class="title">{{lang.exchange}}</div>
           <div class="userHas">
             <i class="sun"></i>
             <em>{{owner.sun}}</em>
@@ -60,19 +60,19 @@
             <img :src="require(`../img/goods/${buyItem.id}.png`)" alt="" v-else-if="buyItem.type=='seed'" class="seed">
             <img :src="require(`../img/props/${buyItem.id}.png`)" alt="" v-else class="props">
             <div class="name">{{buyItem.name}}</div>
-            <div class="price"><i :class="{sun:mainTab == 1}"></i><strong>{{mainTab == 0?buyItem.coins:buyItem.sun}}/份</strong></div>
+            <div class="price"><i :class="{sun:mainTab == 1}"></i><strong>{{mainTab == 0?buyItem.coins:buyItem.sun}}{{lang.sun_nums}}</strong></div>
           </div>
-          <p>這裡是一條奇怪的介紹語啊，這裡是一條奇怪的介紹語啊</p>
+          <p>{{lang.exchangeTipsList[1]}}</p>
           <div class="shovelNums">
             <span class="redux" @click="nums>0?nums--:0"></span>
             <input type="text" disabled v-model="nums" class="getNums">
             <span class="add" @click="nums<maxGetNums2?nums++:maxGetNums2"></span>
             <u class="max" @click="nums = maxGetNums2">MAX</u>
           </div>
-          <p>兌換{{nums}}份【{{buyItem.name}}】，共 {{nums * buyItem.sun}} 陽光</p>
+          <p>{{lang.buyTips.replace('%n',nums).replace('%a',buyItem.name).replace('%s',nums * buyItem.sun)}}</p>
           <div class="btnBox">
-            <u @click="closeBuy()">我再想想</u>
-            <span @click="exchange()">確定兌換</span>
+            <u @click="closeBuy()">{{lang.cancel}}</u>
+            <span @click="exchange()">{{lang.queyExchange}}</span>
           </div>
         </div>
       </transition>
@@ -129,7 +129,7 @@ export default {
     buy () {
       buy(this.buyItem.id, this.nums).then(res => {
         if (res.data.response_status.code == 0) {
-          this.toast(`購買成功！`)
+          this.toast(this.lang.nuySucTips)
           this.showBuyPup = false
           this.nums = 1
           this.$store.dispatch('getInitInfo');
@@ -141,7 +141,7 @@ export default {
     exchange () {
       exchange(this.buyItem.id, this.nums).then(res => {
         if (res.data.response_status.code == 0) {
-          this.toast(`兌換成功！`)
+          this.toast(this.lang.exChangeSucTips)
           this.showExchange = false
           this.nums = 1
           this.$store.dispatch('getInitInfo');
@@ -192,9 +192,10 @@ export default {
     padding: 0 0.14rem;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    padding-left: 0.16rem;
+    // justify-content: space-between;
     li {
-      margin-bottom: 0.21rem;
+      margin: 0 0.02rem 0.21rem 0;
       .imgBox {
         width: 2.32rem;
         height: 2.3rem;
@@ -224,11 +225,11 @@ export default {
           color: #EC933B;
           font-size: 0.26rem;
           i {
-            width: 0.23rem;
-            height: 0.23rem;
+            width: 0.3rem;
+            height: 0.3rem;
             background: url(../img/icon.png);
             background-size: 100% 100%;
-            margin-right: 0.09rem;
+            margin-right: 0.07rem;
             &.sun {
               background: url(../img/sum.png);
               background-size: 100% 100%;

@@ -2,24 +2,24 @@
   <div class="giftHistory">
     <div class="title"><i></i></div>
     <i class="close" @click="closeHistory()"></i>
-    <p class='dice'>已搖骰子:{{dice}}</p>
+    <p class='dice'>{{lang.historyDiceNums}}{{dice}}</p>
     <ul class="itemList scrollable">
       <li class="item" v-for="(item,index) in makeData" :key="index">
         <div class="time">{{item.key}}</div>
         <div class="taskItem" v-for="(item2,index2) in item.list" :key="index2">
           <div class="neme" v-if="item2.name">{{item2.name}}</div>
           <!-- <div class="neme" v-else-if="item2.type == 'task'">{{item2.pid==3001?'送禮':'分享'}}限時任務</div> -->
-          <div class="neme" v-else-if="item2.type == 'bean'">{{item2.count}}金豆</div>
-          <div class="neme" v-else-if="item2.type == 'coin'">{{item2.count}}金幣</div>
-          <div class="neme" v-else-if="item2.type == 'dice'">骰子*{{item2.count}}</div>
-          <div class="neme" v-else-if="item2.type == 'coupon'">{{item2.ratio}}%儲值返利券</div>
-          <div class="tu">{{taskName[item2.pid]}}</div>
+          <div class="neme" v-else-if="item2.type == 'bean'">{{item2.count}}{{lang.bean}}</div>
+          <div class="neme" v-else-if="item2.type == 'coin'">{{item2.count}}{{lang.coins}}</div>
+          <div class="neme" v-else-if="item2.type == 'dice'">{{lang.diceNums}}*{{item2.count}}</div>
+          <div class="neme" v-else-if="item2.type == 'coupon'">{{item2.ratio}}{{lang.coupon}}</div>
+          <div class="tu">{{historyTaskName[item2.pid]}}</div>
           <span class="timeItem">{{getTime(item2.time,2)}}</span>
         </div>
       </li>
     </ul>
-    <div class="dloading" v-if="loading">加載中....</div>
-    <div class="noData" v-if="list.length == 0">暫無數據</div>
+    <div class="dloading" v-if="loading">{{lang.loading}}</div>
+    <div class="noData" v-if="list.length == 0">{{lang.noData}}</div>
   </div>
 </template>
 <script>
@@ -34,30 +34,16 @@ var getKey = function (arr, time) {
   return -1;
 };
 export default {
-  data() {
+  data () {
     return {
       list: [],
       dice: 0,
       loaded: false,
       more: true,
       loading: false,
-      taskName: {
-        1001: '購買',
-        1002: '購買 ',
-        1003: '購買 ',
-        1004: '購買 ',
-        1005: '購買',
-        2001: '購買',
-        2002: '購買',
-        2003: '購買',
-        3001: '購買',
-        3002: '購買',
-        4001: '日榜獎勵',
-        5001: '購買'
-      },
     }
   },
-  created() {
+  created () {
     this.loading = true
     api.getHistroy(0).then(res => {
       this.loading = false
@@ -66,14 +52,14 @@ export default {
     })
   },
   computed: {
-    listLength() {
+    listLength () {
       let num = 0
       this.list.forEach(element => {
         num += element.records.length
       });
       return num
     },
-    makeData() {
+    makeData () {
       var arr = [];
       for (let i = 0; i < this.list.length; i++) {
         var times = this.list[i].time;
@@ -86,16 +72,19 @@ export default {
         }
       }
       return arr;
+    },
+    historyTaskName () {
+      return this.lang.historyTaskName
     }
   },
-  mounted() {
+  mounted () {
     this.scrollable = this.$el.querySelector('.scrollable');
     if (this.scrollable) {
       this.scrollable.addEventListener('scroll', this.onScroll);
     }
   },
   methods: {
-    onScroll() {
+    onScroll () {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
       if (scrollToBottom) { //滾動加載，沒有加載完成
         if (this.loaded) return
@@ -112,10 +101,10 @@ export default {
         }
       }
     },
-    getTime(tm, type) {
+    getTime (tm, type) {
       return getDate(new Date(tm * 1000), type)
     },
-    closeHistory() {
+    closeHistory () {
       this.$emit('closeHistory')
     }
   }

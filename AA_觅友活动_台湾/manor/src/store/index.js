@@ -37,6 +37,10 @@ export default new vuex.Store({
         rankGroups_history: {}
     },
     mutations: {
+        addSun(state, val) {
+            state.owner.sun += val * 1;
+            state.owner.score += val * 1;
+        },
         setIs_friend(state, val) {
             state.is_friend = val;
         },

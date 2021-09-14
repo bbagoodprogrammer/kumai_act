@@ -2,16 +2,16 @@
   <div class="rankGroups">
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
-      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tabL">關注總排行榜</a>
-      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">總排行榜</a>
+      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tabL">{{lang.rankTab1}}</a>
+      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">{{lang.rankTab2}}</a>
       <a @click.prevent="onRefresh" href="" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a>
     </div>
     <!-- 日榜 -->
     <div class="list day">
       <ul>
         <li v-for="(item,index) in rank.list" :key="index" :class="['rank' + item.rank]" @click="showUserLand(item)">
-          <div class="hasSun" v-if="item.harvest_sun > 0">有陽光</div>
-          <div class="userRank">{{item.rank}}</div>
+          <div class="hasSun" v-if="item.harvest_sun > 0">{{lang.hasSun}}</div>
+          <div class="userRank"> <i v-if="item.rank > 3">{{item.rank}}</i> </div>
           <div class="imgBox">
             <img :src="item.avatar_frame" alt="" v-if="item.avatar_frame" class="frame">
             <img v-lazy="item.avatar" alt="" class="avatar">
@@ -65,14 +65,14 @@
         </div>
       </div>
       <div class="score">
-        <i>{{lang.scoreName}}</i>
+        <i></i>
         <em>{{nowUserMsg.score}}</em>
       </div>
     </div>
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
     <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
     <div v-if="rank.none" class="scrollNone">
-      {{lang.rank_noData}}
+      {{lang.noData}}
     </div>
   </div>
 </template>
@@ -261,15 +261,22 @@ export default {
       }
     },
     showUserLand (item) {
-      const uid = getUrlString('uid') || ''
-      if (uid != item.uid) {
-        this.vxc('setIsMain', 2)
-      } else {
-        this.vxc('setIsMain', 1)
-      }
       this.vxc('setOtherUser', item)
-      this.$parent.$refs.landsBox.init(item.uid)
-    }
+      this.$parent.$refs.landsBox.init(item.uid, 'rank')
+      this.scorllTo('header')
+    },
+    scorllTo (className) {
+      let e = 0
+      console.log(e)
+      this.timer = setInterval(() => {
+        let c = document.documentElement.scrollTop
+        let t = c / 10
+        window.scrollTo(0, c - t)
+        if (t < 1) {
+          clearInterval(this.timer)
+        }
+      }, 10)
+    },
   },
 }
 </script>
@@ -280,7 +287,7 @@ export default {
   // background: #f8ffe6 url(../assets/img/listBg.png) no-repeat;
   background-size: 100% auto;
   margin: 0.15rem auto 0;
-  padding-bottom: 2rem;
+  //   padding-bottom: 2rem;
   .mainTabs {
     display: flex;
     width: 5.55rem;
@@ -307,6 +314,8 @@ export default {
   ul {
     width: 6.98rem;
     margin: 0.54rem auto 0;
+    max-height: 7.3rem;
+    overflow-y: scroll;
   }
   li,
   .userMsg {
@@ -340,6 +349,19 @@ export default {
       font-weight: bold;
       color: #F2E87E;
       margin: 0 0.09rem 0 0.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i {
+        width: 0.51rem;
+        height: 0.51rem;
+        background: #F5D399;
+        border: 0.02rem solid #E8B57A;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 0.51rem;
+        color: #703500;
+      }
     }
     .imgBox {
       position: relative;

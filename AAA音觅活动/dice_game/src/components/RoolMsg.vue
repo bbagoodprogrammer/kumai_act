@@ -5,13 +5,14 @@
         <ul class="lb" :class="{marquee_top:animate}">
           <li v-for="(item, index) in list" :key="index">
             <em>
-              恭喜{{item.nick}}前進{{item.forward}}步,獲得
+              {{lang.roolMsg.replace('%n',item.nick).replace('%f',item.forward)}}
               <!-- *{{item.prize.day?`${item.prize.day}天`:'1'}} -->
-              <strong v-if="item.prize.name"> {{item.prize.name}}{{item.prize.type == 'gift'?"背包禮物":"頭像框"}} </strong>
-              <strong v-else-if="item.prize.type == 'coin'"> {{item.prize.count}}金幣</strong>
-              <strong v-else-if="item.prize.type == 'bean'"> {{item.prize.count}}金豆</strong>
-              <strong v-else-if="item.prize.type == 'task'">限時任務</strong>
-              <strong v-else-if="item.prize.type == 'dice'">骰子*1</strong>
+              <strong v-if="item.prize.name"> {{item.prize.name}}{{item.prize.type == 'gift'?lang.backGift:lang.frame}} </strong>
+              <strong v-else-if="item.prize.type == 'coin'"> {{item.prize.count}}{{lang.coins}}</strong>
+              <strong v-else-if="item.prize.type == 'bean'"> {{item.prize.count}}{{lang.bean}}</strong>
+              <strong v-else-if="item.prize.type == 'task'">{{lang.tmTask}}</strong>
+              <strong v-else-if="item.prize.type == 'dice'">{{lang.dice}}</strong>
+              <strong v-else-if="item.prize.type == 'coupon'">{{item.ratio}}{{lang.coupon}}</strong>
             </em>
           </li>
         </ul>
@@ -24,29 +25,24 @@
 import { clearInterval } from 'timers';
 import { mapState } from "vuex"
 export default {
-  data() {
+  data () {
     return {
       animate: false,
       list: [],
       timer: null,
-      giftName: {
-        task: '神秘任務',
-        coin: '金幣',
-        bean: '金豆'
-      }
     };
   },
   computed: {
     ...mapState(['roolMsg'])
   },
   watch: {
-    roolMsg(val) {
+    roolMsg (val) {
       this.list = JSON.parse(JSON.stringify(val))
       this.rool()
     }
   },
   methods: {
-    rool() {
+    rool () {
       let that = this;
       if (that.list.length > 1 && that.timer == null) {
         clearInterval(that.timer)

@@ -4,14 +4,15 @@
     <i class="userIcon" :style="{left:userposition.left-.1+ 'rem',top:userposition.top-.8 + 'rem'}" :class="{ani:lucking}">
       <img v-lazy="owner.avatar" alt="">
     </i>
-    <span v-for="(item,index) in steps" :key="index" class="icon" :style="{left:iconPosition[index].left + 'rem',top:iconPosition[index].top+ 'rem'}" :class="item.type + item.pid" @click="showPup(item)">
+    <span v-for="(item,index) in steps" :key="index" class="icon" :style="{left:iconPosition[index].left + 'rem',top:iconPosition[index].top+ 'rem'}" :class="item.type + item.pid"
+      @click="showPup(item)">
     </span>
     <div class="go" @click="luckGo()"></div>
     <div class="drics">
       <span>{{dice}}</span>
       <i class="add" @click="showDayTaskPup()"></i>
     </div>
-    <div class="goTen" @click="luckGoFive(5)">搖5次</div>
+    <div class="goTen" @click="luckGoFive(5)">{{lang.fiveLuck}}</div>
     <div class="mask" v-show="showGiftPup">
       <transition name="slide">
         <div class="giftPup" :class="{mHeight:showGift.type == 'packet'}" v-if="showGiftPup">
@@ -21,9 +22,7 @@
             恭喜你成為xx-xx-xx-xx大富翁榜第N名<br />
             獲得以下獎勵：
           </p> -->
-          <p class="luckTips" v-if="showType== 2">
-            今天運氣棒棒噠<br />
-            獲得{{getGigtName(showGift)}}
+          <p class="luckTips" v-if="showType== 2" v-html="lang.luckTips.replace('%n',getGigtName(showGift))">
           </p>
           <div class="giftBox" :class="{mt:showType != null}">
             <div class="giftItem" v-if="showGift.type != 'packet'">
@@ -53,9 +52,9 @@
             <p>隨機獲得以下獎勵之一：骰子*1、Land Rover座駕*5天、BMW座駕*5天、66金豆、甜甜圈背包禮物*1、甜蜜蛋糕特效禮物*1、狗子餵投者頭像框*5天 </p>
           </div> -->
           <div class="ok" @click="closeGiftPup()">
-            <em v-if="showGift.type=='dice'">繼續遊戲</em>
-            <em v-else-if="!luck">我知道了</em>
-            <em v-else>趕緊收下</em>
+            <em v-if="showGift.type=='dice'">{{lang.again}}</em>
+            <em v-else-if="!luck">{{lang.ok}}</em>
+            <em v-else>{{lang.getEd}}</em>
           </div>
         </div>
       </transition>
@@ -65,21 +64,21 @@
         <div class="task" v-if="showTask">
           <i class="close" @click="closeTaskPup()"></i>
           <div class="title"><i></i></div>
-          <div class="downTime">倒計時：{{surplusTime.minute}}:{{surplusTime.second}}</div>
-          <div class="taskTitle" v-if="showGift.task == 'share'">分享活動給好友</div>
-          <div class="taskTitle" v-else>給他人送一次金幣禮物</div>
+          <div class="downTime">{{lang.downTm}}{{surplusTime.minute}}:{{surplusTime.second}}</div>
+          <div class="taskTitle" v-if="showGift.task == 'share'">{{lang.share}}</div>
+          <div class="taskTitle" v-else>{{lang.coinsTask}}</div>
           <div class="giftBox">
             <div class="giftItem">
               <div class="imgBox">
                 <img src="../assets/img/dice.png">
               </div>
-              <div class="nick">骰子*1</div>
+              <div class="nick">{{lang.dice}}</div>
             </div>
           </div>
           <div class="btnBox">
-            <span class="out" @click="closeTaskPup()">放棄任務</span>
-            <span class="share" v-if="showGift.task == 'share'" @click="share()">分享好友</span>
-            <span class="share" v-else @click="goGift()">去送禮</span>
+            <span class="out" @click="closeTaskPup()">{{lang.outTask}}</span>
+            <span class="share" v-if="showGift.task == 'share'" @click="share()">{{lang.shareFriend}}</span>
+            <span class="share" v-else @click="goGift()">{{lang.sendGift}}</span>
           </div>
         </div>
       </transition>
@@ -108,7 +107,7 @@ const parser = new Parser({ disableWorker: true })
 
 export default {
   components: { GetDice },
-  data() {
+  data () {
     return {
       iconPosition: [
         {
@@ -238,22 +237,25 @@ export default {
   },
   computed: {
     ...mapState(['steps', 'position', 'dice', 'owner', 'reg']),
-    userposition() {
+    userposition () {
       return this.iconPosition[this.position]
     },
-    isRare() {
+    isRare () {
       for (let i = 0; i < this.rareArr.length; i++) {
         if (this.rareArr[i] == this.showGift.pid) {
           return true
         }
       }
     },
+    giftName () {
+      return this.lang.giftName
+    }
   },
-  mounted() {
+  mounted () {
     this.aniGo()
   },
   methods: {
-    luckGo() {
+    luckGo () {
       if (this.dice > 0 && !this.lucking) {
         this.lucking = true
         api.goDice(1).then(res => {
@@ -292,7 +294,7 @@ export default {
         this.showDayTaskPup()
       }
     },
-    luckGoFive() {
+    luckGoFive () {
       if (this.dice >= 5 && !this.lucking) {
         this.lucking = true
         api.goDice(5).then(res => {
@@ -316,13 +318,13 @@ export default {
         this.showDayTaskPup()
       }
     },
-    showPup(item) {
+    showPup (item) {
       if (item.type != 'empty' && item.type != 'task' && !this.lucking) {
         this.showGift = item
         this.showGiftPup = true
       }
     },
-    downTimeGo(timeName, val) {
+    downTimeGo (timeName, val) {
       clearInterval(this.timer)
       downTime(timeName, val);
       this.surplusTime = downTime(timeName);
@@ -334,49 +336,35 @@ export default {
         }
       }, 1000)
     },
-    getGigtName(gift) {
-      if (gift.type == 'gift') {
-        return `${gift.name}背包禮物 *1`
-      } else if (gift.type == 'frame') {
-        return `${gift.name}頭像框 *${gift.day}天`
-      } else if (gift.type == 'car') {
-        return `${gift.name} *${gift.day}天`
-      } else if (gift.type == 'coin') {
-        return `${gift.count} 金幣`
-      } else if (gift.type == 'bean') {
-        return `${gift.count} 金豆`
-      } else if (gift.type == 'dice') {
-        return `骰子* 1`
-      } else if (gift.type == 'coupon') {
-        return `${gift.ratio}%儲值返利券`
-      }
+    getGigtName (gift) {
+      return this.giftName[gift.type].replace("%n", gift.name).replace("%d", gift.day).replace("%c", gift.count).replace("%r", gift.ratio)
     },
-    async aniGo() {
+    async aniGo () {
       let fileData1 = await downloader.get('http://fstatic.cat1314.com/uc/svga/d6259c14eb3c6281a5a69aa5c65e69f8_1600253428.svga')
       let svgaData1 = await parser.do(fileData1)
       let canvas = document.getElementById('creatAni')
       this.player = new Player(canvas)
       await this.player.mount(svgaData1)
     },
-    share() {
+    share () {
       this.$refs.geDice.doTask('share')
     },
-    goGift() {
+    goGift () {
       this.showTask = false
       let rid = this.showGift.rid
       this.$refs.geDice.doTask('coin', {}, rid)
     },
-    closeGiftPup() {
+    closeGiftPup () {
       this.showType = null
       this.luck = false
       this.showGift = {}
       this.showGiftPup = false
     },
-    closeTaskPup() {
+    closeTaskPup () {
       this.showTask = false
       api.giveUp(this.showGift.task).then() //放棄任務
     },
-    showDayTaskPup() {
+    showDayTaskPup () {
       if (this.reg) {
         api.dayTask().then(res => {
           this.vxc('setDayTask', res.data.response_data)

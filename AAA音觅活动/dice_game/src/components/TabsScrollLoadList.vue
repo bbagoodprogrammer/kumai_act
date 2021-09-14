@@ -3,19 +3,19 @@
     <div class="rankTitle1"></div>
     <!-- 日榜、总榜切换主Tabs -->
     <div class="mainTabs">
-      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tabL">日榜</a>
-      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">總榜</a>
+      <a @click.prevent="mainTabClick(0)" :class="{current:mainTab==0}" class="tabL">{{lang.rankTab1}}</a>
+      <a @click.prevent="mainTabClick(1)" :class="{current:mainTab==1}" class="tabR">{{lang.rankTab2}}</a>
       <!-- <a @click.prevent="onRefresh" href="" v-if="!isShare && actStatus===1" :style="{transform:'rotate('+rotatePx+'deg)'}" id="refresh"></a> -->
     </div>
     <div class="timeBox">
       <div class="title"></div>
       <div class="actTime">
         <span>{{surplusTime.day}}</span>
-        <em>天</em>
+        <em>{{lang.day}}</em>
         <span>{{surplusTime.hour}}</span>
-        <em>時</em>
+        <em>{{lang.hour}}</em>
         <span>{{surplusTime.minute}}</span>
-        <em>分</em>
+        <em>{{lang.min}}</em>
       </div>
     </div>
     <!-- 日榜 -->
@@ -32,7 +32,7 @@
               <img :src="item.avatar" alt="" class="av">
             </div>
             <div class="nick">{{item.nick}}</div>
-            <div class="score">{{item.score}}步</div>
+            <div class="score">{{lang.stepNums.replace('%s',item.score)}}</div>
           </div>
           <div class="topItem top3" v-if="top1.length == 2"></div>
         </div>
@@ -51,7 +51,7 @@
               <span class="rank">{{item.rank}}</span>
               <img v-lazy="item.avatar" alt="" class="av" @click="goUser(item.uid)">
               <div class="nick">{{item.nick}}</div>
-              <div class="score">{{item.score}}步</div>
+              <div class="score">{{lang.stepNums.replace('%s',item.score)}}</div>
             </li>
           </ul>
         </div>
@@ -65,7 +65,7 @@
             <span class="rank">{{item.rank}}</span>
             <img v-lazy="item.avatar" alt="" class="av" @click="goUser(item.uid)">
             <div class="nick">{{item.nick}}</div>
-            <div class="score">{{item.score}}步</div>
+            <div class="score">{{lang.stepNums.replace('%s',item.score)}}</div>
           </li>
         </ul>
       </div>
@@ -73,9 +73,9 @@
     <!-- 任務列表 -->
     <!-- <taskList v-else></taskList> -->
     <!-- 日榜和总榜共用Loading（如果需要细化加载提示文案，可以把以下标签复制到不同的榜单后面） -->
-    <div v-if="rank.loading" class="scrollLoading">加載中...</div>
+    <div v-if="rank.loading" class="scrollLoading">{{lang.loading}}</div>
     <div v-if="rank.none" class="scrollNone">
-      暫無歌友上榜
+      {{lang.noData}}
     </div>
   </div>
 </template>
@@ -105,7 +105,7 @@ import downTime from "../utils/downTime"
 // }
 
 export default {
-  data() {
+  data () {
     return {
       mainTab: 0,
       tab: 1,
@@ -130,11 +130,11 @@ export default {
   },
   computed: {
     ...mapState(['rankGroups', "isShare", "actStatus", "inited", "second", "total", "day"]),
-    rankKey() {
+    rankKey () {
       // return ['one', 'two', 'three'][this.tab];
       return this.mainTab == 1 ? 'total' : this.mainTab;
     },
-    rankApi() {
+    rankApi () {
       if (this.isShare) {
         var dayApi = `/index.php?action=richMan.rank&type={type}&signture=innerserver&from={from}`;
         return dayApi.replace('{type}', this.rankKey == 'total' ? 2 : 1)
@@ -145,11 +145,11 @@ export default {
         return dayApi.replace('{type}', this.rankKey == 'total' ? 2 : 1).replace('{uid}', uid).replace('{token}', token);
       }
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       if (rankConf.second && rankConf.second > 0) {
@@ -157,35 +157,35 @@ export default {
       }
       return rankConf;
     },
-    top1() {
+    top1 () {
       if (this.rank.list.length) {
         return this.rank.list.slice(0, 3)
       }
       return []
     },
-    top2() {
+    top2 () {
       if (this.rank.list.length) {
         return this.rank.list.slice(3, 10)
       }
       return []
     },
-    top3() {
+    top3 () {
       if (this.rank.list.length) {
         return this.rank.list.slice(10)
       }
       return []
     }
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener('scroll', this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
   },
   methods: {
-    mainTabClick(tab) { //总榜切换
+    mainTabClick (tab) { //总榜切换
       this.mainTab = tab;
       this.$store.commit("changTab", this.rankKey)
       this.$nextTick(() => {
@@ -204,7 +204,7 @@ export default {
     //     }
     //   });
     // },
-    onScroll() {
+    onScroll () {
       if (this.inited === 0) { //初始化是少一次請求,是日榜的时候和不是总榜的时候返回
         return
       }
@@ -273,7 +273,7 @@ export default {
         }
       }
     },
-    onRefresh() {
+    onRefresh () {
       if (this.rank.loading) return
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       this.$parent.getDefaultData()
@@ -287,7 +287,7 @@ export default {
       });
       this.$nextTick(this.onScroll);
     },
-    downTimeGo(timeName, val) {
+    downTimeGo (timeName, val) {
       clearInterval(this.timer)
       if (!downTime(timeName)) {
         downTime(timeName, val);
@@ -301,10 +301,10 @@ export default {
         }
       }, 1000)
     },
-    getDate(time) {
+    getDate (time) {
       return getDate(new Date(time * 1000), '2')
     },
-    goUser(uid) { //跳转
+    goUser (uid) { //跳转
       console.log(uid)
       var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       if (isiOS) {
@@ -633,7 +633,7 @@ export default {
           }
         }
         li::before {
-          content: "";
+          content: '';
           width: 5.18rem;
           height: 1px;
           position: absolute;

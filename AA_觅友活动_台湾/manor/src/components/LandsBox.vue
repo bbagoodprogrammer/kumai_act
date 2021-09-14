@@ -1,10 +1,10 @@
 <template>
   <div v-if="owner_msg" class="landsBox">
     <div class="nowUserMsg">
-      <img :src="nowShowUser.avatar" alt="">
+      <img :src="nowShowUser.avatar" alt="" @click="goUser(nowShowUser.uid)">
       <div class="msg">
-        <div class="name"><strong>{{nowShowUser.nick}}</strong>的莊園</div>
-        <div class="score"><i></i><strong>{{nowShowUser.score}}</strong></div>
+        <div class="name" v-html="lang.manorName.replace('%n',nowShowUser.nick)"></div>
+        <div class="score" v-if="isMain == 1"><i></i><strong>{{nowShowUser.sun}}</strong></div>
       </div>
     </div>
     <div class="portal" @click="portalUser()"></div>
@@ -15,28 +15,29 @@
     <div class="mask" v-show="showLockPup">
       <transition name="slide">
         <div class="confirmUnlock" v-if="showLockPup">
-          <div class="title">擴建土地</div>
+          <div class="title">{{lang.unlockLandTitle}}</div>
           <div class="landImgBox">
             <img src="../img/land.png" alt="">
           </div>
-          <p>擴建土地需要花費{{land_info[landId].coins}}金幣喔，請問是否要擴建？</p>
+          <p>{{lang.unlockTips.replace('%c',land_info[landId].coins)}}</p>
           <div class="btnBox">
-            <u @click="showLockPup = false">我再想想</u>
-            <span @click="unLock()">確定擴建</span>
+            <u @click="showLockPup = false">{{lang.cancel}}</u>
+            <span @click="unLock()">{{lang.qureyUnlock}}</span>
           </div>
         </div>
       </transition>
     </div>
     <!-- 用戶種子列表 -->
-    <div class="mask" v-show="showGoodListPup">
-      <transition name="slide">
-        <div class="userGoodList" v-if="showGoodListPup">
+    <div class="mask" v-show="showGoodListPup" @click="showGoodListPup = false"></div>
+    <transition name="slide2">
+      <div class="mkBg" v-if="showGoodListPup">
+        <div class="userGoodList">
           <i @click="showGoodListPup = false" class="close"> </i>
           <div class="noGoods" v-if="!userGoodsList.length">
-            <strong>倉庫里沒有種子哦...</strong>
-            <span class="buy">去商店購買</span>
+            <strong>{{lang.goodsNotHas}}</strong>
+            <span class="buy" @click="goShop()">{{lang.buyGoods}}</span>
           </div>
-          <div class="goodsList" v-else>
+          <div class=" goodsList" v-else>
             <div class="goodItem" v-for="(item,index) in userGoodsList" :key="index" @click="plant(item.id)">
               <img :src="require(`../img/goods/${item.id}.png`)" alt="">
               <div class="nums">{{item.num}}</div>
@@ -44,8 +45,9 @@
             </div>
           </div>
         </div>
-      </transition>
-    </div>
+      </div>
+
+    </transition>
   </div>
 </template>
 
@@ -86,11 +88,16 @@ export default {
     this.getSvgaData()
   },
   methods: {
-    init (uid) {
+    init (uid, type) {
       const getUid = uid ? uid : getUrlString('uid')
       getLands(getUid).then(res => {
-        if (uid) {
+        if (getUid == getUrlString('uid')) {
+          this.vxc('setIsMain', 1)
+        } else {
           this.vxc('setIsMain', 2)
+          if (type == 'portal' || type == 'rank' || type == 'back') {
+            this.toast(this.lang.welcome.replace('%n', this.otherUser.nick))
+          }
         }
         let list = res.data.response_data.list
         this.next_land_id = res.data.response_data.next_land_id
@@ -99,8 +106,9 @@ export default {
       })
     },
     portalUser () {
-      if (this.portal > 0) {
-        this.init(this.portal)
+      if (this.portal.uid) {
+        this.vxc('setOtherUser', this.portal)
+        this.init(this.portal, 'portal')
       }
     },
     buyLand (id) {
@@ -112,14 +120,14 @@ export default {
         addLand().then(res => {
           if (res.data.response_status.code == 0) {
             this.showLockPup = false
-            this.toast(`恭喜擴建成功，快去種下種子吧！`)
+            this.toast(this.lang.unLandSuc)
             this.init()
           } else {
             this.toast(res.data.response_status.error)
           }
         })
       } else {
-        this.toast(`沒有足夠的金幣哦~`)
+        this.toast(this.lang.notCoins)
         setTimeout(() => {
           this.gowalletpage()
         }, 1000)
@@ -136,7 +144,7 @@ export default {
     plant (goodId) {
       plant(this.landId, goodId).then(res => {
         if (res.data.response_status.code == 0) {
-          this.toast(`種植成功！`)
+          this.toast(this.lang.plantSuc)
           this.showGoodListPup = false
           this.init()
         } else {
@@ -160,6 +168,31 @@ export default {
         }
       } catch (e) { }
     },
+    goShop () {
+      this.showGoodListPup = false
+      this.$parent.type = 1
+      let a = document.getElementsByClassName('tabsList')[0].getBoundingClientRect().top
+      let c = document.documentElement.scrollTop || document.body.scrollTop
+      let e = a + c - 10
+      this.timer = setInterval(() => {
+        let c = document.documentElement.scrollTop || document.body.scrollTop
+        let t = (e - c) / 10
+        let scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 30;
+        window.scrollTo(0, c + t)
+        console.log(t)
+        if (t < 1 || scrollToBottom) {
+          clearInterval(this.timer)
+        }
+      }, 10)
+    },
+    goUser (uid) {
+      var isiOS = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
+      if (isiOS) {
+        sendJsData('app://userInfo?uid=' + uid);
+      } else {
+        javascript: JSInterface.sendJsData('app://userInfo?uid=' + uid);
+      }
+    }
   },
   components: {
     Land,
@@ -184,6 +217,17 @@ export default {
     transform: translateY(0);
   }
 }
+.mask2 {
+  position: fixed;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}
 
 .landsBox {
   font-size: 0.3rem;
@@ -198,6 +242,7 @@ export default {
     background: url(../img/userMsgBg.png);
     background-size: 100% 100%;
     position: absolute;
+    z-index: 60;
     top: -0.89rem;
     left: 0.93rem;
     img {
@@ -217,8 +262,10 @@ export default {
         justify-content: center;
         align-items: center;
         font-size: 0.26rem;
+        height: 0.35rem;
         strong {
           display: block;
+          font-size: 0.26rem;
           max-width: 1.5rem;
           white-space: nowrap;
           overflow: hidden;
@@ -228,8 +275,9 @@ export default {
       .score {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         margin-top: 0.05rem;
+        padding-left: 0.3rem;
         i {
           width: 0.37rem;
           height: 0.37rem;
@@ -356,6 +404,13 @@ export default {
   }
 }
 
+.mkBg {
+  width: 7.5rem;
+  position: fixed;
+  z-index: 100000;
+  left: 0;
+  top: 5rem;
+}
 .userGoodList {
   width: 7rem;
   height: 2.23rem;
@@ -363,6 +418,8 @@ export default {
   background: url(../img/goodlist.png);
   background-size: 100% 100%;
   position: relative;
+  //   position: absolute;
+  //   left: 0.05rem;
   &.props {
     width: 4.14rem;
     height: 2.22rem;
@@ -372,7 +429,6 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      //    overflow-x: ;
     }
   }
   .close {

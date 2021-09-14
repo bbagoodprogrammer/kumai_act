@@ -2,44 +2,44 @@
   <div class="rule">
     <i class="close" @click="closeRule()"></i>
     <div class="title"><i></i></div>
-    <div class="actTime">活動時間:{{tm}}</div>
+    <div class="actTime">{{lang.ruleTm}}{{tm}}</div>
     <div class="tab">
-      <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">活動規則</span>
-      <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">活動獎勵</span>
+      <span class="ruleTab" :class="{act:type == 1}" @click="tabClick(1)">{{lang.ruleTab1}}</span>
+      <span class="wardTab" :class="{act:type == 2}" @click="tabClick(2)">{{lang.ruleTab2}}</span>
     </div>
     <div class="ruleTips" v-if="type== 1">
-      <h6>1、搖骰子做富翁</h6>
-      <p>通過購買可以獲得骰子,活動期間內累計步數從高到低進行排名，前10名玩家可獲得相關獎勵；</p>
-      <p>活動結束後，若有骰子未使用，則按照50金幣/顆回退相應金幣到賬號中</p>
-      <h6>2、獎勵概率</h6>
+      <h6>{{lang.ruleTips1}}</h6>
+      <p>{{lang.ruleTips2}}</p>
+      <p>{{lang.ruleTips3}}</p>
+      <h6>{{lang.ruleTips4}}</h6>
       <img src="../assets/img/rule/table1.png" alt="" class="table">
-      <p class="red">若前300次沒有中紫影仙晶特效禮物，第301次必中紫影仙晶-特效禮物</p>
-      <p>儲值返利券使用說明：獲獎當天儲值任意金幣，在次日可獲得對應的金幣返利（不可疊加返利比例）。若一天同時獲得多張儲值返利券，按照所獲得的儲值返利券的最高比例來返利。返利券僅獲得當天有效</p>
-      <p>靜態背包禮物有效期為7天，特效背包禮物有效期為10天，請盡快送出哦~</p>
-      <h6>3.注意事項</h6>
-      <p>1、活動中，若發現玩家用不正當手段參與活動，小音有權在不事先通知的情況下按情節嚴重對參與玩家、違規者取消上榜資格、封禁賬號、收回該玩家所有獎勵等處罰，包括但不限於：</p>
-      <p>活動期間對參賽玩家進行惡意評論、造謠、影射他人</p>
-      <p>2、此活動與蘋果公司無關</p>
+      <p class="red">{{lang.ruleTips5}}</p>
+      <p>{{lang.ruleTips6}}</p>
+      <p>{{lang.ruleTips7}}</p>
+      <h6>{{lang.ruleTips8}}</h6>
+      <p>{{lang.ruleTips9}}</p>
+      <p>{{lang.ruleTips10}}</p>
+      <p>{{lang.ruleTips11}}</p>
     </div>
     <div class="wardsTips" v-if="type== 2">
-      <h6>1.總榜第1-3名</h6>
+      <h6>{{lang.ruleTips12}}</h6>
       <div class="giftBox">
         <span v-for="(item,index) in gift1" :key="index">
           <img :src="item.img" alt="">
           <strong>{{item.name}}</strong>
         </span>
       </div>
-      <h6>2.總榜第4-10名</h6>
+      <h6>{{lang.ruleTips13}}</h6>
       <div class="giftBox">
         <span v-for="(item,index) in gift2" :key="index">
           <img :src="item.img" alt="">
           <strong>{{item.name}}</strong>
         </span>
       </div>
-      <h6>3.日榜第一名將獲得骰子五枚，在次日0點發放</h6>
-      <h6>4.活動的最後一天的日榜獎勵將不發放</h6>
+      <h6>{{lang.ruleTips14}}</h6>
+      <h6>{{lang.ruleTips15}}</h6>
     </div>
-    <p class="lastTips">*活動最終解釋權歸活動主辦方所有</p>
+    <p class="lastTips">{{lang.ruleTips16}}</p>
   </div>
 </template>
 <script>
@@ -50,40 +50,18 @@ export default {
   data () {
     return {
       type: 1,
-      gift1: [
-        {
-          img: require('../assets/img/rule/Certification_01.png'),
-          name: '【音覓大富翁】認證7天'
-        },
-        {
-          img: require('../assets/img/rule/badge.png'),
-          name: '音覓大富翁勛章10天'
-        },
-        {
-          img: require('../assets/img/rule/car1.png'),
-          name: '紅色魅影座駕7天'
-        }
-      ],
-      gift2: [
-        {
-          img: require('../assets/img/rule/Certification_01.png'),
-          name: '【聚財小天使】認證7天'
-        },
-        {
-          img: require('../assets/img/rule/badge.png'),
-          name: '音覓大富翁勛章7天'
-        },
-        {
-          img: require('../assets/img/rule/BMW.png'),
-          name: 'BMW座駕7天'
-        }
-      ]
     }
   },
   computed: {
     ...mapState(['stime', 'etime']),
     tm () {
       return getDate(new Date(this.stime * 1000), 4) + '~' + getDate(new Date(this.etime * 1000), 4)
+    },
+    gift1 () {
+      return this.lang.gift1
+    },
+    gift2 () {
+      return this.lang.gift2
     }
   },
   methods: {

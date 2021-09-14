@@ -60,6 +60,13 @@ a:hover {
     justify-content: center;
     // transform:none!important;
 }
+
+.slide2-enter-active {
+    animation-name: slideInUp;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+
 .slide-enter-active {
     animation-name: slideInUp;
     animation-duration: 0.2s;

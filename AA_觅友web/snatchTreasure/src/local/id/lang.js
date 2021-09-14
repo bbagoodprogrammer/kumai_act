@@ -13,7 +13,7 @@
     status2: "Berhasil",
     status3: "Gagal",
     status4: "Batalkan",
-    myNumber: "No. Hartaku",
+    myNumber: "No. hartaku",
     luckTips: "Selamat~Anda telah mencapai No. harta",
     typeTips: {
         "-1": "Hadiah",
@@ -30,21 +30,21 @@
 
     //HotList
     getSuc: "Telah rebut harta %s kali",
-    notSing: "Belum ikut dalam harta warga putaran ini",
+    notSing: "Belum ikut dalam putaran ini",
     number: "No.",
     join: "Rebut harta",
-    setJoinTitle: "Ikuti",
+    setJoinTitle: "Ikut",
     joinNums: "Go x%s",
     joinSuc: "Ikuti berhasil",
     joinSuc2: "Ikuti berhasil, hadiah telah dibuka!",
     //index
     hotTab1: "Hot",
     hotTab2: "Riwayat",
-    hotGet: "Dapat",
+    hotGet: "Klik",
     getTicket: "Get lucky coupons",
     ticket: "Lucky coupons:",
-    ind: "Buah",
-    geted: "Dapat",
+    ind: "",
+    geted: "Klik",
     ticketTips: "Membayar %s koin emas untuk dapatkan 1 lucky coupons",
     charge: "Topup",
     buySuc: "Pembelian berhasil!",
@@ -52,14 +52,14 @@
     //rule
     ruleTitle: "Aturan",
     firstTips:
-        "Gunakan「 Lucky Coupons」untuk ikut berburu harta karun. 1 lucky coupons untuk rebut harta karun 1 kali, ketika jumlah lucky coupons untuk hadiah tercapai, satu orang akan dipilih secara acak dari peserta yang berpartisipasi dalam Karun warga untuk menerima hadiah.",
+        "Gunakan「 Lucky Coupons」untuk merebut harta. 1 lucky coupons bisa merebut harta 1 kali, ketika jumlah gift lucky coupons tercapai, satu peserta yang berpartisipasi dalam gift itu akan dipilih sistem secara acak untuk menerima hadiah.",
     strList: [
-        "Jika jumlah lucky coupons tidak terpenuhi dalam waktu 12 jam dari hadiah harta karun, kualifikasi untuk Harta Warga putaran ini akan dibatalkan, dan lucky coupons akan dikembalikan ke peserta yang sesuai.",
-        "Hadiah berburu harta karun hanya dimenangkan oleh salah satu peserta yang berpartisipasi dalam berburu harta karun. Semakin banyak berpartisipasi dalam berburu harta karun dalam hadiah yang sama, semakin tinggi kemungkinan memenangkan hadiah.",
-        "Peringkat minggu lalu dihitung pada setiap hari Senin pukul 00:00(wib), dan 10 peserta teratas yang terbanyak berpartisipasi dalam Harta Warga akan menerima hadiah lencana.",
-        "Hadiah item virtual yang diperoleh dalam acara memiliki masa berlaku tertentu, silakan gunakannya tepat waktu.",
-        "Alat peraga yang diperoleh peserta terbatas pada konsumsi di platform ini, dan tidak ada aktivitas menghasilkan keuntungan seperti transaksi dan akuisisi yang diizinkan. Yang melanggar aturan akan dihukum berat jika ditemukan.",
-        "Dilarang untuk melakukan perilaku apapun yang memengaruhi keadilan acara, atau menggunakan platform BUG yang tidak pantas lainnya untuk berpartisipasi dalam game ini. Setelah ditemukan, platform berhak untuk membatalkan pemberian alat peraga dan memulihkan alat peraga.",
+        "Jika jumlah gift lucky coupons belum tercapai jumlahnya dalam waktu 12 jam, putaran ini akan dibatalkan, dan lucky coupons akan dikembalikan ke peserta tersebut.",
+        "Setiap gift hanya dimenangkan oleh salah satu peserta yang berpartisipasi. Semakin banyak kali berpartisipasi dalam gift yang sama, semakin tinggi kemungkinan memenangkan hadiah.",
+        "Peringkat minggu lalu dihitung pada setiap hari Senin pukul 00:00(wib), dan 10 peserta teratas dengan partisipasi terbanyak akan menerima hadiah lencana.",
+        "Hadiah item virtual yang diperoleh dalam acara memiliki masa berlaku tertentu, silakan pakainya tepat waktu.",
+        "Alat peraga yang diperoleh peserta terbatas konsumsi di platform ini, dan tidak diizinkan aktivitas yang menghasilkan keuntungan seperti transaksi dan akuisisi. Yang melanggar aturan akan dihukum berat jika ditemukan.",
+        "Dilarang untuk melakukan perilaku apapun yang memengaruhi keadilan acara, atau menggunakan platform BUG yang tidak pantas lainnya untuk berpartisipasi dalam acara  ini. Setelah ditemukan, platform berhak untuk membatalkan pemberian alat peraga dan ambil kembalikan alat peraga.",
         "Acara ini tak berhubungan dengan Apple, dan hak interpretasi akhir adalah milik AloChat."
     ],
 

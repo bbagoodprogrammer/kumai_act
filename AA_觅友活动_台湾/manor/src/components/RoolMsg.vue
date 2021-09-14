@@ -20,16 +20,14 @@ export default {
     return {
       animate: false,
       list: [],
-      timer: null,
-      strTips: {
-        exchange: '恭喜「%n」兌換到「%a」*%s',
-        sun: '恭喜「%n」收穫「陽光」*%s',
-        prize: '恭喜「%n」使用稀有種子種出「%a」*%s'
-      }
+      timer: null
     };
   },
   computed: {
-    ...mapState(['notices'])
+    ...mapState(['notices']),
+    strTips () {
+      return this.lang.strTips
+    }
   },
   watch: {
     notices (val) {

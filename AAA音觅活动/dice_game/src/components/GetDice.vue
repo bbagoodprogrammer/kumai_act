@@ -28,7 +28,7 @@
             </div>
           </li>
         </ul> -->
-        <p class="tips tips2">購買骰子 <span @click="gowalletpage()"><i></i><strong>{{dayTask.balance}}</strong> <i class="add"></i></span></p>
+        <p class="tips tips2">{{lang.buyDice}} <span @click="gowalletpage()"><i></i><strong>{{dayTask.balance}}</strong> <i class="add"></i></span></p>
         <ul class="priceList">
           <li v-for="(item,index) in dayTask.goods" :key="index">
             <div class="diceImg">
@@ -39,7 +39,7 @@
               <div class="nowPrice">{{item.price}}</div>
               <!-- <del class="original">{{item.original}}</del> -->
             </div>
-            <div class="buy" @click="buyDice(index)">購買</div>
+            <div class="buy" @click="buyDice(index)">{{lang.購買}}</div>
           </li>
         </ul>
       </div>
@@ -101,10 +101,11 @@ import { mapState } from "vuex"
 import api from "../api/apiConfig"
 import share from "../utils/share"
 import { globalBus } from '../utils/eventBus'
+import lang from "../config/lang"
 let that = null
 window.onShareSuccess = async (from, uid, type, typeName) => {
   api.shareSuc()
-  that.toast(`分享成功！獲得骰子+1`)
+  that.toast(lang.shareSuc)
   that.$parent.showTask = false
   that.$parent.showGiftPup = true
   that.$parent.luck = true
@@ -131,15 +132,15 @@ window.onShareSuccess = async (from, uid, type, typeName) => {
   // }
 }
 export default {
-  data() {
+  data () {
     return {
-      taskName: {
-        coin: '送出80金幣禮物',
-        invite: '邀請一個活動新用戶（A/5）',
-        mic: '在公開房間上麥30min(A/1)',
-        owner: '自己魅力值增加500（A/1）',
-        room: '自己房間的人氣值增加5000'
-      },
+      //   taskName: {
+      //     coin: '送出80金幣禮物',
+      //     invite: '邀請一個活動新用戶（A/5）',
+      //     mic: '在公開房間上麥30min(A/1)',
+      //     owner: '自己魅力值增加500（A/1）',
+      //     room: '自己房間的人氣值增加5000'
+      //   },
       showShare: false,
       showPeople: false,
       invitedList: [],
@@ -148,36 +149,39 @@ export default {
   },
   computed: {
     ...mapState(['dayTask', 'dice']),
-    peopleListHas() {
+    peopleListHas () {
       let isHas = this.peopleList.filter(item => {
         return item.status != 2
       })
       return isHas
+    },
+    taskName () {
+      return this.lang.taskName
     }
   },
-  mounted() {
+  mounted () {
     that = this
   },
   methods: {
-    showRoomTips() {
+    showRoomTips () {
       this.vxc('setToast', {
         title: 'room',
-        msg: '1玩家一分鐘貢獻10人氣值<br/>1金幣貢獻1人氣值'
+        msg: this.lang.roomTips
       })
     },
-    showSharePup() {
+    showSharePup () {
       api.getFriendList(0, 'invited').then(res => {
         this.invitedList = res.data.response_data.list
         this.showShare = true
       })
     },
-    showPelple() {
+    showPelple () {
       api.getFriendList(0).then(res => {
         this.peopleList = res.data.response_data.list
         this.showPeople = true
       })
     },
-    shareAct(item, index) {
+    shareAct (item, index) {
       if (!item.invited) {
         api.shareFriend(item.uid).then(res => {
           if (res.data.response_status.code == 0) {
@@ -188,7 +192,7 @@ export default {
         })
       }
     },
-    doTask(key, item, rid) {
+    doTask (key, item, rid) {
       console.log(rid, key)
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       if (key == 'mic' || key == 'coin' || key == 'gift' || key == 'owner') {  //跳轉活躍度前十房間
@@ -206,8 +210,8 @@ export default {
           share({
             from: '2',
             url: `http://activity.udateapp.com/static_html/2020/richMan/index.html`,
-            title: `我在玩大富翁遊戲，快來和我一起贏金幣、頭像框、座駕、特效禮物吧！`,
-            desc: `我在玩大富翁遊戲，快來和我一起贏金幣、頭像框、座駕、特效禮物吧！`,
+            title: this.lang.shareTitle,
+            desc: this.lang.shareDesc,
             image: 'http://activity.udateapp.com/static_html/2020/richMan/share.jpg'
           })
         } catch (e) { }
@@ -241,24 +245,24 @@ export default {
         } catch (e) { }
       }
     },
-    getDice(key, item) {
+    getDice (key, item) {
       api.getCai(key).then(res => {
         if (res.data.response_status.code == 0) {
           this.vxc('setTaskGiftStatus', key)
           this.vxc('setDice', res.data.response_data.dice)
-          this.toast('領取成功!')
+          this.toast(this.lang.getSuc)
         } else {
           this.toast(res.data.response_status.error)
         }
       })
     },
-    buyDice(index) {
+    buyDice (index) {
       if (this.dayTask.balance >= index) {
         api.buyDice(index).then(res => {
           if (res.data.response_status.code == 0) {
             this.vxc('setBalance', res.data.response_data.balance)
             this.vxc('setDice', res.data.response_data.dice)
-            this.toast('購買成功!')
+            this.toast(this.lang.buySuc)
           } else {
             this.toast(res.data.response_status.error)
           }
@@ -267,13 +271,13 @@ export default {
         this.gowalletpage()
       }
     },
-    getTaskName(key, item) {
+    getTaskName (key, item) {
       if (key == 'invite') {
         return this.taskName[key].replace('A', item.current)
       }
       return this.taskName[key].replace('A', item.current == item.target ? '1' : '0')
     },
-    gowalletpage() {
+    gowalletpage () {
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       try {
         if (ios) {
@@ -284,13 +288,13 @@ export default {
         }
       } catch (e) { }
     },
-    closeGetDicePup() {
+    closeGetDicePup () {
       this.$parent.showDayTask = false
     },
-    closePeople() {
+    closePeople () {
       this.showPeople = false
     },
-    closeSharePup() {
+    closeSharePup () {
       this.showShare = false
     },
   }

@@ -1,8 +1,8 @@
 <template>
   <div class="box">
     <div class="tipsBox">
-      <span class="ruleTips" :class="{top:isShare}" @click="goRule()">規則&獎勵</span>
-      <span class="ruleTips history" :class="{top:isShare}" @click="history()">獎勵記錄</span>
+      <span class="ruleTips" :class="{top:isShare}" @click="goRule()">{{lang.indexRuleIcon}}</span>
+      <span class="ruleTips history" :class="{top:isShare}" @click="history()">{{lang.indexHistoryIcon}}</span>
     </div>
     <RoolMsg />
     <Game />
@@ -15,7 +15,7 @@
         <div class="invitationPup" v-if="invitation">
           <i class="close" @click="closeInvitation()"></i>
           <div class="title"><i></i></div>
-          <p>有好友邀請你玩音覓大富翁</p>
+          <p>{{lang.inivitTitle}}</p>
           <ul>
             <li v-for="(item,index) in peopleList" :key="index" @click="setActIndex(index)">
               <img v-lazy="item.avatar" alt="">
@@ -23,8 +23,8 @@
               <i class="gou" :class="{act:index==actIndex}"></i>
             </li>
           </ul>
-          <p class="tips">成功邀請你玩音覓大富翁的好友，有機會獲得 <i></i> x3</p>
-          <span class="singUpBtn" @click="singUp()">接受他的邀請</span>
+          <p class="tips">{{lang.inivitTips}} <i></i> x3</p>
+          <span class="singUpBtn" @click="singUp()">{{lang.inivitEd}}</span>
         </div>
       </transition>
     </div>
@@ -65,7 +65,7 @@ export default {
       isMore: true,   //加载更多
       activite: 1,    //活动状态
       showT: false,  //提示弹窗显示
-      tastMsg: "提示信息",  //基础弹窗提示信息
+      tastMsg: "",  //基础弹窗提示信息
       userState: 0,   //用户状态（是否报名）
       rotatePx: 0,    //刷新旋转动画
       rotatec: 0,

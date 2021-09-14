@@ -2,18 +2,18 @@
   <div class="tasks">
     <div class="sign_list">
       <div class="liner">
-        <div class="dayItem" v-for="(item,index) in sign_list" :key="index" :class="[{today:item.today ==1},'item' +index]">
+        <div class="dayItem" v-for="(item,index) in sign_list" :key="index" :class="[{today:item.sign > 0},'item' +index]">
           <div class="imgBox">
-            <div class="imgMask" v-if="item.today !=1"></div>
+            <div class="imgMask" v-if="item.sign == 0"></div>
             <!-- v-if="item.goods.type=='seed'" -->
-            <img :src="require(`../img/goods/100.png`)" alt="" class="seed">
+            <img :src="require(`../img/goods/${item.goods_id}.png`)" alt="" class="seed">
             <!-- <img :src="require(`../img/props/${item.goods_id}.png`)" alt="" v-else class="props"> -->
             <div class="nums">x{{item.num}}</div>
           </div>
-          <div class="dayTips">{{item.today ==1?'今天':`第${index + 1}天`}}</div>
+          <div class="dayTips">{{item.today ==1?lang.today:`第${index + 1}天`}}</div>
         </div>
       </div>
-      <div class="singIn" :class="{black:today_sign==1}" @click="sign()">{{today_sign==1?'已领取':'领取'}}</div>
+      <div class="singIn" :class="{black:today_sign==1}" @click="sign()">{{today_sign==1?lang.geted:lang.get}}</div>
     </div>
     <ul class="taskList">
       <li v-for="(item,index) in tasks" :key="index">
@@ -22,14 +22,14 @@
           <img :src="require(`../img/props/${item.goods_id}.png`)" alt="" v-else class="props">
         </div>
         <div class="msg">
-          <div class="name">{{item.title}}</div>
-          <div class="giftTips">獎勵:{{item.name}}x{{item.num}} <strong>,每天{{item.count}}次</strong></div>
+          <div class="name">{{item.title}} {{item.id!=7?`(${item.process}/${item.target})`:''}} </div>
+          <div class="giftTips">{{lang.gift}}{{item.name}}x{{item.num}} <strong>,{{lang.giftCount.replace('%c',item.count)}}</strong></div>
         </div>
         <div class="status">
-          <em v-if="!item.get && !item.finish" @click="doTask(item.id)">去完成</em>
-          <em v-else-if="!item.get && item.finish" @click="taskGet(item.id)">領取</em>
-          <em v-else class="ed">已領取</em>
-          <u class="inivitNums" v-if="item.id == 7" @click="showInivted()">已邀請{{item.total}}人</u>
+          <em v-if="!item.get && !item.finish" @click="doTask(item.id)">{{lang.doTask}}</em>
+          <em v-else-if="!item.get && item.finish" @click="taskGet(item.id)">{{lang.get}}</em>
+          <em v-else class="ed">{{lang.geted}}</em>
+          <u class="inivitNums" v-if="item.id == 7" @click="showInivted()">{{lang.inivitNums.replace('%s',item.total)}}</u>
         </div>
       </li>
     </ul>
@@ -37,9 +37,9 @@
     <div class="mask" v-show="showShare">
       <transition name="slide">
         <div class="peoplePup" v-if="showShare">
-          <h5 class="title">已邀請玩家</h5>
+          <h5 class="title">{{lang.inivitEd}}</h5>
           <i class="close" @click="closeSharePup()"></i>
-          <p v-if="invitedList.length == 0" class="noData">暫無數據</p>
+          <p v-if="invitedList.length == 0" class="noData">{{lang.noData}}</p>
           <ul class="pList">
             <li v-for="(item,index) in invitedList" :key="index">
               <div class="listItem">
@@ -50,11 +50,15 @@
                   <div class='name'>{{item.nick}}</div>
                   <div class="tips"><i></i>{{item.intimacy}}</div>
                 </div>
+                <div class="score">
+                  <i></i>
+                  <strong>{{item.score}}</strong>
+                </div>
               </div>
             </li>
           </ul>
           <div class="inivitBtn" @click="showPelple()">
-            邀請玩家參與
+            {{lang.inivitBtn}}
           </div>
         </div>
       </transition>
@@ -64,12 +68,12 @@
       <transition name="slide">
         <div class="peoplePup" v-if="showPeople">
           <i class="close" @click="closeSharePup()"></i>
-          <h5 class="title">關注列表</h5>
-          <p v-if="peopleList.length == 0" class="noData">暫無數據</p>
+          <h5 class="title">{{lang.inivitListTitle}}</h5>
+          <p v-if="peopleList.length == 0" class="noData">{{lang.noData}}</p>
           <ul class="pList">
             <li v-for="(item,index) in peopleList" :key="index" @click="setList(item.uid)">
               <div class="listItem">
-                <div class="inivitMask" v-if="actUidArr.indexOf(item.uid) > -1"></div>
+                <div class="inivitMask" v-if="actUidArr.indexOf(item.uid) == -1"></div>
                 <div class="imgBox">
                   <img v-lazy="item.avatar" alt="">
                 </div>
@@ -81,7 +85,7 @@
             </li>
           </ul>
           <div class="inivitBtn" :class="{black:actUidArr.length == 0}" @click="invite()">
-            邀請他
+            {{lang.inivit}}
           </div>
         </div>
       </transition>
@@ -117,30 +121,36 @@ export default {
       })
     },
     sign () {
-      sign().then(res => {
-        if (res.data.response_status.code == 0) {
-          this.toast(`簽到成功！`)
-          this.init()
-        } else {
-          this.toast(res.data.response_status.error)
-        }
-      })
+      if (this.today_sign != 1) {
+        sign().then(res => {
+          if (res.data.response_status.code == 0) {
+            this.toast(this.lang.singInSuc)
+            this.init()
+          } else {
+            this.toast(res.data.response_status.error)
+          }
+        })
+      }
     },
     setList (uid) {
       if (this.actUidArr.indexOf(uid) > -1) {
         this.actUidArr.splice(this.actUidArr.indexOf(uid), 1)
       } else {
-        this.actUidArr.push(uid)
+        if (this.actUidArr.length >= 10) {
+          this.actUidArr.shift().push(uid)
+        } else {
+          this.actUidArr.push(uid)
+        }
       }
     },
     showInivted () {
-      invitedList().then(res => {
+      invitedUsers().then(res => {
         this.invitedList = res.data.response_data.list
         this.showShare = true
       })
     },
     showPelple () {
-      invitedUsers().then(res => {
+      invitedList().then(res => {
         this.peopleList = res.data.response_data.list
         this.showPeople = true
       })
@@ -149,7 +159,7 @@ export default {
       if (this.actUidArr.length) {
         invite(this.actUidArr.join(',')).then(res => {
           if (res.data.response_status.code == 0) {
-            this.toast(`已邀請，請耐心等待對方的答應`)
+            this.toast(this.lang.inivitSuc)
             this.showPeople = false
             this.showShare = false
           } else {
@@ -166,7 +176,7 @@ export default {
     taskGet (id) {
       taskGet(id).then(res => {
         if (res.data.response_status.code == 0) {
-          this.toast(`领取成功！`)
+          this.toast(this.lang.getSuc)
           this.init()
         } else {
           this.toast(res.data.response_status.error)
@@ -179,7 +189,7 @@ export default {
       if (id == 1 || id == 5) {  //派對頁
         try {
           if (ios) {
-            sendJsData(' app://mainPage?page_index=party&page_index_child=party_recom_room');
+            sendJsData('app://mainPage?page_index=party&page_index_child=party_recom_room');
           } else {
             javascript: JSInterface.sendJsData(' app://mainPage?page_index=party&page_index_child=party_recom_room');
           }
@@ -261,7 +271,7 @@ export default {
           text-shadow: #985A2F 1px 0 0, #985A2F 0 1px 0, #985A2F -1px 0 0,
             #985A2F 0 -1px 0;
           position: absolute;
-          right: 0;
+          right: 0.15rem;
           bottom: 0;
         }
       }
@@ -357,6 +367,7 @@ export default {
         background: url(../img/status.png);
         background-size: 100% 100%;
         &.ed {
+          color: #fff;
           background: url(../img/black.png);
           background-size: 100% 100%;
         }
@@ -432,12 +443,14 @@ export default {
         position: relative;
         img {
           display: block;
+          height: 100%;
           border-radius: 50%;
         }
       }
       .nick {
-        width: 2.5rem;
+        width: 3rem;
         .name {
+          max-width: 3rem;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
@@ -476,6 +489,20 @@ export default {
           font-size: 0.22rem;
           text-align: center;
           line-height: 0.65rem;
+        }
+      }
+      .score {
+        display: flex;
+        align-items: center;
+        i {
+          width: 0.33rem;
+          height: 0.33rem;
+          background: url(../img/sunIcon1.png);
+          background-size: 100% 100%;
+          margin-right: 0.15rem;
+        }
+        strong {
+          color: #8E4908;
         }
       }
     }

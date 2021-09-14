@@ -36,5 +36,8 @@ function getDate(datem, type) {
     if (type == 7) {
         return `${date}/${month} ${hours}:${minute}:${second}`;
     }
+    if (type == 8) {
+        return `${hours}:${minute}:${second}`;
+    }
 }
 export default getDate;
