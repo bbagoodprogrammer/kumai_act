@@ -54,7 +54,7 @@
     firstTips:
         "Gunakan「 Lucky Coupons」untuk merebut harta. 1 lucky coupons bisa merebut harta 1 kali, ketika jumlah gift lucky coupons tercapai, satu peserta yang berpartisipasi dalam gift itu akan dipilih sistem secara acak untuk menerima hadiah.",
     strList: [
-        "Jika jumlah gift lucky coupons belum tercapai jumlahnya dalam waktu 12 jam, putaran ini akan dibatalkan, dan lucky coupons akan dikembalikan ke peserta tersebut.",
+        "Jika jumlah gift lucky coupons belum tercapai jumlahnya dalam waktu 72 jam, putaran ini akan dibatalkan, dan lucky coupons akan dikembalikan ke peserta tersebut.",
         "Setiap gift hanya dimenangkan oleh salah satu peserta yang berpartisipasi. Semakin banyak kali berpartisipasi dalam gift yang sama, semakin tinggi kemungkinan memenangkan hadiah.",
         "Peringkat minggu lalu dihitung pada setiap hari Senin pukul 00:00(wib), dan 10 peserta teratas dengan partisipasi terbanyak akan menerima hadiah lencana.",
         "Hadiah item virtual yang diperoleh dalam acara memiliki masa berlaku tertentu, silakan pakainya tepat waktu.",

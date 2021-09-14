@@ -54,7 +54,7 @@ export default {
     firstTips:
         "Dùng phiếu may mắn để tham gia Lost Ark, mỗi phiếu được chơi 1 lần, Khi đạt đủ số phiếu may mắn để trúng thưởng, hệ thống sẽ chọn 1 trong những user đã bỏ phiếu cho thưởng này để nhận thưởng.",
     strList: [
-        "Nếu trong 12 giờ chưa đạt đủ số phiếu trúng thưởng, kỳ này sẽ bị hủy bỏ, phiếu may mắn sẽ hoàn lại cho user；",
+        "Nếu trong 72 giờ chưa đạt đủ số phiếu trúng thưởng, kỳ này sẽ bị hủy bỏ, phiếu may mắn sẽ hoàn lại cho user；",
         "1 trong những user tham gia trong kỳ sẽ nhân thưởng,số lần chơi càng nhiều, cơ hội nhận thưởng càng cao；",
         "0h của mỗi ngày thứ 2 hàng tuần sẽ chốt BXH tuần vừa qua, 10 user chơi nhiều nhất sẽ được thưởng huy chương；",
         "Thưởng quà túy nhận qua sự kiện này có thời hạn nhất định, vui lòng sử dùng kịp thời;",
