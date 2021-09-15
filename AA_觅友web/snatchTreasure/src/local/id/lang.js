@@ -43,7 +43,7 @@
     hotGet: "Klik",
     getTicket: "Get lucky coupons",
     ticket: "Lucky coupons:",
-    ind: "",
+    ind: "Kupon",
     geted: "Klik",
     ticketTips: "Membayar %s koin emas untuk dapatkan 1 lucky coupons",
     charge: "Topup",

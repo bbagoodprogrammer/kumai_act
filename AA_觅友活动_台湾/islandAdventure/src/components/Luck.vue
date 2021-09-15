@@ -325,7 +325,9 @@ export default {
         background: url(../img/getBtn1.png);
         background-size: 100% 100%;
         text-align: center;
-        line-height: 0.96rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-top: -0.3rem;
         font-size: 0.36rem;
         &.gold1 {
@@ -337,7 +339,6 @@ export default {
           color: #A4261C;
           width: 2.24rem;
           height: 1.17rem;
-          line-height: 1.17rem;
           background: url(../img/getBtn3.png);
           background-size: 100% 100%;
           margin: -0.4rem 0 0 -0.1rem;

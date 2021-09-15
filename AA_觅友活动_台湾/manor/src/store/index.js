@@ -72,7 +72,8 @@ export default new vuex.Store({
                     value: 0, // 收成值
                     status: 0, //土地狀態：0=未擴建，1=已擴建（未種植），2=已種植，3=已成熟
                     protect_seconds: 0,
-                    prize: {}
+                    prize: {},
+                    seed: {}
                 },
                 2: {
                     id: 2,
@@ -80,7 +81,8 @@ export default new vuex.Store({
                     value: 0,
                     status: 0,
                     protect_seconds: 0,
-                    prize: {}
+                    prize: {},
+                    seed: {}
                 },
                 3: {
                     id: 3,
@@ -88,7 +90,8 @@ export default new vuex.Store({
                     value: 0,
                     status: 0,
                     protect_seconds: 0,
-                    prize: {}
+                    prize: {},
+                    seed: {}
                 },
                 4: {
                     id: 4,
@@ -96,7 +99,8 @@ export default new vuex.Store({
                     value: 0,
                     status: 0,
                     protect_seconds: 0,
-                    prize: {}
+                    prize: {},
+                    seed: {}
                 },
                 5: {
                     id: 5,
@@ -104,7 +108,8 @@ export default new vuex.Store({
                     value: 0,
                     status: 0,
                     protect_seconds: 0,
-                    prize: {}
+                    prize: {},
+                    seed: {}
                 },
                 6: {
                     id: 6,
@@ -112,7 +117,8 @@ export default new vuex.Store({
                     value: 5,
                     status: 0,
                     protect_seconds: 0,
-                    prize: {}
+                    prize: {},
+                    seed: {}
                 },
                 7: {
                     id: 7,
@@ -120,7 +126,8 @@ export default new vuex.Store({
                     value: 100,
                     status: 0,
                     protect_seconds: 0,
-                    prize: {}
+                    prize: {},
+                    seed: {}
                 },
                 8: {
                     id: 8,
@@ -128,7 +135,8 @@ export default new vuex.Store({
                     value: 110,
                     status: 0,
                     protect_seconds: 0,
-                    prize: {}
+                    prize: {},
+                    seed: {}
                 },
                 9: {
                     id: 9,
@@ -136,7 +144,8 @@ export default new vuex.Store({
                     value: 110,
                     status: 0,
                     protect_seconds: 0,
-                    prize: {}
+                    prize: {},
+                    seed: {}
                 },
                 10: {
                     id: 10,
@@ -144,7 +153,8 @@ export default new vuex.Store({
                     value: 110,
                     status: 0,
                     protect_seconds: 0,
-                    prize: {}
+                    prize: {},
+                    seed: {}
                 }
             };
             let newArr = Object.assign({}, arr, val);

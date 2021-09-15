@@ -1,47 +1,41 @@
 <template>
   <div class="page pageIndex">
     <div class="herder">
-      <div class="ruleTips" @click="showRule = true">規則獎勵</div>
+      <div class="ruleTips" @click="showRule = true">{{lang.ruleTips}}</div>
       <RoolMsg />
       <div class="chareTips">
-        在平台首儲達到{{coinsStr}}金幣，可獲得交友禮包喔
+        {{lang.chareTips.replace('%c',coinsStr)}}
       </div>
     </div>
     <div class="backItem" v-for="(item,index) in gift_packs" :key="index">
       <div class="title">{{item.name}}</div>
-      <div class="chagre">
-        平台首儲<em>{{item.charge}}</em>金幣以上
-      </div>
+      <div class="chagre" v-html="lang.chareTips2.replace('%c',item.charge)"> </div>
       <div class="giftList">
         <div class="giftItem" v-for="(item2,index2) in item.prizes" :key="index2">
           <div class="imgBox">
             <img :src="giftImg[item2.type]" alt="">
-            <div class="nums">x{{item2.type!="vip"?item2.num:`${item2.days}天`}}</div>
+            <div class="nums">x{{item2.type!="vip"?item2.num:`${item2.days}${lang.day}`}}</div>
           </div>
           <strong>{{item2.name}}</strong>
         </div>
       </div>
     </div>
     <div class="footer">
-      <div class="btn" :class="{black:owner.get}" @click="walletpage()">{{this.owner.get?'已獲得':'立即儲值'}}</div>
-      <div class="chareTips">*首儲金額為一次性儲值金額，<em>非</em> 累積儲值金額</div>
+      <div class="btn" :class="{black:owner.get}" @click="walletpage()">{{this.owner.get?lang.getEd:lang.charge}}</div>
+      <div class="chareTips" v-html="lang.chareTips3"></div>
     </div>
     <div class="mask" v-show="showRule">
       <transition name="slide">
         <div class="rule" v-if="showRule">
           <i class="close" @click="showRule = false"></i>
-          <div class="title">規則獎勵</div>
-          <div class="tm">活動時間:{{aTimer}}</div>
-          <h6>交友禮包</h6>
-          <p>在活動期間內完成平台的首次儲值達到指定金幣數，可獲得對應的交友禮包，交友禮包僅可獲得一次，每檔獎勵不疊加。</p>
-          <h6>注意</h6>
-          <p>
-            - 活動中，若發現玩家用不正當手段參與活動，小音有權在不事先通知的情況下按情節嚴重對參與玩家、封禁帳號、收回玩家所有獎勵等處罰，包括但不限於：<br />
-            a) 活動期間對其他玩家惡意評論、造謠、映射等<br />
-            b)非法獲得金幣、指定禮物<br />
-            -此活動與蘋果公司無關
+          <div class="title">{{lang.ruleTips}}</div>
+          <div class="tm">{{lang.tm}}{{aTimer}}</div>
+          <h6>{{lang.ruleTipsMsg1}}</h6>
+          <p>{{lang.ruleTipsMsg2}}</p>
+          <h6>{{lang.ruleTipsMsg3}}</h6>
+          <p v-html="lang.ruleTipsMsg4">
           </p>
-          <div class="lastTips">*活動最終解釋權歸活動主辦方所有</div>
+          <div class="lastTips">{{lang.ruleTipsMsg5}}</div>
         </div>
       </transition>
     </div>
@@ -255,6 +249,8 @@ export default {
     }
     .title {
       text-align: center;
+      height: 0.9rem;
+      line-height: 1rem;
       font-size: 0.34rem;
       font-weight: bold;
       text-shadow: #DA0B23 1px 0 0, #DA0B23 0 1px 0, #DA0B23 -1px 0 0,

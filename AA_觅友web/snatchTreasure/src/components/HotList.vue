@@ -97,7 +97,6 @@ export default {
     },
     numbersList (val) {
       if (val.length) {
-        console.log(val)
         hotList(this.pagination(this.page, pageSize, val)).then(res => {
           this.list = res.data.response_data.list
           this.downTmList()
@@ -160,18 +159,19 @@ export default {
       this.showCodePup = true
     },
     onScroll () {
-      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;
+      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 180;
       if (scrollToBottom) { //滾動加載，沒有加載完成
-        const ids = this.pagination(++this.page, pageSize, this.numbersList)
-        console.log(ids, this.loaded)
-        if (this.loaded || !ids) return
+        const ids = this.pagination(this.page + 1, pageSize, this.numbersList)
         if (this.more) {
+          console.log(ids, this.loaded)
+          if (this.loaded || !ids) return
           this.more = false
           hotList(ids, 'more').then(res => {
             this.more = true
             if (res.data.response_data.list.length === 0) {
               this.loaded = true
             } else {
+              this.page += 1
               this.list = this.list.concat(res.data.response_data.list)
             }
           })

@@ -9,6 +9,7 @@
         <div class="imgBox">
           <img :src="item.image" alt="" v-if="item.image" class="seed">
           <img :src="require(`../img/goods/${item.id}.png`)" alt="" v-else-if="item.type=='seed'" class="seed">
+          <img :src="_images['fertilizer']" alt="" v-else-if="item.id == 1" class="props">
           <img :src="require(`../img/props/${item.id}.png`)" alt="" v-else class="props">
           <div class="name">{{item.name}}</div>
           <div class="price"><i :class="{sun:mainTab == 1}"></i><strong>{{mainTab == 0?item.coins:item.sun}}{{lang.sun_nums}}</strong></div>
@@ -27,11 +28,12 @@
           </div>
           <div class="landImgBox">
             <img :src="require(`../img/goods/${buyItem.id}.png`)" alt="" v-if="buyItem.type=='seed'" class="seed">
+            <img :src="_images['fertilizer']" alt="" v-else-if="buyItem.id == 1" class="props">
             <img :src="require(`../img/props/${buyItem.id}.png`)" alt="" v-else class="props">
             <div class="name">{{buyItem.name}}</div>
             <div class="price"><i></i><strong>{{buyItem.coins}}{{lang.sun_nums}}</strong></div>
           </div>
-          <p>{{lang.buyTipsList[1]}}</p>
+          <p>{{lang.buyTipsList[buyItem.id]}}</p>
           <div class="shovelNums">
             <span class="redux" @click="nums>0?nums--:0"></span>
             <input type="text" disabled v-model="nums" class="getNums">
@@ -58,11 +60,12 @@
           <div class="landImgBox">
             <img :src="buyItem.image" alt="" v-if="buyItem.image" class="seed">
             <img :src="require(`../img/goods/${buyItem.id}.png`)" alt="" v-else-if="buyItem.type=='seed'" class="seed">
+            <img :src="_images['fertilizer']" alt="" v-else-if="buyItem.id == 1" class="props">
             <img :src="require(`../img/props/${buyItem.id}.png`)" alt="" v-else class="props">
             <div class="name">{{buyItem.name}}</div>
             <div class="price"><i :class="{sun:mainTab == 1}"></i><strong>{{mainTab == 0?buyItem.coins:buyItem.sun}}{{lang.sun_nums}}</strong></div>
           </div>
-          <p>{{lang.exchangeTipsList[1]}}</p>
+          <p>{{lang.exchangeTipsList[buyItem.id]}}</p>
           <div class="shovelNums">
             <span class="redux" @click="nums>0?nums--:0"></span>
             <input type="text" disabled v-model="nums" class="getNums">
@@ -104,6 +107,9 @@ export default {
     },
     maxGetNums2 () {
       return parseInt(this.owner.sun / this.buyItem.sun)
+    },
+    _images () {
+      return _images
     }
   },
   created () {
@@ -166,7 +172,6 @@ export default {
     display: flex;
     width: 5.55rem;
     height: 0.82rem;
-    line-height: 0.82rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -178,6 +183,9 @@ export default {
       height: 100%;
       text-align: center;
       color: #8E4908;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       &.current {
         color: #672A0B;
         background: url(../img/rankTabAct.png);
@@ -214,6 +222,8 @@ export default {
           height: 1.26rem;
         }
         .name {
+          padding: 0 0.2rem;
+          font-size: 0.24rem;
           text-align: center;
           color: #8E4908;
           margin: 0.1rem auto;

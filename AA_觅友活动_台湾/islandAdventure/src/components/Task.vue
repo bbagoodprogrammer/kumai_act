@@ -41,6 +41,9 @@ export default {
       } else if (AREA == 'vn') {
         return getDate(new Date(this.activity.stime * 1000), 2) + '-' + getDate(new Date(this.activity.etime * 1000), 2)
       }
+      else if (AREA == 'id') {
+        return getDate(new Date(this.activity.stime * 1000), 3) + '-' + getDate(new Date(this.activity.etime * 1000), 3)
+      }
 
     }
   }
@@ -83,13 +86,13 @@ export default {
       width: 6.8rem;
       margin: 0.15rem auto 0;
       li {
-        height: 1.58rem;
+        min-height: 1.58rem;
         background: url(../img/taskItem.png);
         background-size: 100% 100%;
         margin-bottom: 0.07rem;
         display: flex;
         align-items: center;
-        padding: 0 0.18rem;
+        padding: 0.05rem 0.18rem;
         .msg {
           width: 4.5rem;
           .tName {
@@ -131,8 +134,8 @@ export default {
     .taskTips {
       text-align: center;
       color: #A36E41;
-      font-size: 0.26rem;
-      margin-top: 0.15rem;
+      font-size: 0.22rem;
+      margin-top: 0.06rem;
     }
   }
 }

@@ -10,7 +10,7 @@
             <!-- <img :src="require(`../img/props/${item.goods_id}.png`)" alt="" v-else class="props"> -->
             <div class="nums">x{{item.num}}</div>
           </div>
-          <div class="dayTips">{{item.today ==1?lang.today:`第${index + 1}天`}}</div>
+          <div class="dayTips">{{item.today ==1?lang.today:`${lang.dayIndex.replace('%i',index + 1)}`}}</div>
         </div>
       </div>
       <div class="singIn" :class="{black:today_sign==1}" @click="sign()">{{today_sign==1?lang.geted:lang.get}}</div>
@@ -19,6 +19,7 @@
       <li v-for="(item,index) in tasks" :key="index">
         <div class="imgBox">
           <img :src="require(`../img/goods/${item.goods_id}.png`)" alt="" class="seed" v-if="item.goods.type=='seed'">
+          <img :src="_images['fertilizer']" alt="" v-else-if="item.goods.id == 1">
           <img :src="require(`../img/props/${item.goods_id}.png`)" alt="" v-else class="props">
         </div>
         <div class="msg">
@@ -96,6 +97,8 @@
 <script>
 
 import { tasks, taskGet, invitedUsers, invitedList, invite, sign } from "../apis"
+import { mapState } from "vuex"
+
 export default {
   data () {
     return {
@@ -111,6 +114,12 @@ export default {
   },
   created () {
     this.init()
+  },
+  computed: {
+    ...mapState(['owner']),
+    _images () {
+      return _images
+    }
   },
   methods: {
     init () {
@@ -184,7 +193,9 @@ export default {
       })
     },
     doTask (id) {
-      console.log(id)
+      if (this.owner.is_alt) { //小号拦截
+        return
+      }
       const ios = navigator.userAgent.match(/iPhone|iPod|ios|iPad/i);
       if (id == 1 || id == 5) {  //派對頁
         try {
@@ -276,6 +287,7 @@ export default {
         }
       }
       .dayTips {
+        white-space: nowrap;
         font-size: 0.26rem;
         color: #703600;
         text-align: center;

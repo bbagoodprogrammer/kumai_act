@@ -278,6 +278,7 @@ export default {
       position: absolute;
       top: 0.41rem;
       right: 0.32rem;
+      text-align: right;
       em {
         font-size: 0.36rem;
         line-height: 0.4rem;
@@ -295,7 +296,7 @@ export default {
     .luckTips {
       font-size: 0.28rem;
       color: #FF60CD;
-      margin-top: 0.1rem;
+      margin-top: 0.06rem;
     }
     .numberList {
       display: inline-block;

@@ -52,6 +52,9 @@ export default {
       } else if (AREA == 'vn') {
         return getDate(new Date(tm * 1000), 2)
       }
+      else if (AREA == 'id') {
+        return getDate(new Date(tm * 1000), 3)
+      }
     },
     onScroll () {
       const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 10;

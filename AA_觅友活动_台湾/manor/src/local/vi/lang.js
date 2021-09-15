@@ -1,224 +1,229 @@
 export default {
     //html/index.html
-    title: "音覓莊園",
-    index_singUpTitle: "歡迎來到音覓莊園",
-    index_singUpTips: "經營你自己的莊園吧，擴建土地種植植物，產出陽光兌換獎勵",
-    index_join: "成為莊園主",
-    index_inivitTips1: "他邀請你成為音覓莊園主，答應他，他可以獲得肥料喔",
-    index_ok: "答應他",
-    loading: "加載中...",
-    noData: "暫無數據",
+    title: "Trang viên AloChat",
+    index_singUpTitle: "Chào mừng đến với Trang viên của AloChat",
+    index_singUpTips:
+        "Hãy kinh doanh Trang viên của mình，mở rộng đất để trồng cây, tạo ra Ánh nắng để đổi thưởng",
+    index_join: "Trở thành chủ Trang viên",
+    index_inivitTips1:
+        "Bạn ấy mới bạn trở thành chủ Trang viên, nếu bạn đồng ý sẽ nhận phân bón",
+    index_ok: "Đồng ý",
+    loading: "Đảng tải...",
+    noData: "Chưa có số liệu",
     //Commodity
-    commodity_tab1: "工具&種子",
-    commodity_tab2: "兌換",
-    sun_nums: "/份",
-    buy: "購買",
-    exchange: "兌換",
-    buyTips: {
-        1: "肥料減少植物的成熟時間，每次使用-5min",
-        2: "保護盾可保護土地在90min內不被偷摘",
-        3: "對保護盾投擲石頭",
-        4: "使用手套可摘到非好友玩家的陽光",
-        100: "成熟時間15min，可產出15陽光",
-        101: "成熟時間15min，可產出30陽光",
-        102: "成熟時間30min，可產出70陽光",
-        103: "成熟時間30min，可產出120陽光",
-        104: "成熟時間45min，可產出190陽光",
-        105: "成熟時間60min，可產出270陽光",
-        106: "成熟時間60min，可產出360陽光",
-        107: "成熟時間45min，可產出480陽光",
-        108: "成熟時間30min，可產出620陽光",
-        109: "成熟時間30min，可產出750陽光"
+    commodity_tab1: "Công cụ & Hạt giống",
+    commodity_tab2: "Đổi",
+    sun_nums: "/ gói",
+    buy: "Mua",
+    exchange: "Đổi",
+    buyTipsList: {
+        1: "Phân bón có thể giảm thời gian trưởng thành của cây, mỗi lần sử dụng được giảm 5 phút.",
+        2: "Lá chắn bảo vệ cây trồng khỏi bị đánh cắp trong vòng 90 phút",
+        3: "Ném đá vào Lá chắn",
+        4: "Sử dụng Găng tay để đón Ánh nắng của người chơi",
+        100: "Thời gian trưởng thành 15 phút, có thể tạo ra 15 ánh nắng",
+        101: "Thời gian trưởng thành 15 phút, có thể tạo ra 30 ánh nắng",
+        102: "Thời gian trưởng thành 30 phút, có thể tạo ra 70 ánh nắng",
+        103: "Thời gian trưởng thành 30 phút, có thể tạo ra 120 ánh nắng",
+        104: "Thời gian trưởng thành 45 phút, có thể tạo ra 190 ánh nắng",
+        105: "Thời gian trưởng thành 60 phút, có thể tạo ra 270 ánh nắng",
+        106: "Thời gian trưởng thành 60 phút, có thể tạo ra 360 ánh nắng",
+        107: "Thời gian trưởng thành 45 phút, có thể tạo ra 480 ánh nắng",
+        108: "Thời gian trưởng thành 30 phút, có thể tạo ra 620 ánh nắng",
+        109: "Thời gian trưởng thành 30 phút, có thể tạo ra 750 ánh nắng"
     },
-    exchangeTips: {
-        1: "帶著草莓的味道進場",
-        2: "帶著櫻桃的味道進場",
-        3: "草莓加持 快樂翻倍",
-        4: "沒有甜甜的文書 有甜甜的櫻桃",
-        5: "風之鈴的許願：視線所及，皆是美好",
-        6: "借一盞花燈，寄託美好",
-        7: "勤勞的小蜜蜂 beebee~",
-        8: "一台花單車，藏著一個春天",
-        9: "一個有仙氣的頭像框",
-        10: "突然成了牧羊人",
-        11: "突然成了放牛人",
-        12: "這裡的花，從春天開到深秋",
-        13: "當你看了我一眼，就掀起了蝴蝶效應",
-        15: "今日最期待：和你一起蕩鞦韆",
-        16: "一起去荷花池邊走走",
-        17: "花開花落，梅花落了滿地粉",
-        18: "獨自去最深的海底，還想潛入你的夢裡",
-        19: "童話和愛情接奔赴與你",
-        200: "用心種植玫瑰花，種出「鐘情手錶-特效禮物*1」（8000金幣）成熟時間120min"
+    exchangeTipsList: {
+        1: "Vào phòng với hương vị của dâu tây",
+        2: "Vào phòng với hương vị của anh đào",
+        3: "Dâu tây tăng gấp đôi hạnh phúc",
+        4: "Không có văn bản ngọt ngào mà có anh đào ngọt ngào",
+        5: "Điều ước của Chuông gió: Mọi thứ tốt lành trong tầm mắt",
+        6: "Mượn 1 lồng đèn để trao người đẹp",
+        7: "Ong chăm chỉ beebee~",
+        8: "Xe đạp đang chở mùa xuân",
+        9: "Khung ảnh đẩy nàng tiên",
+        10: "Đột nhiên trở thành người chăn cừu",
+        11: "Đột nhiên trở thành người chăn trâu",
+        12: "Hoa ở đây nở từ xuân đến thu",
+        13: "Bạn vừa nhìn thấy tôi thì tạo ra hiệu ứng con bướm",
+        15: "Chuyện mong chờ nhất hôm nay là swing cùng bạn",
+        16: "Hãy đi dạo bên bờ hò sen",
+        17: "Hoa nở và hoa mận",
+        18: "Đi đến đáy biển một mình, lặn vào trái tim bạn một mình",
+        19: "Mộng mơ và tình yêu cùng hành cùng bạn",
+        200: "Trồng hoa hồng có cơ hội nhận được nhẫn kim cương hoa hồng - Qùa hiệu ứng*1 (8000xu),giảm 120 phút thời gian trưởng thành"
     },
-    buyTips: "購買%n份【%a】，共 %s 金幣",
-    exchangeTips: "兌換%n份【%a】，共 %s 陽光",
-    cancel: "我再想想",
-    queyBuy: "確定購買",
-    queyExchange: "確定兌換",
-    nuySucTips: "購買成功！",
-    exChangeSucTips: "兌換成功！",
+    buyTips: "Mua %n gói 【%a】，tổng %s xu",
+    exchangeTips: "Đổi %n gói 【%a】，tổng %s ánh năng",
+    cancel: "Suy nghĩ lại",
+    queyBuy: "Xác nhận mua",
+    queyExchange: "Xác nhận đổi",
+    nuySucTips: "Mua thành công！",
+    exChangeSucTips: "Đổi thành công！",
 
     //HistoryTabsScrollLoadList
-    historyTitle: "動態",
-    historyTab1: "摘取",
-    historyTab2: "購買/兌換",
-    historyTab3: "任務",
-    today: "今天",
-    totalSun: "共收穫 %s 陽光",
-    mySun: "摘取他人%s陽光 ",
-    stolenSun: "被人摘取%s陽光",
-    playSunTips: "玩家%n等%c位玩家摘取了陽光*%s",
-    open: "展開",
-    backGet: "回摘",
-    playGetSun: "玩家%n摘取了陽光*%s",
-    noHistory: "無玩家來摘取哦！",
-    historyBuyTips: "購買了",
-    historyExchange: "使用了陽光*%s，兌換了「%n」%d%a",
-    dayNums: "天",
-    taskEdTips: "完成了「%t」，領取了「%n」/%s",
+    historyTitle: "Động thái",
+    historyTab1: "Đánh cắp",
+    historyTab2: "Mua / Đổi",
+    historyTab3: "Nhiệm vụ",
+    today: "Hôm nay",
+    totalSun: "Tổng kiếm được %s Ánh nắng",
+    mySun: "Nhận %s Ánh nắng ",
+    stolenSun: "Bị đánh cắp %s Ánh nắng",
+    playSunTips: " <em>%n</em> và %c user đã đánh cắp *%s Ánh nắng",
+    open: "Mở",
+    backGet: "Đánh cắp lại ",
+    playGetSun: "User <strong>%n</strong>  đánh cắp *%s Ánh nắng",
+    noHistory: "Chưa có số liệu！",
+    historyBuyTips: "Mua",
+    historyExchange: "Sử dụng *%s Ánh nắng để đổi「%n」%d%a",
+    dayNums: "Ngày",
+    taskEdTips: "Đã hoàn thiện 「%t」，nhận「%n」*%s",
 
     //index
-    ruleIcon: "攻略",
-    historyIcon: "動態",
+    ruleIcon: "Công lược",
+    historyIcon: "Động thái",
+    homeIcon: "Quay lại",
     tabs: [
         {
-            name: "排行榜",
+            name: "BXH",
             com: "TabsScrollLoadList"
         },
         {
-            name: "商店",
+            name: "Shop",
             com: "Commodity"
         },
         {
-            name: "任務",
+            name: "Nghiệm vụ",
             com: "Task"
         }
     ],
-    singUpOk: "成為莊園主！",
+    singUpOk: "Trở thành chủ trang viên！",
 
     //land
-    lanUnlock: "點擊解鎖",
-    choose: "點擊種植",
-    tmTips: "%s后成熟",
-    use: "使用",
+    lanUnlock: "mở khóa ",
+    choose: "trồng",
+    tmTips: "%s %n grown",
+    use: "Sử dụng",
     propsDesc: {
-        1: "肥料減少植物的成熟時間，每次使用-5min",
-        2: "保護盾可保護土地在90min內不會被偷摘",
-        3: "對保護盾投擲石頭,可讓保護盾的保護時間-5min",
-        4: "使用手套可摘到非好友玩家的陽光"
+        1: "Phân bón có thể giảm thời gian trưởng thành của cây, mỗi lần sử dụng được giảm 5 phút.",
+        2: "Lá chắn bảo vệ cây trồng khỏi bị đánh cắp trong vòng 90 phút",
+        3: "Ném đá vào Lá chắn, sẽ giảm 5 phút thời gian bảo vệ",
+        4: "Sử dụng Găng tay để đón Ánh nắng của người chơi"
     },
     usePropsDesc: {
-        1: "加速成功，植物成熟時間縮短5min",
-        2: "使用保護盾成功，90min內將不被偷摘",
-        3: "投出一個石頭，該保護盾保護時間-5min",
-        4: "偷摘到%s個陽光"
+        1: "Sử dụng thành công，thời gian trưởng thành đã giảm 5min",
+        2: "Sử dụng thành công，cây trồng không bị đánh cắp trong 90min",
+        3: "Sử dụng thành công，thời gian bảo vệ của Lá chắn đã giảm 5min",
+        4: "Đánh cắp được %s Ánh nắng"
     },
-    usePropsTips1: "這塊土地有正在使用的保護盾哦~",
-    getCarrotTips1: "勤勞的莊園主,恭喜你種出了【%n*%s】",
-    getCarrotTips2: "恭喜獲得%s陽光",
-    getCarrotTips3: "已摘到%s陽光!",
+    usePropsTips1: "Khu đất này có Lá chắn bảo vệ~",
+    getCarrotTips1: "Chúc mừng bạn chủ trang viên đã trồng được【%n*%s】",
+    getCarrotTips2: "Chúc mừng nhận %s Ánh nắng",
+    getCarrotTips3: "Đã nhận %s Ánh nắng!",
     noFridenGetSun:
-        "偷摘非好友的土地需要使用手套道具哦！收到道具可通過任務或者購買獲得",
+        "Để đánh cắp, bạn cần sử dụng Găng tay! Nhận Găng tay từ nghiệm vụ hoặc mua ở shop",
     //landBox
-    manorName: "<strong>%n</strong> 的莊園",
-    unlockLandTitle: "擴建土地",
-    unlockTips: "擴建土地需要花費%c金幣喔，請問是否要擴建？",
-    qureyUnlock: "確定擴建",
-    goodsNotHas: "倉庫里沒有種子哦...",
-    buyGoods: "去商店購買",
-    unLandSuc: "恭喜擴建成功，快去種下種子吧！",
-    notCoins: "沒有足夠的金幣哦~",
-    plantSuc: "種植成功！",
-    welcome: "歡迎來到「%n」的莊園",
+    manorName: "Trang viên của <strong>%n</strong> ",
+    unlockLandTitle: "mở rộng đất đai",
+    unlockTips:
+        "Mở rộng khu đất dai tốn %c xu. Bạn có xác nhận mở rộng không？",
+    qureyUnlock: "Xác nhận",
+    goodsNotHas: "Chưa có hạt giống nào trong kho...",
+    propsNotHas: "Chưa có lá chắn hoặc phân bón",
+    buyGoods: "Đi mua",
+    unLandSuc: "Mở rộng thành công! Hãy trồng cây đi bạn",
+    notCoins: "Chưa đủ xu~",
+    plantSuc: "Trồng thành công",
+    welcome: "Chào mừng đến với trang viên của「%n」",
     //rool
     strTips: {
-        exchange: "恭喜「%n」兌換到「%a」*%s",
-        sun: "恭喜「%n」收穫「陽光」*%s",
-        prize: "恭喜「%n」使用稀有種子種出「%a」*%s"
+        exchange: "Chúc mừng 「%n」 đổi được 「%a」*%s ",
+        sun: "Chúc mừng 「%n」 nhận *%s 「Ánh nắng」",
+        prize: "Chúc mừng 「%n」 nhận 「%a」*%s qua hạt giống hiếm có"
     },
     //TabsScrollLoadList
-    rankTab1: "關注總排行榜",
-    rankTab2: "總排行榜",
-    hasSun: "有陽光",
+    rankTab1: "BXH Quan tâm",
+    rankTab2: "BXH Tổng",
+    hasSun: "có Ánh nắng",
 
     //task
-    dayIndex: "第%i天",
-    geted: "已领取",
-    get: "领取",
-    gift: "獎勵:",
-    giftCount: "每天%c次",
-    doTask: "去完成",
-    inivitNums: "已邀請%s人",
-    inivitEd: "已邀請玩家",
-    inivitBtn: "邀請玩家參與",
-    inivitListTitle: "關注列表",
-    inivit: "邀請他",
-    singInSuc: "簽到成功！",
-    inivitSuc: "已邀請，請耐心等待對方的答應",
-    getSuc: "领取成功！",
+    dayIndex: "day %i",
+    geted: "Đã nhận",
+    get: "Nhận",
+    gift: "Thưởng:",
+    giftCount: "Mỗi ngày %c lần",
+    doTask: "Hoàn thiện",
+    inivitNums: "Đã mời %s user",
+    inivitEd: "Đã mời user",
+    inivitBtn: "Mời user tham gia",
+    inivitListTitle: "Danh sách quan tâm",
+    inivit: "Mời",
+    singInSuc: "Điểm danh thành công！",
+    inivitSuc: "Đã mời，vui lòng chờ sự đòng ý của đối phương",
+    getSuc: "Nhận thành công！",
     //rule
-    ruleTitle: "莊園攻略",
-    ruleTab1: "陽光攻略",
-    ruleTab2: "莊園獎勵",
-    ruleTips1: "Step1 擴建土地種植植物",
+    ruleTitle: "Công lược trang viên",
+    ruleTab1: "Công lược",
+    ruleTab2: "Thưởng ",
+    ruleTips1: "Step1 Mở rộng đất đai để trồng cây",
     ruleTips2:
-        "1、起初每位玩家都有兩塊土地，其他8塊土地需要花費一定的金幣擴建<br/>2、擴建後的土地可以種植不同的植物，通過任務、購買、陽光兌換可以獲得植物種子",
-    ruleTips3: "Step2 保護植物採摘陽光",
+        "1、Lúc đầu, mỗi user có hai khu đất, và 8 khu đất còn lại cần tốn xu để mở rộng<br/>2、Khu đất sau khi mở rộng sẽ được trồng nhiều loại cây khác. Nhận hạt giống qua nhiệm vụ, đổi hoặc mua ở shop",
+    ruleTips3: "Step2 Bảo vệ cây trồng, thu tập ánh nắng",
     ruleTips4:
-        " 3、植物被種下後在一定時間內會成熟並產出陽光，莊園主可對即將成熟的植物使用肥料（加快成熟）、保護盾（防止被偷）<br/>4、莊園主也可去其他莊園偷摘陽光，好友之間偷摘不需要使用手套，非好友之間偷摘需要使用手套；當某片植物的陽光被偷摘到一定數量後，就不可以再被偷摘",
-    ruleTips5: "Step3 使用陽光兌換獎勵",
+        " 3、Sau khi trồng cây, nó sẽ trưởng thành trong một khoảng thời gian nhất định và được sản xuất ánh nắng. Chủ trang viên có thể sử dụng đạo cụ như phân bón và là chắn để bảo vệ cây trồng của mình<br/>4、Chủ trang viên có thể đánh cắp ánh nắng ở trang viên khác, đánh cắp trang viên của bạn bè không cần găng tay, và đánh cắp trang viên của user khác phải sử dụng găng tay. Mỗi cây trồng có lượng ánh nắng nhất định, không đánh cắp được nữa sau khi đã bị đánh cắp hết",
+    ruleTips5: "Step3 Đổi thưởng bằng ánh nắng",
     ruleTips6:
-        "5、獲得陽光後可以去「音覓莊園-商店」兌換禮物、種子、頭像框、座駕等獎勵；用於兌換的陽光會消耗陽光庫存，但不影響排行榜的陽光總數",
-    ruleTips7: "注意",
+        "5、Tại shop trang viên, user có thể đổi ra quà túy, hạt giống, khung ảnh, xe bằng ánh nắng. Số ánh nắng đã đổi quà sẽ bị trừ, nhưng tổng số ánh nắng sẽ được tích lũy",
+    ruleTips7: "Lưu ý",
     ruleTips8:
-        "1、活動中，若發現玩家用不正當手段參與活動，小音有權在不事先通知的情況下按情節嚴重對參與玩家、違規者取消上榜資格、封禁賬號、收回該玩家所有獎勵等處罰，包括但不限於： <br/>a）活動期間對參賽玩家惡意評論、造謠、影射等 <br/>b)非法獲得金幣、指定禮物",
+        "1、Trong sự kiện, khi phát hiện người chơi gian lận, chúng tôi sẽ hủy bỏ tư cách tham gia của người chơi mà không cần thông báo, bao gồm:<br/>a） Trong quá trình sự kiện có hành động công kích xúc phạm người khác; <br/>b)Chơi xu lậu",
     ruleTips9:
-        "2、小號不可成為莊園主，小號的定義是同一台設備或者同一個IP下的第二個起的登錄賬號為小號",
-    ruleTips9:
-        "3、玩家請及時摘取和使用陽光，在活動結束後未用於兌換或者未摘取的陽光將失效;活動中兌換的背包禮物有效期均為7天",
+        "2、Acc phụ không trở thành chủ trang viên được. Acc phụ có nghĩa là acc đăng nhập thứ 2 của cùng 1 id máy",
     ruleTips10:
-        "4、榜單分為關注排行榜和總排行榜，均按照已經摘取到的總陽光數量，從高到低排名，當陽光數一致時，先達到的玩家優先",
-    ruleTips12: "5、本活動與蘋果公司無關",
-    ruleTips13: "本活動最終解釋權歸活動主辦方所有",
+        "3、Ánh nắng của sự kiện này sẽ mất hiệu sau khi sự kiện kết thức; Qùa túy nhận từ sự kiện này đều có hạn 7 ngày",
+    ruleTips11:
+        "4、BXH bao gồm BXH quan tâm và BXH tổng, theo tổng số lượng ánh nắng xếp thứ tự từ cao xuống thấp, khi số lượng ánh nắng bằng nhau, user đến trước sẽ được ưu tiên",
+    ruleTips12: "5、Sự kiện này không liên quan đến công ty APPLE",
+    ruleTips13: "Quyền giải thích cuối cùng thuộc về ban tổ chức ",
     giftArr: [
         {
-            name: "xxxxxx",
-            img: ""
+            name: "Chứng nhận - Chủ Trang viên chăm chỉ",
+            img: require("./img/1.png")
         },
         {
-            name: "xxxxxx",
-            img: ""
+            name: "Khung ảnh - Chủ Trang viên chăm chỉ",
+            img: require("./img/2.png")
         },
         {
-            name: "xxxxxx",
-            img: ""
+            name: "Huy chương - Chủ Trang viên chăm chỉ",
+            img: require("./img/3.png")
         },
         {
-            name: "xxxxxx",
-            img: ""
+            name: "Xe - Bí ngô",
+            img: require("./img/4.png")
         },
         {
-            name: "xxxxxx",
-            img: ""
+            name: "Qùa hiệu ứng - Nàng tiên hoa sen",
+            img: require("./img/5.png")
         },
         {
-            name: "xxxxxx",
-            img: ""
+            name: "Qùa hiệu ứng - Ánh nắng mặt trời",
+            img: require("./img/6.png")
         },
         {
-            name: "xxxxxx",
-            img: ""
+            name: "Qùa hiệu ứng - Ánh sáng mặt trăng",
+            img: require("./img/7.png")
         }
     ],
     wardTop1:
-        "第一名：稱號（15天）+頭像框（15天）+勛章（15天）+南瓜車-座駕（15天）+禮物*1",
+        "Top1：Chứng nhận - Chủ Trang viên chăm chỉ（15ngày）+Khung ảnh - Chủ Trang viên chăm chỉ（15ngày）+Huy chương - Chủ Trang viên chăm chỉ（15ngày）+Xe - Bí ngô（15ngày）+Qùa hiệu ứng - Nàng tiên hoa sen*1",
     wardTop2:
-        "第二名：稱號（10天）+頭像框（10天）+勛章（10天）+南瓜車-座駕（10天）+禮物*1",
+        "Top2：Chứng nhận - Chủ Trang viên chăm chỉ（10ngày）+Khung ảnh - Chủ Trang viên chăm chỉ (10ngày）+Huy chương - Chủ Trang viên chăm chỉ（10ngày）+Xe - Bí ngô（10ngày）+Qùa hiệu ứng - Ánh nắng mặt trời*1",
     wardTop3:
-        "第三名：稱號（7天）+頭像框（7天）+勛章（7天）+南瓜車-座駕（7天）+禮物*1",
+        "Top3：Chứng nhận - Chủ Trang viên chăm chỉ（7ngày）+Khung ảnh - Chủ Trang viên chăm chỉ（7ngày）+Huy chương - Chủ Trang viên chăm chỉ（7ngày）+Xe - Bí ngô（7ngày）+Qùa hiệu ứng - Ánh sáng mặt trăng*1",
     wardTop4:
-        "第一名：稱號（15天）+頭像框（15天）+勛章（15天）+南瓜車-座駕（15天）+禮物*1",
+        "Top4 & 5：Khung ảnh - Chủ Trang viên chăm chỉ（7ngày）+Huy chương - Chủ Trang viên chăm chỉ（7ngày）+Xe - Bí ngô（7ngày）",
     wardTop5:
-        "第一名：稱號（15天）+頭像框（15天）+勛章（15天）+南瓜車-座駕（15天）+禮物*1"
+        "Top6 - 10：Khung ảnh - Chủ Trang viên chăm chỉ（7ngày）+Huy chương - Chủ Trang viên chăm chỉ（7ngày）"
 };

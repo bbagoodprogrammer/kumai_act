@@ -4,7 +4,7 @@
     <div class="title">{{lang.ruleTitle}}</div>
     <div class="tabs">
       <span :class="{act:type== 1}" @click="type = 1">{{lang.ruleTab1}}</span>
-      <span :class="{act:type== 2}" @click="type =2">{{lang.ruleTab1}}</span>
+      <span :class="{act:type== 2}" @click="type =2">{{lang.ruleTab2}}</span>
     </div>
     <div class="con">
       <div class="ruleTips" v-if="type == 1">
@@ -17,14 +17,13 @@
         <p v-html="lang.ruleTips6">
         </p>
         <h6>{{lang.ruleTips7}}</h6>
-        <p>
-          {{lang.ruleTips8}}
+        <p v-html="lang.ruleTips8" class="mb">
         </p>
-        <h6> {{lang.ruleTips9}}</h6>
-        <p v-html="lang.ruleTips10">
+        <p class="mb"> {{lang.ruleTips9}}</p>
+        <p v-html="lang.ruleTips10" class="mb">
         </p>
-        <p>{{lang.ruleTips11}} </p>
-        <p>{{lang.ruleTips12}}</p>
+        <p class="mb">{{lang.ruleTips11}} </p>
+        <p class="mb">{{lang.ruleTips12}}</p>
         <p class="lastIips">*{{lang.ruleTips13}}</p>
       </div>
       <div class="giftTips" v-else>
@@ -73,6 +72,9 @@ export default {
   background: url(../img/ruleBg.png);
   background-size: 100% 100%;
   position: relative;
+  .mb {
+    margin-bottom: 0.2rem;
+  }
   .close {
     width: 0.54rem;
     height: 0.54rem;
@@ -116,16 +118,23 @@ export default {
   }
   .con {
     height: 8.8rem;
+    overflow-x: hidden;
     overflow-y: scroll;
   }
   h6 {
     color: #EC933B;
     font-size: 0.28rem;
     margin: 0.38rem 0 0.21rem;
+    font-weight: bold;
   }
   p {
     color: #672A0B;
     font-size: 0.28rem;
+  }
+  .giftTips {
+    p {
+      margin-bottom: 0.3rem;
+    }
   }
   .giftList {
     display: flex;
@@ -133,6 +142,7 @@ export default {
     justify-content: space-between;
     margin-top: 0.31rem;
     .giftItem {
+      width: 1.49rem;
       margin-bottom: 0.2rem;
     }
     .giftItem:nth-child(5) {
@@ -147,11 +157,16 @@ export default {
       background: #EEAC6E;
       border: 0.04rem solid #FFECB4;
       border-radius: 0.1rem;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     strong {
+      width: 100%;
       display: block;
       text-align: center;
-      font-size: 0.28rem;
+      font-size: 0.26rem;
       color: #672A0B;
     }
   }

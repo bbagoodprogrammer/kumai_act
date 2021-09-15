@@ -78,7 +78,7 @@ export default {
     rankApi () {
       const token = getUrlString('token') || '';
       const uid = getUrlString('uid') || '';
-      return `/index.php?action=Action/SnatchTreasure.rank&type=${this.mainTab}&page=${this.rank.page ? this.rank.pange + 1 : 1}&uid=${uid}&token=${token}`;
+      return `/index.php?action=Action/SnatchTreasure.rank&type=${this.mainTab}&page=${this.rank.page ? this.rank.page + 1 : 1}&uid=${uid}&token=${token}`;
     },
     rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
@@ -147,7 +147,7 @@ export default {
               })
             }
             //倒计时
-            set('second', response_data.second)
+            // set('second', response_data.second)
 
             if (arr.slice) {
               const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;

@@ -36,7 +36,7 @@
                   <li v-for="(item2,index2) in item.records" :key="index2">
                     <img v-lazy="item2.avatar" alt="">
                     <div class="msg">
-                      <div class="userTips">{{lang.playGetSun.replace(`%n`,item2.nick).replace(`%s`,item2.sun)}}</div>
+                      <div class="userTips" v-html="lang.playGetSun.replace(`%n`,item2.nick).replace(`%s`,item2.sun)"></div>
                       <div class="tm2">{{getDate(item2.tm,8)}}</div>
                     </div>
                     <div class="back" @click="backGet(item2)">{{lang.backGet}}</div>
@@ -346,15 +346,15 @@ export default {
             color: #672A0B;
           }
           .vs {
-            font-size: 0.26rem;
+            font-size: 0.22rem;
             color: #EC933B;
             em {
-              font-size: 0.26rem;
+              font-size: 0.22rem;
               color: #672A0B;
             }
             strong {
               height: 0.32rem;
-              font-size: 0.26rem;
+              font-size: 0.22rem;
               padding: 0 0.15rem;
               background: #F7E2BD;
               border-radius: 0.16rem;
@@ -383,7 +383,7 @@ export default {
           color: #672A0B;
           overflow: hidden;
           .tips {
-            height: 0.73rem;
+            min-height: 0.73rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -414,6 +414,14 @@ export default {
                 .userTips {
                   color: #672A0B;
                   font-size: 0.24rem;
+                  strong {
+                    font-size: 0.24rem;
+                    max-width: 1.2rem;
+                    display: inline-block;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                  }
                 }
                 .tm2 {
                   color: #EC933B;
@@ -421,7 +429,9 @@ export default {
                 }
               }
               .back {
-                width: 1.22rem;
+                padding: 0 0.06rem;
+                white-space: nowrap;
+                min-width: 1.22rem;
                 height: 0.49rem;
                 background: url(../img/buy.png);
                 background-size: 100% 100%;
@@ -443,13 +453,15 @@ export default {
             }
           }
           .msgTips {
+            width: 5rem;
             height: 100%;
             font-size: 0.24rem;
-            line-height: 0.73rem;
-            display: flex;
+            vertical-align: bottom;
+            // line-height: 0.73rem;
+            // display: flex;
             > em {
               font-size: 0.24rem;
-              display: block;
+              display: inline-block;
               max-width: 1rem;
               white-space: nowrap;
               overflow: hidden;

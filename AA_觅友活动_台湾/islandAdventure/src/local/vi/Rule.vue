@@ -64,6 +64,8 @@ export default {
         return getDate(new Date(this.activity.stime * 1000), 1) + '-' + getDate(new Date(this.activity.etime * 1000), 1)
       } else if (AREA == 'vn') {
         return getDate(new Date(this.activity.stime * 1000), 2) + '-' + getDate(new Date(this.activity.etime * 1000), 2)
+      } else if (AREA == 'id') {
+        return getDate(new Date(this.activity.stime * 1000), 3) + '-' + getDate(new Date(this.activity.etime * 1000), 3)
       }
 
     }

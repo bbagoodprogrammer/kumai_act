@@ -149,6 +149,10 @@ export default {
           this.$refs.landsBox.init()
         } else {
           this.toast(res.data.response_status.error)
+          if (res.data.response_status.code == 20009) {
+            this.singUpPup = false
+            this.inivit_pup = false
+          }
         }
       })
     }
@@ -158,8 +162,8 @@ export default {
 
 <style lang="scss">
 .pageIndex {
-  background: #6CC94F url(../img/banner.png) no-repeat;
-  background-size: 100% auto;
+  //   background: #6CC94F url(../img/banner.png) no-repeat;
+  //   background-size: 100% auto;
   position: relative;
   .landIcon {
     width: 7.5rem;
@@ -289,11 +293,14 @@ export default {
     .singUpBtn {
       width: 2.78rem;
       height: 0.84rem;
+      line-height: 0.3rem;
       background: url(../img/singUpBtn.png);
       background-size: 100% 100%;
       margin: 0.15rem auto 0;
       text-align: center;
-      line-height: 0.84rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #672A0B;
     }
   }

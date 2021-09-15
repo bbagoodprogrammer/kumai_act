@@ -14,7 +14,7 @@ export default {
     sun_nums: "/份",
     buy: "購買",
     exchange: "兌換",
-    buyTips: {
+    buyTipsList: {
         1: "肥料減少植物的成熟時間，每次使用-5min",
         2: "保護盾可保護土地在90min內不被偷摘",
         3: "對保護盾投擲石頭",
@@ -30,7 +30,7 @@ export default {
         108: "成熟時間30min，可產出620陽光",
         109: "成熟時間30min，可產出750陽光"
     },
-    exchangeTips: {
+    exchangeTipsList: {
         1: "帶著草莓的味道進場",
         2: "帶著櫻桃的味道進場",
         3: "草莓加持 快樂翻倍",
@@ -68,19 +68,20 @@ export default {
     totalSun: "共收穫 %s 陽光",
     mySun: "摘取他人%s陽光 ",
     stolenSun: "被人摘取%s陽光",
-    playSunTips: "玩家%n等%c位玩家摘取了陽光*%s",
+    playSunTips: "玩家<em>%n</em>等%c位玩家摘取了陽光*%s",
     open: "展開",
     backGet: "回摘",
-    playGetSun: "玩家%n摘取了陽光*%s",
+    playGetSun: "玩家<strong>%n</strong>摘取了陽光*%s",
     noHistory: "無玩家來摘取哦！",
     historyBuyTips: "購買了",
     historyExchange: "使用了陽光*%s，兌換了「%n」%d%a",
     dayNums: "天",
-    taskEdTips: "完成了「%t」，領取了「%n」/%s",
+    taskEdTips: "完成了「%t」，領取了「%n」*%s",
 
     //index
     ruleIcon: "攻略",
     historyIcon: "動態",
+    homeIcon: "返回莊園",
     tabs: [
         {
             name: "排行榜",
@@ -126,6 +127,7 @@ export default {
     unlockTips: "擴建土地需要花費%c金幣喔，請問是否要擴建？",
     qureyUnlock: "確定擴建",
     goodsNotHas: "倉庫里沒有種子哦...",
+    propsNotHas: "沒有保護盾或者肥料哦",
     buyGoods: "去商店購買",
     unLandSuc: "恭喜擴建成功，快去種下種子吧！",
     notCoins: "沒有足夠的金幣哦~",
@@ -184,31 +186,31 @@ export default {
     giftArr: [
         {
             name: "xxxxxx",
-            img: ""
+            img: require("./img/1.png")
         },
         {
             name: "xxxxxx",
-            img: ""
+            img: require("./img/2.png")
         },
         {
             name: "xxxxxx",
-            img: ""
+            img: require("./img/3.png")
         },
         {
             name: "xxxxxx",
-            img: ""
+            img: require("./img/4.png")
         },
         {
             name: "xxxxxx",
-            img: ""
+            img: require("./img/5.png")
         },
         {
             name: "xxxxxx",
-            img: ""
+            img: require("./img/6.png")
         },
         {
             name: "xxxxxx",
-            img: ""
+            img: require("./img/7.png")
         }
     ],
     wardTop1:

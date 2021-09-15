@@ -10,7 +10,7 @@
     <div class="list day">
       <ul>
         <li v-for="(item,index) in rank.list" :key="index" :class="['rank' + item.rank]" @click="showUserLand(item)">
-          <div class="hasSun" v-if="item.harvest_sun > 0">{{lang.hasSun}}</div>
+          <div class="hasSun" v-if="item.harvest_sun > 0"><i></i> {{lang.hasSun}}</div>
           <div class="userRank"> <i v-if="item.rank > 3">{{item.rank}}</i> </div>
           <div class="imgBox">
             <img :src="item.avatar_frame" alt="" v-if="item.avatar_frame" class="frame">
@@ -327,18 +327,28 @@ export default {
     margin-bottom: 0.06rem;
     position: relative;
     .hasSun {
-      width: 1.31rem;
+      min-width: 1.31rem;
       height: 0.37rem;
       font-size: 0.26rem;
       color: #BE670E;
       text-indent: 0.28rem;
-      background: url(../img/hasSun.png);
-      background-size: 100% 100%;
+      background: #FFE349;
+      border-radius: 0 0.16rem 0 0.16rem;
+      border: 0.02rem solid #E0A024;
       position: absolute;
       top: 0;
       right: 0;
       text-align: center;
       line-height: 0.37rem;
+      display: flex;
+      align-items: center;
+      i {
+        width: 0.33rem;
+        height: 0.33rem;
+        background: url(../img/sunIcon1.png);
+        background-size: 100% 100%;
+        margin: 0 0.02rem;
+      }
     }
     .userRank {
       width: 1rem;

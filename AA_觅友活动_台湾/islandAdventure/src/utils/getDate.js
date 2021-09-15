@@ -21,6 +21,9 @@ function getDate(datem, type) {
     if (type == 2) {
         return `${date}/${month} ${hours}:${minute}`;
     }
+    if (type == 3) {
+        return `${month}/${date} ${hours}:${minute}`;
+    }
     if (type == 4) {
         return `${year}${month}${date}`;
     }

@@ -14,7 +14,7 @@
     </ul>
     <!-- 生长中 -->
     <div class="growing" @click="useProp('props')">
-      <div class="time"><span>{{lang.tmTips.replace('%s',time)}}</span></div>
+      <div class="time"><span>{{lang.tmTips.replace('%s',time).replace('%n',info.seed.name)}}</span></div>
       <div class="text"><span class="value" :class="'value'+info.value">x {{info.value}}</span></div>
     </div>
 
@@ -51,7 +51,8 @@
             </div>
             <div class="goodsList ">
               <div class="goodItem" v-for="(item,index) in  isMain==1? myUseProps:protect_seconds>0?stoneProps:gloveProps" :key="index" @click="showDesc(item.id,index)">
-                <img :src="require(`../img/props/${item.id}.png`)" alt="">
+                <img :src="_images['fertilizer']" alt="" v-if="item.id == 1">
+                <img :src="require(`../img/props/${item.id}.png`)" alt="" v-else>
                 <div class="nums">{{item.num}}</div>
                 <div class="name">{{item.name}}</div>
               </div>
@@ -119,6 +120,9 @@ export default {
     },
     usePropsDesc () {
       return this.lang.usePropsDesc
+    },
+    _images () {
+      return _images
     }
   },
   watch: {
@@ -533,8 +537,6 @@ export default {
     .sunGetEd {
       width: 1.01rem;
       height: 1.03rem;
-      background: url(../img/sunGetEd.png);
-      background-size: 100% 100%;
       position: absolute;
       top: -0.7rem;
       left: 0.63rem;

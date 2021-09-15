@@ -261,15 +261,16 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 0.26rem;
+        font-size: 0.24rem;
         height: 0.35rem;
         strong {
           display: block;
-          font-size: 0.26rem;
-          max-width: 1.5rem;
+          font-size: 0.24rem;
+          max-width: 1.2rem;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          margin-left: 0.06rem;
         }
       }
       .score {
@@ -294,8 +295,7 @@ export default {
   .portal {
     width: 1.39rem;
     height: 1.35rem;
-    background: url(../img/portal.png);
-    background-size: 100% 100%;
+
     position: absolute;
     top: 6.8rem;
     right: 0;
