@@ -7,6 +7,7 @@
       <span :class="{act:type== 2}" @click="type =2">{{lang.ruleTab2}}</span>
     </div>
     <div class="con">
+      <div class="tm">{{lang.tm}}{{aTimer}}</div>
       <div class="ruleTips" v-if="type == 1">
         <h6>{{lang.ruleTips1}}</h6>
         <p v-html="lang.ruleTips2"></p>
@@ -48,6 +49,9 @@
 </template>
 
 <script>
+import getDate from "../utils/getDate"
+import { mapState } from "vuex"
+
 export default {
   data () {
     return {
@@ -56,9 +60,17 @@ export default {
   }
   ,
   computed: {
+    ...mapState(['activity']),
     giftArr () {
       return this.lang.giftArr
-    }
+    },
+    aTimer () {
+      if (AREA == 'tw') {
+        return getDate(new Date(this.activity.stime * 1000), 1) + '-' + getDate(new Date(this.activity.etime * 1000), 1)
+      } else if (AREA == 'vn') {
+        return getDate(new Date(this.activity.stime * 1000), 2) + '-' + getDate(new Date(this.activity.etime * 1000), 2)
+      }
+    },
   }
 }
 </script>
@@ -120,6 +132,11 @@ export default {
     height: 8.8rem;
     overflow-x: hidden;
     overflow-y: scroll;
+  }
+  .tm {
+    text-align: center;
+    color: #672A0B;
+    margin-top: 0.1rem;
   }
   h6 {
     color: #EC933B;

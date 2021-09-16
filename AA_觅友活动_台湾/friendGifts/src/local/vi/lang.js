@@ -5,7 +5,7 @@ export default {
     day: "Ngày",
     getEd: "Nhận",
     charge: "Nạp ngay",
-    chareTips: "Nạp %c xu lần đầu tiên tại app sẽ nhận được gói quà giao lưu",
+    chareTips: "Nạp %c xu lần đầu sẽ nhận  gói quà giao lưu",
     chareTips2: "Nạp <em>%c</em> xu lần đầu tiên",
     chareTips3: "*Số xu nạp tính nạp trong 1 lần，<em>không</em> cộng dồn",
     tm: "thời gian sự kiện:",

@@ -31,7 +31,7 @@
           <div class="title">{{lang.ruleTips}}</div>
           <div class="tm">{{lang.tm}}{{aTimer}}</div>
           <h6>{{lang.ruleTipsMsg1}}</h6>
-          <p>{{lang.ruleTipsMsg2}}</p>
+          <p v-html="lang.ruleTipsMsg2"></p>
           <h6>{{lang.ruleTipsMsg3}}</h6>
           <p v-html="lang.ruleTipsMsg4">
           </p>

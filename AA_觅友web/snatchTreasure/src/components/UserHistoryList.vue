@@ -214,7 +214,7 @@ export default {
       height: 100%;
       margin-left: 0.18rem;
       .giftName {
-        height: 0.4rem;
+        height: 0.6rem;
         margin-top: 0.35rem;
         display: flex;
         align-items: center;
@@ -239,7 +239,7 @@ export default {
           border-radius: 0.05rem;
           font-size: 0.2rem;
           text-align: center;
-          margin: 0.05rem 0 0 0.06rem;
+          margin-left: 0.06rem;
           &.gift {
             background: linear-gradient(90deg, #EF52EF, #F87053);
           }
@@ -276,7 +276,7 @@ export default {
       .giftDownTm {
         height: 0.36rem;
         line-height: 0.36rem;
-        font-size: 0.24rem;
+        font-size: 0.2rem;
         color: rgba(255, 255, 255, 0.6);
         text-align: right;
       }

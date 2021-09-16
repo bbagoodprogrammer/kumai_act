@@ -55,15 +55,18 @@ export default {
   }
   .pupTips {
     span {
-      display: block;
-      width: 1.51rem;
+      width: 1.1rem;
+      padding: 0 0.2rem;
       height: 0.67rem;
       background: url(../img/pupTips.png);
       background-size: 100% 100%;
       text-align: center;
       font-size: 0.26rem;
       color: #0D4A6D;
-      line-height: 0.67rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0.25rem;
       position: absolute;
       z-index: 1;
       right: 0;

@@ -53,7 +53,8 @@
             <div class="taskItem" v-for="(item2,index2) in item.list" :key="index2">
               <div class="title" v-if="item2.type == 'buy'">{{lang.historyBuyTips}}{{item2.name}}*{{item2.num}}</div>
               <div class="title" v-else>
-                {{lang.historyExchange.replace('%s',item2.sun).replace('%n',item2.name).replace('%d',item2.days>0?`${item2.days}${lang.dayNums}* `:'* ').replace('%a',item2.num)}}
+                <!-- .replace('%d',item2.days>0?`${item2.days}${lang.dayNums}* `:'* ') -->
+                {{lang.historyExchange.replace('%s',item2.sun).replace('%n',item2.name).replace('%a',item2.num)}}
               </div>
               <div class="tm">{{getDate(item2.tm,8)}}</div>
             </div>
@@ -421,6 +422,7 @@ export default {
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
+                    vertical-align: bottom;
                   }
                 }
                 .tm2 {
@@ -453,12 +455,10 @@ export default {
             }
           }
           .msgTips {
-            width: 5rem;
-            height: 100%;
+            width: 4.5rem;
             font-size: 0.24rem;
-            vertical-align: bottom;
-            // line-height: 0.73rem;
-            // display: flex;
+            display: flex;
+            align-items: center;
             > em {
               font-size: 0.24rem;
               display: inline-block;
@@ -469,6 +469,8 @@ export default {
             }
           }
           u {
+            flex: 1;
+            white-space: nowrap;
             font-size: 0.2rem;
             color: #2F75A5;
           }

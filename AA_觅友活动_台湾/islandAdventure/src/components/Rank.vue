@@ -12,7 +12,7 @@
         <span>{{surplusTime.hour}}</span>
         <em>{{lang.hour}}</em>
         <span>{{surplusTime.minute}}</span>
-        <em>{{lang.min}}</em>
+        <em>{{lang.minute}}</em>
         <span>{{surplusTime.second}}</span>
         <em>{{lang.second}}</em>
       </div>

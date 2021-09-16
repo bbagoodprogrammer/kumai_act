@@ -1,6 +1,7 @@
 export default {
     //html/index.html
     title: "Trang viên AloChat",
+    tm: "Thời gian:",
     index_singUpTitle: "Chào mừng đến với Trang viên của AloChat",
     index_singUpTips:
         "Hãy kinh doanh Trang viên của mình，mở rộng đất để trồng cây, tạo ra Ánh nắng để đổi thưởng",
@@ -76,7 +77,7 @@ export default {
     playGetSun: "User <strong>%n</strong>  đánh cắp *%s Ánh nắng",
     noHistory: "Chưa có số liệu！",
     historyBuyTips: "Mua",
-    historyExchange: "Sử dụng *%s Ánh nắng để đổi「%n」%d%a",
+    historyExchange: "Sử dụng *%s Ánh nắng để đổi「%n」%a",
     dayNums: "Ngày",
     taskEdTips: "Đã hoàn thiện 「%t」，nhận「%n」*%s",
 

@@ -309,7 +309,7 @@ export default {
         height: 100%;
         margin-left: 0.18rem;
         .giftName {
-          height: 0.4rem;
+          height: 0.6rem;
           margin-top: 0.2rem;
           display: flex;
           align-items: center;
@@ -335,7 +335,7 @@ export default {
             font-size: 0.2rem;
             // font-style: italic;
             text-align: center;
-            margin: 0.05rem 0 0 0.06rem;
+            margin-left: 0.06rem;
             font-weight: bold;
             &.gift {
               background: linear-gradient(90deg, #EF52EF, #F87053);
@@ -405,10 +405,10 @@ export default {
             display: flex;
             align-items: center;
             height: 0.36rem;
-            font-size: 0.24rem;
+            font-size: 0.2rem;
             color: rgba(255, 255, 255, 0.6);
             em {
-              font-size: 0.24rem;
+              font-size: 0.2rem;
             }
             i {
               width: 0.36rem;

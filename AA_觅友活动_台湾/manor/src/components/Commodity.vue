@@ -72,7 +72,7 @@
             <span class="add" @click="nums<maxGetNums2?nums++:maxGetNums2"></span>
             <u class="max" @click="nums = maxGetNums2">MAX</u>
           </div>
-          <p>{{lang.buyTips.replace('%n',nums).replace('%a',buyItem.name).replace('%s',nums * buyItem.sun)}}</p>
+          <p>{{lang.exchangeTips.replace('%n',nums).replace('%a',buyItem.name).replace('%s',nums * buyItem.sun)}}</p>
           <div class="btnBox">
             <u @click="closeBuy()">{{lang.cancel}}</u>
             <span @click="exchange()">{{lang.queyExchange}}</span>

@@ -15,9 +15,11 @@
         </div>
         <div class="cancel" v-if="codeItem.ing == 3 || codeItem.ing == 4">{{lang.giftCancel}}</div>
       </div>
-      <div class="luckNumber" v-if="codeItem.ing == 2">{{lang.luckNumber}}{{codeItem.prize_voucher}}</div>
-      <div class="giftDownTm" v-if="codeItem.surplusTime">
-        <span>{{codeItem.etime_md}}</span>
+      <div class="numberMsg">
+        <div class="luckNumber" v-if="codeItem.ing == 2">{{lang.luckNumber}}{{codeItem.prize_voucher}}</div>
+        <div class="giftDownTm" v-if="codeItem.etime_md">
+          <span>{{codeItem.etime_md}}</span>
+        </div>
       </div>
       <div class="status">
         <em v-if="codeItem.ing == 1">{{lang.status1}}</em>
@@ -203,7 +205,7 @@ export default {
       height: 100%;
       margin-left: 0.18rem;
       .giftName {
-        height: 0.4rem;
+        height: 0.6rem;
         margin-top: 0.35rem;
         display: flex;
         align-items: center;
@@ -228,7 +230,7 @@ export default {
           border-radius: 0.05rem;
           font-size: 0.2rem;
           text-align: center;
-          margin: 0.05rem 0 0 0.06rem;
+          margin-left: 0.06rem;
           &.gift {
             background: linear-gradient(90deg, #EF52EF, #F87053);
           }
@@ -239,36 +241,41 @@ export default {
         font-size: 0.24rem;
       }
     }
-    .luckNumber {
-      width: 2.28rem;
-      height: 0.44rem;
-      background: url(../img/luckNumberBg.png);
-      background-size: 100% 100%;
-      font-size: 0.2rem;
-      font-weight: bold;
-      line-height: 0.44rem;
-      text-indent: 0.2rem;
+    .numberMsg {
+      width: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       position: absolute;
       top: 1.31rem;
       left: 1.96rem;
-    }
-    .giftDownTm {
-      display: flex;
-      align-items: center;
-      height: 0.36rem;
-      font-size: 0.24rem;
-      color: rgba(255, 255, 255, 0.6);
-      position: absolute;
-      right: 0.45rem;
-      bottom: 0.32rem;
-      i {
-        width: 0.36rem;
+      .luckNumber {
+        width: 2.28rem;
+        height: 0.44rem;
+        background: url(../img/luckNumberBg.png);
+        background-size: 100% 100%;
+        font-size: 0.2rem;
+        font-weight: bold;
+        line-height: 0.44rem;
+        text-indent: 0.2rem;
+      }
+      .giftDownTm {
+        display: flex;
+        align-items: center;
         height: 0.36rem;
-        background: url(../img/clock.png);
-        background-size: auto 100%;
-        margin-right: 0.06rem;
+        font-size: 0.2rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-right: 0.25rem;
+        i {
+          width: 0.36rem;
+          height: 0.36rem;
+          background: url(../img/clock.png);
+          background-size: auto 100%;
+          margin-right: 0.06rem;
+        }
       }
     }
+
     .cancel {
       position: absolute;
     }

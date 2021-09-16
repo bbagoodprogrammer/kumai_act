@@ -324,6 +324,7 @@ export default {
         height: 0.96rem;
         background: url(../img/getBtn1.png);
         background-size: 100% 100%;
+        line-height: 0.35rem;
         text-align: center;
         display: flex;
         align-items: center;
@@ -391,7 +392,7 @@ export default {
       background: url(../img/luckGift_con.png);
       background-size: 100% 100%;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       flex-wrap: wrap;
       .giftItem {
@@ -427,9 +428,8 @@ export default {
         }
         strong {
           width: 100%;
-          height: 1rem;
           color: #A9650A;
-          font-size: 0.26rem;
+          font-size: 0.24rem;
           display: block;
           text-align: center;
           margin-top: 0.05rem;
@@ -477,7 +477,7 @@ export default {
       height: 1.88rem;
       background: url(../img/luckGift_bottom.png);
       background-size: 100% 100%;
-      margin-top: -0.2rem;
+      margin-top: -1.3rem;
     }
   }
 }

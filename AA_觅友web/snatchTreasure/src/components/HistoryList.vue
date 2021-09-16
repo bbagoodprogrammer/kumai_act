@@ -11,8 +11,13 @@
         </div>
         <div class="giftMsg">
           <div class="giftName">
-            <div class="name" style="-webkit-box-orient: vertical;">{{item.prize_name}}</div>
-            <div class="giftType" :class="{gift:item.prize_type == -1}">{{typeTips[item.prize_type]}}</div>
+            <div class="giftShow">
+              <div class="name" style="-webkit-box-orient: vertical;">{{item.prize_name}}</div>
+              <div class="giftType" :class="{gift:item.prize_type == -1}">{{typeTips[item.prize_type]}}</div>
+            </div>
+            <div class="giftDownTm">
+              <span>{{item.etime_md}}</span>
+            </div>
           </div>
         </div>
         <div class="userLuck">
@@ -24,9 +29,7 @@
             {{lang.luckNumber}}{{item.prize_voucher}}
           </div>
         </div>
-        <div class="giftDownTm">
-          <span>{{item.etime_md}}</span>
-        </div>
+
       </li>
     </ul>
   </div>
@@ -176,13 +179,21 @@ export default {
         z-index: 5;
       }
       .giftMsg {
+        flex: 1;
         height: 100%;
         margin-left: 0.18rem;
         .giftName {
-          height: 0.4rem;
+          width: 100%;
+          height: 0.6rem;
           margin-top: 0.2rem;
           display: flex;
           align-items: center;
+          justify-content: space-between;
+          .giftShow {
+            height: 100%;
+            display: flex;
+            align-items: center;
+          }
           .name {
             max-width: 1.6rem;
             font-size: 0.32rem;
@@ -200,12 +211,11 @@ export default {
             padding: 0 0.06rem;
             height: 0.26rem;
             line-height: 0.26rem;
-
             background: linear-gradient(90deg, #4D91FF, #55DBFD);
             border-radius: 0.05rem;
             font-size: 0.2rem;
             text-align: center;
-            margin: 0.05rem 0 0 0.06rem;
+            margin-left: 0.06rem;
             &.gift {
               background: linear-gradient(90deg, #EF52EF, #F87053);
             }
@@ -262,11 +272,9 @@ export default {
         display: flex;
         align-items: center;
         height: 0.36rem;
-        font-size: 0.24rem;
+        font-size: 0.2rem;
         color: rgba(255, 255, 255, 0.6);
-        position: absolute;
-        right: 0.28rem;
-        top: 0.36rem;
+        margin-right: 0.28rem;
         i {
           width: 0.36rem;
           height: 0.36rem;
