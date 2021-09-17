@@ -87,7 +87,7 @@ export default {
     GetMap
   },
 
-  data() {
+  data () {
     return {
       showGetMap: false,
       showSuperTip: false,
@@ -101,7 +101,7 @@ export default {
   },
 
   computed: {
-    ...mapState(["loading","actInfo", "speed_config"]),
+    ...mapState(["loading", "actInfo", "speed_config"]),
     lang: () => _lang,
     images: () => _images,
     linerHeight () {
@@ -122,27 +122,27 @@ export default {
   },
 
   watch: {
-    showSuperTip(val) {
+    showSuperTip (val) {
       if (!val) {
         this.superTipTimer && clearTimeout(this.superTipTimer)
       }
     },
     'actInfo.isSuperMode': {
-      handler(val) {
+      handler (val) {
         // console.log('val=>', val)
         this.isSuper = val
       }
     }
   },
 
-  created() {
+  created () {
     // document.title='\u200E';
     setTimeout(() => {
       this.getSuperProgress()
     }, 300)
   },
 
-  mounted() {
+  mounted () {
     this.$el.onclick = () => {
       if (this.showSuperTip) {
         this.showSuperTip = false
@@ -150,7 +150,7 @@ export default {
     }
   },
 
-  beforeDestroy() {
+  beforeDestroy () {
     clearInterval(this.timer)
     clearTimeout(this.superTipTimer)
   },
@@ -178,7 +178,7 @@ export default {
       }
     },
 
-    handleDownTime(diffTime) {
+    handleDownTime (diffTime) {
       const timeKey = "super_time";
       if (downTime(timeKey) == null) {
         downTime(timeKey, diffTime);
@@ -218,10 +218,10 @@ export default {
 
     handleShowSuperTip () {
       // 操作子组件
-      if(this.$refs.luckDraw.showGiftTip) {
+      if (this.$refs.luckDraw.showGiftTip) {
         this.$refs.luckDraw.showGiftTip = false
       }
-      if(this.$refs.luckDraw.showLuckValueTip) {
+      if (this.$refs.luckDraw.showLuckValueTip) {
         this.$refs.luckDraw.showLuckValueTip = false
       }
       if (!this.showSuperTip) {
@@ -232,7 +232,7 @@ export default {
       this.showSuperTip = !this.showSuperTip
     },
 
-    handleRouter(router) {
+    handleRouter (router) {
       // 如果正在寻宝中，不让跳转到其他的页面
       if (this.$refs.luckDraw.speed != this.speed_config) {
         toast(this.lang.hunt_not_leave)
@@ -350,6 +350,7 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 0.3rem;
+    text-align: center;
     .action {
       width: 1.95rem;
       height: 0.87rem;
@@ -402,7 +403,7 @@ export default {
     position: absolute;
     right: 0;
     bottom: 1.31rem;
-    line-height:0.6rem;
+    line-height: 0.6rem;
     font-size: 0.28rem;
     font-weight: bold;
     color: #714BED;
@@ -432,7 +433,12 @@ export default {
         .liner {
           width: 0.18rem;
           // height: 80%;
-          background: linear-gradient(0deg, #6BF9BD 0%, #487AFD 50%, #E21AFC 100%);
+          background: linear-gradient(
+            0deg,
+            #6BF9BD 0%,
+            #487AFD 50%,
+            #E21AFC 100%
+          );
           border-radius: 0.09rem;
           display: block;
           position: absolute;
@@ -531,7 +537,6 @@ export default {
         font-weight: 600;
         color: #FFFFFF;
         line-height: 0.24rem;
-
       }
       .down__time {
         font-size: 0.24rem;

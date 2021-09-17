@@ -43,7 +43,7 @@
 
     <div class="mask" v-show="first">
       <transition name="slide">
-        <div class="firstIn" v-show="first">
+        <div class="firstIn" v-if="first">
           <i class="close" @click="first = false"></i>
           <div class="firstInTitle">
             <i class="liner_l"></i>
@@ -90,9 +90,9 @@ export default {
     ...mapState(['activity', 'owner', 'rank']),
   },
   watch: {
-    activity (val) {
-      this.downTimeGo('time', val.seconds)
-    },
+    // activity (val) {
+    //   this.downTimeGo('time', val.seconds)
+    // },
     owner (val) {
       console.log(val)
       if (val.team_id == 0) {

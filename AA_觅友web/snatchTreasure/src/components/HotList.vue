@@ -135,7 +135,7 @@ export default {
             }, 1000)
           }
           this.showSetTypePup = false
-          this.vxc('setShowMask')
+          this.vxc('setShowMask', false)
         } else {
           this.toast(res.data.response_status.error)
           if (res.data.response_status.code == 10007) {
@@ -144,7 +144,7 @@ export default {
             this.$parent.init()
           }
           this.showSetTypePup = false
-          this.vxc('setShowMask')
+          this.vxc('setShowMask', false)
         }
       })
     },
@@ -152,7 +152,7 @@ export default {
       this.nowIndex = index
       this.nowId = id
       this.showSetTypePup = true
-      this.vxc('setShowMask')
+      this.vxc('setShowMask', true)
     },
     showCode (item) {
       this.codeItem = item

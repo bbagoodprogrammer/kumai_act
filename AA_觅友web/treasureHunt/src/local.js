@@ -3,7 +3,7 @@ const hosts = {
     "localhost:8080": "zh", // 修改此值可用于开发测试指定语言版本
     "udateapp.com": "zh",
     "alochatapp.com": "vi",
-    "udateapp.com": "id"
+    "newstarapp.com": "id"
 };
 
 function getMainHost() {

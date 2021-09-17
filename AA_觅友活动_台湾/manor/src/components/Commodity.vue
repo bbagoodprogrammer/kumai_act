@@ -206,8 +206,8 @@ export default {
       margin: 0 0.02rem 0.21rem 0;
       .imgBox {
         width: 2.32rem;
-        height: 2.3rem;
-        padding-top: 0.15rem;
+        min-height: 2.31rem;
+        padding: 0.15rem 0 0.1rem;
         background: url(../img/shopGiftBg.png);
         background-size: 100% 100%;
         > img {

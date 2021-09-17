@@ -245,7 +245,7 @@ export default {
             if (status == 2) {
               //成长中
               // const second = 60 * 60;
-              const second = this.info.end_seconds;
+              const second = Number(this.info.end_seconds);
               downTime('land' + id, second);
               this.$store.commit('updateLandInfo', {
                 id: id,

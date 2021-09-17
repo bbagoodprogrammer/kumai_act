@@ -1,27 +1,22 @@
-export default {
-    title: "印尼幸運禮盒", //幸運禮盒
-    tips: "贈送幸運禮盒有機會拆出以下幸運禮物", //贈送幸運禮盒有機會拆出以下幸運禮物
-    lucky_box: "幸運禮盒", //幸運禮盒
-    lucky_higt_box: "高級幸運禮盒", //高級幸運禮盒
-    lucky_super_box: "超級幸運禮盒", //超級幸運禮盒
-    send: "送給", //送給
-    sendLuckyBox: "立即抽獎", //立即抽獎
+﻿export default {
+    title: 'Lucky gift box',//幸運禮盒
+    tips:'Berikan kotak hadiah keberuntungan untuk berkesempatan mengambil hadiah keberuntungan berikut',//贈送幸運禮盒有機會拆出以下幸運禮物
+    lucky_box:'Lucky gift box',//幸運禮盒
+    lucky_higt_box:'Premium lucky gift box',//高級幸運禮盒
+    lucky_super_box:'Super lucky gift box',//超級幸運禮盒
+    send:'Berikan',//送給
+    sendLuckyBox:'Tarik sekarang',//立即抽獎
 
-    notice: "恭喜<span>#%myNick#</span>給<span>#%toNick#拆開了#%name#</span>",
-    send_self: "不能給自己送禮喔", //不能給自己送禮喔
-    no_mic: "暫無人在麥上，無法贈送", //暫無人在麥上，無法贈送
-    no_people_mic: "暫無人在麥上", //暫無人在麥上
-    rule: "規則說明",
-    rule1:
-        "幸運禮盒是一種平台的互動玩法，用戶應在使用本服務前仔細閱讀本規則，除非用戶接受本規則所有條款，否則用戶無權使用本功能。",
-    rule2:
-        "特別提醒：平台反對未成年人參與互動消費。請參與平台互動活動的用戶務必注意健康娛樂，適度消費。",
-    rule3:
-        "用戶在指定房間贈送幸運禮盒，將按概率拆出特定禮物道具，並贈送給當前房間內的其他用戶。",
-    rule4: "收禮者按照實際拆出的禮物道具獲得魅力值或鑽石收益。",
-    rule5:
-        "本活動的禮物概率是獨立概率，不疊加計算，具體概率如下所示：<br>【超級幸運禮盒】<br>藍風鈴香水：50.00%<br>金絲籠：22.00%<br>銀色鈴鐺：21.00%<br>夜之戀曲：6.00%<br>魔法晶戀：0.90%<br>天馬行空：0.10%<br><span>【高級幸運禮盒】</span><br>熊寶寶：22.00%<br>櫻花釀：23.00%<br>迷你風扇：51.00%<br>月光精靈球：3.00%<br>許願冰泉：0.90%<br>星雨之夏：0.10%<br><span>【幸運禮盒】</span><br>安全帽：25.00%<br>hello：20.00%<br>熊寶寶：44.90%<br>櫻花釀：8.00%<br>蝶戀花：2.00%<br>八音盒：0.10%",
-    rule6:
-        "重要提示<br>（1）幸運禮盒是提升用戶房間娛樂體驗的功能，僅供娛樂交流使用。<br>（2）收禮人收到幸運禮盒，不得反向兌換金幣、台幣等任何具有交換價值的物品，不得用於任何形式的盈利活動。<br>（3）嚴禁收禮人與用戶私下交易，違規房間將按照平台規則嚴肅處理，請用戶謹防上當受騙。<br>（4）禁止將獲得的禮物進行線下交易，平台嚴厲打擊任何第三方線下交易行為，用戶需自行承擔不利後果。<br>（5）禁止使用幸運禮盒實施任何影響互動公平性的行為，或利用平台BUG等不正當手法參與玩法，一旦發現，平台有權取消禮物發放，追回禮物。",
-    rule7: "本活動與蘋果公司無關"
-};
+    notice:'Selamat<span>#%myNick#</span>給<span>#%toNick#拆開了#%name#</span>',
+    send_self:'Tidak bisa memberi diri hadiah',//不能給自己送禮喔
+    no_mic:'Tidak ada seorang pun di kursi Mic saat ini, tidak bisa memberikannya',//暫無人在麥上，無法贈送
+    no_people_mic:'Tidak ada seorang pun di kursi Mic saat ini,',//暫無人在麥上
+    rule: "Aturan",
+    rule1: "Lucky Gift Box adalah cara main interaktif platform, pengguna harus membaca aturan ini dengan cermat sebelum memulai layanan ini. Pengguna menerima semua persyaratan aturan ini agar berhak menggunakan fitur ini",
+    rule2: "Pengingat khusus: Platform ini dilarang partisipasi anak di bawah umur dalam layanan ini. Pengguna yang berpartisipasi dalam aktivitas interaktif platform harus memperhatikan kesehatan dan hiburan, serta mengkonsumsi secara moderat.",
+    rule3: "Pengguna kirimkan kotak hadiah keberuntungan di kamar yang ditentukan, dan item hadiah tertentu akan dibuka sesuai dengan probabilitas dan dikirimkan kepada pengguna lain di kamar saat ini.",
+    rule4: "Penerima mendapatkan nilai pesona atau pendapatan berlian sesuai dengan item hadiah sebenarnya yang dibuka.",
+    rule5: "Probabilitas hadiah dari acara ini adalah probabilitas independen dan tidak dihitung dengan menumpuk. Probabilitas spesifik ditunjukkan di bawah ini：<br>【Super lucky gift box】<br>Parfum Campanula Biru：50.00%<br>Sangkar kawat emas：22.00%<br>Lonceng perak：21.00%<br>Malam Cinta：6.00%<br>Cinta Kristal Ajaib：0.90%<br>Kuda terbang：0.10%<br><span>【Premium lucky gift box】</span><br>Bayi beruang：22.00%<br>Anggur sakura：23.00%<br>Mini fan：51.00%<br>Pokeball Cahaya Bulan：3.00%<br>Wishing ice spring：0.90%<br>Summer of Star Rain：0.10%<br><span>【Lucky gift box】</span><br>Helm：25.00%<br>hello：20.00%<br>Bayi beruang：44.90%<br>Anggur sakura：8.00%<br>Bunga kupu-kupu：2.00%<br>Kotak musik：0.10%",
+    rule6: "Tips penting<br>(1) Lucky gift box adalah fungsi yang meningkatkan pengalaman hiburan kamar pengguna, dan hanya untuk hiburan dan komunikasi.<br>(2) Saat penerima yang menerima kotak hadiah keberuntungan tidak diperbolehkan untuk menukarkan koin emas dan barang-barang lainnya dengan nilai tukar, dan juga tidak boleh digunakan untuk segala bentuk kegiatan keuntungan.<br>(3) Transaksi pribadi dilarang antara penerima dan pengguna. Kamar yang melanggar akan ditangani secara serius sesuai dengan aturan platform. Pengguna diminta untuk berhati-hati terhadap penipuan.<br>(4) Dilarang melakukan transaksi offline untuk hadiah yang diperoleh. Platform ini sangat menindak setiap transaksi offline pihak ketiga, dan pengguna akan menanggung sendiri konsekuensi yang merugikan.<br>（5）Dilarang menggunakan kotak hadiah keberuntungan untuk melakukan perilaku apa pun yang memengaruhi keadilan interaksi, atau menggunakan platform BUG dan metode tidak pantas lainnya untuk berpartisipasi dalam permainan. Setelah ditemukan, platform berhak membatalkan distribusi hadiah dan memulihkan hadiah hadiah.",
+    rule7: "Acara ini tidak berhubungan dengan Apple"
+}

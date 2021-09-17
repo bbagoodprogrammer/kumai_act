@@ -5,16 +5,16 @@
     noData: "Tidak ada data untuk sementara",
 
     //giftNumbers
-    giftNumbers: "No. harta",
+    giftNumbers: "Nomor lotre",
     day: "Hari",
     giftCancel: "Harta Warga periode ini telah dibatalkan",
-    luckNumber: "Lanjut:",
+    luckNumber: "Winner No.",
     status1: "Berjalan",
     status2: "Berhasil",
     status3: "Gagal",
     status4: "Batalkan",
-    myNumber: "No. hartaku",
-    luckTips: "Selamat~Anda telah mencapai No. harta",
+    myNumber: "Nomor lotre saya",
+    luckTips: "Selamat~Anda telah mencapai Nomor lotre",
     typeTips: {
         "-1": "Hadiah",
         "0": "Bingkai",
@@ -30,8 +30,8 @@
 
     //HotList
     getSuc: "Telah rebut harta %s kali",
-    notSing: "Belum ikut dalam putaran ini",
-    number: "No.",
+    notSing: "Belum ikut",
+    number: "Klik",
     join: "Rebut harta",
     setJoinTitle: "Ikut",
     joinNums: "Go x%s",

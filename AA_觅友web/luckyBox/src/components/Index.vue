@@ -9,100 +9,76 @@
       </div>
       <div class="lucky_box">
         <div class="lucky">
-          <div class="gift_list_box">
-            <div
-              class="arrow"
-              :class="{
+          <div class="scorll">
+            <div class="gift_list_box">
+              <div class="arrow" :class="{
                 arrow0: mainTab == 0,
                 arrow1: mainTab == 1,
                 arrow2: mainTab == 2,
-              }"
-            ></div>
-            <div class="gift_list_inner">
-              <h3>{{lang.tips}}</h3>
-              <div class="gift_list">
-                <div
-                  class="scroll scroll_long"
-                  :style="{ width: gifts_list.length * 1.28 + 'rem' }"
-                  v-if="gifts_list.length > 6"
-                >
-                  <div
-                    class="list"
-                    v-for="(item, index) in gifts_list"
-                    :key="index"
-                  >
-                    <p><img :src="item.gift_img" alt="" /></p>
-                    <p>{{ item.gift_name }}</p>
-                    <p>
-                      <img src="../img/coin.png" alt="" />
-                      <span>{{ item.gift_value }}</span>
-                    </p>
+              }"></div>
+              <div class="gift_list_inner">
+                <h3>{{lang.tips}}</h3>
+                <div class="gift_list">
+                  <div class="scroll scroll_long" :style="{ width: gifts_list.length * 1.28 + 'rem' }" v-if="gifts_list.length > 6">
+                    <div class="list" v-for="(item, index) in gifts_list" :key="index">
+                      <p><img :src="item.gift_img" alt="" /></p>
+                      <p>{{ item.gift_name }}</p>
+                      <p>
+                        <img src="../img/coin.png" alt="" />
+                        <span>{{ item.gift_value }}</span>
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div class="scroll" v-else>
-                  <div
-                    class="list"
-                    v-for="(item, index) in gifts_list"
-                    :key="index"
-                  >
-                    <p><img :src="item.gift_img" alt="" /></p>
-                    <p>{{ item.gift_name }}</p>
-                    <p>
-                      <img src="../img/coin.png" alt="" />
-                      <span>{{ item.gift_value }}</span>
-                    </p>
+                  <div class="scroll" v-else>
+                    <div class="list" v-for="(item, index) in gifts_list" :key="index">
+                      <p><img :src="item.gift_img" alt="" /></p>
+                      <p>{{ item.gift_name }}</p>
+                      <p>
+                        <img src="../img/coin.png" alt="" />
+                        <span>{{ item.gift_value }}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="sign_box" v-if="box_detail">
-            <div
-              class="sign_box_list"
-              @click.prevent="mainTabClick(0, box_detail[0].lucky_box_type)"
-              :class="{ current: mainTab == 0 }"
-            >
-              <div class="bling"></div>
-              <div class="inner">
-                <p><img src="../img/lucky.png" alt="" /></p>
-                <p>{{lang.lucky_box}}</p>
-                <p>
-                  <img src="../img/coin.png" alt="" />
-                  <span>{{ box_detail[0].lucky_box_cost }}</span>
-                </p>
+            <div class="sign_box" v-if="box_detail">
+              <div class="sign_box_list" @click.prevent="mainTabClick(0, box_detail[0].lucky_box_type)" :class="{ current: mainTab == 0 }">
+                <div class="bling"></div>
+                <div class="inner">
+                  <p><img src="../img/lucky.png" alt="" /></p>
+                  <p class="boxName">{{lang.lucky_box}}</p>
+                  <p>
+                    <img src="../img/coin.png" alt="" />
+                    <span>{{ box_detail[0].lucky_box_cost }}</span>
+                  </p>
+                </div>
               </div>
-            </div>
-            <div
-              class="sign_box_list"
-              @click.prevent="mainTabClick(1, box_detail[1].lucky_box_type)"
-              :class="{ current: mainTab == 1 }"
-            >
-              <div class="bling"></div>
-              <div class="inner">
-                <p><img src="../img/lucky_higt.png" alt="" /></p>
-                <p>{{lang.lucky_higt_box}}</p>
-                <p>
-                  <img src="../img/coin.png" alt="" />
-                  <span>{{ box_detail[1].lucky_box_cost }}</span>
-                </p>
+              <div class="sign_box_list" @click.prevent="mainTabClick(1, box_detail[1].lucky_box_type)" :class="{ current: mainTab == 1 }">
+                <div class="bling"></div>
+                <div class="inner">
+                  <p><img src="../img/lucky_higt.png" alt="" /></p>
+                  <p class="boxName">{{lang.lucky_higt_box}}</p>
+                  <p>
+                    <img src="../img/coin.png" alt="" />
+                    <span>{{ box_detail[1].lucky_box_cost }}</span>
+                  </p>
+                </div>
               </div>
-            </div>
-            <div
-              class="sign_box_list"
-              @click.prevent="mainTabClick(2, box_detail[2].lucky_box_type)"
-              :class="{ current: mainTab == 2 }"
-            >
-              <div class="bling"></div>
-              <div class="inner">
-                <p><img src="../img/lucky_super.png" alt="" /></p>
-                <p>{{lang.lucky_super_box}}</p>
-                <p>
-                  <img src="../img/coin.png" alt="" />
-                  <span>{{ box_detail[2].lucky_box_cost }}</span>
-                </p>
+              <div class="sign_box_list" @click.prevent="mainTabClick(2, box_detail[2].lucky_box_type)" :class="{ current: mainTab == 2 }">
+                <div class="bling"></div>
+                <div class="inner">
+                  <p><img src="../img/lucky_super.png" alt="" /></p>
+                  <p class="boxName">{{lang.lucky_super_box}}</p>
+                  <p>
+                    <img src="../img/coin.png" alt="" />
+                    <span>{{ box_detail[2].lucky_box_cost }}</span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+
           <div class="bottom">
             <div class="send_out">
               <div class="send_box">
@@ -113,12 +89,7 @@
                 </div>
                 <div class="view_send_inner" v-if="send_flag">
                   <ul>
-                    <li
-                      :class="[activeClass == index ? 'current' : '']"
-                      @click="getItem(list[index], index)"
-                      v-for="(item, index) in list"
-                      :key="index"
-                    >
+                    <li :class="[activeClass == index ? 'current' : '']" @click="getItem(list[index], index)" v-for="(item, index) in list" :key="index">
                       <span>
                         <img :src="item.avatar" alt="" />
                         <img :src="getNum( parseInt(item.pos) + 1)" alt="" />
@@ -142,7 +113,7 @@ import { mapState } from "vuex";
 import Notice from "./Notice";
 import { pageInited, appClose, callApp, toast } from "../utils";
 export default {
-  data() {
+  data () {
     return {
       mainTab: 0,
       activeClass: -1,
@@ -156,7 +127,7 @@ export default {
       },
     };
   },
-  mounted() {
+  mounted () {
     pageInited();
     this.$store.dispatch("getBillBoard");
     this.$store.dispatch("getLuckyBoxDetail");
@@ -187,7 +158,7 @@ export default {
   },
   computed: {
     ...mapState(["loading", "sendres", "box_detail", "gift_flag"]),
-    gifts_list() {
+    gifts_list () {
       if (this.box_detail) {
         return this.box_detail[this.mainTab].gift_list;
       }
@@ -197,43 +168,43 @@ export default {
 
   methods: {
     appClose,
-    closeWeb(){
+    closeWeb () {
       this.appClose()
     },
-    openRule() {
+    openRule () {
       this.$router.push("/rule");
     },
-    getAvatar(url) {
+    getAvatar (url) {
       return url ? url : require("../img/avatar.png");
     },
-    mainTabClick(tab, type) {
+    mainTabClick (tab, type) {
       this.mainTab = tab;
       this.send_data.boxType = type;
     },
-    getNum(i) {
+    getNum (i) {
       return require("../img/" + i + ".png");
     },
-    openSends() {
+    openSends () {
       let _this = this;
       callApp("getMicUids");
       window.setMicUids = async (res) => {
         //定义回调函数，让客户端来执行，获取productList数据
         // res = '{"mode":"1","uids":[{"uid":"10012627","nick":"DL-girl","pos":"2","avatar":"http:\/\/udatefile.cat1314.com\/uc\/img\/head_10012627_1582965017.png_medium?wsSecret=39424519bf351547ac7002a00b6317a7&wsTime=1598284800"},{"uid":"10013224","nick":"DL-1235","pos":"3","avatar":"http:\/\/udatefile.cat1314.com\/uc\/img\/head_10013224_1597645258.png_medium?wsSecret=ec3b02715283ba852918da19d21e7c77&wsTime=1598284800"}]}'
         _this.list = JSON.parse(res).uids;
-        if(_this.list.length>0){
+        if (_this.list.length > 0) {
           _this.send_flag = !_this.send_flag;
-        }else{
+        } else {
           toast(this.lang.no_people_mic);
         }
       };
     },
-    getItem(obj, index) {
+    getItem (obj, index) {
       this.send_flag = false;
       this.activeClass = index;
       this.send_data.toUid = obj.uid;
       this.avatar = obj.avatar;
     },
-    sendLuckyBox() {
+    sendLuckyBox () {
       if (!this.send_data.toUid) {
         // toast("暫無人在麥上，無法贈送");
         toast(this.lang.no_mic);
@@ -261,7 +232,7 @@ export default {
 </script>
 
 <style lang="scss">
-body{
+body {
   background: transparent;
 }
 .pageIndex {
@@ -286,7 +257,7 @@ body{
       top: 0.3rem;
       width: 0.34rem;
       height: 0.34rem;
-      background: url("../img/rule.png");
+      background: url('../img/rule.png');
       background-size: 100% 100%;
     }
     &.btnClose {
@@ -294,7 +265,7 @@ body{
       right: 0;
       width: 0.96rem;
       height: 0.96rem;
-      background: url("../img/close.png");
+      background: url('../img/close.png');
       background-size: 100% 100%;
     }
   }
@@ -316,9 +287,13 @@ body{
     .lucky {
       margin-top: 0.24rem;
       position: relative;
+      .scorll {
+        height: 5.1rem;
+        overflow-y: scroll;
+      }
       .gift_list_box {
         width: 7.02rem;
-        height: 2.24rem;
+        // height: 2.24rem;
         position: relative;
         margin: 0 auto;
         .arrow {
@@ -326,7 +301,7 @@ body{
           bottom: -0.24rem;
           width: 0.65rem;
           height: 0.24rem;
-          background: url("../img/down.png") no-repeat;
+          background: url('../img/down.png') no-repeat;
           background-size: 100% 100%;
           z-index: 2;
           &.arrow0 {
@@ -341,7 +316,7 @@ body{
         }
         .gift_list_inner {
           width: 7.02rem;
-          height: 2.24rem;
+          //   height: 2.24rem;
           background: #fff;
           box-shadow: 0 0.01rem 0.07rem 0 rgba(255, 122, 146, 0.48);
           border-radius: 0.16rem;
@@ -412,7 +387,7 @@ body{
           vertical-align: middle;
           width: 2.11rem;
           height: 2.5rem;
-          background: url("../img/sign.png") no-repeat;
+          background: url('../img/sign.png') no-repeat;
           background-size: 100% 100%;
           text-align: center;
           margin-right: 0.28rem;
@@ -429,17 +404,21 @@ body{
             flex-direction: column;
             margin-right: 0.19rem;
             font-size: 0;
+            .boxName {
+              padding: 0 0.15rem;
+              line-height: 0.25rem;
+            }
           }
           &.current {
             width: 2.29rem;
             height: 2.71rem;
-            background: url("../img/sign_ac.png") no-repeat;
+            background: url('../img/sign_ac.png') no-repeat;
             background-size: 100% 100%;
             position: relative;
             .bling {
               width: 1.6rem;
               height: 1.37rem;
-              background: url("../img/bling.png") no-repeat;
+              background: url('../img/bling.png') no-repeat;
               background-size: 100% 100%;
               position: absolute;
               left: 50%;
@@ -455,7 +434,7 @@ body{
             }
             p:nth-of-type(2) {
               color: #fff;
-              line-height: 0.32rem;
+              //   line-height: 0.32rem;
               font-weight: 600;
               font-size: 0.24rem;
             }
@@ -479,7 +458,7 @@ body{
             font-size: 0.22rem;
             color: #fff;
             color: #c05718;
-            line-height: 0.32rem;
+            // line-height: 0.32rem;
           }
           p:nth-of-type(3) {
             margin-top: -0.08rem;
@@ -496,7 +475,7 @@ body{
               font-size: 0.22rem;
               font-weight: 600;
               color: #c05718;
-              line-height: 0.32rem;
+              //   line-height: 0.32rem;
             }
           }
         }
@@ -533,7 +512,7 @@ body{
           span:nth-of-type(1) {
             font-size: 0.24rem;
             color: #fff;
-            line-height: 0.32rem;
+            //line-height: 0.32rem;
           }
           span:nth-of-type(2) {
             margin: 0 0.25rem 0 0.09rem;
@@ -546,7 +525,7 @@ body{
           span:nth-of-type(3) {
             width: 0.19rem;
             height: 0.1rem;
-            background: url("../img/up.png") no-repeat;
+            background: url('../img/up.png') no-repeat;
             background-size: 100% 100%;
           }
         }
@@ -555,7 +534,7 @@ body{
           height: 0.84rem;
           line-height: 0.32rem;
           text-align: center;
-          background: url("../img/send.png") no-repeat;
+          background: url('../img/send.png') no-repeat;
           background-size: 100% 100%;
           font-size: 0.32rem;
           font-family: PingFang SC;
@@ -637,7 +616,7 @@ body{
     left: 0;
     bottom: 0;
     width: 0.77rem;
-    background: url("../img/arrow.png") 50% no-repeat;
+    background: url('../img/arrow.png') 50% no-repeat;
     background-size: 0.17rem 0.28rem;
   }
   strong {

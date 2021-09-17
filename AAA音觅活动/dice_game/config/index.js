@@ -11,7 +11,7 @@ module.exports = {
     assetsPublicPath: "/",
     proxyTable: {
       "/": {
-        target: "http://activities.alochatapp.com/",
+        target: "http://activities.udateapp.com/",
         changeOrigin: true
       }
     },

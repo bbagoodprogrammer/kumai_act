@@ -32,7 +32,7 @@ export default new vuex.Store({
             Object.assign(state, data);
         },
         setShowMask(state, val) {
-            state.showMask = !state.showMask;
+            state.showMask = val;
         },
         updateRankGroups(state, obj) {
             if (obj && typeof obj.key != "undefined") {

@@ -537,6 +537,7 @@ export default {
     height: 1.29rem;
     padding-top: 0.4rem;
     margin-bottom: 0;
+    z-index: 50;
     position: fixed;
     bottom: 0;
     background: url(../img/footer.png);

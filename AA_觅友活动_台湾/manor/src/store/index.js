@@ -162,7 +162,12 @@ export default new vuex.Store({
                 const obj = newArr[i];
                 const timeKey = "land" + obj.id;
                 const protectKey = "protect" + obj.id;
-                downTime(timeKey, obj.end_seconds);
+                if (obj.end_seconds > 0) {
+                    downTime(timeKey, Number(obj.end_seconds) + 1);
+                } else {
+                    downTime(timeKey, obj.end_seconds);
+                }
+
                 downTime(protectKey, obj.protect_seconds);
             }
 

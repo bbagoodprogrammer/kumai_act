@@ -108,7 +108,7 @@ export default {
     portalUser () {
       if (this.portal.uid) {
         this.vxc('setOtherUser', this.portal)
-        this.init(this.portal, 'portal')
+        this.init(this.portal.uid, 'portal')
       }
     },
     buyLand (id) {

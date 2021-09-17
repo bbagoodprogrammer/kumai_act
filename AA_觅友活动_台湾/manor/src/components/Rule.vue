@@ -36,6 +36,7 @@
             <strong>{{item.name}}</strong>
           </div>
         </div>
+        <h6>{{lang.totalWard}}</h6>
         <p>{{lang.wardTop1}}</p>
         <p>{{lang.wardTop2}}</p>
         <p>{{lang.wardTop3}}</p>

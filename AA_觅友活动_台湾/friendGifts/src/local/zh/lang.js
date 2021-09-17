@@ -1,5 +1,6 @@
 export default {
     //html/index.html
+    roolMsg: "恭喜%n完成首储,获得%s",
     title: "交友禮包,限時領取",
     ruleTips: "規則獎勵",
     day: "天",

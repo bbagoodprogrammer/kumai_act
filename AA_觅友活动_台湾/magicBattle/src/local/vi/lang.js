@@ -97,21 +97,23 @@ export default {
         {
             h6: "【Liên minh hạng 1】",
             p: [
-                "Hạng 1: Dấu ấn vua phù thủy (quán)- khung avatar (10 ngày) + huy chương-phù thủy (10 ngày)+ thần thủ hộ phù thủy-quà hiệu ứng*1",
-                "Hạng 2: Dấu ấn vua phù thủy (quán)- khung avatar (10 ngày) + huy chương-phù thủy (10 ngày)+ liệt diệm hỏa phụng hoàng–quà hiệu ứng*1",
-                "Hạng 3: Dấu ấn vua phù thủy (quán)- khung avatar (10 ngày) + huy chương-phù thủy (10 ngày)+ cự long cổ đại-quà hiệu ứng*1"
+                "Hạng 1: Dấu ấn vua phù thủy (quán)- khung avatar (10 ngày) + huy chương-phù thủy (10 ngày)+ thần thủ hộ phù thủy-quà hiệu ứng*1+8000xu",
+                "Hạng 2: Dấu ấn vua phù thủy (quán)- khung avatar (10 ngày) + huy chương-phù thủy (10 ngày)+ liệt diệm hỏa phụng hoàng–quà hiệu ứng*1+5000xu",
+                "Hạng 3: Dấu ấn vua phù thủy (quán)- khung avatar (10 ngày) + huy chương-phù thủy (10 ngày)+ cự long cổ đại-quà hiệu ứng*1+3000xu"
             ]
         },
         {
             h6: "【Liên minh hạng 2】",
             p: [
-                "Hạng 1：Dấu ấn vua phù thủy (á)-khung avatar(10 ngày)+ huy chương- phù thủy (10 ngày)+ Liệt diệm hỏa phụng hoàng–quà hiệu ứng*1"
+                "Hạng 1：Dấu ấn vua phù thủy (á)-khung avatar(10 ngày)+ huy chương- phù thủy (10 ngày)+ Liệt diệm hỏa phụng hoàng–quà hiệu ứng*1",
+                "Hạng 2-3:Dấu ấn vua phù thủy (á)-khung avatar(10 ngày)+ huy chương- phù thủy (10 ngày)"
             ]
         },
         {
             h6: "【Liên minh hạng 3】",
             p: [
-                "Hạng 1：Dấu ấn vua phù thủy(quý)- khung avatar(10 ngày)+ huy chương- phù thủy (10 ngày)+ cự long cổ đại- quà hiệu ứng*1<br />*Tất cả quà hiệu ứng đều có hiệu lực trong 7 ngày"
+                "Hạng 1：Dấu ấn vua phù thủy(quý)- khung avatar(10 ngày)+ huy chương- phù thủy (10 ngày)+ cự long cổ đại- quà hiệu ứng*1",
+                "Hạng 2-3:Dấu ấn vua phù thủy(quý)- khung avatar(10 ngày)+ huy chương- phù thủy (10 ngày)"
             ]
         }
     ],
@@ -149,6 +151,10 @@ export default {
         {
             img: require(`../../img/ruleImg/8.png`),
             name: "huy chương-phù thủy"
+        },
+        {
+            img: require(`../../img/ruleImg/12.png`),
+            name: "xu"
         },
         {
             img: require(`../../img/ruleImg/9.png`),

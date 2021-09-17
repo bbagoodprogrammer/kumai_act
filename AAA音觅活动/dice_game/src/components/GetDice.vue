@@ -39,7 +39,7 @@
               <div class="nowPrice">{{item.price}}</div>
               <!-- <del class="original">{{item.original}}</del> -->
             </div>
-            <div class="buy" @click="buyDice(index)">{{lang.購買}}</div>
+            <div class="buy" @click="buyDice(index)">{{lang.buy}}</div>
           </li>
         </ul>
       </div>

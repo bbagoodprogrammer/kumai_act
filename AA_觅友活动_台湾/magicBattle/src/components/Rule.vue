@@ -25,7 +25,7 @@
       </div>
       <div class="giftItem" v-else>
         <h6>{{lang.rank_giftTitle}}</h6>
-        <div class="giftArr two">
+        <div class="giftArr" :class="{two:giftArr2.length == 5}">
           <div class="giftItem" v-for="(item,index) in giftArr2" :key="index">
             <div class="imgBox">
               <img :src="item.img" alt="">

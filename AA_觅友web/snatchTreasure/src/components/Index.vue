@@ -121,17 +121,18 @@ export default {
           this.vxc('setVouchers', vouchers)
           this.showGetTicketPup = false
           this.toast(this.lang.buySuc)
+          this.vxc('setShowMask', false)
         } else {
           this.toast(res.data.response_status.error)
         }
       })
     },
     getTicket () {
-      this.vxc('setShowMask')
+      this.vxc('setShowMask', true)
       this.showGetTicketPup = true
     },
     closePup () {
-      this.vxc('setShowMask')
+      this.vxc('setShowMask', false)
       this.$refs.showCom.showSetTypePup = false
       this.showGetTicketPup = false
     },

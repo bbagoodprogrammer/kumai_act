@@ -9,7 +9,8 @@
     <i class="userIcon" :style="{left:userposition.left-.1+ 'rem',top:userposition.top-.8 + 'rem'}" :class="{ani:lucking}">
       <img v-lazy="owner.avatar" alt="">
     </i>
-    <span v-for="(item,index) in steps" :key="index" class="icon" :style="{left:iconPosition[index].left + 'rem',top:iconPosition[index].top+ 'rem'}" :class="item.type + item.pid" @click="showPup(item)">
+    <span v-for="(item,index) in steps" :key="index" class="icon" :style="{left:iconPosition[index].left + 'rem',top:iconPosition[index].top+ 'rem'}" :class="item.type + item.pid"
+      @click="showPup(item)">
     </span>
     <div class="go" @click="luckGo()"></div>
     <div class="drics">
@@ -113,7 +114,7 @@ const parser = new Parser({ disableWorker: true })
 
 export default {
   components: { GetDice },
-  data() {
+  data () {
     return {
       iconPosition: [
         {
@@ -243,10 +244,10 @@ export default {
   },
   computed: {
     ...mapState(['steps', 'position', 'dice', 'owner', 'reg', 'prog']),
-    userposition() {
+    userposition () {
       return this.iconPosition[this.position]
     },
-    isRare() {
+    isRare () {
       for (let i = 0; i < this.rareArr.length; i++) {
         if (this.rareArr[i] == this.showGift.pid) {
           return true
@@ -254,11 +255,11 @@ export default {
       }
     },
   },
-  mounted() {
+  mounted () {
     this.aniGo()
   },
   methods: {
-    luckGo() {
+    luckGo () {
       if (this.dice > 0 && !this.lucking) {
         this.lucking = true
         api.goDice(1).then(res => {
@@ -299,7 +300,7 @@ export default {
         this.showDayTaskPup()
       }
     },
-    luckGoFive() {
+    luckGoFive () {
       if (this.dice >= 5 && !this.lucking) {
         this.lucking = true
         api.goDice(5).then(res => {
@@ -323,13 +324,13 @@ export default {
         this.showDayTaskPup()
       }
     },
-    showPup(item) {
+    showPup (item) {
       if (item.type != 'empty' && item.type != 'task' && !this.lucking) {
         this.showGift = item
         this.showGiftPup = true
       }
     },
-    downTimeGo(timeName, val) {
+    downTimeGo (timeName, val) {
       clearInterval(this.timer)
       downTime(timeName, val);
       this.surplusTime = downTime(timeName);
@@ -341,7 +342,7 @@ export default {
         }
       }, 1000)
     },
-    getGigtName(gift) {
+    getGigtName (gift) {
       if (gift.type == 'gift') {
         return `（túi quà）${gift.name} *1`
       } else if (gift.type == 'frame') {
@@ -358,32 +359,32 @@ export default {
         return `phiếu nạp xu ${gift.ratio}%`
       }
     },
-    async aniGo() {
+    async aniGo () {
       let fileData1 = await downloader.get('http://fstatic.cat1314.com/uc/svga/d6259c14eb3c6281a5a69aa5c65e69f8_1600253428.svga')
       let svgaData1 = await parser.do(fileData1)
       let canvas = document.getElementById('creatAni')
       this.player = new Player(canvas)
       await this.player.mount(svgaData1)
     },
-    share() {
+    share () {
       this.$refs.geDice.doTask('share')
     },
-    goGift() {
+    goGift () {
       this.showTask = false
       let rid = this.showGift.rid
       this.$refs.geDice.doTask('coin', {}, rid)
     },
-    closeGiftPup() {
+    closeGiftPup () {
       this.showType = null
       this.luck = false
       this.showGift = {}
       this.showGiftPup = false
     },
-    closeTaskPup() {
+    closeTaskPup () {
       this.showTask = false
       api.giveUp(this.showGift.task).then() //放棄任務
     },
-    showDayTaskPup() {
+    showDayTaskPup () {
       if (this.reg) {
         api.dayTask().then(res => {
           this.vxc('setDayTask', res.data.response_data)

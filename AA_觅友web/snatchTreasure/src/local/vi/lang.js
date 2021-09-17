@@ -16,13 +16,13 @@ export default {
     myNumber: "Số chơi của mình",
     luckTips: "Chúc mừng bạn trúng thưởng",
     typeTips: {
-        "-1": "Thưởng",
-        "0": "Khung ảnh",
+        "-1": "quà",
+        "0": "Khung",
         "1": "Xe",
         "2": "Nhẫn",
         "3": "Chủ đề ",
-        "4": "Danh hiệu sự kiện",
-        "5": "Chào mừng vào phòng",
+        "4": "Danh hiệu",
+        "5": "Chào mừng",
         "6": "Bong bóng"
     },
     //HistoryList
@@ -30,7 +30,7 @@ export default {
 
     //HotList
     getSuc: "Đã chơi %s lần",
-    notSing: "Chưa tham gia sự kiện kỳ này",
+    notSing: "Chưa tham gia",
     number: "Số",
     join: "chơi",
     setJoinTitle: "tham gia sự kiện",

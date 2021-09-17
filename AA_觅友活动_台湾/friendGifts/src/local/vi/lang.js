@@ -1,5 +1,6 @@
 export default {
     //html/index.html
+    roolMsg: "Chúc mừng %n đã hoàn tiện nạp lần đầu và nhận %s",
     title: "Nhận gói quà giao lưu trong thời hạn!",
     ruleTips: "Giải thích",
     day: "Ngày",
