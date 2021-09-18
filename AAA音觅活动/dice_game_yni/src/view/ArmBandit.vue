@@ -181,18 +181,18 @@ body::-webkit-scrollbar {
   //     }
   //   }
   .tipsBox {
-    width: 1.48rem;
+    width: 1.6rem;
     position: absolute;
     top: 0.9rem;
     right: 0;
     .ruleTips {
       display: block;
-      width: 1.7rem;
+      width: 1.6rem;
       height: 0.56rem;
       background: url(../assets/img/ruleTips.png);
       background-size: 100% 100%;
       text-align: center;
-      font-size: 0.24rem;
+      font-size: 0.2rem;
       line-height: 0.56rem;
       &.history {
         margin-top: 0.1rem;
