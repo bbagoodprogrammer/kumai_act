@@ -271,7 +271,7 @@ export default {
             let forward = data.extra.forward
             let prize = data.prizes[0]
             let goForward = 0
-            this.vxc('setTotalLuckNums', data.prog)
+            this.vxc('setTotalLuckNums', data.extra.prog)
             this.player.clear()
             this.forward = forward
             this.showForwardImg = true

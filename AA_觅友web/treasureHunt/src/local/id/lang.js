@@ -104,7 +104,7 @@ export default {
     shell_not_enough: "Pertukaran gagal, cangkang tidak cukup",
     jewel_not_enough: "Penukaran gagal, berlian berwarna tidak cukup",
 
-    adventure_list: "Daftar mingguan Petualangan",
+    adventure_list: "test Tips",
     weekly_award: "Hadiah mingguan",
     weekly_award_title:
         "Daftar ini dihitung pada setiap hari Senin pukul 00:00(wib). Dapatkan hadiah yang relevan sesuai dengan peringkat daftar. Mencari harta karun sekali akan meningkatkan nilai petualangan sebesar 100 poin.",

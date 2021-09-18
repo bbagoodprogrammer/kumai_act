@@ -3,6 +3,8 @@ export default {
     2: require("./img/luckGift/2.png"),
     5: require("./img/luckGift/5.png"),
     6: require("./img/luckGift/6.png"),
+    7: require("./img/luckGift/7.png"),
+    8: require("./img/luckGift/8.png"),
 
     10: require("./img/luckGift/10.png"),
     11: require("./img/luckGift/10.png"),
@@ -29,6 +31,8 @@ export default {
     pup_2: require("./img/pupImg/2.png"),
     pup_5: require("./img/pupImg/5.png"),
     pup_6: require("./img/pupImg/6.png"),
+    pup_7: require("./img/pupImg/7.png"),
+    pup_8: require("./img/pupImg/8.png"),
     pup_10: require("./img/pupImg/10.png"),
     pup_11: require("./img/pupImg/10.png"),
     pup_12: require("./img/pupImg/10.png")

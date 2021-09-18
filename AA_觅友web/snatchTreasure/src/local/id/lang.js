@@ -8,7 +8,7 @@
     giftNumbers: "Nomor lotre",
     day: "Hari",
     giftCancel: "Harta Warga periode ini telah dibatalkan",
-    luckNumber: "Winner No.",
+    luckNumber: "Winner No.:",
     status1: "Berjalan",
     status2: "Berhasil",
     status3: "Gagal",

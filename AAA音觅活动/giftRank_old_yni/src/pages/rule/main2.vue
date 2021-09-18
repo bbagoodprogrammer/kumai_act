@@ -124,12 +124,12 @@ export default {
 
 <style lang="scss">
 body {
-  background: rgba(235, 103, 185, 1);
+  background: #24195a;
 }
 .rule {
   width: 100%;
   height: 11.83rem;
-  background: rgba(235, 103, 185, 1) url(../../assets/img/rankBg.png) no-repeat;
+  background: #24195a url(../../assets/img/rankBg.png) no-repeat;
   background-size: 100% 100%;
   padding-top: 0.75rem;
   .icon {
