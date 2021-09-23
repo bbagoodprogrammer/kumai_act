@@ -5,18 +5,53 @@ html.id {
             font-size: .25rem;
         }
     }
-  // .main {
-  //   .task__container .task .task__right {
-  //    // width: 1.04rem;
-  //     // .clock {
-  //     //   width: 1.04rem;
-  //     // }
-  //   }
-  // }
-  // .explain {
-  //   .title {
-  //     height: 0.45rem;
-  //     line-height: 0.45rem;
-  //   }
-  // }
+    .pro_question{
+        left: .6rem!important;
+    }
+    .map__des{
+        img{
+            margin-right: 0.05rem!important;
+        }
+    }
+    .luck_value__box{
+        .value{
+            font-size: .24rem!important;
+        }
+    }
+    .treasure__action{
+        .title{
+            font-size: .24rem;
+        }
+        .count{
+            font-weight: normal!important;
+        }
+    }
+    .value_tip{
+        width: 5.5rem;
+        height: auto!important;
+        white-space:normal!important;
+        line-height: .3rem!important;
+        text-align: center;
+    }
+    .map__des{
+        .get{
+            margin-left: 0.1rem!important;
+        }
+    }
+    .adventure__btn{
+        width: 1.5rem;
+        padding: .06rem 0;
+        text-align: center;
+        height: auto!important;
+        line-height: .3rem;
+        border-radius:0.5rem 0rem 0rem 0.5rem
+    }
+    .table {
+        .tr:nth-child(2) {
+            .td {
+                line-height: 0.28rem!important;
+            }
+          }
+    }
+  
 }

@@ -48,7 +48,7 @@
                 <div class="inner">
                   <p><img src="../img/lucky.png" alt="" /></p>
                   <p class="boxName">{{lang.lucky_box}}</p>
-                  <p>
+                  <p class="boxPrice">
                     <img src="../img/coin.png" alt="" />
                     <span>{{ box_detail[0].lucky_box_cost }}</span>
                   </p>
@@ -59,7 +59,7 @@
                 <div class="inner">
                   <p><img src="../img/lucky_higt.png" alt="" /></p>
                   <p class="boxName">{{lang.lucky_higt_box}}</p>
-                  <p>
+                  <p class="boxPrice">
                     <img src="../img/coin.png" alt="" />
                     <span>{{ box_detail[1].lucky_box_cost }}</span>
                   </p>
@@ -70,7 +70,7 @@
                 <div class="inner">
                   <p><img src="../img/lucky_super.png" alt="" /></p>
                   <p class="boxName">{{lang.lucky_super_box}}</p>
-                  <p>
+                  <p class="boxPrice">
                     <img src="../img/coin.png" alt="" />
                     <span>{{ box_detail[2].lucky_box_cost }}</span>
                   </p>
@@ -372,6 +372,7 @@ body {
                   font-size: 0.18rem;
                   color: #747474;
                   line-height: 0.28rem;
+                  font-weight: bold;
                 }
               }
             }
@@ -407,6 +408,7 @@ body {
             .boxName {
               padding: 0 0.15rem;
               line-height: 0.25rem;
+              margin-top: -0.08rem;
             }
           }
           &.current {
@@ -435,8 +437,9 @@ body {
             p:nth-of-type(2) {
               color: #fff;
               //   line-height: 0.32rem;
-              font-weight: 600;
+              //   font-weight: 600;
               font-size: 0.24rem;
+              margin-top: 0 !important;
             }
             p:nth-of-type(3) {
               span {

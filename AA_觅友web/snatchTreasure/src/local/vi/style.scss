@@ -28,7 +28,12 @@ html.vi {
             font-size: .28rem!important;  
           }
       }
-      .getNums{
-          margin-top: .12rem!important;
-      }
+      .numsTips{
+          margin-top: .6rem!important;
+        height: auto!important;
+        .giftDownTm{
+            line-height: .28rem!important;
+            height: auto!important;
+        }
+    }
 }

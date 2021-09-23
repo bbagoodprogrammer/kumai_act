@@ -168,7 +168,7 @@ export default {
     rule_p_7:
         "Số người vào phòng: trong ngày 1 người chơi lần đầu tham gia vào phòng idol bất kỳ xem như hoàn thành 1 lần nhiệm vụ, 1 người=1 độ cao,  mỗi ngày tối đa 100        ",
     rule_p_8:
-        "Nhận quà chỉ định: Idol nhận quà chỉ định, 1 Xu =1 độ cao, cứ thế tích lũy độ cao và không có giới hạn        ",
+        "Nhận quà chỉ định: Pick you, Đèn cầu vòng, Bắn tim sẽ được tích lũy độ cao theo tỷ lệ 1 xu = 1 độ cao, 1 thẻ cổ vũ-quà mị = 200 độ cao, 1 giày pha lê=quà mị = 1500 độ cao.(Xin lưu ý， Qùa hiệu ứng - Giày pha lê & Thẻ cổ vũ được tổng hợp qua sự kiện #Chào mừng đại gia)",
     rule_p_9: " 4, Quà xây dựng    ",
     rule_p_10: "5, Quà xếp hạng    ",
     rule_p_11:

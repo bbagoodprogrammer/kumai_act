@@ -118,7 +118,7 @@
     },
     {
       img: require("../assets/img/rule/car1.png"),
-      name: "Mount Mobil Merah 7 hari"
+      name: "Pesawat tempur 7 hari"
     }
   ],
   gift2: [

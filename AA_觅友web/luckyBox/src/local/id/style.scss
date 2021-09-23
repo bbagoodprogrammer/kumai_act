@@ -1,3 +1,38 @@
 html.id {
-    
+    .gift_list{
+        .list{
+            vertical-align: top;
+            p:nth-of-type(2){
+                font-weight: bold;
+                white-space:normal!important;
+                // text-align: left;
+            }
+        }
+    }
+    .gift_list_inner{
+        h3{
+            font-weight: normal!important;
+        }
+    }
+    .sign_box_list{
+        &.current{
+            .boxPrice{
+                span{
+                    font-weight: bold!important;
+                }
+               
+            }
+        }
+    }
+  
+    .sign_box_list p:nth-of-type(3) span{
+        font-weight: normal!important;
+    }
+    .send_box_inner{
+        width: auto!important;
+        padding: 0 .1rem;
+        span:nth-of-type(2){
+            margin: 0 0.09rem!important;
+        }
+    }
 }

@@ -44,7 +44,7 @@
     getTicket: "Get lucky coupons",
     ticket: "Lucky coupons:",
     ind: "Kupon",
-    geted: "Klik",
+    geted: "Membeli",
     ticketTips: "Membayar %s koin emas untuk dapatkan 1 lucky coupons",
     charge: "Topup",
     buySuc: "Pembelian berhasil!",

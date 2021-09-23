@@ -164,14 +164,14 @@ import { mapState } from "vuex";
 export default {
   name: "Explain",
 
-  data() {
+  data () {
     return {
       list: [],
       superList: []
     };
   },
 
-  created() {
+  created () {
     // this.list = [
     //   {
     //     title: this.lang.gift_1,
@@ -271,21 +271,21 @@ export default {
       "ruleNormalList",
       "ruleSuperList"
     ]),
-    getTreasureHunt() {
+    getTreasureHunt () {
       let count_1 = 1
       let count_10 = 10
       let count_100 = 100
       return this.lang.treasure_hunt_2
         .replace('{1}', this.actInfo.mapPrice * count_1 || '')
         .replace('{2}', count_1)
-         .replace('{3}', this.actInfo.mapPrice * count_10 || '')
+        .replace('{3}', this.actInfo.mapPrice * count_10 || '')
         .replace('{4}', count_10)
-         .replace('{5}', this.actInfo.mapPrice * count_100 || '')
+        .replace('{5}', this.actInfo.mapPrice * count_100 || '')
         .replace('{6}', count_100)
     },
 
     getSuperTreasureHunt () {
-      let num = (1/this.actInfo.superMaxNum * 100) + '%'
+      let num = (1 / this.actInfo.superMaxNum * 100) + '%'
       return this.lang.super_treasure_hunt_1.replace('%s', num)
     }
   },
@@ -515,7 +515,7 @@ export default {
         display: flex;
         align-items: center;
         height: 0.76rem;
-        border-top: 0.01rem solid #6A5BD8;;
+        border-top: 0.01rem solid #6A5BD8;
         .td:first-child {
           width: 50%;
           padding-left: 1.17rem;

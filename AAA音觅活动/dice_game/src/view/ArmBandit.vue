@@ -77,6 +77,7 @@ export default {
     }
   },
   created () {
+    document.title = this.lang.title
     this.judgeShare()  //判断是否为分享环境,请求相应的接口 
     this.getDefaultData()
     this.getRoolMsg()

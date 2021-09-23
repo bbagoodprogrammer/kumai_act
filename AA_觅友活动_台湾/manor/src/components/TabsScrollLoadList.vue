@@ -8,7 +8,7 @@
     </div>
     <!-- 日榜 -->
     <div class="list day">
-      <ul>
+      <ul class="rankScrollable">
         <li v-for="(item,index) in rank.list" :key="index" :class="['rank' + item.rank]" @click="showUserLand(item)">
           <div class="hasSun" v-if="item.harvest_sun > 0"><i></i> {{lang.hasSun}}</div>
           <div class="userRank"> <i v-if="item.rank > 3">{{item.rank}}</i> </div>
@@ -146,9 +146,11 @@ export default {
     }
   },
   mounted () {
-    // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
-    window.addEventListener('scroll', this.onScroll);
-    this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
+    this.scrollable = this.$el.querySelector('.rankScrollable');
+    if (this.scrollable) {
+      this.scrollable.addEventListener('scroll', this.onScroll);
+      this.onScroll()
+    }
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.onScroll);
@@ -165,7 +167,7 @@ export default {
     onScroll () {
       if (!this.rank.loading && !this.rank.loadEnd && this.mainTab != 0) {
         console.log('xxxxx')
-        const scrollToBottom = (document.documentElement.scrollTop || document.body.scrollTop) + window.innerHeight >= document.body.scrollHeight - 100;
+        const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 80;
         const notFull = document.body.scrollHeight < window.innerHeigh;
         if (scrollToBottom || notFull || !this.rank.loadCount) {
           const key = this.rankKey;

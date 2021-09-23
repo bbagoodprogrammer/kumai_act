@@ -39,7 +39,11 @@ html.id {
           font-size: .28rem!important;  
         }
     }
-    .getNums{
-        margin-top: .12rem!important;
+    .numsTips{
+        height: auto!important;
+        .giftDownTm{
+            line-height: .28rem!important;
+            height: auto!important;
+        }
     }
 }

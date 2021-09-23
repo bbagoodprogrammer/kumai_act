@@ -1,0 +1,38 @@
+html.zh {
+    .pageIndex{
+        background:#1A0B0A url(./img/banner.png) no-repeat;
+        background-size:  100% auto;
+    }
+    .peopleTotal{
+        .top1{
+            .scoreDesc{
+                width:1.59rem ;
+                height: .34rem;
+                background: url(./img/dayScore.png);
+                background-size: 100% 100%;
+            }
+            .numsDesc{
+                width:1.11rem ;
+                height: .34rem;
+                background: url(./img/scoreNums.png);
+                background-size: 100% 100%;
+            }
+        }
+    }
+    .land::before {
+        content: '';
+        width: 7.46rem;
+        height: .65rem;
+        background: url(./img/lamp_bg.png);
+        background-size: 100% 100%;
+        position: absolute;
+        top: -.9rem;
+      }
+      .rankTitle{
+        width:7.46rem;
+        height: .65rem;
+        background: url(./img/rankTitle.png);
+        background-size: 100% 100%; 
+        margin: .32rem 0 .22rem;
+      }
+}

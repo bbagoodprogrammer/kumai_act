@@ -1,6 +1,6 @@
 export default {
     //html/index.html
-    title: "Máy gashapon",
+    title: "vẽ giải nhận phức lợi",
     race: "Hiếm có",
     rank_day: ":",
     rank_hour: ":",

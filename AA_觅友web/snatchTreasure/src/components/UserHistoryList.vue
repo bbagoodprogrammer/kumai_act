@@ -249,13 +249,14 @@ export default {
     .numsTips {
       width: 4.5rem;
       height: 0.36rem;
-      //   margin-top: 0.6rem;
+      margin-top: 0.32rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: absolute;
-      bottom: 0.36rem;
+      //   position: absolute;
+      //   bottom: 0.36rem;
       .getNums {
+        height: 100%;
         display: flex;
         align-items: center;
         > strong {
