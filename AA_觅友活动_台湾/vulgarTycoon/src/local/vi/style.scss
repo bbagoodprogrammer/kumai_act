@@ -6,17 +6,23 @@ html.vi {
     }
     .peopleTotal{
         .top1{
+            .scoreNums{
+                margin: 0.09rem 0 0 0.2rem;
+            }
             .scoreDesc{
-                width:1.59rem ;
-                height: .34rem;
+                width:1.76rem ;
+                height: .68rem;
                 background: url(./img/dayScore.png);
                 background-size: 100% 100%;
             }
             .numsDesc{
-                width:1.11rem ;
-                height: .34rem;
+                width:1.53rem ;
+                height: .36rem;
                 background: url(./img/scoreNums.png);
                 background-size: 100% 100%;
+            }
+            .two{
+                margin-left: .18rem!important;
             }
         }
     }

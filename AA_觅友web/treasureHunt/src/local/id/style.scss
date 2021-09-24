@@ -20,7 +20,7 @@ html.id {
     }
     .treasure__action{
         .title{
-            font-size: .24rem;
+            font-size: .26rem;
         }
         .count{
             font-weight: normal!important;
@@ -35,13 +35,14 @@ html.id {
     }
     .map__des{
         .get{
+            line-height: .3rem!important;
             margin-left: 0.1rem!important;
         }
     }
     .adventure__btn{
-        width: 1.5rem;
-        padding: .06rem 0;
-        text-align: center;
+        width: 1rem;
+        padding: .06rem .25rem;
+        font-size: .24rem;
         height: auto!important;
         line-height: .3rem;
         border-radius:0.5rem 0rem 0rem 0.5rem
@@ -53,5 +54,4 @@ html.id {
             }
           }
     }
-  
 }

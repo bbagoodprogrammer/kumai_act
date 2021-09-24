@@ -226,7 +226,7 @@ export default {
         }
         &.science1,
         &.science7 {
-          top: 0.15rem;
+          top: 0.5rem;
           left: 2.91rem;
         }
         &.science2 {

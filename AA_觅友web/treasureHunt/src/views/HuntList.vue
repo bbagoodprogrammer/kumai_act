@@ -12,7 +12,7 @@
     <!-- tab -->
     <div class="tabs">
       <div @click="mainTabClick(0)" class="tab" :class="{tab_select: mainTab == 0}">{{lang.this_week}}</div>
-      <div @click="mainTabClick(1)"  class="tab" :class="{tab_select: mainTab == 1}">{{lang.last_week}}</div>
+      <div @click="mainTabClick(1)" class="tab" :class="{tab_select: mainTab == 1}">{{lang.last_week}}</div>
     </div>
 
     <div class="list__main" :class="{list__main_padding: mainTab == 0}">
@@ -57,7 +57,8 @@
           <div class="model">
             <img v-for="(img, imgIndex) in userHuntInfo.medal" :key="imgIndex" class="model__img" :src="img" />
           </div>
-          <!-- 距离上一名 --><!--v-if="userHuntInfo.ranking != 1"-->
+          <!-- 距离上一名 -->
+          <!--v-if="userHuntInfo.ranking != 1"-->
           <div v-if="userHuntInfo.ranking != 1" class="distance__box">
             {{lang.distance_last.replace('%s', userHuntInfo.preUserDValue || '')}}
             <img class="arrow_up" src="../img/arrow_up.png" />
@@ -115,14 +116,14 @@ import Loading from "../components/common/Loading";
 export default {
   name: 'RankGroups',
 
-  data() {
+  data () {
     return {
       mainTab: 0,
       list: [],
       showAwardTip: false,
       weekList: [],
       lastWeekList: [],
-      userHuntInfo:{},
+      userHuntInfo: {},
       loadEnd: false
     };
   },
@@ -139,20 +140,20 @@ export default {
 
   watch: {
     mainTab: {
-      handler() {
+      handler () {
         this.changeList()
       },
       immediate: true
     }
   },
 
-  created() {
+  created () {
     this.fetchList()
   },
-  
-  mounted() {
+
+  mounted () {
     this.$el.onclick = (event) => {
-      if(this.showAwardTip) {
+      if (this.showAwardTip) {
         this.showAwardTip = false
       }
     }
@@ -164,17 +165,17 @@ export default {
       callApp.profile(uid)
     },
 
-    mainTabClick(tab) {
+    mainTabClick (tab) {
       this.mainTab = tab;
       if (tab == 0 && this.weekList.length == 0) {
         this.fetchList()
-      } 
-      if(tab == 1 && this.lastWeekList.length == 0) {
+      }
+      if (tab == 1 && this.lastWeekList.length == 0) {
         this.fetchList()
       }
     },
 
-    changeList() {
+    changeList () {
       if (this.mainTab == 0) {
         this.list = this.weekList
       } else {
@@ -186,7 +187,7 @@ export default {
     async fetchList () {
       let type = this.mainTab
       this.loadEnd = false
-      const res = await getAdventureList({whichWeek: type});
+      const res = await getAdventureList({ whichWeek: type });
       if (res.data) {
         const { response_status, response_data } = res.data;
         if (response_status && response_status.error === "") {
@@ -224,7 +225,7 @@ export default {
     font-size: 0.36rem;
     font-weight: 400;
     height: 0.5rem;
-    line-height: 0.5rem;
+    // line-height: 0.5rem;
     color: #ffffff;
     opacity: 1;
     position: relative;
@@ -237,14 +238,15 @@ export default {
     .weekly_award {
       display: flex;
       align-items: center;
-      height: 0.4rem;
+      height: 0.5rem;
       font-size: 0.28rem;
       font-weight: 400;
-      line-height: 0.4rem;
+      line-height: 0.5rem;
       color: #FFFFFF;
       opacity: 1;
       position: absolute;
       right: 0.2rem;
+      top: 0.02rem;
       img {
         width: 0.26rem;
         height: 0.26rem;
@@ -260,7 +262,7 @@ export default {
     margin-left: 0.3rem;
     margin-top: 0.39rem;
     margin-bottom: 0.3rem;
-    .tab:first-child{
+    .tab:first-child {
       margin-right: 0.7rem;
     }
     .tab {
@@ -271,13 +273,12 @@ export default {
       color: #FFFFFF;
       opacity: 0.6;
       position: relative;
-
     }
     .tab_select {
       opacity: 1;
       font-weight: bold;
     }
-    .tab_select::after{
+    .tab_select::after {
       content: '';
       position: absolute;
       left: 50%;
@@ -288,7 +289,6 @@ export default {
       background: #FFFFFF;
       opacity: 1;
       border-radius: 0.14rem;
-
     }
   }
 
@@ -320,17 +320,17 @@ export default {
       left: -0.05rem;
       top: -0.05rem;
     }
-    li:nth-child(1) .avatar::before{
+    li:nth-child(1) .avatar::before {
       @extend .crown;
       background: url('../img/top1.png');
       background-size: 100% 100%;
     }
-    li:nth-child(2) .avatar::before{
+    li:nth-child(2) .avatar::before {
       @extend .crown;
       background: url('../img/top2.png');
       background-size: 100% 100%;
     }
-    li:nth-child(3) .avatar::before{
+    li:nth-child(3) .avatar::before {
       @extend .crown;
       background: url('../img/top3.png');
       background-size: 100% 100%;
@@ -375,7 +375,7 @@ export default {
         color: #FFFFFF;
         opacity: 1;
         span {
-           max-width: 2rem;
+          max-width: 2rem;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -491,7 +491,7 @@ export default {
       align-items: center;
       .model__img {
         width: 0.34rem;
-          height: 0.38rem;
+        height: 0.38rem;
         margin-right: 0.1rem;
       }
     }
@@ -502,7 +502,7 @@ export default {
       // line-height: 0.33rem;
       color: #FFFFFF;
       opacity: 1;
-      border: 0.01rem solid rgba(255,255,255,0.3);
+      border: 0.01rem solid rgba(255, 255, 255, 0.3);
       border-radius: 0.2rem;
       padding-left: 0.2rem;
       padding-right: 0.2rem;
@@ -519,7 +519,7 @@ export default {
   }
 
   .award__box::before {
-    content: "";
+    content: '';
     position: absolute;
     top: -0.2rem;
     right: 0.85rem;

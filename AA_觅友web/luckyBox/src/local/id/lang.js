@@ -3,8 +3,8 @@
     tips:
         "Berikan lucky gift box untuk berkesempatan dapatkan lucky gift berikut ini", //贈送幸運禮盒有機會拆出以下幸運禮物
     lucky_box: "Lucky gift box", //幸運禮盒
-    lucky_higt_box: "Premium lucky gift box", //高級幸運禮盒
-    lucky_super_box: "Super lucky gift box", //超級幸運禮盒
+    lucky_higt_box: "Premium lucky<br/> gift box", //高級幸運禮盒
+    lucky_super_box: "Super lucky<br/> gift box", //超級幸運禮盒
     send: "Berikan", //送給
     sendLuckyBox: "Tarik sekarang", //立即抽獎
 

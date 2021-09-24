@@ -10,17 +10,15 @@ export default {
     cancel: "我再想想",
     loading: "加載中...",
     noData: "暫無數據",
+    roolMsg: "太豪爽！【%n】送出「%s」大禮物",
     //PeopleTotal
     volTips: "vol.%v頭號神豪",
     todayTitle: "今日神豪挑戰者",
     top3Tips: "今日神豪挑戰者指，今日神豪榜的前三名",
     //MagicLand
-    MagicLand_addScore: "%n，<em/> +%s戰鬥力",
-    surplus: "剩餘",
     synthesis: "合成",
-    synthesisTips: "合成後，禮物會發放到背包中",
-    max: "最大",
-    synthesisSucTips: "恭喜合成【%n*%s】,禮物已發放到您的背包，請查收",
+    synthesisSucTips: 
+    "恭喜合成【%n*%s】,禮物已發放到您的背包，請查收",
     //rank
     rankTab1: "日榜",
     rankTab2: "總榜",
@@ -29,7 +27,7 @@ export default {
     rank_min: "分",
     rank_second: "秒",
     rankTips:
-        "玩家在活動期間內，在房間、私訊、動態中送出任意金幣禮物都可以獲得豪爽值，1金幣=1豪爽值，滿10000豪爽值才可上日榜",
+        "玩家在活動期間內，在房間、私訊、動態中送出任意金幣禮物都可以獲得豪爽值，1金幣=1豪爽值，滿5000豪爽值才可上日榜",
     //rule
     ruleTm: "活動時間：",
     ruleTips1: "1、如何登上神豪榜",
@@ -48,7 +46,7 @@ export default {
     ruleTips9:
         "總榜第二名：神豪-勛章（10天）+神豪（銀）-頭像框（15天）+星光沙漏-禮物冠名（15天）",
     ruleTips10:
-        "總榜第三名：神豪-勛章（7天）+神豪（銀）-頭像框（15天）+乾杯-禮物冠名（15天）",
+        "總榜第三名：神豪-勛章（7天）+神豪（銅）-頭像框（15天）+啤酒乾杯-禮物冠名（15天）",
     ruleTips11: "4、其他",
     ruleTips12:
         "-活動中，若發現玩家用不正當手段參與活動，小音有權在不事先通知的情況下按情節嚴重對參與玩家、違規者取消上榜資格、封禁賬號、收回該玩家所有獎勵等處罰，包括但不限於：<br />a）活動期間對參賽玩家惡意評論、造謠、影射等<br />b)非法獲得金幣、指定禮物",
@@ -56,40 +54,38 @@ export default {
     ruleTips14: "*活動最終解釋權歸活動主辦方所有",
     gift1: [
         {
-            img: "",
-            name: "xxxx",
-            score: "9999"
+            img: require(`./img/ruleGift/7.png`),
+            name: "水晶鞋"
         },
         {
-            img: "",
-            name: "xxxx",
-            score: "9999"
+            img: require(`./img/ruleGift/8.png`),
+            name: "粉絲牌"
         }
     ],
     gift2: [
         {
-            img: "",
-            name: "xxxx"
+            img: require(`./img/ruleGift/1.png`),
+            name: "9月神豪-認證"
         },
         {
-            img: "",
-            name: "xxxx"
+            img: require(`./img/ruleGift/2.png`),
+            name: "神豪-勛章"
         },
         {
-            img: "",
-            name: "xxxx"
+            img: require(`./img/ruleGift/3.png`),
+            name: "禮物冠名"
         },
         {
-            img: "",
-            name: "xxxx"
+            img: require(`./img/ruleGift/4.png`),
+            name: "神豪（金）-頭像框"
         },
         {
-            img: "",
-            name: "xxxx"
+            img: require(`./img/ruleGift/5.png`),
+            name: "神豪（銀）-頭像框"
         },
         {
-            img: "",
-            name: "xxxx"
+            img: require(`./img/ruleGift/6.png`),
+            name: "神豪（銅）-頭像框"
         }
     ]
 };

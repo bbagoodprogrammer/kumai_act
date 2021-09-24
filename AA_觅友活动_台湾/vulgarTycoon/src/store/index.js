@@ -20,7 +20,8 @@ export default new vuex.Store({
         rankGroups: {}, //储存當天的信息
         groupsUserMsg: {},
         owner: {},
-        tab: 0
+        tab: 0,
+        notices: []
     },
     mutations: {
         setTab(state, val) {

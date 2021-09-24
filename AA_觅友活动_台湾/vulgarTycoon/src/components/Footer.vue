@@ -3,7 +3,7 @@
     <span class="notAct" v-if="actStatus == 2 || actStatus==0">{{actStatus == 2?lang.actEnd:lang.noStart}}</span>
     <!-- 用戶信息 -->
     <div class="userMsg" :class="['rank' + nowUserMsg.rank]" v-if="actStatus == 1">
-      <div class="userRank">{{nowUserMsg.rank}}</div>
+      <div class="userRank">{{nowUserMsg.rank == 0?'100+':nowUserMsg.rank}}</div>
       <div class="imgBox">
         <img :src="nowUserMsg.avatar_frame" alt="" v-if="nowUserMsg.avatar_frame" class="frame">
         <img v-lazy="nowUserMsg.avatar" alt="" class="avatar">

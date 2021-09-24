@@ -1,6 +1,7 @@
 <template>
   <div class="page pageIndex">
     <div class="header">
+      <RoolMsg />
       <div class="ruleTips" @click="showRule = true">{{lang.ruleTips}}</div>
     </div>
     <PeopleTotal />
@@ -22,6 +23,7 @@ import MagicLand from "./MagicLand"
 import TabsScrollLoadList from "./TabsScrollLoadList"
 import Footer from "./Footer"
 import Rule from "./Rule"
+import RoolMsg from "./RoolMsg"
 
 export default {
   data () {
@@ -30,7 +32,7 @@ export default {
     }
   },
   components: {
-    PeopleTotal, MagicLand, TabsScrollLoadList, Footer, Rule
+    PeopleTotal, MagicLand, TabsScrollLoadList, Footer, Rule, RoolMsg
   }
 }
 </script>

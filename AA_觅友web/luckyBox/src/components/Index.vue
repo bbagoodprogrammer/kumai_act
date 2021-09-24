@@ -47,7 +47,7 @@
                 <div class="bling"></div>
                 <div class="inner">
                   <p><img src="../img/lucky.png" alt="" /></p>
-                  <p class="boxName">{{lang.lucky_box}}</p>
+                  <p class="boxName" v-html="lang.lucky_box"></p>
                   <p class="boxPrice">
                     <img src="../img/coin.png" alt="" />
                     <span>{{ box_detail[0].lucky_box_cost }}</span>
@@ -58,7 +58,7 @@
                 <div class="bling"></div>
                 <div class="inner">
                   <p><img src="../img/lucky_higt.png" alt="" /></p>
-                  <p class="boxName">{{lang.lucky_higt_box}}</p>
+                  <p class="boxName" v-html="lang.lucky_higt_box"></p>
                   <p class="boxPrice">
                     <img src="../img/coin.png" alt="" />
                     <span>{{ box_detail[1].lucky_box_cost }}</span>
@@ -69,7 +69,7 @@
                 <div class="bling"></div>
                 <div class="inner">
                   <p><img src="../img/lucky_super.png" alt="" /></p>
-                  <p class="boxName">{{lang.lucky_super_box}}</p>
+                  <p class="boxName" v-html="lang.lucky_super_box"></p>
                   <p class="boxPrice">
                     <img src="../img/coin.png" alt="" />
                     <span>{{ box_detail[2].lucky_box_cost }}</span>
@@ -333,6 +333,7 @@ body {
           .gift_list {
             position: relative;
             width: 7.02rem;
+            padding-bottom: 0.2rem;
             overflow: scroll;
             .scroll_long {
               .list {
@@ -359,6 +360,7 @@ body {
                 overflow: hidden;
               }
               p:nth-of-type(3) {
+                margin-top: -0.09rem;
                 span,
                 img {
                   display: inline-block;
@@ -373,6 +375,7 @@ body {
                   color: #747474;
                   line-height: 0.28rem;
                   font-weight: bold;
+                  margin-left: -0.05rem;
                 }
               }
             }
@@ -478,6 +481,7 @@ body {
               font-size: 0.22rem;
               font-weight: 600;
               color: #c05718;
+              margin-left: -0.05rem;
               //   line-height: 0.32rem;
             }
           }

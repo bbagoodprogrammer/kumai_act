@@ -6,18 +6,11 @@
         <li v-for="(item, index) in list" :key="index">
           <div class="nick">{{ item.nick }}</div>
           <div class="get_text">{{ lang.hunt_get }}</div>
-          <div
-            class="imgs"
-            v-for="(prize, prizeIndex) in item.prizeList"
-            :key="prizeIndex"
-          >
+          <div class="imgs" v-for="(prize, prizeIndex) in item.prizeList" :key="prizeIndex">
             <img class="img" :src="prize.image" />
-            <div
-              class="num__imgs"
-              v-if="prize.num > 1"
-              v-html="getImgs(prize.num)"
-            ></div>
+            <div class="num__imgs" v-if="prize.num > 1" v-html="getImgs(prize.num)"></div>
           </div>
+          <div v-if="lang.hunt_get2">{{lang.hunt_get2}}</div>
         </li>
       </ul>
     </div>
@@ -30,7 +23,7 @@ import calcAwardNumImg from "../../utils/calcAwardNumImg";
 import { mapState } from "vuex";
 
 export default {
-  data() {
+  data () {
     return {
       textTimer: null,
       i: 0,
@@ -48,7 +41,7 @@ export default {
 
   watch: {
     huntRecord: {
-      handler(val) {
+      handler (val) {
         if (val.length > 0) {
           //this.handleLamp();
         }
@@ -58,7 +51,7 @@ export default {
     },
   },
 
-  mounted() {
+  mounted () {
     setTimeout(() => {
       this.fetchData()
     }, 500)
@@ -78,7 +71,7 @@ export default {
       }
     },
 
-    handleLamp() {
+    handleLamp () {
       this.$nextTick(() => {
         this.clientWidth = this.$refs.scroll__box.clientWidth || 0;
         let runing_box = this.$refs.runing_box;
@@ -94,7 +87,7 @@ export default {
       });
     },
 
-    start() {
+    start () {
       this.i--;
       if (this.i < -this.distance) {
         this.i = this.clientWidth;
@@ -103,12 +96,12 @@ export default {
       }
     },
 
-    getImgs(num) {
+    getImgs (num) {
       return calcAwardNumImg(num, 18);
     },
   },
 
-  destroyed() {
+  destroyed () {
     clearInterval(this.textTimer);
   },
 };
@@ -162,6 +155,7 @@ $h: 0.5rem;
       .nick {
         opacity: 0.8;
         white-space: nowrap;
+        margin-right: 0.1rem;
       }
       .get_text {
         opacity: 0.8;

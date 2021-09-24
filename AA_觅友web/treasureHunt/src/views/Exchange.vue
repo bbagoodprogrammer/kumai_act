@@ -21,23 +21,14 @@
             <img class="label__img" v-if="item.imageLabel" :src="item.imageLabel" />
           </div>
           <div class="goods_img__box">
-            <img
-              @click.stop="clickImg($event, index, item)"
-              class="goods__img"
-              :src="item.image"
-            />
+            <img @click.stop="clickImg($event, index, item)" class="goods__img" :src="item.image" />
             <!-- gift tip -->
-            <div
-              v-if="showGiftTip && index == currentIndex"
-              class="gift_tip__box"
-              :class="{
+            <div v-if="showGiftTip && index == currentIndex" class="gift_tip__box" :class="{
                 gift_tip__box_left: isTipLeft,
                 gift_tip__box_right: !isTipLeft,
                 gift_tip__box_lower: isTipLower,
                 gift_tip__box_up: !isTipLower,
-              }"
-              @click.stop=""
-            >
+              }" @click.stop="">
               <div class="tip_header__box">
                 <div class="img__box">
                   <img class="gift" :src="tipItem.image" />
@@ -54,12 +45,10 @@
                 {{tipItem.caption}}
               </div>
               <!-- 箭头 -->
-              <div
-                :class="{
+              <div :class="{
                   arrow_down: isArrowLower,
                   arrow_up: !isArrowLower,
-                }"
-              ></div>
+                }"></div>
             </div>
           </div>
           <div class="name">{{item.name}}</div>
@@ -81,7 +70,7 @@
 import { dateFormat } from "../utils/index";
 import InnerScrollLoadList from "../components/common/InnerScrollLoadList";
 import { getExchangeList, exchangeProp } from '../apis'
-import {toast} from '../utils'
+import { toast } from '../utils'
 import { mapState } from "vuex";
 import Loading from "../components/common/Loading";
 
@@ -93,7 +82,7 @@ export default {
     Loading
   },
 
-  data() {
+  data () {
     return {
       list: [],
       showGiftTip: false,
@@ -105,7 +94,7 @@ export default {
     };
   },
 
-  mounted() {
+  mounted () {
     this.$el.onclick = (event) => {
       if (this.showGiftTip) {
         this.showGiftTip = false
@@ -116,7 +105,7 @@ export default {
 
   methods: {
 
-    async fetchData() {
+    async fetchData () {
       const res = await getExchangeList();
       if (res.data) {
         const { response_status, response_data } = res.data;
@@ -128,7 +117,7 @@ export default {
       }
     },
 
-    clickImg(e, index, item) {
+    clickImg (e, index, item) {
       if (this.showGiftTip && index == this.currentIndex) {
         this.showGiftTip = false
         return
@@ -163,7 +152,7 @@ export default {
         toast(this.lang.jewel_not_enough)
         return
       }
-      const res = await exchangeProp({id: item.id});
+      const res = await exchangeProp({ id: item.id });
       if (res.data) {
         const { response_status, response_data } = res.data;
         if (response_status && response_status.error === "") {
@@ -208,7 +197,7 @@ export default {
     color: #ffffff;
     opacity: 1;
     position: relative;
-    line-height: 0.59rem;
+    // line-height: 0.59rem;
     margin-bottom: 0.3rem;
     .arrow {
       width: 0.42rem;

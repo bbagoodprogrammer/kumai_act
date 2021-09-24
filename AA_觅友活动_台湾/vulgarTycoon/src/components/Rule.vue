@@ -15,7 +15,7 @@
             <img :src="item.img" alt="">
           </div>
           <strong>{{item.name}}</strong>
-          <strong>+{{item.score}}{{lang.scoreName}}</strong>
+          <!-- <strong>+{{item.score}}{{lang.scoreName}}</strong> -->
         </div>
       </div>
       <h6>{{lang.ruleTips7}}</h6>
@@ -89,7 +89,7 @@ export default {
     padding: 0 1.54rem;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     margin: 0.1rem 0;
     .giftItem {
@@ -98,11 +98,21 @@ export default {
     &.list2 {
       padding: 0 0.7rem;
     }
+    .giftItem {
+      width: 1.63rem;
+    }
     .imgBox {
       width: 1.63rem;
       height: 1.49rem;
       background: url(../img/ruleGiftBg.png);
       background-size: 100% 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 1.3rem;
+        height: 1.3rem;
+      }
     }
     strong {
       display: block;
