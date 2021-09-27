@@ -9,7 +9,8 @@
         </div>
       </div>
       <div class="score">
-        {{info.pinkJewel}}
+        <span><i></i><strong>{{info.pinkJewel}}</strong></span>
+        <span><i class="vedio"></i><strong>{{info.videoJewel}}</strong></span>
       </div>
       <div class="time" v-html="info.opTime.replace(' ','<br/>')">
       </div>
@@ -108,6 +109,25 @@ export default {
     font-size: 0.24rem;
     color: rgba(153, 153, 153, 1);
     text-align: center;
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i {
+        width: 0.2rem;
+        height: 0.2rem;
+        background: url(../img/icon2.png);
+        background-size: 100% 100%;
+        margin-right: 0.12rem;
+        &.vedio {
+          background: url(../img/vedio.png);
+          background-size: 100% 100%;
+        }
+      }
+    }
+    span:last-child {
+      margin-top: 0.08rem;
+    }
   }
   .time {
     flex: 1;

@@ -138,16 +138,17 @@ export default {
       this.mainTab = tab;
       this.vxc('setTab', this.rankKey)
       this.$nextTick(() => {
-        if (!this.rank.loadCount) {
+        if (!this.nowRank.loadCount) {
           this.onScroll();
         }
       })
     },
     onScroll () {
-      if (!this.rank.loading && !this.rank.loadEnd && this.mainTab == 1) {
+      if (!this.nowRank.loading && !this.nowRank.loadEnd && this.mainTab == 1) {
         // const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 80;
         const notFull = document.body.scrollHeight < window.innerHeigh;
-        if (notFull || !this.rank.loadCount) {
+        console.log(notFull,this.nowRank)
+        if (notFull || !this.nowRank.loadCount) {
           const key = this.rankKey;
 
           const set = (k, v) => {
@@ -171,12 +172,12 @@ export default {
               })
             }
             if (arr.slice) {
-              const loadCount = typeof this.rank.loadCount == 'undefined' ? 0 : this.rank.loadCount;
+              const loadCount = typeof this.nowRank.loadCount == 'undefined' ? 0 : this.nowRank.loadCount;
               set('loadCount', loadCount + 1);
               if (arr.length) {
                 set('list', arr);
                 const noMore = !isNaN(this.rankSize) && arr.length < parseInt(this.rankSize);
-                if (this.rank.loadOnce || noMore) {
+                if (this.nowRank.loadOnce || noMore) {
                   set('loadEnd', true);
                 } else {
                   this.$nextTick(this.onScroll);
@@ -185,7 +186,7 @@ export default {
                 set('loadEnd', true);
               }
               this.$nextTick(() => {
-                if (this.rank.loadCount > 0 && this.rank.list.length === 0) {
+                if (this.nowRank.loadCount > 0 && this.nowRank.list.length === 0) {
                   set('none', true);
                 }
               });
@@ -202,7 +203,7 @@ export default {
       }
     },
     onRefresh (val) {
-      if (this.rank.loading) return
+      if (this.nowRank.loading) return
       this.rotatePx = 540 * ++this.rotatec  //旋转动画
       this.$store.commit('updateRankGroups', {
         key: this.rankKey,
@@ -334,7 +335,7 @@ export default {
         position: absolute;
         left: -0.378rem;
         top: -0.378rem;
-        z-index: 2;
+        // z-index: 2;
       }
       .avatar {
         width: 1.08rem;

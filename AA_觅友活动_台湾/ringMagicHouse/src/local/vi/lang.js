@@ -78,7 +78,7 @@ export default {
         "b) Dùng hành vi gian lận để nhận điểm, lấy xu và quà chỉ định trong sự kiện",
     rule_orther_des_3: "2, Sự kiện này không liên quan đến tập đoàn Apple",
     note_des:
-        "Mỗi chiếc nhẫn tạo được sẽ cần tiêu hao năng lượng nhất định. Ví dụ: Tạo Ice cream tiêu hao 3000 năng lượng, số năng lượng này sẽ không được dùng để tạo Yêu nồng nhiệt mộng.",
+        "Mỗi lần tổng hợp nhẫn, phải mất năng lượng ma thuật tương ứng, ví dự, để tổng hợp %n, phải mất %s năng lượng ma thuật, phần năng lượng này không được dùng để tổng hợp %c ",
 
     // award
     award_title: "Thưởng",
@@ -163,12 +163,10 @@ export default {
     not_cp_object: "Không có đối tượng",
     invite_succ_des:
         "Sau khi tạo nhẫn, hiển thị trong góc yêu của các bạn, \nhãy lựa chọn đúng đối tượng nhé.",
-    ring_des_1:
-        "Anh làm sao để quên? Nụ cười của em ngọt như Ice cream, làm ấm cả tấm lòng anh. Nhận chiếc nhẫn này, hai người đều tăng 1500 điểm ngọt ngào. ",
-    ring_des_2:
-        "Em nhiệt tình như lửa, khiến anh càng lún càng sâu, không có cách nào thoát khỏi. Nhận chiếc nhẫn này, hai người đều tăng 12500 điểm ngọt ngào. ",
+    ring_des_1: "Có ngôi sao trong mắt, ngọt ngào giữ ẩm với nhau.",
+    ring_des_2: "Kim cương tím là thủ hộ của tình yêu mãi mãi trong cuộc đợi",
     ring_des_3:
-        "Em là ngôi sao sáng nhất trên bầu trời, luôn tỏa sáng trong trái tim anh. Nhận chiếc nhẫn này, hai người đều tăng 22500 điểm ngọt ngào.",
+        "Ước gì mà lấy được trái tim của người yêu, tóc trắng mãi không chia lìa.",
     need_magic_engine: "Năng lượng ma thuật:%s",
     get_engine: "Nhận năng lượng",
     ring_maked: "Đã tạo thành công",

@@ -16,7 +16,7 @@
     <div class="des">{{ lang.how_make_1 }}</div>
     <div class="des des1">{{ lang.how_make_2 }}</div>
     <img class="rule_table" :src="images.rule_table" />
-    <div class="des">{{ lang.note_des }}</div>
+    <div class="des">{{ lang.note_des.replace('%s',ringProgress[0].rname).replace('%n',ringProgress[0].score).replace('%c',ringProgress[1].rname) }}</div>
     <div class="title">{{ lang.magic_rank }}</div>
     <div class="des">{{ lang.magic_rank_des_1 }}</div>
     <div class="des">{{ lang.magic_rank_des_2 }}</div>
@@ -39,6 +39,7 @@ export default {
 
   computed: {
     ...mapState(["initData"]),
+    ...mapGetters(["ringProgress"]),
     getActTime () {
       let sTime = dateFormat(this.lang.s_time, this.initData.stime * 1000);
       let eTime = dateFormat(this.lang.e_time, this.initData.etime * 1000);

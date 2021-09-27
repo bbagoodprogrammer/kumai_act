@@ -1,0 +1,83 @@
+﻿// https://brushes8.com/zhong-wen-jian-ti-fan-ti-zhuan-huan
+export default {
+
+    title: 'Thi Mị Lực phòng',
+    rule: 'Thưởng&Thể lệ',
+    play_library: 'Kho game',
+    homeowners_award: 'Thưởng chủ phòng',
+    fan_award: 'Thưởng fan',
+    homeowners_award_1: 'Huy chương',
+    homeowners_award_2: 'Danh hiệu phòng',
+    homeowners_award_3: 'Khung ảnh',
+    homeowners_award_4: 'Khung ảnh',
+    fan_award_1: 'Huy chương',
+    fan_award_2: 'Xe',
+    fan_award_3: 'Khung ảnh',
+    fan_award_4: 'Phiếu nạp',
+
+    day: 'ngày',
+    hour: 'Giờ',
+    minute: 'Phút',
+    second: 'Giây',
+    topic: 'Chủ đề',
+    room_owner: 'Chủ phòng',
+    coin_charm: 'Mị phòng',
+    contribute_top3: 'Top 3 cống hiến',
+    act_not_start: 'Sk chưa bắt đầu',
+    act_ended: 'SK đã kết thúc',
+    loading: 'Đang cập nhật...',
+    coming_soon: 'Vui lòng đợi',
+
+    // list dialog
+    rid: 'RID:%s',
+    rank: 'BXH',
+    user: 'Người dùng',
+    total_contribute_coin: 'Cống hiến Mị xu',
+    list_des: 'Cống hiến mị xu: Trong thời gian sự kiện, fan tặng quà xu trong phòng *10 %s BXH cống hiến chỉ hiển thị 10 người',
+    join_group: 'Tham gia',
+
+    act_rule_title: 'Thể lệ',
+    act_award_title: 'Thưởng',
+    act_time: 'Thời gian: %s',
+    time_value: 'HH:MM:SS dd/mm',
+    join_and_list: '1, Tham gia và lên BXH',
+    join_list_des: `* Tất cả các phòng đều có thể tham gia, không cần báo danh\n* Trong thời gian sự kiện, khi trong phòng có mị xu có thể lên BXH, 1 xu = 10 mị\n* BXH xếp theo số mị từ cao xuống thấp, khi phòng có số mị bằng nhau, xếp theo thời gian phòng đó đạt được\n* BXH chỉ hiện thị Top 100\n* Khi phòng có trên 5 người, trên BXH sẽ hiển thị "đang tiến hành"`,
+    matters: '2, Chú ý:',
+    matters_des: 'Trong thời gian sự kiện, nếu phát hiện hành vi gian lận, admin sẽ tùy trường hợp nhắc nhở, cảnh cáo, hoặc khóa tài khoản, bao gồm không hạn định:\na, Nội dung phòng vi phạm %1<điều lệ tổ chức văn minh>%2\nb, Trong thời gian sự kiện cố tình dùng lời lẽ thô tục, ảnh hưởng tới mọi người.',
+    explain_1: '2, Sự kiện không liên quan đến tập đoàn Apple',
+    explain_2: 'Quyết định của Alochat là quyết định cuối cùng',
+    total_award: '1, Thưởng BXH tổng: ',
+    total_award_des: 'Top 1: huy chương 7 ngày, danh hiệu phòng 7 ngày, khung ảnh 7 ngày.\nTop 2:  huy chương 7 ngày, danh hiệu phòng 7 ngày, khung ảnh 7 ngày.\nTop 3:  huy chương 7 ngày, danh hiệu phòng 7 ngày, khung ảnh 7 ngày.\nTop 4-6: Khung ảnh 5 ngày',
+    cont_award: '2, Thưởng cống hiến',
+    coupon_time: 'ngày dd tháng mm',
+    cont_award_des: 'Top 1 cống hiến của Top 3 tổng nhận phiếu nạp 10%. \nCách sử dụng: Trong %s nạp xu bất kỳ, nhận 10% xu nạp vào ngày tiếp theo.\nPhiếu nạp không kết hợp các phiếu nạp khác.',
+    
+    //play dialog
+
+    play_tab_1: 'Kết bạn',
+    play_tab_2: 'Thách đấu PK',
+    play_tab_3: 'Đấu giá',
+    change_it: 'Đổi',
+    copy_play: 'Sao chép',
+    copy_success: 'Sao chép thành công, mau mở tiệc',
+
+    play_rule: 'Thưởng:',
+    tip_title: 'Chú ý:',
+
+    friend_title_1: 'Ghép Đôi Giấu Mặt',
+    friend_rule_1: '6 vị khách mời trên ghế 2-7\nDành lại ghế số 8 cho người chơi. Người chơi có thể chọn bất cứ người nào trên ghế để được tìm hiểu đối phương và thuyết phục đối phương xuống ghế cùng mình trong vòng 10 phút.\nTất cả những ai lên ghế phải đổi hình theo yêu cầu\nChỉ được tương tác với người khác giới.',
+    friend_tip_1: 'Nếu các vị khách mời đồng ghép đôi số 8,sẽ thả icon gật đầu trên ghế và xuống ghế cùng người số 8\nNếu ghép đôi thành công, số 8 bắt buộc phải có lễ phẩm cho người được ghép.',
+    friend_title_2: 'Vì yêu mà đến: ',
+    friend_rule_2: '1. MC+6 bạn nữ (nam) đơn thân. S8 dành cho khán giả\n2. S1-S8 giới thiệu bản thân\n3. S8 lựa chọn một bạn s1-s7 để tìm hiểu\n4. S8 và người chọn có thời gian 5-10 phút để tìm hiểu, nếu 2 bạn đồng ý ghép đôi, và S8 đồng ý mang lễ vật tới cầu hôn bạn đó coi như ghép đôi thành công. ',
+    friend_title_3: 'Lắng nghe con tim:',
+    friend_rule_3: '- Mời mọi người cùng lên ghế\n- S8 cho khán giả lên trò chuyện, nói tâm tư, tình cảm cần giải tỏa. \n-7 bạn còn lại đều có thể giúp bạn tâm sự lắng nghe tâm sự của bạn.\n- nếu giải tỏa được tâm trạng của s8, s8 có thể tặng quà cổ vũ cho ng đó hoặc mc',
+
+    pk_title_1: 'Thách đấu PK đội:',
+    pk_rule_1: '1. S1: mc, S5: Thư ký, 6 người lên mic, 3 người 1 đội, mở chế độ PK 3 người.người Nhận được kẹo nhiều nhất thắng, người nhận được trứng nhiều nhất thua.\n2. Mỗi đội sẽ lên ghế biểu diễn tài nghệ của mình trong 5 phút, và nhận quà, sau 5 phút nhận quà không tính điểm. Thư ký ghi lại số điểm mỗi bạn từng đội.\n3. sau khi kết thúc tính điểm và MC đưa ra hình phạt và thưởng cho người thua và thắng cuộc.',
+    pk_title_2: 'Thách đấu PK đơn: ',
+    pk_rule_2: 'Tổ chức game quay xúc xắc, ai quay vào số 1 và 5 sẽ thua và tặng quà cho mc\nNgười thua sẽ hát một bài.Nếu người thua nhận được quà trên 100 xu sẽ được ở lại ghế, nếu không sẽ bị xuống mic',
+
+    auction_title_1: 'Đấu giá: ',
+    auction_rule_1: '1. bán đấu giá tất cả các ghế 2-3-4-5-6-7-8\n2.Các bạn khán giả sẽ mua đấu giá bất kỳ ghế nào để được lên ngồi cạnh mĩ nhân\n3.5-10 phút để các bạn đó giao lưu và tìm hiểu nhau\n4.Nếu cặp đôi nào được ghép thành công sẽ được mng ủng hộ và mang lễ phẩm rước người đó xuống mic',
+    //auction_tip_1: '注意：拍賣內容必須合乎法規並在自己能接受的範圍，儘量是可以在音覓程式內可完成的內容，如歌聲才藝、指定頭像、個性簽名關係貼、相互追蹤、互送禮物、拜師',
+}

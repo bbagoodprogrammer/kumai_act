@@ -48,7 +48,8 @@ export default {
     //RankGroupsFriend
     friend_tab1: "Thông tin idol",
     friend_tab2: "Kết toán Ngọc",
-    pro_top: "Số dư Ngọc",
+    pro_top: "Ngọc chung",
+    pro_top2: "Ngọc Video call",
     settlement_title: "Tổng Ngọc quy đổi",
     settlement_coins: "Kết toán Ngọc",
     settlement_tm: "Thời gian kết toán",

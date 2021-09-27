@@ -40,7 +40,8 @@
     //RankGroupsFriend
     friend_tab1: "Info host",
     friend_tab2: "Hitungan berlian pink",
-    pro_top: "Saldo berlian pink",
+    pro_top: "Berlian pink biasa",
+    pro_top2: "Berlian pink video",
     settlement_title: "Total hitungan berlian pink",
     settlement_coins: "Hitungan berlian pink ",
     settlement_tm: "Waktu hitungan",

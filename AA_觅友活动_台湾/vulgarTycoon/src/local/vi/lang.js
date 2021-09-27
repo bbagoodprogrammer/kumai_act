@@ -80,11 +80,11 @@ export default {
             name: "Khung ảnh - Đại gia Vàng"
         },
         {
-            img: require(`./img/ruleGift/5.png`),
+            img: require(`./img/ruleGift/6.png`),
             name: "Khung ảnh - Đại gia Bạc"
         },
         {
-            img: require(`./img/ruleGift/6.png`),
+            img: require(`./img/ruleGift/5.png`),
             name: "Khung ảnh - Đại gia đồng"
         }
     ]

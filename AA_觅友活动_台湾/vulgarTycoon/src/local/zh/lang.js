@@ -17,8 +17,7 @@ export default {
     top3Tips: "今日神豪挑戰者指，今日神豪榜的前三名",
     //MagicLand
     synthesis: "合成",
-    synthesisSucTips: 
-    "恭喜合成【%n*%s】,禮物已發放到您的背包，請查收",
+    synthesisSucTips: "恭喜合成【%n*%s】,禮物已發放到您的背包，請查收",
     //rank
     rankTab1: "日榜",
     rankTab2: "總榜",
@@ -80,11 +79,11 @@ export default {
             name: "神豪（金）-頭像框"
         },
         {
-            img: require(`./img/ruleGift/5.png`),
+            img: require(`./img/ruleGift/6.png`),
             name: "神豪（銀）-頭像框"
         },
         {
-            img: require(`./img/ruleGift/6.png`),
+            img: require(`./img/ruleGift/5.png`),
             name: "神豪（銅）-頭像框"
         }
     ]

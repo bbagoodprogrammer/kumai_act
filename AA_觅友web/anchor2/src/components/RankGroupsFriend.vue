@@ -11,9 +11,10 @@
     <div class="data no_spacing" v-if="mainTab==0">
       <div class="pro_top" v-if="live_flag">
         <div class="inner">
-          <div class="scroll_title">
-            <span>{{lang.title_type1}}</span>
-            <span>{{lang.pro_top}}</span>
+          <div class="scroll_title_tab1">
+            <span class="anchor">{{lang.title_type1}}</span>
+            <span class="pro_top">{{lang.pro_top}}</span>
+            <span class="pro_top2">{{lang.pro_top2}}</span>
           </div>
           <div class="rank_list scrollable" :style="{height:(viewHeight-topHeight-navigatorHeight2)+'px',}">
             <inner-scroll-load-list :url="live_url" :parse="dayDataParse" :reset='reset'>
@@ -677,6 +678,20 @@ body {
           width: 0.3rem;
           height: 0.3rem;
           margin: 0 0.1rem;
+        }
+      }
+      .scroll_title_tab1 {
+        width: 6.9rem;
+        height: 0.88rem;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        .anchor {
+          width: 3.45rem;
+        }
+        .pro_top,
+        .pro_top2 {
+          flex: 1;
         }
       }
       .scroll_title {

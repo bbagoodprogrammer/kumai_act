@@ -9,6 +9,9 @@
       <div class="score">
         {{info.pinkJewel}}
       </div>
+      <div class="score">
+        {{info.videoJewel}}
+      </div>
     </div>
   </div>
 </template>

@@ -40,7 +40,8 @@ export default {
     //RankGroupsFriend
     friend_tab1: "主播信息",
     friend_tab2: "粉鑽結算",
-    pro_top: "粉鑽餘額",
+    pro_top: "普通粉鑽",
+    pro_top2: "視頻粉鑽",
     settlement_title: "結算粉鑽匯總",
     settlement_coins: "結算粉鑽",
     settlement_tm: "結算時間",
