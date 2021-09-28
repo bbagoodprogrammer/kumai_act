@@ -28,14 +28,10 @@
             <div v-if="item.taskName == 'joinmicOnline'" class="time">{{getProcessTime(item.totalOnline)}}</div>
           </div>
         </div>
-        <div
-          class="task__btn"
-          :class="{
+        <div class="task__btn" :class="{
             receive__btn: item.receive == 1,
             finish__btn: item.receive == 2,
-          }"
-          @click="handleClickBtn(item)"
-        >
+          }" @click="handleClickBtn(item)">
           <template v-if="item.receive == 0">
             <span v-if="item.taskName == 'whisper'">{{ lang.go_exciting }}</span>
             <span v-if="item.taskName == 'joinmic'">{{ lang.go_sleep }}</span>
@@ -77,8 +73,8 @@ import { finishTheTask } from "../apis/index";
 import { mapGetters } from "vuex";
 export default {
   name: 'Task',
-  
-  data() {
+
+  data () {
     return {
       list: [
         {
@@ -102,7 +98,7 @@ export default {
   },
 
   methods: {
-    async handleClickBtn(item) {
+    async handleClickBtn (item) {
       if (!this.userInfo.cp_uid) {
         toast(this.lang.cp_can_get_engine)
         return
@@ -111,17 +107,17 @@ export default {
         if (item.taskName == 'whisper' && this.userInfo.cp_uid) {
           // 跳转到私讯
           callApp.chat(this.userInfo.cp_uid)
-        } else if((item.taskName == 'joinmic' || item.taskName == 'joinmicOnline') && item.to_rid) {
+        } else if ((item.taskName == 'joinmic' || item.taskName == 'joinmicOnline') && item.to_rid) {
           // 跳转到房间
           callApp.room(item.to_rid)
-        } else if(item.taskName == 'dailyNews') {
+        } else if (item.taskName == 'dailyNews') {
           // 跳转到话题页
           callApp.topic(item.tpId)
         }
 
       }
       if (item.receive == 1) {
-        let res = await finishTheTask({task_name: item.taskName});
+        let res = await finishTheTask({ task_name: item.taskName });
         let { response_status, response_data } = res.data;
         if (response_status.code === 0) {
           toast(this.lang.receive_success);
@@ -149,7 +145,7 @@ export default {
       return (totalOnline * 100 / online) + '%'
     },
 
-    getBrHtml(text) {
+    getBrHtml (text) {
       if (!text) {
         return;
       }
@@ -266,7 +262,8 @@ export default {
 
   .gift__box {
     width: 6.82rem;
-    height: 4.5rem;
+    min-height: 4.5rem;
+    padding-bottom: .2rem;
     background: linear-gradient(
       180deg,
       rgba($color: #5c24f1, $alpha: 0.3) 20%,

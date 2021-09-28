@@ -259,7 +259,7 @@ export default {
     top: 1.31rem;
     line-height: 0.53rem;
     text-align: right;
-    font-size: 0.22rem;
+    font-size: 0.2rem;
     font-weight: 500;
     color: #fff3a4;
     box-sizing: border-box;

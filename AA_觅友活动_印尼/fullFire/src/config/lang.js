@@ -33,7 +33,7 @@ export default {
 	user: 'User',
 	total_contribute_coin: 'Total nilai pesona koin emas',
 	list_des:
-		'*Berkontribusi nilai pesona koin emas: Selama acara, semua koin emas yang dikonsumsi oleh fans di kamar ini x10 %s daftar kontribusi hanya akan menampilkan 10 fans teratas',
+		'*Total nilai pesona koin emas: Selama acara, semua koin emas yang dikonsumsi oleh fans di kamar ini x10  %s Daftar kontribusi hanya menampilkan 10 fans teratas saja.',
 	join_group: 'Bergabung',
 
 	act_rule_title: 'Aturan',
@@ -41,10 +41,10 @@ export default {
 	act_time: 'Waktu Acara：%s',
 	time_value: 'mm/dd/HH:MM:SS',
 	join_and_list: '1. Berpartisipasi & Masuk dalam daftar',
-	join_list_des: `-Semua kamar dapat berpartisipasi dalam acara ini, pemilik kamar tidak perlu mendaftar.\n-Selama periode acara, ketika pemasukan koin emas, Anda akan dapatkan nilai pesona koin emas, dan berkesempatan untuk masuk dalam daftar. 1 koin emas = 10 nilai pesona koin emas.\n-Daftar ini diurutkan berdasarkan dengan nilai pesona koin emas kamar dari tinggi ke rendah. Jikabila nilai pesona koin emas kamar sama, kamar yang mencapai pertama akan dapat diprioritaskan.\n-Daftar peringkat hanya menunjukkan 100 kamar pertama\n-Kalau jumlah orang di dalam kamar ≥5, dan dalam keadaan publik, label 【Aktif】akan muncul dalam daftar peringkat.`,
+	join_list_des: `-Semua kamar dapat berpartisipasi dalam acara ini, pemilik kamar tidak perlu mendaftar.\n-Selama periode acara, ketika pemasukan koin emas dalam kamar, pemilik kamar akan dapatkan nilai pesona koin emas kamar, dan berkesempatan untuk masuk dalam daftar. 1 koin emas = 10 nilai pesona koin emas.\n-Daftar ini diurutkan berdasarkan dengan nilai pesona koin emas kamar dari tinggi ke rendah. Jikabila nilai pesona koin emas kamar sama, kamar yang mencapai lebih dulu akan dapat diprioritaskan.\n-Daftar peringkat hanya menunjukkan 100 kamar pertama.\n-Kalau jumlah orang di dalam kamar ≥5, sementara keadaan kamar umum, label 【Aktif】akan muncul dalam daftar peringkat.`,
 	matters: '2. Hal-hal yang perlu diperhatikan',
 	matters_des:
-		'Selama acara, jika peserta berpartisipasi dalam acara dengan cara yang tidak pantas, AloChat berhak mendiskualifikasi pelaku dari daftar, memblokir akunnya, dan ambil kembali semua hadiahnya sesuai dengan keadaan serius tanpa pemberitahuan sebelumnya, termasuk namun tidak terbatas pada:\na)Konten pesta melanggar %1 < Peraturan Peradaban Obrolan Kamar > %2\n b)Komentar jahat, rumor dalam pesta.',
+		'Selama acara, jika peserta berpartisipasi dalam acara dengan cara yang tidak pantas, AloChat berhak mendiskualifikasi pelaku dari daftar, memblokir akunnya, dan ambil kembali semua hadiahnya sesuai dengan keadaan serius tanpa pemberitahuan sebelumnya, termasuk namun tidak terbatas pada:\na)Konten pesta melanggar %1<Peraturan Peradaban Obrolan Kamar>%2\n b)Komentar jahat, rumor dalam pesta.',
 	explain_1: '2. Acara ini tidak berhubungan dengan Apple.',
 	explain_2: '*Hak interpretasi akhir acara adalah milik penyelenggara acara',
 	total_award: '1. Hadiah top total',
@@ -53,7 +53,7 @@ export default {
 	cont_award: '2. Hadiah daftar kontribusi',
 	coupon_time: 'mm/dd',
 	cont_award_des:
-		'Masuk Top 3 dalam daftar pesona kamar, sementara masuk Top 1 dalam daftar kontribusi, yang pemenang itu akan bisa mendapatkan hadiah daftar kontribusi.\nKeterangn untuk menggunakan kupon topup (5%): Topup apapun dalam Tgl %s, akan dapatkan bonus topup setinggi 5% pada hari berikutnya. Kupon bonus topup tidak digabungkan dengan diskon lainnya.',
+		'Masuk Top 3 dalam daftar pesona kamar, sementara masuk Top 1 dalam daftar kontribusi, pemenangnya akan bisa mendapatkan hadiah daftar kontribusi(Hadiah fans).\nKeterangn untuk menggunakan kupon topup (5%): Topup apapun dalam tgl %s, akan dapatkan bonus topup setinggi 5% pada hari berikutnya. Kupon tersebut tidak digabungkan dengan diskon lainnya.',
 	rule_fan_award_1: 'Penjaga\n Lencana(7 hari)',
 	rule_fan_award_2: 'Ferrari Merah\nMount(7 hari)',
 	rule_fan_award_3: 'Orang kaya Bingkai avatar(7 hari)',

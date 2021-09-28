@@ -17,7 +17,7 @@ import { getUrlString } from '../utils';
 //     </div>
 // </inner-scroll-load-list>
 export default {
-  props: ['url', 'parse', 'reset'],
+  props: ['url', 'parse', 'reset', 'notPaging'],
   data () {
     return {
       loadCount: 0,
@@ -49,7 +49,7 @@ export default {
   },
   mounted () {
     this.scrollable = document.querySelector('.scrollable');
-    if (this.scrollable) {
+    if (this.scrollable && !this.notPaging) {
       this.scrollable.addEventListener('scroll', this.onScroll);
     }
   },

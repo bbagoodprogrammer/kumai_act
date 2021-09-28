@@ -9,7 +9,7 @@ export default {
     adventure_list: "Top Mingguan",
     luck_value: "Lucky value",
     luck_value_tip:
-        "Pencarian harta akan dapat berlian berwarna setelah lucky value capai 100",
+        "Pencarian harta akan dapat berlian berwarna setelah mencapai 100 lucky value",
     sure: "Konfirmasi",
     process_bottom_text: "Harta Super",
     super_treasure_tip:
@@ -25,21 +25,21 @@ export default {
     how_to_play: "Keterangan Aturan",
     treasure_hunt: "Harta Karun",
     treasure_hunt_1:
-        "Harta Karun update hadiahnya dari waktu ke waktu. Gunakan 1 peta harta dapat cari 1 kali sementara dapatkan 100 nilai petualangan. Gunakan 10 peta harta dapat cari 10 kali sementara dapatkan 1000 nilai petualangan.",
+        "Harta Karun update hadiahnya dari waktu ke waktu. Gunakan 1 peta harta dapat mencari 1 kali sementara dapatkan 100 nilai petualangan. Gunakan 10 peta harta dapat mencari 10 kali sementara dapatkan 1000 nilai petualangan.",
     treasure_hunt_2:
         "Membayar {1} koin emas akan dapatkan {2} peta harta, membayar {3} koin emas akan dapatkan{4} peta harta, membayar {5} koin emas akan dapatkan {6} peta harta.",
     lucky_moment: "Momen Keberuntungan",
     lucky_moment_1:
-        "Setiap kali pencarian harta akan menambahkan nilai keberuntungan pribadi. Pencarian harta 1 kali akan menambahkan 1 nilai keberuntungan, Pencarian harta 10 kali akan menambahkan 10 nilai keberuntungan.",
+        "Setiap kali pencarian harta akan menambahkan lucky value pribadi. Pencarian harta 1 kali akan menambahkan 1 lucky value, Pencarian harta 10 kali akan menambahkan 10 lucky value.",
     lucky_moment_2:
-        "Akan memicu「Momen Keberuntungan」jika mencapai 100 nilai keberuntungan, dan pasti akan mendapatkan berlian berwarna di pencarian karun berikutnya, juga nilai keberuntungan akan diatur ulang ke 0.",
+        "Akan memicu「Momen Keberuntungan」jika mencapai 100 lucky value, dan pasti akan mendapatkan berlian berwarna di pencarian karun berikutnya, juga lucky value akan diatur ulang ke 0.",
     super_treasure_hunt: "Harta Super",
     super_treasure_hunt_1:
         "Tambahkan kemajuan sesuai dengan jumlah pencarian harta dari semua peserta, setiap kali pencarian harta akan menambahkan %s.",
     super_treasure_hunt_2:
         "Mode「Harta Super」selama 1 jam akan terpicu ketika kemajuan mencapai 100%. Hadiah pencarian harta lebih kaya dan lebih mudah untuk mendapatkannya.",
     super_treasure_hunt_3:
-        "Tangguhkan akumulasi nilai keberuntungan pribadi saat masuki mode「Harta Super」.",
+        "Tangguhkan akumulasi lucky value pribadi saat masuki mode「Harta Super」.",
     super_value_exchange: "Tukar",
     super_value_exchange_1:
         "Gunakan cangkang dan berlian berwarna untuk menukar alat peraga yang sesuai di「Tukar」,alat peraga diperbarui dari waktu ke waktu.",

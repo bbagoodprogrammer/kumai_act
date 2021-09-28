@@ -41,8 +41,11 @@
       <div class="pro_top" v-if="month_flag">
         <div class="inner">
           <p class="total">
-            <span>{{lang.settlement_title}}</span><img src="../img/mey_icon.png" alt="">
+            <span>{{lang.settlement_title}}</span>
+            <img src="../img/mey_icon.png" alt="">
             <span>{{monthTotalCoins}}</span>
+            <img src="../img/vedio.png" alt="">
+            <span>{{videoJewelCnt}}</span>
           </p>
           <div class="scroll_title">
             <span>{{lang.title_type1}}</span>
@@ -50,7 +53,7 @@
             <span>{{lang.settlement_tm}}</span>
           </div>
           <div class="rank_list scrollable" :style="{height:(viewHeight-topHeight-navigatorHeight2)+'px',}">
-            <inner-scroll-load-list :url="month_url" :parse="monthDataParse" :reset='reset'>
+            <inner-scroll-load-list :url="month_url" :parse="monthDataParse" :reset='reset' :notPaging="true">
               <div slot-scope="{list, loading, none, end}">
                 <liveItemBrick v-for="(item,index) in list" :info="item" :key="index" />
                 <div v-show="loading" class="sloading_inner">{{lang.loading}}</div>
@@ -148,6 +151,7 @@ export default {
 
       dayTotalCoins: 0,
       monthTotalCoins: 0,
+      videoJewelCnt: 0,
       month_flag: false,
       month_url: '',//月地址
       reset: false,
@@ -340,6 +344,7 @@ export default {
 
     monthDataParse (data) {
       this.monthTotalCoins = data.response_data.pinkJewelCnt;
+      this.videoJewelCnt = data.response_data.videoJewelCnt;
       if (!data.response_status.code) {
         return data.response_data.list || [];
         // return [//详细主播的粉钻余额

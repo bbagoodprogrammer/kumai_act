@@ -39,7 +39,8 @@ export default {
     ],
     rule_pickTitle: "Doanh thu Ngọc",
     rule_pickLi: [
-        "Mỗi tháng vào 0h ngày 1 và 16, sẽ tổng kết số Ngọc của idol, idol có số Ngọc trên 500000 sẽ được kết toán và tự động reset"
+        "Mỗi tháng vào 0h ngày 1 và 16, sẽ tổng kết số Ngọc của idol, idol có số Ngọc trên 500000 sẽ được kết toán và tự động reset",
+        "Ngọc nhận qua Video call khác với ngọc chung. Về phía idol, hai loại ngọc giống nhau, miễn là đạt 500k sẽ được rút tiền. Về phía agc, tỷ lệ chia lợi sẽ có khác biệt giữa ngọc chung và ngọc video."
     ],
 
     //ccj
@@ -49,7 +50,7 @@ export default {
     friend_tab1: "Thông tin idol",
     friend_tab2: "Kết toán Ngọc",
     pro_top: "Ngọc chung",
-    pro_top2: "Ngọc Video call",
+    pro_top2: "Ngọc Video",
     settlement_title: "Tổng Ngọc quy đổi",
     settlement_coins: "Kết toán Ngọc",
     settlement_tm: "Thời gian kết toán",

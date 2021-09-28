@@ -32,7 +32,8 @@
     ],
     rule_pickTitle: "Keterangan pendapatan berlian pink",
     rule_pickLi: [
-        "Pendapatan berlian pink bulan lalu akan dihitung pada pkl 00:00(wib) pada tanggal 1 dan 16 setiap bulannya. Host dari agency harus mencapai 500.000 berlian pink agar dapat memasuki penghitungan, dan saat penghitungan berlian pink otomatis akan dikurangi."
+        "Pendapatan berlian pink bulan lalu akan dihitung pada pkl 00:00(wib) pada tanggal 1 dan 16 setiap bulannya. Host dari agency harus mencapai 500.000 berlian pink agar dapat memasuki penghitungan, dan saat penghitungan berlian pink otomatis akan dikurangi.",
+        "Pendapatan berlian pink yang diperoleh melalui panggilan video adalah berlian pink video, dan berlian pink yang diperoleh dari saluran lain adalah berlian pink biasa. Kedua jenis berlian pink akan digabungkan dalam penghitungan, tetapi pendapatan spesifik mungkin berbeda dalam penghitungan.  "
     ],
     //ccj
     index_tab1: "Data Ruangan",
