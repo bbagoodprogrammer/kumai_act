@@ -163,10 +163,12 @@ export default {
     not_cp_object: "Không có đối tượng",
     invite_succ_des:
         "Sau khi tạo nhẫn, hiển thị trong góc yêu của các bạn, \nhãy lựa chọn đúng đối tượng nhé.",
-    ring_des_1: "Có ngôi sao trong mắt, ngọt ngào giữ ẩm với nhau.",
-    ring_des_2: "Kim cương tím là thủ hộ của tình yêu mãi mãi trong cuộc đợi",
+    ring_des_1:
+        "Có ngôi sao trong mắt, ngọt ngào giữ ẩm với nhau, hai bạn sẽ tăng 1500 điểm thân mật",
+    ring_des_2:
+        "Kim cương tím là thủ hộ của tình yêu mãi mãi trong cuộc đợi, hai bạn sẽ tăng 12500 điểm thân mật",
     ring_des_3:
-        "Ước gì mà lấy được trái tim của người yêu, tóc trắng mãi không chia lìa.",
+        "Ước gì mà lấy được trái tim của người yêu, tóc trắng mãi không chia lìa, hai bạn sẽ tăng 50000 điểm thân mật",
     need_magic_engine: "Năng lượng ma thuật:%s",
     get_engine: "Nhận năng lượng",
     ring_maked: "Đã tạo thành công",

@@ -44,7 +44,7 @@ export default {
 	join_list_des: `-Semua kamar dapat berpartisipasi dalam acara ini, pemilik kamar tidak perlu mendaftar.\n-Selama periode acara, ketika pemasukan koin emas dalam kamar, pemilik kamar akan dapatkan nilai pesona koin emas kamar, dan berkesempatan untuk masuk dalam daftar. 1 koin emas = 10 nilai pesona koin emas.\n-Daftar ini diurutkan berdasarkan dengan nilai pesona koin emas kamar dari tinggi ke rendah. Jikabila nilai pesona koin emas kamar sama, kamar yang mencapai lebih dulu akan dapat diprioritaskan.\n-Daftar peringkat hanya menunjukkan 100 kamar pertama.\n-Kalau jumlah orang di dalam kamar ≥5, sementara keadaan kamar umum, label 【Aktif】akan muncul dalam daftar peringkat.`,
 	matters: '2. Hal-hal yang perlu diperhatikan',
 	matters_des:
-		'Selama acara, jika peserta berpartisipasi dalam acara dengan cara yang tidak pantas, AloChat berhak mendiskualifikasi pelaku dari daftar, memblokir akunnya, dan ambil kembali semua hadiahnya sesuai dengan keadaan serius tanpa pemberitahuan sebelumnya, termasuk namun tidak terbatas pada:\na)Konten pesta melanggar %1<Peraturan Peradaban Obrolan Kamar>%2\n b)Komentar jahat, rumor dalam pesta.',
+		'Selama acara, jika peserta berpartisipasi dalam acara dengan cara yang tidak pantas, AloChat berhak mendiskualifikasi pelaku dari daftar, memblokir akunnya, dan ambil kembali semua hadiahnya sesuai dengan keadaan serius tanpa pemberitahuan sebelumnya, termasuk namun tidak terbatas pada:\na)Konten pesta melanggar %1 < Peraturan Peradaban Obrolan Kamar > %2\n b)Komentar jahat, rumor dalam pesta.',
 	explain_1: '2. Acara ini tidak berhubungan dengan Apple.',
 	explain_2: '*Hak interpretasi akhir acara adalah milik penyelenggara acara',
 	total_award: '1. Hadiah top total',
