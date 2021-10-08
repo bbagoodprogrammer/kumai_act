@@ -1,0 +1,69 @@
+<% 
+    const folder = '2020/cpLove';
+
+    const hosts = {
+        hsing: '17sing.tw',
+        singnow: 'singnowapp.com',
+        wekara: 'wekarapp.com',
+        gosing: 'supervoice-app.com',
+        singstar: 'singstarapp.com',
+        miyou: area == 'tw' ? 'udateapp.com' : 'alochatapp.com'
+    };
+    const prefix = app == 'miyou' ? 'activities' : 'activity';
+    const root = `http://${prefix}.${hosts[app]}/static_html/${folder}`;
+
+    const langs = {
+        hsing: 'zh',
+        singnow: 'vi',
+        wekara: 'id',
+        gosing: 'ar',
+        singstar: 'en',
+        miyou: area == 'tw' ? 'zh' : 'vi'
+    };
+    const lang = require('../local/' + langs[app] + '/lang').default;
+    const image = root + '/' + require('../local/' + langs[app] + '/img/share.png');
+%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <title><%= lang.title %></title>
+    <meta name="description" content="<%= lang.share_desc %>">
+    <meta property="og:title" content="<%= lang.share_title %>">
+    <meta property="og:description" content="<%= lang.share_desc %>">
+    <meta property="og:image" content="<%= image %>">
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    var size = 100 * (Math.min(clientWidth, 750) / 750);
+                    docEl.style.fontSize = size + 'px';
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+    <script src="//<%= cdn %>/js/es6-promise.auto.min.js"></script>
+    <script src="//<%= cdn %>/js/runtime.js"></script>
+    <script src="//<%= cdn %>/js/axios.min.js"></script>
+    <script src="//<%= cdn %>/js/vue.runtime.min.js"></script>
+    <script src="//<%= cdn %>/js/vuex.min.js"></script>
+    <script src="//<%= cdn %>/js/vue-router.min.js"></script>
+    <!-- <script src="//<%= cdn %>/js/vue-lazyload.js"></script> -->
+    <!-- <script src="//<%= cdn %>/js/svga.lite.min.js"></script> -->
+    <script>_hash=$hash$;</script>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- <script>!/(\?|&)token=/.test(location.href) && document.write('<script src="/js/share.js"><\/script>');</script> -->
+</body>
+</html>

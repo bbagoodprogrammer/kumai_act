@@ -1,0 +1,45 @@
+html.zh {
+    .banner{
+        background-image: url('./img/banner.png');
+    }
+    .league_box {
+        .title {
+            background-image: url('./img/find_cp.png');
+            &.salt_title {
+                background-image: url('./img/salt_title.png');
+            }
+            &.sweet_title {
+                background-image: url('./img/sweet_title.png');
+            }
+        }
+    }
+    .pro_invite_cp {
+        .inner {
+            .title {
+                background-image: url('./img/title_invitecp.png');
+            }
+        }
+    }
+    .pro_invitation {
+        .inner {
+            .title {
+                background-image: url('./img/title_invitation.png');
+            }
+        }
+    }
+    .pro_sweet {
+        .inner {
+            .title {
+                background-image: url('./img/record_title.png');
+            }
+        }
+    }
+    .con {
+        .love_box {
+            background-image: url('./img/share_has.png');
+        }
+        .love_box_null {
+            background-image: url('./img/share_null.png');
+        }
+    }
+}

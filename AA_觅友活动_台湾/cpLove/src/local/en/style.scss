@@ -1,0 +1,15 @@
+html.en {
+    body {
+        color: gray;
+    }
+    @if ($app==singstar) {
+        body {
+            color: red;
+        }
+    }
+    @if ($app==gosing) {
+        body {
+            color: blue;
+        }
+    }
+}

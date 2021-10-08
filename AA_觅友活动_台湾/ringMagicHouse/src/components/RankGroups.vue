@@ -22,11 +22,7 @@
     <div v-if="rank.none" class="scrollNone">{{ lang.coming_soon }}</div>
 
     <div class="info__bottom">
-      <div
-        v-if="!rank.userRank.cp_uid"
-        class="btn"
-        @click="showSelectCp = true"
-      >
+      <div v-if="!rank.userRank.cp_uid" class="btn" @click="showSelectCp = true">
         {{ lang.select_cp }}
       </div>
       <div v-else class="info">
@@ -67,7 +63,7 @@ import SelectCpDialog from "./SelectCpDialog";
 export default {
   name: "RankGroups",
 
-  data() {
+  data () {
     return {
       list: [],
       refreshing: false,
@@ -79,48 +75,48 @@ export default {
   },
   computed: {
     ...mapState(["rankGroups", "initData", "share", "firstLoad"]),
-    rankKey() {
+    rankKey () {
       return "ringMagicHouse";
     },
-    rankApi() {
+    rankApi () {
       return replaceUrl(API.rank);
     },
-    rankSize() {
+    rankSize () {
       // 如果明确服务器每次返回的列表长度，请返回具体的数值，有助于减少一次额外请求即可确定加载完所有数据
       return 20;
     },
-    rank() {
+    rank () {
       const rankConf = this.rankGroups[this.rankKey] || {};
       rankConf.list = rankConf.list || [];
       rankConf.userRank = rankConf.userRank || {};
       return rankConf;
     },
   },
-  mounted() {
+  mounted () {
     this.onScroll(); // 如果默认展示的Tabs依赖服务器配置，把此方法移到watch中去调用（watch更新Tabs值后调onScroll）
     // 如果初始化接口返回当前榜单数据，可以在Store的Action拿到服务器数据时先调用commit('updateRankGroups', {key:key, list:[]})，再更新state.tab触发组件watch
     window.addEventListener("scroll", this.onScroll);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     window.removeEventListener("scroll", this.onScroll);
   },
   methods: {
     handleRank (rank) {
-      return rank>100 ? '100+' : rank
+      return rank > 100 ? '100+' : rank
     },
-    goHomepage(uid) {
+    goHomepage (uid) {
       if (uid) {
         callApp.userInfo(uid);
       }
     },
-    onScroll() {
+    onScroll () {
       if (!this.rank.loading && !this.rank.loadEnd) {
         const scrollToBottom =
           (document.documentElement.scrollTop || document.body.scrollTop) +
-            window.innerHeight >=
+          window.innerHeight >=
           document.body.scrollHeight - 100;
         const notFull = document.body.scrollHeight < window.innerHeigh;
-        
+
         if (scrollToBottom || notFull || this.firstLoad) {
           const key = this.rankKey;
 
@@ -193,7 +189,7 @@ export default {
         }
       }
     },
-    onRefresh() {
+    onRefresh () {
       if (this.refreshing) {
         return;
       }
@@ -225,38 +221,37 @@ export default {
     font-size: 0.2rem;
     font-weight: 300;
     color: #b296ff;
-    padding-top: 0.23rem;
-    padding-bottom: 0.3rem;
+    padding: 0.23rem 0.3rem 0.3rem;
   }
   .list__box {
     li:nth-child(1) {
-      background: url("../img/list_item_1.png") 0/100% 100% no-repeat;
+      background: url('../img/list_item_1.png') 0/100% 100% no-repeat;
       .rank {
         font-size: 0;
-        background: url("../img/rank1.png") center/0.75rem 0.65rem no-repeat;
+        background: url('../img/rank1.png') center/0.75rem 0.65rem no-repeat;
         opacity: 1;
       }
     }
     li:nth-child(2) {
-      background: url("../img/list_item_2.png") 0/100% 100% no-repeat;
+      background: url('../img/list_item_2.png') 0/100% 100% no-repeat;
       .rank {
         font-size: 0;
-        background: url("../img/rank2.png") center/0.75rem 0.65rem no-repeat;
+        background: url('../img/rank2.png') center/0.75rem 0.65rem no-repeat;
         opacity: 1;
       }
     }
     li:nth-child(3) {
-      background: url("../img/list_item_2.png") 0/100% 100% no-repeat;
+      background: url('../img/list_item_2.png') 0/100% 100% no-repeat;
       .rank {
         font-size: 0;
-        background: url("../img/rank3.png") center/0.75rem 0.65rem no-repeat;
+        background: url('../img/rank3.png') center/0.75rem 0.65rem no-repeat;
         opacity: 1;
       }
     }
     li {
       width: 6.64rem;
       height: 1.41rem;
-      background: url("../img/list_item_rest.png") 0/100% 100% no-repeat;
+      background: url('../img/list_item_rest.png') 0/100% 100% no-repeat;
       margin: 0 auto 0.09rem auto;
       display: flex;
       .rank {
@@ -319,7 +314,7 @@ export default {
   .info__bottom {
     width: 7.5rem;
     height: 1.26rem;
-    background: url("../img/info_bottom_bg.png") 0/100% 100% no-repeat;
+    background: url('../img/info_bottom_bg.png') 0/100% 100% no-repeat;
     position: fixed;
     bottom: 0;
     // left: 0;
@@ -328,7 +323,7 @@ export default {
     .btn {
       width: 3.15rem;
       height: 0.94rem;
-      background: url("../img/fixed_btn.png") 0/100% 100% no-repeat;
+      background: url('../img/fixed_btn.png') 0/100% 100% no-repeat;
       text-align: center;
       font-size: 0.36rem;
       font-weight: bold;

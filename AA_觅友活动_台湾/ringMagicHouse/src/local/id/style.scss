@@ -1,3 +1,19 @@
 html.id {
     letter-spacing: -0.013rem;
+    .header{
+        .rule,.act_mail{
+            font-size: .2rem;
+        }
+        .rule {
+            width: 1.94rem;
+            background: url('./img/act_rule_btn.png') 0/100% 100% no-repeat;
+        }
+    }
+    .test__box{
+        bottom: -.15rem!important;
+        span{
+            width: 2rem;
+            bottom: -.14rem!important;
+        }
+    }
 }
