@@ -1,27 +1,25 @@
 ﻿const lang = {
-  title: "Dessert House",
-  noAct: "Acara belum dimulai",
-  actEd: "Acara telah berakhir",
-  ok: "Konfirmasi",
-  loading: "Dimuat....",
-  noData: "Tiada data untuk sementara",
-  noRank: "Tiada dalam daftar",
-  shareActTitle:
-    "Aku membuka Dessert House dan membuat banyak dessert yg lezat, datang dan bermain bersama aja",
+  title: "甜品屋",
+  noAct: "活動未開始",
+  actEd: "活動已結束",
+  ok: "確認",
+  loading: "加載中....",
+  noData: "暫無數據",
+  noRank: "未上榜",
+  shareActTitle: "我開了一家甜品屋，製作了很多好吃的甜品，快來一起玩吧",
 
   //box
-  boxScore: "Nilai bahagia mencapai",
-  getSuc: "Diterima dgn sukses",
-  sucTips:
-    "Hadiah yg sesuai telah dikirim ke akun Anda,<br /> silakan cek ya!",
-  shareTitle: "Bagikan",
-  shareGift: "（Hadiahi dessert mutil-bahan 2 buah）",
+  boxScore: "歡樂值達到",
+  getSuc: "領取成功",
+  sucTips: "對應獎勵已發放到您的賬戶,<br /> 請注意查收！",
+  shareTitle: "炫耀一下",
+  shareGift: "（獎勵繽紛小料2份）",
   gift: {
     1: {
       gift: [
         {
           type: 1,
-          name: "300 kacang emas"
+          name: "300金豆"
         }
       ]
     },
@@ -29,7 +27,7 @@
       gift: [
         {
           type: 1,
-          name: "600 kacang emas"
+          name: "600金豆"
         }
       ]
     },
@@ -37,11 +35,11 @@
       gift: [
         {
           type: 1,
-          name: "1000 kacang emas"
+          name: "1000金豆"
         },
         {
           type: 7,
-          name: "Bingkai avatar（3 hari）"
+          name: "頭像框（3天）"
         }
       ]
     },
@@ -49,149 +47,126 @@
       gift: [
         {
           type: 1,
-          name: "2000 kacang emas"
+          name: "2000金豆"
         },
         {
           type: 7,
-          name: "Bingkai avatar（7 hari）"
+          name: "頭像框（7天）"
         }
       ]
     }
   },
-  openErr: "Poin Anda tak cukup~ Pergi dan dapatkan poin aja!",
-  shareMsg: "Membuat berbagai dessert, nilai bahagia mencapai",
+  openErr: "您的積分不足哦~快去賺取積分吧！",
+  shareMsg: "制作了多款甜品，歡樂值达到",
 
   //history
-  history_title: "Catatan",
-  history_msg1: "Membuat %n*%c buah",
-  history_msg2: "Nilai bahagia+",
+  history_title: "動態",
+  history_msg1: "製作%n*%c份",
+  history_msg2: "歡樂值+",
   taskName: {
-    mic: "Naik Mic 5 menit di kamar（Kamar pribadi tak dihitung）",
-    coin: "Berikan 100 koin emas di kamar",
-    share: "Bagikan acara ke fb",
-    create: "Bikin momen",
-    // friend: ' Persahabatan meningkat setiap 20',
-    invite: "Undang teman utk buka Dessert House ",
-    charge: "Top up jumlah apapun",
-    room: "8000 Nilai popularitas kamar sendiri mencapai 8000",
-    gift: "Terima 15 buah hadiah dessert apapun",
-    pairing:
-      "Geser ke kanan 3 kartu ya jika sukanya di hlm Match"
+    mic: "在房間上麥5min（私密房不算）",
+    coin: "在房間送出100金幣",
+    share: "分享活動到line或fb",
+    create: "創建動態",
+    // friend: '交友熱力每提升20',
+    invite: "邀請好友開甜品屋",
+    charge: "儲值任意金額",
+    room: "自己房間的人氣值達到8000",
+    gift: "收到任意甜品禮物15份",
+    pairing: "瀏覽配對頁，找到3個我感興趣的玩家(對他/她感興趣,一定要右滑哦)"
   },
 
   //list
-  score: "Nilai bahagia",
-  getScience: "Dapat bahan",
-  creat: "Membuat",
-  creatNums: "Telah jadi %c",
-  countGift: "setiap kali hadiahi ",
-  dayTips: "setiap hari %c kali",
-  doTask: "Pergi",
-  inivitNums: "%i orang telah diundang>>",
-  taskTips:
-    "Tolong cepat terima setelah selesaikan tugas~ Tugas update pd pkl 00:00(wib) setiap hari",
-  inivitTitle:
-    "Undang pemain baru ke acara, undang 1 org yg berhasil akan dihadiahi",
-  noFriend: "Tiada teman untuk diundang, cepat tambahkan teman saja~",
-  noSingup: "Belum ada Dessert House",
-  creatQuery: "Konfirmasi",
-  creatNums_get: "Juga dapat membuat total %o buah lagi",
-  cancel: "Batal",
-  ok: "Konfirmasi",
-  creatSuc: "Berhasil diproduksi",
-  addScore: "Tingkatkan nilai bahagia：",
-  goBack: "Pergi ke ransel utk cek",
-  creatIng: "Dessert dibuat...",
-  shareSuc: "Berbagi berhasil!",
+  score: "歡樂值",
+  getScience: "獲取材料",
+  creat: "去製作",
+  creatNums: "已合成%c份",
+  countGift: "每次獎勵",
+  dayTips: "每天%c次",
+  doTask: "去完成",
+  inivitNums: "已邀請%i人>>",
+  taskTips: "完成任務後請盡快領取哦~任務每天0點更新",
+  inivitTitle: "邀請活動新玩家，每成功邀請1人獎勵",
+  noFriend: "暫無可邀請好友，快去添加好友吧~",
+  noSingup: "還沒有甜品屋",
+  creatQuery: "製作確定",
+  creatNums_get: "還可製作總數%o份",
+  cancel: "取消",
+  ok: "確定",
+  creatSuc: "製作成功",
+  addScore: "增加歡樂值：",
+  goBack: "去背包查看",
+  creatIng: "甜品製作中......",
+  shareSuc: "分享成功！",
   tabArr: [
     {
       type: 1,
-      msg: "Buah",
-      tips:
-        "Buah:dapat digunakan utk buat jus alpukat,daifuku, mojito persik, cangkir bintang es krim"
+      msg: "水果",
+      tips: "水果：可用於製作鱷梨果汁、水果大福、蜜桃莫吉托、冰激凌星空杯"
     },
     {
       type: 2,
-      msg: "Produk susu",
-      tips:
-        "Produk susu:dapat digunakan utk buat daifuku, puding ganda, mojito persik, cangkir bintang es krim"
+      msg: "奶製品",
+      tips: "奶製品：可用於製作水果大福、雙層布丁、蜜桃莫吉托、冰激凌星空杯"
     },
     {
       type: 3,
-      msg: "Dessert mutil-bahan",
-      tips:
-        "Dessert mutil-bahan:dapat digunakan utk buat puding ganda, mojito persik, cangkir bintang es krim"
+      msg: "繽紛小料",
+      tips: "繽紛小料：可用於製作雙層布丁、蜜桃莫吉托、冰激凌星空杯"
     }
   ],
   pairingMsg:
-    "Klik tombol 【[Match】di bagian bawah APP utk menelusuri hlm Match~（Ingatlah utk update ke versi 280）",
-  roomTitle: "Nilai popularitas kamar",
-  roomMsg:
-    "1 pemain berkontribusi 8 nilai popularitas per menit <br/>koin emas berkontribusi 1 nilai popularitas",
+    "點擊app中底部的【配對】按鈕就可以瀏覽配對頁啦~（記得要更新到280版本哦）",
+  roomTitle: "房間人氣值",
+  roomMsg: "1玩家一分鐘貢獻8人氣值 <br/>1金幣貢獻1人氣值",
 
   //roolMsg
-  roolMsg:
-    "Selamat ~ %n berhasil buat %d%c dan dapat %s nilai bahagia",
+  roolMsg: "恭喜%n成功製作%d%c份,獲得%s歡樂值",
 
   //rule
-  ruleTab1: "Aturan",
-  ruleTab2: "Hadiah",
+  ruleTab1: "活動規則",
+  ruleTab2: "活動獎勵",
   ruleTips:
-    "Setiap hari lakukan tugas utk dapat bahan dessert,buat dessert (hadiah ransel),dapatkan nilai bahagia dan menangkan bingkai avatar terbatas,mount,dan hadiah koin emas.",
-  ruleTm: " pkl 18:00(wib),19 Juni~pkl 18:00(wib), 26 Juni",
-  ruleListItem1: "Bagaimana cara bermain Dessert House?",
+    "每天做任務獲得甜品材料，製甜品（背包禮物），獲得歡樂值還能贏限定頭像框、座駕、金幣獎勵",
+  ruleTm: "2021年10月9日 18:00-2021年10月16日23：59：59",
+  ruleListItem1: "如何玩轉甜品屋？",
   ruleListItem2:
-    "Lakukan tugas utk kumpulkan bahan dessert,buat dessert (hadiah ransel) utk dapatkan nilai bahagia >> kumpulkan nilai bahagia utk selesaikan tugas lanjutan utk terima hadiah",
+    "做任務收集甜品材料,製作甜品（背包禮物）獲得歡樂值>>積纍歡樂值完成進階任務領取獎勵",
   ruleListItem3:
-    "*Dessert yg berhasil dibuat akan didistribusikan ke ransel pemain, dapat diberikan kpd pemain lain di kamar manapun. Semua hadiah ransel dlm acara tersebut berlaku selama 7 hari, jika tak diberikan, hadiah itu tak valid~",
-  ruleListItem4: "Bagaimana cara kumpulkan nilai bahagia?",
-  ruleListItem5:
-    "Stlh Anda selesai buat dessert yg ditentukan, akan dapatkan nilai bahagia yg sesuai.",
-  ruleListItem6:
-    "*Hak interpretasi akhir acara adalah milik penyelenggara acara",
-  ruleListItem7: "Tugas lanjutan dan hadiah",
-  ruleListItem8: "Hadiah daftar",
-  ruleListItem9: "Tindakan pencegahan",
-  ruleListItem10: "Hadiah daftar akan dikirimkan dlm 5 hari kerja",
-  ruleListItem11: "*Acara ini tak berhubungan dengan Apple",
+    "*製作成功的甜品將發放到玩家背包，可在任意房間送給任意其他玩家；活動中所有背包禮物的有效期為7天，不送出去會失效哦~",
+  ruleListItem4: "如何積累歡樂值？",
+  ruleListItem5: "製作完成指定甜品后即可獲得對應歡樂值",
+  ruleListItem6: "*活動最終解釋權歸活動主辦方所有",
+  ruleListItem7: "進階任務及獎勵",
+  ruleListItem8: "榜單獎勵",
+  ruleListItem9: "注意事項",
+  ruleListItem10: "榜單獎勵在5個工作日內發放",
+  ruleListItem11: "*本活動與蘋果公司無關",
 
   //share
-  shareCreat: "Membuat berbagai dessert ",
-  shareScore: "Nilai bahagia capai ",
-  shareGiftTitle: "Dapat hadiah terbatas",
-  shareMsg1:
-    "Aku membuka satu Dessert House dan buat banyak dessert yg lezat, datang dan bermain bersama aja",
-  shareMsg2: "Dessert House",
+  shareCreat: "製作了多款甜品",
+  shareScore: "歡樂值達到了",
+  shareGiftTitle: "收穫限量禮物",
+  shareMsg1: "我開了一家甜品屋，製作了很多好吃的甜品，快來一起玩吧。",
+  shareMsg2: "的甜品屋",
   giftArr: [
     {
       type: 4,
-      name: "Bingkai avatar"
+      name: "頭像框"
     },
     {
       type: 5,
-      name: "Mount"
+      name: "座駕"
     },
     {
       type: 6,
-      name: "Koin emas"
+      name: "金幣"
     }
   ],
 
   //singUpPup
   singUpTips:
-    "Buka satu Dessert House dan sintesis dessert House<em>hadiah ransel</em>,juga bisa menangkan<em>bingkai avatar terbatas</em>、<em>mount dan hadiah koin emas</em>",
-  singUpSucTips:
-    "Dessert House Anda buka! !<br/>Cepat pergi untuk buat dessert aja",
-
-  //index
-  indexNoReg:
-    "Dessert House Anda belum dibuka <strong>Nilai bahagia:????</strong>",
-  indexRoomName: "Dessert House ",
-  indexCuldCreat: "Ada dessert yang bisa dibuat",
-  indexCreat: "Klik untuk membuat",
-  indexCreatStatus: " Masih kurang %c %n utk buat %s",
-  indexLastTips: "Hak interpretasi akhir acara adalah milik penyelenggara acara",
-  indexInviteTips:
-    "Teman yg berhasil undang Anda utk buka Dessert House akan berkesempatan utk dapatkan <i></i> x5 buah"
+    "開一間甜品屋，合成甜品 <em>背包禮物</em>，還能贏 <em>限定頭像框</em>、<em>座駕及金幣</em>獎勵",
+  singUpSucTips: "你的甜品屋開張啦！！<br/>快去製作甜品吧"
 };
 export default lang;

@@ -92,7 +92,7 @@
     <div class="rules" v-if="mainTab==0">
       <div class="group">
         <div class="title">1、活動時間</div>
-        <p>9月01日 00:00-10月01日 00:00</p>
+        <p>2021年10月09日 18：00-10月16日23：59：59</p>
       </div>
       <div class="group">
         <div class="title">2、參與活動</div>

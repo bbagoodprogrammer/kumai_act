@@ -115,7 +115,7 @@ export default {
     height: 1.08rem;
     padding-top: 1.02rem;
     background: linear-gradient(0deg, #FFFFFF, rgba(255, 255, 255, 0));
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     z-index: 1;

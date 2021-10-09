@@ -367,24 +367,25 @@ export default {
       } catch (t) { }
     },
     openShare () {
+      let host = AREA == 'vn' ? 'chatstarapp.com' : location.host
       this.user_info.cp_nick
         ? this.shareApp({
           from: '2',
           url:
-            location.host + '/static_html/2020/cpLove/share.html?uid=' +
+            host + '/static_html/2020/cpLove/share.html?uid=' +
             this.user_info.uid,
           title: this.lang.share_title,
           desc: this.lang.share_desc1,
-          image: location.host + '/static_html/2020/cpLove/share.jpg',
+          image: host + '/static_html/2020/cpLove/share.jpg',
         })
         : this.shareApp({
           from: '2',
           url:
-            location.host + '/static_html/2020/cpLove/share.html?uid=' +
+            host + '/static_html/2020/cpLove/share.html?uid=' +
             this.user_info.uid,
           title: this.lang.share_title,
           desc: this.lang.share_desc2,
-          image: location.host + '/static_html/2020/cpLove/share.jpg',
+          image: host + '/static_html/2020/cpLove/share.jpg',
         })
     },
   },
@@ -657,11 +658,11 @@ export default {
       align-items: center;
       span {
         font-size: 0;
-        margin-right: 0.2rem;
+        margin-right: 0.05rem;
         strong {
           color: #fff;
           font-size: 0.48rem;
-          margin-right: 0.23rem;
+          margin-right: 0.13rem;
         }
         em {
           color: #fef868;

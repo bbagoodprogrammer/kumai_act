@@ -1,3 +1,56 @@
 html.zh {
-    
+   .creat{
+       .tips_title{
+        background-size: 100% 100%;
+           &.title1{
+               background-image: url(./img/tips_title1.png);  
+              
+           }
+           &.title2{
+          background-image: url(./img/tips_title2.png);  
+            }
+            &.title3{
+              background-image: url(./img/tips_title3.png);  
+            }
+            &.title4{
+              background-image: url(./img/tips_title4.png);  
+         }
+       }
+       .creatTypeList{
+           span{
+            background-size: 100% 100%;
+            &.type1{
+                background-image: url(./img/tab1.png);  
+                &.act{
+                    background-image: url(./img/tab1_act.png);  
+                }
+            }
+            &.type2{
+                background-image: url(./img/tab2.png);  
+                &.act{
+                    background-image: url(./img/tab2_act.png);  
+                }
+            }
+            &.type3{
+                background-image: url(./img/tab3.png);  
+                &.act{
+                    background-image: url(./img/tab3_act.png);  
+                }
+            }
+            &.type4{
+                background-image: url(./img/tab4.png);  
+                &.act{
+                    background-image: url(./img/tab4_act.png);  
+                }
+            }
+            &.type2,&.type4{
+                margin-left: -.22rem;
+            }
+            &.type3,&.type4{
+              margin-top: -.14rem;
+            }
+           }
+           
+       }
+   } 
 }

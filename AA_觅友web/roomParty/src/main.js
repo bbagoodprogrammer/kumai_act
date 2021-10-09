@@ -8,6 +8,13 @@ import store from "./store";
 import router from "./router";
 import { replaceLang, vuexCommit, toast } from "./utils";
 
+import DatetimePicker from "vant/lib/datetime-picker";
+import "vant/lib/datetime-picker/style";
+import popup from "vant/lib/popup";
+import "vant/lib/popup/style";
+Vue.use(DatetimePicker);
+Vue.use(popup);
+
 Vue.config.productionTip = false;
 Vue.prototype.toast = toast;
 Vue.prototype.vxc = vuexCommit;
@@ -26,11 +33,11 @@ router.beforeEach((to, from, next) => {
 Vue.mixin({
     computed: {
         lang: () => _lang,
-        images: () => _images,
+        images: () => _images
     },
     methods: {
-        replaceLang,
-    },
+        replaceLang
+    }
 });
 
 new Vue({
@@ -38,5 +45,5 @@ new Vue({
     store,
     router,
     components: { App },
-    render: (h) => h(App),
+    render: h => h(App)
 });

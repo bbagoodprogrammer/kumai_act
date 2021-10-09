@@ -1,141 +1,93 @@
 <template>
   <div class="rule">
     <div class="mainTabs">
-      <a href="javascript:;" @click="mainTabClick(0)" :class="{current:mainTab==0}">參與規則</a>
-      <a href="javascript:;" @click="mainTabClick(1)" :class="{current:mainTab==1}">活動獎勵</a>
+      <a href="javascript:;" @click="mainTabClick(0)" :class="{current:mainTab==0}">thể lệ</a>
+      <a href="javascript:;" @click="mainTabClick(1)" :class="{current:mainTab==1}">Thưởng </a>
     </div>
 
     <div class="rewards" v-if="mainTab==1">
       <div class="group">
-        <div class="title">約會基金獎池</div>
-        <p>約會基金獎池的初獎金為5000金幣，總熱戀值每增加500，獎池則增加1金幣；<br>活動結束時，熱戀值高的聯盟獲勝，聯盟內的CP獲得瓜分約會基金獎池的資格</p>
+        <div class="title">Kho xu tỏ tình</div>
+        <p>Kho xu tỏ tình bắt đầu tính từ 5000xu mỗi tăng 300 điểm thì kho xu sẽ được cộng thêm 1xu；<br>Sau sự kiện kết thức, tất cả CP đủ điều kiện sẽ chia sẻ xu trong kho này</p>
         <div class="formula"></div>
       </div>
       <div class="the_reward">
-        <p>鹽系和甜系熱戀榜的榜單獎勵</p>
+        <p>Thưởng cặp đôi mặn và ngọt</p>
         <div class="list">
-          <p>榜單冠軍</p>
-          <div>
-            <span class="icon1">
-              <strong>
-                <span>
-                </span>
-                <i>52000</i>
-              </strong>
-              <strong>天使之戀-戒指</strong>
-            </span>
-            <span class="icon2">
-              <strong><i>15天</i></strong>
-              <strong>浪漫飛艇-座駕</strong>
-            </span>
-            <span class="icon3">
-              <strong><i>15天</i></strong>
-              <strong>新郎新娘頭像框</strong>
-            </span>
-            <span class="icon4">
-              <strong><i>15天</i></strong>
-              <strong>定製CP稱號</strong>
-            </span>
-          </div>
-          <p class="other">520婚禮房婚禮舉辦權*1次</p>
+          <p>Giải nhất mỗi đội:</p>
+          <div><span class="icon1"><strong><span></span><i>52000</i></strong> <strong>Nhẫn trọn đời trọn kiếp</strong></span> <span class="icon2"><strong><i>15 ngày</i></strong> <strong>Du
+                thuyền<br>lãng mạn</strong></span> <span class="icon3"><strong><i>15 ngày</i></strong> <strong>khung ảnh cô<br>dâu chủ rể</strong></span> <span class="icon4"><strong><i>15
+                  ngày</i></strong> <strong>chứng nhận tủy chọn</strong></span></div>
         </div>
         <div class="list">
-          <p>榜單亞軍CP</p>
-          <div>
-            <span class="icon2">
-              <strong><i>10天</i></strong>
-              <strong>浪漫飛艇-座駕</strong>
-            </span>
-            <span class="icon3">
-              <strong><i>10天</i></strong>
-              <strong>新郎新娘頭像框</strong>
-            </span>
-            <span class="icon4">
-              <strong><i>10天</i></strong>
-              <strong>甜蜜CP稱號</strong>
-            </span>
-          </div>
+          <p>Giải nhì mỗi đội:</p>
+          <div><span class="icon2"><strong><i>10 ngày</i></strong> <strong>Du thuyền<br>lãng mạn</strong></span> <span class="icon3"><strong><i>10 ngày</i></strong> <strong>khung ảnh cô<br>dâu chủ
+                rể</strong></span> <span class="icon4"><strong><i>10 ngày</i></strong> <strong>Chứng nhận<br>Ngọt ngào</strong></span></div>
         </div>
         <div class="list">
-          <p>榜單季軍CP</p>
-          <div>
-            <span class="icon2">
-              <strong><i>7天</i></strong>
-              <strong>浪漫飛艇-座駕</strong>
-            </span>
-            <span class="icon3">
-              <strong><i>10天</i></strong>
-              <strong>新郎新娘頭像框</strong>
-            </span>
-            <span class="icon4">
-              <strong><i>10天</i></strong>
-              <strong>幸福CP稱號</strong>
-            </span>
-          </div>
+          <p>Giải ba</p>
+          <div><span class="icon2"><strong><i>7 ngày</i></strong> <strong>Du thuyền<br>lãng mạn</strong></span> <span class="icon3"><strong><i>7 ngày</i></strong> <strong>khung ảnh cô<br>dâu chủ
+                rể</strong></span> <span class="icon4"><strong><i>7 ngày</i></strong> <strong>Chứng nhận<br>Hạnh phúc</strong></span></div>
         </div>
         <div class="list">
-          <p>第4-6名</p>
-          <div>
-            <span class="icon6">
-              <strong><i>7天</i></strong>
-              <strong>新郎新娘頭像框</strong>
-            </span>
-          </div>
+          <p>Giải 4-6</p>
+          <div><span class="icon6"><strong><i>7 ngày</i></strong> <strong>khung ảnh cô<br>dâu chủ rể</strong></span></div>
         </div>
       </div>
       <ul class="tip">
-        <li>*熱戀值滿52000並達到榜單前三名，可獲得對應榜單獎勵</li>
-        <li>*惜敗聯盟的第4-6名捕獲的榜單獎勵</li>
-        <li>*所有獎勵以CP為單位</li>
+        <li>*Đạt 5200 và top3 mới được nhận thưởng theo BXH</li>
+        <li>*Giải 4-6 của bên Liên minh thua không có thưởng</li>
+        <li>*Tất cả thưởng đều sẽ gửi cho cả 2 bên CP</li>
       </ul>
     </div>
     <div class="rules" v-if="mainTab==0">
       <div class="group">
-        <div class="title">1、活動時間</div>
-        <p>9月01日 00:00-10月01日 00:00</p>
+        <div class="title">1、Thời igan sự kiện</div>
+        <p>09/10 18:00 - 16/10 23:59:59</p>
       </div>
       <div class="group">
-        <div class="title">2、參與活動</div>
-        <p>在APP內組成CP的玩家可參與活動<br>組成CP的流程：準備戒指&gt;&gt;向親密度達標的好友表白&gt;&gt;好友答應&gt;&gt;組成CP</p>
-        <p>若解除CP關係則被視為主動退出活動，不可再重新參與或者獲得活動獎勵哦~</p>
+        <div class="title">2、Tham gia</div>
+        <p>Các CP đã ghép đôi sẽ được tham gia<br>Cach thức：Mua nhẫn tỏ tình &gt;&gt;Tỏ tình cho bạn bè &gt;&gt; Nếu bạn bè đồng ý &gt;&gt;Sẽ trở thành CP</p>
+        <p>Nếu quan hệ CP bị gỡ bỏ, sẽ không được tham gia sự kiện và nhận quà nữa~</p>
       </div>
       <div class="group">
-        <div class="title">3、聯盟規則</div>
-        <p>CP們隨即加入鹽系聯盟/甜系聯盟；聯盟之間PK,以熱戀值多的聯盟為勝，聯盟內的CP獲得瓜分約會基金的資格</p>
+        <div class="title">3、Thể lệ liên minh</div>
+        <p>CP tham gia sự kiện sẽ tham gia liên minh luôn/Linh minh Ngọt；PK giữa liên minh, bên giành được điểm yêu cao sẽ thắng，các CP trong liên minh sẽ nhận thưởng trong kho xu liên minh.</p>
       </div>
       <div class="group">
-        <div class="title">4、熱戀值</div>
-        <p>CP可通過舉辦房間活動，收集指定禮物、贈送戒指增加熱戀值；熱戀值=指定禮物金幣價值*10+戒指的甜蜜值熱戀值每增加200，約會基金獎池就增加1金幣</p>
+        <div class="title">4、Điểm yêu</div>
+        <p>Trong thời igan sự kiện diễn ra, các CP tặng quà chỉ định để tăng điểm yêu của mình ；Điểm yêu= giá trị quà chi định *10 + điểm yêu từ nhẫn. Mỗi tăng 300 điểm yêu, kho xu sẽ được cộng thêm
+          1xu</p>
         <div class="rewards_box">
           <div>
             <p class="top"><span></span><i>100</i></p>
-            <p class="name">甜蜜賀卡</p>
-            <p class="val">+1000熱戀值</p>
+            <p class="name">Thư tỏ tình</p>
+            <p class="val">+1000điểm</p>
           </div>
           <div>
             <p class="top"><span></span><i>1290</i></p>
-            <p class="name">巧克力禮盒</p>
-            <p class="val">+12900熱戀值</p>
+            <p class="name">Sô cô la</p>
+            <p class="val">+12900điểm</p>
           </div>
           <div>
             <p class="top"><span></span><i>1399</i></p>
-            <p class="name">情書</p>
-            <p class="val">+13990熱戀值</p>
+            <p class="name">Thư tình</p>
+            <p class="val">+13990điểm</p>
           </div>
           <div>
             <p class="top"><span></span><i>2800</i></p>
-            <p class="name">比心</p>
-            <p class="val">+28000熱戀值</p>
+            <p class="name">Cả tấm lòng</p>
+            <p class="val">+28000điểm</p>
           </div>
           <div>
             <p class="top"><span></span><i>6999</i></p>
-            <p class="name">天鵝親親</p>
-            <p class="val">+69990熱戀值</p>
+            <p class="name">Trọn đời</p>
+            <p class="val">+69990điểm</p>
           </div>
         </div>
       </div>
     </div>
-    <p class="copy">本活動的最終解釋權歸活動主辦方所有</p>
+    <p class="copy">Quyền giải thích cuối cùng thuộc về ban tổ chức sự kiện</p>
   </div>
 </template>
 
@@ -356,7 +308,7 @@ body {
 }
 .rewards .the_reward .list > div span strong:first-of-type,
 .rules .the_reward .list > div span strong:first-of-type {
-  padding-top: 1.25rem;
+  padding-top: 1.17rem;
 }
 .rewards .the_reward .list > div span strong:first-of-type i,
 .rewards .the_reward .list > div span strong:first-of-type span,
@@ -380,7 +332,8 @@ body {
 }
 .rewards .the_reward .list > div span strong:nth-of-type(2),
 .rules .the_reward .list > div span strong:nth-of-type(2) {
-  font-size: 0.2rem;
+  font-size: 0.18rem;
+  line-height: 0.23rem;
   color: #ffff;
 }
 .rewards .the_reward .list > div span.icon1,

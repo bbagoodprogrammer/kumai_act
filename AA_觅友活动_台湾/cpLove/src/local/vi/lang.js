@@ -1,85 +1,98 @@
 // https://brushes8.com/zhong-wen-jian-ti-fan-ti-zhuan-huan
 export default {
     //html/index.html
-    title: "戀愛大作戰",
-    loading: "加載中...",
-    no_data: "暫無更多~",
+    title: "Thách thức tình yêu",
+    loading: "Đang tải...",
+    no_data: "Chưa có dữ liệu~",
     loadEnd: "",
-    ok: "確定",
-    open_rule: "活動規則",
-    open_record: "熱戀動態",
-    score: "熱戀值",
-    cp_home: "CP小窝>>",
-    rank: "聯盟內排名：",
-    future_your: "未來的TA",
-    invite_friend: "邀請好友祝福",
-    invite_fb: "邀請LINE、FB好友组CP",
-    tips_cp: "組CP後，隨機加入鹽係CP聯盟/甜係CP聯盟",
-    gifts1: "天使之戀-戒指",
-    gifts2: "新郎新娘頭像框",
-    gifts3: "豐富金幣",
-    sweet_val: "甜係熱戀值",
-    salt_val: "鹽係熱戀值",
-    salt_team: "鹽係聯盟",
-    sweet_team: "甜係聯盟",
-    tab_sweet: "甜系熱戀榜",
-    tab_salt: "鹽系熱戀榜",
-    rank_tips: "榜單僅顯示熱戀值最高的20對CP",
+    ok: "Xác nhận",
+    open_rule: "Thể lệ",
+    open_record: "Trạng thái",
+    score: "Điểm yêu",
+    cp_home: "Góc yêu>>",
+    rank: "BXH các đội：",
+    future_your: "Đối tượng lý tưởng",
+    invite_friend: "Mời bạn tham gia",
+    invite_fb: "Mời bạn zalo, fackbook tham gia",
+    tips_cp: "Sau khi ghép đôi CP sẽ gia nhập Liên minh CP",
+    gifts1: "Nhẫn - Trọn đời trọn kiếp",
+    gifts2: "Khung ảnh - Cô dâu chủ rể",
+    gifts3: "Vô số Xu",
+    sweet_val: "Điểm Ngọt",
+    salt_val: "Điểm Mặn",
+    salt_team: "Liên minh CP Mặn",
+    sweet_team: "Liên minh CP Ngọt",
+    tab_sweet: "BXH Ngọt",
+    tab_salt: "BXH Mặn",
+    rank_tips: "BXH chỉ hiển thị Top20",
 
-    day: "天",
-    hour: "時",
-    minute: "分",
-    second: "秒",
-    my_cp: "我的CP：",
-    invite_people: "邀請他/她",
+    day: "Ngày",
+    hour: "Giờ",
+    minute: "Phút",
+    second: "Giây",
+    my_cp: "CP của mình：",
+    invite_people: "Mời bạn",
     pro_invitation_tips:
-        "邀請你一起參加愛的告白季活動 讓大家感受我們的幸福吧！",
-    btn_reject: "殘忍拒絕",
-    btn_accept: "答應TA",
-    invite_success: "邀請成功<br>等待CP的答覆",
-    pro_recall_tips: "正在等待對方的答復<br>請耐心等候",
-    lose_title: "很遺憾..",
-    lost_tips: "你所在%t以%s甜蜜值惜敗本次“戀愛大作戰”活動", //你所在鹽係聯盟以1000甜蜜值惜敗本次“戀愛大作戰”活動
-    congratulation_title: "恭喜!!",
+        "Mời bạn tham gia Lễ hội tình yêu, hãy chia sẻ hạnh phúc của mình cho mọi người!",
+    btn_reject: "Từ chối!",
+    btn_accept: "Đồng ý!",
+    invite_success: "Đã gửi lời mời <br> Vui lòng chờ",
+    pro_recall_tips: "Đang chờ đời phản hồi <br>Vui lòng chờ",
+    lose_title: "Rất tiếc..",
+    lost_tips:
+        "Liên minh của bạn %t đạt %s điểm yêu, thua trong “Thách thức tình yêu” kỳ này", //你所在鹽係聯盟以1000甜蜜值惜敗本次“戀愛大作戰”活動
+    congratulation_title: "Chúc mừng!!",
     congratulation_tips:
-        "你所在%t以%s甜蜜值勝出本次的“戀愛大作戰”活動，你和%n共瓜分到%c金幣，金幣獎勵已平均發放到各自的賬戶！", //你所在鹽係聯盟以43434甜蜜值勝出本次的“戀愛大作戰”活動，你和张三共瓜分到100金幣，金幣獎勵已平均發放到各自的賬戶！
+        "Liên minh của bạn %t đạt %s điểm yêu, thắng trong “Thách thức tình yêu” kỳ này，Bạn và %n sẽ chia sẻ %c xu，Thưởng xu đã gửi vào tài khoản của bạn!", //你所在鹽係聯盟以43434甜蜜值勝出本次的“戀愛大作戰”活動，你和张三共瓜分到100金幣，金幣獎勵已平均發放到各自的賬戶！
 
-    relieve: "解除CP關係後，不可再參加活動哦",
-    reject_tips: "你已拒絕對方的邀請",
-    accept_tips: "你已成功接受對方的邀請",
-    notice_tips: "{0}和{1}成功組成CP",
+    relieve: "Sau khi gỡ CP không được tham gia nữa",
+    reject_tips: "Đã từ chối",
+    accept_tips: "Đã đồng ý",
+    notice_tips: "{0}và {1}ghép đôi CP thành công",
 
     //share
     salt1: [
-        "喜歡裹著很厚的焦糖的爆米花",
-        "喜歡雨天厚厚的棉被",
-        "喜歡圖書館裡的詩集",
-        "喜歡黃昏時分農曆的晚霞",
-        "喜歡四季更替的季風訊息",
-        "但還是最喜歡你"
+        "Tôi thích bỏng ngô bọc trong lớp dày caramen ",
+        "Tôi thích những chiếc mền dày vào những ngày mưa",
+        "Như tập thơ trong thư viện",
+        "Như ánh hoàng hôn của âm lịch lúc chạng vạng",
+        "Như thông điệp gió mùa thay đổi theo bốn mùa",
+        "Nhưng tôi thích nhất là bạn"
     ],
-    salt2: ["我們在音覓相遇相識", "距離不阻礙緣分", "希望得到你的祝福"],
-    salt_sign: "— 鹽系CP",
+    salt2: [
+        "Minh làm quen trong AloChat",
+        "Khoảng cách không cản trở số phận",
+        "Hy vọng nhận được phước lành của bạn"
+    ],
+    salt_sign: "— CP Mặn",
     sweet1: [
-        "你會變成小星星",
-        "在比人的世界裡一閃一閃亮晶晶",
-        "所以我要睡著之前",
-        "天天如此一如既往"
+        "Bạn sẽ trở thành một ngôi sao nhỏ",
+        "Lấp lánh lấp lánh trong thế giới",
+        "Vì vậy, tôi phải ngủ trước",
+        "Mọi ngày vẫn như thường lệ"
     ],
-    sweet2: ["我們在音覓相遇相識", "距離不阻礙緣分", "希望得到你的祝福"],
-    sweet_sign: "— 甜系CP",
-    share_gifts1: "天使之戀-戒指",
-    share_gifts2: "新郎新娘頭像框",
-    share_gifts3: "豐富金幣",
-    share_btn1: "祝福他們",
-    share_slogan: "從此遇見一個人，便知道了另一種人生，也溫暖了兩個靈魂",
-    share_btn2: "和他/她相識",
-    future_people: "未來的你",
-    no_tips: "我們將音覓相遇相識<br>距離不阻礙緣分",
+    sweet2: [
+        "Minh làm quen trong AloChat",
+        "Khoảng cách không cản trở số phận",
+        "Hy vọng nhận được phước lành của bạn"
+    ],
+    sweet_sign: "— CP Ngọt",
+    share_gifts1: "Nhẫn - Thiên sứ",
+    share_gifts2: "Khung ảnh - Cô dâu chủ rể",
+    share_gifts3: "Vô số Xu",
+    share_btn1: "ban phước cho họ",
+    share_slogan:
+        "Từ đó tôi gặp một người, biết một cuộc sống khác, và cũng sưởi ấm hai tâm hồn.",
+    share_btn2: "Làm quen với bạn",
+    future_people: "Bạn trong tương lai",
+    no_tips: "Minh làm quen trong AloChat<br>Khoảng cách không cản trở số phận",
 
     //html/app_share.ejs
-    share_title: "戀愛大作戰",
-    share_desc: "我們在音覓相遇相識，距離不阻礙緣分，希望得到你的祝福！",
-    share_desc1: "我們在音覓相遇相識，距離不阻礙緣分，希望得到你的祝福！",
-    share_desc2: "我寫了一封寄往你心裡的告白信，點擊查看"
+    share_title: "Thách thức tình yêu",
+    share_desc:
+        "Minh làm quen trong AloChat, Khoảng cách không cản trở số phận, Hy vọng nhận được phước lành của bạn！",
+    share_desc1:
+        "Minh làm quen trong AloChat, Khoảng cách không cản trở số phận, Hy vọng nhận được phước lành của bạn！",
+    share_desc2:
+        "Tôi đã viết 1 bức thư tỏ tình đến trái tim của bạn, bấm vào để xem"
 };

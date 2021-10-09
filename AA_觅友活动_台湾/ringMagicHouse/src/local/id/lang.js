@@ -10,7 +10,7 @@
     select_cp: "Pilih dia",
     select_cp_des:
         "Pemain yang tidak memiliki CP dapat memilih teman yang jomblo",
-    relieve_act_relationship: "Putuskan hubungan dari acara>>",
+    relieve_act_relationship: "Putuskan hubungan",
     intimacy: "Tingkat keintiman",
     soul_contract: "Keserasian Jiwa",
     soul_contract_des_1:
@@ -109,7 +109,7 @@
         "Hanya saling follow agar dapat menjadi yang ditaksir.\nCepat dan bertemu teman baru saja.",
     loading: "Dimuat...",
 
-    is_relieve_cp: "Apakah akan memutuskan hubungan",
+    is_relieve_cp: "Putuskan hubungan？",
     relieve_cp_des_1:
         "Kalian telah memakan {0} hari dan akumulasi {1} energi sihir,\n hanya {2} lagi agar bisa membuat {3}, apakah akan memutuskan hubungan？",
     relieve_cp_des_2:
@@ -119,7 +119,7 @@
     relieve_req_success:
         "Permintaan pembatalan telah dikirim, mohon sabar untuk balasannya",
 
-    regret_tell_you: "Mohon maaf untuk memberitahu Anda",
+    regret_tell_you: "Tips",
     regret_tell_des_1:
         "Pemain [%s] meminta untuk membatalkan hubungan. Setelah memutuskan hubungan, energi sihir terkait akan dihapus jadi nol.",
     regret_tell_des_2:
@@ -152,7 +152,7 @@
     go_exciting: "Pergi",
     finished: "Selesai",
     receive_success: "Diterima dengan sukses",
-    receive_engine: "Terima energi",
+    receive_engine: "Terima",
     task_des:
         "*Tugas interaktif yg intim di update setiap hari, harap terima energi sihir tepat waktu",
     fell_up: "Pemanasan Emosional",
@@ -169,16 +169,16 @@
     list_des:
         "Daftar diberi peringkat dari tinggi ke rendah sesuai dgn energi sihir yg diperoleh pemain",
 
-    welcome_act: "Selamat datang di rumah ajaib cincin",
+    welcome_act: "Selamat Datang",
     admission_des:
-        "Selamat datang di rumah ajaib cincin, interaksi intim denganNya yang ditaksir.\nKumpulkan energi sihir untuk membuat cincin terbatas!",
-    get_into_house: "Masuk ke rumah ajaib",
+        "Selamat datang, interaksi intim dgnNya yg ditaksir.\nKumpulkan energi sihir utk buat cincin terbatas!",
+    get_into_house: "Masuk",
     magic_house_invite: "Undangan rumah ajaib",
     invite_welcome:
-        "Selamat datang di rumah ajaib cincin.\nKumpulkan energi sihir dengan yang taksir untuk membuat cincin terbatas!\nBerikut ini adalah pemain yang mencintaimu, kamu dapat memilih salah satu, dan berpartisipasi bersama aja~",
-    not_cp_object: "Tiada dia yang ditaksir",
+        "Selamat Datang\nKumpulkan energi sihir dgnNya yg taksir utk buat cincin terbatas!\nBerikut ini adalah pemain yg cintaimu, kamu dapat pilih salah satunya, dan ikut bersama aja~",
+    not_cp_object: "Tiada dia yg ditaksir",
     invite_succ_des:
-        "Cincin setelah dibuat akan langsung mempromosikan kedua pihak untuk menjadi CP,\ndan akan ditampilkan di CP House, silakan pilih dia yang ditaksir dengan hati-hati.",
+        "Cincin yg dibuat akan langsung promosikan kedua pihak utk jadi CP,\ndan ditampilkan di CP House, silakan pilihNya yg ditaksir dgn hati2.",
     ring_des_1:
         "Selama dekat dengan aku, itu akan menjadi sangat manis. Dapatkan cincin ini, kedua  pihak akan menambahkan 1500 nilai manis.",
     ring_des_2:
@@ -186,7 +186,7 @@
     ring_des_3:
         "Aku adalah planet yang diseret oleh Bima Sakti,selama titik akhirnya kau,aku bersedia utk menjangkau beberapa tahun cahaya.Dapatkan cincin ini,kedua pihak akan tambahkan 12500 nilai manis.",
     need_magic_engine: "Diperlukan energi sihir: %s",
-    get_engine: "Dapatkan energi sihir",
+    get_engine: "Dapatkan",
     ring_maked: "Membuat selesai",
 
     magic_engine_enough: "Energi sihir kalian telah penuh",
@@ -220,10 +220,10 @@
     orther_letter: "Surat lainnya",
     reject_btn: "Menolak",
     rejected: "Menolak",
-    agreed: "Kamu telah setuju",
-    you_has_cp: "Kamu sudah memiliki pacar",
-    male_has_cp: "Dia sudah memiliki pacar",
-    femail_has_cp: "Dia sudah memiliki pacar",
+    agreed: "Disetujui",
+    you_has_cp: "Punya pacar",
+    male_has_cp: "Punya pacar",
+    femail_has_cp: "Punya pacar",
     not_mail: "Tidak ada surat untuk sementara",
     orther_letter_title_1: "%s mengajukan pemutusan hubungan dengan mu.",
     orther_letter_title_2:
