@@ -2,7 +2,7 @@
   <div class="creat">
     <div class="title">
       <strong>發佈活動預告</strong>
-      <i class="close"></i>
+      <i class="close" @click="$router.go(-1)"></i>
     </div>
     <div class="tips_title title1"></div>
     <div class="creatTypeList">
@@ -40,7 +40,7 @@
       <div class="btn" @click="creatAct()">發布</div>
     </div>
 
-    <van-popup v-model="showTimeSet" position="bottom" round :style="{ height: '40%' }">
+    <van-popup v-model="showTimeSet" position="bottom" round :style="{ height: '55%' }">
       <van-datetime-picker @confirm="confirmTime()" @cancel="cancelTime()" v-model="currentDate" type="datetime" :title="timeType==1?'開始時間':'結束時間'" :min-date="minDate" :max-date="maxDate"
         :formatter="formatter" />
     </van-popup>
@@ -52,6 +52,8 @@
 const nowTime = new Date()
 
 import getDate from "../utils/getDate"
+import { mapState } from "vuex"
+import { publishAct } from "../apis"
 
 export default {
   data () {
@@ -68,7 +70,28 @@ export default {
       actMsg: ''
     }
   },
+  created () {
+    const actObj = this.editActObj
+    if (actObj.actId) {
+      this.showType = actObj.themeType
+      this.actTitle = actObj.topic
+      this.actMsg = actObj.bulletin
+      this.startTimStr = actObj.beginTime
+      this.endTimStr = actObj.endTime
+    }
+  },
+  //   watch: {
+  //     editActObj (val) {
+  //       console.log(val)
+  //       if (val.actId) {
+  //         this.showType = val.themeType
+  //         this.actTitle = val.topic
+  //         this.actMsg = val.bulletin
+  //       }
+  //     }
+  //   },
   computed: {
+    ...mapState(['editActObj']),
     minDate () {
       if (this.timeType == 1) {
         return nowTime
@@ -87,7 +110,7 @@ export default {
   },
   methods: {
     creatAct () {
-      if (this.starTms == '' || this.endTms == '') {
+      if (this.startTimStr == '' || this.endTimStr == '') {
         this.toast('請填寫活動時間！')
         return
       } else if (this.actTitle == '') {
@@ -97,14 +120,21 @@ export default {
         this.toast('請填寫活動公告！')
         return
       } else {
-        creatAct().then(res => {
-          if (res.data.code == 0) {
-
+        this.vxc('updateLoading', true)
+        publishAct(this.editActObj.actId ? this.editActObj.actId : 0, this.showType, this.addSecondStr(this.startTimStr), this.addSecondStr(this.endTimStr), this.actTitle, this.actMsg).then(res => {
+          if (res.data.response_data) {
+            this.vxc('updateLoading', false)
+            this.toast(`創建成功！`)
+            this.$router.go(-1)
           } else {
-            this.toast('error')
+            this.toast(res.data.response_status.error)
+            this.vxc('updateLoading', false)
           }
         })
       }
+    },
+    addSecondStr (str) {
+      return str.replace('.', '-').replace('.', '-') + ':00'
     },
     confirmTime () {
       if (this.timeType == 1) {
@@ -141,12 +171,19 @@ export default {
 <style lang="scss">
 .creat {
   position: relative;
+  padding-top: 0.88rem;
   > .title {
+    width: 100%;
     text-align: center;
     height: 0.88rem;
     line-height: 0.88rem;
+    background: #fff;
     color: #2C2B36;
     position: relative;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
     strong {
       font-size: 0.32rem;
       font-weight: bold;

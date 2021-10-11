@@ -7,13 +7,18 @@ import App from "./App";
 import store from "./store";
 import router from "./router";
 import { replaceLang, vuexCommit, toast } from "./utils";
-
+import VueLazyLoad from "vue-lazyload";
 import DatetimePicker from "vant/lib/datetime-picker";
 import "vant/lib/datetime-picker/style";
 import popup from "vant/lib/popup";
 import "vant/lib/popup/style";
 Vue.use(DatetimePicker);
 Vue.use(popup);
+
+Vue.use(VueLazyLoad, {
+    error: require("./img/default.png"),
+    loading: require("./img/default.png")
+});
 
 Vue.config.productionTip = false;
 Vue.prototype.toast = toast;

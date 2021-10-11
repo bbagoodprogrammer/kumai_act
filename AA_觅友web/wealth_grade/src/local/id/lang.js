@@ -42,12 +42,12 @@
         "Mencapai Lv.20~29",
         "Mencapai Lv.30~39",
         "Mencapai Lv.40~49",
-        " Mencapai Lv.50"
+        "Mencapai Lv.50~59"
     ],
 
     level_title: "Keterangan Level", //Keterangan Level
     level_explain_tips:
-        "Total 50 level kekayaan. Memberikan hadiah koin emas（Kecuali hadiah ransel）、membeli barang di store dalam APP.<i>Setiap koin emas dikonsumsi akan meningkat  1 poin kekayaan.</i> Akumulasi nilai kekayaan dapat ditingkatkan untuk membuka kunci hak istimewa level.",
+        "Total 59 level kekayaan. Memberikan hadiah koin emas（Kecuali hadiah ransel）、membeli barang di store dalam APP.<i>Setiap koin emas dikonsumsi akan meningkat  1 poin kekayaan.</i> Akumulasi nilai kekayaan dapat ditingkatkan untuk membuka kunci hak istimewa level.",
     level_explain_ul: [
         "Ketentuan berikut bawah perilaku interaktif meningkatkan nilai kekayaan yang berbeda：",
         '1、Berikan hadiah "Lucky Star", konsumsi 1 koin emas akan tingkatkan 0.8 poin nilai kekayaan.',

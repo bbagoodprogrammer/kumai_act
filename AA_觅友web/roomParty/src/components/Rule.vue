@@ -2,7 +2,7 @@
   <div class="rule">
     <div class="title">
       <strong>發佈活動預告</strong>
-      <i class="close"></i>
+      <i class="close" @click="close()"></i>
     </div>
     <p class="firstTips">
       發起房間活動預告，邀請好友們參與可在活動中獲得豐富獎勵，並享有以下活動特權：
@@ -16,18 +16,47 @@
         </div>
       </li>
     </ul>
-    <div class="create">
-      <div class="btn">發布活動預告</div>
+    <div class="create" v-if="isOwner">
+      <div class="btn" @click="$router.push({name:'CreatAct'})">發布活動預告</div>
     </div>
   </div>
 
 </template>
 
 <script>
+import { mapState } from "vuex"
+import { closeWeb } from "../utils/miyouCallApp"
 
 export default {
+  data () {
+    return {
+      routeFrom: ''
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+    console.log(to)
+    console.log(from)
+    // this.routeFrom = JSON.stringify(JSON.parse(from.name))
+    next(vm => {
+      // 通过 `vm` 访问组件实例,将值传入newPath
+      //beforeRouteEnter守卫在导航确认前被调用，因此守卫不能访问 this
+      //在template里已经可以用this.newPath来获取到from所带的name值
+      vm.routeFrom = from.name
+    });
+  },
   computed: {
+    ...mapState(['isOwner', 'ListLength']),
     tipsArr: () => _lang.tipsArr
+  },
+  methods: {
+    close () {
+      if (this.routeFrom && this.ListLength) {
+        this.$router.go(-1)
+      } else {
+        console.log('close')
+        closeWeb()
+      }
+    }
   }
 }
 </script>

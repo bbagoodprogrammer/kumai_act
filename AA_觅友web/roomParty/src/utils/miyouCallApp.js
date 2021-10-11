@@ -1,73 +1,75 @@
-import { ios, trigger } from './trigger'
+import { ios, trigger } from "./trigger";
 
 /**
  *储值页（钱包）
  */
 function walletpage() {
-	trigger(`app://walletpage`)
+    trigger(`app://walletpage`);
 }
 
 /**
  *派对页
  */
 function party_recom_room() {
-	trigger(`app://mainPage?page_index=party&page_index_child=party_recom_room`)
+    trigger(
+        `app://mainPage?page_index=party&page_index_child=party_recom_room`
+    );
 }
 /**
  *我的派对页
  */
-function party_recom_room() {
-	trigger(`app://mainPage?page_index=party&page_index_child=party_my_room`)
+function party_my_room() {
+    trigger(`app://mainPage?page_index=party&page_index_child=party_my_room`);
 }
 
 /**
  *配對页
  */
 function pair_pair() {
-	trigger(`app://mainPage?page_index=pair&page_index_child=pair_pair`)
+    trigger(`app://mainPage?page_index=pair&page_index_child=pair_pair`);
 }
 
 /**
  *搭讪页
  */
 function pair_accost() {
-	trigger(`app://mainPage?page_index=pair&page_index_child=pair_accost`)
+    trigger(`app://mainPage?page_index=pair&page_index_child=pair_accost`);
 }
 
 /**
  *訊息
  */
 function message_msg() {
-	trigger(`app://mainPage?page_index=message&page_index_child=message_msg`)
+    trigger(`app://mainPage?page_index=message&page_index_child=message_msg`);
 }
 
 /**
  *好友
  */
 function message_friend() {
-	trigger(
-		`app://mainPage?page_index=message&page_index_child=message_friend `
-	)
+    trigger(
+        `app://mainPage?page_index=message&page_index_child=message_friend `
+    );
 }
 
 /**
  *追踪
  */
 function moment_follow() {
-	trigger(`app://mainPage?page_index=moment&page_index_child=moment_follow `)
+    trigger(`app://mainPage?page_index=moment&page_index_child=moment_follow `);
 }
 
 /**
  *推荐
  */
 function moment_recom() {
-	trigger(`app://mainPage?page_index=moment&page_index_child=moment_recom `)
+    trigger(`app://mainPage?page_index=moment&page_index_child=moment_recom `);
 }
 /**
  *声音
  */
 function moment_sound() {
-	trigger(`app://mainPage?page_index=moment&page_index_child=moment_sound `)
+    trigger(`app://mainPage?page_index=moment&page_index_child=moment_sound `);
 }
 
 /**
@@ -75,7 +77,7 @@ function moment_sound() {
  *ios暂不支持此方法
  */
 function me() {
-	trigger(`app://mainPage?page_index=me`)
+    trigger(`app://mainPage?page_index=me`);
 }
 
 /**
@@ -83,21 +85,21 @@ function me() {
  *新增方法app://editPersonalDetails，ios暂无不支持
  */
 function editPersonalDetails() {
-	trigger(`app://eidpersonalDetails`)
+    trigger(`app://eidpersonalDetails`);
 }
 
 /**
  *创建房间页
  */
 function createroom() {
-	trigger(`app://createroom`)
+    trigger(`app://createroom`);
 }
 
 /**
  *签到
  */
 function taskSign() {
-	trigger(`app://taskSign`)
+    trigger(`app://taskSign`);
 }
 
 /**
@@ -106,11 +108,11 @@ function taskSign() {
  * @param {number} type 发图片=1，t发语音=2
  */
 function leadSongpage(type) {
-	if (ios) {
-		trigger(`app://makeSoundBottlespage`)
-	} else {
-		trigger(`app://leadSongpage?type=${type}`)
-	}
+    if (ios) {
+        trigger(`app://makeSoundBottlespage`);
+    } else {
+        trigger(`app://leadSongpage?type=${type}`);
+    }
 }
 
 /**
@@ -119,7 +121,7 @@ function leadSongpage(type) {
  * @param {string} uid 用户UID
  */
 function userInfo(uid) {
-	trigger(`app://userInfo?uid=${uid}`)
+    trigger(`app://userInfo?uid=${uid}`);
 }
 
 /**
@@ -128,7 +130,7 @@ function userInfo(uid) {
  * @param {string} toUid 用户UID
  */
 function cpHouse(toUid) {
-	trigger(`app://cpHouse?toUid=${toUid}`)
+    trigger(`app://cpHouse?toUid=${toUid}`);
 }
 
 /**
@@ -137,7 +139,7 @@ function cpHouse(toUid) {
  * @param {string} usid 作品id
  */
 function workDetails(usid) {
-	trigger(`app://workDetails?usid=${usid}`)
+    trigger(`app://workDetails?usid=${usid}`);
 }
 
 /**
@@ -146,10 +148,10 @@ function workDetails(usid) {
  * @param {number} page :0 戒指，1头像框 2座驾 3：我的
  */
 function headwearShop(page) {
-	if (ios) {
-		trigger(`app://headwearShop`)
-	}
-	trigger(`app://headwearShop?page=${page}`)
+    if (ios) {
+        trigger(`app://headwearShop`);
+    }
+    trigger(`app://headwearShop?page=${page}`);
 }
 
 /**
@@ -158,7 +160,7 @@ function headwearShop(page) {
  * @param {string} toUid 用户uid
  */
 function chat(toUid) {
-	trigger(`app://headwearShop?toUid=${toUid}`)
+    trigger(`app://headwearShop?toUid=${toUid}`);
 }
 
 /**
@@ -167,7 +169,7 @@ function chat(toUid) {
  * @param {string} tpid
  */
 function topicDetails(tpid) {
-	trigger(`app://topicDetails?tpid=${tpid}`)
+    trigger(`app://topicDetails?tpid=${tpid}`);
 }
 
 /**
@@ -176,7 +178,7 @@ function topicDetails(tpid) {
  * @param {string} rid 房间ID
  */
 function room(rid) {
-	trigger(`app://room?rid=${rid}`)
+    trigger(`app://room?rid=${rid}`);
 }
 
 /**
@@ -184,7 +186,7 @@ function room(rid) {
  * @param {string} json 服务器返回签到成功的response_data
  */
 function onCoupleClockInTask(json) {
-	return callAppNew('getStatusBarHeight')
+    return callAppNew("getStatusBarHeight");
 }
 
 /**
@@ -193,14 +195,14 @@ function onCoupleClockInTask(json) {
  * @return {*}
  */
 function onGoToAskCouple(uid) {
-	return callAppNew('getStatusBarHeight', uid)
+    return callAppNew("getStatusBarHeight", uid);
 }
 
 /**
  *用户资料编辑
  */
 function goUserInfo() {
-	return callAppNew('goUserInfo')
+    return callAppNew("goUserInfo");
 }
 
 /**
@@ -209,7 +211,7 @@ function goUserInfo() {
  * @return {*}
  */
 function reportWebEvent(json) {
-	return callAppNew('reportWebEvent', json)
+    return callAppNew("reportWebEvent", json);
 }
 
 /**
@@ -217,11 +219,11 @@ function reportWebEvent(json) {
  * @return {*}
  */
 function hideLoading() {
-	if (ios) {
-		return callAppNew('onHideLoading')
-	} else {
-		return callAppNew('hideLoading')
-	}
+    if (ios) {
+        return callAppNew("onHideLoading");
+    } else {
+        return callAppNew("hideLoading");
+    }
 }
 
 /**
@@ -229,7 +231,7 @@ function hideLoading() {
  * @return {*}
  */
 function goPhotoAlbum() {
-	return callAppNew('goPhotoAlbum')
+    return callAppNew("goPhotoAlbum");
 }
 
 /**
@@ -237,7 +239,7 @@ function goPhotoAlbum() {
  * @return {*}
  */
 function goGame() {
-	return callAppNew('goGame')
+    return callAppNew("goGame");
 }
 
 /**
@@ -246,7 +248,7 @@ function goGame() {
  * @return {*}
  */
 function closeWeb(json) {
-	return callAppNew('closeWeb', json)
+    return callAppNew("closeWeb", json);
 }
 
 /**
@@ -255,7 +257,7 @@ function closeWeb(json) {
  * @return {*}
  */
 function sendLuckyBox(json) {
-	return callAppNew('sendLuckyBox', json)
+    return callAppNew("sendLuckyBox", json);
 }
 
 /**
@@ -263,7 +265,7 @@ function sendLuckyBox(json) {
  * @return {*}
  */
 function getDeviceId() {
-	return callAppNew('getDeviceId')
+    return callAppNew("getDeviceId");
 }
 
 /**
@@ -271,7 +273,7 @@ function getDeviceId() {
  * @return {number}
  */
 function getStatusBarHeight() {
-	return callAppNew('getStatusBarHeight', undefined, true) || 0
+    return callAppNew("getStatusBarHeight", undefined, true) || 0;
 }
 
 /**
@@ -279,9 +281,9 @@ function getStatusBarHeight() {
  * @param {string} skin
  */
 function setStatusBarStyle(skin) {
-	skin = skin === 'black' ? skin : 'light'
-	var args = JSON.stringify({ skin: skin })
-	callAppNew('setStatusBarStyle', args)
+    skin = skin === "black" ? skin : "light";
+    var args = JSON.stringify({ skin: skin });
+    callAppNew("setStatusBarStyle", args);
 }
 
 /**
@@ -289,8 +291,8 @@ function setStatusBarStyle(skin) {
  * @param {boolean} full
  */
 function setFullScreen(full) {
-	full = full !== false
-	callAppNew('setFullScreen', full)
+    full = full !== false;
+    callAppNew("setFullScreen", full);
 }
 
 /**
@@ -302,29 +304,29 @@ function setFullScreen(full) {
  * @return {*}
  */
 function callAppNew(method, data, sync = false) {
-	if (method && typeof method == 'string') {
-		const dataValue =
-			typeof data == 'string' ||
-			typeof data == 'boolean' ||
-			typeof data == 'number' ||
-			data === null
-				? data
-				: JSON.stringify(data)
-		const hasArgs = typeof dataValue != 'undefined' && data != null
-		try {
-			if (ios) {
-				if (sync) {
-					return prompt(JSON.stringify({ method, data }))
-				} else {
-					hasArgs ? window[method](dataValue) : window[method]()
-				}
-			} else {
-				return hasArgs
-					? JSInterface[method](dataValue)
-					: JSInterface[method]()
-			}
-		} catch (e) {}
-	}
+    if (method && typeof method == "string") {
+        const dataValue =
+            typeof data == "string" ||
+            typeof data == "boolean" ||
+            typeof data == "number" ||
+            data === null
+                ? data
+                : JSON.stringify(data);
+        const hasArgs = typeof dataValue != "undefined" && data != null;
+        try {
+            if (ios) {
+                if (sync) {
+                    return prompt(JSON.stringify({ method, data }));
+                } else {
+                    hasArgs ? window[method](dataValue) : window[method]();
+                }
+            } else {
+                return hasArgs
+                    ? JSInterface[method](dataValue)
+                    : JSInterface[method]();
+            }
+        } catch (e) {}
+    }
 }
 
 // 其他适配界面  安卓预留，跳转前需向客户端取对应参数
@@ -354,39 +356,40 @@ function callAppNew(method, data, sync = false) {
 // }
 
 export {
-	walletpage,
-	party_recom_room,
-	pair_pair,
-	pair_accost,
-	message_msg,
-	message_friend,
-	moment_follow,
-	moment_recom,
-	moment_sound,
-	me,
-	editPersonalDetails,
-	createroom,
-	taskSign,
-	leadSongpage,
-	userInfo,
-	cpHouse,
-	workDetails,
-	headwearShop,
-	chat,
-	topicDetails,
-	room,
-	getStatusBarHeight,
-	setStatusBarStyle,
-	setFullScreen,
-	onCoupleClockInTask,
-	onGoToAskCouple,
-	goUserInfo,
-	reportWebEvent,
-	hideLoading,
-	goPhotoAlbum,
-	goGame,
-	closeWeb,
-	sendLuckyBox,
-	getDeviceId,
-}
+    walletpage,
+    party_recom_room,
+    party_my_room,
+    pair_pair,
+    pair_accost,
+    message_msg,
+    message_friend,
+    moment_follow,
+    moment_recom,
+    moment_sound,
+    me,
+    editPersonalDetails,
+    createroom,
+    taskSign,
+    leadSongpage,
+    userInfo,
+    cpHouse,
+    workDetails,
+    headwearShop,
+    chat,
+    topicDetails,
+    room,
+    getStatusBarHeight,
+    setStatusBarStyle,
+    setFullScreen,
+    onCoupleClockInTask,
+    onGoToAskCouple,
+    goUserInfo,
+    reportWebEvent,
+    hideLoading,
+    goPhotoAlbum,
+    goGame,
+    closeWeb,
+    sendLuckyBox,
+    getDeviceId
+};
 // 分享 获取上麦用户

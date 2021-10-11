@@ -6,7 +6,10 @@ Vue.use(vuex);
 
 export default new vuex.Store({
     state: {
-        loading: false
+        loading: false,
+        editActObj: {},
+        isOwner: -1,
+        ListLength: -1
     },
     mutations: {
         updateLoading(state, value) {
@@ -15,6 +18,16 @@ export default new vuex.Store({
 
         setInitInfo(state, data) {
             Object.assign(state, data);
+        },
+        setEditAct(state, val) {
+            state.editActObj = val;
+            // console.log(state.editActObj);
+        },
+        setIsOwner(state, val) {
+            state.isOwner = val;
+        },
+        setListLength(state, val) {
+            state.ListLength = val;
         }
     },
     actions: {

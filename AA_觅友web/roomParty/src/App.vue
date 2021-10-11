@@ -14,6 +14,9 @@ export default {
     ...mapState(['loading']),
     viewHeight: () => window.innerHeight,
   },
+  //   created(){
+
+  //   },
   mounted () {
     //this.$store.dispatch('getInitInfo',1);
   },

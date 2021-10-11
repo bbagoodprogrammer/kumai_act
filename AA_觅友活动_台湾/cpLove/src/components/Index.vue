@@ -1236,7 +1236,7 @@ export default {
           left: 50%;
           margin-left: -3.37rem;
         }
-        .avater {
+        .avatar {
           width: 0.98rem;
           height: 0.98rem;
           background: url('../img/bg_avatar.png');

@@ -35,12 +35,12 @@ export default {
         "Đạt Lv.20~29",
         "Đạt Lv.30~39",
         "Đạt Lv.40~49",
-        "Đạt Lv.50"
+        "Đạt Lv.50~59"
     ],
 
     level_title: "Giới thiệu Cấp Tài Phú", //等級說明
     level_explain_tips:
-        "Tài phú có 50 cấp, theo số quà xu đã tặng （trừ quà túi), mua đạo cụ trong shop, <i>mỗi khi dùng 1 xu tăng 1 điểm tài phú</i>, tích lũy điểm tài phú để tăng cấp, có thể mở khóa đặc quyền theo cấp",
+        "Tài phú có 59 cấp, theo số quà xu đã tặng （trừ quà túi), mua đạo cụ trong shop, <i>mỗi khi dùng 1 xu tăng 1 điểm tài phú</i>, tích lũy điểm tài phú để tăng cấp, có thể mở khóa đặc quyền theo cấp",
     level_explain_ul: [
         "Những hành động sau tăng điểm tài phú khác nhau：",
         "1. Tặng quà “Ngôi sao may mắn”, dùng 1 xu tăng 0.8 điểm tài phú；",

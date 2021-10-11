@@ -3,6 +3,11 @@ import store from "../store";
 import getSign from "../utils/getSign";
 import { getUrlString, toast } from "../utils";
 import { testGet } from "./test";
+import qs from "qs";
+
+const rid = getUrlString("rid") || getUrlString("room_id") || "";
+const uid = getUrlString("uid") || "";
+const token = getUrlString("token") || "";
 
 function appendParam(url, key, value) {
     if (!new RegExp("(\\?|&)" + key + "=").test(url)) {
@@ -47,9 +52,9 @@ axios.interceptors.request.use(
 
         // 替换URL占位符
         if (url) {
-            const rid = getUrlString("rid") || getUrlString("room_id") || "";
-            const uid = getUrlString("uid") || "";
-            const token = getUrlString("token") || "";
+            // const rid = getUrlString("rid") || getUrlString("room_id") || "";
+            // const uid = getUrlString("uid") || "";
+            // const token = getUrlString("token") || "";
             url = url
                 .replace("{rid}", euc(rid))
                 .replace("{uid}", euc(uid))
@@ -212,9 +217,81 @@ function getInitInfo(rid, page) {
     );
 }
 
-function actList(rid, page) {
+//創建活動
+function publishAct(actId, themeType, beginTime, endTime, topic, bulletin) {
+    //活動Id 創建為0 類型  開始時間 結束時間 標題 內容
+    let data = {
+        token: token,
+        actId: actId,
+        rid: rid,
+        themeType: themeType,
+        beginTime: beginTime,
+        endTime: endTime,
+        topic: topic,
+        bulletin: bulletin
+    };
+    return axios({
+        url: "/index.php?action=Action/RoomAct.publishAct",
+        method: "post",
+        data: data,
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+    });
+}
+
+// 活动列表
+function actList(page) {
     return get(
-        `/index.php?action=Action/RoomAct.getActList&token={token}&rid=${rid}&page=${page}`
+        `/index.php?action=Action/RoomAct.getActList&token={token}&rid={rid}&page=${page}`
     );
 }
-export { get, post, loadData, getInitInfo, actList };
+
+//参与活动
+function jojinAct(actId) {
+    return get(
+        `/index.php?action=Action/RoomAct.joinAct&token={token}&rid={rid}&actId=${actId}`
+    );
+}
+
+//删除活动
+function delAct(actId) {
+    return get(
+        `/index.php?action=Action/RoomAct.cancelAct&token={token}&rid={rid}&actId=${actId}`
+    );
+}
+
+//發射煙花
+function lightFireworks(actId) {
+    return get(
+        `/index.php?action=Action/RoomAct.lightFireworks&token={token}&rid={rid}&actId=${actId}`
+    );
+}
+
+//開始活動
+function startAct(actId) {
+    return get(
+        `/index.php?action=Action/RoomAct.startAct&token={token}&rid={rid}&actId=${actId}`
+    );
+}
+
+//結束活動
+function endAct(actId) {
+    return get(
+        `/index.php?action=Action/RoomAct.endAct&token={token}&rid={rid}&actId=${actId}`
+    );
+}
+
+export {
+    get,
+    post,
+    loadData,
+    getInitInfo,
+    actList,
+    jojinAct,
+    delAct,
+    lightFireworks,
+    startAct,
+    endAct,
+    publishAct
+};
