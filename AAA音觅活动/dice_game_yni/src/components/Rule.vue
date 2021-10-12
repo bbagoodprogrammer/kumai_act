@@ -14,7 +14,7 @@
       <h6>{{lang.ruleTips4}}</h6>
       <img src="../assets/img/rule/table1.png" alt="" class="table">
       <p class="red">{{lang.ruleTips5}}</p>
-      <p>{{lang.ruleTips6}}</p>
+      <!-- <p>{{lang.ruleTips6}}</p> -->
       <p>{{lang.ruleTips7}}</p>
       <h6>{{lang.ruleTips8}}</h6>
       <p>{{lang.ruleTips9}}</p>

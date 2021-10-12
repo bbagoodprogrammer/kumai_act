@@ -1,11 +1,11 @@
 <template>
   <div class="rule">
     <div class="title">
-      <strong>發佈活動預告</strong>
+      <strong>{{lang.creatActTitle}}</strong>
       <i class="close" @click="close()"></i>
     </div>
     <p class="firstTips">
-      發起房間活動預告，邀請好友們參與可在活動中獲得豐富獎勵，並享有以下活動特權：
+      {{lang.ruleTitle}}
     </p>
     <ul>
       <li v-for="(item,index) in tipsArr" :key="index">
@@ -17,7 +17,7 @@
       </li>
     </ul>
     <div class="create" v-if="isOwner">
-      <div class="btn" @click="$router.push({name:'CreatAct'})">發布活動預告</div>
+      <div class="btn" @click="$router.push({name:'CreatAct'})">{{lang.ruleCreatBtn}}</div>
     </div>
   </div>
 

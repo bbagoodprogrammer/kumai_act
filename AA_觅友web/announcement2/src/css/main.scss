@@ -1,0 +1,94 @@
+@import "./reset.css";
+@function rem($px){ @return $px/40 + rem;}
+body {
+    color: $text-black;
+    background: $bg;
+}
+
+a {
+    color: $skin;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+
+#app {
+    max-width: 750px;
+    margin: auto;
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+.bounce-enter-active {
+    transition: opacity .3s;
+    .content {
+        animation: bounce .3s;
+    }
+}
+.bounce-leave-active {
+    transition: opacity .3s;
+    .content {
+        animation: bounce .3s reverse;
+    }
+}
+
+.page {
+    box-sizing: border-box;
+}
+.mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 10000;
+    background: rgba(0,0,0,.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // transform:none!important;
+}
+.slide-enter-active {
+    animation-name: slideInUp;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+  .slide-leave-active {
+    animation-name: slideOutDown;
+    animation-duration: 0.2s;
+    animation-fill-mode: both;
+  }
+  @keyframes slideInUp {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  @keyframes slideOutDown {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    to {
+      transform: scale(0);
+    }
+  }

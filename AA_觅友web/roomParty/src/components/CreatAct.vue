@@ -1,7 +1,7 @@
 <template>
   <div class="creat">
     <div class="title">
-      <strong>發佈活動預告</strong>
+      <strong>{{lang.creatActTitle}}</strong>
       <i class="close" @click="$router.go(-1)"></i>
     </div>
     <div class="tips_title title1"></div>
@@ -10,8 +10,8 @@
     </div>
     <div class="tips_title title2"></div>
     <div class="timeSet">
-      <div class="startTime" @click="showTimeSet = true" :class="{opt:startTimStr == ''}">{{startTimStr?startTimStr:'開始時間'}}</div>
-      <div class="endTime" @click="showTimeSet = true" :class="{opt:endTimStr == ''}">{{endTimStr?endTimStr:'結束時間'}}</div>
+      <div class="startTime" @click="showTimeSet = true" :class="{opt:startTimStr == ''}">{{startTimStr?startTimStr:lang.startTm}}</div>
+      <div class="endTime" @click="showTimeSet = true" :class="{opt:endTimStr == ''}">{{endTimStr?endTimStr:lang.endTm}}</div>
     </div>
     <div class="tips_title title3"></div>
     <div class="actTitleBox">
@@ -26,22 +26,22 @@
     </div>
 
     <div class="tipsList">
-      <div class="tipsTitle">注意事項</div>
+      <div class="tipsTitle">{{lang.creatTipsTitle}}</div>
       <ul>
-        <li>1、發布活動需完整填寫活動預告信息，目前僅支持發布緣分配對、團戰PK、生日派對、浪漫婚禮4個活動主題；</li>
-        <li>2、允許發布多個房間活動預告，房間內的預告提醒僅展示最近一場的活動信息； </li>
-        <li>3、活動時間最長為6個小時，允許跨天設置，房主需在達到開始時間後手動操作“開始活動”，即可進行活動數據統計；超出設定的結束時間2個小時後將自動結束活動；</li>
-        <li>4、活動開始後，將自動替換本場活動設置的話題話題、活動公告信息，無須再次手動設置；</li>
-        <li>5、活動開始後，參與活動預告的用戶將收到小秘書通知進入活動，參與預告的用戶越多房間越有人氣哦；</li>
+        <li>{{lang.creatTipsTips1}}</li>
+        <li>{{lang.creatTipsTips2}} </li>
+        <li>{{lang.creatTipsTips3}}</li>
+        <li>{{lang.creatTipsTips4}}</li>
+        <li>{{lang.creatTipsTips5}}</li>
       </ul>
     </div>
 
     <div class="create">
-      <div class="btn" @click="creatAct()">發布</div>
+      <div class="btn" @click="creatAct()">{{lang.creatBtn}}</div>
     </div>
 
     <van-popup v-model="showTimeSet" position="bottom" round :style="{ height: '55%' }">
-      <van-datetime-picker @confirm="confirmTime()" @cancel="cancelTime()" v-model="currentDate" type="datetime" :title="timeType==1?'開始時間':'結束時間'" :min-date="minDate" :max-date="maxDate"
+      <van-datetime-picker @confirm="confirmTime()" @cancel="cancelTime()" v-model="currentDate" type="datetime" :title="timeType==1?lang.startTm:lang.endTm" :min-date="minDate" :max-date="maxDate"
         :formatter="formatter" />
     </van-popup>
   </div>
@@ -92,6 +92,9 @@ export default {
   //   },
   computed: {
     ...mapState(['editActObj']),
+    timerSelectorStr () {
+      return this.lang.timerSelectorStr
+    },
     minDate () {
       if (this.timeType == 1) {
         return nowTime
@@ -111,20 +114,20 @@ export default {
   methods: {
     creatAct () {
       if (this.startTimStr == '' || this.endTimStr == '') {
-        this.toast('請填寫活動時間！')
+        this.toast(this.lang.examineTimeTips)
         return
       } else if (this.actTitle == '') {
-        this.toast('請填寫活動話題！')
+        this.toast(this.lang.examineTitleTips)
         return
       } else if (this.actMsg == '') {
-        this.toast('請填寫活動公告！')
+        this.toast(this.lang.examineMsgTips)
         return
       } else {
         this.vxc('updateLoading', true)
         publishAct(this.editActObj.actId ? this.editActObj.actId : 0, this.showType, this.addSecondStr(this.startTimStr), this.addSecondStr(this.endTimStr), this.actTitle, this.actMsg).then(res => {
           if (res.data.response_data) {
             this.vxc('updateLoading', false)
-            this.toast(`創建成功！`)
+            this.toast(this.lang.ceatSucTips)
             this.$router.go(-1)
           } else {
             this.toast(res.data.response_status.error)
@@ -148,21 +151,12 @@ export default {
         this.showTimeSet = false
       }
     },
+    cancelTime () {
+      this.timeType = 1
+      this.showTimeSet = false
+    },
     formatter (type, val) {
-      if (type === 'year') {
-        return `${val}年`;
-      } else if (type === 'month') {
-        return `${val}月`;
-      } else if (type === 'day') {
-        return `${val}日`;
-      } else if (type === 'hour') {
-        return `${val}時`;
-      } else if (type === 'minute') {
-        return `${val}分`;
-      } else if (type === 'second') {
-        return `${val}秒`;
-      }
-      return val;
+      return this.timerSelectorStr[type].replace('%s', val)
     },
   },
 }

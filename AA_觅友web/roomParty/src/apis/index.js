@@ -241,7 +241,12 @@ function publishAct(actId, themeType, beginTime, endTime, topic, bulletin) {
 }
 
 // 活动列表
-function actList(page) {
+function actList(page, more) {
+    if (more) {
+        return axios.get(
+            `/index.php?action=Action/RoomAct.getActList&token={token}&rid={rid}&page=${page}`
+        );
+    }
     return get(
         `/index.php?action=Action/RoomAct.getActList&token={token}&rid={rid}&page=${page}`
     );

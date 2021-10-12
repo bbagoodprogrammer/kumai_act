@@ -3,7 +3,7 @@
     <div style="-webkit-box-orient:vertical" :class="['txt', { 'over-hidden': !unfold }]" ref="textBox">
       <span ref="spanBox" v-html="content"></span>
     </div>
-    <div class="btn" v-if="ifOver" @click="unfold = !unfold">{{unfold?'收起':'全文'}}</div>
+    <div class="btn" v-if="ifOver" @click="unfold = !unfold">{{unfold?lang.put:lang.all}}</div>
   </div>
 </template>
 <script>

@@ -1,10 +1,10 @@
 <template>
   <div class="page pageIndex">
-    <div class="pageCon">
+    <div class="pageCon hotScrollable">
       <div class="title">
-        <strong>房間活動</strong>
+        <strong>{{lang.roomAct}}</strong>
         <i class="qurey" @click="$router.push({name:'Rule'})"></i>
-        <i class="creatBtn" @click="$router.push({name:'CreatAct'})" v-if="isOwner">發佈</i>
+        <i class="creatBtn" @click="$router.push({name:'CreatAct'})" v-if="isOwner">{{lang.release}}</i>
       </div>
       <ul class="actList">
         <li v-for="(item,index) in list" :key="index" :class="'themeType'+item.themeType">
@@ -21,9 +21,9 @@
               <div class="topic">{{item.topic}}</div>
               <div class="tm">{{item.beginTime}} - {{item.endTime}}</div>
               <div class="status" :class="'status'+item.status">
-                <em v-if="item.status == 0">活動預告中</em>
-                <em v-else-if="item.status == 1">活動準備中</em>
-                <em v-else-if="item.status==2">活動進行中</em>
+                <em v-if="item.status == 0">{{lang.actStatus1}}</em>
+                <em v-else-if="item.status == 1">{{lang.actStatus2}}</em>
+                <em v-else-if="item.status==2">{{lang.actStatus3}}</em>
               </div>
             </div>
           </div>
@@ -34,16 +34,16 @@
                 <div class="peopleAv">
                   <img v-lazy="item.avatar" alt="" v-for="(item,index) in item.userList" :key="index">
                 </div>
-                <strong>已報名:{{item.joinUser}}人</strong>
+                <strong>{{lang.joinUser.replace('%s',item.joinUser)}}</strong>
               </div>
               <div class="btns">
                 <div class="done" v-if="isOwner">
-                  <span class="del" @click="del(item.actId,index)"></span>
+                  <span class="del" @click="delQuery(item.actId,index)"></span>
                   <span class="edit" @click="editAct(item)"></span>
                 </div>
                 <div class="jojinAct" :class="{ed:item.isJoin}" v-else>
-                  <em v-if="!item.isJoin" @click="jojin(item.actId,index)">參與</em>
-                  <em v-else>已參與</em>
+                  <em v-if="!item.isJoin" @click="jojin(item.actId,index)">{{lang.jojin}}</em>
+                  <em v-else>{{lang.jojinEd}}</em>
                 </div>
               </div>
             </div>
@@ -52,19 +52,19 @@
             <div class="actData">
               <div class="taskActive">
                 <span>{{item.taskActive}}</span>
-                <strong>活躍用戶</strong>
+                <strong>{{lang.taskActive}}</strong>
               </div>
               <div class="fireworks">
                 <span>{{item.fireworksCnt}}</span>
-                <strong>煙火獎勵</strong>
+                <strong>{{lang.fireworksCnt}}</strong>
               </div>
               <div class="coinsCnt">
                 <span>{{item.coinsCnt}}</span>
-                <strong>金幣流水</strong>
+                <strong>{{lang.coinsCnt}}</strong>
               </div>
             </div>
             <div class="actDataBar">
-              <div class="barTitle">活動獎勵</div>
+              <div class="barTitle">{{lang.actGift}}</div>
               <ul>
                 <li v-for="(item2,index2) in taskName" :key="index2">
                   <div class="taskName">{{item2.name.replace('%s',item[item2.limit])}}</div>
@@ -78,16 +78,27 @@
               </ul>
             </div>
             <div class="ownerOper" v-if="isOwner">
-              <strong>剩餘:{{item.fireworks}}次</strong>
-              <span class="launch" :class="{ed:item.fireworks <= 0}" @click="launch(item.actId,item.fireworks,index)">發射煙花 </span>
+              <strong>{{lang.fireworks.replace('%s',item.fireworks)}}</strong>
+              <span class="launch" :class="{ed:item.fireworks <= 0}" @click="launch(item.actId,item.fireworks,index)">{{lang.fire}} </span>
               <span>
-                <em v-if="item.status == 1" @click="start(item.actId,index)">開始活動</em>
-                <em v-else-if="item.status == 2" @click="end(item.actId,index)">結束活動</em>
+                <em v-if="item.status == 1" @click="start(item.actId,index)">{{lang.startAct}}</em>
+                <em v-else-if="item.status == 2" @click="end(item.actId,index)">{{lang.endAct}}</em>
               </span>
             </div>
           </div>
         </li>
       </ul>
+    </div>
+    <div class="mask" v-show="showCancelPup">
+      <transition name="slide">
+        <div class="cancelAct" v-show="showCancelPup">
+          <div class="cancelTips">是否確認結束本場活動</div>
+          <div class="btns">
+            <div class="cancel" @click="showCancelPup = false">取消</div>
+            <div class="ok" @click="del(cancelId,cancelIndex)">確認</div>
+          </div>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -106,47 +117,47 @@ export default {
     return {
       image: '',
       isOwner: -1,
-      taskName: {
-        'taskCoinLoop': {
-          limit: 'taskCoinLoopLimit',
-          name: '房間金幣流水每增加%s',
-        },
-        'taskActive': {
-          limit: 'taskActiveLimit',
-          name: '房間活躍用戶達到%s',
-        },
-        'taskCoins': {
-          limit: 'taskCoinsLimit',
-          name: '房間金幣流水達到%s',
-        }
-      },
       list: [],
-      typeTips: {
-        1: '交友配對',
-        2: '团战PK',
-        3: '生日派對',
-        4: '爛漫婚禮',
-      }
+      page: 1,
+      more: true,
+      loaded: false,
+      showCancelPup: false,
+      cancelId: 0,
+      cancelIndex: 0
+    }
+  },
+  computed: {
+    taskName () {
+      return this.lang.taskName
+    },
+    typeTips () {
+      return this.lang.typeTips
     }
   },
   created () {
-    actList(1).then(res => {
+    actList(this.page).then(res => {
       const { image, isOwner, list, online } = res.data.response_data
       this.image = image
       this.isOwner = isOwner
       this.list = list
       this.vxc('setIsOwner', isOwner)
       this.vxc('setListLength', list.length)
-      //   if (!list.length) {
-      //     this.$router.push({ name: 'Rule' })
-      //   }
+      if (!list.length) {
+        this.$router.push({ name: 'Rule' })
+      }
     })
+  },
+  mounted () {
+    this.scrollable = this.$el.querySelector('.hotScrollable');
+    if (this.scrollable) {
+      this.scrollable.addEventListener('scroll', this.onScroll);
+    }
   },
   methods: {
     start (id, index) {
       startAct(id).then(res => {
         if (res.data.response_data) {
-          this.toast(`當前活動已開啟`)
+          this.toast(this.lang.actStartSuc)
           this.$set(this.list[index], 'status', 2)
         } else {
           this.toast(res.data.response_status.error)
@@ -156,7 +167,7 @@ export default {
     end (id, index) {
       endAct(id).then(res => {
         if (res.data.response_data) {
-          this.toast(`當前活動已結束！`)
+          this.toast(this.lang.actEndSuc)
           this.list.splice(index, 1)
         } else {
           this.toast(res.data.response_status.error)
@@ -167,7 +178,7 @@ export default {
       if (nums > 0) {
         lightFireworks(id).then(res => {
           if (res.data.response_data) {
-            this.toast(`煙火已發射！`)
+            this.toast(this.lang.fireSuc)
             this.$set(this.list[index], 'fireworks', nums - 1)
             closeWeb()
           } else {
@@ -179,18 +190,24 @@ export default {
     jojin (id, index) {
       jojinAct(id).then(res => {
         if (res.data.response_data) {
-          this.toast(`已參與`)
+          this.toast(this.lang.jojinSuc)
           this.$set(this.list[index], 'isJoin', true)
         } else {
           this.toast(res.data.response_status.error)
         }
       })
     },
+    delQuery (id, index) {
+      this.cancelId = id
+      this.cancelIndex = index
+      this.showCancelPup = true
+    },
     del (id, index) {
       delAct(id).then(res => {
         if (res.data.response_data) {
-          this.toast(`當前活動已取消！`)
+          this.toast(this.lang.delSuc)
           this.list.splice(index, 1)
+          this.showCancelPup = false
         } else {
           this.toast(res.data.response_status.error)
         }
@@ -199,8 +216,25 @@ export default {
     editAct (item) {
       this.vxc('setEditAct', item)
       this.$router.push({ name: 'CreatAct' })
-
-    }
+    },
+    onScroll () {
+      const scrollToBottom = this.scrollable.scrollTop + this.scrollable.clientHeight >= this.scrollable.scrollHeight - 180;
+      if (scrollToBottom) { //滾動加載，沒有加載完成
+        if (this.more) {
+          if (this.loaded) return
+          this.more = false
+          actList(this.page + 1, 'more').then(res => {
+            this.more = true
+            if (res.data.response_data.list.length === 0) {
+              this.loaded = true
+            } else {
+              this.page += 1
+              this.list = this.list.concat(res.data.response_data.list)
+            }
+          })
+        }
+      }
+    },
   }
 }
 </script>
@@ -644,9 +678,45 @@ export default {
       }
     }
   }
+
   img {
     display: block;
     width: 100%;
+  }
+}
+.cancelAct {
+  width: 6.18rem;
+  height: 2.93rem;
+  background: #FFFFFF;
+  border-radius: 0.3rem;
+  .cancelTips {
+    height: 1.45rem;
+    line-height: 1.45rem;
+    text-align: center;
+    font-size: 0.32rem;
+    color: #2C2B36;
+  }
+  .btns {
+    padding: 0 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > div {
+      width: 2.4rem;
+      height: 0.88rem;
+      line-height: 0.88rem;
+      border-radius: 0.44rem;
+      font-size: 0.32rem;
+      text-align: center;
+      &.cancel {
+        color: #7A68F8;
+        background: #FFFFFF;
+        border: 0.02rem solid #7A68F8;
+      }
+      &.ok {
+        background: linear-gradient(90deg, #7A68F8 0%, #9585FF 100%);
+      }
+    }
   }
 }
 </style>
