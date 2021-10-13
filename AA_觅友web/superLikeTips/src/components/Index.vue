@@ -44,7 +44,6 @@ export default {
     justify-content: space-between;
     .img1,
     .img2 {
-      background: red;
       width: 3.19rem;
       height: 3.72rem;
     }

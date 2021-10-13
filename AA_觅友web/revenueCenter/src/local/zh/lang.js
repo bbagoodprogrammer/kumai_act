@@ -18,7 +18,8 @@ export default {
         10: "兌換$",
         11: "新人獎勵",
         12: "收到邱比特愛神禮物 $",
-        13: '與<em class="uid">@</em>視頻通話%分鐘'
+        13: '與<em class="uid">@</em>視頻通話%分鐘',
+        14: '收到<em class="uid">@</em>贈送的禮物$'
     },
     history_title1: "粉鑽明細",
     history_title2: "藍鑽明細",

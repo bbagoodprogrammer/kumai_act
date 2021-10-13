@@ -14,7 +14,7 @@
               <img :src="image" alt="">
               <div class="peopleNums">
                 <i></i>
-                <strong>{{item.joinUser}}</strong>
+                <strong>{{online}}</strong>
               </div>
             </div>
             <div class="actTips">
@@ -32,7 +32,7 @@
             <div class="jojinBtn">
               <div class="jojinPeople">
                 <div class="peopleAv">
-                  <img v-lazy="item.avatar" alt="" v-for="(item,index) in item.userList" :key="index">
+                  <img v-lazy="item2.avatar" alt="" v-for="(item2,index2) in item.userList" :key="index2">
                 </div>
                 <strong>{{lang.joinUser.replace('%s',item.joinUser)}}</strong>
               </div>
@@ -51,7 +51,7 @@
           <div class="actStart" v-else>
             <div class="actData">
               <div class="taskActive">
-                <span>{{item.taskActive}}</span>
+                <span>{{item.activeCnt}}</span>
                 <strong>{{lang.taskActive}}</strong>
               </div>
               <div class="fireworks">
@@ -92,10 +92,10 @@
     <div class="mask" v-show="showCancelPup">
       <transition name="slide">
         <div class="cancelAct" v-show="showCancelPup">
-          <div class="cancelTips">是否確認結束本場活動</div>
+          <div class="cancelTips">{{lang.cancelTips}}</div>
           <div class="btns">
-            <div class="cancel" @click="showCancelPup = false">取消</div>
-            <div class="ok" @click="del(cancelId,cancelIndex)">確認</div>
+            <div class="cancel" @click="showCancelPup = false">{{lang.cancel}}</div>
+            <div class="ok" @click="del(cancelId,cancelIndex)">{{lang.ok}}</div>
           </div>
         </div>
       </transition>
@@ -123,7 +123,8 @@ export default {
       loaded: false,
       showCancelPup: false,
       cancelId: 0,
-      cancelIndex: 0
+      cancelIndex: 0,
+      online: 0
     }
   },
   computed: {
@@ -140,6 +141,7 @@ export default {
       this.image = image
       this.isOwner = isOwner
       this.list = list
+      this.online = online
       this.vxc('setIsOwner', isOwner)
       this.vxc('setListLength', list.length)
       if (!list.length) {

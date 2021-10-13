@@ -232,7 +232,7 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
-          color: #EC933B;
+          color: #784202;
           font-size: 0.26rem;
           i {
             width: 0.3rem;
@@ -258,6 +258,7 @@ export default {
         background: url(../img/buyBtn.png);
         background-size: 100% 100%;
         margin: 0.12rem auto 0;
+        color: #784202;
       }
     }
   }

@@ -15,13 +15,13 @@
     </div>
     <div class="tips_title title3"></div>
     <div class="actTitleBox">
-      <textarea v-model="actTitle" class="actTitle" maxlength="15" />
+      <textarea v-model.trim="actTitle" class="actTitle" maxlength="15" />
       <span class="strLength">{{actTitle.length}}/15</span>
     </div>
 
     <div class="tips_title title4"></div>
     <div class="actsMsgBox">
-      <textarea v-model="actMsg" class="actMsg" maxlength="200" />
+      <textarea v-model.trim="actMsg" class="actMsg" maxlength="200" />
       <span class="strLength">{{actMsg.length}}/200</span>
     </div>
 
@@ -128,7 +128,7 @@ export default {
           if (res.data.response_data) {
             this.vxc('updateLoading', false)
             this.toast(this.lang.ceatSucTips)
-            this.$router.go(-1)
+            this.$router.push({ name: 'index' })
           } else {
             this.toast(res.data.response_status.error)
             this.vxc('updateLoading', false)

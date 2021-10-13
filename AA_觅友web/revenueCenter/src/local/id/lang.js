@@ -18,7 +18,8 @@
         10: "Tukarkan $",
         11: "Hadiah pendatang baru",
         12: "Terima hadiah  $ dari Cupid",
-        13: 'Panggilan video dengan <em class="uid">@</em> selama % menit'
+        13: 'Panggilan video dengan <em class="uid">@</em> selama % menit',
+        14: 'Menerima hadiah $ dari<em class="uid">@</em>'
     },
     history_title1: "Detail  berlian pink",
     history_title2: "Detail berlian biru",

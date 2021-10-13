@@ -52,7 +52,10 @@ export default {
         17: "Hoa nở và hoa mận",
         18: "Đi đến đáy biển một mình, lặn vào trái tim bạn một mình",
         19: "Mộng mơ và tình yêu cùng hành cùng bạn",
-        200: "Trồng hoa hồng có cơ hội nhận được nhẫn kim cương hoa hồng - Qùa hiệu ứng*1 (8000xu),giảm 120 phút thời gian trưởng thành"
+        198: "薰衣草種子可種出「薰衣草盆栽-特效禮物*1」（2500金幣）,成熟時間90min",
+        199: "胡蘿蔔種子升級啦，可種出「兔子拔蘿蔔-特效禮物*1」（3000金幣）,成熟時間90min",
+        200: "Trồng hoa hồng có cơ hội nhận được nhẫn kim cương hoa hồng - Qùa hiệu ứng*1 (8000xu),giảm 120 phút thời gian trưởng thành",
+        201: "檸檬竟可變成情侶約會的浪漫小船，檸檬種子可種出「檸檬船-特效禮物*1」（10000金幣）,成熟時間120min"
     },
     buyTips: "Mua %n gói 【%a】，tổng %s xu",
     exchangeTips: "Đổi %n gói 【%a】，tổng %s ánh năng",

@@ -21,6 +21,9 @@ export default {
     fireSuc: "煙火已發射！",
     jojinSuc: "已參與",
     delSuc: "當前活動已取消！",
+    cancelTips: "是否確認結束本場活動",
+    cancel: "取消",
+    ok: "確認",
     taskName: {
         taskCoinLoop: {
             limit: "taskCoinLoopLimit",

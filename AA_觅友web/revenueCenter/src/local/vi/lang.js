@@ -18,7 +18,8 @@ export default {
         10: "Đổi $",
         11: "Quà thành viên mới",
         12: "Nhận được Quà Cupid $",
-        13: 'Gọi video % phút với <em class="uid">@</em>'
+        13: 'Gọi video % phút với <em class="uid">@</em>',
+        14: 'Nhận quà từ <em class="uid">@</em>$'
     },
     history_title1: "Chi tiết Ngọc",
     history_title2: "Chi tiết Kim cương",
